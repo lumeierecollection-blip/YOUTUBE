@@ -38,13 +38,13 @@ import { inkOf } from "./cutout-ink.mjs";
 import { placeGate } from "./place-gate.js";
 import { enforceChrome, templateCheck, labelCount, devicesOf } from "./template-check.js";
 import { callLLM, isProviderError } from "../src/lib/llm.js";
-const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
+const { resolveDocument, resolveMoney, qualifyEntity, qualifyEntityWith } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
-const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+const { resolveSceneEntity, sceneEntities, fallbackAsset, wikiSummary } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
 import { dropContainedEntities } from "./lib/contained-entities.mjs";
 const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
 import { chooseBeatVisual } from "./beat-visual.js";
-import { createUsedImages, imageKeys } from "./lib/used-images.js";
+import { createUsedImages, imageKeys, isMark } from "./lib/used-images.js";
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -1161,7 +1161,7 @@ export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) 
   const seenImg = new Map();
   choice.forEach((o, i) => {
     const c = o.canvas || {};
-    for (const k of new Set([c.photo, ...(c.concept_visuals || []).filter((v) => v?.class === "cutout")].filter(Boolean).flatMap((v) => imageKeys(v)))) {
+    for (const k of new Set([c.photo, ...(c.concept_visuals || []).filter((v) => v?.class === "cutout")].filter((v) => v && !isMark(v)).flatMap((v) => imageKeys(v)))) {   // a logo (mark) may repeat: used-images.js
       if (seenImg.has(k) && seenImg.get(k) !== i) out.push({ i, why: `beats ${indices[seenImg.get(k)]} and ${indices[i]} show the same image` }); else seenImg.set(k, i);
     }
   });
@@ -1678,7 +1678,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A generic institution name ("Supreme Court", "the central bank") names a
         // different building in every country (run 36504143080 ch-2): qualified with
         // the script's one country, or refused.
-        const q = ["organization", "institution", "building"].includes(e0.type) ? qualifyEntity(e0, countries) : { ent: e0 };
+        const q = ["organization", "institution", "building"].includes(e0.type) ? await qualifyEntityWith(e0, countries, wikiSummary) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
         const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "", script: plan.beats.map((x) => x.narration || "").join(" ") });
@@ -1687,7 +1687,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
         if (!r.refused) named.push(e0);
       }
-      for (let k = found.length - 1; k >= 0; k--) if (reused({ asset: found[k].id, source_url: (found[k].r.logo || found[k].r.photo).source_url }, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
+      for (let k = found.length - 1; k >= 0; k--) if (reused({ asset: found[k].id, source_url: (found[k].r.logo || found[k].r.photo).source_url, logo: !!found[k].r.logo }, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
       if (found.length) {
         const regionAvail = real.find((e) => e.type === "place" && resolveRegionName(e.name));
         const assets = found.map(({ id, e0, r }) => {

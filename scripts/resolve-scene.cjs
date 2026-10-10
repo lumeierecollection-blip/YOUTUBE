@@ -43,6 +43,7 @@
 const { mkdirSync, renameSync, rmSync } = require("node:fs");
 const { join } = require("node:path");
 const E = require("./entity-assets.cjs");
+const Wikidata = require("./lib/wikidata.cjs");
 const { verifyPlaceImage } = require("./verify-place-image.cjs");
 const { verifyImage } = require("./verify-image.cjs");
 
@@ -278,6 +279,13 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
     }
     if (!logos.length) lines.push(`wikipedia "${s.title}", no logo in the infobox`);
   } else lines.push(`wikipedia, no article for "${q}"`);
+  // 1b. Wikidata: the item's own logo / seal (P154, P8972, P158, P94), matched exactly on label or alias (scripts/lib/wikidata.cjs). A Commons
+  // file like every other candidate: the licence check, conversion and verifier below judge it.
+  try {
+    const wd = await Wikidata.find(q, { type: "organization", getJson: E.getJson }) || (q !== name ? await Wikidata.find(name, { type: "organization", getJson: E.getJson }) : null);
+    if (wd) { for (const f of wd.logos) addLogo(f, `wikidata ${wd.id}`); lines.push(`wikidata ${wd.id} "${wd.label}" (${wd.matched}${wd.description ? `: ${wd.description.slice(0, 50)}` : ""}): ${wd.logos.length} logo file(s)`); }
+    else lines.push(`wikidata: no exact item with a logo for "${q}"`);
+  } catch (e) { lines.push(`wikidata unavailable (${e.message})`); }
   // 2. Commons: "<name> logo" (a standards body's seal / mark too).
   for (const suffix of type === "institution" ? [" logo", " seal"] : [" logo"]) {
     const cj = await E.getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`"${q}"${suffix}`)}`);
@@ -560,7 +568,7 @@ async function sceneEntities({ beat, sentence, entityNamedInSentence, log = cons
   return list;
 }
 
-module.exports = { resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
+module.exports = { wikiSummary, resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
 
 if (require.main === module) {
   require("dotenv/config");

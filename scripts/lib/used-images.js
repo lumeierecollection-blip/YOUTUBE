@@ -18,6 +18,14 @@
 // moneyCandidates' fallback page) would mark every later image from that site as used.
 const specific = (s) => typeof s === "string" && s.trim() !== "" && (!/^https?:\/\//i.test(s) || /^https?:\/\/[^/]+\/[^?#\s]+/i.test(s));
 
+/**
+ * A MARK is an entity's own logo (visual.logo === true). It identifies the entity, it does not decorate a beat, so the rule above is about
+ * everything BUT marks: a second sentence naming the same organization shows its logo again. Applied as it was, the rule turned every repeat
+ * into a typed name (board 38044082797: SHRM, Financial Stability Board and MIT each had their logo on one beat and their name in type on the
+ * others — the owner, 2026-10-10: "I want logos, not writing"). Photos, cutouts, scans and the bundled surface are still never repeated.
+ */
+export const isMark = (v) => !!v && v.logo === true;
+
 /** The identity keys of a visual: { asset, source_url } (either may be missing). */
 export function imageKeys(v) {
   if (!v) return [];
@@ -35,11 +43,12 @@ export function imageKeys(v) {
 export function createUsedImages(log = () => {}) {
   const seen = new Set();
   const reused = (v, what = "image") => {
+    if (isMark(v)) return false;   // a mark is shown again whenever its entity is named again
     const hit = imageKeys(v).find((k) => seen.has(k));
     if (hit) log(`[no-repeat] ${what} ${v.asset || hit} already shown on an earlier beat${hit !== v.asset ? ` (same source: ${hit})` : ""} — not used again`);
     return !!hit;
   };
-  const add = (v) => { for (const k of imageKeys(v)) seen.add(k); };
+  const add = (v) => { if (isMark(v)) return; for (const k of imageKeys(v)) seen.add(k); };
   const keep = (list, what = "image") => (list || []).filter((v) => {
     if (!imageKeys(v).length) return true;
     if (reused(v, what)) return false;

@@ -42,6 +42,7 @@
  */
 "use strict";
 const { existsSync, mkdirSync, readFileSync, writeFileSync } = require("node:fs");
+const Wikidata = require("./lib/wikidata.cjs");
 const { join } = require("node:path");
 
 const ROOT = join(__dirname, "..");
@@ -274,6 +275,18 @@ async function personCandidates(name, context, max = 6) {
   const sj = await getJson(`${WIKI}/w/api.php?action=query&list=search&format=json&srlimit=5&srsearch=${encodeURIComponent(q)}`);
   const hit = (sj?.query?.search || []).find((h) => titleMatches(h.title, name) && !/\(disambiguation\)/i.test(h.title) && h.title !== r.pageTitle);
   if (hit) { r = await leadImageOf(hit.title, name); if (r.info) add(r, "wikipedia search lead image"); else tried.push(`wikipedia search: ${r.why}`); }
+  // Wikidata's own portrait (P18) for an item matched EXACTLY on this name or an alias: "Low Taek Jho" is Jho Low, whose article the title
+  // test above does not accept. A Commons file like the rest; the same file check, then the same verification of who it shows.
+  try {
+    const wd = await Wikidata.find(name, { type: "person", getJson });
+    for (const f of (wd?.images || []).slice(0, 2)) {
+      const info = await fileInfo(`File:${f}`);
+      const bad = checkFile(info);
+      if (bad) { tried.push(`wikidata ${wd.id}: ${f}: ${bad}`); continue; }
+      add({ info, page: info.descurl, pageTitle: `File:${f}`, description: wd.description || "" }, `wikidata ${wd.id} image`);
+    }
+    if (!wd) tried.push("wikidata: no exact person item with an image");
+  } catch (e) { tried.push(`wikidata unavailable (${e.message})`); }
   const nt = tokens(name);
   const commons = [];
   for (const suffix of [" portrait", " official photo", ""]) {
@@ -586,7 +599,28 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
+/**
+ * qualifyEntity, but asked of Wikipedia first. The script's one named country is not always the institution's country: the
+ * "Department of the Treasury" in a script about sanctions on IRAN is the United States', and forcing Iran onto it looked up
+ * "Department of the Treasury of Iran" and found nothing (board 38044082797 ch 9). When Wikipedia's own article for the PLAIN name is a
+ * specific institution (not a disambiguation page) that names a country other than the script's, the plain name's primary topic is used
+ * and no country is forced onto it. Anything else behaves as qualifyEntity did.
+ *   summaryOf(name) -> a Wikipedia REST summary or null (injected: scripts/resolve-scene.cjs wikiSummary)
+ */
+async function qualifyEntityWith(ent, countries = [], summaryOf = null) {
+  const q = qualifyEntity(ent, countries);
+  if (!q.ent || q.ent === ent || typeof summaryOf !== "function") return q;
+  let s = null;
+  try { s = await summaryOf(String(ent.name).trim().replace(/^the\s+/i, "")); } catch { s = null; }
+  if (!s || s.type === "disambiguation" || !s.title) return q;
+  const { regionsIn } = await import("./place-gate.js");
+  const { resolveRegion } = await import("../src/skills/remotion-render/visual/geo-regions.js");
+  const own = regionsIn(`${s.title} ${s.description || ""}`);
+  const scripts = new Set([...new Set(countries)].map((c) => resolveRegion(c)).filter(Boolean));
+  if (!own.size || [...own].some((r) => scripts.has(r))) return q;
+  return { ent, note: `"${ent.name}" is a generic institution name, but Wikipedia's primary article for it is "${s.title}" (not ${[...new Set(countries)].join(", ")}) — resolving that, not "${q.ent.name}"` };
+}
+module.exports = { qualifyEntityWith, resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

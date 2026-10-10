@@ -69,3 +69,18 @@ test("identity: asset + a specific source; a bare domain is not an identity", ()
   used.add({ asset: "cutouts-live/49/1-blumhouse-logo.png", source_url: "https://commons.wikimedia.org/wiki/File:Blumhouse_Productions_logo.svg" });
   assert.equal(used.reused({ asset: "cutouts-live/49/7-blumhouse-productions-logo.png", source_url: "https://commons.wikimedia.org/wiki/File:Blumhouse_Productions_logo.svg" }), true);
 });
+
+// A logo is the entity's own mark: naming the entity again shows it again (it used to become a typed name).
+test("a logo may be shown on more than one beat; a photo still may not", async () => {
+  const { createUsedImages } = await import("../lib/used-images.js");
+  const u = createUsedImages();
+  const logo = { asset: "cutouts-live/10/4-mit-logo.png", source_url: "https://commons.wikimedia.org/wiki/File:MIT_2023_red_logo.svg", logo: true };
+  assert.equal(u.reused(logo, "beat 4"), false);
+  u.add(logo);
+  assert.equal(u.reused({ ...logo, asset: "cutouts-live/10/8-mit-logo.png" }, "beat 8"), false, "same source, another beat: allowed");
+  const photo = { asset: "entities/buildings/x.jpg", source_url: "https://commons.wikimedia.org/wiki/File:X.jpg" };
+  u.add(photo);
+  assert.equal(u.reused(photo, "beat 9"), true, "a photo is still never repeated");
+  assert.equal(u.reused({ ...photo, logo: false }, "beat 9"), true);
+  assert.equal(u.keep([logo, photo]).length, 1, "keep(): the logo passes, the repeated photo does not");
+});

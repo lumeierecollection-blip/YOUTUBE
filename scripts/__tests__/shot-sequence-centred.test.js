@@ -25,3 +25,13 @@ test("grid off (the pre-grid machinery): the rule is still enforced", () => {
   TEXT_GRID.on = false;
   try { assert.ok(centredProblems(shotSequenceProblems(seq)).length > 0); } finally { TEXT_GRID.on = true; }
 });
+
+test("the same logo on two beats is not 'the same image' to the shot solver (a photo is)", () => {
+  TEXT_GRID.on = true;
+  const withCutout = (v) => ({ ...shot("HERO-OVER"), canvas: { concept_visuals: [v] } });
+  const logo = { class: "cutout", asset: "cutouts-live/1/2-shrm-logo.png", source_url: "https://commons.wikimedia.org/wiki/File:SHRM_updated_Logo.png", logo: true };
+  const same = (a, b) => shotSequenceProblems([withCutout(a), shot("TYPE-FULL", false), withCutout(b)]).filter((x) => /same image/.test(x.why)).length;
+  assert.equal(same(logo, { ...logo, asset: "cutouts-live/1/6-shrm-logo.png" }), 0);
+  const photoCut = { class: "cutout", asset: "cutouts-live/1/0-wallet.png", source_url: "https://pixabay.com/photos/wallet-676361/" };
+  assert.equal(same(photoCut, { ...photoCut, asset: "cutouts-live/1/6-wallet.png" }), 1);
+});
