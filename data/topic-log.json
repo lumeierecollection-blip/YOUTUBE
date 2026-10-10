@@ -2287,9 +2287,14 @@
           "topic": "The $93M Ledger CryptoBilis Wallet Drain: Anatomy of a Supply Chain Hack",
           "slug": "ledger-cryptobilis-93m-wallet-drain",
           "reserved_at": "2026-10-10T01:55:32.724Z"
+        },
+        {
+          "topic": "CrowdStrike Ties ARTEX AI Agent to Korea Bank Hack",
+          "slug": "crowdstrike-artex-ai-agent-korea-bank-hack",
+          "reserved_at": "2026-10-10T07:29:58.702Z"
         }
       ],
-      "last_generated": "2026-10-10T03:40:37.867Z"
+      "last_generated": "2026-10-10T07:29:58.702Z"
     },
     "27": {
       "channel_name": "Trial Files",
