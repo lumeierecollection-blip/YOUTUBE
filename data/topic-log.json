@@ -1661,9 +1661,14 @@
           "topic": "Africa's Critical Minerals Race Intensifies Amid US-China Competition",
           "slug": "africa-critical-minerals-race-us-china-2026",
           "reserved_at": "2026-10-10T07:17:15.784Z"
+        },
+        {
+          "topic": "The Sea Lion Project and the Renewed UK-Argentina Falklands Dispute",
+          "slug": "sea-lion-project-uk-argentina-falklands-dispute",
+          "reserved_at": "2026-10-10T07:26:29.047Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:15.784Z"
+      "last_generated": "2026-10-10T07:26:29.048Z"
     },
     "10": {
       "channel_name": "Margin Note",
