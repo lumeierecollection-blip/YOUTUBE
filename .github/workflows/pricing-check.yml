@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Render official pricing and rate-limit pages
         run: |
-          python3 -m pip install --quiet playwright==1.47.2
+          python3 -m pip install --quiet playwright==1.47.0
           python3 -m playwright install --with-deps chromium
           cat > render.py <<'PY'
           from playwright.sync_api import sync_playwright

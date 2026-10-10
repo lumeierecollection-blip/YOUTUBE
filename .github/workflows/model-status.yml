@@ -63,7 +63,7 @@ jobs:
                   continue
               for m in MODELS:
                   url = f"https://generativelanguage.googleapis.com/v1beta/models/{m}:generateContent"
-                  out = subprocess.run(["curl", "-sS", "-o", "/tmp/r.json", "-w", "%{http_code}", "-H", "Content-Type: application/json",
+                  out = subprocess.run(["curl", "-sS", "--max-time", "60", "-o", "/tmp/r.json", "-w", "%{http_code}", "-H", "Content-Type: application/json",
                                         "-H", f"x-goog-api-key: {key}", "-d", BODY, url], capture_output=True, text=True).stdout.strip()
                   try:
                       j = json.load(open("/tmp/r.json"))
@@ -81,7 +81,7 @@ jobs:
           python3 calls.py
       - name: Official deprecations page (rendered)
         run: |
-          python3 -m pip install --quiet playwright==1.47.2
+          python3 -m pip install --quiet playwright==1.47.0
           python3 -m playwright install --with-deps chromium
           cat > deprec.py <<'PY'
           import re
