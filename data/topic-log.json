@@ -1658,9 +1658,14 @@
           "topic": "Super Intelligence: The History and Misuse of a Technical Term",
           "slug": "super-intelligence-history-misuse",
           "reserved_at": "2026-10-10T01:20:48.937Z"
+        },
+        {
+          "topic": "AI Terminology Guide 2026: Key Concepts Defined",
+          "slug": "ai-terminology-guide-2026-key-concepts-defined",
+          "reserved_at": "2026-10-10T03:38:48.601Z"
         }
       ],
-      "last_generated": "2026-10-10T01:55:37.821Z"
+      "last_generated": "2026-10-10T03:38:48.602Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
