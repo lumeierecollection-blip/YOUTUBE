@@ -100,8 +100,8 @@ jobs:
           git fetch origin board-frames:board-frames 2>/dev/null || true
           git worktree add -B board-frames ../bf-cal origin/board-frames
           mkdir -p ../bf-cal/calibrate/${{ github.run_id }}
-          for d in out/calibrate/labscript/*/; do n=$(basename "$d"); cp "$d/vo.mp3" "../bf-cal/calibrate/${{ github.run_id }}/$n.mp3"; cp "$d/vo.srt" "../bf-cal/calibrate/${{ github.run_id }}/$n.srt"; done
-          cd ../bf-cal && git add -A && git commit -qm "calibration audio ${{ github.run_id }}" && git push -q origin HEAD:board-frames
+          for d in out/calibrate/labscript/*/; do n=$(basename "$d"); [ -f "$d/vo.mp3" ] && cp "$d/vo.mp3" "../bf-cal/calibrate/${{ github.run_id }}/$n.mp3" && cp "$d/vo.srt" "../bf-cal/calibrate/${{ github.run_id }}/$n.srt" || echo "no audio for $n (TTS refused)"; done
+          cd ../bf-cal && git add -A && (git commit -qm "calibration audio ${{ github.run_id }}" || true) && git push -q origin HEAD:board-frames
       - name: Run the lab
         if: github.event.inputs.set != 'probe' && github.event.inputs.set != 'readings' && github.event.inputs.set != 'timeline' && github.event.inputs.set != 'calibrate'
         env:
