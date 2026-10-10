@@ -246,7 +246,7 @@ function ollamaVision(framePaths, prompt) {
 // only when it parses to a JSON object with the rules' fields; anything else falls on.
 function openrouterThenGroq(framePaths, prompt) {
   const key = process.env.OPENROUTER_API_KEY;
-  const model = process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3-vl-32b-instruct";
+  const model = process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3.7-plus";
   const cap = Math.max(1, Number(process.env.OPENROUTER_MAX_IMAGES || 8));
   let why = "no_key";
   if (key) {

@@ -32,6 +32,7 @@ jobs:
       - name: Install edge-tts and numpy
         run: python3 -m pip install --quiet edge-tts numpy
       - name: "Raw HTTP, one image and one text control to OpenRouter, status printed"
+        continue-on-error: true
         run: |
           python3 - <<'PY'
           import zlib, struct, base64, json, os, subprocess
@@ -45,7 +46,7 @@ jobs:
           if not key:
               print("OPENROUTER_API_KEY: NOT SET"); raise SystemExit(0)
           cases = {
-              "image": {"model": "qwen/qwen3-vl-32b-instruct", "max_tokens": 16, "temperature": 0, "messages": [{"role": "user", "content": [
+              "image": {"model": "qwen/qwen3.7-plus", "max_tokens": 16, "temperature": 0, "messages": [{"role": "user", "content": [
                   {"type": "text", "text": "Reply with one word: what colour is this image?"},
                   {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}}]}]},
               "text": {"model": "openai/gpt-oss-120b", "max_tokens": 16, "temperature": 0, "messages": [
@@ -63,7 +64,8 @@ jobs:
               if "error" in j:
                   print(f"{name} ({body['model']}): HTTP {out}, error: {str(j['error'].get('message', ''))[:200]}")
               else:
-                  print(f"{name} ({body['model']}): HTTP {out}, answer: {j.get('choices', [{}])[0].get('message', {}).get('content', '')[:120]!r}")
+                  choices = j.get("choices") or [{}]
+                  print(f"{name} ({body['model']}): HTTP {out}, answer: {str((choices[0].get('message') or {}).get('content', ''))[:120]!r}")
           PY
       - name: "Edge-TTS variants, four texts of one production sentence, scored acoustically"
         run: node scripts/edge-variants.mjs --out probe/edge

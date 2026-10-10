@@ -14,7 +14,7 @@
  * One attempt per request; the caller falls to the next provider.
  *
  *   endpoint  https://openrouter.ai/api/v1/chat/completions
- *   vision    OPENROUTER_VISION_MODEL (default qwen/qwen3-vl-32b-instruct)
+ *   vision    OPENROUTER_VISION_MODEL (default qwen/qwen3.7-plus)
  *   text      OPENROUTER_TEXT_MODEL   (default openai/gpt-oss-120b)
  *
  * These defaults are NOT verified facts until scripts/openrouter-probe.mjs has run on a CI runner
@@ -25,7 +25,7 @@
  */
 const ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
 const TEXT_MODEL = () => process.env.OPENROUTER_TEXT_MODEL || "openai/gpt-oss-120b";
-const VISION_MODEL = () => process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3-vl-32b-instruct";
+const VISION_MODEL = () => process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3.7-plus";
 
 const fail = (error, detail) => ({ source: "openrouter", error, detail: String(detail || "").slice(0, 300) });
 

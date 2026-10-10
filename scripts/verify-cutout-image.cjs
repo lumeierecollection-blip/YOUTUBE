@@ -100,7 +100,7 @@ async function imageDataUrl(pngPath) {
 const CUTOUT_VERIFIER_VERSION = "2026-10-10.2";
 const CUTOUT_CACHE_DIR = join(__dirname, "..", ".cache", "cutout-verify");
 function verifierModels() {
-  return ["gemini-3.5-flash-lite", process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3-vl-32b-instruct", process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b"];
+  return ["gemini-3.5-flash-lite", process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3.7-plus", process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b"];
 }
 /** sha256 over the exact JPEG bytes, the concept name, the verifier version and the model chain. Pure. */
 function cutoutCacheKey(jpeg, name, version = CUTOUT_VERIFIER_VERSION, models = verifierModels()) {
