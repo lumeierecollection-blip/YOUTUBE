@@ -2352,9 +2352,14 @@
           "topic": "Paolo Molesini's €95M Fideuram Impersonation Fraud Money Trail",
           "slug": "fideuram-95m-impersonation-fraud-money-trail",
           "reserved_at": "2026-10-10T11:16:32.228Z"
+        },
+        {
+          "topic": "CrowdStrike Ties ARTEX AI Agent to Korea Bank Hack Campaign",
+          "slug": "crowdstrike-artex-ai-agent-korea-bank-hack",
+          "reserved_at": "2026-10-10T13:12:29.408Z"
         }
       ],
-      "last_generated": "2026-10-10T11:16:32.228Z"
+      "last_generated": "2026-10-10T13:12:29.408Z"
     },
     "27": {
       "channel_name": "Trial Files",
