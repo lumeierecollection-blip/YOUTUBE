@@ -1163,9 +1163,14 @@
           "topic": "Attorney General Bans Former Crypto CEO From Financial Industry",
           "slug": "ag-bans-former-crypto-ceo-financial-industry",
           "reserved_at": "2026-10-10T11:20:49.054Z"
+        },
+        {
+          "topic": "FTC and USDA Launch Joint Inquiry Into Agricultural Equipment Markets",
+          "slug": "ftc-usda-agricultural-equipment-market-inquiry",
+          "reserved_at": "2026-10-10T13:15:18.219Z"
         }
       ],
-      "last_generated": "2026-10-10T11:20:49.054Z"
+      "last_generated": "2026-10-10T13:15:18.219Z"
     },
     "6": {
       "channel_name": "Archive Room",
