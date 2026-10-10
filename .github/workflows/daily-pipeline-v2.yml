@@ -989,6 +989,21 @@ jobs:
       # once and kept in the runner cache; every run re-judges them (Gemini listens: recorded or
       # robotic) and only "recorded" files play. A failed fetch or judge means a video with no SFX,
       # never a failed render and never an unjudged sound.
+      # THE RESPONSE CACHE (owner, 2026-10-10: `.cache/gemini` was not in any cache path, so no gate's answer survived to the next board and every
+      # identical request was paid for again). Keyed on the client and on the verifier that writes into it, so a client change starts clean.
+      # save-always: a channel whose gate fails still saves the answers it paid for. A per-run key plus a prefix restore: the newest entry wins.
+      - name: Cache Gemini responses
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/gemini
+            .cache/cutout-verify
+          key: gemini-resp-${{ runner.os }}-${{ hashFiles('src/lib/gemini-client.js', 'src/lib/llm.js', 'scripts/verify-cutout-image.cjs') }}-${{ github.run_id }}
+          restore-keys: |
+            gemini-resp-${{ runner.os }}-${{ hashFiles('src/lib/gemini-client.js', 'src/lib/llm.js', 'scripts/verify-cutout-image.cjs') }}-
+          save-always: true
+
       - name: Cache CC0 SFX
         if: steps.status.outputs.skip != 'true'
         uses: actions/cache@v4

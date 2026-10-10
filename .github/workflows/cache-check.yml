@@ -1,0 +1,57 @@
+# Does the Gemini response cache survive from one CI job to the next? (owner, 2026-10-10)
+# `write` makes one real text call and caches it; `read` runs in a SEPARATE job, restores the cache the way the pipeline does, and must
+# answer from the cache with no network call. scripts/cache-check.mjs.
+name: cache-check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: One real call, written to the cache
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node scripts/cache-check.mjs write
+      - name: Save the cache (same action and key pattern as the pipeline)
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/gemini
+          key: cache-check-${{ github.run_id }}
+          save-always: true
+  read:
+    needs: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Restore the cache (prefix restore, as the pipeline does)
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/gemini
+          key: cache-check-${{ github.run_id }}-read
+          restore-keys: |
+            cache-check-
+      - name: The same call must be answered from the cache
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node scripts/cache-check.mjs read
