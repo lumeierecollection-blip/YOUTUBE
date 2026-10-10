@@ -1728,9 +1728,14 @@
           "topic": "Confucian Philosophy and the New Approach to Taming AI Personalities",
           "slug": "confucian-philosophy-taming-ai-personalities",
           "reserved_at": "2026-10-10T07:29:52.145Z"
+        },
+        {
+          "topic": "MIT Concourse and the Revival of Humanistic Thinking in Tech",
+          "slug": "mit-concourse-humanistic-thinking-tech",
+          "reserved_at": "2026-10-10T10:18:43.467Z"
         }
       ],
-      "last_generated": "2026-10-10T07:29:52.145Z"
+      "last_generated": "2026-10-10T10:18:43.467Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
