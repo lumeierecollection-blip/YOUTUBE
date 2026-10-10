@@ -1,0 +1,62 @@
+# Job 1 of the 2026-10-10 brief: does IMAGE input to gemini-3.5-flash-lite return 200 under the current
+# quota? Sends one 16x16 PNG with a one-word question, and a text-only control with the same key, to every
+# key. Prints the HTTP status of each call. Prints no key material. Read-only.
+name: image-probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+      GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+      GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+    steps:
+      - name: Build a 16x16 red PNG and the request bodies
+        run: |
+          python3 - <<'PY'
+          import zlib, struct, base64, json
+          w = h = 16
+          raw = b"".join(b"\x00" + b"\xff\x00\x00" * w for _ in range(h))
+          def chunk(t, d):
+              return struct.pack(">I", len(d)) + t + d + struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
+          png = b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)) + chunk(b"IDAT", zlib.compress(raw)) + chunk(b"IEND", b"")
+          b64 = base64.b64encode(png).decode()
+          gen = {"maxOutputTokens": 16, "temperature": 0}
+          image = {"contents": [{"parts": [
+              {"text": "Reply with one word: what colour is this image?"},
+              {"inline_data": {"mime_type": "image/png", "data": b64}}]}], "generationConfig": gen}
+          text = {"contents": [{"parts": [{"text": "Reply with one word: what colour is a clear sky?"}]}], "generationConfig": gen}
+          json.dump(image, open("image-body.json", "w"))
+          json.dump(text, open("text-body.json", "w"))
+          print(f"PNG bytes: {len(png)}, base64 chars: {len(b64)}")
+          PY
+      - name: Call gemini-3.5-flash-lite with each key (text control, then image)
+        run: |
+          URL="https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent"
+          for VAR in GEMINI_API_KEY GEMINI_API_KEY_1 GEMINI_API_KEY_2 GEMINI_API_KEY_3 GEMINI_API_KEY_4; do
+            KEY="${!VAR}"
+            if [ -z "$KEY" ]; then echo "$VAR: secret not set"; continue; fi
+            for KIND in text image; do
+              CODE=$(curl -sS -o "resp-$VAR-$KIND.json" -w '%{http_code}' -H 'Content-Type: application/json' -H "x-goog-api-key: $KEY" -d @"$KIND-body.json" "$URL")
+              echo "$VAR $KIND HTTP $CODE"
+              python3 - "resp-$VAR-$KIND.json" <<'PY'
+          import json, sys
+          try:
+              j = json.load(open(sys.argv[1]))
+          except Exception as e:
+              print(f"  unreadable body: {e}"); raise SystemExit
+          if "error" in j:
+              e = j["error"]
+              print(f"  error {e.get('code')} {e.get('status')}: {str(e.get('message', ''))[:220]}")
+          else:
+              parts = j.get("candidates", [{}])[0].get("content", {}).get("parts", [])
+              print("  answer:", " ".join(p.get("text", "") for p in parts)[:200])
+          PY
+            done
+          done
