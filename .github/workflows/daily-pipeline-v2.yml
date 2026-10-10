@@ -184,6 +184,14 @@ jobs:
       - name: Install EdgeTTS + faster-whisper
         run: pip install --quiet edge-tts faster-whisper
 
+      # Gemini TTS returns raw PCM; src/utils/tts_gemini.py writes the mp3 with ffmpeg (board 38033771445: missing here, every channel fell back to edge-tts).
+      - name: Ensure ffmpeg (Gemini TTS)
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+
       # ── Ollama ─────────────────────────────────────────────────────────
       # .github/actions/ollama: one server per job, the only place one is
       # started (the "address already in use" fix), models from the cache.

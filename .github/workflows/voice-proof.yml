@@ -1,0 +1,54 @@
+# Voice proof: the narrator path the prep job runs (src/utils/tts_gemini.py: Gemini TTS -> ffmpeg mp3 -> faster-whisper word alignment),
+# then Gemini listens (scripts/narration-judge.mjs). Two Gemini calls; proves the CI environment before a full board spends its quota.
+name: voice-proof
+
+on:
+  workflow_dispatch:
+
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Cache the word-alignment model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-align-${{ runner.os }}-faster-whisper-base.en
+      - name: Install faster-whisper + ffmpeg
+        run: |
+          pip install --quiet faster-whisper
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg; fi
+      - name: Synthesize and align
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          mkdir -p out
+          printf '%s' "In 1890, the Bank of England stepped in — quietly, and just in time. Barings, the oldest merchant bank in London, was days from collapse. What saved it was not the law, but a phone call." > out/s.txt
+          python src/utils/tts_gemini.py --voice Charon --style "Read this as a documentary narrator speaking to one person: warm, engaged and conversational, with real variation in pitch, a short breath at every comma and dash." --file out/s.txt --mp3 out/vo.mp3 --srt out/vo.srt --words out/vo-words.json
+          cat out/vo.srt
+          head -c 400 out/vo-words.json
+      - name: Gemini listens
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node scripts/narration-judge.mjs --audio out/vo.mp3 --srt out/vo.srt --out out/narration.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-proof-${{ github.run_id }}
+          path: out/
