@@ -1177,11 +1177,12 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       <div style={{ position: "absolute", inset: 0, clipPath: `inset(${Math.max(0, B.map.y)}px 0 ${Math.max(0, FRAME.h - B.map.y - B.map.h)}px 0)` }}>
       <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + grow(local, dur, fps, 0.08)).toFixed(4)})` }}>
       <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
-      {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce). The
-          map is zoomed on the region, so its centre is the region; the pin sits above the
-          region's label (drawn at the region's centre). */}
+      {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce), but never
+          later than 1.5 s: on a long map beat (12 s on channel 9's Eritrea video) 25% is 3 s, and the
+          map sat still from 1.25 s to 2.75 s, over pace-check's 1.0 s limit (2026-10-10). The map is
+          zoomed on the region, so its centre is the region; the pin sits above the region's label. */}
       {(() => {
-        const f = local - Math.round(0.25 * dur);
+        const f = local - Math.min(Math.round(0.25 * dur), Math.round(1.5 * fps));
         if (f < 0) return null;
         const drop = f < 8 ? -40 * (1 - easeInOut(f / 8)) : 0;
         const px = B.map.x + B.map.w / 2, py = B.map.y + B.map.h * 0.3 + drop;
