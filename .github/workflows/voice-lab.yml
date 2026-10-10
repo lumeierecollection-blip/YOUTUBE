@@ -9,7 +9,7 @@ on:
         type: string
         default: ""
       set:
-        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x) | probe (why does the judge's first model never answer?) | judge (the same mp3 judged three times: do the verdicts agree?) | readings (raw judge readings, with and without a seed) | timeline (one reading every 15 s for 5 min: cold vs warm)"
+        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x) | probe (why does the judge's first model never answer?) | judge (the same mp3 judged three times: do the verdicts agree?) | readings (raw judge readings, with and without a seed) | timeline (one reading every 15 s for 5 min: cold vs warm) | calibrate (the acoustic narration measure against the labelled lab voices)"
         type: string
         default: "lab2"
       corpus_run:
@@ -31,9 +31,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install faster-whisper + ffmpeg
+      - name: Install faster-whisper + ffmpeg + numpy
         run: |
-          pip install --quiet faster-whisper
+          pip install --quiet faster-whisper numpy
           if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg; fi
       - name: Fetch the real board texts (prep artifacts of the corpus run)
         continue-on-error: true
@@ -82,8 +82,19 @@ jobs:
           done
           wait
           cat timeline-*.txt
+      - name: Calibrate the acoustic measure (labelled lab voices)
+        if: github.event.inputs.set == 'calibrate'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          node scripts/voice-lab.mjs --set calibrate --out out/calibrate --corpus corpus
+          python3 scripts/acoustic/calibrate.py out/calibrate/labscript
       - name: Run the lab
-        if: github.event.inputs.set != 'probe' && github.event.inputs.set != 'readings' && github.event.inputs.set != 'timeline'
+        if: github.event.inputs.set != 'probe' && github.event.inputs.set != 'readings' && github.event.inputs.set != 'timeline' && github.event.inputs.set != 'calibrate'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}

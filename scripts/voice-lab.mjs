@@ -66,6 +66,21 @@ if (set === "lab" || set === "all") {
     ...["Puck", "Kore"].map((v) => V(`notes-${v.toLowerCase()}-sentence`, v, NOTES, "sentence")),
   ]);
 }
+if (set === "calibrate") {
+  // The labelled variants of lab 1 (38050775355) and lab 2 (38053319841): the judge's OWN labels, as given by the owner.
+  // good = production-class (judge 8.78 - 9); bad = the robotic cluster (judge 5.11 - 5.33). No judge is run in this set: the acoustic
+  // measure is what is being calibrated, and the Gemini quota is needed for the gate itself.
+  add("labscript", labText, [
+    V("good-charon-notes", "Charon", NOTES, "whole", { label: "good" }),
+    V("good-charon-current", "Charon", CURRENT, "whole", { label: "good" }),
+    V("good-kore-notes", "Kore", NOTES, "whole", { label: "good" }),
+    V("good-zephyr-notes", "Zephyr", NOTES, "whole", { label: "good" }),
+    V("good-aoede-current", "Aoede", CURRENT, "whole", { label: "good" }),
+    V("bad-charon-nodirection", "Charon", "", "whole", { label: "bad" }),
+    V("bad-puck-notes", "Puck", NOTES, "whole", { label: "bad" }),
+    V("bad-fenrir-notes", "Fenrir", NOTES, "whole", { label: "bad" }),
+  ]);
+}
 if (set === "lab2") {
   // The cells lab 1 lacked: the production voices with the production direction, and per-sentence (it returned WAV, now decoded).
   add("labscript", labText, [
@@ -117,6 +132,12 @@ for (const job of jobs) {
     const f = (n) => join(dir, n);
     console.log(`\n=== ${job.textId} / ${v.name} (voice ${v.voice}, ${v.mode}${v.style ? "" : v.mode === "existing" ? ", the production mp3 as shipped" : ", no direction"}) — ${job.features.words} words, ${job.features.wps} w/sentence`);
     let mp3 = f("vo.mp3"), srt = f("vo.srt");
+    if (set === "calibrate") {
+      const tts = spawnSync("python3", [join(ROOT, "src", "utils", "tts_gemini.py"), "--voice", v.voice, "--style", v.style, "--mode", v.mode, "--file", job.file, "--mp3", mp3, "--srt", srt, "--words", f("vo-words.json")], { encoding: "utf8", env: process.env, timeout: 900000 });
+      rows.push({ name: v.name, label: v.label, voice: v.voice, ok: tts.status === 0, why: tts.status === 0 ? null : "tts failed", dir });
+      console.log(`${v.name} (${v.label}): ${tts.status === 0 ? "synthesised" : "TTS FAILED"}`);
+      continue;
+    }
     if (v.mode === "existing") {
       if (!existsSync(v.mp3) || !existsSync(v.srt)) { console.log("no production mp3 / srt beside the text"); rows.push({ ...v, textId: job.textId, features: job.features, ok: false, why: "no mp3" }); continue; }
       mp3 = v.mp3; srt = v.srt;
