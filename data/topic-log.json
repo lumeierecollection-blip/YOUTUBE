@@ -2212,9 +2212,14 @@
           "topic": "Uranium Finance Hacker Convicted Over $53.3M Theft",
           "slug": "uranium-finance-hacker-convicted-53m-theft",
           "reserved_at": "2026-10-10T01:20:43.508Z"
+        },
+        {
+          "topic": "The $93M Ledger CryptoBilis Wallet Drain: Anatomy of a Supply Chain Hack",
+          "slug": "ledger-cryptobilis-93m-wallet-drain",
+          "reserved_at": "2026-10-10T01:55:32.724Z"
         }
       ],
-      "last_generated": "2026-10-10T01:20:43.508Z"
+      "last_generated": "2026-10-10T01:55:32.724Z"
     },
     "27": {
       "channel_name": "Trial Files",
