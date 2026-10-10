@@ -133,8 +133,15 @@ for (const job of jobs) {
     console.log(`\n=== ${job.textId} / ${v.name} (voice ${v.voice}, ${v.mode}${v.style ? "" : v.mode === "existing" ? ", the production mp3 as shipped" : ", no direction"}) — ${job.features.words} words, ${job.features.wps} w/sentence`);
     let mp3 = f("vo.mp3"), srt = f("vo.srt");
     if (set === "calibrate") {
-      const tts = spawnSync("python3", [join(ROOT, "src", "utils", "tts_gemini.py"), "--voice", v.voice, "--style", v.style, "--mode", v.mode, "--file", job.file, "--mp3", mp3, "--srt", srt, "--words", f("vo-words.json")], { encoding: "utf8", env: process.env, timeout: 900000 });
-      rows.push({ name: v.name, label: v.label, voice: v.voice, ok: tts.status === 0, why: tts.status === 0 ? null : "tts failed", dir });
+      // Up to three tries: the free tier's per-minute quota refuses a burst, and a refused call is not a bad voice. The error is printed.
+      let tts = null;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        tts = spawnSync("python3", [join(ROOT, "src", "utils", "tts_gemini.py"), "--voice", v.voice, "--style", v.style, "--mode", v.mode, "--file", job.file, "--mp3", mp3, "--srt", srt, "--words", f("vo-words.json")], { encoding: "utf8", env: process.env, timeout: 900000 });
+        if (tts.status === 0) break;
+        console.log(`${v.name}: attempt ${attempt} failed: ${String(tts.stderr || "").trim().split("\n").slice(-2).join(" | ").slice(0, 300)}`);
+        await new Promise((r) => setTimeout(r, 60000 * attempt));
+      }
+      rows.push({ name: v.name, label: v.label, voice: v.voice, ok: tts.status === 0, why: tts.status === 0 ? null : "tts failed", dir, textId: "calibrate" });
       console.log(`${v.name} (${v.label}): ${tts.status === 0 ? "synthesised" : "TTS FAILED"}`);
       continue;
     }
@@ -164,7 +171,7 @@ for (const job of jobs) {
 
 const agree = [...new Set(rows.filter((r) => r.repeat && r.ok).map((r) => r.textId))].map((id) => { const g = rows.filter((r) => r.textId === id && r.repeat && r.ok).map((r) => (r.gate === "pass" ? "pass" : "FAIL")); return `${id}: ${g.join(" / ")} -> ${g.length && g.every((x) => x === g[0]) ? "AGREE" : "DISAGREE"}`; });
 if (agree.length) console.log(`\nsame audio, three judgements (each the median of three readings):\n${agree.join("\n")}`);
-rows.sort((a, b) => a.textId.localeCompare(b.textId) || (b.mean ?? -1) - (a.mean ?? -1));
+rows.sort((a, b) => String(a.textId).localeCompare(String(b.textId)) || (b.mean ?? -1) - (a.mean ?? -1));
 const cells = ["| text | variant | voice | mode | judge | mean | per sentence | at 7+ | gate |", "|---|---|---|---|---|---|---|---|---|", ...rows.map((r) => `| ${r.textId} | ${r.name} | ${r.voice} | ${r.mode} | ${r.judge || "—"} | ${r.ok ? r.mean : "—"} | ${r.ok ? r.scores.join(" ") : r.why} | ${r.ok ? `${r.passing}/${r.of}` : "—"} | ${r.gate || "—"} |`)].join("\n");
 const byText = new Map(); for (const r of rows) if (!byText.has(r.textId)) byText.set(r.textId, r.features);
 const feat = ["| text | words | sentences | words/sentence | sd | digits | questions | commas/sentence | dashes | contrast words | best mean | production-setting mean |", "|---|---|---|---|---|---|---|---|---|---|---|---|",
