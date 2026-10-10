@@ -158,10 +158,10 @@ export function entrance(id, p, { side = 1 } = {}) {
     case "SLIDE_FROM_R": { const e = easeOut(p); return { ...rest, o: clamp01(e * 2), dx: 180 * (1 - e) }; }
     case "SLIDE_LAND": { const e = easeOut(p); return { ...rest, o: e, dx: -side * 60 * (1 - e) }; }
     case "WHIP_IN": { const e = bezier(0.05, 0.9, 0.1, 1)(p); return { ...rest, o: clamp01(p * 6), dx: (side > 0 ? -1 : 1) * 900 * (1 - e), blur: 16 * (1 - e), rot: (side > 0 ? -1 : 1) * 2.2 * (1 - e) }; }
-    case "DROP_IN": { const e = bounceOut(p); return { ...rest, o: clamp01(p * 5), dy: -240 * (1 - e) }; }
+    case "DROP_IN": { const e = easeOut(p); return { ...rest, o: clamp01(p * 5), dy: -240 * (1 - e) }; }
     case "RISE_FROM_BASE": { const e = easeOut(p); return { ...rest, dy: 0, ry: e, o: 1, rise: 1 - e }; }
     case "SCALE_UP": { const e = easeOut(p); return { ...rest, o: clamp01(e * 1.6), s: lerp(0.6, 1, e) }; }
-    case "SCALE_PUNCH": { const e = backOut(p); return { ...rest, o: clamp01(p * 6), s: lerp(1.5, 1, e) }; }
+    case "SCALE_PUNCH": { const e = easeOut(p); return { ...rest, o: clamp01(p * 6), s: lerp(1.5, 1, e) }; }
     case "MASK_SWEEP": case "SPLIT_REVEAL": case "TYPE_IN": case "LETTER_STAGGER": case "WORD_STAGGER":
       // Revealed by the renderer per line / half / character / word; the whole-block value is the sweep itself.
       return { ...rest, rx: easeInOut(p) };

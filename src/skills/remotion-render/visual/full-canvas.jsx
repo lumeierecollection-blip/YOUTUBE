@@ -54,7 +54,7 @@
  * a donut ring, they cross-fade into it while moving).
  */
 import React from "react";
-import { POP, PHOTO_COMPS, popGroups } from "./pop-groups.js";
+import { POP, PHOTO_COMPS, popGroups, popInState, popOutState } from "./pop-groups.js";
 export { POP, popGroups };
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { StudioBG } from "./studio-bg.jsx";
@@ -107,12 +107,15 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // Compositions that carry their own motion across the beat (a photo pushes, a graph grows, a map outlines, entity art lives).
 // The ambient push runs at a CONSTANT speed (2%/s, at most 10% over the beat), not as a fixed share of the beat: a 7 s beat that only
 // settled 3% moved 0.4%/s — under what a viewer (or the pace check) sees (board 37967524047: TYPE-FULL static 3.5 s, TYPE-CHAPTER 3.25 s).
-export const AMBIENT = Object.freeze({ amp: 0.07, period: 2.6 });
+export const AMBIENT = Object.freeze({ amp: 0.08, rate: 0.025 });
 /** The push's scale at beat-local frame `local` of `dur`: it starts smaller and arrives at 1 as the beat ends (always inside its zone). */
 // A capped push stops once it hits its cap (board 37978510400: plates and numbers static 2.5-3.5 s in the last half of a 7 s beat). The ambient is
 // a slow continuous ease-in-out sweep instead — in and out over `period` seconds, never beyond its range — so a beat of any length keeps moving.
-export const sweep = (local, fps, amp, period = AMBIENT.period) => amp * (0.5 - 0.5 * Math.cos((2 * Math.PI * (local / fps)) / period));
-export const ambientScale = (local, dur, fps) => 1 - sweep(local, fps, AMBIENT.amp);
+// The ambient push is MONOTONE (owner, 2026-10-10: nothing wobbles, nothing settles): one slow push-in across the whole beat, linear,
+// arriving at 1 on the beat's last frame — never in-and-out. `push(local, dur, fps, amp)` grows 0 -> amp over the beat.
+export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max(1, dur / fps), a = Math.min(amp, AMBIENT.rate * s); return a * clamp01(local / Math.max(1, dur)); };
+export const ambientScale = (local, dur, fps) => { const s = Math.max(1, dur / fps), a = Math.min(AMBIENT.amp, AMBIENT.rate * s); return 1 - a + push(local, dur, fps); };
+export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
@@ -158,8 +161,8 @@ function useMotion(c, local, dur, fps) {
   const tier = c.motion_tier || "medium";
   const s = (sec) => sec * fps;
   const build = (share = 0.4, delay = 0) => (tier === "micro" ? easeOut(clamp01((local - delay) / s(0.35))) : easeOut(clamp01((local - delay) / Math.max(1, dur * share))));
-  const breathe = 1 + 0.005 * Math.sin((local / fps) * 2.1);
-  const jitter = (k = 0) => Math.sin(local / fps * 7.3 + k) * 1.2;
+  const breathe = 1;          // nothing breathes or wobbles (owner, 2026-10-10)
+  const jitter = (k = 0) => 0 * k;
   return { tier, s, build, breathe, jitter, fps, dur, local };
 }
 
@@ -397,7 +400,7 @@ function TypeFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   // TYPE-SPLIT: the second half lands 0.5 s after the first (the header's headline).
   // Part D.2 (TYPE-FULL): every word pops in one at a time (KineticText), the whole statement
   // holds with a 0.5% breath, and a thin rule draws under it at 60% of the beat.
-  const breath = 1 + 0.005 * Math.sin((2 * Math.PI * local) / (2.4 * fps));
+  const breath = 1;
   return (
     <>
       <div style={{ position: "absolute", inset: 0, transformOrigin: `${st.x + st.w / 2}px ${st.y + st.h / 2}px`, transform: `scale(${breath.toFixed(5)})` }}>
@@ -916,7 +919,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 50%");
   const live = clamp01((local - at * fps) / Math.max(1, dur * 0.9));
   const glyph = onAccent(accent);
-  const push = 1 + sweep(local, fps, 0.05);   // a slow ease-in-out sweep (up to 5%, 3 s period): motion for the whole beat, nothing springy, never smaller than its box
+  const push = 1 + sweep(local, fps, 0.06, dur);   // one slow linear push-in across the beat (to +6%): never reverses, never smaller than its box
   const breathe = push;
   let art = null;
   // FLAT (owner, 2026-10-09: "they shouldn't look playful"): the reference's drawn parts are hairline-ruled and typographic —
@@ -1159,7 +1162,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return (
     <HeroEl name="map" b={B.map}>
       <div style={{ position: "absolute", inset: 0, clipPath: `inset(${Math.max(0, B.map.y)}px 0 ${Math.max(0, FRAME.h - B.map.y - B.map.h)}px 0)` }}>
-      <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + sweep(local, fps, 0.06)).toFixed(4)})` }}>
+      <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + sweep(local, fps, 0.08, dur)).toFixed(4)})` }}>
       <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
       {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce). The
           map is zoomed on the region, so its centre is the region; the pin sits above the
@@ -1498,16 +1501,8 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
 // incoming ones pop, so at the crossover (frame 4) the leaving group is at
 // ~40% and the arriving one at ~60%: the frame is never empty. Nothing moves
 // in space: no slide, wipe, mask, iris, flip, match cut or camera move.
-export function popInState(f) {
-  if (f < 0) return { o: 0, s: POP.S0 };
-  const o = clamp01(f / 5);
-  const s = f <= 4 ? POP.S0 + (POP.OVER - POP.S0) * easeOut(clamp01(f / 4)) : POP.OVER + (1 - POP.OVER) * easeInOut(clamp01((f - 4) / 2));
-  return { o, s: f >= POP.IN ? 1 : s };
-}
-export function popOutState(f) {
-  if (f <= 0) return { o: 1, s: 1 };
-  return { o: 1 - clamp01(f / 6.5), s: 1 - (1 - POP.S0) * clamp01(f / POP.OUT) };
-}
+// popInState / popOutState live in pop-groups.js (pure, so the no-overshoot gate tests them).
+
 /** The frame a beat is drawn at: every element in, none leaving (word exits start at >= 70%). */
 // LIST-BUILD / TIMELINE add items as the narrator reaches them (up to 0.6 s before
 // the end) and have no word exits: they settle at the last frame, or later items
@@ -1674,7 +1669,7 @@ export function CanvasVideo({ plan }) {
       {/* Micro motion (part D.1, every beat): the composition is never still — a 1 px drift
           across the beat and a 0.3% breath (one cycle per 3 s), about the frame's centre. */}
       <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
-        transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px) scale(${(1 + 0.003 * Math.sin((2 * Math.PI * local) / (3 * fps))).toFixed(5)})` }}>
+        transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px)` }}>
         <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       </div>
       {/* The live word caption on every beat was the bottom-phrase device (owner, 2026-10-08):

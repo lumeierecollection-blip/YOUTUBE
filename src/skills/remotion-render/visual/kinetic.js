@@ -58,9 +58,9 @@ export const WEIGHT_BOLD = 700;
 export const ENTRANCES = Object.freeze(["POP_STANDARD", "POP_EMPHASIS", "POP_SOFT", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"]);
 const POP = Object.freeze({
   POP_STANDARD: { from: 0.92, peak: null, frames: 6, dy: 8 },
-  POP_EMPHASIS: { from: 0.75, peak: 1.08, frames: 10, dy: 8 },
+  POP_EMPHASIS: { from: 0.75, peak: null, frames: 10, dy: 8 },
   POP_SOFT: { from: 0.95, peak: null, frames: 4, dy: 5 },
-  POP_HARD: { from: 0.6, peak: 1.15, frames: 12, dy: 8 },
+  POP_HARD: { from: 0.6, peak: null, frames: 12, dy: 8 },
   NUMBER: { from: 1.3, peak: null, frames: 8, dy: 0 },
 });
 /** Frames each entrance takes to settle (POP_LETTER: per letter, plus 0.9 frame per letter of stagger). */
@@ -217,7 +217,7 @@ export function popState(style, f) {
     const k = 0.55;
     if (t < k) { const e = easeOut(t / k); s = P.from + (P.peak - P.from) * e; prog = e; }
     else { s = P.peak + (1 - P.peak) * easeInOut((t - k) / (1 - k)); prog = 1; }
-  } else { prog = backOutSmall(t); s = P.from + (1 - P.from) * prog; }
+  } else { prog = easeOut(t); s = P.from + (1 - P.from) * prog; }   // NO OVERSHOOT (owner, 2026-10-10: "weird bounces ... I hate that"): an ease-out that arrives and stops
   if (t >= 1) return { s: 1, dy: 0, o: 1, done: true };
   return { s, dy: P.dy * (1 - prog), o, done: false };
 }
@@ -247,7 +247,8 @@ export function stackSettle(lastEnter, f) {
 /** After landing: a 0.5% scale pulse and a 1 px drift, per-word phase, so no word sits frozen. */
 export function microMotion(f, i = 0) {
   const t = f / FPS, ph = i * 1.7;
-  return { s: 1 + 0.005 * Math.sin(t * 2.1 + ph), dx: Math.sin(t * 1.3 + ph) * 0.5, dy: Math.sin(t * 1.7 + ph * 0.6) * 1 };
+  void t; void ph;
+  return { s: 1, dx: 0, dy: 0 };   // nothing wobbles (owner, 2026-10-10): a landed word stays put
 }
 
 // ── timing ────────────────────────────────────────────────────────────

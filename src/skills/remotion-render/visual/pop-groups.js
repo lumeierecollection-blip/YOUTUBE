@@ -80,3 +80,16 @@ export function entityGroupKey(c, L, groups) {
   const band = Object.entries(BANDS).find(([, [y0, y1]]) => cy >= y0 && cy < y1)?.[0];
   return band && groups.some((g) => g.key === band) ? band : null;
 }
+
+const clamp01p = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
+const easeOutP = (x) => 1 - Math.pow(1 - clamp01p(x), 3);   // monotone, never past 1
+export function popInState(f) {
+  if (f < 0) return { o: 0, s: POP.S0 };
+  const o = clamp01p(f / 5);
+  const s = POP.S0 + (1 - POP.S0) * easeOutP(clamp01p(f / POP.IN));   // arrives and stops: no pass beyond 1 (was 0.94 -> 1.04 -> 1)
+  return { o, s: f >= POP.IN ? 1 : s };
+}
+export function popOutState(f) {
+  if (f <= 0) return { o: 1, s: 1 };
+  return { o: 1 - clamp01p(f / 6.5), s: 1 - (1 - POP.S0) * clamp01p(f / POP.OUT) };
+}
