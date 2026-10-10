@@ -1696,9 +1696,14 @@
           "topic": "OFAC Intensifies Iran Sanctions Under Operation Economic Outcast",
           "slug": "ofac-intensifies-iran-sanctions-economic-outcast",
           "reserved_at": "2026-10-10T10:15:02.367Z"
+        },
+        {
+          "topic": "Ethiopia Tells UN Security Council It Is Acting in Self-Defense Against Eritrea",
+          "slug": "ethiopia-un-security-council-self-defense-eritrea",
+          "reserved_at": "2026-10-10T11:16:55.476Z"
         }
       ],
-      "last_generated": "2026-10-10T10:15:02.367Z"
+      "last_generated": "2026-10-10T11:16:55.476Z"
     },
     "10": {
       "channel_name": "Margin Note",
