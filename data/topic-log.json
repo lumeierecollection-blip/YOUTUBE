@@ -2147,9 +2147,14 @@
           "topic": "crypto-fraud-investigations-2026",
           "slug": "ledger-probe-87m-crypto-fraud-2026",
           "reserved_at": "2026-10-09T21:57:00.331Z"
+        },
+        {
+          "topic": "The $8 Million Greek AI Crypto Pyramid Scheme and Arrest of 17 Suspects",
+          "slug": "greek-ai-crypto-pyramid-scheme-arrests-8m",
+          "reserved_at": "2026-10-10T00:50:44.444Z"
         }
       ],
-      "last_generated": "2026-10-09T21:57:00.332Z"
+      "last_generated": "2026-10-10T00:50:44.444Z"
     },
     "27": {
       "channel_name": "Trial Files",
