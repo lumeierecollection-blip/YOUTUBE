@@ -118,7 +118,7 @@ export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max
 // The push decelerates (ease-out, monotone, never past 1): fastest at the beat's start, when only the first words are in and the frame
 // is sparse, slowing as the frame fills (layout-proof 38017734111: a linear push left the first 2 s of a long words-only beat under the
 // pace threshold while the rest moved).
-export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.2 : AMBIENT.amp, rate = words ? 0.035 : AMBIENT.rate, a = Math.min(amp, rate * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * (1 - Math.pow(1 - u, 2.2)); };
+export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.26 : AMBIENT.amp, rate = words ? 0.04 : AMBIENT.rate, a = Math.min(amp, rate * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * (0.5 * (1 - Math.pow(1 - u, 2.2)) + 0.5 * u); };   // half ease-out, half linear: quick while sparse, never stopping before the cut
 export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
