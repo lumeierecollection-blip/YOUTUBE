@@ -2415,6 +2415,22 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Step 1d: every image the plan references must be in the bundle
     // (guardPlanAssets: re-bundle, else photo -> TYPE) — a 404 cancels the render.
     planPath = await guardPlanAssets(channelId, planPath);
+    // The photo fetch rate (owner, 2026-10-10: "Log the fetch success rate per channel"): beats that name a person, place or organisation,
+    // how many show a REAL fetched image of it (a photo, a logo / mark, a flag, each with its source URL), how many fell to an honest
+    // typographic treatment (the name in type / a map / a plate). No sample image is a fallback (resolve-scene.cjs fallbackAsset is off).
+    try {
+      const fp = readJsonSafe(planPath);
+      const need = [], realB = [], typeB = [];
+      for (const [i, b] of (fp?.beats || []).entries()) {
+        const named = (b.named_entities || []).filter((e) => /person|place|organization|company|institution|building|outlet|agency/i.test(String(e?.type || "")));
+        if (!named.length) continue;
+        need.push(i);
+        const c = b.canvas || {};
+        const real = (c.photo?.asset && c.photo?.source_url) || (c.concept_visuals || []).some((v) => v.asset && v.source_url && v.class !== "symbol") || (c.art?.asset && c.art?.source_url) || (c.art?.items || []).some((it) => it?.asset && it?.source_url);
+        (real ? realB : typeB).push(`${i}${c.art ? `:${c.art.kind}` : c.composition ? `:${c.composition}` : ""}`);
+      }
+      console.log(`[images] ch-${channelId}: ${need.length} beat(s) name a person / place / organisation; ${realB.length} show a real fetched image (${realB.join(", ") || "none"}); ${typeB.length} fell to a typographic or drawn treatment (${typeB.join(", ") || "none"}); 0 samples`);
+    } catch (e) { console.log(`[images] ch-${channelId}: fetch rate not computed (${e.message})`); }
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL) — the
     // resolved plan, passed explicitly (VISUAL_PLAN_PATH).
@@ -2595,6 +2611,18 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       console.error(`::error::look check ${why} for ${basename(result.outputPath)}`);
       const lc = readJsonSafe(result.outputPath.replace(/.mp4$/, "-look-check.json"));
       return backupAudit({ ...backupArgs, stage: "look-check", reason: lc?.failing?.length ? `${why}: beats ${lc.failing.join(", ")}` : why });
+    }
+
+    // Step 2b''''''': NAMING on the rendered frames (owner, 2026-10-10: every entity named correctly; a misspelling, a wrong place or a
+    // wrong figure fails the beat). Any failing beat holds the video; a check that cannot run does too.
+    {
+      const nc = await runChild("node", [GEMINI_REVIEW_JS, "--naming-check", "--video", result.outputPath, "--manifest", result.outputPath.replace(/.mp4$/, "-manifest.json"), "--out", result.outputPath.replace(/.mp4$/, "-naming.json")], { label: `naming-check ${channelId}/${basename(scriptPath)}` });
+      if (nc.code !== 0) {
+        const why = nc.code === 1 ? "FAILED — an entity on screen is misnamed" : "could not run";
+        console.error(`::error::naming check ${why} for ${basename(result.outputPath)}`);
+        const nr = readJsonSafe(result.outputPath.replace(/.mp4$/, "-naming.json"));
+        return backupAudit({ ...backupArgs, stage: "naming-check", reason: nr?.failing?.length ? `${why}: beats ${nr.failing.join(", ")}` : why });
+      }
     }
 
     // Step 2b'''''': NARRATION — Gemini LISTENS to the voiceover (owner, 2026-10-10: "THE VOICE IS ROBOTIC"). Every sentence must read as a

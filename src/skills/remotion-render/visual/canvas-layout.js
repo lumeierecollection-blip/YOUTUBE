@@ -981,10 +981,11 @@ function gridForm(c, comp, vt) {
   const hasHead = !!String(c?.headline || "").trim();
   if (["HERO-LOW", "HERO-SCATTER"].includes(comp)) return { composition: "HERO-OVER" };
   if (comp === "TYPE-FULL" && cv.some((v) => v.asset || v.class === "symbol" || v.logo)) return { composition: "HERO-OVER" };
-  // Three photo forms keep a run of photo beats from repeating one frame: a band (the strip's), a centred card (the edge's and the
-  // inset's), full bleed with the words low (SCENE-LOW).
+  // Three photo forms keep a run of photo beats from repeating one frame: a band (the strip's and the inset's), a centred card
+  // (the edge's), full bleed with the words low (SCENE-LOW).
   if (comp === "PHOTO-STRIP" && c?.photo) return { composition: "PHOTO-BAND" };
-  if (["PHOTO-EDGE", "PHOTO-INSET"].includes(comp) && c?.photo) return { composition: "PHOTO-CARD" };
+  if (comp === "PHOTO-EDGE" && c?.photo) return { composition: "PHOTO-CARD" };
+  if (comp === "PHOTO-INSET" && c?.photo) return { composition: "PHOTO-BAND" };
   if (comp === "PORTRAIT" && c?.photo) return { composition: "PHOTO-CARD", headline: c.headline || c.photo.entity || "" };
   if ((comp === "SCENE-FULL" || comp === "ARCHITECTURE") && c?.photo) return { composition: "SCENE-LOW" };
   if (comp === "MAP-CENTERED" && hasHead && !c?.map_band) return { map_band: true };
@@ -1813,7 +1814,7 @@ export function canvasManifest(raw, idx) {
     camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     // What the beat NAMES and what it drew for it (scripts/entity-coverage.js reads both).
-    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, style: c.art.style || null, items: Array.isArray(c.art.items) ? c.art.items.map((it) => (it ? { name: it.name || null, asset: it.asset || null, source_url: it.source_url || null, license: it.license || null } : null)) : null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
+    art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, style: c.art.style || null, source_url: c.art.source_url || null, license: c.art.license || null, items: Array.isArray(c.art.items) ? c.art.items.map((it) => (it ? { name: it.name || null, asset: it.asset || null, source_url: it.source_url || null, license: it.license || null } : null)) : null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
     entities: Array.isArray(c.named_entities) ? c.named_entities.filter((e) => e && e.name).map((e) => ({ type: e.type, name: e.name })) : [],
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,
     // Provenance (verified_as = the Wikipedia title + description it was verified against,
@@ -1835,7 +1836,7 @@ export function canvasManifest(raw, idx) {
     // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).
     source_credit: c.source_credit || null,
     // The hero object and the name card, so the reviewers' frame labels say what is drawn.
-    concept_visuals: (c.concept_visuals || []).map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money, asset: v.asset || null })),
+    concept_visuals: (c.concept_visuals || []).map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money, asset: v.asset || null, source: v.source || null, source_url: v.source_url || null, license: v.license || null })),
     name_card: c.name_card?.name ? { name: c.name_card.name } : null,
     // Part C: the entrance style and the background variation this beat was drawn with.
     entrance_style: c.entrance_style || null,

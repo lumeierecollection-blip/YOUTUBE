@@ -159,7 +159,7 @@ jobs:
           ffmpeg -loglevel error -y $args -filter_complex "hstack=inputs=$n,scale=iw/2:-1" out/shots/contact-sheet.png
 
       - name: Layer 1 on the rendered pixels
-        run: node scripts/local-audit.cjs --canvas-only --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json
+        run: node scripts/local-audit.cjs --canvas-only --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json --fixture
 
       # "Verify SFX align to their word or beat within ±100 ms": the audio track of the rendered MP4 (no voiceover,
       # no bed — only SFX) is decoded and the loudest sample near every event is compared with the event's frame.

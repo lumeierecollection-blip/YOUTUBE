@@ -825,6 +825,57 @@ function entityMarks(beats) {
 }
 
 /**
+ * image-sources (owner, 2026-10-10: "REAL PHOTOS, NOT SAMPLES ... every image on screen must be traceable to a source URL"). Every image a
+ * beat draws — a photo, a cutout or logo, a flag, an organisation's mark — must carry its source URL (fetched, licence-checked, vision-verified
+ * at fetch time), that URL must answer, and the file must not be one of the repo's sample images (by path or by content). Drawn icons /
+ * symbols are not images (Lucide, in-repo) and are not judged here. Where it stops: "the image matches the entity" is judged on the frame by
+ * gemini-frame-review.js --entity-check / --naming-check, not here.
+ */
+const SAMPLE_DIRS = ["b-roll/", "asset-library/", "_probe-fixtures/", "silhouettes/", "documents/generic"];
+async function imageSources(beats) {
+  const bad = [], rows = [];
+  const pub = join(__dirname, "..", "src", "skills", "remotion-render", "public");
+  const crypto = require("node:crypto");
+  const hashOf = (f) => { try { return crypto.createHash("sha1").update(readFileSync(f)).digest("hex"); } catch { return null; } };
+  const sampleHashes = new Set();
+  const walk = (d) => { try { for (const e of require("node:fs").readdirSync(d, { withFileTypes: true })) { const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (/\.(png|jpe?g|webp)$/i.test(e.name)) { const h = hashOf(f); if (h) sampleHashes.add(h); } } } catch {} };
+  for (const d of ["b-roll", "asset-library", "_probe-fixtures", "silhouettes", "documents"]) walk(join(pub, d));
+  const reach = new Map();
+  const reachable = async (url) => {
+    if (reach.has(url)) return reach.get(url);
+    let ok = false, why = "";
+    for (let k = 0; k < 2 && !ok; k++) {
+      try { const r = await fetch(url, { method: "GET", headers: { "user-agent": "YOUTUBE-pipeline image-source check", range: "bytes=0-0" }, redirect: "follow", signal: AbortSignal.timeout(12000) }); ok = r.status < 400; why = `HTTP ${r.status}`; }
+      catch (e) { why = e.message; }
+    }
+    reach.set(url, { ok, why });
+    return { ok, why };
+  };
+  let needed = 0, real = 0;
+  for (let i = 0; i < beats.length; i++) {
+    const c = beats[i].canvas || {};
+    const imgs = [];
+    if (c.photo?.asset) imgs.push({ what: "photo", asset: c.photo.asset, url: c.photo.source_url });
+    for (const v of c.concept_visuals || []) if (v.asset && v.class !== "symbol") imgs.push({ what: v.logo ? "logo" : "cutout", asset: v.asset, url: v.source_url });
+    if (c.art?.asset) imgs.push({ what: c.art.kind, asset: c.art.asset, url: c.art.source_url });
+    (c.art?.items || []).forEach((it) => { if (it?.asset) imgs.push({ what: "mark", asset: it.asset, url: it.source_url }); });
+    for (const im of imgs) {
+      needed++;
+      const label = `beat ${i} ${im.what} ${im.asset}`;
+      if (SAMPLE_DIRS.some((d) => String(im.asset).startsWith(d))) { bad.push(`${label}: a repo sample image is on screen`); continue; }
+      const h = hashOf(join(pub, im.asset));
+      if (h && sampleHashes.has(h)) { bad.push(`${label}: the file is a copy of a repo sample image`); continue; }
+      if (!im.url) { bad.push(`${label}: no source URL recorded — it does not ship`); continue; }
+      const r = await reachable(im.url);
+      if (!r.ok) { bad.push(`${label}: its source ${im.url} does not answer (${r.why})`); continue; }
+      real++;
+      rows.push(`${label} <- ${im.url}`);
+    }
+  }
+  return { bad, rows, needed, real };
+}
+
+/**
  * flat-look (owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic"): on the rendered frame of every beat that
  * draws a chart, timeline, diagram, date card, time scale, plate or flag — the reference palette only (ink, neutrals and the channel's
  * ONE accent), sharp corners on a boxed element, no drop shadow. scripts/lib/flat-look.cjs has the measures and where they stop;
@@ -971,6 +1022,10 @@ async function canvasChecks(video, m) {
   const em = entityMarks(beats);
   em.rows.forEach((r) => console.log(`[marks] ${r}`));
   out.push({ id: "entity-marks", pass: !em.bad.length, detail: em.bad.length ? em.bad.join("; ") : em.rows.length ? `${em.rows.length} entity plate beat(s): each entity is its real mark or its name in type, none repeated` : "no entity plate to judge" });
+  // The shot-proof FIXTURE renders the repo's sample photos on purpose (it proves layouts, it never ships): --fixture says so, and the check is skipped there.
+  const isrc = process.argv.includes("--fixture") ? { bad: [], rows: ["(fixture: sample images by design — not judged)"], needed: 0, real: 0 } : await imageSources(beats);
+  isrc.rows.forEach((r) => console.log(`[images] ${r}`));
+  out.push({ id: "image-sources", pass: !isrc.bad.length, detail: isrc.bad.length ? isrc.bad.join("; ") : `${isrc.real}/${isrc.needed} image(s) on screen, each traced to a source URL that answers; no sample image` });
   const tg = await textGrid(video, beats, m.fps || 30);
   tg.rows.forEach((r) => console.log(`[grid] beat ${r.beat}: ${r.words === null ? "no words" : r.words || `${r.composition} words centred at x ${r.centre_x}, ending at y ${r.bottom_y}`}`));
   out.push({ id: "grid", pass: !tg.bad.length, detail: tg.bad.length ? tg.bad.join("; ") : `every beat's words centred on x 540 and standing on y ${GRID_BASE} (± ${GRID_TOL}), measured on the frames` });

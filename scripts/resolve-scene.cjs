@@ -74,6 +74,12 @@ const FALLBACK_ASSETS = Object.freeze({
 
 /** The bundled stand-in for `kind`, or null when there is none (stack). */
 async function fallbackAsset(kind, channel, beatIndex) {
+  // OFF (owner, 2026-10-10: "a sample photo presented as the real thing fails"): the bundled generic silhouette / document is a sample, not a
+  // fetched image of the thing the sentence names. A failed fetch now falls to an honest typographic treatment (the name in type, a
+  // plate) — never to a stand-in picture. scripts/local-audit.cjs `image-sources` refuses any of these files on screen.
+  console.log(`[resolve] ch-${channel} beat ${beatIndex}: no verified source image for "${kind}" — no stand-in; the beat is set in type`);
+  return null;
+  // eslint-disable-next-line no-unreachable
   const rel = FALLBACK_ASSETS[String(kind || "").toLowerCase()];
   if (!rel) return null;
   const abs = join(E.PUBLIC, rel);

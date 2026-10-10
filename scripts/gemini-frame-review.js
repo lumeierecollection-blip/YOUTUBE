@@ -897,11 +897,71 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"family":"YES"|"NO","playful
   }
 }
 
+/* ── Naming check on the rendered frames ─────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --naming-check --video <mp4> --manifest <render-manifest.json> [--out <json>]
+ *
+ * Owner, 2026-10-10: "Every entity on screen must be named correctly and consistently ... a misspelling, a wrong place, or an unnamed
+ * entity fails the beat" — and "every check must read the RENDERED FRAME". One frame per beat (after its words have landed) goes to Gemini
+ * with the beat's sentence: it reads every person, place, organisation and figure the FRAME shows (the bottom word caption excluded) and
+ * judges each against the sentence: spelled exactly as the sentence spells it; the same place / person / organisation (not a broader region,
+ * not a namesake); a figure with the number and unit the sentence states. ANY failing beat fails the video (no tolerance).
+ *
+ * Exit 0 = every beat names correctly. Exit 1 = a beat misnames (listed). Exit 3 = could not run.
+ */
+async function namingCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --naming-check --video <mp4> --manifest <manifest.json> [--out <json>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::naming check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const jobs = (manifest.beats || []).map((b, i) => ({ b, i, sentence: b.canvas?.sentence || "" })).filter((j) => j.sentence);
+  if (!jobs.length) { if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const work = join(tmpdir(), `naming-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{ type: "text", text: `You are proof-reading a finished vertical video, beat by beat. For each beat you get its narration sentence and ONE frame.
+Read every proper name (person, place, organisation, product), every date and every figure that the FRAME shows — in the headline, labels, plates, logos, maps or charts. IGNORE the word-by-word caption strip at the very bottom of the frame.
+For each one judge it against the sentence:
+- spelling: exactly as the sentence spells it (case aside). "Gemany" for "Germany", "Elon Musc" for "Elon Musk" are wrong.
+- identity: the same place / person / organisation the sentence names — not a broader region (a "Europe" label for "France"), not a different place with the same name, not a different company.
+- figures: the number and its unit as the sentence states them ("$86 million", not "$86" or "86 billion").
+A frame that shows no name, date or figure passes.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on screen>","expected":"<as the sentence has it>","ok":true|false,"problem":"<empty or what is wrong>"}],"verdict":"PASS"|"FAIL"}]} — one entry per beat listed, by beat_index.` }];
+  try {
+    for (const { b, i, sentence } of jobs) {
+      const t = (b.start_sec ?? 0) + Math.max(0.1, (b.duration_sec ?? 0) * 0.85);
+      const fp = join(work, `b${i}.png`);
+      extractFrameAtTime(videoPath, t, fp);
+      content.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}".` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+    }
+    console.log(`[naming-check] ${jobs.length} beat(s) — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 8192, temperature: 0, noCache: true }, "naming-check");
+    if (isProviderError(result)) { console.error(`::error::naming check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    const byIdx = new Map((Array.isArray(result?.beats) ? result.beats : []).map((v) => [Number(v.beat_index), v]));
+    if (!jobs.every(({ i }) => byIdx.has(i))) { console.error(`::error::naming check returned ${byIdx.size} verdict(s) for ${jobs.length} beats`); process.exit(3); }
+    const verdicts = jobs.map(({ i }) => byIdx.get(i));
+    for (const v of verdicts) console.log(`[naming-check] beat ${v.beat_index}: ${v.verdict}${(v.names || []).filter((n) => n.ok === false).map((n) => ` — "${n.shown}" should be "${n.expected}" (${n.problem})`).join("")}`);
+    const failing = verdicts.filter((v) => String(v.verdict).toUpperCase() !== "PASS" || (v.names || []).some((n) => n.ok === false));
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    if (failing.length) { console.error(`::error::naming check failed: ${failing.length}/${jobs.length} beats misname an entity (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[naming-check] PASS: every name, place, organisation and figure on screen matches the narration`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
 async function main() {
   if (process.argv.includes("--beat-check")) return beatCheck();
   if (process.argv.includes("--camera-check")) return cameraCheck();
   if (process.argv.includes("--entity-check")) return entityCheck();
   if (process.argv.includes("--look-check")) return lookCheck();
+  if (process.argv.includes("--naming-check")) return namingCheck();
   const videoPath = arg("video");
   const scriptPath = arg("script");
   const srtPath = arg("srt");
