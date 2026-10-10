@@ -8,8 +8,17 @@ on:
         description: "Comma-separated variant names to run (empty = all)"
         type: string
         default: ""
+      set:
+        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only)"
+        type: string
+        default: "lab2"
+      corpus_run:
+        description: "Board run whose prep artifacts hold the real spoken texts and production mp3s (prep artifacts expire after a day)"
+        type: string
+        default: "38047691386"
 permissions:
   contents: read
+  actions: read
 jobs:
   lab:
     runs-on: ubuntu-latest
@@ -26,6 +35,14 @@ jobs:
         run: |
           pip install --quiet faster-whisper
           if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg; fi
+      - name: Fetch the real board texts (prep artifacts of the corpus run)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: prep-*-${{ github.event.inputs.corpus_run }}
+          path: corpus
+          run-id: ${{ github.event.inputs.corpus_run }}
+          github-token: ${{ github.token }}
       - name: Run the lab
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -33,7 +50,7 @@ jobs:
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
-        run: node scripts/voice-lab.mjs --out out/lab --only "${{ github.event.inputs.only }}"
+        run: node scripts/voice-lab.mjs --set "${{ github.event.inputs.set }}" --corpus corpus --out out/lab --only "${{ github.event.inputs.only }}"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -75,6 +75,18 @@ def synth(text, voice, style):
     raise RuntimeError(f"no Gemini TTS model answered ({last})")
 
 
+def to_pcm(data, rate=24000):
+    """Any audio the model returns (WAV, mp3...) -> raw 16-bit mono PCM at `rate`."""
+    with tempfile.NamedTemporaryFile(suffix=".bin", delete=False) as f:
+        f.write(data)
+        raw = f.name
+    try:
+        r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", raw, "-f", "s16le", "-ar", str(rate), "-ac", "1", "-"], check=True, capture_output=True)
+        return r.stdout
+    finally:
+        os.unlink(raw)
+
+
 def synth_sentences(text, voice, style, gap=0.28):
     """One request per sentence, the PCM joined with `gap` seconds of silence. Needs PCM from the model (it is: audio/L16 at 24 kHz)."""
     parts, mime0, model0 = [], None, None
@@ -84,7 +96,8 @@ def synth_sentences(text, voice, style, gap=0.28):
             continue
         mime, data, model = synth(sent, voice, style)
         if not ("l16" in (mime or "").lower() or "pcm" in (mime or "").lower()):
-            raise RuntimeError(f"per-sentence mode needs PCM audio, the model returned {mime}")
+            data = to_pcm(data)   # a short request can come back as audio/wav (voice lab 38050775355): decode it to the same 24 kHz mono PCM
+            mime = "audio/L16;codec=pcm;rate=24000"
         mime0, model0 = mime0 or mime, model0 or model
         parts.append(data)
     if not parts:
