@@ -435,9 +435,14 @@
           "topic": "Emergency Fund Challenge 2026",
           "slug": "emergency-fund-challenge-2026",
           "reserved_at": "2026-10-09T21:45:12.427Z"
+        },
+        {
+          "topic": "SoFi's October 2026 Release of 8 Fun Money Savings Challenges",
+          "slug": "sofi-october-2026-savings-challenges",
+          "reserved_at": "2026-10-10T00:48:05.040Z"
         }
       ],
-      "last_generated": "2026-10-09T21:45:12.427Z"
+      "last_generated": "2026-10-10T00:48:05.041Z"
     },
     "2": {
       "channel_name": "Legal Brief",
