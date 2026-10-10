@@ -895,6 +895,7 @@ async function imageSources(beats) {
  */
 async function flatLook(video, beats, accent, fps = 30) {
   const { offPalette, shadowShare, cornersSharp, OFF_SHARE_MAX } = require("./lib/flat-look.cjs");
+  const { growAmount } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "canvas-layout.js")).href);
   const COMPS = new Set(["ENTITY-ART", "DATA-FULL", "TIMELINE", "PROCESS-FULL"]);
   const bad = [], rows = [];
   const W = 540, H = 960, sc = H / 1920;
@@ -906,6 +907,12 @@ async function flatLook(video, beats, accent, fps = 30) {
     // A single plate is a square inside its box (smaller when a real mark leaves room for its label); a row of plates has several corners.
     const labelled = !!art && Array.isArray(art.items) && art.items.some((it) => it && it.asset);
     if (box && art && String(art.kind).startsWith("plate-")) { const side = Math.min(box.w, labelled ? box.h - 35 : box.h); box.x += (box.w - side) / 2; box.w = side; box.h = side; }
+    // A plate's art grows over its beat (full-canvas.jsx EntityArt push: canvas-layout.js growAmount about the art box's centre), so a real mark
+    // that fills its square reaches past the box it was laid out in: the box this judges is the one it grows to (board 38047691386 ch 6).
+    if (box && art && String(art.kind).startsWith("plate-") && c.boxes?.art && (b.duration_sec ?? 0) > 0) {
+      const a = growAmount(b.duration_sec), ab = c.boxes.art, cx = (ab.x + ab.w / 2) * sc, cy = (ab.y + ab.h / 2) * sc, s1 = 1 + a;
+      box = { x: cx + (box.x - cx) * s1, y: cy + (box.y - cy) * s1, w: box.w * s1, h: box.h * s1 };
+    }
     const boxed = !!box && art.kind === "flag";   // name cards are unboxed type now (the fixture look); a flag keeps its hairline frame
     const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
     const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
@@ -1066,7 +1073,9 @@ async function canvasChecks(video, m) {
   // no-photo-repeat (owner, 2026-10-08): one photo, at most one beat per video.
   const seen = new Map(), rep = [];
   beats.forEach((b, i) => {
-    const imgs = [b.canvas?.photo?.asset, ...(b.canvas?.concept_visuals || []).filter((v) => v.class === "cutout").map((v) => v.asset)].filter(Boolean);
+    // A portrait of the person a sentence names is identity, not decoration (scripts/lib/used-images.js isMark): it may appear again, as a logo may.
+    const portrait = b.canvas?.photo?.view === "person" || b.canvas?.photo?.kind === "person";
+    const imgs = [portrait ? null : b.canvas?.photo?.asset, ...(b.canvas?.concept_visuals || []).filter((v) => v.class === "cutout" && v.logo !== true).map((v) => v.asset)].filter(Boolean);
     for (const a of new Set(imgs)) { if (seen.has(a)) rep.push(`${a} on beats ${seen.get(a)} and ${i}`); else seen.set(a, i); }
   });
   out.push({ id: "no-photo-repeat", pass: !rep.length, detail: rep.length ? rep.join("; ") : "no photo or cutout appears on two beats" });

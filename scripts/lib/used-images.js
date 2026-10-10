@@ -19,12 +19,14 @@
 const specific = (s) => typeof s === "string" && s.trim() !== "" && (!/^https?:\/\//i.test(s) || /^https?:\/\/[^/]+\/[^?#\s]+/i.test(s));
 
 /**
- * A MARK is an entity's own logo (visual.logo === true). It identifies the entity, it does not decorate a beat, so the rule above is about
- * everything BUT marks: a second sentence naming the same organization shows its logo again. Applied as it was, the rule turned every repeat
- * into a typed name (board 38044082797: SHRM, Financial Stability Board and MIT each had their logo on one beat and their name in type on the
- * others — the owner, 2026-10-10: "I want logos, not writing"). Photos, cutouts, scans and the bundled surface are still never repeated.
+ * A MARK is an image that IDENTIFIES the entity a sentence names: its own logo (visual.logo === true) or the portrait of the person it names
+ * (kind / view "person", or visual.mark === true). It does not decorate a beat, so the rule above is about everything BUT marks: a second
+ * sentence naming the same organization or person shows the same logo or face again. Applied as it was, the rule turned every repeat into a
+ * typed name (board 38044082797: SHRM, Financial Stability Board and MIT each had their logo on one beat and their name in type on the others;
+ * board 38047691386: Letitia James and Alex Mashinsky each had one portrait and "name only" after it) — the owner, 2026-10-10: "I want logos,
+ * not writing". Photos of places and things, cutouts, scans and the bundled surface are still never repeated.
  */
-export const isMark = (v) => !!v && v.logo === true;
+export const isMark = (v) => !!v && (v.logo === true || v.mark === true || v.kind === "person" || v.view === "person");
 
 /** The identity keys of a visual: { asset, source_url } (either may be missing). */
 export function imageKeys(v) {

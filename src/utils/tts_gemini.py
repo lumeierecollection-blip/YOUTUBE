@@ -75,17 +75,33 @@ def synth(text, voice, style):
     raise RuntimeError(f"no Gemini TTS model answered ({last})")
 
 
+def synth_sentences(text, voice, style, gap=0.28):
+    """One request per sentence, the PCM joined with `gap` seconds of silence. Needs PCM from the model (it is: audio/L16 at 24 kHz)."""
+    parts, mime0, model0 = [], None, None
+    for s0, s1 in sentence_spans(text):
+        sent = text[s0:s1].strip()
+        if not sent:
+            continue
+        mime, data, model = synth(sent, voice, style)
+        if not ("l16" in (mime or "").lower() or "pcm" in (mime or "").lower()):
+            raise RuntimeError(f"per-sentence mode needs PCM audio, the model returned {mime}")
+        mime0, model0 = mime0 or mime, model0 or model
+        parts.append(data)
+    if not parts:
+        raise RuntimeError("no sentence to synthesise")
+    m = re.search(r"rate=(\d+)", mime0 or "")
+    rate = int(m.group(1)) if m else 24000
+    silence = b"\x00\x00" * int(rate * gap)
+    return mime0, silence.join(parts), model0
+
+
 def to_mp3(mime, data, mp3):
     with tempfile.NamedTemporaryFile(suffix=".bin", delete=False) as f:
         f.write(data)
         raw = f.name
     m = re.search(r"rate=(\d+)", mime or "")
     src = ["-f", "s16le", "-ar", m.group(1) if m else "24000", "-ac", "1", "-i", raw] if "l16" in (mime or "").lower() or "pcm" in (mime or "").lower() else ["-i", raw]
-    # Trailing silence only (areverse + silenceremove of the reversed head, keeping 0.2 s): the synthesised file ends 0.5-2 s after the
-    # last word, the video ends at the last word + its tail, and the render gate allows 1 s between them (board 38044082797: ch 9 drifted
-    # 1.95 s, ch 1 / 5 / 8 sat at 0.5-0.8 s). Pauses inside the speech are untouched, and the voice itself is not processed.
-    subprocess.run(["ffmpeg", "-v", "error", "-y", *src, "-af", "areverse,silenceremove=start_periods=1:start_silence=0.2:start_threshold=-45dB,areverse",
-                    "-ar", "24000", "-ac", "1", "-b:a", "192k", mp3], check=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *src, "-ar", "24000", "-ac", "1", "-b:a", "192k", mp3], check=True)
     os.unlink(raw)
 
 
@@ -137,10 +153,17 @@ def main():
         p.add_argument(f"--{k}", required=True)
     p.add_argument("--style", default="")
     p.add_argument("--display-file", dest="display_file", default=None)
+    # "whole" (default): one request for the whole script. "sentence": one request per sentence, joined with a short breath: a long
+    # request lets the model settle into one even delivery (the narration judge's "even pacing, flat pitch"); a sentence is read fresh.
+    p.add_argument("--mode", choices=["whole", "sentence"], default=os.environ.get("TTS_GEMINI_MODE", "whole"))
+    p.add_argument("--gap", type=float, default=0.28, help="seconds of silence between sentences in --mode sentence")
     a = p.parse_args()
     text = open(a.file, encoding="utf-8").read()
     display = open(a.display_file, encoding="utf-8").read() if a.display_file else None
-    mime, data, model = synth(text, a.voice, a.style)
+    if a.mode == "sentence":
+        mime, data, model = synth_sentences(text, a.voice, a.style, a.gap)
+    else:
+        mime, data, model = synth(text, a.voice, a.style)
     to_mp3(mime, data, a.mp3)
     words, matched, total = align(a.mp3, text)
     spans = sentence_spans(text)

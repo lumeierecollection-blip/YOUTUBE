@@ -551,10 +551,17 @@ function finalizeChrome(L, c) {
   else if (label && boxes.kicker) {
     const k = boxes.kicker, pos = LABEL_POSITIONS.includes(label.position) ? label.position : "top-left";
     const head = boxes.headline || boxes.statement;
-    if (pos === "top-right") boxes.kicker = { ...k, x: 1032 - k.w, align: "right" };
-    else if (pos === "top-left") boxes.kicker = { ...k, x: 48, align: "left" };
+    // A TOP label stands in the top header slot, under the hairline rule. The text grid carries the header block down with the words (a
+    // grid-remapped HERO-OVER / PHOTO-CARD has its kicker at y 1130-1150), so a label the planner put at "top-left" used to land on the
+    // statement (board 38047691386 ch 49 beat 6, canvas-fit "kicker and statement overlap").
+    const slotY = (boxes.rule?.y ?? TOP) + 30;
+    const topY = k.y > ZONES.top[1] ? slotY : k.y;
+    if (pos === "top-right") boxes.kicker = { ...k, x: 1032 - k.w, y: topY, align: "right" };
+    else if (pos === "top-left") boxes.kicker = { ...k, x: 48, y: topY, align: "left" };
     else if (pos === "bottom-left") boxes.kicker = { ...k, x: 48, y: 1368, align: "left" };
     else if (pos === "beside-headline" && head && head.x + head.w + 32 + k.w <= 1032 && head.y + k.h <= HEADER_MAX_Y) boxes.kicker = { ...k, x: head.x + head.w + 32, y: head.y + 8, align: "left" };
+    // "beside-headline" with no room beside it leaves the kicker where the grid carried it (on the words): the top slot, left.
+    if (pos !== "bottom-left" && boxes.kicker.y > ZONES.top[1]) boxes.kicker = { ...boxes.kicker, x: 48, y: slotY, align: "left" };
     // A label that lands ON the headline (board 37925838913 ch-6 beat 2: "HAMILTON COUNTY" top-left over a
     // TYPE-SPLIT's top-left "Highway", canvas-fit) goes under the headline, else to the other top corner.
     const hit = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
@@ -960,6 +967,12 @@ function heroShotLayout(c, comp, flip) {
 // high-contrast edge on the beat, and a flag whose red / white split sits on the centre never moves when only its picture zooms
 // (board 38044082797 ch 8, Indonesia: 5.75 s with nothing moving). The audit's visual-contrast reads this from the manifest to find the border.
 export const FLAG_PUSH = 0.12;
+/**
+ * How far a picture or drawn art grows over a beat of `seconds`: at least `floor`, else `rate` per second up to `cap`. The renderer's grow()
+ * (full-canvas.jsx) is this times the beat's progress, and the flat-look audit sizes the box it masks for a logo plate with it, so the two
+ * cannot drift apart (a logo plate grew out of the audit's box, board 38047691386 ch 6).
+ */
+export const growAmount = (seconds, floor = 0.06, rate = 0.03, cap = 0.30) => Math.max(floor, Math.min(cap, rate * Math.max(1, seconds)));
 export const PLATES_SIZES = { 1: [440, 440], 2: [800, 500], 3: [960, 440], 4: [960, 350] };
 export const platesCount = (a) => Math.max(1, Math.min(4, Array.isArray(a?.names) ? a.names.length : 1));
 const ART_SIZES = { plates: [960, 360], flag: [660, 440], "plate-person": [440, 440], "plate-organization": [440, 440], "plate-place": [440, 440], date: [600, 470], span: [920, 330] };

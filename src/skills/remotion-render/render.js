@@ -33,6 +33,7 @@ import { createRequire } from "module";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { findChrome } from "./find-chrome.js";
+import { coverAudio } from "./cover-audio.js";
 import { resolveImageAssets } from "./image-assets.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
 import { formatVisualReport } from "./visual/diagnostics.js";
@@ -520,6 +521,12 @@ async function main() {
     }
 
     const { beats, warnings, distribution } = direct(cues, { visualPlan });
+    // Hold the last beat to the end of the voiceover FILE (cover-audio.js): the cues end at the last word, the file runs on.
+    {
+      const audioSec = getAudioDurationSeconds(ttsAudioPath);
+      const added = audioSec ? coverAudio(beats, Math.round(audioSec * FPS)) : 0;
+      if (added) console.log(`[audio] the last beat is held ${(added / FPS).toFixed(2)} s to cover the voiceover file (${audioSec.toFixed(2)} s; its last word ends ${(audioSec - added / FPS).toFixed(2)} s in)`);
+    }
 
     // Paper style: word-level captions from the voiceover's REAL word
     // timings (tts.js -> <base>-vo-words.json, Edge WordBoundary, same

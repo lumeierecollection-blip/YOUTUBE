@@ -1687,7 +1687,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
         if (!r.refused) named.push(e0);
       }
-      for (let k = found.length - 1; k >= 0; k--) if (reused({ asset: found[k].id, source_url: (found[k].r.logo || found[k].r.photo).source_url, logo: !!found[k].r.logo }, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
+      for (let k = found.length - 1; k >= 0; k--) if (reused({ asset: found[k].id, source_url: (found[k].r.logo || found[k].r.photo).source_url, mark: !!found[k].r.logo || found[k].e0.type === "person" }, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
       if (found.length) {
         const regionAvail = real.find((e) => e.type === "place" && resolveRegionName(e.name));
         const assets = found.map(({ id, e0, r }) => {

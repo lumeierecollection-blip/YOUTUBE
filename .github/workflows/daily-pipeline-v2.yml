@@ -266,6 +266,9 @@ jobs:
           fi
           jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
           echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s)"
+          # Rank the candidates by whether their subjects can be SHOWN (a free logo or portrait), best first, before the first
+          # non-duplicate is reserved (scripts/rank-topics-imagery.js). Never drops one and never fails the run.
+          node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
 
       # ── Reserve the first NON-duplicate topic ─────────────────────────
       - name: Reserve topic

@@ -16,6 +16,7 @@
  */
 import "dotenv/config";
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
+import { isFail, settleNaming } from "./lib/naming-looks.mjs";
 import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -926,27 +927,47 @@ For each one judge it against the sentence:
 - figures: the number and its unit as the sentence states them ("$86 million", not "$86" or "86 billion").
 A frame that shows no name, date or figure passes.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on screen>","expected":"<as the sentence has it>","ok":true|false,"problem":"<empty or what is wrong>"}],"verdict":"PASS"|"FAIL"}]} — one entry per beat listed, by beat_index.` }];
-  try {
-    for (const { b, i, sentence } of jobs) {
-      const t = (b.start_sec ?? 0) + Math.max(0.1, (b.duration_sec ?? 0) * 0.85);
-      const fp = join(work, `b${i}.png`);
+  const header = content[0];
+  // One model call for a set of beats, each read from its own frame at `frac` of the beat. -> Map(beat_index -> verdict), or null when the answer was unusable.
+  const askFor = async (list, frac) => {
+    const c = [header];
+    for (const { b, i, sentence } of list) {
+      const t = (b.start_sec ?? 0) + Math.max(0.1, (b.duration_sec ?? 0) * frac);
+      const fp = join(work, `b${i}-${Math.round(frac * 100)}.png`);
       extractFrameAtTime(videoPath, t, fp);
-      content.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}".` });
-      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+      c.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}".` });
+      c.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
     }
-    console.log(`[naming-check] ${jobs.length} beat(s) — asking the model`);
-    let result = await callLLM([{ role: "user", content }], { maxTokens: 8192, temperature: 0, noCache: true }, "naming-check");
-    if (isProviderError(result)) { console.error(`::error::naming check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    let result = await callLLM([{ role: "user", content: c }], { maxTokens: 8192, temperature: 0, noCache: true }, "naming-check");
+    if (isProviderError(result)) return { error: `${result.source} ${result.error}` };
     if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
       const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
       const a = text.indexOf("{"), z = text.lastIndexOf("}");
       try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
     }
-    const byIdx = new Map((Array.isArray(result?.beats) ? result.beats : []).map((v) => [Number(v.beat_index), v]));
-    if (!jobs.every(({ i }) => byIdx.has(i))) { console.error(`::error::naming check returned ${byIdx.size} verdict(s) for ${jobs.length} beats`); process.exit(3); }
-    const verdicts = jobs.map(({ i }) => byIdx.get(i));
-    for (const v of verdicts) console.log(`[naming-check] beat ${v.beat_index}: ${v.verdict}${(v.names || []).filter((n) => n.ok === false).map((n) => ` — "${n.shown}" should be "${n.expected}" (${n.problem})`).join("")}`);
-    const failing = verdicts.filter((v) => String(v.verdict).toUpperCase() !== "PASS" || (v.names || []).some((n) => n.ok === false));
+    return { byIdx: new Map((Array.isArray(result?.beats) ? result.beats : []).map((v) => [Number(v.beat_index), v])) };
+  };
+  const say = (v, tag = "") => console.log(`[naming-check] beat ${v.beat_index}: ${v.verdict}${(v.names || []).filter((n) => n.ok === false).map((n) => ` — "${n.shown}" should be "${n.expected}" (${n.problem})`).join("")}${tag}`);
+  try {
+    console.log(`[naming-check] ${jobs.length} beat(s) — asking the model`);
+    const first = await askFor(jobs, 0.85);
+    if (first.error) { console.error(`::error::naming check unavailable: ${first.error}`); process.exit(3); }
+    if (!jobs.every(({ i }) => first.byIdx.has(i))) { console.error(`::error::naming check returned ${first.byIdx.size} verdict(s) for ${jobs.length} beats`); process.exit(3); }
+    let verdicts = jobs.map(({ i }) => first.byIdx.get(i));
+    for (const v of verdicts) say(v);
+    // A SECOND LOOK at the beats that failed, on a different frame of the same beat (board 38047691386 ch 26: "95 million euros" read once as
+    // "curos"). A real misspelling is on the screen at both times and fails again; a one-off misread of small type is not. A beat fails only
+    // if it fails both looks; nothing about what counts as a failure changes, and an unusable second answer keeps the first verdict.
+    const retry = jobs.filter(({ i }) => isFail(first.byIdx.get(i)));
+    if (retry.length) {
+      console.log(`[naming-check] second look at ${retry.length} failing beat(s) on a different frame`);
+      const second = await askFor(retry, 0.6);
+      if (!second.error && retry.every(({ i }) => second.byIdx.has(i))) {
+        for (const { i } of retry) say(second.byIdx.get(i), " (second look)");
+        verdicts = settleNaming(verdicts, second.byIdx);
+      } else console.log(`[naming-check] second look unusable (${second.error || "incomplete answer"}) — the first verdict stands`);
+    }
+    const failing = verdicts.filter(isFail);
     if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
     if (failing.length) { console.error(`::error::naming check failed: ${failing.length}/${jobs.length} beats misname an entity (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
     console.log(`[naming-check] PASS: every name, place, organisation and figure on screen matches the narration`);

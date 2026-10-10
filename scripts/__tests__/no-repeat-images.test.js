@@ -84,3 +84,15 @@ test("a logo may be shown on more than one beat; a photo still may not", async (
   assert.equal(u.reused({ ...photo, logo: false }, "beat 9"), true);
   assert.equal(u.keep([logo, photo]).length, 1, "keep(): the logo passes, the repeated photo does not");
 });
+
+test("the portrait of a named person is identity too: it may be shown again; a place photo may not", async () => {
+  const { createUsedImages, isMark } = await import("../lib/used-images.js");
+  const u = createUsedImages();
+  const face = { asset: "entities/people/letitia-james.jpg", source_url: "https://commons.wikimedia.org/wiki/File:Letitia_James.jpg", kind: "person", view: "person" };
+  u.add(face);
+  assert.equal(u.reused(face, "beat 5"), false);
+  assert.equal(isMark({ mark: true }), true);
+  const place = { asset: "entities/places/malta.jpg", source_url: "https://commons.wikimedia.org/wiki/File:Castille_Palace_01.jpg", kind: "place", view: "place" };
+  u.add(place);
+  assert.equal(u.reused(place, "beat 6"), true);
+});

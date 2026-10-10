@@ -74,7 +74,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, contentBounds, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
-  FRAMED_PHOTO_COMPS, FULL_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent, FLAG_PUSH,
+  FRAMED_PHOTO_COMPS, FULL_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent, FLAG_PUSH, growAmount,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -123,7 +123,7 @@ export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, a
 // A long beat needs a longer move, not a slower one (board 38034289156: the Gemini narrator's beats run 6-10 s and a fixed 6-10% push sat
 // still 8-10 s). `grow(local, dur, fps, floor)` is the push a picture makes over its beat: at least `floor`, else 3%/s up to 30%, as
 // half ease-out / half linear (monotone, never past its end, never reversing).
-export const grow = (local, dur, fps, floor = 0.06) => { const s = Math.max(1, dur / fps), a = Math.max(floor, Math.min(0.80, 0.08 * s)), u = clamp01(local / Math.max(1, dur)); return a * u; };   // constant speed: a decelerating push faded under the pace threshold in the last 4 s of a 10 s photo beat (layout-proof 38037366442)
+export const grow = (local, dur, fps, floor = 0.06, rate = 0.03, cap = 0.30) => growAmount(dur / fps, floor, rate, cap) * clamp01(local / Math.max(1, dur));   // constant speed (a decelerating push faded under the pace threshold on a 10 s photo beat, layout-proof 38037366442). The RATE belongs to the element: 3%/s up to 30% by default (art, plates, maps, graphs); a small framed photo moves too few pixels to register under that and takes 8%/s up to 80% (1056); a full-bleed photo takes 4%/s up to 40% (SceneFull). One shared rate pushed a logo plate out of the box the flat-look audit judges (board 38047691386 ch 6).
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
@@ -774,7 +774,9 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     // SCENE-FULL: a slow push. ARCHITECTURE: a tilt up the facade (the frame
     // is scaled 1.28 and travels from the base to the top over the beat).
     // DOCUMENT: a slow scroll down the page. MONEY: a slow push.
-    const scale = 1 + CAMERA.photo * p01;
+    // A full-bleed photo keeps moving after the camera's ease has finished (a 5 s SCENE-FULL beat sat still for 1.75-2.75 s: board 38047691386 ch 6 beat 0,
+    // ch 9 beat 4): the ease-in-out reaches CAMERA.photo at CAMERA.endAt of the beat and stops, so the rest of the beat grows at a constant 4%/s.
+    const scale = 1 + Math.max(CAMERA.photo * p01, grow(local - cameraStart(c), dur - cameraStart(c), fps, CAMERA.photo, 0.04, 0.40));
     const ty = comp === "DOCUMENT" ? lerp(0, -4, p01) : 0;
     // (The major beat's circle reveal is gone: a mask is not a pop — owner's spec 2026-10-02.)
     if (part === "header") {
@@ -881,7 +883,7 @@ function LucideIcon({ name, size, color, stroke = 2, style }) {
 }
 /**
  * A plate for a named entity: its real mark inside a hairline box, or — when no free, verified mark exists — its NAME set in the serif
- * (style "mono": its initials large with the name small under them). Sharp corners, ink and the one accent. No stock icon, ever.
+ * (large, in the serif; whole, never initials). Sharp corners, ink and the one accent. No stock icon, ever.
  */
 function MarkPlate({ side, name, item, style, accent, th, hair }) {
   // The fixture look (owner, 2026-10-10: "the test images ... look better than the actual video"): no box. A real mark stands free on the
@@ -894,19 +896,16 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
       </div>
     );
   }
-  const words = label.split(/\s+/).filter(Boolean);
-  // A monogram only for a SHORT name, and from its significant words: "MIT School of Humanities, Arts, and Social Sciences" became "MSO"
-  // (the first three words, "of" included) with its full name set on one line that ran off the frame (board 38044082797 ch 10). A long name
-  // is set whole, over two lines, in the serif.
-  const sig = words.filter((x) => !/^(of|the|and|for|in|on|at|to|de|la|le|&)$/i.test(x));
-  const mono = style === "mono" && sig.length > 1 && label.length <= 28;
-  const shown = mono ? sig.slice(0, 3).map((x) => x[0]).join("").toUpperCase() : label;
+  // The name, whole. No monogram: the initials of a name are text nobody wrote ("MIT School of Humanities, Arts, and Social Sciences" became
+  // "MSO", "East Lansing City Council" became "ELC" — the naming check failed both; board 38044082797 ch 10, 38047691386 ch 2). A plate shows the
+  // entity's real mark or its real name; `style` only varies the shot grammar's key for a repeated plate, never what is drawn.
+  const shown = label;
   const lw = shown.split(/\s+/);
   const cut = Math.ceil(lw.length / 2);
   const lines = lw.length <= 2 ? (lw.length && shown.length > 14 ? lw : [shown]) : [lw.slice(0, cut).join(" "), lw.slice(cut).join(" ")];
   const longest = Math.max(1, ...lines.map((l) => l.length));
   const W = side * 1.6;   // the name may run wider than the square it was laid out in
-  const size = Math.max(40, Math.min(mono ? side * 0.5 : side * 0.34, (W * 0.92) / (longest * 0.56)));
+  const size = Math.max(40, Math.min(side * 0.34, (W * 0.92) / (longest * 0.56)));
   const block = Math.round(size * 1.05 * lines.length);
   return (
     <div style={{ position: "absolute", left: (side - W) / 2, top: 0, width: W, height: side }}>
@@ -914,8 +913,7 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
       <div style={{ position: "absolute", left: 0, right: 0, top: (side - block) / 2, height: block, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", font: `800 ${Math.round(size)}px ${SERIF}`, lineHeight: 1.05, letterSpacing: -1, color: th.ink, whiteSpace: "nowrap" }}>
         {lines.map((l, i) => <span key={i}>{l}</span>)}
       </div>
-      {mono ? <div style={{ position: "absolute", left: 0, right: 0, top: (side + block) / 2 + 14, textAlign: "center", font: `700 ${Math.max(18, Math.min(30, Math.floor(((W * 0.94) / label.length - 3) / 0.62)))}px ${SANS_STACK}`, letterSpacing: 3, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div> : null}
-      <div style={{ position: "absolute", left: (W - 160) / 2, top: Math.min(side - 8, (side + block) / 2 + (mono ? 62 : 26)), width: 160, height: 8, backgroundColor: accent }} />
+      <div style={{ position: "absolute", left: (W - 160) / 2, top: Math.min(side - 8, (side + block) / 2 + 26), width: 160, height: 8, backgroundColor: accent }} />
     </div>
   );
 }
@@ -1057,7 +1055,7 @@ function PhotoFrame({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const p = clamp01(local / Math.max(1, dur));
   const img = (extra = {}) => (
     <Img src={staticFile(c.photo.asset)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || b.focus || "50% 40%",
-      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + Math.max(CAMERA.photo * camP(local, dur, cameraStart(c)), grow(local - cameraStart(c), dur - cameraStart(c), fps, CAMERA.photo))).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
+      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + Math.max(CAMERA.photo * camP(local, dur, cameraStart(c)), grow(local - cameraStart(c), dur - cameraStart(c), fps, CAMERA.photo, 0.08, 0.80))).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
   );
   const bar = (x, y, w, h) => <div style={{ position: "absolute", left: x, top: y, width: w, height: h, backgroundColor: accent }} />;
   const f = b.frame;
