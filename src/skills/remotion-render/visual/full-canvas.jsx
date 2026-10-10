@@ -115,7 +115,10 @@ export const AMBIENT = Object.freeze({ amp: 0.15, rate: 0.03 });   // 3%/s, at m
 // arriving at 1 on the beat's last frame — never in-and-out. `push(local, dur, fps, amp)` grows 0 -> amp over the beat.
 export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max(1, dur / fps), a = Math.min(amp, AMBIENT.rate * s); return a * clamp01(local / Math.max(1, dur)); };
 // Words alone (a TYPE beat) have nothing else that moves once the last word is in: their push runs 3.5%/s to 25% on a long beat.
-export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.25 : AMBIENT.amp, rate = words ? 0.035 : AMBIENT.rate, a = Math.min(amp, rate * s); return 1 - a + a * clamp01(local / Math.max(1, dur)); };
+// The push decelerates (ease-out, monotone, never past 1): fastest at the beat's start, when only the first words are in and the frame
+// is sparse, slowing as the frame fills (layout-proof 38017734111: a linear push left the first 2 s of a long words-only beat under the
+// pace threshold while the rest moved).
+export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.2 : AMBIENT.amp, rate = words ? 0.035 : AMBIENT.rate, a = Math.min(amp, rate * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * (1 - Math.pow(1 - u, 2.2)); };
 export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
