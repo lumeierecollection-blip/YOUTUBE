@@ -21,6 +21,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { loadChannels, resolveChannel } from "./lib/channel-lookup.mjs";
 import { geminiVoiceFor } from "../src/utils/gemini-voice.js";
+import { speakable, numberWords } from "../src/utils/tts-normalize.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const arg = (n, d = null) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : d; };
@@ -65,6 +66,24 @@ if (set === "lab" || set === "all") {
     ...["Sulafat", "Puck", "Kore", "Zephyr", "Orus", "Fenrir"].map((v) => V(`notes-${v.toLowerCase()}-whole`, v, NOTES)),
     ...["Puck", "Kore"].map((v) => V(`notes-${v.toLowerCase()}-sentence`, v, NOTES, "sentence")),
   ]);
+}
+if (set === "textvariants") {
+  // JOB 2 (owner, 2026-10-10): the same production voice on the same production sentence, four texts. (a) as the script writes it,
+  // (b) speakable() applied, (c) only the digits spelled out, (d) digits spelled, then speakable(). The sentence is from a COMMITTED production
+  // script (ci-artifacts-31503638942/research/2), so the lab needs no artifact download.
+  const scriptJson = JSON.parse(readFileSync(join(ROOT, "ci-artifacts-31503638942", "research", "2", "what-to-say-traffic-stop-script.json"), "utf8"));
+  const raw = scriptJson.sections.flatMap((x) => String(x.voiceover || "").split(/(?<=[.!?])\s+/)).find((x) => /375 DNA/.test(x));
+  if (!raw) throw new Error("the test sentence is not in the committed production script");
+  const digitsOnly = (t) => t.replace(/\b\d[\d,]*(?:\.\d+)?\b/g, (m) => { const n = Number(m.replace(/,/g, "")); return Number.isFinite(n) ? numberWords(m.replace(/,/g, "")) : m; });
+  const texts = { "a-as-written": raw, "b-speakable": speakable(raw), "c-digits-only": digitsOnly(raw), "d-digits-then-speakable": speakable(digitsOnly(raw)) };
+  mkdirSync(join(out, "textvariants"), { recursive: true });
+  for (const [name, t] of Object.entries(texts)) {
+    const file = join(out, "textvariants", `${name}.txt`);
+    writeFileSync(file, t + "\n");
+    add("textvariants", file, [V(`${name}-charon`, "Charon", CURRENT, "whole")]);
+  }
+  console.log("TEXT VARIANTS (production sentence):");
+  for (const [n, t] of Object.entries(texts)) console.log(`  ${n}: ${t}`);
 }
 if (set === "calibrate") {
   // The labelled variants of lab 1 (38050775355) and lab 2 (38053319841): the judge's OWN labels, as given by the owner.
@@ -155,7 +174,7 @@ for (const job of jobs) {
     const dur = Number((spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp3], { encoding: "utf8" }).stdout || "0").trim()) || null;
     for (let rep = 1; rep <= (v.repeat || 1); rep++) {
       const nj = f(`narration${rep > 1 ? "-" + rep : ""}.json`);
-      const j = spawnSync("node", [join(ROOT, "scripts", "narration-judge.mjs"), "--audio", mp3, "--srt", srt, "--out", nj], { encoding: "utf8", env: process.env, timeout: 400000 });
+      const j = spawnSync("node", [join(ROOT, "scripts", "narration-judge.mjs"), "--audio", mp3, "--srt", srt, "--out", nj], { encoding: "utf8", env: { ...process.env, NARRATION_JUDGE_RUNS: set === "textvariants" ? "3" : (process.env.NARRATION_JUDGE_RUNS || "") }, timeout: 400000 });
       if (!existsSync(nj)) { console.log(`judge could not run (exit ${j.status}): ${(j.stderr || "").trim().slice(-200)}`); rows.push({ ...v, textId: job.textId, features: job.features, ok: false, why: "judge could not run", seconds: dur }); continue; }
       const parsed = JSON.parse(readFileSync(nj, "utf8"));
       const sentences = parsed.sentences || [];

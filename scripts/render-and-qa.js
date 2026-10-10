@@ -2668,7 +2668,8 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         return backupAudit({ ...backupArgs, stage: "narration-floor", reason: why });
       }
       // The listener and the acoustic numbers, beside each other. Neither blocks.
-      const lj = await runChild("node", [join(__dirname, "narration-judge.mjs"), "--audio", result.audio, "--srt", srtPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration.json")], { label: `narration listener ${channelId}/${basename(scriptPath)}` });
+      // ONE reading (advisory): nine readings were 81 calls per video of which the verdict was still a coin flip, and nothing is blocked by it.
+      const lj = await runChild("node", [join(__dirname, "narration-judge.mjs"), "--audio", result.audio, "--srt", srtPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration.json")], { label: `narration listener ${channelId}/${basename(scriptPath)}`, env: { NARRATION_JUDGE_RUNS: "1" } });
       const lv = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration.json"));
       const verdict = lj.code === 0 ? "pass" : lj.code === 1 ? `synthetic/flat on ${(lv?.failing || []).length} sentence(s)` : "could not run";
       const ac = await runChild("python3", [join(__dirname, "acoustic", "narration-acoustics.py"), result.audio, srtPath, "--json", result.outputPath.replace(/\.mp4$/, "-acoustics.json")], { label: `acoustics ${channelId}` }).catch(() => ({ code: 1 }));

@@ -1013,6 +1013,23 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
         run: node scripts/sfx-cc0.mjs judge
 
+      # The SFX verdicts are kept in the repository (data/sfx/verdicts.json): the runner cache key is static, so a verdict written by one job
+      # was never restored by the next, and every channel re-sent all three recordings to the audio judge. Commit only when a verdict changed.
+      - name: Commit SFX verdicts
+        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/sfx/verdicts.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo "SFX verdicts unchanged"; exit 0; fi
+          git commit -m "sfx: verdicts (run ${{ github.run_id }})"
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
+            git fetch -q origin "${{ github.ref_name }}" && git rebase -q "origin/${{ github.ref_name }}" || git rebase --abort
+            sleep $((attempt * 3))
+          done
+
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
         env:

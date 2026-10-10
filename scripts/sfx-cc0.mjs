@@ -26,6 +26,11 @@ import { createHash } from "node:crypto";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const CC0_DIR = join(ROOT, "src", "skills", "remotion-render", "public", "sfx", "cc0");
 export const VERDICTS = join(CC0_DIR, "verdicts.json");
+// The verdicts are ALSO kept in the repository (owner, 2026-10-10): the CI cache for sfx/cc0 has a static key, and GitHub never overwrites a
+// cache key, so the verdicts written by one job were never restored by the next. Every channel's judge job then re-sent all three files
+// (3 files x 3 votes = 9 Gemini audio calls per channel per board). The file is keyed by each recording's sha256, so committing it is safe:
+// the same bytes get the same verdict without a call. The pipeline commits data/sfx/verdicts.json after the judge step.
+export const TRACKED_VERDICTS = join(ROOT, "data", "sfx", "verdicts.json");
 
 /** Every sound the palette may play. `file` is what canvas-sfx.js names (sfx/cc0/<file>). */
 export const SFX_SOURCES = Object.freeze([
@@ -190,6 +195,10 @@ export async function judgeOne(file, call) {
   const pick = votes.find((v) => v.verdict === verdict) || votes[0];
   return { verdict, why: `${pick.why} [votes: ${votes.map((v) => v.verdict).join("/")}]`.slice(0, 300), votes, provider: verdict === "unjudged" ? null : "gemini" };
 }
+/** A verdict is reused only for the same bytes (sha256), the same judge version, and a settled answer (recorded or robotic). */
+export function reusablePrior(prior, sha256) {
+  return !!prior && prior.sha256 === sha256 && prior.judge_version === JUDGE_VERSION && (prior.verdict === "recorded" || prior.verdict === "robotic");
+}
 async function judgeAll() {
   // Google first: callGemini rotates every key, then the sibling models, before it gives up. Only
   // Gemini hears audio here — no other provider's answer may stand in (an unjudged file does not play).
@@ -197,7 +206,9 @@ async function judgeAll() {
   const call = (messages) => callGemini(messages, { model: "gemini-3.5-flash", maxTokens: 2000, temperature: 0, noCache: true, tag: "sfx-judge" });
   const verdicts = {};
   let before = {};
-  try { before = JSON.parse(readFileSync(VERDICTS, "utf8")).verdicts || {}; } catch { /* first run */ }
+  for (const f of [TRACKED_VERDICTS, VERDICTS]) {
+    try { before = { ...JSON.parse(readFileSync(f, "utf8")).verdicts || {}, ...before }; } catch { /* missing: first run */ }
+  }
   for (const s of SFX_SOURCES) {
     if (!existsSync(join(CC0_DIR, s.file))) { verdicts[s.file] = { verdict: "unjudged", why: "not fetched" }; continue; }
     // A verdict belongs to the file's CONTENT (sha256): the runner cache keeps verdicts.json with the files,
@@ -205,7 +216,7 @@ async function judgeAll() {
     // part of what exhausted the keys on board 37919459134).
     const sha256 = createHash("sha256").update(readFileSync(join(CC0_DIR, s.file))).digest("hex");
     const prior = before[s.file];
-    if (prior && prior.sha256 === sha256 && prior.judge_version === JUDGE_VERSION && (prior.verdict === "recorded" || prior.verdict === "robotic")) {
+    if (reusablePrior(prior, sha256)) {
       verdicts[s.file] = prior;
       console.log(`[sfx-judge] ${s.file}: ${prior.verdict.toUpperCase()} (judged earlier, same file) — ${prior.why}`);
       continue;
@@ -213,7 +224,10 @@ async function judgeAll() {
     verdicts[s.file] = { ...(await judgeOne(s.file, call)), sha256, judge_version: JUDGE_VERSION };
     console.log(`[sfx-judge] ${s.file}: ${verdicts[s.file].verdict.toUpperCase()} — ${verdicts[s.file].why}`);
   }
-  writeFileSync(VERDICTS, JSON.stringify({ judged_at: new Date().toISOString(), definition: ROBOTIC, verdicts }, null, 2) + "\n");
+  const doc = JSON.stringify({ judged_at: new Date().toISOString(), definition: ROBOTIC, verdicts }, null, 2) + "\n";
+  writeFileSync(VERDICTS, doc);
+  mkdirSync(join(ROOT, "data", "sfx"), { recursive: true });
+  writeFileSync(TRACKED_VERDICTS, doc);
   const ok = Object.values(verdicts).filter((v) => v.verdict === "recorded").length;
   console.log(`[sfx-judge] ${ok}/${SFX_SOURCES.length} recorded; only those may play`);
 }
