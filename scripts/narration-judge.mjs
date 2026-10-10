@@ -42,13 +42,13 @@ Be a strict listener: most text-to-speech, including good neural voices, is SYNT
 Respond ONLY with JSON: {"sentences":[{"index":<n>,"score":<1-10>,"sounds":"HUMAN"|"SYNTHETIC","intonation":"VARIED"|"FLAT","pauses":"NATURAL"|"WRONG","why":"<one short line>"}]} — one entry per sentence, by index.`;
 
 /** One reading. `pin` = a model to stay on (the three readings must come from one instrument). `tried` collects every failure (model, key #, why). */
-async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
+export async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
   const ks = keys();
   for (const model of pin ? [pin] : MODELS) for (const [ki, key] of ks.entries()) {
     try {
       const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
         method: "POST", headers: { "x-goog-api-key": key, "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "audio/mpeg", data: audioB64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json" } }),
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "audio/mpeg", data: audioB64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json", ...(SEED !== null ? { seed: SEED } : {}) } }),
         signal: AbortSignal.timeout(180000),
       });
       const j = await r.json();
@@ -59,7 +59,10 @@ async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
   throw new Error(tried.length ? `${tried[tried.length - 1].model}: ${tried[tried.length - 1].status} ${tried[tried.length - 1].message}` : "no Gemini key configured");
 }
 
-export const JUDGE_RUNS = 3;
+// An optional fixed sampling seed (NARRATION_JUDGE_SEED): the same audio asked the same way at temperature 0 still read differently from call to call
+// (board 38054686824); whether a seed removes that is measured by scripts/judge-readings.mjs before it is relied on.
+const SEED = process.env.NARRATION_JUDGE_SEED !== undefined && process.env.NARRATION_JUDGE_SEED !== "" ? Number(process.env.NARRATION_JUDGE_SEED) : null;
+export const JUDGE_RUNS = Number(process.env.NARRATION_JUDGE_RUNS) || 3;
 const median = (xs) => { const a = [...xs].sort((x, y) => x - y); const n = a.length; return n % 2 ? a[(n - 1) / 2] : (a[n / 2 - 1] + a[n / 2]) / 2; };
 const majority = (xs, yes) => xs.filter((x) => String(x).toUpperCase() === yes).length * 2 > xs.length;
 
@@ -85,7 +88,7 @@ export function medianRows(cues, runs) {
 export const isFailing = (r) => String(r.sounds).toUpperCase() !== "HUMAN" || String(r.intonation).toUpperCase() !== "VARIED" || !(Number(r.score) >= 7);
 
 /** JUDGE_RUNS readings of one file, on one model. Returns { model, runs: Map[], tried } or throws. */
-export async function judgeAudio(audioB64, cues, { runs = JUDGE_RUNS, ask: askFn = ask } = {}) {
+export async function judgeAudio(audioB64, cues, { runs = JUDGE_RUNS, ask: askFn = ask } = {}) {   // eslint-disable-line
   const tried = [], got = [], prompt = PROMPT(cues);
   const valid = (res) => { const m = new Map((res.out?.sentences || []).map((v) => [Number(v.index), v])); return cues.every((_, i) => m.has(i)) ? m : null; };
   // The first reading finds the instrument (the first model in the chain that answers); the rest stay on it. Up to 2 extra attempts for a bad answer.
