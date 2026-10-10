@@ -2151,20 +2151,38 @@ async function guardPlanAssets(channelId, planPath) {
     ...plan.beats.map((b, i) => ({ b, i, asset: b.canvas?.photo?.asset })).filter((r) => r.asset),
     // concept cutouts (concept_visuals): a missing PNG drops that visual only
     ...plan.beats.flatMap((b, i) => (b.canvas?.concept_visuals || []).filter((v) => v.asset).map((v) => ({ b, i, asset: v.asset, concept: v.name }))),
+    // entity art (scripts/entity-ladder.js): a flag, or an organisation's real mark — fetched AFTER the pre-bundle, so it is checked here too
+    // (board 38010438091 ch-9: the ladder's IEA logo was not in the bundle and the render died "the source image cannot be decoded").
+    ...plan.beats.flatMap((b, i) => [
+      ...(b.canvas?.art?.asset ? [{ b, i, asset: b.canvas.art.asset, art: "asset" }] : []),
+      ...(Array.isArray(b.canvas?.art?.items) ? b.canvas.art.items.map((it, k) => (it?.asset ? { b, i, asset: it.asset, art: k } : null)).filter(Boolean) : []),
+    ]),
   ];
   if (!refs.length) return planPath;
   // render.js bundles per call when REMOTION_SERVE_URL is unset; that bundle
   // copies public/ as it is then, so public/ is what counts.
   const inBundle = (a) => existsSync(join(process.env.REMOTION_SERVE_URL || publicDir, process.env.REMOTION_SERVE_URL ? "public" : "", a));
-  let missing = refs.filter((r) => !inBundle(r.asset));
+  // A file that is there but does not decode (a truncated download, an HTML error page saved as .png) crashes the render the same way.
+  let sharpLib = null;
+  try { sharpLib = (await import("sharp")).default; } catch {}
+  const bad = new Set();
+  if (sharpLib) for (const r of refs) { const f = join(publicDir, r.asset); if (existsSync(f)) { try { const md = await sharpLib(f).metadata(); if (!(md.width > 0)) bad.add(r.asset); } catch { bad.add(r.asset); } } }
+  let missing = refs.filter((r) => bad.has(r.asset) || !inBundle(r.asset));
   if (missing.length && process.env.REMOTION_SERVE_URL && missing.some((r) => existsSync(join(publicDir, r.asset)))) {
     const t0 = Date.now();
     process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, publicDir, onProgress: () => {} });
     console.log(`[assets] ch-${channelId}: ${missing.length} plan asset(s) not in the bundle (${missing.map((r) => r.asset).join(", ")}) — re-bundled: ${((Date.now() - t0) / 1000).toFixed(1)}s`);
-    missing = refs.filter((r) => !inBundle(r.asset));
+    missing = refs.filter((r) => bad.has(r.asset) || !inBundle(r.asset));
   }
   if (!missing.length) return planPath;
-  for (const { b, i, asset, concept } of missing) {
+  for (const { b, i, asset, concept, art } of missing) {
+    if (art !== undefined) {
+      // The entity stays shown: a mark that cannot be drawn becomes the name in type; a flag that cannot be drawn, a plate with the place's name.
+      const a = b.canvas.art;
+      if (art === "asset") { console.warn(`::warning::[assets] ch-${channelId} beat ${i}: ${asset} cannot be drawn — the ${a.kind} becomes a plate with "${a.name}"`); b.canvas.art = { kind: a.kind === "flag" ? "plate-place" : a.kind, name: a.name }; }
+      else { console.warn(`::warning::[assets] ch-${channelId} beat ${i}: the mark ${asset} cannot be drawn — "${a.items[art]?.name}" in type`); a.items[art] = null; }
+      continue;
+    }
     if (concept) {
       console.warn(`::warning::[assets] ch-${channelId} beat ${i}: concept cutout ${asset} is not in the render bundle — "${concept}" dropped`);
       b.canvas.concept_visuals = (b.canvas.concept_visuals || []).filter((v) => v.asset !== asset);
