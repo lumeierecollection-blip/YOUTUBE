@@ -472,7 +472,7 @@
     }
   },
   {
-    "text": "Agents spent ten years building the case against him before a single charge was filed in the federal court.",
+    "text": "Agents worked the case for a decade before a single charge was filed in the federal court in Miami.",
     "seconds": 10,
     "c": {
       "visual_type": "COUNTER",
@@ -506,12 +506,12 @@
       "visual_type": "PHOTO",
       "composition": "PHOTO-CARD",
       "photo": {
-        "asset": "b-roll/ch-fixture/tunnel-crawl.jpg",
-        "entity": "Tunnel crawl",
+        "asset": "b-roll/ch-fixture/sulfur-crystal.jpg",
+        "entity": "Sulfur crystal",
         "kind": "place",
         "view": "place",
-        "w": 576,
-        "h": 768,
+        "w": 1920,
+        "h": 1277,
         "credit": "Repo test fixture photo"
       },
       "headline": "Miles that nobody mapped",
