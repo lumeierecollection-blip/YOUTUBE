@@ -1,0 +1,668 @@
+{
+  "rows": [
+    {
+      "channel": "2",
+      "plan": "rendered-2-38060558725/data/visual-plans/2/landlords-alternative-security-deposits-advocate-pushback-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-2-38060558725/rejected/landlords-alternative-security-deposits-advocate-pushback-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 6,
+        "real": 2,
+        "typed": 4,
+        "fraction": 0.33,
+        "by": {
+          "typed": 4,
+          "portrait": 1,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 6,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 6,
+        "real": 2,
+        "typed": 4,
+        "fraction": 0.33,
+        "by": {
+          "typed": 4,
+          "portrait": 1,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 6,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 2,
+          "name": "Pamela Heller",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Connecticut Fair Housing Center",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "National Consumer Law Center",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "Richard Blumenthal",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Richard_Blumenthal_in_2025.jpg"
+        },
+        {
+          "beat": 5,
+          "name": "Elizabeth Warren",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Federal Trade Commission",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Flag_of_the_United_States_Federal_Trade_Commission.svg"
+        }
+      ],
+      "sheet": "frames/ch2.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "5",
+      "plan": "rendered-5-38060558725/data/visual-plans/5/ftc-usda-agricultural-equipment-inquiry-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-5-38060558725/approved-review/ftc-usda-agricultural-equipment-inquiry-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 6,
+        "real": 1,
+        "typed": 5,
+        "fraction": 0.17,
+        "by": {
+          "typed": 5,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 6,
+          "real": 1
+        }
+      },
+      "after": {
+        "named": 6,
+        "real": 1,
+        "typed": 5,
+        "fraction": 0.17,
+        "by": {
+          "typed": 5,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 6,
+          "real": 1
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 1,
+          "name": "Federal Trade Commission",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "U.S. Department of Agriculture",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Chairman Ferguson",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Ferguson",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "The Wall Street Journal",
+          "type": "company",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:WSJ_Logo.svg"
+        },
+        {
+          "beat": 5,
+          "name": "Todd Neeley",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch5.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "6",
+      "plan": "rendered-6-38060558725/data/visual-plans/6/church-of-cyprus-recovers-stolen-byzantine-icons-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-6-38060558725/approved-review/church-of-cyprus-recovers-stolen-byzantine-icons-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 6,
+        "real": 1,
+        "typed": 5,
+        "fraction": 0.17,
+        "by": {
+          "typed": 5,
+          "flag": 1
+        },
+        "distinct": {
+          "named": 6,
+          "real": 1
+        }
+      },
+      "after": {
+        "named": 6,
+        "real": 1,
+        "typed": 5,
+        "fraction": 0.17,
+        "by": {
+          "typed": 5,
+          "flag": 1
+        },
+        "distinct": {
+          "named": 6,
+          "real": 1
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 1,
+          "name": "Troodos",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "Panayia church",
+          "type": "building",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "Holy Metropolis of Morphou",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Archbishop Georgios",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "Metropolitan Neophytos",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Cyprus",
+          "type": "place",
+          "visual": "flag",
+          "source_url": "https://flagcdn.com/w1280/cy.png"
+        }
+      ],
+      "sheet": "frames/ch6.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "9",
+      "plan": "rendered-9-38060558725/data/visual-plans/9/us-treasury-license-135-russian-diesel-imports-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-9-38060558725/rejected/us-treasury-license-135-russian-diesel-imports-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 8,
+        "real": 4,
+        "typed": 4,
+        "fraction": 0.5,
+        "by": {
+          "typed": 4,
+          "logo": 2,
+          "map": 1,
+          "portrait": 1
+        },
+        "distinct": {
+          "named": 8,
+          "real": 4
+        }
+      },
+      "after": {
+        "named": 8,
+        "real": 4,
+        "typed": 4,
+        "fraction": 0.5,
+        "by": {
+          "typed": 4,
+          "logo": 2,
+          "map": 1,
+          "portrait": 1
+        },
+        "distinct": {
+          "named": 8,
+          "real": 4
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "Washington",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "United States Department of the Treasury",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Seal_of_the_United_States_Department_of_the_Treasury.svg"
+        },
+        {
+          "beat": 2,
+          "name": "Russian Federation",
+          "type": "place",
+          "visual": "map",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "Vladimir Putin",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Trump",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Official_Presidential_Portrait_of_President_Donald_J._Trump_(2025).jpg"
+        },
+        {
+          "beat": 4,
+          "name": "Putin",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "NavilinkGlobal",
+          "type": "company",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Treasury",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:The_Treasury_Discount_Store_Logo.png"
+        }
+      ],
+      "sheet": "frames/ch9.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "10",
+      "plan": "rendered-10-38060558725/data/visual-plans/10/pope-leo-xiv-ai-consciousness-debate-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-10-38060558725/rejected/pope-leo-xiv-ai-consciousness-debate-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 5,
+        "real": 2,
+        "typed": 3,
+        "fraction": 0.4,
+        "by": {
+          "typed": 3,
+          "logo": 1,
+          "photo": 1
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 5,
+        "real": 2,
+        "typed": 3,
+        "fraction": 0.4,
+        "by": {
+          "typed": 3,
+          "logo": 1,
+          "photo": 1
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "Pope Leo XIV",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "Vatican",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "Vatican",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Seal_of_Vatican_City.svg"
+        },
+        {
+          "beat": 4,
+          "name": "Silicon Valley",
+          "type": "place",
+          "visual": "photo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Silicon_Valley,_facing_southward_towards_Downtown_San_Jose,_2014_(cropped).jpg"
+        },
+        {
+          "beat": 5,
+          "name": "Pope Leo XIV",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch10.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "26",
+      "plan": "rendered-26-38060558725/data/visual-plans/26/1mdb-recover-rm1-billion-disbursed-funds-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-26-38060558725/rejected/1mdb-recover-rm1-billion-disbursed-funds-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 7,
+        "real": 1,
+        "typed": 6,
+        "fraction": 0.14,
+        "by": {
+          "logo": 1,
+          "typed": 6
+        },
+        "distinct": {
+          "named": 3,
+          "real": 1
+        }
+      },
+      "after": {
+        "named": 7,
+        "real": 1,
+        "typed": 6,
+        "fraction": 0.14,
+        "by": {
+          "logo": 1,
+          "typed": 6
+        },
+        "distinct": {
+          "named": 3,
+          "real": 1
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "1Malaysia Development Bhd",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:1mdb_logo.png"
+        },
+        {
+          "beat": 0,
+          "name": "Datuk Seri Najib Razak",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Datuk Seri Anwar Ibrahim",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "1Malaysia Development Bhd",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "Datuk Seri Najib Razak",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "1Malaysia Development Bhd",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Datuk Seri Anwar Ibrahim",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch26.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "44",
+      "plan": "rendered-44-38060558725/data/visual-plans/44/authentic-leadership-stakeholder-impact-2026-shorts-script-visual-plan-merged-resolved.json",
+      "video": "qa-queues-44-38060558725/approved-review/authentic-leadership-stakeholder-impact-2026-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 7,
+        "real": 3,
+        "typed": 4,
+        "fraction": 0.43,
+        "by": {
+          "logo": 3,
+          "typed": 4
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 7,
+        "real": 3,
+        "typed": 4,
+        "fraction": 0.43,
+        "by": {
+          "logo": 3,
+          "typed": 4
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "World Economic Forum",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:World_Economic_Forum_logo.svg"
+        },
+        {
+          "beat": 1,
+          "name": "World Economic Forum",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Massachusetts Institute of Technology",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "Samuel Bangura",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Massachusetts Institute of Technology",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:MIT_2023_red_logo.svg"
+        },
+        {
+          "beat": 5,
+          "name": "Samuel Bangura",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "World Economic Forum",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:World_Economic_Forum_logo.svg"
+        }
+      ],
+      "sheet": "frames/ch44.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "49",
+      "plan": "rendered-49-38060558725/data/visual-plans/49/variety-10-actors-to-watch-2026-breakout-stars-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-49-38060558725/rejected/variety-10-actors-to-watch-2026-breakout-stars-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 5,
+        "real": 3,
+        "typed": 2,
+        "fraction": 0.6,
+        "by": {
+          "logo": 1,
+          "typed": 2,
+          "portrait": 2
+        },
+        "distinct": {
+          "named": 4,
+          "real": 3
+        }
+      },
+      "after": {
+        "named": 5,
+        "real": 3,
+        "typed": 2,
+        "fraction": 0.6,
+        "by": {
+          "logo": 1,
+          "typed": 2,
+          "portrait": 2
+        },
+        "distinct": {
+          "named": 4,
+          "real": 3
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "Variety",
+          "type": "company",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Variety_logo.svg"
+        },
+        {
+          "beat": 2,
+          "name": "Ray Nicholson",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "Jaafar Jackson",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Jaafar_Jackson.jpg"
+        },
+        {
+          "beat": 6,
+          "name": "Ray Nicholson",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Inde Navarrette",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Inde_Navarrette_at_the_2025_Toronto_International_Film_Festival_03_(cropped).jpg"
+        }
+      ],
+      "sheet": "frames/ch49.jpg",
+      "beats_framed": 9
+    }
+  ]
+}
