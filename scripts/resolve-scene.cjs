@@ -44,6 +44,8 @@ const { mkdirSync, renameSync, rmSync } = require("node:fs");
 const { join } = require("node:path");
 const E = require("./entity-assets.cjs");
 const Wikidata = require("./lib/wikidata.cjs");
+const FairUse = require("./lib/fair-use-logo.cjs");
+const { FAIR_USE_MAX_SIDE } = FairUse;
 const { verifyPlaceImage } = require("./verify-place-image.cjs");
 const { verifyImage } = require("./verify-image.cjs");
 
@@ -225,7 +227,7 @@ async function wikiSummary(name) {
   } catch { return null; }
 }
 // A Commons file -> a transparent PNG at public/cutouts-live/<channel>/<beat>-<slug>-logo.png.
-async function logoPng(info, channel, beatIndex, name) {
+async function logoPng(info, channel, beatIndex, name, maxSide = 1024) {
   const dir = join(E.PUBLIC, "cutouts-live", String(channel));
   mkdirSync(dir, { recursive: true });
   const file = `${beatIndex}-${E.slug(name)}-logo.png`;
@@ -237,7 +239,7 @@ async function logoPng(info, channel, beatIndex, name) {
   const sharp = require("sharp");
   // SVG: rasterised at a density that gives >= 1024 px across, transparent background kept.
   const img = svg ? sharp(buf, { density: 300 }) : sharp(buf);
-  await img.resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: !svg }).ensureAlpha().png().toFile(abs);
+  await img.resize({ width: maxSide, height: maxSide, fit: "inside", withoutEnlargement: !svg || maxSide < 1024 }).ensureAlpha().png().toFile(abs);
   const m = await sharp(abs).metadata();
   return { asset: `cutouts-live/${channel}/${file}`, abs, w: m.width, h: m.height, svg };
 }
@@ -295,12 +297,10 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
     }
   }
   if (logos.length) lines.push(`${logos.length} logo candidate(s): ${logos.map((l) => l.source).join(", ")}`);
-  for (const [i, l] of logos.slice(0, 8).entries()) {
-    const info = await E.fileInfo(l.title);
-    if (!info) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: not on Wikimedia Commons (a non-free logo is not used)`); continue; }
-    if (/non-?free|fair use/i.test(info.license || "") || !info.license) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: licence "${info.license || "none"}" is not free`); continue; }
+  // One candidate -> a verified logo or null. `fair` is the fair-use record when the file is a non-free logo (second pass below), else null.
+  const attempt = async (info, l, i, fair) => {
     let png;
-    try { png = await logoPng(info, channel, beatIndex, q); } catch (e) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: ${e.message}`); continue; }
+    try { png = await logoPng(info, channel, beatIndex, q, fair ? FAIR_USE_MAX_SIDE : 1024); } catch (e) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: ${e.message}`); return null; }
     // Task 6.1 — every fetched image passes through rembg so the render never
     // shows a white box behind the logo. A failed quality gate rejects the
     // candidate and tries the next.
@@ -310,7 +310,7 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
       const rb = await removeBackground(png.abs, rembgOut);
       if (!rb.ok) {
         lines.push(`logo ${i + 1} (${l.source}) REJECTED: rembg ${rb.reason}`);
-        rmSync(png.abs, { force: true }); rmSync(rembgOut, { force: true }); continue;
+        rmSync(png.abs, { force: true }); rmSync(rembgOut, { force: true }); return null;
       }
       try { require("node:fs").renameSync(rembgOut, png.abs); } catch { png.abs = rembgOut; }
     }
@@ -319,12 +319,32 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
       lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) REJECTED (${v.reason}, saw "${v.seen}")`);
       console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} rejected (${v.reason}, saw "${v.seen}")`);
       rmSync(png.abs, { force: true });
+      return null;
+    }
+    lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) verified (${v.reason})${fair ? " — FAIR USE, identification only" : ""}`, `rendering as cutout, middle zone`);
+    console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} accepted (${v.reason}, saw "${v.seen}")${fair ? ` — fair use of ${info.descurl}` : ""}`);
+    say(tag, lines);
+    return { ok: true, kind: type, logo: { name: q, asset: png.asset, abs: png.abs, w: png.w, h: png.h, source: l.source, source_url: info.descurl || info.url, license: info.license, seen: v.seen, ...(fair ? { fair_use: { ...fair, entity: q } } : {}) } };
+  };
+  // Pass 1: a FREE logo (Commons, licence checked). A candidate that is not on Commons, or is non-free, and came from Wikipedia is held for pass 2.
+  const fairPool = [];
+  for (const [i, l] of logos.slice(0, 8).entries()) {
+    const info = await E.fileInfo(l.title);
+    const nonFree = !info || /non-?free|fair use/i.test(info.license || "") || !info.license;
+    if (nonFree) {
+      lines.push(`logo ${i + 1} (${l.source}) not free: ${!info ? "not on Wikimedia Commons" : `licence "${info.license || "none"}"`}${/^wikipedia/.test(l.source) ? " — held for fair use (identification only)" : ""}`);
+      if (/^wikipedia/.test(l.source)) fairPool.push({ l, i });
       continue;
     }
-    lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) verified (${v.reason})`, `rendering as cutout, middle zone`);
-    console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} accepted (${v.reason}, saw "${v.seen}")`);
-    say(tag, lines);
-    return { ok: true, kind: type, logo: { name: q, asset: png.asset, abs: png.abs, w: png.w, h: png.h, source: l.source, source_url: info.descurl || info.url, license: info.license, seen: v.seen } };
+    const got = await attempt(info, l, i, null);
+    if (got) return got;
+  }
+  // Pass 2: FAIR USE, identification only (scripts/lib/fair-use-logo.cjs) — the organisation's own real mark where no free one exists.
+  for (const { l, i } of fairPool) {
+    const fu = await FairUse.fairUseInfo(l.title, E.getJson);
+    if (fu.refuse) { lines.push(`logo ${i + 1} (${l.source}) fair use REFUSED: ${fu.refuse}`); continue; }
+    const got = await attempt(fu.info, l, i, fu.fair_use);
+    if (got) return got;
   }
   // 3. A photo of its headquarters (a trade show: its hall / floor), as for a building.
   const r = await resolvePlaceScene(`${tag} (photo)`, "organization", name, context);

@@ -40,6 +40,7 @@ const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { SYMBOLS as CONCEPT_SYMBOLS } from "../src/skills/remotion-render/visual/concept-classes.js";
+import { namesShowableEntity } from "../src/skills/remotion-render/visual/cutout-policy.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { namedIn as placeNamedIn } from "./place-gate.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
@@ -452,6 +453,7 @@ export function applyVarietyFallbacks(plan, sentences, channelId, stage = "plan"
     for (const c of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
       const neighbours = [i - 1, i + 1].filter((j) => j >= 0 && j < beats.length).map(keyOf);
       if (c.kind === "symbol") {
+        if (namesShowableEntity(b.named_entities)) continue;   // cutout-policy.js: a symbol never stands where a named entity belongs
         if (neighbours.includes("TYPE-FULL+HERO")) continue;
         b.fallback_symbol = c.symbol;
         done = `drawn symbol "${c.symbol}" (what the sentence states)`;

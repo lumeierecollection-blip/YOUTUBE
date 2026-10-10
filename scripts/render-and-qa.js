@@ -34,6 +34,7 @@ import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
+import { cutoutPolicy, namesShowableEntity } from "../src/skills/remotion-render/visual/cutout-policy.js";
 import { inkOf } from "./cutout-ink.mjs";
 import { placeGate } from "./place-gate.js";
 import { enforceChrome, templateCheck, labelCount, devicesOf } from "./template-check.js";
@@ -1085,7 +1086,7 @@ export function shotMenu(canvas, b, ctx = {}) {
   // symbolFor — the owner's grounded fallback: "risk" -> a warning triangle); offered as an object
   // shot, the planner's to take or leave. Nothing the sentence does not state is offered.
   const plainType = String(canvas.visual_type || "TYPE").toUpperCase() === "TYPE" && !(canvas.concept_visuals || []).length && !canvas.name_card?.name && !canvas.photo;
-  const sym = plainType ? symbolFor(b.narration || canvas.sentence || "") : null;
+  const sym = plainType && !namesShowableEntity(b.named_entities) ? symbolFor(b.narration || canvas.sentence || "") : null;
   if (sym) {
     const withSym = { ...JSON.parse(JSON.stringify(canvas)), concept_visuals: [{ name: sym, class: "symbol", w: 1, h: 1, fallback: true }], composition: "TYPE-FULL", emphasis_beat: false };
     for (const s of HERO_SHOTS) add(withSym, s, { id: `${s}:${sym}`, symbol: sym });
@@ -1334,7 +1335,7 @@ export async function entityLadder(plan, channelId, log = console.log) {
             const t0 = String((b.named_entities || []).find((e) => e && sameName(e.name, nm))?.type || "");
             const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
             const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: nm }, context: b.narration || "" });
-            if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null };
+            if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
             const seenAt = usedMarks.get(String(nm).toLowerCase());
             if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
             if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
@@ -1705,7 +1706,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         if (pick && pick.r.logo) {
           // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
           b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
-          b.hero_cutout = { name: pick.e0.name, class: "cutout", asset: pick.r.logo.asset, w: pick.r.logo.w, h: pick.r.logo.h, logo: true, source: pick.r.logo.source, source_url: pick.r.logo.source_url, ink: await inkOf(pick.r.logo.abs) };
+          b.hero_cutout = { name: pick.e0.name, class: "cutout", asset: pick.r.logo.asset, w: pick.r.logo.w, h: pick.r.logo.h, logo: true, source: pick.r.logo.source, source_url: pick.r.logo.source_url, license: pick.r.logo.license || null, ...(pick.r.logo.fair_use ? { fair_use: pick.r.logo.fair_use } : {}), ink: await inkOf(pick.r.logo.abs) };
           fetchedNew++;
           entities.resolved.push(`beat ${b.index}: ${pick.e0.type} "${pick.e0.name}" -> logo ${pick.r.logo.asset} (${choice.source})`);
         } else if (pick) {
@@ -1720,7 +1721,8 @@ async function resolveCanvas(channelId, planPath, plan) {
           if (fb?.ok && reused(fb.photo, `beat ${b.index} ${choice.visual} fallback`)) fb = null;
           if (fb?.ok) { photo = { ...fb.photo, entity: found[0].e0.name }; b.visual_type = "PHOTO"; b.data = { entity: found[0].e0.name, entity_type: found[0].e0.type }; }
           else named.push(...found.map((f) => f.e0));
-        } else if (choice.visual.startsWith("symbol:")) {
+        } else if (choice.visual.startsWith("symbol:") && !namesShowableEntity(b.named_entities)) {
+          // (A beat that names an entity never takes a drawn symbol: it falls to the name card below — cutout-policy.js.)
           b.visual_type = "TYPE"; b.data = null; delete b.type_layout; b.fallback_symbol = choice.visual.slice(7);
         } else if (choice.visual !== "map") {
           // type_card (or an answer that could not be validated): the found entities become the name
@@ -1877,7 +1879,11 @@ async function resolveCanvas(channelId, planPath, plan) {
       const PEOPLE_WORDS = /\b(man|men|woman|women|person|people|officer|official|ceo|leader|worker|workers|scientist|doctor|judge|lawyer|founder|president|minister)\b/;
       const isPeople = (n) => PEOPLE.has(n) || PEOPLE_WORDS.test(n);
       if (namesPerson && vc.concepts.some(isPeople)) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter(isPeople).join(", ")})`);
-      const names = (namesPerson ? vc.concepts.filter((n) => !isPeople(n)) : vc.concepts).slice(0, 3);
+      // The cutout policy (visual/cutout-policy.js): only an object the sentence names — never a role ("businessman", "worker"), never a
+      // generic people cutout, never a drawn symbol on a beat that names an entity (its own mark / portrait / map, else its name in type).
+      const pol = cutoutPolicy(vc.concepts.filter((n) => !PEOPLE.has(n)), b.named_entities);
+      for (const d of pol.dropped) console.log(`[concepts] ch-${channelId} beat ${b.index}: "${d.name}" dropped — ${d.why}`);
+      const names = pol.keep.filter((n) => !(namesPerson && isPeople(n))).slice(0, 3);
       if (names.length) wanted.push({ bi, b, names, from: vc.from, altOnly });
     }
     // 2. Resolve: symbol drawn; cutout bank (verified) -> live (verified) -> none; scene none.
@@ -1971,6 +1977,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
           const nb = [plan.beats[i - 1], plan.beats[i + 1]].filter(Boolean).map((x) => keyOf(x.canvas));
           if (cand.kind === "symbol") {
+            if (namesShowableEntity(b.named_entities)) continue;   // cutout-policy.js: a symbol never stands where a named entity belongs
             if (nb.includes(`TYPE-FULL+HERO:${cand.symbol}`) || b.canvas.name_card) continue;
             b.fallback_symbol = cand.symbol; b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
             b.canvas = canvasContentFor(b, {});

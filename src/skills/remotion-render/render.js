@@ -25,6 +25,7 @@
 
 import os from "os";
 import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
+import { creditEntries } from "./credits.js";
 import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname, basename, extname, isAbsolute } from "path";
 import { fileURLToPath } from "url";
@@ -477,6 +478,7 @@ async function main() {
   // alternating TYPE → VISUAL. See visual-engine/director/.
   let sentencePlan = null;
   let mg = null;
+  let canvasPlan = null;   // the resolved visual plan the canvas path drew (credits read the marks and photos off it)
   let frames;
 
   if (componentId === "DirectedShorts") {
@@ -514,6 +516,7 @@ async function main() {
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
+        canvasPlan = visualPlan;
         console.log(`Visual plan loaded: ${planPath} (${visualPlan.totalBeats} beats, iteration: ${visualPlan.iteration})`);
       } catch (e) {
         console.warn(`Failed to load visual plan ${planPath}: ${e.message}`);
@@ -787,6 +790,13 @@ async function main() {
       if (asset.credit) creditSet.add(asset.credit);
     }
   }
+  // The canvas path's credits (credits.js): attribution-bearing images, and every fair-use mark PER USE in a structured manifest of its own.
+  // Always written, empty or not — an absent file is ambiguous ("did this check run?").
+  const canvasCredits = creditEntries(canvasPlan);
+  for (const line of canvasCredits.lines) creditSet.add(line);
+  const fairUsePath = join(outputDir, `${slug}-${format}-fair-use-credits.json`);
+  writeFileSync(fairUsePath, JSON.stringify(canvasCredits.fair_use, null, 2) + "\n");
+  console.log(`Fair-use marks: ${canvasCredits.fair_use.length} use(s) -> ${fairUsePath}${canvasCredits.fair_use.length ? ` (${canvasCredits.fair_use.map((u) => `${u.entity} @ beat ${u.beat}`).join("; ")})` : ""}`);
   const creditsPath = join(outputDir, `${slug}-${format}-image-credits.json`);
   writeFileSync(creditsPath, JSON.stringify([...creditSet], null, 2) + "\n");
   console.log(`Image credits: ${creditSet.size} attribution(s) -> ${creditsPath}`);
