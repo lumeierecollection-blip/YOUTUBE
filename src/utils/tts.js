@@ -102,6 +102,19 @@ function parseScriptForTTS(scriptContent, isJson = false) {
  * Uses natural rate/pitch so the delivery is not robotic, and writes an SRT
  * subtitle file for caption sync.
  */
+/**
+ * The Gemini prebuilt voice for a channel's Edge voice (same gender and register), and the delivery note Gemini TTS reads as a
+ * style instruction. channels.json `gemini_voice` overrides. The note asks for the human reading the owner described: varied
+ * intonation, breaths at the punctuation, emphasis on the word that matters.
+ */
+const GEMINI_VOICE = { "en-US-GuyNeural": "Charon", "en-US-AndrewNeural": "Sadaltager", "en-GB-RyanNeural": "Rasalgethi", "en-US-AriaNeural": "Sulafat", "en-US-JennyNeural": "Aoede" };
+export function geminiVoiceFor(edgeVoice, override = null) {
+  const voice = override || GEMINI_VOICE[edgeVoice] || (/Guy|Andrew|Ryan|Davis|Tony|Christopher|Eric|Brian/i.test(edgeVoice || "") ? "Charon" : "Sulafat");
+  const british = /^en-GB/i.test(edgeVoice || "");
+  const style = `Read this as a documentary narrator speaking to one person${british ? ", in a natural British English accent" : ""}: warm, engaged and conversational, with real variation in pitch across each sentence, a short breath at every comma and dash, a clear stop at every full stop, and a little weight on the one word in each sentence that matters. Never sing-song, never flat, never rushed.`;
+  return { voice, style };
+}
+
 async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const fullText = segments.map((s) => s.text).join("\n\n");
 
@@ -126,6 +139,29 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   writeFileSync(tmpTextPath, spokenText);
   writeFileSync(displayPath, fullText);
   writeFileSync(join(outputDir, `${topic}-vo-spoken.txt`), spokenText);
+
+  // Gemini's own TTS first (owner, 2026-10-10: "THE VOICE IS ROBOTIC"). In a blind Gemini listening test edge-tts scored
+  // SYNTHETIC 4/10 and gemini-3.1-flash-tts-preview HUMAN 9/10 on the same sentence. src/utils/tts_gemini.py writes the mp3, the
+  // sentence SRT and per-word timings (faster-whisper alignment) in tts_words.py's exact shape; any failure falls through to the chain below.
+  if (process.env.TTS_PROVIDER !== "edge" && ["GEMINI_API_KEY_4", "GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3"].some((k) => process.env[k])) {
+    const g = geminiVoiceFor(voice, settings.gemini_voice);
+    const helper = join(ROOT, "src", "utils", "tts_gemini.py");
+    const args = `--voice "${g.voice}" --style "${g.style.replace(/"/g, "'")}" --file "${tmpTextPath}" --display-file "${displayPath}" --mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
+    const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
+    for (const py of pythons) {
+      try {
+        const out = execSync(`${py} "${helper}" ${args}`, { stdio: "pipe", timeout: 600000 }).toString().trim();
+        console.log(out);
+        console.log(`Delivery: gemini voice=${g.voice} (channel voice ${voice})`);
+        verifyTts({ mp3Path: audioPath, srtPath, wordsPath, spokenText, channel: settings.channel || "?", topic });
+        try { unlinkSync(tmpTextPath); } catch {}
+        try { unlinkSync(displayPath); } catch {}
+        return audioPath;
+      } catch (err) {
+        console.error(`::warning::Gemini TTS failed (${py}): ${String(err.stderr || err.message).trim().split("\n").slice(-3).join(" | ").slice(0, 400)} — falling back`);
+      }
+    }
+  }
 
   // Task 4.1 — natural voiceover provider chain: ElevenLabs → MAI-Voice →
   // edge-tts. A provider that is not configured (no API key) returns null and
@@ -277,6 +313,7 @@ async function main() {
         rate: channel.tts_rate,
         pitch: channel.tts_pitch,
         python: channel.tts_python,
+        gemini_voice: channel.gemini_voice,
         channel: channelId,
       });
     } catch (err) {

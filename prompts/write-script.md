@@ -170,6 +170,13 @@ show:
   with their dates, a list with commas. This changes wording, never which facts
   there are.
 
+## PUNCTUATION IS THE DELIVERY (the narrator reads exactly what you write)
+
+- A comma where a speaker would take a breath; an em-dash (—) for a turn or an aside; a full stop where the thought lands.
+- Never a run-on of more than ~14 words without a comma or a dash: the voice has nowhere to breathe and reads flat.
+- One word per sentence carries the weight — put it at the end of a clause, where the voice naturally lands on it.
+- No ellipses, no exclamation marks, no ALL CAPS: they make the voice sing-song or shout.
+
 ## BANNED
 
 Banned OPENINGS (no sentence starts with): a person's full name, "According

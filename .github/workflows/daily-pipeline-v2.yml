@@ -172,10 +172,17 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: pip-${{ runner.os }}-edge-tts
+          key: pip-${{ runner.os }}-edge-tts-faster-whisper
 
-      - name: Install EdgeTTS
-        run: pip install --quiet edge-tts
+      # The voiceover is Gemini TTS (src/utils/tts_gemini.py); faster-whisper aligns its words. edge-tts stays as the fallback.
+      - name: Cache the word-alignment model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-align-${{ runner.os }}-faster-whisper-base.en
+
+      - name: Install EdgeTTS + faster-whisper
+        run: pip install --quiet edge-tts faster-whisper
 
       # ── Ollama ─────────────────────────────────────────────────────────
       # .github/actions/ollama: one server per job, the only place one is
@@ -671,6 +678,12 @@ jobs:
       # ── Stage D: TTS voiceover ─────────────────────────────────────────
       - name: Generate TTS voiceover
         if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
         run: |
           set -euo pipefail
           CH="${{ matrix.channel_id }}"

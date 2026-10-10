@@ -2597,6 +2597,19 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return backupAudit({ ...backupArgs, stage: "look-check", reason: lc?.failing?.length ? `${why}: beats ${lc.failing.join(", ")}` : why });
     }
 
+    // Step 2b'''''': NARRATION — Gemini LISTENS to the voiceover (owner, 2026-10-10: "THE VOICE IS ROBOTIC"). Every sentence must read as a
+    // person speaking (human-likeness 7+/10, varied intonation); one that reads as synthetic or flat holds the video. The fix is the voice,
+    // never the gate (scripts/narration-judge.mjs). It hears the narration file itself, not the mixed video.
+    if (result.audio && srtPath && existsSync(result.audio) && existsSync(srtPath)) {
+      const nj = await runChild("node", [join(__dirname, "narration-judge.mjs"), "--audio", result.audio, "--srt", srtPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration.json")], { label: `narration ${channelId}/${basename(scriptPath)}` });
+      if (nj.code !== 0) {
+        const why = nj.code === 1 ? "FAILED — the narration reads as synthetic or flat" : "could not run";
+        console.error(`::error::narration judge ${why} for ${basename(result.outputPath)}`);
+        const nr = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration.json"));
+        return backupAudit({ ...backupArgs, stage: "narration", reason: nr?.failing?.length ? `${why}: sentences ${nr.failing.join(", ")}` : why });
+      }
+    }
+
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
     if (skipQA) {
       console.log(`--skip-qa: skipping QA for ${basename(result.outputPath)}`);
