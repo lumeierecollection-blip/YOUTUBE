@@ -1536,9 +1536,14 @@
           "topic": "Ethiopia-Eritrea Border Conflict",
           "slug": "ethiopia-eritrea-borders-2026",
           "reserved_at": "2026-10-09T21:44:27.659Z"
+        },
+        {
+          "topic": "IEA and G7 Partner Governments Finalize Critical Minerals Reserve Framework",
+          "slug": "iea-g7-critical-minerals-reserve-framework-2026",
+          "reserved_at": "2026-10-10T00:48:23.864Z"
         }
       ],
-      "last_generated": "2026-10-09T21:44:27.660Z"
+      "last_generated": "2026-10-10T00:48:23.864Z"
     },
     "10": {
       "channel_name": "Margin Note",
