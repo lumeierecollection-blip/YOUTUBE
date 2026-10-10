@@ -1813,9 +1813,14 @@
           "topic": "Schelling, Kubrick, and the Eternal Truths of Being",
           "slug": "schelling-kubrick-eternal-truths-being",
           "reserved_at": "2026-10-10T13:16:09.858Z"
+        },
+        {
+          "topic": "Pope Leo XIV and the Philosophical Boundaries of AI Consciousness",
+          "slug": "pope-leo-xiv-ai-consciousness-debate",
+          "reserved_at": "2026-10-10T14:48:45.553Z"
         }
       ],
-      "last_generated": "2026-10-10T13:16:09.858Z"
+      "last_generated": "2026-10-10T14:48:45.553Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
