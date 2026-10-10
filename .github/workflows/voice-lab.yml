@@ -9,7 +9,7 @@ on:
         type: string
         default: ""
       set:
-        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x)"
+        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x) | probe (why does the judge's first model never answer?)"
         type: string
         default: "lab2"
       corpus_run:
@@ -43,7 +43,20 @@ jobs:
           path: corpus
           run-id: ${{ github.event.inputs.corpus_run }}
           github-token: ${{ github.token }}
+      - name: Judge probe (every model x key, with and without audio)
+        if: github.event.inputs.set == 'probe'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          MP3=$(find corpus -name '*-vo.mp3' | sort | head -1)
+          echo "probe audio: $MP3"
+          node scripts/judge-probe.mjs --audio "$MP3"
       - name: Run the lab
+        if: github.event.inputs.set != 'probe'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
