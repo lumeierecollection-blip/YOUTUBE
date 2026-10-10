@@ -2820,9 +2820,14 @@
           "topic": "Leadership Agility: Adapting Your Style When Situations Shift",
           "slug": "leadership-agility-adapting-style-situations-2026",
           "reserved_at": "2026-10-10T01:20:32.438Z"
+        },
+        {
+          "topic": "Claude Motion: Animating Productivity Systems from Text Prompts",
+          "slug": "claude-motion-animating-productivity-systems",
+          "reserved_at": "2026-10-10T01:55:35.017Z"
         }
       ],
-      "last_generated": "2026-10-10T01:20:32.438Z"
+      "last_generated": "2026-10-10T01:55:35.017Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
