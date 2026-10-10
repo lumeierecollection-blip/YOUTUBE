@@ -74,7 +74,7 @@ def semis(f):
     return 12 * np.log2(f / 110.0)
 
 def main():
-    audio, srt = sys.argv[1], sys.argv[2]
+    audio, srt = sys.argv[1], sys.argv[2]   # any extra flags (--json <path>) are read where needed
     x = decode(audio)
     cues = cues_of(srt)
     f0, energy = f0_track(x)
@@ -138,6 +138,8 @@ def main():
     }
     out = {"file": audio.split("/")[-1], "median_f0_hz": round(float(110 * 2 ** (med / 12)), 2), "rhythm": rhythm, "sentences": sents}
     txt = json.dumps(out, indent=1, sort_keys=True)
+    if "--json" in sys.argv:
+        open(sys.argv[sys.argv.index("--json") + 1], "w", encoding="utf-8").write(txt + "\n")
     print(txt)
     print(f"# sha256 {hashlib.sha256(txt.encode()).hexdigest()}", file=sys.stderr)
 

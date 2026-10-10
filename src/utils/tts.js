@@ -141,7 +141,10 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
     // TAKES (board 38044082797, ch 26): see tts-takes.js. Up to TTS_GEMINI_TAKES takes (default 3), each heard by the render's own narration
     // judge at its own threshold; the first that passes is kept, else the best-scoring one. A judge that cannot run keeps the take given.
-    const takes = process.env.TTS_NARRATION_RETAKE === "0" ? 1 : Math.max(1, Number(process.env.TTS_GEMINI_TAKES) || 3);
+    // ONE take by default (owner, 2026-10-10: the listener is advisory). Choosing among takes used the listener's verdict as a SELECTOR:
+    // 9 readings x 3 takes = 27 model calls per channel to pick the take a noisy listener liked best. The floor (narration-floor.mjs) still
+    // holds the video. Restore the retakes with TTS_GEMINI_TAKES=3.
+    const takes = process.env.TTS_NARRATION_RETAKE === "0" ? 1 : Math.max(1, Number(process.env.TTS_GEMINI_TAKES) || 1);
     const judge = join(ROOT, "scripts", "narration-judge.mjs");
     const kept = [audioPath, srtPath, wordsPath];
     const cleanup = () => { for (const f of [tmpTextPath, displayPath, ...kept.map((k) => `${k}.besttake`)]) { try { unlinkSync(f); } catch {} } };

@@ -2652,17 +2652,28 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       }
     }
 
-    // Step 2b'''''': NARRATION — Gemini LISTENS to the voiceover (owner, 2026-10-10: "THE VOICE IS ROBOTIC"). Every sentence must read as a
-    // person speaking (human-likeness 7+/10, varied intonation); one that reads as synthetic or flat holds the video. The fix is the voice,
-    // never the gate (scripts/narration-judge.mjs). It hears the narration file itself, not the mixed video.
+    // Step 2b: NARRATION — two things, and only one of them can block (owner, 2026-10-10 after three boards: the Gemini listener flips on
+    // the same audio, 20–40% of readings of good audio come back as a uniform 5; a model verdict cannot hold a video).
+    //   1. THE FLOOR (blocking): deterministic checks on the file itself — it decodes, it runs to its last caption, no silence longer than the
+    //      limit inside the speech, the captions match the audio, no clipping, and the video agrees with the audio (scripts/narration-floor.mjs).
+    //   2. THE LISTENER (advisory): Gemini's verdict is logged beside the acoustic numbers (scripts/acoustic/narration-acoustics.py) so the data
+    //      accumulates. It never blocks. Its verdict is recorded in <video>-narration.json with "advisory": true.
     if (result.audio && srtPath && existsSync(result.audio) && existsSync(srtPath)) {
-      const nj = await runChild("node", [join(__dirname, "narration-judge.mjs"), "--audio", result.audio, "--srt", srtPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration.json")], { label: `narration ${channelId}/${basename(scriptPath)}` });
-      if (nj.code !== 0) {
-        const why = nj.code === 1 ? "FAILED — the narration reads as synthetic or flat" : "could not run";
-        console.error(`::error::narration judge ${why} for ${basename(result.outputPath)}`);
-        const nr = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration.json"));
-        return backupAudit({ ...backupArgs, stage: "narration", reason: nr?.failing?.length ? `${why}: sentences ${nr.failing.join(", ")}` : why });
+      const wordsJson = result.audio.replace(/\.mp3$/, "-words.json");
+      const fl = await runChild("node", [join(__dirname, "narration-floor.mjs"), "--audio", result.audio, "--srt", srtPath, ...(existsSync(wordsJson) ? ["--words", wordsJson] : []), "--video", result.outputPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration-floor.json")], { label: `narration floor ${channelId}/${basename(scriptPath)}` });
+      if (fl.code !== 0) {
+        const fr = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration-floor.json"));
+        const why = fl.code === 1 ? `FAILED the floor: ${(fr?.failures || []).join("; ") || "see the log"}` : "could not run";
+        console.error(`::error::narration ${why} for ${basename(result.outputPath)}`);
+        return backupAudit({ ...backupArgs, stage: "narration-floor", reason: why });
       }
+      // The listener and the acoustic numbers, beside each other. Neither blocks.
+      const lj = await runChild("node", [join(__dirname, "narration-judge.mjs"), "--audio", result.audio, "--srt", srtPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration.json")], { label: `narration listener ${channelId}/${basename(scriptPath)}` });
+      const lv = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration.json"));
+      const verdict = lj.code === 0 ? "pass" : lj.code === 1 ? `synthetic/flat on ${(lv?.failing || []).length} sentence(s)` : "could not run";
+      const ac = await runChild("python3", [join(__dirname, "acoustic", "narration-acoustics.py"), result.audio, srtPath, "--json", result.outputPath.replace(/\.mp4$/, "-acoustics.json")], { label: `acoustics ${channelId}` }).catch(() => ({ code: 1 }));
+      console.log(`[narration] ch-${channelId} ${basename(scriptPath)}: floor PASS; listener (advisory, not blocking): ${verdict}; acoustics: ${ac.code === 0 ? "recorded" : "not recorded"}`);
+      if (lj.code !== 0) console.warn(`::warning::narration listener (advisory) ${verdict} for ${basename(result.outputPath)} — the video is not held`);
     }
 
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
