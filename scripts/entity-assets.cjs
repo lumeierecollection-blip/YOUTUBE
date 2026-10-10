@@ -589,6 +589,18 @@ async function resolveMoney({ query }) {
 // recognises), else refuses it (null) so the beat is not given some other
 // country's photo.
 const GENERIC_INSTITUTION = /^(the\s+)?(supreme court|high court|constitutional court|federal court|court of appeals?|parliament|congress|senate|house of (representatives|commons|lords)|national assembly|central bank|reserve bank|treasury|ministry of [a-z ]+|department of [a-z ]+|police|army|navy|air force|government|cabinet|election commission|human rights commission|national human rights commission)$/i;
+/**
+ * May an OPEN Commons search (any file whose title holds the name) propose a LOGO for this name? Board 38054686824 ch 9: the bare
+ * generic name "Treasury" went to that search, which returned "The Treasury Discount Store Logo" (a US retail chain) and the verifier
+ * accepted it as "The Treasury". A generic institution name, or a name of one word, names no single organisation, so only Wikipedia's
+ * infobox and Wikidata's own logo claims (which name the item) may supply its mark, never an open search.
+ */
+function openLogoSearchAllowed(name) {
+  const n = String(name || "").trim().replace(/^the\s+/i, "");
+  if (!n) return false;
+  if (GENERIC_INSTITUTION.test(String(name).trim())) return false;
+  return n.split(/\s+/).filter((w) => w.length > 1).length >= 2;
+}
 function qualifyEntity(ent, countries = []) {
   if (!ent?.name || !GENERIC_INSTITUTION.test(String(ent.name).trim())) return { ent, note: null };
   const cs = [...new Set(countries)];
@@ -620,7 +632,7 @@ async function qualifyEntityWith(ent, countries = [], summaryOf = null) {
   if (!own.size || [...own].some((r) => scripts.has(r))) return q;
   return { ent, note: `"${ent.name}" is a generic institution name, but Wikipedia's primary article for it is "${s.title}" (not ${[...new Set(countries)].join(", ")}) — resolving that, not "${q.ent.name}"` };
 }
-module.exports = { qualifyEntityWith, resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
+module.exports = { openLogoSearchAllowed, qualifyEntityWith, resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

@@ -4,7 +4,7 @@ name: identity-audit
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -15,12 +15,20 @@ jobs:
         with:
           node-version: "22"
       - name: Navarrette portrait (ch49 beat 6)
-        run: node scripts/identity-audit.mjs --file "File:Inde Navarrette at the 2025 Toronto International Film Festival 03 (cropped).jpg" --person "Inde Navarrette" --other "Chase Sui Wonders" | tee navarrette.json
+        run: node scripts/identity-audit.mjs --file "File:Inde Navarrette at the 2025 Toronto International Film Festival 03 (cropped).jpg" --person "Inde Navarrette" --other "Chase Sui Wonders" --thumbs out/identity | tee navarrette.json
+      - name: Publish the pictures to the board-frames branch
+        run: |
+          git config user.name "lumeierecollection-blip"; git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git fetch origin board-frames:board-frames 2>/dev/null || true
+          git worktree add ../bf-id board-frames 2>/dev/null || (git worktree add -B board-frames ../bf-id origin/board-frames)
+          mkdir -p ../bf-id/identity && cp out/identity/*.jpg ../bf-id/identity/
+          cd ../bf-id && git add -A && git commit -qm "identity audit pictures" && git push -q origin HEAD:board-frames || true
       - name: The Treasury wordmark (ch9 beat 6)
-        run: node scripts/identity-audit.mjs --file "File:The Treasury Discount Store Logo.png" --person "The Treasury" | tee treasury.json
+        run: node scripts/identity-audit.mjs --file "File:The Treasury Discount Store Logo.png" --person "The Treasury" --thumbs out/identity | tee treasury.json
       - name: Seal of the Treasury (for comparison)
         run: node scripts/identity-audit.mjs --file "File:Seal of the United States Department of the Treasury.svg" --person "United States Department of the Treasury" | tee seal.json
       - uses: actions/upload-artifact@v4
         with:
           name: identity-audit-${{ github.run_id }}
           path: "*.json"
+  # (the pictures are published to the board-frames branch by the step above)

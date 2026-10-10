@@ -1290,6 +1290,8 @@ Respond ONLY with JSON: {"sequence": <number>}`);
  * (the FLAG shot — Gemini picks it in chooseShots). Code fills the gap; it does not replace what the planner drew.
  */
 export async function entityLadder(plan, channelId, log = console.log) {
+  // The script's named countries (the same set resolveCanvas qualifies a generic institution with).
+  const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
   const { ladderFor } = await import("./entity-ladder.js");
   const { sameName } = await import("./entity-coverage.js");
   const { fetchFlag } = await import("./fetch-flag.mjs");
@@ -1334,7 +1336,12 @@ export async function entityLadder(plan, channelId, log = console.log) {
             // An agency / institution (NASA, the FBI) is looked up as one — its seal or insignia is searched too; a company / outlet as a company.
             const t0 = String((b.named_entities || []).find((e) => e && sameName(e.name, nm))?.type || "");
             const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
-            const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: nm }, context: b.narration || "" });
+            // The same qualification the photo path applies (qualifyEntityWith): a generic name ("Treasury") is resolved as the script's one
+            // country's body, or refused. Before this, the plate looked up the BARE name and took whatever mark a search returned for it.
+            const qn = await qualifyEntityWith({ type: rtype, name: nm }, countries, wikiSummary);
+            if (!qn.ent?.name) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" — ${qn.note || "not qualified"} — its name in type`); throw new Error("generic name not qualified"); }
+            if (qn.note) log(`[ladder] ch-${channelId} beat ${b.index}: ${qn.note}`);
+            const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: qn.ent.name }, context: b.narration || "" });
             if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
             const seenAt = usedMarks.get(String(nm).toLowerCase());
             if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }

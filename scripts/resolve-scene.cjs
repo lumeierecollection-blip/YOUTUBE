@@ -289,7 +289,11 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
     else lines.push(`wikidata: no exact item with a logo for "${q}"`);
   } catch (e) { lines.push(`wikidata unavailable (${e.message})`); }
   // 2. Commons: "<name> logo" (a standards body's seal / mark too).
-  for (const suffix of type === "institution" ? [" logo", " seal"] : [" logo"]) {
+  // An open Commons search for a logo only for a name that names one organisation (entity-assets openLogoSearchAllowed): "Treasury" or
+  // "Police" would return some other body's mark, and the verifier judged the wordmark a match for the bare name (board 38054686824 ch 9).
+  const openSearch = E.openLogoSearchAllowed(q);
+  if (!openSearch) lines.push(`no open logo search for "${q}" (a generic or one-word name: only its Wikipedia / Wikidata logo may be used)`);
+  for (const suffix of !openSearch ? [] : type === "institution" ? [" logo", " seal"] : [" logo"]) {
     const cj = await E.getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`"${q}"${suffix}`)}`);
     for (const h of cj?.query?.search || []) {
       const ft = E.tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));

@@ -19,6 +19,15 @@ const COMMONS = "https://commons.wikimedia.org/w/api.php", EN = "https://en.wiki
 const strip = (v) => String(v?.value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 
 const out = { file: fileTitle, person, other };
+const thumbsDir = arg("thumbs");
+if (thumbsDir) {
+  // The picture itself, so a human can look at the faces (the audit reports metadata; it does not recognise faces).
+  const { mkdirSync, writeFileSync } = await import("node:fs");
+  mkdirSync(thumbsDir, { recursive: true });
+  const t = await get(`${COMMONS}?action=query&format=json&prop=imageinfo&iiprop=url&iiurlwidth=640&titles=${encodeURIComponent(fileTitle)}`);
+  const u = Object.values(t.query?.pages || {})[0]?.imageinfo?.[0]?.thumburl;
+  if (u) writeFileSync(`${thumbsDir}/${fileTitle.replace(/^File:/, "").replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 80)}.jpg`, Buffer.from(await (await fetch(u, { headers: { "user-agent": UA } })).arrayBuffer()));
+}
 const fi = await get(`${COMMONS}?action=query&format=json&prop=imageinfo|categories|imageinfo&iiprop=url|user|timestamp|extmetadata|size&cllimit=max&titles=${encodeURIComponent(fileTitle)}`);
 const page = Object.values(fi.query?.pages || {})[0] || {};
 const ii = page.imageinfo?.[0] || {};
@@ -68,4 +77,11 @@ for (const name of [person, other].filter(Boolean)) {
   };
 }
 out.verdict = verdict;
+if (thumbsDir && other && out.people[other]?.wikidata_image) {
+  const { writeFileSync } = await import("node:fs");
+  const f = out.people[other].wikidata_image;
+  const t = await get(`${COMMONS}?action=query&format=json&prop=imageinfo&iiprop=url&iiurlwidth=640&titles=${encodeURIComponent(f)}`);
+  const u = Object.values(t.query?.pages || {})[0]?.imageinfo?.[0]?.thumburl;
+  if (u) writeFileSync(`${thumbsDir}/${other.replace(/ /g, "_")}_wikidata.jpg`, Buffer.from(await (await fetch(u, { headers: { "user-agent": UA } })).arrayBuffer()));
+}
 console.log(JSON.stringify(out, null, 2));
