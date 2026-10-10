@@ -2302,9 +2302,14 @@
           "topic": "The $93M Ledger CryptoBilis Wallet Drain: Anatomy of a Supply Chain Hack",
           "slug": "ledger-cryptobilis-93m-wallet-drain",
           "reserved_at": "2026-10-10T01:55:32.724Z"
+        },
+        {
+          "topic": "Kishu Inu Founder Alexander Sisemore Indicted on Wire Fraud Charges",
+          "slug": "kishu-inu-founder-wire-fraud-indictment",
+          "reserved_at": "2026-10-10T10:15:11.709Z"
         }
       ],
-      "last_generated": "2026-10-10T07:29:58.702Z"
+      "last_generated": "2026-10-10T10:15:11.709Z"
     },
     "27": {
       "channel_name": "Trial Files",
