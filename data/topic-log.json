@@ -440,9 +440,14 @@
           "topic": "SoFi's October 2026 Release of 8 Fun Money Savings Challenges",
           "slug": "sofi-october-2026-savings-challenges",
           "reserved_at": "2026-10-10T00:48:05.040Z"
+        },
+        {
+          "topic": "The Marketplace October 2026 Report on Why Americans Are Saving Less",
+          "slug": "marketplace-october-2026-report-on-why-americans-are-saving",
+          "reserved_at": "2026-10-10T01:19:30.447Z"
         }
       ],
-      "last_generated": "2026-10-10T00:48:05.041Z"
+      "last_generated": "2026-10-10T01:19:30.447Z"
     },
     "2": {
       "channel_name": "Legal Brief",
