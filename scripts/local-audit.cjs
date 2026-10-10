@@ -489,6 +489,44 @@ const ROLE_OF = (k) => k.replace(/\d+$/, "");
  *   - no composition type twice in a row,
  *   - (dark beats are retired)
  */
+// THE TEXT GRID (owner, 2026-10-10): every beat's words centred and standing on one line (canvas-layout.js TEXT_GRID).
+const TEXT_GRID_ON = true, GRID_BASE = 1328, GRID_TOL = 40;
+/**
+ * grid — measured on the RENDERED frame (owner, 2026-10-10: "every check must read the rendered frame, not the manifest"). For each beat
+ * with words, the ink inside the words' box (the box the layout says, widened 60 px each side) is found on a frame after the words have
+ * landed: the ink's horizontal centre must be within GRID_TOL of the frame's axis, and the bottom of its ink (the last line's baseline
+ * region) within GRID_TOL of the grid line. Every beat's measured position is reported. Where it stops: a full-bleed photo under the words
+ * makes "ink" the photo too — those beats are measured on the words' own colour (the darkest / lightest band), and are reported as such.
+ */
+async function textGrid(video, beats, fps = 30) {
+  const rows = [], bad = [];
+  const W = 540, H = 960, sc = H / 1920;
+  for (let i = 0; i < beats.length; i++) {
+    const b = beats[i], c = b.canvas || {};
+    const t = c.boxes?.statement || c.boxes?.headline;
+    if (!t || !(t.w > 0)) { rows.push({ beat: i, words: null }); continue; }
+    const at = (b.start_sec ?? 0) + Math.max(0.1, (b.duration_sec ?? 0) * 0.85);
+    const buf = rgbFrame(video, at, W, H);
+    if (!buf) continue;
+    const g = frameGround(buf, W, H);
+    const x0 = Math.max(0, Math.floor((t.x - 60) * sc)), x1 = Math.min(W - 1, Math.ceil((t.x + t.w + 60) * sc));
+    const y0 = Math.max(0, Math.floor((t.y - 40) * sc)), y1 = Math.min(H - 1, Math.ceil((t.y + t.h + (t.desc || 0) + 40) * sc));
+    let minX = Infinity, maxX = -Infinity, maxY = -Infinity, n = 0;
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+      const o = (y * W + x) * 3, l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2];
+      if (Math.abs(l - g.l) > 60) { n++; if (x < minX) minX = x; if (x > maxX) maxX = x; if (y > maxY) maxY = y; }
+    }
+    if (!n) { rows.push({ beat: i, words: "no ink found" }); bad.push(`beat ${i}: no words found where the layout puts them`); continue; }
+    const cx = Math.round(((minX + maxX) / 2) / sc), bottom = Math.round(maxY / sc);
+    rows.push({ beat: i, composition: c.composition, centre_x: cx, bottom_y: bottom });
+    if (Math.abs(cx - 540) > GRID_TOL) bad.push(`beat ${i} (${c.composition}): the words are centred at x ${cx}, not on the frame's axis (540 ± ${GRID_TOL})`);
+    if (Math.abs(bottom - GRID_BASE) > GRID_TOL + 20) bad.push(`beat ${i} (${c.composition}): the words end at y ${bottom}, not on the grid line (${GRID_BASE} ± ${GRID_TOL})`);
+  }
+  const ys = rows.filter((r) => Number.isFinite(r.bottom_y)).map((r) => r.bottom_y);
+  if (ys.length > 1 && Math.max(...ys) - Math.min(...ys) > 2 * GRID_TOL + 20) bad.push(`the words' baseline wanders ${Math.min(...ys)}-${Math.max(...ys)} across the video (one grid line)`);
+  return { rows, bad };
+}
+
 function canvasType(beats) {
   const bad = [];
   const roleSets = [];
@@ -505,6 +543,7 @@ function canvasType(beats) {
         // axis by design; two centred beats in a row are refused below (part C.2).
         // The words-only cards (TYPE-TITLE / -CHAPTER / -DEFINITION) are centred too (owner, 2026-10-09:
         // "Extend C.1 to the cards"); the same C.2 below refuses two centred beats in a row.
+        if (TEXT_GRID_ON) { if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`); continue; }
         if (v.align === "center" && k === "statement" && ["TYPE-FULL", "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION"].includes(c.composition)) continue;
         if (v.align === "center") bad.push(`beat ${i}: ${k} is centred`);
         else if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`);
@@ -527,10 +566,10 @@ function canvasType(beats) {
     if (i > 0 && beats[i - 1].canvas && compKey(beats[i - 1].canvas) === compKey(c)) bad.push(`beat ${i}: ${compKey(c)} twice in a row`);
     // Part C.2: never two centred headlines in a row.
     const centred = (x) => Object.values(x?.boxes || {}).some((v) => v && v.align === "center" && v.role === "headline");
-    if (i > 0 && centred(c) && centred(beats[i - 1].canvas)) bad.push(`beat ${i}: a centred headline two beats in a row`);
+    if (!TEXT_GRID_ON && i > 0 && centred(c) && centred(beats[i - 1].canvas)) bad.push(`beat ${i}: a centred headline two beats in a row`);
     // Owner, 2026-10-09: no two consecutive beats share an alignment (left / right / centre of the headline).
     const al = c.headline_align, pal = i > 0 ? beats[i - 1].canvas?.headline_align : null;
-    if (al && pal && al === pal) bad.push(`beat ${i}: its words are ${al}-aligned like beat ${i - 1}'s`);
+    if (!TEXT_GRID_ON && al && pal && al === pal) bad.push(`beat ${i}: its words are ${al}-aligned like beat ${i - 1}'s`);
     // Headline motion: one per beat, never the same two beats in a row, never a fade.
     const hm = c.headline_motion, pm = i > 0 ? beats[i - 1].canvas?.headline_motion : null;
     if (hm === "fade") bad.push(`beat ${i}: the headline fades (headlines never fade)`);
@@ -932,6 +971,9 @@ async function canvasChecks(video, m) {
   const em = entityMarks(beats);
   em.rows.forEach((r) => console.log(`[marks] ${r}`));
   out.push({ id: "entity-marks", pass: !em.bad.length, detail: em.bad.length ? em.bad.join("; ") : em.rows.length ? `${em.rows.length} entity plate beat(s): each entity is its real mark or its name in type, none repeated` : "no entity plate to judge" });
+  const tg = await textGrid(video, beats, m.fps || 30);
+  tg.rows.forEach((r) => console.log(`[grid] beat ${r.beat}: ${r.words === null ? "no words" : r.words || `${r.composition} words centred at x ${r.centre_x}, ending at y ${r.bottom_y}`}`));
+  out.push({ id: "grid", pass: !tg.bad.length, detail: tg.bad.length ? tg.bad.join("; ") : `every beat's words centred on x 540 and standing on y ${GRID_BASE} (± ${GRID_TOL}), measured on the frames` });
   const fl = await flatLook(video, beats, m.accent, m.fps || 30);
   fl.rows.forEach((r) => console.log(`[flat-look] ${r}`));
   out.push({ id: "flat-look", pass: !fl.bad.length, detail: fl.bad.length ? fl.bad.join("; ") : fl.rows.length ? `${fl.rows.length} chart / date / scale / plate / diagram beat(s): reference palette only, no shadow, sharp corners` : "no chart, date, scale, plate or diagram beat to judge" });

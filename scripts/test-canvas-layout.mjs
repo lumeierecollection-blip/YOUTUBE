@@ -7,7 +7,7 @@
 // Since the typography rebuild it also checks the grid rules (canvas-layout.js):
 // no centred text, every text box anchored to a column edge on the side it is
 // aligned to, no two text boxes overlapping, both variants (left / right).
-import { canvasLayout, contentBounds, flattenBoxes, GRID, cellsOf, zoneReport } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, contentBounds, flattenBoxes, GRID, TEXT_GRID, cellsOf, zoneReport } from "../src/skills/remotion-render/visual/canvas-layout.js";
 
 const heads = [
   { name: "no header", h: {} },
@@ -73,6 +73,13 @@ for (const variant of [0, 1]) for (const b of bodies) for (const { name, h } of 
   const TEXT_ROLES = ["headline", "number", "data", "emphasis"];
   const texts = flattenBoxes(L.boxes).filter(([k, v]) => TEXT_ROLES.includes(v.role) || TEXT.includes(k));
   for (const [k, v] of texts) {
+    // THE TEXT GRID (owner, 2026-10-10): the words — headline / statement, and the label stacked over them — are centred on the
+    // frame's axis, and the primary block stands on the grid line. (Replaces "no centred text, anchored to a column edge".)
+    if (TEXT_GRID.on && ["headline", "statement", "kicker", "lead_phrase"].includes(k)) {
+      if (v.w && Math.abs(v.x + v.w / 2 - 540) > 2) bad.push(`${k} is not centred on the frame's axis (${v.x}..${v.x + v.w})`);
+      if (k !== "kicker" && k === (L.boxes.statement ? "statement" : "headline") && Math.abs(v.y + v.h + (v.desc || 0) - TEXT_GRID.base) > TEXT_GRID.tolerance) bad.push(`${k} ends at y ${v.y + v.h}, off the grid line ${TEXT_GRID.base}`);
+      continue;
+    }
     // Part C.1 (owner's spec 2026-10-03): a TYPE-FULL statement is the one centred element —
     // centred on the frame's axis, never anchored to a column. Everything else stays anchored.
     if (v.align === "center" && L.composition === "TYPE-FULL" && k === "statement") {

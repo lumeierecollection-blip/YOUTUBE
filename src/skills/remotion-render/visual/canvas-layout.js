@@ -421,8 +421,8 @@ const SUBJECT_W = 640;
 function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines = 4, maxHeight = Infinity, max = ROLE_HEADLINE.sizeBand[1], marks = MARKS, center = false, tier = true, hero = false, minLines = 1, min = null } = {}) {
   const TIER = BEAT_HERO ? HERO_HEADLINE : { min: HEADLINE_SIZE.min, max: BEAT_MAX };
   void hero;
-  // center (part C.1): a TYPE-FULL statement, centred on the frame's axis.
-  const align = center ? "center" : flip ? "right" : "left";
+  // center (part C.1): a TYPE-FULL statement, centred on the frame's axis — and, under the grid, every headline.
+  const align = center || TEXT_GRID.on ? "center" : flip ? "right" : "left";
   const words = markWords(text, marks);
   // `min` (untiered only): a deliberately SMALL line — the chapter mark (TYPE-CHAPTER) — below the 88 px floor.
   const hi = tier ? Math.min(max, TIER.max) : max, lo = tier ? Math.min(hi, TIER.min) : Math.min(hi, min ?? 88);
@@ -441,6 +441,7 @@ function headlineBox(text, { width = 984, y, bottom = null, flip = 0, maxLines =
       if (g.lines.length >= minLines && g.lines.length <= maxLines && g.height <= maxHeight) { f = g; break; }
     }
   }
+  if (TEXT_GRID.on) center = true;   // the grid: every headline centred on the frame's vertical axis
   const ax = (w) => (center ? Math.round((FRAME.w - w) / 2) : anchorX(w, flip));
   if (!f.lines.length) return { ...box(ax(0), bottom != null ? bottom : y, 0, 0), size: f.size, lines: [], words: [], align, role: "headline", inBand: false };
   const w = Math.min(width, Math.ceil(f.width) + 4);
@@ -587,6 +588,8 @@ export function canvasLayout(c) {
 function layoutCore(c) {
   const table = tableLayout(c);
   if (!c?.layout) return { ...table, layout: null };
+  // The text grid places the words; a planned layout may not move them (or the visual over them) off it.
+  if (TEXT_GRID.on) return { ...table, layout: { used: false, axes: null, moved: [], rejected: ["grid: the text grid places every beat's words"] } };
   // A shot IS the beat's arrangement (the planner chose it): its grid layout would move the shot's
   // photo / object out of the frame division it names. Recorded as not used, with the reason.
   if (SHOT_COMPOSITIONS.includes(table.composition)) return { ...table, layout: { used: false, axes: null, moved: [], rejected: [`shot: ${table.composition} is the beat's arrangement`] } };
@@ -655,7 +658,15 @@ export function layoutViolations(L) {
     const [ka, a] = texts[i], [kb, b] = texts[j];
     if (a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) out.push({ rule: "overlap", detail: `${ka} and ${kb}` });
   }
-  for (const [k, b] of flat) {
+  if (TEXT_GRID.on) {
+    // THE TEXT GRID: the primary words (statement, else headline) are centred on the frame's axis and stand on TEXT_GRID.base.
+    const prim = L.boxes?.statement || L.boxes?.headline;
+    if (prim && prim.w > 0 && !prim.rotate) {
+      const cx = prim.x + prim.w / 2, bottom = prim.y + prim.h + (prim.desc || 0);
+      if (Math.abs(cx - 540) > 24) out.push({ rule: "grid", detail: `the words are centred at x ${Math.round(cx)}, not on the frame's axis (540)` });
+      if (Math.abs(bottom - TEXT_GRID.base) > TEXT_GRID.tolerance) out.push({ rule: "grid", detail: `the words end at y ${Math.round(bottom)}, not on the grid line (${TEXT_GRID.base} ± ${TEXT_GRID.tolerance})` });
+    }
+  } else for (const [k, b] of flat) {
     // A statement set centred on purpose — TYPE-FULL and the words-only cards (C.1, extended to the
     // cards 2026-10-09) — is on the centre line by design; Layer 1 canvas-type refuses two in a row.
     const byDesign = k === "statement" && b.align === "center" && (L.composition === "TYPE-FULL" || TYPE_CARD_COMPS.includes(L.composition));
@@ -750,6 +761,13 @@ function shotLayout(c, comp, flip) {
     header(900, 150);
     const w = 700;
     boxes.photo = { ...box(flip ? 0 : FRAME.w - w, BODY_TOP - 6, w, 690), frame: "edge", side: flip ? "left" : "right", focus };
+  } else if (comp === "PHOTO-CARD" && TEXT_GRID.on) {
+    // The text grid: the card centred in the middle band, its words on TEXT_GRID.base under it (a person's portrait is drawn this way too).
+    boxes.rule = { ...rule(flip, TOP), keep: true };
+    const gh = gridHeader({ ...c, headline: text, lead_in: kick }, { width: 940, max: 150, maxLines: 2 });
+    Object.assign(boxes, gh.boxes);
+    const [w, h] = fitPhoto(820, Math.max(260, gh.floor - BODY_TOP));
+    boxes.photo = { ...box(Math.round((FRAME.w - w) / 2), BODY_TOP + Math.max(0, Math.round((gh.floor - BODY_TOP - h) / 2)), w, h), frame: "card", focus };
   } else if (comp === "PHOTO-CARD") {
     // Shots 4 / 19: a matted card with a soft shadow, centred, standing on the middle band's floor.
     header(984, 150);
@@ -798,10 +816,17 @@ function typeCardLayout(c, comp, flip) {
   const kick = c.lead_in ? String(c.lead_in) : null;
   boxes.rule = { ...rule(flip, TOP), keep: true };
   if (comp === "TYPE-TITLE") {
+    if (TEXT_GRID.on) {
+      // The grid: the words stand on TEXT_GRID.base, the heavy accent bar above them, the label above the bar.
+      boxes.statement = headlineBox(text, { width: 984, bottom: TEXT_GRID.base, flip, maxLines: 2, maxHeight: 560, max: 260, tier: false, center: true });
+      boxes.bar = { ...box(Math.round((FRAME.w - 420) / 2), boxes.statement.y - 48, 420, 18), role: "rule", anchor: "center", accent: true };
+      if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 30, maxLines: 1, bottom: boxes.bar.y - 24, center: true });
+    } else {
     boxes.statement = headlineBox(text, { width: 984, y: BODY_TOP + 30, flip, maxLines: 2, maxHeight: 560, max: 260, tier: false, center: true });
     if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 30, maxLines: 1, y: boxes.statement.y + boxes.statement.h + (boxes.statement.desc || 0) + 28, center: true });
     // The heavy accent bar on the middle band's floor (stroke: thick).
     boxes.bar = { ...box(Math.round((FRAME.w - 420) / 2), BOTTOM - 30, 420, 18), role: "rule", anchor: "center", accent: true };
+    }
   } else if (comp === "TYPE-CHAPTER") {
     const kb = kick ? dataBox(kick, { width: 600, size: 28, maxLines: 1, y: 0, center: true }) : null;
     boxes.statement = headlineBox(text, { width: 760, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: 200, max: 68, min: 48, tier: false, center: true });
@@ -940,7 +965,51 @@ function entityArtLayout(c, flip) {
   return { composition: "ENTITY-ART", boxes, hero: "art", flip };
 }
 
+/**
+ * THE GRID (owner, 2026-10-10: "One grid. One anchor. Every beat." — "the user asked for centred and did not get it"). Every beat sets its
+ * words on ONE line: the primary text block (headline / statement) is centred on the frame's vertical axis and its last line stands on
+ * TEXT_GRID.base (y 1328, the middle band's floor); the visual is the hero above it, centred, in the middle band. A composition whose words sat
+ * in the top band is drawn as its grid form (gridForm): hero objects over their words, photos as a centred card or band over their words,
+ * a map as a band, a chart / figure in the upper middle band over its words, a list / timeline / flow / split above a low header.
+ * Beats that cannot honour it record why in L.grid (canvas-layout.js gridReport) and the audit's `grid` check measures the frames.
+ */
+// `on` is writable for the tests that exercise the pre-grid machinery (plan layouts, the asymmetric shot grammar); production never turns it off.
+export const TEXT_GRID = Object.seal({ on: true, base: BOTTOM - 12, gap: 30, tolerance: 40 });
+function gridForm(c, comp, vt) {
+  if (!TEXT_GRID.on || c?.__grid) return null;
+  const cv = (c?.concept_visuals || []).filter(Boolean);
+  const hasHead = !!String(c?.headline || "").trim();
+  if (["HERO-LOW", "HERO-SCATTER"].includes(comp)) return { composition: "HERO-OVER" };
+  if (comp === "TYPE-FULL" && cv.some((v) => v.asset || v.class === "symbol" || v.logo)) return { composition: "HERO-OVER" };
+  // Three photo forms keep a run of photo beats from repeating one frame: a band (the strip's), a centred card (the edge's and the
+  // inset's), full bleed with the words low (SCENE-LOW).
+  if (comp === "PHOTO-STRIP" && c?.photo) return { composition: "PHOTO-BAND" };
+  if (["PHOTO-EDGE", "PHOTO-INSET"].includes(comp) && c?.photo) return { composition: "PHOTO-CARD" };
+  if (comp === "PORTRAIT" && c?.photo) return { composition: "PHOTO-CARD", headline: c.headline || c.photo.entity || "" };
+  if ((comp === "SCENE-FULL" || comp === "ARCHITECTURE") && c?.photo) return { composition: "SCENE-LOW" };
+  if (comp === "MAP-CENTERED" && hasHead && !c?.map_band) return { map_band: true };
+  if (comp === "DATA-FULL" && hasHead && ["BAR", "LINE", "TREND"].includes(vt) && !(c?.headline_zone === "middle" && c?.chart_zone === "top")) return { headline_zone: "middle", chart_zone: "top" };
+  if (comp === "NUMBER-FULL" && hasHead && !(c?.headline_zone === "middle" && c?.chart_zone === "top")) return { headline_zone: "middle", chart_zone: "top" };
+  if (comp === "TYPE-SPLIT" || comp === "TYPE-DEFINITION") return { composition: "TYPE-FULL", type_layout: undefined };
+  return null;
+}
+/** The header of a list / timeline / flow / pie / gauge in the grid: its headline on TEXT_GRID.base, centred, its label stacked above it.
+ *  Returns { boxes, floor } — the body fills BODY_TOP .. floor. */
+function gridHeader(c, { width = 940, max = 150, maxLines = 2 } = {}) {
+  const out = {};
+  if (c?.headline) out.headline = headlineBox(c.headline, { width, bottom: TEXT_GRID.base, maxLines, maxHeight: 300, max, center: true });
+  let top = out.headline ? out.headline.y : TEXT_GRID.base;
+  if (c?.lead_in) { out.kicker = dataBox(c.lead_in, { width: 640, size: 34, maxLines: 1, bottom: top - 16, center: true }); top = out.kicker.y; }
+  if (!out.headline && !out.kicker) { out.rule = rule(0, TOP); return { boxes: out, floor: BOTTOM }; }   // no words: the body keeps the whole band
+  return { boxes: out, floor: top - TEXT_GRID.gap };
+}
+
 function tableLayout(c) {
+  {
+    const comp0 = c?.composition || compositionFor(c?.visual_type, !!c?.photo);
+    const g = gridForm(c, comp0, String(c?.visual_type || "TYPE").toUpperCase());
+    if (g) return tableLayout({ ...c, ...g, __grid: true });
+  }
   MARKS = Array.isArray(c?.emphasis_words) ? c.emphasis_words : c?.emphasis_word ? [c.emphasis_word] : [];
   BEAT_HERO = !!c?.hero_headline;
   BEAT_MAX = HEADLINE_STEPS[((Number(c?.variant) || 0) % HEADLINE_STEPS.length + HEADLINE_STEPS.length) % HEADLINE_STEPS.length];
@@ -1074,11 +1143,17 @@ function tableLayout(c) {
           // key phrase below it — never a stand-in photo, and never an empty
           // middle zone.
           const sub = String(c.name_card.sub || "").trim();
+          if (TEXT_GRID.on) {
+            // The text grid: the name stands on the grid line; its key phrase is the label over it.
+            boxes.statement = headlineBox(c.name_card.name, { width: 984, bottom: TEXT_GRID.base, maxLines: 3, maxHeight: TEXT_GRID.base - BODY_TOP - (sub ? 120 : 0), max: 240, tier: false, center: true });
+            if (sub) boxes.lead_phrase = { ...dataBox(sub, { width: 900, size: 40, maxLines: 2, bottom: boxes.statement.y - 20, center: true }), role: "data" };
+          } else {
           const subBox = sub ? dataBox(sub, { width: 900, size: 40, maxLines: 2, bottom: BOTTOM, flip }) : null;
           const floor = subBox ? subBox.y - 28 : BOTTOM;
           boxes.statement = headlineBox(c.name_card.name, { width: 984, bottom: floor, flip, maxLines: 3, maxHeight: floor - BODY_TOP, max: 240, tier: false });
           // "lead_" so the zone bookkeeping counts it as text (elementType ^lead).
           if (subBox) boxes.lead_phrase = { ...subBox, role: "data" };
+          }
           hero = "statement";
         } else if (cv.length) {
           // THE CUTOUT IS THE HERO (owner's spec 2026-10-02): the object the
@@ -1198,8 +1273,10 @@ function tableLayout(c) {
       hero = "chart";
       return { composition: comp, boxes, hero, flip };
     }
-    Object.assign(boxes, dataHeader(ownLabel ? { ...c, lead_in: null } : c, flip));
-    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    const GH = TEXT_GRID.on ? gridHeader(ownLabel ? { ...c, lead_in: null } : c) : null;
+    if (GH) { Object.assign(boxes, GH.boxes); boxes.rule = { ...rule(flip, TOP), keep: true }; boxes.bottom = BODY_TOP - 70; }
+    else { Object.assign(boxes, dataHeader(ownLabel ? { ...c, lead_in: null } : c, flip)); if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP); }
+    const FLOOR = GH ? GH.floor : BOTTOM;   // the text grid: the body ends above the words on the grid line
     // Charts start at y >= 460 with or without a header and reach the
     // composition's bottom edge.
     // 70 px under the header: Fraunces' descenders / ascenders run past the
@@ -1210,12 +1287,12 @@ function tableLayout(c) {
     if (vt === "BAR") {
       const bars = c?.data?.bars || [];
       const longLabel = bars.some((b) => String(b.label || "").length > 12);
-      if (bars.length >= 4 || longLabel) boxes.chart = { ...box(L_EDGE, top, W, BOTTOM - top), orient: "h" };
-      else boxes.chart = { ...box(L_EDGE, top, W, BOTTOM - top), orient: "v", baseline: BOTTOM - 45 };
+      if (bars.length >= 4 || longLabel) boxes.chart = { ...box(L_EDGE, top, W, FLOOR - top), orient: "h" };
+      else boxes.chart = { ...box(L_EDGE, top, W, FLOOR - top), orient: "v", baseline: FLOOR - 45 };
     } else if (vt === "PIE") {
       // The donut on one side, the hero percentage on the other, above it.
-      const r = Math.min(300, Math.floor((BOTTOM - top - 20) / 2));
-      const cx = flip ? L_EDGE + r : R_EDGE - r, cy = BOTTOM - r - 10;
+      const r = Math.min(300, Math.floor((FLOOR - top - 20) / 2));
+      const cx = flip ? L_EDGE + r : R_EDGE - r, cy = FLOOR - r - 10;
       boxes.chart = { ...box(cx - r, cy - r, 2 * r, 2 * r), r, cx, cy };
       const parts = numberParts(`${c?.data?.percent ?? 0}%`);
       const fit = fitNumber(parts, 560, { max: 300, min: 200 });
@@ -1233,7 +1310,7 @@ function tableLayout(c) {
       // The number hangs from the bottom of the middle zone; the arc's base
       // sits 90 px above it, and the arc is as large as the zone above that allows.
       const ink = numberInk(`${c?.data?.percent ?? 0}`, fit.size);
-      const ny = BOTTOM - ink;
+      const ny = FLOOR - ink;
       const r = Math.max(200, Math.min(470, ny - 90 - top - 10));
       const cy = Math.max(top + r + 10, ny - 90);
       boxes.chart = { ...box(540 - r, cy - r, 2 * r, r + 60), r, cy };
@@ -1245,9 +1322,9 @@ function tableLayout(c) {
         boxes.label = flip ? { ...lb, x: boxes.number.x - 40 - lb.w, y: by, align: "right" } : { ...lb, x: boxes.number.x + nw + 40, y: by, align: "left" };
       }
     } else if (vt === "LINE") {
-      boxes.chart = box(L_EDGE + 12, top, W - 24, BOTTOM - top);
+      boxes.chart = box(L_EDGE + 12, top, W - 24, FLOOR - top);
     } else {
-      boxes.chart = box(L_EDGE, top, W, BOTTOM - top);
+      boxes.chart = box(L_EDGE, top, W, FLOOR - top);
     }
     hero = "chart";
   } else if (comp === "MAP-CENTERED") {
@@ -1273,11 +1350,13 @@ function tableLayout(c) {
     hero = "map";
     }
   } else if (comp === "LIST-BUILD") {
-    Object.assign(boxes, dataHeader(c, flip));
-    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    const GH = TEXT_GRID.on ? gridHeader(c) : null;
+    if (GH) { Object.assign(boxes, GH.boxes); boxes.rule = { ...rule(flip, TOP), keep: true }; boxes.bottom = BODY_TOP - 70; }
+    else { Object.assign(boxes, dataHeader(c, flip)); if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP); }
+    const FLOOR = GH ? GH.floor : BOTTOM;   // the text grid: the body ends above the words on the grid line
     const items = (c?.data?.items || []).slice(0, 5);
     const top = Math.max(boxes.bottom + 40, BODY_TOP);
-    const rowH = (BOTTOM - top) / Math.max(1, items.length);
+    const rowH = (FLOOR - top) / Math.max(1, items.length);
     boxes.items = items.map((label, i) => {
       const y = top + i * rowH;
       const size = 46;
@@ -1292,16 +1371,18 @@ function tableLayout(c) {
         rule: { ...box(L_EDGE, y, R_EDGE - L_EDGE, 4), role: "rule", anchor: flip ? "right" : "left" } };
     });
     // The list closes on a hairline at the composition's bottom edge.
-    boxes.end = { ...box(L_EDGE, BOTTOM - 4, R_EDGE - L_EDGE, 4), role: "rule", anchor: flip ? "right" : "left" };
+    boxes.end = { ...box(L_EDGE, FLOOR - 4, R_EDGE - L_EDGE, 4), role: "rule", anchor: flip ? "right" : "left" };
     hero = "items";
   } else if (comp === "TIMELINE") {
-    Object.assign(boxes, dataHeader(c, flip));
-    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    const GH = TEXT_GRID.on ? gridHeader(c) : null;
+    if (GH) { Object.assign(boxes, GH.boxes); boxes.rule = { ...rule(flip, TOP), keep: true }; boxes.bottom = BODY_TOP - 70; }
+    else { Object.assign(boxes, dataHeader(c, flip)); if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP); }
+    const FLOOR = GH ? GH.floor : BOTTOM;   // the text grid: the body ends above the words on the grid line
     const mk = (c?.data?.markers || []).slice(0, 4);
     const top = Math.max(boxes.bottom + 50, BODY_TOP);
-    const rowH = (BOTTOM - top) / Math.max(1, mk.length);
+    const rowH = (FLOOR - top) / Math.max(1, mk.length);
     const lineX = flip ? R_EDGE - 60 : L_EDGE + 60;
-    boxes.line = { ...box(lineX - 3, top, 6, BOTTOM - top), role: "rule" };
+    boxes.line = { ...box(lineX - 3, top, 6, FLOOR - top), role: "rule" };
     // Each row holds its date, a 14 px gap and up to two label lines; the
     // date shrinks to fit (it used to floor at 120 px and push the last label
     // past the composition's bottom).
@@ -1321,7 +1402,7 @@ function tableLayout(c) {
     const desc = Math.ceil(size * NUM_DESC);                  // old-style date numerals descend into the gap
     const labs = mk.map((m) => dataBox(m.label, { width: 640, size: 38, maxLines: 2, x: undefined, y: 0, flip }));
     const rowsH = labs.map((lb) => 10 + dh + desc + 14 + lb.h);
-    const gap = mk.length > 1 ? Math.max(0, (BOTTOM - top - rowsH.reduce((a, b) => a + b, 0)) / (mk.length - 1)) : 0;
+    const gap = mk.length > 1 ? Math.max(0, (FLOOR - top - rowsH.reduce((a, b) => a + b, 0)) / (mk.length - 1)) : 0;
     let yAt = top;
     boxes.markers = mk.map((m, i) => {
       const y = yAt;
@@ -1342,7 +1423,11 @@ function tableLayout(c) {
     const cmp = c?.data || {};
     const lineAt = (y) => 700 - (440 * y) / 1920;
     boxes.split = { ...box(0, 0, FRAME.w, FRAME.h), role: "shape", x0: 700, x1: 260 };
-    if (c?.headline) boxes.headline = headlineBox(c.headline, { width: 520, y: TOP, flip: 0, maxLines: 3, maxHeight: cmp.subject ? HEADER_MAX_Y - TOP - 64 : HEADER_MAX_Y - TOP, max: 120 });
+    const GHc = TEXT_GRID.on && c?.headline ? gridHeader({ headline: c.headline }, { width: 760, max: 120, maxLines: 2 }) : null;
+    if (GHc) { boxes.headline = GHc.boxes.headline; boxes.rule = { ...rule(0, TOP), keep: true }; }
+    else if (c?.headline) boxes.headline = headlineBox(c.headline, { width: 520, y: TOP, flip: 0, maxLines: 3, maxHeight: cmp.subject ? HEADER_MAX_Y - TOP - 64 : HEADER_MAX_Y - TOP, max: 120 });
+    const FLOOR = GHc ? GHc.floor : BOTTOM;
+    if (TEXT_GRID.on) boxes.rule = { ...rule(0, TOP), keep: true };   // the hairline holds the frame's top: the words are low
     if (!c?.headline && !c?.lead_in && !cmp.subject) boxes.rule = rule(0, TOP);
     const pa = numberParts(cmp.a?.value ?? ""), pb = numberParts(cmp.b?.value ?? "");
     // A in the upper light half, B hung from the bottom of the dark half.
@@ -1352,10 +1437,11 @@ function tableLayout(c) {
     const nh = Math.round(sz * ROLE_NUMBER.lineHeight);
     boxes.numberA = { ...box(L_EDGE, BODY_TOP, Math.ceil(sa.width), nh), size: sz, parts: pa, align: "left", role: "number", side: "a" };
     const inkB = numberInk(cmp.b?.value ?? "", sz);
-    boxes.numberB = { ...box(R_EDGE - Math.ceil(sb.width), BOTTOM - inkB, Math.ceil(sb.width), inkB), size: sz, parts: pb, align: "right", role: "number", side: "b" };
+    boxes.numberB = { ...box(R_EDGE - Math.ceil(sb.width), FLOOR - inkB, Math.ceil(sb.width), inkB), size: sz, parts: pb, align: "right", role: "number", side: "b" };
     if (cmp.a?.label) boxes.labelA = dataBox(cmp.a.label, { width: Math.max(160, wa), size: 36, maxLines: 3, x: L_EDGE, y: boxes.numberA.y + nh + 24, flip: 0 });
     if (cmp.b?.label) boxes.labelB = dataBox(cmp.b.label, { width: Math.max(160, wb), size: 36, maxLines: 3, bottom: boxes.numberB.y - 20, flip: 1 });
-    if (cmp.subject) boxes.kicker = { ...dataBox(cmp.subject, { width: 480, size: 34, maxLines: 1, y: TOP + (boxes.headline ? boxes.headline.h + 24 : 0), flip: 0 }), subject: true };   // the comparison's subject: chart data, not chrome
+    if (cmp.subject && TEXT_GRID.on && !GHc) boxes.kicker = { ...dataBox(cmp.subject, { width: 600, size: 34, maxLines: 1, bottom: TEXT_GRID.base, center: true }), subject: true };
+    else if (cmp.subject) boxes.kicker = GHc ? { ...dataBox(cmp.subject, { width: 600, size: 34, maxLines: 1, bottom: boxes.headline.y - 16, center: true }), subject: true } : { ...dataBox(cmp.subject, { width: 480, size: 34, maxLines: 1, y: TOP + (boxes.headline ? boxes.headline.h + 24 : 0), flip: 0 }), subject: true };   // the comparison's subject: chart data, not chrome
     hero = "numberA";
   } else if (comp === "PORTRAIT" && c?.photo) {
     // A named person's VERIFIED portrait (owner's scene-resolver spec
@@ -1408,8 +1494,10 @@ function tableLayout(c) {
       hero = "headline";
     }
   } else if (comp === "PROCESS-FULL") {
-    Object.assign(boxes, dataHeader(c, flip));
-    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    const GH = TEXT_GRID.on ? gridHeader(c) : null;
+    if (GH) { Object.assign(boxes, GH.boxes); boxes.rule = { ...rule(flip, TOP), keep: true }; boxes.bottom = BODY_TOP - 70; }
+    else { Object.assign(boxes, dataHeader(c, flip)); if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP); }
+    const FLOOR = GH ? GH.floor : BOTTOM;   // the text grid: the body ends above the words on the grid line
     const nodes = (c?.data?.nodes || []).slice(0, 3);
     const top = Math.max(boxes.bottom + 70, BODY_TOP);
     const place = (x, w) => (flip ? FRAME.w - x - w : x);
@@ -1417,12 +1505,12 @@ function tableLayout(c) {
       const d = 380;
       boxes.nodes = [
         { ...box(place(L_EDGE, d), top, d, d), label: nodes[0] },
-        { ...box(place(R_EDGE - d, d), BOTTOM - d, d, d), label: nodes[1] },
+        { ...box(place(R_EDGE - d, d), FLOOR - d, d, d), label: nodes[1] },
       ];
     } else {
       // A staircase across the frame: left, middle, right, descending.
-      const d = Math.min(320, (BOTTOM - top - 40) / 3);
-      const step = (BOTTOM - top - d) / 2;
+      const d = Math.min(320, (FLOOR - top - 40) / 3);
+      const step = (FLOOR - top - d) / 2;
       const xs = [L_EDGE, Math.round((FRAME.w - d) / 2) + 40, R_EDGE - d];
       boxes.nodes = nodes.map((label, i) => ({ ...box(place(xs[i], d), top + i * step, d, d), label }));
     }

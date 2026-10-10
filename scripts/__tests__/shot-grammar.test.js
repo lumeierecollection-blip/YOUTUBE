@@ -5,8 +5,11 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   canvasLayout, canvasManifest, layoutViolations, normalizeCanvas, shotComposition, shotName,
-  SHOTS, SHOT_COMPOSITIONS, FRAMED_PHOTO_COMPS, TEXT_AT, LOW_VISUAL,
-} from "../../src/skills/remotion-render/visual/canvas-layout.js";
+  SHOTS, SHOT_COMPOSITIONS, FRAMED_PHOTO_COMPS, TEXT_AT, LOW_VISUAL, TEXT_GRID } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// These tests exercise the PRE-GRID machinery (the planner's own slot layouts, the asymmetric shot grammar). Production draws every
+// beat on the text grid (owner, 2026-10-10: one grid, one anchor, every beat), which supersedes both; scripts/test-canvas-layout.mjs and
+// scripts/__tests__/text-grid.test.js test the grid. Kept so the machinery stays correct if the grid is ever turned off.
+TEXT_GRID.on = false;
 import { popGroups } from "../../src/skills/remotion-render/visual/pop-groups.js";
 import { labelsDrawn } from "../template-check.js";
 import { applyShot } from "../render-and-qa.js";

@@ -3,7 +3,9 @@
 // beats in a row — boards 37925838913 / 37931078077 ch-2, ch-5, ch-10 (template-window).
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { canvasLayout, canvasManifest, layoutViolations, normalizeCanvas, ZONES } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, canvasManifest, layoutViolations, normalizeCanvas, ZONES, TEXT_GRID } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// Pre-grid shot grammar (the chart / photo twins and the top-band variants); production draws on the text grid (text-grid.test.js).
+TEXT_GRID.on = false;
 import { shotMenu, applyShot } from "../render-and-qa.js";
 import { labelsDrawn } from "../template-check.js";
 

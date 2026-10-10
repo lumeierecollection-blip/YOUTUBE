@@ -12,7 +12,11 @@
  */
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { canvasLayout, normalizeCanvas, flattenBoxes, LAYOUT_AREA, slotRect, canvasManifest, layoutViolations } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, normalizeCanvas, flattenBoxes, LAYOUT_AREA, slotRect, canvasManifest, layoutViolations, TEXT_GRID } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// These tests exercise the PRE-GRID machinery (the planner's own slot layouts, the asymmetric shot grammar). Production draws every
+// beat on the text grid (owner, 2026-10-10: one grid, one anchor, every beat), which supersedes both; scripts/test-canvas-layout.mjs and
+// scripts/__tests__/text-grid.test.js test the grid. Kept so the machinery stays correct if the grid is ever turned off.
+TEXT_GRID.on = false;
 
 const base = { visual_type: "PROCESS", composition: "PROCESS-FULL", data: { nodes: ["higher rates", "rent", "savings"] }, headline: "The chain", motion_tier: "medium" };
 const L = (layout, extra = {}) => canvasLayout(normalizeCanvas({ ...base, ...extra, ...(layout ? { layout } : {}) }, 0));

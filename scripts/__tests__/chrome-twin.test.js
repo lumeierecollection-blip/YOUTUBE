@@ -4,6 +4,9 @@
 // whose devices change without the label; Gemini is not offered it, legalSequences may use it.
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { TEXT_GRID } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// Pre-grid shot grammar (the chart / photo twins and the top-band variants); production draws on the text grid (text-grid.test.js).
+TEXT_GRID.on = false;
 import { shotMenu, legalSequences, shotSequenceProblems } from "../render-and-qa.js";
 
 const photo = (i) => ({ asset: `entities/p${i}.jpg`, entity: `Place ${i}`, view: "place", kind: "place", w: 1600, h: 1000 });
