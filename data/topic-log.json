@@ -957,9 +957,14 @@
           "topic": "ALPR-Induced Traffic Stops Violate Fourth Amendment",
           "slug": "alpr-induced-traffic-stops-violate-fourth-amendment-2026",
           "reserved_at": "2026-10-10T03:32:07.869Z"
+        },
+        {
+          "topic": "New ICE Guidance Bans High-Speed Car Chases and Restricts Traffic Stops",
+          "slug": "ice-traffic-stops-pursuit-guidance-2026",
+          "reserved_at": "2026-10-10T07:17:29.636Z"
         }
       ],
-      "last_generated": "2026-10-10T03:32:07.869Z"
+      "last_generated": "2026-10-10T07:17:29.637Z"
     },
     "3": {
       "channel_name": "AI Tested",
