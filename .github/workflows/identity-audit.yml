@@ -1,0 +1,26 @@
+# Who is a Commons file of? Runs scripts/identity-audit.mjs on the two disputed files (board 38054686824): the ch49 portrait filed as Inde
+# Navarrette, and the ch9 "The Treasury" wordmark. Reads only; the JSON is uploaded as an artifact.
+name: identity-audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Navarrette portrait (ch49 beat 6)
+        run: node scripts/identity-audit.mjs --file "File:Inde Navarrette at the 2025 Toronto International Film Festival 03 (cropped).jpg" --person "Inde Navarrette" --other "Chase Sui Wonders" | tee navarrette.json
+      - name: The Treasury wordmark (ch9 beat 6)
+        run: node scripts/identity-audit.mjs --file "File:The Treasury Discount Store Logo.png" --person "The Treasury" | tee treasury.json
+      - name: Seal of the Treasury (for comparison)
+        run: node scripts/identity-audit.mjs --file "File:Seal of the United States Department of the Treasury.svg" --person "United States Department of the Treasury" | tee seal.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: identity-audit-${{ github.run_id }}
+          path: "*.json"
