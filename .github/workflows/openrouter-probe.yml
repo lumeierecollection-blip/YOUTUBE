@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
       - name: Install edge-tts and numpy
         run: python3 -m pip install --quiet edge-tts numpy
-      - name: Raw HTTP: one image and one text control to OpenRouter, status printed
+      - name: "Raw HTTP, one image and one text control to OpenRouter, status printed"
         run: |
           python3 - <<'PY'
           import zlib, struct, base64, json, os, subprocess
@@ -65,7 +65,7 @@ jobs:
               else:
                   print(f"{name} ({body['model']}): HTTP {out}, answer: {j.get('choices', [{}])[0].get('message', {}).get('content', '')[:120]!r}")
           PY
-      - name: Edge-TTS variants: four texts of one production sentence, scored acoustically
+      - name: "Edge-TTS variants, four texts of one production sentence, scored acoustically"
         run: node scripts/edge-variants.mjs --out probe/edge
       - name: OpenRouter probe (catalog, text and image gates, flip rate, audio)
         run: node scripts/openrouter-probe.mjs --image board/identity/Chase_Sui_Wonders_wikidata.jpg --audio probe/edge/b.mp3 --n 9
