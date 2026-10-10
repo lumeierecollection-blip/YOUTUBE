@@ -30,14 +30,20 @@ const out = arg("out", join(ROOT, "probe", "edge"));
 const voice = arg("voice", "en-US-GuyNeural");
 mkdirSync(out, { recursive: true });
 
-// The production sentence, read from the committed script, not retyped.
-const script = JSON.parse(readFileSync(join(ROOT, "ci-artifacts-31503638942", "research", "2", "what-to-say-traffic-stop-script.json"), "utf8"));
-const sentence = script.sections.flatMap((x) => String(x.voiceover || "").split(/(?<=[.!?])\s+/)).find((x) => /375 DNA/.test(x));
-if (!sentence) throw new Error("the production sentence is not in the committed script");
+// A sentence where the four variants differ. (The earlier production sentence, "375 DNA", gave b, c and d the same
+// text: speakable() already spells digits, so the digits-only variant added nothing. Fixed 2026-10-10.)
+const sentence = "Revenue hit $1.5M, up 30% from 2023, over a 12–18 month window.";
 
-// Same naive digits-only transform as scripts/voice-lab.mjs (the one that produced "$one.5M" and "thirty%" elsewhere).
+// Same naive digits-only transform as scripts/voice-lab.mjs. It is deliberately naive: it is the variant
+// under test, and it is expected to produce broken text on money and percentages.
 const digitsOnly = (t) => t.replace(/\b\d[\d,]*(?:\.\d+)?\b/g, (m) => { const n = Number(m.replace(/,/g, "")); return Number.isFinite(n) ? numberWords(m.replace(/,/g, "")) : m; });
 const texts = { a: sentence, b: speakable(sentence), c: digitsOnly(sentence), d: speakable(digitsOnly(sentence)) };
+// The four must be distinct, or the test has fewer than four texts. Refuse to synthesize otherwise.
+const distinct = new Set(Object.values(texts));
+console.log("Texts:");
+for (const [v, t] of Object.entries(texts)) console.log(`  [${v}] ${t}`);
+if (distinct.size !== 4) throw new Error(`only ${distinct.size} distinct texts out of 4; the variant test needs four`);
+console.log(`Distinct texts: ${distinct.size} of 4`);
 
 const rows = [];
 for (const [v, text] of Object.entries(texts)) {

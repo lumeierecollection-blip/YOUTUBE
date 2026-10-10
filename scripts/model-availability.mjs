@@ -76,10 +76,13 @@ export function deprecationFor(id, pageText) {
 //   official shutdown date within the window                -> DEPRECATED-SOON
 //   the list could not be checked (no key)                  -> NOT-CHECKED
 //   otherwise                                               -> ALIVE
-export function verdictFor({ called = true, gemini = [], list = null, shutdown = null, now = new Date() }) {
+export function verdictFor({ id = "", called = true, gemini = [], list = null, shutdown = null, now = new Date() }) {
   if (!called) return "NOT-CALLED";
   if (gemini.length && gemini.every((s) => s === "retired")) return "RETIRED";
   if (gemini.length && gemini.every((s) => s === "key-rejected")) return "KEY-REJECTED";
+  // A TTS model answers only an audio request. If the probe still gets no usable answer from one, that is a limit of
+  // the probe, not a verdict on the model: a warning, so the weekly gate does not fail on it.
+  if (gemini.length && !gemini.some((s) => s === "alive" || s === "alive-quota") && /tts/i.test(id)) return "PROBE-LIMIT";
   if (gemini.length && !gemini.some((s) => s === "alive" || s === "alive-quota")) return "UNKNOWN";
   if (list === "absent") return "MISSING";
   if (shutdown && shutdown.getTime() < now.getTime()) return "RETIRED";
@@ -119,18 +122,30 @@ export function unregistered(found, registry) {
   return [...found.keys()].filter((id) => !known.has(id)).map((id) => ({ id, where: found.get(id).slice(0, 3) }));
 }
 
+// A TTS model answers only with the audio response modality; every other model gets a plain text request.
+export function probeBody(id) {
+  const generationConfig = /tts/i.test(id)
+    ? { responseModalities: ["AUDIO"] }
+    : { maxOutputTokens: 8, temperature: 0 };
+  return JSON.stringify({ contents: [{ parts: [{ text: "ok" }] }], generationConfig });
+}
+
 async function geminiChecks(id, keys) {
   const out = [];
-  const body = JSON.stringify({ contents: [{ parts: [{ text: "ok" }] }], generationConfig: { maxOutputTokens: 8, temperature: 0 } });
-  for (const key of keys) {
+  const body = probeBody(id);
+  for (const [i, key] of keys.entries()) {
     try {
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent`, {
         method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": key }, body,
         signal: AbortSignal.timeout(60000),
       });
       const text = await res.text();
-      out.push(classifyGeminiStatus(res.status, text));
+      const cls = classifyGeminiStatus(res.status, text);
+      // Print the status of anything that is not a plain answer, so the next person can read the cause.
+      if (!["alive", "alive-quota"].includes(cls)) console.log(`  ${id} key ${i + 1} HTTP ${res.status} (${cls}): ${text.slice(0, 300).replace(/\s+/g, " ")}`);
+      out.push(cls);
     } catch (e) {
+      console.log(`  ${id} key ${i + 1} request failed: ${String(e.message || e).slice(0, 200)}`);
       out.push("unknown-transient");
     }
   }
@@ -203,9 +218,9 @@ async function main() {
     if (r.provider === "gemini" && called && keys.length) gemini = await geminiChecks(id, keys);
     if (r.provider === "openrouter" && openrouterIds) list = openrouterIds.has(id) ? "present" : "absent";
     if (r.provider === "groq") list = groqIds ? (groqIds.has(id) ? "present" : "absent") : "not-checked";
-    const verdict = verdictFor({ called, gemini, list, shutdown, now, onPage: dep.found });
+    const verdict = verdictFor({ id, called, gemini, list, shutdown, now });
     if (["RETIRED", "MISSING", "UNKNOWN", "KEY-REJECTED"].includes(verdict)) failures++;
-    if (["DEPRECATED-SOON", "NOT-CHECKED"].includes(verdict)) warnings++;
+    if (["DEPRECATED-SOON", "NOT-CHECKED", "PROBE-LIMIT"].includes(verdict)) warnings++;
     const geminiCol = gemini.length ? gemini.map((s) => s).join(" / ") : (list ? `list: ${list}` : "-");
     rows.push(`| ${r.provider} | \`${id}\` | ${called ? "yes" : "no"} | ${geminiCol} | ${dep.found ? (dep.shutdown || "-") : "not on page"} | ${dep.replacement || "-"} | **${verdict}** |`);
   }

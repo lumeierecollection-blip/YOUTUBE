@@ -37,13 +37,18 @@ function countImages(messages) {
 function buildBody(messages, opts = {}) {
   const images = countImages(messages);
   const model = opts.openrouterModel || (images ? VISION_MODEL() : TEXT_MODEL());
-  return {
+  const body = {
     model,
     messages,
     temperature: opts.temperature ?? 0,
     max_tokens: Math.min(Number(opts.maxTokens || 1200), 32768),
     response_format: { type: "json_object" },
   };
+  // Image requests run with reasoning OFF. The CI probe (2026-10-10) showed qwen/qwen3.7-plus spends a
+  // 200-300 token budget on reasoning and returns no message (finish_reason=length); with reasoning off the
+  // same image got the correct answer in 2 tokens and 0 reasoning tokens. Text requests keep the model's default.
+  if (images) body.reasoning = { enabled: false };
+  return body;
 }
 
 function parseAnswer(text) {

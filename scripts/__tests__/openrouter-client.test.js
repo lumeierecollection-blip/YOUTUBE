@@ -15,6 +15,11 @@ test("a text call goes to the text model, an image call to the vision model", ()
   assert.equal(buildBody(IMG, {}).model, VISION_MODEL());
 });
 
+test("image requests turn reasoning off (qwen3.7-plus returns no answer when reasoning spends the budget); text requests do not", () => {
+  assert.deepEqual(buildBody(IMG, {}).reasoning, { enabled: false });
+  assert.equal("reasoning" in buildBody(TEXT, {}), false);
+});
+
 test("the request asks for a JSON object, with the caller's temperature and token cap", () => {
   const b = buildBody(TEXT, { temperature: 0, maxTokens: 300 });
   assert.deepEqual(b.response_format, { type: "json_object" });

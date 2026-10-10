@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  classifyGeminiStatus, parseShutdown, deprecationFor, verdictFor, scanIds, unregistered, bareId,
+  classifyGeminiStatus, parseShutdown, deprecationFor, verdictFor, scanIds, unregistered, bareId, probeBody,
 } from "../model-availability.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -65,6 +65,16 @@ test("a shutdown inside the window is DEPRECATED-SOON, outside it ALIVE", () => 
 test("a key that is rejected everywhere is KEY-REJECTED, and an answer with no alive key is UNKNOWN", () => {
   assert.equal(verdictFor({ gemini: ["key-rejected", "key-rejected"], now: NOW }), "KEY-REJECTED");
   assert.equal(verdictFor({ gemini: ["unknown-transient"], now: NOW }), "UNKNOWN");
+});
+
+test("a TTS model is probed with the audio response modality; other models with plain text", () => {
+  assert.deepEqual(JSON.parse(probeBody("gemini-3.8-flash-tts")).generationConfig, { responseModalities: ["AUDIO"] });
+  assert.equal(JSON.parse(probeBody("gemini-3.5-flash")).generationConfig.maxOutputTokens, 8);
+});
+
+test("a TTS model that still gives no usable answer is PROBE-LIMIT (a warning), never UNKNOWN (a failure)", () => {
+  assert.equal(verdictFor({ id: "gemini-3.1-flash-tts-preview", gemini: ["unknown", "unknown", "unknown", "unknown"], now: NOW }), "PROBE-LIMIT");
+  assert.equal(verdictFor({ id: "gemini-3.5-flash", gemini: ["unknown", "unknown"], now: NOW }), "UNKNOWN");
 });
 
 test("OpenRouter or Groq: a model missing from the list is MISSING; no key is NOT-CHECKED", () => {
