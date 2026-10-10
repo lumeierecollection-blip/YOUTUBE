@@ -44,6 +44,11 @@ Be a strict listener: most text-to-speech, including good neural voices, is SYNT
 Respond ONLY with JSON: {"sentences":[{"index":<n>,"score":<1-10>,"sounds":"HUMAN"|"SYNTHETIC","intonation":"VARIED"|"FLAT","pauses":"NATURAL"|"WRONG","why":"<one short line>"}]} — one entry per sentence, by index.`;
 
 /** One reading. `pin` = a model to stay on (the three readings must come from one instrument). `tried` collects every failure (model, key #, why). */
+// Each reading starts with a one-off line so no two requests share a prefix. Implicit context caching works on the prefix: the lab judged the same mp3 three times
+// in a row and the FIRST judgement (cold) failed ch26 and ch9 (5.33; one sentence at 5) while the second and third (warm, minutes later) passed them (8, 8) - the
+// same audio reading differently depending on whether the model had seen it a moment ago (lab 38059557178, and 38059014310 before it). The render gate always
+// judges an audio for the first time, so every reading must be a first time: no cache hit, the same cold reading each time.
+const nonce = () => `[reading ${Math.random().toString(36).slice(2)}${Date.now().toString(36)}]\n`;
 export async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
   const ks = keys();
   const backoffMs = Number(process.env.NARRATION_JUDGE_BACKOFF_MS ?? 25000);
@@ -54,7 +59,7 @@ export async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
       try {
         const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
           method: "POST", headers: { "x-goog-api-key": key, "Content-Type": "application/json" },
-          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "audio/mpeg", data: audioB64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json", ...(SEED !== null ? { seed: SEED } : {}) } }),
+          body: JSON.stringify({ contents: [{ parts: [{ text: `${nonce()}${prompt}` }, { inlineData: { mimeType: "audio/mpeg", data: audioB64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json", ...(SEED !== null ? { seed: SEED } : {}) } }),
           signal: AbortSignal.timeout(180000),
         });
         const j = await r.json();
