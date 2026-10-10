@@ -1638,9 +1638,14 @@
           "topic": "Super Intelligence: The History and Misuse of a Technical Term",
           "slug": "super-intelligence-history-misuse",
           "reserved_at": "2026-10-10T01:20:48.937Z"
+        },
+        {
+          "topic": "Confucian Philosophy and the New Framework for Taming AI Personalities",
+          "slug": "confucian-philosophy-taming-ai-personalities",
+          "reserved_at": "2026-10-10T01:55:37.821Z"
         }
       ],
-      "last_generated": "2026-10-10T01:20:48.937Z"
+      "last_generated": "2026-10-10T01:55:37.821Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
