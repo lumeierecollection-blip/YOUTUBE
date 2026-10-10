@@ -57,7 +57,7 @@ export function gapOf(b) {
   const ents = entitiesOf({ sentence: b.narration || c.sentence || "", named_entities: b.named_entities || c.named_entities || [] });
   if (!ents.length) return { ents, uncovered: [], primary: null, covered: true };
   const primary = primaryOf(ents, c.photo?.entity || c.data?.entity || null);
-  const covered = primary ? coverageOf(c, primary).covered : ents.some((e) => coverageOf(c, e).covered);
+  const covered = primary ? coverageOf(c, primary).covered || ents.some((e) => { const r = coverageOf(c, e); return r.covered && /^(map|flag|photo|portrait|logo|cutout|plate-)/.test(String(r.by || "")); }) : ents.some((e) => coverageOf(c, e).covered);
   return { ents, uncovered: covered ? [] : ents, primary: covered ? null : primary, covered };
 }
 

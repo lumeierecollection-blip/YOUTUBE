@@ -155,7 +155,9 @@ export function checkEntityCoverage(beats) {
     // The entity the sentence is ABOUT must be the one shown (owner, 2026-10-09: "if several entities, show the one the sentence is about"):
     // a figure on screen does not answer a sentence about Experian (board 38010438091 ch-1, Gemini's frame check agreed).
     const pr = primary ? results.find((r) => r.e === primary) : null;
-    const ok = pr ? pr.covered : results.some((r) => r.covered);
+    // ...unless the beat DRAWS another entity it names (Texas highlighted for "the Texas Department of Public Safety"; a map, flag, photo,
+    // portrait, logo, cutout or plate): a figure or a chart alone does not stand in for the entity the sentence is about.
+    const ok = pr ? pr.covered || results.some((r) => r.covered && /^(map|flag|photo|portrait|logo|cutout|plate-)/.test(String(r.by || ""))) : results.some((r) => r.covered);
     rows.push({ beat: i, entities: ents.map((e) => `${e.type}:${e.name}`), primary: primary ? `${primary.type}:${primary.name}` : null, covered: ok, by: results.find((r) => r.covered)?.by || null });
     if (!ok) failures.push({ beat: i, sentence: String(b.sentence ?? c.sentence ?? b.narration ?? "").slice(0, 120), entities: ents.map((e) => `${e.type} "${e.name}"`), why: wordsOnly(c) ? "words only, but the sentence names an entity" : `draws ${drawnOf(c).map((d) => d.kind).join(" + ")}, none of it the entity` });
   });

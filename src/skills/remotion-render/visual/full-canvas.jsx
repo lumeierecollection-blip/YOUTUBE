@@ -149,7 +149,7 @@ function popSvg(style, f, cx, cy) {
  * FLAT entrance for drawn art (flag, plate, date card, time scale): an ease-in-out settle 0.97 -> 1 with a fade over 6 frames — no
  * overshoot, no bounce, no rise (owner, 2026-10-09: components must not look playful). Text keeps the kinetic POP family.
  */
-const flatState = (f, frames = 6) => { const e = f < 0 ? 0 : easeInOut(clamp01(f / frames)); return { o: e, s: 0.97 + 0.03 * e }; };
+const flatState = (f, frames = 6) => { const e = f < 0 ? 0 : easeInOut(clamp01(f / frames)); return { o: f < 0 ? 0 : 0.4 + 0.6 * e, s: 0.97 + 0.03 * e }; };   // visible from its first frame: a beat boundary is never empty (pop-transitions)
 function flatCss(f, origin = "50% 50%") { const p = flatState(f); return { opacity: p.o, transform: `scale(${p.s.toFixed(4)})`, transformOrigin: origin }; }
 function flatSvg(f, cx, cy) { const p = flatState(f); return { opacity: p.o, transform: `translate(${cx.toFixed(1)} ${cy.toFixed(1)}) scale(${p.s.toFixed(4)}) translate(${(-cx).toFixed(1)} ${(-cy).toFixed(1)})` }; }
 
