@@ -15,8 +15,12 @@
  * Rule (owner's spec 2026-10-02): accepted only when the model answers
  * verdict === "LITERAL" AND recognizable === true (returned as "MATCH").
  * FIGURATIVE, DIFFERENT, LITERAL-but-not-recognizable, a malformed answer and
- * "no provider answered" (NONE) all reject. Nothing is cached: every PNG is
- * verified every time it is about to be used.
+ * "no provider answered" (NONE) all reject.
+ *
+ * CACHE (owner decision, 2026-10-10; replaces the 2026-10-02 "nothing is cached"). The original intent was that every DISTINCT image is
+ * verified, and it survives a cache keyed on the image: the key is the sha256 of the exact JPEG the model sees, plus the concept name,
+ * the verifier version and the model chain. A different image, name, verifier version or model is a new key and a fresh verification.
+ * A NONE (no provider answered) is never stored, so an outage is retried. The cache is .cache/cutout-verify (restored in CI).
  *
  * Providers, the same chain as verify-person-image.cjs: Groq
  * $GROQ_VISION_MODEL (qwen/qwen3.8-27b) -> Gemini gemini-3.5-flash-lite ->
@@ -31,7 +35,9 @@
  * CLI: node scripts/verify-cutout-image.cjs --image gavel.png --name gavel
  */
 "use strict";
-const { existsSync, readFileSync } = require("node:fs");
+const { existsSync, readFileSync, writeFileSync, mkdirSync } = require("node:fs");
+const { createHash } = require("node:crypto");
+const { join } = require("node:path");
 
 // The owner's prompt, verbatim (2026-10-02, "FIX 3 — STRICT VERIFICATION").
 function promptFor(name) {
@@ -77,13 +83,28 @@ function normalize(a) {
   return { verdict, seen: seen.slice(0, 160), literal: raw, recognizable: rec };
 }
 
-async function imageDataUrl(pngPath) {
+async function imageJpegBuf(pngPath) {
   let buf = readFileSync(pngPath);
   try {
     const sharp = require("sharp");
     buf = await sharp(buf).flatten({ background: "#ffffff" }).resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 85 }).toBuffer();
   } catch { /* send the original bytes */ }
-  return `data:image/jpeg;base64,${buf.toString("base64")}`;
+  return buf;
+}
+async function imageDataUrl(pngPath) {
+  return `data:image/jpeg;base64,${(await imageJpegBuf(pngPath)).toString("base64")}`;
+}
+
+// The verifier's version: bump it when the prompt, the answer parser or the model changes, so every stored verdict is re-asked.
+const CUTOUT_VERIFIER_VERSION = "2026-10-10.1";
+const CUTOUT_CACHE_DIR = join(__dirname, "..", ".cache", "cutout-verify");
+function verifierModels() {
+  return [process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b", "gemini-3.5-flash-lite"];
+}
+/** sha256 over the exact JPEG bytes, the concept name, the verifier version and the model chain. Pure. */
+function cutoutCacheKey(jpeg, name, version = CUTOUT_VERIFIER_VERSION, models = verifierModels()) {
+  const image = createHash("sha256").update(jpeg).digest("hex");
+  return createHash("sha256").update(JSON.stringify({ image, name: String(name), version, models })).digest("hex");
 }
 
 // `norm`: the answer parser (verify-place-image.cjs passes its own).
@@ -127,19 +148,34 @@ async function askProviders(messages, norm = normalize) {
 
 async function verifyCutoutImage(pngPath, name) {
   if (!existsSync(pngPath)) return { verdict: "NONE", seen: `no image at ${pngPath}`, provider: null };
+  const jpeg = await imageJpegBuf(pngPath);
+  const key = cutoutCacheKey(jpeg, name);
+  const file = join(CUTOUT_CACHE_DIR, `${key}.json`);
+  if (existsSync(file)) {
+    try {
+      const hit = JSON.parse(readFileSync(file, "utf8"));
+      console.log(`[cutout] ${name}: answered from the cache (key ${key.slice(0, 12)}…, verifier ${CUTOUT_VERIFIER_VERSION})`);
+      return { ...hit.result, cached: true };
+    } catch { /* unreadable entry: ask again */ }
+  }
   const messages = [{ role: "user", content: [
     { type: "text", text: promptFor(name) },
-    { type: "image_url", image_url: { url: await imageDataUrl(pngPath) } },
+    { type: "image_url", image_url: { url: `data:image/jpeg;base64,${jpeg.toString("base64")}` } },
   ] }];
   const { provider, v, tried } = await askProviders(messages);
   if (!v) {
     console.log(`[cutout] ${name}: no vision provider answered — rejected (${tried.join(" | ")})`);
     return { verdict: "NONE", seen: "no vision provider answered", provider: null };
   }
-  return { ...v, provider };
+  const result = { ...v, provider };
+  try {
+    mkdirSync(CUTOUT_CACHE_DIR, { recursive: true });
+    writeFileSync(file, JSON.stringify({ at: new Date().toISOString(), version: CUTOUT_VERIFIER_VERSION, result }, null, 2) + "\n");
+  } catch { /* a cache that cannot be written is a verdict that is asked again, never a wrong one */ }
+  return result;
 }
 
-module.exports = { verifyCutoutImage, normalize, promptFor, askProviders, imageDataUrl };
+module.exports = { verifyCutoutImage, normalize, promptFor, askProviders, imageDataUrl, cutoutCacheKey, CUTOUT_VERIFIER_VERSION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

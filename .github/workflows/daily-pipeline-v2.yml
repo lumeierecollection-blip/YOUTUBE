@@ -126,6 +126,48 @@ jobs:
           echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
           echo "Channels in this run: $MATRIX"
 
+      # THE SFX JUDGE RUNS ONCE PER BOARD, HERE (owner, 2026-10-10). It ran in every channel's render job; the runner cache has a static key, so the
+      # verdicts never came back, and every channel re-sent three recordings to the audio judge (nine calls per channel). The judge needs the
+      # recordings, so it fetches them first. Verdicts reach the render jobs as an artifact (a matrix job checks out the run's starting commit, not a
+      # commit made during the run) and the repository, so the next board starts from them.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fetch CC0 SFX (once per board)
+        continue-on-error: true
+        run: node scripts/sfx-cc0.mjs fetch
+      - name: Judge SFX once per board (recorded or robotic)
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: node scripts/sfx-cc0.mjs judge
+      - name: Commit SFX verdicts to the branch
+        if: github.event.inputs.dry_run != 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/sfx/verdicts.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo "SFX verdicts unchanged"; exit 0; fi
+          git commit -m "sfx: verdicts (run ${{ github.run_id }})"
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
+            git fetch -q origin "${{ github.ref_name }}" && git rebase -q "origin/${{ github.ref_name }}" || git rebase --abort
+            sleep $((attempt * 3))
+          done
+      - name: Upload SFX verdicts (for the render jobs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: sfx-verdicts
+          path: data/sfx/verdicts.json
+          if-no-files-found: warn
+          retention-days: 2
+
   # ============================================================
   # STAGE 1: PREP
   # ============================================================
@@ -1016,34 +1058,26 @@ jobs:
         continue-on-error: true
         run: node scripts/sfx-cc0.mjs fetch
 
-      - name: Judge SFX (recorded or robotic)
+      # The verdicts judged ONCE in setup (above). Copied where the render reads them; a missing file means no SFX play, never an unjudged one.
+      - name: Use the SFX verdicts from setup
         if: steps.status.outputs.skip != 'true'
         continue-on-error: true
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
-          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
-          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
-          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
-          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
-        run: node scripts/sfx-cc0.mjs judge
-
-      # The SFX verdicts are kept in the repository (data/sfx/verdicts.json): the runner cache key is static, so a verdict written by one job
-      # was never restored by the next, and every channel re-sent all three recordings to the audio judge. Commit only when a verdict changed.
-      - name: Commit SFX verdicts
-        if: steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: sfx-verdicts
+          path: sfx-verdicts-in
+      - name: Place the SFX verdicts for the render
+        if: steps.status.outputs.skip != 'true'
         continue-on-error: true
         run: |
-          git config user.name "lumeierecollection-blip"
-          git config user.email "lumeierecollection-blip@users.noreply.github.com"
-          git add data/sfx/verdicts.json 2>/dev/null || true
-          if git diff --staged --quiet; then echo "SFX verdicts unchanged"; exit 0; fi
-          git commit -m "sfx: verdicts (run ${{ github.run_id }})"
-          for attempt in 1 2 3 4 5; do
-            if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
-            git fetch -q origin "${{ github.ref_name }}" && git rebase -q "origin/${{ github.ref_name }}" || git rebase --abort
-            sleep $((attempt * 3))
-          done
+          mkdir -p src/skills/remotion-render/public/sfx/cc0 data/sfx
+          if [ -f sfx-verdicts-in/verdicts.json ]; then
+            cp sfx-verdicts-in/verdicts.json src/skills/remotion-render/public/sfx/cc0/verdicts.json
+            cp sfx-verdicts-in/verdicts.json data/sfx/verdicts.json
+            echo "SFX verdicts placed from setup"
+          else
+            echo "::warning::no SFX verdicts from setup — no SFX will play this board"
+          fi
 
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
