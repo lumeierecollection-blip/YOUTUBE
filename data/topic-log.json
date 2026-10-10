@@ -2182,9 +2182,14 @@
           "topic": "The $8 Million Greek AI Crypto Pyramid Scheme and Arrest of 17 Suspects",
           "slug": "greek-ai-crypto-pyramid-scheme-arrests-8m",
           "reserved_at": "2026-10-10T00:50:44.444Z"
+        },
+        {
+          "topic": "Uranium Finance Hacker Convicted Over $53.3M Theft",
+          "slug": "uranium-finance-hacker-convicted-53m-theft",
+          "reserved_at": "2026-10-10T01:20:43.508Z"
         }
       ],
-      "last_generated": "2026-10-10T00:50:44.444Z"
+      "last_generated": "2026-10-10T01:20:43.508Z"
     },
     "27": {
       "channel_name": "Trial Files",
