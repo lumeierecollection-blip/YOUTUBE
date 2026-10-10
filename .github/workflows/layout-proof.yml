@@ -25,7 +25,11 @@ permissions:
   contents: read
 
 jobs:
+  # RETIRED 2026-10-10: this proved the planner's slot layouts move elements. The text grid (owner: "one grid, one anchor, every beat")
+  # now places every beat's words and visual, and a planned slot layout is deliberately not used (canvas-layout.js layoutCore). The grid
+  # itself is proven by render-shots (Layer 1 `grid`, measured on the frames) and scripts/__tests__/text-grid.test.js.
   render-two-layouts:
+    if: false
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
