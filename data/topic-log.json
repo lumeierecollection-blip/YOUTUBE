@@ -1676,9 +1676,14 @@
           "topic": "The Sea Lion Project and the Renewed UK-Argentina Falklands Dispute",
           "slug": "sea-lion-project-uk-argentina-falklands-dispute",
           "reserved_at": "2026-10-10T07:26:29.047Z"
+        },
+        {
+          "topic": "OFAC Intensifies Iran Sanctions Under Operation Economic Outcast",
+          "slug": "ofac-intensifies-iran-sanctions-economic-outcast",
+          "reserved_at": "2026-10-10T10:15:02.367Z"
         }
       ],
-      "last_generated": "2026-10-10T07:26:29.048Z"
+      "last_generated": "2026-10-10T10:15:02.367Z"
     },
     "10": {
       "channel_name": "Margin Note",
