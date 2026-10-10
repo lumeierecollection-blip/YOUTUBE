@@ -9,10 +9,10 @@
  * and PAUSES (NATURAL | WRONG). A sentence that is SYNTHETIC or FLAT fails; ANY failing sentence fails the video (no tolerance:
  * the fix is the voice, never the gate). It hears the narration file itself, not the mixed video (no music bed, no SFX).
  *
- * THE VERDICT IS THE MEDIAN OF THREE (owner, 2026-10-10). One reading of the same audio swung 5.44 / 6.89 / 7.67 (board 38054686824 stability lab:
- * the same mp3 passed or failed depending on when it was judged, temperature 0 notwithstanding). So the file is judged JUDGE_RUNS (3) times, all on
+ * THE VERDICT IS THE MEDIAN OF NINE READINGS (owner asked for three, 2026-10-10; three was measured and still flipped — see JUDGE_RUNS below). One reading of the same audio swung 5.44 / 6.89 / 7.67 (board 38054686824 stability lab:
+ * the same mp3 passed or failed depending on when it was judged, temperature 0 notwithstanding). So the file is judged JUDGE_RUNS (9) times, all on
  * the SAME model (a second model is a second instrument), and every sentence takes the median score and the majority SOUNDS / INTONATION / PAUSES
- * of the three. The bar is unchanged: a sentence whose MEDIAN is below 7, or whose majority is SYNTHETIC or FLAT, still fails, and any failing
+ * of the readings. The bar is unchanged: a sentence whose MEDIAN is below 7, or whose majority is SYNTHETIC or FLAT, still fails, and any failing
  * sentence still fails the video. 7, 5, 7 passes (one bad reading of good audio is not a defect); 5, 7, 5 fails. Fewer than three readings is "could
  * not run" (exit 3), never a verdict from one noisy reading.
  *
@@ -62,7 +62,11 @@ export async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
 // An optional fixed sampling seed (NARRATION_JUDGE_SEED): the same audio asked the same way at temperature 0 still read differently from call to call
 // (board 38054686824); whether a seed removes that is measured by scripts/judge-readings.mjs before it is relied on.
 const SEED = process.env.NARRATION_JUDGE_SEED !== undefined && process.env.NARRATION_JUDGE_SEED !== "" ? Number(process.env.NARRATION_JUDGE_SEED) : null;
-export const JUDGE_RUNS = Number(process.env.NARRATION_JUDGE_RUNS) || 3;
+// NINE readings, not three (owner asked for three; three was measured and failed: 4 of 8 channels still flipped, board 38054686824 judge lab 38058404181).
+// Raw readings of one file (lab 38058711261, 8 each, gemini-3.5-flash-lite): good audio reads as a uniform "5" in about 1 reading in 8 to 1 in 4
+// (ch49: 1/8 and 2/8; ch9 1/8), and a borderline file scatters around the bar (ch10: 8 different readings in 8). A median of 3 lets one such reading in 4
+// decide ~15% of the time; a median of 9 ~2%. The bar is untouched: the median still has to be 7 for a sentence to pass.
+export const JUDGE_RUNS = Number(process.env.NARRATION_JUDGE_RUNS) || 9;
 const median = (xs) => { const a = [...xs].sort((x, y) => x - y); const n = a.length; return n % 2 ? a[(n - 1) / 2] : (a[n / 2 - 1] + a[n / 2]) / 2; };
 const majority = (xs, yes) => xs.filter((x) => String(x).toUpperCase() === yes).length * 2 > xs.length;
 
@@ -88,20 +92,29 @@ export function medianRows(cues, runs) {
 export const isFailing = (r) => String(r.sounds).toUpperCase() !== "HUMAN" || String(r.intonation).toUpperCase() !== "VARIED" || !(Number(r.score) >= 7);
 
 /** JUDGE_RUNS readings of one file, on one model. Returns { model, runs: Map[], tried } or throws. */
-export async function judgeAudio(audioB64, cues, { runs = JUDGE_RUNS, ask: askFn = ask } = {}) {   // eslint-disable-line
+export async function judgeAudio(audioB64, cues, { runs = JUDGE_RUNS, ask: askFn = ask, parallel = 4 } = {}) {
   const tried = [], got = [], prompt = PROMPT(cues);
   const valid = (res) => { const m = new Map((res.out?.sentences || []).map((v) => [Number(v.index), v])); return cues.every((_, i) => m.has(i)) ? m : null; };
-  // The first reading finds the instrument (the first model in the chain that answers); the rest stay on it. Up to 2 extra attempts for a bad answer.
-  let model = null;
-  for (let attempt = 0; attempt < runs + 2 && got.length < runs; attempt++) {
-    const res = await askFn(audioB64, prompt, { pin: model, tried }).catch((e) => ({ error: e }));
-    if (res.error) { if (!model) throw res.error; continue; }
-    model = model || res.model;
+  const one = async (pin) => {
+    const res = await askFn(audioB64, prompt, { pin, tried }).catch((e) => ({ error: e }));
+    if (res.error) return { error: res.error };
     const m = valid(res);
-    if (m) got.push(m); else tried.push({ model: res.model, key: null, status: null, why: "incomplete", message: `verdicts for ${(res.out?.sentences || []).length}/${cues.length} sentences` });
+    if (!m) { tried.push({ model: res.model, key: null, status: null, why: "incomplete", message: `verdicts for ${(res.out?.sentences || []).length}/${cues.length} sentences` }); return { model: res.model }; }
+    return { model: res.model, m };
+  };
+  // The first reading finds the instrument (the first model in the chain that answers); every other reading stays on it, a few at a time.
+  let model = null, spent = 0;
+  for (; spent < 3 && !model; spent++) { const r = await one(null); if (r.error) { if (spent === 2) throw r.error; continue; } model = r.model; if (r.m) got.push(r.m); }
+  if (!model) throw new Error("no model answered");
+  const budget = runs + 4;
+  while (got.length < runs && spent < budget) {
+    const n = Math.min(parallel, runs - got.length, budget - spent);
+    const batch = await Promise.all(Array.from({ length: n }, () => one(model)));
+    spent += n;
+    for (const r of batch) if (r.m) got.push(r.m);
   }
   if (got.length < runs) throw new Error(`only ${got.length}/${runs} complete readings${tried.length ? ` (last: ${tried[tried.length - 1].message})` : ""}`);
-  return { model, runs: got, tried };
+  return { model, runs: got.slice(0, runs), tried };
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

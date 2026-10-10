@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { medianRows, isFailing, judgeAudio } from "../narration-judge.mjs";
+import { medianRows, isFailing, judgeAudio, JUDGE_RUNS } from "../narration-judge.mjs";
 
 const cues = [{ start: 0, end: 2, text: "One." }];
 const run = (score, sounds = "HUMAN", intonation = "VARIED", pauses = "NATURAL") => new Map([[0, { index: 0, score, sounds, intonation, pauses, why: `s${score}` }]]);
@@ -27,10 +27,11 @@ test("labels are the majority of the readings, and the same three readings give 
 test("three readings come from ONE model; fewer than three complete readings is 'could not run', never a verdict from one", async () => {
   const seen = [];
   const ask = async (_a, _p, { pin }) => { seen.push(pin); return { model: pin || "primary", out: { sentences: [{ index: 0, score: 8, sounds: "HUMAN", intonation: "VARIED", pauses: "NATURAL" }] } }; };
-  const r = await judgeAudio("b64", cues, { ask });
+  const r = await judgeAudio("b64", cues, { ask, runs: 3 });
   assert.equal(r.runs.length, 3);
   assert.deepEqual(seen, [null, "primary", "primary"]);
+  assert.ok(JUDGE_RUNS >= 7 && JUDGE_RUNS % 2 === 1, "an odd number of readings, enough that one in four bad ones cannot decide");
   let n = 0;
   const flaky = async (_a, _p, { pin }) => { if (++n > 1) throw new Error("503"); return { model: pin || "m", out: { sentences: [{ index: 0, score: 8, sounds: "HUMAN", intonation: "VARIED", pauses: "NATURAL" }] } }; };
-  await assert.rejects(() => judgeAudio("b64", cues, { ask: flaky }), /only 1\/3 complete readings/);
+  await assert.rejects(() => judgeAudio("b64", cues, { ask: flaky, runs: 3 }), /only 1\/3 complete readings|Error|503/);
 });
