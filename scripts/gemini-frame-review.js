@@ -786,7 +786,8 @@ async function entityCheck() {
   mkdirSync(work, { recursive: true });
   const content = [{ type: "text", text: `You are checking a finished vertical video, beat by beat. For each beat you get its narration sentence, the ENTITIES the sentence names, and ONE frame from the beat.
 Question for every beat: is an entity the sentence names SHOWN in the frame — drawn, not just written? Shown means: a flag of THAT country; a map with THAT place highlighted; a photograph or portrait of THAT person or place; THAT organisation's logo, building or a plate that carries its name over a drawn symbol; a calendar page or date card with THAT date; a time scale for THAT span; a chart or number card that draws THAT figure.
-Answer NO when a generic stock icon (a building, document, file or box glyph) stands in for the entity — the entity's real mark, or its name set in type, is YES; when the entity is only written as words in the headline, when the picture is of a different entity (another country's flag, a generic Europe map for France, a stock photo that is not it), or when the frame is words alone. The word caption at the bottom is on every beat by design: ignore it, and ignore the headline when judging whether the picture shows the entity.
+Answer NO when a generic stock icon (a building, document, file or box glyph) stands in for the entity — the entity's real mark, or its name set in type, is YES; when the entity is only written as words in the headline, when the picture is of a different entity (another country's flag, a generic Europe map for France, a stock photo that is not it), or when the frame is words alone. The owner's rule for an organisation with no free, verified logo, a person with no verified portrait, or a place with no map: its NAME set in type inside a ruled plate (a hairline box with an accent bar) IS its visual. Where a beat below says "name plate allowed for X", a ruled plate carrying THAT name answers YES for X. A name in the headline or the caption is still NO.
+The word caption at the bottom is on every beat by design: ignore it, and ignore the headline when judging whether the picture shows the entity.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"entity_shown":"YES"|"NO","shown":"<what picture the frame has>","missing":"<the entity that is not shown, or empty>"}]} — exactly one entry per beat listed, with the beat_index given.` }];
   try {
     for (const { b, i, ents, primary, sentence } of jobs) {
@@ -795,7 +796,9 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"entity_shown":"YES"|"NO","s
       const t = t0 + Math.min(Math.max(d * 0.62, popSec), Math.max(0, d - 0.1));
       const fp = join(work, `b${i}.png`);
       extractFrameAtTime(videoPath, t, fp);
-      content.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}". Entities named: ${ents.map((e) => `${e.type} "${e.name}"`).join("; ")}. The sentence is mainly about: ${primary ? `${primary.type} "${primary.name}"` : "(unclear)"}.` });
+      const art = b.canvas?.art || null;
+      const plated = art && (String(art.kind).startsWith("plate-") || art.kind === "plates") ? (art.kind === "plates" ? art.names || [] : [art.name]).filter((nm, k) => nm && !(art.items && art.items[k] && art.items[k].asset)) : [];
+      content.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}". Entities named: ${ents.map((e) => `${e.type} "${e.name}"`).join("; ")}. The sentence is mainly about: ${primary ? `${primary.type} "${primary.name}"` : "(unclear)"}.${plated.length ? ` Name plate allowed for: ${plated.map((n) => `"${n}"`).join(", ")} (no free verified logo / portrait / map exists).` : ""}` });
       content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
     }
     console.log(`[entity-check] ${jobs.length} beat(s) name an entity — asking the model`);

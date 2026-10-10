@@ -38,7 +38,7 @@ export function yieldsTo(b, g) {
   // A process diagram of named steps shows none of the entity it names; the entity comes first ("process / relation -> diagram only if stated").
   if (c.composition === "PROCESS-FULL") return true;
   // A bare stat card yields to a person / organisation / place the sentence names: that is what the sentence is about (RANK in entity-coverage.js).
-  if (kinds.every((k) => k === "figure") && ["person", "organization", "place"].includes(g.primary?.type)) return true;
+  if (kinds.every((k) => k === "figure") && ["person", "organization", "place", "date"].includes(g.primary?.type)) return true;
   // a bare stat card whose only figure is the number of a span the sentence states ("30" of "30 years") carries nothing of whatever
   // else is named (board 37973067720: France / "30 years"; "The Fund Guide" / "90-day").
   const spans = (g.ents || []).filter((e) => e.type === "span");
@@ -56,9 +56,9 @@ export function gapOf(b) {
   const c = b.canvas || {};
   const ents = entitiesOf({ sentence: b.narration || c.sentence || "", named_entities: b.named_entities || c.named_entities || [] });
   if (!ents.length) return { ents, uncovered: [], primary: null, covered: true };
-  const covered = ents.some((e) => coverageOf(c, e).covered);
-  const uncovered = covered ? [] : ents;
-  return { ents, uncovered, primary: covered ? null : primaryOf(ents, c.photo?.entity || c.data?.entity || null), covered };
+  const primary = primaryOf(ents, c.photo?.entity || c.data?.entity || null);
+  const covered = primary ? coverageOf(c, primary).covered : ents.some((e) => coverageOf(c, e).covered);
+  return { ents, uncovered: covered ? [] : ents, primary: covered ? null : primary, covered };
 }
 
 /** The directive for one beat, or null: { map } | { figure } | { art } (applied by render-and-qa.js entityLadder). */

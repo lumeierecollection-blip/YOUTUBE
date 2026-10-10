@@ -28,6 +28,10 @@ const SPELLED = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|
 const SPAN_RE = new RegExp(`\\b(\\d[\\d,]*(?:\\.\\d+)?|${SPELLED})[-\\s]+(years?|months?|weeks?|days?|hours?|minutes?|decades?|centuries)\\b(?![-\\s]+old\\b)`, "gi");
 const FROM_TO_RE = new RegExp(`\\b(?:from|between)\\s+((?:1[89]|20)\\d{2})\\s+(?:to|and|until|through|[-\\u2013])\\s+((?:1[89]|20)\\d{2})\\b`, "i");
 
+// A nationality named as a place ("Greek", "Saudi", "Qatari") is its country: its flag or its map, not the word in a box
+// (board 38010438091 ch-26: "Greek" was set in type and Gemini's frame check said the entity was not shown).
+export const DEMONYM = Object.freeze({ greek: "Greece", french: "France", german: "Germany", chinese: "China", russian: "Russia", iranian: "Iran", israeli: "Israel", saudi: "Saudi Arabia", qatari: "Qatar", american: "United States", british: "United Kingdom", japanese: "Japan", indian: "India", italian: "Italy", spanish: "Spain", mexican: "Mexico", canadian: "Canada", ukrainian: "Ukraine", turkish: "Turkey", egyptian: "Egypt", brazilian: "Brazil", "south korean": "South Korea", korean: "South Korea", australian: "Australia", dutch: "Netherlands", swiss: "Switzerland", swedish: "Sweden", polish: "Poland", belgian: "Belgium", irish: "Ireland", pakistani: "Pakistan", emirati: "United Arab Emirates", malaysian: "Malaysia", nigerian: "Nigeria", "south african": "South Africa", argentine: "Argentina", venezuelan: "Venezuela", syrian: "Syria", iraqi: "Iraq", afghan: "Afghanistan", cuban: "Cuba", greek_cypriot: "Cyprus", norwegian: "Norway", danish: "Denmark", finnish: "Finland", portuguese: "Portugal", austrian: "Austria", hungarian: "Hungary", czech: "Czechia", romanian: "Romania", vietnamese: "Vietnam", thai: "Thailand", filipino: "Philippines", indonesian: "Indonesia", taiwanese: "Taiwan", lebanese: "Lebanon", jordanian: "Jordan", yemeni: "Yemen", kenyan: "Kenya", ethiopian: "Ethiopia", colombian: "Colombia", chilean: "Chile", peruvian: "Peru" });
+const placeName = (n) => DEMONYM[String(n || "").trim().toLowerCase()] || String(n || "").trim();
 const ORG = new Set(["organization", "company", "institution", "building", "outlet", "agency"]);
 export const typeOf = (t) => { const x = String(t || "").toLowerCase(); return ORG.has(x) ? "organization" : x === "person" || x === "place" ? x : x; };
 export const norm = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\b(the|of|a|an|and)\b/g, " ").replace(/\s+/g, " ").trim();
@@ -48,7 +52,8 @@ export function entitiesOf({ sentence = "", named_entities = [] } = {}) {
   for (const e of Array.isArray(named_entities) ? named_entities : []) {
     const type = typeOf(e?.type);
     if (!["person", "place", "organization"].includes(type)) continue;
-    push({ type, name: String(e.name).trim(), ...(type === "place" && resolveRegion(e.name) ? { region: resolveRegion(e.name) } : {}) });
+    const nm = type === "place" ? placeName(e.name) : String(e.name).trim();
+    push({ type, name: nm, ...(type === "place" && resolveRegion(nm) ? { region: resolveRegion(nm) } : {}) });
   }
   for (const p of knownPlacesOf(sentence)) { const region = resolveRegion(p); if (region) push({ type: "place", name: p, region }); }
   const text = String(sentence || "");
@@ -147,7 +152,10 @@ export function checkEntityCoverage(beats) {
     const primary = primaryOf(ents, hint);
     if (!ents.length) { rows.push({ beat: i, entities: [], covered: null, note: wordsOnly(c) ? "words only — names nothing" : "names nothing" }); return; }
     const results = ents.map((e) => ({ e, ...coverageOf(c, e) }));
-    const ok = results.some((r) => r.covered);
+    // The entity the sentence is ABOUT must be the one shown (owner, 2026-10-09: "if several entities, show the one the sentence is about"):
+    // a figure on screen does not answer a sentence about Experian (board 38010438091 ch-1, Gemini's frame check agreed).
+    const pr = primary ? results.find((r) => r.e === primary) : null;
+    const ok = pr ? pr.covered : results.some((r) => r.covered);
     rows.push({ beat: i, entities: ents.map((e) => `${e.type}:${e.name}`), primary: primary ? `${primary.type}:${primary.name}` : null, covered: ok, by: results.find((r) => r.covered)?.by || null });
     if (!ok) failures.push({ beat: i, sentence: String(b.sentence ?? c.sentence ?? b.narration ?? "").slice(0, 120), entities: ents.map((e) => `${e.type} "${e.name}"`), why: wordsOnly(c) ? "words only, but the sentence names an entity" : `draws ${drawnOf(c).map((d) => d.kind).join(" + ")}, none of it the entity` });
   });
