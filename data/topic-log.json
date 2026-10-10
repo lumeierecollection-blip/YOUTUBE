@@ -982,9 +982,14 @@
           "topic": "East Lansing Approves New Police De-Escalation and Use-of-Force Policy",
           "slug": "east-lansing-police-deescalation-policy-2026",
           "reserved_at": "2026-10-10T11:18:20.143Z"
+        },
+        {
+          "topic": "Driver Wins $76 After Automated License Plate Reader Led to Bogus Search",
+          "slug": "driver-wins-76-alpr-bogus-traffic-stop-search",
+          "reserved_at": "2026-10-10T13:12:56.198Z"
         }
       ],
-      "last_generated": "2026-10-10T11:18:20.143Z"
+      "last_generated": "2026-10-10T13:12:56.198Z"
     },
     "3": {
       "channel_name": "AI Tested",
