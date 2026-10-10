@@ -1209,9 +1209,14 @@
           "topic": "France's Debt Crisis Triggers New Fears of Eurozone Contagion in October 2026",
           "slug": "frances-debt-crisis-triggers-eurozone-contagion-2026",
           "reserved_at": "2026-10-10T01:19:21.038Z"
+        },
+        {
+          "topic": "The 1890 Baring Crisis: Lessons from the Bank of England's Intervention",
+          "slug": "baring-crisis-1890-bank-england-intervention",
+          "reserved_at": "2026-10-10T01:53:07.005Z"
         }
       ],
-      "last_generated": "2026-10-10T01:19:21.038Z"
+      "last_generated": "2026-10-10T01:53:07.005Z"
     },
     "9": {
       "channel_name": "Border Lines",
