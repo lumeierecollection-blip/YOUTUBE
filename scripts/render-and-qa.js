@@ -18,7 +18,7 @@
 import "dotenv/config";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, appendFileSync, statSync } from "node:fs";
 import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
@@ -2435,6 +2435,15 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       }
       console.log(`[images] ch-${channelId}: ${need.length} beat(s) name a person / place / organisation; ${realB.length} show a real fetched image (${realB.join(", ") || "none"}); ${typeB.length} fell to a typographic or drawn treatment (${typeB.join(", ") || "none"}); 0 samples`);
     } catch (e) { console.log(`[images] ch-${channelId}: fetch rate not computed (${e.message})`); }
+    // The same question per ENTITY, not per beat (the topic-ranking board): every named entity, what it got to show, and the fraction that is real.
+    try {
+      const { entityVisuals, summarise } = await import("./lib/entity-visuals.mjs");
+      const rows = entityVisuals(readJsonSafe(planPath));
+      const sm = summarise(rows);
+      console.log(`[entity-visuals] ch-${channelId}: ${sm.named} named entit${sm.named === 1 ? "y" : "ies"}; ${sm.real} with a real visual (${sm.fraction === null ? "n/a" : Math.round(sm.fraction * 100) + "%"}: ${Object.entries(sm.by).filter(([k]) => k !== "typed").map(([k, n]) => `${n} ${k}`).join(", ") || "none"}); ${sm.typed} fell to the name in type`);
+      for (const r of rows) console.log(`[entity-visuals] ch-${channelId} beat ${r.beat}: ${r.type} "${r.name}" -> ${r.visual}${r.source_url ? ` (${r.source_url})` : ""}`);
+      if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `\n**ch-${channelId} entities:** ${sm.named} named, ${sm.real} real visual, ${sm.typed} typed — ${rows.map((r) => `${r.name} (${r.visual})`).join(", ")}\n`);
+    } catch (e) { console.log(`[entity-visuals] ch-${channelId}: not computed (${e.message})`); }
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL) — the
     // resolved plan, passed explicitly (VISUAL_PLAN_PATH).

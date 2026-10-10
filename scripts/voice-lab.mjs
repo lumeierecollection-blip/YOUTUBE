@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSy
 import { join, dirname, basename } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { loadChannels, resolveChannel } from "./lib/channel-lookup.mjs";
 import { geminiVoiceFor } from "../src/utils/gemini-voice.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -78,12 +79,12 @@ if (set === "corpus" || set === "lab2" || set === "stability" || set === "all") 
   const found = [];
   const walk = (d) => { if (!existsSync(d)) return; for (const n of readdirSync(d)) { const p = join(d, n); if (statSync(p).isDirectory()) walk(p); else if (/-vo-spoken\.txt$/.test(n)) found.push(p); } };
   walk(corpusDir);
-  const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf8"));
+  const channels = loadChannels();
   for (const f of found.sort()) {
     const ch = (f.match(/[\\/]tts[\\/](\d+)[\\/]/) || [])[1];
     if (!ch) continue;
     let edge = "en-US-GuyNeural";
-    edge = (channels.channels || []).find((c) => String(c.id) === String(Number(ch)))?.tts_voice || edge;
+    try { edge = resolveChannel(ch, channels).tts_voice || edge; } catch {}
     const g = geminiVoiceFor(edge);
     const base = f.replace(/-vo-spoken\.txt$/, "");
     if (set === "stability") {

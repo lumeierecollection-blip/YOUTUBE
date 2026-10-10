@@ -31,6 +31,8 @@ try {
   const moved = ranked.some((t, i) => t !== topics[i]);
   doc.topics = ranked;
   if (moved) writeFileSync(path, JSON.stringify(doc, null, 2) + "\n");
+  const desc = (t) => { const s = scores[topics.indexOf(t)]; return `"${t.topic}" (${s.subjects ? `${s.illustrated}/${s.subjects} subjects can be shown` : "no subjects listed"})`; };
+  console.log(`[imagery] effect: discovery's first choice ${desc(topics[0])}; after ranking ${desc(ranked[0])}${moved && ranked[0] !== topics[0] ? " — THE CHOICE CHANGED" : " — the choice is the same"}`);
   console.log(`[imagery] order: ${ranked.map((t) => `"${t.topic}"`).join(" > ")}${moved ? " (reordered)" : " (unchanged)"}`);
 } catch (e) {
   console.log(`[imagery] not ranked (${e.message}) — discovery's order stands`);
