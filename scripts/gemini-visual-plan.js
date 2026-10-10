@@ -40,6 +40,7 @@ const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { SYMBOLS as CONCEPT_SYMBOLS } from "../src/skills/remotion-render/visual/concept-classes.js";
+import { entityShape } from "./lib/entity-shape.mjs";
 import { namesShowableEntity } from "../src/skills/remotion-render/visual/cutout-policy.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { namedIn as placeNamedIn } from "./place-gate.js";
@@ -226,6 +227,9 @@ export function checkEntities(list, sentence) {
     if (!name || !ENTITY_TYPES.includes(type)) { dropped.push(`${type || "?"} "${name}": no type/name`); continue; }
     const t = type === "organization" ? "institution" : type;
     if (!entityNamedInSentence(name, sentence)) { dropped.push(`${t} "${name}": not named in the sentence`); continue; }
+    // A specific NAMED thing, not a nationality, a generic role or body, or an abstract noun (scripts/lib/entity-shape.mjs).
+    const shape = entityShape(name, t, sentence);
+    if (!shape.ok) { dropped.push(`${t} "${name}": ${shape.why}`); continue; }
     if (!kept.some((k) => k.name.toLowerCase() === name.toLowerCase())) kept.push({ type: t, name });
   }
   return { kept, dropped };
@@ -670,7 +674,7 @@ The beat's type and composition are yours to choose (TYPE AND COMPOSITION below)
 
 TYPE AND COMPOSITION. "visual_type" is YOUR choice for every beat, the hook and the close included: one of PHOTO, COUNTER, BAR, PIE, LINE, GAUGE, TREND, MAP, PROCESS, LIST, TIMELINE, COMPARE, DOCUMENT, MONEY, TYPE. "canvas_composition" (optional) names how it is laid out: ${COMPOSITIONS.join(", ")}; a name outside this list is accepted and mapped to the nearest one. What you choose is checked against the sentence: a number you chart, a place you map, a person or document you show must be in the sentence, exactly as it says it. Where a choice cannot be grounded the system falls back to what the sentence does ground, never to an invented figure. If you name neither, the system reads your scene_description.
 
-ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym: [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
+ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym. Specific named things only (not "Indian", "federal jury", "officials"): [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
 
 ASSET KINDS - ask for one ONLY when the sentence earns it. "Request a silhouette only if the sentence names a person. Request a document only if the sentence names a document, contract, filing, ruling, or law. Request a stack only if the sentence names multiple discrete items. Never request these by default." A silhouette with no person in the sentence is an invented human; a document with no document in it is an invented filing. If the sentence supports none of them, describe the accumulation with the numbers it states instead.
 

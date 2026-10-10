@@ -19,6 +19,7 @@
  * Where it stops: this is the MANIFEST's answer. scripts/gemini-frame-review.js --entity-check asks Gemini the same
  * question of the rendered frame, and the contact sheet is the last word.
  */
+import { entityShape } from "./lib/entity-shape.mjs";
 import { quantitiesOf, knownPlacesOf } from "./canvas-grounding.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
 
@@ -52,6 +53,7 @@ export function entitiesOf({ sentence = "", named_entities = [] } = {}) {
   for (const e of Array.isArray(named_entities) ? named_entities : []) {
     const type = typeOf(e?.type);
     if (!["person", "place", "organization"].includes(type)) continue;
+    if (!entityShape(e.name, type === "organization" ? "institution" : type, sentence).ok) continue;   // scripts/lib/entity-shape.mjs: a specific named thing only
     const nm = type === "place" ? placeName(e.name) : String(e.name).trim();
     push({ type, name: nm, ...(type === "place" && resolveRegion(nm) ? { region: resolveRegion(nm) } : {}) });
   }

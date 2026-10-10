@@ -21,7 +21,12 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
-export const MODELS = ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite-preview"];
+// The instrument. gemini-3.5-flash was FIRST in this chain and never answered: the probe (voice-lab "probe", run 38058109444) got HTTP 429
+// RESOURCE_EXHAUSTED from it on every key, for a one-word text prompt as much as for audio - its quota on these keys is spent, not misconfigured.
+// Left first it would also make the instrument depend on the day: when its quota resets it would judge, and the same audio would be read by a
+// different model than yesterday's. The bar (7) was set on gemini-3.5-flash-lite, which is what has judged every board, so it is first; it is not
+// shown equivalent to a model that has never answered. The preview model is the failover only.
+export const MODELS = (process.env.NARRATION_JUDGE_MODELS || "gemini-3.5-flash-lite,gemini-3.1-flash-lite-preview").split(",").map((m) => m.trim()).filter(Boolean);
 export const keys = () => [...new Set(["GEMINI_API_KEY_4", "GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3"].map((k) => process.env[k]).filter(Boolean))];
 
 export function cuesOf(srt) {

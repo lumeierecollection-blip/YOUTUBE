@@ -74,7 +74,7 @@ if (set === "lab2") {
     V("current-sulafat-sentence", "Sulafat", CURRENT, "sentence"), V("notes-kore-sentence", "Kore", NOTES, "sentence"),
   ]);
 }
-if (set === "corpus" || set === "lab2" || set === "stability" || set === "all") {
+if (set === "corpus" || set === "lab2" || set === "stability" || set === "judge" || set === "all") {
   // Every *-vo-spoken.txt under the downloaded prep artifacts: data/tts/<channel>/<topic>-vo-spoken.txt (+ the production mp3 / srt beside it).
   const found = [];
   const walk = (d) => { if (!existsSync(d)) return; for (const n of readdirSync(d)) { const p = join(d, n); if (statSync(p).isDirectory()) walk(p); else if (/-vo-spoken\.txt$/.test(n)) found.push(p); } };
@@ -87,6 +87,11 @@ if (set === "corpus" || set === "lab2" || set === "stability" || set === "all") 
     try { edge = resolveChannel(ch, channels).tts_voice || edge; } catch {}
     const g = geminiVoiceFor(edge);
     const base = f.replace(/-vo-spoken\.txt$/, "");
+    if (set === "judge") {
+      // The determinism check (owner, 2026-10-10): the SAME mp3 judged three times, each judgement itself the median of three readings. Must agree.
+      add(`ch${ch}`, f, [V(`ch${ch}-existing-judge`, g.voice, "", "existing", { mp3: `${base}-vo.mp3`, srt: `${base}-vo.srt`, repeat: 3 })], { channel: ch });
+      continue;
+    }
     if (set === "stability") {
       // Lab 2 showed the SAME text, voice and direction scoring 4.6-9 take to take, and the same mp3 scoring differently from the board's own judging.
       // Two things can move: the judge (same audio, judged 3x) and the synthesis (same request, 4 takes, each judged once).
@@ -136,6 +141,8 @@ for (const job of jobs) {
   }
 }
 
+const agree = [...new Set(rows.filter((r) => r.repeat && r.ok).map((r) => r.textId))].map((id) => { const g = rows.filter((r) => r.textId === id && r.repeat && r.ok).map((r) => (r.gate === "pass" ? "pass" : "FAIL")); return `${id}: ${g.join(" / ")} -> ${g.length && g.every((x) => x === g[0]) ? "AGREE" : "DISAGREE"}`; });
+if (agree.length) console.log(`\nsame audio, three judgements (each the median of three readings):\n${agree.join("\n")}`);
 rows.sort((a, b) => a.textId.localeCompare(b.textId) || (b.mean ?? -1) - (a.mean ?? -1));
 const cells = ["| text | variant | voice | mode | judge | mean | per sentence | at 7+ | gate |", "|---|---|---|---|---|---|---|---|---|", ...rows.map((r) => `| ${r.textId} | ${r.name} | ${r.voice} | ${r.mode} | ${r.judge || "—"} | ${r.ok ? r.mean : "—"} | ${r.ok ? r.scores.join(" ") : r.why} | ${r.ok ? `${r.passing}/${r.of}` : "—"} | ${r.gate || "—"} |`)].join("\n");
 const byText = new Map(); for (const r of rows) if (!byText.has(r.textId)) byText.set(r.textId, r.features);
@@ -146,4 +153,4 @@ const feat = ["| text | words | sentences | words/sentence | sd | digits | quest
 console.log(`\n${cells}\n\n${feat}`);
 writeFileSync(join(out, "lab.json"), JSON.stringify({ at: new Date().toISOString(), set, rows }, null, 2) + "\n");
 writeFileSync(join(out, "lab.md"), `${cells}\n\n${feat}\n`);
-if (process.env.GITHUB_STEP_SUMMARY) writeFileSync(process.env.GITHUB_STEP_SUMMARY, `## voice lab (${set})\n\n${cells}\n\n### text features vs score\n\n${feat}\n`, { flag: "a" });
+if (process.env.GITHUB_STEP_SUMMARY) writeFileSync(process.env.GITHUB_STEP_SUMMARY, `## voice lab (${set})\n\n${agree.length ? `**same audio, three judgements:**\n\n${agree.map((a) => `- ${a}`).join("\n")}\n\n` : ""}${cells}\n\n### text features vs score\n\n${feat}\n`, { flag: "a" });

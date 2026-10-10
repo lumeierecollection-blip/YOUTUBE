@@ -92,8 +92,15 @@ export const OUTPUT_FORMAT = `Answer with ONE JSON object, no prose:
 Treatments and placeholders this renderer can draw (anything else is not available):
 `;
 
+// Facts about how a beat with SEVERAL entities is decided (board 38054686824: Kubrick, Matt Damon and Jennifer Garner each had a portrait found, verified
+// and offered, and the choice fell to a type card for all of them with "multiple specific people ... a single asset is insufficient"). A beat shows ONE
+// visual, so naming several people is a reason to pick the one the line is about, not a reason to show none. It is a fact given beside the line, not an
+// edit to the owner's prompt above; the model still decides, and a wrong portrait is still refused by "Never a wrong fact".
+export const SEVERAL_ENTITIES_NOTE = "The beat shows ONE visual. When the line names several people and a listed asset shows one of them correctly, show that person: the one the line is about (the first named, unless its verb is about another); the others are named in the headline. A type card is for when NO listed asset is correct, not for when more than one person is named. A portrait of someone who only made the subject (paintings BY Renoir) shows the wrong subject: skip it.";
+
 export function buildBeatVisualPrompt({ line, entities, assets, styleSpec, slot, mapAvailable }) {
-  return `${BEAT_VISUAL_PROMPT}\n\n${OUTPUT_FORMAT}${JSON.stringify(drawableOptions({ mapAvailable }))}\n\nFACTS:\n${JSON.stringify({ line, entities, assets, style_spec: styleSpec || null, planner_slot: slot || null }, null, 1)}`;
+  const note = (entities || []).length > 1 && (assets || []).length ? SEVERAL_ENTITIES_NOTE : null;
+  return `${BEAT_VISUAL_PROMPT}\n\n${OUTPUT_FORMAT}${JSON.stringify(drawableOptions({ mapAvailable }))}\n\nFACTS:\n${JSON.stringify({ line, entities, assets, style_spec: styleSpec || null, planner_slot: slot || null, ...(note ? { note } : {}) }, null, 1)}`;
 }
 
 /**
