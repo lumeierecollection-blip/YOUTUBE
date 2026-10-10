@@ -1165,9 +1165,14 @@
           "topic": "Victoria Police Issue Fresh Appeal 40 Years After Albert Pisani Disappearance",
           "slug": "victoria-police-appeal-40-years-albert-pisani",
           "reserved_at": "2026-10-10T07:17:38.059Z"
+        },
+        {
+          "topic": "Coroner Approves Exhumation for Second Post-Mortem in Teoh Beng Hock Case",
+          "slug": "teoh-beng-hock-second-post-mortem-exhumation",
+          "reserved_at": "2026-10-10T07:26:24.051Z"
         }
       ],
-      "last_generated": "2026-10-10T07:17:38.059Z"
+      "last_generated": "2026-10-10T07:26:24.051Z"
     },
     "7": {
       "channel_name": "Dead Companies",
