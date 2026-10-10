@@ -68,22 +68,26 @@ if (set === "lab" || set === "all") {
   ]);
 }
 if (set === "textvariants") {
-  // JOB 2 (owner, 2026-10-10): the same production voice on the same production sentence, four texts. (a) as the script writes it,
-  // (b) speakable() applied, (c) only the digits spelled out, (d) digits spelled, then speakable(). The sentence is from a COMMITTED production
-  // script (ci-artifacts-31503638942/research/2), so the lab needs no artifact download.
+  // JOB 2 (owner, 2026-10-10): the same production voice and style on the same sentence, four texts per sentence:
+  // (a) as the script writes it, (b) speakable(), (c) digits spelled with a naive digits-only transform, (d) (c) then speakable().
+  // Sentence 1 is a PRODUCTION sentence from a committed script (ci-artifacts-31503638942). Sentence 2 is a CONSTRUCTED test sentence (not production):
+  // it carries a dollar amount, a percentage and a range, the three things speakable() rewrites beyond spelling digits.
   const scriptJson = JSON.parse(readFileSync(join(ROOT, "ci-artifacts-31503638942", "research", "2", "what-to-say-traffic-stop-script.json"), "utf8"));
-  const raw = scriptJson.sections.flatMap((x) => String(x.voiceover || "").split(/(?<=[.!?])\s+/)).find((x) => /375 DNA/.test(x));
-  if (!raw) throw new Error("the test sentence is not in the committed production script");
+  const prod = scriptJson.sections.flatMap((x) => String(x.voiceover || "").split(/(?<=[.!?])\s+/)).find((x) => /375 DNA/.test(x));
+  if (!prod) throw new Error("the production test sentence is not in the committed script");
+  const sentences = { "s1-production": prod, "s2-constructed": "The fund grew $1.5M, up 30% from 2023, over a 12–18 month window." };
   const digitsOnly = (t) => t.replace(/\b\d[\d,]*(?:\.\d+)?\b/g, (m) => { const n = Number(m.replace(/,/g, "")); return Number.isFinite(n) ? numberWords(m.replace(/,/g, "")) : m; });
-  const texts = { "a-as-written": raw, "b-speakable": speakable(raw), "c-digits-only": digitsOnly(raw), "d-digits-then-speakable": speakable(digitsOnly(raw)) };
   mkdirSync(join(out, "textvariants"), { recursive: true });
-  for (const [name, t] of Object.entries(texts)) {
-    const file = join(out, "textvariants", `${name}.txt`);
-    writeFileSync(file, t + "\n");
-    add("textvariants", file, [V(`${name}-charon`, "Charon", CURRENT, "whole")]);
+  for (const [sn, raw] of Object.entries(sentences)) {
+    const texts = { a: raw, b: speakable(raw), c: digitsOnly(raw), d: speakable(digitsOnly(raw)) };
+    for (const [v, t] of Object.entries(texts)) {
+      const file = join(out, "textvariants", `${sn}-${v}.txt`);
+      writeFileSync(file, t + "\n");
+      add(`textvariants-${sn}`, file, [V(`${sn}-${v}-charon`, "Charon", CURRENT, "whole")]);
+    }
+    console.log(`TEXT VARIANTS ${sn}:`);
+    for (const [v, t] of Object.entries(texts)) console.log(`  ${v}: ${t}`);
   }
-  console.log("TEXT VARIANTS (production sentence):");
-  for (const [n, t] of Object.entries(texts)) console.log(`  ${n}: ${t}`);
 }
 if (set === "calibrate") {
   // The labelled variants of lab 1 (38050775355) and lab 2 (38053319841): the judge's OWN labels, as given by the owner.
