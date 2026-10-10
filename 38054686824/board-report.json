@@ -1,0 +1,714 @@
+{
+  "rows": [
+    {
+      "channel": "1",
+      "plan": "rendered-1-38054686824/data/visual-plans/1/cbs-news-october-2026-aggressive-debt-payoff-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-1-38054686824/rejected/cbs-news-october-2026-aggressive-debt-payoff-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 7,
+        "real": 2,
+        "typed": 5,
+        "fraction": 0.29,
+        "by": {
+          "typed": 5,
+          "logo": 2
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 7,
+        "real": 2,
+        "typed": 5,
+        "fraction": 0.29,
+        "by": {
+          "typed": 5,
+          "logo": 2
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "Angelica Leicht",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "CBS News",
+          "type": "company",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:CBS_News_2020_(Stacked_II).svg"
+        },
+        {
+          "beat": 2,
+          "name": "CBS News",
+          "type": "company",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "CBS News",
+          "type": "company",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Max Zahn",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "ABC News",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:ABC_News_logo_2021.svg"
+        },
+        {
+          "beat": 5,
+          "name": "CBS News",
+          "type": "company",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch1.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "2",
+      "plan": "rendered-2-38054686824/data/visual-plans/2/driver-wins-76-alpr-bogus-traffic-stop-search-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-2-38054686824/rejected/driver-wins-76-alpr-bogus-traffic-stop-search-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 9,
+        "real": 2,
+        "typed": 7,
+        "fraction": 0.22,
+        "by": {
+          "photo": 2,
+          "typed": 7
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 9,
+        "real": 2,
+        "typed": 7,
+        "fraction": 0.22,
+        "by": {
+          "photo": 2,
+          "typed": 7
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "Bexar County",
+          "type": "place",
+          "visual": "photo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Bexar_County_Courthouse_2015.jpg"
+        },
+        {
+          "beat": 1,
+          "name": "Interstate 35",
+          "type": "place",
+          "visual": "photo",
+          "source_url": "https://pixabay.com/photos/oklahoma-transport-interstate-4568772/"
+        },
+        {
+          "beat": 1,
+          "name": "Alek Schott",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Bexar County",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Alek Schott",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Alek Schott",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 7,
+          "name": "Bexar County",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 7,
+          "name": "Alek Schott",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 8,
+          "name": "Bexar County",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch2.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "6",
+      "plan": "rendered-6-38054686824/data/visual-plans/6/french-authorities-recover-stolen-renoir-paintings-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-6-38054686824/rejected/french-authorities-recover-stolen-renoir-paintings-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 5,
+        "real": 2,
+        "typed": 3,
+        "fraction": 0.4,
+        "by": {
+          "photo": 1,
+          "typed": 3,
+          "map": 1
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 5,
+        "real": 2,
+        "typed": 3,
+        "fraction": 0.4,
+        "by": {
+          "photo": 1,
+          "typed": 3,
+          "map": 1
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 1,
+          "name": "Cagnes-sur-Mer",
+          "type": "place",
+          "visual": "photo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Haut-de-Cagnes_(vue_depuis_le_chateau).jpg"
+        },
+        {
+          "beat": 1,
+          "name": "Pierre-Auguste Renoir",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "France",
+          "type": "place",
+          "visual": "map",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Pierre-Auguste Renoir",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 7,
+          "name": "Musée Renoir",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch6.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "8",
+      "plan": "rendered-8-38054686824/data/visual-plans/8/cu-denver-hyderabad-campus-plan-2026-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-8-38054686824/rejected/cu-denver-hyderabad-campus-plan-2026-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 5,
+        "real": 2,
+        "typed": 3,
+        "fraction": 0.4,
+        "by": {
+          "typed": 3,
+          "logo": 1,
+          "photo": 1
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 4,
+        "real": 2,
+        "typed": 2,
+        "fraction": 0.5,
+        "by": {
+          "typed": 2,
+          "logo": 1,
+          "photo": 1
+        },
+        "distinct": {
+          "named": 3,
+          "real": 2
+        }
+      },
+      "dropped": [
+        "place \"Indian\" (beat 0, typed) — a nationality or adjective, not a thing that can be named"
+      ],
+      "rows": [
+        {
+          "beat": 1,
+          "name": "University Grants Commission",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "University Grants Commission",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "University of Colorado Denver",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:CU_Denver_logo.png"
+        },
+        {
+          "beat": 7,
+          "name": "Hyderabad",
+          "type": "place",
+          "visual": "photo",
+          "source_url": "https://pixabay.com/photos/golconda-fort-architecture-hyderabad-3395846/"
+        }
+      ],
+      "sheet": "frames/ch8.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "9",
+      "plan": "rendered-9-38054686824/data/visual-plans/9/cambodia-thailand-icg-border-dispute-2026-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-9-38054686824/approved/cambodia-thailand-icg-border-dispute-2026-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 9,
+        "real": 3,
+        "typed": 6,
+        "fraction": 0.33,
+        "by": {
+          "typed": 6,
+          "portrait": 1,
+          "map": 1,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 7,
+          "real": 3
+        }
+      },
+      "after": {
+        "named": 9,
+        "real": 3,
+        "typed": 6,
+        "fraction": 0.33,
+        "by": {
+          "typed": 6,
+          "portrait": 1,
+          "map": 1,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 7,
+          "real": 3
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 3,
+          "name": "Bangkok",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Paetongtarn Shinawatra",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Paetongtarn_Shinawatra_HoS_Davos.jpg"
+        },
+        {
+          "beat": 4,
+          "name": "Constitutional Court",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Thailand",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "International Crisis Group",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "International Court of Justice",
+          "type": "institution",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 6,
+          "name": "Cambodia",
+          "type": "place",
+          "visual": "map",
+          "source_url": null
+        },
+        {
+          "beat": 7,
+          "name": "International Court of Justice",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:International_Court_of_Justice_Seal.svg"
+        },
+        {
+          "beat": 7,
+          "name": "Cambodia",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch9.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "10",
+      "plan": "rendered-10-38054686824/data/visual-plans/10/schelling-kubrick-eternal-truths-being-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-10-38054686824/rejected/schelling-kubrick-eternal-truths-being-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 7,
+        "real": 2,
+        "typed": 5,
+        "fraction": 0.29,
+        "by": {
+          "portrait": 2,
+          "typed": 5
+        },
+        "distinct": {
+          "named": 3,
+          "real": 1
+        }
+      },
+      "after": {
+        "named": 7,
+        "real": 2,
+        "typed": 5,
+        "fraction": 0.29,
+        "by": {
+          "portrait": 2,
+          "typed": 5
+        },
+        "distinct": {
+          "named": 3,
+          "real": 1
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 1,
+          "name": "Friedrich Wilhelm Joseph Schelling",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Nb_pinacoteca_stieler_friedrich_wilhelm_joseph_von_schelling.jpg"
+        },
+        {
+          "beat": 2,
+          "name": "Friedrich Wilhelm Joseph Schelling",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 3,
+          "name": "Friedrich Wilhelm Joseph Schelling",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Nb_pinacoteca_stieler_friedrich_wilhelm_joseph_von_schelling.jpg"
+        },
+        {
+          "beat": 4,
+          "name": "Constantin von Hoffmeister",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Friedrich Wilhelm Joseph Schelling",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Stanley Kubrick",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 7,
+          "name": "Constantin von Hoffmeister",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch10.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "26",
+      "plan": "rendered-26-38054686824/data/visual-plans/26/crowdstrike-artex-ai-agent-korea-bank-hack-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-26-38054686824/rejected/crowdstrike-artex-ai-agent-korea-bank-hack-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 4,
+        "real": 2,
+        "typed": 2,
+        "fraction": 0.5,
+        "by": {
+          "typed": 2,
+          "photo": 1,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "after": {
+        "named": 4,
+        "real": 2,
+        "typed": 2,
+        "fraction": 0.5,
+        "by": {
+          "typed": 2,
+          "photo": 1,
+          "logo": 1
+        },
+        "distinct": {
+          "named": 4,
+          "real": 2
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 1,
+          "name": "CrowdStrike",
+          "type": "company",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "Guangdong",
+          "type": "place",
+          "visual": "photo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Aerial_View,_Zhongshan_Bridge,_Guangdong_20250608.jpg"
+        },
+        {
+          "beat": 2,
+          "name": "Anthropic",
+          "type": "company",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Anthropic_logo.svg"
+        },
+        {
+          "beat": 7,
+          "name": "South Korea",
+          "type": "place",
+          "visual": "typed",
+          "source_url": null
+        }
+      ],
+      "sheet": "frames/ch26.jpg",
+      "beats_framed": 9
+    },
+    {
+      "channel": "49",
+      "plan": "rendered-49-38054686824/data/visual-plans/49/ben-affleck-breaks-down-animals-thriller-twists-shorts-script-visual-plan-resolved.json",
+      "video": "qa-queues-49-38054686824/rejected/ben-affleck-breaks-down-animals-thriller-twists-shorts-shorts-2026-10-10.mp4",
+      "before": {
+        "named": 11,
+        "real": 5,
+        "typed": 6,
+        "fraction": 0.45,
+        "by": {
+          "portrait": 2,
+          "typed": 6,
+          "logo": 3
+        },
+        "distinct": {
+          "named": 7,
+          "real": 3
+        }
+      },
+      "after": {
+        "named": 11,
+        "real": 5,
+        "typed": 6,
+        "fraction": 0.45,
+        "by": {
+          "portrait": 2,
+          "typed": 6,
+          "logo": 3
+        },
+        "distinct": {
+          "named": 7,
+          "real": 3
+        }
+      },
+      "dropped": [],
+      "rows": [
+        {
+          "beat": 0,
+          "name": "Ben Affleck",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Ben_Affleck_at_83rd_Venice_International_Film_Festival-1_(cropped).jpg"
+        },
+        {
+          "beat": 0,
+          "name": "Netflix",
+          "type": "company",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 1,
+          "name": "Netflix",
+          "type": "company",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Netflix_2015_logo.svg"
+        },
+        {
+          "beat": 2,
+          "name": "Connor McIntyre",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 2,
+          "name": "Billy Ray",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Matt Damon",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Jennifer Garner",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 4,
+          "name": "Ben Affleck",
+          "type": "person",
+          "visual": "typed",
+          "source_url": null
+        },
+        {
+          "beat": 5,
+          "name": "Ben Affleck",
+          "type": "person",
+          "visual": "portrait",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Ben_Affleck_at_83rd_Venice_International_Film_Festival-1_(cropped).jpg"
+        },
+        {
+          "beat": 6,
+          "name": "USA TODAY",
+          "type": "institution",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:USA_Today_(2020-01-29).svg"
+        },
+        {
+          "beat": 7,
+          "name": "Netflix",
+          "type": "company",
+          "visual": "logo",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Netflix_2015_logo.svg"
+        }
+      ],
+      "sheet": "frames/ch49.jpg",
+      "beats_framed": 9
+    }
+  ]
+}
