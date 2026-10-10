@@ -1200,9 +1200,14 @@
           "topic": "Coroner Approves Exhumation for Second Post-Mortem in Teoh Beng Hock Case",
           "slug": "teoh-beng-hock-second-post-mortem-exhumation",
           "reserved_at": "2026-10-10T07:26:24.051Z"
+        },
+        {
+          "topic": "25 Years Later, Federal Prosecutor Thomas Wales Killing Remains Unsolved",
+          "slug": "thomas-wales-killing-unsolved-25-years",
+          "reserved_at": "2026-10-10T11:21:01.180Z"
         }
       ],
-      "last_generated": "2026-10-10T10:17:57.450Z"
+      "last_generated": "2026-10-10T11:21:01.180Z"
     },
     "7": {
       "channel_name": "Dead Companies",
