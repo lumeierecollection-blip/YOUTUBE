@@ -107,7 +107,7 @@ const lerp = (a, b, t) => a + (b - a) * t;
 // Compositions that carry their own motion across the beat (a photo pushes, a graph grows, a map outlines, entity art lives).
 // The ambient push runs at a CONSTANT speed (2%/s, at most 10% over the beat), not as a fixed share of the beat: a 7 s beat that only
 // settled 3% moved 0.4%/s — under what a viewer (or the pace check) sees (board 37967524047: TYPE-FULL static 3.5 s, TYPE-CHAPTER 3.25 s).
-export const AMBIENT = Object.freeze({ amp: 0.08, rate: 0.025 });
+export const AMBIENT = Object.freeze({ amp: 0.15, rate: 0.03 });   // 3%/s, at most 15% over a long beat (7 s: 2.1%/s)
 /** The push's scale at beat-local frame `local` of `dur`: it starts smaller and arrives at 1 as the beat ends (always inside its zone). */
 // A capped push stops once it hits its cap (board 37978510400: plates and numbers static 2.5-3.5 s in the last half of a 7 s beat). The ambient is
 // a slow continuous ease-in-out sweep instead — in and out over `period` seconds, never beyond its range — so a beat of any length keeps moving.
