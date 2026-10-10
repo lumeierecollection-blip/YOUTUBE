@@ -1239,7 +1239,11 @@ async function main() {
     // (the last beat: to its own end) - how it READS the cue, not a looser
     // rule. The word-timed SRT (tts_words.py) ends a cue at its last word,
     // so cue.end - cue.start is shorter than the beat by the pause after it.
-    const want = (cues[i + 1] ? cues[i + 1].start : c.end) - c.start;
+    // The LAST beat is held to the end of the voiceover FILE (cover-audio.js: the file runs 0.4-2 s past its last word), so it is
+    // measured to the audio's end, not to its own cue's end - the same value the render uses. Board 38054686824 ch 2, 8, 10 failed this
+    // check on exactly that tail (4.8 s vs 4.28; 3.77 vs 2.61; 4.7 vs 2.71) after the hold was added; the tolerance is unchanged.
+    const aEnd = i === beats.length - 1 ? mediaDuration(audio) : null;
+    const want = (cues[i + 1] ? cues[i + 1].start : (aEnd && aEnd > c.end ? aEnd : c.end)) - c.start;
     if (Math.abs((b.duration_sec ?? 0) - want) > DURATION_TOL) durBad.push(`beat ${i}: ${b.duration_sec}s vs cue ${want.toFixed(2)}s`);
   });
   add("beat-durations", durBad, `every beat within ±${DURATION_TOL}s of its cue`);
