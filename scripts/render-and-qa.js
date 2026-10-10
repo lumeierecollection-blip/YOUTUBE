@@ -1290,6 +1290,10 @@ export async function entityLadder(plan, channelId, log = console.log) {
   const { fetchFlag } = await import("./fetch-flag.mjs");
   const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
   const done = { map: 0, art: 0, figure: 0, flags: 0 };
+  // No repeats (owner): a mark already on screen in this video (the planner's logo hero, or an earlier plate) is not drawn again —
+  // the later beat shows the name in type (board 38010438091 ch-44: the Glassdoor logo on three beats).
+  const usedMarks = new Map();
+  for (const pb of plan.beats) for (const v of pb.canvas?.concept_visuals || []) if (v?.logo && v.name) usedMarks.set(String(v.name).toLowerCase(), pb.index);
   const reset = (b, replaces = false) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; if (replaces) { b.visual_type = "TYPE"; b.data = null; b.concept_visuals = []; } };
   for (const b of plan.beats) {
     const d = ladderFor(b);
@@ -1327,6 +1331,9 @@ export async function entityLadder(plan, channelId, log = console.log) {
             const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
             const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: nm }, context: b.narration || "" });
             if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null };
+            const seenAt = usedMarks.get(String(nm).toLowerCase());
+            if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
+            if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
           } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
           d.art.items.push(it);
           log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type (no free verified mark)"}`);
