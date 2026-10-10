@@ -87,12 +87,18 @@ if (!AUDIO) {
 } else if (!audioModels.length) {
   console.log("  no audio-input model in the account's catalog: audio judging cannot run on OpenRouter");
 } else {
-  const pick = audioModels.find((m) => /gemini/i.test(m.id)) || audioModels[0];
+  // Free audio-input models first (no balance needed), then the paid Gemini one. A 402 means the account balance is
+  // below the price of audio input (2026-10-10: "requires at least $0.50 in balance for audio"); a free model may still answer.
+  const free = audioModels.filter((m) => m.id.endsWith(":free")).map((m) => m.id);
+  const paid = audioModels.filter((m) => !m.id.endsWith(":free") && /gemini/i.test(m.id)).map((m) => m.id);
   const b64 = readFileSync(AUDIO).toString("base64");
   const msgs = [{ role: "user", content: [
     { type: "text", text: 'Listen to this voiceover. Is the voice SYNTHETIC or HUMAN? Reply only with JSON {"verdict":"SYNTHETIC" or "HUMAN","reason":"one sentence"}.' },
     { type: "input_audio", input_audio: { data: b64, format: "mp3" } },
   ] }];
-  const a = await callOpenRouter(msgs, { openrouterModel: pick.id, maxTokens: 200, temperature: 0 });
-  console.log(`  model ${pick.id}: ${JSON.stringify(a)}`);
+  for (const id of [...free.slice(0, 3), ...paid.slice(0, 1)]) {
+    const a = await callOpenRouter(msgs, { openrouterModel: id, maxTokens: 200, temperature: 0 });
+    console.log(`  model ${id}: ${JSON.stringify(a)}`);
+    if (!a || !a.error) { console.log(`  answered by ${id}`); break; }
+  }
 }

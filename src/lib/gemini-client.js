@@ -1,11 +1,14 @@
 /**
  * gemini-client.js — Resilient Gemini API client with key rotation + disk cache.
  *
- * Reads up to 4 API keys from environment variables (GEMINI_API_KEY_4 first: a separate project's quota):
+ * Reads up to 4 API keys from environment variables, in this order (2026-10-10: keys 3 and 4 accepted
+ * gemini-3.6-flash and gemini-3.8-flash on a CI probe; keys 1 and 2 answered 429 with the free-tier quota id
+ * GenerateRequestsPerDayPerProjectPerModel-FreeTier, so they are tried last):
  *   GEMINI_API_KEY_4
+ *   GEMINI_API_KEY_3
  *   GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY)
  *   GEMINI_API_KEY_2
- *   GEMINI_API_KEY_3
+ * When GEMINI_API_KEY_1 is set, the plain GEMINI_API_KEY is not read at all (the fallback applies only when _1 is absent).
  *
  * FAILURE CONTRACT — Gemini is tried once per request; the CALLER then falls
  * back to local Ollama (src/lib/llm.js). Every failure returns an object
@@ -53,12 +56,12 @@ const REQUEST_TIMEOUT_S = 90;
  * Collect Gemini API keys from environment. Returns a non-empty array.
  * Never logs key values.
  */
-function collectKeys() {
+export function collectKeys() {
   const keys = [
     process.env.GEMINI_API_KEY_4,
+    process.env.GEMINI_API_KEY_3,
     process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
     process.env.GEMINI_API_KEY_2,
-    process.env.GEMINI_API_KEY_3,
   ].filter(Boolean);
 
   if (keys.length === 0) {
@@ -232,8 +235,10 @@ function classify(statusCode, msg) {
 // Gemini models tried, in order, when the requested one answers 503 after its
 // retry. GEMINI_SIBLING_MODELS overrides (comma-separated; empty = none). Both
 // defaults are models this account already calls (Layer 3 judge + fallback).
+// gemini-3.1-flash-lite-preview was replaced 2026-10-10: the official deprecations page lists its
+// shutdown as May 25, 2026, so the preview name answers 404; the GA model is gemini-3.1-flash-lite.
 function siblingModels(model) {
-  const raw = process.env.GEMINI_SIBLING_MODELS ?? "gemini-3.1-flash-lite-preview,gemini-3.5-flash";
+  const raw = process.env.GEMINI_SIBLING_MODELS ?? "gemini-3.1-flash-lite,gemini-3.5-flash";
   return raw.split(",").map((s) => s.trim()).filter((m) => m && m !== model);
 }
 const fail = (error, detail) =>({ source: "gemini", error, detail: String(detail || "").slice(0, 300) });

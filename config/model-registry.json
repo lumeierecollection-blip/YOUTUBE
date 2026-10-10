@@ -1,0 +1,76 @@
+[
+  {
+    "provider": "gemini",
+    "id": "gemini-3.5-flash-lite",
+    "role": "default text model: script stage, planner, verifiers, listener, cache check"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.5-flash",
+    "role": "SFX judge (sfx-cc0.mjs), sibling fallback, Layer 3 judge"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.1-flash-lite",
+    "role": "sibling fallback (gemini-client.js), eval fallback (eval-layer3-judge.js)"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.8-flash",
+    "role": "vision QA default (gate-visual-qa.js VISION_MODEL)"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.1-flash-tts-preview",
+    "role": "TTS first choice (tts_gemini.py); shutdown Nov 17, 2026; listening-tested"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.8-flash-tts",
+    "role": "TTS fallback (tts_gemini.py)"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3-flash-preview",
+    "called": false,
+    "role": "named in a comment only (eval-layer3-judge.js); not called"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3-flash",
+    "called": false,
+    "role": "named in a comment only: the brief's name, which does not exist; not called"
+  },
+  {
+    "provider": "openrouter",
+    "id": "openai/gpt-oss-120b",
+    "role": "OpenRouter text default (openrouter-client.cjs)"
+  },
+  {
+    "provider": "openrouter",
+    "id": "qwen/qwen3.7-plus",
+    "role": "OpenRouter vision default (openrouter-client.cjs)"
+  },
+  {
+    "provider": "groq",
+    "id": "openai/gpt-oss-120b",
+    "role": "Groq text default (groq-client.cjs)"
+  },
+  {
+    "provider": "groq",
+    "id": "qwen/qwen3.8-27b",
+    "role": "Groq vision default (groq-client.cjs, verify-cutout-image.cjs)"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.1-flash-lite-preview",
+    "called": false,
+    "role": "named in comments only (history: sibling and eval fallback before 2026-05-25 shutdown); not called"
+  },
+  {
+    "provider": "gemini",
+    "id": "gemini-3.6-flash",
+    "called": false,
+    "role": "named in a comment and in the model-status probe; the 3.6 Flash model, not called by the pipeline"
+  }
+]

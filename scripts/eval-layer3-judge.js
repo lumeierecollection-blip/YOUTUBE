@@ -55,11 +55,12 @@ const HOST = "generativelanguage.googleapis.com";
  * gemini-3.5-flash is the stable GA flash in the same family this repo already
  * uses for visual judgement (daily-pipeline-v2.yml pins
  * SCRIPT_GEMINI_MODEL: gemini-3.5-flash-lite), so it is the conservative pick.
- * The fallback name from the brief, gemini-3.1-flash-lite-preview, does exist
- * and is kept verbatim.
+ * The fallback was gemini-3.1-flash-lite-preview (from the brief). The official deprecations page
+ * lists that preview's shutdown as May 25, 2026, so it is replaced 2026-10-10 by the GA model
+ * gemini-3.1-flash-lite (shutdown May 7, 2027, replacement gemini-3.5-flash-lite).
  */
 export const MODEL = "gemini-3.5-flash";
-export const MODEL_FALLBACK = "gemini-3.1-flash-lite-preview";
+export const MODEL_FALLBACK = "gemini-3.1-flash-lite";
 
 /** Spec 2.6. Documented here because these decide what "good" means. */
 export const AXIS_WEIGHTS = Object.freeze({

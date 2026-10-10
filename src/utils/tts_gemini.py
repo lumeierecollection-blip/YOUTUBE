@@ -37,7 +37,10 @@ import urllib.error
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from tts_words import sentence_spans, ts  # noqa: E402
 
-MODELS = ["gemini-3.1-flash-tts-preview", "gemini-3.8-flash-tts", "gemini-2.5-flash-preview-tts"]
+# The 2.5 TTS preview was removed 2026-10-10 (official deprecations page: shutdown Nov 17, 2026, replacement
+# gemini-3.8-flash-tts). gemini-3.1-flash-tts-preview ALSO shuts down Nov 17, 2026 and stays first because a
+# listening test chose it (HUMAN 9/10); re-test the voice on gemini-3.8-flash-tts before that date, do not swap silently.
+MODELS = ["gemini-3.1-flash-tts-preview", "gemini-3.8-flash-tts"]
 
 
 def keys():

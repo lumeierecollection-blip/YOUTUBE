@@ -39,7 +39,7 @@
  * why the base stays an environment variable rather than a constant.
  *
  * Set for Gemini:  VISION_API_BASE=https://generativelanguage.googleapis.com/v1beta/openai
- *                  VISION_MODEL=gemini-2.5-flash   (any vision-capable Gemini)
+ *                  VISION_MODEL=gemini-3.8-flash   (any vision-capable Gemini)
  * Set for OpenCode: VISION_API_BASE=https://opencode.ai/zen/v1
  *
  * NEITHER 7.3 NOR 7.4 HAS EVER RETURNED A REAL VERDICT. No key reaches this
@@ -307,8 +307,9 @@ function groqThenOllama(framePaths, prompt) {
 function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
-  // Downgraded to Flash-Lite per token audit — simple structured output doesn't need Pro/Flash
-  const model = process.env.VISION_MODEL || "gemini-2.5-flash-lite";
+  // The old 2.5 Flash-Lite default ("downgraded to Flash-Lite per token audit") answers 404 for new users
+  // today, so the default is gemini-3.8-flash (no shutdown date announced on the official deprecations page).
+  const model = process.env.VISION_MODEL || "gemini-3.8-flash";
   const forced = String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
   if (!key && !process.env.GROQ_API_KEY && !process.env.OLLAMA_URL) {
     return {

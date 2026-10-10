@@ -1,0 +1,48 @@
+# The early warning for model retirements (2026-10-10: three models died in one day). Weekly, not per board.
+# Renders the official deprecations page, then probes every model the code calls (scripts/model-availability.mjs):
+# Gemini with one minimal call per key in production order, OpenRouter and Groq against their public lists.
+# Fails loudly if a called model is retired, missing, or unregistered. Warns for shutdowns inside 90 days.
+name: model-availability
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  availability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+      GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+      GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: "Render the official Gemini deprecations page to text"
+        run: |
+          python3 -m pip install --quiet playwright==1.47.0
+          python3 -m playwright install --with-deps chromium
+          cat > render.py <<'PY'
+          from playwright.sync_api import sync_playwright
+          with sync_playwright() as p:
+              b = p.chromium.launch()
+              pg = b.new_page()
+              pg.goto("https://ai.google.dev/gemini-api/docs/deprecations", wait_until="networkidle", timeout=90000)
+              text = pg.inner_text("body")
+              b.close()
+          open("deprecations.txt", "w", encoding="utf-8").write(text)
+          print(f"deprecations page rendered: {len(text)} characters")
+          PY
+          python3 render.py
+      - name: "Probe every model the code calls, and fail if one is retired"
+        run: node scripts/model-availability.mjs --deprecations deprecations.txt

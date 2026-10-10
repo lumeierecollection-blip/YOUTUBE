@@ -1,5 +1,6 @@
 # OpenRouter probe (2026-10-10 brief). Read-only: it calls OpenRouter and Edge-TTS, writes no cache and changes no file.
-#  - raw HTTP: one 16x16 PNG to the vision model, and one text control, with the status code printed
+#  - raw HTTP: the vision model at three settings (token cap 16, cap 400, cap 400 with reasoning off), with finish reason
+#    and token counts, plus one text control. The status and the answer are printed; no key value is printed.
 #  - scripts/edge-variants.mjs: four texts of one production sentence on Edge-TTS (no key), scored by the acoustic measure
 #  - scripts/openrouter-probe.mjs: catalog, text and image gates through the real chain with Gemini forced to fail,
 #    flip rate (N runs per gate, OpenRouter only), one mp3 to an audio-input model if the catalog has one
@@ -18,7 +19,7 @@ jobs:
       GEMINI_API_KEY_1: invalid-probe-key-not-a-real-key
     steps:
       - uses: actions/checkout@v4
-      - name: Check out the board-frames branch (identity images)
+      - name: "Check out the board-frames branch (identity images)"
         uses: actions/checkout@v4
         with:
           ref: board-frames
@@ -29,9 +30,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install edge-tts and numpy
+      - name: "Install ffmpeg (the acoustic measure decodes audio with it)"
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: "Install edge-tts and numpy"
         run: python3 -m pip install --quiet edge-tts numpy
-      - name: "Raw HTTP, one image and one text control to OpenRouter, status printed"
+      - name: "Raw HTTP: the vision model at three settings, and a text control"
         continue-on-error: true
         run: |
           python3 - <<'PY'
@@ -45,16 +48,18 @@ jobs:
           key = os.environ.get("OPENROUTER_API_KEY", "")
           if not key:
               print("OPENROUTER_API_KEY: NOT SET"); raise SystemExit(0)
+          img = [{"type": "text", "text": "Reply with one word: what colour is this image?"},
+                 {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}}]
           cases = {
-              "image": {"model": "qwen/qwen3.7-plus", "max_tokens": 16, "temperature": 0, "messages": [{"role": "user", "content": [
-                  {"type": "text", "text": "Reply with one word: what colour is this image?"},
-                  {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{b64}"}}]}]},
-              "text": {"model": "openai/gpt-oss-120b", "max_tokens": 16, "temperature": 0, "messages": [
+              "vision-cap16": {"model": "qwen/qwen3.7-plus", "max_tokens": 16, "temperature": 0, "messages": [{"role": "user", "content": img}]},
+              "vision-cap400": {"model": "qwen/qwen3.7-plus", "max_tokens": 400, "temperature": 0, "messages": [{"role": "user", "content": img}]},
+              "vision-cap400-reasoning-off": {"model": "qwen/qwen3.7-plus", "max_tokens": 400, "temperature": 0, "reasoning": {"enabled": False}, "messages": [{"role": "user", "content": img}]},
+              "text-control": {"model": "openai/gpt-oss-120b", "max_tokens": 400, "temperature": 0, "messages": [
                   {"role": "user", "content": "Reply with one word: what colour is a clear sky?"}]},
           }
           for name, body in cases.items():
               open(f"{name}.json", "w").write(json.dumps(body))
-              out = subprocess.run(["curl", "-sS", "-o", f"{name}-resp.json", "-w", "%{http_code}", "-H", "Content-Type: application/json",
+              out = subprocess.run(["curl", "-sS", "--max-time", "120", "-o", f"{name}-resp.json", "-w", "%{http_code}", "-H", "Content-Type: application/json",
                   "-H", f"Authorization: Bearer {key}", "-d", f"@{name}.json", "https://openrouter.ai/api/v1/chat/completions"],
                   capture_output=True, text=True).stdout.strip()
               try:
@@ -62,14 +67,20 @@ jobs:
               except Exception as e:
                   print(f"{name} ({body['model']}): HTTP {out}, unreadable body: {e}"); continue
               if "error" in j:
-                  print(f"{name} ({body['model']}): HTTP {out}, error: {str(j['error'].get('message', ''))[:200]}")
-              else:
-                  choices = j.get("choices") or [{}]
-                  print(f"{name} ({body['model']}): HTTP {out}, answer: {str((choices[0].get('message') or {}).get('content', ''))[:120]!r}")
+                  err = j["error"]
+                  msg = err.get("message", "") if isinstance(err, dict) else str(err)
+                  print(f"{name} ({body['model']}): HTTP {out}, error: {msg[:200]}"); continue
+              choice = (j.get("choices") or [{}])[0]
+              usage = j.get("usage") or {}
+              details = usage.get("completion_tokens_details") or {}
+              content = (choice.get("message") or {}).get("content")
+              print(f"{name} ({body['model']}): HTTP {out}, finish_reason={choice.get('finish_reason')}, "
+                    f"prompt_tokens={usage.get('prompt_tokens')}, completion_tokens={usage.get('completion_tokens')}, "
+                    f"reasoning_tokens={details.get('reasoning_tokens')}, answer={str(content)[:120]!r}")
           PY
       - name: "Edge-TTS variants, four texts of one production sentence, scored acoustically"
         run: node scripts/edge-variants.mjs --out probe/edge
-      - name: OpenRouter probe (catalog, text and image gates, flip rate, audio)
+      - name: "OpenRouter probe (catalog, text and image gates, flip rate, audio)"
         run: node scripts/openrouter-probe.mjs --image board/identity/Chase_Sui_Wonders_wikidata.jpg --audio probe/edge/b.mp3 --n 9
       - name: Upload the variant audio and acoustic output
         if: always()
