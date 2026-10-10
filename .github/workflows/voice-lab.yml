@@ -9,7 +9,7 @@ on:
         type: string
         default: ""
       set:
-        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x) | probe (why does the judge's first model never answer?) | judge (the same mp3 judged three times: do the verdicts agree?) | readings (raw judge readings, with and without a seed)"
+        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x) | probe (why does the judge's first model never answer?) | judge (the same mp3 judged three times: do the verdicts agree?) | readings (raw judge readings, with and without a seed) | timeline (one reading every 15 s for 5 min: cold vs warm)"
         type: string
         default: "lab2"
       corpus_run:
@@ -68,8 +68,22 @@ jobs:
             echo "##### ch$CH $MP3"
             node scripts/judge-readings.mjs --audio "$MP3" --srt "$SRT" --n 8
           done
+      - name: Judge timeline (cold vs warm)
+        if: github.event.inputs.set == 'timeline'
+        env:
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          for CH in 26 49 9; do
+            MP3=$(find corpus -name '*-vo.mp3' -path "*/tts/$CH/*" | head -1); SRT="${MP3%.mp3}.srt"
+            node scripts/judge-timeline.mjs --audio "$MP3" --srt "$SRT" --n 20 --every 15000 > "timeline-$CH.txt" 2>&1 &
+          done
+          wait
+          cat timeline-*.txt
       - name: Run the lab
-        if: github.event.inputs.set != 'probe' && github.event.inputs.set != 'readings'
+        if: github.event.inputs.set != 'probe' && github.event.inputs.set != 'readings' && github.event.inputs.set != 'timeline'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
