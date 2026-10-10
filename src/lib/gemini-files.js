@@ -42,6 +42,7 @@ export const MAX_FILE_BYTES = 2 * 1024 * 1024 * 1024;
  */
 export function geminiKeys(env = process.env) {
   return [
+    env.GEMINI_API_KEY_4,
     env.GEMINI_API_KEY_1 || env.GEMINI_API_KEY || env.GOOGLE_GENERATIVE_AI_API_KEY,
     env.GEMINI_API_KEY_2,
     env.GEMINI_API_KEY_3,

@@ -53,7 +53,8 @@ function arg(name, fallback = null) {
 }
 
 function getApiKey() {
-  return process.env.GEMINI_API_KEY
+  return process.env.GEMINI_API_KEY_4
+    || process.env.GEMINI_API_KEY
     || process.env.GOOGLE_GENERATIVE_AI_API_KEY
     || process.env.VISION_API_KEY
     || null;

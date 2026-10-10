@@ -1,7 +1,8 @@
 /**
  * gemini-client.js — Resilient Gemini API client with key rotation + disk cache.
  *
- * Reads up to 3 API keys from environment variables:
+ * Reads up to 4 API keys from environment variables (GEMINI_API_KEY_4 first: a separate project's quota):
+ *   GEMINI_API_KEY_4
  *   GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY)
  *   GEMINI_API_KEY_2
  *   GEMINI_API_KEY_3
@@ -54,13 +55,14 @@ const REQUEST_TIMEOUT_S = 90;
  */
 function collectKeys() {
   const keys = [
+    process.env.GEMINI_API_KEY_4,
     process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
     process.env.GEMINI_API_KEY_2,
     process.env.GEMINI_API_KEY_3,
   ].filter(Boolean);
 
   if (keys.length === 0) {
-    throw new Error("No Gemini API keys found. Set GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY), GEMINI_API_KEY_2, GEMINI_API_KEY_3.");
+    throw new Error("No Gemini API keys found. Set GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY), GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4.");
   }
 
   return keys;
