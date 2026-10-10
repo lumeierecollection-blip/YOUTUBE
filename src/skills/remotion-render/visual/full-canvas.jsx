@@ -120,6 +120,10 @@ export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max
 // pace threshold while the rest moved).
 export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.26 : AMBIENT.amp, rate = words ? 0.04 : AMBIENT.rate, a = Math.min(amp, rate * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * (0.5 * (1 - Math.pow(1 - u, 2.2)) + 0.5 * u); };   // half ease-out, half linear: quick while sparse, never stopping before the cut
 export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
+// A long beat needs a longer move, not a slower one (board 38034289156: the Gemini narrator's beats run 6-10 s and a fixed 6-10% push sat
+// still 8-10 s). `grow(local, dur, fps, floor)` is the push a picture makes over its beat: at least `floor`, else 3%/s up to 30%, as
+// half ease-out / half linear (monotone, never past its end, never reversing).
+export const grow = (local, dur, fps, floor = 0.06) => { const s = Math.max(1, dur / fps), a = Math.max(floor, Math.min(0.30, 0.03 * s)), u = clamp01(local / Math.max(1, dur)); return a * (0.5 * (1 - Math.pow(1 - u, 2.2)) + 0.5 * u); };
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
@@ -734,7 +738,9 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   }
   // The graph's camera: the whole figure (chart, its number, its label) grows from 1/(1+CAMERA.graph) to its
   // laid-out size about its floor on the frame's axis — inside its band at every frame.
-  const gk = 1 / (1 + CAMERA.graph) + (1 - 1 / (1 + CAMERA.graph)) * camP(local, dur);
+  // the graph grows to its laid-out size; a long beat grows it further than CAMERA.graph so it keeps moving (never past 1)
+  const gA = Math.max(CAMERA.graph, Math.min(0.30, 0.03 * Math.max(1, dur / fps)));
+  const gk = 1 / (1 + gA) + (1 - 1 / (1 + gA)) * (grow(local, dur, fps, gA) / gA);
   // About the chart's own floor: the middle band's floor, or — a chart in the upper middle band (its headline under it) — its bottom edge.
   const pivotY = ch && ch.y + ch.h < BOTTOM - 100 ? ch.y + ch.h : BOTTOM;
   return (
@@ -923,7 +929,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 50%");
   const live = clamp01((local - at * fps) / Math.max(1, dur * 0.9));
   const glyph = onAccent(accent);
-  const push = 1 + sweep(local, fps, 0.06, dur);   // one slow linear push-in across the beat (to +6%): never reverses, never smaller than its box
+  const push = 1 + grow(local, dur, fps, 0.06);   // the art's push across the beat, scaled to its length: never reverses, never smaller than its box
   const breathe = push;
   let art = null;
   // FLAT (owner, 2026-10-09: "they shouldn't look playful"): the reference's drawn parts are hairline-ruled and typographic —
@@ -1046,7 +1052,7 @@ function PhotoFrame({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const p = clamp01(local / Math.max(1, dur));
   const img = (extra = {}) => (
     <Img src={staticFile(c.photo.asset)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || b.focus || "50% 40%",
-      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + CAMERA.photo * camP(local, dur, cameraStart(c))).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
+      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + Math.max(CAMERA.photo * camP(local, dur, cameraStart(c)), grow(local - cameraStart(c), dur - cameraStart(c), fps, CAMERA.photo))).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
   );
   const bar = (x, y, w, h) => <div style={{ position: "absolute", left: x, top: y, width: w, height: h, backgroundColor: accent }} />;
   const f = b.frame;
@@ -1166,7 +1172,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   return (
     <HeroEl name="map" b={B.map}>
       <div style={{ position: "absolute", inset: 0, clipPath: `inset(${Math.max(0, B.map.y)}px 0 ${Math.max(0, FRAME.h - B.map.y - B.map.h)}px 0)` }}>
-      <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + sweep(local, fps, 0.08, dur)).toFixed(4)})` }}>
+      <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + grow(local, dur, fps, 0.08)).toFixed(4)})` }}>
       <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
       {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce). The
           map is zoomed on the region, so its centre is the region; the pin sits above the

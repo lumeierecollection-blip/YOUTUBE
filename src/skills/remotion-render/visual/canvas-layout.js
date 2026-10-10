@@ -752,9 +752,17 @@ function shotLayout(c, comp, flip) {
     // The hairline rule holds the frame's top so the beat's content spans >= 60% of the height (canvas-coverage).
     boxes.rule = { ...rule(flip, TOP), keep: true };
     boxes.photo = { ...box(0, LOW_VISUAL.top, FRAME.w, LOW_VISUAL.h), frame: "band", focus };
+    if (TEXT_GRID.on) {
+      const gh = gridHeader({ headline: text, lead_in: kick }, { width: 940, max: 170, maxLines: 3 });
+      Object.assign(boxes, gh.boxes);
+      boxes.rule = { ...rule(flip, TOP), keep: true };
+      // the band ends above the words
+      if (gh.floor < LOW_VISUAL.top + LOW_VISUAL.h) boxes.photo = { ...boxes.photo, h: Math.max(300, gh.floor - LOW_VISUAL.top) };
+    } else {
     if (kick) boxes.kicker = dataBox(kick, { width: 700, size: 34, maxLines: 1, y: LOW_VISUAL.top + LOW_VISUAL.h + 20, flip });
     const top = kick ? boxes.kicker.y + boxes.kicker.h + 24 : LOW_VISUAL.top + LOW_VISUAL.h + 20;
     boxes.headline = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
+    }
     hero = "headline";
   } else if (comp === "PHOTO-EDGE") {
     // Shots 5 / 25: the photo cropped by the frame edge opposite the headline's side.
@@ -980,7 +988,8 @@ function gridForm(c, comp, vt) {
   const cv = (c?.concept_visuals || []).filter(Boolean);
   const hasHead = !!String(c?.headline || "").trim();
   if (["HERO-LOW", "HERO-SCATTER"].includes(comp)) return { composition: "HERO-OVER" };
-  if (comp === "TYPE-FULL" && cv.some((v) => v.asset || v.class === "symbol" || v.logo)) return { composition: "HERO-OVER" };
+  if (comp === "TYPE-FULL" && cv.length) return { composition: "HERO-OVER" };
+  if (comp === "TYPE-FULL" && c?.vertical) return { vertical: false };
   // Three photo forms keep a run of photo beats from repeating one frame: a band (the strip's and the inset's), a centred card
   // (the edge's), full bleed with the words low (SCENE-LOW).
   if (comp === "PHOTO-STRIP" && c?.photo) return { composition: "PHOTO-BAND" };

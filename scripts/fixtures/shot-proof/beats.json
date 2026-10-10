@@ -470,5 +470,65 @@
       "headline": "NASA took over",
       "motion_tier": "medium"
     }
+  },
+  {
+    "text": "Agents spent ten years building the case against him before a single charge was filed in the federal court.",
+    "seconds": 10,
+    "c": {
+      "visual_type": "COUNTER",
+      "composition": "NUMBER-FULL",
+      "data": {
+        "value": "10",
+        "label": "years"
+      },
+      "headline": "A decade of work",
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "Peter Kensler was the man investigators kept coming back to, through every lead and every interview they ran.",
+    "seconds": 10,
+    "c": {
+      "visual_type": "TYPE",
+      "composition": "ENTITY-ART",
+      "art": {
+        "kind": "plate-person",
+        "name": "Peter Kensler"
+      },
+      "headline": "The man they kept coming back to",
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "The cave system runs for miles under the hills, and most of it has never been mapped by anyone at all.",
+    "seconds": 10,
+    "c": {
+      "visual_type": "PHOTO",
+      "composition": "PHOTO-CARD",
+      "photo": {
+        "asset": "b-roll/ch-fixture/tunnel-crawl.jpg",
+        "entity": "Tunnel crawl",
+        "kind": "place",
+        "view": "place",
+        "w": 576,
+        "h": 768,
+        "credit": "Repo test fixture photo"
+      },
+      "headline": "Miles that nobody mapped",
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "France is now paying more to borrow than at any point in the last twenty years, and the gap keeps widening.",
+    "seconds": 10,
+    "c": {
+      "visual_type": "MAP",
+      "composition": "MAP-CENTERED",
+      "data": {
+        "place": "France"
+      },
+      "headline": "France pays more to borrow",
+      "motion_tier": "medium"
+    }
   }
 ]

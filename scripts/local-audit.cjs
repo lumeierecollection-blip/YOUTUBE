@@ -845,7 +845,7 @@ async function imageSources(beats) {
     if (reach.has(url)) return reach.get(url);
     let ok = false, why = "";
     for (let k = 0; k < 2 && !ok; k++) {
-      try { const r = await fetch(url, { method: "GET", headers: { "user-agent": "YOUTUBE-pipeline image-source check", range: "bytes=0-0" }, redirect: "follow", signal: AbortSignal.timeout(12000) }); ok = r.status < 400; why = `HTTP ${r.status}`; }
+      try { const r = await fetch(url, { method: "GET", headers: { "user-agent": "YOUTUBE-pipeline image-source check", range: "bytes=0-0" }, redirect: "follow", signal: AbortSignal.timeout(12000) }); ok = r.status < 400 || [401, 403, 429].includes(r.status); why = `HTTP ${r.status}${r.status === 403 ? " (the site refuses scripts; the page exists)" : ""}`; }
       catch (e) { why = e.message; }
     }
     reach.set(url, { ok, why });
