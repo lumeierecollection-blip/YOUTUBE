@@ -114,7 +114,29 @@ def main():
             "pauses": pauses,
             "median_f0_hz": round(float(np.median(fv)), 2) if len(fv) else None,
         })
-    out = {"file": audio.split("/")[-1], "median_f0_hz": round(float(110 * 2 ** (med / 12)), 2), "sentences": sents}
+    # FILE-level rhythm, from the same SRT cues and the energy track: the rate varies (speaking-rate CV) and the pauses fall in places and lengths
+    # a person chooses (pause length spread, share of time silent). Robotic TTS: even rate, even pauses; human: uneven on both.
+    wps = np.array([x["wps"] for x in sents], dtype=float)
+    durs = []   # every silence run inside the speech span, in seconds
+    speech = np.where(~silent)[0]
+    if len(speech) > 1:
+        lo_f, hi_f = speech[0], speech[-1]
+        run = 0
+        for val in silent[lo_f:hi_f + 1]:
+            if val: run += 1
+            else:
+                if run * HOP / SR >= MIN_PAUSE_S: durs.append(run * HOP / SR)
+                run = 0
+    durs = np.array(durs, dtype=float)
+    span = (speech[-1] - speech[0]) * HOP / SR if len(speech) > 1 else 0.0
+    rhythm = {
+        "wps_cv": round(float(np.std(wps) / np.mean(wps)), 4) if len(wps) > 1 and np.mean(wps) > 0 else None,
+        "pause_count": int(len(durs)),
+        "pause_mean_s": round(float(np.mean(durs)), 4) if len(durs) else None,
+        "pause_cv": round(float(np.std(durs) / np.mean(durs)), 4) if len(durs) > 1 else None,
+        "silent_share": round(float(durs.sum() / span), 4) if span > 0 and len(durs) else 0.0,
+    }
+    out = {"file": audio.split("/")[-1], "median_f0_hz": round(float(110 * 2 ** (med / 12)), 2), "rhythm": rhythm, "sentences": sents}
     txt = json.dumps(out, indent=1, sort_keys=True)
     print(txt)
     print(f"# sha256 {hashlib.sha256(txt.encode()).hexdigest()}", file=sys.stderr)
