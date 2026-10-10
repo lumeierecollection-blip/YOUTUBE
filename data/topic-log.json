@@ -967,9 +967,14 @@
           "topic": "Connecticut Housing Advocates Push Back Against Alternative Security Deposits",
           "slug": "connecticut-housing-advocates-alternative-security-deposits",
           "reserved_at": "2026-10-10T07:26:36.047Z"
+        },
+        {
+          "topic": "San Francisco Supervisor Introduces New Legislation to Curb Nuisance Evictions",
+          "slug": "sf-supervisor-legislation-curb-nuisance-evictions",
+          "reserved_at": "2026-10-10T10:14:40.907Z"
         }
       ],
-      "last_generated": "2026-10-10T07:26:36.047Z"
+      "last_generated": "2026-10-10T10:14:40.908Z"
     },
     "3": {
       "channel_name": "AI Tested",
