@@ -96,10 +96,11 @@ async function imageDataUrl(pngPath) {
 }
 
 // The verifier's version: bump it when the prompt, the answer parser or the model changes, so every stored verdict is re-asked.
-const CUTOUT_VERIFIER_VERSION = "2026-10-10.1";
+// 2026-10-10.2: OpenRouter joined the chain (Gemini → OpenRouter → Groq → Ollama), so the models list changed and every stored verdict is re-asked.
+const CUTOUT_VERIFIER_VERSION = "2026-10-10.2";
 const CUTOUT_CACHE_DIR = join(__dirname, "..", ".cache", "cutout-verify");
 function verifierModels() {
-  return [process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b", "gemini-3.5-flash-lite"];
+  return ["gemini-3.5-flash-lite", process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3-vl-32b-instruct", process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b"];
 }
 /** sha256 over the exact JPEG bytes, the concept name, the verifier version and the model chain. Pure. */
 function cutoutCacheKey(jpeg, name, version = CUTOUT_VERIFIER_VERSION, models = verifierModels()) {
@@ -120,7 +121,16 @@ async function askProviders(messages, norm = normalize) {
     if (v) return { provider: "gemini", v, tried };
     tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`gemini: ${e.message}`); }
-  // 2. Groq (vision model). Its free tier rate-limits per minute and says how
+  // 2. OpenRouter (vision model). Same answer parser as every other step: a model's
+  // answer counts only when norm() accepts it. The same messages, one attempt.
+  try {
+    const openrouter = require("./openrouter-client.cjs");
+    const o = await openrouter.callOpenRouter(messages, { maxTokens: 200, temperature: 0 });
+    const v = norm(o);
+    if (v) return { provider: "openrouter", v, tried };
+    tried.push(`openrouter: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`openrouter: ${e.message}`); }
+  // 3. Groq (vision model). Its free tier rate-limits per minute and says how
   // long to wait ("try again in 16.9s"): wait that out (<= 30 s, twice) rather
   // than reject — run 36944700437 lost 72 verifications to these 429s.
   try {
@@ -135,7 +145,7 @@ async function askProviders(messages, norm = normalize) {
       break;
     }
   } catch (e) { tried.push(`groq: ${e.message}`); }
-  // 3. Ollama (local vision model).
+  // 4. Ollama (local vision model).
   try {
     const ollama = require("./ollama-client.cjs");
     const o = await ollama.callOllama(messages, { maxTokens: 200, temperature: 0 });
@@ -146,12 +156,13 @@ async function askProviders(messages, norm = normalize) {
   return { provider: null, v: null, tried };
 }
 
-async function verifyCutoutImage(pngPath, name) {
+// useCache: false asks every time and stores nothing — the flip-rate measurement needs N independent answers.
+async function verifyCutoutImage(pngPath, name, { useCache = true } = {}) {
   if (!existsSync(pngPath)) return { verdict: "NONE", seen: `no image at ${pngPath}`, provider: null };
   const jpeg = await imageJpegBuf(pngPath);
   const key = cutoutCacheKey(jpeg, name);
   const file = join(CUTOUT_CACHE_DIR, `${key}.json`);
-  if (existsSync(file)) {
+  if (useCache && existsSync(file)) {
     try {
       const hit = JSON.parse(readFileSync(file, "utf8"));
       console.log(`[cutout] ${name}: answered from the cache (key ${key.slice(0, 12)}…, verifier ${CUTOUT_VERIFIER_VERSION})`);
@@ -168,6 +179,7 @@ async function verifyCutoutImage(pngPath, name) {
     return { verdict: "NONE", seen: "no vision provider answered", provider: null };
   }
   const result = { ...v, provider };
+  if (!useCache) return result;
   try {
     mkdirSync(CUTOUT_CACHE_DIR, { recursive: true });
     writeFileSync(file, JSON.stringify({ at: new Date().toISOString(), version: CUTOUT_VERIFIER_VERSION, result }, null, 2) + "\n");

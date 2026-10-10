@@ -140,7 +140,15 @@ async function askProviders(messages) {
     if (v) return { provider: "gemini", v, tried };
     tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`gemini: ${e.message}`); }
-  // 2. Groq (vision model).
+  // 2. OpenRouter (vision model), same messages, one attempt.
+  try {
+    const openrouter = require("./openrouter-client.cjs");
+    const o = await openrouter.callOpenRouter(messages, { maxTokens: 300, temperature: 0 });
+    const v = normalize(o);
+    if (v) return { provider: "openrouter", v, tried };
+    tried.push(`openrouter: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`openrouter: ${e.message}`); }
+  // 3. Groq (vision model).
   try {
     const groq = require("./groq-client.cjs");
     const g = await groq.callGroq(messages, { maxTokens: 300, temperature: 0 });
@@ -148,7 +156,7 @@ async function askProviders(messages) {
     if (v) return { provider: "groq", v, tried };
     tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`groq: ${e.message}`); }
-  // 3. Ollama (local vision model).
+  // 4. Ollama (local vision model).
   try {
     const ollama = require("./ollama-client.cjs");
     const o = await ollama.callOllama(messages, { maxTokens: 300, temperature: 0 });
