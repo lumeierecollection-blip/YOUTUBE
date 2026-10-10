@@ -455,9 +455,14 @@
           "topic": "The 2026 Fidelity Study on Short-Term Savings",
           "slug": "fidelity-study-short-term-savings-2026",
           "reserved_at": "2026-10-10T03:28:10.905Z"
+        },
+        {
+          "topic": "The Behavioral Science Behind Why Money Mindset Shifts Fail in October 2026",
+          "slug": "behavioral-science-money-mindset-october-2026",
+          "reserved_at": "2026-10-10T10:14:20.829Z"
         }
       ],
-      "last_generated": "2026-10-10T07:26:15.593Z"
+      "last_generated": "2026-10-10T10:14:20.829Z"
     },
     "2": {
       "channel_name": "Legal Brief",
