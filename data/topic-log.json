@@ -922,9 +922,14 @@
           "topic": "Maryland's New Rental Laws: Criminal Screening and Cooling Rules",
           "slug": "marylands-new-rental-laws-october-2026",
           "reserved_at": "2026-10-10T00:48:49.254Z"
+        },
+        {
+          "topic": "Federal Jury Finds Bexar County Liable for Unconstitutional Traffic Stop Scheme",
+          "slug": "bexar-county-unconstitutional-traffic-stop-scheme",
+          "reserved_at": "2026-10-10T01:18:54.342Z"
         }
       ],
-      "last_generated": "2026-10-10T00:48:49.254Z"
+      "last_generated": "2026-10-10T01:18:54.342Z"
     },
     "3": {
       "channel_name": "AI Tested",
