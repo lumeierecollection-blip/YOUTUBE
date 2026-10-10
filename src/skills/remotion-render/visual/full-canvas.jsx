@@ -118,12 +118,12 @@ export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max
 // The push decelerates (ease-out, monotone, never past 1): fastest at the beat's start, when only the first words are in and the frame
 // is sparse, slowing as the frame fills (layout-proof 38017734111: a linear push left the first 2 s of a long words-only beat under the
 // pace threshold while the rest moved).
-export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.26 : AMBIENT.amp, rate = words ? 0.04 : AMBIENT.rate, a = Math.min(amp, rate * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * (0.5 * (1 - Math.pow(1 - u, 2.2)) + 0.5 * u); };   // half ease-out, half linear: quick while sparse, never stopping before the cut
+export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.26 : 0.22, a = Math.min(amp, 0.04 * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * u; };   // constant speed, 4%/s: a half-ease-out settle decelerated under the pace threshold in the last seconds of a 10 s number beat (layout-proof 38038331178 beat 30: 1.5 s static)
 export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
 // A long beat needs a longer move, not a slower one (board 38034289156: the Gemini narrator's beats run 6-10 s and a fixed 6-10% push sat
 // still 8-10 s). `grow(local, dur, fps, floor)` is the push a picture makes over its beat: at least `floor`, else 3%/s up to 30%, as
 // half ease-out / half linear (monotone, never past its end, never reversing).
-export const grow = (local, dur, fps, floor = 0.06) => { const s = Math.max(1, dur / fps), a = Math.max(floor, Math.min(0.30, 0.03 * s)), u = clamp01(local / Math.max(1, dur)); return a * u; };   // constant speed: a decelerating push faded under the pace threshold in the last 4 s of a 10 s photo beat (layout-proof 38037366442)
+export const grow = (local, dur, fps, floor = 0.06) => { const s = Math.max(1, dur / fps), a = Math.max(floor, Math.min(0.80, 0.08 * s)), u = clamp01(local / Math.max(1, dur)); return a * u; };   // constant speed: a decelerating push faded under the pace threshold in the last 4 s of a 10 s photo beat (layout-proof 38037366442)
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
