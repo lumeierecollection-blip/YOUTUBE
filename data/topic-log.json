@@ -1225,9 +1225,14 @@
           "topic": "French Authorities Recover Stolen Renoir Paintings Following Cagnes-sur-Mer Heist",
           "slug": "french-authorities-recover-stolen-renoir-paintings",
           "reserved_at": "2026-10-10T13:17:05.254Z"
+        },
+        {
+          "topic": "Church of Cyprus Secures Return of 14th-Century Byzantine Icons Stolen in 1974",
+          "slug": "church-of-cyprus-recovers-stolen-byzantine-icons",
+          "reserved_at": "2026-10-10T14:47:08.573Z"
         }
       ],
-      "last_generated": "2026-10-10T13:17:05.254Z"
+      "last_generated": "2026-10-10T14:47:08.573Z"
     },
     "7": {
       "channel_name": "Dead Companies",
