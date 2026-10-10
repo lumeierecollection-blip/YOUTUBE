@@ -30,7 +30,7 @@ eq("an anchor at frame 0 pops at frame 0 (never negative)", scheduleEntityPop(mi
 
 // A word at the very end of the beat pops 8 frames earlier, and never past dur - 15.
 const late = scheduleEntityPop(miami, [{ text: "Then", from: 0, to: 80 }, { text: "Miami.", from: 110, to: 119 }], 120);
-eq("a word in the last 0.5 s pops 8 frames earlier, within the beat — and never later than MAX_POP_FRAME (the screen is never static)", [late.frame, late.frame <= 120 - 15], [Math.min(110 - POP_IN - 8, 105, MAX_POP_FRAME), true]);
+eq("a word in the last 0.5 s pops 8 frames earlier, within the beat, and never later than MAX_POP_FRAME (the screen is never static)", [late.frame, late.frame <= 120 - 15], [Math.min(110 - POP_IN - 8, 105, MAX_POP_FRAME), true]);
 
 // Not found: reported, never a failure.
 eq("anchor not spoken -> missing (the renderer pops at the beat start)", scheduleEntityPop(aliyev, words("The president spoke today"), 120).missing, "aliyev");

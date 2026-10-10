@@ -9,7 +9,9 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { decodePNG, sampleAt } from "../../src/skills/remotion-render/decode-png.js";
-import { canvasManifest } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { TEXT_GRID, canvasManifest } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// These replay layouts and frames from runs made before the one-grid look; they test the pre-grid machinery (TEXT_GRID.on is writable for exactly this).
+TEXT_GRID.on = false;
 import { devicesOf, labelCount, templateCheck } from "../template-check.js";
 
 const FIX = join(dirname(fileURLToPath(import.meta.url)), "..", "fixtures", "label-count");

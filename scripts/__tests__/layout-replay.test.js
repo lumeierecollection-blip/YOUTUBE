@@ -15,7 +15,9 @@
 import { it } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { canvasLayout, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { TEXT_GRID, canvasLayout, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// These replay layouts and frames from runs made before the one-grid look; they test the pre-grid machinery (TEXT_GRID.on is writable for exactly this).
+TEXT_GRID.on = false;
 
 const fx = JSON.parse(readFileSync("scripts/fixtures/layout-replay/run-37723570093.json", "utf8"));
 // These canvases come from runs that drew a kicker (lead_in) on every beat; the planner's layouts were made

@@ -14,7 +14,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { validatePatch, reviseBeats, beatFacts, REVISE_PROMPT, MAX_REVISED_BEATS } from "../eval-revise.js";
 import { recordEvalLoop } from "../eval-loop-callsite.js";
-import { canvasLayout, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { TEXT_GRID, canvasLayout, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+// A layout patch is judged by what it changes in canvasLayout's pre-grid placement; production draws every beat on the one text grid, which TEXT_GRID.on = false steps out of for this test.
+TEXT_GRID.on = false;
 
 const proc = (layout) => ({ visual_type: "PROCESS", composition: "PROCESS-FULL", data: { nodes: ["higher rates", "rent", "savings"] }, headline: "The chain", motion_tier: "medium", ...(layout ? { layout } : {}) });
 const plan = (layouts = []) => ({ beats: [0, 1, 2, 3, 4, 5].map((i) => ({ index: i, layout: layouts[i] || null, canvas: proc(layouts[i]) })) });

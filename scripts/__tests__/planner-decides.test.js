@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { resolveGround, luminance, GROUND } from "../../src/skills/remotion-render/visual/backgrounds.js";
-import { normalizeCanvas, canvasManifest, backgroundOf } from "../../src/skills/remotion-render/visual/canvas-layout.js";
+import { normalizeCanvas, canvasManifest, backgroundOf, WHITE_GROUND } from "../../src/skills/remotion-render/visual/canvas-layout.js";
 import { wantedTypes, nearestComposition, COMPOSITIONS } from "../composition-vocab.js";
 import { applyMotionTiers, normalizeGrounds, compositionsUsed } from "../planner-decisions.js";
 import { translateScene } from "../scene-translate.js";
@@ -33,9 +33,12 @@ describe("1.1 ground: the planner's choice, white by default", () => {
   it("normalizeCanvas derives dark from the ground, never from a stale flag", () => {
     assert.equal(normalizeCanvas({ composition: "TYPE-FULL" }, 0).dark, false);
     assert.equal(normalizeCanvas({ composition: "TYPE-FULL", dark: true }, 0).dark, false, "the retired c.dark flag alone must not draw light ink on white");
+    // WHITE_GROUND (owner, 2026-10-10: the shot-proof frames are the standard): every beat is drawn on white, so a ground the planner
+    // declared is not drawn. The planner's choice is still read (resolveGround, above); it is only not used.
+    assert.equal(WHITE_GROUND, true);
     const n = normalizeCanvas({ composition: "TYPE-FULL", ground_color: "#10141C" }, 0);
-    assert.equal(n.dark, true);
-    assert.equal(n.ground_color, "#10141C");
+    assert.equal(n.dark, false, "a declared dark ground must not turn the ink light on the white ground");
+    assert.equal(n.ground_color, null);
   });
   it("the manifest records the declared ground and keeps `ground` meaning white|photo", () => {
     const base = { visual_type: "TYPE", headline: "Rates stay high", composition: "TYPE-FULL", motion_tier: "medium" };
@@ -43,10 +46,10 @@ describe("1.1 ground: the planner's choice, white by default", () => {
     assert.equal(plain.ground, "white");
     assert.equal(plain.ground_color, null);
     assert.equal(plain.dark, false);
-    const dark = canvasManifest({ ...base, ground_color: "#10141C" }, 0);
+    const dark = canvasManifest({ ...base, ground_color: "#10141C" }, 0);   // WHITE_GROUND: the declared ground is not drawn
     assert.equal(dark.ground, "white");
-    assert.equal(dark.ground_color, "#10141C");
-    assert.equal(dark.dark, true);
+    assert.equal(dark.ground_color, null);
+    assert.equal(dark.dark, false);
   });
   it("a declared ground gets no white-only paper/gradient variation; the default keeps it", () => {
     assert.ok(backgroundOf(2, "TYPE-FULL").paper);
