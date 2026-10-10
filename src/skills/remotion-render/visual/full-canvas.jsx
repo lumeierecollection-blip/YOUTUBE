@@ -114,7 +114,8 @@ export const AMBIENT = Object.freeze({ amp: 0.15, rate: 0.03 });   // 3%/s, at m
 // The ambient push is MONOTONE (owner, 2026-10-10: nothing wobbles, nothing settles): one slow push-in across the whole beat, linear,
 // arriving at 1 on the beat's last frame — never in-and-out. `push(local, dur, fps, amp)` grows 0 -> amp over the beat.
 export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max(1, dur / fps), a = Math.min(amp, AMBIENT.rate * s); return a * clamp01(local / Math.max(1, dur)); };
-export const ambientScale = (local, dur, fps) => { const s = Math.max(1, dur / fps), a = Math.min(AMBIENT.amp, AMBIENT.rate * s); return 1 - a + push(local, dur, fps); };
+// Words alone (a TYPE beat) have nothing else that moves once the last word is in: their push runs 3.5%/s to 25% on a long beat.
+export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.25 : AMBIENT.amp, rate = words ? 0.035 : AMBIENT.rate, a = Math.min(amp, rate * s); return 1 - a + a * clamp01(local / Math.max(1, dur)); };
 export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
@@ -1459,7 +1460,7 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // own (words, numbers, objects, lists, diagrams) settles into place — it grows from 97% to 100% of its size about the
   // body's floor across the beat, so it is inside its zone at every frame and something is always moving. A photo, a graph,
   // a map and an entity card already move; the header (rule, kicker, headline) stays pinned.
-  const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : ambientScale(bodyLocal, dur, fps);
+  const amb = AMBIENT_SKIP.includes(L.composition) ? 1 : ambientScale(bodyLocal, dur, fps, String(L.composition).startsWith("TYPE"));
   // About the body's floor when it fills the frame (it then stays inside its zone and keeps its span); about its own centre when it is a
   // small line — a line standing on the floor barely moves about the floor (board 37983616641: TYPE-CHAPTER static 3 s). Either way the
   // shrink stays inside the content's own box.
