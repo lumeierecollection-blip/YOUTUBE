@@ -2980,9 +2980,14 @@
           "topic": "Leadership Agility: Adapting Styles for Situational Shifts in October 2026",
           "slug": "leadership-agility-adapting-styles-october-2026",
           "reserved_at": "2026-10-10T11:16:58.981Z"
+        },
+        {
+          "topic": "Claude Motion and Live Dashboards: Anthropic's Beta Productivity Tools",
+          "slug": "claude-motion-live-dashboards-anthropic-beta",
+          "reserved_at": "2026-10-10T13:13:03.771Z"
         }
       ],
-      "last_generated": "2026-10-10T11:16:58.981Z"
+      "last_generated": "2026-10-10T13:13:03.772Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
