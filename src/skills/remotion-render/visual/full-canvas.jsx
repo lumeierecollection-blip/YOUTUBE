@@ -123,7 +123,7 @@ export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, a
 // A long beat needs a longer move, not a slower one (board 38034289156: the Gemini narrator's beats run 6-10 s and a fixed 6-10% push sat
 // still 8-10 s). `grow(local, dur, fps, floor)` is the push a picture makes over its beat: at least `floor`, else 3%/s up to 30%, as
 // half ease-out / half linear (monotone, never past its end, never reversing).
-export const grow = (local, dur, fps, floor = 0.06) => { const s = Math.max(1, dur / fps), a = Math.max(floor, Math.min(0.30, 0.03 * s)), u = clamp01(local / Math.max(1, dur)); return a * (0.5 * (1 - Math.pow(1 - u, 2.2)) + 0.5 * u); };
+export const grow = (local, dur, fps, floor = 0.06) => { const s = Math.max(1, dur / fps), a = Math.max(floor, Math.min(0.30, 0.03 * s)), u = clamp01(local / Math.max(1, dur)); return a * u; };   // constant speed: a decelerating push faded under the pace threshold in the last 4 s of a 10 s photo beat (layout-proof 38037366442)
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
@@ -1376,7 +1376,7 @@ const themeFor = (c, onPhoto) => (onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,25
   : c.dark ? { ink: "#F2F0EB", soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false, ground: c.ground_color || DARK_BG }
   : { ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false, ground: c.ground_color || GROUND });
 
-const COMPONENTS = {
+export const COMPONENTS = {
   "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "PORTRAIT": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
   "SCENE-FULL": SceneFull, "ARCHITECTURE": SceneFull, "DOCUMENT": SceneFull, "MONEY": SceneFull, "SCENE-LOW": SceneFull,
   "PHOTO-BAND": PhotoFrame, "PHOTO-EDGE": PhotoFrame, "PHOTO-CARD": PhotoFrame, "PHOTO-INSET": PhotoFrame, "PHOTO-STRIP": PhotoFrame,
