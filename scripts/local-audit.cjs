@@ -814,7 +814,9 @@ async function flatLook(video, beats, accent, fps = 30) {
     // A flag is a real flag: its own colours are the entity's, judged by visual-contrast; everything else drawn is judged for palette.
     const pal = offPalette(buf, W, H, accent, { y1: Math.floor((CAPTION_Y0 / 1920) * H), skip: box && (art?.kind === "flag" || (Array.isArray(art?.items) && art.items.some((it) => it && it.asset))) ? [{ x: Math.floor(box.x), y: Math.floor(box.y), w: Math.ceil(box.w) + 1, h: Math.ceil(box.h) + 1 }] : [] });
     const sh = boxed ? shadowShare(buf, W, H, box, g.l) : 0;
-    const corners = boxed ? cornersSharp(buf, W, H, box, g.l) : 4;
+    // A plate with its mark's name set under it: the label sits where the bottom corners' diagonals start, so only the top two are judged.
+    const which = labelled && String(art?.kind).startsWith("plate-") ? [0, 1] : [0, 1, 2, 3];
+    const corners = boxed ? cornersSharp(buf, W, H, box, g.l, which) + (4 - which.length) : 4;
     rows.push(`${name}: off-accent colour ${(pal.share * 100).toFixed(2)}%${boxed ? `, shadow strip ${(sh * 100).toFixed(0)}%, sharp corners ${corners}/4` : ""}`);
     if (pal.share > OFF_SHARE_MAX) bad.push(`${name}: ${(pal.share * 100).toFixed(2)}% of the frame is a colour that is neither ink, neutral nor the accent ${accent} (max ${(OFF_SHARE_MAX * 100).toFixed(1)}%) — a palette the reference does not use`);
     if (sh > 0.25) bad.push(`${name}: a soft shadow halo along its edge (${(sh * 100).toFixed(0)}% of the strip) — the reference's components are flat`);

@@ -62,11 +62,11 @@ function shadowShare(buf, W, H, box, groundL) {
  * outline is still inked 6 px along both edges from that point. A corner rounded by ~16 px or more at 1080 has already turned away by then
  * (4 = all sharp).
  */
-function cornersSharp(buf, W, H, box, groundL) {
+function cornersSharp(buf, W, H, box, groundL, which = [0, 1, 2, 3]) {
   const x0 = Math.round(box.x), x1 = Math.round(box.x + box.w) - 1, y0 = Math.round(box.y), y1 = Math.round(box.y + box.h) - 1;
   const inb = (x, y) => x >= 0 && y >= 0 && x < W && y < H;
   const differs = (x, y) => { if (!inb(x, y)) return false; const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], b = buf[o + 2]; return Math.abs(0.299 * r + 0.587 * g + 0.114 * b - groundL) > 25 || Math.max(r, g, b) - Math.min(r, g, b) > 30; };
-  return [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].filter(([x, y, sx, sy]) => {
+  return [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]].filter((_, k) => which.includes(k)).filter(([x, y, sx, sy]) => {
     for (let k = -14; k <= 6; k++) {
       const px = x + k * sx, py = y + k * sy;
       if (differs(px, py)) return differs(px + 6 * sx, py) && differs(px, py + 6 * sy);

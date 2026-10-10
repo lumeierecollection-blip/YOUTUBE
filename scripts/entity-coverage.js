@@ -78,7 +78,8 @@ export function entitiesOf({ sentence = "", named_entities = [] } = {}) {
 }
 
 /** The entity the sentence is ABOUT, when it names several: person > organization > place > span > date > number. */
-const RANK = ["person", "organization", "place", "span", "date", "number"];
+// A stated figure outranks the span or date around it ("$53 million in six days" is about the money).
+const RANK = ["person", "organization", "place", "number", "span", "date"];
 export const primaryOf = (ents, hint = null) => (hint && ents.find((e) => sameName(e.name, hint))) || [...ents].sort((a, b) => RANK.indexOf(a.type) - RANK.indexOf(b.type))[0] || null;
 
 const digits = (s) => String(s || "").replace(/[^\d.]/g, "");

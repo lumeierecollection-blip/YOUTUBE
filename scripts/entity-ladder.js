@@ -33,6 +33,8 @@ export function yieldsTo(b, g) {
   const kinds = drawn.map((d) => d.kind);
   if (!kinds.length) return true;
   if (kinds.every((k) => k === "cutout" || k === "symbol" || k === "visual")) return true;
+  // A map of somewhere the sentence does not name is wrong, not just unhelpful: it yields (board 38012563025 ch-49).
+  if (kinds.includes("map") && !(g.ents || []).some((e) => { const r = coverageOf(c, e); return r.covered && /^map/.test(String(r.by || "")); })) return true;
   const vt = String(c.visual_type || b.visual_type || "").toUpperCase();
   if (vt === "TREND" || (vt === "LIST" && c.composition === "LIST-BUILD")) return true;
   // A process diagram of named steps shows none of the entity it names; the entity comes first ("process / relation -> diagram only if stated").
