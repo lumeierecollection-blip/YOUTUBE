@@ -1783,9 +1783,14 @@
           "topic": "MIT Concourse and the Revival of Humanistic Thinking in Tech",
           "slug": "mit-concourse-humanistic-thinking-tech",
           "reserved_at": "2026-10-10T10:18:43.467Z"
+        },
+        {
+          "topic": "Schelling, Kubrick, and the Eternal Truths of Being",
+          "slug": "schelling-kubrick-eternal-truths-being",
+          "reserved_at": "2026-10-10T13:16:09.858Z"
         }
       ],
-      "last_generated": "2026-10-10T11:21:05.575Z"
+      "last_generated": "2026-10-10T13:16:09.858Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
