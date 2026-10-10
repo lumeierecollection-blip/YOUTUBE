@@ -1,7 +1,10 @@
 // node scripts/test-entity-sync.mjs — word-level sync for entity visuals (src/skills/remotion-render/visual/entity-sync.js).
 import { entityAnchor, scheduleEntityPop, normWord, digitsOf, POP_IN, MAX_POP_FRAME } from "../src/skills/remotion-render/visual/entity-sync.js";
 import { popGroups } from "../src/skills/remotion-render/visual/pop-groups.js";
-import { canvasLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, TEXT_GRID } from "../src/skills/remotion-render/visual/canvas-layout.js";
+// The band order below (header in the top band, the entity visual in the middle) is the PRE-GRID arrangement; under the text grid
+// (owner, 2026-10-10) the words stand with the visual in the middle band and pop with it. Tested with the grid off.
+TEXT_GRID.on = false;
 
 let bad = 0;
 const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.stringify(want); if (!ok) bad++; console.log(`${ok ? "ok  " : "FAIL"} ${name} -> ${JSON.stringify(got)}${ok ? "" : ` (want ${JSON.stringify(want)})`}`); };
