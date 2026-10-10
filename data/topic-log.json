@@ -932,9 +932,14 @@
           "topic": "Federal Jury Finds Bexar County Liable for Unconstitutional Traffic Stop Scheme",
           "slug": "bexar-county-unconstitutional-traffic-stop-scheme",
           "reserved_at": "2026-10-10T01:18:54.342Z"
+        },
+        {
+          "topic": "Can Police Use ALPR Data to Justify a Traffic Stop?",
+          "slug": "alpr-traffic-stop-fourth-amendment-ruling",
+          "reserved_at": "2026-10-10T01:53:12.173Z"
         }
       ],
-      "last_generated": "2026-10-10T01:18:54.342Z"
+      "last_generated": "2026-10-10T01:53:12.173Z"
     },
     "3": {
       "channel_name": "AI Tested",
