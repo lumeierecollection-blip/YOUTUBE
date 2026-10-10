@@ -956,6 +956,10 @@ function heroShotLayout(c, comp, flip) {
  *   plates                a row of 2-4 labelled organisation plates: the organisations the sentence names together
  */
 // plates: 2-4 organisations the sentence names together, a row of labelled plates (the reference's "row of labelled cutouts", shot 24).
+// A flag grows by FLAG_PUSH over its beat, about the bottom edge of its box (the caption stands under it): its ink border is the one long
+// high-contrast edge on the beat, and a flag whose red / white split sits on the centre never moves when only its picture zooms
+// (board 38044082797 ch 8, Indonesia: 5.75 s with nothing moving). The audit's visual-contrast reads this from the manifest to find the border.
+export const FLAG_PUSH = 0.12;
 export const PLATES_SIZES = { 1: [440, 440], 2: [800, 500], 3: [960, 440], 4: [960, 350] };
 export const platesCount = (a) => Math.max(1, Math.min(4, Array.isArray(a?.names) ? a.names.length : 1));
 const ART_SIZES = { plates: [960, 360], flag: [660, 440], "plate-person": [440, 440], "plate-organization": [440, 440], "plate-place": [440, 440], date: [600, 470], span: [920, 330] };
@@ -1832,6 +1836,7 @@ export function canvasManifest(raw, idx) {
     camera: c.photo && (FULL_PHOTO_COMPS.includes(L.composition) || FRAMED_PHOTO_COMPS.includes(L.composition)) ? { subject: "photo", move: CAMERA.photo, from_frame: Number.isFinite(c.entity_pop?.frame) ? Math.max(0, c.entity_pop.frame) : 0 }
       : L.composition === "DATA-FULL" ? { subject: "graph", move: CAMERA.graph } : null,
     // What the beat NAMES and what it drew for it (scripts/entity-coverage.js reads both).
+    art_push: c.art?.kind === "flag" ? FLAG_PUSH : 0,
     art: c.art ? { kind: c.art.kind, name: c.art.name || null, names: Array.isArray(c.art.names) ? c.art.names : null, style: c.art.style || null, source_url: c.art.source_url || null, license: c.art.license || null, items: Array.isArray(c.art.items) ? c.art.items.map((it) => (it ? { name: it.name || null, asset: it.asset || null, source_url: it.source_url || null, license: it.license || null } : null)) : null, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || null, asset: c.art.asset || null } : null,
     entities: Array.isArray(c.named_entities) ? c.named_entities.filter((e) => e && e.name).map((e) => ({ type: e.type, name: e.name })) : [],
     camera_focus: c.camera_focus || null, persists_from: Number.isInteger(c.persists_from) ? c.persists_from : null, match_cut_prev: !!c.match_cut_prev,

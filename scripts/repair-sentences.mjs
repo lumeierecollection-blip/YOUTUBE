@@ -23,6 +23,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { callGemini } from "../src/lib/gemini-client.js";
+import { applyRepairs } from "./lib/repair-apply.mjs";
 
 const require = createRequire(import.meta.url);
 const { sentences } = require("./validate-script.cjs");
@@ -69,7 +70,9 @@ const prompt = [
   // CI run 37931078077 ch-6: the repair satisfied "states a specific number" with "1 powerful program", "using 42 years of
   // clues" and "1 major victory" — inventions the claims gate then skipped the channel for.
   "A number in a replacement is one THE RESEARCH STATES, with its own unit and meaning. Never write \"1\" / \"one\" as filler, never attach a figure to a thing the research does not measure, and never add a figure to meet a quota: where the research gives this sentence no number, it names a person, place, organization, date or object instead. A flip or a raised stake is a fact the research states, never a rhetorical turn (\"Except it is only half the story\") the research does not say.",
-  'Return JSON only: {"replacements": [{"n": <sentence number>, "text": "<the new sentence>"}]}',
+  // CUT (boards 38044082797 ch 6 / ch 44): asked for a specific detail where the research has none, the model invented one. It may instead cut.
+  'If THE RESEARCH states nothing that fits a flagged sentence\'s job, answer CUT for that sentence (its text is exactly: CUT) and it is removed. A cut is always better than an invented name, number, date, place or claim; never write a sentence the research does not support just to keep the script long. (A beat\'s only sentence cannot be cut.)',
+  'Return JSON only: {"replacements": [{"n": <sentence number>, "text": "<the new sentence, or CUT>"}]}',
 ].join("\n");
 
 const g = await callGemini([{ role: "user", content: prompt }], { model: MODEL, maxTokens: 4096, temperature: 0.2, noCache: true, tag: "repair" });
@@ -79,19 +82,16 @@ if (g && typeof g.content === "string" && Object.keys(g).length === 1) {
   const t = g.content, a = t.indexOf("{"), b = t.lastIndexOf("}");
   try { data = JSON.parse(t.slice(a, b + 1)); } catch { data = null; }
 }
-const reps = (data?.replacements || []).filter((r) => allowed.has(Number(r?.n)) && typeof r?.text === "string" && r.text.trim().length > 3);
-if (!reps.length) { console.log(`${tag}: repair — no usable replacement in the answer`); process.exit(1); }
+const result = applyRepairs(rows, data?.replacements, allowed);
+if (!result.replaced.length && !result.cut.length) { console.log(`${tag}: repair — no usable replacement in the answer${result.refused.length ? ` (${result.refused.map((x) => `sentence ${x.n} could not be cut: ${x.why}`).join("; ")})` : ""}`); process.exit(1); }
 
-for (const r of reps) {
-  const row = rows.find((x) => x.n === Number(r.n));
-  const text = r.text.trim().replace(/\s+/g, " ");
-  console.log(`${tag}: repair sentence ${row.n} [${row.beat}]: "${row.text}" -> "${text}"`);
-  row.text = text;
-}
+for (const r of result.replaced) console.log(`${tag}: repair sentence ${r.n} [${r.beat}]: "${r.from}" -> "${r.to}"`);
+for (const r of result.cut) console.log(`${tag}: repair sentence ${r.n} [${r.beat}]: "${r.text}" -> CUT (the research states nothing to say instead)`);
+for (const r of result.refused) console.log(`${tag}: repair sentence ${r.n}: not cut — ${r.why}`);
 (script.sections || []).forEach((sec, si) => {
   const before = sec.voiceover;
-  sec.voiceover = rows.filter((r) => r.si === si).map((r) => r.text).join(" ");
+  sec.voiceover = result.rows.filter((r) => r.si === si).map((r) => r.text).join(" ");
   if (sec.id === "hook" && script.hook === before) script.hook = sec.voiceover;
 });
 writeFileSync(scriptPath, JSON.stringify(script, null, 2) + "\n");
-console.log(`${tag}: repair — ${reps.length} sentence(s) replaced, ${rows.length - reps.length} kept word for word`);
+console.log(`${tag}: repair — ${result.replaced.length} sentence(s) replaced, ${result.cut.length} cut, ${rows.length - result.replaced.length - result.cut.length} kept word for word`);

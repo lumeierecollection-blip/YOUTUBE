@@ -81,7 +81,11 @@ def to_mp3(mime, data, mp3):
         raw = f.name
     m = re.search(r"rate=(\d+)", mime or "")
     src = ["-f", "s16le", "-ar", m.group(1) if m else "24000", "-ac", "1", "-i", raw] if "l16" in (mime or "").lower() or "pcm" in (mime or "").lower() else ["-i", raw]
-    subprocess.run(["ffmpeg", "-v", "error", "-y", *src, "-ar", "24000", "-ac", "1", "-b:a", "192k", mp3], check=True)
+    # Trailing silence only (areverse + silenceremove of the reversed head, keeping 0.2 s): the synthesised file ends 0.5-2 s after the
+    # last word, the video ends at the last word + its tail, and the render gate allows 1 s between them (board 38044082797: ch 9 drifted
+    # 1.95 s, ch 1 / 5 / 8 sat at 0.5-0.8 s). Pauses inside the speech are untouched, and the voice itself is not processed.
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *src, "-af", "areverse,silenceremove=start_periods=1:start_silence=0.2:start_threshold=-45dB,areverse",
+                    "-ar", "24000", "-ac", "1", "-b:a", "192k", mp3], check=True)
     os.unlink(raw)
 
 

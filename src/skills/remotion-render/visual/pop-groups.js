@@ -65,7 +65,11 @@ export function popGroups(c, L) {
   const ek = entityGroupKey(c, L, groups);
   if (ek && c.entity_pop && Number.isFinite(c.entity_pop.frame) && order.some((g) => g.key !== ek && g.major)) {
     const rest = arrival(order.filter((g) => g.key !== ek), style);
-    return [...rest, { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true }];
+    const entity = { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true };
+    // PopGroups paints in array order, so ARRIVAL order must not become PAINT order for the full-bleed photo: appended last it was drawn over
+    // the headline and every other group, and the words vanished the moment the photo popped (board 38044082797 ch 1 beat 7: "no words found").
+    // The photo stays the bottom layer; the other bands are clipped to separate zones, so their order does not matter.
+    return ek === "photo" ? [entity, ...rest] : [...rest, entity];
   }
   return arrival(order, style);
 }

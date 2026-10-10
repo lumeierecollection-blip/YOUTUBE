@@ -53,7 +53,9 @@ eq("a plain statement has no entity", scheduleEntityPop({ composition: "TYPE-FUL
   const g = popGroups(c, canvasLayout(c));
   eq("portrait beat: headline group at 0, portrait group at its word", g.map((x) => `${x.key}@${x.at}`), ["top@0", "middle@29"]);
   const s = { visual_type: "PHOTO", composition: "SCENE-FULL", headline: "The city held its vote", photo: { asset: "x.jpg", entity: "Miami", view: "scene" }, entity_pop: { frame: 45, kind: "photo" } };
-  eq("full-bleed beat: header at 0, the photo on its word", popGroups(s, canvasLayout(s)).map((x) => `${x.key}@${x.at}`), ["top@0", "photo@44"]);
+  // The photo ARRIVES on its word (44) but is the BOTTOM paint layer: PopGroups paints in array order, and a photo appended last was drawn over
+  // the headline, so the words vanished when it popped (board 38044082797 ch 1 beat 7).
+  eq("full-bleed beat: the photo is the first (bottom) layer and pops on its word; the header keeps frame 0", popGroups(s, canvasLayout(s)).map((x) => `${x.key}@${x.at}`), ["photo@44", "top@0"]);
   const n = { ...c, entity_pop: undefined };
   eq("no entity_pop: the old order (beat-level)", popGroups(n, canvasLayout(n)).map((x) => `${x.key}@${x.at}`), ["top@0", "middle@8"]);
 }

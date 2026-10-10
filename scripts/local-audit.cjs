@@ -764,6 +764,17 @@ async function visualCentred(video, beats, m_fps = 30) {
 }
 
 /**
+ * Where a flag's box is at time t. A flag grows by `art_push` over its beat about the bottom edge of its box (canvas-layout.js FLAG_PUSH,
+ * drawn by full-canvas.jsx EntityArt), so its border and corners are where the renderer drew them then, not where the layout first put
+ * the box. Pure: box in any px unit, u = progress through the beat (0..1).
+ */
+function grownBox(box, push, u) {
+  if (!box || !(push > 0)) return box;
+  const s = 1 + push * Math.min(1, Math.max(0, u));
+  return { x: box.x + box.w / 2 - (box.w * s) / 2, y: box.y + box.h - box.h * s, w: box.w * s, h: box.h * s };
+}
+
+/**
  * visual-contrast (owner, 2026-10-09: "no large element of the visual may share the ground's luminance, so it disappears.
  * A flag with a white field on a white ground fails — the white stripe vanishes and the flag reads as loose bars"), on the
  * RENDERED frame (after the picture pops): a rectangular visual — a flag, a framed photo card — must be BOUNDED all the way
@@ -776,12 +787,13 @@ async function visualContrast(video, beats, fps = 30) {
   const W = 540, H = 960, sc = H / 1920;
   beats.forEach((b, i) => {
     const c = b.canvas;
-    const box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD"].includes(c?.composition) ? c.boxes?.photo : null;
+    let box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD"].includes(c?.composition) ? c.boxes?.photo : null;
     if (!box || !(box.w > 0)) return;
     const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
     const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
+    box = grownBox(box, c.art_push, (t - (b.start_sec ?? 0)) / Math.max(1e-6, b.duration_sec ?? 0));
     const g = frameGround(buf, W, H);
     const px = (x, y) => { const o = (y * W + x) * 3; return [buf[o], buf[o + 1], buf[o + 2]]; };
     const differs = (x, y) => { const [r, gg, bl] = px(x, y); const l = 0.299 * r + 0.587 * gg + 0.114 * bl; return Math.abs(l - g.l) > 25 || Math.max(r, gg, bl) - Math.min(r, gg, bl) > 30; };
@@ -890,13 +902,14 @@ async function flatLook(video, beats, accent, fps = 30) {
     const c = b.canvas;
     if (!c || !COMPS.has(c.composition)) return;
     const art = c.composition === "ENTITY-ART" ? c.art : null;
-    const box = art && c.boxes?.art ? { x: c.boxes.art.x * sc, y: c.boxes.art.y * sc, w: c.boxes.art.w * sc, h: c.boxes.art.h * sc } : null;
+    let box = art && c.boxes?.art ? { x: c.boxes.art.x * sc, y: c.boxes.art.y * sc, w: c.boxes.art.w * sc, h: c.boxes.art.h * sc } : null;
     // A single plate is a square inside its box (smaller when a real mark leaves room for its label); a row of plates has several corners.
     const labelled = !!art && Array.isArray(art.items) && art.items.some((it) => it && it.asset);
     if (box && art && String(art.kind).startsWith("plate-")) { const side = Math.min(box.w, labelled ? box.h - 35 : box.h); box.x += (box.w - side) / 2; box.w = side; box.h = side; }
     const boxed = !!box && art.kind === "flag";   // name cards are unboxed type now (the fixture look); a flag keeps its hairline frame
     const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
     const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
+    if (art?.kind === "flag") box = grownBox(box, c.art_push, (t - (b.start_sec ?? 0)) / Math.max(1e-6, b.duration_sec ?? 0));
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
     const g = frameGround(buf, W, H);

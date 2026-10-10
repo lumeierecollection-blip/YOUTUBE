@@ -18,16 +18,17 @@
  * cues keep it: the planner's gates read digits from those cues.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, copyFileSync } from "fs";
 import { resolveChannel } from "../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { execSync } from "child_process";
+import { execSync, spawnSync } from "child_process";
 import { narrationSections } from "./script-narration.js";
 import { speakable } from "./tts-normalize.js";
 import { synthesize as synthesizeElevenLabs } from "./tts-elevenlabs.js";
 import { synthesize as synthesizeMai } from "./tts-mai.js";
 import { verifyTts } from "./tts-verify.js";
+import { chooseTake } from "./tts-takes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -148,19 +149,45 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     const helper = join(ROOT, "src", "utils", "tts_gemini.py");
     const args = `--voice "${g.voice}" --style "${g.style.replace(/"/g, "'")}" --file "${tmpTextPath}" --display-file "${displayPath}" --mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
     const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
-    for (const py of pythons) {
-      try {
-        const out = execSync(`${py} "${helper}" ${args}`, { stdio: "pipe", timeout: 600000 }).toString().trim();
-        console.log(out);
-        console.log(`Delivery: gemini voice=${g.voice} (channel voice ${voice})`);
-        verifyTts({ mp3Path: audioPath, srtPath, wordsPath, spokenText, channel: settings.channel || "?", topic });
-        try { unlinkSync(tmpTextPath); } catch {}
-        try { unlinkSync(displayPath); } catch {}
-        return audioPath;
-      } catch (err) {
-        console.error(`::warning::Gemini TTS failed (${py}): ${String(err.stderr || err.message).trim().split("\n").slice(-3).join(" | ").slice(0, 400)} — falling back`);
-      }
-    }
+    // TAKES (board 38044082797, ch 26): see tts-takes.js. Up to TTS_GEMINI_TAKES takes (default 3), each heard by the render's own narration
+    // judge at its own threshold; the first that passes is kept, else the best-scoring one. A judge that cannot run keeps the take given.
+    const takes = process.env.TTS_NARRATION_RETAKE === "0" ? 1 : Math.max(1, Number(process.env.TTS_GEMINI_TAKES) || 3);
+    const judge = join(ROOT, "scripts", "narration-judge.mjs");
+    const kept = [audioPath, srtPath, wordsPath];
+    const cleanup = () => { for (const f of [tmpTextPath, displayPath, ...kept.map((k) => `${k}.besttake`)]) { try { unlinkSync(f); } catch {} } };
+    const r = chooseTake({
+      takes,
+      log: (m) => console.log(`[tts] ${m}`),
+      record: (take) => {
+        for (const py of pythons) {
+          try {
+            const out = execSync(`${py} "${helper}" ${args}`, { stdio: "pipe", timeout: 600000 }).toString().trim();
+            console.log(out);
+            console.log(`Delivery: gemini voice=${g.voice} (channel voice ${voice})${takes > 1 ? `, take ${take}/${takes}` : ""}`);
+            verifyTts({ mp3Path: audioPath, srtPath, wordsPath, spokenText, channel: settings.channel || "?", topic });
+            return true;
+          } catch (err) {
+            console.error(`::warning::Gemini TTS failed (${py}): ${String(err.stderr || err.message).trim().split("\n").slice(-3).join(" | ").slice(0, 400)} — falling back`);
+          }
+        }
+        return false;
+      },
+      judge: (take) => {
+        if (takes === 1) return { status: "unavailable" };   // one take: nothing to choose between, no extra Gemini call
+        const jsonPath = join(outputDir, `${topic}-take${take}-narration.json`);
+        const jr = spawnSync("node", [judge, "--audio", audioPath, "--srt", srtPath, "--out", jsonPath], { stdio: "pipe", timeout: 300000, env: process.env });
+        for (const l of String(jr.stdout || "").split("\n").filter(Boolean)) console.log(`[take ${take}] ${l}`);
+        if (jr.status === 0) return { status: "pass" };
+        if (jr.status !== 1) return { status: "unavailable" };
+        let mean = 0;
+        try { const rows = JSON.parse(readFileSync(jsonPath, "utf8")).sentences || []; mean = rows.reduce((n, x) => n + Number(x.score || 0), 0) / Math.max(1, rows.length); } catch {}
+        return { status: "fail", mean };
+      },
+      save: () => { for (const f of kept) if (existsSync(f)) copyFileSync(f, `${f}.besttake`); },
+      restore: () => { for (const f of kept) if (existsSync(`${f}.besttake`)) copyFileSync(`${f}.besttake`, f); },
+    });
+    cleanup();
+    if (r.outcome !== "none") return audioPath;   // none = no take at all: the chain below, as before
   }
 
   // Task 4.1 — natural voiceover provider chain: ElevenLabs → MAI-Voice →

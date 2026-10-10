@@ -41,6 +41,7 @@ import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-name
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { SYMBOLS as CONCEPT_SYMBOLS } from "../src/skills/remotion-render/visual/concept-classes.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
+import { namedIn as placeNamedIn } from "./place-gate.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
@@ -548,7 +549,11 @@ export function checkVisual(b, sentence) {
   }
   if (t === "MAP") {
     const place = String(d.place || "").trim();
-    return place && resolveRegion(place) ? { type: t, data: { place } } : bad(`MAP place "${place}" is not a known region`);
+    if (!(place && resolveRegion(place))) return bad(`MAP place "${place}" is not a known region`);
+    // The ship-time place gate (place-gate.js M1) fails a map whose place the sentence does not name, so it is refused here, where the beat
+    // falls back to a name card, instead of after the render (board 38044082797 ch 5: a map of "Malaysia" for a sentence that never says it).
+    if (String(sentence || "").trim() && !placeNamedIn(place, sentence)) return bad(`MAP place "${place}" is not named in the sentence`);
+    return { type: t, data: { place } };
   }
   if (t === "COUNTER") {
     if (!numIn(d.value, nums)) return bad(`COUNTER value "${d.value}" is not in the sentence`);

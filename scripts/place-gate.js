@@ -38,7 +38,7 @@ export const AMBIGUOUS_PLACE_NAMES = new Set([
 
 const PLACE_PHOTO_KINDS = new Set(["place", "building", "organization", "company", "institution", "scene"]);
 const esc = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const namedIn = (name, sentence) => !!name && new RegExp(`(^|[^\\p{L}])${esc(name)}($|[^\\p{L}])`, "iu").test(String(sentence || ""));
+export const namedIn = (name, sentence) => !!name && new RegExp(`(^|[^\\p{L}])${esc(name)}($|[^\\p{L}])`, "iu").test(String(sentence || ""));
 const countryOf = (id) => (String(id).startsWith("us:") ? "country:USA" : id);
 
 /** Region ids named in free text. `properOnly`: count only capitalised spans (a script). */

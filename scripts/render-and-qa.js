@@ -23,7 +23,7 @@ import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS, SHOTS, CONTENT_SHOTS, HERO_SHOTS, shotName } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS, SHOTS, CONTENT_SHOTS, HERO_SHOTS, shotName, TEXT_GRID } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
@@ -41,6 +41,7 @@ import { callLLM, isProviderError } from "../src/lib/llm.js";
 const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+import { dropContainedEntities } from "./lib/contained-entities.mjs";
 const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
 import { chooseBeatVisual } from "./beat-visual.js";
 import { createUsedImages, imageKeys } from "./lib/used-images.js";
@@ -1152,7 +1153,10 @@ export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) 
   choice.forEach((o, i) => { if (i > 0 && o.key === choice[i - 1].key) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} are the same composition (${o.key})` }); });
   // No two consecutive beats share an alignment: the others alternate left/right by beat index, so the
   // only way to repeat one is a centred headline on two beats in a row (canvas-type, part C.2).
-  choice.forEach((o, i) => { if (i > 0 && o.centred && choice[i - 1].centred && indices[i] - indices[i - 1] === 1) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} both centre their words` }); });
+  // Not under the text grid (owner, 2026-10-10: every beat's words are centred on the one axis): the audit's canvas-type skips this rule then
+  // (local-audit.cjs `!TEXT_GRID_ON`), and enforcing it here made EVERY sequence illegal — board 38044082797 ch 49: "no legal sequence exists",
+  // so the solver gave up and left a photo card twice and a statement twice in a row, which canvas-type then failed.
+  if (!TEXT_GRID.on) choice.forEach((o, i) => { if (i > 0 && o.centred && choice[i - 1].centred && indices[i] - indices[i - 1] === 1) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} both centre their words` }); });
   // No image on two beats (Layer 1 no-photo-repeat; keyed by asset AND source — scripts/lib/used-images.js).
   const seenImg = new Map();
   choice.forEach((o, i) => {
@@ -1659,7 +1663,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Every beat that names something gets its picture — the hook and the CTA too (owner's
       // spec 2026-10-03, "PNGs on every beat"; this replaces "the hook stays typography").
       const ents = await sceneEntities({ beat: b, sentence: b.narration || "", entityNamedInSentence });
-      const real = ents.filter((e) => REAL.includes(e.type))
+      const real = dropContainedEntities(ents.filter((e) => REAL.includes(e.type)), b.narration || "")
         .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
       const named = [];   // real, resolvable names that found no verified photo: the name card's subject
       // Every verified candidate this beat's entities produce; the beat's ONE visual is then chosen

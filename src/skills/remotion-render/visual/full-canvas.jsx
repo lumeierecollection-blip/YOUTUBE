@@ -74,7 +74,7 @@ import {
   FRAME, CAPTION, CAPTION_R, INK, INK_SOFT, MID, LIGHT, STUDIO, DARK_BG, SANS, TRANSITION_SEC,
   canvasLayout, contentBounds, focusBox, textWidth, normalizeCanvas, liftAccent, L_EDGE, R_EDGE,
   TOP, BOTTOM, ZONES, ZONE_TOL, flattenBoxes, elementType, zonesOf, backgroundOf, PAPER_OPACITY, BG_RULE, BG_GRADIENT,
-  FRAMED_PHOTO_COMPS, FULL_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent,
+  FRAMED_PHOTO_COMPS, FULL_PHOTO_COMPS, HERO_COMPS, TYPE_CARD_COMPS, CAMERA, readableAccent, FLAG_PUSH,
 } from "./canvas-layout.js";
 
 // Paper texture (part C.3): fractal noise in grey at PAPER_OPACITY over the white ground —
@@ -813,7 +813,9 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     }
     const veil = comp === "MONEY" ? "linear-gradient(180deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.30) 36%, rgba(0,0,0,0.22) 58%, rgba(0,0,0,0.80) 100%)"
       // SCENE-LOW (shots 11 / 16): the words sit low in the middle band, over a darkened foot.
-      : comp === "SCENE-LOW" ? "linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.30) 52%, rgba(0,0,0,0.78) 74%, rgba(0,0,0,0.66) 100%)"
+      // The words stand on y 1119-1328 (58-69% of the frame): the veil is already 0.74 there, so white words read on a photo of any brightness
+      // (a pale sky behind them came out at about 2.5:1 with the earlier 0.47-0.67 ramp, and the words were lost: board 38044082797 ch 1 beat 7).
+      : comp === "SCENE-LOW" ? "linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.35) 48%, rgba(0,0,0,0.74) 58%, rgba(0,0,0,0.78) 72%, rgba(0,0,0,0.66) 100%)"
       : comp === "DOCUMENT" ? "linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.05) 62%, rgba(0,0,0,0.70) 100%)"
       // place / building: the overlay eases from 0.45 to 0.35 across the beat (owner's spec
       // 2026-10-03 D.2; it was a flat 0.35 — 2026-10-02 task 3.1).
@@ -893,8 +895,12 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
     );
   }
   const words = label.split(/\s+/).filter(Boolean);
-  const mono = style === "mono" && words.length > 1;
-  const shown = mono ? words.slice(0, 3).map((x) => x[0]).join("").toUpperCase() : label;
+  // A monogram only for a SHORT name, and from its significant words: "MIT School of Humanities, Arts, and Social Sciences" became "MSO"
+  // (the first three words, "of" included) with its full name set on one line that ran off the frame (board 38044082797 ch 10). A long name
+  // is set whole, over two lines, in the serif.
+  const sig = words.filter((x) => !/^(of|the|and|for|in|on|at|to|de|la|le|&)$/i.test(x));
+  const mono = style === "mono" && sig.length > 1 && label.length <= 28;
+  const shown = mono ? sig.slice(0, 3).map((x) => x[0]).join("").toUpperCase() : label;
   const lw = shown.split(/\s+/);
   const cut = Math.ceil(lw.length / 2);
   const lines = lw.length <= 2 ? (lw.length && shown.length > 14 ? lw : [shown]) : [lw.slice(0, cut).join(" "), lw.slice(cut).join(" ")];
@@ -908,7 +914,7 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
       <div style={{ position: "absolute", left: 0, right: 0, top: (side - block) / 2, height: block, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", font: `800 ${Math.round(size)}px ${SERIF}`, lineHeight: 1.05, letterSpacing: -1, color: th.ink, whiteSpace: "nowrap" }}>
         {lines.map((l, i) => <span key={i}>{l}</span>)}
       </div>
-      {mono ? <div style={{ position: "absolute", left: 0, right: 0, top: (side + block) / 2 + 14, textAlign: "center", font: `700 30px ${SANS_STACK}`, letterSpacing: 3, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div> : null}
+      {mono ? <div style={{ position: "absolute", left: 0, right: 0, top: (side + block) / 2 + 14, textAlign: "center", font: `700 ${Math.max(18, Math.min(30, Math.floor(((W * 0.94) / label.length - 3) / 0.62)))}px ${SANS_STACK}`, letterSpacing: 3, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div> : null}
       <div style={{ position: "absolute", left: (W - 160) / 2, top: Math.min(side - 8, (side + block) / 2 + (mono ? 62 : 26)), width: 160, height: 8, backgroundColor: accent }} />
     </div>
   );
@@ -931,10 +937,15 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const flat = flatCss(local - Math.round(at * fps));
   const hair = 3;
   if (b && a.kind === "flag" && a.asset) {
+    // The whole bordered flag grows FLAG_PUSH across the beat about its bottom edge (canvas-layout.js FLAG_PUSH); the border is 6 px so a white
+    // field never vanishes into the white ground (visual-contrast).
+    const fk = 1 + FLAG_PUSH * clamp01(local / Math.max(1, dur));
     art = (
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...flat }}>
-        <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", border: `${hair}px solid ${th.ink}`, overflow: "hidden" }}>
-          <Img src={staticFile(a.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", transformOrigin: "50% 50%", transform: `scale(${(1 + CAMERA.photo * easeInOut(live)).toFixed(4)})` }} />
+        <div style={{ position: "absolute", inset: 0, transformOrigin: "50% 100%", transform: `scale(${fk.toFixed(4)})` }}>
+          <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", border: `6px solid ${th.ink}`, overflow: "hidden" }}>
+            <Img src={staticFile(a.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", transformOrigin: "50% 50%", transform: `scale(${(1 + CAMERA.photo * easeInOut(live)).toFixed(4)})` }} />
+          </div>
         </div>
       </div>
     );
