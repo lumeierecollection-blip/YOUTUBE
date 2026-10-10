@@ -171,6 +171,7 @@ for (const job of jobs) {
 
 const agree = [...new Set(rows.filter((r) => r.repeat && r.ok).map((r) => r.textId))].map((id) => { const g = rows.filter((r) => r.textId === id && r.repeat && r.ok).map((r) => (r.gate === "pass" ? "pass" : "FAIL")); return `${id}: ${g.join(" / ")} -> ${g.length && g.every((x) => x === g[0]) ? "AGREE" : "DISAGREE"}`; });
 if (agree.length) console.log(`\nsame audio, three judgements (each the median of three readings):\n${agree.join("\n")}`);
+if (set === "calibrate") { console.log("calibrate: all variants synthesised; scripts/acoustic/calibrate.py measures them next"); process.exit(0); }
 rows.sort((a, b) => String(a.textId).localeCompare(String(b.textId)) || (b.mean ?? -1) - (a.mean ?? -1));
 const cells = ["| text | variant | voice | mode | judge | mean | per sentence | at 7+ | gate |", "|---|---|---|---|---|---|---|---|---|", ...rows.map((r) => `| ${r.textId} | ${r.name} | ${r.voice} | ${r.mode} | ${r.judge || "—"} | ${r.ok ? r.mean : "—"} | ${r.ok ? r.scores.join(" ") : r.why} | ${r.ok ? `${r.passing}/${r.of}` : "—"} | ${r.gate || "—"} |`)].join("\n");
 const byText = new Map(); for (const r of rows) if (!byText.has(r.textId)) byText.set(r.textId, r.features);
