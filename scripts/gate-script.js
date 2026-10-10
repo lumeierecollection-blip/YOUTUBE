@@ -25,7 +25,12 @@ const ROOT = join(__dirname, "..");
 // SCR-16 deterministically. Channels 1 and 48 failed this way in runs
 // 35211514030 and 35266860427 (62, 64, 57 words). If these numbers change,
 // that test fails and the prompt has to be updated with them.
-export const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 155, minimal: 165 };
+// 2026-10-10: the Gemini TTS voice (the narrator since the voice change; narration-judge scores it
+// 8-9) reads 105-125 words/min, not Edge's 150-165. Sizing scripts for 155 made every
+// motion-graphics script too long for the 36-52 s window, which looped SCR-16 and left board
+// 38034289156 with ch 1, 5, 26 and 44 skipped. The board's two minimal channels (6, 8) get the
+// same figure; cinematic-documentary is not on the board and is left until it has a measured run.
+export const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 125, minimal: 125 };
 // Midpoint of render.js's clamp ranges, used only to sanity-check pacing —
 // actual duration is decided later by the real voiceover audio length.
 const FORMAT_MIDPOINT_MINUTES = { shorts: 44 / 60, longform: (2 + 12) / 2 };
@@ -33,7 +38,7 @@ const FORMAT_MIDPOINT_MINUTES = { shorts: 44 / 60, longform: (2 + 12) / 2 };
 // Render.js clamps final duration to the actual voiceover length anyway.
 // 2026-10-03, the narrative engine (prompts/write-script.md): five beats — hook, setup,
 // re-hook, payoff, close — need ~100 words. Shorts move from 30-45 s to 36-52 s at the
-// gate's effective rate, i.e. 92-107 words safe for every style (scripts/test-word-budget.mjs).
+// gate's effective rate, (superseded 2026-10-10: 80-98 words at the Gemini voice's pace) (scripts/test-word-budget.mjs).
 // Measured the same day the narrator speaks 1.8-2.5 words/s, so ~100 words is 40-55 s of
 // real voiceover; the workflow still trims anything over 58 s (scripts/fit-short.js).
 export const DURATION_RANGE_SECONDS = { shorts: { min: 36, max: 52 }, longform: { min: 30, max: 45 } };

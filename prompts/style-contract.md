@@ -41,11 +41,11 @@ reveal lands, closing type) in the context JSON — follow those, not a
 generic structure.
 
 Target voiceover word counts (spoken text only):
-- `shorts`: 92–107 words — a BLOCKER gate (SCR-16), both ends. Measured on
-  2026-10-03 voiceovers the narrator speaks 1.8-2.5 words a second, so ~100
-  words is 40-55 seconds: room for the five beats (hook, setup, re-hook,
-  payoff, close) and inside the 58-second Short. Every sentence must hook,
-  escalate, re-hook, pay off or close — and the count stays inside the range.
+- `shorts`: 80–98 words — a BLOCKER gate (SCR-16), both ends. The Gemini
+  narrator speaks 105 to 125 words a minute, so ~90 words is 40-50 seconds: room
+  for the five beats (hook, setup, re-hook, payoff, close) and inside the
+  58-second Short. Every sentence must hook, escalate, re-hook, pay off or
+  close — and the count stays inside the range.
 - `longform`: match the `script_template`'s section count — a 5-section
   longform lands about 700–950 words at the style's WPM.
 Count the voiceover words before finishing; if you're outside the range,

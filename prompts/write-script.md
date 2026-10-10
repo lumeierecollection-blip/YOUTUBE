@@ -27,26 +27,26 @@ values).
 
 ## Length — a hard gate
 
-**Voiceover word count: 92-107 words in total. This is a BLOCKER gate, not a
+**Voiceover word count: 80-98 words in total. This is a BLOCKER gate, not a
 guideline.** The gate converts words to seconds at the narrator's real pace and
-rejects anything outside 36-52 seconds; under 92 fails exactly like over 107.
-Aim for about 100 words.
+rejects anything outside 36-52 seconds; under 80 fails exactly like over 98.
+Aim for about 90 words (the narrator speaks 105 to 125 words a minute).
 
 **The target per beat — count as you write:**
 
-    HOOK:     10–14 words
-    SETUP:    30–40 words
-    RE-HOOK:  10–18 words
-    PAYOFF:   30–42 words
-    CLOSE:     8–14 words
-    Total:    92–107 words
+    HOOK:     9–12 words
+    SETUP:    26–34 words
+    RE-HOOK:  9–14 words
+    PAYOFF:   26–35 words
+    CLOSE:     7–11 words
+    Total:    80–98 words
 
 These are ranges to land inside, not ceilings to stay under. That is 9-10
 sentences in all, each carrying ONE fact.
 
-Count the words before returning. If your script is under 92
+Count the words before returning. If your script is under 80
 words, expand the setup and payoff with specific facts. If it
-is over 107, cut the least essential sentence. The word count
+is over 98, cut the least essential sentence. The word count
 is a hard requirement.
 
 ## STRUCTURE — five beats, in this order, as five sections
@@ -55,7 +55,7 @@ Write `sections` as exactly five objects with these ids, in this order:
 `hook`, `setup`, `rehook`, `payoff`, `close`. `hook` (the top-level field) is
 the HOOK sentence, word for word.
 
-1. **HOOK** (section `hook`, ONE sentence, 10–14 words). A promise, a shock, a
+1. **HOOK** (section `hook`, ONE sentence, 9–12 words). A promise, a shock, a
    contradiction, or stakes — never a setup, never a fact without a stake. The
    first sentence IS the punch. One of:
    - Contradiction: "Banks said the money was safe. It disappeared in 48 hours."
@@ -65,7 +65,7 @@ the HOOK sentence, word for word.
    - Specific shock: "One line in your mortgage contract costs $200 a month."
    Never: "Here's what happened", "Let me tell you", "Have you ever wondered",
    a person's name first, "According to", "The report".
-2. **SETUP** (section `setup`, 3 sentences, 30–40 words). Just enough context for
+2. **SETUP** (section `setup`, 3 sentences, 26–34 words). Just enough context for
    the payoff to land. Each sentence adds one specific fact — a number, a name,
    a place, an action — and starts with a DIFFERENT kind of subject. The LAST
    setup sentence ends on a question the viewer now has (a literal question,
@@ -73,7 +73,7 @@ the HOOK sentence, word for word.
    place, person or object ("Where did the $91 million go?", never "Where did it
    all go?"): a nameless question is a words-only card, and the re-hook right
    after it would be a second one in a row.
-3. **RE-HOOK** (section `rehook`, 1-2 sentences, 10–18 words). Its flip or raised
+3. **RE-HOOK** (section `rehook`, 1-2 sentences, 9–14 words). Its flip or raised
    stake is a FACT THE RESEARCH STATES (a limit, an exception, a larger number, a
    contradiction between sources) — "Except generating charts is only half the
    release" was an invented flip and the claims gate skipped the channel. If the
@@ -83,12 +83,12 @@ the HOOK sentence, word for word.
    made one mistake.") or RAISES the stakes ("And the person who signed it
    worked for the buyer."). It still names something specific. Never "But
    wait, there's more", "Here's the thing", "What happened next".
-4. **PAYOFF** (section `payoff`, 3 sentences, 30–42 words). Deliver the hook's
+4. **PAYOFF** (section `payoff`, 3 sentences, 26–35 words). Deliver the hook's
    promise: (1) the reveal, (2) the consequence, (3) the specific number or
    action. It names a person, place or organization AND a specific number.
    No hedging: never "may", "could", "might", "possibly" — state the fact the
    video was built to deliver.
-5. **CLOSE** (section `close`, ONE sentence, 8–14 words). What the viewer does
+5. **CLOSE** (section `close`, ONE sentence, 7–11 words). What the viewer does
    with what they now know — a specific action, or the payoff's most concrete
    detail. Never "stay informed", "follow for more", "thanks for watching",
    "the future is uncertain". A close that states a fact still needs that fact
@@ -205,7 +205,7 @@ day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
   starting with the same word.
 - Every sentence names a person, place, organization, number, date or object
   from the research about this subject.
-- 92-107 words in all.
+- 80-98 words in all.
 - `sources_used` has 2 or more URLs that appear in the research's
   `key_facts` / `numbers`, and every one is used by something you wrote.
 - If you were given the motion-graphics beat schema: each `anchor_token` is
