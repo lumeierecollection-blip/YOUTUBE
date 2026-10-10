@@ -1768,9 +1768,14 @@
           "topic": "MIT Concourse and the Revival of Humanistic Thinking in Tech",
           "slug": "mit-concourse-humanistic-thinking-tech",
           "reserved_at": "2026-10-10T10:18:43.467Z"
+        },
+        {
+          "topic": "Aristotle's Categories: The October 2026 Stanford Encyclopedia Revision",
+          "slug": "aristotles-categories-stanford-encyclopedia-october-2026",
+          "reserved_at": "2026-10-10T11:21:05.575Z"
         }
       ],
-      "last_generated": "2026-10-10T10:18:43.467Z"
+      "last_generated": "2026-10-10T11:21:05.575Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
