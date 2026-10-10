@@ -947,9 +947,14 @@
           "topic": "Can Police Use ALPR Data to Justify a Traffic Stop?",
           "slug": "alpr-traffic-stop-fourth-amendment-ruling",
           "reserved_at": "2026-10-10T01:53:12.173Z"
+        },
+        {
+          "topic": "ALPR-Induced Traffic Stops Violate Fourth Amendment",
+          "slug": "alpr-induced-traffic-stops-violate-fourth-amendment-2026",
+          "reserved_at": "2026-10-10T03:32:07.869Z"
         }
       ],
-      "last_generated": "2026-10-10T01:53:12.173Z"
+      "last_generated": "2026-10-10T03:32:07.869Z"
     },
     "3": {
       "channel_name": "AI Tested",
