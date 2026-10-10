@@ -25,8 +25,10 @@ import { fileURLToPath } from "node:url";
 // RESOURCE_EXHAUSTED from it on every key, for a one-word text prompt as much as for audio - its quota on these keys is spent, not misconfigured.
 // Left first it would also make the instrument depend on the day: when its quota resets it would judge, and the same audio would be read by a
 // different model than yesterday's. The bar (7) was set on gemini-3.5-flash-lite, which is what has judged every board, so it is first; it is not
-// shown equivalent to a model that has never answered. The preview model is the failover only.
-export const MODELS = (process.env.NARRATION_JUDGE_MODELS || "gemini-3.5-flash-lite,gemini-3.1-flash-lite-preview").split(",").map((m) => m.trim()).filter(Boolean);
+// shown equivalent to a model that has never answered. NO failover model: when the judge's lab was run on 8 channels at once, quota ran out on some keys and
+// a reading fell to gemini-3.1-flash-lite-preview, which read the same ch9 audio as a uniform 5 (lab 38059014310) - a different instrument deciding a
+// verdict. When the one model cannot answer after backing off, the judge says "could not run" (exit 3); it never judges on another model.
+export const MODELS = (process.env.NARRATION_JUDGE_MODELS || "gemini-3.5-flash-lite").split(",").map((m) => m.trim()).filter(Boolean);
 export const keys = () => [...new Set(["GEMINI_API_KEY_4", "GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3"].map((k) => process.env[k]).filter(Boolean))];
 
 export function cuesOf(srt) {
@@ -44,17 +46,24 @@ Respond ONLY with JSON: {"sentences":[{"index":<n>,"score":<1-10>,"sounds":"HUMA
 /** One reading. `pin` = a model to stay on (the three readings must come from one instrument). `tried` collects every failure (model, key #, why). */
 export async function ask(audioB64, prompt, { pin = null, tried = [] } = {}) {
   const ks = keys();
-  for (const model of pin ? [pin] : MODELS) for (const [ki, key] of ks.entries()) {
-    try {
-      const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-        method: "POST", headers: { "x-goog-api-key": key, "Content-Type": "application/json" },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "audio/mpeg", data: audioB64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json", ...(SEED !== null ? { seed: SEED } : {}) } }),
-        signal: AbortSignal.timeout(180000),
-      });
-      const j = await r.json();
-      if (j.error) { tried.push({ model, key: ki + 1, status: j.error.code, why: String(j.error.status || ""), message: String(j.error.message).slice(0, 160) }); continue; }
-      return { model, out: JSON.parse(j.candidates[0].content.parts[0].text) };
-    } catch (e) { tried.push({ model, key: ki + 1, status: null, why: "exception", message: String(e.message).slice(0, 160) }); }
+  const backoffMs = Number(process.env.NARRATION_JUDGE_BACKOFF_MS ?? 25000);
+  // A per-minute quota (429) clears if asked again later: when EVERY key is 429 for the model, wait and go round again (3 rounds); anything else is final.
+  for (let round = 0; round < 3; round++) {
+    let all429 = true;
+    for (const model of pin ? [pin] : MODELS) for (const [ki, key] of ks.entries()) {
+      try {
+        const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+          method: "POST", headers: { "x-goog-api-key": key, "Content-Type": "application/json" },
+          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "audio/mpeg", data: audioB64 } }] }], generationConfig: { temperature: 0, responseMimeType: "application/json", ...(SEED !== null ? { seed: SEED } : {}) } }),
+          signal: AbortSignal.timeout(180000),
+        });
+        const j = await r.json();
+        if (j.error) { if (j.error.code !== 429) all429 = false; tried.push({ model, key: ki + 1, status: j.error.code, why: String(j.error.status || ""), message: String(j.error.message).slice(0, 160) }); continue; }
+        return { model, out: JSON.parse(j.candidates[0].content.parts[0].text) };
+      } catch (e) { all429 = false; tried.push({ model, key: ki + 1, status: null, why: "exception", message: String(e.message).slice(0, 160) }); }
+    }
+    if (!all429 || round === 2) break;
+    await new Promise((r) => setTimeout(r, backoffMs));
   }
   throw new Error(tried.length ? `${tried[tried.length - 1].model}: ${tried[tried.length - 1].status} ${tried[tried.length - 1].message}` : "no Gemini key configured");
 }
