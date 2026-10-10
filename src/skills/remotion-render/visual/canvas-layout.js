@@ -350,7 +350,9 @@ export function normalizeCanvas(c, idx = 0) {
   // absent for the default white. `dark` follows from it — light ink on a dark ground — and is
   // never set any other way, so a plan resolved while the old retired dark beats existed
   // (c.dark with no ground_color) still cannot draw light ink on white.
-  const g = resolveGround(c?.ground_color);
+  // THE FIXTURE LOOK (owner, 2026-10-10: "the test images ... look better than the actual video"): every beat on the white ground the
+  // shot-proof frames are drawn on — no cream, navy or black grounds (the planner's ground_color is not drawn).
+  const g = resolveGround(WHITE_GROUND ? null : c?.ground_color);
   return { ...c, beat_index: Number.isInteger(c?.beat_index) ? c.beat_index : idx, variant: Number.isInteger(c?.variant) ? c.variant : idx, ground_color: g.hex, dark: g.dark };
 }
 
@@ -982,6 +984,7 @@ function entityArtLayout(c, flip) {
  * Beats that cannot honour it record why in L.grid (canvas-layout.js gridReport) and the audit's `grid` check measures the frames.
  */
 // `on` is writable for the tests that exercise the pre-grid machinery (plan layouts, the asymmetric shot grammar); production never turns it off.
+export const WHITE_GROUND = true;
 export const TEXT_GRID = Object.seal({ on: true, base: BOTTOM - 12, gap: 30, tolerance: 40 });
 function gridForm(c, comp, vt) {
   if (!TEXT_GRID.on || c?.__grid) return null;
@@ -990,6 +993,7 @@ function gridForm(c, comp, vt) {
   if (["HERO-LOW", "HERO-SCATTER"].includes(comp)) return { composition: "HERO-OVER" };
   if (comp === "TYPE-FULL" && cv.length) return { composition: "HERO-OVER" };
   if (comp === "TYPE-FULL" && c?.vertical) return { vertical: false };
+  if (comp === "TYPE-FULL" && c?.emphasis_beat) return { emphasis_beat: false };   // the giant low word with its headline at the top is off the grid
   // Three photo forms keep a run of photo beats from repeating one frame: a band (the strip's and the inset's), a centred card
   // (the edge's), full bleed with the words low (SCENE-LOW).
   if (comp === "PHOTO-STRIP" && c?.photo) return { composition: "PHOTO-BAND" };
@@ -1057,7 +1061,10 @@ function tableLayout(c) {
       const parts = numberParts(c.data.value);
       // A headline that only repeats the figure ("86" under "$86") is one number twice: dropped (owner, 2026-10-09: no entity repeated as text).
       const alnum = (x) => String(x || "").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
-      const hl = alnum(c.headline) && alnum(c.headline).replace(/(million|billion|thousand|percent|dollars?|usd|k|m|b)$/g, "") === alnum(c.data.value).replace(/(million|billion|thousand|percent|dollars?|usd|k|m|b)$/g, "") ? "" : c.headline;
+      // ...and a headline made only of the figure and its label ("50,000 barrels per day" under 50000 / BARRELS PER DAY) says it a second time.
+      const toks = (x) => String(x || "").toLowerCase().replace(/[,’‘']/g, "").split(/[^\p{L}\p{N}.]+/u).filter(Boolean);
+      const figToks = new Set([...toks(c.data.value), ...toks(c.data.label), "the", "a", "of", "per", "in"]);
+      const hl = !alnum(c.headline) ? c.headline : (alnum(c.headline).replace(/(million|billion|thousand|percent|dollars?|usd|k|m|b)$/g, "") === alnum(c.data.value).replace(/(million|billion|thousand|percent|dollars?|usd|k|m|b)$/g, "") || toks(c.headline).every((t) => figToks.has(t))) ? "" : c.headline;
       // Kinetic scale: as large as the frame allows. The digits are never
       // cropped (a cropped digit misstates the figure); the trailing unit
       // ("%", "M", "B") may run off the frame edge by up to half its width.

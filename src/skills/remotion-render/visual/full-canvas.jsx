@@ -882,40 +882,34 @@ function LucideIcon({ name, size, color, stroke = 2, style }) {
  * (style "mono": its initials large with the name small under them). Sharp corners, ink and the one accent. No stock icon, ever.
  */
 function MarkPlate({ side, name, item, style, accent, th, hair }) {
+  // The fixture look (owner, 2026-10-10: "the test images ... look better than the actual video"): no box. A real mark stands free on the
+  // ground; with no free mark the NAME is set large in the serif between a hairline and the accent rule — a type card, not a placeholder box.
   const label = String(name || "").trim();
-  const box = { position: "absolute", left: 0, top: 0, width: side, height: side, boxSizing: "border-box", border: `${hair}px solid ${th.ink}`, overflow: "hidden" };
-  const bar = <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 8, backgroundColor: accent }} />;
   if (item?.asset) {
-    // A mark keeps its own colours: on a dark ground it sits on a paper plate so a dark logo never vanishes into the ground.
     return (
-      <div style={{ ...box, backgroundColor: th.dark ? "#F2F0EB" : "transparent" }}>
-        <Img src={staticFile(item.asset)} style={{ position: "absolute", left: "12%", top: "9%", width: "76%", height: "74%", objectFit: "contain" }} />
-        {bar}
+      <div style={{ position: "absolute", left: 0, top: 0, width: side, height: side }}>
+        <Img src={staticFile(item.asset)} style={{ position: "absolute", left: "4%", top: "4%", width: "92%", height: "92%", objectFit: "contain" }} />
       </div>
     );
   }
   const words = label.split(/\s+/).filter(Boolean);
-  const cut = Math.ceil(words.length / 2);
-  const lines = words.length <= 2 ? (words.length ? words : [label]) : [words.slice(0, cut).join(" "), words.slice(cut).join(" ")];
-  if (style === "mono") {
-    const initials = words.length === 1 && words[0].length <= 5 ? words[0].toUpperCase() : words.slice(0, 3).map((x) => x[0]).join("").toUpperCase();
-    const small = Math.max(16, Math.min(34, Math.floor((side * 0.9) / Math.max(4, label.length * 0.62))));
-    return (
-      <div style={box}>
-        <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: initials === label.toUpperCase() ? "calc(100% - 8px)" : "72%", display: "flex", alignItems: "center", justifyContent: "center", font: `800 ${Math.round(side * (initials.length > 3 ? 0.27 : initials.length > 2 ? 0.33 : 0.42))}px ${SERIF}`, letterSpacing: -2, color: th.ink }}>{initials}</div>
-        {initials !== label.toUpperCase() ? <div style={{ position: "absolute", left: 0, right: 0, top: "70%", textAlign: "center", font: `700 ${small}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div> : null}
-        {bar}
-      </div>
-    );
-  }
+  const mono = style === "mono" && words.length > 1;
+  const shown = mono ? words.slice(0, 3).map((x) => x[0]).join("").toUpperCase() : label;
+  const lw = shown.split(/\s+/);
+  const cut = Math.ceil(lw.length / 2);
+  const lines = lw.length <= 2 ? (lw.length && shown.length > 14 ? lw : [shown]) : [lw.slice(0, cut).join(" "), lw.slice(cut).join(" ")];
   const longest = Math.max(1, ...lines.map((l) => l.length));
-  const size = Math.max(22, Math.min(side * 0.3, (side * 0.82) / (longest * 0.6)));
+  const W = side * 1.6;   // the name may run wider than the square it was laid out in
+  const size = Math.max(40, Math.min(mono ? side * 0.5 : side * 0.34, (W * 0.92) / (longest * 0.56)));
+  const block = Math.round(size * 1.05 * lines.length);
   return (
-    <div style={box}>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 8, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", font: `800 ${Math.round(size)}px ${SERIF}`, lineHeight: 1.05, letterSpacing: -1, color: th.ink }}>
+    <div style={{ position: "absolute", left: (side - W) / 2, top: 0, width: W, height: side }}>
+      <div style={{ position: "absolute", left: (W - 120) / 2, top: Math.max(0, (side - block) / 2 - 44), width: 120, height: hair, backgroundColor: th.ink }} />
+      <div style={{ position: "absolute", left: 0, right: 0, top: (side - block) / 2, height: block, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", font: `800 ${Math.round(size)}px ${SERIF}`, lineHeight: 1.05, letterSpacing: -1, color: th.ink, whiteSpace: "nowrap" }}>
         {lines.map((l, i) => <span key={i}>{l}</span>)}
       </div>
-      {bar}
+      {mono ? <div style={{ position: "absolute", left: 0, right: 0, top: (side + block) / 2 + 14, textAlign: "center", font: `700 30px ${SANS_STACK}`, letterSpacing: 3, color: th.ink, whiteSpace: "nowrap" }}>{label.toUpperCase()}</div> : null}
+      <div style={{ position: "absolute", left: (W - 160) / 2, top: Math.min(side - 8, (side + block) / 2 + (mono ? 62 : 26)), width: 160, height: 8, backgroundColor: accent }} />
     </div>
   );
 }

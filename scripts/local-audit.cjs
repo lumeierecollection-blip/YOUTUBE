@@ -894,7 +894,7 @@ async function flatLook(video, beats, accent, fps = 30) {
     // A single plate is a square inside its box (smaller when a real mark leaves room for its label); a row of plates has several corners.
     const labelled = !!art && Array.isArray(art.items) && art.items.some((it) => it && it.asset);
     if (box && art && String(art.kind).startsWith("plate-")) { const side = Math.min(box.w, labelled ? box.h - 35 : box.h); box.x += (box.w - side) / 2; box.w = side; box.h = side; }
-    const boxed = !!box && (art.kind === "flag" || String(art.kind).startsWith("plate-"));
+    const boxed = !!box && art.kind === "flag";   // name cards are unboxed type now (the fixture look); a flag keeps its hairline frame
     const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
     const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
     const buf = rgbFrame(video, t, W, H);
