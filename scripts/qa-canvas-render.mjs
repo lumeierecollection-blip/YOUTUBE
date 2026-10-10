@@ -115,9 +115,11 @@ const beats = beatsSpec.map((b, i) => {
 // test plan's made-up timings): the entity visual pops on the word that names it.
 {
   const { scheduleEntityPop } = await import("../src/skills/remotion-render/visual/entity-sync.js");
-  const { canvasLayout: lay, normalizeCanvas: norm } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
+  const { canvasLayout: lay, normalizeCanvas: norm, holdForDuration } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
   beats.forEach((b, i) => {
     const c = b.scene.canvas;
+    const held = holdForDuration(c, i, b.duration_frames / FPS);   // the same rule render.js applies
+    if (held) console.log(`[pace] qa beat ${i}: ${held}`);
     const s = scheduleEntityPop({ ...c, composition: lay(norm(c, i)).composition }, b.spoken, b.duration_frames);
     if (s && !s.missing) { c.entity_pop = { frame: s.frame, word: s.word, from: s.from, to: s.to, kind: s.kind }; console.log(`[sync] qa beat ${i}: "${s.word}" spoken at frame ${s.from}-${s.to}, pop at frame ${s.frame}`); }
   });

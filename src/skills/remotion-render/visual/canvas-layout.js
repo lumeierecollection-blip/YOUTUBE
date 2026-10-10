@@ -845,6 +845,20 @@ export const CAMERA = Object.freeze({ photo: 0.10, graph: 0.10, endAt: 0.9, min:
 // the top"): a band across the upper MIDDLE band — y 640-1110, centred on 875 — with its words under it in the same
 // band. zoneReport lets a visual and text share a zone; text-on-text overlap and the safe area are unchanged.
 export const LOW_VISUAL = Object.freeze({ top: 640, h: 470 });
+/**
+ * A sparse type card holds a short beat, not a long one (owner, 2026-10-10: something every half second, and nothing may wobble to fake
+ * it). TYPE-CHAPTER (one small line in an empty frame) and TYPE-SPLIT (a phrase in two halves) have nothing left to reveal once their few
+ * words are in; on a beat longer than SPARSE_MAX_S they sat still 1.5-3.5 s (layout-proof 38016706612). Such a beat is drawn as the
+ * TYPE-FULL statement, whose words pop on the narrator's words across the sentence. Returns the note logged, or null.
+ */
+export const SPARSE_MAX_S = 4.5;
+export function holdForDuration(c, index, seconds) {
+  if (!c || !(seconds > SPARSE_MAX_S)) return null;
+  const comp = canvasLayout(normalizeCanvas(c, index)).composition;
+  if (comp !== "TYPE-CHAPTER" && comp !== "TYPE-SPLIT") return null;
+  c.composition = "TYPE-FULL"; delete c.shot; delete c.type_layout; c.headline_zone = c.headline_zone || "middle";
+  return `${comp} on a ${seconds.toFixed(1)} s beat -> TYPE-FULL (a sparse card holds at most ${SPARSE_MAX_S} s)`;
+}
 const HERO_FLOOR = 1296;
 // A bill / coin stands on y 1310, not 1330: its 20 px drop shadow reads as ink and crossed the middle band's edge at
 // y 1340 in 466 columns (board 37901614633 ch-1 beat 5, zones-no-overlap). 1310 keeps the beat's span above 60%.

@@ -51,6 +51,7 @@ import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.m
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
 import { scheduleEntityPop } from "./visual/entity-sync.js";
+import { holdForDuration } from "./visual/canvas-layout.js";
 import { GROUND } from "./visual/backgrounds.js";
 
 
@@ -553,6 +554,8 @@ async function main() {
       beats.forEach((b, i) => {
         const c = b.scene?.canvas;
         if (!c) return;
+        const held = holdForDuration(c, i, (b.duration_frames || 0) / FPS);
+        if (held) console.log(`[pace] ch-${channelId} beat ${i}: ${held}`);
         const sync = scheduleEntityPop({ ...c, composition: canvasLayout(normalizeCanvas(c, i)).composition }, b.spoken, b.duration_frames);
         if (!sync) return;
         if (sync.missing) { console.log(`[sync] ch-${channelId} beat ${i}: anchor "${sync.missing}" not found in the spoken words, popping at beat start (spoken: ${b.spoken.map((w) => w.text).join(" ").slice(0, 160)})`); delete c.entity_pop; return; }
