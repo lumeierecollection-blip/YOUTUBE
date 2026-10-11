@@ -9,7 +9,7 @@
  */
 import { canvasLayout, normalizeCanvas, backgroundOf } from "./canvas-layout.js";
 
-const MICRO = "1px drift + 0.3% breath";
+const MICRO = "sway ±30px x / ±12px y, 6 s cycle (full-canvas sway())";
 
 export function motionsFor(raw, idx = 0) {
   const c = normalizeCanvas(raw, idx);

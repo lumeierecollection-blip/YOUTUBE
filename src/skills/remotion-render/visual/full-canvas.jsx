@@ -1614,6 +1614,19 @@ function PullPhrase({ pull, local, accent, light, onPhoto }) {
   );
 }
 
+// ── universal pace layer ───────────────────────────────────────────────
+// pace-check.mjs fails a beat still for more than 1.0 s. One movement event per beat cannot meet that on any beat
+// longer than ~2 s, so every beat sways, whatever its composition: a triangle wave at constant speed (no ease, so no
+// still moment at the turn), ±30 px across and ±12 px down on a 6 s cycle, the down-sway a quarter cycle behind.
+// Known limit: a beat with almost no edges (a flat ground, one dot) changes too few pixels for the check and can
+// still fail. That is a composition problem to fix in the composition, not a reason to change the threshold.
+const SWAY_X = { amp: 30, period: 6, offset: 0 };
+const SWAY_Y = { amp: 12, period: 6, offset: 0.25 };
+function sway(seconds, { amp, period, offset }) {
+  const ph = (seconds / period + offset) % 1;
+  return ph < 0.5 ? amp * (4 * ph - 1) : amp * (3 - 4 * ph);
+}
+
 // ── the whole video ───────────────────────────────────────────────────
 export function CanvasVideo({ plan }) {
   const frame = useCurrentFrame();
@@ -1680,10 +1693,9 @@ export function CanvasVideo({ plan }) {
         {bg.gradient ? <div style={{ position: "absolute", inset: 0, background: BG_GRADIENT }} /> : null}
       </>); })()}
       {holdingPrev ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
-      {/* Micro motion (part D.1, every beat): the composition is never still — a 1 px drift
-          across the beat and a 0.3% breath (one cycle per 3 s), about the frame's centre. */}
+      {/* Universal pace layer (see sway() above): every beat, every composition, never still for long. */}
       <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
-        transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px)` }}>
+        transform: `translate(${sway(local / fps, SWAY_X).toFixed(2)}px, ${sway(local / fps, SWAY_Y).toFixed(2)}px)` }}>
         <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
       </div>
       {/* The live word caption on every beat was the bottom-phrase device (owner, 2026-10-08):
