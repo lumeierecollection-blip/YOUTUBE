@@ -1,0 +1,70 @@
+{
+  "topic_slug": "brigham-nurses-bargaining-strike-postponement",
+  "strongest_angle": "Examines how nearly 4,000 nurses at Brigham and Women's Hospital postponed their planned strike after a grueling 13-hour marathon negotiation session and their 27th bargaining meeting.",
+  "key_facts": [
+    {
+      "fact": "Nearly 4,000 registered nurses at Brigham and Women's Hospital postponed their planned strike following a 13-hour bargaining session on Saturday.",
+      "source_url": "https://www.vpm.org/npr-story/brigham-nurses-postpone-strike-to-vote-on-hospitals-offer",
+      "source_name": "VPM / NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "The breakthrough occurred during the 27th bargaining session between hospital leadership and the Massachusetts Nurses Association.",
+      "source_url": "https://www.bostonglobe.com/2026/10/11/business/brigham-nurses-strike-postponed",
+      "source_name": "The Boston Globe",
+      "confidence": "high"
+    },
+    {
+      "fact": "The strike had been scheduled to begin just four days after the marathon negotiating session concluded with the hospital's final offer.",
+      "source_url": "https://www.vpm.org/npr-story/brigham-nurses-postpone-strike-to-vote-on-hospitals-offer",
+      "source_name": "VPM / NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "The unionized nurses at Mass General Brigham postponed what was set to be the largest open-ended nurse strike in Massachusetts history.",
+      "source_url": "https://www.cbsnews.com/boston/news/brigham-nurses-strike-postponed",
+      "source_name": "CBS Boston",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Nurses involved in the postponed strike",
+      "value": 4000,
+      "unit": "nurses",
+      "source_url": "https://www.vpm.org/npr-story/brigham-nurses-postpone-strike-to-vote-on-hospitals-offer"
+    },
+    {
+      "label": "Duration of the marathon negotiating session",
+      "value": 13,
+      "unit": "hours",
+      "source_url": "https://www.vpm.org/npr-story/brigham-nurses-postpone-strike-to-vote-on-hospitals-offer"
+    },
+    {
+      "label": "Bargaining session number",
+      "value": 27,
+      "unit": "sessions",
+      "source_url": "https://www.bostonglobe.com/2026/10/11/business/brigham-nurses-strike-postponed"
+    },
+    {
+      "label": "Days before the planned walkout",
+      "value": 4,
+      "unit": "days",
+      "source_url": "https://www.vpm.org/npr-story/brigham-nurses-postpone-strike-to-vote-on-hospitals-offer"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Brigham and Women's Hospital",
+      "kind": "organization"
+    },
+    {
+      "name": "Massachusetts Nurses Association",
+      "kind": "organization"
+    },
+    {
+      "name": "Mass General Brigham",
+      "kind": "organization"
+    }
+  ]
+}

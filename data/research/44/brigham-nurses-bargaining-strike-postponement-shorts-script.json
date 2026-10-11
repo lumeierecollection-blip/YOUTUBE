@@ -1,0 +1,66 @@
+{
+  "channel_id": "44",
+  "topic_slug": "brigham-nurses-bargaining-strike-postponement",
+  "format": "shorts",
+  "hook": "4,000 nurses halted their strike just 4 days before walking out.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "4,000 nurses halted their strike just 4 days before walking out.",
+      "b_roll": [
+        "Hospital exterior sign",
+        "Nurses gathered outside"
+      ],
+      "text_overlay": {
+        "text": "4,000 Nurses Halt Strike"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Brigham and Women's Hospital faced the largest open-ended nurse strike in Massachusetts history. Negotiators spent 13 hours at the table. Where did the breakthrough happen?",
+      "b_roll": [
+        "Conference room negotiation",
+        "Union representatives talking"
+      ],
+      "text_overlay": {
+        "text": "Largest Strike in State History"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Massachusetts Nurses Association faced a grueling 13-hour negotiation before the breakthrough.",
+      "b_roll": [
+        "Document signing close-up",
+        "Union documents"
+      ],
+      "text_overlay": {
+        "text": "Session 27 Breakthrough"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Hospital leadership delivered a final offer that averted the walkout during 27 sessions. Mass General Brigham avoided the historic disruption involving nearly 4,000 nurses.",
+      "b_roll": [
+        "Hospital entrance",
+        "Nurses reviewing papers"
+      ],
+      "text_overlay": {
+        "text": "Final Offer Reached"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Vote on the hospital's offer to see the outcome.",
+      "b_roll": [
+        "Nurse casting a ballot"
+      ],
+      "text_overlay": {
+        "text": "Vote on Hospital Offer"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.vpm.org/npr-story/brigham-nurses-postpone-strike-to-vote-on-hospitals-offer",
+    "https://www.bostonglobe.com/2026/10/11/business/brigham-nurses-strike-postponed"
+  ]
+}
