@@ -785,6 +785,9 @@ function grownBox(box, push, u) {
 async function visualContrast(video, beats, fps = 30) {
   const bad = [], rows = [];
   const W = 540, H = 960, sc = H / 1920;
+  // The renderer sways every beat (src/skills/remotion-render/visual/sway.js). The framed visual is drawn where the sway
+  // has put it at the sampled time, so the ring is measured there, not at the spec box. The ring rule itself is unchanged.
+  const { swayOffset } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "sway.js")).href);
   beats.forEach((b, i) => {
     const c = b.canvas;
     let box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD"].includes(c?.composition) ? c.boxes?.photo : null;
@@ -794,6 +797,8 @@ async function visualContrast(video, beats, fps = 30) {
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
     box = grownBox(box, c.art_push, (t - (b.start_sec ?? 0)) / Math.max(1e-6, b.duration_sec ?? 0));
+    const sw = swayOffset(t - (b.start_sec ?? 0));
+    box = { ...box, x: box.x + sw.x, y: box.y + sw.y };
     const g = frameGround(buf, W, H);
     const px = (x, y) => { const o = (y * W + x) * 3; return [buf[o], buf[o + 1], buf[o + 2]]; };
     const differs = (x, y) => { const [r, gg, bl] = px(x, y); const l = 0.299 * r + 0.587 * gg + 0.114 * bl; return Math.abs(l - g.l) > 25 || Math.max(r, gg, bl) - Math.min(r, gg, bl) > 30; };

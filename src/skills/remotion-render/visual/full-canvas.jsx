@@ -64,6 +64,7 @@ import { KineticText, rowsOf } from "./kinetic.jsx";
 import { wordPops } from "./word-sync.js";
 import { countProgress, numberPop, numberRoll, digitRoll, popState, NUMBER_POP_FRAMES } from "./kinetic.js";
 import { GROUND } from "./backgrounds.js";
+import { SWAY_X, SWAY_Y, sway } from "./sway.js";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
 import { Symbol } from "./symbols/index.jsx";
@@ -1612,19 +1613,6 @@ function PullPhrase({ pull, local, accent, light, onPhoto }) {
       {pull.lines.map((l, i) => <div key={i}>{l}</div>)}
     </div>
   );
-}
-
-// ── universal pace layer ───────────────────────────────────────────────
-// pace-check.mjs fails a beat still for more than 1.0 s. One movement event per beat cannot meet that on any beat
-// longer than ~2 s, so every beat sways, whatever its composition: a triangle wave at constant speed (no ease, so no
-// still moment at the turn), ±30 px across and ±12 px down on a 6 s cycle, the down-sway a quarter cycle behind.
-// Known limit: a beat with almost no edges (a flat ground, one dot) changes too few pixels for the check and can
-// still fail. That is a composition problem to fix in the composition, not a reason to change the threshold.
-const SWAY_X = { amp: 30, period: 6, offset: 0 };
-const SWAY_Y = { amp: 12, period: 6, offset: 0.25 };
-function sway(seconds, { amp, period, offset }) {
-  const ph = (seconds / period + offset) % 1;
-  return ph < 0.5 ? amp * (4 * ph - 1) : amp * (3 - 4 * ph);
 }
 
 // ── the whole video ───────────────────────────────────────────────────
