@@ -1123,8 +1123,11 @@ jobs:
           GROQ_MAX_IMAGES: "3"
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           # The job budget: render-and-qa.js stops correction attempts inside
-          # it, and every model call is capped at a share of it.
-          JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '20' }}
+          # it, and every model call is capped at a share of it. Must match the
+          # render job's own timeout-minutes default (45, line ~905): at 20 the
+          # budget was 15 min, so a 13-min first attempt (ch-9, run 38100803605)
+          # refused the frame-review correction re-render that would have fit.
+          JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '45' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # gemini-client makes ONE attempt (429 -> quota_exhausted at once,
           # 503 -> one retry after 5 s); any failure goes to Ollama.
