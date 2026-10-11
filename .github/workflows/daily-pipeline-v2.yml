@@ -802,6 +802,31 @@ jobs:
           # prompt-truncation warnings. This is where prep time actually goes.
           grep -E "\[GIN\]|truncat|error|level=WARN" /tmp/ollama.log | tail -60 || echo "(no ollama log)"
 
+      # ── Commit this run's script (the record a fix is verified against) ─
+      # render_only re-renders the latest COMMITTED shorts script. Until this step, a
+      # script existed only inside the prep upload-artifact bundle, so a render that
+      # failed could not be reproduced from git. Pushed on dry runs too. Only when the
+      # script gate passed (a blocked script is never committed).
+      - name: Commit this run's script and research
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          FILES=$(ls "data/research/$CH/${SLUG}-shorts-script.json" "data/research/$CH/$SLUG.json" 2>/dev/null || true)
+          if [ -z "$FILES" ]; then echo "::warning::no script to commit for channel $CH"; exit 0; fi
+          git config user.name  "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git add -- $FILES
+          if git diff --staged --quiet; then echo "script already committed"; exit 0; fi
+          git commit -q -m "script: ch-$CH $SLUG (run ${{ github.run_id }})"
+          for attempt in 1 2 3 4 5; do
+            if git pull -q --rebase --autostash origin "${{ github.ref_name }}" && git push -q origin "HEAD:${{ github.ref_name }}"; then
+              echo "committed $FILES"; exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "::error::could not push the script for channel $CH"; exit 1
+
       # ── Prep status + artifact (ALWAYS uploaded) ───────────────────────
       # A channel that skipped (all candidates duplicate) still uploads an
       # artifact carrying {"skipped": true}, so its render job can see WHY
