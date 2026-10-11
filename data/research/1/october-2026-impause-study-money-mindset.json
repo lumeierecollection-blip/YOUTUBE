@@ -1,0 +1,70 @@
+{
+  "topic_slug": "october-2026-impause-study-money-mindset",
+  "strongest_angle": "Examine how Americans spend 96 days a year worrying about money based on The Penny Hoarder 2026 Financial Anxiety Barometer Report, and explore how neuroscience and psychology impact our financial stress.",
+  "key_facts": [
+    {
+      "fact": "Americans spend the equivalent of 96 days a year worried about money, according to The Penny Hoarder’s 2026 Financial Anxiety Barometer Report.",
+      "source_url": "https://www.thepennyhoarder.com/budgeting/financial-anxiety-barometer",
+      "source_name": "The Penny Hoarder",
+      "confidence": "high"
+    },
+    {
+      "fact": "Only 14% of Americans say they feel in control of their finances according to Impause research data.",
+      "source_url": "https://impause.com/blog/how-to-improve-money-mindset-5-psychology-shifts-2026",
+      "source_name": "Impause",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Neuroscientists can watch the nucleus accumbens light up roughly a second and a half before a person decides to buy something.",
+      "source_url": "https://impause.com/blog/role-of-neuroscience-in-money-habits-2026",
+      "source_name": "Impause",
+      "confidence": "medium"
+    },
+    {
+      "fact": "A survey found that 62% of consumers who make an impulse purchase end up regretting it.",
+      "source_url": "https://impause.com/blog/role-of-feedback-loops-in-spending-psychology-2026",
+      "source_name": "Impause",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Days spent worrying about money per year",
+      "value": 96,
+      "unit": "days",
+      "source_url": "https://www.thepennyhoarder.com/budgeting/financial-anxiety-barometer"
+    },
+    {
+      "label": "Percentage of Americans who feel in control of finances",
+      "value": 14,
+      "unit": "percent",
+      "source_url": "https://impause.com/blog/how-to-improve-money-mindset-5-psychology-shifts-2026"
+    },
+    {
+      "label": "Seconds before purchase when nucleus accumbens lights up",
+      "value": 1.5,
+      "unit": "seconds",
+      "source_url": "https://impause.com/blog/role-of-neuroscience-in-money-habits-2026"
+    },
+    {
+      "label": "Percentage of consumers who regret impulse purchases",
+      "value": 62,
+      "unit": "percent",
+      "source_url": "https://impause.com/blog/role-of-feedback-loops-in-spending-psychology-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "The Penny Hoarder",
+      "kind": "organization"
+    },
+    {
+      "name": "Nucleus accumbens",
+      "kind": "object"
+    },
+    {
+      "name": "Impause",
+      "kind": "organization"
+    }
+  ]
+}
