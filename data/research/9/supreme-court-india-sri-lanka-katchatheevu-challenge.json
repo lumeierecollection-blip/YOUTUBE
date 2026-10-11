@@ -1,0 +1,86 @@
+{
+  "topic_slug": "supreme-court-india-sri-lanka-katchatheevu-challenge",
+  "strongest_angle": "The Supreme Court of India is currently hearing a long-standing challenge to the 1974 ceding of Katchatheevu island, while the Indian government maintains that the agreements are settled and will not be reopened.",
+  "key_facts": [
+    {
+      "fact": "The Supreme Court of India allowed DMK leader T.R. Baalu to replace former Tamil Nadu Chief Minister M. Karunanidhi as the petitioner in the legal challenge regarding the Katchatheevu island agreements.",
+      "source_url": "https://www.thehindu.com/news/national/tamil-nadu/sc-to-hear-katchatheevu-case-on-september-15/article69372116.ece",
+      "source_name": "The Hindu",
+      "confidence": "high"
+    },
+    {
+      "fact": "During an October 2026 hearing, the Supreme Court of India orally observed that Tamil Nadu fishermen need to be sensitized against entering Sri Lankan waters near Katchatheevu.",
+      "source_url": "https://www.newindianexpress.com/states/tamil-nadu/2026/Oct/07/sensitise-tamil-fishermen-against-entering-sri-lanka-waters-sc-tells-centre",
+      "source_name": "The New Indian Express",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Indian government has ruled out reopening the 1974 and 1976 agreements that ceded the island of Katchatheevu to Sri Lanka.",
+      "source_url": "https://www.tamilguardian.com/content/indian-supreme-court-urges-tamil-nadu-fishermen-avoid-sri-lankan-waters",
+      "source_name": "Tamil Guardian",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Prime Minister Narendra Modi publicly criticized the Congress party in 2024 for the decision to cede Katchatheevu island, citing documents obtained by K. Annamalai through an RTI application.",
+      "source_url": "https://www.thehindu.com/news/international/why-are-katchatheevu-pacts-being-questioned-explained/article68037230.ece",
+      "source_name": "The Hindu",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the first Katchatheevu agreement",
+      "value": 1974,
+      "unit": "year",
+      "source_url": "https://www.thecitizen.in/india/the-politics-of-katchatheevu-1016434"
+    },
+    {
+      "label": "Year of the second Katchatheevu agreement",
+      "value": 1976,
+      "unit": "year",
+      "source_url": "https://www.thehindu.com/opinion/op-ed/chasing-a-boat-we-missed-long-ago/article4753529.ece"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Supreme Court of India",
+      "kind": "organization"
+    },
+    {
+      "name": "Katchatheevu",
+      "kind": "place"
+    },
+    {
+      "name": "Sri Lanka",
+      "kind": "place"
+    },
+    {
+      "name": "Tamil Nadu",
+      "kind": "place"
+    },
+    {
+      "name": "T.R. Baalu",
+      "kind": "person"
+    },
+    {
+      "name": "M. Karunanidhi",
+      "kind": "person"
+    },
+    {
+      "name": "Narendra Modi",
+      "kind": "person"
+    },
+    {
+      "name": "K. Annamalai",
+      "kind": "person"
+    },
+    {
+      "name": "DMK",
+      "kind": "organization"
+    },
+    {
+      "name": "Congress",
+      "kind": "organization"
+    }
+  ]
+}
