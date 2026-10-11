@@ -6,7 +6,6 @@
 #   setup  → channel matrix from config/priority-channels.json
 #   prep   → Discover → Reserve → Research → Script → TTS → Thumbnail → SEO
 #   render → Plan → Render → silence/duration/frame gates → Publish (private)
-#   self-heal (on failure) → diagnose the failed jobs, block or fix in scope
 #
 # Budget: every job's timeout is the dispatch input timeout_minutes (default
 # 20 — fast iteration; production passes 90 so a local-model run can
@@ -1551,35 +1550,3 @@ jobs:
           echo "Setup:     ${{ needs.setup.result }}"
           echo "Prep:      ${{ needs.prep.result }}"
           echo "Render:    ${{ needs.render.result }}"
-
-  # ============================================================
-  # SELF-HEAL (only when something failed)
-  # ============================================================
-  self-heal:
-    needs: [setup, prep, render]
-    if: failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
-    permissions:
-      actions: write
-      contents: write
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Self-heal on failure
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/self-heal.cjs
-
-      - name: Upload self-heal diagnosis
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: self-heal-${{ github.run_id }}
-          path: data/ci-runs/
-          if-no-files-found: ignore
-          retention-days: 7
