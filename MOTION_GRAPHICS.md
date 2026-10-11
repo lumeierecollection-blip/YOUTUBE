@@ -42,4 +42,23 @@ Cheap looks come from the opposite: gradients everywhere, the same card repeated
 
 ## Where the reference is
 
-The repo does not name a single reference video. The motion rules are written down in `MOTION-GRAPHICS-MANUAL.md`: motion durations follow published design-system timing, and the easing and overshoot limits are set there. The pace rule comes from the owner's requirement that no beat sit still for more than one second. If a reference video is meant to define the look, it has not been added to the repo yet; that is an open item.
+The look is defined by reference videos in the repo. The planner sees frames of them while it plans (`scripts/reference-frames.js`), and the render is scored against them.
+
+**The shared set**, used by every channel that has no style spec of its own (`SHARED_REFS` at `scripts/reference-frames.js:30`):
+
+- `research/motion-graphics-ref/ref-01.mp4`: aged print. Cream paper, an engraved illustration and a column of serif body text, as on a 19th-century magazine page.
+- `research/motion-graphics-ref/ref-02.mp4`: pale ground with a faint grid, one lit lantern and leaf branches at the edges, a single small grey word in sans type. Quiet and airy.
+- `research/motion-graphics-ref/ref-03.mp4`: cream ground with a faint pink grid and a soft grey ink-smoke mass in the upper middle. Almost no type.
+
+**Channels with their own reference**, from `reference_video` in each `channels/<id>/style-spec.json`:
+
+- **ch-05** (`newspaper-collage`): `research/4_5917850534521349135.mp4`. Newsprint text with a yellow highlighter bar in one frame. A second frame is a dark UK map, so the frames do not agree with each other.
+- **ch-06** (`archival-montage`): `research/4_5917850534521349255.mp4`. Black-and-white archival photographs with grain, "SCENE 02 / SCENE 03" captions, and a grey car on a grey ground.
+- **ch-08** (`stepped-timeline`): `research/4_5917850534521349257.mp4`. Dark workspace with a red-and-white title tag ("IMPRESSIVE"), a year marker ("2009"), and glitched black-and-white portraits.
+- **ch-10** (`editorial-serif-light`): `research/4_5917850534521349264.mp4`. Light grey ground, cherry-blossom branches, a black panel with small white specks, and a grid of engraved images beside a steamship.
+
+**Channels on the shared set.** Of the 19 unique motion-graphics channels in `config/channels.json`, 15 use the shared set: ch-01, ch-02, ch-09, ch-22, ch-24, ch-26, ch-29, ch-31, ch-33, ch-37, ch-39, ch-42, ch-44, ch-48, ch-49. Channel 9, the one whose render failed the pace check, is among them.
+
+**What the frames show.** Each description above is from one or two stills per reference, not from the whole video. Several frames carry third-party marks: a social handle on ref-01, "Edited By Prince" on ch-10, a "fiverr." logo and placeholder text ("I can make highlighter effect here") on ch-05, and "Corporate Timeline History 02" on ch-08. These look like template or demo clips. Whether the repo may use them is the owner's call, and it is an open item.
+
+The motion rules are in `MOTION-GRAPHICS-MANUAL.md`. The pace rule is the owner's: no beat sits still for more than one second.
