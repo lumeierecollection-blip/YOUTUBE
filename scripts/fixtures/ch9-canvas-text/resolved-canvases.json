@@ -1,0 +1,1278 @@
+{
+ "canvases": [
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "India"
+   },
+   "sentence": "What if India tried to reclaim an island ceded fifty years ago?",
+   "lead_in": null,
+   "headline": "Reclaiming a ceded island",
+   "emphasis_word": "island",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "place",
+     "name": "India"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "anchor_word": "island",
+   "composition": "MAP-CENTERED",
+   "shot": "MAP-BAND",
+   "shot_drawn": true,
+   "beat_index": 0,
+   "beat_total": 7,
+   "variant": 0,
+   "hero_headline": true,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "headline": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ]
+    },
+    "number": null
+   },
+   "flag_option": {
+    "asset": "flags/in.png",
+    "region": "country:IND",
+    "name": "India",
+    "aspect": 1.5005861664712778,
+    "source_url": "https://flagcdn.com/w1280/in.png",
+    "license": "Public domain (a national / state flag)",
+    "credit": "flagcdn.com"
+   },
+   "label": null,
+   "pull_phrase": null,
+   "map_band": true
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "The Supreme Court of India is currently reviewing a legal challenge over Katchatheevu.",
+   "lead_in": null,
+   "headline": "Supreme Court reviews challenge",
+   "emphasis_word": "reviewing",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": [
+    {
+     "at_percent": 0.5,
+     "target": "photo"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "Supreme Court of India"
+    },
+    {
+     "type": "object",
+     "name": "Katchatheevu"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "concept_visuals": [
+    {
+     "name": "Supreme Court of India",
+     "class": "cutout",
+     "asset": "cutouts-live/9/1-supreme-court-of-india-logo.png",
+     "w": 1024,
+     "h": 1024,
+     "logo": true,
+     "source": "wikidata Q213380",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Insignia_of_the_Supreme_Court_of_India.svg",
+     "license": "GODL-India",
+     "ink": {
+      "pts": [
+       [
+        0.042,
+        0.304
+       ],
+       [
+        0.083,
+        0.226
+       ],
+       [
+        0.125,
+        0.172
+       ],
+       [
+        0.166,
+        0.13
+       ],
+       [
+        0.208,
+        0.096
+       ],
+       [
+        0.249,
+        0.07
+       ],
+       [
+        0.292,
+        0.047
+       ],
+       [
+        0.332,
+        0.031
+       ],
+       [
+        0.373,
+        0.018
+       ],
+       [
+        0.412,
+        0.009
+       ],
+       [
+        0.458,
+        0.003
+       ],
+       [
+        0.47,
+        0.002
+       ],
+       [
+        0.5,
+        0.002
+       ],
+       [
+        0.542,
+        0.003
+       ],
+       [
+        0.584,
+        0.009
+       ],
+       [
+        0.625,
+        0.018
+       ],
+       [
+        0.667,
+        0.031
+       ],
+       [
+        0.709,
+        0.048
+       ],
+       [
+        0.75,
+        0.069
+       ],
+       [
+        0.792,
+        0.097
+       ],
+       [
+        0.834,
+        0.13
+       ],
+       [
+        0.875,
+        0.172
+       ],
+       [
+        0.917,
+        0.228
+       ],
+       [
+        0.959,
+        0.306
+       ],
+       [
+        0.042,
+        0.696
+       ],
+       [
+        0.083,
+        0.774
+       ],
+       [
+        0.125,
+        0.828
+       ],
+       [
+        0.166,
+        0.87
+       ],
+       [
+        0.208,
+        0.904
+       ],
+       [
+        0.249,
+        0.93
+       ],
+       [
+        0.292,
+        0.953
+       ],
+       [
+        0.332,
+        0.969
+       ],
+       [
+        0.373,
+        0.982
+       ],
+       [
+        0.412,
+        0.991
+       ],
+       [
+        0.456,
+        0.997
+       ],
+       [
+        0.493,
+        0.999
+       ],
+       [
+        0.5,
+        0.999
+       ],
+       [
+        0.542,
+        0.997
+       ],
+       [
+        0.584,
+        0.991
+       ],
+       [
+        0.625,
+        0.982
+       ],
+       [
+        0.667,
+        0.969
+       ],
+       [
+        0.709,
+        0.952
+       ],
+       [
+        0.75,
+        0.93
+       ],
+       [
+        0.792,
+        0.903
+       ],
+       [
+        0.834,
+        0.87
+       ],
+       [
+        0.875,
+        0.828
+       ],
+       [
+        0.917,
+        0.772
+       ],
+       [
+        0.959,
+        0.693
+       ],
+       [
+        0.304,
+        0.042
+       ],
+       [
+        0.226,
+        0.083
+       ],
+       [
+        0.172,
+        0.125
+       ],
+       [
+        0.13,
+        0.166
+       ],
+       [
+        0.096,
+        0.208
+       ],
+       [
+        0.069,
+        0.25
+       ],
+       [
+        0.047,
+        0.292
+       ],
+       [
+        0.031,
+        0.332
+       ],
+       [
+        0.018,
+        0.373
+       ],
+       [
+        0.009,
+        0.412
+       ],
+       [
+        0.003,
+        0.457
+       ],
+       [
+        0.001,
+        0.494
+       ],
+       [
+        0.001,
+        0.5
+       ],
+       [
+        0.003,
+        0.542
+       ],
+       [
+        0.009,
+        0.584
+       ],
+       [
+        0.018,
+        0.625
+       ],
+       [
+        0.031,
+        0.667
+       ],
+       [
+        0.048,
+        0.709
+       ],
+       [
+        0.069,
+        0.75
+       ],
+       [
+        0.097,
+        0.792
+       ],
+       [
+        0.13,
+        0.834
+       ],
+       [
+        0.172,
+        0.875
+       ],
+       [
+        0.228,
+        0.917
+       ],
+       [
+        0.306,
+        0.959
+       ],
+       [
+        0.696,
+        0.042
+       ],
+       [
+        0.774,
+        0.083
+       ],
+       [
+        0.828,
+        0.125
+       ],
+       [
+        0.87,
+        0.166
+       ],
+       [
+        0.904,
+        0.208
+       ],
+       [
+        0.931,
+        0.25
+       ],
+       [
+        0.953,
+        0.292
+       ],
+       [
+        0.969,
+        0.332
+       ],
+       [
+        0.982,
+        0.373
+       ],
+       [
+        0.991,
+        0.412
+       ],
+       [
+        0.997,
+        0.456
+       ],
+       [
+        0.999,
+        0.495
+       ],
+       [
+        0.999,
+        0.5
+       ],
+       [
+        0.997,
+        0.542
+       ],
+       [
+        0.991,
+        0.584
+       ],
+       [
+        0.982,
+        0.625
+       ],
+       [
+        0.969,
+        0.667
+       ],
+       [
+        0.952,
+        0.709
+       ],
+       [
+        0.93,
+        0.75
+       ],
+       [
+        0.903,
+        0.792
+       ],
+       [
+        0.87,
+        0.834
+       ],
+       [
+        0.828,
+        0.875
+       ],
+       [
+        0.772,
+        0.917
+       ],
+       [
+        0.694,
+        0.959
+       ]
+      ]
+     }
+    }
+   ],
+   "entrance_style": "staggered",
+   "source_credit": "commons.wikimedia.org",
+   "anchor_word": "Court",
+   "composition": "TYPE-FULL",
+   "shot": "HERO-STACK",
+   "shot_drawn": true,
+   "beat_index": 1,
+   "beat_total": 7,
+   "variant": 1,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "Could this historic border deal finally be overturned?",
+   "lead_in": null,
+   "headline": "Could this deal be overturned?",
+   "emphasis_word": "overturned",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "micro",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 12,
+    "rows": 24,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 1,
+      "row": 10,
+      "col_span": 10,
+      "row_span": 4,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "composition": "TYPE-TITLE",
+   "emphasis_beat": false,
+   "vertical": false,
+   "shot": "TITLE",
+   "shot_drawn": true,
+   "beat_index": 2,
+   "beat_total": 7,
+   "variant": 2,
+   "hero_headline": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "Except the Indian government has explicitly ruled out reopening these 1976 pacts.",
+   "lead_in": null,
+   "headline": "Government rules out reopening pacts",
+   "emphasis_word": "reopening",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "Indian government"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "together",
+   "anchor_word": "government",
+   "composition": "ENTITY-ART",
+   "shot": "PHOTO-STRIP",
+   "shot_drawn": false,
+   "art": {
+    "kind": "plate-organization",
+    "name": "Indian government",
+    "items": [
+     null
+    ]
+   },
+   "concept_visuals": [],
+   "label": null,
+   "pull_phrase": null,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "PHOTO",
+   "data": {
+    "entity": "Narendra Modi",
+    "entity_type": "person"
+   },
+   "sentence": "In 2024, Narendra Modi criticized the Congress party for ceding Katchatheevu using RTI documents from K. Annamalai.",
+   "lead_in": null,
+   "headline": "Modi criticizes Congress party",
+   "emphasis_word": "criticized",
+   "emphasis_words": [],
+   "photo": {
+    "asset": "entities/people/narendra-modi.jpg",
+    "entity": "Narendra Modi",
+    "kind": "person",
+    "view": "person",
+    "w": 672,
+    "h": 737,
+    "credit": "Photo: Prime Minister's Office / Wikimedia Commons, GODL-India",
+    "source": "wikidata Q1058 image",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Prime_Minister_Of_Bharat_Shri_Narendra_Damodardas_Modi.jpg",
+    "license": "GODL-India",
+    "verified_as": "File:Prime Minister Of Bharat Shri Narendra Damodardas Modi.jpg (Prime Minister of India since 2014)"
+   },
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Narendra Modi"
+    },
+    {
+     "type": "institution",
+     "name": "Congress party"
+    },
+    {
+     "type": "person",
+     "name": "K. Annamalai"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "staggered",
+   "source_credit": "commons.wikimedia.org",
+   "anchor_word": "Modi",
+   "composition": "PHOTO-BAND",
+   "shot": "PHOTO-BAND",
+   "shot_drawn": true,
+   "beat_index": 4,
+   "beat_total": 7,
+   "variant": 4,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "India"
+   },
+   "sentence": "The Supreme Court of India allowed T.R. Baalu to replace M. Karunanidhi as the petitioner in this case.",
+   "lead_in": null,
+   "headline": "Petitioner replaced in Court case",
+   "emphasis_word": "replaced",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "T.R. Baalu"
+    },
+    {
+     "type": "person",
+     "name": "M. Karunanidhi"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "visual-first",
+   "anchor_word": "Baalu",
+   "composition": "MAP-CENTERED",
+   "shot": "FIGURE",
+   "shot_drawn": true,
+   "beat_index": 5,
+   "beat_total": 7,
+   "variant": 5,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "flag_option": {
+    "asset": "flags/in.png",
+    "region": "country:IND",
+    "name": "India",
+    "aspect": 1.5005861664712778,
+    "source_url": "https://flagcdn.com/w1280/in.png",
+    "license": "Public domain (a national / state flag)",
+    "credit": "flagcdn.com"
+   },
+   "label": null,
+   "pull_phrase": null,
+   "map_band": false
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "The Supreme Court of India now weighs whether Tamil Nadu fishermen need sensitization regarding 1974 and 1976 agreements.",
+   "lead_in": null,
+   "headline": "Weighing fishermen's sensitization",
+   "emphasis_word": "sensitization",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "Supreme Court of India"
+    },
+    {
+     "type": "place",
+     "name": "Tamil Nadu"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "concept_visuals": [
+    {
+     "name": "Supreme Court of India",
+     "class": "cutout",
+     "asset": "cutouts-live/9/1-supreme-court-of-india-logo.png",
+     "w": 1024,
+     "h": 1024,
+     "logo": true,
+     "source": "wikidata Q213380",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Insignia_of_the_Supreme_Court_of_India.svg",
+     "license": "GODL-India",
+     "ink": {
+      "pts": [
+       [
+        0.042,
+        0.304
+       ],
+       [
+        0.083,
+        0.226
+       ],
+       [
+        0.125,
+        0.172
+       ],
+       [
+        0.166,
+        0.13
+       ],
+       [
+        0.208,
+        0.096
+       ],
+       [
+        0.249,
+        0.07
+       ],
+       [
+        0.292,
+        0.047
+       ],
+       [
+        0.332,
+        0.031
+       ],
+       [
+        0.373,
+        0.018
+       ],
+       [
+        0.412,
+        0.009
+       ],
+       [
+        0.458,
+        0.003
+       ],
+       [
+        0.47,
+        0.002
+       ],
+       [
+        0.5,
+        0.002
+       ],
+       [
+        0.542,
+        0.003
+       ],
+       [
+        0.584,
+        0.009
+       ],
+       [
+        0.625,
+        0.018
+       ],
+       [
+        0.667,
+        0.031
+       ],
+       [
+        0.709,
+        0.048
+       ],
+       [
+        0.75,
+        0.069
+       ],
+       [
+        0.792,
+        0.097
+       ],
+       [
+        0.834,
+        0.13
+       ],
+       [
+        0.875,
+        0.172
+       ],
+       [
+        0.917,
+        0.228
+       ],
+       [
+        0.959,
+        0.306
+       ],
+       [
+        0.042,
+        0.696
+       ],
+       [
+        0.083,
+        0.774
+       ],
+       [
+        0.125,
+        0.828
+       ],
+       [
+        0.166,
+        0.87
+       ],
+       [
+        0.208,
+        0.904
+       ],
+       [
+        0.249,
+        0.93
+       ],
+       [
+        0.292,
+        0.953
+       ],
+       [
+        0.332,
+        0.969
+       ],
+       [
+        0.373,
+        0.982
+       ],
+       [
+        0.412,
+        0.991
+       ],
+       [
+        0.456,
+        0.997
+       ],
+       [
+        0.493,
+        0.999
+       ],
+       [
+        0.5,
+        0.999
+       ],
+       [
+        0.542,
+        0.997
+       ],
+       [
+        0.584,
+        0.991
+       ],
+       [
+        0.625,
+        0.982
+       ],
+       [
+        0.667,
+        0.969
+       ],
+       [
+        0.709,
+        0.952
+       ],
+       [
+        0.75,
+        0.93
+       ],
+       [
+        0.792,
+        0.903
+       ],
+       [
+        0.834,
+        0.87
+       ],
+       [
+        0.875,
+        0.828
+       ],
+       [
+        0.917,
+        0.772
+       ],
+       [
+        0.959,
+        0.693
+       ],
+       [
+        0.304,
+        0.042
+       ],
+       [
+        0.226,
+        0.083
+       ],
+       [
+        0.172,
+        0.125
+       ],
+       [
+        0.13,
+        0.166
+       ],
+       [
+        0.096,
+        0.208
+       ],
+       [
+        0.069,
+        0.25
+       ],
+       [
+        0.047,
+        0.292
+       ],
+       [
+        0.031,
+        0.332
+       ],
+       [
+        0.018,
+        0.373
+       ],
+       [
+        0.009,
+        0.412
+       ],
+       [
+        0.003,
+        0.457
+       ],
+       [
+        0.001,
+        0.494
+       ],
+       [
+        0.001,
+        0.5
+       ],
+       [
+        0.003,
+        0.542
+       ],
+       [
+        0.009,
+        0.584
+       ],
+       [
+        0.018,
+        0.625
+       ],
+       [
+        0.031,
+        0.667
+       ],
+       [
+        0.048,
+        0.709
+       ],
+       [
+        0.069,
+        0.75
+       ],
+       [
+        0.097,
+        0.792
+       ],
+       [
+        0.13,
+        0.834
+       ],
+       [
+        0.172,
+        0.875
+       ],
+       [
+        0.228,
+        0.917
+       ],
+       [
+        0.306,
+        0.959
+       ],
+       [
+        0.696,
+        0.042
+       ],
+       [
+        0.774,
+        0.083
+       ],
+       [
+        0.828,
+        0.125
+       ],
+       [
+        0.87,
+        0.166
+       ],
+       [
+        0.904,
+        0.208
+       ],
+       [
+        0.931,
+        0.25
+       ],
+       [
+        0.953,
+        0.292
+       ],
+       [
+        0.969,
+        0.332
+       ],
+       [
+        0.982,
+        0.373
+       ],
+       [
+        0.991,
+        0.412
+       ],
+       [
+        0.997,
+        0.456
+       ],
+       [
+        0.999,
+        0.495
+       ],
+       [
+        0.999,
+        0.5
+       ],
+       [
+        0.997,
+        0.542
+       ],
+       [
+        0.991,
+        0.584
+       ],
+       [
+        0.982,
+        0.625
+       ],
+       [
+        0.969,
+        0.667
+       ],
+       [
+        0.952,
+        0.709
+       ],
+       [
+        0.93,
+        0.75
+       ],
+       [
+        0.903,
+        0.792
+       ],
+       [
+        0.87,
+        0.834
+       ],
+       [
+        0.828,
+        0.875
+       ],
+       [
+        0.772,
+        0.917
+       ],
+       [
+        0.694,
+        0.959
+       ]
+      ]
+     }
+    }
+   ],
+   "entrance_style": "together",
+   "layout": {
+    "cols": 12,
+    "rows": 24,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 1,
+      "row": 8,
+      "col_span": 10,
+      "row_span": 8,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "source_credit": "commons.wikimedia.org",
+   "anchor_word": "sensitization",
+   "composition": "TYPE-FULL",
+   "shot": "HERO-STACK",
+   "shot_drawn": true,
+   "beat_index": 6,
+   "beat_total": 7,
+   "variant": 6,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "9",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "statement": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  }
+ ]
+}

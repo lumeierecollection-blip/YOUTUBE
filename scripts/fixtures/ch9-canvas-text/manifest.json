@@ -1,0 +1,1428 @@
+{
+  "video": "supreme-court-india-sri-lanka-katchatheevu-challenge-shorts-shorts-2026-10-11.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 0.75,
+  "accent": "#1E3A5F",
+  "ground": "#FFFFFF",
+  "sfx": [
+    {
+      "role": "whoosh",
+      "file": "cc0/whoosh.wav",
+      "db": -22,
+      "at_frame": 214,
+      "event_frame": 216,
+      "peak_frames": 2,
+      "beat": 1,
+      "reason": "cut MAP -> HERO",
+      "credit": {
+        "title": "Woosh",
+        "author": "1bob",
+        "source": "https://freesound.org/s/831936/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/whoosh.wav"
+      }
+    },
+    {
+      "role": "whip",
+      "file": "cc0/whip.wav",
+      "db": -22,
+      "at_frame": 574,
+      "event_frame": 575,
+      "peak_frames": 1,
+      "beat": 3,
+      "reason": "cut TYPE -> ENTITY",
+      "credit": {
+        "title": "SWSH_Badminton Racquet_Recording_01_JW Audio",
+        "author": "JW_Audio",
+        "source": "https://freesound.org/s/838766/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/whip.wav"
+      }
+    },
+    {
+      "role": "shutter",
+      "file": "cc0/shutter.wav",
+      "db": -20,
+      "at_frame": 770,
+      "event_frame": 777,
+      "peak_frames": 7,
+      "beat": 4,
+      "reason": "photo arrives",
+      "credit": {
+        "title": "DSLR Shutter fast 006.wav",
+        "author": "ristooooo1",
+        "source": "https://freesound.org/s/539136/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/shutter-modern.wav"
+      }
+    },
+    {
+      "role": "switch",
+      "file": "cc0/switch.wav",
+      "db": -19,
+      "at_frame": 1368,
+      "event_frame": 1372,
+      "peak_frames": 4,
+      "beat": 6,
+      "reason": "headline words pop in",
+      "credit": {
+        "title": "UI Audio - Switch 35",
+        "author": "Kenney",
+        "source": "https://kenney.nl",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/switch.wav"
+      }
+    }
+  ],
+  "totalFrames": 1666,
+  "durationSec": 55.53,
+  "generatedAt": "2026-10-11T01:45:37.502Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 0,
+      "duration_frames": 216,
+      "start_sec": 0,
+      "duration_sec": 7.2,
+      "mechanism": "CAPABILITY",
+      "visual_type": "MAP",
+      "canvas": {
+        "composition": "MAP-CENTERED",
+        "hero": "map",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "map": {
+            "x": 0,
+            "y": 640,
+            "w": 1080,
+            "h": 470,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 142,
+            "y": 1130,
+            "w": 796,
+            "h": 198,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 104,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 0,
+          "y": 130,
+          "w": 1080,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "place",
+            "name": "India"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "MAP",
+        "data": {
+          "place": "India"
+        },
+        "sentence": "What if India tried to reclaim an island ceded fifty years ago?",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 104,
+        "headline_align": "center",
+        "accent_used": true,
+        "variant": 0,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "MAP-BAND",
+        "ground_color": null,
+        "headline_text": "Reclaiming a ceded island",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "headline": [
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "Reclaiming",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "a",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "ceded",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "island",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Reclaiming a ceded island"
+      ],
+      "on_screen_text": [],
+      "draws_text": false,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "island location"
+      ],
+      "camera": [
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 216,
+      "duration_frames": 185,
+      "start_sec": 7.2,
+      "duration_sec": 6.17,
+      "mechanism": "CAPABILITY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "HERO-OVER",
+        "hero": "cutout0",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 114,
+            "y": 1130,
+            "w": 853,
+            "h": 175,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 92,
+            "bleed": 0
+          },
+          "cutout0": {
+            "x": 320,
+            "y": 660,
+            "w": 440,
+            "h": 440,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 114,
+          "y": 130,
+          "w": 918,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline",
+            "chart"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "institution",
+            "name": "Supreme Court of India"
+          },
+          {
+            "type": "object",
+            "name": "Katchatheevu"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "The Supreme Court of India is currently reviewing a legal challenge over Katchatheevu.",
+        "entity_pop": null,
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [
+          {
+            "name": "Supreme Court of India",
+            "class": "cutout",
+            "logo": true,
+            "money": false,
+            "asset": "cutouts-live/9/1-supreme-court-of-india-logo.png",
+            "source": "wikidata Q213380",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Insignia_of_the_Supreme_Court_of_India.svg",
+            "license": "GODL-India"
+          }
+        ],
+        "name_card": null,
+        "entrance_style": "staggered",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 92,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 1,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "HERO-STACK",
+        "ground_color": null,
+        "headline_text": "Supreme Court reviews challenge",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "statement": [
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "Supreme",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Court",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "reviews",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "challenge",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Supreme Court reviews challenge"
+      ],
+      "on_screen_text": [],
+      "draws_text": false,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "legal review"
+      ],
+      "camera": [
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 401,
+      "duration_frames": 174,
+      "start_sec": 13.37,
+      "duration_sec": 5.8,
+      "mechanism": "TYPOGRAPHY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "TYPE-TITLE",
+        "hero": "statement",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 56,
+            "y": 1032,
+            "w": 968,
+            "h": 296,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 156,
+            "bleed": 0
+          },
+          "bar": {
+            "x": 330,
+            "y": 984,
+            "w": 420,
+            "h": 18,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 976,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "micro",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": true
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Could this historic border deal finally be overturned?",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 156,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 2,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": "TITLE",
+        "ground_color": null,
+        "headline_text": "Could this deal be overturned?",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "statement": [
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "Could",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "this",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "deal",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "be",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "overturned?",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            }
+          ]
+        },
+        "headline_motion": "crop-open",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Could this deal be overturned?"
+      ],
+      "on_screen_text": [
+        {
+          "text": "Could this deal be overturned?",
+          "role": "narrative",
+          "source": "beat.text"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Could this deal be overturned?"
+      ],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 575,
+      "duration_frames": 201,
+      "start_sec": 19.17,
+      "duration_sec": 6.7,
+      "mechanism": "CAPABILITY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "ENTITY-ART",
+        "hero": "art",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "art": {
+            "x": 320,
+            "y": 700,
+            "w": 440,
+            "h": 440,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 211,
+            "y": 1165,
+            "w": 659,
+            "h": 144,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 76,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 211,
+          "y": 130,
+          "w": 821,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": {
+          "kind": "plate-organization",
+          "name": "Indian government",
+          "names": null,
+          "style": null,
+          "source_url": null,
+          "license": null,
+          "items": [
+            null
+          ],
+          "region": null,
+          "ends": null,
+          "text": null,
+          "asset": null
+        },
+        "entities": [
+          {
+            "type": "institution",
+            "name": "Indian government"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Except the Indian government has explicitly ruled out reopening these 1976 pacts.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 76,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 3,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "PHOTO-STRIP",
+        "ground_color": null,
+        "headline_text": "Government rules out reopening pacts",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "statement": [
+              "POP_EMPHASIS",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "Government",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "rules",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "out",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "reopening",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "pacts",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Government rules out reopening pacts"
+      ],
+      "on_screen_text": [],
+      "draws_text": false,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "pact status"
+      ],
+      "camera": [
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 776,
+      "duration_frames": 351,
+      "start_sec": 25.87,
+      "duration_sec": 11.7,
+      "mechanism": "CAPABILITY",
+      "visual_type": "PHOTO",
+      "canvas": {
+        "composition": "PHOTO-BAND",
+        "hero": "headline",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "photo": {
+            "x": 0,
+            "y": 640,
+            "w": 1080,
+            "h": 421,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 207,
+            "y": 1091,
+            "w": 667,
+            "h": 209,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 110,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 0,
+          "y": 130,
+          "w": 1080,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": {
+          "subject": "photo",
+          "move": 0.1,
+          "from_frame": 30
+        },
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "person",
+            "name": "Narendra Modi"
+          },
+          {
+            "type": "institution",
+            "name": "Congress party"
+          },
+          {
+            "type": "person",
+            "name": "K. Annamalai"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": {
+          "asset": "entities/people/narendra-modi.jpg",
+          "entity": "Narendra Modi",
+          "kind": "person",
+          "view": "person",
+          "verified_as": "File:Prime Minister Of Bharat Shri Narendra Damodardas Modi.jpg (Prime Minister of India since 2014)",
+          "seen": null,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Prime_Minister_Of_Bharat_Shri_Narendra_Damodardas_Modi.jpg",
+          "place_check": null
+        },
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "PHOTO",
+        "data": {
+          "entity": "Narendra Modi",
+          "entity_type": "person"
+        },
+        "sentence": "In 2024, Narendra Modi criticized the Congress party for ceding Katchatheevu using RTI documents from K. Annamalai.",
+        "entity_pop": {
+          "frame": 30,
+          "word": "Modi",
+          "from": 94,
+          "to": 117,
+          "kind": "photo"
+        },
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "staggered",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "headline_size": 110,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 4,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "PHOTO-BAND",
+        "ground_color": null,
+        "headline_text": "Modi criticizes Congress party",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "headline": [
+              "POP_STANDARD",
+              "POP_EMPHASIS",
+              "POP_STANDARD",
+              "POP_STANDARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "Modi",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "criticizes",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "Congress",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "party",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Modi criticizes Congress party"
+      ],
+      "on_screen_text": [],
+      "draws_text": false,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 1127,
+      "duration_frames": 244,
+      "start_sec": 37.57,
+      "duration_sec": 8.13,
+      "mechanism": "CAPABILITY",
+      "visual_type": "MAP",
+      "canvas": {
+        "composition": "MAP-CENTERED",
+        "hero": "map",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "map": {
+            "x": 0,
+            "y": 640,
+            "w": 1080,
+            "h": 470,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 123,
+            "y": 1146,
+            "w": 835,
+            "h": 182,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 96,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 0,
+          "y": 130,
+          "w": 1080,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "person",
+            "name": "T.R. Baalu"
+          },
+          {
+            "type": "person",
+            "name": "M. Karunanidhi"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "MAP",
+        "data": {
+          "place": "India"
+        },
+        "sentence": "The Supreme Court of India allowed T.R. Baalu to replace M. Karunanidhi as the petitioner in this case.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 96,
+        "headline_align": "center",
+        "accent_used": true,
+        "variant": 5,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "FIGURE",
+        "ground_color": null,
+        "headline_text": "Petitioner replaced in Court case",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "headline": [
+              "POP_EMPHASIS",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "Petitioner",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "replaced",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "in",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Court",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "case",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "crop-open",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Petitioner replaced in court case"
+      ],
+      "on_screen_text": [],
+      "draws_text": false,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "legal substitution"
+      ],
+      "camera": [
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1371,
+      "duration_frames": 295,
+      "start_sec": 45.7,
+      "duration_sec": 9.83,
+      "mechanism": "TYPOGRAPHY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "HERO-OVER",
+        "hero": "cutout0",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 112,
+            "y": 1130,
+            "w": 857,
+            "h": 198,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 104,
+            "bleed": 0
+          },
+          "cutout0": {
+            "x": 320,
+            "y": 660,
+            "w": 440,
+            "h": 440,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 921,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline",
+            "chart"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "institution",
+            "name": "Supreme Court of India"
+          },
+          {
+            "type": "place",
+            "name": "Tamil Nadu"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "The Supreme Court of India now weighs whether Tamil Nadu fishermen need sensitization regarding 1974 and 1976 agreements.",
+        "entity_pop": null,
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [
+          {
+            "name": "Supreme Court of India",
+            "class": "cutout",
+            "logo": true,
+            "money": false,
+            "asset": "cutouts-live/9/1-supreme-court-of-india-logo.png",
+            "source": "wikidata Q213380",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Insignia_of_the_Supreme_Court_of_India.svg",
+            "license": "GODL-India"
+          }
+        ],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 104,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 6,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": "HERO-STACK",
+        "ground_color": null,
+        "headline_text": "Weighing fishermen's sensitization",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "9",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "statement": [
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "Weighing",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "fishermen's",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "sensitization",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Weighing fishermen's sensitization"
+      ],
+      "on_screen_text": [
+        {
+          "text": "Weighing fishermen's sensitization",
+          "role": "narrative",
+          "source": "beat.text"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Weighing fishermen's sensitization"
+      ],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

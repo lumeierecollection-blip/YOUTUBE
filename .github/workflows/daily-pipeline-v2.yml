@@ -1127,6 +1127,12 @@ jobs:
           # render job's own timeout-minutes default (45, line ~905): at 20 the
           # budget was 15 min, so a 13-min first attempt (ch-9, run 38100803605)
           # refused the frame-review correction re-render that would have fit.
+          # Confirmed still needed after this landed: run 38102260955 ch-9
+          # logged "attempt 2 would take ~9.6 min at 10.0 min in" (19.6 total)
+          # against a 15-min budget -> "no further attempt" again. Same
+          # proxy/artifact split sizes the vision caps (gate-visual-qa.js:227,
+          # ollama-client.cjs:145), which were likewise built for a job half
+          # as long as the real one.
           JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '45' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # gemini-client makes ONE attempt (429 -> quota_exhausted at once,

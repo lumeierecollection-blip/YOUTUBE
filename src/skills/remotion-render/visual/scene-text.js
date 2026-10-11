@@ -404,7 +404,7 @@ export function narrativeObjectIds(mechanism) {
  * than dropped, so the auditor can fail on it instead of silently not
  * seeing it.
  */
-export function sceneTextInventory(mechanism, scene, beatText) {
+export function sceneTextInventory(mechanism, scene, beatText, canvas) {
   const surfaces = TEXT_SURFACES[mechanism] || [];
   const objects = (scene && scene.objects) || [];
   const out = [];
@@ -414,6 +414,40 @@ export function sceneTextInventory(mechanism, scene, beatText) {
     if (!t) return;
     out.push({ text: t, role: isEngineVocabulary(t) ? "banned" : role, source });
   };
+
+  // THE CANVAS IS THE REAL ARTIFACT. Run 38102260955 (ch-9) is the second
+  // time this table was the wrong instrument: every beat was CAPABILITY,
+  // which appears nowhere in TEXT_SURFACES, so sceneTextInventory returned
+  // [] for 5 of 7 beats — `draws_text: false`, `on_screen_text: []` — while
+  // full-canvas.jsx drew a 104px headline box on every one of them. The
+  // auditor's typography checks read on_screen_text / narrative_text, so
+  // they were blind to the majority of the video's text: the run reported
+  // "29% text-forward" from the MECHANISM name while the frames showed a
+  // headline on all 7, and every engine-vocabulary, phrase-length and
+  // figure-slot check silently passed because the strings were never
+  // reported. The mechanism table describes the legacy per-mechanism SVG
+  // scenes; this render path is the full-canvas layout, and it draws text
+  // from the canvas boxes. Read the boxes.
+  //
+  // Roles follow the canvas's own box roles so the auditor keeps applying
+  // the right rule: a headline/statement box is the narrative string, a
+  // number box is a value (exempt from the word budget), data/label boxes
+  // are chrome. Boxes are the layout's, so this cannot drift from what
+  // full-canvas.jsx paints.
+  const canvasRole = { headline: "narrative", statement: "narrative", emphasis: "narrative", number: "value", data: "quiet", kicker: "quiet", label: "quiet" };
+  const boxes = (canvas && canvas.boxes) || {};
+  const seen = new Set(out.map((t) => t.text));
+  for (const [k, b] of Object.entries(boxes)) {
+    if (!b) continue;
+    const role = canvasRole[b.role];
+    if (!role) continue;
+    const text = (Array.isArray(b.lines) && b.lines.length ? b.lines.join(" ") : b.text) || null;
+    if (!text) continue;
+    const t = String(text).trim();
+    if (!t || seen.has(t)) continue;   // the table and the canvas can name the same string
+    seen.add(t);
+    push(t, role, `canvas.${k}`);
+  }
 
   const findByHint = (hint) => {
     const h = hint.toLowerCase();

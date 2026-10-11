@@ -1831,7 +1831,14 @@ export function canvasManifest(raw, idx) {
   const c = normalizeCanvas(raw, idx);
   const L = canvasLayout(c);
   const flat = {};
-  const meta = (n) => ({ x: n.x, y: n.y, w: n.w, h: n.h, role: n.role || null, align: n.align || null, rotate: n.rotate || null, size: n.size || null, bleed: n.bleed || 0, parts: n.parts ? { isQuantity: !!n.parts.isQuantity, text: n.parts.text } : undefined });
+  // `lines` is what the box DRAWS, and it belongs in the manifest for the same
+  // reason the boxes do: without it a consumer can see that a box exists and
+  // how big it is, but not what is in it. scene-text.js reads these to report
+  // a beat's on-screen strings, and until this was recorded the inventory had
+  // no source but the mechanism table — which does not know CAPABILITY, so
+  // 5 of 7 beats in run 38102260955 reported draws_text:false while painting a
+  // 104px headline each (the proxy/artifact split this file keeps hitting).
+  const meta = (n) => ({ x: n.x, y: n.y, w: n.w, h: n.h, role: n.role || null, align: n.align || null, rotate: n.rotate || null, size: n.size || null, bleed: n.bleed || 0, lines: n.lines?.length ? n.lines : (n.text != null && String(n.text).trim() ? [String(n.text)] : undefined), parts: n.parts ? { isQuantity: !!n.parts.isQuantity, text: n.parts.text } : undefined });
   for (const [k, v] of flattenBoxes(L.boxes)) flat[k] = meta(v);
   // The pull phrase is drawn by full-canvas.jsx PullPhrase, outside L.boxes (so the pop bands, the
   // camera and the zone clamps never treat it as a body element); the audit still sees its box.

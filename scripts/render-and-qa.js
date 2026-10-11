@@ -2818,7 +2818,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const postPlanMs = Date.now() - planReadyAt;
     const nextMs = postPlanMs + (enforced.appliedCount ? 0 : planReadyAt - attemptStartedAt);
     if (Date.now() - PROCESS_T0 + nextMs > RENDER_QA_BUDGET_MS) {
-      console.log(`[budget] attempt ${attempt + 1} would take ~${(nextMs / 60000).toFixed(1)} min at ${((Date.now() - PROCESS_T0) / 60000).toFixed(1)} min in; that passes the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
+      console.log(`[budget] attempt ${attempt + 1} would take ~${(nextMs / 60000).toFixed(1)} min at ${((Date.now() - PROCESS_T0) / 60000).toFixed(1)} min in; that OVERRUNS the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
       return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
     }
     // When directives were enforced, the NEXT attempt renders the edited

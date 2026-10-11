@@ -916,7 +916,13 @@ async function main() {
         // figures and are exempt from the word budget, "banned" strings are
         // engine vocabulary that must never have reached the screen.
         const rendersTypography = mechanism === "TYPOGRAPHY" || !OBJECT_FIRST_MECHANISMS.has(mechanism);
-        const onScreenText = sceneTextInventory(mechanism, scene, b.text);
+        // The canvas manifest is the renderer's own record of what it drew
+        // (boxes, roles, lines). sceneTextInventory reads the text boxes out
+        // of it, so a beat that paints a headline is reported as drawing one
+        // whatever its mechanism is called — see scene-text.js for the run
+        // that proved the mechanism table was the wrong instrument.
+        const canvasRec = b.scene?.canvas ? canvasManifest(b.scene.canvas, i) : null;
+        const onScreenText = sceneTextInventory(mechanism, scene, b.text, canvasRec);
         return {
           index: i,
           beat_id: b.beat_id,
@@ -931,7 +937,7 @@ async function main() {
           // which the audit (local-audit.cjs canvas-fit / canvas-coverage)
           // checks against the 1080x1920 frame.
           visual_type: b.scene?.canvas?.visual_type || null,
-          canvas: b.scene?.canvas ? canvasManifest(b.scene.canvas, i) : null,
+          canvas: canvasRec,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,
