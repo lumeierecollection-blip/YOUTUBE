@@ -1,0 +1,58 @@
+{
+  "topic_slug": "prefectura-naval-argentina-gold-ingots-caleta-olivia",
+  "strongest_angle": "Analyze how newly discovered gold ingots found in an inactive toilet tank during October 2026 raids by Prefectura Naval Argentina provide crucial forensic evidence for a December 2025 disappearance in Caleta Olivia.",
+  "key_facts": [
+    {
+      "fact": "Prefectura Naval Argentina recovered four gold ingots weighing over two and a half kilos hidden inside the water tank of an inactive toilet during raids in Caleta Olivia on October 9, 2026.",
+      "source_url": "https://www.argentina.gob.ar/noticias/prefectura-secuestro-mas-de-1200-millones-de-pesos-en-lingotes-de-oro-en-caleta-olivia",
+      "source_name": "Presidencia de la Nación",
+      "confidence": "high"
+    },
+    {
+      "fact": "The investigation and raids conducted by Prefectura Naval Argentina stem from the disappearance of a man on December 7, 2025, in the Santa Cruz locality of Caleta Olivia.",
+      "source_url": "https://www.argentina.gob.ar/noticias/pna-secuestro-un-botin-de-oro-valuado-en-mas-de-1200-millones-de-pesos",
+      "source_name": "Presidencia de la Nación",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the October 2026 operations in Caleta Olivia, personnel from Prefectura Naval Argentina also seized an automobile, a DVR recording system, and two cell phones from the property.",
+      "source_url": "https://tn.com.ar/policiales/2026/10/11/santa-cruz-buscaban-a-un-hombre-desaparecido-y-encontraron-cuatro-lingotes-de-oro-escondidos-en-el-tanque-de-un-inodoro",
+      "source_name": "TN",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Gold weight",
+      "value": 2.5,
+      "unit": "kilos",
+      "source_url": "https://www.argentina.gob.ar/noticias/prefectura-secuestro-mas-de-1200-millones-de-pesos-en-lingotes-de-oro-en-caleta-olivia"
+    },
+    {
+      "label": "Gold ingots recovered",
+      "value": 4,
+      "unit": "ingots",
+      "source_url": "https://www.argentina.gob.ar/noticias/prefectura-secuestro-mas-de-1200-millones-de-pesos-en-lingotes-de-oro-en-caleta-olivia"
+    },
+    {
+      "label": "Search operations conducted",
+      "value": 2,
+      "unit": "allanamientos",
+      "source_url": "https://particle.news/story/gold-ingots-found-in-inactive-toilet-tank-during-caleta-olivia-raids"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Prefectura Naval Argentina",
+      "kind": "organization"
+    },
+    {
+      "name": "Caleta Olivia",
+      "kind": "place"
+    },
+    {
+      "name": "Santa Cruz",
+      "kind": "place"
+    }
+  ]
+}
