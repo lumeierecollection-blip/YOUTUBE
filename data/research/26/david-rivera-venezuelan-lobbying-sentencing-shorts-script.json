@@ -1,0 +1,67 @@
+{
+  "channel_id": "26",
+  "topic_slug": "david-rivera-venezuelan-laundering-sentencing",
+  "format": "shorts",
+  "hook": "Former Congressman David Rivera just received 10 years in federal prison for a secret foreign lobbying scheme.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Former Congressman David Rivera just received 10 years in federal prison for a secret foreign lobbying scheme.",
+      "b_roll": [
+        "Federal courthouse exterior in Miami",
+        "Document archive footage"
+      ],
+      "text_overlay": {
+        "text": "10 Years in Prison"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal investigators in Miami uncovered an illicit $50 million contract tied directly to Nicolás Maduro. Where did that $50 million contract originate?",
+      "b_roll": [
+        "Investigative files and contracts",
+        "Map of Miami and Venezuela"
+      ],
+      "text_overlay": {
+        "text": "$50 Million Contract"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Rivera maintained he secretly worked to remove Nicolás Maduro from power.",
+      "b_roll": [
+        "Washington Post clippings",
+        "Press conference microphones"
+      ],
+      "text_overlay": {
+        "text": "The Defense"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Money laundering and foreign agent convictions dismantled his defense entirely. A judge in Miami handed down the full 10-year prison sentence.",
+      "b_roll": [
+        "IRS criminal investigation seal",
+        "Courtroom gavel striking"
+      ],
+      "text_overlay": {
+        "text": "Convicted on All Charges"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Secret lobbying for foreign regimes ends behind federal prison bars.",
+      "b_roll": [
+        "Prison gates closing",
+        "Federal seal graphic"
+      ],
+      "text_overlay": {
+        "text": "Secret Lobbying Ends"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.irs.gov/compliance/criminal-investigation/former-us-congressman-sentenced-to-10-years-in-federal-prison-for-secretly-acting-as-agent-of-venezuelan-government",
+    "https://www.washingtonpost.com/national-security/2026/10/02/ex-congressman-rubio-ally-gets-10-years-secret-venezuela-lobbying"
+  ]
+}

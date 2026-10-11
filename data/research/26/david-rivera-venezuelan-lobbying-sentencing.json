@@ -1,0 +1,68 @@
+{
+  "topic_slug": "david-rivera-venezuelan-laundering-sentencing",
+  "strongest_angle": "Examine the 10-year federal prison sentence handed down to former U.S. Congressman David Rivera in Miami for secret foreign lobbying on behalf of Nicolas Maduro's government under a $50 million contract.",
+  "key_facts": [
+    {
+      "fact": "Former U.S. Congressman David Rivera was sentenced in Miami to 10 years in federal prison for acting as an unregistered agent of the Venezuelan government.",
+      "source_url": "https://www.irs.gov/compliance/criminal-investigation/former-us-congressman-sentenced-to-10-years-in-federal-prison-for-secretly-acting-as-agent-of-venezuelan-government",
+      "source_name": "Internal Revenue Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "Former Congressman David Rivera maintained that despite a $50 million lobbying contract from Venezuela's government, he advocated for the removal of President Nicolás Maduro.",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/02/ex-congressman-rubio-ally-gets-10-years-secret-venezuela-lobbying",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "Former U.S. Representative David Rivera was sentenced Friday in Miami after his conviction on foreign-agent and money-laundering charges.",
+      "source_url": "https://www.miamiherald.com/news/local/community/miami-dade/article317473623.html",
+      "source_name": "Miami Herald",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Prison sentence duration",
+      "value": 10,
+      "unit": "years",
+      "source_url": "https://www.irs.gov/compliance/criminal-investigation/former-us-congressman-sentenced-to-10-years-in-federal-prison-for-secretly-acting-as-agent-of-venezuelan-government"
+    },
+    {
+      "label": "Lobbying contract value",
+      "value": 50,
+      "unit": "million dollars",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/02/ex-congressman-rubio-ally-gets-10-years-secret-venezuela-lobbying"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "David Rivera",
+      "kind": "person"
+    },
+    {
+      "name": "Nicolás Maduro",
+      "kind": "person"
+    },
+    {
+      "name": "Marco Rubio",
+      "kind": "person"
+    },
+    {
+      "name": "Miami",
+      "kind": "place"
+    },
+    {
+      "name": "Venezuela",
+      "kind": "place"
+    },
+    {
+      "name": "Internal Revenue Service",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. Congress",
+      "kind": "organization"
+    }
+  ]
+}
