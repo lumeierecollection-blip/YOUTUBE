@@ -1,0 +1,69 @@
+{
+  "channel_id": "26",
+  "topic_slug": "roman-abramovich-deloitte-cyprus-tax-evasion",
+  "format": "shorts",
+  "hook": "Deloitte Cyprus helped Roman Abramovich hide $10 billion in assets.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Deloitte Cyprus helped Roman Abramovich hide $10 billion in assets.",
+      "b_roll": [
+        "Document vault opening",
+        "Financial records stack"
+      ],
+      "text_overlay": {
+        "text": "$10 Billion Hidden"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Meritservus falsified 1,000 corporate papers for the billionaire. Staff used fake timestamps to rewrite the historical record. Where did those $672 million in vanished assets go?",
+      "b_roll": [
+        "Papers stamping desk",
+        "Digital clock rolling back",
+        "Superyacht leaving harbor"
+      ],
+      "text_overlay": {
+        "text": "1,000 Papers Falsified"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Leaked emails reveal retroactive asset transfers to the British Virgin Islands.",
+      "b_roll": [
+        "Email inbox opening",
+        "Map highlighting British Virgin Islands"
+      ],
+      "text_overlay": {
+        "text": "British Virgin Islands"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Superyachts, mansions, and private jets vanished directly from company accounts. Deloitte Cyprus signed off every single falsified document. Tax obligations dissolved entirely.",
+      "b_roll": [
+        "Mansion aerial view",
+        "Auditor signing papers",
+        "Tax document shredding"
+      ],
+      "text_overlay": {
+        "text": "$672M Vanished"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Expose the audit firms hiding billionaire fortunes.",
+      "b_roll": [
+        "Magnifying glass on ledger",
+        "Audit stamp slamming down"
+      ],
+      "text_overlay": {
+        "text": "Expose the Audits"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c64g1l5389kvo",
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+  ]
+}
