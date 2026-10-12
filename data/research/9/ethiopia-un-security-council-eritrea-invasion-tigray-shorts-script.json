@@ -1,0 +1,64 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-un-security-council-eritrea-invasion-tigray",
+  "format": "shorts",
+  "hook": "Foreign Eritrean soldiers just crossed the northern border into Ethiopia, sparking an official UN complaint.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Foreign Eritrean soldiers just crossed the northern border into Ethiopia, sparking an official UN complaint.",
+      "b_roll": [
+        "Border map of Ethiopia and Eritrea"
+      ],
+      "text_overlay": {
+        "text": "Border Crossings"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Eritrean troops marched directly into the Tigray region as fierce fighting erupted. Residents inside Adigrat witnessed the armed columns moving south. Where did the UN Security Council letter go?",
+      "b_roll": [
+        "Satellite view of Adigrat town",
+        "Document view of United Nations headquarters"
+      ],
+      "text_overlay": {
+        "text": "Adigrat Town"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Ethiopia accused Eritrea of an all-out invasion of its northern Tigray region in a letter sent to the United Nations Security Council.",
+      "b_roll": [
+        "Official diplomatic correspondence"
+      ],
+      "text_overlay": {
+        "text": "Invasion Accusation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Government officials filed formal charges inside the UN Security Council chambers concerning Eritrea.",
+      "b_roll": [
+        "UN Security Council chamber",
+        "Ethiopian defense map"
+      ],
+      "text_overlay": {
+        "text": "Self-Defense Measures"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch the UN Security Council for the next diplomatic update.",
+      "b_roll": [
+        "UN emblem"
+      ],
+      "text_overlay": {
+        "text": "UN Security Council"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c65ynvw250y1o",
+    "https://www.washingtonpost.com/world/2026/10/10/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy/b7e8b8e2-c47a-11f1-8170-681419af1cc9_story.html"
+  ]
+}
