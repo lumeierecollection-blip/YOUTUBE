@@ -93,8 +93,17 @@ export function drawnOf(c) {
   if (!c) return out;
   if (c.photo) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", name: c.photo.entity, region: c.photo.region || null });
   for (const v of c.concept_visuals || []) out.push({ kind: v.logo ? "logo" : v.class === "symbol" ? "symbol" : v.class === "cutout" ? "cutout" : v.class || "visual", name: v.name });
-  if (c.art?.kind === "plates" && Array.isArray(c.art.names)) c.art.names.forEach((nm, i) => out.push({ kind: c.art.items?.[i]?.asset ? "logo" : "plate-organization", name: nm }));
-  else if (c.art) {
+  // A plates row carries SEVERAL named things, each with its own kind. It used to
+  // report every one of them as "plate-organization", which made a person or a
+  // place in the row unmatchable — board 38265869072 ch-5 beat 2 named two
+  // people, the ladder drew them as a plates row, and this read "draws
+  // plate-organization + plate-organization, none of it the entity". The kind
+  // says what a plate depicts, so it is recorded per entry and read back per
+  // entry. An entry with no recorded kind falls back to plate-organization,
+  // which is what the row meant before the kinds existed.
+  if (c.art?.kind === "plates" && Array.isArray(c.art.names)) {
+    c.art.names.forEach((nm, i) => out.push({ kind: c.art.items?.[i]?.asset ? "logo" : (c.art.kinds?.[i] || "plate-organization"), name: nm }));
+  } else if (c.art) {
     const k = c.art.kind === "plate-organization" && c.art.items?.[0]?.asset ? "logo" : c.art.kind;
     out.push({ kind: k === "flag" ? "flag" : k === "span" ? "span" : k === "date" ? "figure" : k, name: c.art.name, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || c.art.name });
   }

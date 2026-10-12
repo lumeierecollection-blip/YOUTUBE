@@ -169,7 +169,14 @@ export function ladderAll(b) {
 
   if (rowable.length >= 2) {
     const names = rowable.map((e) => e.name).slice(0, 4);
-    const d = { art: { kind: "plates", name: names.join(", "), names }, replaces: !keeps, alongside: keeps };
+    // Each entry carries its OWN kind. A row that reported every name as
+    // plate-organization made a PERSON in it unmatchable: board 38265869072
+    // ch-5 beat 2 named "Amit Hadad" and "Yehudit Tirosh", the ladder drew them
+    // as a plates row, and entity-coverage read "draws plate-organization +
+    // plate-organization, none of it the entity" — two people drawn as two
+    // organisations. The kind is what says what a plate is depicting.
+    const kinds = rowable.map((e) => directiveFor(e, { ...g, ents: rowable, primary: e }, b, false)?.art?.kind).filter(Boolean);
+    const d = { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps };
     out.push(d);
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
