@@ -1,0 +1,68 @@
+{
+  "channel_id": "10",
+  "topic_slug": "nicolas-flamel-philosophers-stone-will",
+  "format": "shorts",
+  "hook": "Six hundred years of science chased a gold-making myth that never existed.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six hundred years of science chased a gold-making myth that never existed.",
+      "b_roll": [
+        "Archives in Paris",
+        "Ancient manuscript pages"
+      ],
+      "text_overlay": {
+        "text": "600 Years of Myth"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Parisian records from the 15th century show Nicolas Flamel working as a scribe. How did Nicolas Flamel amass the real wealth recorded in his will?",
+      "b_roll": [
+        "Musée de Cluny exhibition hall",
+        "Medieval document scan"
+      ],
+      "text_overlay": {
+        "text": "The Real Scribe"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, his surviving will proves Paris scribe Nicolas Flamel had ordinary origins.",
+      "b_roll": [
+        "Will document close-up",
+        "Parchment details"
+      ],
+      "text_overlay": {
+        "text": "The Will Revealed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Historians at the Musée de Cluny opened an exhibition displaying Nicolas Flamel. Book sales built the estate of scribe Nicolas Flamel in Paris. No philosopher's stone touched the Paris workshop of Nicolas Flamel.",
+      "b_roll": [
+        "Museum displays",
+        "Historical artifacts"
+      ],
+      "text_overlay": {
+        "text": "Musée de Cluny Exhibition"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the 2026 exhibition papers to see the real documents.",
+      "b_roll": [
+        "Exhibition entrance",
+        "Catalog books"
+      ],
+      "text_overlay": {
+        "text": "Read the Research"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone",
+    "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris",
+    "https://artsandculture.google.com/story/nicolas-flamel-alchemy-and-the-legend-of-the-philosopher%E2%80%99s-stone-science-museum/jwXhqPSro7CIJQ?hl=en"
+  ]
+}
