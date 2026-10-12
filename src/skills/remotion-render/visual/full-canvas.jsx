@@ -454,6 +454,11 @@ function Portrait({ b, local, fps, at, dur = 150 }) {
 // Where each drawn symbol's ink ends, as a fraction of its 100-unit viewBox (symbols/*.jsx geometry).
 const SYMBOL_INK_BOTTOM = { "warning-triangle": 0.90, checkmark: 0.89, "upward-arrow": 0.94, "downward-arrow": 0.94, radar: 0.96, "dollar-sign": 0.98, "broken-chain": 0.97, crosshair: 1 };
 function ConceptVisual({ b, local, fps, at, accent, dur = 150 }) {
+  // Read the theme once, at the top: the plate branch below needs it, and a
+  // hook called after an early return is a hooks-order violation (the branch is
+  // only reached for plate classes, so a call inside it would run on some
+  // frames and not others).
+  const th = useTheme();
   const pop = popCss("POP_STANDARD", local - Math.round(at * fps), "50% 100%");
   // Part D.2. A logo pops in at 1.15x and settles over 8 frames; its soft shadow turns 2 deg
   // across the beat. A cutout pushes in 2% across the beat. (Both stand on their floor.)
@@ -492,6 +497,24 @@ function ConceptVisual({ b, local, fps, at, accent, dur = 150 }) {
     return (
       <div style={{ position: "absolute", left: b.align === "center" ? b.x + (b.w - s) / 2 : b.x, top: (b.align === "center" ? b.y + (b.h - s) / 2 : b.y + b.h - s) + gap, width: s, height: s, ...pop }}>
         <Symbol name={b.concept} size={s} color={accent} />
+      </div>
+    );
+  }
+  // A PLATE AS A SECOND VISUAL — rungs 2 and 3 of the visual ladder: the entity's
+  // real mark when a free verified one resolved, otherwise its NAME set large in
+  // type. This branch did not exist, and without it ConceptVisual fell through
+  // to `return null` — so the entity ladder's `alongside` visual was laid out as
+  // a cutout0 box and drew NOTHING. Board 38244309098 ch-1/ch-8/ch-26 all
+  // failed the pixel audit with "the cutout0 is not on the frame (0.0% of its
+  // box differs from the ground)" while the manifest claimed a visual was
+  // there: a box is not a picture. Never blank, never a stock icon standing in
+  // for a named thing — the same component ENTITY-ART uses, so the two paths
+  // cannot differ.
+  if (b.class === "plate-organization" || b.class === "plate-person" || b.class === "plate-place") {
+    const side = Math.max(120, Math.min(b.w, b.h));
+    return (
+      <div style={{ position: "absolute", left: b.align === "center" ? b.x + (b.w - side) / 2 : b.x, top: b.y, width: b.w, height: b.h, ...pop }}>
+        <MarkPlate side={side} name={b.concept || b.name} item={b.asset ? { name: b.concept || b.name, asset: b.asset, source_url: b.source_url, license: b.license } : null} style={b.style} accent={accent} th={th} hair={3} />
       </div>
     );
   }
