@@ -1,0 +1,67 @@
+{
+  "channel_id": "5",
+  "topic_slug": "evergrande-founder-hui-ka-yan-sentenced-life-corporate-fraud",
+  "format": "shorts",
+  "hook": "Evergrande founder Hui Ka Yan's life sentence for corporate fraud shocked global markets.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Evergrande founder Hui Ka Yan's life sentence for corporate fraud shocked global markets.",
+      "b_roll": [
+        "Courtroom gavel dropping in Shenzhen",
+        "Portrait of billionaire Hui Ka Yan"
+      ],
+      "text_overlay": {
+        "text": "Life Sentence for Fraud"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "China Evergrande Group faced a total collapse after years of hidden debt. Founder Hui Ka Yan pleaded guilty to 8 charges in court. Where did the billions vanish?",
+      "b_roll": [
+        "Evergrande unfinished housing towers in China",
+        "Court documents with charges listed"
+      ],
+      "text_overlay": {
+        "text": "8 Charges Pleaded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Beijing prosecutors uncovered massive corporate bribery, but Hui Ka Yan also faced 8 total charges.",
+      "b_roll": [
+        "Police investigators reviewing financial ledgers",
+        "Shenzhen court exterior building"
+      ],
+      "text_overlay": {
+        "text": "Massive Bribery Uncovered"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judges hit Evergrande with a $1.3 billion corporate fine. Officials confiscated all personal property belonging to Hui Ka Yan. The Shenzhen court delivered the final verdict on August 20, 2026.",
+      "b_roll": [
+        "Gavel striking the wooden block",
+        "Confiscated assets warehouse full of luxury goods"
+      ],
+      "text_overlay": {
+        "text": "$1.3 Billion Fine"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Shenzhen Intermediate People's Court confiscated all personal property from Hui Ka Yan.",
+      "b_roll": [
+        "Evergrande company logo fading to black",
+        "Prison cell gate closing"
+      ],
+      "text_overlay": {
+        "text": "The Ultimate Price"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.reuters.com/world/china/china-evergrande-founder-sentenced-life-imprisonment-cctv-reports-2026-08-20",
+    "https://www.channelnewsasia.com/east-asia/china-evergrande-founder-hui-ka-yan-sentenced-life-in-prison-6330256"
+  ]
+}
