@@ -1,0 +1,65 @@
+{
+  "channel_id": "44",
+  "topic_slug": "harvard-negotiation-integrative-bargaining-tactics",
+  "format": "shorts",
+  "hook": "Did you know you leave money on the table when Harvard negotiators use multiple equivalent simultaneous offers?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know you leave money on the table when Harvard negotiators use multiple equivalent simultaneous offers?",
+      "b_roll": [
+        "Harvard Law School building exterior",
+        "Negotiation strategy documents on a table"
+      ],
+      "text_overlay": {
+        "text": "Harvard Negotiation Secret"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at Harvard University publish daily insights on integrative strategies. M. H. Bazerman studies multi-issue agendas. Which tactics manage the negotiator's dilemma across volume 21?",
+      "b_roll": [
+        "Academic journal pages",
+        "Researchers reviewing negotiation data"
+      ],
+      "text_overlay": {
+        "text": "Expanding the Pie"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "You risk leaving value on the table when dividing a fixed pie.",
+      "b_roll": [
+        "Split negotiation table graphic"
+      ],
+      "text_overlay": {
+        "text": "The Negotiator's Dilemma"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "M. H. Bazerman uncovers shared and differing interests simultaneously. Issue 4 outlines how simultaneous offers create and claim value. Both parties capture maximum benefit.",
+      "b_roll": [
+        "Value creation chart",
+        "Successful agreement signing"
+      ],
+      "text_overlay": {
+        "text": "Create and Claim Value"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Visit the Program on Negotiation at Harvard Law School to apply these Harvard tactics.",
+      "b_roll": [
+        "Program on Negotiation logo"
+      ],
+      "text_overlay": {
+        "text": "Master Negotiation"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-skills-expanding-the-pie-integrative-bargaining-versus-distributive-bargaining",
+    "https://onlinelibrary.wiley.com/doi/10.1002/bdm.524"
+  ]
+}
