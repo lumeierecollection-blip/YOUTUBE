@@ -1,0 +1,65 @@
+{
+  "channel_id": "49",
+  "topic_slug": "sony-pictures-social-reckoning-box-office-bomb",
+  "format": "shorts",
+  "hook": "Sony Pictures projected $7 million, but The Social Reckoning bombed with $5.5 million.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sony Pictures projected $7 million, but The Social Reckoning bombed with $5.5 million.",
+      "b_roll": [
+        "Movie theater marquee displaying ticket sales"
+      ],
+      "text_overlay": {
+        "text": "$5.5M Box Office Bomb"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Aaron Sorkin directed the Facebook-focused feature across North America. Friday previews brought in $2.1 million total for the studio. Where did ticket sales fall short for Sony Pictures?",
+      "b_roll": [
+        "Director portrait and studio logo",
+        "Box office earnings chart"
+      ],
+      "text_overlay": {
+        "text": "$2.1M Friday Earnings"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Universal horror movie Other Mommy dominated the exact same weekend.",
+      "b_roll": [
+        "Horror movie poster feature"
+      ],
+      "text_overlay": {
+        "text": "The Weekend Leader"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Jessica Chastain starred in that rival feature to capture $27.5 million. Sony Pictures lost the box office race completely during opening weekend.",
+      "b_roll": [
+        "Lead actress photo",
+        "Box office comparison graph"
+      ],
+      "text_overlay": {
+        "text": "$27.5M vs $5.5M"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check out studio release schedules for more box office breakdowns.",
+      "b_roll": [
+        "Release calendar display"
+      ],
+      "text_overlay": {
+        "text": "Subscribe for more"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+    "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161",
+    "https://www.hollywoodreporter.com/movies/movie-news/other-mommy-box-office-social-reckoning-opening-1236726908"
+  ]
+}
