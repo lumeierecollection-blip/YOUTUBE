@@ -1266,6 +1266,17 @@ Respond ONLY with JSON: {"sequence": <number>}`);
       }
     }
   }
+  // A beat the ENTITY LADDER gave a visual keeps it. chooseShots runs AFTER the
+  // ladder (render-and-qa.js:2199 then :2235) and rewrites b.data from its own
+  // figure choice, which undid the ladder's coverage fix: board 38285053635
+  // ch-1 beat 6 logged "states 50 percent -> a stat card" and the frame still
+  // showed $6.99, so entity-coverage read the sentence's other number as the
+  // only one on screen. A shot choice is about VARIETY; it must not decide that
+  // a named entity goes back on nothing.
+  //
+  // `b.ladder_visual` is set by the ladder on every beat it replaced, so a
+  // shot choice can keep the ladder's visual_type/data and take only the
+  // shot's other devices (its symbol, its headline).
   plan.beats.forEach((b, i) => {
     if (choice[i] === current[i]) return;
     b.canvas = choice[i].canvas;
@@ -1274,9 +1285,19 @@ Respond ONLY with JSON: {"sequence": <number>}`);
     // A symbol taken: recorded where canvasContentFor rebuilds a TYPE beat's hero from (fallback_symbol).
     if (choice[i].symbol) b.fallback_symbol = choice[i].symbol;
     // An object taken (a number beat shown with its object): the beat is the object and its words now.
-    if (choice[i].object) { b.visual_type = "TYPE"; b.data = null; b.hero_cutout = choice[i].object.visual; b.headline = choice[i].object.headline; delete b.type_layout; }
+    if (choice[i].object && !b.ladder_visual) { b.visual_type = "TYPE"; b.data = null; b.hero_cutout = choice[i].object.visual; b.headline = choice[i].object.headline; delete b.type_layout; }
     // A figure taken: the beat's content is that figure now (it was gated as the visual-first pass gates).
-    if (choice[i].figure) { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
+    //
+    // NOT on a beat the entity ladder already gave a visual to. Board
+    // 38285053635 ch-1 beat 6: the ladder replaced the figure so the sentence's
+    // "50 percent" was on screen, and this line put "$6.99" back, so
+    // entity-coverage read the other number as the only one there. Shot
+    // variety is not a licence to un-draw a named entity — the ladder's visual
+    // stands and the shot's own devices (symbol, headline) still apply.
+    if (choice[i].figure) {
+      if (b.ladder_visual) console.log(`[shots] ch-${channelId} beat ${b.index}: keeping the entity the ladder drew (${b.ladder_visual.data?.value || b.ladder_visual.visual_type}) over the shot's own figure`);
+      else { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
+    }
   });
   plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
   return { choice, problems, asked };
@@ -1417,6 +1438,9 @@ export async function entityLadder(plan, channelId, log = console.log) {
       const v = checkVisual({ visual_type: "COUNTER", data: { value: d.figure.value, label: d.figure.label }, named_entities: b.named_entities }, b.narration || "");
       if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value}; a stat card is refused (${v.why})`); continue; }
       reset(b); b.visual_type = v.type || "COUNTER"; b.data = v.data || { value: d.figure.value, label: d.figure.label };
+      // Recorded so chooseShots (which runs later) does not swap this figure
+      // back for its own and put the sentence's other number on nothing.
+      b.ladder_visual = { visual_type: b.visual_type, data: b.data };
       b.canvas = canvasContentFor(b, {}); done.figure++;
       log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value} -> a stat card`);
     } else if (d.art) {
