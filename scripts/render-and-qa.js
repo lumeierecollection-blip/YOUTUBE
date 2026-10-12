@@ -1314,19 +1314,66 @@ export async function entityLadder(plan, channelId, log = console.log) {
     // cutout0/cutout1 (canvas-layout.js:1169).
     for (const d of dirs) {
     const keep = { visual_type: b.visual_type, data: b.data, art: b.art, name_card: b.name_card, hero_cutout: b.hero_cutout, fallback_symbol: b.fallback_symbol, type_layout: b.type_layout, canvas: b.canvas };
+    // An organisation's plate carries its REAL mark when a free, verified one exists (resolve-scene.cjs: Wikipedia infobox / Commons, licence
+    // checked, vision-verified); otherwise its NAME set in type. Never a stock icon (owner, 2026-10-09). This runs for EVERY rung,
+    // alongside ones included — a second visual added beside an existing one is held to the same rule as one that replaces it,
+    // and it has to run before the alongside branch reads d.art.items.
+    if (d.art && (d.art.kind === "plate-organization" || d.art.kind === "plates")) {
+      const names = d.art.kind === "plates" ? d.art.names : [d.art.name];
+      d.art.items = [];
+      for (const nm of names) {
+        let it = null;
+        try {
+          // An agency / institution (NASA, the FBI) is looked up as one — its seal or insignia is searched too; a company / outlet as a company.
+          const t0 = String((b.named_entities || []).find((e) => e && sameName(e.name, nm))?.type || "");
+          const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
+          // The same qualification the photo path applies (qualifyEntityWith): a generic name ("Treasury") is resolved as the script's one
+          // country's body, or refused. Before this, the plate looked up the BARE name and took whatever mark a search returned for it.
+          const qn = await qualifyEntityWith({ type: rtype, name: nm }, countries, wikiSummary);
+          if (!qn.ent?.name) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" — ${qn.note || "not qualified"} — its name in type`); throw new Error("generic name not qualified"); }
+          if (qn.note) log(`[ladder] ch-${channelId} beat ${b.index}: ${qn.note}`);
+          const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: qn.ent.name }, context: b.narration || "" });
+          if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
+          const seenAt = usedMarks.get(String(nm).toLowerCase());
+          if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
+          if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
+        } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
+        d.art.items.push(it);
+        log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type (no free verified mark)"}`);
+      }
+    }
     if (d.alongside) {
       // Add beside what the beat already draws. The entity becomes a named
       // concept visual so the layout can pair it with the existing hero; the
       // real-mark lookup below is shared with the replacing path, so it is a
       // real mark when one exists and an honest non-identifying plate when not.
       const name = d.art ? d.art.name : d.map;
-      const kind = d.art ? d.art.kind : "plate-place";
       const existing = Array.isArray(b.concept_visuals) ? b.concept_visuals : [];
       if (existing.length >= 2) { log(`[ladder] ch-${channelId} beat ${b.index}: already carries two visuals; "${name}" is named in the headline instead`); continue; }
-      b.concept_visuals = existing.concat([{ name, class: "plate", logo: false, asset: null }]);
+      // A `plates` row names several entities at once; as a second visual it
+      // contributes ONE of them (the layout draws cutout0/cutout1), so pick the
+      // one whose real mark resolved — that is the most informative object on
+      // the frame — and the rest stay named in the headline.
+      const rowNames = d.art && Array.isArray(d.art.names) ? d.art.names : [name];
+      const rowItems = (d.art && Array.isArray(d.art.items)) ? d.art.items : [];
+      const pickIdx = Math.max(0, rowItems.findIndex((x) => x && x.asset));
+      const one = rowNames[pickIdx] || rowNames[0];
+      // The class must be one coverageOf() RECOGNISES. It was "plate", which
+      // drawnOf() reported but no branch of coverageOf() matched, so the beat
+      // still read as words-only and ch-26/ch-1 were rejected with the visual
+      // visibly on screen — the check was reading a kind the vocabulary does
+      // not have (board 38238545250). d.art.kind is already the real rung
+      // ("plate-organization" / "plate-person" / "plate-place"), which
+      // coverageOf() matches by name.
+      const entityType = String((b.named_entities || []).find((e) => e && sameName(e.name, one))?.type || "");
+      const cls = d.art && d.art.kind === "plates"
+        ? (entityType === "person" ? "plate-person" : entityType === "place" ? "plate-place" : "plate-organization")
+        : (d.art ? d.art.kind : "plate-place");
+      const item = rowItems[pickIdx] || null;
+      b.concept_visuals = existing.concat([{ name: one, class: cls, logo: cls === "plate-organization", asset: (item && item.asset) || null, source_url: (item && item.source_url) || null, license: (item && item.license) || null }]);
       b.canvas = canvasContentFor(b, {});
       done.art++;
-      log(`[ladder] ch-${channelId} beat ${b.index}: names ${name} -> a second visual beside the ${(b.canvas?.composition) || "existing"} it already shows`);
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${one} -> a second visual (${cls}) beside the ${(b.canvas?.composition) || "existing"} it already shows${rowNames.length > 1 ? `; ${rowNames.filter((x) => x !== one).join(", ")} named in the headline` : ""}`);
       continue;
     }
     if (d.map) {
@@ -1347,32 +1394,6 @@ export async function entityLadder(plan, channelId, log = console.log) {
       if (prev && prev.kind === d.art.kind) {
         if (["plate-organization", "plate-person", "plate-place"].includes(d.art.kind)) d.art.style = prev.style === "mono" ? "icon" : "mono";
         else if (d.art.kind === "date" || d.art.kind === "span") d.art.style = prev.style === "alt" ? "base" : "alt";
-      }
-      // An organisation's plate carries its REAL mark when a free, verified one exists (resolve-scene.cjs: Wikipedia infobox / Commons, licence
-      // checked, vision-verified); otherwise its NAME set in type. Never a stock icon (owner, 2026-10-09).
-      if (d.art.kind === "plate-organization" || d.art.kind === "plates") {
-        const names = d.art.kind === "plates" ? d.art.names : [d.art.name];
-        d.art.items = [];
-        for (const nm of names) {
-          let it = null;
-          try {
-            // An agency / institution (NASA, the FBI) is looked up as one — its seal or insignia is searched too; a company / outlet as a company.
-            const t0 = String((b.named_entities || []).find((e) => e && sameName(e.name, nm))?.type || "");
-            const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
-            // The same qualification the photo path applies (qualifyEntityWith): a generic name ("Treasury") is resolved as the script's one
-            // country's body, or refused. Before this, the plate looked up the BARE name and took whatever mark a search returned for it.
-            const qn = await qualifyEntityWith({ type: rtype, name: nm }, countries, wikiSummary);
-            if (!qn.ent?.name) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" — ${qn.note || "not qualified"} — its name in type`); throw new Error("generic name not qualified"); }
-            if (qn.note) log(`[ladder] ch-${channelId} beat ${b.index}: ${qn.note}`);
-            const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: qn.ent.name }, context: b.narration || "" });
-            if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
-            const seenAt = usedMarks.get(String(nm).toLowerCase());
-            if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
-            if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
-          } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
-          d.art.items.push(it);
-          log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type (no free verified mark)"}`);
-        }
       }
       reset(b, d.replaces); b.art = d.art;
       b.canvas = canvasContentFor(b, {}); done.art++;
