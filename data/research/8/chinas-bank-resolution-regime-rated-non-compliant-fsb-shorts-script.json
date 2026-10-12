@@ -1,0 +1,66 @@
+{
+  "channel_id": "8",
+  "topic_slug": "chinas-bank-resolution-regime-rated-non-compliant-fsb",
+  "format": "shorts",
+  "hook": "Global watchdogs just flagged China and major economies for failing bank safety rules.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Global watchdogs just flagged China and major economies for failing bank safety rules.",
+      "b_roll": [
+        "Global financial district skyline",
+        "Financial regulatory office desk"
+      ],
+      "text_overlay": {
+        "text": "Global Bank Warning"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Financial Stability Board reviewed 19 global jurisdictions in October 2026. China and Switzerland received materially non-compliant ratings. Which economies passed the audit?",
+      "b_roll": [
+        "Financial Stability Board document",
+        "Global bank exterior in Beijing"
+      ],
+      "text_overlay": {
+        "text": "19 Jurisdictions Reviewed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Only 4 economies fully comply with international standards for funding systemic banks.",
+      "b_roll": [
+        "International banking charts",
+        "Compliance scorecard document"
+      ],
+      "text_overlay": {
+        "text": "Only 4 Compliant"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Argentina and India joined China on the non-compliant list. Australia and the European Banking Union failed too. International regulators exposed severe funding gaps.",
+      "b_roll": [
+        "Global market trading screens",
+        "Banking audit report pages"
+      ],
+      "text_overlay": {
+        "text": "Severe Funding Gaps"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only four nations passed the rigorous global test established by international regulators.",
+      "b_roll": [
+        "Financial report closing page"
+      ],
+      "text_overlay": {
+        "text": "The 4 Compliant"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.caixinglobal.com/2026-10-12/chinas-bank-resolution-regime-rated-materially-non-compliant-by-global-watchdog-102492484.html",
+    "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant"
+  ]
+}
