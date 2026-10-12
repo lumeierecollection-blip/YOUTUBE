@@ -1411,6 +1411,7 @@ export async function entityLadder(plan, channelId, log = console.log) {
         : (d.art ? d.art.kind : "plate-place");
       const item = rowItems[pickIdx] || null;
       b.concept_visuals = existing.concat([{ name: one, class: cls, logo: cls === "plate-organization", asset: (item && item.asset) || null, source_url: (item && item.source_url) || null, license: (item && item.license) || null }]);
+      b.ladder_visual = { art: { kind: cls, name: one } };
       b.canvas = canvasContentFor(b, {});
       done.art++;
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${one} -> a second visual (${cls}) beside the ${(b.canvas?.composition) || "existing"} it already shows${rowNames.length > 1 ? `; ${rowNames.filter((x) => x !== one).join(", ")} named in the headline` : ""}`);
@@ -1432,9 +1433,26 @@ export async function entityLadder(plan, channelId, log = console.log) {
         b.canvas = canvasContentFor(b, {}); done.art++; continue;
       }
       reset(b); b.visual_type = "MAP"; b.data = { place: d.map };
+      b.ladder_visual = { visual_type: "MAP", data: b.data, map: d.map };
       b.canvas = canvasContentFor(b, {}); done.map++;
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map} -> a map with it highlighted`);
     } else if (d.figure) {
+      // A second pass must not swap away a visual the first pass already put
+      // on screen for ANOTHER entity the sentence named. The ladder runs again
+      // after the asset pass, and on that pass $3.49 (already drawn) looked
+      // fine while the plate for "Quicken Simplifi" was the thing missing — so
+      // the figure branch replaced the plate with a stat card and both the
+      // organisation and the number went off screen: board 38289136245 ch-1
+      // beat 4, "draws figure, none of it the entity".
+      //
+      // So: if this beat already carries a ladder visual and the only thing
+      // missing is a FIGURE, that figure is the one drawn — the entity the
+      // ladder chose is not traded away for it. Two entities, two beats, or a
+      // row: the coverage is in the row.
+      if (b.ladder_visual && d.art) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: keeps the ${b.ladder_visual.art?.kind || "visual"} for the entity it drew; ${d.figure.value} is already on screen`);
+        continue;
+      }
       const v = checkVisual({ visual_type: "COUNTER", data: { value: d.figure.value, label: d.figure.label }, named_entities: b.named_entities }, b.narration || "");
       if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value}; a stat card is refused (${v.why})`); continue; }
       reset(b); b.visual_type = v.type || "COUNTER"; b.data = v.data || { value: d.figure.value, label: d.figure.label };
@@ -1451,6 +1469,10 @@ export async function entityLadder(plan, channelId, log = console.log) {
         else if (d.art.kind === "date" || d.art.kind === "span") d.art.style = prev.style === "alt" ? "base" : "alt";
       }
       reset(b, d.replaces); b.art = d.art;
+      // Recorded like the figure branch: a second ladder pass, or chooseShots,
+      // must not trade this entity's visual away for something the sentence
+      // also names.
+      b.ladder_visual = { art: d.art };
       b.canvas = canvasContentFor(b, {}); done.art++;
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}${d.replaces ? " (replaces a visual that carried none of it)" : ""}`);
     }

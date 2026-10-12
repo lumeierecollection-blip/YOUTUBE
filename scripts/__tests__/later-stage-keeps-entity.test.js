@@ -55,6 +55,34 @@ test("the object branch respects it too", () => {
   assert.ok(/if \(choice\[i\]\.object && !b\.ladder_visual\)/.test(SRC), "a shot object can still replace a ladder visual");
 });
 
+test("a SECOND ladder pass does not swap an entity's visual for a figure", () => {
+  // Board 38289136245 ch-1 beat 4. The ladder runs twice (before and after the
+  // asset pass). Pass one drew the plate for "Quicken Simplifi"; on pass two
+  // the figure $3.49 was still on screen and looked complete, so the figure
+  // branch REPLACED the plate with a stat card — and both the organisation and
+  // the number went off screen:
+  //
+  //   [ladder] ch-1 beat 4: names organization "Quicken Simplifi" ->
+  //     plate-organization (replaces a visual that carried none of it)
+  //   [ladder] ch-1 beat 4: states $3.49 -> a stat card
+  //   [canvas] FAIL entity-coverage — beat 4: organization "Quicken Simplifi",
+  //     number "$3.49" — draws figure, none of it the entity
+  //
+  // An entity the sentence named is not traded away for a figure it also named.
+  // Anchored on the guard itself: the branch marker appears more than once in
+  // this file, and it is the guard that is being asserted.
+  const gi = SRC.indexOf("if (b.ladder_visual && d.art) {");
+  assert.ok(gi > 0, "the figure branch no longer guards a ladder-drawn entity");
+  assert.ok(SRC.slice(gi, gi + 400).includes("continue;"), "the guard does not stop the branch");
+});
+
+test("every ladder branch records what it drew", () => {
+  // map, art and the alongside concept visual all set ladder_visual, so a later
+  // stage can tell this beat's visual apart from the planner's.
+  const marks = SRC.match(/b\.ladder_visual\s*=\s*\{/g) || [];
+  assert.ok(marks.length >= 4, `expected the map, figure, art and alongside branches to record a visual; found ${marks.length}`);
+});
+
 test("the two stages are ordered so the guard is the thing that matters", () => {
   // This is a regression note as much as a test: the ladder runs first and
   // chooseShots second, so the guard on the later writer is what keeps the
