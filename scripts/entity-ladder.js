@@ -165,60 +165,51 @@ export function ladderAll(b) {
   // so it is honest: the number is shown, not labelled with an icon.
   const mapWorthy = missing.filter((e) => e.type === "place" && e.region);
   const rowable = missing.filter((e) => !(e.type === "place" && e.region));
+  // EVERY figure the sentence names, whether or not this beat is already
+  // drawing one: a beat must not trade its figure away for a plate it is also
+  // missing (see the row note below). Keyed on the sentence, not on `missing`.
+  const allFigures = (g.ents || []).filter((e) => e.type === "number");
   const out = [];
 
-  if (rowable.length >= 2) {
-    const names = rowable.map((e) => e.name).slice(0, 4);
-    // Each entry carries its OWN kind. A row that reported every name as
-    // plate-organization made a PERSON in it unmatchable: board 38265869072
-    // ch-5 beat 2 named "Amit Hadad" and "Yehudit Tirosh", the ladder drew them
-    // as a plates row, and entity-coverage read "draws plate-organization +
-    // plate-organization, none of it the entity" — two people drawn as two
-    // organisations. The kind is what says what a plate is depicting.
-    //
-    // The kind comes from the entity's TYPE, not from directiveFor(). For two
-    // or more organisations directiveFor() returns a `plates` ROW, so asking
-    // it per entry filled the array with "plates" and drawnOf() reported
-    // "plates + plates" — a row kind where a plate kind is expected, which
-    // coverageOf() matches against nothing (board 38271924172 ch-1 beat 5,
-    // "Quartz" and "CNBC Select" drawn and read as uncovered).
-    // A FIGURE is its own kind, not a plate. Board 38276419111 ch-26 beat 0: the
-    // sentence names $672 million and 1,000, both went into the row, and a
-    // number that fell through to the default was recorded as
-    // plate-organization — coverageOf() matches a number against a figure or a
-    // chart, never a plate, so two numbers on screen read as two
-    // organisations and "none of it the entity".
-    const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" ? "figure" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
-    const kinds = rowable.map(kindOf);
-    const d = { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps };
-    out.push(d);
-    if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
-    return out;
-  }
-  // A number is the ONE case where "one figure per beat" cannot satisfy the
-  // sentence. A beat whose sentence names TWO figures — "$672 million ...
-  // 1,000 papers", "a 50 percent discount ... rising to $6.99" — cannot show
-  // both by replacing: whichever figure the ladder picks, the other is missing
-  // on the next pass and gets picked back. Board 38294611241 ch-1 beat 6 and
-  // ch-26 beat 0 both oscillated between the two numbers across passes and
-  // never satisfied coverageOf.
+  // THE BEAT IS ONE ROW. A beat ping-pongs when successive passes fill
+  // DIFFERENT slots: pass one draws the organisations as a plates row, which
+  // takes the beat's single visual, so the figure is missing on pass two and
+  // the figure replaces the row. Board 38299684512 ch-26 beat 4 named Deloitte,
+  // Meritservus and 1,000: the ladder drew the two organisations, then swapped
+  // them for the figure, and coverageOf was right on every pass and the beat
+  // never converged.
   //
-  // Two or more figures go in ONE ROW of concept visuals, not as an `art`:
-// canvas-layout lays out cutout0/cutout1 for concept_visuals on the NUMBER and
-// TYPE compositions, while an `art` plate row gets no box at all there (checked
-// with canvasManifest: NUMBER-FULL + art{plates} lays out no art box, NUMBER-FULL
-// + two concept_visuals lays out cutout0 AND cutout1). MarkPlate draws a figure
-// entry as the figure, so the number on screen is the number.
-  // Keyed on the FIGURES THE SENTENCE NAMES, not on the ones currently missing.
-// Whichever single figure the beat happens to be drawing, the other is missing
-// — so "missing" is one at a time and the beat ping-pongs between them across
-  // passes (board 38294611241 ch-1 beat 6 and ch-26 beat 0 both oscillated and
-  // never satisfied coverageOf). A sentence that states two numbers gets both
-  // on the beat, once.
-  const figures = (g.ents || []).filter((e) => e.type === "number");
-  if (figures.length >= 2 && missing.some((e) => e.type === "number")) {
-    const names = figures.map((e) => e.name).slice(0, 4);
-    out.push({ figures: names, replaces: true, alongside: false });
+  // So ONE directive carries EVERYTHING the sentence names that the beat can
+  // hold: the plate-ables AND the figures in a single row, each with its own
+  // kind. One pass, one stable beat. A place WITH a region keeps its own map
+  // and is directed alongside, because a map is a whole-frame visual and a row
+  // is not.
+  //
+  // Each entry's kind is its own, from the entity's TYPE. A row that reported
+  // every name as plate-organization made a PERSON in it unmatchable (board
+  // 38265869072 ch-5 beat 2, two people read as two organisations); asking
+  // directiveFor() per entry filled the array with "plates" itself (board
+  // 38271924172 ch-1 beat 5); and a number falling through to the default was
+  // recorded as plate-organization when coverageOf() matches a number against a
+  // figure (board 38276419111 ch-26 beat 0). All three were the same mistake —
+  // the kind has to describe the subject, not the device that drew it.
+  const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" ? "figure" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
+  // Deduped by name: a figure can be both NAMED and MISSING (it is named, and
+  // the beat is not drawing it), and `missing` and `allFigures` then name it
+  // twice — which put "50 percent, 50 percent" in one row. A row is a set of
+  // subjects; the same subject is drawn once.
+  const seenNames = new Set();
+  const row = [...rowable, ...allFigures].filter((e) => {
+    const k = String(e.name).toLowerCase().trim();
+    if (seenNames.has(k)) return false;
+    seenNames.add(k);
+    return true;
+  });
+  if (row.length >= 2) {
+    const names = row.map((e) => e.name).slice(0, 4);
+    const kinds = names.map((_, i) => kindOf(row[i]));
+    out.push({ art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
+    if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
   }
 

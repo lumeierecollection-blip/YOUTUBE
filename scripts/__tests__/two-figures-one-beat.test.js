@@ -47,8 +47,18 @@ test("the missing figure is directed as a stat card when it is the only number",
   assert.equal(dirs[0].figure.value, "1,000");
 });
 
-test("one figure replaces rather than riding alongside — NUMBER-FULL has no second slot", () => {
-  const [d] = ladderAll(BEAT);
+test("one lone figure replaces rather than riding alongside", () => {
+  // A beat naming ONE figure cannot put it alongside: the composition that
+  // already holds the beat's visual may have no slot for a second object, and
+  // "alongside" would be dropped without a word. So it replaces.
+  const one = {
+    index: 0,
+    narration: "The scheme moved 1,000 corporate papers.",
+    named_entities: [{ type: "number", name: "1,000" }],
+    canvas: { composition: "NUMBER-FULL", data: { value: "99", label: "other" }, sentence: "The scheme moved 1,000 corporate papers." },
+  };
+  const [d] = ladderAll(one);
+  assert.ok(d.figure, `expected a figure directive, got ${JSON.stringify(d)}`);
   assert.equal(d.replaces, true, "alongside would be silently dropped by a composition with no cutout box");
   assert.equal(d.alongside, false);
 });
@@ -72,10 +82,11 @@ test("a sentence stating two numbers gets BOTH, and the beat is then stable", ()
     canvas: { composition: "NUMBER-FULL", data: { value: "$6.99", label: "per month billed annually" }, sentence: "That introductory rate is a 50 percent discount before rising to $6.99 per month billed annually." },
   };
   const [d] = ladderAll(b);
-  assert.ok(d.figures, `expected both figures, got ${JSON.stringify(d)}`);
-  assert.deepEqual(d.figures, ["50 percent", "$6.99"]);
+  assert.ok(d.art, `expected a row directive, got ${JSON.stringify(d)}`);
+  assert.deepEqual(d.art.names, ["50 percent", "$6.99"]);
+  assert.deepEqual(d.art.kinds, ["figure", "figure"], "both entries are figures");
 
-  const c = { composition: "NUMBER-FULL", concept_visuals: d.figures.map((n) => ({ name: n, class: "figure" })) };
+  const c = { composition: "ENTITY-ART", art: { ...d.art, items: d.art.names.map(() => null) } };
   for (const e of b.named_entities) {
     assert.ok(coverageOf(c, e).covered, `"${e.name}" is drawn but read as uncovered`);
   }
