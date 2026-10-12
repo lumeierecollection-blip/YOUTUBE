@@ -1,0 +1,64 @@
+{
+  "channel_id": "6",
+  "topic_slug": "amelia-earhart-nikumaroro-expedition-2026",
+  "format": "shorts",
+  "hook": "A submerged anomaly near Nikumaroro could finally solve the 1937 mystery of Amelia Earhart.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A submerged anomaly near Nikumaroro could finally solve the 1937 mystery of Amelia Earhart.",
+      "b_roll": [
+        "Aerial shot of Nikumaroro atoll"
+      ],
+      "text_overlay": {
+        "text": "AMELIA EARHART MYSTERY"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Seventeen researchers arrived at the remote Pacific atoll on Monday. Their vessel, the Marin Mainiku, completed an 830-nautical-mile voyage. What lies beneath the lagoon at Nikumaroro?",
+      "b_roll": [
+        "Research vessel Marin Mainiku at sea",
+        "Map showing 830 nautical miles voyage"
+      ],
+      "text_overlay": {
+        "text": "830-Nautical-Mile Voyage"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Purdue University and the Archaeological Legacy Institute joined this exact search.",
+      "b_roll": [
+        "Purdue University campus archive footage"
+      ],
+      "text_overlay": {
+        "text": "Purdue University"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Seventeen boat crew members joined the team to inspect the Taraia Object. Divers are now examining the submerged aircraft target.",
+      "b_roll": [
+        "Expedition team deploying equipment",
+        "Underwater lagoon scan"
+      ],
+      "text_overlay": {
+        "text": "The Taraia Object"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 1937 disappearance faces its final test.",
+      "b_roll": [
+        "Historic photograph of Amelia Earhart"
+      ],
+      "text_overlay": {
+        "text": "1937 DISAPPEARANCE"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+    "https://www.theguardian.com/us-news/2026/oct/12/amelia-earhart-lost-plane-remote-pacific-atoll-expedition"
+  ]
+}
