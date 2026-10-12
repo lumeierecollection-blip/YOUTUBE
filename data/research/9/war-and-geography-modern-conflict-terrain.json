@@ -1,0 +1,90 @@
+{
+  "topic_slug": "war-and-geography-modern-conflict-terrain",
+  "strongest_angle": "Recent conflicts in Ukraine and the Middle East demonstrate that physical geography, strategic depth, and territorial control remain decisive factors in modern warfare despite advancements in technology and precision targeting.",
+  "key_facts": [
+    {
+      "fact": "Modern warfare in places like Ukraine and the Middle East underscores why geography, strategic depth, and control of land still matter according to the Observer Research Foundation.",
+      "source_url": "https://www.orfonline.org/expert-speak/the-territory-question-why-geography-still-matters-in-modern-war",
+      "source_name": "Observer Research Foundation",
+      "confidence": "high"
+    },
+    {
+      "fact": "Patricia Cohen reported in The Philadelphia Inquirer on October 8, 2026, that global conflicts are forcing a reckoning with geography's power alongside issues like the Panama Canal and climate change.",
+      "source_url": "https://www.inquirer.com/news/nation-world/geography-global-relations-war-technology-iran-taiwan-houthis-panama-canal-climate-change-20261008.html",
+      "source_name": "The Philadelphia Inquirer",
+      "confidence": "high"
+    },
+    {
+      "fact": "Thomas Bruscino wrote for the U.S. Army War College War Room on November 12, 2020, that military strategy depends on geography to a far greater degree than what is currently practiced or taught.",
+      "source_url": "https://warroom.armywarcollege.edu/articles/geography-and-strategy",
+      "source_name": "U.S. Army War College War Room",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.inquirer.com/news/nation-world/geography-global-relations-war-technology-iran-taiwan-houthis-panama-canal-climate-change-20261008.html"
+    },
+    {
+      "label": "Publication Year",
+      "value": 2020,
+      "unit": "year",
+      "source_url": "https://warroom.armywarcollege.edu/articles/geography-and-strategy"
+    },
+    {
+      "label": "Publication Month",
+      "value": 11,
+      "unit": "month",
+      "source_url": "https://warroom.armywarcollege.edu/articles/geography-and-strategy"
+    },
+    {
+      "label": "Publication Day",
+      "value": 12,
+      "unit": "day",
+      "source_url": "https://warroom.armywarcollege.edu/articles/geography-and-strategy"
+    },
+    {
+      "label": "Publication Day",
+      "value": 8,
+      "unit": "day",
+      "source_url": "https://www.inquirer.com/news/nation-world/geography-global-relations-war-technology-iran-taiwan-houthis-panama-canal-climate-change-20261008.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ukraine",
+      "kind": "place"
+    },
+    {
+      "name": "Middle East",
+      "kind": "place"
+    },
+    {
+      "name": "Observer Research Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "Patricia Cohen",
+      "kind": "person"
+    },
+    {
+      "name": "The Philadelphia Inquirer",
+      "kind": "organization"
+    },
+    {
+      "name": "Thomas Bruscino",
+      "kind": "person"
+    },
+    {
+      "name": "U.S. Army War College",
+      "kind": "organization"
+    },
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    }
+  ]
+}

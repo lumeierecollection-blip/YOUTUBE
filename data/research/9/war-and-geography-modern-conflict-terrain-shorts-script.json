@@ -1,0 +1,63 @@
+{
+  "channel_id": "9",
+  "topic_slug": "war-and-geography-modern-conflict-terrain",
+  "format": "shorts",
+  "hook": "Did Ukraine and the Middle East prove that precision technology cannot replace physical terrain?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did Ukraine and the Middle East prove that precision technology cannot replace physical terrain?",
+      "b_roll": [
+        "Map animation highlighting Ukraine and the Middle East"
+      ],
+      "text_overlay": {
+        "text": "Geography vs Technology"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Ukraine and the Middle East prove otherwise. Observers at the Observer Research Foundation study this conflict closely. Where does strategic depth matter most?",
+      "b_roll": [
+        "Satellite view of terrain and borders"
+      ],
+      "text_overlay": {
+        "text": "The Territory Question"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Thomas Bruscino wrote for the U.S. Army War College that strategy relies far more on geography.",
+      "b_roll": [
+        "U.S. Army War College archives and documents"
+      ],
+      "text_overlay": {
+        "text": "Strategy Gap"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Patricia Cohen reported in The Philadelphia Inquirer on October 8, 2026, that global conflicts force a reckoning with geography. The Panama Canal and climate change expose these territorial limits.",
+      "b_roll": [
+        "Panama Canal shipping lanes and global map"
+      ],
+      "text_overlay": {
+        "text": "The 2026 Reckoning"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Physical land remains decisive in 2026 conflicts.",
+      "b_roll": [
+        "Globe rotation showing global trade chokepoints"
+      ],
+      "text_overlay": {
+        "text": "Terrain Wins"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.orfonline.org/expert-speak/the-territory-question-why-geography-still-matters-in-modern-war",
+    "https://www.inquirer.com/news/nation-world/geography-global-relations-war-technology-iran-taiwan-houthis-panama-canal-climate-change-20261008.html",
+    "https://warroom.armywarcollege.edu/articles/geography-and-strategy"
+  ]
+}
