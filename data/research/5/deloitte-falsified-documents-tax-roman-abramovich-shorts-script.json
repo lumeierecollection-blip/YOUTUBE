@@ -1,0 +1,70 @@
+{
+  "channel_id": "5",
+  "topic_slug": "deloitte-falsified-documents-tax-roman-abramovich",
+  "format": "shorts",
+  "hook": "One thousand falsified papers hid billions in assets for Roman Abramovich in Cyprus.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One thousand falsified papers hid billions in assets for Roman Abramovich in Cyprus.",
+      "b_roll": [
+        "Stack of corporate documents on an office desk",
+        "Aerial view of Limassol coastline in Cyprus"
+      ],
+      "text_overlay": {
+        "text": "1,000 Falsified Papers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Deloitte Cyprus and Meritservus backdated records to conceal superyachts and mansions. Where did $672 million in vanished assets go?",
+      "b_roll": [
+        "Accountancy office interior with computers",
+        "Superyacht anchored in blue water",
+        "Luxury mansion exterior view"
+      ],
+      "text_overlay": {
+        "text": "$672 Million Vanished"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "BBC Panorama revealed auditors signed off on accounts as 1000 corporate papers were falsified.",
+      "b_roll": [
+        "Microphone with BBC news flag in studio",
+        "Auditor reviewing financial ledgers"
+      ],
+      "text_overlay": {
+        "text": "BBC Panorama Leak"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Guardian exposed aides hiding offshore wealth through corporate networks. Tax evasion schemes bypassed global financial regulators completely.",
+      "b_roll": [
+        "Newspaper front page headline layout",
+        "Financial network flow diagram on screen",
+        "Government tax office building exterior"
+      ],
+      "text_overlay": {
+        "text": "$10 Billion Hidden"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Deloitte Cyprus and Meritservus falsified records to help Roman Abramovich conceal billions.",
+      "b_roll": [
+        "Courthouse exterior steps and columns",
+        "Investigative journalist examining documents"
+      ],
+      "text_overlay": {
+        "text": "Auditors Investigated"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c64g1l5389kvo",
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+    "https://www.theguardian.com/world/2026/oct/12/roman-abramovich-aides-paperwork-tax-records-suggest"
+  ]
+}

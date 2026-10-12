@@ -1,0 +1,72 @@
+{
+  "topic_slug": "deloitte-falsified-documents-tax-roman-abramovich",
+  "strongest_angle": "Investigating leaked records revealing how Deloitte Cyprus and its spin-off Meritservus helped falsify at least 1,000 corporate papers and backdate records to help Roman Abramovich conceal billions in assets and evade taxes.",
+  "key_facts": [
+    {
+      "fact": "BBC Panorama revealed that accounts signed off by Deloitte in Cyprus meant assets such as superyachts, mansions, and private jets worth $672m vanished from Roman Abramovich's company accounts.",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Bureau of Investigative Journalism reported that Deloitte Cyprus and its spin-off Meritservus falsified at least 1,000 corporate papers on behalf of Roman Abramovich.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalism",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Guardian reported that aides and staff at global accountancy firm Deloitte Cyprus backdated records and falsified paperwork outlining Russian billionaire Roman Abramovich's offshore business empire.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/12/roman-abramovich-aides-paperwork-tax-records-suggest",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Asset value vanished from company accounts in USD",
+      "value": 672,
+      "unit": "million dollars",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Asset value vanished from company accounts in GBP",
+      "value": 508,
+      "unit": "million pounds",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Falsified corporate papers count",
+      "value": 1000,
+      "unit": "papers",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    },
+    {
+      "label": "Assets hidden by Abramovich in USD",
+      "value": 10,
+      "unit": "billion dollars",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Roman Abramovich",
+      "kind": "person"
+    },
+    {
+      "name": "Deloitte",
+      "kind": "organization"
+    },
+    {
+      "name": "Meritservus",
+      "kind": "organization"
+    },
+    {
+      "name": "Cyprus",
+      "kind": "place"
+    },
+    {
+      "name": "BBC Panorama",
+      "kind": "organization"
+    }
+  ]
+}
