@@ -1879,14 +1879,16 @@ export function canvasManifest(raw, idx) {
     // "Source: <domain>" drawn bottom-right on a fetched-image beat (part C).
     source_credit: c.source_credit || null,
     // The hero object and the name card, so the reviewers' frame labels say what is drawn.
-    // ONLY WHAT WAS DRAWN. The layouts place at most two concept objects (the
-    // hero pair, cutout0/cutout1); a third is not drawn, and recording it here
-    // would have drawnOf() — and so entity-coverage — report coverage of a
-    // visual no viewer can see. The same proxy the text inventory hit, one
-    // field over: report the objects the boxes prove are on the frame.
+    // ONLY WHAT WAS DRAWN. Most layouts place no concept box at all (DATA-FULL,
+    // MAP-CENTERED, ENTITY-ART), and the ones that do place at most two. A
+    // visual recorded here that no box proves would have drawnOf() — and so
+    // entity-coverage — claim coverage of something no viewer sees: the same
+    // proxy the text inventory hit, one field over. So the record follows the
+    // boxes exactly, and a beat whose composition has no slot for a second
+    // object reads as carrying none.
     concept_visuals: (L.boxes.cutout0 || L.boxes.cutout1 || L.boxes.cutout2
       ? (c.concept_visuals || []).slice(0, 3)
-      : (c.concept_visuals || []).slice(0, 1))
+      : [])
       .map((v) => ({ name: v.name || null, class: v.class || null, logo: !!v.logo, money: !!v.money, asset: v.asset || null, source: v.source || null, source_url: v.source_url || null, license: v.license || null })),
     name_card: c.name_card?.name ? { name: c.name_card.name } : null,
     // Part C: the entrance style and the background variation this beat was drawn with.

@@ -1343,6 +1343,25 @@ export async function entityLadder(plan, channelId, log = console.log) {
       }
     }
     if (d.alongside) {
+      // WHERE THE SECOND VISUAL CAN PHYSICALLY GO. Only the TYPE and NUMBER
+      // compositions lay out a cutout box for a second object; DATA-FULL,
+      // MAP-CENTERED, ENTITY-ART, PROCESS-FULL, LIST-BUILD, TIMELINE,
+      // COMPARISON-SPLIT, DOCUMENT and SCENE-FULL lay out none. Adding a
+      // concept_visual to one of those produced a beat the manifest claimed
+      // had a second visual and the frame did not draw — board 38247946148
+      // ch-1 beat 3 logged "a second visual beside the DATA-FULL it already
+      // shows" and the audit read "draws chart, none of it the entity".
+      //
+      // So: a composition that can hold the object gets it as a concept visual;
+      // any other composition keeps its own visual (the chart, the map is the
+      // answer to the sentence) and the named entity is stated in the headline
+      // it is already drawn on. Nothing is faked into a slot that is not there.
+      const COMPOSITION_TAKES_SECOND = new Set(["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "NUMBER-STAT", "HERO-OVER"]);
+      const comp = b.canvas?.composition || (String(b.visual_type || "TYPE").toUpperCase() === "TYPE" ? "TYPE-FULL" : null);
+      if (!COMPOSITION_TAKES_SECOND.has(String(comp || "").toUpperCase())) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art ? d.art.name : d.map}; ${comp} keeps its own visual and has no room for a second — the name is in the headline`);
+        continue;
+      }
       // Add beside what the beat already draws. The entity becomes a named
       // concept visual so the layout can pair it with the existing hero; the
       // real-mark lookup below is shared with the replacing path, so it is a
@@ -1470,7 +1489,7 @@ function canvasContentFor(b, { photo = null } = {}) {
   // have, and the hero_cutout / symbol paths below fill in only when there is
   // room for a second object (canvas-layout.js draws cutout0/cutout1).
   const ladderVisuals = Array.isArray(b.concept_visuals) ? b.concept_visuals.filter(Boolean) : [];
-  if (vt === "TYPE" && ladderVisuals.length) c.concept_visuals = ladderVisuals.slice(0, 2);
+  if (ladderVisuals.length) c.concept_visuals = ladderVisuals.slice(0, 2);
   if (vt === "TYPE" && b.hero_cutout && (c.concept_visuals || []).length < 2) {
     c.concept_visuals = [...(c.concept_visuals || []), b.hero_cutout].slice(0, 2);
   }
