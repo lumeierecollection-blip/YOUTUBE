@@ -1,0 +1,1455 @@
+{
+  "generatedAt": "2026-10-11T22:09:23.831Z",
+  "channel": "1",
+  "source": "gemini",
+  "iteration": "correction",
+  "totalBeats": 8,
+  "beats": [
+    {
+      "index": 0,
+      "kind": "TYPE",
+      "visual_type": "TYPE",
+      "canvas_composition": "MONEY",
+      "shot": "HERO-STACK",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "96 days a year",
+      "emphasis_word": "96",
+      "scene_description": "A thick stack of crumpled dollar bills centered under the headline in the upper half of the frame, with a slow zoom in across the beat.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "96"
+        },
+        {
+          "type": "number",
+          "name": "1.5"
+        }
+      ],
+      "entity_anchor_word": "96",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "days worried",
+          "magnitude": "high"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "accumulation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "together",
+      "animation_family": "pop-in",
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "days worried"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "WORD_FLY"
+      },
+      "recent_animations": [
+        "CUT_IN"
+      ],
+      "narration": "You spend 96 days a year worried about money, and your brain decides purchases 1.5 seconds before you notice.",
+      "mechanism": "TYPOGRAPHY",
+      "visual_headline": "96 days a year",
+      "reason": "A thick stack of crumpled dollar bills centered under the headline in the upper half of the frame, with a slow zoom in across the beat.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "You spend 96 days a year worried about money, and your brain decides purchases 1.5 seconds before you notice.",
+        "lead_in": null,
+        "headline": "96 days a year",
+        "emphasis_word": "96",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "96"
+          },
+          {
+            "type": "number",
+            "name": "1.5"
+          }
+        ],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#F5EFE0",
+        "entrance_style": "together",
+        "anchor_word": "96",
+        "composition": "ENTITY-ART",
+        "shot": "HERO-STACK",
+        "shot_drawn": false,
+        "art": {
+          "kind": "span",
+          "name": "96 days",
+          "text": "96 days",
+          "ends": null
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        }
+      },
+      "art": {
+        "kind": "span",
+        "name": "96 days",
+        "text": "96 days",
+        "ends": null
+      }
+    },
+    {
+      "index": 1,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "SCENE-FULL",
+      "shot": "STATEMENT",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "Financial stress daily",
+      "emphasis_word": "stress",
+      "scene_description": "An editorial photo of a person holding their head in their hands at an office desk filled with paperwork, cropped tightly to the upper half.",
+      "named_entities": [],
+      "entity_anchor_word": null,
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": 0,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "stress",
+          "magnitude": "medium"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "visual-first",
+      "animation_family": "slide-in",
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "stress"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "type_layout": "split",
+      "animations": {
+        "headline": "SPLIT_REVEAL"
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "SPLIT_REVEAL"
+      ],
+      "narration": "Americans carry constant financial stress daily.",
+      "mechanism": "ACTION_CONSEQUENCE",
+      "cap_reassigned": {
+        "from": "TYPOGRAPHY",
+        "why": "TYPOGRAPHY capped at 2"
+      },
+      "visual_headline": "Financial stress daily",
+      "reason": "An editorial photo of a person holding their head in their hands at an office desk filled with paperwork, cropped tightly to the upper half.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Americans carry constant financial stress daily.",
+        "lead_in": null,
+        "headline": "Financial stress daily",
+        "emphasis_word": "stress",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": null,
+        "persists_from": 0,
+        "match_cut_prev": false,
+        "named_entities": [],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "visual-first",
+        "composition": "TYPE-FULL",
+        "shot": "STATEMENT",
+        "shot_drawn": true,
+        "beat_index": 1,
+        "beat_total": 8,
+        "variant": 1,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null
+      }
+    },
+    {
+      "index": 2,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "MAP-CENTERED",
+      "shot": "TITLE",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "Nucleus accumbens",
+      "emphasis_word": "nucleus",
+      "scene_description": "A glowing fMRI brain scan highlighting the nucleus accumbens in bright cyan against a dark grid, pulsing slowly as light fills the center.",
+      "named_entities": [],
+      "entity_anchor_word": null,
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "chart"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "brain activation",
+          "magnitude": "high"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "visual-first",
+      "animation_family": "draw-in",
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "document",
+            "anchor": "center",
+            "motion": "reveal",
+            "scale": 1,
+            "label": "brain activation"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "WORD_FLY"
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "SPLIT_REVEAL",
+        "LETTER_STAGGER"
+      ],
+      "narration": "Where does the nucleus accumbens light up in your brain?",
+      "mechanism": "STATE_CHANGE",
+      "cap_reassigned": {
+        "from": "TYPOGRAPHY",
+        "why": "TYPOGRAPHY capped at 2"
+      },
+      "visual_headline": "Nucleus accumbens",
+      "reason": "A glowing fMRI brain scan highlighting the nucleus accumbens in bright cyan against a dark grid, pulsing slowly as light fills the center.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Where does the nucleus accumbens light up in your brain?",
+        "lead_in": null,
+        "headline": "Nucleus accumbens",
+        "emphasis_word": "nucleus",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "chart"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#0E0E10",
+        "entrance_style": "visual-first",
+        "composition": "TYPE-TITLE",
+        "emphasis_beat": true,
+        "vertical": false,
+        "shot": "TITLE",
+        "shot_drawn": true,
+        "beat_index": 2,
+        "beat_total": 8,
+        "variant": 2,
+        "hero_headline": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null
+      }
+    },
+    {
+      "index": 3,
+      "kind": "EDITORIAL",
+      "visual_type": "COUNTER",
+      "canvas_composition": "NUMBER-FULL",
+      "shot": "FIGURE",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "62% regret purchases",
+      "emphasis_word": "62%",
+      "scene_description": "An oversized numeral 62% counting up from zero, centered in the lower frame over a pale grid with a thin accent line beneath.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "62%"
+        }
+      ],
+      "entity_anchor_word": "62",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "number"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "regret rate",
+          "magnitude": "62%"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "together",
+      "animation_family": "count-up",
+      "planner_chose_type": true,
+      "data": {
+        "value": "62%",
+        "label": "consumers regret those"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "bar",
+            "anchor": "left",
+            "motion": "appear",
+            "count": 1,
+            "scale": 1,
+            "label": ""
+          },
+          {
+            "kind": "bar",
+            "anchor": "right",
+            "motion": "appear",
+            "count": 1,
+            "scale": 0.6,
+            "label": ""
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "label": "BLUR_IN",
+        "headline": "SCALE_PUNCH",
+        "number": "ROLL_DIGIT",
+        "exit": {
+          "element": "label",
+          "id": "MASK_CLOSE"
+        }
+      },
+      "recent_animations": [
+        "SPLIT_REVEAL",
+        "LETTER_STAGGER",
+        "SCALE_PUNCH",
+        "BLUR_IN",
+        "ROLL_DIGIT",
+        "MASK_CLOSE"
+      ],
+      "narration": "Except 62% of consumers regret those impulse purchases immediately.",
+      "visual_headline": "62% regret purchases",
+      "reason": "An oversized numeral 62% counting up from zero, centered in the lower frame over a pale grid with a thin accent line beneath.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named",
+      "canvas": {
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "62%",
+          "label": "consumers regret those"
+        },
+        "sentence": "Except 62% of consumers regret those impulse purchases immediately.",
+        "lead_in": null,
+        "headline": "62% regret purchases",
+        "emphasis_word": "62%",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "number"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "62%"
+          }
+        ],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#F5EFE0",
+        "entrance_style": "together",
+        "anchor_word": "62",
+        "composition": "NUMBER-FULL",
+        "number_label_off": false,
+        "shot": "FIGURE",
+        "shot_drawn": true,
+        "beat_index": 3,
+        "beat_total": 8,
+        "variant": 3,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "number_accent": false,
+        "anim": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ],
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "label": null,
+        "pull_phrase": null
+      }
+    },
+    {
+      "index": 4,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "DOCUMENT",
+      "shot": "PHOTO-INSET",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "Penny Hoarder report",
+      "emphasis_word": "report",
+      "scene_description": "A crisp financial report document angled as a small rounded card with a heavy drop shadow in the upper center, text visible on the page.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "The Penny Hoarder"
+        }
+      ],
+      "entity_anchor_word": "report",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "report proof",
+          "magnitude": "medium"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "staggered",
+      "animation_family": "pop-in",
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "report proof"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "FADE_LIFT"
+      },
+      "recent_animations": [
+        "LETTER_STAGGER",
+        "SCALE_PUNCH",
+        "BLUR_IN",
+        "ROLL_DIGIT",
+        "MASK_CLOSE",
+        "FADE_LIFT"
+      ],
+      "narration": "The Penny Hoarder report proves this anxiety dominates our lives.",
+      "mechanism": "EVIDENCE_FIGURE",
+      "cap_reassigned": {
+        "from": "TYPOGRAPHY",
+        "why": "TYPOGRAPHY capped at 2"
+      },
+      "visual_headline": "Penny Hoarder report",
+      "reason": "A crisp financial report document angled as a small rounded card with a heavy drop shadow in the upper center, text visible on the page.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "The Penny Hoarder report proves this anxiety dominates our lives.",
+        "lead_in": null,
+        "headline": "Penny Hoarder report",
+        "emphasis_word": "report",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "institution",
+            "name": "The Penny Hoarder"
+          }
+        ],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "staggered",
+        "anchor_word": "report",
+        "composition": "ENTITY-ART",
+        "shot": "PHOTO-INSET",
+        "shot_drawn": false,
+        "art": {
+          "kind": "plate-organization",
+          "name": "The Penny Hoarder",
+          "items": [
+            null
+          ]
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        }
+      },
+      "art": {
+        "kind": "plate-organization",
+        "name": "The Penny Hoarder",
+        "items": [
+          null
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "NUMBER-FULL",
+      "shot": "FIGURE",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "96 days annually",
+      "emphasis_word": "96",
+      "scene_description": "A stark white numeral 96 filling the lower frame against a deep navy ground, counting up instantly with a thin horizontal rule above.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "96"
+        }
+      ],
+      "entity_anchor_word": "96",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "number"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "days consumed",
+          "magnitude": "high"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "together",
+      "animation_family": "count-up",
+      "planner_chose_type": true,
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "days consumed"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "label": "TYPE_IN",
+        "number": "SNAP_IN",
+        "exit": {
+          "element": "label",
+          "id": "SLIDE_OUT_R"
+        }
+      },
+      "recent_animations": [
+        "SCALE_PUNCH",
+        "BLUR_IN",
+        "ROLL_DIGIT",
+        "MASK_CLOSE",
+        "FADE_LIFT",
+        "TYPE_IN"
+      ],
+      "narration": "Financial stress consumes 96 days annually.",
+      "visual_headline": "96 days annually",
+      "reason": "A stark white numeral 96 filling the lower frame against a deep navy ground, counting up instantly with a thin horizontal rule above.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Financial stress consumes 96 days annually.",
+        "lead_in": null,
+        "headline": "96 days annually",
+        "emphasis_word": "96",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "number"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "96"
+          }
+        ],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#0E0E10",
+        "entrance_style": "together",
+        "anchor_word": "96",
+        "composition": "ENTITY-ART",
+        "shot_drawn": false,
+        "art": {
+          "kind": "span",
+          "name": "96 days",
+          "text": "96 days",
+          "ends": null
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        }
+      },
+      "concept_visuals": [],
+      "art": {
+        "kind": "span",
+        "name": "96 days",
+        "text": "96 days",
+        "ends": null
+      }
+    },
+    {
+      "index": 6,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "TYPE-FULL",
+      "shot": "HERO-STACK",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "Take control today",
+      "emphasis_word": "control",
+      "scene_description": "A bold serif headline set large on the left side of the frame in black ink with an accent rule underneath, angled slightly.",
+      "named_entities": [],
+      "entity_anchor_word": null,
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_WORD_STACK",
+      "visual_events": [
+        {
+          "type": "causation",
+          "label": "mindset shift",
+          "magnitude": "medium"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "causation"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "Take control today",
+        "why": null,
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "together",
+      "animation_family": "pop-in",
+      "planner_chose_type": true,
+      "data": null,
+      "visual_headline": "Take control today",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "block",
+            "anchor": "upper_third",
+            "motion": "appear",
+            "scale": 0.9,
+            "label": ""
+          },
+          {
+            "kind": "arrow",
+            "anchor": "center",
+            "motion": "appear",
+            "count": 1
+          },
+          {
+            "kind": "block",
+            "anchor": "lower_third",
+            "motion": "rise",
+            "scale": 1,
+            "label": ""
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "SLIDE_FROM_R"
+      },
+      "recent_animations": [
+        "FADE_LIFT",
+        "TYPE_IN",
+        "SLIDE_FROM_R"
+      ],
+      "narration": "Take control of your money mindset today.",
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "cap_reassigned": {
+        "from": "TYPOGRAPHY",
+        "why": "TYPOGRAPHY capped at 2"
+      },
+      "reason": "A bold serif headline set large on the left side of the frame in black ink with an accent rule underneath, angled slightly.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Take control of your money mindset today.",
+        "lead_in": null,
+        "headline": "Take control today",
+        "emphasis_word": "control",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [],
+        "text_entrance": "POP_WORD_STACK",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#F5EFE0",
+        "concept_visuals": [
+          {
+            "name": "dollar-sign",
+            "class": "symbol",
+            "w": 1,
+            "h": 1,
+            "fallback": true
+          }
+        ],
+        "entrance_style": "together",
+        "composition": "TYPE-FULL",
+        "shot_drawn": true,
+        "beat_index": 6,
+        "beat_total": 8,
+        "variant": 6,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_WORD_STACK",
+          "entrances": {
+            "statement": [
+              "POP_WORD_STACK",
+              "POP_WORD_STACK",
+              "POP_WORD_STACK"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null,
+        "shot": "HERO-STACK"
+      },
+      "fallback_symbol": "dollar-sign"
+    },
+    {
+      "index": 7,
+      "kind": "TYPE",
+      "visual_type": "TYPE",
+      "canvas_composition": "MONEY",
+      "shot": "STATEMENT",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "Track your spending",
+      "emphasis_word": "Track",
+      "scene_description": "A neat stack of coins centered in the lower frame with a magnifying glass resting on top, drawing the eye upward.",
+      "named_entities": [],
+      "entity_anchor_word": null,
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "spending tracked",
+          "magnitude": "high"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "entrance_style": "visual-first",
+      "animation_family": "slide-in",
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "spending tracked"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "type_layout": "split",
+      "animations": {
+        "headline": "WORD_FLY"
+      },
+      "recent_animations": [
+        "TYPE_IN",
+        "SLIDE_FROM_R",
+        "WORD_FLY"
+      ],
+      "narration": "Track your spending habits right now to reclaim your financial future.",
+      "mechanism": "TYPOGRAPHY",
+      "visual_headline": "Track your spending",
+      "reason": "A neat stack of coins centered in the lower frame with a magnifying glass resting on top, drawing the eye upward.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Track your spending habits right now to reclaim your financial future.",
+        "lead_in": null,
+        "headline": "Track your spending",
+        "emphasis_word": "Track",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [],
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "visual-first",
+        "composition": "TYPE-FULL",
+        "shot": "STATEMENT",
+        "shot_drawn": true,
+        "beat_index": 7,
+        "beat_total": 8,
+        "variant": 7,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null
+      }
+    }
+  ],
+  "composedBeats": 0,
+  "compositionIssues": [
+    {
+      "beat": 1,
+      "problem": "no composition declared — the beat has nothing to render but text",
+      "fix": "give this VISUAL beat a real-image \"concept\", an \"asset_query\" and a \"fallback_drawing\" copied exactly from LIBRARY that depicts the same subject — or make it \"kind\": \"TYPE\" (at most 2 TYPE beats)"
+    },
+    {
+      "beat": 2,
+      "problem": "no composition declared — the beat has nothing to render but text",
+      "fix": "give this VISUAL beat a real-image \"concept\", an \"asset_query\" and a \"fallback_drawing\" copied exactly from LIBRARY that depicts the same subject — or make it \"kind\": \"TYPE\" (at most 2 TYPE beats)"
+    },
+    {
+      "beat": 4,
+      "problem": "no composition declared — the beat has nothing to render but text",
+      "fix": "give this VISUAL beat a real-image \"concept\", an \"asset_query\" and a \"fallback_drawing\" copied exactly from LIBRARY that depicts the same subject — or make it \"kind\": \"TYPE\" (at most 2 TYPE beats)"
+    },
+    {
+      "beat": 6,
+      "problem": "no composition declared — the beat has nothing to render but text",
+      "fix": "give this VISUAL beat a real-image \"concept\", an \"asset_query\" and a \"fallback_drawing\" copied exactly from LIBRARY that depicts the same subject — or make it \"kind\": \"TYPE\" (at most 2 TYPE beats)"
+    }
+  ],
+  "compilationReport": [
+    {
+      "beat": 1,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    },
+    {
+      "beat": 3,
+      "errors": [
+        "scene covers only 29% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 29% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    },
+    {
+      "beat": 4,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    },
+    {
+      "beat": 7,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    }
+  ],
+  "capabilityDistribution": {
+    "typographic_emphasis": 6,
+    "accumulation": 1,
+    "evidence": 5,
+    "revelation": 1,
+    "causation": 1
+  },
+  "mechanismDistribution": "TYPOGRAPHY:2 CAPABILITY:evidence:2 ACTION_CONSEQUENCE:1 STATE_CHANGE:1 EVIDENCE_FIGURE:1 PROPORTIONAL_OBJECTS:1",
+  "compositionsDropped": [],
+  "plannerDecisions": {
+    "grounds": {
+      "#F5EFE0": 3,
+      "white": 3,
+      "#0E0E10": 2
+    },
+    "types": {
+      "declared": 8,
+      "kept": 3,
+      "ungrounded": 5,
+      "defaultedType": 0
+    },
+    "compositionMappings": [],
+    "compositions_used": {
+      "counts": {
+        "MONEY": 2,
+        "SCENE-FULL": 1,
+        "MAP-CENTERED": 1,
+        "NUMBER-FULL": 2,
+        "DOCUMENT": 1,
+        "TYPE-FULL": 1
+      },
+      "n": 8,
+      "top": "MONEY",
+      "topShare": 0.25,
+      "templated": false
+    },
+    "styleSpec": null
+  },
+  "variety": {
+    "type_full": 5,
+    "beats": 8,
+    "max_type": 2,
+    "adjacent_type": 2,
+    "max_consecutive_same": 1,
+    "distinct_compositions": 3,
+    "converted": 1,
+    "entrance_styles": [
+      "together",
+      "visual-first",
+      "visual-first",
+      "together",
+      "staggered",
+      "together",
+      "together",
+      "visual-first"
+    ]
+  },
+  "recent_animations": [
+    [
+      "WORD_FLY"
+    ],
+    [
+      "WORD_FLY",
+      "SPLIT_REVEAL"
+    ],
+    [
+      "WORD_FLY",
+      "SPLIT_REVEAL",
+      "WORD_FLY"
+    ],
+    [
+      "SPLIT_REVEAL",
+      "WORD_FLY",
+      "BLUR_IN",
+      "SCALE_PUNCH",
+      "ROLL_DIGIT",
+      "MASK_CLOSE"
+    ],
+    [
+      "WORD_FLY",
+      "BLUR_IN",
+      "SCALE_PUNCH",
+      "ROLL_DIGIT",
+      "MASK_CLOSE",
+      "FADE_LIFT"
+    ],
+    [
+      "BLUR_IN",
+      "SCALE_PUNCH",
+      "ROLL_DIGIT",
+      "MASK_CLOSE",
+      "FADE_LIFT",
+      "TYPE_IN",
+      "SNAP_IN",
+      "SLIDE_OUT_R"
+    ],
+    [
+      "FADE_LIFT",
+      "TYPE_IN",
+      "SNAP_IN",
+      "SLIDE_OUT_R",
+      "SLIDE_FROM_R"
+    ],
+    [
+      "TYPE_IN",
+      "SNAP_IN",
+      "SLIDE_OUT_R",
+      "SLIDE_FROM_R",
+      "WORD_FLY"
+    ]
+  ],
+  "visual_summary": {
+    "beats": 8,
+    "pngs": 0,
+    "no_concept": 3
+  },
+  "shots_final": {
+    "shots": [
+      "AS-RESOLVED",
+      "STATEMENT",
+      "TITLE",
+      "FIGURE",
+      "AS-RESOLVED",
+      "AS-RESOLVED",
+      "HERO-STACK",
+      "STATEMENT"
+    ],
+    "problems": []
+  },
+  "entity_report": {
+    "resolved": [],
+    "fell_back": [
+      "beat 4: institution \"The Penny Hoarder\": no verified logo or photo"
+    ],
+    "rejected": [],
+    "name_cards": []
+  }
+}
