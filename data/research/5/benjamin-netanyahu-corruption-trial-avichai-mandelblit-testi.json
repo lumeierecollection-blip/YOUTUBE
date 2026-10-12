@@ -1,0 +1,47 @@
+{
+  "topic_slug": "benjamin-netanyahu-corruption-trial-avichai-netanyahu-testi",
+  "strongest_angle": "An examination of former Attorney General Avichai Mandelblit's testimony at the Jerusalem District Court during Prime Minister Benjamin Netanyahu's corruption trial, focusing on his admissions regarding police actions and clashes between defense and prosecution.",
+  "key_facts": [
+    {
+      "fact": "Former Attorney General Avichai Mandelblit told the Jerusalem District Court that investigators carried out serious actions without his approval during the corruption probes involving Prime Minister Benjamin Netanyahu.",
+      "source_url": "https://www.jpost.com/israel-news/politics-and-diplomacy/article-911282",
+      "source_name": "The Jerusalem Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "An exchange between Prime Minister Benjamin Netanyahu's attorney, Amit Hadad, and prosecutor Yehudit Tirosh escalated to high-pitched tones during former Attorney General Avichai Mandelblit's testimony at the Jerusalem District Court.",
+      "source_url": "https://www.ynetnews.com/article/3pqxy10rq",
+      "source_name": "Ynetnews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Former Attorney General Avichai Mandelblit stated during his testimony that he would be surprised if the prosecution in Prime Minister Benjamin Netanyahu's trial had deliberately hidden anything from him.",
+      "source_url": "https://www.jpost.com/israel-news/article-911416",
+      "source_name": "The Jerusalem Post",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Avichai Mandelblit",
+      "kind": "person"
+    },
+    {
+      "name": "Benjamin Netanyahu",
+      "kind": "person"
+    },
+    {
+      "name": "Jerusalem District Court",
+      "kind": "place"
+    },
+    {
+      "name": "Amit Hadad",
+      "kind": "person"
+    },
+    {
+      "name": "Yehudit Tirosh",
+      "kind": "person"
+    }
+  ]
+}

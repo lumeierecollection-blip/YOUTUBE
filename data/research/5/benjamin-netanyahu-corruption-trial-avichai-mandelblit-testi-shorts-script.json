@@ -1,0 +1,69 @@
+{
+  "channel_id": "5",
+  "topic_slug": "benjamin-netanyahu-corruption-trial-avichai-netanyahu-testi",
+  "format": "shorts",
+  "hook": "Did investigators really carry out serious actions without approval during Benjamin Netanyahu's corruption probes?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did investigators really carry out serious actions without approval during Benjamin Netanyahu's corruption probes?",
+      "b_roll": [
+        "Jerusalem District Court exterior view",
+        "Courtroom entrance hallway"
+      ],
+      "text_overlay": {
+        "text": "Unauthorized actions in corruption probes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Former Attorney General Avichai Mandelblit testified at the Jerusalem District Court about the investigation. Amit Hadad clashed with prosecutor Yehudit Tirosh during the hearing. What did Mandelblit admit about police actions?",
+      "b_roll": [
+        "Avichai Mandelblit speaking in court",
+        "Legal documents on a desk",
+        "Defense attorney Amit Hadad"
+      ],
+      "text_overlay": {
+        "text": "Testimony at Jerusalem District Court"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the former attorney general expressed surprise that anything was hidden.",
+      "b_roll": [
+        "Courtroom gallery and judges bench",
+        "Prosecutor Yehudit Tirosh listening"
+      ],
+      "text_overlay": {
+        "text": "A surprising admission in court"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mandelblit revealed investigators carried out serious actions without approval during Benjamin Netanyahu's corruption probes. High-pitched tones erupted between lawyers inside the courtroom. Yehudit Tirosh faced Amit Hadad during the Jerusalem District Court hearings.",
+      "b_roll": [
+        "Benjamin Netanyahu speaking to press",
+        "Transcript pages with highlighted text",
+        "Courtroom lawyers arguing"
+      ],
+      "text_overlay": {
+        "text": "Clashes between defense and prosecution"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch the Jerusalem District Court hearings unfold next.",
+      "b_roll": [
+        "Jerusalem District Court sign",
+        "Gavel resting on wooden desk"
+      ],
+      "text_overlay": {
+        "text": "The Netanyahu corruption trial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jpost.com/israel-news/politics-and-diplomacy/article-911282",
+    "https://www.ynetnews.com/article/3pqxy10rq"
+  ]
+}
