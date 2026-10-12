@@ -97,7 +97,16 @@ export function scanIds(root) {
   const walk = (dir) => {
     for (const name of readdirSync(dir)) {
       const p = join(dir, name);
-      const rel = relative(root, p);
+      // POSIX separators in every path this function REPORTS. `relative()`
+      // returns the OS-native separator, so on Windows this used to emit
+      // "scripts\a.js:1" while the SKIP patterns below and every consumer
+      // (the registry gate's message, the model-availability test) are written
+      // against "scripts/a.js:1". That is not a cosmetic difference: a skip
+      // pattern anchored on "/" would silently stop matching, so a file that
+      // must be excluded would get scanned. The rest of the repo already
+      // normalises here for the same reason (reference-frames.js:72,
+      // channel-sweep.test.js:67).
+      const rel = relative(root, p).split("\\").join("/");
       if (SKIP.some((re) => re.test(rel))) continue;
       const st = statSync(p);
       if (st.isDirectory()) { walk(p); continue; }
