@@ -1,0 +1,51 @@
+{
+  "topic_slug": "ideaanchor-llm-research-ideas",
+  "strongest_angle": "Explore the mechanism behind IdeaAnchor, introduced in October 2026 by researchers including Ziyu Chen and Yilun Zhao, which trains large language models to ingest groups of academic papers and synthesize novel research directions using structured specifications.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, researchers including Ziyu Chen, Yilun Zhao, Jiashuo Sun, Yiling Ma, and Manasi Patwardhan introduced IdeaAnchor to train large language models in literature-grounded research ideation.",
+      "source_url": "https://arxiv.science/abs/2610.08781",
+      "source_name": "arXiv Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "IdeaAnchor addresses the challenge where existing approaches based on prompting or feedback lack structured supervision for how multiple related papers should be synthesized into new directions.",
+      "source_url": "https://arxiv.org/html/2610.08781",
+      "source_name": "arXiv.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "IdeaAnchor utilizes structured specifications mined from published papers to supervise how large language models build ideas out of groups of input research papers.",
+      "source_url": "https://arxivtldr.org/abs/2610.08781",
+      "source_name": "ArXiv TLDR",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "IdeaAnchor",
+      "kind": "object"
+    },
+    {
+      "name": "Ziyu Chen",
+      "kind": "person"
+    },
+    {
+      "name": "Yilun Zhao",
+      "kind": "person"
+    },
+    {
+      "name": "Jiashuo Sun",
+      "kind": "person"
+    },
+    {
+      "name": "Yiling Ma",
+      "kind": "person"
+    },
+    {
+      "name": "Manasi Patwardhan",
+      "kind": "person"
+    }
+  ]
+}
