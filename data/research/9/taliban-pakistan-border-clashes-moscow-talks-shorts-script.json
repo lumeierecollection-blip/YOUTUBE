@@ -2,14 +2,13 @@
   "channel_id": "9",
   "topic_slug": "taliban-pakistan-border-clashes-moscow-talks",
   "format": "shorts",
-  "hook": "Eight Moscow meetings collapsed, and border war erupted instantly.",
+  "hook": "Peace talks collapsed in Moscow when Pakistan and the Taliban clashed over border security.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "Eight Moscow meetings collapsed, and border war erupted instantly.",
+      "voiceover": "Peace talks collapsed in Moscow when Pakistan and the Taliban clashed over border security.",
       "b_roll": [
-        "Map of Moscow displaying the summit location",
-        "Split screen graphic showing diplomatic talks failing"
+        "Map of Moscow featuring conference hall"
       ],
       "text_overlay": {
         "text": "Moscow Talks Collapse"
@@ -17,54 +16,51 @@
     },
     {
       "id": "setup",
-      "voiceover": "Zamir Kabulov confirmed the eighth meeting ended without a joint statement. Tensions shattered diplomacy after disagreements between the Taliban and Pakistan. Where did the 8th meeting go wrong?",
+      "voiceover": "Minister Amir Khan Muttaqi walked out of the eighth Moscow Format Consultations. Fighting erupted immediately across southeastern Paktia province and Khyber Pakhtunkhwa. Where did 1,100 civilian casualties come from?",
       "b_roll": [
-        "Portrait of Zamir Kabulov speaking",
-        "Document graphic showing failed negotiations",
-        "Map highlighting Afghanistan and Pakistan borders"
+        "Portrait of Amir Khan Muttaqi",
+        "Map highlighting Paktia province",
+        "Map highlighting Khyber Pakhtunkhwa"
       ],
       "text_overlay": {
-        "text": "8th Moscow Meeting"
+        "text": "1,100 Casualties Documented"
       }
     },
     {
       "id": "rehook",
-      "voiceover": "Fighting instantly crossed into Paktia province and Khyber Pakhtunkhwa, but the collapse was only the beginning.",
+      "voiceover": "Pakistan declared a state of emergency in Khyber Pakhtunkhwa as security tensions escalated.",
       "b_roll": [
-        "Border map showing Paktia and Khyber Pakhtunkhwa provinces",
-        "Satellite view of rugged terrain near the border"
+        "Emergency seal over Khyber Pakhtunkhwa"
       ],
       "text_overlay": {
-        "text": "Border Clashes Erupt"
+        "text": "State of Emergency Declared"
       }
     },
     {
       "id": "payoff",
-      "voiceover": "The 203 Mansouri Corps engaged Pakistani troops directly. Armed clashes surged near the Durand Line in Dand Patan district. The 203 Mansouri Corps traded heavy fire along the frontier.",
+      "voiceover": "Artillery duels destroyed regional checkpoints.",
       "b_roll": [
-        "Insignia and emblem of the 203 Mansouri Corps",
-        "Map zooming in on the Durand Line and Dand Patan district",
-        "Visual graphic tracking military positions"
+        "United Nations emblem",
+        "Pakistani army troop movement graphic",
+        "Border checkpoint map marker"
       ],
       "text_overlay": {
-        "text": "Durand Line Clashes"
+        "text": "UNAMA Documents Violence"
       }
     },
     {
       "id": "close",
-      "voiceover": "Zamir Kabulov reported the failed talks.",
+      "voiceover": "Border clashes between Pakistan and the Taliban led to the declaration of a state of emergency.",
       "b_roll": [
-        "Strategic map highlighting the border escalation",
-        "Final wide shot of the frontier region"
+        "Wide regional map showing Pakistan and Afghanistan border"
       ],
       "text_overlay": {
-        "text": "Volatile Frontier"
+        "text": "Regional Stability Threatened"
       }
     }
   ],
   "sources_used": [
-    "https://www.afintl.com/en/202610052273",
-    "https://www.longwarjournal.org/archives/2026/10/taliban-pakistan-border-clashes-continue-after-moscow-talks-end-without-agreement.php",
-    "https://www.khaama.com/kabul-reports-clashes-with-pakistani-forces-along-durand-line-in-paktia"
+    "https://www.buildbetterpakistan.com/news/moscow-format-afghanistan-talks-collapse-pakistan-taliban-october-2026",
+    "https://apnews.com/article/pakistan-afghanistan-taliban-dar-border-attacks-26f3ca516464048d883401acbec8d8e2"
   ]
 }
