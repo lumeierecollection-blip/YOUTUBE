@@ -1,0 +1,66 @@
+{
+  "channel_id": "49",
+  "topic_slug": "other-mommy-weekend-box-office-opening",
+  "format": "shorts",
+  "hook": "Universal Pictures dominated the weekend box office as horror film Other Mommy debuted with twenty-seven point five million dollars.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Universal Pictures dominated the weekend box office as horror film Other Mommy debuted with twenty-seven point five million dollars.",
+      "b_roll": [
+        "Cinematic horror film title card"
+      ],
+      "text_overlay": {
+        "text": "Brutal reviews couldn't stop Other Mommy"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Universal Pictures released the movie starring Jessica Chastain into North American cinemas. Where did the $27.5 million opening weekend come from?",
+      "b_roll": [
+        "Universal Pictures logo and cinema marquee",
+        "Audience rating chart dropping",
+        "Box office ticket counter"
+      ],
+      "text_overlay": {
+        "text": "$27.5 million opening weekend"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Sony opened The Social Reckoning at the exact same time, but it crashed with a five point five million dollar launch.",
+      "b_roll": [
+        "Sony rival film poster"
+      ],
+      "text_overlay": {
+        "text": "Sony opened The Social Reckoning"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "That rival film pulled in a disappointing $5.5 million launch. Universal Pictures dominated the weekend completely. Other Mommy grabbed a massive $12.6 million on opening day alone.",
+      "b_roll": [
+        "Bar chart comparing box office earnings",
+        "Universal Pictures dominating chart",
+        "Opening day earnings graph"
+      ],
+      "text_overlay": {
+        "text": "$5.5 million launch vs $27.5 million debut"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch the box office charts shift this weekend.",
+      "b_roll": [
+        "Weekend box office trend line"
+      ],
+      "text_overlay": {
+        "text": "Watch the charts shift"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/other-mommy-social-reckoning-box-office-2ea3e0be66e1761851209e45e34ca32c",
+    "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001"
+  ]
+}

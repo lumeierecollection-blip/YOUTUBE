@@ -1,0 +1,76 @@
+{
+  "topic_slug": "other-mommy-weekend-box-office-opening",
+  "strongest_angle": "Examine how Universal Pictures' horror film Other Mommy dominated the weekend box office chart with a $27.5 million debut while contrasting studio expectations and brutal reviews.",
+  "key_facts": [
+    {
+      "fact": "Universal Pictures released the horror film Other Mommy, which topped the North American box office with a $27.5 million opening weekend.",
+      "source_url": "https://apnews.com/article/other-mommy-social-reckoning-box-office-2ea3e0be66e1761851209e45e34ca32c",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jessica Chastain starred in Other Mommy, a horror movie that achieved a $27.5 million debut despite receiving a D+ CinemaScore and brutal reviews.",
+      "source_url": "https://www.goldderby.com/film/2026/other-mommy-social-reckoning-weekend-box-office",
+      "source_name": "GoldDerby",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sony opened The Social Reckoning to a disappointing $5.5 million launch, contrasting with the success of Other Mommy.",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+      "source_name": "Deadline",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Other Mommy opening weekend box office",
+      "value": 27.5,
+      "unit": "million dollars",
+      "source_url": "https://apnews.com/article/other-mommy-social-reckoning-box-office-2ea3e0be66e1761851209e45e34ca32c"
+    },
+    {
+      "label": "The Social Reckoning opening weekend box office",
+      "value": 5.5,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001"
+    },
+    {
+      "label": "Other Mommy opening day box office",
+      "value": 12.6,
+      "unit": "million dollars",
+      "source_url": "https://variety.com/2026/film/box-office/box-office-other-mommy-verity-social-reckoning-1236907499"
+    },
+    {
+      "label": "The Social Reckoning Friday opening box office",
+      "value": 2.15,
+      "unit": "million dollars",
+      "source_url": "https://variety.com/2026/film/box-office/box-office-other-mommy-verity-social-reckoning-1236907499"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Universal Pictures",
+      "kind": "organization"
+    },
+    {
+      "name": "Other Mommy",
+      "kind": "object"
+    },
+    {
+      "name": "Jessica Chastain",
+      "kind": "person"
+    },
+    {
+      "name": "Sony",
+      "kind": "organization"
+    },
+    {
+      "name": "The Social Reckoning",
+      "kind": "object"
+    },
+    {
+      "name": "Aaron Sorkin",
+      "kind": "person"
+    }
+  ]
+}
