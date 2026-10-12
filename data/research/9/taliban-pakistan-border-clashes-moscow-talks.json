@@ -1,0 +1,70 @@
+{
+  "topic_slug": "taliban-pakistan-border-clashes-moscow-talks",
+  "strongest_angle": "Examining the breakdown of the eighth Moscow Format consultations and the subsequent cross-border fighting along Paktia province and Khyber Pakhtunkhwa.",
+  "key_facts": [
+    {
+      "fact": "Zamir Kabulov stated on October 5, 2026, that the eighth Moscow Format meeting ended without a joint statement due to disagreements between the Taliban and Pakistan.",
+      "source_url": "https://www.afintl.com/en/202610052273",
+      "source_name": "Afghanistan International",
+      "confidence": "high"
+    },
+    {
+      "fact": "Since October 5, 2026, reported fighting has consisted of border clashes along Afghanistan's southeastern Paktia province and Pakistan's northwestern Khyber Pakhtunkhwa province.",
+      "source_url": "https://www.longwarjournal.org/archives/2026/10/taliban-pakistan-border-clashes-continue-after-moscow-talks-end-without-agreement.php",
+      "source_name": "FDD's Long War Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 203 Mansouri Corps reported that armed clashes broke out between its forces and Pakistani troops near the Durand Line in Dand Patan district of Paktia province.",
+      "source_url": "https://www.khaama.com/kabul-reports-clashes-with-pakistani-forces-along-durand-line-in-paktia",
+      "source_name": "Khaama Press",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Eighth Moscow Format meeting",
+      "value": 8,
+      "unit": "meeting",
+      "source_url": "https://www.afintl.com/en/202610052273"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Zamir Kabulov",
+      "kind": "person"
+    },
+    {
+      "name": "Moscow",
+      "kind": "place"
+    },
+    {
+      "name": "Taliban",
+      "kind": "organization"
+    },
+    {
+      "name": "Pakistan",
+      "kind": "organization"
+    },
+    {
+      "name": "Paktia province",
+      "kind": "place"
+    },
+    {
+      "name": "Khyber Pakhtunkhwa province",
+      "kind": "place"
+    },
+    {
+      "name": "203 Mansouri Corps",
+      "kind": "organization"
+    },
+    {
+      "name": "Durand Line",
+      "kind": "object"
+    },
+    {
+      "name": "Dand Patan district",
+      "kind": "place"
+    }
+  ]
+}

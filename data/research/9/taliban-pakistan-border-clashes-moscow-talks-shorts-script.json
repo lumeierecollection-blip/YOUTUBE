@@ -1,0 +1,70 @@
+{
+  "channel_id": "9",
+  "topic_slug": "taliban-pakistan-border-clashes-moscow-talks",
+  "format": "shorts",
+  "hook": "Eight Moscow meetings collapsed, and border war erupted instantly.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Eight Moscow meetings collapsed, and border war erupted instantly.",
+      "b_roll": [
+        "Map of Moscow displaying the summit location",
+        "Split screen graphic showing diplomatic talks failing"
+      ],
+      "text_overlay": {
+        "text": "Moscow Talks Collapse"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Zamir Kabulov confirmed the eighth meeting ended without a joint statement. Tensions shattered diplomacy after disagreements between the Taliban and Pakistan. Where did the 8th meeting go wrong?",
+      "b_roll": [
+        "Portrait of Zamir Kabulov speaking",
+        "Document graphic showing failed negotiations",
+        "Map highlighting Afghanistan and Pakistan borders"
+      ],
+      "text_overlay": {
+        "text": "8th Moscow Meeting"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Fighting instantly crossed into Paktia province and Khyber Pakhtunkhwa, but the collapse was only the beginning.",
+      "b_roll": [
+        "Border map showing Paktia and Khyber Pakhtunkhwa provinces",
+        "Satellite view of rugged terrain near the border"
+      ],
+      "text_overlay": {
+        "text": "Border Clashes Erupt"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 203 Mansouri Corps engaged Pakistani troops directly. Armed clashes surged near the Durand Line in Dand Patan district. The 203 Mansouri Corps traded heavy fire along the frontier.",
+      "b_roll": [
+        "Insignia and emblem of the 203 Mansouri Corps",
+        "Map zooming in on the Durand Line and Dand Patan district",
+        "Visual graphic tracking military positions"
+      ],
+      "text_overlay": {
+        "text": "Durand Line Clashes"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Zamir Kabulov reported the failed talks.",
+      "b_roll": [
+        "Strategic map highlighting the border escalation",
+        "Final wide shot of the frontier region"
+      ],
+      "text_overlay": {
+        "text": "Volatile Frontier"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.afintl.com/en/202610052273",
+    "https://www.longwarjournal.org/archives/2026/10/taliban-pakistan-border-clashes-continue-after-moscow-talks-end-without-agreement.php",
+    "https://www.khaama.com/kabul-reports-clashes-with-pakistani-forces-along-durand-line-in-paktia"
+  ]
+}
