@@ -35,6 +35,18 @@ export function yieldsTo(b, g) {
   if (kinds.every((k) => k === "cutout" || k === "symbol" || k === "visual")) return true;
   // A map of somewhere the sentence does not name is wrong, not just unhelpful: it yields (board 38012563025 ch-49).
   if (kinds.includes("map") && !(g.ents || []).some((e) => { const r = coverageOf(c, e); return r.covered && /^map/.test(String(r.by || "")); })) return true;
+  // The same holds for a PHOTO, and it is the reason a photo composition cannot
+  // keep a plate beside it: no photo composition lays out a second object
+  // (measured with canvasManifest — SCENE-LOW, PHOTO-BAND, DOCUMENT, ENTITY-ART
+  // and ARCHITECTURE lay out no cutout box), so an entity added alongside one
+  // would be dropped with nothing said. Board 38307081974 ch-2 beat 2: the
+  // sentence is about the Code of Federal Regulations and the frame showed a
+  // photo of the Capitol, read as "draws photo, none of it the entity".
+  // A photo of the right subject stays; a photo of somewhere else yields to it.
+  if (kinds.some((k) => k === "photo" || k === "portrait") && !(g.ents || []).some((e) => {
+    const r = coverageOf(c, e);
+    return r.covered && /^(photo|portrait|plate-)/.test(String(r.by || ""));
+  })) return true;
   const vt = String(c.visual_type || b.visual_type || "").toUpperCase();
   if (vt === "TREND" || (vt === "LIST" && c.composition === "LIST-BUILD")) return true;
   // A process diagram of named steps shows none of the entity it names; the entity comes first ("process / relation -> diagram only if stated").
@@ -198,11 +210,25 @@ export function ladderAll(b) {
   // the beat is not drawing it), and `missing` and `allFigures` then name it
   // twice — which put "50 percent, 50 percent" in one row. A row is a set of
   // subjects; the same subject is drawn once.
+  //
+  // And by FIGURE, not only by name: the sentence "Law360 is cited 360 times"
+  // yields the number twice as "360" (the entity extractor) and "360 times"
+  // (quantitiesOf), which put two entries on screen for one number: board
+  // 38307081974 ch-2 beat 5. Two entries showing the same figure is the same
+  // repetition the no-repeat rule exists to refuse.
+  const figKey = (e) => (e.type === "number" ? String(quantitiesOf(e.name).find((q) => digitsOf(q.value).length > 0)?.value ?? e.name).replace(/[^\d.]/g, "") : null);
+  const digitsOf = (s) => String(s == null ? "" : s).replace(/[^\d.]/g, "");
   const seenNames = new Set();
+  const seenFigures = new Set();
   const row = [...rowable, ...allFigures].filter((e) => {
     const k = String(e.name).toLowerCase().trim();
     if (seenNames.has(k)) return false;
     seenNames.add(k);
+    if (e.type === "number") {
+      const f = figKey(e);
+      if (!f || seenFigures.has(f)) return false;
+      seenFigures.add(f);
+    }
     return true;
   });
   if (row.length >= 2) {
