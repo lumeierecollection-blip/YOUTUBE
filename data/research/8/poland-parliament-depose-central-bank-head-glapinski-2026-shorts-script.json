@@ -1,0 +1,67 @@
+{
+  "channel_id": "8",
+  "topic_slug": "poland-parliament-depose-central-bank-head-glapinski-2026",
+  "format": "shorts",
+  "hook": "Eight charges just landed against Poland's central bank governor in an unprecedented parliamentary indictment.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Eight charges just landed against Poland's central bank governor in an unprecedented parliamentary indictment.",
+      "b_roll": [
+        "Exterior shot of the National Bank of Poland building in Warsaw",
+        "Close-up of official parliamentary documents on a wooden desk"
+      ],
+      "text_overlay": {
+        "text": "8 Charges Filed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Thirty-three committee meetings preceded the October 9 vote on National Bank of Poland chief Adam Glapiński. Eleven members backed the report while eight opposed it. Where did those eight charges originate?",
+      "b_roll": [
+        "Wide shot of committee members sitting at desks in the parliament",
+        "Document pages flipping to reveal a vote tally sheet"
+      ],
+      "text_overlay": {
+        "text": "33 Meetings Held"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Prime Minister Donald Tusk's ruling coalition wants Adam Glapiński deposed.",
+      "b_roll": [
+        "Press conference microphones with Polish flags in the background",
+        "Portrait shot of Prime Minister Donald Tusk speaking"
+      ],
+      "text_overlay": {
+        "text": "Tribunal of State"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "National Bank of Poland governor Adam Glapiński faces eight charges. Two members abstained during the final committee tally.",
+      "b_roll": [
+        "Stacks of government financial reports and monetary policy charts",
+        "Gavel striking a wooden block inside the courtroom"
+      ],
+      "text_overlay": {
+        "text": "Illegal Bond Purchases"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Poland's central bank faces its biggest political trial yet.",
+      "b_roll": [
+        "National Bank of Poland logo etched on a glass door",
+        "Slow pan across the Warsaw skyline at dusk"
+      ],
+      "text_overlay": {
+        "text": "The Central Bank Trial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://newsfire.gr/en/tusk-allies-move-to-oust-polish-central-bank-chief",
+    "https://nexdailynews.com/en/article/glapinski-state-tribunal-committee-adopts-report"
+  ]
+}
