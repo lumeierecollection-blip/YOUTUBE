@@ -1,0 +1,81 @@
+{
+  "topic_slug": "history-of-ai-concepts-preceded-chips",
+  "strongest_angle": "Tracing how core artificial intelligence concepts like artificial neurons, backpropagation, and learning machines were conceptualized decades before the modern hardware and computing power required to run them actually existed.",
+  "key_facts": [
+    {
+      "fact": "In 1943, Warren S. McCulloch and Walter Pitts published 'A Logical Calculus of the Ideas Immanent in Nervous Activity' in the Bulletin of Mathematical Biophysics, establishing the earliest artificial neurons.",
+      "source_url": "https://www.ibm.com/think/topics/history-of-artificial-intelligence",
+      "source_name": "IBM Think Topics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The field of Artificial Intelligence was officially born and named in 1956 at a workshop organized by John McCarthy at the Dartmouth Summer Research Project on Artificial Intelligence.",
+      "source_url": "https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai",
+      "source_name": "Stanford AI100 Report",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Epoch AI's estimates, GPT-6 Astra used about 10^21 times as much compute as the 1957 Perceptron.",
+      "source_url": "https://www.techupsider.com/articles/history-of-ai-1943-2026",
+      "source_name": "Tech Upsider",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of McCulloch and Pitts publication",
+      "value": 1943,
+      "unit": "year",
+      "source_url": "https://www.ibm.com/think/topics/history-of-artificial-intelligence"
+    },
+    {
+      "label": "Year of Dartmouth workshop",
+      "value": 1956,
+      "unit": "year",
+      "source_url": "https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai"
+    },
+    {
+      "label": "Compute ratio between GPT-6 Astra and 1957 Perceptron",
+      "value": 1E+21,
+      "unit": "multiplier",
+      "source_url": "https://www.techupsider.com/articles/history-of-ai-1943-2026"
+    },
+    {
+      "label": "Year of the Perceptron",
+      "value": 1957,
+      "unit": "year",
+      "source_url": "https://www.techupsider.com/articles/history-of-ai-1943-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Warren S. McCulloch",
+      "kind": "person"
+    },
+    {
+      "name": "Walter Pitts",
+      "kind": "person"
+    },
+    {
+      "name": "John McCarthy",
+      "kind": "person"
+    },
+    {
+      "name": "Dartmouth Summer Research Project on Artificial Intelligence",
+      "organization": "organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Bulletin of Mathematical Biophysics",
+      "kind": "object"
+    },
+    {
+      "name": "GPT-6 Astra",
+      "kind": "object"
+    },
+    {
+      "name": "Perceptron",
+      "kind": "object"
+    }
+  ]
+}
