@@ -1,0 +1,65 @@
+{
+  "channel_id": "2",
+  "topic_slug": "dol-withdraws-flsa-interpretation-cfr-changes",
+  "format": "shorts",
+  "hook": "The Wage and Hour Division just dropped a major repeal attempt.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Wage and Hour Division just dropped a major repeal attempt.",
+      "b_roll": [
+        "U.S. Department of Labor seal on a federal building exterior"
+      ],
+      "text_overlay": {
+        "text": "Federal Wage Rights Saved"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 7, 2026, the Wage and Hour Division published a notice. Nine parts of longstanding Fair Labor Standards Act guidance faced removal from the Code of Federal Regulations. Why did the Department of Labor reverse course?",
+      "b_roll": [
+        "Code of Federal Regulations open on a wooden desk",
+        "Document pages showing federal register citations"
+      ],
+      "text_overlay": {
+        "text": "October 7, 2026 Notice"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Max Kutner revealed that July 2025 proposal targeted nine parts of guidance.",
+      "b_roll": [
+        "Federal Register publication volume open on a table"
+      ],
+      "text_overlay": {
+        "text": "July 2025 Proposal"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Max Kutner confirmed the cancellation in Law360. Officials officially dropped page 28985 of volume 90. Wage guidelines remain fully protected inside the Code of Federal Regulations.",
+      "b_roll": [
+        "Law360 news article displayed on a laptop screen",
+        "Code of Federal Regulations binding close-up"
+      ],
+      "text_overlay": {
+        "text": "Guidance Protected"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check Law360 for updates on the Code of Federal Regulations.",
+      "b_roll": [
+        "U.S. Department of Labor building entrance"
+      ],
+      "text_overlay": {
+        "text": "Know Your Rights"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr",
+    "https://www.govinfo.gov/content/pkg/FR-2026-10-07/html/2026-20523.htm",
+    "https://www.law360.com/articles/2534728/dol-cancels-proposal-to-nix-wage-hour-guidance"
+  ]
+}
