@@ -1398,6 +1398,18 @@ export async function entityLadder(plan, channelId, log = console.log) {
     if (d.map) {
       const v = checkVisual({ visual_type: "MAP", data: { place: d.map }, named_entities: b.named_entities }, b.narration || "");
       if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map}; a map is refused (${v.why}) — a plate instead`); reset(b); b.art = { kind: "plate-place", name: d.map }; b.canvas = canvasContentFor(b, {}); done.art++; continue; }
+      // A map on a beat whose neighbour is already a map is the same frame twice.
+      // Board 38252482509 ch-9: beat 4 was MAP-CENTERED and the ladder turned
+      // beat 5 into one too, so canvas-type failed the video on "MAP-CENTERED
+      // twice in a row" — a defect this ladder introduced while fixing a
+      // different one. The place still needs a visual, so it takes the plate
+      // rung instead, which is a different shot of the same subject.
+      const neighbours = plan.beats.filter((x) => Math.abs(x.index - b.index) === 1);
+      if (neighbours.some((x) => String(x.canvas?.composition || "").toUpperCase() === "MAP-CENTERED")) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map}; the neighbouring beat is already a map — a plate instead of two maps in a row`);
+        reset(b); b.art = { kind: "plate-place", name: d.map };
+        b.canvas = canvasContentFor(b, {}); done.art++; continue;
+      }
       reset(b); b.visual_type = "MAP"; b.data = { place: d.map };
       b.canvas = canvasContentFor(b, {}); done.map++;
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map} -> a map with it highlighted`);
