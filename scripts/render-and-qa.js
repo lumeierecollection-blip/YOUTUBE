@@ -1292,7 +1292,7 @@ Respond ONLY with JSON: {"sequence": <number>}`);
 export async function entityLadder(plan, channelId, log = console.log) {
   // The script's named countries (the same set resolveCanvas qualifies a generic institution with).
   const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
-  const { ladderFor } = await import("./entity-ladder.js");
+  const { ladderFor, ladderAll } = await import("./entity-ladder.js");
   const { sameName } = await import("./entity-coverage.js");
   const { fetchFlag } = await import("./fetch-flag.mjs");
   const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
@@ -1303,9 +1303,32 @@ export async function entityLadder(plan, channelId, log = console.log) {
   for (const pb of plan.beats) for (const v of pb.canvas?.concept_visuals || []) if (v?.logo && v.name) usedMarks.set(String(v.name).toLowerCase(), pb.index);
   const reset = (b, replaces = false) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; if (replaces) { b.visual_type = "TYPE"; b.data = null; b.concept_visuals = []; } };
   for (const b of plan.beats) {
-    const d = ladderFor(b);
-    if (!d) continue;
+    const dirs = ladderAll(b);
+    if (!dirs.length) continue;
+    // THE TWO-VISUAL RULE. ladderAll returns one directive per UNCOVERED
+    // entity, not just the primary: a sentence that names two things gets both
+    // on screen. They are applied to the SAME beat (never split into two beats)
+    // so the renderer sequences the second visual in behind the first. A beat
+    // that already draws substance keeps it — its directives carry
+    // `alongside` and are added as concept_visuals, which the layout draws as
+    // cutout0/cutout1 (canvas-layout.js:1169).
+    for (const d of dirs) {
     const keep = { visual_type: b.visual_type, data: b.data, art: b.art, name_card: b.name_card, hero_cutout: b.hero_cutout, fallback_symbol: b.fallback_symbol, type_layout: b.type_layout, canvas: b.canvas };
+    if (d.alongside) {
+      // Add beside what the beat already draws. The entity becomes a named
+      // concept visual so the layout can pair it with the existing hero; the
+      // real-mark lookup below is shared with the replacing path, so it is a
+      // real mark when one exists and an honest non-identifying plate when not.
+      const name = d.art ? d.art.name : d.map;
+      const kind = d.art ? d.art.kind : "plate-place";
+      const existing = Array.isArray(b.concept_visuals) ? b.concept_visuals : [];
+      if (existing.length >= 2) { log(`[ladder] ch-${channelId} beat ${b.index}: already carries two visuals; "${name}" is named in the headline instead`); continue; }
+      b.concept_visuals = existing.concat([{ name, class: "plate", logo: false, asset: null }]);
+      b.canvas = canvasContentFor(b, {});
+      done.art++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${name} -> a second visual beside the ${(b.canvas?.composition) || "existing"} it already shows`);
+      continue;
+    }
     if (d.map) {
       const v = checkVisual({ visual_type: "MAP", data: { place: d.map }, named_entities: b.named_entities }, b.narration || "");
       if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map}; a map is refused (${v.why}) — a plate instead`); reset(b); b.art = { kind: "plate-place", name: d.map }; b.canvas = canvasContentFor(b, {}); done.art++; continue; }
@@ -1356,6 +1379,7 @@ export async function entityLadder(plan, channelId, log = console.log) {
       log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}${d.replaces ? " (replaces a visual that carried none of it)" : ""}`);
     }
     if (!b.canvas) Object.assign(b, keep);
+    }
   }
   for (const b of plan.beats) {
     const c = b.canvas;

@@ -69,7 +69,16 @@ export function ladderFor(b) {
   if (g.covered || !g.primary) return null;
   const replaces = hasSubstance(b.canvas);
   if (replaces && !yieldsTo(b, g)) return null;
-  const e = g.primary;
+  return directiveFor(g.primary, g, b, replaces);
+}
+
+/**
+ * One entity's directive. Split out of ladderFor so the second end of a
+ * two-thing sentence goes through exactly the same ladder rung as the first —
+ * the rungs, the qualifiers and the never-blank rule do not differ by
+ * position.
+ */
+function directiveFor(e, g, b, replaces) {
   const sentence = b.narration || b.canvas?.sentence || "";
   switch (e.type) {
     case "place":
@@ -88,4 +97,93 @@ export function ladderFor(b) {
     }
     default: return null;
   }
+}
+
+/**
+ * Every directive this beat needs — one rung that covers ALL uncovered
+ * entities, not just the primary.
+ *
+ * THE TWO-VISUAL RULE. A sentence that names two things has to show both: "X
+ * moved from A to B" shows A, B and the move; a comparison shows both sides; a
+ * cause shows both ends. ladderFor answered only `gapOf().primary`, so the
+ * second thing the voice said had nothing on screen, and the coverage check
+ * that should have caught it passes when the primary is answered.
+ *
+ * Measured on board 38226641642's four renders (29 beats): 9 beats named two or
+ * more entities and 1 of them showed two or more. ch-9 beat 4 names Ethiopia,
+ * Eritrea, Tigray and the United Nations Security Council and draws one plate.
+ * ch-26 beat 6 names Deloitte, Roman Abramovich and Cyprus and draws a map of
+ * Cyprus alone. ch-1 beat 3 names Investopedia, You Need a Budget and 3.7 and
+ * draws a bar chart.
+ *
+ * How both ends get on screen, in the order of what each entity deserves:
+ *
+ *   - Several entities, all of them PLATE-able (a person, an organisation, a
+ *     place with no region, a date, a span): ONE `plates` art naming all of
+ *     them, drawn by the layout as a row of labelled plates. That rung already
+ *     existed and already rendered — it was restricted to two or more
+ *     ORGANISATIONS, which is why a place + a person + an organisation got one
+ *     plate between the three. Widening the rung is the whole fix, and it uses
+ *     a rendering path the frames have already proven.
+ *   - One of them is a place WITH a region, so it deserves a map rather than a
+ *     plate: the map stays the beat's primary visual and the rest ride beside
+ *     it as `extra`, drawn as a second object in the same composition.
+ *
+ * Never blank, and never a generic icon standing in for a named thing: each
+ * name goes through the same rung, qualification and real-mark lookup as the
+ * primary did.
+ */
+export function ladderAll(b) {
+  const c = b.canvas || {};
+  const g = gapOf(b);
+  if (!g.primary && !g.ents.length) return [];
+
+  // EVERY entity the sentence names that the frame does not answer — not just
+  // the primary. gapOf() reports `covered` when the PRIMARY is answered, which
+  // is what the gate asks ("is this beat about its subject shown?"), but it is
+  // not the mission's question ("did everything the voice said get a visual?").
+  // ch-9 beat 4 answered the UN Security Council and left Ethiopia, Eritrea and
+  // Tigray — three places the sentence named — on nothing.
+  const missing = [];
+  for (const e of g.ents) {
+    if (coverageOf(c, e).covered) continue;
+    missing.push(e);
+  }
+  if (!missing.length) return [];
+
+  // A beat that already draws substance keeps it: the missing entities are
+  // ADDED beside what is there (the two-visual case) instead of replacing it.
+  // A beat that is words-only has nothing to keep, so the first rung replaces.
+  const keeps = hasSubstance(c) && !yieldsTo(b, g);
+
+  // A place with a region deserves a map; the rest are plate-able and share one
+  // `plates` row. A number never joins a row — it is answered by the stat card
+  // the planner draws, or by its own figure beat.
+  const mapWorthy = missing.filter((e) => e.type === "place" && e.region);
+  const rowable = missing.filter((e) => !(e.type === "place" && e.region) && e.type !== "number");
+  const out = [];
+
+  if (rowable.length >= 2) {
+    const names = rowable.map((e) => e.name).slice(0, 4);
+    const d = { art: { kind: "plates", name: names.join(", "), names }, replaces: !keeps, alongside: keeps };
+    out.push(d);
+    if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
+    return out;
+  }
+  if (rowable.length === 1) {
+    const d = directiveFor(rowable[0], { ...g, ents: missing, primary: rowable[0] }, b, !keeps);
+    if (d) { d.alongside = keeps; out.push(d); }
+  }
+  for (const e of mapWorthy) {
+    const d = directiveFor(e, { ...g, ents: missing, primary: e }, b, !keeps);
+    if (d) { d.alongside = keeps && out.length > 0; out.push(d); }
+  }
+  // Only a lone number with nothing else uncovered: the stat card.
+  if (!out.length) {
+    for (const e of missing.filter((x) => x.type === "number")) {
+      const d = directiveFor(e, { ...g, ents: missing, primary: e }, b, !keeps);
+      if (d) out.push(d);
+    }
+  }
+  return out;
 }
