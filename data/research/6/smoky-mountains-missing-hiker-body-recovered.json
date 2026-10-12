@@ -1,0 +1,86 @@
+{
+  "topic_slug": "smoky-mountains-missing-hiker-body-recovered",
+  "strongest_angle": "Examining the multi-day search operations and final recovery of missing 24-year-old hiker Sahil Jilani by dive teams at Abrams Falls within the Great Smoky Mountains National Park.",
+  "key_facts": [
+    {
+      "fact": "Sahil Jilani, a 24-year-old man from Texas, was reported missing after visiting the Great Smoky Mountains National Park and was last seen at Riverstone Campground in Townsend at approximately 8 p.m. on October 5.",
+      "source_url": "https://kindnesssociety.com.au/sahil-jilani-abrams-falls-recovery",
+      "source_name": "Kindness Society",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Dive teams recovered the body of Sahil Jilani at Abrams Falls on October 8, 2026, following a days-long search operation in Blount County, Tennessee.",
+      "source_url": "https://kindnesssociety.com.au/sahil-jilani-abrams-falls-recovery",
+      "source_name": "Kindness Society",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Officials at the Great Smoky Mountains National Park and family members confirmed that Sahil Jilani's vehicle was discovered near the popular hiking trail before divers located him in the water.",
+      "source_url": "https://www.wvlt.tv/2026/10/11/man-missing-great-smoky-mountains-national-park-found-dead-after-days-long-search-family-confirms",
+      "source_name": "WVLT",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Sahil Jilani's age",
+      "value": 24,
+      "unit": "years",
+      "source_url": "https://kindnesssociety.com.au/sahil-jilani-abrams-falls-recovery"
+    },
+    {
+      "label": "Day of the month Sahil Jilani was last seen",
+      "value": 5,
+      "unit": "day",
+      "source_url": "https://www.ghanamma.com/2026/10/11/man-missing-in-great-smoky-mountains-national-park-found-dead-after-days-long-search-family-confirms"
+    },
+    {
+      "label": "Hour Sahil Jilani was last seen",
+      "value": 8,
+      "unit": "p.m.",
+      "source_url": "https://www.ghanamma.com/2026/10/11/man-missing-in-great-smoky-mountains-national-park-found-dead-after-days-long-search-family-confirms"
+    },
+    {
+      "label": "Day of the month Sahil Jilani's body was recovered",
+      "value": 8,
+      "unit": "day",
+      "source_url": "https://kindnesssociety.com.au/sahil-jilani-abrams-falls-recovery"
+    },
+    {
+      "label": "Year of the search and recovery",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://kindnesssociety.com.au/sahil-jilani-abrams-falls-recovery"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sahil Jilani",
+      "kind": "person"
+    },
+    {
+      "name": "Great Smoky Mountains National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Abrams Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Riverstone Campground",
+      "kind": "place"
+    },
+    {
+      "name": "Townsend",
+      "kind": "place"
+    },
+    {
+      "name": "Blount County",
+      "kind": "place"
+    },
+    {
+      "name": "Texas",
+      "kind": "place"
+    }
+  ]
+}
