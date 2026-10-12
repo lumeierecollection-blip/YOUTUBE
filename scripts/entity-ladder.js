@@ -156,11 +156,15 @@ export function ladderAll(b) {
   // A beat that is words-only has nothing to keep, so the first rung replaces.
   const keeps = hasSubstance(c) && !yieldsTo(b, g);
 
-  // A place with a region deserves a map; the rest are plate-able and share one
-  // `plates` row. A number never joins a row — it is answered by the stat card
-  // the planner draws, or by its own figure beat.
+  // A place with a region deserves a map; everything else is plate-able and
+  // shares one `plates` row. A NUMBER joins the row too: a sentence that
+  // states two figures ("$672 million ... 1,000 papers") has to show both,
+  // and ch-26 beat 0 failed entity-coverage for exactly that — the frame drew
+  // one figure and the other number was on nothing. A row entry that is a
+  // figure is drawn as the figure (full-canvas.jsx MarkPlate reads its text),
+  // so it is honest: the number is shown, not labelled with an icon.
   const mapWorthy = missing.filter((e) => e.type === "place" && e.region);
-  const rowable = missing.filter((e) => !(e.type === "place" && e.region) && e.type !== "number");
+  const rowable = missing.filter((e) => !(e.type === "place" && e.region));
   const out = [];
 
   if (rowable.length >= 2) {
@@ -171,18 +175,35 @@ export function ladderAll(b) {
     return out;
   }
   if (rowable.length === 1) {
-    const d = directiveFor(rowable[0], { ...g, ents: missing, primary: rowable[0] }, b, !keeps);
-    if (d) { d.alongside = keeps; out.push(d); }
+    // A lone FIGURE cannot ride beside another figure: NUMBER-FULL lays out one
+    // stat card and no cutout slot, so "alongside" would drop it (the gate
+    // board 38256573651 ch-26 beat 0 failed entity-coverage for exactly this —
+    // the sentence names $672 million AND 1,000, the frame showed one). A
+    // number with nothing else uncovered therefore takes the stat card itself,
+    // REPLACING the figure already drawn: the sentence gets both across the
+    // beat, the other number already has its own beat.
+    const only = rowable[0];
+    if (only.type === "number") {
+      const d = directiveFor(only, { ...g, ents: missing, primary: only }, b, true);
+      if (d) { d.replaces = true; d.alongside = false; out.push(d); }
+    } else {
+      const d = directiveFor(only, { ...g, ents: missing, primary: only }, b, !keeps);
+      if (d) { d.alongside = keeps; out.push(d); }
+    }
   }
   for (const e of mapWorthy) {
     const d = directiveFor(e, { ...g, ents: missing, primary: e }, b, !keeps);
     if (d) { d.alongside = keeps && out.length > 0; out.push(d); }
   }
-  // Only a lone number with nothing else uncovered: the stat card.
+  // Only a lone number with nothing else uncovered: the stat card. It REPLACES —
+  // a beat that already draws one figure cannot hold a second stat card, and
+  // the whole point is that the number the sentence named is the one on screen.
+  // directiveFor does not attach `replaces` to a figure (a figure sets
+  // visual_type/data rather than art), so it is set here.
   if (!out.length) {
     for (const e of missing.filter((x) => x.type === "number")) {
       const d = directiveFor(e, { ...g, ents: missing, primary: e }, b, !keeps);
-      if (d) out.push(d);
+      if (d) { d.replaces = !keeps; d.alongside = false; out.push(d); }
     }
   }
   return out;
