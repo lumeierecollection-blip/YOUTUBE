@@ -255,7 +255,7 @@ function auditVisual(frames) {
 
 function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
 
-function auditPlanCompliance(plan, manifest) {
+export function auditPlanCompliance(plan, manifest) {
   if (!manifest) return { ok: false, note: "no render manifest" };
   const mBeats = manifest.beats || [];
   const pBeats = plan?.beats || [];
@@ -300,7 +300,34 @@ function auditPlanCompliance(plan, manifest) {
   const mechs = mBeats.map((b) => b.mechanism).filter(Boolean);
   const caps = mBeats.map((b) => b.capabilities || []).flat().filter(Boolean);
   const total = mechs.length || 1;
-  const textForward = mechs.filter((m) => TEXT_FORWARD.has(m)).length;
+  // TEXT-FORWARD IS A PROPERTY OF THE FRAME, NOT OF THE MECHANISM NAME.
+  //
+  // This was the last place in this file still counting the vocabulary label,
+  // after `distinct` and `maxRun` moved to varietyKeys above. Board
+  // 38226641642 shows what it cost, on two channels measured in the same run:
+  //
+  //   ch-2  textFwd=22%   typography: 9/9 text beats (100%)
+  //   ch-6  textFwd=22%   typography: 7/9 text beats (78%)
+  //
+  // Two numbers, same video, same question, 78 points apart — because
+  // TEXT_FORWARD only holds TYPOGRAPHY and EVIDENCE_FIGURE, and this render
+  // path declares almost every beat CAPABILITY while painting a headline on it.
+  // So the monoculture gate below ran on 22% and never fired, while the
+  // typography audit measured the same frames at 100% and kept reporting
+  // "% of beats carry on-screen text (max 40%)". Two checks, one question,
+  // opposite answers, and the one that fed `monoculture` was the wrong one.
+  //
+  // The real source is the beat's own on_screen_text: a beat is text-forward
+  // when it draws a narrative string. render.js builds that from the canvas
+  // boxes (see scene-text.js), so it is the render's record of its own ink.
+  // The mechanism name stays the fallback for a manifest that carries no text
+  // inventory at all, so an old or missing manifest degrades to the old
+  // measure rather than to "nothing is text-forward".
+  const drawnText = (b) => Array.isArray(b?.on_screen_text) ? b.on_screen_text.length > 0 : null;
+  const hasTextData = mBeats.some((b) => drawnText(b) !== null);
+  const textForward = hasTextData
+    ? mBeats.filter((b) => drawnText(b)).length
+    : mechs.filter((m) => TEXT_FORWARD.has(m)).length;
   const distinct = new Set(varietyKeys(mBeats, pBeats)).size;
   const distinctCaps = new Set(caps).size;
   // Longest run of BEATS THAT LOOK THE SAME — keyed the same way. Under the
@@ -320,7 +347,12 @@ function auditPlanCompliance(plan, manifest) {
   return {
     ok: true,
     beatCountPlan: pBeats.length, beatCountRender: mBeats.length,
-    textForwardPct, distinctMechanisms: distinct, distinctCapabilities: distinctCaps, longestMechanismRun: maxRun, monoculture,
+    textForwardPct,
+    // Which source produced textForwardPct, so a run log is never ambiguous
+    // about which measure it is reading: "drawn" is on_screen_text, "mechanism"
+    // is the pre-2026-10-12 fallback for a manifest with no text inventory.
+    textForwardSource: hasTextData ? "drawn" : "mechanism",
+    distinctMechanisms: distinct, distinctCapabilities: distinctCaps, longestMechanismRun: maxRun, monoculture,
     mechanismDistribution: mechs.reduce((o, m) => (o[m] = (o[m] || 0) + 1, o), {}),
     capabilityDistribution: caps.reduce((o, c) => (o[c] = (o[c] || 0) + 1, o), {}),
     issues,
@@ -672,7 +704,7 @@ async function main() {
   console.log("\n═══ LOCAL VISUAL AUDITOR ═══");
   console.log(`  Video: ${report.video}  ${technical.width}x${technical.height} @ ${technical.fps}fps  ${technical.durationSec}s  audio:${technical.hasAudio}`);
   if (visual.ok) console.log(`  Visual: meanLuma=${visual.meanLuma} motion=${visual.meanMotion} black=${visual.blackFrameCount} staticRun=${visual.maxStaticRunSec}s changes=${visual.sceneChanges} dupPairs=${visual.nearDuplicatePairs}`);
-  if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}% distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
+  if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}%(${planComp.textForwardSource}) distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
   if (typo.ok) console.log(`  Typography: ${typo.textBeats}/${typo.totalBeats} text beats (${Math.round(typo.textBeatShare * 100)}%) run=${typo.longestTextRun} multiline=${typo.multiLineBeats} headline=${typo.headlineLikeBeats} transcript=${typo.transcriptLikeBeats} tooLong=${typo.wouldWrapBeats} repeated=${typo.repeatedPhrases.length} issues=${typo.issues.length}`);
   if (audio.hasAudio) console.log(`  Audio: LUFS=${audio.integratedLufs ?? "?"} peak=${audio.truePeakDb ?? "?"}dB clip=${!!audio.clipping} silence=${audio.maxSilenceSec ?? 0}s`);
   for (const b of report.blockers) console.log(`  BLOCKER: ${b}`);
