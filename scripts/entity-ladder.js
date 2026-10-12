@@ -14,7 +14,7 @@
  * Only a beat that draws NOTHING of substance is filled (words only, a name card, or a drawn symbol alone): a beat that
  * already shows a photo, a chart or an object keeps it and is reported by the gate instead.
  */
-import { entitiesOf, primaryOf, coverageOf, drawnOf } from "./entity-coverage.js";
+import { entitiesOf, primaryOf, coverageOf, drawnOf, sameName } from "./entity-coverage.js";
 import { quantitiesOf } from "./canvas-grounding.js";
 import { flagCodeOf } from "../src/skills/remotion-render/visual/flags.js";
 
@@ -205,6 +205,42 @@ export function ladderAll(b) {
   // recorded as plate-organization when coverageOf() matches a number against a
   // figure (board 38276419111 ch-26 beat 0). All three were the same mistake —
   // the kind has to describe the subject, not the device that drew it.
+  // A beat whose OWN visual already answers the entity the sentence is about must
+  // not have that visual replaced to make room for a second name. Board
+  // 38313573278 ch-49 beat 5: the frame drew the verified portrait of Jessica
+  // Chastain, the sentence also states "$27.5 million", and the ladder threw
+  // the portrait away for a stat card — putting the person the sentence is
+  // ABOUT back on nothing, which is the exact defect the ladder exists to
+  // prevent. The portrait is the better answer and it stays; the figure is
+  // stated in the headline the beat already draws.
+  //
+  // The test is whether the beat ALREADY DRAWS the entity it is about — not
+  // whether its composition is one that fills the frame. A plate row and a
+  // map can each take a second name and are built to (ch-9 beat 4 drew one
+  // plate for four named places and now draws them all; ch-26 beat 6 drew a map
+  // of Cyprus and now directs Deloitte and Abramovich beside it), so keying on
+  // composition would have undone both. Keying on "does this frame already
+  // show the subject" is the question the gate actually asks.
+  // The subject is gapOf()'s primary when it is still uncovered, and otherwise
+  // the first entity the frame DOES answer — gapOf() nulls `primary` once it is
+  // covered, which is exactly the case this guard is for.
+  //
+  // But only when the beat draws ONE thing. A plate row, a map and a photo are
+  // all "substance", and a row or a map can take a second name (ch-9 beat 4 drew
+  // one plate for four named places and now draws them all; ch-26 beat 6 drew a
+  // map of Cyprus and now directs Deloitte and Abramovich beside it). A PORTRAIT
+  // or a PHOTO is the whole frame: there is nowhere to put a second thing, so
+  // the beat keeps it and the other name stays in the headline.
+  const SINGLE_OBJECT = new Set(["portrait", "photo"]);
+  if (keeps) {
+    const subject = g.primary || (g.ents || []).find((e) => coverageOf(c, e).covered);
+    const shown = subject ? drawnOf(c).find((d) => sameName(d.name, subject.name)) : null;
+    if (shown && SINGLE_OBJECT.has(String(shown.kind))) return [];
+    // A composition that lays out no slot for a second object is the same
+    // situation, whatever it draws.
+    if (drawnOf(c).length === 1 && ["PORTRAIT", "PHOTO-CARD", "PHOTO-BAND", "SCENE-LOW", "SCENE-FULL", "ARCHITECTURE"].includes(String(c.composition || "").toUpperCase())) return [];
+  }
+
   const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" ? "figure" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
   // Deduped by name: a figure can be both NAMED and MISSING (it is named, and
   // the beat is not drawing it), and `missing` and `allFigures` then name it
