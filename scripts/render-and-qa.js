@@ -1363,6 +1363,23 @@ export async function entityLadder(plan, channelId, log = console.log) {
         log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type (no free verified mark)"}`);
       }
     }
+    if (d.figures) {
+      // Two figures on one beat (entity-ladder.js): the sentence states both,
+      // and neither can be reached by replacing the other — see the ladder's
+      // note. They go in as concept visuals, which is the path canvas-layout
+      // lays out on the NUMBER and TYPE compositions (cutout0/cutout1); an `art`
+      // plate row gets no box there at all.
+      const existing = Array.isArray(b.concept_visuals) ? b.concept_visuals : [];
+      const room = 2 - existing.length;
+      if (room <= 0) { log(`[ladder] ch-${channelId} beat ${b.index}: already carries two visuals; the second figure is in the headline`); continue; }
+      const shown = d.figures.slice(0, room).map((n) => ({ name: n, class: "figure", logo: false, asset: null }));
+      b.concept_visuals = existing.concat(shown);
+      b.ladder_visual = { figures: shown.map((s) => s.name) };
+      b.canvas = canvasContentFor(b, {});
+      done.figure++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: states ${shown.map((s) => s.name).join(" and ")} -> both figures on the beat`);
+      continue;
+    }
     if (d.alongside) {
       // WHERE THE SECOND VISUAL CAN PHYSICALLY GO. Only the TYPE and NUMBER
       // compositions lay out a cutout box for a second object; DATA-FULL,

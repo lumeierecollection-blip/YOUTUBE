@@ -34,14 +34,20 @@ test("the beat as rendered is exactly what the board failed", () => {
   assert.equal(coverageOf(BEAT.canvas, { type: "number", name: "1,000" }).covered, false);
 });
 
-test("the missing figure is directed as a stat card, not as a second object", () => {
-  const dirs = ladderAll(BEAT);
+test("the missing figure is directed as a stat card when it is the only number", () => {
+  const b = {
+    index: 0,
+    narration: "The fraud moved 1,000 corporate papers.",
+    named_entities: [{ type: "number", name: "1,000" }],
+    canvas: { composition: "TYPE-FULL" },
+  };
+  const dirs = ladderAll(b);
   assert.equal(dirs.length, 1, `expected one directive, got ${JSON.stringify(dirs)}`);
   assert.ok(dirs[0].figure, `expected a figure directive, got ${JSON.stringify(dirs[0])}`);
   assert.equal(dirs[0].figure.value, "1,000");
 });
 
-test("it replaces rather than riding alongside — NUMBER-FULL has no second slot", () => {
+test("one figure replaces rather than riding alongside — NUMBER-FULL has no second slot", () => {
   const [d] = ladderAll(BEAT);
   assert.equal(d.replaces, true, "alongside would be silently dropped by a composition with no cutout box");
   assert.equal(d.alongside, false);
@@ -50,6 +56,32 @@ test("it replaces rather than riding alongside — NUMBER-FULL has no second slo
 test("a figure already on the beat is not directed again", () => {
   const names = ladderAll(BEAT).flatMap((d) => (d.figure ? [d.figure.value] : []));
   assert.ok(!names.includes("$672"), "the figure already drawn was directed a second time");
+});
+
+test("a sentence stating two numbers gets BOTH, and the beat is then stable", () => {
+  // Board 38294611241 ch-1 beat 6 and ch-26 beat 0 both failed with the same
+  // symptom and neither fix was enough, because the beat PING-PONGED: pass one
+  // drew "50 percent", so "$6.99" was missing and pass two drew that instead.
+  // Neither number was ever on screen at the same time. So the trigger is the
+  // figures the SENTENCE names, not the ones currently missing, and the result
+  // must satisfy coverageOf for both AND leave the next pass nothing to do.
+  const b = {
+    index: 6,
+    narration: "That introductory rate is a 50 percent discount before rising to $6.99 per month billed annually.",
+    named_entities: [{ type: "number", name: "50 percent" }, { type: "number", name: "$6.99" }],
+    canvas: { composition: "NUMBER-FULL", data: { value: "$6.99", label: "per month billed annually" }, sentence: "That introductory rate is a 50 percent discount before rising to $6.99 per month billed annually." },
+  };
+  const [d] = ladderAll(b);
+  assert.ok(d.figures, `expected both figures, got ${JSON.stringify(d)}`);
+  assert.deepEqual(d.figures, ["50 percent", "$6.99"]);
+
+  const c = { composition: "NUMBER-FULL", concept_visuals: d.figures.map((n) => ({ name: n, class: "figure" })) };
+  for (const e of b.named_entities) {
+    assert.ok(coverageOf(c, e).covered, `"${e.name}" is drawn but read as uncovered`);
+  }
+  // The stability half: with both figures drawn, the beat has nothing missing
+  // and the ladder must not touch it again.
+  assert.deepEqual(ladderAll({ ...b, canvas: c }), [], "the beat still has a figure the ladder wants to swap in");
 });
 
 test("a number in a plates row is a figure, and is matched as one", () => {

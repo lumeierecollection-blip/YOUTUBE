@@ -518,6 +518,20 @@ function ConceptVisual({ b, local, fps, at, accent, dur = 150 }) {
       </div>
     );
   }
+  // A FIGURE as a second object: the number, set large. A beat whose sentence
+  // states two numbers cannot show both by replacing one with the other — see
+  // scripts/entity-ladder.js — so the second is drawn beside the first as its
+  // own object. Drawn from the NAME, which for this class IS the number.
+  if (b.class === "figure") {
+    const shown = String(b.concept || b.name || "").trim();
+    if (!shown) return null;
+    const size = Math.max(56, Math.min(b.h * 0.5, (b.w * 0.92) / Math.max(3, shown.length) / 0.56));
+    return (
+      <div style={{ position: "absolute", left: b.align === "center" ? b.x : b.x, top: b.y, width: b.w, height: b.h, display: "flex", alignItems: "center", justifyContent: b.align === "right" ? "flex-end" : b.align === "center" ? "center" : "flex-start", ...pop }}>
+        <span style={{ font: `800 ${Math.round(size)}px ${SERIF}`, lineHeight: 1.05, letterSpacing: -1, color: th.ink, whiteSpace: "nowrap" }}>{shown}</span>
+      </div>
+    );
+  }
   return null;
 }
 

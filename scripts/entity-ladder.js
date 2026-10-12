@@ -195,6 +195,33 @@ export function ladderAll(b) {
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
   }
+  // A number is the ONE case where "one figure per beat" cannot satisfy the
+  // sentence. A beat whose sentence names TWO figures — "$672 million ...
+  // 1,000 papers", "a 50 percent discount ... rising to $6.99" — cannot show
+  // both by replacing: whichever figure the ladder picks, the other is missing
+  // on the next pass and gets picked back. Board 38294611241 ch-1 beat 6 and
+  // ch-26 beat 0 both oscillated between the two numbers across passes and
+  // never satisfied coverageOf.
+  //
+  // Two or more figures go in ONE ROW of concept visuals, not as an `art`:
+// canvas-layout lays out cutout0/cutout1 for concept_visuals on the NUMBER and
+// TYPE compositions, while an `art` plate row gets no box at all there (checked
+// with canvasManifest: NUMBER-FULL + art{plates} lays out no art box, NUMBER-FULL
+// + two concept_visuals lays out cutout0 AND cutout1). MarkPlate draws a figure
+// entry as the figure, so the number on screen is the number.
+  // Keyed on the FIGURES THE SENTENCE NAMES, not on the ones currently missing.
+// Whichever single figure the beat happens to be drawing, the other is missing
+// — so "missing" is one at a time and the beat ping-pongs between them across
+  // passes (board 38294611241 ch-1 beat 6 and ch-26 beat 0 both oscillated and
+  // never satisfied coverageOf). A sentence that states two numbers gets both
+  // on the beat, once.
+  const figures = (g.ents || []).filter((e) => e.type === "number");
+  if (figures.length >= 2 && missing.some((e) => e.type === "number")) {
+    const names = figures.map((e) => e.name).slice(0, 4);
+    out.push({ figures: names, replaces: true, alongside: false });
+    return out;
+  }
+
   if (rowable.length === 1) {
     // A lone FIGURE cannot ride beside another figure: NUMBER-FULL lays out one
     // stat card and no cutout slot, so "alongside" would drop it (the gate
