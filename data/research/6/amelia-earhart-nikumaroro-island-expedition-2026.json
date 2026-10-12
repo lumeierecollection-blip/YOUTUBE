@@ -1,0 +1,92 @@
+{
+  "topic_slug": "amelia-earhart-nikumaroro-island-expedition-2026",
+  "strongest_angle": "Researchers from Purdue University and the Archaeological Legacy Institute arrived at Nikumaroro Island in October 2026 to investigate potential plane wreckage linked to Amelia Earhart's 1937 disappearance.",
+  "key_facts": [
+    {
+      "fact": "A 17-person expedition team arrived at Nikumaroro Island in Kiribati after a five-day, 830-nautical-mile voyage across the South Pacific to investigate a submerged object.",
+      "source_url": "https://www.wbiw.com/2026/10/12/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "WBIW",
+      "confidence": "high"
+    },
+    {
+      "fact": "The search team includes researchers from Purdue University and the Archaeological Legacy Institute who are inspecting the site over a planned five-day period.",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Amelia Earhart vanished alongside her navigator Fred Noonan in July 1937 while attempting to fly around the world.",
+      "source_url": "https://pmn.co.nz/read/pacific-region/amelia-earhart-mystery-draws-search-team-to-remote-kiribati-atoll",
+      "source_name": "Pacific Media Network",
+      "confidence": "high"
+    },
+    {
+      "fact": "Purdue University is an Indiana institution that previously part-funded Amelia Earhart's final aircraft.",
+      "source_url": "https://news.jobsforfiji.com/earhart-search-team-nears-nikumaroro-after-fiji-advance-work",
+      "source_name": "Fiji News Desk",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Expedition crew size",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.wbiw.com/2026/10/12/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Voyage duration",
+      "value": 5,
+      "unit": "days",
+      "source_url": "https://www.wbiw.com/2026/10/12/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Voyage distance",
+      "value": 830,
+      "unit": "nautical miles",
+      "source_url": "https://www.wbiw.com/2026/10/12/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Disappearance year",
+      "value": 1937,
+      "unit": "year",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+    },
+    {
+      "label": "Search work duration",
+      "value": 5,
+      "unit": "days",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Amelia Earhart",
+      "kind": "person"
+    },
+    {
+      "name": "Fred Noonan",
+      "kind": "person"
+    },
+    {
+      "name": "Nikumaroro Island",
+      "kind": "place"
+    },
+    {
+      "name": "Kiribati",
+      "kind": "place"
+    },
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Archaeological Legacy Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Lockheed Electra 10-E",
+      "kind": "object"
+    }
+  ]
+}
