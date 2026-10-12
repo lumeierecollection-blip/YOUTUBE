@@ -1,0 +1,64 @@
+{
+  "channel_id": "8",
+  "topic_slug": "czech-national-bank-centennial-central-banking-evolution",
+  "format": "shorts",
+  "hook": "One hundred years ago, a new central bank in Prague changed monetary history forever.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One hundred years ago, a new central bank in Prague changed monetary history forever.",
+      "b_roll": [
+        "Archives of the National Bank of Czechoslovakia"
+      ],
+      "text_overlay": {
+        "text": "100 Years of Central Banking"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On April 1, 1926, the National Bank of Czechoslovakia officially opened its doors. Operations began during a volatile era for European finance. Where did the 1926 mandate lead this institution?",
+      "b_roll": [
+        "Historical bank building in Prague",
+        "Document dated April 1 1926"
+      ],
+      "text_overlay": {
+        "text": "April 1, 1926"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the evolution did not stop after the post-Bretton Woods system transformed global markets.",
+      "b_roll": [
+        "Global financial district map"
+      ],
+      "text_overlay": {
+        "text": "Post-Bretton Woods Era"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Deputy Governor Jan Frait delivered remarks at the Prague conference on October 6, 2026. Modern currency systems now face the legacy of that 1926 foundation.",
+      "b_roll": [
+        "Jan Frait speaking in Prague",
+        "Conference hall in 2026"
+      ],
+      "text_overlay": {
+        "text": "Prague Conference 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Study the 1926 establishment to understand modern central banking.",
+      "b_roll": [
+        "Czech National Bank logo"
+      ],
+      "text_overlay": {
+        "text": "The Centennial Legacy"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnb.cz/cnb/100letnbc_en/index.html",
+    "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment"
+  ]
+}

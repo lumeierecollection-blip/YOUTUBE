@@ -1,0 +1,84 @@
+{
+  "topic_slug": "czech-national-bank-centennial-central-banking-evolution",
+  "strongest_angle": "Examining the centennial of the National Bank of Czechoslovakia established on April 1, 1926, and its evolution alongside the post-Bretton Woods monetary system as highlighted by Deputy Governor Jan Frait.",
+  "key_facts": [
+    {
+      "fact": "On April 1, 1926, the National Bank of Czechoslovakia was established as the first independent Czechoslovak central bank.",
+      "source_url": "https://www.cnb.cz/cnb/100letnbc_en/index.html",
+      "source_name": "Czech National Bank",
+      "confidence": "high"
+    },
+    {
+      "fact": "Deputy Governor Jan Frait delivered opening remarks at the New challenges in central banking conference in Prague on October 6, 2026.",
+      "source_url": "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment",
+      "source_name": "Bank for International Settlements",
+      "confidence": "high"
+    },
+    {
+      "fact": "Spring 2026 marks 100 years since the National Bank of Czechoslovakia began operations as a legal predecessor of the Czech National Bank.",
+      "source_url": "https://www.cnb.cz/en/cnb-news/press-releases/The-CNB-commemorates-100nbspyears-since-the-establishment-of-the-first-Czechoslovak-central-bank",
+      "source_name": "Czech National Bank",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Establishment year",
+      "value": 1926,
+      "unit": "year",
+      "source_url": "https://www.cnb.cz/cnb/100letnbc_en/index.html"
+    },
+    {
+      "label": "Day of establishment",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://www.cnb.cz/cnb/100letnbc_en/index.html"
+    },
+    {
+      "label": "Month of establishment",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://www.cnb.cz/cnb/100letnbc_en/index.html"
+    },
+    {
+      "label": "Anniversary year mark",
+      "value": 100,
+      "unit": "years",
+      "source_url": "https://www.cnb.cz/en/cnb-news/press-releases/The-CNB-commemorates-100nbspyears-since-the-establishment-of-the-first-Czechoslovak-central-bank"
+    },
+    {
+      "label": "Conference day",
+      "value": 6,
+      "unit": "day",
+      "source_url": "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment"
+    },
+    {
+      "label": "Conference year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "National Bank of Czechoslovakia",
+      "kind": "organization"
+    },
+    {
+      "name": "Czech National Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Jan Frait",
+      "kind": "person"
+    },
+    {
+      "name": "Prague",
+      "kind": "place"
+    },
+    {
+      "name": "Czechoslovak koruna",
+      "kind": "object"
+    }
+  ]
+}
