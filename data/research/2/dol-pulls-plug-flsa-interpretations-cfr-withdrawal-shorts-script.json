@@ -1,0 +1,65 @@
+{
+  "channel_id": "2",
+  "topic_slug": "dol-pulls-plug-flsa-interpretations-cfr-withdrawal",
+  "format": "shorts",
+  "hook": "The Department of Labor nearly erased 9 critical wage rules from the federal code.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Department of Labor nearly erased 9 critical wage rules from the federal code.",
+      "b_roll": [
+        "U.S. Department of Labor seal on a federal building wall"
+      ],
+      "text_overlay": {
+        "text": "9 Wage Rules Threatened"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal regulators published notice 90 FR 28985 in July 2025 targeting Title 29. Where did those 9 targeted interpretive parts originate?",
+      "b_roll": [
+        "Open pages of the Federal Register",
+        "Code of Federal Regulations volumes on a shelf"
+      ],
+      "text_overlay": {
+        "text": "Notice 90 FR 28985"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Max Kutner reported the agency abruptly changed course on Tuesday.",
+      "b_roll": [
+        "Law360 news report on a computer screen"
+      ],
+      "text_overlay": {
+        "text": "Sudden Policy Reversal"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Wage and Hour Division officials officially withdrew the entire proposal on October 7, 2026. This administrative action preserved longstanding Fair Labor Standards Act guidance inside the Code of Federal Regulations. Workers retained 9 protected interpretive rules.",
+      "b_roll": [
+        "Official withdrawal notice document",
+        "Wage and Hour Division office entrance"
+      ],
+      "text_overlay": {
+        "text": "Proposal Withdrawn Oct 7, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check your employment rights under the preserved federal regulations today.",
+      "b_roll": [
+        "Employment rights document closeup"
+      ],
+      "text_overlay": {
+        "text": "Know Your Rights"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr",
+    "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of",
+    "https://www.law360.com/articles/2534728/dol-cancels-proposal-to-nix-wage-hour-guidance"
+  ]
+}
