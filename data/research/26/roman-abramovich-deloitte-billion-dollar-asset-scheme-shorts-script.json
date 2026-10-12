@@ -1,0 +1,67 @@
+{
+  "channel_id": "26",
+  "topic_slug": "roman-abramovich-deloitte-billion-dollar-asset-scheme",
+  "format": "shorts",
+  "hook": "Superyachts and private jets worth $672 million vanished from company accounts using 1,000 falsified papers.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Superyachts and private jets worth $672 million vanished from company accounts using 1,000 falsified papers.",
+      "b_roll": [
+        "Luxury superyacht docked in a private marina",
+        "Stack of corporate audit documents on an office desk"
+      ],
+      "text_overlay": {
+        "text": "$672M VANISHED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Deloitte in Cyprus signed off on the retroactive transfers for billionaire Roman Abramovich. Meritservus executed the paper trail to skirt tax and disclosure obligations. Where did the $672 million go?",
+      "b_roll": [
+        "Corporate office building in Cyprus",
+        "Accountant reviewing financial ledgers",
+        "Private jet on an airfield tarmac"
+      ],
+      "text_overlay": {
+        "text": "THE CYPRUS CONSPIRACY"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Deloitte and Meritservus backdated 1,000 documents to conceal the assets.",
+      "b_roll": [
+        "Close up of a document signature stamp"
+      ],
+      "text_overlay": {
+        "text": "1,000 FAKED PAPERS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Corporate accounts concealed mansions and private planes. Roman Abramovich evaded tax and disclosure obligations. Investigators tracked $672 million in missing property.",
+      "b_roll": [
+        "Luxury mansion exterior view",
+        "Financial tracking software showing asset flow",
+        "Vault doors closing"
+      ],
+      "text_overlay": {
+        "text": "HIDDEN ASSETS EXPOSED"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Cyprus auditors face scrutiny.",
+      "b_roll": [
+        "Government courthouse exterior"
+      ],
+      "text_overlay": {
+        "text": "INVESTIGATION ONGOING"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+    "https://www.bbc.com/news/articles/c64g1l5389kvo"
+  ]
+}
