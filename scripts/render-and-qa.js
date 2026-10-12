@@ -1457,10 +1457,28 @@ function canvasContentFor(b, { photo = null } = {}) {
   // A named entity with no verified photo (resolve-scene.cjs): its name, large (canvas-layout.js).
   if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
   // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
-  if (vt === "TYPE" && b.hero_cutout) c.concept_visuals = [b.hero_cutout];
+  // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
+  //
+  // A concept_visual the ENTITY LADDER added (entityLadder's `alongside` branch)
+  // is already on the beat, and this function rebuilt the list from scratch —
+  // so the ladder's second visual was computed, logged, and then thrown away
+  // before the render. Board 38241611172 ch-26 beat 1 logged "names Deloitte
+  // Cyprus -> a second visual (plate-organization)" and the manifest's
+  // concept_visuals came out [], so entity-coverage reported the beat as
+  // words-only while the ladder believed it had drawn something. The ladder's
+  // entry is kept first: it is a resolved entity the beat would otherwise not
+  // have, and the hero_cutout / symbol paths below fill in only when there is
+  // room for a second object (canvas-layout.js draws cutout0/cutout1).
+  const ladderVisuals = Array.isArray(b.concept_visuals) ? b.concept_visuals.filter(Boolean) : [];
+  if (vt === "TYPE" && ladderVisuals.length) c.concept_visuals = ladderVisuals.slice(0, 2);
+  if (vt === "TYPE" && b.hero_cutout && (c.concept_visuals || []).length < 2) {
+    c.concept_visuals = [...(c.concept_visuals || []), b.hero_cutout].slice(0, 2);
+  }
   // Composition variety's drawn-symbol fallback (scripts/composition-variety.js): the symbol for
   // what the sentence states ("risk" -> warning triangle) is the beat's hero. A name card keeps its name.
-  else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name) c.concept_visuals = [{ name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }];
+  else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name && (c.concept_visuals || []).length < 2) {
+    c.concept_visuals = [...(c.concept_visuals || []), { name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }].slice(0, 2);
+  }
   // Entrance style (part C.4, assigned by the planner): together | staggered | visual-first.
   if (b.entrance_style) c.entrance_style = b.entrance_style;
   // The planner's own layout (canvas-layout.js applyPlanLayout): where each element of this beat
