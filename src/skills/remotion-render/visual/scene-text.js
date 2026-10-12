@@ -408,10 +408,24 @@ export function sceneTextInventory(mechanism, scene, beatText, canvas) {
   const surfaces = TEXT_SURFACES[mechanism] || [];
   const objects = (scene && scene.objects) || [];
   const out = [];
+  const seen = new Set();
 
+  // One string, one entry. The table and the canvas routinely name the SAME
+  // headline (a TYPOGRAPHY beat's beat.text IS its canvas statement box), and
+  // the manifest is read by a check that fails a beat drawing two narrative
+  // lines — so a duplicate here reads as "this beat stacks two headlines" when
+  // the frame draws one. Board 38177554641 ch-1 reported "[narrative] 96 days
+  // a year" twice on beat 0 and "[narrative] Track your spending" twice on
+  // beat 7, for frames that show one line each. Dedup on the normalized text,
+  // across both sources, and keep the FIRST role claimed (the table's is the
+  // mechanism's own contract).
+  const norm = (t) => String(t).toLowerCase().replace(/\s+/g, " ").trim();
   const push = (text, role, source) => {
     const t = String(text == null ? "" : text).trim();
     if (!t) return;
+    const k = norm(t);
+    if (seen.has(k)) return;
+    seen.add(k);
     out.push({ text: t, role: isEngineVocabulary(t) ? "banned" : role, source });
   };
 
@@ -436,17 +450,13 @@ export function sceneTextInventory(mechanism, scene, beatText, canvas) {
   // full-canvas.jsx paints.
   const canvasRole = { headline: "narrative", statement: "narrative", emphasis: "narrative", number: "value", data: "quiet", kicker: "quiet", label: "quiet" };
   const boxes = (canvas && canvas.boxes) || {};
-  const seen = new Set(out.map((t) => t.text));
   for (const [k, b] of Object.entries(boxes)) {
     if (!b) continue;
     const role = canvasRole[b.role];
     if (!role) continue;
     const text = (Array.isArray(b.lines) && b.lines.length ? b.lines.join(" ") : b.text) || null;
     if (!text) continue;
-    const t = String(text).trim();
-    if (!t || seen.has(t)) continue;   // the table and the canvas can name the same string
-    seen.add(t);
-    push(t, role, `canvas.${k}`);
+    push(text, role, `canvas.${k}`);
   }
 
   const findByHint = (hint) => {
