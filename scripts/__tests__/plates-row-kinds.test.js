@@ -47,6 +47,43 @@ test("each named person in the row is matched", () => {
   }
 });
 
+test("a row of ORGANISATIONS records plate-organization per entry, not the row kind", () => {
+  // The kinds came from directiveFor(), which for two or more organisations
+  // returns a `plates` ROW — so the array filled with "plates" and drawnOf()
+  // reported "plates + plates", a row kind coverageOf() matches against
+  // nothing. Board 38271924172 ch-1 beat 5: "Quartz" and "CNBC Select" drawn,
+  // read as uncovered. The kind is derived from the entity's TYPE.
+  const b = {
+    index: 5,
+    narration: "Quartz and CNBC Select reported the pricing.",
+    named_entities: [{ type: "organization", name: "Quartz" }, { type: "organization", name: "CNBC Select" }],
+    canvas: { composition: "TYPE-FULL" },
+  };
+  const [d] = ladderAll(b);
+  assert.deepEqual(d.art.kinds, ["plate-organization", "plate-organization"]);
+  const c = { composition: "ENTITY-ART", art: { ...d.art, items: d.art.names.map(() => null) } };
+  assert.deepEqual(drawnOf(c).map((x) => x.kind), ["plate-organization", "plate-organization"], "drawnOf reported a row kind");
+  assert.ok(coverageOf(c, { type: "organization", name: "Quartz" }).covered);
+  assert.ok(coverageOf(c, { type: "organization", name: "CNBC Select" }).covered);
+});
+
+test("no entry in a row is ever recorded as the row kind", () => {
+  const b = {
+    index: 7,
+    narration: "Quartz, CNBC Select, Roman Abramovich and the Czech Republic.",
+    named_entities: [
+      { type: "organization", name: "Quartz" },
+      { type: "organization", name: "CNBC Select" },
+      { type: "person", name: "Roman Abramovich" },
+      { type: "place", name: "Czechoslovakia" },
+    ],
+    canvas: { composition: "TYPE-FULL" },
+  };
+  const [d] = ladderAll(b);
+  assert.equal(d.art.names.length, d.art.kinds.length, "every name needs a kind");
+  for (const k of d.art.kinds) assert.notEqual(k, "plates", "a row kind leaked into an entry");
+});
+
 test("a mixed row keeps each entry's own kind", () => {
   const b = {
     index: 4,

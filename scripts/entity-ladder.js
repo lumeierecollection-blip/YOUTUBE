@@ -175,7 +175,15 @@ export function ladderAll(b) {
     // as a plates row, and entity-coverage read "draws plate-organization +
     // plate-organization, none of it the entity" — two people drawn as two
     // organisations. The kind is what says what a plate is depicting.
-    const kinds = rowable.map((e) => directiveFor(e, { ...g, ents: rowable, primary: e }, b, false)?.art?.kind).filter(Boolean);
+    //
+    // The kind comes from the entity's TYPE, not from directiveFor(). For two
+    // or more organisations directiveFor() returns a `plates` ROW, so asking
+    // it per entry filled the array with "plates" and drawnOf() reported
+    // "plates + plates" — a row kind where a plate kind is expected, which
+    // coverageOf() matches against nothing (board 38271924172 ch-1 beat 5,
+    // "Quartz" and "CNBC Select" drawn and read as uncovered).
+    const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "organization" ? "plate-organization" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
+    const kinds = rowable.map(kindOf);
     const d = { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps };
     out.push(d);
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
