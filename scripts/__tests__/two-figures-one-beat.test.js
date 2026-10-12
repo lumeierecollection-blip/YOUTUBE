@@ -51,3 +51,22 @@ test("a figure already on the beat is not directed again", () => {
   const names = ladderAll(BEAT).flatMap((d) => (d.figure ? [d.figure.value] : []));
   assert.ok(!names.includes("$672"), "the figure already drawn was directed a second time");
 });
+
+test("a number in a plates row is a figure, and is matched as one", () => {
+  // Board 38276419111 ch-26 beat 0: both numbers went into the row, a number
+  // that fell through to the default was recorded as plate-organization, and
+  // coverageOf() matches a number against a figure or a chart — never a plate.
+  // Two numbers on screen read as "two organisations, none of it the entity".
+  const b = {
+    index: 0,
+    narration: "Deloitte laundered $672 million through more than 1,000 corporate papers.",
+    named_entities: [{ type: "number", name: "$672 million" }, { type: "number", name: "1,000" }],
+    canvas: { composition: "TYPE-FULL" },
+  };
+  const [d] = ladderAll(b);
+  assert.deepEqual(d.art.kinds, ["figure", "figure"], "a number was recorded as a plate");
+  const c = { composition: "ENTITY-ART", art: { ...d.art, items: d.art.names.map(() => null) } };
+  for (const n of ["$672 million", "1,000"]) {
+    assert.ok(coverageOf(c, { type: "number", name: n }).covered, `"${n}" is drawn as a figure but read as uncovered`);
+  }
+});

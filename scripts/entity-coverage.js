@@ -130,7 +130,13 @@ export function coverageOf(c, e) {
       if (["logo", "photo", "plate-organization", "cutout"].includes(d.kind) && sameName(d.name, e.name)) return hit(d);
     } else if (e.type === "number") {
       const want = digits(e.name);
-      if (want && (digits(d.text || "").includes(want) || (d.data && d.data.includes(want)))) return hit(d, "the figure");
+      // A figure's own text is the figure. A `figure` drawn as a row ENTRY
+      // carries its number in `name` instead (a plates row has no per-entry
+      // text), so the entry's name is matched too — without it a number in a
+      // row read as uncovered: board 38276419111 ch-26 beat 0 drew $672 million
+      // and 1,000 and reported "none of it the entity".
+      const text = d.text != null ? String(d.text) : d.kind === "figure" ? String(d.name || "") : "";
+      if (want && (digits(text).includes(want) || (d.data && d.data.includes(want)))) return hit(d, "the figure");
     } else if (e.type === "date") {
       const y = (e.name.match(/(?:1[89]|20)\d{2}/) || [])[0];
       if (d.kind === "figure" && y && String(d.text).includes(y)) return hit(d, "date card");

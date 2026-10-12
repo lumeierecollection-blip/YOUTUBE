@@ -182,7 +182,13 @@ export function ladderAll(b) {
     // "plates + plates" — a row kind where a plate kind is expected, which
     // coverageOf() matches against nothing (board 38271924172 ch-1 beat 5,
     // "Quartz" and "CNBC Select" drawn and read as uncovered).
-    const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "organization" ? "plate-organization" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
+    // A FIGURE is its own kind, not a plate. Board 38276419111 ch-26 beat 0: the
+    // sentence names $672 million and 1,000, both went into the row, and a
+    // number that fell through to the default was recorded as
+    // plate-organization — coverageOf() matches a number against a figure or a
+    // chart, never a plate, so two numbers on screen read as two
+    // organisations and "none of it the entity".
+    const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" ? "figure" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
     const kinds = rowable.map(kindOf);
     const d = { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps };
     out.push(d);
