@@ -1,0 +1,47 @@
+{
+  "channel_id": "26",
+  "topic_slug": "deloitte-roman-abramovich-tax-evasion-fraud",
+  "format": "shorts",
+  "hook": "One accountancy firm helped hide $672 million in luxury assets using fake stamps.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One accountancy firm helped hide $672 million in luxury assets using fake stamps.",
+      "text_overlay": {
+        "text": "$672M HIDDEN"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Deloitte Cyprus managed the offshore empire for Roman Abramovich. Where did those 1,000 corporate papers go?",
+      "text_overlay": {
+        "text": "1,000 PAPERS"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Meritservus stepped in as a spin-off, but those 1,000 papers kept getting falsified.",
+      "text_overlay": {
+        "text": "THE SPIN-OFF"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Investigators uncovered how Deloitte Cyprus falsified at least 1,000 corporate papers. Those 1,000 corporate papers proved the deliberate deception for Roman Abramovich.",
+      "text_overlay": {
+        "text": "SYSTEMATIC FRAUD"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Investigate how Deloitte hid Roman Abramovich's assets in Cyprus.",
+      "text_overlay": {
+        "text": "EXPOSE THE FRAUD"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c64g1l5389kvo",
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+  ]
+}

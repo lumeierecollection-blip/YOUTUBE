@@ -1,0 +1,66 @@
+{
+  "topic_slug": "deloitte-roman-abramovich-tax-evasion-fraud",
+  "strongest_angle": "Investigating how Deloitte Cyprus and its spin-off Meritservus allegedly falsified and backdated at least 1,000 corporate papers to help Roman Abramovich conceal luxury assets and evade taxes.",
+  "key_facts": [
+    {
+      "fact": "Accountancy firm Deloitte Cyprus helped falsify documents to hide Roman Abramovich's luxury assets including superyachts, mansions, and private jets worth $672m.",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Deloitte Cyprus and its spin-off Meritservus falsified at least 1,000 corporate papers on behalf of Roman Abramovich using fake timestamps.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalism",
+      "confidence": "high"
+    },
+    {
+      "fact": "Staff at the global accountancy firm Deloitte participated in backdating records outlining Roman Abramovich's sprawling offshore business empire.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/12/roman-abramovich-aides-paperwork-tax-records-suggest",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Value of vanished assets including superyachts, mansions and private jets",
+      "value": 672,
+      "unit": "million dollars",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Value of vanished assets in British pounds",
+      "value": 508,
+      "unit": "million pounds",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Number of corporate papers falsified on behalf of Roman Abramovich",
+      "value": 1000,
+      "unit": "papers",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Deloitte",
+      "kind": "organization"
+    },
+    {
+      "name": "Roman Abramovich",
+      "kind": "person"
+    },
+    {
+      "name": "Cyprus",
+      "kind": "place"
+    },
+    {
+      "name": "Meritservus",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC Panorama",
+      "kind": "organization"
+    }
+  ]
+}
