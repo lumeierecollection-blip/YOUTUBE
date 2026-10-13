@@ -1,0 +1,80 @@
+{
+  "topic_slug": "amelia-earhart-pacific-island-expedition",
+  "strongest_angle": "A joint expedition by the Archaeological Legacy Institute and Purdue University has arrived at Nikumaroro Island to investigate the 'Taraia Object' as potential wreckage from Amelia Earhart's 1937 flight.",
+  "key_facts": [
+    {
+      "fact": "The Taraia Object expedition team, consisting of 17 researchers and a 17-person boat crew, arrived at Nikumaroro Island on October 12, 2026.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research team traveled 830 nautical miles across the South Pacific from the capital of Kiribati to reach the remote atoll of Nikumaroro.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The expedition is led by the US-based Archaeological Legacy Institute and includes researchers from Purdue University to investigate the disappearance of Amelia Earhart and Fred Noonan.",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of researchers in the expedition team",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Number of boat crew members",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Distance traveled by the expedition team",
+      "value": 830,
+      "unit": "nautical miles",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Year of Amelia Earhart's disappearance",
+      "value": 1937,
+      "unit": "year",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Amelia Earhart",
+      "kind": "person"
+    },
+    {
+      "name": "Fred Noonan",
+      "kind": "person"
+    },
+    {
+      "name": "Nikumaroro Island",
+      "kind": "place"
+    },
+    {
+      "name": "Kiribati",
+      "kind": "place"
+    },
+    {
+      "name": "Archaeological Legacy Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Taraia Object",
+      "kind": "object"
+    }
+  ]
+}

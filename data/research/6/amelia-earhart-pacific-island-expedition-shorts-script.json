@@ -1,0 +1,66 @@
+{
+  "channel_id": "6",
+  "topic_slug": "amelia-earhart-pacific-island-expedition",
+  "format": "shorts",
+  "hook": "A mysterious object on Nikumaroro Island could finally solve Amelia Earhart's 1937 disappearance.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A mysterious object on Nikumaroro Island could finally solve Amelia Earhart's 1937 disappearance.",
+      "b_roll": [
+        "archival photo of Amelia Earhart"
+      ],
+      "text_overlay": {
+        "text": "1937 Disappearance"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers from Purdue University and the Archaeological Legacy Institute arrived at the remote atoll on October 12, 2026. Could this expedition finally identify the Taraia Object?",
+      "b_roll": [
+        "map showing route from Kiribati to Nikumaroro",
+        "expedition boat on the water",
+        "close up of the Taraia Object"
+      ],
+      "text_overlay": {
+        "text": "830 Nautical Miles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But this mission demands massive coordination, involving 17 researchers and 17 crew members.",
+      "b_roll": [
+        "expedition team on the island beach"
+      ],
+      "text_overlay": {
+        "text": "34 Total Personnel"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 17 researchers investigate the Taraia Object to confirm its link to Fred Noonan.",
+      "b_roll": [
+        "researchers scanning the beach with metal detectors",
+        "close up of team examining wreckage",
+        "aerial shot of Nikumaroro Island"
+      ],
+      "text_overlay": {
+        "text": "Searching for Answers"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Archaeological Legacy Institute investigates Nikumaroro Island.",
+      "b_roll": [
+        "sunset over Nikumaroro Island"
+      ],
+      "text_overlay": {
+        "text": "Investigation Ongoing"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+    "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+  ]
+}
