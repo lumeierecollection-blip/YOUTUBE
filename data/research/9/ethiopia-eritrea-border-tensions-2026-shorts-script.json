@@ -1,0 +1,42 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-eritrea-border-tensions-2026",
+  "format": "shorts",
+  "hook": "Will the 2019 Nobel Peace Prize winner Abiy Ahmed face a new war in Ethiopia?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Will the 2019 Nobel Peace Prize winner Abiy Ahmed face a new war in Ethiopia?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Witnesses in Adigrat reported Eritrean soldiers driving through the town on October 7. Could this crisis destroy the 2019 peace agreement?",
+      "text_overlay": {
+        "text": "Adigrat, October 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this escalation threatens to undo the peace efforts that earned Abiy Ahmed his 2019 award.",
+      "text_overlay": {
+        "text": "Diplomacy under threat"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ethiopia is officially bracing for combat after notifying the United Nations Security Council on October 10.",
+      "text_overlay": {
+        "text": "Self-defense measures initiated"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Regional stability across the Horn of Africa remains at risk after the October 7 Adigrat incursions."
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+    "https://wifc.com/2026/10/07/eritrean-troops-drive-through-northern-ethiopian-town-witnesses-say",
+    "https://www.theeastafrican.co.ke/tea/news/eastern-africa/ethiopia-eritrea-draw-battle-lines-as-crisis-deepens-5626558"
+  ]
+}
