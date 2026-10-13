@@ -147,13 +147,52 @@ emitted must be one `coverageOf()` recognises for that type. `drawnOf()` reads t
 rung that was drawn; `coverageOf()` matches it against the entity's type. Where
 they disagree the coverage check is reading a proxy and reports a false negative.
 
-Assert the invariant as a test rather than fixing instances: **for every entity
-type, every rung the ladder can emit must be one `coverageOf()` recognises.** A
-rung with no matching coverage branch is a beat that renders a picture and reads
-as blank — the same class as the `date`/`span` rungs that produced a box with
-nothing in it on ch-2.
+### 3a. The invariant HOLDS in the ladder. `plate-place` is coming from elsewhere.
 
-**Status:** open. This is the next thing to fix.
+Read against the source, the ladder is **not** the broken side:
+
+`entity-ladder.js:93` `directiveFor()` — correct rung per type:
+
+| type | rung emitted |
+|---|---|
+| place | `map`/`flag` (with region) else `plate-place` |
+| person | `plate-person` |
+| organization | `plate-organization`, or a `plates` row with per-entry `kinds` |
+| date | `date` (drawn as a `figure` by `drawnOf`) |
+| span | `span` |
+| number | `figure` |
+
+`entity-coverage.js:120` `coverageOf()` — matching accept list per type: place →
+`map`/`flag`/`photo`/`plate-place`; person → `portrait`/`photo`/`plate-person`;
+organization → `logo`/`photo`/`plate-organization`/`cutout`; date → `figure` with
+the year, or a `chart`.
+
+**These two agree for every type.** The ladder never emits `plate-place` for an
+organization or a date.
+
+So the board's signature —
+
+```
+ch-10 beat 6: organization "IdeaLens", date "October 13, 2026" — draws plate-place
+```
+
+— is **not** reachable through `directiveFor()`. Neither named entity is a place.
+`drawnOf()` reports a single `plate-place`, which is the non-row branch
+(`entity-coverage.js:108`), meaning `canvas.art.kind` was literally `"plate-place"`
+on that beat.
+
+**Conclusion: some writer other than `entity-ladder.js` sets `art.kind` to
+`plate-place`.** That is the thing to find. Candidates to grep for a write of
+`kind: "plate-place"` or `art.kind = "plate-place"` outside the ladder — the
+visual-choice stage, the photo/cutout fallback, and `reset()`/`plan-adjustments`
+all touch `art`. Whichever writes it is emitting a place rung for a non-place.
+
+Do not "fix" this by loosening `coverageOf()` to accept `plate-place` for an
+organization. The frame would still show a place where the sentence names a
+company — that is the gate correctly reporting a real mismatch.
+
+**Status:** narrowed, not fixed. The trace needs one more pass over the `art.kind`
+writers.
 
 ### 4. Script reads synthetic or flat to the narration judge — 2 channels
 **Channels** 44, 26 (earlier 7/7) · **Gate** narration listener
