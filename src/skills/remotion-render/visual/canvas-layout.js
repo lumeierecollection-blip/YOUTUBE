@@ -302,6 +302,8 @@ export function wrap(words, size, width, upper = false, weight = 700) {
   if (cur.length) lines.push(cur.join(" "));
   return lines;
 }
+/** Below this size type stops being legible at all, so fitting stops rather than shrinking forever. */
+export const MIN_FIT_FLOOR = 10;
 /** Largest size (step 2) in [min, max] at which `text` wraps into <= maxLines lines of `width` (Inter). */
 export function fitText(text, width, { max = 200, min = 24, maxLines = 3, maxHeight = Infinity, lineH = 1.1, upper = false, weight = 700 } = {}) {
   const words = String(text || "").split(/\s+/).filter(Boolean);
@@ -309,6 +311,22 @@ export function fitText(text, width, { max = 200, min = 24, maxLines = 3, maxHei
     if (words.some((w) => textWidth(w, s, upper, weight) > width)) continue;
     const lines = wrap(words, s, width, upper, weight);
     if (lines.length <= maxLines && lines.length * s * lineH <= maxHeight) return { size: s, lines };
+  }
+  // THE BOX DOES NOT GROW. At the floor this function used to hand back a fit
+  // anyway - and if that fit was TALLER than maxLines, the box clipped the tail
+  // off the end of the text. Board 38330253047 ch-49 beat 5: a stat-card label
+  // reading "27.5 million dollar opening of Other Mommy" reached the naming
+  // check as "27.5 MILLION DOLLAR OPENING OF OTHER" - "Mommy" was not crowded
+  // out of the layout, it was cut off it.
+  //
+  // The floor is a size BAND preference (a label this small stops reading as a
+  // label), not a licence to clip. So below the floor we keep stepping down, and
+  // only give up once the text genuinely cannot be made to fit - which returns
+  // the shortest wrap it can rather than a taller one that will be cut.
+  for (let s = min - 2; s >= MIN_FIT_FLOOR; s -= 2) {
+    if (words.some((w) => textWidth(w, s, upper, weight) > width)) continue;
+    const lines = wrap(words, s, width, upper, weight);
+    if (lines.length <= maxLines && lines.length * s * lineH <= maxHeight) return { size: s, lines, belowFloor: true };
   }
   return { size: min, lines: wrap(words, min, width, upper, weight) };
 }
