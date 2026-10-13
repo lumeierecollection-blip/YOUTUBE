@@ -1,97 +1,102 @@
 # HANDOFF
 
-Read this first, then `FIXES.md` (the grouped, ranked list of causes).
+Read this first, then `FIXES.md`.
 
 ## Hash at stop
-`HEAD == origin/main == 0b744f47`, tree clean, both directions empty.
-Suite 802/0. Workflow YAML parses; the digest's embedded JS parses.
+`HEAD == origin/main == f1d22b42`, tree clean, both directions empty.
+**No code was changed this session.** Suite 802/0.
 
 ## Cron
-**ON**, 06:00 UTC daily (enabled in `369f3a27`).
+**ON**, 06:00 UTC daily (`369f3a27`).
 
-## Videos uploaded
-**None yet.** No upload has been attempted — see Job 3 below.
+## Uploads
+**None.** No upload has been attempted end to end. `data/uploaded/YYYY-MM-DD.json`
+is now produced by `review-publish` (`0b744f47`) but has never run.
 
-## Credentials: which channels can upload
-`review-publish` wires `CHANNEL_{01,02,05,06,08,09,10,26,44,49}_*`.
+## Credentials
+Can upload: **01, 02, 09, 26, 44**. Missing (owner action): **05, 06, 08, 10, 49**
+— each needs `CHANNEL_NN_CLIENT_ID` / `_CLIENT_SECRET` / `_REFRESH_TOKEN`.
 
-| Channel | Can upload |
-|---|---|
-| 01, 02, 09, 26, 44 | **yes** |
-| 05, 06, 08, 10, 49 | **NO — secrets missing** |
+---
 
-Secrets present but unused by these channels: 03, 04, 07, 48.
-**Owner action**: add `CHANNEL_05_*`, `CHANNEL_06_*`, `CHANNEL_08_*`,
-`CHANNEL_10_*`, `CHANNEL_49_*` as `CLIENT_ID`, `CLIENT_SECRET`, `REFRESH_TOKEN`.
+# READ-FIRST ANSWERS (all five, so the next session does not repeat them)
 
-## Job 1 — yearless date fix: DONE, `7d8c483f` (unrendered)
-`entity-coverage.js` required a four-digit year, so "November 12" and "June 25"
-could never be matched even when drawn. With a year the year is still required;
-without one the **month and the day** must both be present — the day alone would
-match any figure carrying that number. `scripts/__tests__/yearless-date-coverage.test.js`
-covers both real board cases plus the negatives.
-
-## Job 2 — daily digest: DONE, `0b744f47` (unrendered)
-`review-publish` now writes `data/uploaded/YYYY-MM-DD.json` after every publish
-attempt — per video: channel, title, video id, privacy status, source queue, and
-`https://studio.youtube.com/video/<id>/edit`. Written even when nothing uploads,
-with `uploads: []` and a note naming the reason. Both steps are `if: always()`.
-Derived from `data/publish-queue/`, so it reflects what was really uploaded.
-
-## Job 3 — TEST RUN: BLOCKED, and the block is a gate, not credentials
-
-Run `38469933382`, ch-44 only. It rendered, and landed in **`rejected`**:
-
-```json
-{ "channel": 44, "verdict": "rejected", "failed_stage": "canvas-checks",
-  "failed_check": "canvas-type", "reason": "failed: canvas-type",
-  "local_audit": ["canvas-type: beat 3: TYPE-FULL twice in a row"] }
+**2. The plates neighbour guard that exists** — `scripts/entity-ladder.js:283`:
+```js
+const neighbourIsRow = !plan?.beats
+  ? false
+  : plan.beats.some((x) => Math.abs(x.index - b.index) === 1 &&
+      (x.art?.kind === "plates" || x.canvas?.art?.kind === "plates"));
 ```
+It reads neighbours' **applied** art (entityLadder applies directives in place as it
+walks the plan left-to-right, so beat *n*'s art is already set when beat *n+1* is
+processed). Without a `plan` it returns false and the beat takes the row. When true
+the beat takes a single plate instead of a second row.
 
-So there was nothing in `approved-review/` to upload, and the publish step was
-never invoked. **No video id, no Studio link** — I am not going to claim an upload
-that did not happen.
+**3. Where a beat is handed its composition.** The gate is **`canvas-type`**, documented
+at `scripts/local-audit.cjs:67` — "no composition twice in a row" — and it judges the
+**manifest boxes**, after the render, not the plan.
 
-### The exact command, when a channel does reach approved-review
-```bash
-gh workflow run daily-pipeline-v2.yml --ref main \
-  -f channels="44" \
-  -f publish=true \
-  -f review_run_id=<numeric run id of the render run>
+Crucially, a solver for this already exists in the **plan** stage:
+`scripts/render-and-qa.js:1143` — *"canvas-type refuses two centred headlines in a row,
+so the sequence must not offer them"* — with `sequenceProblems()` at :1146 and the
+comment at :1159 noting *"the solver gave up and left a photo card twice and a statement
+twice in a row, which canvas-type…"*. So the class fix is to make that solver **never
+give up**, not to add a new guard elsewhere. Read :1143–1200 first; a new parallel guard
+would be the second mechanism solving the same problem.
+
+**4. The TTS provider switch** — `src/utils/tts.js:137`:
+```js
+if (process.env.TTS_PROVIDER !== "edge" && ["GEMINI_API_KEY_4", "GEMINI_API_KEY_1", ...])
 ```
-Requires `publish=true`, a numeric `review_run_id`, and `ref == main`. Ch-44 has
-OAuth, so it is the right channel to prove the path on.
+**Gemini TTS runs first by default; Edge is the fallback.** The brief's premise is correct.
+The file's own header (`:2`) says it generates voiceover "using EdgeTTS (free, no
+provider key)" — Gemini was layered on top of an Edge-native utility. Default Edge voice
+per the header (`:12`) is **`en-US-GuyNeural`**, which is *not* among the five candidates
+named in the brief. Note `tts.js` also records the reason Gemini was put first:
+`"THE VOICE IS ROBOTIC"` in a blind Gemini listening test (`:134`), and takes are advisory
+(`:144`).
 
-## The next cause: TYPE-FULL twice in a row — 2 channels
+**5. edge-tts IS installed.** Two places in `daily-pipeline-v2.yml`:
+`:234` `pip install --quiet edge-tts faster-whisper`, and a dedicated
+`:1058 - name: Install edge-tts`. Nothing to add.
 
-`canvas-type` refuses the same composition on adjacent beats — the same frame
-twice, the same rule the plates-row fix enforces.
+---
 
-- ch-44 beat 3: `TYPE-FULL twice in a row` (just now)
-- ch-2 beat 5: `TYPE-FULL+NAME twice in a row` (board `38411644598`)
+# JOB 2 — Edge TTS as default: the code change is one line, but DO NOT PUSH IT YET
 
-`fix_67d17bb3`'s neighbour guard exists in the **entity ladder** for `plates` rows
-(`entity-ladder.js`, "NOT A ROW, TWICE"). The same guard does **not** exist for the
-composition choice — a beat can still be handed the same composition as its
-neighbour. That is the class-level place to fix it, not two beats.
+Flipping the default is `TTS_PROVIDER !== "edge"` → default `edge`. That part is trivial.
 
-Re-run 44 and 2 after.
+**The voice choice is not, and it gates the commit.** The brief is explicit: *"Do not use
+the old default without testing. Do not use a preview voice."* I could not run the
+acoustic comparison before context ran out, and shipping `en-US-GuyNeural` untested
+would violate that instruction and risk making the narration judge *worse*.
 
-## Everything else still open
-- **Plan contradicts its sentence** — challenger MISMATCH/CONTRADICTION: ch-8 beat 0,
-  ch-44 beat 5, ch-9, ch-49. 4 channels.
-- **naming-check** — ch-44 beat 2.
-- Causes 5–7 fixed but unrendered (`67d17bb3`, `73ab2fba`, `68d3c086`, `70dcbd7c`).
-- Cause 8 (unit dropped from a number) diagnosed, open.
-- Causes 9–11 (rounded flag corners / grid off-axis / no camera move) open.
+Next session, in order:
+1. Render the same production sentence through each of
+   `en-US-AndrewMultilingualNeural`, `en-US-AvaMultilingualNeural`,
+   `en-US-AndrewNeural`, `en-US-BrianNeural`, `en-US-EmmaNeural`
+   (plus `en-US-GuyNeural` as the incumbent, for comparison).
+2. Score each with `scripts/acoustic/narration-acoustics.py` — report `f0_std_st`,
+   `f0_range_st`, `f0_slope_st`. Pick widest `f0_range` and highest `f0_std`.
+   **If the measure does not separate them, say so and pick by ear** — do not invent a
+   winner from noise.
+3. Flip the default, push, re-render one channel, run the narration judge.
+   **Pass → the voice was the problem. Fail → the judge is the problem.** Report that and
+   do NOT chase another voice. That is the honest fork and it is already written down.
 
-## Channel state
-`Approved: 0` everywhere. No video has ever entered `approved/` — verified with
-`git ls-tree`. ch-8 and ch-44 have reached `approved-review` in earlier runs.
+# JOB 1 — composition neighbour guard: NOT STARTED
+See read-first 3. The fix belongs in the sequence solver at
+`scripts/render-and-qa.js:1143–1200` — make it never return a sequence with an adjacent
+repeat instead of giving up. Two real cases: ch-44 beat 3 `TYPE-FULL twice in a row`,
+ch-2 beat 5 `TYPE-FULL+NAME twice in a row`. Regression test with both sequences.
+
+# WHY NOTHING ELSE CHANGED
+The board this was based on stopped ch-44 at `canvas-type` (run `38469933382`), and
+`Approved: 0` remains true everywhere. The two blockers in front of posting are exactly
+the two in this brief, so no work was spent anywhere else.
 
 ## Method
-- A green suite is not a frame. `7d8c483f` and `0b744f47` are both unrendered.
-- Fixtures built from a real board case pass; invented generalizations failed and
-  were dropped rather than adjusted until green.
-- When a channel re-picks its topic between runs the previous fix is usually not
-  exercised — confirm the beat you fixed is the beat the run drew.
+- Read-first 2 contradicted the brief's own assumption that no guard exists for
+  compositions. The solver already tries; it just gives up. Read before adding.
+- A green suite is not a frame, and a passing gate on a re-picked topic means nothing.
