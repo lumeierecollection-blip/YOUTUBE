@@ -3,66 +3,72 @@
 Written at the context limit of the session on 2026-10-13. Read this first.
 
 ## Hash at stop
-`HEAD == origin/main == dbe5de52`, tree clean, both directions empty.
+`HEAD == origin/main == 68d3c086`, tree clean, both directions empty.
 
-Nothing is left in flight. No code changed this session — it ended on a
-diagnosis with a frame, before a change that could not be render-verified.
+Nothing is left in flight.
 
 ## Green channels
 **None.** Zero of the ten priority channels are in `data/renders/approved/`.
 No videos to link.
 
-## NEXT FAILURE: ch-26 beat 0 — off-palette colour (frame pasted)
+## VERIFIED THIS SESSION: the claims-gate topic re-pick works
 
-Run `38380216978`:
+Run `38388968513`, ch-26. The re-pick added in `4541caa2` fired exactly as
+designed:
 
 ```
-[canvas] FAIL flat-look — beat 0 (ENTITY-ART plates): 0.97% of the frame is a
-colour that is neither ink, neutral nor the accent #6B2A6B (max 0.4%) — a palette
-the reference does not use
+[script] ch-26: claims gate held after the re-ask — re-picking a topic:
+  vanguard-jv-cash-program-ponzi-sec-judgment -> empire-market-operator-40-years-prison
 ```
 
-`local-audit` FAIL (28/29). ch-26: Rejected.
+The replacement topic was then researched and scripted, and it ALSO failed the
+claims gate, so the channel was skipped — which is the "once only" rule working
+as written: two ungroundable topics in a row is a content problem, not something
+to retry forever. This was the one previously-unverified fix that has now been
+seen to work in a real run.
 
-The frame (`beat0.png`, pasted in the session transcript) shows exactly what it
-is: the **SEC seal in full colour** — gold ring, navy field, red-and-white
-stripes — standing on an otherwise ink/neutral/accent frame. The seal is a
-verified public-domain mark, so the asset is legitimate; the problem is purely
-that its palette is not the channel's.
+## ch-26 is currently CONTENT-BLOCKED, not code-blocked
 
-**Do NOT loosen the 0.4% limit.** The gate is right.
+The claims gate rejected two consecutive topics' scripts. The gate is right: an
+unsourced imperative like the earlier "Apply these Harvard strategies to your
+next deal" must not be spoken as fact. Not fixable in code without loosening it.
 
-This is a genuine design decision with two defensible answers, and it is not
-mine to make unilaterally from a frame:
+To clear ch-26, the next step is **option (b)** from the original brief, which was
+held in reserve: constrain the script writer so a closing imperative must trace to
+research. `prompts/write-script.md` is where that belongs. Do NOT weaken
+`scripts/validate-script-claims.cjs`.
 
-**(a) Bring the mark into the palette.** Desaturate verified marks toward the
-channel's ink. The SEC seal stays real and recognisable, and it is how the rest
-of the system treats imagery. Cost: it is a visual change on a widely-used path,
-so it needs a render to confirm it does not wash out other channels' marks.
+## NOT VERIFIED: the plates-row palette fix
 
-**(b) Fall back to the name in type.** `MarkPlate` already draws a name in type
-when there is no usable asset, and the repo treats a typographic treatment as an
-honest stand-in (it explicitly rejects monograms because "initials of a name are
-text nobody wrote"). Cost: the entity is named but no longer depicted, which
-weakens the two-visual rule for a mark we actually have.
+`68d3c086` — a mark drawn inside a plates row is desaturated into the channel
+palette (the SEC seal went from full colour to neutral). This run produced **no
+render**, because prep skipped the channel, so the fix has never been exercised.
+Suite 781/0 and a test pins that `OFF_SHARE_MAX = 0.004` has not moved, but that
+is not a frame.
 
-**Recommendation: (a)**, scoped to the plates-row path where verified marks are
-drawn, so other render paths are untouched. Then render and look.
+It needs a run where ch-26 actually renders a beat with a verified mark in a
+plates row. Given ch-26 is content-blocked right now, the cheaper place to verify
+it may be **another channel that uses plates rows** — ch-2, ch-10 or ch-44 all
+do, and they are blocked on different gates anyway.
 
-Note there is no precedent in the codebase: `composition.js:317` sets
-`FLAT: { saturate: 1 }`, i.e. full colour is currently the intended treatment,
-which is why this has never come up before.
+## Still queued
+1. **ch-49** — `67d17bb3` on main, **still never rendered**. Cheapest win
+   available: dispatch it alone and look for "Mommy".
+2. **ch-5** — the unit rides a separate label element that pops in after the
+   number; it must live in the number's own slots.
+3. **ch-26** — the plates-palette fix (above), then the script-writer constraint.
+4. ch-1, 2, 6, 8, 9, 10, 44 per the table below.
 
 ## Read the artifact, not the hypothesis
-Every fix that worked this session came from the **rendered manifest** or the
-**frame** in one step: `boxes.map` gave `bounds.x = 0`; `canvas.art` gave the
-plates row `["SEC","Alexander","Conner"]`; the beat-0 still shows the coloured
-seal. Every fix that was wrong came from a log line or a guess — the
-`length * 15` width theory, the `bounds.x + 22` clamp. Read the artifact first.
+Every fix that worked came from the **rendered manifest** or the **frame** in one
+step: `boxes.map` gave `bounds.x = 0`; `canvas.art` gave the plates row
+`["SEC","Alexander","Conner"]`; the beat-0 still showed the coloured seal. Every
+fix that was wrong came from a log line or a guess — the `length * 15` width
+theory, the `bounds.x + 22` clamp.
 
-Also: when the channel re-picks a topic between runs, the previous fix is
-usually **not exercised**, and a passing gate means nothing. Confirm the beat
-you fixed is the beat the run drew before recording anything as verified.
+And: when the channel re-picks a topic between runs, the previous fix is usually
+**not exercised** and a passing gate means nothing. Confirm the beat you fixed is
+the beat the run drew before recording anything as verified.
 
 ## Next in line, with diagnosis so far
 
