@@ -1531,6 +1531,78 @@ jobs:
             }
           "
 
+      # THE MORNING DIGEST. One file the owner reads each morning: what went up,
+      # as PRIVATE, with a Studio link to click through and publish. Built from
+      # data/publish-queue/, which review-publish has just committed and which
+      # already records video_id, title, privacy_status and source_queue.
+      # Written even when nothing uploaded, with the reason, so a silent morning
+      # is legible rather than just empty.
+      - name: Write the daily upload digest
+        if: always()
+        env:
+          REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
+          REQUESTED: ${{ github.event.inputs.channels }}
+          TODAY: ${{ github.run_started_at }}
+        run: |
+          node -e '
+            const fs = require("fs"), path = require("path");
+            const TODAY = process.env.TODAY.slice(0, 10);
+            const RUN = process.env.REVIEW_RUN;
+            const dir = "data/publish-queue";
+            const uploads = [];
+            if (fs.existsSync(dir)) {
+              for (const f of fs.readdirSync(dir)) {
+                if (!f.endsWith(".json")) continue;
+                let rows = []; try { rows = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")); } catch { continue; }
+                if (!Array.isArray(rows)) continue;
+                for (const e of rows) {
+                  if (RUN && e.source_run && String(e.source_run) !== String(RUN)) continue;
+                  if (!e.uploaded_at || String(e.uploaded_at).slice(0, 10) !== TODAY) continue;
+                  uploads.push({
+                    channel: e.channel_id, title: e.title, video_id: e.video_id,
+                    privacy_status: e.privacy_status || "private",
+                    source_queue: e.source_queue || "approved",
+                    studio_link: "https://studio.youtube.com/video/" + e.video_id + "/edit",
+                  });
+                }
+              }
+            }
+            uploads.sort((a, b) => String(a.channel).localeCompare(String(b.channel)));
+            const requested = String(process.env.REQUESTED || "").split(",").map(s => s.trim()).filter(Boolean);
+            const noCreds = requested.filter(c => !uploads.some(u => String(u.channel).replace(/^0+/, "") === c.replace(/^0+/, "")));
+            const digest = {
+              date: TODAY,
+              review_run_id: RUN || null,
+              generated_at: new Date().toISOString(),
+              uploads,
+              no_credentials: noCreds,
+              note: uploads.length
+                ? "Everything above is PRIVATE. Open each Studio link and click Publish to make it public."
+                : "Nothing was uploaded today. " + (noCreds.length
+                    ? "No video reached approved-review, and/or these channels have no OAuth secrets yet: " + noCreds.join(", ")
+                    : "No video reached approved-review for the channels requested."),
+            };
+            fs.mkdirSync("data/uploaded", { recursive: true });
+            fs.writeFileSync("data/uploaded/" + TODAY + ".json", JSON.stringify(digest, null, 2) + "\n");
+            console.log("digest: data/uploaded/" + TODAY + ".json — " + uploads.length + " uploaded");
+          '
+
+      - name: Commit the daily upload digest
+        if: always()
+        run: |
+          git config user.name  "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git add data/uploaded
+          if git diff --cached --quiet; then echo "No digest changes."; exit 0; fi
+          git commit -m "uploaded: digest for $TODAY (review-publish of run ${{ github.event.inputs.review_run_id }})"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+            if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
+            if [ "$attempt" -eq 5 ]; then echo "::error::Could not push the digest"; exit 1; fi
+            sleep $((attempt * 2))
+          done
+
       # run.js --review: approved-review/ only, marker must match the channel, refuses any
       # channel outside 1/2/9/26/44/49, uploads privacyStatus "private", and queues the entry
       # cancelled so process-queue never makes it public.
