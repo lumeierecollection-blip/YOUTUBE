@@ -1,0 +1,63 @@
+{
+  "channel_id": "49",
+  "topic_slug": "spider-man-5-mcu-release-strategy",
+  "format": "shorts",
+  "hook": "Six major movies stand directly in the path of Spider-Man 5.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six major movies stand directly in the path of Spider-Man 5.",
+      "b_roll": [
+        "Cinematic slate overview showing upcoming releases"
+      ],
+      "text_overlay": {
+        "text": "6 Movies Before Spider-Man 5"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Sony Pictures chairman Ravi Ahuja confirmed the timeline remains blank. Variety interviewed the studio executive about the delay. Where will Marvel Studios slot the hero?",
+      "b_roll": [
+        "Headshot of studio executive Ravi Ahuja",
+        "Variety interview article on screen"
+      ],
+      "text_overlay": {
+        "text": "No Release Date Set"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Tom Holland already wrapped up four outings, but Sony Pictures lacks a date.",
+      "b_roll": [
+        "Tom Holland promotional still from Spider-Man: Brand New Day"
+      ],
+      "text_overlay": {
+        "text": "4 Solo Outings Completed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Sony Pictures must schedule those six blockbuster features first. Marvel Studios builds the slate years in advance. Sony Pictures has six upcoming films clearing the path for Spider-Man 5.",
+      "b_roll": [
+        "Marvel Studios logo and production timeline chart"
+      ],
+      "text_overlay": {
+        "text": "Scheduling Bottleneck Confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Track every upcoming release date right here.",
+      "b_roll": [
+        "Release calendar graphic highlighting upcoming films"
+      ],
+      "text_overlay": {
+        "text": "Subscribe for Movie Edits"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://screenrant.com/spider-man-5-release-timeline-update-ravi-ahuja",
+    "https://thedirect.com/article/spider-man-5-release-mcu-movies-marvel-upcoming"
+  ]
+}
