@@ -507,6 +507,9 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # The one topic re-pick in the claims-gate path re-runs research for
+          # the replacement topic, so this step needs the research model too.
+          OPENCODE_MODELS_RESEARCH: "ollama/qwen2.5:3b"
         run: |
           set -euo pipefail
           CH="${{ matrix.channel_id }}"
@@ -534,6 +537,8 @@ jobs:
             SPEC_REASKED=0
             CLAIM_REASKED=0
             SKIP_GEN=0
+            # ONE topic re-pick per channel per run, across all formats.
+            REPICKED=0
             for ATTEMPT in 1 2 3 4 5; do
               echo "=== SCRIPT: $CH — $SCRIPT_SLUG (attempt $ATTEMPT/5) ==="
               if [ "$SKIP_GEN" -eq 1 ]; then
@@ -654,6 +659,62 @@ jobs:
                     echo "[script] ch-$CH: INVENTED claims ($(grep -c '^  - CLAIM' /tmp/claims-out-$FORMAT.log)), re-asking once"
                     FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - CLAIM' /tmp/claims-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
                     continue
+                  fi
+                  # ONE TOPIC RE-PICK, NOT A CHANNEL FAILURE. The claims gate
+                  # is right and is not loosened — but a channel that simply
+                  # cannot ground one topic has not failed: discovery returned a
+                  # list, and the honest response to an ungroundable topic is
+                  # the next one, not an empty channel. Board 38325399088 ch-44:
+                  # "Apply these Harvard strategies to your next deal" was
+                  # correctly rejected as INVENTED after the re-ask, and the
+                  # channel shipped nothing.
+                  #
+                  # Once only. If the replacement topic is also rejected, the
+                  # channel IS skipped — two ungroundable topics in a row is a
+                  # content problem, and re-picking forever would hide it.
+                  if [ "$REPICKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
+                    BURNED="${BURNED:-} $SLUG"
+                    NEXT=""; NEXT_TOPIC=""; NEXT_ANGLE=""
+                    N=$(jq '.topics | length' /tmp/topics.json 2>/dev/null || echo 0)
+                    for IDX in $(seq 0 $((N - 1))); do
+                      T=$(jq -r ".topics[$IDX].topic" /tmp/topics.json)
+                      S=$(jq -r ".topics[$IDX].slug" /tmp/topics.json)
+                      [ "$S" = "$SLUG" ] && continue
+                      case " $BURNED " in *" $S "*) continue ;; esac
+                      set +e
+                      node scripts/reserve-topic-single.js "$CH" "$T" "$S" > /dev/null 2>&1
+                      R=$?
+                      set -e
+                      [ "$R" -eq 0 ] || continue
+                      NEXT="$S"; NEXT_TOPIC="$T"; NEXT_ANGLE=$(jq -r ".topics[$IDX].angle // \"\"" /tmp/topics.json)
+                      break
+                    done
+                    if [ -n "$NEXT" ]; then
+                      echo "[script] ch-$CH: claims gate held after the re-ask — re-picking a topic: $SLUG -> $NEXT"
+                      jq -n --arg s "$NEXT" --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" '{slug:$s,topic:$t,angle:$a}' > /tmp/channel-topic.json
+                      set +e
+                      jq -n --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" --arg s "$NEXT" --arg c "$CH" \
+                            '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null}' \
+                        | node scripts/ollama-agent.js \
+                            --prompt-file prompts/research.md \
+                            --schema-file schemas/research.json \
+                            --agent pipeline-research \
+                            --model "$OPENCODE_MODELS_RESEARCH" \
+                            --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$NEXT" \
+                            > /tmp/research-repick.json 2> >(tee /tmp/research-repick-err.log >&2)
+                      RP_EXIT=$?
+                      set -e
+                      if [ "$RP_EXIT" -eq 0 ] && jq -e '.structured_output.key_facts | length >= 3' /tmp/research-repick.json > /dev/null; then
+                        jq '.structured_output' /tmp/research-repick.json > "data/research/$CH/$NEXT.json"
+                        SLUG="$NEXT"; SCRIPT_SLUG="${SLUG}-${FORMAT}"
+                        CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""
+                        REPICKED=1
+                        continue
+                      fi
+                      echo "::warning::[script] ch-$CH: research for the re-picked topic $NEXT failed — falling through to the skip"
+                    else
+                      echo "::warning::[script] ch-$CH: no spare topic left to re-pick"
+                    fi
                   fi
                   echo "::warning::[script] ch-$CH: invented claims after the re-ask — channel skipped this run (data/ci-runs/blocked-claims-$CH.txt)"
                   echo "skip=true" >> "$GITHUB_OUTPUT"
