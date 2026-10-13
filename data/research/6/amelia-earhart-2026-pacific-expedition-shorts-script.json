@@ -1,0 +1,41 @@
+{
+  "channel_id": "6",
+  "topic_slug": "amelia-earhart-2026-pacific-expedition",
+  "format": "shorts",
+  "hook": "After 89 years, a new expedition finally returns to Nikumaroro Island.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "After 89 years, a new expedition finally returns to Nikumaroro Island."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Seventeen researchers arrived on October 12, 2026, to search the seafloor. They traveled 830 nautical miles across the South Pacific to find the truth. Is this the final resting place of Amelia Earhart's Lockheed Electra?",
+      "text_overlay": {
+        "text": "17 Researchers | 830 Nautical Miles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the team only has five days to distinguish wreckage from debris.",
+      "text_overlay": {
+        "text": "5-Day Search Limit"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Archaeological Legacy Institute and Purdue University are scanning the 17-person team's submerged anomaly. Researchers work to identify the wreckage near Nikumaroro Island before their five-day window ends.",
+      "text_overlay": {
+        "text": "Purdue University Expedition"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The team continues to analyze the site for the missing Lockheed Electra."
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+    "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+  ]
+}

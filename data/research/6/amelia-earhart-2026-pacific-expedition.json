@@ -1,0 +1,82 @@
+{
+  "topic_slug": "amelia-earhart-2026-pacific-expedition",
+  "strongest_angle": "The 2026 Taraia Object expedition is currently investigating Nikumaroro Island to determine if a specific submerged anomaly is the wreckage of Amelia Earhart's Lockheed Electra.",
+  "key_facts": [
+    {
+      "fact": "The 17-person Taraia Object expedition team arrived at Nikumaroro Island on October 12, 2026, to investigate potential wreckage.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research team, organized by the Archaeological Legacy Institute and Purdue University, traveled 830 nautical miles across the South Pacific to reach the site.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Amelia Earhart and navigator Fred Noonan disappeared in 1937 during a round-the-world flight attempt, leading to long-standing theories that they landed on Nikumaroro.",
+      "source_url": "https://www.nationalgeographic.com/adventure/article/amelia-earhart-plane-taraia-object-expedition",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "The search operation on Nikumaroro Island is expected to last for five days as researchers attempt to distinguish between natural debris and the Lockheed Electra.",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o",
+      "source_name": "BBC News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Expedition team size",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Voyage distance",
+      "value": 830,
+      "unit": "nautical miles",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Years since disappearance",
+      "value": 89,
+      "unit": "years",
+      "source_url": "https://www.nbcnews.com/news/us-news/expedition-find-amelia-earharts-plane-will-begin-year-rcna589050"
+    },
+    {
+      "label": "Planned search duration",
+      "value": 5,
+      "unit": "days",
+      "source_url": "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Amelia Earhart",
+      "kind": "person"
+    },
+    {
+      "name": "Fred Noonan",
+      "kind": "person"
+    },
+    {
+      "name": "Nikumaroro Island",
+      "kind": "place"
+    },
+    {
+      "name": "Archaeological Legacy Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Lockheed Electra",
+      "kind": "object"
+    }
+  ]
+}
