@@ -1,0 +1,66 @@
+{
+  "topic_slug": "deloitte-cyprus-roman-abramovich-asset-relocation",
+  "strongest_angle": "Investigating how Deloitte Cyprus and its spin-off Meritservus helped Roman Abramovich falsify documents and backdate corporate paperwork to hide billions in assets and evade taxes.",
+  "key_facts": [
+    {
+      "fact": "Deloitte Cyprus and its spin-off Meritservus falsified at least 1,000 corporate papers on behalf of Roman Abramovich to hide assets.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalism",
+      "confidence": "high"
+    },
+    {
+      "fact": "Accounts signed off by Deloitte in Cyprus caused assets including superyachts, mansions and private jets worth $672m to vanish from Roman Abramovich's company accounts.",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Deloitte Cyprus helped firms beneficially owned by Roman Abramovich attempt to skirt tax and disclosure obligations by retroactively transferring assets.",
+      "source_url": "https://www.occrp.org/en/project/cyprus-confidential/deloittes-office-in-cyprus-helped-abramovich-firms-relocate-billions-of-dollars-in-assets-in-apparent-bid-to-sidestep-tax-and-transparency",
+      "source_name": "OCCRP",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Falsified corporate papers",
+      "value": 1000,
+      "unit": "papers",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    },
+    {
+      "label": "Value of vanished assets",
+      "value": 672,
+      "unit": "million dollars",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Value of vanished assets in pounds",
+      "value": 508,
+      "unit": "million pounds",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Deloitte Cyprus",
+      "kind": "organization"
+    },
+    {
+      "name": "Roman Abramovich",
+      "kind": "person"
+    },
+    {
+      "name": "Meritservus",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    },
+    {
+      "name": "OCCRP",
+      "kind": "organization"
+    }
+  ]
+}

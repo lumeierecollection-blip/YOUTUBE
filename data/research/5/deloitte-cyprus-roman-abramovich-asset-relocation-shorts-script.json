@@ -1,0 +1,67 @@
+{
+  "channel_id": "5",
+  "topic_slug": "deloitte-cyprus-roman-abramovich-asset-relocation",
+  "format": "shorts",
+  "hook": "One thousand falsified corporate papers hid billions in assets for Roman Abramovich.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One thousand falsified corporate papers hid billions in assets for Roman Abramovich.",
+      "b_roll": [
+        "Stack of corporate documents on a dark desk",
+        "Close-up of forged signatures on paper"
+      ],
+      "text_overlay": {
+        "text": "1,000 Falsified Papers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Deloitte Cyprus executed retroactive transfers to bypass strict tax laws. Meritservus spun off to process the paperwork. Where did the $672 million in vanished assets go?",
+      "b_roll": [
+        "Office building in Cyprus with glass facade",
+        "Corporate ledger pages turning rapidly",
+        "Superyacht anchored in blue water"
+      ],
+      "text_overlay": {
+        "text": "$672M Vanished Assets"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, accounts signed off by Deloitte erased superyachts and private jets completely.",
+      "b_roll": [
+        "Private jet parked on tarmac",
+        "Luxury mansion exterior view"
+      ],
+      "text_overlay": {
+        "text": "Auditors Erased Jets"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Deloitte Cyprus concealed $672 million in billionaire wealth successfully. Meritservus changed ownership documents retroactively.",
+      "b_roll": [
+        "Stamps hitting official government documents",
+        "Financial audit charts showing sudden drops"
+      ],
+      "text_overlay": {
+        "text": "Concealed Wealth"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Corporate secrecy shields billion-dollar fortunes from public tax scrutiny.",
+      "b_roll": [
+        "Shredder destroying financial documents"
+      ],
+      "text_overlay": {
+        "text": "Corporate Secrecy"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+    "https://www.bbc.com/news/articles/c64g1l5389kvo"
+  ]
+}
