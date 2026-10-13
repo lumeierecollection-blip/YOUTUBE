@@ -1,0 +1,48 @@
+{
+  "channel_id": "2",
+  "topic_slug": "supreme-court-2026-term-first-amendment-challenges",
+  "format": "shorts",
+  "hook": "Your religious rights could change forever based on this 2026 term.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your religious rights could change forever based on this 2026 term.",
+      "text_overlay": {
+        "text": "2026 Supreme Court Term"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Supreme Court released its list of 30 cases for the October 2026 term. How will the court rule on these religious liberty disputes?",
+      "text_overlay": {
+        "text": "30 Cases Scheduled"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Napa Legal Institute reported that four major cases tackle these religious liberties.",
+      "text_overlay": {
+        "text": "4 Major Religious Cases"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Missionaries of Saint John the Baptist v. Frederic joins the Supreme Court docket. St. Mary v. Roy is another case the Supreme Court takes on. SCOTUSblog reported oral arguments involving zoning ordinances against religious institutions.",
+      "text_overlay": {
+        "text": "Missionaries of St. John v. Frederic"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These cases define religious freedom for the 2026 term.",
+      "text_overlay": {
+        "text": "2026 Term"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constitutioncenter.org/blog/new-supreme-court-term-features-first-amendment-other-challenges",
+    "https://www.napalegalinstitute.org/post/religious-liberty-at-the-u-s-supreme-court-a-2026-2027-preview",
+    "https://www.supremecourt.gov/orders/26grantednotedlist.pdf"
+  ]
+}

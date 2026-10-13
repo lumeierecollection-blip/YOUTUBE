@@ -1,0 +1,66 @@
+{
+  "topic_slug": "supreme-court-2026-term-first-amendment-challenges",
+  "strongest_angle": "The Supreme Court's October to December 2026 term features major cases focusing on religious rights, religious zoning disputes, and First Amendment challenges.",
+  "key_facts": [
+    {
+      "fact": "The Supreme Court announced that cases and controversies considered during arguments from October to December 2026 include two major cases focusing on religious rights as reported by the National Constitution Center.",
+      "source_url": "https://constitutioncenter.org/blog/new-supreme-court-term-features-first-amendment-other-challenges",
+      "source_name": "Constitution Center",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Napa Legal Institute reported that the Supreme Court takes on four important religious liberty cases for the 2026-2027 term including Missionaries of Saint John the Baptist v. Frederic and St. Mary v. Roy.",
+      "source_url": "https://www.napalegalinstitute.org/post/religious-liberty-at-the-u-s-supreme-court-a-2026-2027-preview",
+      "source_name": "Napa Legal Institute",
+      "confidence": "medium"
+    },
+    {
+      "fact": "SCOTUSblog reported that the Supreme Court agreed to hear oral arguments early in the term involving the enforcement of zoning ordinances against religious institutions.",
+      "source_url": "https://www.scotusblog.com/2026/10/court-agrees-to-hear-arguments-in-important-immigration-case-religious-zoning-dispute",
+      "source_name": "SCOTUSblog",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Supreme Court released the October Term 2026 granted and noted list showing total cases and arguments made available as of August and October 2026.",
+      "source_url": "https://www.supremecourt.gov/orders/26grantednotedlist.pdf",
+      "source_name": "Supreme Court of the United States",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Cases Arguments",
+      "value": 30,
+      "unit": "cases",
+      "source_url": "https://www.supremecourt.gov/orders/26grantednotedlist.pdf"
+    },
+    {
+      "label": "Term Year Start",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.napalegalinstitute.org/post/religious-liberty-at-the-u-s-supreme-court-a-2026-2027-preview"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Supreme Court of the United States",
+      "kind": "organization"
+    },
+    {
+      "name": "National Constitution Center",
+      "kind": "organization"
+    },
+    {
+      "name": "Napa Legal Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Missionaries of Saint John the Baptist v. Frederic",
+      "kind": "object"
+    },
+    {
+      "name": "St. Mary v. Roy",
+      "kind": "object"
+    }
+  ]
+}
