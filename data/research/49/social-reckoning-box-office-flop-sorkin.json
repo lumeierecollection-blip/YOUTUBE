@@ -1,0 +1,78 @@
+{
+  "topic_slug": "social-reckoning-box-office-flop-sorkin",
+  "strongest_angle": "Sony's The Social Reckoning failed to resonate with audiences, opening to a disappointing $5.5 million despite the involvement of screenwriter Aaron Sorkin and a high-profile cast.",
+  "key_facts": [
+    {
+      "fact": "The Sony film The Social Reckoning earned only $5.5 million during its opening weekend in October 2026.",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Social Reckoning features a cast including Jeremy Strong, Mikey Madison, and Jeremy Allen White.",
+      "source_url": "https://www.usatoday.com/story/entertainment/movies/2026/10/11/the-social-reckoning-movie-box-office-aaron-sorkin/92204841007",
+      "source_name": "USA Today",
+      "confidence": "high"
+    },
+    {
+      "fact": "Director David Fincher, who helmed the 2010 film The Social Network, did not return for this project.",
+      "source_url": "https://www.indiewire.com/news/box-office/social-reckoning-bombs-why-did-aaron-sorkin-facebook-follow-up-fail-1235221307",
+      "source_name": "IndieWire",
+      "confidence": "high"
+    },
+    {
+      "fact": "Universal's horror movie Other Mommy outperformed The Social Reckoning by earning $27.5 million in the same weekend.",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+      "source_name": "Deadline",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "The Social Reckoning opening weekend gross",
+      "value": 5.5,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001"
+    },
+    {
+      "label": "Other Mommy opening weekend gross",
+      "value": 27.5,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sony",
+      "kind": "organization"
+    },
+    {
+      "name": "Aaron Sorkin",
+      "kind": "person"
+    },
+    {
+      "name": "Jeremy Strong",
+      "kind": "person"
+    },
+    {
+      "name": "Mikey Madison",
+      "kind": "person"
+    },
+    {
+      "name": "Jeremy Allen White",
+      "kind": "person"
+    },
+    {
+      "name": "David Fincher",
+      "kind": "person"
+    },
+    {
+      "name": "Universal",
+      "kind": "organization"
+    },
+    {
+      "name": "Jessica Chastain",
+      "kind": "person"
+    }
+  ]
+}
