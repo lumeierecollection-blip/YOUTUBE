@@ -1,0 +1,47 @@
+{
+  "channel_id": "5",
+  "topic_slug": "deloitte-cyprus-abramovich-asset-relocation-investigation",
+  "format": "shorts",
+  "hook": "Deloitte helped Roman Abramovich hide assets by falsifying 1,000 corporate documents.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Deloitte helped Roman Abramovich hide assets by falsifying 1,000 corporate documents.",
+      "text_overlay": {
+        "text": "1,000 Falsified Documents"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Staff in Cyprus used fake timestamps to rewrite historical records behind closed doors. Where did $672 million in assets go?",
+      "text_overlay": {
+        "text": "$672 Million Hidden"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the spin-off firm Meritservus also actively assisted in this massive, multi-million dollar cover-up.",
+      "text_overlay": {
+        "text": "Meritservus Complicity"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Abramovich successfully obscured his massive fortune through this systematic manipulation of 1,000 corporate documents.",
+      "text_overlay": {
+        "text": "Assets Scrubbed from Ledgers"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Corporate audits were weaponized to protect 672 million dollars in assets.",
+      "text_overlay": {
+        "text": "Audits Weaponized"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+    "https://www.bbc.com/news/articles/c64g1l5389kvo"
+  ]
+}
