@@ -1,0 +1,70 @@
+{
+  "topic_slug": "malaysia-criminal-charges-goldman-sachs-1mdb",
+  "strongest_angle": "Examining the criminal charges filed by Malaysian Attorney-General Tommy Thomas against three Goldman Sachs subsidiaries regarding the handling of 6.5 billion in 1MDB bonds.",
+  "key_facts": [
+    {
+      "fact": "Malaysia filed criminal charges against three Goldman Sachs subsidiaries and two of its employees in connection with a multibillion-dollar scandal involving state investment fund 1MDB, as announced by Attorney-General Tommy Thomas.",
+      "source_url": "https://apnews.com/article/0a6ed2ccc8544f52955cde9e2c58801f",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Goldman Sachs Group Inc made untrue statements and omitted key facts in offering circulars for the bonds it sold for Malaysian state fund 1MDB, according to criminal charges filed by the Malaysian government in Kuala Lumpur.",
+      "source_url": "https://www.reuters.com/article/business/malaysia-says-goldman-sachs-failed-to-disclose-key-facts-in-1mdb-bond-sales-idUSKBN1OH0WC",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "Malaysia filed criminal charges against three subsidiaries of Goldman Sachs Group Inc over their handling of bonds totalling US$6.5 billion issued by 1Malaysia Development Bhd.",
+      "source_url": "https://theedgemalaysia.com/article/malaysia-files-criminal-charges-against-goldman-over-1mdb",
+      "source_name": "The Edge Malaysia",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total bond value handled by Goldman Sachs",
+      "value": 6.5,
+      "unit": "billion USD",
+      "source_url": "https://theedgemalaysia.com/article/malaysia-files-criminal-charges-against-goldman-over-1mdb"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Goldman Sachs",
+      "kind": "organization"
+    },
+    {
+      "name": "Malaysia",
+      "kind": "place"
+    },
+    {
+      "name": "1MDB",
+      "kind": "organization"
+    },
+    {
+      "name": "Tommy Thomas",
+      "kind": "person"
+    },
+    {
+      "name": "Kuala Lumpur",
+      "kind": "place"
+    },
+    {
+      "name": "Tim Leissner",
+      "kind": "person"
+    },
+    {
+      "name": "Roger Ng Chong Hwa",
+      "kind": "person"
+    },
+    {
+      "name": "Low Taek Jho",
+      "kind": "person"
+    },
+    {
+      "name": "Jasmine Loo Ai San",
+      "kind": "person"
+    }
+  ]
+}
