@@ -3,56 +3,18 @@
 Written at the context limit of the session on 2026-10-13. Read this first.
 
 ## Hash at stop
-`HEAD == origin/main == 73ab2fba`, tree clean, both directions empty.
+`HEAD == origin/main == dbe5de52`, tree clean, both directions empty.
 
-Nothing is left in flight.
+Nothing is left in flight. No code changed this session — it ended on a
+diagnosis with a frame, before a change that could not be render-verified.
 
 ## Green channels
 **None.** Zero of the ten priority channels are in `data/renders/approved/`.
 No videos to link.
 
-## Closed: ch-26 "AlexanderConner" — fixed `73ab2fba`, frame NOT obtained
+## NEXT FAILURE: ch-26 beat 0 — off-palette colour (frame pasted)
 
-Board `38376666510`, ch-26 beat 8 rendered the two names as one word:
-
-```
-AlexanderConner
-```
-
-From the rendered manifest, beat 8's canvas.art is a plates row:
-
-```json
-{ "kind": "plates", "names": ["SEC", "Alexander", "Conner"],
-  "items": [{"name": "SEC", "asset": "...us-securities-and-exchange-commission-logo.png"}, null, null] }
-```
-
-Only SEC has a verified mark, so Alexander and Conner are drawn as type.
-
-`EntityArt` gives each entry its own slot with a 32 px gap:
-
-```js
-const n = names.length, gap = n === 1 ? 0 : 32;
-const side = Math.max(120, Math.min(b.h - 70, Math.floor((b.w - gap * (n - 1)) / n)));
-... left: x0 + i * (side + gap) ...
-```
-
-but `MarkPlate` sized its text `W = side * 1.6` and placed it at
-`left: (side - W) / 2` — **negative**. Every entry's name overflowed its slot by
-`0.3 * side` on both sides, far past the 32 px gap, and the neighbours collided.
-
-Fixed by passing `width={side}` from the row. The lone-plate path keeps `W =
-side * 1.6` unchanged, because that wide box is deliberate for a single name.
-`scripts/__tests__/plates-row-slot-width.test.js`, six tests.
-
-**Evidence, stated honestly:** on run `38380216978` the naming check did **not**
-fail. But the channel drew a **different topic** (`...-final-judgments`, not
-`...-sec-judgments`), so this fix was very likely never exercised. The clean
-signal will be a run where beat 8 is the plates row again. Do not record this
-as verified on the strength of one naming pass.
-
-## NEXT FAILURE: ch-26 beat 0 — off-palette colour
-
-Run `38380216978`, ch-26 rejected again, on a new topic:
+Run `38380216978`:
 
 ```
 [canvas] FAIL flat-look — beat 0 (ENTITY-ART plates): 0.97% of the frame is a
@@ -60,20 +22,47 @@ colour that is neither ink, neutral nor the accent #6B2A6B (max 0.4%) — a pale
 the reference does not use
 ```
 
-`local-audit` VERDICT: FAIL (28/29). ch-26: Rejected.
+`local-audit` FAIL (28/29). ch-26: Rejected.
 
-This is the reference's palette rule: the channel uses ink, neutrals and one
-accent, and 0.97% of the frame is something else. Almost certainly a **colour
-photograph or a coloured logo** sitting in an ENTITY-ART plates row — the same
-row path fixed above. The same SEC-seal-style assets are verified logos, and a
-coloured mark is exactly this failure.
+The frame (`beat0.png`, pasted in the session transcript) shows exactly what it
+is: the **SEC seal in full colour** — gold ring, navy field, red-and-white
+stripes — standing on an otherwise ink/neutral/accent frame. The seal is a
+verified public-domain mark, so the asset is legitimate; the problem is purely
+that its palette is not the channel's.
 
-Do NOT loosen `flat-look` (max 0.4%). The fix is in the source: when a plates row
-entry has a verified mark, treat it against the channel palette the same way the
-audit does — ink, neutral or accent. Decide whether to desaturate a coloured mark
-or to refuse it and fall back to the name in type. The name in type is already an
-accepted, honest treatment (see `MarkPlate`), so falling back is safe and loses no
-truth.
+**Do NOT loosen the 0.4% limit.** The gate is right.
+
+This is a genuine design decision with two defensible answers, and it is not
+mine to make unilaterally from a frame:
+
+**(a) Bring the mark into the palette.** Desaturate verified marks toward the
+channel's ink. The SEC seal stays real and recognisable, and it is how the rest
+of the system treats imagery. Cost: it is a visual change on a widely-used path,
+so it needs a render to confirm it does not wash out other channels' marks.
+
+**(b) Fall back to the name in type.** `MarkPlate` already draws a name in type
+when there is no usable asset, and the repo treats a typographic treatment as an
+honest stand-in (it explicitly rejects monograms because "initials of a name are
+text nobody wrote"). Cost: the entity is named but no longer depicted, which
+weakens the two-visual rule for a mark we actually have.
+
+**Recommendation: (a)**, scoped to the plates-row path where verified marks are
+drawn, so other render paths are untouched. Then render and look.
+
+Note there is no precedent in the codebase: `composition.js:317` sets
+`FLAT: { saturate: 1 }`, i.e. full colour is currently the intended treatment,
+which is why this has never come up before.
+
+## Read the artifact, not the hypothesis
+Every fix that worked this session came from the **rendered manifest** or the
+**frame** in one step: `boxes.map` gave `bounds.x = 0`; `canvas.art` gave the
+plates row `["SEC","Alexander","Conner"]`; the beat-0 still shows the coloured
+seal. Every fix that was wrong came from a log line or a guess — the
+`length * 15` width theory, the `bounds.x + 22` clamp. Read the artifact first.
+
+Also: when the channel re-picks a topic between runs, the previous fix is
+usually **not exercised**, and a passing gate means nothing. Confirm the beat
+you fixed is the beat the run drew before recording anything as verified.
 
 ## Next in line, with diagnosis so far
 
