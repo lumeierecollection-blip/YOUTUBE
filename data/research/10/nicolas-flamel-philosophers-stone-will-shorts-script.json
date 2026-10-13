@@ -2,67 +2,54 @@
   "channel_id": "10",
   "topic_slug": "nicolas-flamel-philosophers-stone-will",
   "format": "shorts",
-  "hook": "Six hundred years of science chased a gold-making myth that never existed.",
+  "hook": "Recent analysis at the Musée de Cluny proves Nicolas Flamel was just a wealthy Parisian man.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "Six hundred years of science chased a gold-making myth that never existed.",
+      "voiceover": "Recent analysis at the Musée de Cluny proves Nicolas Flamel was just a wealthy Parisian man."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Musée de Cluny in Paris is finally revealing the historical truth about him. Where did this myth originate?",
       "b_roll": [
-        "Archives in Paris",
-        "Ancient manuscript pages"
+        "Musée de Cluny building",
+        "Ms. Codex 1706 manuscript page",
+        "1414 date on parchment"
+      ],
+      "text_overlay": {
+        "text": "1414: The Testament"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except scholars now believe that testament was composed much later, in the 18th century.",
+      "b_roll": [
+        "18th century quill and ink"
+      ],
+      "text_overlay": {
+        "text": "18th Century Fabrication"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Writers have maintained 600 years of fascination with the myth of Nicolas and Pernelle Flamel. The real man left behind records at the Musée de Cluny, not magical gold.",
+      "b_roll": [
+        "600 years timeline",
+        "Medieval Paris street scene",
+        "Stacks of medieval paper documents"
       ],
       "text_overlay": {
         "text": "600 Years of Myth"
       }
     },
     {
-      "id": "setup",
-      "voiceover": "Parisian records from the 15th century show Nicolas Flamel working as a scribe. How did Nicolas Flamel amass the real wealth recorded in his will?",
-      "b_roll": [
-        "Musée de Cluny exhibition hall",
-        "Medieval document scan"
-      ],
-      "text_overlay": {
-        "text": "The Real Scribe"
-      }
-    },
-    {
-      "id": "rehook",
-      "voiceover": "However, his surviving will proves Paris scribe Nicolas Flamel had ordinary origins.",
-      "b_roll": [
-        "Will document close-up",
-        "Parchment details"
-      ],
-      "text_overlay": {
-        "text": "The Will Revealed"
-      }
-    },
-    {
-      "id": "payoff",
-      "voiceover": "Historians at the Musée de Cluny opened an exhibition displaying Nicolas Flamel. Book sales built the estate of scribe Nicolas Flamel in Paris. No philosopher's stone touched the Paris workshop of Nicolas Flamel.",
-      "b_roll": [
-        "Museum displays",
-        "Historical artifacts"
-      ],
-      "text_overlay": {
-        "text": "Musée de Cluny Exhibition"
-      }
-    },
-    {
       "id": "close",
-      "voiceover": "Read the 2026 exhibition papers to see the real documents.",
-      "b_roll": [
-        "Exhibition entrance",
-        "Catalog books"
-      ],
-      "text_overlay": {
-        "text": "Read the Research"
-      }
+      "voiceover": "Visit the new exhibition in Paris starting October 13, 2026."
     }
   ],
   "sources_used": [
-    "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone",
-    "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris",
-    "https://artsandculture.google.com/story/nicolas-flamel-alchemy-and-the-legend-of-the-philosopher%E2%80%99s-stone-science-museum/jwXhqPSro7CIJQ?hl=en"
+    "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559",
+    "https://openn.library.upenn.edu/Data/0002/html/mscodex1706.html",
+    "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone"
   ]
 }

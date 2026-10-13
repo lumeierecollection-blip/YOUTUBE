@@ -1,38 +1,50 @@
 {
   "topic_slug": "nicolas-flamel-philosophers-stone-will",
-  "strongest_angle": "Examining Nicolas Flamel's centuries-old will and historical records reveals how a medieval Parisian scribe and manuscript seller was transformed over 600 years into a legendary alchemist associated with the philosopher's stone.",
+  "strongest_angle": "Recent historical analysis of Nicolas Flamel's will at the Musée de Cluny reveals that his legendary status as an alchemist was a later fabrication, contrasting with his actual life as a wealthy medieval Parisian.",
   "key_facts": [
     {
-      "fact": "For 600 years, writers, artists, and scientists have been fascinated by the myth of Nicolas and Pernelle Flamel, medieval Parisians said to have made gold with a philosopher's stone.",
+      "fact": "The Musée de Cluny in Paris is hosting an exhibition from 13 October 2026 to 24 January 2027 that examines the historical reality of Nicolas Flamel.",
+      "source_url": "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559",
+      "source_name": "Musée de Cluny - musée national du Moyen Âge",
+      "confidence": "high"
+    },
+    {
+      "fact": "A manuscript purported to be the last will and testament of Nicolas Flamel was originally dated to 1414, though scholars believe it was likely composed in the 18th century.",
+      "source_url": "https://openn.library.upenn.edu/Data/0002/html/mscodex1706.html",
+      "source_name": "OPenn: University of Pennsylvania Libraries",
+      "confidence": "high"
+    },
+    {
+      "fact": "Writers and scientists have been fascinated by the myth of Nicolas and Pernelle Flamel for 600 years, according to reporting by the BBC.",
       "source_url": "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone",
       "source_name": "BBC Future",
-      "confidence": "high"
-    },
-    {
-      "fact": "New research into the will of Nicolas Flamel, a medieval Parisian whose name became synonymous with alchemy, is revealing more about his extraordinary wealth and the origins of his legend at an exhibition opening at the Musée de Cluny in Paris.",
-      "source_url": "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris",
-      "source_name": "Medievalists.net",
-      "confidence": "high"
-    },
-    {
-      "fact": "15th-century records show that a real person named Nicolas Flamel lived in Paris working as a scribe and manuscript seller, before later 17th-century sources turned him into a successful alchemist.",
-      "source_url": "https://artsandculture.google.com/story/nicolas-flamel-alchemy-and-the-legend-of-the-philosopher%E2%80%99s-stone-science-museum/jwXhqPSro7CIJQ?hl=en",
-      "source_name": "Google Arts & Culture / Science Museum",
-      "confidence": "high"
+      "confidence": "medium"
     }
   ],
   "numbers": [
     {
-      "label": "Years of fascination with the myth",
+      "label": "Year the testament was purportedly written",
+      "value": 1414,
+      "unit": "year",
+      "source_url": "https://openn.library.upenn.edu/Data/0002/html/mscodex1706.html"
+    },
+    {
+      "label": "Centuries of fascination with the Flamel myth",
       "value": 600,
       "unit": "years",
       "source_url": "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone"
     },
     {
-      "label": "Exhibition opening year",
+      "label": "Exhibition start day",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559"
+    },
+    {
+      "label": "Exhibition start year",
       "value": 2026,
       "unit": "year",
-      "source_url": "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris"
+      "source_url": "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559"
     }
   ],
   "named_entities": [
@@ -53,7 +65,7 @@
       "kind": "place"
     },
     {
-      "name": "philosopher's stone",
+      "name": "Ms. Codex 1706",
       "kind": "object"
     }
   ]
