@@ -1,0 +1,76 @@
+{
+  "topic_slug": "deloitte-cyprus-abramovich-asset-relocation",
+  "strongest_angle": "Investigating leaked emails and reports from OCCRP, BBC Panorama, and TBIJ proving that Deloitte Cyprus and Meritservus helped Roman Abramovich falsify corporate documents and backdate paperwork to hide billions in assets and evade taxes.",
+  "key_facts": [
+    {
+      "fact": "Accounts signed off by Deloitte in Cyprus made superyachts, mansions, and private jets worth $672m vanish from Roman Abramovich's company accounts, according to BBC Panorama.",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Deloitte Cyprus and its spin-off Meritservus falsified at least 1,000 corporate papers on behalf of Roman Abramovich, as reported by The Bureau of Investigative Journalists.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalists",
+      "confidence": "high"
+    },
+    {
+      "fact": "A trove of emails revealed by OCCRP shows Deloitte Cyprus helped firms beneficially owned by Roman Abramovich attempt to skirt tax and disclosure obligations by retroactively transferring assets to the British Virgin Islands.",
+      "source_url": "https://www.occrp.org/en/project/cyprus-confidential/deloittes-office-in-cyprus-helped-abramovich-firms-relocate-billions-of-dollars-in-assets-in-apparent-bid-to-sidestep-tax-and-transparency",
+      "source_name": "OCCRP",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Value of superyachts, mansions, and private jets that vanished from company accounts",
+      "value": 672,
+      "unit": "million dollars",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Pound sterling value of assets that vanished from accounts",
+      "value": 508,
+      "unit": "million pounds",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Number of corporate papers falsified on behalf of Roman Abramovich",
+      "value": 1000,
+      "unit": "corporate papers",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    },
+    {
+      "label": "Total amount of wealth hidden by Abramovich with Deloitte's help",
+      "value": 10,
+      "unit": "billion dollars",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Roman Abramovich",
+      "kind": "person"
+    },
+    {
+      "name": "Deloitte Cyprus",
+      "kind": "organization"
+    },
+    {
+      "name": "Meritservus",
+      "kind": "organization"
+    },
+    {
+      "name": "British Virgin Islands",
+      "kind": "place"
+    },
+    {
+      "name": "BBC Panorama",
+      "kind": "organization"
+    },
+    {
+      "name": "OCCRP",
+      "kind": "organization"
+    }
+  ]
+}
