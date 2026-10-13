@@ -283,8 +283,19 @@ export function ladderAll(b, plan) {
     const neighbourIsRow = !plan?.beats
       ? false
       : plan.beats.some((x) => Math.abs(x.index - b.index) === 1 && (x.art?.kind === "plates" || x.canvas?.art?.kind === "plates"));
+    // THE RUNG MUST MATCH THE ENTITY'S TYPE. This used to hard-code
+    // `plate-place` for row[0], on the reasoning that a row is usually places.
+    // It is not: row[0] is just the first uncovered entity, so an ORGANISATION
+    // landed on a place rung. coverageOf() matches a place against plate-place
+    // and an organization against logo/photo/plate-organization/cutout, so the
+    // rung matched nothing and the beat was reported as drawing none of its
+    // entity while a plate was plainly on screen. Board 38411644598:
+    //   ch-10 beat 6  organization "IdeaLens"       -> draws plate-place
+    //   ch-44 beat 1  organization "Google Scholar" -> draws plate-place
+    // `kinds[0]` is the rung row[0]'s own type was given two lines above, so the
+    // right rung was already computed and then discarded.
     out.push(neighbourIsRow
-      ? { art: { kind: "plate-place", name: row[0].name }, replaces: !keeps, alongside: keeps }
+      ? { art: { kind: kinds[0] || "plate-organization", name: row[0].name }, replaces: !keeps, alongside: keeps }
       : { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
