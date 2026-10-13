@@ -161,23 +161,117 @@ export function wordsOnly(c) {
  * The gate. `beats`: [{ index, sentence, named_entities, canvas }] (a render manifest's beats, or a resolved plan's).
  * Returns { failures: [{ beat, sentence, entities, why }], rows, wordsOnlyBeats }.
  */
+/**
+ * A figure the beat itself asserts AS A TOTAL, over the figures the sentence
+ * states as parts of it.
+ *
+ * Board 38325399088 ch-6 beat 3: the challenger rejected the plan twice —
+ * "The visual displays the number 17, but the sentence specifies a total of 34
+ * people (17 researchers plus 17 crew members)". The frame was a NUMBER-FULL
+ * showing 17.
+ *
+ * The deterministic gate passed it — "beat 3: number:17 -> OK by figure '17'" —
+ * and that was right on its own terms: 17 IS on the frame, and 17 IS in the
+ * sentence. The gap was that the beat ASSERTS a total the frame never shows:
+ * its own overlay reads "34 Total Personnel". Nothing was checking that, because
+ * entitiesOf() reads the SENTENCE, and 34 does not appear in the sentence — it
+ * appears in the beat's stated figure. The check was reading the sentence and
+ * missing the claim.
+ *
+ * So this reads the real artifact: the canvas's own stated figure. A total is
+ * either named as one ("34 Total Personnel", "a total of 34") or is exactly the
+ * sum of two figures the sentence states as parts of it (17 + 17 = 34).
+ *
+ * Returns { total, parts } or null. Nothing here loosens a check: it ADDS a
+ * requirement, and only where the beat makes a claim the frame does not honour.
+ */
+export function statedTotalOf(c, sentence = "") {
+  const num = (s) => String(s == null ? "" : s).replace(/[^\d.]/g, "");
+  // The beat's own stated figure: what the frame asserts, not what it draws.
+  const claim = [c.headline, c.data?.value, c.data?.total, c.headline_text, c.text]
+    .map((x) => (x == null ? "" : typeof x === "object" ? JSON.stringify(x) : String(x)))
+    .join(" | ");
+  const said = [...quantitiesOf(sentence)].map((q) => q.value);
+  // With duplicates, because "17 researchers AND 17 crew" is two parts of 34 —
+  // deduping here is what made 17 + 17 read as one part and left 34 unsatisfiable.
+  const saidAll = said.map(num).filter((d) => d && Number.isFinite(Number(d)));
+  const saidDigits = [...new Set(saidAll)];
+  // The parts that actually sum to `total`, keeping duplicates: 17 + 17 is two
+  // parts of 34, and a deduped [17] could never satisfy "every part appears".
+  const claimDigits = [...claim.matchAll(/(\$?\d[\d,]*(?:\.\d+)?)/g)].map((m) => num(m[0]));
+  const partsFor = (total) => {
+    for (let x = 0; x < saidAll.length; x++) {
+      for (let y = x + 1; y < saidAll.length; y++) {
+        if ((Number(saidAll[x]) + Number(saidAll[y])).toString() === total) return [saidAll[x], saidAll[y]];
+      }
+    }
+    return null;
+  };
+  for (const m of claim.matchAll(/(\$?\d[\d,]*(?:\.\d+)?)/g)) {
+    const d = num(m[0]);
+    if (!d) continue;
+    const around = claim.slice(Math.max(0, m.index - 24), m.index + m[0].length + 24);
+    if (/\b(total|altogether|combined|in all|overall|sum)\b/i.test(around)) return { total: d, parts: partsFor(d) || saidDigits };
+  }
+  // A figure equal to the sum of two the sentence states is a total too, even
+  // when nothing calls it one: "17 researchers and 17 crew members" is 34 people
+  // whether or not the overlay bothers to say so.
+  for (const d of claimDigits) {
+    const parts = partsFor(d);
+    if (parts) return { total: d, parts };
+  }
+  return null;
+}
+
+/** The figures the frame actually shows, as digit strings. */
+function drawnFigures(c) {
+  const out = [];
+  for (const d of drawnOf(c)) {
+    const t = d.text != null ? String(d.text) : d.kind === "figure" || d.kind === "chart" ? String(d.data ?? d.name ?? "") : "";
+    for (const m of String(t).matchAll(/\d[\d,]*(?:\.\d+)?/g)) out.push(m[0].replace(/[^\d.]/g, ""));
+  }
+  // NOT deduped: the total rule counts occurrences, so a frame showing 17 once
+  // must not read as showing 17 twice.
+  return out.filter(Boolean);
+}
+
 export function checkEntityCoverage(beats) {
   const failures = [], rows = [];
   beats.forEach((b, i) => {
     const c = b.canvas || {};
-    const ents = entitiesOf({ sentence: b.sentence ?? c.sentence ?? b.narration ?? "", named_entities: b.named_entities ?? c.named_entities ?? c.entities ?? [] });
+    const sentence = String(b.sentence ?? c.sentence ?? b.narration ?? "");
+    const ents = entitiesOf({ sentence, named_entities: b.named_entities ?? c.named_entities ?? c.entities ?? [] });
     const hint = c.photo?.entity || c.data?.entity || null;
     const primary = primaryOf(ents, hint);
     if (!ents.length) { rows.push({ beat: i, entities: [], covered: null, note: wordsOnly(c) ? "words only — names nothing" : "names nothing" }); return; }
     const results = ents.map((e) => ({ e, ...coverageOf(c, e) }));
+    // THE HERO FIGURE MUST HONOUR A TOTAL THE BEAT ASSERTS. A component drawn
+    // alone does not answer "a total of 34": either the total is on the frame,
+    // or every part of it is (the two-ends rule, applied to arithmetic). Board
+    // 38325399088 ch-6 beat 3 — a NUMBER-FULL showing 17 against a beat whose
+    // own overlay reads "34 Total Personnel".
+    const tot = statedTotalOf(c, sentence);
+    let why = null;
+    if (tot) {
+      const shown = drawnFigures(c);
+      const totalShown = shown.includes(tot.total);
+      // Parts are a MULTISET: "17 researchers and 17 crew" needs two 17s on the
+      // frame, so one 17 must not satisfy both. Counting is what makes that true.
+      const countShown = (d) => shown.filter((x) => x === d).length;
+      const countWant = (d) => tot.parts.filter((x) => x === d).length;
+      const partsShown = tot.parts.length > 1 && tot.parts.every((p) => countShown(p) >= countWant(p));
+      if (!totalShown && !(tot.parts.length > 1 && partsShown)) {
+        why = `the beat asserts a total of ${tot.total} but the frame shows ${shown.length ? shown.join(" and ") : "no figure"} — the hero must be the total, or every part (${tot.parts.join(" + ")})`;
+      }
+    }
     // The entity the sentence is ABOUT must be the one shown (owner, 2026-10-09: "if several entities, show the one the sentence is about"):
     // a figure on screen does not answer a sentence about Experian (board 38010438091 ch-1, Gemini's frame check agreed).
     const pr = primary ? results.find((r) => r.e === primary) : null;
     // ...unless the beat DRAWS another entity it names (Texas highlighted for "the Texas Department of Public Safety"; a map, flag, photo,
     // portrait, logo, cutout or plate): a figure or a chart alone does not stand in for the entity the sentence is about.
-    const ok = pr ? pr.covered || results.some((r) => r.covered && /^(map|flag|photo|portrait|logo|cutout|plate-)/.test(String(r.by || ""))) : results.some((r) => r.covered);
+    const ok = (pr ? pr.covered || results.some((r) => r.covered && /^(map|flag|photo|portrait|logo|cutout|plate-)/.test(String(r.by || ""))) : results.some((r) => r.covered)) && !why;
     rows.push({ beat: i, entities: ents.map((e) => `${e.type}:${e.name}`), primary: primary ? `${primary.type}:${primary.name}` : null, covered: ok, by: results.find((r) => r.covered)?.by || null });
-    if (!ok) failures.push({ beat: i, sentence: String(b.sentence ?? c.sentence ?? b.narration ?? "").slice(0, 120), entities: ents.map((e) => `${e.type} "${e.name}"`), why: wordsOnly(c) ? "words only, but the sentence names an entity" : `draws ${drawnOf(c).map((d) => d.kind).join(" + ")}, none of it the entity` });
+    if (!ok) failures.push({ beat: i, sentence: sentence.slice(0, 120), entities: ents.map((e) => `${e.type} "${e.name}"`), why: why || (wordsOnly(c) ? "words only, but the sentence names an entity" : `draws ${drawnOf(c).map((d) => d.kind).join(" + ")}, none of it the entity`) });
   });
   return { failures, rows, wordsOnlyBeats: rows.filter((r) => r.note?.startsWith("words only")).length };
 }
