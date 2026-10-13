@@ -1,0 +1,69 @@
+{
+  "channel_id": "26",
+  "topic_slug": "vanguard-jv-cash-program-ponzi-sec-judgments",
+  "format": "shorts",
+  "hook": "Two hundred investors lost $91 million in a fake Dallas-Fort Worth cash program.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two hundred investors lost $91 million in a fake Dallas-Fort Worth cash program.",
+      "b_roll": [
+        "Texas skyline with financial district overlay",
+        "Digital counter showing 91 million dollars"
+      ],
+      "text_overlay": {
+        "text": "$91 Million Ponzi Scheme"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal regulators charged three men on April 29, 2025. Unregistered securities funded the fraudulent Vanguard JV Cash Program. Where did the $91 million go?",
+      "b_roll": [
+        "SEC official seal and courthouse document",
+        "Investor spreadsheet listing 200 accounts",
+        "Bank statement showing capital transfer"
+      ],
+      "text_overlay": {
+        "text": "Unregistered Securities"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "A federal judge in Texas intervened with massive financial penalties.",
+      "b_roll": [
+        "Gavel striking a wooden block in a courtroom",
+        "Texas federal courthouse exterior"
+      ],
+      "text_overlay": {
+        "text": "Federal Judge Steps In"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Caedrynn Conner received an $8,575,250 disgorgement order. Final consent judgments landed on September 28, 2026. Robert Welsh faced the U.S. District Court for the Eastern District of Texas.",
+      "b_roll": [
+        "Court judgment document with highlight on 8575250 dollars",
+        "Calendar showing September 28 2026",
+        "Eastern District of Texas courtroom sign"
+      ],
+      "text_overlay": {
+        "text": "$8,575,250 Disgorgement"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Judgments against Alexander, Welsh, and Conner concluded the SEC case.",
+      "b_roll": [
+        "SEC press release archive page",
+        "Closed file stamp on legal documents"
+      ],
+      "text_overlay": {
+        "text": "SEC Case Concluded"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sec.gov/newsroom/press-releases/2025-71",
+    "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must"
+  ]
+}
