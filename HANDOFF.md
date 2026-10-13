@@ -3,86 +3,85 @@
 Read this first, then `FIXES.md` (the grouped, ranked list of causes).
 
 ## Hash at stop
-`HEAD == origin/main == 4ea79033`, tree clean, both directions empty.
-Nothing is left in flight. Suite 790/0.
+`HEAD == origin/main == 7e9b5915`, tree clean, both directions empty.
+Nothing is left in flight. Suite 794/0.
 
 ## Green channels
-**None.** Board `38411644598`: `Approved: 0` on all ten channels.
-`data/renders/{approved,approved-review,rejected}` are empty on origin/main —
-verified with `git ls-tree`. No video has ever entered any queue. No videos to link.
+**None.** `Approved: 0` on all channels tested. `data/renders/approved/` is still
+empty on origin/main — no video has ever entered any queue. No videos to link.
 
-## CLOSED AND VERIFIED: the script brief (`aa7f7a72`)
+## VERIFIED: the rung↔type fix (`7c10463d`)
 
-Board `38393719519` stopped five of ten channels on three checks that all ask
-"does this text say what the sentence says". Causes 1 and 4 were
-`prompts/write-script.md`, and the brief was not silent — it **ordered** one of
-them:
+Run `38455737336`, channels 8, 10, 44. **The fix worked and is closed.**
 
-> `CLOSE ... What the viewer does with what they now know — a specific action`
+| Channel | Before | After |
+|---|---|---|
+| 8 | `entity-coverage — beat 3: date "June 25" — draws figure` | **passed it**; now `approved-review`, stopped at challenger beat 0 CONTRADICTION |
+| 44 | `entity-coverage — beat 1: org "Google Scholar" — draws plate-place` | **passed it**; now `approved-review`, stopped at naming-check beat 2 |
+| 10 | `entity-coverage — beat 6: org "IdeaLens" — draws plate-place` | the organization is **no longer in the failure**; only a date remains |
 
-which produced *"Apply these Harvard strategies to your next day"* (ch-8, ch-26)
-and the claims gate correctly called it INVENTED. Attribution had no rule at all,
-which is how ch-1's *"the Gerald Financial Research Team suggests paying off
-debt"* got in when the research said they noted repayment plans **fail**.
+Both `plate-place`-for-an-organization failures are gone. Two of three channels
+moved from killed to `approved-review`.
 
-Fixed: a close is a fact or an echo and never an instruction; a new ATTRIBUTION
-section naming the dangerous verbs; ATTRIBUTION SWEEP and IMPERATIVE SWEEP.
-`scripts/validate-script-claims.cjs` untouched — it caught all of these correctly.
+The cause was the ladder's own anti-doubling fallback from `6e36891b`, which
+hardcoded `kind: "plate-place"` for `row[0]` — the first uncovered entity, often an
+organization. It now uses `kinds[0]`, the rung already computed for that entity's
+type. `coverageOf()` was not loosened: the frame really was showing a place where
+the sentence named a company, so the gate was right and the source was wrong.
 
-**Verified on board `38411644598`: ch-1, ch-8 and ch-44 no longer stop on claims.
-ch-8 and ch-44 now reach the render stage.** Zero rejections attributable to
-claims. This cause is closed.
+## NEXT CAUSE — a date with no YEAR can never be covered (2 channels, one line)
 
-## THE CAUSE TO WORK NEXT: rung↔type mismatch (3 channels, one signature)
-
-Board `38411644598`, four of the six channels that reached QA failed the same way:
+ch-8 (before the fix) and ch-10 (still) fail the same way:
 
 ```
-[canvas] FAIL entity-coverage — draws plate-place, none of it the entity
+[canvas] FAIL entity-coverage — beat 2: date "November 12" — draws figure, none of it the entity
 ```
 
-- ch-10 beat 6: organization **"IdeaLens"** — draws `plate-place`
-- ch-44 beat 1: organization **"Google Scholar"** — draws `plate-place`
-- ch-8 beat 3: **date** "June 25" — draws a `figure`
+`scripts/entity-coverage.js:140`:
 
-`plate-place` for an **organization** is the tell. `coverageOf()` matches a place
-against `plate-place`, a person against `plate-person`, an organization against
-`logo` / `photo` / `plate-organization` / `cutout`. A rung drawn for the wrong
-type matches nothing and is reported as "none of it the entity" **even though a
-picture is on screen**.
+```js
+} else if (e.type === "date") {
+  const y = (e.name.match(/(?:1[89]|20)\d{2}/) || [])[0];
+  if (d.kind === "figure" && y && String(d.text).includes(y)) return hit(d, "date card");
+  if (d.kind === "chart" && y && d.data && d.data.includes(y)) return hit(d, "timeline");
+```
 
-Keep asking the diagnostic here: **is the check reading the drawn rung, or the
-entity's type?** When they disagree it is reading a proxy, and it reports a false
-negative on a frame that is actually fine.
+`y` is **required**. "November 12" and "June 25" carry no year, so `y` is
+`undefined`, both guards fail, and a date that IS on screen is reported as not on
+screen. The frame draws the date; the check cannot see it because it only knows how
+to look for a four-digit year.
 
-**The fix is an invariant, not three instances.** In `scripts/entity-ladder.js`
-(`directiveFor()`, `kindOf()`): every rung the ladder can emit for an entity type
-must be one `coverageOf()` recognises for that type. Assert it as a test — the
-same class as the `date`/`span` rungs that produced a box with nothing drawn in it
-on ch-2. Re-run **8, 10, 44** after.
+This is the same family as the rung fix — a check reading a narrower shape than the
+artifact. **Class-level fix:** when the entity carries no year, match the figure or
+chart against the date's own month/day text instead of giving up. Do NOT simply drop
+the guard — "November 12" drawn next to a figure about something else must still
+fail. Re-run **8, 10** after.
 
-## The rest of the list
-- **ch-2**: `canvas-type` — beat 5 TYPE-FULL+NAME twice in a row. Same family as
-  the plates-twice fix already on main.
-- **Causes 5–7** are fixed but **unrendered** (`67d17bb3`, `73ab2fba`, `68d3c086`,
-  `70dcbd7c`) and a board will exercise them.
+## Remaining list (`FIXES.md`)
+- **Plan contradicts its sentence** — challenger beat MISMATCH/CONTRADICTION. Now
+  ch-8 beat 0 and ch-44 beat 5, plus ch-9 and ch-49 in the last board. 4 channels.
+- **naming-check** — ch-44 beat 2. Cause 5 (`67d17bb3`) and causes 6/7
+  (`73ab2fba`, `68d3c086`, `70dcbd7c`) are fixed but still unrendered.
+- **ch-2**: `canvas-type` — TYPE-FULL+NAME twice in a row.
 - **Cause 8** (unit dropped from a number) diagnosed, open.
 - Causes 9–11 (rounded flag corners / grid off-axis / no camera move) open.
 
 ## Cron
-**OFF.** The bar was set this session at "at least one channel reaches
-approved/". Board `38411644598` produced `Approved: 0` on all ten, so the
-condition is not met and it stays off. When one channel does reach `approved/`,
-uncomment the `schedule:` block in `daily-pipeline-v2.yml` lines 22–24.
+**OFF.** The bar set this session was "any channel reaches `approved/`". Every run
+has produced `Approved: 0`, so the condition is not met. Two channels now reach
+`approved-review` — closer, but `approved-review` is not `approved`. When one lands
+in `approved/`, uncomment the `schedule:` block at `daily-pipeline-v2.yml` lines
+22–24.
 
 ## Method
-- Every fix that worked came from the **rendered manifest** or the **frame** in one
-  step. Every fix that was wrong came from a log line or a guess.
+- The ladder↔coverage "invariant" was **not** broken where it was assumed to be.
+  `directiveFor()` and `coverageOf()` agreed for every type; the wrong rung came
+  from a different writer. Grepping who writes `art.kind` found it in one pass.
+- A green suite is not a frame. But a real case fixture is a good test: tests built
+  from ch-10 and ch-44's actual beats passed, while my invented generalizations
+  failed and were dropped rather than adjusted to pass.
 - When a channel re-picks a topic between runs, the previous fix is usually **not
-  exercised** and a passing gate means nothing. Confirm the beat you fixed is the
-  beat the run drew before recording anything as verified.
-- A green suite is not a frame. Three wrong fixes this project passed their tests.
-- A board tells you the system state; a one-channel run tells you one thing.
+  exercised** and a passing gate means nothing.
 
 ## VERIFIED THIS SESSION: the claims-gate topic re-pick works
 
