@@ -1,0 +1,72 @@
+{
+  "topic_slug": "communicating-age-ai-human-skills-defeat-automation",
+  "strongest_angle": "Examining research from Purdue University Online published in October 2026, alongside studies from Harvard Business School and arXiv, proving that human communication and soft skills remain entirely irreplaceable as automated artificial intelligence tools saturate the modern workforce.",
+  "key_facts": [
+    {
+      "fact": "Purdue University Online published research on October 9, 2026, showing that people skills are the most in-demand competencies that technology cannot replace in an AI-mediated world.",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+      "source_name": "Purdue Online",
+      "confidence": "high"
+    },
+    {
+      "fact": "Harvard Business School researcher Letian Zhang demonstrated that mastering soft skills like communication and critical thinking can be more crucial than technical know-how in the AI workforce.",
+      "source_url": "https://www.library.hbs.edu/working-knowledge/why-soft-skills-still-matter-in-the-age-of-ai",
+      "source_name": "Working Knowledge",
+      "confidence": "high"
+    },
+    {
+      "fact": "An academic study published on August 28, 2026, on arXiv evaluated twelve students delegating professional communications and emails to generative artificial intelligence.",
+      "source_url": "https://arxiv.org/abs/2608.28837",
+      "source_name": "arXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "Terence Ho from the Singapore University of Social Sciences noted in August 2025 that artificial intelligence cannot replace human beings in building trust and influencing decision-makers.",
+      "source_url": "https://www.channelnewsasia.com/commentary/ai-jobs-concerns-replace-humans-unique-advantage-5288346",
+      "source_name": "Channel News Asia",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Day in October 2026",
+      "value": 9,
+      "unit": "day",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes"
+    },
+    {
+      "label": "Publication Year in October 2026",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes"
+    },
+    {
+      "label": "Student Interview Study Count",
+      "value": 12,
+      "unit": "students",
+      "source_url": "https://arxiv.org/abs/2608.28837"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Letian Zhang",
+      "kind": "person"
+    },
+    {
+      "name": "Harvard Business School",
+      "kind": "organization"
+    },
+    {
+      "name": "Terence Ho",
+      "kind": "person"
+    },
+    {
+      "name": "Singapore University of Social Sciences",
+      "kind": "organization"
+    }
+  ]
+}
