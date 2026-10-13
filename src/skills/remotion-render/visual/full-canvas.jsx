@@ -1240,7 +1240,7 @@ function MapCentered({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     <HeroEl name="map" b={B.map}>
       <div style={{ position: "absolute", inset: 0, clipPath: `inset(${Math.max(0, B.map.y)}px 0 ${Math.max(0, FRAME.h - B.map.y - B.map.h)}px 0)` }}>
       <div style={{ position: "absolute", inset: 0, transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`, transform: `scale(${(1 + grow(local, dur, fps, 0.08)).toFixed(4)})` }}>
-      <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} />
+      <CenteredMap data={c.data} bounds={B.map} local={local} dur={dur} font={SERIF_FAMILY_NAME} accent={accent} ground={tone} ink={th.ink} growScale={1 + grow(local, dur, fps, 0.08)} />
       {/* Part D.2: a pin settles onto the region at 25% of the beat (ease-in-out, no bounce), but never
           later than 1.5 s: on a long map beat (12 s on channel 9's Eritrea video) 25% is 3 s, and the
           map sat still from 1.25 s to 2.75 s, over pace-check's 1.0 s limit (2026-10-10). The map is

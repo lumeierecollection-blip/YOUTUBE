@@ -96,7 +96,11 @@ export function PaperMap({ data, bounds, local, dur, font, accent = INK, ground 
  * checked against the region data at plan time (checkVisual); a place with no
  * border in the data never reaches here (regionOrThrow).
  */
-export function CenteredMap({ data, bounds, local, dur, font, accent = INK, ground = "#F6F4F0", ink = INK }) {
+// The key's safe span: the frame's own safe edges (canvas-layout L_EDGE /
+// R_EDGE), repeated here so this primitive does not import the layout module.
+const KEY_SAFE_L = 48;
+const KEY_SAFE_R = 1032;
+export function CenteredMap({ data, bounds, local, dur, font, accent = INK, ground = "#F6F4F0", ink = INK, growScale = 1 }) {
   if (!data?.place) return null;
   const colors = { ground, onGround: ink, accent, paper: "#E7E8EA", ink };
   const p = clamp01(local / Math.max(1, dur * 0.6));
@@ -160,11 +164,26 @@ export function CenteredMap({ data, bounds, local, dur, font, accent = INK, grou
         const padX = 10;
         const boxW = Math.min(MAXW, tw + padX * 2);
         const boxH = Math.round(size * 1.5);
+        // THE MAP GROWS, AND THE KEY GROWS WITH IT. MapCentered wraps this whole
+        // svg in a scale up to 1.08 about the map's CENTRE (full-canvas.jsx),
+        // so a point x lands at cx + (x - cx) * s. A plate at the frame's left
+        // edge therefore walks OFF it: with cx 540 and s 1.08, x 32 lands at -8.6.
+        // Board 38369941305 ch-26 beat 0 rendered exactly that — the key read
+        // "s federal court, $91 million" with "Texa" cut off.
+        //
+        // The frame edge is what matters, not bounds.x: bounds.x is 0 here and
+        // was never the problem. So the safe span is solved for the position
+        // that lands INSIDE the frame AFTER the scale.
+        const cx = bounds.x + bounds.w / 2;
+        const s = growScale > 1 ? growScale : 1;
+        const leftLimit = cx + (KEY_SAFE_L - cx) / s;
+        const rightLimit = cx + (KEY_SAFE_R - cx) / s;
+        const bx = Math.max(leftLimit, Math.min(bounds.x + 22, rightLimit - boxW));
         const by = bounds.y + bounds.h - 40 - i * (boxH + 8) - boxH;
         return (
           <g key={`${id}-k${i}`} opacity={clamp01((local - Math.round(0.35 * dur)) / Math.max(1, dur * 0.25))}>
-            <rect x={bounds.x + 22} y={by} width={boxW} height={boxH} fill={ground} stroke={ink} strokeWidth={1.5} rx={2} />
-            <text x={bounds.x + 22 + padX} y={by + boxH / 2 + size * 0.36} fontFamily={SANS_FAMILY} fontSize={size} fontWeight={700}
+            <rect x={bx} y={by} width={boxW} height={boxH} fill={ground} stroke={ink} strokeWidth={1.5} rx={2} />
+            <text x={bx + padX} y={by + boxH / 2 + size * 0.36} fontFamily={SANS_FAMILY} fontSize={size} fontWeight={700}
               letterSpacing={1} fill={ink}>{name}</text>
           </g>
         );
