@@ -1,0 +1,66 @@
+{
+  "channel_id": "10",
+  "topic_slug": "anthropic-policy-machine-consciousness-ethics",
+  "format": "shorts",
+  "hook": "San Francisco AI lab Anthropic just banned cruel behavior toward its Claude model.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "San Francisco AI lab Anthropic just banned cruel behavior toward its Claude model.",
+      "b_roll": [
+        "San Francisco cityscape",
+        "AI lab office interior"
+      ],
+      "text_overlay": {
+        "text": "Banning Cruelty Against AI"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Anthropic updated its usage policy on Thursday to ban sustained and needless abuse. The rules go into effect on November 12. Are we entering an era of machine welfare?",
+      "b_roll": [
+        "Document update screen",
+        "Calendar showing November 12"
+      ],
+      "text_overlay": {
+        "text": "November 12 Policy Update"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Reason journalist Billy Binion noted standard rules like deceptive activity share space with this update.",
+      "b_roll": [
+        "Journalist typing on laptop",
+        "Reason publication logo"
+      ],
+      "text_overlay": {
+        "text": "New Behavioral Rules"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Pascal Schuster's analysis on Quants & Qualia showed a major shift in focus. Anthropic shifted its explicit purpose from helping users stay safe to preventing real-world harm.",
+      "b_roll": [
+        "Analysis blog post on screen",
+        "Data flow chart"
+      ],
+      "text_overlay": {
+        "text": "Preventing Real-World Harm"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Anthropic updated its usage policy for Claude.",
+      "b_roll": [
+        "Claude AI interface logo"
+      ],
+      "text_overlay": {
+        "text": "Anthropic Policy Update"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thejapantimes.jp/Technology/754363-anthropic-bans-cruel-behavior-against-its-claude-ai.html",
+    "https://reason.com/2026/10/09/anthropic-is-banning-cruel-behavior-toward-claude-claude-is-still-not-a-person"
+  ]
+}
