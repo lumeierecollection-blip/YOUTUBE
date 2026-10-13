@@ -1,0 +1,65 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-eritrea-border-conflict-escalation-2026",
+  "format": "shorts",
+  "hook": "Eritrean troops just crossed the Tigray border, shocking the United Nations Security Council with war.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Eritrean troops just crossed the Tigray border, shocking the United Nations Security Council with war.",
+      "b_roll": [
+        "Map highlighting the Tigray border between Ethiopia and Eritrea"
+      ],
+      "text_overlay": {
+        "text": "Eritrean Troops Cross Tigray Border"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Residents in Adigrat spotted troops advancing toward ongoing clashes. Addis Ababa invoked self-defense measures at the Security Council. Where did the Eritrean battalions deploy next?",
+      "b_roll": [
+        "Satellite view of Adigrat town",
+        "United Nations Security Council chamber"
+      ],
+      "text_overlay": {
+        "text": "Adigrat Residents Spot Advance"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Asmara pushed forces deep into northern Ethiopia, but Addis Ababa warned of direct conflict.",
+      "b_roll": [
+        "Border territory map of the Horn of Africa"
+      ],
+      "text_overlay": {
+        "text": "Forces Push Deep"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Adigrat residents watched national army troops and regional forces clash as columns moved forward.",
+      "b_roll": [
+        "Red Sea basin geopolitical map",
+        "Ethiopian national army deployment"
+      ],
+      "text_overlay": {
+        "text": "Direct Conflict Threatens Red Sea"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Deploy to the Horn of Africa and the Red Sea basin to track the escalation.",
+      "b_roll": [
+        "Wide geopolitical map of the Horn of Africa"
+      ],
+      "text_overlay": {
+        "text": "Horn of Africa"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+    "https://www.bbc.co.uk/news/articles/ckvgd63rj92lo?at_medium=RSS&at_campaign=rss",
+    "https://www.crisisgroup.org/alr/africa/ethiopia-eritrea/pulling-ethiopia-and-eritrea-back-war"
+  ]
+}
