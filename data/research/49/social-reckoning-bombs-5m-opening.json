@@ -1,0 +1,84 @@
+{
+  "topic_slug": "social-reckoning-bombs-5m-opening",
+  "strongest_angle": "Analyze why Aaron Sorkin's Facebook follow-up, The Social Reckoning, failed with a $5.5 million opening weekend from Sony, contrasting it with Universal's horror hit Other Mommy starring Jessica Chastain, which topped the box office with $27.5 million.",
+  "key_facts": [
+    {
+      "fact": "Sony released director Aaron Sorkin's Facebook-focused feature The Social Reckoning, which opened significantly below forecasts with a dismal $5.5 million opening weekend.",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "Universal's horror movie Other Mommy, starring Jessica Chastain, easily secured the number one spot at the box office with a $27.5 million debut during the same weekend.",
+      "source_url": "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "Aaron Sorkin previously wrote The Social Network, directed by David Fincher, for which Sorkin won the Academy Award for best adapted screenplay.",
+      "source_url": "https://www.hollywoodreporter.com/movies/movie-news/social-reckoning-box-office-tech-musk-holmes-artificial-1236728127",
+      "source_name": "The Hollywood Reporter",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Social Reckoning managed to bring in $2.1 million on Friday, including Thursday preview screenings, before finishing its low opening weekend.",
+      "source_url": "https://www.hollywoodreporter.com/movies/movie-news/other-mommy-box-office-social-reckoning-opening-1236726908",
+      "source_name": "The Hollywood Reporter",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "The Social Reckoning opening weekend box office",
+      "value": 5.5,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001"
+    },
+    {
+      "label": "Other Mommy opening weekend box office",
+      "value": 27.5,
+      "unit": "million dollars",
+      "source_url": "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161"
+    },
+    {
+      "label": "The Social Reckoning Friday and preview box office",
+      "value": 2.1,
+      "unit": "million dollars",
+      "source_url": "https://www.hollywoodreporter.com/movies/movie-news/other-mommy-box-office-social-reckoning-opening-1236726908"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Aaron Sorkin",
+      "kind": "person"
+    },
+    {
+      "name": "Jessica Chastain",
+      "kind": "person"
+    },
+    {
+      "name": "David Fincher",
+      "kind": "person"
+    },
+    {
+      "name": "Sony",
+      "kind": "organization"
+    },
+    {
+      "name": "Universal",
+      "kind": "organization"
+    },
+    {
+      "name": "The Social Reckoning",
+      "kind": "object"
+    },
+    {
+      "name": "Other Mommy",
+      "kind": "object"
+    },
+    {
+      "name": "The Social Network",
+      "kind": "object"
+    }
+  ]
+}
