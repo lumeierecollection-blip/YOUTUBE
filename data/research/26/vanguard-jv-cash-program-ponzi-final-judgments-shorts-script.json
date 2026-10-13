@@ -1,0 +1,64 @@
+{
+  "channel_id": "26",
+  "topic_slug": "vanguard-jv-cash-program-ponzi-final-judgments",
+  "format": "shorts",
+  "hook": "A fake bond scheme stole $91 million from investors before the SEC stepped in.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A fake bond scheme stole $91 million from investors before the SEC stepped in.",
+      "b_roll": [
+        "Close up of financial document showing $91 million total scheme amount"
+      ],
+      "text_overlay": {
+        "text": "$91 Million Ponzi Scheme"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Dallas residents ran the Vanguard JV Cash Program as a fraudulent operation. Over 200 investors poured money into the trap. Where did the $91 million go?",
+      "b_roll": [
+        "Map view of Dallas Fort Worth",
+        "Data visualization showing 200 investors"
+      ],
+      "text_overlay": {
+        "text": "200 Investors Defrauded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Texas courts raised the stakes when they issued final judgments against the architects.",
+      "b_roll": [
+        "Courthouse exterior shot for U.S. District Court for the Eastern District of Texas"
+      ],
+      "text_overlay": {
+        "text": "Final Judgments Entered"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Federal penalties hit Robert Welsh hard for his role. Caedrynn Conner received an $8 million disgorgement order. Federal judges locked in the permanent debt.",
+      "b_roll": [
+        "Portrait graphic of Robert Welsh",
+        "Chart showing Caedrynn Conner disgorgement of $8,575,250"
+      ],
+      "text_overlay": {
+        "text": "$8M+ Disgorgement Ordered"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the Securities and Exchange Commission announcements.",
+      "b_roll": [
+        "Warning symbol graphic over financial papers"
+      ],
+      "text_overlay": {
+        "text": "Verify Before Investing"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://financialist.com/news/sec-final-judgments-vanguard-jv-cash-program-ponzi-welsh-conner-october-2026",
+    "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must"
+  ]
+}
