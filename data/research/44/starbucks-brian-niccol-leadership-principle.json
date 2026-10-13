@@ -1,0 +1,66 @@
+{
+  "topic_slug": "starbucks-brian-niccol-leadership-principle",
+  "strongest_angle": "Brian Niccol's turnaround at Starbucks centers on the leadership principle of returning to operational fundamentals and decisive speed, contrasting with the company's previous period of strategic drift.",
+  "key_facts": [
+    {
+      "fact": "Starbucks CEO Brian Niccol implemented a turnaround strategy focused on returning to the company's fundamentals of customer service and human connection.",
+      "source_url": "https://www.fastcompany.com/91620711/starbucks-ceo-brian-niccol-says-company-back-turnaround-comes-down-1-leadership-principle",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following the announcement of Brian Niccol as the new CEO in August 2024, Starbucks stock price increased by approximately 25%.",
+      "source_url": "https://www.semafor.com/article/09/26/2025/how-brian-niccol-brewed-his-back-to-starbucks-strategy",
+      "source_name": "Semafor",
+      "confidence": "high"
+    },
+    {
+      "fact": "Starbucks experienced significant leadership turnover, cycling through four different CEOs between 2022 and 2024.",
+      "source_url": "https://fortune.com/2024/10/31/starbucks-ceo-brian-niccol-clarity-strategy",
+      "source_name": "Fortune",
+      "confidence": "high"
+    },
+    {
+      "fact": "Brian Niccol emphasizes a management style where speed is a priority, specifically focusing on the ability of executives to provide quick yes or no decisions.",
+      "source_url": "https://www.semafor.com/article/03/18/2026/starbucks-ceo-brian-niccol-ceo-signal",
+      "source_name": "Semafor",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Stock price increase percentage",
+      "value": 25,
+      "unit": "percent",
+      "source_url": "https://www.semafor.com/article/09/26/2025/how-brian-niccol-brewed-his-back-to-starbucks-strategy"
+    },
+    {
+      "label": "Number of Starbucks CEOs since 2022",
+      "value": 4,
+      "unit": "CEOs",
+      "source_url": "https://fortune.com/2024/10/31/starbucks-ceo-brian-niccol-clarity-strategy"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Brian Niccol",
+      "kind": "person"
+    },
+    {
+      "name": "Starbucks",
+      "kind": "organization"
+    },
+    {
+      "name": "Chipotle Mexican Grill",
+      "kind": "organization"
+    },
+    {
+      "name": "Taco Bell",
+      "kind": "organization"
+    },
+    {
+      "name": "Procter & Gamble",
+      "kind": "organization"
+    }
+  ]
+}
