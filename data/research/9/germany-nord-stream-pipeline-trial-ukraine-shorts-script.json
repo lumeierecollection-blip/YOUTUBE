@@ -1,0 +1,32 @@
+{
+  "channel_id": "9",
+  "topic_slug": "germany-nord-stream-pipeline-trial-ukraine",
+  "format": "shorts",
+  "hook": "Did 3 Nord Stream pipelines rupture because of a state-sponsored sabotage mission in the Baltic Sea?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did 3 Nord Stream pipelines rupture because of a state-sponsored sabotage mission in the Baltic Sea?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "German prosecutors are now officially blaming Ukrainian state authorities for the Nord Stream pipeline explosions. Did Serhii K command the operation against the energy infrastructure between Russia and Germany?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Serhii K now faces trial in Germany for commanding the 2022 undersea pipeline explosions."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This legal proceeding opened four years after the undersea attack. The trial marks a major shift in energy security between Russia and Europe."
+    },
+    {
+      "id": "close",
+      "voiceover": "The trial of Serhii K will redefine energy security for Russia and Germany for years."
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c317ke5ngrq7o",
+    "https://www.rferl.org/a/germany-trial-nord-stream-gas-pipeline-russia-ukraine/33873494.html"
+  ]
+}
