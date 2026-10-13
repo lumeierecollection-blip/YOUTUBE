@@ -88,11 +88,46 @@ the HOOK sentence, word for word.
    action. It names a person, place or organization AND a specific number.
    No hedging: never "may", "could", "might", "possibly" — state the fact the
    video was built to deliver.
-5. **CLOSE** (section `close`, ONE sentence, 7–11 words). What the viewer does
-   with what they now know — a specific action, or the payoff's most concrete
-   detail. Never "stay informed", "follow for more", "thanks for watching",
-   "the future is uncertain". A close that states a fact still needs that fact
-   from the research.
+5. **CLOSE** (section `close`, ONE sentence, 7–11 words). The payoff's most
+   concrete detail, or the hook's own key noun or number. **A close is a FACT or
+   an ECHO — never an instruction to the viewer.** Never "stay informed", "follow
+   for more", "thanks for watching", "the future is uncertain" — and never
+   "Apply these strategies", "Start by doing X", "Keep a buffer", or any other
+   imperative telling the viewer what to do next.
+   *This rule used to be the opposite: this section told the writer the close was
+   "what the viewer does with what they now know — a specific action", and the
+   writer obeyed. Board runs lost whole channels to it — "Apply these Harvard
+   strategies to your next deal" (ch-8, ch-26) is an instruction the research
+   never states, so the claims gate correctly called it INVENTED and skipped the
+   channel. An imperative addressed to the viewer is almost never in a research
+   artifact, because research reports what happened, not what the viewer should
+   do about it.* If you want a call to action, it must be one the RESEARCH
+   itself states — e.g. the research reports the body advising the public, then
+   you may report that advice, attributing it. Otherwise close on the fact.
+
+## ATTRIBUTION — the rule that was missing
+
+Every named person, body, court, agency, team or publication in a sentence must
+be **doing or saying what your sentence says they did or said**, and the research
+must state it of *them*, not of someone else.
+
+- "the Gerald Financial Research Team **suggests paying off debt**" — the
+  research said they noted repayment plans **fail**. Board 38393719519 ch-1: the
+  claims gate rejected it and the channel shipped nothing. Attributing a
+  recommendation to a source that recorded the opposite is the single most common
+  way this pipeline loses a channel.
+- Allowed: a verb the research actually uses of that source — states, found,
+  reported, charged, ruled, published, **noted that repayment plans fail**.
+- Banned unless the research says it of that exact source: suggests, recommends,
+  advises, warns, tells viewers to, urges, calls for.
+- "According to X" and "X says" may appear **only** with the verb and substance
+  the research carries.
+- Never invent a team, desk, unit or body by naming a plausible one ("the
+  Research Team at X"). Use only bodies the research names.
+
+If you cannot find the verb, rewrite the sentence as the fact itself, unattributed:
+"Repayment plans fail, the research team noted" — never "…suggests paying off
+debt."
 
 ## SHOW IT — every sentence is one picture (short-video-scripter rules, carried in)
 
@@ -205,6 +240,15 @@ day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
   starting with the same word.
 - Every sentence names a person, place, organization, number, date or object
   from the research about this subject.
+- **ATTRIBUTION SWEEP — do this before you return.** Go through every sentence
+  that names a body, team, court, agency or publication, and for each one ask: is
+  the VERB you used one the research uses of that source? "Suggest",
+  "recommend", "advise", "warn", "urge" and "call for" are the ones that get
+  scripts skipped. Rewrite as the fact, unattributed, if the verb is not there.
+- **IMPERATIVE SWEEP.** Does any sentence tell the VIEWER to do something
+  ("apply", "start", "keep", "avoid", "remember", "make sure")? The close must not
+  be an instruction. Move it to a fact, or to an echo of the hook's key noun or
+  number.
 - 80-98 words in all.
 - `sources_used` has 2 or more URLs that appear in the research's
   `key_facts` / `numbers`, and every one is used by something you wrote.

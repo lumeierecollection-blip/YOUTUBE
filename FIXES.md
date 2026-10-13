@@ -41,13 +41,42 @@ an attribution or an imperative that nobody sourced.
   strategies to your next deal."
 - ch-44 (earlier): same imperative shape.
 
-**Class-level fix:** `prompts/write-script.md`. Require every attribution and every
-imperative to trace to a named source, and forbid a closing that instructs the
-viewer unless the research states it. This is option (b) from the original brief,
-held in reserve — the re-pick (`4541caa2`, verified working) already covers the
-"try another topic" half.
+**Class-level fix:** `prompts/write-script.md`. **DONE** — see below.
 
-**Status:** open. Gate stays as is.
+**Status:** fixed, **unrendered**.
+
+### 1b. The brief was instructing the writer to produce this failure — CLOSED
+
+Read in full, the defect is in the brief itself, not the writer's obedience.
+
+**The close.** The brief said:
+
+> `CLOSE (section close, ONE sentence, 7–11 words). What the viewer does with what
+> they now know — a specific action`
+
+That orders an imperative addressed to the viewer. The writer complied and produced
+*"Apply these Harvard strategies to your next deal."* (ch-8, ch-26), which the
+claims gate correctly called INVENTED. Research reports what happened, not what the
+viewer should do about it.
+
+**Attribution, which was absent entirely.** No rule anywhere about attributing a
+verb to a source. ch-1's *"the Gerald Financial Research Team **suggests paying
+off debt**"* — the research said they noted repayment plans **fail**. This is the
+most common way the pipeline loses a channel and nothing warned about it.
+
+Changed in `prompts/write-script.md`:
+- A close is a **fact or an echo, never an instruction**, with the exact failing
+  imperative named as banned.
+- A new **ATTRIBUTION** section: the verb must be one the research uses of *that*
+  source; "suggest / recommend / advise / warn / urge / call for" are the ones
+  that get scripts skipped; never invent a team, desk or body.
+- Two pre-return sweeps, **ATTRIBUTION SWEEP** and **IMPERATIVE SWEEP**.
+
+`scripts/__tests__/script-brief-grounding.test.js` (9 tests) pins the brief using
+ch-1's real rejected sentence, asserts the claims gate still reports INVENTED, and
+asserts the grounding rules that already worked were not gutted. Suite 790/0.
+
+**Not yet seen on a board.** The next full board is the test.
 
 ### 2. Plans that contradict their own sentence — 4 channels
 **Channels** 9, 49, 2, 6 · **Gate** challenger
