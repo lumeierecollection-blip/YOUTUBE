@@ -1,0 +1,70 @@
+{
+  "topic_slug": "nicolas-flamel-philosophers-stone-will-history",
+  "strongest_angle": "Investigating a newly examined centuries-old will of Nicolas Flamel that reveals how the legendary medieval Parisian alchemist myth actually emerged, as featured in an exhibition at the Musée de Cluny.",
+  "key_facts": [
+    {
+      "fact": "New research into the centuries-old will of medieval Parisian Nicolas Flamel is revealing more about his extraordinary wealth and the origins of his legend, featured in an exhibition at the Musée de Cluny in Paris opening on 13 October 2026.",
+      "source_url": "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris",
+      "source_name": "Medievalists.net",
+      "confidence": "high"
+    },
+    {
+      "fact": "For 600 years, writers, artists, and scientists have been fascinated by the myth of Nicolas and Pernelle Flamel, medieval Parisians said to have made gold with a philosopher's stone.",
+      "source_url": "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone",
+      "source_name": "BBC Future",
+      "confidence": "high"
+    },
+    {
+      "fact": "An illustrated alchemical notebook from around 1700 in the Science Museum Archives named Le Trésor des Trésors describes itself as a copy of a work by the legendary alchemist Nicolas Flamel.",
+      "source_url": "https://artsandculture.google.com/story/nicolas-flamel-alchemy-and-the-legend-of-the-philosopher%E2%80%99s-stone-science-museum/jwXhqPSro7CIJQ?hl=en",
+      "source_name": "Google Arts & Culture / Science Museum",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years of fascination with the myth of Nicolas and Pernelle Flamel",
+      "value": 600,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone"
+    },
+    {
+      "label": "Exhibition opening day in October 2026 at the Musée de Cluny",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris"
+    },
+    {
+      "label": "Approximate year of the alchemical notebook Le Trésor des Trésors in the Science Museum Archives",
+      "value": 1700,
+      "unit": "year",
+      "source_url": "https://artsandculture.google.com/story/nicolas-flamel-alchemy-and-the-legend-of-the-philosopher%E2%80%99s-stone-science-museum/jwXhqPSro7CIJQ?hl=en"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Nicolas Flamel",
+      "kind": "person"
+    },
+    {
+      "name": "Pernelle Flamel",
+      "kind": "person"
+    },
+    {
+      "name": "Musée de Cluny",
+      "kind": "organization"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    },
+    {
+      "name": "Science Museum",
+      "kind": "organization"
+    },
+    {
+      "name": "Le Trésor des Trésors",
+      "kind": "object"
+    }
+  ]
+}
