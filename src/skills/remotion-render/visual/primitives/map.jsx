@@ -19,6 +19,7 @@
 import React from "react";
 import { ObjectShape } from "../../compositions/objects/index.jsx";
 import { INK, clamp01 } from "./viz-common.js";
+import { measure, SANS_FAMILY } from "../typography.js";
 import { popState } from "../kinetic.js";
 
 const FEATHER = 0.06;
@@ -139,14 +140,35 @@ export function CenteredMap({ data, bounds, local, dur, font, accent = INK, grou
           coordinates for the place, so claiming where it sits on the map would
           be a claim we cannot source; saying the map covers it is true by
           construction — the map was drawn of the region that contains it. */}
-      {(Array.isArray(data.labels) ? data.labels : []).filter((t) => String(t || "").trim()).map((t, i) => (
-        <g key={`${id}-k${i}`} opacity={clamp01((local - Math.round(0.35 * dur)) / Math.max(1, dur * 0.25))}>
-          <rect x={bounds.x + 22} y={bounds.y + bounds.h - 40 - i * 34 - 26} width={Math.min(bounds.w - 44, 16 + String(t).length * 15)} height={32}
-            fill={ground} stroke={ink} strokeWidth={1.5} rx={2} />
-          <text x={bounds.x + 32} y={bounds.y + bounds.h - 40 - i * 34 - 4} fontFamily={font} fontSize={20} fontWeight={700}
-            letterSpacing={1} fill={ink}>{String(t)}</text>
-        </g>
-      ))}
+      {(Array.isArray(data.labels) ? data.labels : []).filter((t) => String(t || "").trim()).map((t, i) => {
+        // MEASURED, NOT GUESSED. The first version of this key sized its plate
+        // with `16 + name.length * 15` and set the type at a fixed 20 px. That
+        // guess is wrong for any name whose real width is not ~15 px/char, so
+        // the text ran past its own plate and the frame clipped it: board
+        // 38330253047 ch-26 beat 6 — "Australia" reached the naming check as
+        // "stralia" and, on a second look, ".ustralia". A word is never cut
+        // mid-string, so the key now measures the name and steps the size down
+        // until it fits the space it has, exactly as the headline fitter does.
+        const name = String(t).trim();
+        const MAXW = Math.max(60, bounds.w - 56);
+        let size = 20;
+        let tw = measure(name, size, { family: SANS_FAMILY, weight: 700, tracking: 1 });
+        while (tw > MAXW && size > 11) {
+          size -= 1;
+          tw = measure(name, size, { family: SANS_FAMILY, weight: 700, tracking: 1 });
+        }
+        const padX = 10;
+        const boxW = Math.min(MAXW, tw + padX * 2);
+        const boxH = Math.round(size * 1.5);
+        const by = bounds.y + bounds.h - 40 - i * (boxH + 8) - boxH;
+        return (
+          <g key={`${id}-k${i}`} opacity={clamp01((local - Math.round(0.35 * dur)) / Math.max(1, dur * 0.25))}>
+            <rect x={bounds.x + 22} y={by} width={boxW} height={boxH} fill={ground} stroke={ink} strokeWidth={1.5} rx={2} />
+            <text x={bounds.x + 22 + padX} y={by + boxH / 2 + size * 0.36} fontFamily={SANS_FAMILY} fontSize={size} fontWeight={700}
+              letterSpacing={1} fill={ink}>{name}</text>
+          </g>
+        );
+      })}
     </svg>
   );
 }

@@ -1,0 +1,1213 @@
+✔ the class written for each entity type is one coverageOf() recognises (29.7307ms)
+✔ the bug: a kind of "plate" is drawn but answers nothing (1.5963ms)
+✔ an organisation's alongside visual carries its real mark when one resolved (0.6795ms)
+✔ a second visual never displaces the first — two names, two entries (28.9676ms)
+✔ the beat check does not ask a model to judge whether a face matches a named person (188.4508ms)
+▶ blockingBeats
+  ✔ treats only MISMATCH and CONTRADICTION as blocking (24.2611ms)
+  ✔ returns nothing for a clean review (0.4886ms)
+✔ blockingBeats (28.7822ms)
+▶ per-element remediation
+  ✔ asks once per blocking beat, and never about a beat that passed (22.2907ms)
+  ✔ names the element the sub-task chose, in the shape the re-planner reads (1.5625ms)
+  ✔ spends no call at all when nothing was blocked (0.7779ms)
+  ✔ rejects an element a beat does not render from, and does not fall back to approving (1.7378ms)
+  ✔ rejects an addressable element that is not on this beat (1.579ms)
+  ✔ records a sub-task that could not name a field, rather than inventing one (0.8463ms)
+  ✔ records a sub-task that threw, rather than reading silence as agreement (0.9991ms)
+  ✔ records an unparseable answer (52.3797ms)
+  ✔ reports a verdict naming a beat the plan does not have (0.6363ms)
+  ✔ handles several blocking beats independently (1.1732ms)
+✔ per-element remediation (86.2885ms)
+▶ the sub-task prompt
+  ✔ separates role, objective, constraints and input into labelled blocks (0.5274ms)
+  ✔ carries no worked example (0.5351ms)
+  ✔ shows the current value of every addressable element it was given (0.2924ms)
+  ✔ does not offer an element the caller did not pass (0.2966ms)
+✔ the sub-task prompt (2.2015ms)
+▶ validate
+  ✔ accepts an addressable element present on the beat (0.49ms)
+  ✔ rejects an empty replacement even when the element is valid (0.2686ms)
+  ✔ rejects a non-object answer (0.2095ms)
+  ✔ rejects an element outside the addressable set (0.2438ms)
+✔ validate (1.6069ms)
+▶ parseAnswer
+  ✔ accepts an already-parsed answer object (0.6932ms)
+  ✔ accepts a parsed object nested under content (0.4097ms)
+  ✔ reads a JSON body from a content string (0.3064ms)
+  ✔ strips markdown fences (0.6563ms)
+  ✔ returns null for a provider error object, so a failure is never a proposal (0.5236ms)
+  ✔ returns null for prose (0.5356ms)
+  ✔ returns null for nothing (0.4076ms)
+✔ parseAnswer (4.5815ms)
+▶ isMainModule
+  ✔ is false when there is no entry script (0.5209ms)
+  ✔ is false for some other script, including a copy with the same name (0.5244ms)
+  ✔ is true for this file run directly (0.6356ms)
+✔ isMainModule (2.2793ms)
+▶ ADDRESSABLE_ELEMENTS
+  ✔ excludes the fields the planner cannot act on (0.6549ms)
+  ✔ has no duplicates (0.3321ms)
+✔ ADDRESSABLE_ELEMENTS (1.3743ms)
+✔ a beat naming several entities with a listed asset carries the several-entities note; a single-entity beat does not (2.3441ms)
+▶ the prompt
+  ✔ is the owner's text, verbatim, and carries the line and every candidate's caption (4.2687ms)
+✔ the prompt (14.3227ms)
+▶ validateChoice
+  ✔ found: a listed asset is used (5.9766ms)
+  ✔ found: an asset that is not listed is refused — the beat falls to the type card (9.7037ms)
+  ✔ Alexandria replay: the wrong place skipped -> an honest placeholder, the reason and what was missing recorded (2.6465ms)
+  ✔ non_identifying: a face is never the treatment (0.9614ms)
+  ✔ non_identifying: the subject's building, or a bundled silhouette / document (1.4227ms)
+  ✔ placeholder: only kinds the renderer can draw; a map only when one is available (1.8154ms)
+  ✔ a skipped asset without a reason is still recorded; option 2/3 without 'missing' is marked (0.8796ms)
+  ✔ no answer is UNSURE: no found asset is used (1.321ms)
+✔ validateChoice (27.9932ms)
+▶ render-and-qa wiring
+  ✔ collects every verified candidate and asks the resolver; does not take the first photo a verifier passed (1.4535ms)
+  ✔ logs every choice with its reason and skipped assets (0.5325ms)
+✔ render-and-qa wiring (2.697ms)
+✔ the camera moves 8% or more (the owner's floor), on photos and on graphs (3.8439ms)
+✔ every photo composition and every graph declares its move in the manifest; nothing else does (85.8179ms)
+✔ Layer 1 camera-moves fails a photo or graph beat that declares no move (183.9036ms)
+✔ the renderer applies the declared constants (no second copy of the numbers) (4.3451ms)
+✔ every rung kind the ladder can emit is actually drawable (14.2069ms)
+✔ a date rung is drawn, not left as an empty box (16.6967ms)
+✔ a span rung is drawn too (0.5675ms)
+✔ two adjacent beats do not both become a plates row (8.786ms)
+✔ the neighbour check does not suppress a row when the neighbour has none (1.7629ms)
+✔ without the plan the beat still takes a row rather than failing (1.6777ms)
+✔ unblocked beats get their first-plan layout back; blocked beats stay as re-planned (26.8093ms)
+✔ nothing to carry when the first plan had none (6.9666ms)
+✔ render-and-qa calls it on the re-plan with the blocked beats (4.0761ms)
+▶ normalizeChannelId
+  ✔ mirrors the workflow's strip of ch- and leading zeros (2.8528ms)
+  ✔ is idempotent (0.8744ms)
+✔ normalizeChannelId (10.9054ms)
+▶ resolveChannel - the bug this module exists for
+  ✔ dispatch key 5 resolves to ch-05 Broadsheet, NOT ch-26 Harmony (4.6398ms)
+  ✔ there really are two rows with id=5, so an id-based lookup would be wrong (3.7044ms)
+  ✔ the four new channels each resolve to themselves (1.045ms)
+  ✔ built channels are unaffected: 26 -> Fraud Files, 44 -> Skill Stack, 49 (1.112ms)
+  ✔ resolves the other built channels too (0.9193ms)
+  ✔ accepts the ch- form as well as the bare form (0.7071ms)
+✔ resolveChannel - the bug this module exists for (14.011ms)
+▶ resolveChannel fails loud
+  ✔ throws channel_not_found for an unknown key (2.5586ms)
+  ✔ throws channel_ambiguous when two rows normalise to the same bare id (1.2919ms)
+  ✔ the ambiguity error names both channels and their ids (1.3585ms)
+  ✔ two rows that normalise alike but only one is consistent resolves the consistent one (0.6131ms)
+  ✔ built channels keep pointing where they already point, not at their duplicate (0.6692ms)
+  ✔ no row agreeing with both namespaces fails loud instead of guessing (1.7117ms)
+✔ resolveChannel fails loud (9.8807ms)
+▶ trending file key
+  ✔ both id=5 rows would read the same data/trending/5.json, so the key must be channel_id (0.8236ms)
+✔ trending file key (1.4133ms)
+▶ every dispatched key resolves to its OWN channel
+  ✔ the expectation table covers exactly the priority channels (5.5821ms)
+  ✔ key 1 -> Money Mind (1.6791ms)
+  ✔ key 2 -> Legal Brief (3.4502ms)
+  ✔ key 5 -> Broadsheet (0.6491ms)
+  ✔ key 6 -> Archive Room (0.5612ms)
+  ✔ key 8 -> Ledger (0.5084ms)
+  ✔ key 9 -> Border Lines (0.5389ms)
+  ✔ key 10 -> Margin Note (0.5282ms)
+  ✔ key 26 -> Fraud Files (0.6182ms)
+  ✔ key 44 -> Skill Stack (0.7115ms)
+  ✔ key 49 -> Picture House (0.5316ms)
+  ✔ the .mjs entry point is the same implementation as the .cjs (1.693ms)
+✔ every dispatched key resolves to its OWN channel (22.6199ms)
+▶ no source file resolves a channel by the ambiguous id
+  ✔ scripts/ and src/ contain no id-first channel lookup (33033.8376ms)
+✔ no source file resolves a channel by the ambiguous id (33035.3911ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ a chart drawn FIGURE-LOW is centred in the upper middle band with its headline under it, legally (347.8691ms)
+✔ the default chart keeps its headline in the top band (words at the top) (33.0061ms)
+✔ the shot menu offers FIGURE-LOW[low] beside FIGURE[top] for BAR, LINE and TREND — and not for a donut (54.6ms)
+✔ applyShot FIGURE-LOW needs a headline to put under the chart (0.9013ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ a label-free twin exists exactly where dropping the label changes the devices, and is never the first choice (366.9003ms)
+✔ six labelled photo beats have no legal sequence without twins and a legal one with them (200.2212ms)
+✔ ConceptVisual draws every class the entity ladder can write (4.0823ms)
+✔ the plate branch reaches MarkPlate, not a null return (1.0363ms)
+✔ the theme hook is read before any early return (0.6153ms)
+▶ concept visual under visual-first
+  ✔ does not stack its own 0.45 s delay on the group's arrival (2.0823ms)
+  ✔ keeps the headline-then-visual delay for every other entrance style (0.4072ms)
+  ✔ TYPE-SPLIT's second half does not wait tl.splitAt under visual-first (ch-05 run 37700319999 beat 5) (2.1506ms)
+  ✔ still has the incoming-ink hold (f766ae5) and the 6-frame OUT fade untouched (0.9122ms)
+✔ concept visual under visual-first (9.2853ms)
+✔ a TYPE beat's concept visual becomes a drawn box, not a dropped field (53.2752ms)
+✔ two concept visuals are recorded, and the layout places what it can (3.2278ms)
+✔ a visual the layout drops is not reported as drawn (1.3191ms)
+✔ a beat with no concept visual is unchanged (no phantom objects) (1.2475ms)
+✔ a place that is only part of an organization's name is dropped (ch 2 beat 8) (4.3494ms)
+✔ a place the sentence also names on its own stays (0.4227ms)
+✔ nothing is dropped when the container is not in the sentence verbatim (an alias: we cannot know) (0.3487ms)
+✔ unrelated entities are untouched, and order is kept (0.4693ms)
+✔ a person inside an organization's name is dropped the same way (0.4476ms)
+✔ empty and punctuation-only names are kept (not this helper's job) (0.3715ms)
+✔ a file that runs past the last word: the last beat is extended to the file's end (ch 9: 1.95 s) (2.1801ms)
+✔ beats that already reach the audio are left alone (0.411ms)
+✔ nothing usable: no change, no throw (0.8552ms)
+✔ each fair-use mark is recorded per use, with its basis, rationale, holder and file page; free and CC0 images are not (37.3934ms)
+✔ a plan with no fair-use mark yields an empty record (the file still confirms the check ran) (0.6045ms)
+✔ two different images produce different keys (112.4584ms)
+✔ the same image with a bumped verifier version produces a different key (a fresh verification) (0.5258ms)
+✔ the same image with a different model in the chain, or a different concept name, is a fresh key (0.4959ms)
+✔ the same inputs always give the same key (so a stored verdict can be reused) (0.493ms)
+✔ an object the sentence names stays; a role never gets a stock cutout (7.7414ms)
+✔ a drawn symbol is dropped on a beat that names an organisation, a person or a place — kept on one that names none (1.9268ms)
+✔ what a sentence names: regions, dates, spans, figures — and not ages, ids or count words (18.0613ms)
+✔ a words-only beat that names an entity FAILS; one that names nothing is allowed (4.8448ms)
+✔ a near-match does not count: France is satisfied by France highlighted or its flag, not by Europe (21.9822ms)
+✔ each entity type is answered by its own visual (4.5551ms)
+✔ the ladder fills the gap with the visual of the entity, and leaves a beat that draws something alone (3.1985ms)
+✔ every ENTITY-ART kind is centred, legal, and keeps its words out of the top band (608.8933ms)
+✔ flag codes: countries and US states, and none for a region with no flag (1.126ms)
+✔ a date is split into the calendar page's parts; names match across 'the' (35.6213ms)
+✔ a visual that carries nothing of the entity yields to it (board 37967524047): decoration, a direction-only trend, a names-only list, a span drawn as a bare figure (4.5693ms)
+✔ the caption never repeats the entity the plate carries; a logo item covers its organisation like a typeset plate (5.1649ms)
+✔ a process diagram and a bare stat card yield to the person / organisation / place the sentence names (boards 37973067720 / 37978510400) (1.3067ms)
+✔ the over-reach of board 38054686824: 'Indian' and 'federal jury' are not entities (9.5923ms)
+✔ specific named things pass: people, places, organisations, courts, named objects, figures (1.5439ms)
+✔ a title-cased name made of generic words is still a name; the same words in lower case are not (0.7094ms)
+✔ a common noun the sentence writes in lower case is not a name; an abstract noun is not an object (0.4506ms)
+✔ each named entity is classed by what it actually got to show (4.9462ms)
+✔ numbers are not entities that can be shown; an image of a different entity does not count (1.1383ms)
+▶ Layer 1 constants
+  ✔ uses the same constants as local-audit.cjs:325 (1.5535ms)
+✔ Layer 1 constants (4.0024ms)
+▶ requiredFrames
+  ✔ derives every entrance from the pop-groups constants, not a literal (0.4333ms)
+  ✔ treats an unknown or absent entrance as the shortest one (0.3819ms)
+✔ requiredFrames (1.2657ms)
+▶ Layer 1 on a healthy manifest
+  ✔ passes and reports every check as passing (1.8924ms)
+  ✔ emits MOT-22 plus the two L1 checks (0.9627ms)
+✔ Layer 1 on a healthy manifest (3.4521ms)
+▶ MOT-22
+  ✔ catches a frame covered by no beat (1.9588ms)
+  ✔ catches an overlap (1.1042ms)
+  ✔ does not fail a lead-in, because the ground is mounted globally (0.7934ms)
+  ✔ fails a beat that holds zero frames (1.2008ms)
+✔ MOT-22 (6.9386ms)
+▶ L1-legibility
+  ✔ catches a box leaving the safe area (1.3916ms)
+  ✔ allows photo, map and split to bleed (0.7188ms)
+  ✔ allows role shape to bleed (0.4998ms)
+  ✔ catches a box entering the caption band (0.4978ms)
+  ✔ catches two text boxes overlapping (0.5794ms)
+  ✔ does not call touching boxes an overlap (0.4184ms)
+  ✔ treats a numbered family as text (label0/label1) (0.4921ms)
+  ✔ fails a beat with no boxes at all (0.4677ms)
+✔ L1-legibility (6.1773ms)
+▶ L1-motion
+  ✔ catches an entrance that cannot land inside its window (0.7563ms)
+  ✔ catches a staggered entrance in a window too short for it (0.4438ms)
+✔ L1-motion (1.5512ms)
+▶ Layer 1 failure records
+  ✔ carries the layer on every record, for provenance (1.0001ms)
+  ✔ reports a missing manifest rather than passing it (0.8884ms)
+✔ Layer 1 failure records (2.3316ms)
+▶ Layer 1 against the real approved renders in this repo
+  ✔ agrees with the stored local-audit PASS on california-no-robo-bosses-act-ai-discipline- (44.1218ms)
+  ✔ agrees with the stored local-audit PASS on avalonbay-40m-rent-overcharge-lawsuit-2026-s (0.608ms)
+✔ Layer 1 against the real approved renders in this repo (45.268ms)
+▶ normalize
+  ✔ makes a vector unit length (17.5035ms)
+  ✔ returns zeros for a zero vector rather than NaN (1.7549ms)
+  ✔ does not mutate its input (0.341ms)
+✔ normalize (22.3404ms)
+▶ cosine
+  ✔ is 1 for identical normalized vectors and 0 for orthogonal (0.5717ms)
+✔ cosine (0.8863ms)
+▶ frame floor (spec 1.1)
+  ✔ ref-02's 5s case now clears 30 frames instead of yielding 4 (28.3233ms)
+  ✔ never goes below 1 fps (0.6182ms)
+  ✔ always returns at least MIN_FRAMES timestamps (1.5596ms)
+  ✔ keeps samples away from the head and tail (0.6133ms)
+  ✔ is monotonically increasing (0.6644ms)
+✔ frame floor (spec 1.1) (33.0826ms)
+▶ threshold derivation
+  ✔ excludes self-pairs and includes within- and cross-reference pairs (1.1653ms)
+  ✔ is stable across three runs on identical input (1.933ms)
+  ✔ reports frame and pair counts (0.7723ms)
+  ✔ refuses to derive a threshold from nothing (38.3352ms)
+✔ threshold derivation (42.9108ms)
+▶ candidate scoring (advisory, no verdict)
+  ✔ passes when few frames are below the floor (0.9352ms)
+  ✔ fails when more than 40% of frames are below the floor (0.3003ms)
+  ✔ treats exactly 40% as passing (0.3632ms)
+  ✔ judges a frame against its nearest neighbour, not the family average (0.2794ms)
+  ✔ reports failing frame indexes (0.2796ms)
+✔ candidate scoring (advisory, no verdict) (2.6377ms)
+▶ formatTimestamp
+  ✔ renders MM:SS (0.3375ms)
+✔ formatTimestamp (0.52ms)
+▶ layer 2 is an advisory, not a gate
+  ✔ scoreStyle returns a number and no verdict (0.7708ms)
+  ✔ advisory is the MEAN of per-frame max-similarity (0.3508ms)
+  ✔ returns zeros rather than NaN for no frames (0.2636ms)
+  ✔ exposes no pass/fail function (0.9853ms)
+✔ layer 2 is an advisory, not a gate (2.77ms)
+▶ the generated shared threshold
+  ✔ exists and is permissive by construction (0.3462ms)
+  ✔ derives from the union of all three references (0.2722ms)
+  ✔ clears the 30-frame floor for every reference (0.2406ms)
+  ✔ raised ref-02's fps so its percentile is real (0.2505ms)
+  ✔ records the model, percentile and escalation ratio it was derived with (0.3011ms)
+✔ the generated shared threshold (1.8383ms)
+▶ the percentile moves the threshold
+  ✔ raises the threshold with the percentile, and still does not catch a blank frame (22169.7456ms)
+✔ the percentile moves the threshold (22170.8085ms)
+▶ Layer 2 against the real model
+  ✔ normalizes real embeddings to unit length (254.8987ms)
+  ✔ scores a reference frame ABOVE the shared floor (299.7959ms)
+  ✔ documents that a blank frame PASSES the floor, and by how much (4715.7921ms)
+  ✔ documents the same for a flat mid-grey frame (4263.2502ms)
+✔ Layer 2 against the real model (9534.8142ms)
+▶ Layer 2 is wired at the render call site
+  ✔ the stub is gone and the real call is in its place (4.7318ms)
+  ✔ Layer 3 receives the advisory score and the style match (0.5785ms)
+  ✔ the workflow caches the HuggingFace weights (111.4266ms)
+✔ Layer 2 is wired at the render call site (120.7018ms)
+▶ references
+  ✔ loads the stored embeddings of the three reference videos, with the calibrated floor (6288.803ms)
+  ✔ the family's ceiling is measured across DIFFERENT reference videos only (0.7972ms)
+✔ references (6290.3871ms)
+▶ clone check: style is similarity to the family, a clone is similarity to one member beyond the family
+  ✔ frames identical to a reference frame are clone_suspected (2.2984ms)
+  ✔ frames inside the family's own range are matched, not clones (1.1301ms)
+  ✔ frames far from every reference are off_style (0.7614ms)
+  ✔ the verdict is advisory data, not a pass/fail (0.6216ms)
+✔ clone check: style is similarity to the family, a clone is similarity to one member beyond the family (6.6448ms)
+▶ Layer 2 produces a number on a real video
+  ✔ a reference video scores numerically, matches scoreStyleFile, and is flagged as a clone of itself (128633.6403ms)
+  ✔ a blank white video is not flagged as a clone (31675.2634ms)
+✔ Layer 2 produces a number on a real video (160311.3773ms)
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] aggregate mismatch: local 7.500 vs gemini 9.900 — using local
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] gemini-3.5-flash unavailable (HTTP 429) -> gemini-3.1-flash-lite
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] gemini-3.5-flash 503 high demand — retrying once in 5s
+▶ prompt
+  ✔ has the four labelled blocks in order (2.526ms)
+  ✔ carries the advisory score (0.5149ms)
+  ✔ says so when no advisory was computed (0.3578ms)
+  ✔ carries the style spec (0.3213ms)
+✔ prompt (7.4606ms)
+▶ schema
+  ✔ is flat: no $ref, $defs, anyOf or const (2.0448ms)
+  ✔ requires all four axes and each weak beat field (0.6111ms)
+✔ schema (3.1521ms)
+▶ aggregate
+  ✔ weights composition and style_coherence at 0.3 (1.1358ms)
+  ✔ sums the weights to 1 (0.9475ms)
+  ✔ computes the weighted mean (0.7826ms)
+✔ aggregate (4.142ms)
+▶ validateResponse
+  ✔ accepts a good response (1.6801ms)
+  ✔ fails loud on no_video rather than scoring it zero (1.477ms)
+  ✔ fails loud on a missing axis (0.5818ms)
+  ✔ fails loud on an out-of-range axis (1.0315ms)
+  ✔ fails loud on a non-numeric axis (0.9672ms)
+  ✔ fails loud when weak_beats is absent (0.7661ms)
+  ✔ fails loud on an incomplete weak beat (0.768ms)
+✔ validateResponse (8.4679ms)
+▶ judge flow
+  ✔ uploads, polls, scores, and returns numbers with no verdict (26.3677ms)
+  ✔ sends the video as fileData and the prompt as text (1.3244ms)
+  ✔ sends the advisory inside the prompt it actually sends (0.8957ms)
+  ✔ sends the responseSchema in generationConfig (1.707ms)
+  ✔ uses native v1beta generateContent, not the OpenAI-compat path (1.5639ms)
+  ✔ computes the aggregate locally and ignores Gemini's own (1.0929ms)
+  ✔ fails loud on no_video, and still deletes the upload (1.0958ms)
+  ✔ fails loud on malformed JSON, and still deletes (61.4031ms)
+  ✔ deletes even when the scoring call throws (1.9432ms)
+  ✔ propagates a delete failure rather than returning a score (1.5876ms)
+  ✔ refuses to score a file that is not ACTIVE (0.7204ms)
+  ✔ rotates to its own fallback model on quota (1.9057ms)
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+[layer3] weak beat 00:12 [composition] unresolved: timestamp_out_of_range
+  ✔ retries once on 503 before spending the fallback (5010.4473ms)
+  ✔ writes provenance including the advisory (204.3057ms)
+✔ judge flow (5319.5795ms)
+▶ eval loop on a Layer 1 failure
+  ✔ runs Layer 2 and Layer 3 and writes the JSONL, with layer1_result failing (1106.3998ms)
+  ✔ records the decision as data and acts on nothing: no re-render, nothing 'rendered', human_review (16.5339ms)
+  ✔ still records when Layer 3 throws — and does not throw (67.8753ms)
+  ✔ still records when Layer 2 cannot run (8.5264ms)
+✔ eval loop on a Layer 1 failure (1202.924ms)
+▶ eval loop when Layer 1 passes, and when off
+  ✔ layer1_result passes and the judged aggregate is recorded (8.4536ms)
+  ✔ off returns null and runs nothing (1.2273ms)
+✔ eval loop when Layer 1 passes, and when off (10.7717ms)
+▶ Layer 3's axes and named beats reach the record on every judged path
+  ✔ a Layer 1 pass judged below 7 with nothing named (CI run 37703727115) keeps its axes (8.7003ms)
+  ✔ an accepted render keeps its axes (5.0277ms)
+✔ Layer 3's axes and named beats reach the record on every judged path (14.7524ms)
+▶ EVAL_LOOP_MODE
+  ✔ defaults to off when unset, empty or whitespace (1.9782ms)
+  ✔ accepts off, dry and live, case-insensitively (0.4588ms)
+  ✔ refuses to guess an unknown mode rather than defaulting to live (1.1249ms)
+  ✔ loopEnabled is false only for off (0.4413ms)
+✔ EVAL_LOOP_MODE (6.8508ms)
+▶ audit writer
+  ✔ writes a JSONL line carrying mode, decision and the rerender lists (81.0973ms)
+  ✔ appends rather than overwriting (20.414ms)
+  ✔ records why a loop went to human review (5.0758ms)
+  ✔ dry and live differ only in rendered vs would_rerender (61.9452ms)
+✔ audit writer (169.8316ms)
+▶ dry does not re-render, live does
+  ✔ dry records the beats and returns without acting (2.2968ms)
+  ✔ off never reaches the callback at all (2.2504ms)
+✔ dry does not re-render, live does (6.1289ms)
+▶ branch structure is untouched
+  ✔ the challenger-rejection path still exists unchanged (1.1692ms)
+  ✔ backup-audit routing still exists unchanged (0.6702ms)
+  ✔ the loop is guarded and cannot reach the accept branch (2.294ms)
+  ✔ MAX_CORRECTION_LOOPS and the frame-review gate are untouched (0.5821ms)
+  ✔ the loop runs after the canvas checks are measured and BEFORE their early-return (0.7888ms)
+  ✔ Layer 1 still gates: the canvas-check failure still returns backupAudit (0.8084ms)
+✔ branch structure is untouched (7.3966ms)
+▶ a loop failure cannot fail a render that passed the pixel gate
+  ✔ the call site catches, and the module's own throw paths are all caught (1.0145ms)
+✔ a loop failure cannot fail a render that passed the pixel gate (1.3737ms)
+▶ resolveRevisions
+  ✔ keeps an element that is a real field on that beat (2.1086ms)
+  ✔ records a non-field element as unresolved, and does not guess (0.8568ms)
+  ✔ records an element the beat does not have (0.4324ms)
+  ✔ records a beat index that is not in the plan (0.5223ms)
+✔ resolveRevisions (6.8032ms)
+▶ applyPartialPatch
+  ✔ changes only the named field of the named beat (57.509ms)
+  ✔ leaves a beat untouched when the replacement equals the current value (0.4946ms)
+  ✔ does not mutate the input plan (0.6751ms)
+✔ applyPartialPatch (59.289ms)
+▶ beatsUnchanged
+  ✔ reports which untouched beat changed (0.5212ms)
+✔ beatsUnchanged (0.894ms)
+▶ loop: accept path
+  ✔ accepts at 8.0 with no re-render at all (90.4873ms)
+  ✔ accepts exactly at the threshold (36.142ms)
+✔ loop: accept path (127.4236ms)
+▶ loop: Layer 2 is advisory only
+  ✔ never increments the retry counter, even scoring every frame below floor (34.213ms)
+  ✔ passes the advisory into Layer 3 (56.4286ms)
+✔ loop: Layer 2 is advisory only (91.8103ms)
+▶ loop: partial, not whole
+  ✔ re-renders only the named beat and leaves the rest byte-identical (56.9882ms)
+  ✔ fails loud to human review when the planner returns no partial patch (26.9568ms)
+✔ loop: partial, not whole (84.6007ms)
+▶ loop: unresolved elements
+  ✔ logs unresolved and does not consume a retry (45.9834ms)
+✔ loop: unresolved elements (46.2565ms)
+▶ loop: retry cap
+  ✔ caps at 3 and routes to human review without a fourth render (44.9002ms)
+✔ loop: retry cap (45.2216ms)
+▶ loop: Layer 1 path is unchanged
+  ✔ re-renders the failed beat and re-runs Layer 1 (22.7808ms)
+  ✔ routes to human review when Layer 1 never passes (1.0294ms)
+✔ loop: Layer 1 path is unchanged (24.478ms)
+▶ loop: provenance
+  ✔ writes retry_attempt 0..n and a parent_run_id, appending not overwriting (40.016ms)
+✔ loop: provenance (40.6485ms)
+▶ loop: refuses an unusable aggregate
+  ✔ throws rather than treating a missing aggregate as a score (2.0301ms)
+✔ loop: refuses an unusable aggregate (2.3174ms)
+▶ free-text finding -> pipeline field
+  ✔ maps the real ch-02 finding to ground (0.594ms)
+  ✔ maps title/typography to headline (0.2956ms)
+  ✔ returns null when nothing matches (0.2892ms)
+  ✔ refuses to guess when two rules disagree (0.7456ms)
+  ✔ is a short table, not a parser (0.456ms)
+✔ free-text finding -> pipeline field (2.9915ms)
+▶ routing: other -> mapped, ambiguous, direct
+  ✔ routes a mapped other to a revision and keeps the finding text (0.5244ms)
+  ✔ routes a direct field name unchanged (0.316ms)
+  ✔ leaves an unmappable finding unresolved but PRESERVES the text (0.2894ms)
+  ✔ leaves an ambiguous finding unresolved (0.3242ms)
+✔ routing: other -> mapped, ambiguous, direct (1.837ms)
+▶ ch-02 self-repair, end to end on the loop
+  ✔ spends a retry on the white-ground finding instead of routing to human review (30.0503ms)
+✔ ch-02 self-repair, end to end on the loop (30.275ms)
+▶ validatePatch: anti-churn
+  ✔ a video that passed Layer 1 at or above the band is not revised (3.7982ms)
+  ✔ only beats Layer 3 flagged (0.8191ms)
+  ✔ at most 2 beats per video (28.7242ms)
+  ✔ a patch that changes nothing a viewer sees is rejected (7.6707ms)
+✔ validatePatch: anti-churn (43.9852ms)
+▶ validatePatch: Gate 1 — a visible consequence, in words
+  ✔ rejects "Composition scored 6.4" (0.8575ms)
+  ✔ rejects "Style coherence is 0.3 below the run mean" (0.3578ms)
+  ✔ rejects "lift the axis" (0.3479ms)
+  ✔ rejects "" (0.7778ms)
+  ✔ accepts a defect a viewer sees (3.0727ms)
+✔ validatePatch: Gate 1 — a visible consequence, in words (6.5292ms)
+▶ validatePatch: Gate 2 — a legal, field-level layout patch drawable as given
+  ✔ rejects a field other than the layout (a text change would change a claim) (0.7591ms)
+  ✔ rejects a layout the canvas would not draw as given (headline into the nodes' zone) (7.1582ms)
+  ✔ keeps the planner's side: a slot it aligned left is not flipped right (0.4548ms)
+✔ validatePatch: Gate 2 — a legal, field-level layout patch drawable as given (8.8501ms)
+▶ reviseBeats
+  ✔ applies an accepted patch to that beat only, and logs the visible consequence (5.4705ms)
+  ✔ an empty patch is a valid answer (1.0431ms)
+  ✔ the prompt carries the owner's text verbatim and the beat's facts (20.0043ms)
+✔ reviseBeats (26.9078ms)
+▶ live call site: revise, re-render, keep or restore
+  ✔ a revision that passes Layer 1 and is judged higher ships (105.3983ms)
+  ✔ a revision judged lower is rolled back: the original is restored (65.4317ms)
+  ✔ a revision that fails Layer 1 is rolled back (27.3912ms)
+  ✔ dry decides and records the patch, renders nothing (16.2954ms)
+  ✔ an empty patch: the video ships as rendered, nothing re-rendered (7.076ms)
+✔ live call site: revise, re-render, keep or restore (228.6088ms)
+▶ execution-comparator
+  ✔ intent structure is valid (1.9047ms)
+  ✔ comparison output has required fields (1.9681ms)
+✔ execution-comparator (8.3631ms)
+✔ a non-free logo with a stated rationale yields the record the credits manifest needs (3.5551ms)
+✔ a file that is not filed as a non-free logo, or states no rationale, is refused — never given a made-up one (1.1847ms)
+✔ fairUseInfo reads the English Wikipedia file page and caps the size at identification scale (29.7096ms)
+[trending] no_niche_match — keeping the closest category candidate (filter found nothing)
+▶ fetch-trending CATEGORY map
+  ✔ maps the four new channels so they stop falling through to unseeded discovery (2.5498ms)
+  ✔ every new channel's content_pillars overlap its CURRENT niche (90.5294ms)
+  ✔ pillars do not still describe the pre-widening subject (6.7488ms)
+  ✔ every pillar is title-shaped, not prose (5.4427ms)
+  ✔ CATEGORY matches each new channel's CURRENT niche, not the pre-widening one (29.6573ms)
+  ✔ keeps the six built channels on their existing categories (0.3924ms)
+  ✔ maps ch-49, which had no entry and so never got a trending feed (0.3364ms)
+  ✔ maps every priority channel (2.056ms)
+  ✔ never maps to 27: YouTube answers chart=mostPopular&videoCategoryId=27 with HTTP 404 (0.8126ms)
+  ✔ strips ch- and leading zeros the way the workflow does (1.9404ms)
+  ✔ resolves the real ch-05 row, not the id=5 row that is a different channel (4.6064ms)
+  ✔ resolves through the shared channel-lookup, so the three duplicated built channels are not mistaken for their namesakes (66.4928ms)
+  ✔ niche terms for key 26 describe fraud, not Harmony's music theory (3.204ms)
+  ✔ an ambiguous key (no row whose id and channel_id agree) is skipped, never guessed (4.0982ms)
+  ✔ no longer carries its own collision guard (0.3749ms)
+✔ fetch-trending CATEGORY map (225.6152ms)
+▶ fetch-trending niche filter
+  ✔ derives usable terms from niche and pillars (0.7541ms)
+  ✔ drops stopwords and short noise (0.4599ms)
+  ✔ keeps the niche-matching candidate and drops the two that do not fit (1.3202ms)
+  ✔ falls back to the closest candidate rather than failing when nothing matches (2.0468ms)
+  ✔ skips the filter entirely when the channel has no niche (0.597ms)
+  ✔ is a no-op on a clean list and reports zero dropped (0.4927ms)
+✔ fetch-trending niche filter (6.8415ms)
+▶ fetch-trending rankAndFilter wiring
+  ✔ drops the higher-velocity off-niche candidates and keeps the niche match (0.9145ms)
+  ✔ strips the _pub scratch key from what gets written (0.6235ms)
+  ✔ still ranks by velocity within the surviving candidates (0.6717ms)
+  ✔ passes everything through when the channel has no niche field (0.7443ms)
+  ✔ honours the limit (0.9298ms)
+✔ fetch-trending rankAndFilter wiring (5.1719ms)
+✔ palette: ink, grey and the accent pass; a candy-coloured series fails (62.8513ms)
+✔ palette: a grey accent allows no colour at all (5.1607ms)
+✔ palette: a skipped box (a real flag) is not judged (8.821ms)
+✔ shadow: a soft halo beside the box is found, a hairline-bounded box has none (7.1023ms)
+✔ corners: an outlined square box is sharp (4) however far it has pushed out; a large-radius box is not (21.6401ms)
+✔ motion: no chart state ever overshoots its end value (no spring, bounce or elastic) (30.2274ms)
+✔ DataFull: flat — no shadow, no rounded corners, no round caps, thin strokes, no spring easing (31.5733ms)
+✔ EntityArt: flat — no shadow, no rounded corners, no round caps, thin strokes, no spring easing (0.611ms)
+✔ ProcessFull: flat — no shadow, no rounded corners, no round caps, thin strokes, no spring easing (0.3977ms)
+✔ MapCentered: flat — no shadow, no rounded corners, no round caps, thin strokes, no spring easing (0.6429ms)
+✔ Timeline: flat — no shadow, no rounded corners, no round caps, thin strokes, no spring easing (0.38ms)
+✔ the date card is typographic, not a wall calendar (0.5749ms)
+✔ an entity is its real mark or its name in type — no stock icon stands in for it (owner, 2026-10-09) (0.5883ms)
+✔ a 9% push-in is measured as a move of about 9% (2947.7804ms)
+✔ identical frames, and frames that differ only by something else, are not a move (2742.7572ms)
+✔ a chart that grows 9% about its floor widens its axis 9% (485.0842ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ TEMPLATE_MONOCULTURE from the review is a HOLD (forceReject), not a backup-audit question (51.4827ms)
+✔ a report written before pipelineVerdict existed is held the same way (15.2769ms)
+✔ a passing manifest template check does not overrule it: the hold is decided by the review alone (268.6668ms)
+✔ only the review's own REJECTED counts: an untrusted provider's monoculture reading is not a hold (16.2021ms)
+✔ other failures keep their existing route (no hold); APPROVED passes (22.7596ms)
+✔ the review is never skipped: a LOW-risk local auditor verdict no longer stands in for it (1.281ms)
+▶ keys
+  ✔ reuses gemini-client's precedence and adds no new env var (4.515ms)
+  ✔ fails loud with the same guidance when no key is set (2.0863ms)
+✔ keys (10.3313ms)
+▶ fileResource
+  ✔ strips the files/ prefix the API returns (1.3127ms)
+  ✔ rejects an empty name (0.7642ms)
+✔ fileResource (2.8039ms)
+▶ assertMp4
+  ✔ accepts a real MP4 and reports its size (40.3233ms)
+  ✔ rejects a PNG before any network call (3.8632ms)
+  ✔ rejects a missing file (1.26ms)
+  ✔ caps at exactly 2 GB (0.6582ms)
+  ✔ refuses to truncate an oversized file, by source inspection (1.1004ms)
+✔ assertMp4 (48.8036ms)
+﹣ upload/poll/delete against the live API (0.3139ms) # no GEMINI_API_KEY_1
+▶ pollUntilActive timeout
+  ✔ throws rather than returning a PROCESSING file (6608.9475ms)
+  ✔ has a 5 minute default timeout and 5s poll, and throws on timeout (1.3263ms)
+✔ pollUntilActive timeout (6611.4655ms)
+﹣ quota spent on every key of one model -> the sibling model answers (no fallback) (3.3779ms) # a shell script cannot stand in for curl.exe on Windows (runs on the Linux CI)
+﹣ every model on every key spent -> quota_exhausted is returned only then (0.6255ms) # a shell script cannot stand in for curl.exe on Windows (runs on the Linux CI)
+✔ common words that are ISO-3 codes are not places (3.0786ms)
+✔ codes written in capitals and full names still resolve (0.7293ms)
+✔ a bare name that is two places resolves to neither (3.2987ms)
+✔ a sentence-initial question word grounds no map (1.0909ms)
+▶ zones-no-overlap against each beat's ground
+  ✔ white ground, content inside the middle zone: PASS (unchanged) (3.0486ms)
+  ✔ dark ground, the same content drawn light: PASS (was FAIL: every pixel was ink) (0.5962ms)
+  ✔ white ground, content crossing a zone edge: FAIL (0.5549ms)
+  ✔ dark ground, the same crossing content: FAIL — the check is correct, not permissive (0.5597ms)
+  ✔ the dark beat matches the same composition drawn on white, both ways (0.5887ms)
+✔ zones-no-overlap against each beat's ground (91434.0522ms)
+▶ pop-transitions against each beat's ground
+  ✔ a dark beat that has content from its first frame: PASS (26436.1364ms)
+  ✔ an EMPTY dark beat: FAIL (it used to pass — every dark pixel counted as ink) (38500.276ms)
+  ✔ an EMPTY white beat still FAILs (unchanged) (22335.4744ms)
+✔ pop-transitions against each beat's ground (87272.979ms)
+✔ contrast and luma are WCAG's (38.6415ms)
+✔ a dark logo on a near-black ground goes to white; the planner's other beats are untouched (1550.1062ms)
+✔ a light logo on white goes to a dark ground the video already uses; none to use -> left alone and reported (265.8692ms)
+✔ a legible object keeps the planner's ground (132.0195ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ the abbreviation that failed ch-49 is caught (146.3615ms)
+✔ the sentence's own spelling passes (0.6514ms)
+✔ equivalent spellings are not rewordings (0.7317ms)
+✔ a figure the sentence does not state is another rule's business (0.4941ms)
+✔ a headline with no figure is clean (0.5954ms)
+✔ a total named by the beat is read from the beat, not just the sentence (40.5674ms)
+✔ ch-6 beat 3 FAILS while the hero shows only a component (11.3861ms)
+✔ both parts on the frame passes — two ends of an arithmetic relation (3.4472ms)
+✔ the total ON the frame, with its parts named, passes (1.1726ms)
+✔ a beat with no total is untouched (0.7602ms)
+✔ an ordinary figure beat is untouched — no total, no new failure (0.7764ms)
+✔ an organisation with a Wikidata logo, a person with a Wikidata image: illustrated (31.9572ms)
+✔ a Wikipedia lead image counts only if it is on Commons (a free file); a local en.wikipedia upload is non-free (0.7925ms)
+✔ a subject nothing knows (the board's city councils and consultants): not illustrated (2.3438ms)
+✔ scoreTopic counts the listed subjects; ranking puts the best-illustrated first and drops nothing (4.0855ms)
+✔ equal scores keep discovery's order; no scores at all leaves the order alone (0.6443ms)
+✔ the pixels: 7 of 9 rendered frames draw text at the top (beats 1 and 7: the rule only) (4.3374ms)
+✔ the label counter on the rendered manifest matches what is drawn, beat by beat (0.9299ms)
+✔ canvasManifest records a drawn top-of-frame text as the label, whatever the layout calls it (489.4297ms)
+✔ measured that way, this video fails the template window (beats 2-6: a label five beats running) (1.7612ms)
+✔ TYPE-FULL with a top-left label: the kicker is in the top zone and nothing overlaps (40.7974ms)
+✔ TYPE-FULL with a top-right label: the kicker is in the top zone and nothing overlaps (3.5646ms)
+✔ TYPE-FULL with a beside-headline label: the kicker is in the top zone and nothing overlaps (2.131ms)
+✔ HERO-OVER with a top-left label: the kicker is in the top zone and nothing overlaps (15.8689ms)
+✔ HERO-OVER with a top-right label: the kicker is in the top zone and nothing overlaps (13.1515ms)
+✔ HERO-OVER with a beside-headline label: the kicker is in the top zone and nothing overlaps (6.6874ms)
+✔ PHOTO-CARD with a top-left label: the kicker is in the top zone and nothing overlaps (5.5554ms)
+✔ PHOTO-CARD with a top-right label: the kicker is in the top zone and nothing overlaps (1.5315ms)
+✔ PHOTO-CARD with a beside-headline label: the kicker is in the top zone and nothing overlaps (2.8621ms)
+✔ an explicit bottom-left label stays at the bottom (8.9828ms)
+✔ the ladder records what it drew, so a later stage can respect it (7.7278ms)
+✔ chooseShots does not overwrite a ladder visual (146.6032ms)
+✔ the object branch respects it too (1.507ms)
+✔ a SECOND ladder pass does not swap an entity's visual for a figure (0.8353ms)
+✔ every ladder branch records what it drew (2.2075ms)
+✔ the two stages are ordered so the guard is the thing that matters (35.2634ms)
+[layer3] weak beat 00:17 -> beat 2 [style_coherence] ground
+[layer3] weak beat 00:25 -> beat 4 [composition] composition
+▶ parseTimestamp
+  ✔ MM:SS, M:SS, H:MM:SS and fractions (3.0022ms)
+  ✔ malformed is null (0.7681ms)
+✔ parseTimestamp (10.589ms)
+▶ boundaries (manifest beats [start, start + duration))
+  ✔ inside a beat (17.4588ms)
+  ✔ exactly at a beat's start belongs to that beat (1.3474ms)
+  ✔ '00:00' before beat 0's 0.10 s start is beat 0, read at the timestamp's one-second resolution (1.4944ms)
+  ✔ past the last beat is unresolved: out of range, not guessed (21.54ms)
+  ✔ malformed is unresolved (1.49ms)
+  ✔ overlapping beats: the earlier, marked ambiguous (0.8729ms)
+  ✔ an entry that already has a beat_index is left alone (0.8157ms)
+✔ boundaries (manifest beats [start, start + duration)) (47.2353ms)
+▶ replay: CI run 37723570093's real Layer 3 output
+  ✔ every weak beat now has a beat_index (4.679ms)
+  ✔ the retry loop now resolves them into revisions instead of 'beat_index undefined' (1.3253ms)
+✔ replay: CI run 37723570093's real Layer 3 output (9.5632ms)
+▶ judge() resolves them before returning
+  ✔ weak_beats come back with beat_index from the manifest (6.5382ms)
+✔ judge() resolves them before returning (7.0241ms)
+✔ the table draws at most 1 of the 10 replayed beats (run 37723570093) (2.2798ms)
+✔ run 37739128920 (the table drew beats 0 and 4, both NUMBER-FULL): the table draws at most 1 (237.9004ms)
+✔ every replayed beat that used the plan is legal by Layer 1's geometry (162.0735ms)
+✔ run 37743696701: no planned layout leaves a beat more than 1 point below the default's box span (beat 1 rendered 58.9% by pixels) (463.2205ms)
+✔ run 37746025773: a placed cutout stays clear of y 1340 the way the table keeps it (its shadow crossed the edge) (152.0966ms)
+✔ run 37764608991: a placed emphasis word keeps its descenders above y 1340 (they crossed the zone edge) (235.2529ms)
+✔ a label never ends on a function word (4.3554ms)
+✔ the number card's label is drawn without the dangling word (27.2938ms)
+✔ an accent reads at 3:1 on its ground, in the channel's own hue; one that already reads is untouched (12.5747ms)
+✔ a vertical bar chart's labels sit inside the chart's floor, not past it (227.8048ms)
+▶ local-audit
+  ✔ risk levels are valid (2.9026ms)
+  ✔ audit thresholds are reasonable (1.3383ms)
+✔ local-audit (9.0313ms)
+✔ CenteredMap draws the places the map covers but cannot pin (3.1487ms)
+✔ the covered place is a KEY, not a pin at invented coordinates (0.5926ms)
+✔ the region label still names the region the map is really drawn of (1.7334ms)
+✔ a map with nothing extra to name draws no key (0.4067ms)
+✔ the ladder names the covered place instead of leaving it to the headline (3.2251ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ a map of a place the sentence names passes (7.122ms)
+✔ a map of a place the sentence does not name is refused (the demonym is not the country) (2.2107ms)
+✔ an unknown region is still refused first (0.4812ms)
+✔ what the plan accepts, the ship-time gate (M1) accepts (5.5613ms)
+✔ a 200 is alive; a 429 is alive on quota; a 404 is retired (2.67ms)
+✔ a rejected key is reported as the key, not the model (0.7196ms)
+✔ a 5xx is transient, not a verdict on the model (0.684ms)
+✔ shutdown dates parse from both page formats; 'No shutdown date' is no date (263.8065ms)
+✔ the deprecations row for a model is found by its first column (1.0058ms)
+✔ a model that 404s on every key is RETIRED (1.3218ms)
+✔ a model that answers on any key is not retired by the others (1.3139ms)
+✔ a shutdown date that has passed is RETIRED even when the probe still answers (0.5259ms)
+✔ a shutdown inside the window is DEPRECATED-SOON, outside it ALIVE (0.6744ms)
+✔ a key that is rejected everywhere is KEY-REJECTED, and an answer with no alive key is UNKNOWN (1.2383ms)
+✔ a TTS model is probed with the audio response modality; other models with plain text (4.2249ms)
+✔ a TTS model that still gives no usable answer is PROBE-LIMIT (a warning), never UNKNOWN (a failure) (0.7822ms)
+✔ OpenRouter or Groq: a model missing from the list is MISSING; no key is NOT-CHECKED (0.6158ms)
+✔ a model the code does not call is NOT-CALLED and is never probed (0.5632ms)
+✔ bare IDs drop the google/ prefix so the same model is one model (0.7076ms)
+✔ the scanner finds model IDs with file and line, and the registry check reports the unknown ones (155.5617ms)
+✔ COVERAGE GATE: every model ID in the live repo code is in config/model-registry.json (49279.9729ms)
+✔ a one-off misread is cleared by the second look (6.4835ms)
+✔ a real misspelling fails both looks and stays failed (1.3213ms)
+✔ a PASS verdict that lists a failing name still counts as a failure (2.9272ms)
+✔ passing beats are never touched; a missing second answer keeps the first verdict; no second look returns the input (1.1207ms)
+✔ a clean voiceover passes every floor check (2666.3764ms)
+✔ a silence longer than the limit inside the speech fails, and is named (898.945ms)
+✔ captions that end well after the last spoken word fail the drift check (844.6385ms)
+✔ a clipped voiceover fails, and a voiceover that ends before its last caption fails the length check (1126.4778ms)
+✔ a file that does not decode fails at decode, and nothing else is claimed (401.1753ms)
+✔ the video and the voiceover must agree within the tolerance (3129.5424ms)
+✔ the bar is unchanged: one bad reading of good audio passes, a bad median fails (36.1788ms)
+✔ labels are the majority of the readings, and the same three readings give the same row in any order (18.2881ms)
+✔ three readings come from ONE model; fewer than three complete readings is 'could not run', never a verdict from one (22.9075ms)
+
+word pop POP_STANDARD scale        ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop POP_STANDARD rise         ease-out                           overshoot 0.0000  reversal 0.0000
+word pop POP_EMPHASIS scale        ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop POP_EMPHASIS rise         ease-out                           overshoot 0.0000  reversal 0.0000
+word pop POP_SOFT scale            ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop POP_SOFT rise             ease-out                           overshoot 0.0000  reversal 0.0000
+word pop POP_HARD scale            ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop POP_HARD rise             ease-out                           overshoot 0.0000  reversal 0.0000
+word pop POP_LETTER scale          ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop POP_LETTER rise           ease-out                           overshoot 0.0000  reversal 0.0000
+word pop POP_WORD_STACK scale      ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop POP_WORD_STACK rise       ease-out                           overshoot 0.0000  reversal 0.0000
+word pop NUMBER scale              ease-out (cubic-bezier .16,1,.3,1) overshoot 0.0000  reversal 0.0000
+word pop NUMBER rise               ease-out                           overshoot 0.0000  reversal 0.0000
+landed word                        still                              overshoot 0.0000  reversal 0.0000
+group pop-in scale                 ease-out (cubic)                   overshoot 0.0000  reversal 0.0000
+group pop-out scale                linear                             overshoot 0.0000  reversal 0.0000
+entrance SLIDE_FROM_L dx           ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_FROM_L o            ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_FROM_R dx           ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_FROM_R o            ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance DROP_IN dy                ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance DROP_IN o                 ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SCALE_UP s                ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SCALE_UP o                ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SCALE_PUNCH s             ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SCALE_PUNCH o             ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance FADE_LIFT dy              ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance FADE_LIFT o               ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance BLUR_IN s                 ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance BLUR_IN blur              ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance BLUR_IN o                 ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance WHIP_IN dx                cubic-bezier(.05,.9,.1,1)          overshoot 0.0000  reversal 0.0000
+entrance WHIP_IN rot               cubic-bezier(.05,.9,.1,1)          overshoot 0.0000  reversal 0.0000
+entrance WHIP_IN blur              cubic-bezier(.05,.9,.1,1)          overshoot 0.0000  reversal 0.0000
+entrance WHIP_IN o                 cubic-bezier(.05,.9,.1,1)          overshoot 0.0000  reversal 0.0000
+entrance CUT_IN o                  ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance FADE_OUT o                ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_OUT_L o             ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_OUT_R o             ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SCALE_DOWN o              ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance MASK_CLOSE o              ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance CUT_OUT o                 ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance WORD_FLY o                ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_LAND dx             ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+entrance SLIDE_LAND o              ease-out / ease-in-out / linear    overshoot 0.0000  reversal 0.0000
+bar BAR_GROW #0 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_GROW #1 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_GROW #2 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_DROP #0 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_DROP #0 drop               ease-in-out                        overshoot 0.0000  reversal 0.0000
+bar BAR_DROP #1 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_DROP #1 drop               ease-in-out                        overshoot 0.0000  reversal 0.0000
+bar BAR_DROP #2 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_DROP #2 drop               ease-in-out                        overshoot 0.0000  reversal 0.0000
+bar BAR_SPLIT #0 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_SPLIT #1 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_SPLIT #2 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_STACK #0 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_STACK #0 drop              ease-in-out                        overshoot 0.0000  reversal 0.0000
+bar BAR_STACK #1 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_STACK #1 drop              ease-in-out                        overshoot 0.0000  reversal 0.0000
+bar BAR_STACK #2 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_STACK #2 drop              ease-in-out                        overshoot 0.0000  reversal 0.0000
+bar BAR_PULSE #0 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_PULSE #1 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_PULSE #2 grow              ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_WAVE #0 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_WAVE #1 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_WAVE #2 grow               ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_COMPARE #0 grow            ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_COMPARE #1 grow            ease-out                           overshoot 0.0000  reversal 0.0000
+bar BAR_COMPARE #2 grow            ease-out                           overshoot 0.0000  reversal 0.0000
+pie PIE_SWEEP ring                 ease-in-out                        overshoot 0.0000  reversal 0.0000
+pie PIE_SWEEP arc                  ease-out / ease-in-out             overshoot 0.0000  reversal 0.0000
+pie PIE_POP ring                   ease-in-out                        overshoot 0.0000  reversal 0.0000
+pie PIE_POP arc                    ease-out / ease-in-out             overshoot 0.0000  reversal 0.0000
+pie PIE_ROTATE ring                ease-in-out                        overshoot 0.0000  reversal 0.0000
+pie PIE_ROTATE arc                 ease-out / ease-in-out             overshoot 0.0000  reversal 0.0000
+pie PIE_FROM_TOP ring              ease-in-out                        overshoot 0.0000  reversal 0.0000
+pie PIE_FROM_TOP arc               ease-out / ease-in-out             overshoot 0.0000  reversal 0.0000
+line LINE_DRAW dot #0              ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DRAW dot #1              ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DRAW dot #2              ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DROP dot #0              ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DROP dot #1              ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DROP dot #2              ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DOT_FIRST dot #0         ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DOT_FIRST dot #1         ease-out                           overshoot 0.0000  reversal 0.0000
+line LINE_DOT_FIRST dot #2         ease-out                           overshoot 0.0000  reversal 0.0000
+number FLIP_CARD scale             ease-out / ease-in                 overshoot 0.0000  reversal 0.0000
+number SNAP_IN scale               ease-out / ease-in                 overshoot 0.0000  reversal 0.0000
+number SCALE_IMPACT scale          ease-out / ease-in                 overshoot 0.0000  reversal 0.0000
+number count-up                    ease-out (decelerates, no bounce)  overshoot 0.0000  reversal 0.0000
+✔ word pops (every POP style): scale and rise arrive and stop (18.4243ms)
+✔ landed words do not wobble (micro-motion is still) (4.7128ms)
+✔ beat transition group pop: arrives and stops (no 1.04 peak) (76.3354ms)
+✔ text entrances (the animation library): none passes its target (115.291ms)
+✔ charts, pies, lines and numbers: none passes its target (63.5038ms)
+✔ the renderer's own drawing code has no time-driven oscillation (176.8373ms)
+✔ report (2.4039ms)
+[vocab] library_shape exposes 114 drawings to the planner
+[concepts] ch-26 beat 0: gold-tiger (live) — from the sentence
+[cutout] ch-26 beat 0: "gold-tiger" from pixabay, verdict=LITERAL, seen="a gold tiger statue"
+[cutout] ch-26 beat 0: source=https://pixabay.com/photos/gold-tiger-statue-figure-1234567/
+[concepts] ch-26 beat 0: gold-tiger (live) — from the sentence
+[cutout] ch-26 beat 0: "gold-tiger" from pixabay, verdict=LITERAL, seen="a gold tiger statue"
+[cutout] ch-26 beat 0: source=https://pixabay.com/photos/gold-tiger-statue-figure-1234567/
+[concepts] ch-26 beat 0: gold-tiger (live) — from the sentence
+[cutout] ch-26 beat 0: "gold-tiger" from pixabay, verdict=LITERAL, seen="a gold tiger statue"
+[cutout] ch-26 beat 0: source=https://pixabay.com/photos/gold-tiger-statue-figure-1234567/
+[concepts] ch-26 beat 1: warning-triangle (symbol) — from the sentence
+[concepts] ch-26 beat 2: silver-bar (live) — from the sentence
+[cutout] ch-26 beat 2: "silver-bar" from pixabay, verdict=LITERAL, seen="a gold tiger statue"
+[cutout] ch-26 beat 2: source=https://pixabay.com/photos/silver-bar-999/
+[concepts] ch-26 beat 3: warning-triangle (symbol) — from the sentence
+✔ the same cutout offered to three beats (three beat-numbered paths, one picture): only the first beat draws it (190.8819ms)
+✔ the same cutout at the SAME path (run-cache hit) on three beats: only the first (18.2411ms)
+✔ an image an EARLIER path attached (money cutout / logo / photo) is not given to a concept beat (9.21ms)
+✔ different pictures still all render; drawn symbols are not images and always pass (9.412ms)
+✔ identity: asset + a specific source; a bare domain is not an identity (1.1781ms)
+✔ a logo may be shown on more than one beat; a photo still may not (1.3271ms)
+✔ the portrait of a named person is identity too: it may be shown again; a place photo may not (1.0596ms)
+✔ a generic institution name or a one-word name never reaches the open logo search (4.8604ms)
+✔ a name of two or more words that is not generic may search; a qualified name ('Treasury of Russia') may (0.7367ms)
+▶ opencode-visual-intent
+  ✔ intent output has required fields (3.2124ms)
+  ✔ confidence values are valid (0.7695ms)
+✔ opencode-visual-intent (39.5817ms)
+✔ a text call goes to the text model, an image call to the vision model (4.1569ms)
+✔ image requests turn reasoning off (qwen3.7-plus returns no answer when reasoning spends the budget); text requests do not (5.011ms)
+✔ the request asks for a JSON object, with the caller's temperature and token cap (0.7736ms)
+✔ the token cap is bounded at 32768, and an explicit model overrides the default (0.6609ms)
+✔ images are counted from image_url parts only (0.9524ms)
+✔ no OPENROUTER_API_KEY is a no_key failure from this provider, never a crash (3.3297ms)
+✔ the llm.js chain tries OpenRouter after Gemini and before Groq, then Ollama (739.1435ms)
+✔ SCENE-LOW with an entity pop: the photo is painted FIRST, and still arrives on its word (43.8928ms)
+✔ SCENE-LOW without an entity pop: unchanged, the photo first (8.3968ms)
+✔ SCENE-FULL with an entity pop: the photo is painted FIRST, and still arrives on its word (1.8578ms)
+✔ SCENE-FULL without an entity pop: unchanged, the photo first (4.0545ms)
+✔ real case: Washington STATE map for 'Moscow and Washington' (run 37810883817 ch-9) FAILS (31.438ms)
+✔ real case: Alexandria, Egypt photo in a US federal-court story (run 37766249863) FAILS (10.4543ms)
+✔ Alexandria still FAILS when the same-place model wrongly answers SAME (P3, deterministic) (24.3923ms)
+✔ real approved video (run 37810883817 ch-5, Wilkes-Barre / Luzerne County) PASSES when confirmed (10.4398ms)
+✔ a place photo with no SAME verdict fails closed (20.7446ms)
+✔ map rules: unnamed place, longer place, no sentence (12.8127ms)
+✔ region contradiction compares states when both name one, else countries (1.079ms)
+[plan-cache] SET: test-plan-ke...
+[plan-cache] HIT: test-plan-ke...
+▶ plan-cache
+  ✔ generates deterministic cache keys (23.466ms)
+  ✔ different channel configs produce different keys (1.3088ms)
+  ✔ returns null for cache miss (30.6897ms)
+  ✔ caches and retrieves plans (12.1556ms)
+✔ plan-cache (77.9536ms)
+▶ plan.layout controls placement
+  ✔ without a layout the composition table is unchanged (the fallback) (45.2832ms)
+  ✔ cols:2 and cols:4 put the same element in different places (75.4162ms)
+  ✔ moves the headline where the plan says, and the table position no longer holds (10.4046ms)
+  ✔ moves, never resizes: every element keeps the size its content needs (25.0973ms)
+  ✔ a whole group moves together (the nodes keep their relative arrangement) (2.1974ms)
+  ✔ 'hero' names the composition's main element (1.605ms)
+  ✔ keeps an element on the frame and above the caption band — the only clamp (2.372ms)
+  ✔ reports an id that names nothing the beat could have, and moves nothing for it (2.3242ms)
+  ✔ a slot naming a visual the beat does not have places the beat's own visual (CI run 37723570093) (4.5587ms)
+  ✔ records what it placed in the render manifest (9.308ms)
+  ✔ slotRect: a cell span on the plan's grid, or a pixel rectangle (1.0736ms)
+✔ plan.layout controls placement (187.815ms)
+▶ what belongs to an element goes with it (CI run 37707115528)
+  ✔ a TYPE-FULL statement moved to the top keeps its kicker directly above it, not overlapping (21.5901ms)
+  ✔ a figure's label moves with the figure (15.8826ms)
+  ✔ a number placed across the top / middle edge is moved wholly into one zone, and the move is logged (20.8072ms)
+  ✔ nothing placed enters the caption's zone (y >= 1340) (1.9387ms)
+✔ what belongs to an element goes with it (CI run 37707115528) (61.4381ms)
+▶ a slot is a region (CI run 37708554035)
+  ✔ a 1x1 grid with one unaligned slot — the whole content area — moves nothing (2.7736ms)
+  ✔ the same slot with an explicit alignment does anchor the element (2.2383ms)
+  ✔ an unaligned element is moved only as far as it takes to sit inside a smaller slot (6.4338ms)
+✔ a slot is a region (CI run 37708554035) (12.0732ms)
+✔ nothing placed — the restacked kicker and rule included — goes above the content area's top (CI run 37714244283) (16.4574ms)
+▶ a planned layout that breaks a Layer 1 rule the default keeps is not used for that beat
+  ✔ a headline dropped into the nodes' zone is LEGAL now: text may sit with the visual (owner, 2026-10-09); its side and its vertical are the planner's (6.335ms)
+  ✔ when neither axis alone is legal, the whole beat is the default (11.0516ms)
+  ✔ a layout that squeezes the beat under 60% of the height keeps its horizontal placement and as much of its vertical as is legal (10.1836ms)
+  ✔ a legal layout is used (1.9301ms)
+  ✔ layoutViolations finds nothing in the table's own PROCESS-FULL layout (0.9085ms)
+✔ a planned layout that breaks a Layer 1 rule the default keeps is not used for that beat (31.4791ms)
+[vocab] library_shape exposes 114 drawings to the planner
+[translate] type → PHOTO, center, scale to 60% of frame, default pop at beat start, animate over 40%
+[translate] type → PHOTO, center, scale to 60% of frame, default pop at beat start, animate over 40%
+[translate] type → PHOTO, center, scale to 60% of frame, default pop at beat start, animate over 40%
+[translate] photo → PHOTO, center, default pop at beat start, animate over 40%
+▶ 1.1 ground: the planner's choice, white by default
+  ✔ nothing, 'white' and 'transparent' are the house white (4.7982ms)
+  ✔ a hex is a ground; a dark one takes light ink (3.9503ms)
+  ✔ a colour description is read; one that is not stays white and is reported unparsed (10.6419ms)
+  ✔ luminance orders black < grey < white (1.0053ms)
+  ✔ normalizeCanvas derives dark from the ground, never from a stale flag (1.2712ms)
+  ✔ the manifest records the declared ground and keeps `ground` meaning white|photo (52.8093ms)
+  ✔ a declared ground gets no white-only paper/gradient variation; the default keeps it (2.7937ms)
+  ✔ normalizeGrounds writes white or a hex back onto the beats and counts them (2.0696ms)
+✔ 1.1 ground: the planner's choice, white by default (85.3051ms)
+▶ 1.2 hook and close: no forced TYPE
+  ✔ plan-caps no longer forces the hook to TYPOGRAPHY when told not to (4.4595ms)
+  ✔ the legacy default is unchanged: the hook is TYPOGRAPHY (14.3791ms)
+  ✔ the ceiling of two TYPOGRAPHY beats still holds (1.2693ms)
+  ✔ a planner-named type is tried first (66.6619ms)
+  ✔ without a named type the description decides, as before (22.0425ms)
+  ✔ naming TYPE puts TYPE first, on the hook as on any beat (4.2329ms)
+✔ 1.2 hook and close: no forced TYPE (114.7747ms)
+▶ 1.3 motion tiers: the planner's own count
+  ✔ keeps any number of majors, zero excepted (1.923ms)
+  ✔ when the planner marked none, the old 2-3 rule applies so the render still has emphasis (0.5305ms)
+  ✔ a missing or invalid tier becomes medium (0.9112ms)
+✔ 1.3 motion tiers: the planner's own count (4.0512ms)
+▶ 1.4 composition: open vocabulary
+  ✔ every composition the renderer draws is known (1.9426ms)
+  ✔ an unknown composition is logged as unknown and mapped to the nearest, not failed (1.0712ms)
+  ✔ a name with nothing near is ignored and reported (3.2941ms)
+  ✔ nothing named = not declared; the caller's default applies (1.0551ms)
+  ✔ compositionsUsed counts, and flags one composition over 60% without correcting it (0.9841ms)
+✔ 1.4 composition: open vocabulary (9.371ms)
+▶ the four mandates are out of the planner prompt
+  ✔ the ground is not mandated white; the planner is asked what ground each beat needs (0.9246ms)
+  ✔ beat 0 and the last beat are not forced to TYPE (0.3739ms)
+  ✔ the major count is not fixed (0.3805ms)
+  ✔ the composition vocabulary is offered, and an unknown name is allowed (0.9552ms)
+✔ the four mandates are out of the planner prompt (3.4391ms)
+▶ composition rotation fills, it does not override
+  ✔ two planner-chosen NUMBER-FULL beats in a row stay NUMBER-FULL (11.9975ms)
+  ✔ the same repeat with nothing chosen by the planner is still broken (the default) (1.0089ms)
+  ✔ only the open beat is rotated when one of the pair is the planner's (0.6809ms)
+✔ composition rotation fills, it does not override (19.6035ms)
+▶ entrance styles and animation families
+  ✔ the planner's entrance styles stand, repeats included (1.2707ms)
+  ✔ an open beat is filled and differs from its neighbour (0.6032ms)
+  ✔ the planner's animation family stands (0.861ms)
+✔ entrance styles and animation families (4.1986ms)
+[vocab] library_shape exposes 114 drawings to the planner
+▶ 1.5 the channel style spec reaches the planner as reference
+  ✔ loads channels/ch-05/style-spec.json for dispatch key 5 (not Harmony's) (66.2317ms)
+  ✔ a channel with no spec is not an error: ref null and a reason (style_spec_missing) (31.6562ms)
+  ✔ the block is framed as reference, not instruction (8.7037ms)
+  ✔ it goes into the per-video part of the prompt, so the cached static part stays channel-independent (7.9098ms)
+✔ 1.5 the channel style spec reaches the planner as reference (119.0166ms)
+✔ a row of people is recorded with plate-person, not plate-organization (25.5696ms)
+✔ each named person in the row is matched (5.7638ms)
+✔ a row of ORGANISATIONS records plate-organization per entry, not the row kind (1.5593ms)
+✔ no entry in a row is ever recorded as the row kind (1.78ms)
+✔ a mixed row keeps each entry's own kind (1.6821ms)
+✔ a place WITH a region takes the map, not the row (1.3877ms)
+✔ a row with no recorded kinds is read exactly as before, not worse (0.6867ms)
+✔ a resolved mark still outranks the declared kind (0.5039ms)
+✔ the verified portrait is kept; nothing is forced into the beat (83.1103ms)
+✔ the portrait is what the sentence is about, and it is on the frame (0.8002ms)
+✔ without the portrait, BOTH names are directed (4.4792ms)
+✔ a plate row still takes the extra names beside it (3.0728ms)
+✔ a map still takes the extra names beside it (1.894ms)
+▶ youtube-publish approves exactly config/priority-channels.json
+  ✔ ch 1 is not refused by the allowlist (2161.6273ms)
+  ✔ ch 2 is not refused by the allowlist (314.8593ms)
+  ✔ ch 9 is not refused by the allowlist (491.0759ms)
+  ✔ ch 26 is not refused by the allowlist (526.1649ms)
+  ✔ ch 44 is not refused by the allowlist (540.5031ms)
+  ✔ ch 49 is not refused by the allowlist (5623.741ms)
+  ✔ ch 5 is not refused by the allowlist (489.7145ms)
+  ✔ ch 6 is not refused by the allowlist (381.3496ms)
+  ✔ ch 8 is not refused by the allowlist (319.515ms)
+  ✔ ch 10 is not refused by the allowlist (278.4508ms)
+  ✔ ch 1: its credentials path is its own (560.6975ms)
+  ✔ ch 2: its credentials path is its own (504.4133ms)
+  ✔ ch 9: its credentials path is its own (1014.964ms)
+  ✔ ch 26: its credentials path is its own (576.336ms)
+  ✔ ch 44: its credentials path is its own (557.6839ms)
+  ✔ ch 49: its credentials path is its own (616.0007ms)
+  ✔ ch 5: its credentials path is its own (1171.0479ms)
+  ✔ ch 6: its credentials path is its own (2558.0089ms)
+  ✔ ch 8: its credentials path is its own (555.5792ms)
+  ✔ ch 10: its credentials path is its own (660.8183ms)
+  ✔ ch 48 is refused (365.7226ms)
+  ✔ ch 30 is refused (417.812ms)
+  ✔ ch 3 is refused (568.0832ms)
+  ✔ names the config file as the source of truth in the refusal (316.1639ms)
+  ✔ the ch- form is accepted exactly like the bare form (543.7002ms)
+✔ youtube-publish approves exactly config/priority-channels.json (22122.1713ms)
+✔ the plain name's primary article names another country: it is used, Iran is not forced onto it (132.5144ms)
+✔ the primary article IS of the script's country: the qualified name stands, as before (8.6541ms)
+✔ a disambiguation page, no article or an article naming no country: qualified as before (2.9796ms)
+✔ not a generic name, or more than one country: untouched / refused exactly as qualifyEntity (1.315ms)
+▶ reference frames per channel
+  ✔ ch-05 gets 4 frames of its own spec's reference video, committed under channels/ch-05 (27.9766ms)
+  ✔ ch-6 gets its own reference's frames (106.558ms)
+  ✔ ch-8 gets its own reference's frames (164.4781ms)
+  ✔ ch-10 gets its own reference's frames (40.4071ms)
+  ✔ a channel with no reference of its own gets the shared set Layer 2 scores it against (77.7607ms)
+  ✔ timestamps are evenly spaced and skip the first and last 0.5 s (1.2339ms)
+✔ reference frames per channel (429.9682ms)
+▶ the planner call carries them
+  ✔ content carries the frames as image parts, after the text and the 'do not copy' note (531.8076ms)
+  ✔ no frames: the text alone, unchanged (0.7516ms)
+  ✔ every Gemini planner call is built with them (first call, strict retry, cached path) (2.922ms)
+✔ the planner call carries them (536.733ms)
+✔ a replacement replaces only the sentence named (33.5408ms)
+✔ CUT removes the sentence when its beat keeps another (1.1804ms)
+✔ CUT is refused for a beat's only sentence (the original stays) (0.8823ms)
+✔ cutting both sentences of a two-sentence beat keeps the first one that was asked (3.551ms)
+✔ a sentence the checks did not flag cannot be touched, and sentence text that merely contains the word cut is a normal replacement (1.3928ms)
+✔ nothing usable: no change (1.1312ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ the corrections pass asks for complete beats, shot and layout included (7.0873ms)
+✔ a first plan has no corrections block (0.7839ms)
+✔ the LAYOUT section states Layer 1's zone rule the way the audit applies it (header kind vs visual kind) (0.6513ms)
+✔ the LAYOUT section asks for a layout on every beat the shot does not arrange (40% of beats had none: CI runs 37718157561 and 37722686373) (0.6878ms)
+✔ the slot format offers 'center' only for a visual, not for text (run 37746025773: 6/9 beats centred text) (1.0397ms)
+✔ a figure named two ways is drawn once (128.842ms)
+✔ two DIFFERENT figures are both drawn (2.829ms)
+✔ a photo of somewhere the sentence does not name yields, like a map (5.129ms)
+✔ a photo OF the entity stays (1.5751ms)
+✔ the replacement covers what the photo failed to (1.446ms)
+✔ every beat that paints a headline reports it, whatever its mechanism (100.0216ms)
+✔ the headline is reported as narrative, so the phrase contract applies to it (8.619ms)
+✔ the canvas manifest carries the drawn lines, not just the box geometry (13.0929ms)
+✔ the monoculture check would see five compositions, not two labels (1.1555ms)
+✔ a TYPOGRAPHY beat reports its headline once, not twice (10.5745ms)
+✔ the wrapped statement joins to one string, and is still reported once (0.8433ms)
+✔ a headline drawn on a PROPORTIONAL_OBJECTS beat stays narrative, not a figure (1.007ms)
+✔ a number box is still reported as a value (1.3092ms)
+✔ only TYPE and NUMBER compositions lay out a slot for a second object (144.4505ms)
+✔ a visual on a composition with no slot is not reported as drawn (9.6877ms)
+✔ a visual on a composition with a slot is reported, with its kind (1.7774ms)
+✔ the two lists partition the compositions that were measured (0.6804ms)
+✔ a settled verdict for the same bytes is reused with no call (12.782ms)
+✔ different bytes, an older judge, or an unjudged answer is judged again (0.7061ms)
+[vocab] library_shape exposes 114 drawings to the planner
+[shots-final] ch-t: as resolved FIGURE[top] SCENE-FULL[top] STATEMENT[low] FIGURE[top] STATEMENT[low] — legal; planned shot not drawable on beat(s) 1
+[shots-final] ch-t: Gemini chose FIGURE[top] SCENE-LOW[low] HERO-LOW:warning-triangle[top] FIGURE[top] STATEMENT[low] — legal
+[shots-final] ch-t: as resolved FIGURE[top] SCENE-FULL[top] STATEMENT[low] FIGURE[top] STATEMENT[low] — legal; planned shot not drawable on beat(s) 1
+[shots-final] ch-t: Gemini chose FIGURE[top] PHOTO-CARD[top] STATEMENT-SPLIT[top] FIGURE[top] STATEMENT[low] — still: words in the top band on three beats in a row (beats 0-2); words in the top band on three beats in a row (beats 1-3); words in the top band and a words-only beat both repeat inside beats 2-4
+[shots-final] ch-t: no valid sequence number ({"beats":[{"index":0,"shot":"FIGURE"},{"index":1,"shot":"PHOTO-CARD"},{"index":2) — the beats stay as Gemini picked
+[shots-final] ch-t: as resolved FIGURE[top] SCENE-FULL[top] STATEMENT[low] FIGURE[top] STATEMENT[low] — legal; planned shot not drawable on beat(s) 1
+[shots-final] ch-t: no answer (no beats in the answer) — the beats stay as resolved
+[shots-final] ch-t: as resolved FIGURE[top] SCENE-LOW[low] HERO-OVER[low] FIGURE[top] STATEMENT[low] — legal
+[shots-final] ch-t: as resolved FIGURE[top] SCENE-FULL[top] STATEMENT[low] FIGURE[top] STATEMENT[low] — legal; planned shot not drawable on beat(s) 1
+[shots-final] ch-t: no answer (no beats in the answer) — the beats stay as resolved
+[shots-final] ch-t: as resolved FIGURE[top] SCENE-FULL[top] STATEMENT[low] FIGURE[top] STATEMENT[low] — legal; planned shot not drawable on beat(s) 1
+[shots-final] ch-t: Gemini chose FIGURE[top] PHOTO-CARD[top] STATEMENT-SPLIT[top] FIGURE[top] STATEMENT[low] — still: words in the top band on three beats in a row (beats 0-2); words in the top band on three beats in a row (beats 1-3); words in the top band and a words-only beat both repeat inside beats 2-4
+[shots-final] ch-t: Gemini chose legal sequence 1/8: FIGURE[top] PHOTO-CARD[top] STATEMENT[low] FIGURE[top] STATEMENT[low]
+✔ every photo shot, on every photo kind, both sides, any headline, with or without a label: legal by Layer 1's own box rules (449.7833ms)
+✔ every object shot with a cutout, two cutouts or a drawn symbol: legal (165.0829ms)
+✔ the shots are distinct compositions: a video of photo beats no longer repeats one frame (3.2579ms)
+✔ a shot frames only its content: no photo shot on a chart, no object shot without an object (3.1275ms)
+✔ applyShot draws the planner's shot, and only falls back on a Layer 1 rule — never to another shot (56.8129ms)
+✔ where the words sit (TEXT_AT, told to the planner) is what the template rule measures (labelsDrawn) (170.2362ms)
+✔ a framed photo leaves the ground showing, so canvas-ground and the pixel zone checks still run on it (3.2207ms)
+✔ a framed photo pops with the band it sits in (it is never left out of every group) (49.8031ms)
+✔ the planner prompt offers every shot, per beat, with where its words sit — and no longer forbids the reference's cards (4.363ms)
+✔ a resolved beat's menu: only what it can draw, its own frame always, a symbol only when the sentence states one (191.8501ms)
+✔ chooseShots: an illegal resolved sequence goes to Gemini; a legal answer is drawn as given (79.0465ms)
+✔ chooseShots: an answer that still breaks a rule goes back ONCE with the problems; no answer leaves the beats as resolved (174.9482ms)
+✔ chooseShots: a legal sequence whose planned shots all drew is not re-asked (65.6813ms)
+✔ MAP-BAND: the map a band across the CENTRE of the frame, its headline under it — legal, and [low] by the template measure (10.8053ms)
+✔ chooseShots names each beat's current frame as its menu does (board 37862697531: undrawn planned names were echoed back and matched nothing) (79.7484ms)
+✔ a words-only beat is offered the figure its own sentence states (FIGURE:<TYPE>), and nothing when it states none (118.2067ms)
+✔ FIGURE-LOW puts no words in the top band — the number alone up there; HERO-OVER keeps its rule (2.9061ms)
+✔ chooseShots round 2: when the per-beat picks still break a rule, Gemini chooses among complete LEGAL sequences (59.8181ms)
+✔ a number beat whose sentence names an object is offered that object as an object shot; one image on two beats breaks the sequence (17.4218ms)
+✔ the words-only cards and the stat card: legal on both sides, with or without a label, any headline; words never in the top band (484.3771ms)
+✔ the four cards are different frames, not the same frame with other words (15.1041ms)
+✔ a card shot frames only a plain statement; STAT only a number with its label (0.5114ms)
+[vocab] library_shape exposes 114 drawings to the planner
+✔ grid on: two centred beats in a row are not a problem (5.1933ms)
+✔ grid on: the same composition twice in a row still is (2.4143ms)
+✔ grid off (the pre-grid machinery): the rule is still enforced (1.149ms)
+✔ the same logo on two beats is not 'the same image' to the shot solver (a photo is) (3.0505ms)
+✔ the old chassis (label + phrase on every beat) FAILS (6.1149ms)
+✔ one device repeating is allowed; two is the template (5.8394ms)
+✔ no device may appear on more than two consecutive beats — each device independently (1.6251ms)
+✔ a manifest beat with no chrome record fails closed (0.6937ms)
+✔ enforceChrome removes chrome only, until every window passes (4.1679ms)
+✔ enforceChrome reports a type-led run of three as unfixable — removal cannot break it (2.3071ms)
+✔ enforceChrome keeps chrome that is already legal (4.3997ms)
+✔ the fixture is the case that failed: every beat's text lives on canvas.headline (4.0211ms)
+✔ REDUCE_TEXT_BEATS actually removes rendered phrases (8.2338ms)
+✔ REMOVE_TYPOGRAPHY clears the headline the frame draws, not just the plan's copy (2.7869ms)
+✔ the beats kept by `keep` are the ones that survive (4.9058ms)
+✔ a beat with no canvas is still cleared (older plans) (0.7197ms)
+✔ the fixture reproduces the split: CAPABILITY beats that draw headlines (11.8101ms)
+✔ text-forward is counted from the drawn text, and the source is reported (2.9853ms)
+✔ the measure agrees with the typography audit on the same manifest (0.9232ms)
+✔ a manifest with no text inventory falls back to the mechanism name (2.2344ms)
+PHOTO-BAND       v0 centre x 541 bottom 1328
+PHOTO-BAND       v1 centre x 540 bottom 1328
+HERO-OVER        v0 centre x 540 bottom 1328
+HERO-OVER        v1 centre x 541 bottom 1328
+PHOTO-CARD       v0 centre x 540 bottom 1328
+PHOTO-CARD       v1 centre x 540 bottom 1328
+HERO-OVER        v0 centre x 541 bottom 1328
+HERO-OVER        v1 centre x 540 bottom 1328
+PHOTO-CARD       v0 centre x 540 bottom 1328
+PHOTO-CARD       v1 centre x 541 bottom 1328
+PHOTO-BAND       v0 centre x 540 bottom 1328
+PHOTO-BAND       v1 centre x 540 bottom 1328
+SCENE-LOW        v0 centre x 541 bottom 1328
+SCENE-LOW        v1 centre x 541 bottom 1328
+HERO-OVER        v0 centre x 541 bottom 1328
+HERO-OVER        v1 centre x 541 bottom 1328
+PHOTO-BAND       v0 centre x 540 bottom 1329
+PHOTO-BAND       v1 centre x 541 bottom 1328
+TYPE-FULL        v0 centre x 541 bottom 1315
+TYPE-FULL        v1 centre x 541 bottom 1314
+MAP-CENTERED     v0 centre x 541 bottom 1328
+MAP-CENTERED     v1 centre x 541 bottom 1328
+TYPE-TITLE       v0 centre x 540 bottom 1328
+TYPE-TITLE       v1 centre x 540 bottom 1328
+TYPE-CHAPTER     v0 centre x 540 bottom 1328
+TYPE-CHAPTER     v1 centre x 540 bottom 1328
+NUMBER-FULL      v0 centre x 540 bottom 1329
+NUMBER-FULL      v1 centre x 541 bottom 1328
+TYPE-FULL        v0 centre x 540 bottom 1314
+TYPE-FULL        v1 centre x 541 bottom 1314
+DATA-FULL        v0 centre x 540 bottom 1328
+DATA-FULL        v1 centre x 540 bottom 1328
+NUMBER-FULL      v0 centre x 541 bottom 1328
+NUMBER-FULL      v1 centre x 540 bottom 1328
+DATA-FULL        v0 centre x 541 bottom 1328
+DATA-FULL        v1 centre x 541 bottom 1328
+ENTITY-ART       v0 centre x 540 bottom 1328
+ENTITY-ART       v1 centre x 540 bottom 1328
+ENTITY-ART       v0 centre x 541 bottom 1328
+ENTITY-ART       v1 centre x 541 bottom 1328
+TYPE-CHAPTER     v0 centre x 540 bottom 1328
+TYPE-CHAPTER     v1 centre x 540 bottom 1328
+ENTITY-ART       v0 centre x 540 bottom 1328
+ENTITY-ART       v1 centre x 540 bottom 1328
+NUMBER-FULL      v0 centre x 541 bottom 1329
+NUMBER-FULL      v1 centre x 541 bottom 1328
+TYPE-FULL        v0 centre x 541 bottom 1314
+TYPE-FULL        v1 centre x 540 bottom 1314
+ENTITY-ART       v0 centre x 541 bottom 1328
+ENTITY-ART       v1 centre x 541 bottom 1328
+LIST-BUILD       v0 centre x 540 bottom 1329
+LIST-BUILD       v1 centre x 541 bottom 1328
+NUMBER-FULL      v0 centre x 541 bottom 1329
+NUMBER-FULL      v1 centre x 540 bottom 1328
+ENTITY-ART       v0 centre x 540 bottom 1328
+ENTITY-ART       v1 centre x 540 bottom 1328
+PHOTO-CARD       v0 centre x 541 bottom 1328
+PHOTO-CARD       v1 centre x 541 bottom 1328
+MAP-CENTERED     v0 centre x 540 bottom 1328
+MAP-CENTERED     v1 centre x 541 bottom 1328
+PROCESS-FULL     v0 centre x 540 bottom 1328
+PROCESS-FULL     v1 centre x 541 bottom 1328
+TIMELINE         v0 centre x 541 bottom 1329
+TIMELINE         v1 centre x 540 bottom 1328
+LIST-BUILD       v0 centre x 540 bottom 1329
+LIST-BUILD       v1 centre x 540 bottom 1328
+COMPARISON-SPLIT v0 centre x 541 bottom 1329
+COMPARISON-SPLIT v1 centre x 541 bottom 1328
+MAP-CENTERED     v0 centre x 540 bottom 1328
+MAP-CENTERED     v1 centre x 540 bottom 1328
+NUMBER-FULL      v0 centre x 540 bottom 1329
+NUMBER-FULL      v1 centre x 541 bottom 1328
+DATA-FULL        v0 centre x 541 bottom 1329
+DATA-FULL        v1 centre x 541 bottom 1328
+DATA-FULL        v0 centre x 541 bottom 1329
+DATA-FULL        v1 centre x 540 bottom 1328
+TYPE-FULL        v0 centre x 541 bottom 1314
+TYPE-FULL        v1 centre x 540 bottom 1314
+TYPE-FULL        v0 centre x 541 bottom 1328
+TYPE-FULL        v1 centre x 541 bottom 1328
+TYPE-FULL        v0 centre x 541 bottom 1314
+TYPE-FULL        v1 centre x 540 bottom 1314
+✔ the grid is on in production (3.3525ms)
+✔ every composition's words are centred on the frame's axis and stand on the grid line — both variants (288.198ms)
+✔ no composition keeps its words in the top band (240.2664ms)
+✔ a planned slot layout does not move the words off the grid (2.1381ms)
+✔ the first take that passes is kept, and nothing more is recorded (6.8059ms)
+✔ a failing take is re-recorded; the take that passes is kept (0.9077ms)
+✔ when no take passes, the BEST one is put back (not the last) (9.6737ms)
+✔ a judge that cannot run keeps the take it was given (no retake spiral) (23.9538ms)
+✔ no take could be made at all: outcome none, so the caller falls back to the next voice (1.7255ms)
+✔ a later recording failure keeps the best earlier take (0.8432ms)
+✔ takes = 1 records once and judges once (2.6489ms)
+✔ the beat as rendered is exactly what the board failed (5.3557ms)
+✔ the missing figure is directed as a stat card when it is the only number (18.2593ms)
+✔ one lone figure replaces rather than riding alongside (7.417ms)
+✔ a figure already on the beat is not directed again (2.6569ms)
+✔ a sentence stating two numbers gets BOTH, and the beat is then stable (5.3315ms)
+✔ a number in a plates row is a figure, and is matched as one (1.4204ms)
+✔ ch-9 beat 4: Ethiopia, Eritrea and Tigray all get a visual, not just the UN (23.1525ms)
+✔ ch-26 beat 6: Deloitte and Abramovich are directed, and Cyprus keeps its map (10.9598ms)
+✔ ch-1 beat 3: both organisations get a plate row (14.0848ms)
+✔ a beat that already covers everything gets no directive (1.4444ms)
+✔ the single-entity path is unchanged (ladderFor still answers the primary) (1.9713ms)
+✔ nothing is ever invented: every directed name is one the sentence named (4.7796ms)
+✔ the directed names are exactly the ones the frame was missing (8.087ms)
+✔ measureGround skips beats drawn with a gradient or the paper texture (4.3851ms)
+✔ the variation it skips is real: beat index 4 is a gradient beat, index 2 a paper beat (3.3863ms)
+▶ visual-beat-grouper
+  ✔ groups consecutive cues into beats (5.2633ms)
+  ✔ merges cues separated by short pauses (0.9102ms)
+  ✔ handles empty input (7.8559ms)
+  ✔ handles single cue (23.3004ms)
+  ✔ preserves timing information (9.6835ms)
+✔ visual-beat-grouper (54.8055ms)
+✔ an organisation: the exact-label item's P154 logo, current logo before a former one (16.7932ms)
+✔ an alias finds the item: 'Low Taek Jho' -> Jho Low (a person, P18) (22.9792ms)
+✔ a person's name never reaches an organisation's item, nor the reverse (1.8299ms)
+✔ no exact match, a disambiguation page, nothing to show: null (no guessing by closeness) (1.4953ms)
+✔ label folding: case, punctuation and 'and' / '&' (1.693ms)
+✔ deprecated claims are skipped; a missing fetcher or empty name is null (0.9979ms)
+✔ each headline word lands on the frame it is spoken (62.6525ms)
+✔ the first word is never later than frame 6 and the order never goes backwards (0.9655ms)
+✔ words the narration does not match sit between their neighbours (0.9297ms)
+✔ too few matches or no timings -> null (the even stagger stays) (6.9213ms)
+✔ the last word lands before the beat ends (0.863ms)
+ℹ tests 759
+ℹ suites 105
+ℹ pass 757
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 2
+ℹ todo 0
+ℹ duration_ms 285901.3437
