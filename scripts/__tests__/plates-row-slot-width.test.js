@@ -41,7 +41,7 @@ test("ch-26 beat 8's row is what this test is about", () => {
 });
 
 test("MarkPlate accepts an explicit width", () => {
-  assert.ok(/function MarkPlate\(\{ side, name, item, style, accent, th, hair, width \}\)/.test(SRC), "MarkPlate takes no width");
+  assert.ok(/function MarkPlate\(\{[^}]*\bwidth\b[^}]*\}\)/.test(SRC), "MarkPlate takes no width");
 });
 
 test("a row entry is drawn at its slot width, not 1.6x it", () => {

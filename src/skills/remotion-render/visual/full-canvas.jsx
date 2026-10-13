@@ -192,6 +192,23 @@ function timeline(c, B, dur, fps) {
 
 // ── the four roles ────────────────────────────────────────────────────
 const HEADLINE_MOTIONS = ROLE_HEADLINE.motions;
+// A VERIFIED MARK IS STILL A COLOURED OBJECT. Board 38380216978 ch-26 beat 0:
+// "0.97% of the frame is a colour that is neither ink, neutral nor the accent
+// #6B2A6B (max 0.4%)". The frame showed the SEC seal in full colour - gold,
+// navy, red - on an ink/neutral/accent frame. The asset is legitimate (public
+// domain, verified); only its palette was wrong.
+//
+// The gate is right and its 0.4% limit must not be loosened, so the SOURCE
+// changes: a mark drawn inside a plates row is drawn in the channel's palette.
+// The mark is not blanked, swapped or faked - it is still the real seal, taken
+// to neutral the way the rest of the system takes imagery to the frame. The
+// alternative, dropping to the name in type, would name an entity we actually
+// hold a verified mark for, which is the weaker answer.
+//
+// Scoped to the row deliberately: FLAT is saturate 1 everywhere else
+// (composition.js), so this changes only where the audit actually failed and
+// every other render path keeps its current look.
+const PLATES_MARK_DESATURATE = 1;
 export const headlineMotionFor = (idx) => HEADLINE_MOTIONS[((idx % 3) + 3) % 3];
 
 /**
@@ -949,14 +966,14 @@ function LucideIcon({ name, size, color, stroke = 2, style }) {
  * A plate for a named entity: its real mark inside a hairline box, or — when no free, verified mark exists — its NAME set in the serif
  * (large, in the serif; whole, never initials). Sharp corners, ink and the one accent. No stock icon, ever.
  */
-function MarkPlate({ side, name, item, style, accent, th, hair, width }) {
+function MarkPlate({ side, name, item, style, accent, th, hair, width, desaturate }) {
   // The fixture look (owner, 2026-10-10: "the test images ... look better than the actual video"): no box. A real mark stands free on the
   // ground; with no free mark the NAME is set large in the serif between a hairline and the accent rule — a type card, not a placeholder box.
   const label = String(name || "").trim();
   if (item?.asset) {
     return (
       <div style={{ position: "absolute", left: 0, top: 0, width: side, height: side }}>
-        <Img src={staticFile(item.asset)} style={{ position: "absolute", left: "4%", top: "4%", width: "92%", height: "92%", objectFit: "contain" }} />
+        <Img src={staticFile(item.asset)} style={{ position: "absolute", left: "4%", top: "4%", width: "92%", height: "92%", objectFit: "contain", filter: desaturate ? `grayscale(${desaturate})` : undefined }} />
       </div>
     );
   }
@@ -1025,7 +1042,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           const it = items[i], label = String(nm).toUpperCase(), fs = Math.max(24, Math.min(40, Math.floor((side * 1.7) / Math.max(4, label.length))));
           return (
             <div key={i} style={{ position: "absolute", left: x0 + i * (side + gap), top: 0, width: side, height: b.h, ...flatCss(local - Math.round((at + i * 0.18) * fps)) }}>
-              <MarkPlate side={side} width={side} name={nm} item={it} style={a.style} accent={accent} th={th} hair={hair} />
+              <MarkPlate side={side} width={side} desaturate={PLATES_MARK_DESATURATE} name={nm} item={it} style={a.style} accent={accent} th={th} hair={hair} />
               {/* A ROW ENTRY MUST FIT ITS SLOT. MarkPlate sets its text WIDER than the
                   square it was given (W = side * 1.6, placed at (side - W) / 2, a
                   negative offset) so a lone long name can run wide. In a row that
