@@ -5,27 +5,57 @@ one blocks. Phase A: see the whole system, fix nothing. Phase B: work the list.
 
 ## Board
 
-**Run `38393719519`** — all ten priority channels, `dry_run=true`, HEAD `2744f143`.
+Two boards now. **Run `38411644598`** — all ten channels, `dry_run=true`, HEAD
+`c160e099`, run *after* the script-brief fix. Run `38393719519` was the one before it.
 
 Channels: `1,2,5,6,8,9,10,26,44,49`.
 
-### The headline
+### Job 1 VERIFIED — the claims gate is cleared
 
-**The dominant blocker is not rendering. It is script and plan quality.**
+Board `38393719519` stopped **ch-1** on `claims`. On `38411644598`, after
+`aa7f7a72`:
 
-Five of ten channels were stopped before or during planning, by three checks that
-all read the same thing — *does this text say what the sentence says*:
+- **ch-1, ch-8, ch-44 did not stop on claims.** ch-8 and ch-44 now reach the RENDER
+  stage — they were prep-skipped on claims in every prior board.
+- **0 rejections attributable to the claims gate.**
 
-| Gate | Channels | What it said |
+The brief was the defect, and it is fixed. `scripts/validate-script-claims.cjs`
+was never wrong and was not touched.
+
+### The board now, per channel — still 0 approved
+
+| Channel | State | Gate |
 |---|---|---|
-| claims (prep) | 1 | sentence 6 attributes "suggests paying off debt" to the Gerald Financial Research Team; the research says they noted repayment plans fail, not that they suggest this |
-| narration judge | 44 | 8/8 sentences read as synthetic or flat |
-| challenger | 9, 49 | beat 4 CONTRADICTION / beat 0 CONTRADICTION — the visual contradicts the sentence |
+| 8 | killed | canvas `entity-coverage` — beat 3: date "June 25" — draws figure, none of it the entity |
+| 10 | killed | canvas `entity-coverage` — beat 6: org "IdeaLens", date "October 13, 2026" — **draws plate-place** |
+| 44 | killed | canvas `entity-coverage` — beat 1: org "Google Scholar", number "5,000,000" — **draws plate-place** |
+| 2 | killed | canvas `canvas-type` — beat 5: TYPE-FULL+NAME twice in a row |
+| 9, 49, 26, 1, 5, 6 | held / cancelled in prep | — |
 
-Plus two channels skipped in prep and two cancelled mid-prep.
+**`Approved: 0` on all ten.** Nothing has ever reached `approved/`.
 
-Two channels reached **`approved-review`** (26, 44) — the furthest anything has
-got. **Zero reached `approved`.**
+### The new headline: one cause now dominates
+
+Four of the six channels that reached QA failed on the **same gate with the same
+signature**:
+
+```
+[canvas] FAIL entity-coverage — draws plate-place, none of it the entity
+```
+
+ch-10 draws `plate-place` for an **organization**. ch-44 draws `plate-place` for
+an **organization**. ch-8 draws a `figure` for a **date**. In every case the rung
+was assigned from the wrong entity type, so `coverageOf()` — which matches a
+person against `plate-person`, a place against `plate-place` — finds nothing it
+recognises and reports "none of it the entity".
+
+**This is cause 3, now the top cause: 3 channels with one signature.** The ladder
+assigns the rung; the coverage check matches the rung against the entity's type.
+The diagnostic to keep asking applies directly: **is the check reading the drawn
+rung, or the entity's type? When they disagree, the check is reading a proxy.**
+
+The claims/attribution theme that dominated `38393719519` is gone. The blocker has
+moved to one structural mismatch in the entity ladder.
 
 ## Causes, ranked by channels affected
 
@@ -97,22 +127,33 @@ choice.
 
 **Status:** open, partial (totals done).
 
-### 3. Beat draws the wrong entity class — 3 channels
-**Channels** 10, 44, 2 · **Gate** canvas `entity-coverage`
+### 3. Beat draws the wrong entity class — **NOW THE TOP CAUSE, 3 channels**
+**Channels** 8, 10, 44 · **Gate** canvas `entity-coverage`
 
-- ch-10 beat 2: names persons "Philip Goff", "William Seager" and organization
-  "Stanford Encyclopedia" — **draws `plate-place`**, none of it the entity. The
-  rung was assigned to the wrong entity type.
-- ch-44 (earlier): organization "Starbucks" — draws a chart, not the org.
-- ch-2 (earlier): place "Paris" — draws logo + date.
+Board `38411644598`, one signature across all three:
 
-**Class-level fix:** the ladder picks a rung; `coverageOf()` matches a rung to an
-entity type. A rung drawn for the wrong type is read as *nothing covered*. The
-diagnostic to keep asking: **is the check reading the drawn rung or the entity's
-type?** When they disagree, the check is reading a proxy. `plates-row-kinds.test.js`
-already pins part of this invariant.
+- ch-10 beat 6: organization "IdeaLens" — **draws `plate-place`**
+- ch-44 beat 1: organization "Google Scholar" — **draws `plate-place`**
+- ch-8 beat 3: date "June 25" — draws a `figure`
 
-**Status:** open.
+`plate-place` for an **organization** is the tell. `coverageOf()` matches a place
+against `plate-place`, a person against `plate-person`, an organization against
+`logo`/`photo`/`plate-organization`/`cutout`. A rung drawn for the wrong type
+matches nothing and is reported as "none of it the entity".
+
+**Class-level fix:** in `scripts/entity-ladder.js`, `directiveFor()` /
+`kindOf()` — a rung must be chosen from the entity's declared `type`, and the rung
+emitted must be one `coverageOf()` recognises for that type. `drawnOf()` reads the
+rung that was drawn; `coverageOf()` matches it against the entity's type. Where
+they disagree the coverage check is reading a proxy and reports a false negative.
+
+Assert the invariant as a test rather than fixing instances: **for every entity
+type, every rung the ladder can emit must be one `coverageOf()` recognises.** A
+rung with no matching coverage branch is a beat that renders a picture and reads
+as blank — the same class as the `date`/`span` rungs that produced a box with
+nothing in it on ch-2.
+
+**Status:** open. This is the next thing to fix.
 
 ### 4. Script reads synthetic or flat to the narration judge — 2 channels
 **Channels** 44, 26 (earlier 7/7) · **Gate** narration listener
