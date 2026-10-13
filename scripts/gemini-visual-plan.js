@@ -190,6 +190,46 @@ const TYPE_CAPABILITY = { PHOTO: "revelation", COUNTER: "evidence", BAR: "compar
 // name (the same crude stem as the cutout / lead-in gates). An entity the
 // sentence does not name is dropped — its photo would be a claim the
 // narration never makes.
+/**
+ * Figures a headline rewords: "$7m" where the sentence says "$7 million".
+ *
+ * Board 38321106622 failed three channels on naming-check with one cause: the
+ * planner abbreviated a figure the sentence spells in full. ch-49 beat 2 drew
+ * the bars as "$7 million" and "$8 million" — correct — under a headline
+ * reading "$7m to $8m", so one frame said the same number two ways. ch-10 beat
+ * 1 drew "15" for "15th".
+ *
+ * The naming check is right and is not loosened: an abbreviation is a different
+ * figure on screen than the one spoken, and a headline is drawn FROM the
+ * sentence, never paraphrased. This is caught on the plan because by render
+ * time the abbreviation is laid out and nothing downstream compares it to the
+ * sentence.
+ *
+ * Returns a description per offending figure, or [] — so a caller can report it
+ * and a test can drive it without a model.
+ */
+export function rewordedFigures(headline, sentence) {
+  const said = new Set();
+  for (const m of String(sentence || "").toLowerCase().matchAll(/(\$?\d[\d,]*(?:\.\d+)?)\s*(%|percent|thousand|million|billion|trillion)\b/gi)) {
+    said.add(m[0].replace(/\s+/g, " ").trim());
+  }
+  const out = [];
+  for (const m of String(headline || "").matchAll(/\$?\d[\d,]*(?:\.\d+)?\s*(?:%|percent\b|thousand|million|billion|trillion\b|k\b|bn\b|mn\b|m\b|b\b|t\b)?/gi)) {
+    const digits = m[0].replace(/[^\d.]/g, "").replace(/\.$/, "");
+    if (!digits) continue;
+    const saidHere = [...said].find((s) => s.replace(/[^\d.]/g, "") === digits);
+    if (!saidHere) continue;   // a figure the sentence does not state is another rule's business
+    // The headline must SPELL the figure as the sentence does. "$7 million" is
+    // the sentence's own wording and passes; "$7m" and a bare "$7" do not.
+    // "%" and "percent" are the same unit either way, and so is "1,000"/"1000".
+    const norm = (x) => String(x).toLowerCase().replace(/,/g, "").replace(/\s*percent\b|%/g, "%").replace(/\s+/g, " ").trim();
+    if (norm(m[0]) !== norm(saidHere)) {
+      out.push({ shown: m[0].trim(), expected: saidHere });
+    }
+  }
+  return out;
+}
+
 export function entityNamedInSentence(name, sentence) {
   const sent = String(sentence || "").replace(/\$/g, " dollar ").split(/[^A-Za-z0-9']+/).filter(Boolean).map(stemWord);
   const words = String(name || "").split(/[^A-Za-z0-9']+/).map((w) => w.toLowerCase()).filter((w) => w && !LEAD_FUNCTION.has(w) && !["inc", "corp", "co", "llc", "ltd", "plc"].includes(w));
@@ -1406,9 +1446,19 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       planRuleIssues.push({ beat: b.index, problem: `concept names a drawing/primitive (${named.slice(0, 3).join(", ")}), not something a camera could photograph`,
         fix: "rewrite \"concept\" and \"asset_query\" as a real photograph of where this happens; keep drawings only in \"fallback_drawing\"" });
     }
-    if (b.fallback_drawing && !LIBRARY_NAMES.includes(String(b.fallback_drawing).trim())) {
+if (b.fallback_drawing && !LIBRARY_NAMES.includes(String(b.fallback_drawing).trim())) {
       planRuleIssues.push({ beat: b.index, problem: `fallback_drawing "${b.fallback_drawing}" is not a LIBRARY drawing`,
-        fix: "set \"fallback_drawing\" to an exact LIBRARY name that depicts the same subject" });
+        fix: `set "fallback_drawing" to an exact LIBRARY name that depicts the same subject` });
+    }
+// A HEADLINE MAY NOT REWORD A FIGURE — rewordedFigures() carries the rule
+    // and its evidence.
+    {
+      const hl = String(b.headline || b.visual_headline || "");
+      const bad = rewordedFigures(hl, b.narration || "");
+      if (bad.length) {
+        planRuleIssues.push({ beat: b.index, problem: `headline "${hl.trim()}" rewords a figure the sentence states: ${bad.slice(0, 2).map((x) => `"${x.shown}" should be "${x.expected}"`).join("; ")}`,
+          fix: `copy the figure exactly as the sentence writes it ("${bad[0].expected}"), never abbreviated; the naming check reads the frame against the sentence` });
+      }
     }
   }
 
