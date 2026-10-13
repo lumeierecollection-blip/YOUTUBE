@@ -3,7 +3,7 @@
 Written at the context limit of the session on 2026-10-13. Read this first.
 
 ## Hash at stop
-`HEAD == origin/main == 70dcbd7c`, tree clean, both directions empty.
+`HEAD == origin/main == 73ab2fba`, tree clean, both directions empty.
 
 Nothing is left in flight.
 
@@ -11,73 +11,69 @@ Nothing is left in flight.
 **None.** Zero of the ten priority channels are in `data/renders/approved/`.
 No videos to link.
 
-ch-26 is in `approved-review` (was `rejected` two runs ago) — one step up, but
-still not green.
+## Closed: ch-26 "AlexanderConner" — fixed `73ab2fba`, frame NOT obtained
 
-## THE MAP KEY — fixed, and the frame settles it
-
-Run `38376666510`. The real cause, finally:
-
-`MapCentered` wraps the entire map svg in a grow transform
-(`full-canvas.jsx:1242`):
-
-```jsx
-transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`,
-transform: `scale(${(1 + grow(local, dur, fps, 0.08)).toFixed(4)})`
-```
-
-so a point `x` lands at `cx + (x - cx) * s`. With `cx = 540` and `s` up to
-`1.08`, the key at `x = 32` lands at **-8.6 px** — off the frame. The plate was
-never off-frame before the transform; **the transform moved it off-frame.**
-
-Two earlier diagnoses were wrong and are recorded so they are not retried:
-
-1. `0472a56b` — "the text overflows its plate". False. Width was never the cause.
-2. "clamp to the frame because `bounds.x + 22` is off-frame". Also false. The
-   manifest says `boxes.map = { x: 0, y: 640, w: 1080, h: 470 }`; `bounds.x` is
-   0 and `x = 22` is well inside a 1080-wide frame.
-
-Fixed in `70dcbd7c`: the key now solves for the position that lands inside the
-frame's safe area **after** the scale, and `MapCentered` passes the live scale
-in. Both edges solved. `scripts/__tests__/map-key-frame-clamp.test.js` asserts
-the OLD placement still lands off-frame, so the test cannot silently stop
-testing anything.
-
-**Evidence:** the map-key beat (beat 7, labels "Robert Welsh, U.S. District
-Court for the Eastern District of Texas") passed the naming check on
-`38376666510`: `[naming-check] beat 7: PASS`.
-
-**Caveat, stated plainly:** the artifacts for that run contain `beat0.png` and
-`look-beat-{1,2,5,6,8}.png` — **there is no still of beat 7**, so this fix is
-supported by the naming check reading real frames, not by a frame I can paste.
-If you want the picture, render beat 7 to a still.
-
-## NEXT FAILURE: ch-26 beat 8 — two words collided
-
-This is what stopped ch-26 on `38376666510`:
+Board `38376666510`, ch-26 beat 8 rendered the two names as one word:
 
 ```
-[naming-check] ::error::naming check failed: 1/9 beats misname an entity (beats 8)
+AlexanderConner
 ```
 
-Frame pasted in the session transcript (`look-beat-8.png`). It renders:
+From the rendered manifest, beat 8's canvas.art is a plates row:
 
-**`AlexanderConner`**
+```json
+{ "kind": "plates", "names": ["SEC", "Alexander", "Conner"],
+  "items": [{"name": "SEC", "asset": "...us-securities-and-exchange-commission-logo.png"}, null, null] }
+```
 
-— two words with no gap between them, on a NAME-LOGO composition beside an SEC
-seal. This is **not** a clip: nothing is cut off. The two words are placed as
-though they were one, so the on-screen name is a different string from the one
-in the sentence.
+Only SEC has a verified mark, so Alexander and Conner are drawn as type.
 
-Where to look: the NAME-LOGO / name-plate path that lays a name out beside a
-mark, not `fitText`/`fitHeadline` (which are about wrapping and were fixed in
-`67d17bb3`) and not the map key. Suspect either a missing separator in the
-source string before layout, or a gap/track computation that collapses to zero
-at this size. Print the laid-out name string and the computed gap before
-changing anything.
+`EntityArt` gives each entry its own slot with a 32 px gap:
 
-Also note: local-audit passed **29/29** on this video while naming failed it, so
-the pixel checks did not catch a name rendered as one word.
+```js
+const n = names.length, gap = n === 1 ? 0 : 32;
+const side = Math.max(120, Math.min(b.h - 70, Math.floor((b.w - gap * (n - 1)) / n)));
+... left: x0 + i * (side + gap) ...
+```
+
+but `MarkPlate` sized its text `W = side * 1.6` and placed it at
+`left: (side - W) / 2` — **negative**. Every entry's name overflowed its slot by
+`0.3 * side` on both sides, far past the 32 px gap, and the neighbours collided.
+
+Fixed by passing `width={side}` from the row. The lone-plate path keeps `W =
+side * 1.6` unchanged, because that wide box is deliberate for a single name.
+`scripts/__tests__/plates-row-slot-width.test.js`, six tests.
+
+**Evidence, stated honestly:** on run `38380216978` the naming check did **not**
+fail. But the channel drew a **different topic** (`...-final-judgments`, not
+`...-sec-judgments`), so this fix was very likely never exercised. The clean
+signal will be a run where beat 8 is the plates row again. Do not record this
+as verified on the strength of one naming pass.
+
+## NEXT FAILURE: ch-26 beat 0 — off-palette colour
+
+Run `38380216978`, ch-26 rejected again, on a new topic:
+
+```
+[canvas] FAIL flat-look — beat 0 (ENTITY-ART plates): 0.97% of the frame is a
+colour that is neither ink, neutral nor the accent #6B2A6B (max 0.4%) — a palette
+the reference does not use
+```
+
+`local-audit` VERDICT: FAIL (28/29). ch-26: Rejected.
+
+This is the reference's palette rule: the channel uses ink, neutrals and one
+accent, and 0.97% of the frame is something else. Almost certainly a **colour
+photograph or a coloured logo** sitting in an ENTITY-ART plates row — the same
+row path fixed above. The same SEC-seal-style assets are verified logos, and a
+coloured mark is exactly this failure.
+
+Do NOT loosen `flat-look` (max 0.4%). The fix is in the source: when a plates row
+entry has a verified mark, treat it against the channel palette the same way the
+audit does — ink, neutral or accent. Decide whether to desaturate a coloured mark
+or to refuse it and fall back to the name in type. The name in type is already an
+accepted, honest treatment (see `MarkPlate`), so falling back is safe and loses no
+truth.
 
 ## Next in line, with diagnosis so far
 
