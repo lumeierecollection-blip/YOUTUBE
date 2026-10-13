@@ -113,6 +113,30 @@ export function drawnOf(c) {
   return out;
 }
 
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+
+/**
+ * Is `name` (a date the sentence states) actually on `shown`?
+ *
+ * With a year the year must be there. Without one — "November 12", "June 25" —
+ * the year cannot be required, because the sentence never gave one, so the MONTH
+ * and the DAY must both be present instead. Requiring both keeps this a real
+ * check: the day alone would match any figure that happens to carry that number.
+ */
+function dateShown(name, shown) {
+  const n = String(name || "").toLowerCase();
+  const s = String(shown || "").toLowerCase();
+  const y = (n.match(/(?:1[89]|20)\d{2}/) || [])[0];
+  if (y) return s.includes(y);
+  const month = MONTHS.find((m) => n.includes(m));
+  const day = (n.match(/\b(\d{1,2})\b/) || [])[1];
+  if (!month || !day) return false;
+  const dayN = String(Number(day));
+  const monthOk = s.includes(month) || s.includes(month.slice(0, 3));
+  const dayOk = new RegExp(`\\b0?${dayN}\\b`).test(s);
+  return monthOk && dayOk;
+}
+
 /** Is `e` shown by what the beat drew? { covered, by } — `by` names the visual that answers it. */
 export function coverageOf(c, e) {
   const drawn = drawnOf(c);
@@ -138,9 +162,22 @@ export function coverageOf(c, e) {
       const text = d.text != null ? String(d.text) : d.kind === "figure" ? String(d.name || "") : "";
       if (want && (digits(text).includes(want) || (d.data && d.data.includes(want)))) return hit(d, "the figure");
     } else if (e.type === "date") {
+      // A DATE CARRIES A YEAR ONLY SOMETIMES. The year was required, so a date
+      // like "November 12" or "June 25" could never be matched at all — y was
+      // undefined, both guards failed, and a date that was plainly drawn was
+      // reported as not drawn. Board 38411644598:
+      //   ch-10 beat 2: date "November 12" - draws figure, none of it the entity
+      //   ch-8  beat 3: date "June 25"     - draws figure, none of it the entity
+      //
+      // WITH a year the year is still required, unchanged. WITHOUT one, the
+      // month and the day together are what identify the date, so BOTH must be
+      // present on the frame — the day alone would match any figure that happens
+      // to contain that number, which is exactly the mistake this check exists
+      // to catch. Month is matched by name or its first three letters, so "Jun"
+      // and "June" both count.
       const y = (e.name.match(/(?:1[89]|20)\d{2}/) || [])[0];
-      if (d.kind === "figure" && y && String(d.text).includes(y)) return hit(d, "date card");
-      if (d.kind === "chart" && y && d.data && d.data.includes(y)) return hit(d, "timeline");
+      if (d.kind === "figure" && d.text != null && dateShown(e.name, String(d.text))) return hit(d, y ? "date card" : "the date itself");
+      if (d.kind === "chart" && d.data && dateShown(e.name, String(d.data))) return hit(d, "timeline");
     } else if (e.type === "span") {
       if (d.kind === "span" && (sameName(d.name, e.name) || (e.ends && d.ends && e.ends.every((x) => d.ends.includes(x))))) return hit(d, "time scale");
       if (d.kind === "chart" && e.ends && e.ends.every((x) => d.data && d.data.includes(x))) return hit(d, "timeline");
