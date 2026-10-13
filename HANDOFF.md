@@ -3,72 +3,77 @@
 Read this first, then `FIXES.md` (the grouped, ranked list of causes).
 
 ## Hash at stop
-`HEAD == origin/main == aa7f7a72`, tree clean, both directions empty.
+`HEAD == origin/main == 4ea79033`, tree clean, both directions empty.
 Nothing is left in flight. Suite 790/0.
 
 ## Green channels
-**None.** `data/renders/{approved,approved-review,rejected}` are **empty on
-origin/main** — verified with `git ls-tree`. No video has ever entered any queue.
-No videos to link.
+**None.** Board `38411644598`: `Approved: 0` on all ten channels.
+`data/renders/{approved,approved-review,rejected}` are empty on origin/main —
+verified with `git ls-tree`. No video has ever entered any queue. No videos to link.
 
-## Closed this session
+## CLOSED AND VERIFIED: the script brief (`aa7f7a72`)
 
-### The script brief was instructing the writer to invent — `aa7f7a72`
 Board `38393719519` stopped five of ten channels on three checks that all ask
-"does this text say what the sentence says". Causes 1 and 4 in `FIXES.md` are
-`prompts/write-script.md`. Read in full, the brief was not silent on those
-failures — it **ordered** one of them:
+"does this text say what the sentence says". Causes 1 and 4 were
+`prompts/write-script.md`, and the brief was not silent — it **ordered** one of
+them:
 
 > `CLOSE ... What the viewer does with what they now know — a specific action`
 
-That produced *"Apply these Harvard strategies to your next deal."* (ch-8, ch-26),
-which the claims gate correctly called INVENTED. Research reports what happened,
-not what the viewer should do about it.
+which produced *"Apply these Harvard strategies to your next day"* (ch-8, ch-26)
+and the claims gate correctly called it INVENTED. Attribution had no rule at all,
+which is how ch-1's *"the Gerald Financial Research Team suggests paying off
+debt"* got in when the research said they noted repayment plans **fail**.
 
-And **attribution had no rule at all** — ch-1's *"the Gerald Financial Research
-Team suggests paying off debt"*, where the research said they noted repayment
-plans **fail**.
+Fixed: a close is a fact or an echo and never an instruction; a new ATTRIBUTION
+section naming the dangerous verbs; ATTRIBUTION SWEEP and IMPERATIVE SWEEP.
+`scripts/validate-script-claims.cjs` untouched — it caught all of these correctly.
 
-Changed: a close is a fact or an echo and never an instruction; a new ATTRIBUTION
-section naming the dangerous verbs; ATTRIBUTION SWEEP and IMPERATIVE SWEEP before
-returning. `scripts/validate-script-claims.cjs` is untouched — it caught all of
-these correctly and was never the broken part.
-`scripts/__tests__/script-brief-grounding.test.js` pins it with ch-1's real
-sentence and asserts the gate still reports INVENTED.
+**Verified on board `38411644598`: ch-1, ch-8 and ch-44 no longer stop on claims.
+ch-8 and ch-44 now reach the render stage.** Zero rejections attributable to
+claims. This cause is closed.
 
-**UNVERIFIED — no board has run against this brief.** The next full board is the
-test. If channels 1, 8 and 44 no longer skip on `claims`, the fix holds.
+## THE CAUSE TO WORK NEXT: rung↔type mismatch (3 channels, one signature)
 
-### Verified earlier: the claims topic re-pick works (`4541caa2`)
-Run `38388968513`: ch-26's script failed claims, it re-picked a different topic,
-the replacement failed too, and the channel was skipped — the once-only rule
-behaving as written.
+Board `38411644598`, four of the six channels that reached QA failed the same way:
 
-## Next, in order
+```
+[canvas] FAIL entity-coverage — draws plate-place, none of it the entity
+```
 
-1. **Run the full board** (`channels=1,2,5,6,8,9,10,26,44,49`). This is the only
-   view of system state and it is how Job 1 gets verified. Roughly 50 minutes.
-2. **Cause 2 — plan contradicts its sentence** (4 channels: 9, 49, 2, 6).
-   `7ea8a1e6` covers the total/component case; it does **not** cover a beat whose
-   hero is simply the wrong number from the same sentence. ch-2 beat 1: "2026"
-   as hero, sentence is about "30 cases".
-3. **Cause 3 — rung↔type mismatch** (3 channels: 10, 44, 2). ch-10 beat 2 draws
-   `plate-place` for two persons and an organization. Keep asking the diagnostic:
-   is the check reading the drawn rung, or the entity's type?
-4. Causes 5–8 are **fixed but unrendered** (`67d17bb3`, `73ab2fba`, `68d3c086`,
-   `70dcbd7c`) and cause 8 is diagnosed but open. A board will exercise them.
+- ch-10 beat 6: organization **"IdeaLens"** — draws `plate-place`
+- ch-44 beat 1: organization **"Google Scholar"** — draws `plate-place`
+- ch-8 beat 3: **date** "June 25" — draws a `figure`
+
+`plate-place` for an **organization** is the tell. `coverageOf()` matches a place
+against `plate-place`, a person against `plate-person`, an organization against
+`logo` / `photo` / `plate-organization` / `cutout`. A rung drawn for the wrong
+type matches nothing and is reported as "none of it the entity" **even though a
+picture is on screen**.
+
+Keep asking the diagnostic here: **is the check reading the drawn rung, or the
+entity's type?** When they disagree it is reading a proxy, and it reports a false
+negative on a frame that is actually fine.
+
+**The fix is an invariant, not three instances.** In `scripts/entity-ladder.js`
+(`directiveFor()`, `kindOf()`): every rung the ladder can emit for an entity type
+must be one `coverageOf()` recognises for that type. Assert it as a test — the
+same class as the `date`/`span` rungs that produced a box with nothing drawn in it
+on ch-2. Re-run **8, 10, 44** after.
+
+## The rest of the list
+- **ch-2**: `canvas-type` — beat 5 TYPE-FULL+NAME twice in a row. Same family as
+  the plates-twice fix already on main.
+- **Causes 5–7** are fixed but **unrendered** (`67d17bb3`, `73ab2fba`, `68d3c086`,
+  `70dcbd7c`) and a board will exercise them.
+- **Cause 8** (unit dropped from a number) diagnosed, open.
+- Causes 9–11 (rounded flag corners / grid off-axis / no camera move) open.
 
 ## Cron
-**OFF**, and it should stay off. The repo's own comment says it is held "until
-most channels are green"; zero channels are green and `approved/` is empty.
-Turning it on would not publish anything — it would just produce ten skipped
-channels a day and record a false belief in the repo.
-
-Note: a brief during this session asserted that "three channels have rendered
-end-to-end and passed every gate: ch-9, ch-8, ch-26". That is false against git.
-The same brief proposed clamping the map key at `bounds.x + 22`; the rendered
-manifest says `bounds.map = {x: 0, ...}`, so that clamp is a no-op. Both were
-re-checked against artifacts rather than acted on.
+**OFF.** The bar was set this session at "at least one channel reaches
+approved/". Board `38411644598` produced `Approved: 0` on all ten, so the
+condition is not met and it stays off. When one channel does reach `approved/`,
+uncomment the `schedule:` block in `daily-pipeline-v2.yml` lines 22–24.
 
 ## Method
 - Every fix that worked came from the **rendered manifest** or the **frame** in one
@@ -77,6 +82,7 @@ re-checked against artifacts rather than acted on.
   exercised** and a passing gate means nothing. Confirm the beat you fixed is the
   beat the run drew before recording anything as verified.
 - A green suite is not a frame. Three wrong fixes this project passed their tests.
+- A board tells you the system state; a one-channel run tells you one thing.
 
 ## VERIFIED THIS SESSION: the claims-gate topic re-pick works
 
