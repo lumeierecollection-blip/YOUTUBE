@@ -1,0 +1,78 @@
+{
+  "topic_slug": "integrative-negotiation-value-creation-claiming",
+  "strongest_angle": "Analyzing the Harvard Program on Negotiation framework regarding how top negotiators balance value creation and value claiming to expand the pie.",
+  "key_facts": [
+    {
+      "fact": "According to the Program on Negotiation at Harvard Law School, integrative bargaining is a negotiation strategy focused on uncovering shared and differing interests to create value for both sides rather than simply dividing a fixed pie.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-skills-expanding-the-pie-integrative-bargaining-versus-distributive-bargaining",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Author Charles B. Craver published an article in the Cardozo Journal of Conflict Resolution titled Value Creation and Value Claiming discussing the inherent tension present in commercial negotiations.",
+      "source_url": "https://larc.cardozo.yu.edu/cjcr/vol12/iss1/3",
+      "source_name": "Cardozo Journal of Conflict Resolution",
+      "confidence": "high"
+    },
+    {
+      "fact": "Katie Shonk wrote in a Program on Negotiation article that effective business negotiators know how to collaborate and compete at the same time by balancing value creation and value claiming.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chapter 3 of the negotiation strategy text outlines that the first three steps are important for creating value while the fourth step involves claiming value.",
+      "source_url": "https://faculty.ksu.edu.sa/sites/default/files/im_chapter_03_7e_lewicki_eon_2.pdf",
+      "source_name": "King Saud University Faculty Repository",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Chapter Number",
+      "value": 3,
+      "unit": "chapter",
+      "source_url": "https://faculty.ksu.edu.sa/sites/default/files/im_chapter_03_7e_lewicki_eon_2.pdf"
+    },
+    {
+      "label": "Volume Number",
+      "value": 12,
+      "unit": "volume",
+      "source_url": "https://scholarship.law.gwu.edu/cgi/viewcontent.cgi?article=1529&context=faculty_publications"
+    },
+    {
+      "label": "Page Number",
+      "value": 101,
+      "unit": "page",
+      "source_url": "https://scholarship.law.gwu.edu/cgi/viewcontent.cgi?article=1529&context=faculty_publications"
+    },
+    {
+      "label": "Top Negotiation Skills Count",
+      "value": 10,
+      "unit": "skills",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Harvard Law School",
+      "kind": "organization"
+    },
+    {
+      "name": "Charles B. Craver",
+      "kind": "person"
+    },
+    {
+      "name": "Cardozo Journal of Conflict Resolution",
+      "kind": "organization"
+    },
+    {
+      "name": "Katie Shonk",
+      "kind": "person"
+    },
+    {
+      "name": "King Saud University",
+      "kind": "organization"
+    }
+  ]
+}
