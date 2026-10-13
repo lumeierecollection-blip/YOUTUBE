@@ -1,0 +1,58 @@
+{
+  "topic_slug": "idealens-artificial-concepts-detection-debate",
+  "strongest_angle": "The emergence of IdeaLens shifts the focus of AI detection from linguistic style to conceptual origin, challenging our understanding of human versus machine creativity in scientific research.",
+  "key_facts": [
+    {
+      "fact": "Nature reported on October 13, 2026, that a new tool called IdeaLens can distinguish between human and AI-generated concepts within scientific papers.",
+      "source_url": "https://www.nature.com/articles/d41586-026-03247-0",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers including Rishanth Rajendhran and Minjoon Choi developed IdeaLens to address the limitation of existing detectors like Pangram, which only analyze prose.",
+      "source_url": "https://www.alphaxiv.org/abs/2610.06778",
+      "source_name": "alphaXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "IdeaLens functions by converting documents into detailed, role-labelled paraphrased outlines to isolate the underlying ideas from the written text.",
+      "source_url": "https://pith.science/paper/2610.06778",
+      "source_name": "Pith Review",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication date of the Nature report",
+      "value": 13,
+      "unit": "day of October 2026",
+      "source_url": "https://www.nature.com/articles/d41586-026-03247-0"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "IdeaLens",
+      "kind": "object"
+    },
+    {
+      "name": "Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "Rishanth Rajendhran",
+      "kind": "person"
+    },
+    {
+      "name": "Minjoon Choi",
+      "kind": "person"
+    },
+    {
+      "name": "Pangram",
+      "kind": "object"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    }
+  ]
+}

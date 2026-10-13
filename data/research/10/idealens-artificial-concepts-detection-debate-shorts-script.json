@@ -1,0 +1,44 @@
+{
+  "channel_id": "10",
+  "topic_slug": "idealens-artificial-concepts-detection-debate",
+  "format": "shorts",
+  "hook": "IdeaLens just shifted AI detection away from simple prose.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "IdeaLens just shifted AI detection away from simple prose."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Nature reported on the 13th of October 2026 that a tool named IdeaLens identifies machine-generated concepts. Existing detectors like Pangram only scan language patterns. How does IdeaLens spot hidden AI?",
+      "text_overlay": {
+        "text": "Nature, October 13, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Instead of text, it maps the underlying structure of scientific research papers.",
+      "text_overlay": {
+        "text": "Mapping Concepts"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Rishanth Rajendhran and Minjoon Choi built IdeaLens to map outlines. IdeaLens on October 13, 2026, exposed AI-generated concepts in papers.",
+      "text_overlay": {
+        "text": "Rajendhran & Choi"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Use IdeaLens to inspect scientific research papers today.",
+      "text_overlay": {
+        "text": "IdeaLens"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/d41586-026-03247-0",
+    "https://www.alphaxiv.org/abs/2610.06778"
+  ]
+}
