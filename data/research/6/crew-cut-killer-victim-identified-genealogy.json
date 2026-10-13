@@ -1,0 +1,72 @@
+{
+  "topic_slug": "crew-cut-killer-victim-identified-genealogy",
+  "strongest_angle": "The Oakland Police Department and the FBI utilized advanced genetic genealogy to identify 16-year-old Joanne Yvonne Burdick as a victim of Taylor Morris Teaford, 57 years after her 1969 murder at the St. Louis Hotel.",
+  "key_facts": [
+    {
+      "fact": "On October 2, 1969, the body of 16-year-old Joanne Yvonne Burdick was discovered strangled at the St. Louis Hotel in Oakland by authorities.",
+      "source_url": "https://www.ktvu.com/news/oakland-police-fbi-announce-breakthrough-1969-cold-case",
+      "source_name": "KTVU FOX 2",
+      "confidence": "high"
+    },
+    {
+      "fact": "The FBI San Francisco office joined the investigation into Joanne Yvonne Burdick's cold case in 2020 to assist with forensic analysis and genealogy.",
+      "source_url": "https://www.forensicmag.com/3594-All-News/628584-Genealogy-Identifies-Crew-Cut-Killer-s-Victim-after-57-Years",
+      "source_name": "Forensic Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Taylor Morris Teaford, known as the 'Crew Cut Killer', was named as a suspect in the 1969 murder of Joanne Yvonne Burdick.",
+      "source_url": "https://abc7news.com/post/crew-cut-killer-taylor-morris-teaford-named-suspect-1969-oakland-teen-joann-yvonne-burdicks-murder/19898365",
+      "source_name": "ABC7 San Francisco",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years since murder",
+      "value": 57,
+      "unit": "years",
+      "source_url": "https://www.ktvu.com/news/oakland-police-fbi-announce-breakthrough-1969-cold-case"
+    },
+    {
+      "label": "Victim age",
+      "value": 16,
+      "unit": "years",
+      "source_url": "https://www.ktvu.com/news/oakland-police-fbi-announce-breakthrough-1969-cold-case"
+    },
+    {
+      "label": "Year of murder",
+      "value": 1969,
+      "unit": "year",
+      "source_url": "https://www.ktvu.com/news/oakland-police-fbi-announce-breakthrough-1969-cold-case"
+    },
+    {
+      "label": "Year FBI joined case",
+      "value": 2020,
+      "unit": "year",
+      "source_url": "https://www.forensicmag.com/3594-All-News/628584-Genealogy-Identifies-Crew-Cut-Killer-s-Victim-after-57-Years"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Joanne Yvonne Burdick",
+      "kind": "person"
+    },
+    {
+      "name": "Taylor Morris Teaford",
+      "kind": "person"
+    },
+    {
+      "name": "Oakland Police Department",
+      "kind": "organization"
+    },
+    {
+      "name": "FBI",
+      "kind": "organization"
+    },
+    {
+      "name": "St. Louis Hotel",
+      "kind": "place"
+    }
+  ]
+}
