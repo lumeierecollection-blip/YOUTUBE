@@ -1,0 +1,68 @@
+{
+  "channel_id": "6",
+  "topic_slug": "amelia-earhart-pacific-atoll-expedition-2026",
+  "format": "shorts",
+  "hook": "17 researchers just reached Nikumaroro Island to solve the 1937 disappearance of Amelia Earhart.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "17 researchers just reached Nikumaroro Island to solve the 1937 disappearance of Amelia Earhart.",
+      "b_roll": [
+        "Aerial view of remote Nikumaroro Island in the South Pacific",
+        "Archival photo of Amelia Earhart beside her plane"
+      ],
+      "text_overlay": {
+        "text": "1937 MYSTERY"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Purdue University and the Archaeological Legacy Institute launched the mission. 830 nautical miles of open ocean separated the crew from the target. Where lies the Lockheed Electra 10E?",
+      "b_roll": [
+        "Research vessel cutting through ocean waves",
+        "Map tracing an 830 nautical mile voyage across the Pacific",
+        "Blueprint schematic of a Lockheed Electra 10E aircraft"
+      ],
+      "text_overlay": {
+        "text": "830 NAUTICAL MILES"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the Lockheed Electra 10E remains missing.",
+      "b_roll": [
+        "Faded historical newspaper clippings about the 1937 disappearance",
+        "Modern sonar equipment scanning deep ocean waters"
+      ],
+      "text_overlay": {
+        "text": "THE FINAL FLIGHT"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Teams arrived in Kiribati after five days at sea. Teams search Nikumaroro Island. Purdue University brought high-tech gear.",
+      "b_roll": [
+        "Expedition members arriving on the shores of Kiribati",
+        "Divers descending into blue water near coral reefs",
+        "Advanced mapping monitors displaying underwater terrain"
+      ],
+      "text_overlay": {
+        "text": "KIRIBATI EXPEDITION"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "17 experts investigate the waters of Nikumaroro.",
+      "b_roll": [
+        "Researchers working on the deck of the expedition ship at sunset"
+      ],
+      "text_overlay": {
+        "text": "NIKUMARORO ISLAND"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+    "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+  ]
+}
