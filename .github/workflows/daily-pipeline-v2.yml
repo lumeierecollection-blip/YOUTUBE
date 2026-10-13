@@ -19,9 +19,17 @@
 name: Daily Pipeline — Optimized v2
 
 on:
-  # schedule: HELD 2026-10-09 — no board has produced an approved video yet; re-enabled only when most channels are green.
-  # schedule:
-  #   - cron: "0 6 * * *"
+  # schedule: HUMAN-REVIEW POSTING, enabled 2026-10-13. Policy changed: the
+  # pipeline no longer waits for a green board. It uploads whatever passes as
+  # PRIVATE and the owner clicks Publish in Studio. Previously "held until most
+  # channels are green", which held posting at zero for the whole life of the
+  # project: every gate is a stop, and nothing had ever reached approved/.
+  #
+  # Nothing goes public from this schedule. review-publish uploads
+  # approved-review/ as private (line ~1435: "Publishing approved-review videos
+  # of run N ... (private)"); only the owner publishes.
+  schedule:
+    - cron: "0 6 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
