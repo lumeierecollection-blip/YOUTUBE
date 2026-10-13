@@ -1,0 +1,98 @@
+{
+  "topic_slug": "cash-fx-group-950m-forex-ponzi-charges",
+  "strongest_angle": "The Commodity Futures Trading Commission has charged Huascar Jose Lopez Castillo and Cash FX Group with operating a massive $950 million multilevel marketing Ponzi scheme that utilized less than one percent of investor funds for actual trading.",
+  "key_facts": [
+    {
+      "fact": "The Commodity Futures Trading Commission filed a complaint on September 24, 2026, alleging that Huascar Jose Lopez Castillo and Cash FX Group S.A. operated a fraudulent $950 million multilevel marketing Ponzi scheme.",
+      "source_url": "https://www.armstrongbradylyons.com/library/cftc-cash-fx-ai-washing-forex-ponzi-scheme",
+      "source_name": "Armstrong Brady Lyons",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the Commodity Futures Trading Commission, Cash FX Group collected over $950 million from investors but directed less than one percent of those funds toward actual forex trading activities.",
+      "source_url": "https://www.investmentnews.com/regulation-legal-compliance/never-a-losing-day-cftc-alleges-950-million-forex-ponzi-scheme/268363",
+      "source_name": "InvestmentNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The scheme promised participants forex returns of up to 15% per week, ultimately resulting in at least $406 million in losses for investors.",
+      "source_url": "https://www.financemagnates.com/forex/cftc-sues-cash-fx-over-alleged-950-million-forex-ponzi-scheme",
+      "source_name": "Finance Magnates",
+      "confidence": "high"
+    },
+    {
+      "fact": "Regulators in the United Kingdom, Ireland, and Australia issued warnings regarding the unauthorized business activities of Cash FX Group years before the United States Commodity Futures Trading Commission filed its case.",
+      "source_url": "https://www.financemagnates.com/forex/cftc-sues-cash-fx-over-alleged-950-million-forex-ponzi-scheme",
+      "source_name": "Finance Magnates",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total funds collected by Cash FX Group",
+      "value": 950000000,
+      "unit": "dollars",
+      "source_url": "https://www.investmentnews.com/regulation-legal-compliance/never-a-losing-day-cftc-alleges-950-million-forex-ponzi-scheme/268363"
+    },
+    {
+      "label": "Percentage of funds used for actual trading",
+      "value": 1,
+      "unit": "percent",
+      "source_url": "https://www.investmentnews.com/regulation-legal-compliance/never-a-losing-day-cftc-alleges-950-million-forex-ponzi-scheme/268363"
+    },
+    {
+      "label": "Promised weekly forex returns",
+      "value": 15,
+      "unit": "percent",
+      "source_url": "https://www.financemagnates.com/forex/cftc-sues-cash-fx-over-alleged-950-million-forex-ponzi-scheme"
+    },
+    {
+      "label": "Total investor losses",
+      "value": 406000000,
+      "unit": "dollars",
+      "source_url": "https://www.financemagnates.com/forex/cftc-sues-cash-fx-over-alleged-950-million-forex-ponzi-scheme"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Huascar Jose Lopez Castillo",
+      "kind": "person"
+    },
+    {
+      "name": "Cash FX Group S.A.",
+      "kind": "organization"
+    },
+    {
+      "name": "Commodity Futures Trading Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "The Conversion Pros, Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "Ronald Pope",
+      "kind": "person"
+    },
+    {
+      "name": "Justin Halladay",
+      "kind": "person"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    },
+    {
+      "name": "Ireland",
+      "kind": "place"
+    },
+    {
+      "name": "Australia",
+      "kind": "place"
+    },
+    {
+      "name": "Florida",
+      "kind": "place"
+    }
+  ]
+}
