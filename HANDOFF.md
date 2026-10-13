@@ -3,77 +3,81 @@
 Written at the context limit of the session on 2026-10-13. Read this first.
 
 ## Hash at stop
-`HEAD == origin/main == 6e98fccd`, tree clean, both directions empty.
+`HEAD == origin/main == 70dcbd7c`, tree clean, both directions empty.
 
-Nothing was pushed this session. No code was changed. The session ended on a
-diagnosis that disproved the fix in `0472a56b`.
+Nothing is left in flight.
 
 ## Green channels
 **None.** Zero of the ten priority channels are in `data/renders/approved/`.
 No videos to link.
 
-## What is actually broken
+ch-26 is in `approved-review` (was `rejected` two runs ago) — one step up, but
+still not green.
 
-### ch-26 map key — the fix on main does NOT work. Frame pasted, below.
+## THE MAP KEY — fixed, and the frame settles it
 
-Run `38369941305`, rendered frame `beat0.png`. The log names the beat:
+Run `38376666510`. The real cause, finally:
 
-```
-[ladder] ch-26 beat 0: names "Texas federal court, $91 million" -> a key on the Texas map that covers it
-```
+`MapCentered` wraps the entire map svg in a grow transform
+(`full-canvas.jsx:1242`):
 
-The frame's bottom-left reads **`s federal court, $91 million`**. "Texa" is cut.
-
-`0472a56b` ("measure the map key instead of guessing its width") fixed the
-WIDTH estimation and the key is **still clipped**, so width was never the cause.
-
-### The correction to last round's diagnosis
-
-The brief said to clamp the plate because `bounds.x + 22` puts it off-frame.
-**That is wrong, and the clamp would be a no-op.** Verified:
-
-- `canvas-layout.js:1393` — `boxes.map = box(0, LOW_VISUAL.top, FRAME.w, LOW_VISUAL.h)`
-- `canvas-layout.js:1403` — `boxes.map = box(0, BODY_TOP, FRAME.w, BOTTOM - BODY_TOP)`
-
-So **`bounds.x` is 0**. The plate is at x=22, the text at x=32. That is inside
-the frame (1080 wide) and only just left of `L_EDGE = 48`. Nothing is placed
-off-frame.
-
-Where to look instead, in order:
-
-1. **Z-order.** The key is drawn inside `CenteredMap`'s `<svg>`, which sits
-   under the `HeroEl name="map"` content. The plate outline is not visible at
-   all in the frame — only its text — which suggests the map is painting over
-   the plate, not the plate being clipped.
-2. **The vertical `clipPath` in `MapCentered`:**
-   `clipPath: inset(${Math.max(0, B.map.y)}px 0 ${Math.max(0, FRAME.h - B.map.y - B.map.h)}px 0)`
-   The key is placed at `by = bounds.y + bounds.h - 40 - boxH`, i.e. hard against
-   the map's bottom edge, exactly where that band ends. Check whether the key
-   lands on the clip boundary.
-3. In the frame the key's baseline sits right at the map's lower edge, and the
-   text appears cut at the image's left margin (x≈0) while `L_EDGE` is 48. That
-   is consistent with the text being drawn somewhere other than x=32 — worth
-   printing `bounds` and the computed `by`/`bx` at render time rather than
-   inferring them.
-
-### The check also missed it
-
-The naming check **passed** a frame containing a truncated entity name. It
-caught `"stralia"` and `".ustralia"` in board `38330253047` but passed
-`"s federal court"`. That is a gap in `namingCheck()` / `settleNaming` and is
-arguably the more important defect: a check that passed a visibly clipped name
-is worse than one that failed a good frame.
-
-### ch-26 has a second, independent failure
-
-The video was queued **rejected** at a different gate — the narration judge:
-
-```
-[narration listener] ::error::narration judge: 7/7 sentence(s) read as synthetic or flat on the median of 1 readings (0, 1, 2, 3, 4, 5, 6)
+```jsx
+transformOrigin: `${B.map.x + B.map.w / 2}px ${B.map.y + B.map.h / 2}px`,
+transform: `scale(${(1 + grow(local, dur, fps, 0.08)).toFixed(4)})`
 ```
 
-`local-audit` passed 29/29, so this is a script-quality gate, not a rendering
-one. It is content, not code — but it blocks ch-26 independently of the map key.
+so a point `x` lands at `cx + (x - cx) * s`. With `cx = 540` and `s` up to
+`1.08`, the key at `x = 32` lands at **-8.6 px** — off the frame. The plate was
+never off-frame before the transform; **the transform moved it off-frame.**
+
+Two earlier diagnoses were wrong and are recorded so they are not retried:
+
+1. `0472a56b` — "the text overflows its plate". False. Width was never the cause.
+2. "clamp to the frame because `bounds.x + 22` is off-frame". Also false. The
+   manifest says `boxes.map = { x: 0, y: 640, w: 1080, h: 470 }`; `bounds.x` is
+   0 and `x = 22` is well inside a 1080-wide frame.
+
+Fixed in `70dcbd7c`: the key now solves for the position that lands inside the
+frame's safe area **after** the scale, and `MapCentered` passes the live scale
+in. Both edges solved. `scripts/__tests__/map-key-frame-clamp.test.js` asserts
+the OLD placement still lands off-frame, so the test cannot silently stop
+testing anything.
+
+**Evidence:** the map-key beat (beat 7, labels "Robert Welsh, U.S. District
+Court for the Eastern District of Texas") passed the naming check on
+`38376666510`: `[naming-check] beat 7: PASS`.
+
+**Caveat, stated plainly:** the artifacts for that run contain `beat0.png` and
+`look-beat-{1,2,5,6,8}.png` — **there is no still of beat 7**, so this fix is
+supported by the naming check reading real frames, not by a frame I can paste.
+If you want the picture, render beat 7 to a still.
+
+## NEXT FAILURE: ch-26 beat 8 — two words collided
+
+This is what stopped ch-26 on `38376666510`:
+
+```
+[naming-check] ::error::naming check failed: 1/9 beats misname an entity (beats 8)
+```
+
+Frame pasted in the session transcript (`look-beat-8.png`). It renders:
+
+**`AlexanderConner`**
+
+— two words with no gap between them, on a NAME-LOGO composition beside an SEC
+seal. This is **not** a clip: nothing is cut off. The two words are placed as
+though they were one, so the on-screen name is a different string from the one
+in the sentence.
+
+Where to look: the NAME-LOGO / name-plate path that lays a name out beside a
+mark, not `fitText`/`fitHeadline` (which are about wrapping and were fixed in
+`67d17bb3`) and not the map key. Suspect either a missing separator in the
+source string before layout, or a gap/track computation that collapses to zero
+at this size. Print the laid-out name string and the computed gap before
+changing anything.
+
+Also note: local-audit passed **29/29** on this video while naming failed it, so
+the pixel checks did not catch a name rendered as one word.
 
 ## Next in line, with diagnosis so far
 
