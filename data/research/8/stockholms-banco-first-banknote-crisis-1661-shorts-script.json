@@ -1,0 +1,67 @@
+{
+  "channel_id": "8",
+  "topic_slug": "stockholms-banco-first-banknote-crisis-1661",
+  "format": "shorts",
+  "hook": "In 1661, Europe printed its first banknotes, and triggered a complete financial collapse.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1661, Europe printed its first banknotes, and triggered a complete financial collapse.",
+      "b_roll": [
+        "Historical bank building exterior in Stockholm",
+        "Early printed European banknote artifact"
+      ],
+      "text_overlay": {
+        "text": "Europe's First Banknote Crisis"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Stockholms Banco launched under founder Johan Palmstruch in Stockholm. Minting lower-weight coins altered currency values after Karl X Gustav died. Where did the 1660 crisis leave the bank?",
+      "b_roll": [
+        "Portrait of Johan Palmstruch",
+        "Historical Swedish coins from 1660"
+      ],
+      "text_overlay": {
+        "text": "Stockholms Banco Founded in 1657"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Stockholms Banco faced total liquidation by 1667.",
+      "b_roll": [
+        "Closing bank doors illustration",
+        "Financial records document"
+      ],
+      "text_overlay": {
+        "text": "Bank Liquidation in 1667"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Sveriges Riksbank emerged from the wreckage in 1668. Riksens Ständers Bank replaced the broken system.",
+      "b_roll": [
+        "Sveriges Riksbank exterior",
+        "Historical banking charter document"
+      ],
+      "text_overlay": {
+        "text": "Sveriges Riksbank Formed in 1668"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Central banking was born from this exact 1667 collapse.",
+      "b_roll": [
+        "Modern central bank vault",
+        "Historical ledger book"
+      ],
+      "text_overlay": {
+        "text": "The Birth of Central Banking"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Stockholms_Banco",
+    "https://www.riksbank.se/globalassets/media/riksbanken-350-ar/tidslinjen/stockholm-banco/24-45-stockholms-banco_eng.pdf"
+  ]
+}

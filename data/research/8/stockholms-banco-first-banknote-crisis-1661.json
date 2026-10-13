@@ -1,0 +1,82 @@
+{
+  "topic_slug": "stockholms-banco-first-banknote-crisis-1661",
+  "strongest_angle": "Examine how Johan Palmstruch founded Stockholms Banco in 1657, began issuing Europe's first modern banknotes in 1661, and ultimately triggered a severe banking crisis that led to liquidation in 1667 and the creation of Sveriges Riksbank.",
+  "key_facts": [
+    {
+      "fact": "Stockholms Banco was founded in 1657 by Johan Palmstruch in Stockholm and became the first European bank to print banknotes beginning in 1661.",
+      "source_url": "https://en.wikipedia.org/wiki/Stockholms_Banco",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "In 1660, difficulties arose for Stockholms Banco when Karl X Gustav died and the central government started minting new coins of a lower weight than older ones.",
+      "source_url": "https://www.riksbank.se/globalassets/media/riksbanken-350-ar/tidslinjen/stockholm-banco/24-45-stockholms-banco_eng.pdf",
+      "source_name": "Sveriges Riksbank",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following financial difficulties and the bank failure of Stockholms Banco, the institution was liquidated in 1667, leading to the establishment of Riksens Ständers Bank in 1668.",
+      "source_url": "https://en.wikipedia.org/wiki/Stockholms_Banco",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year Stockholms Banco was founded",
+      "value": 1657,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Stockholms_Banco"
+    },
+    {
+      "label": "Year Stockholms Banco began printing banknotes",
+      "value": 1661,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Stockholms_Banco"
+    },
+    {
+      "label": "Year Karl X Gustav died and difficulties arose",
+      "value": 1660,
+      "unit": "year",
+      "source_url": "https://www.riksbank.se/globalassets/media/riksbanken-350-ar/tidslinjen/stockholm-banco/24-45-stockholms-banco_eng.pdf"
+    },
+    {
+      "label": "Year Stockholms Banco was liquidated",
+      "value": 1667,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Stockholms_Banco"
+    },
+    {
+      "label": "Year Riksens Ständers Bank was founded",
+      "value": 1668,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Stockholms_Banco"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Stockholms Banco",
+      "kind": "organization"
+    },
+    {
+      "name": "Johan Palmstruch",
+      "kind": "person"
+    },
+    {
+      "name": "Stockholm",
+      "kind": "place"
+    },
+    {
+      "name": "Karl X Gustav",
+      "kind": "person"
+    },
+    {
+      "name": "Sveriges Riksbank",
+      "kind": "organization"
+    },
+    {
+      "name": "Riksens Ständers Bank",
+      "kind": "organization"
+    }
+  ]
+}
