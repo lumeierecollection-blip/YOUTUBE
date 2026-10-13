@@ -532,6 +532,32 @@ function ConceptVisual({ b, local, fps, at, accent, dur = 150 }) {
       </div>
     );
   }
+  // A DATE or a SPAN as a second object. The entity ladder's rungs for these
+  // ("case "date": return { art: { kind: "date" ... } }", entity-ladder.js) put
+  // them on the beat as a concept visual, and ConceptVisual handled cutout,
+  // symbol, plate and figure — then `return null`. So the box was laid out and
+  // nothing was drawn: board 38321106622 ch-2 beat 4 logged "names October 7,
+  // 2026 -> a second visual (date) beside the TYPE-FULL it already shows" and
+  // the pixel audit reported "the cutout0 is not on the frame (0.0% of its box
+  // differs from the ground)". Same defect as the plate branch: a box is not a
+  // picture.
+  //
+  // Drawn as the date or the span IS: a calendar page for a date, a track for a
+  // span, in the same type the ENTITY-ART path uses for them.
+  if (b.class === "date" || b.class === "span") {
+    const shown = String(b.concept || b.name || "").trim();
+    if (!shown) return null;
+    const label = shown.toUpperCase();
+    const w = Math.max(120, Math.min(b.w, b.h * 1.4));
+    const size = Math.max(28, Math.min(w * 0.9 / Math.max(4, label.length) / 0.6, b.h * 0.34));
+    return (
+      <div style={{ position: "absolute", left: b.align === "center" ? b.x + (b.w - w) / 2 : b.x, top: b.y, width: w, height: b.h, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: Math.round(size * 0.28), ...pop }}>
+        <span style={{ display: "block", width: Math.round(w * 0.36), height: 3, backgroundColor: th.ink }} />
+        <span style={{ font: `700 ${Math.round(size)}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap", textAlign: "center", lineHeight: 1.05 }}>{label}</span>
+        <span style={{ display: "block", width: Math.round(w * 0.62), height: 6, backgroundColor: accent }} />
+      </div>
+    );
+  }
   return null;
 }
 

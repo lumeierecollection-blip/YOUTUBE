@@ -1324,7 +1324,7 @@ export async function entityLadder(plan, channelId, log = console.log) {
   for (const pb of plan.beats) for (const v of pb.canvas?.concept_visuals || []) if (v?.logo && v.name) usedMarks.set(String(v.name).toLowerCase(), pb.index);
   const reset = (b, replaces = false) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; if (replaces) { b.visual_type = "TYPE"; b.data = null; b.concept_visuals = []; } };
   for (const b of plan.beats) {
-    const dirs = ladderAll(b);
+    const dirs = ladderAll(b, plan);
     if (!dirs.length) continue;
     // THE TWO-VISUAL RULE. ladderAll returns one directive per UNCOVERED
     // entity, not just the primary: a sentence that names two things gets both

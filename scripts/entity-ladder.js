@@ -145,7 +145,7 @@ function directiveFor(e, g, b, replaces) {
  * name goes through the same rung, qualification and real-mark lookup as the
  * primary did.
  */
-export function ladderAll(b) {
+export function ladderAll(b, plan) {
   const c = b.canvas || {};
   const g = gapOf(b);
   if (!g.primary && !g.ents.length) return [];
@@ -270,7 +270,22 @@ export function ladderAll(b) {
   if (row.length >= 2) {
     const names = row.map((e) => e.name).slice(0, 4);
     const kinds = names.map((_, i) => kindOf(row[i]));
-    out.push({ art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
+    // NOT A ROW, TWICE. Two adjacent beats both taking a `plates` row is the
+    // same frame twice, and canvas-type refuses it: board 38321106622 ch-5
+    // "ENTITY-ART:plates twice in a row" — beats 4 and 5, both rows of named
+    // entities, drawn by this ladder. The neighbour keeps its own visual and
+    // this beat names ride the shot it already has, which is the same rule the
+    // map rung has had all along ("a map beside a map is the same frame twice").
+    // The plan is optional: without it the neighbour check cannot run and the beat
+    // takes a row. Read the neighbours' APPLIED art (entityLadder applies each
+    // directive in place as it walks the plan left to right, so a previous
+    // beat's `art` is already on it), not a forecast of what it will draw.
+    const neighbourIsRow = !plan?.beats
+      ? false
+      : plan.beats.some((x) => Math.abs(x.index - b.index) === 1 && (x.art?.kind === "plates" || x.canvas?.art?.kind === "plates"));
+    out.push(neighbourIsRow
+      ? { art: { kind: "plate-place", name: row[0].name }, replaces: !keeps, alongside: keeps }
+      : { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
   }
