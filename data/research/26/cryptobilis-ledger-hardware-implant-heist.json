@@ -1,0 +1,90 @@
+{
+  "topic_slug": "cryptobilis-ledger-hardware-implant-heist",
+  "strongest_angle": "Examine how a supply chain attack involving tampered Ledger hardware wallets sold by Southeast Asian reseller CryptoBilis led to over $86 million in drained funds across 311 wallets.",
+  "key_facts": [
+    {
+      "fact": "Cryptocurrency hardware manufacturer Ledger confirmed an unauthorized hardware implant in a device linked to losses at CryptoBilis, a reseller operating in Southeast Asia including Indonesia, Malaysia, and the Philippines.",
+      "source_url": "https://www.coindesk.com/tech/2026/10/12/ledger-says-unauthorized-implant-found-in-at-least-one-device-sold-by-cryptobilis",
+      "source_name": "CoinDesk",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigations by Bitquery tracked $92.9 million taken from 311 wallets across TRON, Bitcoin, Ethereum, BNB Chain, and Polygon after users bought compromised devices.",
+      "source_url": "https://bitquery.io/investigations/ledger-cryptobilis-hack",
+      "source_name": "Bitquery",
+      "confidence": "high"
+    },
+    {
+      "fact": "The supply chain attack resulted in losses totaling more than $86 million, prompting Ledger to temporarily pause sales of its products via CryptoBilis.",
+      "source_url": "https://thehackernews.com/2026/10/ledger-finds-unauthorized-hardware.html",
+      "source_name": "The Hacker News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Tether froze $10.0 million of the stolen funds following the unauthorized tampering of Ledger wallets sold by CryptoBilis.",
+      "source_url": "https://bitquery.io/investigations/ledger-cryptobilis-hack",
+      "source_name": "Bitquery",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Drained Funds Bitquery",
+      "value": 92.9,
+      "unit": "million dollars",
+      "source_url": "https://bitquery.io/investigations/ledger-cryptobilis-hack"
+    },
+    {
+      "label": "Total Drained Wallets",
+      "value": 311,
+      "unit": "wallets",
+      "source_url": "https://bitquery.io/investigations/ledger-cryptobilis-hack"
+    },
+    {
+      "label": "Total Losses Reported",
+      "value": 86,
+      "unit": "million dollars",
+      "source_url": "https://thehackernews.com/2026/10/ledger-finds-unauthorized-hardware.html"
+    },
+    {
+      "label": "Tether Frozen Funds",
+      "value": 10,
+      "unit": "million dollars",
+      "source_url": "https://bitquery.io/investigations/ledger-cryptobilis-hack"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ledger",
+      "kind": "organization"
+    },
+    {
+      "name": "CryptoBilis",
+      "kind": "organization"
+    },
+    {
+      "name": "Bitquery",
+      "kind": "organization"
+    },
+    {
+      "name": "Tether",
+      "kind": "organization"
+    },
+    {
+      "name": "Southeast Asia",
+      "kind": "place"
+    },
+    {
+      "name": "Indonesia",
+      "kind": "place"
+    },
+    {
+      "name": "Malaysia",
+      "kind": "place"
+    },
+    {
+      "name": "Philippines",
+      "kind": "place"
+    }
+  ]
+}

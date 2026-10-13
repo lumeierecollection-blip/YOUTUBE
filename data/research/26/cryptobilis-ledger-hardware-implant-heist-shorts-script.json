@@ -1,0 +1,65 @@
+{
+  "channel_id": "26",
+  "topic_slug": "cryptobilis-ledger-hardware-implant-heist",
+  "format": "shorts",
+  "hook": "$86 million vanished after a hardware implant hit CryptoBilis wallets.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "$86 million vanished after a hardware implant hit CryptoBilis wallets.",
+      "b_roll": [
+        "Macro shot of a hardware crypto wallet PCB under an inspection microscope"
+      ],
+      "text_overlay": {
+        "text": "$86M DRAINED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Southeast Asian reseller CryptoBilis sold compromised devices across Indonesia, Malaysia, and the Philippines. Bitquery tracked 311 wallets compromised in the supply chain attack. Where did 92.9 million dollars go?",
+      "b_roll": [
+        "Animated map of Southeast Asia highlighting Indonesia, Malaysia, and the Philippines",
+        "Data stream graphic showing wallet addresses"
+      ],
+      "text_overlay": {
+        "text": "311 WALLETS HIT"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Ledger confirmed an unauthorized hardware implant inside the seized devices sold by CryptoBilis.",
+      "b_roll": [
+        "Close-up of a disassembled circuit board with an unverified microchip"
+      ],
+      "text_overlay": {
+        "text": "UNAUTHORIZED IMPLANT"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Tether froze 10 million dollars of the stolen funds following the unauthorized tampering. Bitquery recorded total losses exceeding 86 million dollars across the networks.",
+      "b_roll": [
+        "Cryptocurrency transaction freeze ledger visualization",
+        "Bar chart showing total losses escalating"
+      ],
+      "text_overlay": {
+        "text": "$10M FROZEN"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Ledger paused all sales via CryptoBilis after the massive breach drained 311 wallets.",
+      "b_roll": [
+        "Company sales portal showing temporarily suspended inventory"
+      ],
+      "text_overlay": {
+        "text": "SALES PAUSED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thehackernews.com/2026/10/ledger-finds-unauthorized-hardware.html",
+    "https://bitquery.io/investigations/ledger-cryptobilis-hack",
+    "https://www.coindesk.com/tech/2026/10/12/ledger-says-unauthorized-implant-found-in-at-least-one-device-sold-by-cryptobilis"
+  ]
+}
