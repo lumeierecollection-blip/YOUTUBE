@@ -949,7 +949,7 @@ function LucideIcon({ name, size, color, stroke = 2, style }) {
  * A plate for a named entity: its real mark inside a hairline box, or — when no free, verified mark exists — its NAME set in the serif
  * (large, in the serif; whole, never initials). Sharp corners, ink and the one accent. No stock icon, ever.
  */
-function MarkPlate({ side, name, item, style, accent, th, hair }) {
+function MarkPlate({ side, name, item, style, accent, th, hair, width }) {
   // The fixture look (owner, 2026-10-10: "the test images ... look better than the actual video"): no box. A real mark stands free on the
   // ground; with no free mark the NAME is set large in the serif between a hairline and the accent rule — a type card, not a placeholder box.
   const label = String(name || "").trim();
@@ -968,7 +968,7 @@ function MarkPlate({ side, name, item, style, accent, th, hair }) {
   const cut = Math.ceil(lw.length / 2);
   const lines = lw.length <= 2 ? (lw.length && shown.length > 14 ? lw : [shown]) : [lw.slice(0, cut).join(" "), lw.slice(cut).join(" ")];
   const longest = Math.max(1, ...lines.map((l) => l.length));
-  const W = side * 1.6;   // the name may run wider than the square it was laid out in
+  const W = width || side * 1.6;   // the name may run wider than the square it was laid out in — UNLESS it is one entry in a row
   const size = Math.max(40, Math.min(side * 0.34, (W * 0.92) / (longest * 0.56)));
   const block = Math.round(size * 1.05 * lines.length);
   return (
@@ -1025,7 +1025,17 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
           const it = items[i], label = String(nm).toUpperCase(), fs = Math.max(24, Math.min(40, Math.floor((side * 1.7) / Math.max(4, label.length))));
           return (
             <div key={i} style={{ position: "absolute", left: x0 + i * (side + gap), top: 0, width: side, height: b.h, ...flatCss(local - Math.round((at + i * 0.18) * fps)) }}>
-              <MarkPlate side={side} name={nm} item={it} style={a.style} accent={accent} th={th} hair={hair} />
+              <MarkPlate side={side} width={side} name={nm} item={it} style={a.style} accent={accent} th={th} hair={hair} />
+              {/* A ROW ENTRY MUST FIT ITS SLOT. MarkPlate sets its text WIDER than the
+                  square it was given (W = side * 1.6, placed at (side - W) / 2, a
+                  negative offset) so a lone long name can run wide. In a row that
+                  same overflow walks 0.3 * side past the slot on BOTH sides - far
+                  more than the 32 px gap - so neighbours collide. Board
+                  38376666510 ch-26 beat 8 rendered "SEC, Alexander, Conner" with
+                  "Alexander" and "Conner" touching into a single word:
+                  "AlexanderConner", and the naming check failed the beat. Passing
+                  width = side makes each name fit the slot it was actually given,
+                  so the gap is real. The lone-plate path is unchanged. */}
               {it?.asset ? <div style={{ position: "absolute", left: -20, right: -20, top: side + 16, textAlign: "center", font: `700 ${fs}px ${SANS_STACK}`, letterSpacing: 2, color: th.ink, whiteSpace: "nowrap" }}>{label}</div> : null}
             </div>
           );
