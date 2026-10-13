@@ -126,6 +126,27 @@ export function CenteredMap({ data, bounds, local, dur, font, accent = INK, grou
             params={{ label: String(data.label || place), font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55, pFrames: Math.max(1, dur * 0.6) }} />
         </g>
       </g>
+      {/* PLACES THE SENTENCE NAMES THAT THE MAP COVERS BUT CANNOT PIN.
+          The region label above names the region this map is actually drawn of.
+          When the spoken sentence names a place INSIDE it that has no verified
+          asset of its own, the frame showed nothing of it and the entity check
+          was right to fail the beat: board 38321106622 ch-9 beat 4 — "Pakistan
+          declared a state of emergency in Khyber Pakhtunkhwa", a map of the
+          parent region labelled "Pakistan", and "Khyber Pakhtunkhwa" reachable
+          only through the headline.
+
+          Named as a KEY, not as a pin. We do not have a verified outline or
+          coordinates for the place, so claiming where it sits on the map would
+          be a claim we cannot source; saying the map covers it is true by
+          construction — the map was drawn of the region that contains it. */}
+      {(Array.isArray(data.labels) ? data.labels : []).filter((t) => String(t || "").trim()).map((t, i) => (
+        <g key={`${id}-k${i}`} opacity={clamp01((local - Math.round(0.35 * dur)) / Math.max(1, dur * 0.25))}>
+          <rect x={bounds.x + 22} y={bounds.y + bounds.h - 40 - i * 34 - 26} width={Math.min(bounds.w - 44, 16 + String(t).length * 15)} height={32}
+            fill={ground} stroke={ink} strokeWidth={1.5} rx={2} />
+          <text x={bounds.x + 32} y={bounds.y + bounds.h - 40 - i * 34 - 4} fontFamily={font} fontSize={20} fontWeight={700}
+            letterSpacing={1} fill={ink}>{String(t)}</text>
+        </g>
+      ))}
     </svg>
   );
 }

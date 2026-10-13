@@ -1396,6 +1396,31 @@ export async function entityLadder(plan, channelId, log = console.log) {
       // it is already drawn on. Nothing is faked into a slot that is not there.
       const COMPOSITION_TAKES_SECOND = new Set(["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "NUMBER-STAT", "HERO-OVER"]);
       const comp = b.canvas?.composition || (String(b.visual_type || "TYPE").toUpperCase() === "TYPE" ? "TYPE-FULL" : null);
+      // A MAP THAT COVERS THE PLACE NAMES IT. MAP-CENTERED keeps its own visual
+      // and there is no slot for a second object — but the map is drawn of a
+      // region that CONTAINS the place the sentence names, so the place can be
+      // drawn on the map as a key rather than left to the headline alone.
+      //
+      // Board 38321106622 ch-9 beat 4: "Pakistan declared a state of emergency
+      // in Khyber Pakhtunkhwa", a map of the parent region labelled "Pakistan",
+      // and no verified asset of Khyber Pakhtunkhwa existed at all ("not found
+      // in any source, rendering as TYPE with name only"). The frame showed
+      // nothing of the spoken place and entity-check was right to fail it. The
+      // ladder was not wrong that there is no slot — it was wrong to conclude
+      // the headline was enough.
+      const mapName = d.art ? d.art.name : d.map;
+      if (String(comp || "").toUpperCase() === "MAP-CENTERED" && mapName && b.canvas?.data?.place) {
+        const labels = Array.isArray(b.canvas.data.labels) ? b.canvas.data.labels : [];
+        const have = new Set(labels.map((x) => String(x).toLowerCase().trim()));
+        if (!have.has(String(mapName).toLowerCase().trim()) && String(mapName).toLowerCase().trim() !== String(b.canvas.data.place).toLowerCase().trim()) {
+          labels.push(mapName);
+          b.canvas.data.labels = labels;
+          b.canvas = canvasContentFor(b, {});
+          log(`[ladder] ch-${channelId} beat ${b.index}: names "${mapName}" -> a key on the ${b.canvas.data.place} map that covers it (not a pin: no verified outline or coordinates)`);
+          done.flags++;
+          continue;
+        }
+      }
       if (!COMPOSITION_TAKES_SECOND.has(String(comp || "").toUpperCase())) {
         log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art ? d.art.name : d.map}; ${comp} keeps its own visual and has no room for a second — the name is in the headline`);
         continue;
