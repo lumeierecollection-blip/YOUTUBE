@@ -1,0 +1,47 @@
+{
+  "channel_id": "44",
+  "topic_slug": "collective-leadership-interaction-hierarchy-2026",
+  "format": "shorts",
+  "hook": "At Copenhagen Business School, interactions matter more than a formal title.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "At Copenhagen Business School, interactions matter more than a formal title.",
+      "text_overlay": {
+        "text": "Title vs Interaction"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at Copenhagen Business School found leadership emerges through constant team engagement. Mary Uhl-Bien and Anders Trillingsgaard studied how these dynamic patterns shift. Who actually leads when the boss leaves?",
+      "text_overlay": {
+        "text": "Leadership Emergence"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "University of Warwick researchers explored virtual team meetings in Turkey.",
+      "text_overlay": {
+        "text": "5 Hours Analyzed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers analyzed 5 hours of video-recorded virtual team meetings in Turkey. Copenhagen Business School published an article featuring Mary Uhl-Bien and Anders Trillingsgaard. Copenhagen Business School highlighted Mary Uhl-Bien and Anders Trillingsgaard discussing collective leadership.",
+      "text_overlay": {
+        "text": "Leadership Flexibility"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch Copenhagen Business School meetings.",
+      "text_overlay": {
+        "text": "Interaction is Leadership"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cbs.dk/en/articles/why-collective-leadership-should-be-your-radar",
+    "https://wrap.warwick.ac.uk/id/eprint/195771/8/%C3%B6zbak%C4%B1%C5%9F-et-al-2026-exploring-the-intersection-between-collective-and-hierarchical-leadership-in-online-team-meetings-in.pdf"
+  ]
+}

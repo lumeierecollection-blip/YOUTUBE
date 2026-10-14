@@ -1,0 +1,68 @@
+{
+  "topic_slug": "collective-leadership-interaction-hierarchy-2026",
+  "strongest_angle": "Examine how Copenhagen Business School researchers Mary Uhl-Bien and Anders Trillingsgaard show that leadership emerges through ongoing interactions rather than just formal hierarchical positions.",
+  "key_facts": [
+    {
+      "fact": "Copenhagen Business School published an article on October 6, 2026, featuring Mary Uhl-Bien and Anders Trillingsgaard discussing how collective leadership emerges continuously through interactions between people.",
+      "source_url": "https://www.cbs.dk/en/articles/why-collective-leadership-should-be-your-radar",
+      "source_name": "Copenhagen Business School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Research published via the University of Warwick explores the intersection of collective and hierarchical leadership in a software engineering company in Turkey by analyzing 5 hours of video-recorded virtual team meetings.",
+      "source_url": "https://wrap.warwick.ac.uk/id/eprint/195771/8/%C3%B6zbak%C4%B1%C5%9F-et-al-2026-exploring-the-intersection-between-collective-and-hierarchical-leadership-in-online-team-meetings-in.pdf",
+      "source_name": "University of Warwick Eprints",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Association for Business Psychology published an article on October 13, 2026, examining who leads when the formal leader is not physically in the room.",
+      "source_url": "https://theabp.org.uk/who-leads-when-the-leader-is-not-in-the-room",
+      "source_name": "The Association for Business Psychology",
+      "confidence": "high"
+    },
+    {
+      "fact": "London School of Economics published an article on March 12, 2026, detailing how successful teams navigate between flat and hierarchical structures.",
+      "source_url": "https://www.forbes.com/sites/londonschoolofeconomics/2026/03/12/the-most-successful-teams-dont-stay-flat-or-hierarchical-for-long",
+      "source_name": "Forbes",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Hours of video-recorded virtual team meetings analyzed",
+      "value": 5,
+      "unit": "hours",
+      "source_url": "https://wrap.warwick.ac.uk/id/eprint/195771/8/%C3%B6zbak%C4%B1%C5%9F-et-al-2026-exploring-the-intersection-between-collective-and-hierarchical-leadership-in-online-team-meetings-in.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Copenhagen Business School",
+      "kind": "organization"
+    },
+    {
+      "name": "Mary Uhl-Bien",
+      "kind": "person"
+    },
+    {
+      "name": "Anders Trillingsgaard",
+      "kind": "person"
+    },
+    {
+      "name": "Turkey",
+      "kind": "place"
+    },
+    {
+      "name": "University of Warwick",
+      "kind": "organization"
+    },
+    {
+      "name": "The Association for Business Psychology",
+      "kind": "organization"
+    },
+    {
+      "name": "London School of Economics",
+      "kind": "organization"
+    }
+  ]
+}
