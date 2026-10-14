@@ -1,0 +1,67 @@
+{
+  "channel_id": "5",
+  "topic_slug": "federal-judge-blocks-white-house-media-ban",
+  "format": "shorts",
+  "hook": "Three major newsrooms were locked out of the White House complex last September.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Three major newsrooms were locked out of the White House complex last September.",
+      "b_roll": [
+        "White House complex exterior gate shot",
+        "Press badge scanner refusing entry"
+      ],
+      "text_overlay": {
+        "text": "White House Media Ban"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "CNN, Politico, and MS NOW lost access when the Trump administration restricted the grounds. Which court halted the ban?",
+      "b_roll": [
+        "Newsroom desk with CNN broadcast",
+        "Politico publication headline"
+      ],
+      "text_overlay": {
+        "text": "Access Restricted"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Judge Timothy Kelly blocked the Trump administration's ban with a federal injunction.",
+      "b_roll": [
+        "Federal courthouse exterior",
+        "Gavel striking wood block"
+      ],
+      "text_overlay": {
+        "text": "Federal Court Injunction"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judge Kelly ruled that the 3 news organizations faced likely First Amendment violations. Federal court orders stopped the White House restrictions on CNN, Politico, and MS NOW.",
+      "b_roll": [
+        "Courtroom interior view",
+        "First Amendment legal document text"
+      ],
+      "text_overlay": {
+        "text": "First Amendment Violation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "September's White House ban failed.",
+      "b_roll": [
+        "White House press briefing room"
+      ],
+      "text_overlay": {
+        "text": "Ban Blocked"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcnews.com/politics/trump-administration/prewrite-not-pub-judge-extends-order-blocking-trump-white-house-media-rcna602264",
+    "https://www.cbsnews.com/news/judge-blocks-trump-white-house-ban-cnn-msnow-politico",
+    "https://www.theguardian.com/us-news/2026/oct/14/white-house-media-ban-lifted-cnn-msnow-politico"
+  ]
+}
