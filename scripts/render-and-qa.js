@@ -1191,6 +1191,36 @@ export function legalSequences(menus, indices, near = [], max = 8, budget = 4000
   go(0);
   return out;
 }
+/**
+ * When NO legal sequence exists, the fewest-problems arrangement available.
+ *
+ * The same search as legalSequences() — same menus, same nearest-first option
+ * order, same pruning — but scoring every arrangement by how many rules it breaks
+ * instead of discarding any that breaks one. It is deliberately not a new rule
+ * and not a new mechanism: it is the existing solver's fallback, and it exists so
+ * a rule the content genuinely cannot satisfy is reported rather than silently
+ * returned (see the caller).
+ */
+export function bestEffortSequence(menus, indices, near = [], budget = 20000) {
+  let best = null, bestScore = Infinity, nodes = 0;
+  const acc = [];
+  const score = (seq) => shotSequenceProblems(seq, indices).length;
+  const go = (i) => {
+    if (nodes > budget || bestScore === 0) return;
+    if (i === menus.length) { const s = score(acc); if (s < bestScore) { bestScore = s; best = acc.slice(); } return; }
+    const opts = [...menus[i]].sort((a, b) => (b.sig === near[i]?.sig) - (a.sig === near[i]?.sig));
+    for (const o of opts) {
+      nodes++;
+      acc.push(o);
+      go(i + 1);
+      acc.pop();
+      if (bestScore === 0 || nodes > budget) return;
+    }
+  };
+  go(0);
+  return best;
+}
+
 const describeBeat = (c) => {
   const h = (c.concept_visuals || [])[0];
   if (c.photo) return `a photo of ${c.photo.entity || "the named subject"}`;
@@ -1245,7 +1275,25 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<one of that beat's optio
     // arranged (logged); the beats stay as Gemini picked and the gates judge the render.
     if (problems.length) {
       const seqs = legalSequences(menus, idx, choice);
-      if (!seqs.length) console.log(`[shots-final] ch-${channelId}: no legal sequence exists in these beats' options — the content (too many words-only / words-at-the-top beats) cannot be arranged`);
+      // NO LEGAL SEQUENCE: PICK THE LEAST-BAD, AND SAY SO. Both give-up paths
+      // here used to fall through with `choice` UNCHANGED - the very pick whose
+      // `problems` built the prompt above - so the beat stayed illegal and the
+      // audit failed it. The comment at :1159 records this happening:
+      // "no legal sequence exists ... so the solver gave up and left a photo card
+      // twice and a statement twice in a row, which canvas-type then failed"
+      // (board 38044082797 ch 49; ch-44 beat 3 and ch-2 beat 5 since).
+      //
+      // A rule the content genuinely cannot satisfy is a fact about this video,
+      // not a reason to stop searching. So take the fewest-problems arrangement
+      // available and REPORT the residue, rather than returning an illegal
+      // sequence in silence as if it had been chosen.
+      if (!seqs.length) {
+        const best = bestEffortSequence(menus, idx, choice);
+        const left = best ? shotSequenceProblems(best, idx) : [];
+        console.log(`[shots-final] ch-${channelId}: NO LEGAL SEQUENCE exists in these beats' options (the content cannot be arranged). Using the LEAST-BAD arrangement instead of the illegal one: ${best ? show(best) : "(none available)"}`);
+        if (left.length) console.log(`[shots-final] ch-${channelId}: ${left.length} rule(s) still broken and the audit will fail them: ${left.map((p) => `beat ${p.i}: ${p.why}`).join("; ")}`);
+        if (best) choice = best;
+      }
       else {
         const list = seqs.map((s, k) => `${k + 1}) ${s.map((o, i) => `[${idx[i]}] ${o.shot}${o.nochrome ? " (its label left out)" : ""}`).join(", ")}`).join("\n");
         const pick = await ask(`You are the visual director of a vertical video (the channel's reference look: an editorial collage that changes its shot every beat). Your shot choice ${show(choice)} breaks: ${problems.map((p) => p.why).join("; ")}.
@@ -1262,7 +1310,8 @@ Respond ONLY with JSON: {"sequence": <number>}`);
           choice = seqs[n - 1];
           problems = shotSequenceProblems(choice, idx);
           console.log(`[shots-final] ch-${channelId}: Gemini chose legal sequence ${n}/${seqs.length}: ${show(choice)}`);
-        } else console.log(`[shots-final] ch-${channelId}: no valid sequence number (${isProviderError(pick) ? pick.error : JSON.stringify(pick).slice(0, 80)}) — the beats stay as Gemini picked`);
+        } else if (seqs.length) console.log(`[shots-final] ch-${channelId}: no valid sequence number (${isProviderError(pick) ? pick.error : JSON.stringify(pick).slice(0, 80)}) — keeping the plan's own sequence`);
+        else console.log(`[shots-final] ch-${channelId}: no valid sequence number and no legal sequence existed — keeping the least-bad arrangement chosen above`);
       }
     }
   }
