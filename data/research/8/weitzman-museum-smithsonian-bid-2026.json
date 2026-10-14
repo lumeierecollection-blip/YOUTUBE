@@ -1,0 +1,39 @@
+{
+  "topic_slug": "weitzman-museum-smithsonian-bid-2026",
+  "strongest_angle": "Explore the congressional commission process and institutional formation dynamics as Philadelphia's Weitzman National Museum of American Jewish History seeks to join the Smithsonian Institution network.",
+  "key_facts": [
+    {
+      "fact": "Philadelphia's Weitzman National Museum of American Jewish History is advancing its bid to join the Smithsonian Institution network as a new congressional commission studies the potential transfer.",
+      "source_url": "https://www.jpost.com/diaspora/article-911626",
+      "source_name": "The Jerusalem Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "Members of a new congressional commission tasked with studying whether to make the Weitzman Museum part of the Smithsonian were sworn in on Tuesday according to reports by the Jewish Telegraphic Agency.",
+      "source_url": "https://jweekly.com/2026/10/13/a-jewish-museum-hopes-to-join-the-smithsonian-at-a-difficult-moment-for-the-institution",
+      "source_name": "J. The Jewish News of Northern California",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Weitzman National Museum of American Jewish History is pursuing its inclusion in the Smithsonian Institution during a period of significant upheaval and political tensions for the storied museum network.",
+      "source_url": "https://www.jewishrhody.com/stories/jewish-american-history-museum-moves-closer-to-joining-smithsonian-amid-political-tensions,181303",
+      "source_name": "Jewish Rhode Island",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Weitzman National Museum of American Jewish History",
+      "kind": "organization"
+    },
+    {
+      "name": "Smithsonian Institution",
+      "kind": "organization"
+    },
+    {
+      "name": "Philadelphia",
+      "kind": "place"
+    }
+  ]
+}
