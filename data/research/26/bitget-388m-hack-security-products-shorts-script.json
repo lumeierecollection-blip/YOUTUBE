@@ -1,0 +1,66 @@
+{
+  "channel_id": "26",
+  "topic_slug": "bitget-388m-hack-security-products",
+  "format": "shorts",
+  "hook": "Hackers drained $388 million from Bitget after hiding inside its servers for 25 days.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Hackers drained $388 million from Bitget after hiding inside its servers for 25 days.",
+      "b_roll": [
+        "Digital server rack animation showing breach alarm"
+      ],
+      "text_overlay": {
+        "text": "$388 Million Stolen"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Slowmist investigators found malicious code executing on August 31 inside a compromised third-party security product. Unauthorized transfers began at 18:31 UTC on September 24. Where did the $388 million vanish?",
+      "b_roll": [
+        "Code execution timeline graphic",
+        "Hot wallet transfer interface"
+      ],
+      "text_overlay": {
+        "text": "25-Day Dwell Time"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except automated risk controls blocked withdrawals once unauthorized transfers started at 18:31 UTC.",
+      "b_roll": [
+        "Security firewall block alert"
+      ],
+      "text_overlay": {
+        "text": "Risk Controls Triggered"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CEO Gracy Chen froze $1.1 million of the stolen funds. Bitget replenished its Protection Fund back up to $300 million.",
+      "b_roll": [
+        "Asset freeze transaction log",
+        "Protection fund balance meter"
+      ],
+      "text_overlay": {
+        "text": "$1.1 Million Frozen"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Bitget Protection Fund sits at $300 million.",
+      "b_roll": [
+        "Fund total counter display"
+      ],
+      "text_overlay": {
+        "text": "$300 Million Fund"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thehackernews.com/2026/09/bitget-says-attacker-exploited-third.html",
+    "https://news.bitcoin.com/security/bitget-hack-slowmist-25-days-chainflip-cow-protocol",
+    "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
+    "https://www.bitget.com/campaigns/bitget-security-incident-2026"
+  ]
+}
