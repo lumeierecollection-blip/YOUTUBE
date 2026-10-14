@@ -3,103 +3,121 @@
 Read this first, then `FIXES.md`.
 
 ## Hash at stop
-`HEAD == origin/main == 286d35aa`, tree clean, both directions empty. Suite 807/0.
+`HEAD == origin/main == 45b04668`, tree clean, both directions empty. Suite 814/0.
 
-## THE HEADLINE: ch-2 is the first channel ever to reach `approved/`
+## Cron
+**ON**, 06:00 UTC.
 
-Run `38528287535`:
-```json
-{ "channel": 2, "verdict": "approved", "failed_stage": null, "failed_check": null,
-  "reason": "verdict A rigorously structured, visually sophisticated editorial short
-             that successfully translates complex legal reporting into a seamless
-             typographic and data-driven motion piece.",
-  "topic": "ice-agent-gregory-morgan-assault-twin-cities", "attempts": 1 }
+## Uploads
+**NONE.** The upload has still never happened. See Job 2.
+
+---
+
+# JOB 1 — DONE, `45b04668` (tests green, NOT yet proven in a run)
+
+`findVideo()` read exactly one queue:
+
+```js
+const verdict = review ? "approved-review" : "approved";
 ```
 
-After ~15 board runs and zero, one channel got through. The solver fix (`cba262bd`)
-cleared the `canvas-type` gate that had been stopping it.
+So ch-2 — the first channel ever in `approved/` — had **no upload path at all**,
+and the job built to publish could not publish the one video that had passed
+everything. `--review` now searches `approved-review/` **first** (it exists precisely
+because a video needs a human, and one there must not be passed over for a different
+video from the other queue), then `approved/`. `findVideo` returns the queue it came
+from, so `data/publish-queue` records the truth instead of guessing from the review
+flag.
 
----
+`rejected/` is still never read. No gate changed, no queue membership changed. Upload
+is still `privacyStatus: "private"` and still queued `cancelled` — tests pin both.
+`scripts/__tests__/publish-both-queues.test.js`, 7 tests.
 
-# JOB 1 — THE CRON REACHES review-publish: FIXED AND PROVEN
+# JOB 2 — THE UPLOAD DID NOT HAPPEN
 
-`286d35aa`. `review-publish` was gated on `event_name == 'workflow_dispatch'`, the
-only gate in the workflow keyed on `event_name`, so a SCHEDULE event skipped it
-outright. It now admits `schedule`, takes its channel list from
-`config/priority-channels.json` and its run id from `github.run_id`, and a new first
-step ("Resolve what to publish") resolves both once for every step below it.
+Dispatch `38545634139`, `-f channels=2 -f publish=true -f review_run_id=38528287535`.
 
-**Proven by dispatch:** `Publishing approved-review videos of run 38528287535 for
-channel(s) 2 (private)` — the job ran end to end through queue download, OAuth
-materialisation and the publish step.
+**Proof it did not happen, from the artifact rather than the log:**
+`data/publish-queue/2/publish-queue.json` on `origin/main` contains only entries dated
+**2026-08-11** and **2026-09-15**. Nothing from today. **No video id, no Studio link.**
 
-### Two wrong diagnoses on this job, both caught only by running it
-- `6841f811` claimed `publish`/`review_run_id` were undeclared. They are, at lines
-  62–68, along with `hold_public`. I read lines 33–54 and stopped, added duplicates,
-  and the dispatch failed `HTTP 422 'publish' is already defined`.
-- `468e0531` then used a blanket search-and-replace that rewrote the Resolve step's
-  **own** env to read its own outputs, so both resolved empty and the step failed
-  with `no channels given` on a dispatch that had passed both flags correctly.
+How far it got:
+```
+Publishing approved-review videos of run 38528287535 for channel(s) 2 (private)
+... Resolve → Check inputs → checkout → node → deps → download queues
+    → download renders → download prep → Materialize OAuth credentials
+    → Write the daily upload digest → Commit the daily upload digest → Commit publish queue
+```
 
-Both reverted or fixed. Reasoning about this job was wrong twice; running it was
-right three times.
+**The step `Publish approved-review videos (private)` is absent from that list, and
+`run.js` was never invoked** — no invocation appears anywhere in the log. The job went
+straight from `Materialize OAuth credentials` to the digest step.
 
----
+**So the publish step did not execute at all**, and I could not work out why in the
+context remaining. The step is present in the workflow at line ~1648, correctly
+indented (6 spaces, same as its siblings), with a `run:` and no `if:`, so nothing in
+the file explains it being skipped.
 
-# THE BLOCKER THAT REMAINS: `approved/` has no upload path
+**Next session: open run `38545634139` → the `review-publish` job → and look at the
+`Publish approved-review videos (private)` step directly in the GitHub UI**, including
+whether it is greyed out with a skip reason. That is one click and it will answer this
+immediately. Do not re-diagnose from the log; the log does not contain the step.
 
-**This is why the publish run produced nothing.** `run.js --review` reads
-**`approved-review/` only**. ch-2's video is in **`approved/`**. There is no
-code path in `review-publish` that uploads an `approved/` video.
+Secondary failure worth noting: **both `Commit the daily upload digest` and
+`Commit publish queue` exit 1** — almost certainly non-fast-forward against the board
+runs committing scripts to `main` simultaneously. They have a rebase-and-retry loop, so
+if it is that, the loop is being exhausted. Worth a look once the upload itself works.
 
-So the pipeline can now reach the upload step and there is still nothing it will
-upload, because the one channel that has passed went to the queue `--review` ignores.
+# JOB 3 — VOICE: unchanged, default left alone
 
-**The decision is yours, and it is a policy call, not a bug:**
-- `approved/` is the stronger verdict (A). Under human-review posting it arguably
-  deserves the same treatment: upload private, owner clicks Publish.
-- The fix is small and local — let the publish step take `approved/` too, still
-  private, still queued cancelled. It does **not** loosen any gate; it changes what
-  happens to a video *after* it lands in a queue.
+`edge_tts` 7.2.8 installed locally; `scripts/acoustic/narration-acoustics.py` exists.
+Microsoft's endpoint returns, before any audio is written:
 
-Until that is done, **the 06:00 cron will reach review-publish and upload nothing.**
+```
+aiohttp.client_exceptions.WSServerHandshakeError: 403, message='Invalid response status',
+url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?...'
+```
 
-# Uploads
-**None.** `data/uploaded/.json` currently on main is from the broken 08:12 run —
-it has `"date": ""` and a `no_credentials: []` that should have been populated. It
-is junk and should be deleted. The 08:16 run's digest failed to push (exit 1, a
-non-fast-forward against concurrent board pushes).
+**No f0 numbers exist and none were invented.** Default stays `en-US-GuyNeural`.
+Path A was not taken — testing Edge on a CI runner needs a workflow, which is the next
+session's first job.
 
-# JOB 2 — VOICE: unchanged, default left alone
-`edge_tts` 7.2.8 is installed locally and the acoustics script exists, but
-Microsoft's endpoint returns `WSServerHandshakeError: 403` at the handshake, before
-any audio is written. **No f0 numbers exist and none were invented.** Default stays
-`en-US-GuyNeural`.
+**If Edge 403s on runners too, Edge is dead as a provider and the real choice is Path C:**
+make the narration judge advisory. Under human-review posting you watch every video
+before it publishes, so a gate that rejects 8/8 sentences as "synthetic or flat" (ch-44)
+is filtering on something only a listener can judge. That is a deliberate policy
+change, not a loosening, and it should be stated as one when made.
 
-**Before anyone switches:** confirm Edge synthesises on a GitHub runner. `tts.js:137`
-puts Gemini first *because* Edge is the fallback; if Edge 403s there too, the switch
-removes the working provider and leaves no voice.
+# JOB 4 — ch-44: killed, `grid`
 
-# JOB 3 — ch-44: killed, not cancelled this time
-Run `38528287535`, ch-44 render **failure**. It got past infrastructure.
+```
+stage=canvas-checks  check=grid
+audit: grid: beat 6 (TYPE-CHAPTER): the words are centred at x 585,
+       not on the frame's axis (540 ± 40)
+```
 
-# Board `38528287535` — all ten
-ch-2 **approved** (first ever). ch-44, 5, 49, 26, 1, 6, 8, 10, 9 rejected at their
-gates; `review-publish` skipped, correctly — that dispatch had no `publish=true`.
+A layout bug, not content. **Not fixed** — out of context. It has been failing since
+board `38330253047` and is the same beat and the same number, so it is stable and
+diagnosable, not flaky. `TYPE-CHAPTER` needs to centre on the frame axis; 585 vs 540 is
+a 45 px offset, just past the ±40 tolerance.
 
-# Next, in order
-1. **Give `approved/` an upload path** (above). Nothing publishes until this exists.
-2. Delete `data/uploaded/.json` — a junk artifact from the broken run.
-3. Confirm Edge TTS on CI, or take Path C and make the narration judge advisory
-   (a deliberate policy change: the human watches every video anyway).
-4. Then prove one real upload end to end and paste the Studio link.
+# Will tomorrow's 06:00 cron upload?
 
-# Credentials
-**01, 02, 09, 26, 44** can upload. **05, 06, 08, 10, 49** still need
+**It will reach the publish step. It will upload nothing until Job 2 is resolved.**
+Everything up to and including OAuth materialisation is proven working. The single
+unknown is why the publish step itself does not execute — which is one UI click away.
+
+Channels that could upload: **01, 02, 09, 26, 44**. **05, 06, 08, 10, 49** still need
 `CHANNEL_NN_CLIENT_ID` / `_CLIENT_SECRET` / `_REFRESH_TOKEN`.
 
+# Next, in order
+1. Read run `38545634139`'s publish step in the UI. One click answers the whole blocker.
+2. Once it runs, dispatch again and paste a real Studio link.
+3. Test Edge TTS on a CI runner → Path A result, or take Path C.
+4. ch-44's `grid` offset — stable, one beat, diagnosable.
+
 ## Method
-- Run it; do not reason about CI wiring. Two confident diagnoses here were wrong
-  and a third (self-referencing outputs) only surfaced in a real run.
-- A gate that passes is not an upload. Follow the artifact all the way to a video id
-  before claiming anything published.
+- Three wrong diagnoses in a row on the publish wiring this week. Every one was caught
+  only by running it. Reasoning about CI wiring has a poor record here; the artifact
+  and the UI are the truth.
+- `data/publish-queue` answered "did it upload?" in one command when the log could not.
