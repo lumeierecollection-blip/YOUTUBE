@@ -1,0 +1,65 @@
+{
+  "channel_id": "2",
+  "topic_slug": "ice-agent-gregory-morgan-assault-twin-cities",
+  "format": "shorts",
+  "hook": "Federal immigration agents are sworn to uphold the law, but one ICE agent now faces felony charges on Highway 62.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Federal immigration agents are sworn to uphold the law, but one ICE agent now faces felony charges on Highway 62.",
+      "b_roll": [
+        "Highway sign for Highway 62 in Minnesota",
+        "Exterior courthouse building in Hennepin County"
+      ],
+      "text_overlay": {
+        "text": "ICE Agent Faces Felony Charges"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Hennepin County Attorney Mary Moriarty announced the case on April 16, 2026. Morgan faces charges in Hennepin County, raising intense legal questions.",
+      "b_roll": [
+        "Press release document from Hennepin County Attorney's Office",
+        "Court charging document from State of Minnesota District Court"
+      ],
+      "text_overlay": {
+        "text": "2 Counts of Second-Degree Assault"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Court records show 2 counts of second-degree assault involving a dangerous weapon.",
+      "b_roll": [
+        "Legal statute text highlighting Minnesota Statute 609.222.1"
+      ],
+      "text_overlay": {
+        "text": "Dangerous Weapon Charges"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Conviction carries a maximum sentence of 7 years in prison alongside fines reaching $14,000.",
+      "b_roll": [
+        "Courtroom interior showing judicial district 4 bench",
+        "Legal document displaying sentencing guidelines"
+      ],
+      "text_overlay": {
+        "text": "7 Years Maximum Sentence"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Minnesota Statute 609.222.1 governs second-degree assault on Highway 62.",
+      "b_roll": [
+        "Minnesota state seal on courtroom document"
+      ],
+      "text_overlay": {
+        "text": "Highway 62 Incident"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.mprnews.org/story/2026/04/16/ice-agent-faces-felony-charges-in-feb-road-rage-incident",
+    "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+  ]
+}
