@@ -1,0 +1,67 @@
+{
+  "channel_id": "10",
+  "topic_slug": "martha-nussbaum-2026-kluge-prize-honor",
+  "format": "shorts",
+  "hook": "Did you know Martha C. Nussbaum just won the 2026 John W. Kluge Prize?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Martha C. Nussbaum just won the 2026 John W. Kluge Prize?",
+      "b_roll": [
+        "Library of Congress facade in Washington",
+        "Close up of philosopher portrait"
+      ],
+      "text_overlay": {
+        "text": "The Highest Honor"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Library of Congress announced it on September 22. She claimed the 2026 John W. Kluge Prize. Did the University of Chicago appoint her as professor of law and ethics?",
+      "b_roll": [
+        "University of Chicago campus quadrangle",
+        "Library of Congress seal document"
+      ],
+      "text_overlay": {
+        "text": "Kluge Prize 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Library of Congress awards the John W. Kluge Prize every other year.",
+      "b_roll": [
+        "Gold medal emblem spinning",
+        "Library of Congress interior rotunda"
+      ],
+      "text_overlay": {
+        "text": "Biennial Prize"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nussbaum holds the Ernst Freund chair at the University of Chicago. Martha C. Nussbaum shapes global human rights and ethics. The University of Chicago confirmed her appointment.",
+      "b_roll": [
+        "Law school library books stacked high",
+        "University of Chicago gates"
+      ],
+      "text_overlay": {
+        "text": "Ernst Freund Chair"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "She officially takes the 2026 Kluge Prize home this year.",
+      "b_roll": [
+        "Library of Congress building exterior",
+        "Gold award plaque"
+      ],
+      "text_overlay": {
+        "text": "2026 Kluge Prize"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+    "https://www.law.uchicago.edu/news/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum"
+  ]
+}
