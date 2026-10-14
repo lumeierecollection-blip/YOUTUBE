@@ -116,7 +116,7 @@ jobs:
       - id: channels
         name: Build channel matrix
         env:
-          REQUESTED: ${{ github.event.inputs.channels }}
+          REQUESTED: ${{ steps.target.outputs.channels }}
         run: |
           MATRIX=$(node -e "
             const fs = require('fs');
@@ -1416,10 +1416,19 @@ jobs:
   #     -f publish=true -f review_run_id=<run> -f channels=44
   # ============================================================
   review-publish:
-    if: >
-      github.event_name == 'workflow_dispatch' &&
-      github.event.inputs.publish == 'true' &&
-      github.ref == 'refs/heads/main'
+    # THE CRON REACHES THIS JOB. It used to require
+    # `github.event_name == 'workflow_dispatch' && inputs.publish == 'true'`, the
+    # only gate in the workflow keyed on event_name, so a SCHEDULE event skipped
+    # it outright: the 06:00 cron rendered every day and uploaded nothing, ever.
+    #
+    # A schedule has no inputs, so the two things this job needs come from the
+    # run itself: the channel from the matrix, and the review run id from
+    # github.run_id (this run's own artifacts, which is where a daily run's
+    # queues are). A dispatch still takes both from inputs, unchanged - note
+    # render is skipped when inputs.publish == 'true', so a dispatch publish
+    # deliberately re-publishes an EARLIER run rather than running one.
+    if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.publish == 'true')) }}
+    needs: [setup, prep, render]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -1428,10 +1437,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Resolve what to publish
+        id: target
+        env:
+          IS_SCHEDULE: ${{ github.event_name == 'schedule' }}
+          REQUESTED: ${{ steps.target.outputs.channels }}
+          INPUT_RUN: ${{ steps.target.outputs.run_id }}
+          THIS_RUN: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          # One source of truth for the two things every later step needs.
+          if [ "$IS_SCHEDULE" = "true" ]; then
+            # A daily run publishes what THIS run just produced. Its channels are
+            # the priority set the render job was given; there are no inputs.
+            RUN="$THIS_RUN"
+            CHANNELS=$(node -e "console.log(require('./config/priority-channels.json').channels.join(','))")
+            echo "SCHEDULE event: publishing this run's approved-review videos (run $RUN) for channels $CHANNELS"
+          else
+            RUN="$INPUT_RUN"
+            CHANNELS="$REQUESTED"
+            echo "DISPATCH event: publishing run $RUN for channels $CHANNELS"
+          fi
+          echo "run_id=$RUN" >> "$GITHUB_OUTPUT"
+          echo "channels=$CHANNELS" >> "$GITHUB_OUTPUT"
+
       - name: Check inputs (approved channels only)
         env:
-          REQUESTED: ${{ github.event.inputs.channels }}
-          REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
+          REQUESTED: ${{ steps.target.outputs.channels }}
+          REVIEW_RUN: ${{ steps.target.outputs.run_id }}
+          IS_SCHEDULE: ${{ github.event_name == 'schedule' }}
         run: |
           node -e "
             const PUBLISH_CHANNELS = require('./config/priority-channels.json').channels.map(Number);
@@ -1455,10 +1489,10 @@ jobs:
       - name: Download the run's review queues
         uses: actions/download-artifact@v4
         with:
-          pattern: qa-queues-*-${{ github.event.inputs.review_run_id }}
+          pattern: qa-queues-*-${{ steps.target.outputs.run_id }}
           path: data/renders/
           merge-multiple: true
-          run-id: ${{ github.event.inputs.review_run_id }}
+          run-id: ${{ steps.target.outputs.run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # data/renders/<ch>/ (image credits, needed for CC-BY attribution in the description).
@@ -1466,10 +1500,10 @@ jobs:
         continue-on-error: true
         uses: actions/download-artifact@v4
         with:
-          pattern: rendered-*-${{ github.event.inputs.review_run_id }}
+          pattern: rendered-*-${{ steps.target.outputs.run_id }}
           path: .
           merge-multiple: true
-          run-id: ${{ github.event.inputs.review_run_id }}
+          run-id: ${{ steps.target.outputs.run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       # SEO metadata + thumbnails. prep-* artifacts are kept 1 day: after that this step finds
@@ -1478,15 +1512,15 @@ jobs:
         continue-on-error: true
         uses: actions/download-artifact@v4
         with:
-          pattern: prep-*-${{ github.event.inputs.review_run_id }}
+          pattern: prep-*-${{ steps.target.outputs.run_id }}
           path: data/
           merge-multiple: true
-          run-id: ${{ github.event.inputs.review_run_id }}
+          run-id: ${{ steps.target.outputs.run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Materialize OAuth credentials
         env:
-          REQUESTED: ${{ github.event.inputs.channels }}
+          REQUESTED: ${{ steps.target.outputs.channels }}
           CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
           CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
           CH01_REFRESH_TOKEN:   ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
@@ -1540,8 +1574,8 @@ jobs:
       - name: Write the daily upload digest
         if: always()
         env:
-          REVIEW_RUN: ${{ github.event.inputs.review_run_id }}
-          REQUESTED: ${{ github.event.inputs.channels }}
+          REVIEW_RUN: ${{ steps.target.outputs.run_id }}
+          REQUESTED: ${{ steps.target.outputs.channels }}
           TODAY: ${{ github.run_started_at }}
         run: |
           node -e '
@@ -1594,7 +1628,7 @@ jobs:
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
           git add data/uploaded
           if git diff --cached --quiet; then echo "No digest changes."; exit 0; fi
-          git commit -m "uploaded: digest for $TODAY (review-publish of run ${{ github.event.inputs.review_run_id }})"
+          git commit -m "uploaded: digest for $TODAY (review-publish of run ${{ steps.target.outputs.run_id }})"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             git rebase "origin/${{ github.ref_name }}"
@@ -1608,9 +1642,9 @@ jobs:
       # cancelled so process-queue never makes it public.
       - name: Publish approved-review videos (private)
         env:
-          REQUESTED: ${{ github.event.inputs.channels }}
+          REQUESTED: ${{ steps.target.outputs.channels }}
         run: |
-          ls -la data/renders/approved-review/ || { echo "::error::run ${{ github.event.inputs.review_run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
+          ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
           FAIL=0
           for CH in $(echo "$REQUESTED" | tr ',' ' '); do
             CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
@@ -1625,7 +1659,7 @@ jobs:
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
           git add data/publish-queue
           if git diff --cached --quiet; then echo "Publish queue unchanged."; exit 0; fi
-          git commit -m "publish-queue: review-publish of run ${{ github.event.inputs.review_run_id }} [run ${{ github.run_id }}]"
+          git commit -m "publish-queue: review-publish of run ${{ steps.target.outputs.run_id }} [run ${{ github.run_id }}]"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             git rebase "origin/${{ github.ref_name }}"
