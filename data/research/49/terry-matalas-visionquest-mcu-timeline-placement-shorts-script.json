@@ -1,0 +1,66 @@
+{
+  "channel_id": "49",
+  "topic_slug": "terry-matalas-visionquest-mcu-timeline-placement",
+  "format": "shorts",
+  "hook": "Paul Bettany suggested 2024 for VisionQuest, but Terry Matalas just completely shifted the timeline.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Paul Bettany suggested 2024 for VisionQuest, but Terry Matalas just completely shifted the timeline.",
+      "b_roll": [
+        "Title card showing Paul Bettany as Vision",
+        "Polygon interview headline with Terry Matalas"
+      ],
+      "text_overlay": {
+        "text": "The VisionQuest Timeline Twist"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "TechRadar shared the original 2024 placement right after WandaVision. Polygon confirmed the new interview details. Where does Spider-Man: Brand New Day fit into this 2015 origin history?",
+      "b_roll": [
+        "TechRadar article snippet about 2024 setting",
+        "WandaVision promotional poster",
+        "Avengers: Age of Ultron film still featuring Ultron"
+      ],
+      "text_overlay": {
+        "text": "From 2015 to 2024"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Years have passed since WandaVision concluded, but the show is current with Spider-Man: Brand New Day instead.",
+      "b_roll": [
+        "Polygon interview quote close-up"
+      ],
+      "text_overlay": {
+        "text": "Years Later"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Terry Matalas revealed that VisionQuest takes place years after WandaVision. This update shatters the earlier TechRadar schedule completely.",
+      "b_roll": [
+        "Spider-Man: Brand New Day logo reveal",
+        "Terry Matalas interview frame"
+      ],
+      "text_overlay": {
+        "text": "Current With Spider-Man"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Polygon published the 2026 interview that rewrote the MCU calendar.",
+      "b_roll": [
+        "Polygon logo watermark on interview excerpt"
+      ],
+      "text_overlay": {
+        "text": "Polygon 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
+    "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline"
+  ]
+}
