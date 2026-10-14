@@ -1,0 +1,60 @@
+{
+  "topic_slug": "trump-putin-diesel-deal-sanctions-2026",
+  "strongest_angle": "Analyze the strategic trade-off and geopolitical consequences of the new diesel agreement between Donald Trump and Vladimir Putin, examining how the U.S. suspension of sanctions alters global energy flows despite ongoing infrastructure vulnerabilities in Ukraine.",
+  "key_facts": [
+    {
+      "fact": "President Donald Trump announced on October 9, 2026, that Russia agreed to supply the United States with diesel following his call with President Vladimir Putin.",
+      "source_url": "https://www.ttnews.com/articles/trump-putin-russia-diesel-deal",
+      "source_name": "Transport Topics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Russia will provide 300,000 tons of diesel immediately, with more than 4 million tons in multiple deliveries to follow under the new agreement.",
+      "source_url": "https://www.ttnews.com/articles/trump-putin-russia-diesel-deal",
+      "source_name": "Transport Topics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Treasury Department issued a temporary license allowing Russian diesel exports following the announcement by President Donald Trump and President Vladimir Putin.",
+      "source_url": "https://www.justsecurity.org/160425/fueling-russias-war-diesel-deal-international-law",
+      "source_name": "Just Security",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Immediate Russian diesel supply",
+      "value": 300000,
+      "unit": "tons",
+      "source_url": "https://www.ttnews.com/articles/trump-putin-russia-diesel-deal"
+    },
+    {
+      "label": "Total planned Russian diesel deliveries",
+      "value": 4000000,
+      "unit": "tons",
+      "source_url": "https://www.ttnews.com/articles/trump-putin-russia-diesel-deal"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    },
+    {
+      "name": "Vladimir Putin",
+      "kind": "person"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Russia",
+      "kind": "place"
+    },
+    {
+      "name": "Treasury Department",
+      "kind": "organization"
+    }
+  ]
+}
