@@ -53,14 +53,6 @@ on:
         type: string
         default: ""
       publish:
-        description: "Upload a PREVIOUS run's approved-review videos as PRIVATE (render is skipped when this is true — use review_run_id, never publish after rendering in the same run)"
-        type: boolean
-        default: false
-      review_run_id:
-        description: "The numeric id of the pipeline run whose approved-review/ videos to upload. Required when publish=true."
-        type: string
-        default: ""
-      publish:
         description: "PUBLISH ONLY: upload the approved-review videos of run review_run_id (private) for `channels`; nothing is rendered"
         type: boolean
         default: false
