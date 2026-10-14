@@ -1441,8 +1441,13 @@ jobs:
         id: target
         env:
           IS_SCHEDULE: ${{ github.event_name == 'schedule' }}
-          REQUESTED: ${{ steps.target.outputs.channels }}
-          INPUT_RUN: ${{ steps.target.outputs.run_id }}
+          # The RAW inputs, read from the event. These must NOT point at this
+          # step's own outputs: 468e0531 did that with a blanket search-and-
+          # replace, so RUN and CHANNELS resolved to their own empty output and
+          # the publish step failed with "no channels given" on a dispatch that
+          # had passed both flags correctly. Only steps DOWNSTREAM read the outputs.
+          REQUESTED: ${{ github.event.inputs.channels }}
+          INPUT_RUN: ${{ github.event.inputs.review_run_id }}
           THIS_RUN: ${{ github.run_id }}
         run: |
           set -euo pipefail
