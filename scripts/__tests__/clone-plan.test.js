@@ -184,17 +184,28 @@ test("the manifest declares the beat's ground and calls a beat what it draws (th
   assert.equal(cloneCanvasFor({ data: { value: "30+", label: "species" } }, fig.shots, pal).visual_type, "COUNTER");
 });
 
-test("a picture-less beat that states a figure and a date shows them as its subjects in EVERY shot (the entity check samples one frame per beat)", () => {
+test("a picture-less beat that states a figure and a date shows ALL its subjects in EVERY shot, as one panel (the entity check samples one frame per beat)", () => {
   const SENT2 = "The Penny Hoarder published the October 2026 survey and only 35 percent of workers kept that money in reserve";
   const c = { sentence: SENT2, data: { value: "35%", label: "of workers" }, named_entities: [{ type: "date", name: "October 2026" }, { type: "company", name: "The Penny Hoarder" }] };
   const plan = planClone([beat(0, 0, 7, SENT2, c)], { laws: G.laws, profile: G.profiles["cutout-collage"] });
-  assert.ok(plan.shots.length >= 3 && plan.shots.every((x) => x.subject), "a shot has no subject");
-  const kinds = new Set(plan.shots.map((x) => x.subject.kind));
-  assert.ok(kinds.has("figure") && kinds.has("date") && kinds.has("glyph"), [...kinds].join());
+  assert.ok(plan.shots.length >= 3);
+  for (const sh of plan.shots) {
+    assert.equal(sh.treatment, "panel");
+    const kinds = sh.subjects.map((x) => x.kind).sort().join();
+    assert.equal(kinds, "date,figure,glyph", "a shot is missing a subject: " + kinds);
+  }
   const rec = cloneCanvasFor(c, plan.shots);
   assert.equal(rec.data.value, "35%");
   assert.equal(rec.composition, "NUMBER-STAT");
   assert.ok(rec.art.names.includes("The Penny Hoarder"));
+});
+
+test("more than four subjects rotate through the panel, every one shown across the beat", () => {
+  const ents = ["A One", "B Two", "C Three", "D Four", "E Five", "F Six"].map((n) => ({ type: "organization", name: n }));
+  const plan = planClone([beat(0, 0, 9, SENT, { sentence: SENT, named_entities: ents })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  assert.ok(plan.shots.every((x) => x.subjects.length === 4));
+  const seen = new Set(plan.shots.flatMap((x) => x.subjects.map((y) => y.name)));
+  assert.equal(seen.size, 6);
 });
 
 test("a shot WITH a picture shows the beat's figure in its text region, every shot, in place of the display words", () => {

@@ -80,9 +80,9 @@ function Figure({ shot, B, st, P, profile }) {
   const d = profile.type.display;
   const { size } = fitLines(shot.figure.value, B.text.w, { family: d.family, caps: false, max: 300, min: 90, maxLines: 1 });
   return (
-    <Plate box={B.text} bg="transparent" style={{ zIndex: 5, opacity: st.o, transform: `scale(${st.s})`, textAlign: B.text.align === "right" ? "right" : "center" }}>
-      <div style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1, color: readableAccent(P.accent, P.ground), whiteSpace: "nowrap" }}>{shot.figure.value}</div>
-      {shot.figure.label ? <div style={{ marginTop: 14, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 40, letterSpacing: "0.12em", textTransform: "uppercase", color: P.ink }}>{shot.figure.label}</div> : null}
+    <Plate box={B.text} bg={B.text.plated ? P.ink : "transparent"} style={{ zIndex: 5, padding: B.text.plated ? "28px 36px" : 0, boxSizing: "border-box", outline: B.text.plated ? `3px solid ${P.paper}` : "none", width: B.text.plated ? "auto" : B.text.w, maxWidth: B.text.w, opacity: st.o, transform: `scale(${st.s})`, textAlign: B.text.align === "right" ? "right" : B.text.plated ? "left" : "center" }}>
+      <div style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1, color: B.text.plated ? P.paper : readableAccent(P.accent, P.ground), whiteSpace: "nowrap" }}>{shot.figure.value}</div>
+      {shot.figure.label ? <div style={{ marginTop: 14, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 40, letterSpacing: "0.12em", textTransform: "uppercase", color: B.text.plated ? P.paper : P.ink }}>{shot.figure.label}</div> : null}
     </Plate>
   );
 }
@@ -156,45 +156,63 @@ function GlyphMark({ type, color, size }) {
   return <svg {...common}><path d="M50 8 L92 30 L92 38 L8 38 L8 30 Z" /><rect x="16" y="44" width="10" height="34" /><rect x="36" y="44" width="10" height="34" /><rect x="54" y="44" width="10" height="34" /><rect x="74" y="44" width="10" height="34" /><rect x="8" y="82" width="84" height="10" /></svg>;
 }
 
-// SUBJECT PLATES: the visual of a picture-less shot. An entity with no picture is a generic, NON-IDENTIFYING glyph (a person's silhouette, an organisation's
+// SUBJECT CELLS: the visual of a picture-less shot. An entity with no picture is a generic, NON-IDENTIFYING glyph (a person's silhouette, an organisation's
 // building, a place's pin) with its name; a stated figure is the figure, big; a stated date is a calendar page. Each says what the beat is about without
-// depicting anything it has no picture of. (The canvas engine's own fallback, drawn here.)
-function SubjectPlate({ shot, B, st, P, profile }) {
-  const box = B.hero, g = shot.subject, fam = profile.type.display.family, caps = profile.type.display.case === "upper";
-  const round = shot.treatment === "disc";
-  const shell = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", border: `10px solid ${P.accent}`, borderRadius: round ? "50%" : 0, overflow: "hidden" };
+// depicting anything it has no picture of (the canvas engine's own fallback, drawn here). One cell fills a plate; several share one panel as a grid, so the
+// single frame the entity check samples shows every subject.
+function SubjectCell({ g, w, h, P, profile, round }) {
+  const fam = profile.type.display.family, caps = profile.type.display.case === "upper";
+  const small = Math.min(w, h) < 520;
   const face = { fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, color: P.ink, whiteSpace: "nowrap", lineHeight: 1.04 };
+  const labelFace = { fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: P.ink, textAlign: "center" };
+  const wrap = { width: w, height: h, boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: round ? "10% 12%" : small ? "5% 6%" : "7%", overflow: "hidden" };
   if (g.kind === "figure") {
-    const { size } = fitLines(g.name, box.w - 120, { family: fam, caps: false, max: 300, min: 90, maxLines: 1 });
+    const { size } = fitLines(g.name, w * 0.8, { family: fam, caps: false, max: small ? 150 : 300, min: 44, maxLines: 1 });
     return (
-      <div style={{ ...shell, justifyContent: "center", padding: round ? "90px 60px" : "40px" }}>
+      <div style={wrap}>
         <div style={{ ...face, fontSize: size, color: readableAccent(P.accent, "#FFFFFF") }}>{g.name}</div>
-        {g.label ? <div style={{ marginTop: 20, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 40, letterSpacing: "0.1em", textTransform: "uppercase", color: P.ink, whiteSpace: "normal", textAlign: "center", maxWidth: box.w - 140 }}>{g.label}</div> : null}
+        {g.label ? <div style={{ ...labelFace, marginTop: 12, fontSize: small ? 26 : 40, whiteSpace: "normal", maxWidth: w * 0.84 }}>{g.label}</div> : null}
       </div>
     );
   }
   if (g.kind === "date") {
     const d = parseDate(g.name);
     const main = d.day || d.year || g.name;
-    const { size } = fitLines(String(main), box.w - 140, { family: fam, caps: false, max: 280, min: 80, maxLines: 1 });
+    const { size } = fitLines(String(main), w * 0.7, { family: fam, caps: false, max: small ? 130 : 260, min: 44, maxLines: 1 });
     return (
-      <div style={{ ...shell, justifyContent: "flex-start" }}>
-        <div style={{ width: "100%", backgroundColor: P.accent, color: P.paper, textAlign: "center", padding: round ? "78px 0 16px" : "22px 0", fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 700, fontSize: 52, letterSpacing: "0.16em" }}>{d.month || "DATE"}</div>
+      <div style={{ ...wrap, padding: 0, justifyContent: "flex-start" }}>
+        <div style={{ ...labelFace, width: "100%", backgroundColor: P.accent, color: P.paper, fontWeight: 700, padding: round ? "16% 0 4%" : "4% 0", fontSize: small ? 30 : 50, letterSpacing: "0.16em" }}>{d.month || "DATE"}</div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
           <div style={{ ...face, fontSize: size }}>{main}</div>
-          {d.day && d.year ? <div style={{ marginTop: 10, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 56, letterSpacing: "0.1em", color: P.ink }}>{d.year}</div> : null}
+          {d.day && d.year ? <div style={{ ...labelFace, marginTop: 6, fontSize: small ? 28 : 52 }}>{d.year}</div> : null}
         </div>
       </div>
     );
   }
   const name = caps ? g.name.toUpperCase() : g.name;
-  const { lines, size } = fitLines(name, box.w - 80, { family: fam, caps, max: 96, min: 44, maxLines: 2 });
+  const { lines, size } = fitLines(name, w * 0.86, { family: fam, caps, max: small ? 56 : 96, min: 28, maxLines: 2 });
   return (
-    <div style={{ ...shell, padding: round ? "90px 60px 70px" : "56px 40px 40px" }}>
-      <GlyphMark type={g.type} color={P.ink} size={Math.round(box.h * 0.46)} />
-      <div style={{ textAlign: "center" }}>
-        {lines.map((l, i) => <div key={i} style={{ ...face, fontSize: size }}>{l}</div>)}
-      </div>
+    <div style={{ ...wrap, justifyContent: "space-between" }}>
+      <GlyphMark type={g.type} color={P.ink} size={Math.round(h * (small ? 0.4 : 0.46))} />
+      <div style={{ textAlign: "center" }}>{lines.map((l, i) => <div key={i} style={{ ...face, fontSize: size }}>{l}</div>)}</div>
+    </div>
+  );
+}
+
+function SubjectPlate({ shot, B, st, P, profile }) {
+  const box = B.hero, subs = (shot.subjects && shot.subjects.length ? shot.subjects : [shot.subject]).filter(Boolean);
+  const round = shot.treatment === "disc" && subs.length === 1;
+  const shell = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", border: `10px solid ${P.accent}`, borderRadius: round ? "50%" : 0, overflow: "hidden" };
+  const inner = { w: box.w - 20, h: box.h - 20 };
+  if (subs.length === 1) return <div style={shell}><SubjectCell g={subs[0]} w={inner.w} h={inner.h} P={P} profile={profile} round={round} /></div>;
+  const cols = subs.length <= 2 ? subs.length : 2, rows = Math.ceil(subs.length / cols), cw = inner.w / cols, ch = inner.h / rows;
+  return (
+    <div style={{ ...shell, display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gridTemplateRows: `repeat(${rows}, 1fr)` }}>
+      {subs.map((g, i) => (
+        <div key={i} style={{ borderRight: (i % cols) < cols - 1 ? `3px solid ${P.accent}` : "none", borderBottom: Math.floor(i / cols) < rows - 1 ? `3px solid ${P.accent}` : "none", boxSizing: "border-box" }}>
+          <SubjectCell g={g} w={cw} h={ch} P={P} profile={profile} round={false} />
+        </div>
+      ))}
     </div>
   );
 }

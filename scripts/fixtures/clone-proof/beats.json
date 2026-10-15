@@ -164,5 +164,32 @@
       "named_entities": [],
       "motion_tier": "medium"
     }
+  },
+  {
+    "text": "The Romanian Academy and the University of Bucharest published the findings on April 3, 1986, counting more than thirty species.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "COUNTER",
+      "data": {
+        "value": "30+",
+        "label": "species"
+      },
+      "headline": "Findings published",
+      "named_entities": [
+        {
+          "type": "organization",
+          "name": "Romanian Academy"
+        },
+        {
+          "type": "organization",
+          "name": "University of Bucharest"
+        },
+        {
+          "type": "date",
+          "name": "April 3, 1986"
+        }
+      ],
+      "motion_tier": "medium"
+    }
   }
 ]

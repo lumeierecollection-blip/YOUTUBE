@@ -33,6 +33,9 @@ export function treatmentBoxes(treatment, idx = 0) {
       // NO PICTURE: the visual is the narration itself, set as a tilted paper EXCERPT CARD (the references' page scans) with the key words big below it.
       // The accent block is the card's own offset (32 px right and down), the same size, so it reads as a second sheet under it, never as a slab.
       return { hero: rect(120, 470, 840, 520, { rot: tilt * 0.75, card: true }), label: rect(90, 1070, 900, 48), text: rect(90, 1140, 900, 460, { align: "center" }), shape: { block: rect(152, 502, 840, 520), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1050, 900, 6), pull: rect(90, 1050, 900, 6) } };
+    case "panel":
+      // SEVERAL SUBJECTS AT ONCE (entities, figures, dates as cells of one grid): the entity check samples one frame per beat, so every frame shows every subject.
+      return { hero: rect(90, 380, 900, 740, { panel: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1230, 900, 420, { align: "center" }), shape: { block: rect(130, 420, 900, 740), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1140, 900, 6), pull: rect(90, 1140, 900, 6) } };
     case "plate":
     default:
       return { hero: rect(180, 380, 720, 720, { plate: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1240, 900, 380, { align: "center" }), shape: { block: rect(140, 420, 720, 720), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1142, 900, 6) } };
@@ -54,9 +57,9 @@ export function layoutProblems(treatment, idx = 0) {
   return out;
 }
 
-export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "type"];
+export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "panel", "type"];
 /** Treatments a profile may rotate through: `type` is the planner's own choice for a shot with no picture, never a rotation entry. */
-export const PICTURE_TREATMENTS = TREATMENTS.filter((t) => t !== "type");
+export const PICTURE_TREATMENTS = TREATMENTS.filter((t) => t !== "type" && t !== "panel");
 
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 /** "October 1, 2026" / "October 2026" / "2026" -> { month, day, year }: whatever the text states, nothing it does not. Pure, so the calendar plate is testable. */

@@ -198,10 +198,18 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       // calendar page. EVERY shot does, not just one: the entity check (Gemini, on the frames) samples ONE frame per beat and fails "a beat names an entity /
       // a figure / a date its frame does not show" when the sampled frame is another shot (board 38772064251 ch-1: missing "35%", "October 2026", "44%").
       // The excerpt card is only for a beat that names nothing to show.
-      const subjects = [...ents.map((x) => ({ kind: "glyph", ...x })), ...figs.map((f) => ({ ...f }))];
-      const subject = !hero && subjects.length && f1 - f0 >= PLATE_MIN_FRAMES ? subjects[k % subjects.length] : null;
+      const subjectsAll = [...ents.map((x) => ({ kind: "glyph", ...x })), ...figs.map((f) => ({ ...f }))];
+      // ALL of them in ONE frame (up to four, as cells of a panel; more than four rotate), so the single frame the entity check samples shows every subject
+      // (board 38781391920 ch-9: a beat naming the UN and Ethiopia showed only the UN in the sampled frame; the date was missing in another).
+      const MAXCELLS = 4;
+      const subjects = !hero && subjectsAll.length && f1 - f0 >= PLATE_MIN_FRAMES
+        ? (subjectsAll.length <= MAXCELLS ? subjectsAll : Array.from({ length: MAXCELLS }, (_, j) => subjectsAll[(k + j) % subjectsAll.length])) : [];
+      const subject = subjects[0] || null;
       const glyph = subject && subject.kind === "glyph" ? subject : null;
-      if (subject) { treatment = k % 2 === 0 ? "plate" : "disc"; if (glyph && !plates.some((x) => x.name === glyph.name)) plates.push({ name: glyph.name, type: glyph.type }); }
+      if (subject) {
+        treatment = subjects.length === 1 ? (k % 2 === 0 ? "plate" : "disc") : "panel";
+        for (const g of subjects) if (g.kind === "glyph" && !plates.some((x) => x.name === g.name)) plates.push({ name: g.name, type: g.type });
+      }
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
       const figHere = hero && figs.length ? figs[k % figs.length] : null;
       const el = [];
@@ -213,13 +221,14 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       if (shape) el.push({ kind: "shape", at: at(ELEMENT_OFFSET.shape) });
       if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + ELEMENT_OFFSET.display, disp.at)) });
-      const labelPlates = plates.filter((x) => !glyph || x.name !== glyph.name);
-      if (labelPlates.length && (roomForPlate || glyph)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
+      const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
+      const labelPlates = plates.filter((x) => !shownNames.has(x.name));
+      if (labelPlates.length && (roomForPlate || subject)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
         display: figHere ? null : disp, figure: figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null,
-        subject, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
-        plates: plates.length && (roomForPlate || glyph) ? plates : [], plate: labelPlates.length && (roomForPlate || glyph) ? labelPlates.map((x) => x.name).join(" · ") : null,
+        subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
+        plates: plates.length && (roomForPlate || subject) ? plates : [], plate: labelPlates.length && (roomForPlate || subject) ? labelPlates.map((x) => x.name).join(" · ") : null,
         elements: el,
       });
     }
@@ -279,7 +288,7 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   // figures and dates the shots drew (in the text region, or as a subject plate)
   const figs = [];
   const addFig = (f) => { if (f && !figs.some((x) => x.kind === f.kind && x.name === f.name)) figs.push(f); };
-  for (const sh of shots || []) { if (sh.figure) addFig({ kind: sh.figure.kind || "figure", name: sh.figure.value, label: sh.figure.label }); if (sh.subject && sh.subject.kind !== "glyph") addFig({ kind: sh.subject.kind, name: sh.subject.name, label: sh.subject.label }); }
+  for (const sh of shots || []) { if (sh.figure) addFig({ kind: sh.figure.kind || "figure", name: sh.figure.value, label: sh.figure.label }); for (const sj of sh.subjects || []) if (sj.kind !== "glyph") addFig({ kind: sj.kind, name: sj.name, label: sj.label }); }
   const num = figs.find((f) => f.kind === "figure"), date = figs.find((f) => f.kind === "date");
   const kindOf = (t) => (t === "person" ? "plate-person" : t === "place" ? "plate-place" : "plate-organization");
   const out = {};
@@ -300,7 +309,7 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   const parts = [];
   if (out.photo) parts.push("a photograph of " + (out.photo.entity || "the subject") + " in a framed or full-bleed layout");
   if (out.concept_visuals.length) parts.push("a logo or object picture");
-  const glyphs = (shots || []).filter((x) => x.subject && x.subject.kind === "glyph").map((x) => x.subject.type);
+  const glyphs = (shots || []).flatMap((x) => (x.subjects || []).filter((y) => y.kind === "glyph").map((y) => y.type));
   if (glyphs.length) parts.push("generic " + [...new Set(glyphs)].map((t) => (t === "person" ? "person-silhouette" : t === "place" ? "map-pin" : "building")).join(" / ") + " icon plates with the entity's name");
   if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");
   if (date) parts.push("a calendar-date plate");
