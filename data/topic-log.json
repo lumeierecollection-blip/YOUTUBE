@@ -1012,9 +1012,14 @@
           "topic": "Boston Installs Bus Cameras to Fine Drivers Who Illegally Pass Stop Signs",
           "slug": "boston-bus-cameras-stop-sign-enforcement",
           "reserved_at": "2026-10-15T13:30:29.135Z"
+        },
+        {
+          "topic": "Colorado AG Reminds Landlords of Expanded Housing Protections",
+          "slug": "colorado-ag-domestic-violence-housing-protections",
+          "reserved_at": "2026-10-15T14:43:00.269Z"
         }
       ],
-      "last_generated": "2026-10-15T13:30:29.135Z"
+      "last_generated": "2026-10-15T14:43:00.269Z"
     },
     "3": {
       "channel_name": "AI Tested",
