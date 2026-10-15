@@ -31,6 +31,7 @@ import { SAFE_SHORTS } from "../layout/slots.js";
 import { ComposedScene } from "./composed-scene.jsx";
 import { LayeredScene } from "./layered-scene.jsx";
 import { CanvasVideo } from "../visual/full-canvas.jsx";
+import { CloneVideo } from "../clone/CloneVideo.jsx";
 import { ensureTextContrast, TEXT_TARGET_CONTRAST, ACCENT_TEXT_TARGET_CONTRAST } from "../visual/scene-text.js";
 
 const CANVAS_W = 1080;
@@ -1368,7 +1369,8 @@ export function DirectedScene({ plan, ttsAudioPath }) {
           The paper stage was removed from the render path (2026-09-29). A
           plan still marked paper is refused rather than drawn some other way. */}
       {plan.paper ? (() => { throw new Error("paper-style plans are no longer rendered (the paper stage was removed) — re-resolve the plan to canvas content"); })() : null}
-      {plan.canvas ? <CanvasVideo plan={plan} /> : null}
+      {/* The CLONE family (clone/CloneVideo.jsx): the reference videos' laws, staged over the same resolved beats. A plan without `clone` renders exactly as before. */}
+      {plan.clone ? <CloneVideo plan={plan} /> : plan.canvas ? <CanvasVideo plan={plan} /> : null}
       {/* Previous beat echo — fading out during transition */}
       {!plan.canvas && showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>

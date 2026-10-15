@@ -1,0 +1,139 @@
+[
+  {
+    "text": "A sealed cave in Romania held an entire ecosystem that nobody knew existed.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "PHOTO",
+      "photo": {
+        "asset": "b-roll/ch-fixture/cave-entrance.jpg",
+        "entity": "Movile Cave",
+        "kind": "place",
+        "view": "place",
+        "w": 1920,
+        "h": 1275,
+        "credit": "Repo test fixture photo"
+      },
+      "headline": "A sealed cave held an ecosystem",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Movile Cave"
+        }
+      ],
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "It had been cut off from the surface for millions of years, without a single ray of sunlight.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "PHOTO",
+      "photo": {
+        "asset": "b-roll/ch-fixture/microbial-mats.jpg",
+        "entity": "Microbial mats",
+        "kind": "object",
+        "view": "object",
+        "w": 1600,
+        "h": 1000,
+        "credit": "Repo test fixture photo"
+      },
+      "headline": "Cut off for millions of years",
+      "named_entities": [],
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "Instead of sunlight, bacteria lived on chemicals leaking out of the rock itself.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "PHOTO",
+      "photo": {
+        "asset": "b-roll/ch-fixture/black-smoker.jpg",
+        "entity": "Chemical vent",
+        "kind": "object",
+        "view": "object",
+        "w": 1600,
+        "h": 1000,
+        "credit": "Repo test fixture photo"
+      },
+      "headline": "Chemicals instead of sunlight",
+      "named_entities": [],
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "Scientists counted more than thirty species that exist nowhere else on Earth.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "COUNTER",
+      "photo": {
+        "asset": "b-roll/ch-fixture/cave-spider.jpg",
+        "entity": "Cave spider",
+        "kind": "object",
+        "view": "object",
+        "w": 1600,
+        "h": 1000,
+        "credit": "Repo test fixture photo"
+      },
+      "data": {
+        "value": "30+",
+        "label": "species found nowhere else"
+      },
+      "headline": "Thirty species nowhere else",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "thirty"
+        }
+      ],
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "A single spider hunted in total darkness, feeding on creatures that never see light.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "PHOTO",
+      "photo": {
+        "asset": "b-roll/ch-fixture/cave-spider.jpg",
+        "entity": "Cave spider",
+        "kind": "object",
+        "view": "object",
+        "w": 1600,
+        "h": 1000,
+        "credit": "Repo test fixture photo"
+      },
+      "concept_visuals": [
+        {
+          "name": "piggy-bank",
+          "class": "cutout",
+          "asset": "asset-library/ch-01/piggy-bank-savings-all-of-our-savings-to-the-homeland-0.png",
+          "w": 2281,
+          "h": 2448
+        }
+      ],
+      "headline": "A spider in total darkness",
+      "named_entities": [],
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "The discovery changed how researchers search for life on other worlds.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "PHOTO",
+      "photo": {
+        "asset": "b-roll/ch-fixture/flashlight-beam.jpg",
+        "entity": "Flashlight beam",
+        "kind": "object",
+        "view": "object",
+        "w": 1600,
+        "h": 1000,
+        "credit": "Repo test fixture photo"
+      },
+      "headline": "Searching other worlds",
+      "named_entities": [],
+      "motion_tier": "medium"
+    }
+  }
+]

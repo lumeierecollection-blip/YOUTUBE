@@ -130,6 +130,15 @@ assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: a
 // The uniform white ground (visual/backgrounds.js), as render.js sets it.
 const { GROUND } = await import("../src/skills/remotion-render/visual/backgrounds.js");
 const plan = { canvas: true, accent, ground: GROUND, beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
+// --clone <profile>: stage these beats as the CLONE family (src/skills/remotion-render/clone/, config/clone-grammar.json) instead of the canvas engine.
+if (arg("clone")) {
+  const G = JSON.parse(readFileSync(join(RR, "..", "..", "..", "config", "clone-grammar.json"), "utf8"));
+  const profile = G.profiles[arg("clone")];
+  if (!profile) throw new Error(`--clone ${arg("clone")}: no such profile (${Object.keys(G.profiles).join(", ")})`);
+  const { paletteFor } = await import("../src/skills/remotion-render/clone/clone-palette.js");
+  plan.clone = { profile, laws: G.laws, palette: paletteFor(profile, { colors: { canvas_accent: accent } }), bw: false };
+  console.log(`[clone] profile ${arg("clone")} (from ${profile.from})`);
+}
 // --sfx: the plan carries the SFX the real renderer would play for these beats (visual/canvas-sfx.js, each file
 // landed by its measured peak), so the mp4's audio can be measured against the frames (scripts/sfx-sync-proof.mjs).
 // Needs the CC0 files fetched first (node scripts/sfx-cc0.mjs fetch).

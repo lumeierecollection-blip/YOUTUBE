@@ -1,0 +1,379 @@
+{
+  "_about": "Derived by scripts/derive-clone-grammar.mjs from the reference videos. `measured` and `laws` are regenerated; `profiles` is hand-written.",
+  "lawRules": {
+    "events_per_10s_min": "the 10th percentile of the references' events per 10 s, rounded down: at most one reference in ten is sparser than this (ref-01, the slow archival one, is)",
+    "gap_p90_max_s": "the largest reference 90th-percentile wait for something new: nine waits in ten are at most this long",
+    "gap_max_s": "the largest single wait in any reference but the longest one (an outlier that is an advert's held end card), rounded up to 0.5 s: no wait is longer",
+    "shot_median_s": "the range of the references' median shot (time between whole-frame cuts): where a shot should sit",
+    "cuts_per_10s": "the range of the references' cuts per 10 s"
+  },
+  "measured": {
+    "ref-01": {
+      "file": "ref-01.mp4",
+      "orientation": "vertical",
+      "duration_s": 79.39,
+      "events": 95,
+      "events_per_10s": 11.97,
+      "cuts": 39,
+      "cuts_per_10s": 4.91,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 1.7,
+        "max": 3.99
+      },
+      "shot_s": {
+        "median": 1.4,
+        "p90": 4.2,
+        "max": 6.8
+      },
+      "source": "research/motion-graphics-ref/ref-01.mp4"
+    },
+    "ref-03": {
+      "file": "ref-03.mp4",
+      "orientation": "vertical",
+      "duration_s": 16.83,
+      "events": 31,
+      "events_per_10s": 18.42,
+      "cuts": 15,
+      "cuts_per_10s": 8.91,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 0.78,
+        "max": 1.83
+      },
+      "shot_s": {
+        "median": 0.6,
+        "p90": 2.2,
+        "max": 2.6
+      },
+      "source": "research/motion-graphics-ref/ref-03.mp4"
+    },
+    "4_5764834761163939028": {
+      "file": "4_5764834761163939028.mp4",
+      "orientation": "vertical",
+      "duration_s": 39.08,
+      "events": 88,
+      "events_per_10s": 22.52,
+      "cuts": 44,
+      "cuts_per_10s": 11.26,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 0.6,
+        "max": 0.88
+      },
+      "shot_s": {
+        "median": 0.4,
+        "p90": 2,
+        "max": 2.48
+      },
+      "source": "research/4_5764834761163939028.mp4"
+    },
+    "4_5904230506030964428": {
+      "file": "4_5904230506030964428.mp4",
+      "orientation": "vertical",
+      "duration_s": 32,
+      "events": 61,
+      "events_per_10s": 19.06,
+      "cuts": 35,
+      "cuts_per_10s": 10.94,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 0.6,
+        "max": 1.6
+      },
+      "shot_s": {
+        "median": 0.7,
+        "p90": 1.7,
+        "max": 2.2
+      },
+      "source": "research/4_5904230506030964428.mp4"
+    },
+    "4_5917850534521349237": {
+      "file": "4_5917850534521349237.mp4",
+      "orientation": "vertical",
+      "duration_s": 46.94,
+      "events": 76,
+      "events_per_10s": 16.19,
+      "cuts": 30,
+      "cuts_per_10s": 6.39,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 1,
+        "max": 1.8
+      },
+      "shot_s": {
+        "median": 1,
+        "p90": 2.6,
+        "max": 10.2
+      },
+      "source": "research/4_5917850534521349237.mp4"
+    },
+    "VID_20261002_003228_944": {
+      "file": "VID_20261002_003228_944.mp4",
+      "orientation": "vertical",
+      "duration_s": 42.24,
+      "events": 89,
+      "events_per_10s": 21.07,
+      "cuts": 57,
+      "cuts_per_10s": 13.49,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 0.62,
+        "max": 1.6
+      },
+      "shot_s": {
+        "median": 0.4,
+        "p90": 1.6,
+        "max": 2.8
+      },
+      "source": "research/VID_20261002_003228_944.mp4"
+    },
+    "VID_20261002_003244_575": {
+      "file": "VID_20261002_003244_575.mp4",
+      "orientation": "vertical",
+      "duration_s": 45.7,
+      "events": 65,
+      "events_per_10s": 14.22,
+      "cuts": 24,
+      "cuts_per_10s": 5.25,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 1.4,
+        "max": 2.8
+      },
+      "shot_s": {
+        "median": 1.2,
+        "p90": 5.04,
+        "max": 8
+      },
+      "source": "research/VID_20261002_003244_575.mp4"
+    },
+    "VID_20261002_003250_292": {
+      "file": "VID_20261002_003250_292.mp4",
+      "orientation": "vertical",
+      "duration_s": 39.81,
+      "events": 63,
+      "events_per_10s": 15.83,
+      "cuts": 31,
+      "cuts_per_10s": 7.79,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 1.14,
+        "max": 3.2
+      },
+      "shot_s": {
+        "median": 0.5,
+        "p90": 2.18,
+        "max": 5.8
+      },
+      "source": "research/VID_20261002_003250_292.mp4"
+    },
+    "VID_20261002_003254_139": {
+      "file": "VID_20261002_003254_139.mp4",
+      "orientation": "vertical",
+      "duration_s": 51.2,
+      "events": 80,
+      "events_per_10s": 15.62,
+      "cuts": 54,
+      "cuts_per_10s": 10.55,
+      "gap_s": {
+        "median": 0.4,
+        "p90": 1.2,
+        "max": 5.8
+      },
+      "shot_s": {
+        "median": 0.4,
+        "p90": 1.6,
+        "max": 6.4
+      },
+      "source": "research/VID_20261002_003254_139.mp4"
+    }
+  },
+  "laws": {
+    "events_per_10s_min": 13,
+    "gap_p90_max_s": 1.7,
+    "gap_max_s": 4,
+    "shot_median_s": {
+      "min": 0.4,
+      "max": 1.4
+    },
+    "cuts_per_10s": {
+      "min": 4.9,
+      "max": 13.5
+    },
+    "from": [
+      "ref-01",
+      "ref-03",
+      "4_5764834761163939028",
+      "4_5904230506030964428",
+      "4_5917850534521349237",
+      "VID_20261002_003228_944",
+      "VID_20261002_003244_575",
+      "VID_20261002_003250_292",
+      "VID_20261002_003254_139"
+    ]
+  },
+  "profiles": {
+    "archive-italic": {
+      "from": "ref-01 (typewriter / emoji history, 79 s)",
+      "niche_fit": "archival, history, concept explainers",
+      "shot_s": 2,
+      "display_words": 2,
+      "ground": "paper",
+      "grid": false,
+      "photo_tone": "light-sepia",
+      "treatments": [
+        "bleed",
+        "framed",
+        "inset-left",
+        "strip",
+        "inset-right"
+      ],
+      "accent_shapes": [
+        "rule"
+      ],
+      "highlight": false,
+      "type": {
+        "display": {
+          "family": "Playfair Display",
+          "style": "italic",
+          "weight": 400,
+          "case": "as-written"
+        },
+        "label": {
+          "family": "DM Sans",
+          "weight": 500,
+          "case": "upper",
+          "tracking": 0.16
+        }
+      },
+      "observed": "Full-frame photographs and page scans; one small sans label beside one large italic serif word; a shot every ~2 s; calm."
+    },
+    "cutout-collage": {
+      "from": "ref-03 (money essay, 16 s)",
+      "niche_fit": "finance, skills, culture",
+      "shot_s": 1.6,
+      "display_words": 3,
+      "ground": "paper",
+      "grid": true,
+      "photo_tone": "natural",
+      "treatments": [
+        "framed",
+        "disc",
+        "plate",
+        "strip",
+        "framed"
+      ],
+      "accent_shapes": [
+        "bar",
+        "block"
+      ],
+      "highlight": true,
+      "type": {
+        "display": {
+          "family": "Roboto Condensed",
+          "style": "normal",
+          "weight": 700,
+          "case": "upper"
+        },
+        "label": {
+          "family": "DM Sans",
+          "weight": 500,
+          "case": "as-written",
+          "tracking": 0.02
+        }
+      },
+      "observed": "Cream graph-paper ground; framed portraits with a soft shadow; heavy condensed caps; a marker highlight on one word; objects and type interleaved."
+    },
+    "dossier-mono": {
+      "from": "VID_20261002_003228_944 (Zalando story, 42 s)",
+      "niche_fit": "investigative, legal, geopolitics, business stories",
+      "shot_s": 1.5,
+      "display_words": 3,
+      "ground": "mist",
+      "grid": false,
+      "photo_tone": "grayscale",
+      "treatments": [
+        "bleed",
+        "disc",
+        "strip",
+        "plate",
+        "bleed"
+      ],
+      "accent_shapes": [
+        "block",
+        "stripe"
+      ],
+      "highlight": false,
+      "type": {
+        "display": {
+          "family": "Roboto Condensed",
+          "style": "normal",
+          "weight": 700,
+          "case": "upper"
+        },
+        "label": {
+          "family": "DM Sans",
+          "weight": 500,
+          "case": "upper",
+          "tracking": 0.14
+        }
+      },
+      "observed": "Greyscale photographs on a pale ground with ONE accent colour (red) in shapes; real logos as marks; a small label over a heavy condensed word; a new element about every 0.5 s."
+    }
+  },
+  "grammar": {
+    "_about": "What the references OBEY, as rules the planner and renderer read. The numbers are in `laws` (measured); these are the structural rules, each observed in the named videos.",
+    "rules": [
+      {
+        "id": "CL-1",
+        "rule": "Something new appears on screen on a fixed beat: at least `laws.events_per_10s_min` new elements per 10 s, nine waits in ten no longer than `laws.gap_p90_max_s`, none longer than `laws.gap_max_s`.",
+        "seen": "all nine measured references",
+        "enforced": "clone-plan.lawProblems on the plan; scripts/gate-clone-cadence.mjs on the rendered pixels"
+      },
+      {
+        "id": "CL-2",
+        "rule": "A shot is cut every ~1.4-2.4 s and the cut lands on a spoken word's onset, never mid-word.",
+        "seen": "ref-01, ref-03, 4_5764",
+        "enforced": "clone-plan.cutPoints"
+      },
+      {
+        "id": "CL-3",
+        "rule": "Every shot is dominated by a real picture of the thing being said (photo, portrait, logo, map, figure). Type is secondary: at most 3 display words per shot, popping on the word they are.",
+        "seen": "4_5764 (posters, logos, UI), VID_228 (logos, cut-out people), ref-01 (typewriters, scans)",
+        "enforced": "clone-plan.lawProblems heroShare >= 0.65; display_words <= 3"
+      },
+      {
+        "id": "CL-4",
+        "rule": "Elements of a shot arrive one after another, about 0.35 s apart: ground, picture, accent shape, display words, name plate. Never all at once, never all of one kind.",
+        "seen": "ref-03, VID_228",
+        "enforced": "clone-plan ELEMENT_OFFSET"
+      },
+      {
+        "id": "CL-5",
+        "rule": "Type is mixed in scale within one shot: a small letterspaced label beside one large display word. The display word is the one the sentence turns on; one word may carry the accent.",
+        "seen": "ref-01 ('Did u know' + large italic 'typewriter'), ref-03 ('the more you' + 'SLIP AWAY')",
+        "enforced": "CloneVideo (label + display roles)"
+      },
+      {
+        "id": "CL-6",
+        "rule": "The same picture returns in a different treatment and crop (framed, disc, bleed, strip) rather than a new picture being invented. Never the same frame twice in a row.",
+        "seen": "ref-01 (typewriter photo repeats under new type), VID_228 (logo repeats)",
+        "enforced": "clone-plan.lawProblems same-frame check"
+      },
+      {
+        "id": "CL-7",
+        "rule": "The ground is a paper or a flat tone chosen per profile, and changes between topic blocks; type sits on the ground or on a solid plate, so it is legible by construction.",
+        "seen": "ref-03 (cream grid, dark spotlight), 4_5764 (red/black/blue blocks)",
+        "enforced": "CloneVideo plate contrast"
+      },
+      {
+        "id": "CL-8",
+        "rule": "Text entrances are the pop family only (no bounce, no overshoot, no playful motion): the owner's standing rule for the whole pipeline.",
+        "seen": "n/a (owner rule 2026-10-09)",
+        "enforced": "CloneVideo uses POP.S0 / POP.IN"
+      }
+    ],
+    "not_cloned": "The references' own subjects, assets, logos and wording. Nothing is copied from the frames: only the rules above."
+  }
+}
