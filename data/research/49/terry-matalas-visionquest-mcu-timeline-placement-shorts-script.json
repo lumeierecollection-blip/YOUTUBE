@@ -2,65 +2,65 @@
   "channel_id": "49",
   "topic_slug": "terry-matalas-visionquest-mcu-timeline-placement",
   "format": "shorts",
-  "hook": "Paul Bettany suggested 2024 for VisionQuest, but Terry Matalas just completely shifted the timeline.",
+  "hook": "You won't believe when VisionQuest actually happens because Terry Matalas just flipped the whole MCU timeline.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "Paul Bettany suggested 2024 for VisionQuest, but Terry Matalas just completely shifted the timeline.",
+      "voiceover": "You won't believe when VisionQuest actually happens because Terry Matalas just flipped the whole MCU timeline.",
       "b_roll": [
-        "Title card showing Paul Bettany as Vision",
-        "Polygon interview headline with Terry Matalas"
+        "Portrait of Paul Bettany in character",
+        "Title logo for VisionQuest"
       ],
       "text_overlay": {
-        "text": "The VisionQuest Timeline Twist"
+        "text": "VisionQuest Timeline Shocker"
       }
     },
     {
       "id": "setup",
-      "voiceover": "TechRadar shared the original 2024 placement right after WandaVision. Polygon confirmed the new interview details. Where does Spider-Man: Brand New Day fit into this 2015 origin history?",
+      "voiceover": "Paul Bettany previously expected the show to take place in 2024. Fans assumed that date matched the broader Marvel chronology. Where does the super-powered robot actually fit?",
       "b_roll": [
-        "TechRadar article snippet about 2024 setting",
-        "WandaVision promotional poster",
-        "Avengers: Age of Ultron film still featuring Ultron"
+        "Timeline graphic showing 2024",
+        "Clip of the robot from Avengers: Age of Ultron"
       ],
       "text_overlay": {
-        "text": "From 2015 to 2024"
+        "text": "The 2024 Expectation"
       }
     },
     {
       "id": "rehook",
-      "voiceover": "Years have passed since WandaVision concluded, but the show is current with Spider-Man: Brand New Day instead.",
+      "voiceover": "Terry Matalas revealed a completely different position for the WandaVision spin-off.",
       "b_roll": [
-        "Polygon interview quote close-up"
+        "Portrait of Terry Matalas",
+        "WandaVision promotional art"
       ],
       "text_overlay": {
-        "text": "Years Later"
+        "text": "The Matalas Reveal"
       }
     },
     {
       "id": "payoff",
-      "voiceover": "Terry Matalas revealed that VisionQuest takes place years after WandaVision. This update shatters the earlier TechRadar schedule completely.",
+      "voiceover": "Avengers: Age of Ultron introduced the character back in 2015. Terry Matalas revealed a timeline position that contradicts the earlier 2024 expectation.",
       "b_roll": [
-        "Spider-Man: Brand New Day logo reveal",
-        "Terry Matalas interview frame"
+        "TechRadar article excerpt on screen",
+        "Archive footage from 2015 release"
       ],
       "text_overlay": {
-        "text": "Current With Spider-Man"
+        "text": "Contradicting 2024"
       }
     },
     {
       "id": "close",
-      "voiceover": "Polygon published the 2026 interview that rewrote the MCU calendar.",
+      "voiceover": "The 2015 debut origin defines the updated chronology.",
       "b_roll": [
-        "Polygon logo watermark on interview excerpt"
+        "Final close-up of Vision in Avengers: Age of Ultron"
       ],
       "text_overlay": {
-        "text": "Polygon 2026"
+        "text": "Origin 2015"
       }
     }
   ],
   "sources_used": [
-    "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
-    "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline"
+    "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline",
+    "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas"
   ]
 }

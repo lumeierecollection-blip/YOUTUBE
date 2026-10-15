@@ -1,21 +1,21 @@
 {
   "topic_slug": "terry-matalas-visionquest-mcu-timeline-placement",
-  "strongest_angle": "Showrunner Terry Matalas revealed that VisionQuest is set years after WandaVision, running current with Spider-Man: Brand New Day rather than in 2024 as star Paul Bettany previously suggested.",
+  "strongest_angle": "Break down showrunner Terry Matalas's revelations regarding where the WandaVision universe installment VisionQuest fits within the broader Marvel Cinematic Universe chronology, contrasting it with Paul Bettany's previous 2024 expectation.",
   "key_facts": [
     {
-      "fact": "VisionQuest showrunner Terry Matalas revealed in a September 2026 interview with Polygon that years have passed since WandaVision and the series is current with Spider-Man: Brand New Day.",
-      "source_url": "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
-      "source_name": "Polygon",
-      "confidence": "high"
-    },
-    {
-      "fact": "Paul Bettany originally suggested that the Marvel television show VisionQuest took place in 2024, setting it around a year after the events of WandaVision.",
+      "fact": "VisionQuest creator Terry Matalas has revealed the show's specific MCU timeline position, contrary to popular belief that it takes place in 2024.",
       "source_url": "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline",
       "source_name": "TechRadar",
       "confidence": "high"
     },
     {
-      "fact": "The character Vision was first introduced to the Marvel Cinematic Universe in the 2015 film Avengers: Age of Ultron, where he killed his creator Ultron.",
+      "fact": "Paul Bettany previously suggested that the Marvel TV show VisionQuest took place in the year 2024.",
+      "source_url": "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline",
+      "source_name": "TechRadar",
+      "confidence": "high"
+    },
+    {
+      "fact": "The super-powered robot Vision was first introduced in the 2015 movie Avengers: Age of Ultron.",
       "source_url": "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
       "source_name": "Polygon",
       "confidence": "high"
@@ -23,13 +23,13 @@
   ],
   "numbers": [
     {
-      "label": "Introduction Year",
+      "label": "Release year of Avengers: Age of Ultron",
       "value": 2015,
       "unit": "year",
       "source_url": "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas"
     },
     {
-      "label": "Original Suggested Setting Year",
+      "label": "Proposed year by Paul Bettany",
       "value": 2024,
       "unit": "year",
       "source_url": "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline"
@@ -41,36 +41,24 @@
       "kind": "person"
     },
     {
-      "name": "Paul Bettany",
-      "kind": "person"
-    },
-    {
       "name": "VisionQuest",
       "kind": "object"
     },
     {
-      "name": "WandaVision",
-      "kind": "object"
-    },
-    {
-      "name": "Spider-Man: Brand New Day",
-      "kind": "object"
+      "name": "Paul Bettany",
+      "kind": "person"
     },
     {
       "name": "Avengers: Age of Ultron",
-      "kind": "object"
+      "kind": "organization"
     },
     {
       "name": "Ultron",
       "kind": "person"
     },
     {
-      "name": "Polygon",
-      "kind": "organization"
-    },
-    {
-      "name": "TechRadar",
-      "kind": "organization"
+      "name": "WandaVision",
+      "kind": "object"
     }
   ]
 }
