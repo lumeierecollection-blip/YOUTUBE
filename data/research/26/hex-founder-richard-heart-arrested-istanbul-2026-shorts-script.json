@@ -1,0 +1,68 @@
+{
+  "channel_id": "26",
+  "topic_slug": "hex-founder-richard-heart-arrested-istanbul-2026",
+  "format": "shorts",
+  "hook": "Turkish police just nailed crypto founder Richard Heart in Istanbul with a shocking arrest.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Turkish police just nailed crypto founder Richard Heart in Istanbul with a shocking arrest.",
+      "b_roll": [
+        "Turkish police operation in Istanbul",
+        "Crypto fugitive mugshot"
+      ],
+      "text_overlay": {
+        "text": "Crypto Founder Arrested"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Finnish authorities tracked Richard James Schueler through an Interpol Red Notice. Investigators linked him to a massive tax fraud scheme. Where did 280 million euros disappear?",
+      "b_roll": [
+        "Interpol Red Notice document",
+        "Helsinki tax office"
+      ],
+      "text_overlay": {
+        "text": "280 Million Euros"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Authorities raided his luxury hideout during the Istanbul operation, except they found even more.",
+      "b_roll": [
+        "Luxury penthouse in Istanbul",
+        "Police entering building"
+      ],
+      "text_overlay": {
+        "text": "The Hideout"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Officers seized 64 luxury watches from the suspect. Turkish authorities confiscated 4 million dollars in cash on site. Finnish authorities are seeking Richard James Schueler over the missing funds.",
+      "b_roll": [
+        "Seized luxury watches on table",
+        "Stacks of cash confiscated"
+      ],
+      "text_overlay": {
+        "text": "$4 Million Seized"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Interpol warrants tracked 280 million euros across borders.",
+      "b_roll": [
+        "Interpol logo",
+        "Global financial network map"
+      ],
+      "text_overlay": {
+        "text": "Interpol Red Notice"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.dailysabah.com/business/tech/turkiye-nabs-interpol-wanted-crypto-fugitive-in-istanbul-operation",
+    "https://www.theblock.co/news/regulation/2026-10-14-hex-pulsechain-founder-richard-heart-detained-istanbul-turkish-media-reports-418574",
+    "https://www.hs.fi/maailma/art-2000012343240.html"
+  ]
+}
