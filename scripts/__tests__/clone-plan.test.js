@@ -326,10 +326,11 @@ test("a beat with a picture and a short run of shots (under three) keeps its pic
   for (const sh of plan.shots) for (const p of sh.plates) assert.equal(p.name, "James Wan");
 });
 
-test("a shot whose visual is a subject plate carries no caption: the plate says it (the caption was the 'headline' the frame review counted, 100% on ch-2)", () => {
-  const c = { sentence: SENT, named_entities: [{ type: "place", name: "Newark" }, { type: "date", name: "October 13, 2026" }] };
-  const plan = planClone([beat(0, 0, 7, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
-  for (const sh of plan.shots) { assert.ok(sh.subjects.length); assert.equal(sh.display, null); assert.ok(sh.elements.some((e) => e.kind === "tick")); assert.ok(!sh.elements.some((e) => e.kind === "display")); }
+test("a subject-plate shot keeps a short caption that never repeats its plate (removing captions made ch-44 / ch-26 TEMPLATE_MONOCULTURE 100%: board 38811678143)", () => {
+  const c = { sentence: SENT, named_entities: [{ type: "place", name: "Hennepin County" }, { type: "date", name: "April 16, 2026" }] };
+  const plan = planClone([beat(0, 0, 8, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  assert.ok(plan.shots.some((sh) => sh.display), "no shot has a caption");
+  for (const sh of plan.shots) { assert.ok(sh.subjects.length); if (sh.display) assert.ok(!/hennepin|county|april|sixteenth/i.test(sh.display.text), `"${sh.display.text}" repeats the plate`); assert.ok(sh.elements.some((e) => e.kind === "display" || e.kind === "tick")); }
 });
 
 test("a figure that is only the start of a longer one is dropped ('9' beside '9 to 0')", () => {

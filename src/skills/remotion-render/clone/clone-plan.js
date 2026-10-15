@@ -25,6 +25,10 @@ const STOP = new Set("a an the and or but of to in on at by for with from as is 
 // the commonest fragments, it does not guarantee a phrase.
 const WEAK = new Set("held sits sit sat said says say made make makes found find finds got get gets had have went go goes came come comes took take takes seemed seem seems became become becomes almost far very quite rather really still even also ever never always often just only nearly mostly already soon later early late deal lot kind sort way thing things something anything great many much some several few little various certain other another such whole each every any".split(" "));
 const NUMBER_WORDS = new Set("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million billion percent dollars dollar twenty-six twenty-five twenty-four twenty-three twenty-two twenty-one first second third fourth fifth".split(" "));
+// spoken ordinals ("April sixteenth", "the twenty-first"): the spoken form of a date's day, never display type either
+for (const w of "first second third fourth fifth sixth seventh eighth ninth tenth eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth eighteenth nineteenth twentieth thirtieth fortieth fiftieth".split(" ")) NUMBER_WORDS.add(w);
+for (const t of ["twenty", "thirty"]) for (const u of "first second third fourth fifth sixth seventh eighth ninth".split(" ")) NUMBER_WORDS.add(t + "-" + u);
+for (const t of ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]) for (const u of "one two three four five six seven eight nine".split(" ")) NUMBER_WORDS.add(t + "-" + u);
 const MONTH_WORDS = new Set("january february march april may june july august september october november december".split(" "));
 const isNumberWord = (w) => /^[\$€£]?\d[\d,.]*(?:%|[kmb]|million|billion|thousand)?$/i.test(w);
 const clean = (w) => String(w || "").replace(/^[^\w$€£]+|[^\w%]+$/g, "");
@@ -258,9 +262,10 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
         // Number and month words are NEVER display type: the spoken form ("October eight, twenty twenty-six") is not the written one ("October 8, 2026") and the naming
         // check fails it (board 38790006358 ch-44 / ch-49). Dates and figures are drawn on their plates, in the sentence's own written form.
         NUMBER_WORDS.forEach((w) => exclude.add(w)); MONTH_WORDS.forEach((w) => exclude.add(w));
-        // A shot whose visual is a SUBJECT PLATE (entity glyphs / figure / date) carries no caption: the plate says it, and the words under it were the "headline" the frame review counted
-        // (TEMPLATE_MONOCULTURE 100%, board 38805009555 ch-2) while mostly repeating the plate. A tick (rule) arrives instead so the shot keeps its three events.
-        disp = subjects.length ? null : displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
+        // REVERTED (board 38811678143): a shot whose visual is a subject plate once carried NO caption, on the theory that the words were the "headline" the frame review counted.
+        // The measurement said the opposite: with the captions gone ch-44 went from approved-review to TEMPLATE_MONOCULTURE 100%, ch-26 from 50% to 100% (ch-2 stayed 100%): bare
+        // identical plates read as one template. The short caption stays (smaller than the plate, and never repeating it: see the exclusion above); a tick still stands in when none fits.
+        disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
       }
       const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
       const labelPlates = plates.filter((x) => !shownNames.has(x.name));
