@@ -1265,9 +1265,14 @@
           "topic": "Philadelphia Investigators Use Luminol and Excavators at Olney House in Missing Search",
           "slug": "philadelphia-luminol-excavators-olney-missing-persons",
           "reserved_at": "2026-10-15T11:10:33.067Z"
+        },
+        {
+          "topic": "Chicago Police DNA Evidence Links Former Detective to Decades-Old Cold Case",
+          "slug": "chicago-police-dna-links-former-detective-cold-case",
+          "reserved_at": "2026-10-15T13:33:10.124Z"
         }
       ],
-      "last_generated": "2026-10-15T11:10:33.068Z"
+      "last_generated": "2026-10-15T13:33:10.124Z"
     },
     "7": {
       "channel_name": "Dead Companies",
