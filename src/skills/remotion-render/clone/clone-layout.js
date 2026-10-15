@@ -20,18 +20,18 @@ export function treatmentBoxes(treatment, idx = 0) {
     case "bleed":
       return { hero: rect(0, 0, 1080, 1920, { bleed: true }), label: rect(60, 1196, 700, 44), text: rect(60, 1260, 960, 360, { align: "left", plated: true }), shape: { block: rect(60, 1676, 300, 16), bar: rect(60, 1676, 300, 16), stripe: rect(640, 0, 440, 96), rule: rect(60, 1176, 200, 6) } };
     case "framed":
-      return { hero: rect(170, 300, 740, 925, { rot: tilt, mat: 22 }), label: rect(90, 1290, 900, 44), text: rect(90, 1340, 900, 300, { align: "center" }), shape: { block: rect(140, 340, 740, 925), bar: rect(390, 1690, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1270, 900, 6) } };
+      return { hero: rect(150, 320, 780, 975, { rot: tilt, mat: 22 }), label: rect(90, 1352, 900, 48), text: rect(90, 1420, 900, 300, { align: "center" }), shape: { block: rect(120, 360, 780, 975), bar: rect(390, 1780, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1330, 900, 6) } };
     case "disc":
-      return { hero: rect(220, 260, 640, 640, { circle: true }), label: rect(90, 1000, 900, 44), text: rect(90, 1050, 900, 380, { align: "center" }), shape: { block: rect(180, 300, 640, 640), bar: rect(390, 1520, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 980, 900, 6) } };
+      return { hero: rect(160, 300, 760, 760, { circle: true }), label: rect(90, 1100, 900, 48), text: rect(90, 1180, 900, 380, { align: "center" }), shape: { block: rect(120, 340, 760, 760), bar: rect(390, 1640, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1085, 900, 6) } };
     case "strip":
-      return { hero: rect(0, 420, 1080, 640), label: rect(90, 1110, 700, 44), text: rect(90, 1160, 900, 420, { align: "left" }), shape: { block: rect(0, 1060, 1080, 24), bar: rect(90, 1640, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1090, 900, 6) } };
+      return { hero: rect(0, 380, 1080, 700), label: rect(90, 1130, 700, 48), text: rect(90, 1210, 900, 420, { align: "left" }), shape: { block: rect(0, 1080, 1080, 24), bar: rect(90, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1112, 900, 6) } };
     case "inset-left":
       return { hero: rect(0, 260, 600, 1000), label: rect(640, 470, 380, 44), text: rect(640, 520, 380, 560, { align: "left" }), shape: { block: rect(40, 300, 560, 1000), bar: rect(640, 1130, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(640, 450, 380, 6) } };
     case "inset-right":
       return { hero: rect(480, 260, 600, 1000), label: rect(60, 470, 380, 44), text: rect(60, 520, 380, 560, { align: "right" }), shape: { block: rect(480, 300, 560, 1000), bar: rect(140, 1130, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 380, 6) } };
     case "plate":
     default:
-      return { hero: rect(240, 440, 600, 600, { plate: true }), label: rect(90, 1150, 900, 44), text: rect(90, 1200, 900, 380, { align: "center" }), shape: { block: rect(200, 480, 600, 600), bar: rect(390, 1640, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1130, 900, 6) } };
+      return { hero: rect(180, 380, 720, 720, { plate: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1240, 900, 380, { align: "center" }), shape: { block: rect(140, 420, 720, 720), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1142, 900, 6) } };
   }
 }
 

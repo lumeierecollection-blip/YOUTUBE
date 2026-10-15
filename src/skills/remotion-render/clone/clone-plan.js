@@ -54,23 +54,33 @@ function scoreWord(text, names) {
   return s;
 }
 
-/** The best run of <= `max` contiguous spoken words inside [from, to) frames: { text, at, emphasis } (at = the first word's frame). */
+/** A word as it is DISPLAYED: the spoken word without the punctuation around it (a figure keeps its $ % and decimal point). */
+const shown = (t) => String(t || "").replace(/^[^\w$€£]+/, "").replace(/[^\w%]+$/, "");
+
+/**
+ * The best run of <= `max` contiguous spoken words inside [from, to): { text, at, emphasis, words } (at = the first word's frame).
+ * A run is worth its words: numbers and named things most, long content words next; a second content word makes a PHRASE ("entire ecosystem",
+ * "nobody knew existed") which says more than one word alone, so each extra content word earns a bonus and each function word inside costs one.
+ * A run never starts or ends on a function word, and never crosses the end of a sentence.
+ */
 export function displayWords(spoken, from, to, names, max = 3) {
   const ws = (spoken || []).filter((w) => w.abs >= from && w.abs < to && clean(w.text));
   if (!ws.length) return null;
+  const isStop = (w) => STOP.has(clean(w.text).toLowerCase());
   let best = null;
   for (let i = 0; i < ws.length; i++) {
     for (let n = 1; n <= Math.min(max, ws.length - i); n++) {
       const run = ws.slice(i, i + n);
-      // a run may not start or end on a function word: "of the" is not a display
-      if (STOP.has(clean(run[0].text).toLowerCase()) || STOP.has(clean(run[n - 1].text).toLowerCase())) continue;
-      const sc = run.reduce((a, w) => a + scoreWord(w.text, names), 0) - (n - 1) * 0.5;
+      if (isStop(run[0]) || isStop(run[n - 1])) continue;
+      if (run.slice(0, -1).some((w) => /[.!?]$/.test(String(w.text).trim()))) continue;   // do not run across a sentence end
+      const content = run.filter((w) => !isStop(w)).length;
+      const sc = run.reduce((a, w) => a + scoreWord(w.text, names), 0) + (content - 1) * 1.2 - (n - content) * 1;
       if (!best || sc > best.sc) best = { sc, run };
     }
   }
   if (!best) return null;
   const hi = best.run.reduce((a, w) => (scoreWord(w.text, names) > scoreWord(a.text, names) ? w : a), best.run[0]);
-  return { text: best.run.map((w) => w.text.replace(/^[^\w$€£]+|[^\w%.]+$/g, "")).join(" "), at: best.run[0].abs, emphasis: clean(hi.text), words: best.run.length };
+  return { text: best.run.map((w) => shown(w.text)).join(" "), at: best.run[0].abs, emphasis: shown(hi.text), words: best.run.length };
 }
 
 /** Shot boundaries inside [s, e): about `len` apart, each moved to the nearest spoken word onset, at least `min` frames from its neighbours. */

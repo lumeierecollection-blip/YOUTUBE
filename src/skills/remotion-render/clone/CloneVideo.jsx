@@ -59,12 +59,14 @@ function Display({ shot, B, st, P, profile }) {
   const word = (w, key) => {
     const hit = emph && w.replace(/[^\w$%]/g, "").toLowerCase() === emph.replace(/[^\w$%]/g, "").toLowerCase();
     if (!hit) return <span key={key}>{w}</span>;
-    return profile.highlight
+    // On a solid plate (or in a highlight profile) the emphasised word is HIGHLIGHTED: paper on the accent, legible by construction. Coloured type
+    // is only used on the paper ground, where readableAccent has measured it. (Dark red on an ink plate was invisible: CI 38746641163 dossier-mono.)
+    return plated || profile.highlight
       ? <span key={key} style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.14em" }}>{w}</span>
       : <span key={key} style={{ color: accent }}>{w}</span>;
   };
   return (
-    <Plate box={B.text} bg={plated ? P.ink : "transparent"} style={{ padding: plated ? "28px 36px" : 0, boxSizing: "border-box", opacity: st.o, transform: `scale(${st.s})`, transformOrigin: B.text.align === "center" ? "50% 40%" : B.text.align === "right" ? "100% 40%" : "0% 40%", textAlign: B.text.align, width: plated ? "auto" : B.text.w, maxWidth: B.text.w }}>
+    <Plate box={B.text} bg={plated ? P.ink : "transparent"} style={{ padding: plated ? "28px 36px" : 0, boxSizing: "border-box", outline: plated ? `3px solid ${P.paper}` : "none", opacity: st.o, transform: `scale(${st.s})`, transformOrigin: B.text.align === "center" ? "50% 40%" : B.text.align === "right" ? "100% 40%" : "0% 40%", textAlign: B.text.align, width: plated ? "auto" : B.text.w, maxWidth: B.text.w }}>
       {lines.map((l, i) => (
         <div key={i} style={{ fontFamily: `"${d.family}", Helvetica, Arial, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1.02, letterSpacing: caps ? "0.01em" : "-0.01em", color: inkOn, whiteSpace: "nowrap" }}>
           {l.split(" ").map((w, k, a) => <React.Fragment key={k}>{word(w, k)}{k < a.length - 1 ? " " : ""}</React.Fragment>)}
@@ -121,7 +123,7 @@ function Label({ text, B, st, P, profile, plated }) {
   const l = profile.type.label, bg = plated ? P.accent : "transparent";
   return (
     <div style={{ position: "absolute", left: B.label.x, top: B.label.y, width: B.label.w, opacity: st.o, transform: `scale(${st.s})`, transformOrigin: "0% 50%", textAlign: B.text.align === "right" ? "right" : B.text.align === "center" ? "center" : "left", zIndex: 4 }}>
-      <span style={{ display: "inline-block", padding: plated ? "6px 16px" : 0, backgroundColor: bg, fontFamily: `"${l.family}", Helvetica, sans-serif`, fontWeight: l.weight, fontSize: 34, letterSpacing: `${l.tracking}em`, textTransform: l.case === "upper" ? "uppercase" : "none", color: plated ? P.paper : P.ink, whiteSpace: "nowrap" }}>{text}</span>
+      <span style={{ display: "inline-block", padding: plated ? "6px 16px" : 0, backgroundColor: bg, fontFamily: `"${l.family}", Helvetica, sans-serif`, fontWeight: l.weight, fontSize: 38, letterSpacing: `${l.tracking}em`, textTransform: l.case === "upper" ? "uppercase" : "none", color: plated ? P.paper : P.ink, whiteSpace: "nowrap" }}>{text}</span>
     </div>
   );
 }

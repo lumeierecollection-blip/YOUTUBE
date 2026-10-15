@@ -217,8 +217,8 @@
     "archive-italic": {
       "from": "ref-01 (typewriter / emoji history, 79 s)",
       "niche_fit": "archival, history, concept explainers",
-      "shot_s": 2,
-      "display_words": 2,
+      "shot_s": 1.5,
+      "display_words": 3,
       "ground": "paper",
       "grid": false,
       "photo_tone": "light-sepia",
