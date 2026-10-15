@@ -1,0 +1,64 @@
+{
+  "topic_slug": "newark-bans-rental-broker-fees-ordinance-october-2026",
+  "strongest_angle": "Break down the Newark municipal ordinance taking effect October 2026 that completely shifts real-estate broker fees from tenants to landlords, backed by a unanimous 9-0 council vote and fines up to $1,250 per violation.",
+  "key_facts": [
+    {
+      "fact": "The Newark Municipal Council voted 9-0 to approve an ordinance preventing landlords and their agents from passing real estate broker fees onto residential tenants.",
+      "source_url": "https://hoodline.com/2026/09/newark-approves-ban-on-renter-paid-broker-fees-council-votes-9-0-to-shift-cost-to-landlords",
+      "source_name": "Hoodline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new Newark ordinance banning tenant-paid rental broker fees officially took effect on October 13, 2026.",
+      "source_url": "https://explorenewjersey.org/newark-bans-broker-fees-for-renters-under-a-new-ordinance-that-took-effect-october-13-with-fines-of-up-to-1250-per-violation",
+      "source_name": "Explore New Jersey",
+      "confidence": "high"
+    },
+    {
+      "fact": "Violators of the Newark rental broker fee ordinance face a penalty structure with fines of up to $1,250 per violation.",
+      "source_url": "https://explorenewjersey.org/newark-bans-broker-fees-for-renters-under-a-new-ordinance-that-took-effect-october-13-with-fines-of-up-to-1250-per-violation",
+      "source_name": "Explore New Jersey",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Council vote count favoring the ban",
+      "value": 9,
+      "unit": "votes",
+      "source_url": "https://hoodline.com/2026/09/newark-approves-ban-on-renter-paid-broker-fees-council-votes-9-0-to-shift-cost-to-landlords"
+    },
+    {
+      "label": "Council vote opposing the ban",
+      "value": 0,
+      "unit": "votes",
+      "source_url": "https://hoodline.com/2026/09/newark-approves-ban-on-renter-paid-broker-fees-council-votes-9-0-to-shift-cost-to-landlords"
+    },
+    {
+      "label": "Maximum fine per violation",
+      "value": 1250,
+      "unit": "dollars",
+      "source_url": "https://explorenewjersey.org/newark-bans-broker-fees-for-renters-under-a-new-ordinance-that-took-effect-october-13-with-fines-of-up-to-1250-per-violation"
+    },
+    {
+      "label": "Effective date day",
+      "value": 13,
+      "unit": "day of the month",
+      "source_url": "https://explorenewjersey.org/newark-bans-broker-fees-for-renters-under-a-new-ordinance-that-took-effect-october-13-with-fines-of-up-to-1250-per-violation"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Newark",
+      "kind": "place"
+    },
+    {
+      "name": "Ras Baraka",
+      "kind": "person"
+    },
+    {
+      "name": "Newark Municipal Council",
+      "kind": "organization"
+    }
+  ]
+}
