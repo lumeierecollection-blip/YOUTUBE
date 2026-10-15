@@ -480,9 +480,14 @@
           "topic": "The Penny Hoarder's 2026 State of Savings Report Findings",
           "slug": "penny-hoarder-2026-state-of-savings",
           "reserved_at": "2026-10-15T14:44:13.909Z"
+        },
+        {
+          "topic": "CNBC Select's October 2026 Ranking of the Best Budgeting Apps",
+          "slug": "cnbc-select-october-2026-best-budgeting-apps",
+          "reserved_at": "2026-10-15T18:08:35.080Z"
         }
       ],
-      "last_generated": "2026-10-15T14:44:13.909Z"
+      "last_generated": "2026-10-15T18:08:35.080Z"
     },
     "2": {
       "channel_name": "Legal Brief",
