@@ -944,7 +944,7 @@ async function main() {
         // that proved the mechanism table was the wrong instrument.
         // A clone render records what its SHOTS drew (clone/clone-plan.js cloneCanvasFor), not the canvas engine's layout of the same beat: the entity gates read
         // this record, and a record of a map or a photo the clone frame does not show would let them pass what the pixels fail.
-        const canvasRec = b.scene?.canvas ? (cloneShots ? cloneCanvasFor(b.scene.canvas, cloneShots.filter((x) => x.beat === i)) : canvasManifest(b.scene.canvas, i)) : null;
+        const canvasRec = b.scene?.canvas ? (cloneShots ? cloneCanvasFor(b.scene.canvas, cloneShots.filter((x) => x.beat === i), sentencePlan.clone.palette) : canvasManifest(b.scene.canvas, i)) : null;
         const onScreenText = sceneTextInventory(mechanism, scene, b.text, canvasRec);
         return {
           index: i,
@@ -959,7 +959,7 @@ async function main() {
           // every element box from canvasLayout() — the renderer's own numbers,
           // which the audit (local-audit.cjs canvas-fit / canvas-coverage)
           // checks against the 1080x1920 frame.
-          visual_type: b.scene?.canvas?.visual_type || null,
+          visual_type: (cloneShots ? cloneCanvasFor(b.scene?.canvas, cloneShots.filter((x) => x.beat === i), sentencePlan.clone.palette).visual_type : b.scene?.canvas?.visual_type) || null,
           canvas: canvasRec,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],

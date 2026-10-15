@@ -170,3 +170,15 @@ test("a picture-less shot that NAMES an entity shows that entity's glyph plate (
   const rec = cloneCanvasFor({ named_entities: [{ type: "person", name: "Mary Moriarty" }] }, named);
   assert.deepEqual(rec.art.kinds, ["plate-person"]);
 });
+
+test("the manifest declares the beat's ground and calls a beat what it draws (the frame review's labels read both)", () => {
+  const pal = { ground: "#E4E4E1" };
+  const withPhoto = planClone([beat(0, 0, 6, SENT, { photo: photo("b-roll/x/p.jpg", "Hennepin County"), sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const a = cloneCanvasFor({ photo: photo("b-roll/x/p.jpg", "Hennepin County") }, withPhoto.shots, pal);
+  assert.equal(a.ground_color, "#E4E4E1");
+  assert.equal(a.visual_type, "PHOTO");
+  const none = planClone([beat(0, 0, 6, SENT, { sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  assert.equal(cloneCanvasFor({}, none.shots, pal).visual_type, "TYPE");
+  const fig = planClone([beat(0, 0, 6, SENT, { data: { value: "30+", label: "species" }, sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  assert.equal(cloneCanvasFor({ data: { value: "30+", label: "species" } }, fig.shots, pal).visual_type, "COUNTER");
+});

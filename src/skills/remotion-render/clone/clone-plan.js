@@ -238,7 +238,7 @@ export function lawProblems(plan, laws, { minHeroShare = 0.65 } = {}) {
  * figure some shot shows. The manifest of a clone render records THIS, not the canvas engine's layout of the same beat: a gate that read the canvas layout
  * would say "a map is drawn" or "the photo is shown" of a clone frame that shows neither (the manifest is a proxy; the pixels are the artifact).
  */
-export function cloneCanvasFor(canvas, shots) {
+export function cloneCanvasFor(canvas, shots, palette = null) {
   const c = canvas || {};
   const drawn = new Set((shots || []).filter((x) => x.hero).map((x) => x.hero.asset));
   const plates = [];
@@ -254,6 +254,10 @@ export function cloneCanvasFor(canvas, shots) {
   out.data = fig ? { value: fig.value, label: fig.label } : null;
   out.boxes = {};
   out.clone = true;
+  // The frame review's labels read these: the ground this beat chose (a non-white ground is declared, not left to read as a mistake), and what the beat
+  // DRAWS (a photograph, a logo, or typography) so a beat with a picture is not called typography because the canvas engine's plan said TYPE.
+  if (palette && palette.ground) out.ground_color = palette.ground;
+  out.visual_type = fig ? "COUNTER" : out.photo ? "PHOTO" : "TYPE";
   return out;
 }
 
