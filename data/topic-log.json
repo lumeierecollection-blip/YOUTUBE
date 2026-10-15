@@ -1766,9 +1766,14 @@
           "topic": "US Treasury General License 135: Reopening Russian Diesel Imports Amid Sanctions",
           "slug": "us-treasury-license-135-russian-diesel-imports",
           "reserved_at": "2026-10-10T14:43:00.085Z"
+        },
+        {
+          "topic": "Ethiopia Warns Eritrea of Full-Scale Invasion in Tigray Border Crisis",
+          "slug": "ethiopia-eritrea-tigray-border-invasion-un",
+          "reserved_at": "2026-10-15T11:06:21.914Z"
         }
       ],
-      "last_generated": "2026-10-10T14:43:00.085Z"
+      "last_generated": "2026-10-15T11:06:21.914Z"
     },
     "10": {
       "channel_name": "Margin Note",
