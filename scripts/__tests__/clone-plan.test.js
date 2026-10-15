@@ -238,3 +238,17 @@ test("the manifest says truthfully what a beat's frames are, for the frame revie
   const nothing = cloneCanvasFor({ sentence: SENT }, planClone([beat(0, 0, 6, SENT, { sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] }).shots);
   assert.match(nothing.clone_label, /excerpt cards/);
 });
+
+test("a display phrase never shows PART of a named entity ('ACKIE' for 'Naomi Ackie' failed the naming check)", () => {
+  const text = "Naomi Ackie joined the cast of the film in Los Angeles on Monday";
+  const spoken = text.split(" ").map((t, i) => ({ text: t, abs: i * 10 }));
+  for (const [a, b] of [[0, 25], [10, 40], [0, 200], [60, 110], [90, 120]]) {
+    const d = displayWords(spoken, a, b, ["Naomi Ackie", "Los Angeles"], 3);
+    if (!d) continue;
+    const t = d.text.toLowerCase();
+    for (const nm of ["naomi ackie", "los angeles"]) {
+      const parts = nm.split(" "), hit = parts.filter((x) => t.split(/\s+/).includes(x)).length;
+      assert.ok(hit === 0 || hit === parts.length, `"${d.text}" shows part of "${nm}"`);
+    }
+  }
+});

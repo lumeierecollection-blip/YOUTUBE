@@ -123,6 +123,16 @@ export function displayWords(spoken, from, to, names, max = 3) {
       const weak = (w) => WEAK.has(clean(w.text).toLowerCase()) || /ly$/i.test(clean(w.text));
       if (weak(run[0]) || weak(run[n - 1])) continue;
       if (run.slice(0, -1).some((w) => /[.!?]$/.test(String(w.text).trim()))) continue;   // do not run across a sentence end
+      // A phrase may not SHOW PART OF A NAMED ENTITY: "ACKIE" for "Naomi Ackie" fails the naming check ("first name missing", board 38781391920 ch-49). It contains a
+      // whole name or none of that name's words.
+      const toks = run.map((w) => clean(w.text).toLowerCase());
+      const splitsName = (names || []).some((nm) => {
+        const nt = String(nm).toLowerCase().split(/\s+/).map((t) => t.replace(/[^\w']/g, "")).filter(Boolean);
+        if (nt.length < 2) return false;
+        const hits = nt.filter((t) => toks.includes(t)).length;
+        return hits > 0 && hits < nt.length;
+      });
+      if (splitsName) continue;
       const content = run.filter((w) => !isStop(w)).length;
       const sc = run.reduce((a, w) => a + scoreWord(w.text, names), 0) + (content - 1) * 1.2 - (n - content) * 1;
       if (!best || sc > best.sc) best = { sc, run };
@@ -212,17 +222,20 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       }
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
       const figHere = hero && figs.length ? figs[k % figs.length] : null;
+      const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
+      const labelPlates = plates.filter((x) => !shownNames.has(x.name));
       const el = [];
       const at = (off) => Math.min(f1 - 3, f0 + off);
       el.push({ kind: "ground", at: f0 });
       if (hero || subject) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });
       else el.push({ kind: "card", at: at(ELEMENT_OFFSET.hero) });   // a beat that names nothing shows the narration itself, set as an excerpt card
       const shape = !profile.accent_shapes?.length ? null : treatment === "type" ? (profile.accent_shapes.includes("block") ? "block" : profile.accent_shapes[0]) : profile.accent_shapes[shots.length % profile.accent_shapes.length];
-      if (shape) el.push({ kind: "shape", at: at(ELEMENT_OFFSET.shape) });
+      // The accent shape rides with the picture (a second sheet) when a label plate takes the late window; with no label it takes that window itself, so every
+      // shot has three separate events (picture at the cut, key phrase ~0.47 s, accent / label ~0.9 s). Real archive-italic video measured 12.17 per 10 s against 13.
+      const hasLabel = labelPlates.length && (roomForPlate || subject);
+      if (shape) el.push({ kind: "shape", at: at(hasLabel ? ELEMENT_OFFSET.shape : ELEMENT_OFFSET.plate) });
       if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + ELEMENT_OFFSET.display, disp.at)) });
-      const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
-      const labelPlates = plates.filter((x) => !shownNames.has(x.name));
       if (labelPlates.length && (roomForPlate || subject)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
