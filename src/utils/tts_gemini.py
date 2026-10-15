@@ -111,13 +111,24 @@ def synth_sentences(text, voice, style, gap=0.28):
     return mime0, silence.join(parts), model0
 
 
+# PAUSE TRIM. The model reads the whole script in one request and pauses 1.2-1.6 s at every section break: 102 words took 65 s (about 94 words a minute), which
+# is past the 60 s a Short is clamped to (SHORTS_CLAMP in render.js), so the video ended while the narration did not and verify-render rejected it (board
+# 38772064251: ch-5 66.2 s, ch-8 61.9 s, ch-49 63.7 s, ch-2 65.1 s). Only DEAD AIR is shortened: a silence longer than TTS_PAUSE_TRIM seconds is cut down to about
+# half a second; shorter, natural pauses and the voice itself are untouched. Proved on synthetic audio (1.4 s and 1.6 s pauses -> 0.52 s, a 0.3 s pause kept).
+# TTS_PAUSE_TRIM=0 turns it off.
+def pause_filter(trim):
+    return "silenceremove=stop_periods=-1:stop_duration=%s:stop_threshold=-45dB:stop_silence=0.05" % trim
+
+
 def to_mp3(mime, data, mp3):
     with tempfile.NamedTemporaryFile(suffix=".bin", delete=False) as f:
         f.write(data)
         raw = f.name
     m = re.search(r"rate=(\d+)", mime or "")
     src = ["-f", "s16le", "-ar", m.group(1) if m else "24000", "-ac", "1", "-i", raw] if "l16" in (mime or "").lower() or "pcm" in (mime or "").lower() else ["-i", raw]
-    subprocess.run(["ffmpeg", "-v", "error", "-y", *src, "-ar", "24000", "-ac", "1", "-b:a", "192k", mp3], check=True)
+    trim = float(os.environ.get("TTS_PAUSE_TRIM", "0.45") or 0)
+    af = ["-af", pause_filter(trim)] if trim > 0 else []
+    subprocess.run(["ffmpeg", "-v", "error", "-y", *src, *af, "-ar", "24000", "-ac", "1", "-b:a", "192k", mp3], check=True)
     os.unlink(raw)
 
 
