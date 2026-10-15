@@ -16,6 +16,8 @@
  * Where it stops: the planner places elements by rule; whether the photo it was handed is a good one is decided upstream (entity resolution and
  * its gates). It cannot make a sentence with nothing to show show something — it reports it.
  */
+import { parseDate } from "./clone-layout.js";
+
 export const FPS = 30;
 const STOP = new Set("a an the and or but of to in on at by for with from as is are was were be been it its this that these those he she they we you i his her their our your not no do does did has have had will would can could should may might than then so if into over under about after before while which who whom what when where why how also just only very more most".split(" "));
 // Words a display phrase may not START or END on although they are not function words: verbs of being / holding / saying and adverbs that dangle
@@ -70,9 +72,11 @@ export function figuresOf(canvas) {
   const c = canvas || {};
   const out = [];
   const digits = (t) => String(t).replace(/[^\d]/g, "");
-  const add = (kind, name, label = null) => {
+  const add = (kind0, name, label = null) => {
+    let kind = kind0;
     const n = String(name || "").trim();
     if (!n) return;
+    if (kind === "figure" && parseDate(n).month) kind = "date";   // "October 13, 2026" arrives as a figure when the planner filed it under data.value: it is a date
     if (out.some((x) => x.kind === kind && (kind === "date" ? x.name.toLowerCase() === n.toLowerCase() : digits(x.name) === digits(n) && digits(n)))) return;
     out.push({ kind, name: n, label });
   };
@@ -290,6 +294,18 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   out.data = num ? { value: num.name, label: num.label } : null;
   out.boxes = {};
   out.clone = true;
+  // What the beat's frames ARE, for the frame review's label (scripts/gemini-frame-review.js compositionLabel). Every beat without a photo used to be labelled
+  // "typography" because the canvas plan said TYPE, so figure plates, glyph plates and calendar plates were counted as headline beats (board 38781391920:
+  // TEMPLATE_MONOCULTURE 66% / 62%). The reviewer still judges the frames; this only says truthfully what is drawn.
+  const parts = [];
+  if (out.photo) parts.push("a photograph of " + (out.photo.entity || "the subject") + " in a framed or full-bleed layout");
+  if (out.concept_visuals.length) parts.push("a logo or object picture");
+  const glyphs = (shots || []).filter((x) => x.subject && x.subject.kind === "glyph").map((x) => x.subject.type);
+  if (glyphs.length) parts.push("generic " + [...new Set(glyphs)].map((t) => (t === "person" ? "person-silhouette" : t === "place" ? "map-pin" : "building")).join(" / ") + " icon plates with the entity's name");
+  if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");
+  if (date) parts.push("a calendar-date plate");
+  if ((shots || []).some((x) => x.excerpt)) parts.push("typewriter excerpt cards of the narration");
+  if (parts.length) out.clone_label = "a designed multi-shot frame with " + parts.join(", ") + "; a short highlighted key phrase is only a secondary caption";
   // The frame review's labels read these: the ground this beat chose (a non-white ground is declared, not left to read as a mistake), and what the beat
   // DRAWS (a photograph, a logo, or typography) so a beat with a picture is not called typography because the canvas engine's plan said TYPE.
   if (palette && palette.ground) out.ground_color = palette.ground;

@@ -211,3 +211,19 @@ test("a date with no glyph entity is recorded as a date art, the shape the cover
   assert.equal(rec.art.kind, "date");
   assert.equal(rec.art.text, "April 16, 2026");
 });
+
+test("a figure whose text is a date is a date (the planner filed 'October 13, 2026' under data.value)", () => {
+  const f = figuresOf({ data: { value: "October 13, 2026", label: "vote" }, named_entities: [{ type: "number", name: "9" }] });
+  assert.equal(f[0].kind, "date");
+  assert.equal(f[1].kind, "figure");
+});
+
+test("the manifest says truthfully what a beat's frames are, for the frame review's label (not 'typography')", () => {
+  const c = { sentence: SENT, named_entities: [{ type: "place", name: "Newark" }], data: { value: "9 to 0", label: "vote" } };
+  const plan = planClone([beat(0, 0, 7, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const rec = cloneCanvasFor(c, plan.shots);
+  assert.ok(rec.clone_label && /map-pin icon plates/.test(rec.clone_label) && /large figure plates/.test(rec.clone_label), rec.clone_label);
+  assert.ok(!/typography/i.test(rec.clone_label.replace("secondary caption", "")));
+  const nothing = cloneCanvasFor({ sentence: SENT }, planClone([beat(0, 0, 6, SENT, { sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] }).shots);
+  assert.match(nothing.clone_label, /excerpt cards/);
+});

@@ -354,6 +354,8 @@ function compositionLabel(b) {
 function compositionLabelBase(b) {
   const c = b?.canvas, vt = String(b?.visual_type || "").toUpperCase();
   if (!c) return "";
+  // A CLONE render (src/skills/remotion-render/clone/) records what its shots drew; say that, not the canvas plan's "TYPE" for the same beat.
+  if (c.clone && c.clone_label) return ` | beat: ${c.clone_label}`;
   const what = { COUNTER: "one big number (the sentence's figure — a data beat)", BAR: "bar chart", PIE: "donut chart", LINE: "line chart", GAUGE: "gauge", MAP: "map filling the frame",
     PROCESS: "process diagram", PHOTO: `photograph of ${c.photo?.entity || "a named entity"}`, CUTOUT: "photographed object", TYPE: "typography",
     LIST: "an enumeration built item by item", TIMELINE: "a timeline of dated events", COMPARE: "two figures on a diagonal split", DOCUMENT: `scan of ${c.photo?.entity || "a document"}`,
