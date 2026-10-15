@@ -1,0 +1,67 @@
+{
+  "channel_id": "6",
+  "topic_slug": "chicago-police-dna-links-former-detective-cold-case",
+  "format": "shorts",
+  "hook": "A 65 year cold case cracked by Chicago police points directly to a former homicide detective.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 65 year cold case cracked by Chicago police points directly to a former homicide detective.",
+      "b_roll": [
+        "Archive photo of Chicago in 1960",
+        "Police badge close up"
+      ],
+      "text_overlay": {
+        "text": "65-Year Cold Case Solved"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1960, 8-year-old Gloria Kowalewicz vanished while walking to church in Chicago. Investigators found her shot dead in a ditch. What evidence remained hidden for decades?",
+      "b_roll": [
+        "Historic Chicago street map",
+        "Ditch crime scene archive photo"
+      ],
+      "text_overlay": {
+        "text": "Gloria Kowalewicz, 1960"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except advanced DNA technology that didn't exist in 1960 finally cracked the case.",
+      "b_roll": [
+        "Modern DNA sequencing lab equipment",
+        "Forensic fingerprint analysis"
+      ],
+      "text_overlay": {
+        "text": "Advanced DNA Technology"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "New DNA and fingerprint evidence links 8-year-old Gloria Kowalewicz's murder to Thomas F. McInerney Jr.",
+      "b_roll": [
+        "Case files and evidence lockers",
+        "Chicago Police Department headquarters"
+      ],
+      "text_overlay": {
+        "text": "Linked to Former Detective"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "65 years later, the truth emerged from the archive.",
+      "b_roll": [
+        "Stacked cold case files",
+        "Archive room doors closing"
+      ],
+      "text_overlay": {
+        "text": "65 Years Later"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcnews.com/news/us-news/chicago-police-find-killer-65-year-old-cold-case-murder-little-girl-on-rcna602947",
+    "https://www.independent.co.uk/news/world/americas/crime/gloria-kowalewicz-dna-murder-homicide-detective-b3066250.html"
+  ]
+}
