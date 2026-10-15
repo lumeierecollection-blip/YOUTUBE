@@ -501,6 +501,10 @@ const TEXT_GRID_ON = true, GRID_BASE = 1328, GRID_TOL = 40;
 async function textGrid(video, beats, fps = 30) {
   const rows = [], bad = [];
   const W = 540, H = 960, sc = H / 1920;
+  // THE UNIVERSAL SWAY IS PART OF WHERE THE WORDS ARE (visual/sway.js: every beat drifts +-30 px across, +-12 px down). The ink is measured on a rendered
+  // frame, so it is measured WHERE THE SWAY HAS PUT IT; comparing that to the unswayed axis read a legitimate +21 px drift as a misplaced card (CI proof
+  // 38736254353: TYPE-CHAPTER "centred at x 582", the same defect as ch-44 beat 6 at x 585). The tolerance is unchanged: the sway is taken out, not forgiven.
+  const { swayOffset } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "sway.js")).href);
   for (let i = 0; i < beats.length; i++) {
     const b = beats[i], c = b.canvas || {};
     const t = c.boxes?.statement || c.boxes?.headline;
@@ -517,7 +521,8 @@ async function textGrid(video, beats, fps = 30) {
       if (Math.abs(l - g.l) > 60) { n++; if (x < minX) minX = x; if (x > maxX) maxX = x; if (y > maxY) maxY = y; }
     }
     if (!n) { rows.push({ beat: i, words: "no ink found" }); bad.push(`beat ${i}: no words found where the layout puts them`); continue; }
-    const cx = Math.round(((minX + maxX) / 2) / sc), bottom = Math.round(maxY / sc);
+    const sw = swayOffset(at - (b.start_sec ?? 0));
+    const cx = Math.round(((minX + maxX) / 2) / sc - sw.x), bottom = Math.round(maxY / sc - sw.y);
     rows.push({ beat: i, composition: c.composition, centre_x: cx, bottom_y: bottom });
     if (Math.abs(cx - 540) > GRID_TOL) bad.push(`beat ${i} (${c.composition}): the words are centred at x ${cx}, not on the frame's axis (540 ± ${GRID_TOL})`);
     if (Math.abs(bottom - GRID_BASE) > GRID_TOL + 20) bad.push(`beat ${i} (${c.composition}): the words end at y ${bottom}, not on the grid line (${GRID_BASE} ± ${GRID_TOL})`);

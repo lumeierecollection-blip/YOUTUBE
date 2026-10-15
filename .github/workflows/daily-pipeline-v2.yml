@@ -1604,10 +1604,19 @@ jobs:
             const RUN = process.env.REVIEW_RUN;
             const dir = "data/publish-queue";
             const uploads = [];
+            // The queues live in PER-CHANNEL folders (data/publish-queue/<ch>/publish-queue.json). The digest read only top-level files, found none, and
+            // reported "Nothing was uploaded" and "no OAuth secrets" for a channel whose video had just gone up (run 38724865619, ch-2, zttQB2Wxeqc).
+            const queueFiles = [];
             if (fs.existsSync(dir)) {
               for (const f of fs.readdirSync(dir)) {
-                if (!f.endsWith(".json")) continue;
-                let rows = []; try { rows = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")); } catch { continue; }
+                const full = path.join(dir, f);
+                if (fs.statSync(full).isDirectory()) { for (const g of fs.readdirSync(full)) if (g.endsWith(".json")) queueFiles.push(path.join(full, g)); }
+                else if (f.endsWith(".json")) queueFiles.push(full);
+              }
+            }
+            {
+              for (const full of queueFiles) {
+                let rows = []; try { rows = JSON.parse(fs.readFileSync(full, "utf8")); } catch { continue; }
                 if (!Array.isArray(rows)) continue;
                 for (const e of rows) {
                   if (RUN && e.source_run && String(e.source_run) !== String(RUN)) continue;
