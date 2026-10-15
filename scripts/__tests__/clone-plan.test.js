@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf } from "../../src/skills/remotion-render/clone/clone-plan.js";
+import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf, quantityIn } from "../../src/skills/remotion-render/clone/clone-plan.js";
 
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 const FPS = 30;
@@ -277,4 +277,22 @@ test("a shot with no phrase that adds to its plate gets a tick instead, so it st
   const T = "Newark Newark Newark";
   const plan = planClone([beat(0, 0, 4, T, { sentence: T, named_entities: [{ type: "place", name: "Newark" }] })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
   for (const sh of plan.shots) { assert.equal(sh.display, null); assert.ok(sh.elements.some((e) => e.kind === "tick")); }
+});
+
+test("a figure is shown as the SENTENCE writes it, with its unit ('30' for '30-second' failed the naming check: unit missing)", () => {
+  assert.equal(quantityIn("A 30-second wait", "30"), "30-second");
+  assert.equal(quantityIn("worth 5 million euros", "5"), "5 million euros");
+  assert.equal(quantityIn("fined $1,250 each", "1250"), "$1,250");
+  assert.equal(quantityIn("only 35% of workers", "35"), "35%");
+  assert.equal(quantityIn("no digits here", "7"), "7");
+  const f = figuresOf({ sentence: "The 30-second delay", data: { value: "30", label: "delay" } });
+  assert.equal(f[0].name, "30-second");
+});
+
+test("number and month words are NEVER display type: the spoken form is not the written one (OCTOBER EIGHT / TWENTY-SIX failed the naming check)", () => {
+  const T = "Voters passed the measure on October eight in twenty twenty-six with nine votes";
+  const spoken = T.split(" ").map((t, i) => ({ text: t, abs: i * 10 }));
+  const plan = planClone([{ ...beat(0, 0, 7, T, { sentence: T }), spoken: spoken.map((w) => ({ text: w.text, from: w.abs })) }], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const banned = new Set(["october", "eight", "twenty", "twenty-six", "nine", "nine"]);
+  for (const sh of plan.shots) if (sh.display) for (const w of sh.display.text.toLowerCase().split(/\s+/)) assert.ok(!banned.has(w), `"${sh.display.text}" is a spoken-form number`);
 });

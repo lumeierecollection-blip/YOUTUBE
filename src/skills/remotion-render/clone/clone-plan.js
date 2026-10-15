@@ -69,6 +69,17 @@ export function typedEntitiesOf(canvas) {
   return out;
 }
 
+/** A figure as the SENTENCE writes it, unit and all ("30-second", "$1,250", "35%", "5 million euros"): the naming check wants the number "and its unit as the sentence states them". */
+export function quantityIn(sentence, name) {
+  const digits = String(name || "").replace(/[^\d]/g, "");
+  if (!digits || !sentence) return String(name || "");
+  const re = /\$?\d[\d,.]*(?:-[A-Za-z]+|%|(?:\s(?:million|billion|thousand|hundred))?(?:\s(?:percent|euros|dollars|pounds|years|days|hours|minutes|seconds|points|people|species))?)/g;
+  for (const m of String(sentence).matchAll(re)) {
+    if (m[0].replace(/[^\d]/g, "") === digits) return m[0].trim().replace(/[.,]$/, "");
+  }
+  return String(name || "");
+}
+
 /** The figures and dates a beat states, in order: [{ kind: "figure"|"date", name, label }]. From the canvas's own data and from its named number / date entities. */
 export function figuresOf(canvas) {
   const c = canvas || {};
@@ -76,9 +87,10 @@ export function figuresOf(canvas) {
   const digits = (t) => String(t).replace(/[^\d]/g, "");
   const add = (kind0, name, label = null) => {
     let kind = kind0;
-    const n = String(name || "").trim();
+    let n = String(name || "").trim();
     if (!n) return;
-    if (kind === "figure" && parseDate(n).month) kind = "date";   // "October 13, 2026" arrives as a figure when the planner filed it under data.value: it is a date
+    if (kind === "figure" && parseDate(n).month) kind = "date";
+    if (kind === "figure") n = quantityIn(c.sentence, n);   // "October 13, 2026" arrives as a figure when the planner filed it under data.value: it is a date
     if (out.some((x) => x.kind === kind && (kind === "date" ? x.name.toLowerCase() === n.toLowerCase() : digits(x.name) === digits(n) && digits(n)))) return;
     out.push({ kind, name: n, label });
   };
@@ -236,7 +248,10 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
         const addToks = (t) => String(t || "").toLowerCase().split(/[^a-z0-9']+/).filter(Boolean).forEach((x) => exclude.add(x));
         for (const sj of subjects) { addToks(sj.name); addToks(sj.label); }
         if (subjects.some((sj) => sj.kind === "figure" || sj.kind === "date")) { NUMBER_WORDS.forEach((w) => exclude.add(w)); MONTH_WORDS.forEach((w) => exclude.add(w)); }
-        disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, subjects.length ? exclude : null);
+        // Number and month words are NEVER display type: the spoken form ("October eight, twenty twenty-six") is not the written one ("October 8, 2026") and the naming
+        // check fails it (board 38790006358 ch-44 / ch-49). Dates and figures are drawn on their plates, in the sentence's own written form.
+        NUMBER_WORDS.forEach((w) => exclude.add(w)); MONTH_WORDS.forEach((w) => exclude.add(w));
+        disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
       }
       const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
       const labelPlates = plates.filter((x) => !shownNames.has(x.name));
