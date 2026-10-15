@@ -1570,6 +1570,21 @@ jobs:
             }
           "
 
+      # run.js --review: approved-review/ only, marker must match the channel, refuses any
+      # channel outside 1/2/9/26/44/49, uploads privacyStatus "private", and queues the entry
+      # cancelled so process-queue never makes it public.
+      - name: Publish approved-review videos (private)
+        env:
+          REQUESTED: ${{ steps.target.outputs.channels }}
+        run: |
+          ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
+          FAIL=0
+          for CH in $(echo "$REQUESTED" | tr ',' ' '); do
+            CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
+            node src/skills/youtube-publish/run.js "$CH" --review || FAIL=1
+          done
+          exit $FAIL
+
       # THE MORNING DIGEST. One file the owner reads each morning: what went up,
       # as PRIVATE, with a Studio link to click through and publish. Built from
       # data/publish-queue/, which review-publish has just committed and which
@@ -1581,8 +1596,8 @@ jobs:
         env:
           REVIEW_RUN: ${{ steps.target.outputs.run_id }}
           REQUESTED: ${{ steps.target.outputs.channels }}
-          TODAY: ${{ github.run_started_at }}
         run: |
+          export TODAY=$(date -u +%F)
           node -e '
             const fs = require("fs"), path = require("path");
             const TODAY = process.env.TODAY.slice(0, 10);
@@ -1631,31 +1646,17 @@ jobs:
         run: |
           git config user.name  "lumeierecollection-blip"
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          TODAY=$(date -u +%F)
           git add data/uploaded
           if git diff --cached --quiet; then echo "No digest changes."; exit 0; fi
           git commit -m "uploaded: digest for $TODAY (review-publish of run ${{ steps.target.outputs.run_id }})"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
-            git rebase "origin/${{ github.ref_name }}"
+            git rebase --autostash "origin/${{ github.ref_name }}"
             if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
             if [ "$attempt" -eq 5 ]; then echo "::error::Could not push the digest"; exit 1; fi
             sleep $((attempt * 2))
           done
-
-      # run.js --review: approved-review/ only, marker must match the channel, refuses any
-      # channel outside 1/2/9/26/44/49, uploads privacyStatus "private", and queues the entry
-      # cancelled so process-queue never makes it public.
-      - name: Publish approved-review videos (private)
-        env:
-          REQUESTED: ${{ steps.target.outputs.channels }}
-        run: |
-          ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
-          FAIL=0
-          for CH in $(echo "$REQUESTED" | tr ',' ' '); do
-            CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
-            node src/skills/youtube-publish/run.js "$CH" --review || FAIL=1
-          done
-          exit $FAIL
 
       - name: Commit publish queue
         if: always()
@@ -1667,7 +1668,7 @@ jobs:
           git commit -m "publish-queue: review-publish of run ${{ steps.target.outputs.run_id }} [run ${{ github.run_id }}]"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
-            git rebase "origin/${{ github.ref_name }}"
+            git rebase --autostash "origin/${{ github.ref_name }}"
             if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
             if [ "$attempt" -eq 5 ]; then echo "::error::Could not push the publish queue"; exit 1; fi
             sleep $((attempt * 2))
