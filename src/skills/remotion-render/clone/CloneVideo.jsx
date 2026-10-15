@@ -161,7 +161,7 @@ function GlyphPlate({ shot, B, st, P, profile }) {
   const name = caps ? g.name.toUpperCase() : g.name;
   const { lines, size } = fitLines(name, box.w - 80, { family: fam, caps, max: 96, min: 44, maxLines: 2 });
   return (
-    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", padding: "56px 40px 40px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", border: `10px solid ${P.accent}` }}>
+    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", padding: shot.treatment === "disc" ? "90px 60px 70px" : "56px 40px 40px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", border: `10px solid ${P.accent}`, borderRadius: shot.treatment === "disc" ? "50%" : 0 }}>
       <GlyphMark type={g.type} color={P.ink} size={Math.round(box.h * 0.46)} />
       <div style={{ textAlign: "center" }}>
         {lines.map((l, i) => <div key={i} style={{ fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, fontSize: size, lineHeight: 1.04, color: P.ink, whiteSpace: "nowrap" }}>{l}</div>)}

@@ -168,25 +168,27 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       const roomForPlate = slot >= 0;
       // A picture-less shot that names an entity shows that entity as a GLYPH plate (a person's silhouette, an organisation's building, a place's pin):
       // the canvas engine's own fallback when no picture exists, and what the entity check (Gemini, on the frames) needs to see: a small text label is not a depiction.
-      const glyph = !hero && plates.length && roomForPlate ? plates[0] : null;
-      if (glyph) treatment = "plate";
+      // EVERY shot of a picture-less beat that names entities shows one (cycling through them), not just the shot an entity was assigned to: the entity check
+      // samples ONE frame per beat, and a beat whose only glyph is in another shot reads as "names an entity its frame does not show".
+      const glyph = !hero && ents.length && f1 - f0 >= PLATE_MIN_FRAMES ? ents[k % ents.length] : null;
+      if (glyph) { treatment = k % 2 === 0 ? "plate" : "disc"; if (!plates.some((x) => x.name === glyph.name)) plates.push(glyph); }
       const showFig = fig && k === 0;
       const el = [];
       const at = (off) => Math.min(f1 - 3, f0 + off);
       el.push({ kind: "ground", at: f0 });
       if (hero) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });
-      else if (plates.length && roomForPlate) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });   // a picture-less shot that names an entity shows that entity's GLYPH plate
+      else if (ents.length && f1 - f0 >= PLATE_MIN_FRAMES) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });   // a picture-less shot that names an entity shows that entity's GLYPH plate
       else el.push({ kind: "card", at: at(ELEMENT_OFFSET.hero) });   // a picture-less shot that names nothing shows the narration itself, set as an excerpt card
       const shape = !profile.accent_shapes?.length ? null : treatment === "type" && !glyph ? (profile.accent_shapes.includes("block") ? "block" : profile.accent_shapes[0]) : profile.accent_shapes[shots.length % profile.accent_shapes.length];
       if (shape) el.push({ kind: "shape", at: at(ELEMENT_OFFSET.shape) });
       if (showFig) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 3, Math.max(f0 + ELEMENT_OFFSET.display - 6, disp.at)) });
-      if ((glyph ? plates.length > 1 : plates.length) && roomForPlate) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
+      if (plates.filter((x) => !glyph || x.name !== glyph.name).length && (roomForPlate || glyph)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
         display: showFig ? null : disp, figure: showFig ? fig : null,
         glyph, excerpt: !hero && !glyph ? excerptOf(b, canvas) : null,
-        plates: plates.length && roomForPlate ? plates : [], plate: (glyph ? plates.slice(1) : plates).length && roomForPlate ? (glyph ? plates.slice(1) : plates).map((x) => x.name).join(" · ") : null,
+        plates: plates.length && (roomForPlate || glyph) ? plates : [], plate: plates.filter((x) => !glyph || x.name !== glyph.name).length && (roomForPlate || glyph) ? plates.filter((x) => !glyph || x.name !== glyph.name).map((x) => x.name).join(" · ") : null,
         elements: el,
       });
     }

@@ -163,9 +163,10 @@ test("a picture-less shot that NAMES an entity shows that entity's glyph plate (
   ];
   const plan = planClone(beats, { laws: G.laws, profile: G.profiles["cutout-collage"] });
   const named = plan.shots.filter((x) => x.beat === 0), unnamed = plan.shots.filter((x) => x.beat === 1);
-  const g = named.filter((x) => x.glyph);
-  assert.ok(g.length >= 1);
-  for (const sh of g) { assert.equal(sh.glyph.type, "person"); assert.equal(sh.treatment, "plate"); assert.equal(sh.hero, null); assert.equal(sh.excerpt, null); }
+  // EVERY shot of the picture-less beat shows the glyph (the entity check samples one frame per beat), alternating plate and disc so successive shots differ
+  assert.ok(named.length >= 3 && named.every((x) => x.glyph), "a shot of the beat has no glyph");
+  for (const sh of named) { assert.equal(sh.glyph.type, "person"); assert.ok(["plate", "disc"].includes(sh.treatment)); assert.equal(sh.hero, null); assert.equal(sh.excerpt, null); }
+  for (let i = 1; i < named.length; i++) assert.notEqual(named[i].treatment, named[i - 1].treatment, "two glyph plates in a row look the same");
   for (const sh of unnamed) { assert.equal(sh.glyph, null); assert.ok(sh.excerpt); }
   const rec = cloneCanvasFor({ named_entities: [{ type: "person", name: "Mary Moriarty" }] }, named);
   assert.deepEqual(rec.art.kinds, ["plate-person"]);
