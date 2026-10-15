@@ -30,8 +30,9 @@ export function treatmentBoxes(treatment, idx = 0) {
     case "inset-right":
       return { hero: rect(540, 260, 540, 1000), label: rect(60, 470, 440, 48), text: rect(60, 520, 440, 600, { align: "right" }), shape: { block: rect(540, 300, 500, 1000), bar: rect(200, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 440, 6) } };
     case "type":
-      // NO PICTURE: the visual is the narration itself, set as a tilted paper EXCERPT CARD (the references' page scans), with the key words big below it.
-      return { hero: rect(120, 340, 840, 700, { rot: tilt * 0.75, card: true }), label: rect(90, 1100, 900, 48), text: rect(90, 1170, 900, 460, { align: "center" }), shape: { block: rect(90, 380, 840, 700), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1080, 900, 6), pull: rect(90, 1080, 900, 6) } };
+      // NO PICTURE: the visual is the narration itself, set as a tilted paper EXCERPT CARD (the references' page scans) with the key words big below it.
+      // The accent block is the card's own offset (32 px right and down), the same size, so it reads as a second sheet under it, never as a slab.
+      return { hero: rect(120, 470, 840, 520, { rot: tilt * 0.75, card: true }), label: rect(90, 1070, 900, 48), text: rect(90, 1140, 900, 460, { align: "center" }), shape: { block: rect(152, 502, 840, 520), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1050, 900, 6), pull: rect(90, 1050, 900, 6) } };
     case "plate":
     default:
       return { hero: rect(180, 380, 720, 720, { plate: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1240, 900, 380, { align: "center" }), shape: { block: rect(140, 420, 720, 720), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1142, 900, 6) } };

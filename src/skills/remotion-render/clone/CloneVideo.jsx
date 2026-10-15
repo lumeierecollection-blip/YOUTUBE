@@ -134,8 +134,12 @@ function Card({ shot, B, st, P, profile }) {
   const box = B.hero, c = (profile.type && profile.type.card) || { family: "DM Sans", style: "normal", weight: 500 };
   const marked = new Set(String((shot.display && shot.display.text) || "").toLowerCase().split(/\s+/).map((w) => w.replace(/[^\w$%]/g, "")).filter(Boolean));
   const words = String(shot.excerpt || "").split(" ");
+  // Fit: the largest size at which the excerpt's estimated wrapped height fits the card's inner box (width and height less the padding).
+  const innerW = box.w - 104, innerH = box.h - 112, adv = advOf(c.family, false) * 1.08, len = String(shot.excerpt || "").length;
+  let size = 30;
+  for (let z = 56; z >= 30; z -= 2) { const lines = Math.ceil((len * adv * z) / innerW); if (lines * z * 1.36 <= innerH) { size = z; break; } }
   return (
-    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, minHeight: box.h * 0.55, boxSizing: "border-box", padding: "64px 56px", backgroundColor: P.paper, boxShadow: "0 18px 40px rgba(0,0,0,0.22)", transform: `rotate(${box.rot || 0}deg) scale(${st.s})`, opacity: st.o, zIndex: 1, fontFamily: `"${c.family}", Georgia, serif`, fontStyle: c.style === "italic" ? "italic" : "normal", fontWeight: c.weight, fontSize: 46, lineHeight: 1.4, color: P.ink }}>
+    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, overflow: "hidden", boxSizing: "border-box", padding: "56px 52px", backgroundColor: P.paper, boxShadow: "0 18px 40px rgba(0,0,0,0.22)", transform: `rotate(${box.rot || 0}deg) scale(${st.s})`, opacity: st.o, zIndex: 1, fontFamily: `"${c.family}", Georgia, serif`, fontStyle: c.style === "italic" ? "italic" : "normal", fontWeight: c.weight, fontSize: size, lineHeight: 1.36, color: P.ink }}>
       {words.map((w, i) => (marked.has(w.toLowerCase().replace(/[^\w$%]/g, ""))
         ? <span key={i} style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.18em" }}>{w}{" "}</span>
         : <span key={i}>{w}{" "}</span>))}
