@@ -1193,9 +1193,14 @@
           "topic": "Justice Department Probes Major TV Networks Over Trump Pool Coverage Halt",
           "slug": "doj-probes-tv-networks-trump-pool-coverage",
           "reserved_at": "2026-10-15T11:09:10.017Z"
+        },
+        {
+          "topic": "Reuters Investigation Uncovers Iran's Global Apparatus Hunting Dissidents",
+          "slug": "reuters-investigation-irans-global-dissident-hunting-apparat",
+          "reserved_at": "2026-10-15T13:32:34.411Z"
         }
       ],
-      "last_generated": "2026-10-15T11:09:10.017Z"
+      "last_generated": "2026-10-15T13:32:34.411Z"
     },
     "6": {
       "channel_name": "Archive Room",
