@@ -1389,9 +1389,14 @@
           "topic": "How Turkey's $20 Billion Investment Fund Bubble Burst in October 2026",
           "slug": "turkeys-investment-fund-bubble-burst-2026",
           "reserved_at": "2026-10-15T11:08:57.845Z"
+        },
+        {
+          "topic": "TalkTalk Administration and Pre-Pack Sale to BT",
+          "slug": "talktalk-administration-pre-pack-sale-bt-2026",
+          "reserved_at": "2026-10-15T13:33:43.004Z"
         }
       ],
-      "last_generated": "2026-10-15T11:08:57.845Z"
+      "last_generated": "2026-10-15T13:33:43.004Z"
     },
     "9": {
       "channel_name": "Border Lines",
