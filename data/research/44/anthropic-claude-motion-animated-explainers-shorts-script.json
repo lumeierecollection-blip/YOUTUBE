@@ -1,0 +1,67 @@
+{
+  "channel_id": "44",
+  "topic_slug": "anthropic-claude-motion-animated-explainers",
+  "format": "shorts",
+  "hook": "Anthropic just gave Claude the power to build 30-second animated explainers from a single text prompt.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Anthropic just gave Claude the power to build 30-second animated explainers from a single text prompt.",
+      "b_roll": [
+        "Anthropic logo interface",
+        "Claude AI workspace"
+      ],
+      "text_overlay": {
+        "text": "Claude Motion Launched"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 8, 2026, Anthropic released Claude Motion in beta on Team and Enterprise plans. Team plans turn on the new productivity tool by default. Where do free users find it?",
+      "b_roll": [
+        "Team plan dashboard",
+        "Enterprise software settings"
+      ],
+      "text_overlay": {
+        "text": "Beta Release Oct 8, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Claude Docs, Slides, and Design tools are available on every plan.",
+      "b_roll": [
+        "Claude slides interface",
+        "Design tools workspace"
+      ],
+      "text_overlay": {
+        "text": "Every Plan Included"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Yahoo Finance reported the launch alongside Claude Dashboards for live data. Enterprise teams generate 30-second animated explainers instantly. Anthropic released Claude Motion in beta on October 8, 2026.",
+      "b_roll": [
+        "Yahoo Finance news article",
+        "Live updating dashboard screen"
+      ],
+      "text_overlay": {
+        "text": "Live Data Dashboards"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Try Claude Motion on Team plans today.",
+      "b_roll": [
+        "Claude animation render screen",
+        "Completed 30 second video file"
+      ],
+      "text_overlay": {
+        "text": "Claude Motion"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theverge.com/ai-artificial-intelligence/1008134/claude-can-now-turn-data-into-animated-explainers",
+    "https://finance.yahoo.com/news/anthropic-launches-dashboard-animation-tools-190112040.html"
+  ]
+}

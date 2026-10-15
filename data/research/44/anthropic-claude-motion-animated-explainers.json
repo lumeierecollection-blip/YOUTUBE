@@ -1,0 +1,64 @@
+{
+  "topic_slug": "anthropic-claude-motion-animated-explainers",
+  "strongest_angle": "Anthropic launched Claude Motion and Claude Dashboards in October 2026, enabling Team and Enterprise plan users to instantly generate 30-second animated video explainers and live-updating data dashboards directly from text prompts.",
+  "key_facts": [
+    {
+      "fact": "Anthropic released Claude Motion and Claude Dashboards in beta on October 8, 2026, allowing users to create video explainers and charts.",
+      "source_url": "https://www.theverge.com/ai-artificial-intelligence/1008134/claude-can-now-turn-data-into-animated-explainers",
+      "source_name": "The Verge",
+      "confidence": "high"
+    },
+    {
+      "fact": "Claude Motion is available in beta on Team and Enterprise plans, where it comes turned on by default on Team plans.",
+      "source_url": "https://support.claude.com/en/articles/17454997-get-started-with-claude-motion",
+      "source_name": "Claude Help Center",
+      "confidence": "high"
+    },
+    {
+      "fact": "Anthropic launched the new workplace productivity tools on October 8, 2026, as reported by Reuters on Yahoo Finance.",
+      "source_url": "https://finance.yahoo.com/news/anthropic-launches-dashboard-animation-tools-190112040.html",
+      "source_name": "Yahoo Finance",
+      "confidence": "high"
+    },
+    {
+      "fact": "Claude Docs, Slides, and Design tools are out of beta and available on every Claude plan, including the Free tier.",
+      "source_url": "https://claude.com/resources/articles/dashboards-and-motion",
+      "source_name": "Claude by Anthropic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Explainer video duration",
+      "value": 30,
+      "unit": "seconds",
+      "source_url": "https://www.theverge.com/ai-artificial-intelligence/1008134/claude-can-now-turn-data-into-animated-explainers"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude Motion",
+      "kind": "object"
+    },
+    {
+      "name": "Claude Dashboards",
+      "kind": "object"
+    },
+    {
+      "name": "Emma Roth",
+      "kind": "person"
+    },
+    {
+      "name": "The Verge",
+      "kind": "organization"
+    },
+    {
+      "name": "Yahoo Finance",
+      "kind": "organization"
+    }
+  ]
+}
