@@ -129,6 +129,20 @@ function Label({ text, B, st, P, profile, plated }) {
   );
 }
 
+function Card({ shot, B, st, P, profile }) {
+  // The narration itself, set as a tilted paper excerpt card: the visual of a shot that has no picture. The key words of the shot are marked inside it.
+  const box = B.hero, c = (profile.type && profile.type.card) || { family: "DM Sans", style: "normal", weight: 500 };
+  const marked = new Set(String((shot.display && shot.display.text) || "").toLowerCase().split(/\s+/).map((w) => w.replace(/[^\w$%]/g, "")).filter(Boolean));
+  const words = String(shot.excerpt || "").split(" ");
+  return (
+    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, minHeight: box.h * 0.55, boxSizing: "border-box", padding: "64px 56px", backgroundColor: P.paper, boxShadow: "0 18px 40px rgba(0,0,0,0.22)", transform: `rotate(${box.rot || 0}deg) scale(${st.s})`, opacity: st.o, zIndex: 1, fontFamily: `"${c.family}", Georgia, serif`, fontStyle: c.style === "italic" ? "italic" : "normal", fontWeight: c.weight, fontSize: 46, lineHeight: 1.4, color: P.ink }}>
+      {words.map((w, i) => (marked.has(w.toLowerCase().replace(/[^\w$%]/g, ""))
+        ? <span key={i} style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.18em" }}>{w}{" "}</span>
+        : <span key={i}>{w}{" "}</span>))}
+    </div>
+  );
+}
+
 function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
   const B = treatmentBoxes(shot.treatment, shotIndex);
   const local = frame - shot.f0;
@@ -144,6 +158,7 @@ function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
     <AbsoluteFill>
       {stShape ? <Shape shot={shot} B={B} st={stShape} P={P} /> : null}
       <Hero shot={shot} B={B} st={stHero} P={P} profile={profile} bw={bw} local={local} idx={shotIndex} />
+      {shot.excerpt && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
       {stDisp && shot.display ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stDisp && shot.figure ? <Figure shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}

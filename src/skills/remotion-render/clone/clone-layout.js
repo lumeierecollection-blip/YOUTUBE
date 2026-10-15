@@ -29,11 +29,9 @@ export function treatmentBoxes(treatment, idx = 0) {
       return { hero: rect(0, 260, 540, 1000), label: rect(580, 470, 440, 48), text: rect(580, 520, 440, 600, { align: "left" }), shape: { block: rect(40, 300, 500, 1000), bar: rect(580, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(580, 450, 440, 6) } };
     case "inset-right":
       return { hero: rect(540, 260, 540, 1000), label: rect(60, 470, 440, 48), text: rect(60, 520, 440, 600, { align: "right" }), shape: { block: rect(540, 300, 500, 1000), bar: rect(200, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 440, 6) } };
-    case "type": {
-      // NO PICTURE: a designed type shot, not an empty frame. A heavy accent bar stands beside the words like a pull-quote; the side alternates by shot.
-      const left = idx % 2 === 0;
-      return { hero: rect(0, 0, 0, 0, { none: true }), label: rect(left ? 150 : 90, 690, 840, 48), text: rect(left ? 150 : 90, 760, 840, 560, { align: left ? "left" : "right" }), shape: { pull: rect(left ? 90 : 976, 760, 14, 560), bar: rect(left ? 150 : 590, 1370, 340, 22), stripe: rect(640, 0, 440, 96), rule: rect(90, 660, 900, 6), block: rect(left ? 90 : 976, 760, 14, 560) } };
-    }
+    case "type":
+      // NO PICTURE: the visual is the narration itself, set as a tilted paper EXCERPT CARD (the references' page scans), with the key words big below it.
+      return { hero: rect(120, 340, 840, 700, { rot: tilt * 0.75, card: true }), label: rect(90, 1100, 900, 48), text: rect(90, 1170, 900, 460, { align: "center" }), shape: { block: rect(90, 380, 840, 700), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1080, 900, 6), pull: rect(90, 1080, 900, 6) } };
     case "plate":
     default:
       return { hero: rect(180, 380, 720, 720, { plate: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1240, 900, 380, { align: "center" }), shape: { block: rect(140, 420, 720, 720), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1142, 900, 6) } };

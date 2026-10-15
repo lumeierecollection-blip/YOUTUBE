@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor } from "../../src/skills/remotion-render/clone/clone-plan.js";
+import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf } from "../../src/skills/remotion-render/clone/clone-plan.js";
 
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 const FPS = 30;
@@ -10,7 +10,7 @@ const FPS = 30;
 // a beat of `sec` seconds starting at `start` s, narrated at ~2.6 words/s from `text`
 function beat(index, start, sec, text, canvas = {}) {
   const words = text.split(/\s+/), per = (sec * FPS - 6) / words.length;
-  return { index, start_frame: Math.round(start * FPS), duration_frames: Math.round(sec * FPS),
+  return { index, text, original_text: text, start_frame: Math.round(start * FPS), duration_frames: Math.round(sec * FPS),
     spoken: words.map((w, i) => ({ text: w, from: Math.round(i * per), to: Math.round((i + 1) * per) - 2 })), scene: { canvas } };
 }
 const photo = (asset, entity, kind = "place") => ({ asset, entity, kind, view: kind, w: 1600, h: 1000 });
@@ -88,12 +88,13 @@ test("heroesOf / namesOf read what the resolved canvas carries", () => {
   assert.deepEqual(namesOf(c), ["ICE", "Minnesota"]);
 });
 
-test("a shot with NO picture is a designed type shot with a pull bar, never a picture treatment with the picture missing (a lone accent block)", () => {
+test("a shot with NO picture is a designed type shot with an excerpt CARD, never a picture treatment with the picture missing", () => {
   const plan = planClone(video(2, 6, 2), { laws: G.laws, profile: G.profiles["dossier-mono"] });   // beat 1 carries no asset
   const noPic = plan.shots.filter((x) => !x.hero);
   assert.ok(noPic.length >= 2);
-  for (const sh of noPic) { assert.equal(sh.treatment, "type"); assert.notEqual(sh.shape, "block"); assert.equal(sh.shape, "pull"); }
-  for (const sh of plan.shots.filter((x) => x.hero)) assert.notEqual(sh.treatment, "type");
+  // an accent block is only ever drawn BEHIND something: the card (a shot without a card has no block)
+  for (const sh of noPic) { assert.equal(sh.treatment, "type"); assert.ok(sh.elements.some((e) => e.kind === "card"), "no card"); assert.ok(sh.excerpt); }
+  for (const sh of plan.shots.filter((x) => x.hero)) { assert.notEqual(sh.treatment, "type"); assert.ok(!sh.elements.some((e) => e.kind === "card")); }
 });
 
 test("every entity a beat names gets a plate in some shot of that beat, typed by what it is", () => {
@@ -129,4 +130,28 @@ test("a stated figure is shown as a figure and recorded as one", () => {
   const rec = cloneCanvasFor(c, plan.shots);
   assert.equal(rec.composition, "NUMBER-STAT");
   assert.equal(rec.data.value, "$14,000");
+});
+
+test("display phrases do not start or end on a dangling verb or adverb (the real fragments: AIR HELD ALMOST, CAVE SITS, ROMANIA FAR, DEAL ANIMALS)", () => {
+  const cases = [
+    "Its air held almost no oxygen and a great deal of sulfur, which would kill most animals.",
+    "The cave sits near the Black Sea, in southeastern Romania, far from any town.",
+  ];
+  for (const text of cases) {
+    const spoken = text.split(" ").map((t, i) => ({ text: t, abs: i * 12 }));
+    for (const [a, b] of [[0, 60], [48, 120], [96, 200], [0, 400]]) {
+      const d = displayWords(spoken, a, b, ["Black Sea", "Romania"], 3);
+      if (!d) continue;
+      assert.ok(!/^(held|sits|almost|far|deal)/i.test(d.text) && !/(held|sits|almost|far|deal)$/i.test(d.text), `${d.text} (${text.slice(0, 20)})`);
+    }
+  }
+});
+
+test("a picture-less shot quotes the narration on an excerpt card: exactly what is spoken, cut at a word, never invented", () => {
+  const b = beat(0, 0, 6, SENT, { sentence: SENT });
+  const plan = planClone([b], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  for (const sh of plan.shots) { assert.equal(sh.hero, null); assert.ok(sh.excerpt && SENT.startsWith(sh.excerpt.replace(/\.\.\.$/, "").trim().slice(0, 40))); assert.ok(sh.elements.some((e) => e.kind === "card")); }
+  const long = excerptOf({ text: "word ".repeat(80).trim() }, {});
+  assert.ok(long.length <= 154 && long.endsWith("..."), long.length);
+  assert.equal(excerptOf({ text: "Short sentence here." }, {}), "Short sentence here.");
 });

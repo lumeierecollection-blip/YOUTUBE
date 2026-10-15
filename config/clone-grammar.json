@@ -245,6 +245,11 @@
           "weight": 500,
           "case": "upper",
           "tracking": 0.16
+        },
+        "card": {
+          "family": "Playfair Display",
+          "style": "italic",
+          "weight": 400
         }
       },
       "observed": "Full-frame photographs and page scans; one small sans label beside one large italic serif word; a shot every ~2 s; calm."
@@ -281,6 +286,11 @@
           "weight": 500,
           "case": "as-written",
           "tracking": 0.02
+        },
+        "card": {
+          "family": "DM Sans",
+          "style": "normal",
+          "weight": 500
         }
       },
       "observed": "Cream graph-paper ground; framed portraits with a soft shadow; heavy condensed caps; a marker highlight on one word; objects and type interleaved."
@@ -317,6 +327,11 @@
           "weight": 500,
           "case": "upper",
           "tracking": 0.14
+        },
+        "card": {
+          "family": "JetBrains Mono",
+          "style": "normal",
+          "weight": 400
         }
       },
       "observed": "Greyscale photographs on a pale ground with ONE accent colour (red) in shapes; real logos as marks; a small label over a heavy condensed word; a new element about every 0.5 s."

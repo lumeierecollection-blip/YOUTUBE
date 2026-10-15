@@ -18,6 +18,10 @@
  */
 export const FPS = 30;
 const STOP = new Set("a an the and or but of to in on at by for with from as is are was were be been it its this that these those he she they we you i his her their our your not no do does did has have had will would can could should may might than then so if into over under about after before while which who whom what when where why how also just only very more most".split(" "));
+// Words a display phrase may not START or END on although they are not function words: verbs of being / holding / saying and adverbs that dangle
+// ("AIR HELD ALMOST", "CAVE SITS", "SOUTHEASTERN ROMANIA FAR", "DEAL ANIMALS" were real picks). Without a parser this is a list, not a grammar: it stops
+// the commonest fragments, it does not guarantee a phrase.
+const WEAK = new Set("held sits sit sat said says say made make makes found find finds got get gets had have went go goes came come comes took take takes seemed seem seems became become becomes almost far very quite rather really still even also ever never always often just only nearly mostly already soon later early late deal lot kind sort way thing things something anything".split(" "));
 const isNumberWord = (w) => /^[\$€£]?\d[\d,.]*(?:%|[kmb]|million|billion|thousand)?$/i.test(w);
 const clean = (w) => String(w || "").replace(/^[^\w$€£]+|[^\w%]+$/g, "");
 
@@ -39,6 +43,14 @@ export function namesOf(canvas) {
   for (const e of c.named_entities || c.entities || []) if (e && e.name && e.type !== "number" && e.type !== "date") names.push(String(e.name));
   for (const h of heroesOf(c)) if (h.name && !names.includes(String(h.name))) names.push(String(h.name));
   return [...new Set(names)];
+}
+
+/** The sentence a picture-less shot quotes on its excerpt card: exactly what the narrator says, never more than ~150 characters (cut at a word). */
+export function excerptOf(beat, canvas) {
+  const raw = String((beat && (beat.original_text || beat.text)) || (canvas && canvas.sentence) || "").replace(/\s+/g, " ").trim();
+  if (raw.length <= 150) return raw;
+  const cut = raw.slice(0, 150), at = cut.lastIndexOf(" ");
+  return cut.slice(0, at > 80 ? at : 150).replace(/[,;:\s]+$/, "") + "...";
 }
 
 /** The beat's named entities WITH their types, minus figures and dates (those are drawn as figures, not as plates): [{ name, type }]. */
@@ -84,6 +96,8 @@ export function displayWords(spoken, from, to, names, max = 3) {
     for (let n = 1; n <= Math.min(max, ws.length - i); n++) {
       const run = ws.slice(i, i + n);
       if (isStop(run[0]) || isStop(run[n - 1])) continue;
+      const weak = (w) => WEAK.has(clean(w.text).toLowerCase()) || /ly$/i.test(clean(w.text));
+      if (weak(run[0]) || weak(run[n - 1])) continue;
       if (run.slice(0, -1).some((w) => /[.!?]$/.test(String(w.text).trim()))) continue;   // do not run across a sentence end
       const content = run.filter((w) => !isStop(w)).length;
       const sc = run.reduce((a, w) => a + scoreWord(w.text, names), 0) + (content - 1) * 1.2 - (n - content) * 1;
@@ -157,7 +171,8 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       const at = (off) => Math.min(f1 - 3, f0 + off);
       el.push({ kind: "ground", at: f0 });
       if (hero) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });
-      const shape = !profile.accent_shapes?.length ? null : treatment === "type" ? "pull" : profile.accent_shapes[shots.length % profile.accent_shapes.length];
+      else el.push({ kind: "card", at: at(ELEMENT_OFFSET.hero) });   // a picture-less shot's visual is the narration itself, set as an excerpt card
+      const shape = !profile.accent_shapes?.length ? null : treatment === "type" ? (profile.accent_shapes.includes("block") ? "block" : profile.accent_shapes[0]) : profile.accent_shapes[shots.length % profile.accent_shapes.length];
       if (shape) el.push({ kind: "shape", at: at(ELEMENT_OFFSET.shape) });
       if (showFig) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 3, Math.max(f0 + ELEMENT_OFFSET.display - 6, disp.at)) });
@@ -165,6 +180,7 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
         display: showFig ? null : disp, figure: showFig ? fig : null,
+        excerpt: !hero ? excerptOf(b, canvas) : null,
         plates: plates.length && roomForPlate ? plates : [], plate: plates.length && roomForPlate ? plates.map((x) => x.name).join(" · ") : null,
         elements: el,
       });
