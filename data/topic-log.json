@@ -1183,9 +1183,14 @@
           "topic": "FTC and USDA Launch Joint Inquiry Into Agricultural Equipment Practices",
           "slug": "ftc-usda-agricultural-equipment-inquiry",
           "reserved_at": "2026-10-10T14:47:15.897Z"
+        },
+        {
+          "topic": "Justice Department Probes Major TV Networks Over Trump Pool Coverage Halt",
+          "slug": "doj-probes-tv-networks-trump-pool-coverage",
+          "reserved_at": "2026-10-15T11:09:10.017Z"
         }
       ],
-      "last_generated": "2026-10-10T14:47:15.897Z"
+      "last_generated": "2026-10-15T11:09:10.017Z"
     },
     "6": {
       "channel_name": "Archive Room",
