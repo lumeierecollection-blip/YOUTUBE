@@ -2467,9 +2467,14 @@
           "topic": "Hex Founder Richard Heart Arrested in Istanbul on Finnish Interpol Red Notice",
           "slug": "hex-founder-richard-heart-arrested-istanbul-2026",
           "reserved_at": "2026-10-15T11:07:17.879Z"
+        },
+        {
+          "topic": "The Brooklyn DA Crackdown on Eastern European Crypto Scam Servers",
+          "slug": "brooklyn-da-crypto-scam-server-bust",
+          "reserved_at": "2026-10-15T13:31:01.857Z"
         }
       ],
-      "last_generated": "2026-10-15T11:07:17.879Z"
+      "last_generated": "2026-10-15T13:31:01.857Z"
     },
     "27": {
       "channel_name": "Trial Files",
