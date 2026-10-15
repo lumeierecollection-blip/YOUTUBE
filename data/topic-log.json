@@ -1285,9 +1285,14 @@
           "topic": "Chicago Police DNA Evidence Links Former Detective to Decades-Old Cold Case",
           "slug": "chicago-police-dna-links-former-detective-cold-case",
           "reserved_at": "2026-10-15T13:33:10.124Z"
+        },
+        {
+          "topic": "Human DNA Discovered at Philadelphia House of Horror Using Luminol Testing",
+          "slug": "philadelphia-olney-house-horrors-luminol-dna",
+          "reserved_at": "2026-10-15T14:47:10.340Z"
         }
       ],
-      "last_generated": "2026-10-15T13:33:10.124Z"
+      "last_generated": "2026-10-15T14:47:10.341Z"
     },
     "7": {
       "channel_name": "Dead Companies",
