@@ -1,0 +1,62 @@
+{
+  "topic_slug": "edgar-morin-intellectual-legacy-complexity-thought",
+  "strongest_angle": "Examine the extraordinary life and philosophical contributions of French philosopher Edgar Morin, who passed away in Paris at the age of 104 as the last survivor of a generation shaped by the Resistance and the architect of complex thought.",
+  "key_facts": [
+    {
+      "fact": "Edgar Morin, the French sociologist, philosopher, and resistance veteran, died in Paris at the age of 104.",
+      "source_url": "https://www.nytimes.com/2026/05/30/world/europe/edgar-morin-dead.html",
+      "source_name": "The New York Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "Edgar Morin authored the monumental series titled La Méthode, which was published over a period of nearly 30 years.",
+      "source_url": "https://news.cnrs.fr/articles/edgar-morin-in-praise-of-complex-thought",
+      "source_name": "CNRS News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "UNESCO honored Edgar Morin, who delivered his centenary lecture at the organization in Paris.",
+      "source_url": "https://www.unesco.org/en/articles/unesco-pays-tribute-legacy-edgar-morin",
+      "source_name": "UNESCO",
+      "confidence": "high"
+    },
+    {
+      "fact": "Edgar Morin passed away in Paris on May 29, 2026, at the age of 104.",
+      "source_url": "https://en.wikipedia.org/wiki/Edgar_Morin",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age at death",
+      "value": 104,
+      "unit": "years",
+      "source_url": "https://www.nytimes.com/2026/05/30/world/europe/edgar-morin-dead.html"
+    },
+    {
+      "label": "Publication duration of La Méthode",
+      "value": 30,
+      "unit": "years",
+      "source_url": "https://news.cnrs.fr/articles/edgar-morin-in-praise-of-complex-thought"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Edgar Morin",
+      "kind": "person"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    },
+    {
+      "name": "UNESCO",
+      "kind": "organization"
+    },
+    {
+      "name": "La Méthode",
+      "kind": "object"
+    }
+  ]
+}

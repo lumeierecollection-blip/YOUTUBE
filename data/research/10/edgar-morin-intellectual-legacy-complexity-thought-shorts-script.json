@@ -1,0 +1,64 @@
+{
+  "channel_id": "10",
+  "topic_slug": "edgar-morin-intellectual-legacy-complexity-thought",
+  "format": "shorts",
+  "hook": "Paris lost a 104-year-old intellectual giant when the resistance veteran passed away.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Paris lost a 104-year-old intellectual giant when the resistance veteran passed away.",
+      "b_roll": [
+        "Archival photo of Edgar Morin in Paris"
+      ],
+      "text_overlay": {
+        "text": "The 104-Year-Old Philosopher"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On May 29, 2026, the French philosopher died in Paris. UNESCO honored his lifelong philosophical contributions at their headquarters in Paris. Where did his monumental series La Méthode change thought?",
+      "b_roll": [
+        "UNESCO headquarters in Paris",
+        "Bookshelf featuring La Méthode volumes"
+      ],
+      "text_overlay": {
+        "text": "May 29, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "That masterpiece took 30 years to publish.",
+      "b_roll": [
+        "Close up of manuscript pages"
+      ],
+      "text_overlay": {
+        "text": "30 Years of Writing"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "He built complex thought across generations. Paris witnessed his historic life as a resistance veteran. At 104 years old, he remained the last survivor of his era.",
+      "b_roll": [
+        "New York Times front page archive",
+        "Statue in Paris streets"
+      ],
+      "text_overlay": {
+        "text": "Age 104"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "UNESCO hosted his centenary lecture in Paris.",
+      "b_roll": [
+        "Portrait of Edgar Morin"
+      ],
+      "text_overlay": {
+        "text": "Edgar Morin"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nytimes.com/2026/05/30/world/europe/edgar-morin-dead.html",
+    "https://news.cnrs.fr/articles/edgar-morin-in-praise-of-complex-thought"
+  ]
+}
