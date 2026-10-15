@@ -100,7 +100,8 @@ export function figuresOf(canvas) {
     if (e.type === "number") add("figure", e.name);
     else if (e.type === "date") add("date", e.name);
   }
-  return out;
+  // "9" from the entities is the start of "9 to 0" from the data: keep the longer, drop the part
+  return out.filter((f) => !out.some((g) => g !== f && g.kind === f.kind && g.name.length > f.name.length && g.name.includes(f.name)));
 }
 
 /** Score a spoken word for display: numbers and named things first, long content words next, function words never. */
@@ -257,7 +258,9 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
         // Number and month words are NEVER display type: the spoken form ("October eight, twenty twenty-six") is not the written one ("October 8, 2026") and the naming
         // check fails it (board 38790006358 ch-44 / ch-49). Dates and figures are drawn on their plates, in the sentence's own written form.
         NUMBER_WORDS.forEach((w) => exclude.add(w)); MONTH_WORDS.forEach((w) => exclude.add(w));
-        disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
+        // A shot whose visual is a SUBJECT PLATE (entity glyphs / figure / date) carries no caption: the plate says it, and the words under it were the "headline" the frame review counted
+        // (TEMPLATE_MONOCULTURE 100%, board 38805009555 ch-2) while mostly repeating the plate. A tick (rule) arrives instead so the shot keeps its three events.
+        disp = subjects.length ? null : displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
       }
       const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
       const labelPlates = plates.filter((x) => !shownNames.has(x.name));

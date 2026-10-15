@@ -325,3 +325,14 @@ test("a beat with a picture and a short run of shots (under three) keeps its pic
   const plan = planClone([beat(0, 0, 2.5, T, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
   for (const sh of plan.shots) for (const p of sh.plates) assert.equal(p.name, "James Wan");
 });
+
+test("a shot whose visual is a subject plate carries no caption: the plate says it (the caption was the 'headline' the frame review counted, 100% on ch-2)", () => {
+  const c = { sentence: SENT, named_entities: [{ type: "place", name: "Newark" }, { type: "date", name: "October 13, 2026" }] };
+  const plan = planClone([beat(0, 0, 7, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  for (const sh of plan.shots) { assert.ok(sh.subjects.length); assert.equal(sh.display, null); assert.ok(sh.elements.some((e) => e.kind === "tick")); assert.ok(!sh.elements.some((e) => e.kind === "display")); }
+});
+
+test("a figure that is only the start of a longer one is dropped ('9' beside '9 to 0')", () => {
+  const f = figuresOf({ sentence: "The council voted 9 to 0", data: { value: "9 to 0", label: "vote" }, named_entities: [{ type: "number", name: "9" }, { type: "number", name: "0" }] });
+  assert.deepEqual(f.map((x) => x.name), ["9 to 0"]);
+});
