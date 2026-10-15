@@ -916,7 +916,12 @@ async function main() {
         const objectLabels = (scene.objects || [])
           .map((o) => o.label).filter((l) => l && String(l).trim());
         const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
-        const mechanism = b.treatment || scene.mechanism || null;
+        // The plan's mechanism says what the planner INTENDED for the beat. local-audit's typography-count ("at most 2 TYPOGRAPHY beats") reads it from this manifest, so for a CLONE
+        // render a beat the planner called TYPOGRAPHY but whose shots draw a picture, an entity glyph or a figure / date plate is recorded as what it drew (EVIDENCE_FIGURE): counting
+        // it as typography is reading the plan, not the frames (board 38805009555 ch-1: rejected typography-count). A beat that is only excerpt cards stays TYPOGRAPHY.
+        const planned = b.treatment || scene.mechanism || null;
+        const cloneBeatShots = cloneShots ? cloneShots.filter((x) => x.beat === i) : null;
+        const mechanism = planned === "TYPOGRAPHY" && cloneBeatShots && cloneBeatShots.some((x) => x.hero || x.subject) ? "EVIDENCE_FIGURE" : planned;
         // `renders_typography` means "this beat routes to TypographyScene and
         // is subject to the full one-line narrative contract". It does NOT
         // mean "this beat is the only kind that draws text".

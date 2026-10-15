@@ -199,9 +199,16 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
     const spoken = (b.spoken || []).map((w) => ({ ...w, abs: s + w.from }));
     const cuts = cutPoints(s, e, len, minLen, spoken);
     const nShots = cuts.length - 1;
+    // A LABEL UNDER A PICTURE NAMES THAT PICTURE'S OWN ENTITY, NEVER ANOTHER. Board 38805009555 ch-49 beat 5: a photo of James Wan carried a plate "Sam Raimi" (another entity
+    // of the same sentence) and the beat check rejected the video: "The photo shows James Wan, but the text label incorrectly identifies him as Sam Raimi". The beat's OTHER
+    // entities are shown where no picture is, on a trailing panel shot (a beat of three or more shots gives its last one to them).
+    const heroNames = new Set(heroes.map((h) => String(h.name || "").toLowerCase()).filter(Boolean));
+    const extra = ents.filter((x) => !heroNames.has(x.name.toLowerCase()));
+    const panelLast = heroes.length > 0 && extra.length > 0 && nShots >= 3;
     for (let k = 0; k < nShots; k++) {
       const f0 = cuts[k], f1 = cuts[k + 1];
-      const hero = heroes.length ? heroes[k % heroes.length] : null;
+      const lastPanel = panelLast && k === nShots - 1;
+      const hero = !lastPanel && heroes.length ? heroes[k % heroes.length] : null;
       const prev = shots[shots.length - 1];
       // A shot with NO picture is a designed type shot (an editorial pull-quote), never a picture treatment with the picture missing: that left a
       // bare accent block standing alone on real beats (board 38752797116 ch-2). The treatment rotation is for pictures only.
@@ -216,16 +223,15 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       let disp = null;
       // EVERY entity the beat names gets a plate in some shot of the beat: entity j goes to shot j mod n. A beat that names more entities than it has
       // shots shows several on one plate. (What the manifest says was drawn is computed from this, so entity coverage judges the pixels' truth.)
-      const eligible = cuts.slice(0, -1).map((c0, i) => i).filter((i) => cuts[i + 1] - cuts[i] >= PLATE_MIN_FRAMES);
-      const slot = eligible.indexOf(k);
-      const plates = slot >= 0 ? ents.filter((_, j) => j % eligible.length === slot) : [];
-      const roomForPlate = slot >= 0;
+      const roomForPlate = f1 - f0 >= PLATE_MIN_FRAMES;
+      const heroEnt = hero && hero.name ? ents.find((x) => x.name.toLowerCase() === String(hero.name).toLowerCase()) || { name: String(hero.name), type: hero.kind === "portrait" ? "person" : "organization" } : null;
+      const plates = hero ? (heroEnt && roomForPlate ? [heroEnt] : []) : [];
       // A picture-less shot shows a SUBJECT of its beat as its visual, cycling through them: an entity as a GLYPH plate (a person's silhouette, an
       // organisation's building, a place's pin: the canvas engine's own fallback when no picture exists), a stated figure as a big number, a stated date as a
       // calendar page. EVERY shot does, not just one: the entity check (Gemini, on the frames) samples ONE frame per beat and fails "a beat names an entity /
       // a figure / a date its frame does not show" when the sampled frame is another shot (board 38772064251 ch-1: missing "35%", "October 2026", "44%").
       // The excerpt card is only for a beat that names nothing to show.
-      const subjectsAll = [...ents.map((x) => ({ kind: "glyph", ...x })), ...figs.map((f) => ({ ...f }))];
+      const subjectsAll = [...(heroes.length ? extra : ents).map((x) => ({ kind: "glyph", ...x })), ...figs.map((f) => ({ ...f }))];
       // ALL of them in ONE frame (up to four, as cells of a panel; more than four rotate), so the single frame the entity check samples shows every subject
       // (board 38781391920 ch-9: a beat naming the UN and Ethiopia showed only the UN in the sampled frame; the date was missing in another).
       const MAXCELLS = 4;

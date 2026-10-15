@@ -296,3 +296,32 @@ test("number and month words are NEVER display type: the spoken form is not the 
   const banned = new Set(["october", "eight", "twenty", "twenty-six", "nine", "nine"]);
   for (const sh of plan.shots) if (sh.display) for (const w of sh.display.text.toLowerCase().split(/\s+/)) assert.ok(!banned.has(w), `"${sh.display.text}" is a spoken-form number`);
 });
+
+test("A LABEL UNDER A PICTURE NAMES THAT PICTURE'S OWN ENTITY: a photo of James Wan never carries 'Sam Raimi' (beat check: wrong-person, board 38805009555 ch-49 beat 5)", () => {
+  const T = "James Wan, Sam Raimi, and Na Hong-jin now lead this ranking";
+  const c = { sentence: T, photo: photo("b-roll/x/wan.jpg", "James Wan", "person"), named_entities: [{ type: "person", name: "James Wan" }, { type: "person", name: "Sam Raimi" }, { type: "person", name: "Na Hong-jin" }] };
+  for (const name of Object.keys(G.profiles)) {
+    const plan = planClone([beat(0, 0, 7, T, c)], { laws: G.laws, profile: G.profiles[name] });
+    assert.ok(plan.shots.length >= 3, name);
+    for (const sh of plan.shots) {
+      if (sh.hero) {
+        for (const p of sh.plates) assert.equal(p.name, "James Wan", `${name}: a shot showing James Wan's photo is labelled "${p.name}"`);
+        if (sh.plate) assert.equal(sh.plate, "James Wan");
+        assert.ok(!sh.subjects.length, "a picture shot also carries entity cells");
+      }
+    }
+    // the other two are shown where no picture is, on the trailing panel shot
+    const last = plan.shots.at(-1);
+    assert.equal(last.hero, null);
+    assert.deepEqual(last.subjects.map((x) => x.name).sort(), ["Na Hong-jin", "Sam Raimi"], name);
+    const rec = cloneCanvasFor(c, plan.shots);
+    for (const n of ["James Wan", "Sam Raimi", "Na Hong-jin"]) assert.ok(rec.art.names.includes(n), `${n} missing from the record`);
+  }
+});
+
+test("a beat with a picture and a short run of shots (under three) keeps its picture on every shot and never mislabels it", () => {
+  const T = "James Wan and Sam Raimi lead";
+  const c = { sentence: T, photo: photo("b-roll/x/wan.jpg", "James Wan", "person"), named_entities: [{ type: "person", name: "James Wan" }, { type: "person", name: "Sam Raimi" }] };
+  const plan = planClone([beat(0, 0, 2.5, T, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  for (const sh of plan.shots) for (const p of sh.plates) assert.equal(p.name, "James Wan");
+});
