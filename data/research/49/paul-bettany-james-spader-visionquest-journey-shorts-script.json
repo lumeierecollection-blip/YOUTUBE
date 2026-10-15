@@ -1,0 +1,66 @@
+{
+  "channel_id": "49",
+  "topic_slug": "paul-bettany-james-spader-visionquest-journey",
+  "format": "shorts",
+  "hook": "Marvel Television launched VisionQuest on Disney+ with 2 episodes.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Marvel Television launched VisionQuest on Disney+ with 2 episodes.",
+      "b_roll": [
+        "Marvel Television logo on screen",
+        "Disney+ streaming interface"
+      ],
+      "text_overlay": {
+        "text": "VisionQuest premiere"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Tuesday, October 13, Marvel Television premiered VisionQuest on Disney+. WandaVision began this trilogy in 2021 before Agatha All Along continued it in 2024. Where does VisionQuest take Paul Bettany next?",
+      "b_roll": [
+        "Calendar graphic showing October 13",
+        "WandaVision title card from 2021",
+        "Agatha All Along title card from 2024"
+      ],
+      "text_overlay": {
+        "text": "The trilogy concludes"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Paul Bettany reprises his role, but James Spader joins the trilogy's end.",
+      "b_roll": [
+        "Close up of Paul Bettany as Vision"
+      ],
+      "text_overlay": {
+        "text": "The return"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "VisionQuest concludes the epic trilogy for Marvel Television. Disney+ streams the series starting with 2 episodes on October 13. Paul Bettany returns alongside James Spader.",
+      "b_roll": [
+        "Disney+ app displaying VisionQuest",
+        "Cast photos of Paul Bettany and James Spader"
+      ],
+      "text_overlay": {
+        "text": "Spader and Bettany return"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Stream VisionQuest on Disney+ to finish the trilogy.",
+      "b_roll": [
+        "VisionQuest official artwork"
+      ],
+      "text_overlay": {
+        "text": "VisionQuest"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thewaltdisneycompany.com/news/marvel-television-visionquest-disney-plus",
+    "https://www.tvguide.com/news/visionquest-marvel-paul-bettany-and-james-spader-vision-and-ultron"
+  ]
+}
