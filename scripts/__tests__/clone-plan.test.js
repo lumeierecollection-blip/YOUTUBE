@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf } from "../../src/skills/remotion-render/clone/clone-plan.js";
+import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor } from "../../src/skills/remotion-render/clone/clone-plan.js";
 
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 const FPS = 30;
@@ -86,4 +86,47 @@ test("heroesOf / namesOf read what the resolved canvas carries", () => {
   const c = { photo: photo("a.jpg", "Minnesota"), concept_visuals: [{ name: "ICE", asset: "logos/ice.png", logo: true }], named_entities: [{ type: "organization", name: "ICE" }, { type: "number", name: "62" }] };
   assert.deepEqual(heroesOf(c).map((h) => h.kind), ["photo", "logo"]);
   assert.deepEqual(namesOf(c), ["ICE", "Minnesota"]);
+});
+
+test("a shot with NO picture is a designed type shot with a pull bar, never a picture treatment with the picture missing (a lone accent block)", () => {
+  const plan = planClone(video(2, 6, 2), { laws: G.laws, profile: G.profiles["dossier-mono"] });   // beat 1 carries no asset
+  const noPic = plan.shots.filter((x) => !x.hero);
+  assert.ok(noPic.length >= 2);
+  for (const sh of noPic) { assert.equal(sh.treatment, "type"); assert.notEqual(sh.shape, "block"); assert.equal(sh.shape, "pull"); }
+  for (const sh of plan.shots.filter((x) => x.hero)) assert.notEqual(sh.treatment, "type");
+});
+
+test("every entity a beat names gets a plate in some shot of that beat, typed by what it is", () => {
+  const c = { photo: photo("b-roll/x/a.jpg", "Hennepin County"), named_entities: [{ type: "place", name: "Hennepin County" }, { type: "person", name: "Mary Moriarty" }, { type: "organization", name: "ICE" }, { type: "number", name: "62" }] };
+  const plan = planClone([beat(0, 0, 7, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const names = plan.shots.flatMap((x) => x.plates.map((p) => p.name));
+  for (const n of ["Hennepin County", "Mary Moriarty", "ICE"]) assert.ok(names.includes(n), `${n} never gets a plate`);
+  assert.ok(!names.includes("62"), "a figure is not a plate");
+  assert.deepEqual(typedEntitiesOf(c).map((e) => e.type), ["place", "person", "organization"]);
+});
+
+test("the manifest records what the clone DREW: a map the canvas engine would have drawn, but the clone frame does not, is not claimed", () => {
+  const c = { composition: "MAP-CENTERED", data: { place: "Colorado" }, named_entities: [{ type: "place", name: "Colorado" }], sentence: SENT };
+  const plan = planClone([beat(0, 0, 6, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const rec = cloneCanvasFor(c, plan.shots);
+  assert.equal(rec.composition, "CLONE");
+  assert.equal(rec.data, null, "no map or figure is claimed");
+  assert.equal(rec.photo, null);
+  assert.deepEqual(rec.art.names, ["Colorado"]);
+  assert.deepEqual(rec.art.kinds, ["plate-place"]);
+});
+
+test("the manifest keeps the beat's photo (with its verification fields) only when some shot shows it", () => {
+  const ph = { ...photo("b-roll/x/p.jpg", "Phil Weiser", "person"), verified_as: "Phil Weiser" };
+  const plan = planClone([beat(0, 0, 6, SENT, { photo: ph, named_entities: [] })], { laws: G.laws, profile: G.profiles["cutout-collage"] });
+  assert.equal(cloneCanvasFor({ photo: ph }, plan.shots).photo, ph);
+  assert.equal(cloneCanvasFor({ photo: ph }, []).photo, null);
+});
+
+test("a stated figure is shown as a figure and recorded as one", () => {
+  const c = { data: { value: "$14,000", label: "maximum fine" }, named_entities: [], sentence: SENT };
+  const plan = planClone([beat(0, 0, 6, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const rec = cloneCanvasFor(c, plan.shots);
+  assert.equal(rec.composition, "NUMBER-STAT");
+  assert.equal(rec.data.value, "$14,000");
 });

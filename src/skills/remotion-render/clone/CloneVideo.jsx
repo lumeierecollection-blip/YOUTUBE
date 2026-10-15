@@ -53,7 +53,7 @@ function Display({ shot, B, st, P, profile }) {
   const emph = shot.display.emphasis ? (caps ? shot.display.emphasis.toUpperCase() : shot.display.emphasis) : null;
   const plated = !!B.text.plated;
   const innerW = B.text.w - (plated ? 72 : 0);
-  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: B.text.align === "center" ? 190 : 170, min: 64, maxLines: B.text.h > 450 ? 4 : 3 });
+  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : B.text.align === "center" ? 190 : 170, min: 64, maxLines: B.text.h > 450 ? 4 : 3 });
   const inkOn = plated ? P.paper : P.ink;
   const accent = readableAccent(P.accent, plated ? P.ink : P.ground);
   const word = (w, key) => {
@@ -95,6 +95,7 @@ function Shape({ shot, B, st, P }) {
   const style = { position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, opacity: st.o, transform: `scale(${st.s})`, transformOrigin: "0% 50%", zIndex: kind === "block" ? 0 : 3 };
   if (kind === "block") return <div style={{ ...style, backgroundColor: P.accent, opacity: st.o * 0.92 }} />;
   if (kind === "stripe") return <div style={{ ...style, backgroundColor: P.accent, transform: `rotate(-6deg) scale(${st.s})` }} />;
+  if (kind === "pull") return <div style={{ ...style, transformOrigin: "50% 0%", backgroundColor: P.accent }} />;
   if (kind === "rule") return <div style={{ ...style, height: 0, borderTop: `3px solid ${P.ink}`, borderBottom: `3px solid ${P.ink}`, boxSizing: "content-box", paddingTop: 4 }} />;
   return <div style={{ ...style, backgroundColor: P.accent }} />;
 }

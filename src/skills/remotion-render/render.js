@@ -51,6 +51,7 @@ import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasSfxEvents } from "./visual/canvas-sfx.js";
 import { toneOf } from "../../utils/video-tone.js";
 import { paletteFor } from "./clone/clone-palette.js";
+import { planClone, cloneCanvasFor } from "./clone/clone-plan.js";
 import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
@@ -890,6 +891,8 @@ async function main() {
       "STRUCTURAL_BREAKDOWN", "EVIDENCE_FIGURE", "ACTION_CONSEQUENCE",
       "VISIBLE_CONSUMPTION", "STATE_CHANGE",
     ]);
+    const cloneShots = sentencePlan.clone ? planClone(sentencePlan.beats, { laws: sentencePlan.clone.laws, profile: sentencePlan.clone.profile, fps }).shots : null;
+    if (cloneShots) console.log(`[clone] ${cloneShots.length} shots, ${cloneShots.filter((x) => x.hero).length} with a picture, ${cloneShots.filter((x) => !x.hero).length} type-led`);
     const manifest = {
       video: basename(outputPath),
       format,
@@ -902,7 +905,7 @@ async function main() {
       ground: sentencePlan.ground || null,
       // Which engine drew the frames: render-and-qa.js judges a clone render by the clone family's own checks (cadence, legality), not the canvas layout's.
       engine: sentencePlan.clone ? "clone" : "canvas",
-      ...(sentencePlan.clone ? { clone: { profile: sentencePlan.clone.id } } : {}),
+      ...(sentencePlan.clone ? { clone: { profile: sentencePlan.clone.id, ground: sentencePlan.clone.palette.ground } } : {}),
       // Part D: every SFX that plays — role, file, level, frame, beat, why.
       sfx: (sentencePlan.sfx || []).map((e) => ({ role: e.trigger || e.role, file: e.file, db: e.db, at_frame: e.atFrame, event_frame: e.eventFrame, peak_frames: e.peakFrames, beat: e.beat, reason: e.reason, credit: creditFor(e.file) })),
       totalFrames: frames,
@@ -939,7 +942,9 @@ async function main() {
         // of it, so a beat that paints a headline is reported as drawing one
         // whatever its mechanism is called — see scene-text.js for the run
         // that proved the mechanism table was the wrong instrument.
-        const canvasRec = b.scene?.canvas ? canvasManifest(b.scene.canvas, i) : null;
+        // A clone render records what its SHOTS drew (clone/clone-plan.js cloneCanvasFor), not the canvas engine's layout of the same beat: the entity gates read
+        // this record, and a record of a map or a photo the clone frame does not show would let them pass what the pixels fail.
+        const canvasRec = b.scene?.canvas ? (cloneShots ? cloneCanvasFor(b.scene.canvas, cloneShots.filter((x) => x.beat === i)) : canvasManifest(b.scene.canvas, i)) : null;
         const onScreenText = sceneTextInventory(mechanism, scene, b.text, canvasRec);
         return {
           index: i,

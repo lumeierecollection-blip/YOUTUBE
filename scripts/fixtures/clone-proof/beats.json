@@ -135,5 +135,34 @@
       "named_entities": [],
       "motion_tier": "medium"
     }
+  },
+  {
+    "text": "The cave sits near the Black Sea, in southeastern Romania, far from any town.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "TYPE",
+      "headline": "Near the Black Sea",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Romania"
+        },
+        {
+          "type": "place",
+          "name": "Black Sea"
+        }
+      ],
+      "motion_tier": "medium"
+    }
+  },
+  {
+    "text": "Its air held almost no oxygen and a great deal of sulfur, which would kill most animals.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "TYPE",
+      "headline": "Almost no oxygen",
+      "named_entities": [],
+      "motion_tier": "medium"
+    }
   }
 ]

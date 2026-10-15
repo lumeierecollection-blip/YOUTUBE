@@ -29,6 +29,11 @@ export function treatmentBoxes(treatment, idx = 0) {
       return { hero: rect(0, 260, 540, 1000), label: rect(580, 470, 440, 48), text: rect(580, 520, 440, 600, { align: "left" }), shape: { block: rect(40, 300, 500, 1000), bar: rect(580, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(580, 450, 440, 6) } };
     case "inset-right":
       return { hero: rect(540, 260, 540, 1000), label: rect(60, 470, 440, 48), text: rect(60, 520, 440, 600, { align: "right" }), shape: { block: rect(540, 300, 500, 1000), bar: rect(200, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 440, 6) } };
+    case "type": {
+      // NO PICTURE: a designed type shot, not an empty frame. A heavy accent bar stands beside the words like a pull-quote; the side alternates by shot.
+      const left = idx % 2 === 0;
+      return { hero: rect(0, 0, 0, 0, { none: true }), label: rect(left ? 150 : 90, 690, 840, 48), text: rect(left ? 150 : 90, 760, 840, 560, { align: left ? "left" : "right" }), shape: { pull: rect(left ? 90 : 976, 760, 14, 560), bar: rect(left ? 150 : 590, 1370, 340, 22), stripe: rect(640, 0, 440, 96), rule: rect(90, 660, 900, 6), block: rect(left ? 90 : 976, 760, 14, 560) } };
+    }
     case "plate":
     default:
       return { hero: rect(180, 380, 720, 720, { plate: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1240, 900, 380, { align: "center" }), shape: { block: rect(140, 420, 720, 720), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1142, 900, 6) } };
@@ -42,6 +47,7 @@ const overlap = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h 
 export function layoutProblems(treatment, idx = 0) {
   const B = treatmentBoxes(treatment, idx), out = [];
   for (const k of ["label", "text"]) if (!inside(B[k])) out.push(`${treatment}: ${k} box leaves the frame margin`);
+  if (B.hero.none) { if (B.text.h < 150) out.push(`${treatment}: display region ${B.text.h}px is too short for its type`); return out; }
   if (!B.hero.bleed && !inside({ ...B.hero, x: B.hero.x < MARGIN ? MARGIN : B.hero.x, w: Math.min(B.hero.w, FRAME.w - MARGIN - Math.max(B.hero.x, MARGIN)) }) && !(B.hero.x === 0 || B.hero.x + B.hero.w === FRAME.w)) out.push(`${treatment}: picture leaves the frame margin without running to an edge`);
   if (!B.hero.bleed && overlap(B.hero, B.text)) out.push(`${treatment}: display text overlaps the picture (only a plated bleed may)`);
   if (B.hero.bleed && !B.text.plated) out.push(`${treatment}: type over a full-bleed picture must sit on a solid plate`);
@@ -49,4 +55,6 @@ export function layoutProblems(treatment, idx = 0) {
   return out;
 }
 
-export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate"];
+export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "type"];
+/** Treatments a profile may rotate through: `type` is the planner's own choice for a shot with no picture, never a rotation entry. */
+export const PICTURE_TREATMENTS = TREATMENTS.filter((t) => t !== "type");

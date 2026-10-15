@@ -41,6 +41,18 @@ export function namesOf(canvas) {
   return [...new Set(names)];
 }
 
+/** The beat's named entities WITH their types, minus figures and dates (those are drawn as figures, not as plates): [{ name, type }]. */
+export function typedEntitiesOf(canvas) {
+  const c = canvas || {};
+  const out = [];
+  const kind = (t) => (t === "person" ? "person" : /^(place|location|country|city|region|state|county)$/.test(String(t)) ? "place" : "organization");
+  for (const e of c.named_entities || c.entities || []) {
+    if (!e || !e.name || e.type === "number" || e.type === "date" || e.type === "span") continue;
+    if (!out.some((x) => x.name.toLowerCase() === String(e.name).toLowerCase())) out.push({ name: String(e.name), type: kind(e.type) });
+  }
+  return out;
+}
+
 /** Score a spoken word for display: numbers and named things first, long content words next, function words never. */
 function scoreWord(text, names) {
   const w = clean(text), lw = w.toLowerCase();
@@ -98,7 +110,8 @@ export function cutPoints(s, e, len, min, spoken) {
   return cuts;
 }
 
-const ELEMENT_OFFSET = { ground: 0, hero: 1, shape: 11, display: 22, plate: 34 };   // frames after the cut: one new thing about every 0.35 s
+const ELEMENT_OFFSET = { ground: 0, hero: 1, shape: 11, display: 22, plate: 34 };
+const PLATE_MIN_FRAMES = 24;   // a shot shorter than 0.8 s cannot hold a plate; its entities go to the shots that can   // frames after the cut: one new thing about every 0.35 s
 
 /**
  * @param beats   [{ index, start_frame, duration_frames, spoken: [{text, from, to}] (beat-relative frames), scene: { canvas } }]
@@ -114,32 +127,45 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
   beats.forEach((b, bi) => {
     const s = b.start_frame, e = b.start_frame + b.duration_frames;
     const canvas = b.scene?.canvas || {};
-    const heroes = heroesOf(canvas), names = namesOf(canvas);
+    const heroes = heroesOf(canvas), names = namesOf(canvas), ents = typedEntitiesOf(canvas);
     const spoken = (b.spoken || []).map((w) => ({ ...w, abs: s + w.from }));
     const cuts = cutPoints(s, e, len, minLen, spoken);
+    const nShots = cuts.length - 1;
     const fig = canvas.data && canvas.data.value ? { value: String(canvas.data.value), label: canvas.data.label ? String(canvas.data.label) : null } : null;
-    for (let k = 0; k < cuts.length - 1; k++) {
+    for (let k = 0; k < nShots; k++) {
       const f0 = cuts[k], f1 = cuts[k + 1];
       const hero = heroes.length ? heroes[k % heroes.length] : null;
       const prev = shots[shots.length - 1];
-      let ti = (shots.length) % treatments.length;
-      // never the same treatment twice in a row on the same hero: that is the same frame twice
-      if (prev && prev.hero && hero && prev.hero.asset === hero.asset && treatments[ti] === prev.treatment) ti = (ti + 1) % treatments.length;
+      // A shot with NO picture is a designed type shot (an editorial pull-quote), never a picture treatment with the picture missing: that left a
+      // bare accent block standing alone on real beats (board 38752797116 ch-2). The treatment rotation is for pictures only.
+      let treatment = "type";
+      if (hero) {
+        let ti = shots.filter((x) => x.hero).length % treatments.length;
+        // never the same treatment twice in a row on the same hero: that is the same frame twice
+        if (prev && prev.hero && prev.hero.asset === hero.asset && treatments[ti] === prev.treatment) ti = (ti + 1) % treatments.length;
+        treatment = treatments[ti];
+      }
       const disp = displayWords(spoken, f0, f1, names, profile.display_words || 3);
-      const plateName = hero && hero.name && hero.kind !== "photo" ? hero.name : names[k % Math.max(1, names.length)] || null;
+      // EVERY entity the beat names gets a plate in some shot of the beat: entity j goes to shot j mod n. A beat that names more entities than it has
+      // shots shows several on one plate. (What the manifest says was drawn is computed from this, so entity coverage judges the pixels' truth.)
+      const eligible = cuts.slice(0, -1).map((c0, i) => i).filter((i) => cuts[i + 1] - cuts[i] >= PLATE_MIN_FRAMES);
+      const slot = eligible.indexOf(k);
+      const plates = slot >= 0 ? ents.filter((_, j) => j % eligible.length === slot) : [];
+      const roomForPlate = slot >= 0;
       const showFig = fig && k === 0;
       const el = [];
-      const at = (kind, off) => Math.min(f1 - 3, f0 + off);
+      const at = (off) => Math.min(f1 - 3, f0 + off);
       el.push({ kind: "ground", at: f0 });
-      if (hero) el.push({ kind: "hero", at: at("hero", ELEMENT_OFFSET.hero) });
-      if (profile.accent_shapes?.length) el.push({ kind: "shape", at: at("shape", ELEMENT_OFFSET.shape) });
-      if (showFig) el.push({ kind: "figure", at: at("figure", ELEMENT_OFFSET.display) });
+      if (hero) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });
+      const shape = !profile.accent_shapes?.length ? null : treatment === "type" ? "pull" : profile.accent_shapes[shots.length % profile.accent_shapes.length];
+      if (shape) el.push({ kind: "shape", at: at(ELEMENT_OFFSET.shape) });
+      if (showFig) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 3, Math.max(f0 + ELEMENT_OFFSET.display - 6, disp.at)) });
-      if (plateName && f1 - f0 >= ELEMENT_OFFSET.plate + 8) el.push({ kind: "plate", at: at("plate", ELEMENT_OFFSET.plate) });
+      if (plates.length && roomForPlate) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
-        beat: bi, k, f0, f1, hero, treatment: treatments[ti], crop: crops[(shots.length) % crops.length],
-        shape: profile.accent_shapes?.length ? profile.accent_shapes[shots.length % profile.accent_shapes.length] : null,
-        display: showFig ? null : disp, figure: showFig ? fig : null, plate: plateName && f1 - f0 >= ELEMENT_OFFSET.plate + 8 ? plateName : null,
+        beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
+        display: showFig ? null : disp, figure: showFig ? fig : null,
+        plates: plates.length && roomForPlate ? plates : [], plate: plates.length && roomForPlate ? plates.map((x) => x.name).join(" · ") : null,
         elements: el,
       });
     }
@@ -184,3 +210,29 @@ export function lawProblems(plan, laws, { minHeroShare = 0.65 } = {}) {
   }
   return out;
 }
+
+/**
+ * What a beat's shots actually DRAW, in the fields the entity gates read (scripts/entity-coverage.js drawnOf): the beat's photo if some shot shows it, the
+ * logos / cut-outs some shot shows, the entity names some shot puts on a plate (a plate of a PERSON, PLACE or ORGANISATION, by the entity's type), and the
+ * figure some shot shows. The manifest of a clone render records THIS, not the canvas engine's layout of the same beat: a gate that read the canvas layout
+ * would say "a map is drawn" or "the photo is shown" of a clone frame that shows neither (the manifest is a proxy; the pixels are the artifact).
+ */
+export function cloneCanvasFor(canvas, shots) {
+  const c = canvas || {};
+  const drawn = new Set((shots || []).filter((x) => x.hero).map((x) => x.hero.asset));
+  const plates = [];
+  for (const sh of shots || []) for (const p of sh.plates || []) if (!plates.some((q) => q.name.toLowerCase() === p.name.toLowerCase())) plates.push(p);
+  const fig = (shots || []).find((x) => x.figure)?.figure || null;
+  const kindOf = (t) => (t === "person" ? "plate-person" : t === "place" ? "plate-place" : "plate-organization");
+  const out = {};
+  for (const k of ["sentence", "named_entities", "entities", "headline", "lead_in", "visual_type", "source_credit", "beat_index", "beat_total"]) if (c[k] !== undefined) out[k] = c[k];
+  out.composition = fig ? "NUMBER-STAT" : "CLONE";
+  out.photo = c.photo && c.photo.asset && drawn.has(c.photo.asset) ? c.photo : null;
+  out.concept_visuals = (c.concept_visuals || []).filter((v) => v && v.asset && drawn.has(v.asset));
+  out.art = c.art && c.art.asset && drawn.has(c.art.asset) ? c.art : plates.length ? { kind: "plates", name: plates.map((p) => p.name).join(", "), names: plates.map((p) => p.name), kinds: plates.map((p) => kindOf(p.type)) } : null;
+  out.data = fig ? { value: fig.value, label: fig.label } : null;
+  out.boxes = {};
+  out.clone = true;
+  return out;
+}
+

@@ -19,6 +19,7 @@ import "dotenv/config";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, appendFileSync, statSync } from "node:fs";
+import { cloneGroundVerdict, rgbOf } from "./lib/clone-ground.mjs";
 import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
@@ -481,11 +482,43 @@ async function verifyRender(videoPath, audioPath, channelId) {
 // (visual/backgrounds.js GROUND) within 4 per RGB channel (h264 rounding),
 // and must match each other within 2 — any tint, gradient, vignette or
 // shadow fails. Where this stops: one frame, three corners.
+function measureCloneGround(videoPath, man) {
+  const ground = man.clone?.ground;
+  if (typeof ground !== "string") return ["a clone render's manifest names no ground to measure"];
+  const N = 10, dur = Number(man.durationSec) || 0;
+  if (!(dur > 0)) return ["a clone render's manifest has no duration to sample"];
+  const frames = [];
+  try {
+    for (let k = 0; k < N; k++) {
+      const at = dur * (0.03 + (0.94 * k) / (N - 1));
+      const framePath = videoPath.replace(/\.mp4$/, `-ground-${k}.png`);
+      execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", at.toFixed(3), "-i", videoPath, "-frames:v", "1", framePath]);
+      const patch = (x, y) => {
+        const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", `crop=iw*80/1080:ih*80/1920:${x}:${y}`, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]);
+        const s = [0, 0, 0];
+        for (let i = 0; i < raw.length; i += 3) { s[0] += raw[i]; s[1] += raw[i + 1]; s[2] += raw[i + 2]; }
+        return s.map((v) => v / (raw.length / 3));
+      };
+      frames.push([patch("0", "0"), patch("iw-iw*80/1080", "0"), patch("iw-iw*80/1080", "ih-ih*80/1920")]);
+      try { rmSync(framePath, { force: true }); } catch { /* a scratch frame */ }
+    }
+  } catch (e) {
+    return [`could not measure the clone ground: ${e.message}`];
+  }
+  const v = cloneGroundVerdict(frames, rgbOf(ground));
+  console.log(`[verify] clone ground (${man.clone?.profile || "?"}): ${v.detail}`);
+  return v.ok ? [] : [`clone ground: ${v.detail}`];
+}
+
 function measureGround(videoPath) {
   const manifestPath = videoPath.replace(/\.mp4$/, "-manifest.json");
   let man = null;
   try { man = JSON.parse(readFileSync(manifestPath, "utf-8")); } catch { return []; }
   if (typeof man?.ground !== "string") return [];                // not a canvas render
+  // THE CLONE FAMILY has its own ground (its profile's paper / mist, channels.json clone.ground), and a shot often puts a picture or a stripe in a corner,
+  // so one frame's three corners are the wrong probe (board 38752797116 rejected every clone render on exactly that). It is asked of the whole video
+  // (scripts/lib/clone-ground.mjs). The canvas engine's single-frame uniform-white check below is unchanged.
+  if (man.engine === "clone") return measureCloneGround(videoPath, man);
   // Not a beat whose layout draws a full-frame shape: COMPARISON-SPLIT's diagonal
   // covers the top-right corner by design (CI run 37067332714 ch-2: beat 0 was one,
   // and its corner read #0E0E0E as "the ground").
