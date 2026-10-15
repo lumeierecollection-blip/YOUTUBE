@@ -1,0 +1,66 @@
+{
+  "channel_id": "6",
+  "topic_slug": "philadelphia-luminol-excavators-olney-missing-persons",
+  "format": "shorts",
+  "hook": "Luminol revealed human DNA inside 417 W. Chew Ave. where 7 women vanished.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Luminol revealed human DNA inside 417 W. Chew Ave. where 7 women vanished.",
+      "b_roll": [
+        "Exterior shot of the property on Chew Avenue in Olney",
+        "Investigators spraying luminol inside the dark home"
+      ],
+      "text_overlay": {
+        "text": "7 Women Missing"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Heavy excavation equipment tore up the property as federal agents searched deep into the evening. What did crews uncover beneath the floorboards?",
+      "b_roll": [
+        "Heavy machinery operating at the property",
+        "Police tape and investigators on scene"
+      ],
+      "text_overlay": {
+        "text": "FBI Excavation"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except federal agents and Philadelphia police kept using heavy equipment across the Olney property.",
+      "b_roll": [
+        "Close up of investigators examining evidence",
+        "Night view of the search area"
+      ],
+      "text_overlay": {
+        "text": "Forensic Search"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The FBI confirmed human DNA was discovered across the Chew Avenue home. Philadelphia police linked the site to 7 missing women. Heavy excavation continued at 417 W. Chew Ave.",
+      "b_roll": [
+        "Crews operating excavation equipment at the site",
+        "Forensic investigators working inside the home"
+      ],
+      "text_overlay": {
+        "text": "Human DNA Found"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Philadelphia police and the FBI excavated 417 W. Chew Ave. to find answers for 7 missing women.",
+      "b_roll": [
+        "Wide shot of the residential street in Olney"
+      ],
+      "text_overlay": {
+        "text": "417 W. Chew Ave."
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367",
+    "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol"
+  ]
+}
