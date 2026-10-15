@@ -1,0 +1,50 @@
+{
+  "topic_slug": "forbes-advisor-best-budgeting-apps-october-2026",
+  "strongest_angle": "Forbes Advisor tested 14 budgeting apps for a full month to rank the best digital tools based on fees, product testing, and budgeting features.",
+  "key_facts": [
+    {
+      "fact": "Forbes Advisor tested 14 budgeting apps for a full month in their October 2026 audit, scoring them on fees, features, and usability.",
+      "source_url": "https://www.forbes.com/advisor/banking/best-budgeting-apps",
+      "source_name": "Forbes Advisor",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC Select reviewed more than two dozen budgeting apps to identify top financial management tools for consumers.",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps",
+      "source_name": "CNBC Select",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Forbes Advisor Canada audited and verified its regional budgeting app rankings on October 13, 2026, focusing on household debt management.",
+      "source_url": "https://www.forbes.com/advisor/ca/banking/best-budgeting-apps",
+      "source_name": "Forbes Advisor Canada",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Apps tested by Forbes Advisor",
+      "value": 14,
+      "unit": "apps",
+      "source_url": "https://www.forbes.com/advisor/banking/best-budgeting-apps"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Forbes Advisor",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC Select",
+      "kind": "organization"
+    },
+    {
+      "name": "Erin Bendig",
+      "kind": "person"
+    },
+    {
+      "name": "Aaron Broverman",
+      "kind": "person"
+    }
+  ]
+}
