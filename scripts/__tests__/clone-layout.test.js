@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { treatmentBoxes, layoutProblems, TREATMENTS, FRAME } from "../../src/skills/remotion-render/clone/clone-layout.js";
+import { treatmentBoxes, layoutProblems, TREATMENTS, FRAME, parseDate } from "../../src/skills/remotion-render/clone/clone-layout.js";
 import { paletteFor } from "../../src/skills/remotion-render/clone/clone-palette.js";
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 
@@ -48,4 +48,13 @@ test("the laws are the ones the references measured, and the grammar names its s
   assert.ok(G.laws.from.length >= 5);
   for (const f of G.laws.from) assert.ok(G.measured[f], f);
   assert.ok(G.grammar.rules.length >= 6);
+});
+
+test("the calendar plate reads exactly the date the sentence states", () => {
+  assert.deepEqual(parseDate("October 1, 2026"), { month: "OCTOBER", day: "1", year: "2026" });
+  assert.deepEqual(parseDate("October 2026"), { month: "OCTOBER", day: null, year: "2026" });
+  assert.deepEqual(parseDate("2026"), { month: null, day: null, year: "2026" });
+  assert.deepEqual(parseDate("Sep 24"), { month: "SEPTEMBER", day: "24", year: null });
+  assert.deepEqual(parseDate("April 16, 2026"), { month: "APRIL", day: "16", year: "2026" });
+  assert.equal(parseDate("the marketplace").month, null, "'mar' inside a word is not March");
 });

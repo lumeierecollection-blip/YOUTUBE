@@ -57,3 +57,13 @@ export function layoutProblems(treatment, idx = 0) {
 export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "type"];
 /** Treatments a profile may rotate through: `type` is the planner's own choice for a shot with no picture, never a rotation entry. */
 export const PICTURE_TREATMENTS = TREATMENTS.filter((t) => t !== "type");
+
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+/** "October 1, 2026" / "October 2026" / "2026" -> { month, day, year }: whatever the text states, nothing it does not. Pure, so the calendar plate is testable. */
+export function parseDate(text) {
+  const t = String(text || "");
+  const m = MONTHS.find((x) => new RegExp("(^|[^a-z])(" + x + "|" + x.slice(0, 3) + ")([^a-z]|$)", "i").test(t));   // a boundary without a backslash: "mar" in "marketplace" is not March
+  const year = (t.match(/\b(?:1[89]|20)\d{2}\b/) || [])[0] || null;
+  const day = (t.replace(year || "", "").match(/\b(\d{1,2})\b/) || [])[1] || null;
+  return { month: m ? m.toUpperCase() : null, day, year };
+}

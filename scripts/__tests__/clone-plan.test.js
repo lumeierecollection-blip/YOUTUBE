@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf } from "../../src/skills/remotion-render/clone/clone-plan.js";
+import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf } from "../../src/skills/remotion-render/clone/clone-plan.js";
 
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 const FPS = 30;
@@ -182,4 +182,32 @@ test("the manifest declares the beat's ground and calls a beat what it draws (th
   assert.equal(cloneCanvasFor({}, none.shots, pal).visual_type, "TYPE");
   const fig = planClone([beat(0, 0, 6, SENT, { data: { value: "30+", label: "species" }, sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
   assert.equal(cloneCanvasFor({ data: { value: "30+", label: "species" } }, fig.shots, pal).visual_type, "COUNTER");
+});
+
+test("a picture-less beat that states a figure and a date shows them as its subjects in EVERY shot (the entity check samples one frame per beat)", () => {
+  const SENT2 = "The Penny Hoarder published the October 2026 survey and only 35 percent of workers kept that money in reserve";
+  const c = { sentence: SENT2, data: { value: "35%", label: "of workers" }, named_entities: [{ type: "date", name: "October 2026" }, { type: "company", name: "The Penny Hoarder" }] };
+  const plan = planClone([beat(0, 0, 7, SENT2, c)], { laws: G.laws, profile: G.profiles["cutout-collage"] });
+  assert.ok(plan.shots.length >= 3 && plan.shots.every((x) => x.subject), "a shot has no subject");
+  const kinds = new Set(plan.shots.map((x) => x.subject.kind));
+  assert.ok(kinds.has("figure") && kinds.has("date") && kinds.has("glyph"), [...kinds].join());
+  const rec = cloneCanvasFor(c, plan.shots);
+  assert.equal(rec.data.value, "35%");
+  assert.equal(rec.composition, "NUMBER-STAT");
+  assert.ok(rec.art.names.includes("The Penny Hoarder"));
+});
+
+test("a shot WITH a picture shows the beat's figure in its text region, every shot, in place of the display words", () => {
+  const c = { photo: photo("b-roll/x/p.jpg", "Hennepin County"), data: { value: "$14,000", label: "maximum fine" }, sentence: SENT, named_entities: [] };
+  const plan = planClone([beat(0, 0, 6, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  assert.ok(plan.shots.length >= 3);
+  for (const sh of plan.shots) { assert.equal(sh.figure.value, "$14,000"); assert.equal(sh.display, null); }
+});
+
+test("a date with no glyph entity is recorded as a date art, the shape the coverage gate reads", () => {
+  const c = { sentence: SENT, named_entities: [{ type: "date", name: "April 16, 2026" }] };
+  const plan = planClone([beat(0, 0, 6, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const rec = cloneCanvasFor(c, plan.shots);
+  assert.equal(rec.art.kind, "date");
+  assert.equal(rec.art.text, "April 16, 2026");
 });

@@ -65,6 +65,26 @@ export function typedEntitiesOf(canvas) {
   return out;
 }
 
+/** The figures and dates a beat states, in order: [{ kind: "figure"|"date", name, label }]. From the canvas's own data and from its named number / date entities. */
+export function figuresOf(canvas) {
+  const c = canvas || {};
+  const out = [];
+  const digits = (t) => String(t).replace(/[^\d]/g, "");
+  const add = (kind, name, label = null) => {
+    const n = String(name || "").trim();
+    if (!n) return;
+    if (out.some((x) => x.kind === kind && (kind === "date" ? x.name.toLowerCase() === n.toLowerCase() : digits(x.name) === digits(n) && digits(n)))) return;
+    out.push({ kind, name: n, label });
+  };
+  if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? String(c.data.label) : null);
+  for (const e of c.named_entities || c.entities || []) {
+    if (!e || !e.name) continue;
+    if (e.type === "number") add("figure", e.name);
+    else if (e.type === "date") add("date", e.name);
+  }
+  return out;
+}
+
 /** Score a spoken word for display: numbers and named things first, long content words next, function words never. */
 function scoreWord(text, names) {
   const w = clean(text), lw = w.toLowerCase();
@@ -124,7 +144,11 @@ export function cutPoints(s, e, len, min, spoken) {
   return cuts;
 }
 
-const ELEMENT_OFFSET = { ground: 0, hero: 1, shape: 11, display: 22, plate: 34 };
+// Frames after the cut. The cadence metric (scripts/lib/novelty.mjs) counts two things less than 0.4 s apart (12 frames) as ONE event, so the elements that
+// matter sit in their own windows: the picture AT the cut (the cut itself is the first event), the display words at ~0.47 s, the label at ~0.9 s. The accent
+// shape arrives with the picture (it is its second sheet), not as a third thing. Measured on real boards: spacing them 0.35 s apart merged three into one and
+// left real videos at 12.3-12.99 events per 10 s against the law's 13.
+const ELEMENT_OFFSET = { ground: 0, hero: 1, shape: 3, display: 14, plate: 27 };
 const PLATE_MIN_FRAMES = 24;   // a shot shorter than 0.8 s cannot hold a plate; its entities go to the shots that can   // frames after the cut: one new thing about every 0.35 s
 
 /**
@@ -141,11 +165,10 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
   beats.forEach((b, bi) => {
     const s = b.start_frame, e = b.start_frame + b.duration_frames;
     const canvas = b.scene?.canvas || {};
-    const heroes = heroesOf(canvas), names = namesOf(canvas), ents = typedEntitiesOf(canvas);
+    const heroes = heroesOf(canvas), names = namesOf(canvas), ents = typedEntitiesOf(canvas), figs = figuresOf(canvas);
     const spoken = (b.spoken || []).map((w) => ({ ...w, abs: s + w.from }));
     const cuts = cutPoints(s, e, len, minLen, spoken);
     const nShots = cuts.length - 1;
-    const fig = canvas.data && canvas.data.value ? { value: String(canvas.data.value), label: canvas.data.label ? String(canvas.data.label) : null } : null;
     for (let k = 0; k < nShots; k++) {
       const f0 = cuts[k], f1 = cuts[k + 1];
       const hero = heroes.length ? heroes[k % heroes.length] : null;
@@ -166,29 +189,33 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       const slot = eligible.indexOf(k);
       const plates = slot >= 0 ? ents.filter((_, j) => j % eligible.length === slot) : [];
       const roomForPlate = slot >= 0;
-      // A picture-less shot that names an entity shows that entity as a GLYPH plate (a person's silhouette, an organisation's building, a place's pin):
-      // the canvas engine's own fallback when no picture exists, and what the entity check (Gemini, on the frames) needs to see: a small text label is not a depiction.
-      // EVERY shot of a picture-less beat that names entities shows one (cycling through them), not just the shot an entity was assigned to: the entity check
-      // samples ONE frame per beat, and a beat whose only glyph is in another shot reads as "names an entity its frame does not show".
-      const glyph = !hero && ents.length && f1 - f0 >= PLATE_MIN_FRAMES ? ents[k % ents.length] : null;
-      if (glyph) { treatment = k % 2 === 0 ? "plate" : "disc"; if (!plates.some((x) => x.name === glyph.name)) plates.push(glyph); }
-      const showFig = fig && k === 0;
+      // A picture-less shot shows a SUBJECT of its beat as its visual, cycling through them: an entity as a GLYPH plate (a person's silhouette, an
+      // organisation's building, a place's pin: the canvas engine's own fallback when no picture exists), a stated figure as a big number, a stated date as a
+      // calendar page. EVERY shot does, not just one: the entity check (Gemini, on the frames) samples ONE frame per beat and fails "a beat names an entity /
+      // a figure / a date its frame does not show" when the sampled frame is another shot (board 38772064251 ch-1: missing "35%", "October 2026", "44%").
+      // The excerpt card is only for a beat that names nothing to show.
+      const subjects = [...ents.map((x) => ({ kind: "glyph", ...x })), ...figs.map((f) => ({ ...f }))];
+      const subject = !hero && subjects.length && f1 - f0 >= PLATE_MIN_FRAMES ? subjects[k % subjects.length] : null;
+      const glyph = subject && subject.kind === "glyph" ? subject : null;
+      if (subject) { treatment = k % 2 === 0 ? "plate" : "disc"; if (glyph && !plates.some((x) => x.name === glyph.name)) plates.push({ name: glyph.name, type: glyph.type }); }
+      // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
+      const figHere = hero && figs.length ? figs[k % figs.length] : null;
       const el = [];
       const at = (off) => Math.min(f1 - 3, f0 + off);
       el.push({ kind: "ground", at: f0 });
-      if (hero) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });
-      else if (ents.length && f1 - f0 >= PLATE_MIN_FRAMES) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });   // a picture-less shot that names an entity shows that entity's GLYPH plate
-      else el.push({ kind: "card", at: at(ELEMENT_OFFSET.hero) });   // a picture-less shot that names nothing shows the narration itself, set as an excerpt card
-      const shape = !profile.accent_shapes?.length ? null : treatment === "type" && !glyph ? (profile.accent_shapes.includes("block") ? "block" : profile.accent_shapes[0]) : profile.accent_shapes[shots.length % profile.accent_shapes.length];
+      if (hero || subject) el.push({ kind: "hero", at: at(ELEMENT_OFFSET.hero) });
+      else el.push({ kind: "card", at: at(ELEMENT_OFFSET.hero) });   // a beat that names nothing shows the narration itself, set as an excerpt card
+      const shape = !profile.accent_shapes?.length ? null : treatment === "type" ? (profile.accent_shapes.includes("block") ? "block" : profile.accent_shapes[0]) : profile.accent_shapes[shots.length % profile.accent_shapes.length];
       if (shape) el.push({ kind: "shape", at: at(ELEMENT_OFFSET.shape) });
-      if (showFig) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
-      else if (disp) el.push({ kind: "display", at: Math.min(f1 - 3, Math.max(f0 + ELEMENT_OFFSET.display - 6, disp.at)) });
-      if (plates.filter((x) => !glyph || x.name !== glyph.name).length && (roomForPlate || glyph)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
+      if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
+      else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + ELEMENT_OFFSET.display, disp.at)) });
+      const labelPlates = plates.filter((x) => !glyph || x.name !== glyph.name);
+      if (labelPlates.length && (roomForPlate || glyph)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
-        display: showFig ? null : disp, figure: showFig ? fig : null,
-        glyph, excerpt: !hero && !glyph ? excerptOf(b, canvas) : null,
-        plates: plates.length && (roomForPlate || glyph) ? plates : [], plate: plates.filter((x) => !glyph || x.name !== glyph.name).length && (roomForPlate || glyph) ? plates.filter((x) => !glyph || x.name !== glyph.name).map((x) => x.name).join(" · ") : null,
+        display: figHere ? null : disp, figure: figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null,
+        subject, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
+        plates: plates.length && (roomForPlate || glyph) ? plates : [], plate: labelPlates.length && (roomForPlate || glyph) ? labelPlates.map((x) => x.name).join(" · ") : null,
         elements: el,
       });
     }
@@ -245,21 +272,28 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   const drawn = new Set((shots || []).filter((x) => x.hero).map((x) => x.hero.asset));
   const plates = [];
   for (const sh of shots || []) for (const p of sh.plates || []) if (!plates.some((q) => q.name.toLowerCase() === p.name.toLowerCase())) plates.push(p);
-  const fig = (shots || []).find((x) => x.figure)?.figure || null;
+  // figures and dates the shots drew (in the text region, or as a subject plate)
+  const figs = [];
+  const addFig = (f) => { if (f && !figs.some((x) => x.kind === f.kind && x.name === f.name)) figs.push(f); };
+  for (const sh of shots || []) { if (sh.figure) addFig({ kind: sh.figure.kind || "figure", name: sh.figure.value, label: sh.figure.label }); if (sh.subject && sh.subject.kind !== "glyph") addFig({ kind: sh.subject.kind, name: sh.subject.name, label: sh.subject.label }); }
+  const num = figs.find((f) => f.kind === "figure"), date = figs.find((f) => f.kind === "date");
   const kindOf = (t) => (t === "person" ? "plate-person" : t === "place" ? "plate-place" : "plate-organization");
   const out = {};
   for (const k of ["sentence", "named_entities", "entities", "headline", "lead_in", "visual_type", "source_credit", "beat_index", "beat_total"]) if (c[k] !== undefined) out[k] = c[k];
-  out.composition = fig ? "NUMBER-STAT" : "CLONE";
+  out.composition = num ? "NUMBER-STAT" : "CLONE";
   out.photo = c.photo && c.photo.asset && drawn.has(c.photo.asset) ? c.photo : null;
   out.concept_visuals = (c.concept_visuals || []).filter((v) => v && v.asset && drawn.has(v.asset));
-  out.art = c.art && c.art.asset && drawn.has(c.art.asset) ? c.art : plates.length ? { kind: "plates", name: plates.map((p) => p.name).join(", "), names: plates.map((p) => p.name), kinds: plates.map((p) => kindOf(p.type)) } : null;
-  out.data = fig ? { value: fig.value, label: fig.label } : null;
+  const extraNums = figs.filter((f) => f.kind === "figure" && f !== num);
+  out.art = c.art && c.art.asset && drawn.has(c.art.asset) ? c.art
+    : plates.length || extraNums.length ? { kind: "plates", name: [...plates.map((p) => p.name), ...extraNums.map((f) => f.name)].join(", "), names: [...plates.map((p) => p.name), ...extraNums.map((f) => f.name)], kinds: [...plates.map((p) => kindOf(p.type)), ...extraNums.map(() => "figure")] }
+    : date ? { kind: "date", name: date.name, text: date.name } : null;
+  out.data = num ? { value: num.name, label: num.label } : null;
   out.boxes = {};
   out.clone = true;
   // The frame review's labels read these: the ground this beat chose (a non-white ground is declared, not left to read as a mistake), and what the beat
   // DRAWS (a photograph, a logo, or typography) so a beat with a picture is not called typography because the canvas engine's plan said TYPE.
   if (palette && palette.ground) out.ground_color = palette.ground;
-  out.visual_type = fig ? "COUNTER" : out.photo ? "PHOTO" : "TYPE";
+  out.visual_type = num ? "COUNTER" : out.photo ? "PHOTO" : "TYPE";
   return out;
 }
 

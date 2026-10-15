@@ -15,7 +15,7 @@ import { popInState, popOutState } from "../visual/pop-groups.js";
 import { sway, SWAY_X, SWAY_Y } from "../visual/sway.js";
 import { readableAccent } from "../visual/canvas-layout.js";
 import { planClone } from "./clone-plan.js";
-import { treatmentBoxes, FRAME } from "./clone-layout.js";
+import { treatmentBoxes, FRAME, parseDate } from "./clone-layout.js";
 
 const HOLD = 6;   // frames the outgoing shot stays under the incoming one
 
@@ -156,15 +156,44 @@ function GlyphMark({ type, color, size }) {
   return <svg {...common}><path d="M50 8 L92 30 L92 38 L8 38 L8 30 Z" /><rect x="16" y="44" width="10" height="34" /><rect x="36" y="44" width="10" height="34" /><rect x="54" y="44" width="10" height="34" /><rect x="74" y="44" width="10" height="34" /><rect x="8" y="82" width="84" height="10" /></svg>;
 }
 
-function GlyphPlate({ shot, B, st, P, profile }) {
-  const box = B.hero, g = shot.glyph, fam = profile.type.display.family, caps = profile.type.display.case === "upper";
+// SUBJECT PLATES: the visual of a picture-less shot. An entity with no picture is a generic, NON-IDENTIFYING glyph (a person's silhouette, an organisation's
+// building, a place's pin) with its name; a stated figure is the figure, big; a stated date is a calendar page. Each says what the beat is about without
+// depicting anything it has no picture of. (The canvas engine's own fallback, drawn here.)
+function SubjectPlate({ shot, B, st, P, profile }) {
+  const box = B.hero, g = shot.subject, fam = profile.type.display.family, caps = profile.type.display.case === "upper";
+  const round = shot.treatment === "disc";
+  const shell = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", border: `10px solid ${P.accent}`, borderRadius: round ? "50%" : 0, overflow: "hidden" };
+  const face = { fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, color: P.ink, whiteSpace: "nowrap", lineHeight: 1.04 };
+  if (g.kind === "figure") {
+    const { size } = fitLines(g.name, box.w - 120, { family: fam, caps: false, max: 300, min: 90, maxLines: 1 });
+    return (
+      <div style={{ ...shell, justifyContent: "center", padding: round ? "90px 60px" : "40px" }}>
+        <div style={{ ...face, fontSize: size, color: readableAccent(P.accent, "#FFFFFF") }}>{g.name}</div>
+        {g.label ? <div style={{ marginTop: 20, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 40, letterSpacing: "0.1em", textTransform: "uppercase", color: P.ink, whiteSpace: "normal", textAlign: "center", maxWidth: box.w - 140 }}>{g.label}</div> : null}
+      </div>
+    );
+  }
+  if (g.kind === "date") {
+    const d = parseDate(g.name);
+    const main = d.day || d.year || g.name;
+    const { size } = fitLines(String(main), box.w - 140, { family: fam, caps: false, max: 280, min: 80, maxLines: 1 });
+    return (
+      <div style={{ ...shell, justifyContent: "flex-start" }}>
+        <div style={{ width: "100%", backgroundColor: P.accent, color: P.paper, textAlign: "center", padding: round ? "78px 0 16px" : "22px 0", fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 700, fontSize: 52, letterSpacing: "0.16em" }}>{d.month || "DATE"}</div>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ ...face, fontSize: size }}>{main}</div>
+          {d.day && d.year ? <div style={{ marginTop: 10, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 56, letterSpacing: "0.1em", color: P.ink }}>{d.year}</div> : null}
+        </div>
+      </div>
+    );
+  }
   const name = caps ? g.name.toUpperCase() : g.name;
   const { lines, size } = fitLines(name, box.w - 80, { family: fam, caps, max: 96, min: 44, maxLines: 2 });
   return (
-    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", padding: shot.treatment === "disc" ? "90px 60px 70px" : "56px 40px 40px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", border: `10px solid ${P.accent}`, borderRadius: shot.treatment === "disc" ? "50%" : 0 }}>
+    <div style={{ ...shell, padding: round ? "90px 60px 70px" : "56px 40px 40px" }}>
       <GlyphMark type={g.type} color={P.ink} size={Math.round(box.h * 0.46)} />
       <div style={{ textAlign: "center" }}>
-        {lines.map((l, i) => <div key={i} style={{ fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, fontSize: size, lineHeight: 1.04, color: P.ink, whiteSpace: "nowrap" }}>{l}</div>)}
+        {lines.map((l, i) => <div key={i} style={{ ...face, fontSize: size }}>{l}</div>)}
       </div>
     </div>
   );
@@ -185,7 +214,7 @@ function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
     <AbsoluteFill>
       {stShape ? <Shape shot={shot} B={B} st={stShape} P={P} /> : null}
       <Hero shot={shot} B={B} st={stHero} P={P} profile={profile} bw={bw} local={local} idx={shotIndex} />
-      {shot.glyph && !shot.hero ? <GlyphPlate shot={shot} B={B} st={stHero} P={P} profile={profile} /> : null}
+      {shot.subject && !shot.hero ? <SubjectPlate shot={shot} B={B} st={stHero} P={P} profile={profile} /> : null}
       {shot.excerpt && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
       {stDisp && shot.display ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
