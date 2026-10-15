@@ -24,9 +24,11 @@ const GRAVE = /\b(assault(?:ed|s)?|kill(?:ed|ing|s)?|murder(?:ed|s)?|death|dead|
 const SERIOUS = /\b(charg(?:e|es|ed)|felony|misdemeanor|indict(?:ed|ment)?|convict(?:ed|ion)|sentenc(?:e|ed|ing)|prison|jail|arrest(?:ed|s)?|lawsuit|sued?|fraud(?:ulent)?|scam|hack(?:ed|ers?|ing)?|breach(?:ed)?|stolen|theft|launder(?:ing|ed)|sanction(?:s|ed)?|bankrupt(?:cy)?|collaps(?:e|ed)|crisis|investigat(?:ion|ed|ors?)|court|illegal(?:ly)?|crime[s]?|criminal|recession|layoffs?|ban(?:ned)?|embezzl\w*|bribe\w*|misconduct|resign(?:ed|ation)?|scandal)\b/gi;
 const LIGHT_CHANNEL = /(playful|casual|friendly|gentle|upbeat|fun|whimsical|cheerful)/i;
 
+// ONE SHORT LINE each. These are sent to the speech model ahead of the script; a long, content-like note (the first version was ~55 words) was sometimes READ ALOUD
+// before the script (board 38777811983 ch-26: 20 s of speech ahead of the first sentence). A short "Say in ...:" is the form the model treats as a direction.
 const DELIVERY = {
-  grave: (accent) => `Read this as a serious news correspondent reporting grave news to one person${accent}: low, steady and restrained, at a natural news pace of about one hundred and fifty words a minute, no smile in the voice, no cheer and no sing-song, pitch settling at the end of each statement, a clear stop at every full stop, and weight on the one word in each sentence that matters. Let the facts carry the weight. Never dramatic, never flat, never rushed.`,
-  serious: (accent) => `Read this as a credible news correspondent reporting a serious matter to one person${accent}: firm, composed and direct, at a natural news pace of about one hundred and fifty words a minute, no playfulness and no sing-song, a clear stop at every full stop, and a little weight on the one word in each sentence that matters. Never theatrical, never flat, never rushed.`,
+  grave: (accent) => `Say in a low, steady, serious news voice${accent}:`,
+  serious: (accent) => `Say in a firm, composed news voice${accent}:`,
 };
 
 const EMOTION = {

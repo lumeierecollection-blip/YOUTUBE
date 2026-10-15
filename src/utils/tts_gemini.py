@@ -120,6 +120,17 @@ def pause_filter(trim):
     return "silenceremove=stop_periods=-1:stop_duration=%s:stop_threshold=-45dB:stop_silence=0.05" % trim
 
 
+# LEAD GUARD. The model sometimes speaks something BEFORE the script: board 38777811983 ch-26 had 20 s of normal-level speech ahead of the first script word, so the
+# video's first beat started at 20.07 s and the first 20 s showed nothing; the delivery note (about 55 words, about 20 s read aloud) is the only other text it
+# was given. A script's first word lands within ~2 s; if it lands later the audio before it is not narration. The audio is cut to a quarter second before the
+# first matched word and re-aligned, and a warning is printed. TTS_LEAD_MAX=0 turns it off.
+def lead_cut(lead, lead_max=2.0, keep=0.25):
+    """Seconds to cut from the start of the audio, or None when the first word comes early enough."""
+    if lead_max <= 0 or lead is None or lead <= lead_max:
+        return None
+    return max(0.0, lead - keep)
+
+
 def to_mp3(mime, data, mp3):
     with tempfile.NamedTemporaryFile(suffix=".bin", delete=False) as f:
         f.write(data)
@@ -193,6 +204,13 @@ def main():
         mime, data, model = synth(text, a.voice, a.style)
     to_mp3(mime, data, a.mp3)
     words, matched, total = align(a.mp3, text)
+    cut = lead_cut(words[0]["start"] if words else None, float(os.environ.get("TTS_LEAD_MAX", "2.0") or 0))
+    if cut:
+        print(f"tts_gemini: WARNING the audio had {words[0]['start']:.1f}s before the script's first word (speech that is not the script: the delivery note read aloud?); cutting the first {cut:.1f}s and re-aligning")
+        trimmed = a.mp3 + ".lead.mp3"
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{cut:.3f}", "-i", a.mp3, "-ar", "24000", "-ac", "1", "-b:a", "192k", trimmed], check=True)
+        os.replace(trimmed, a.mp3)
+        words, matched, total = align(a.mp3, text)
     spans = sentence_spans(text)
     # each word's sentence: walk the text in order
     cur, si = 0, 0

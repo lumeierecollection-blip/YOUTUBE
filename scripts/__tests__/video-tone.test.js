@@ -40,8 +40,21 @@ test("the voice: grave and serious get their own delivery; everything else is ex
   assert.deepEqual(geminiVoiceFor("en-US-GuyNeural", null, null), was);
   const g = geminiVoiceFor("en-US-GuyNeural", null, "grave");
   assert.equal(g.voice, was.voice, "the voice itself is not changed");
-  assert.match(g.style, /serious news correspondent/);
+  assert.match(g.style, /^Say in a low, steady, serious news voice:$/);
   assert.doesNotMatch(g.style, /warm|conversational/);
   assert.match(deliveryFor("serious", { british: true }), /British/);
   assert.equal(deliveryFor("measured"), null);
+});
+
+test("a delivery note is ONE SHORT LINE: a long note was read aloud before the script (ch-26: 20 s of speech ahead of the first sentence)", () => {
+  for (const g of ["grave", "serious"]) {
+    for (const british of [false, true]) {
+      const d = deliveryFor(g, { british });
+      assert.ok(d.split(/\s+/).length <= 16, `${g}: ${d.split(/\s+/).length} words`);
+      assert.ok(!d.includes("\n"));
+      assert.match(d, /^Say in /);
+      assert.ok(d.endsWith(":"));
+    }
+  }
+  assert.match(deliveryFor("serious", { british: true }), /British/);
 });
