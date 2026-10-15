@@ -155,3 +155,18 @@ test("a picture-less shot quotes the narration on an excerpt card: exactly what 
   assert.ok(long.length <= 154 && long.endsWith("..."), long.length);
   assert.equal(excerptOf({ text: "Short sentence here." }, {}), "Short sentence here.");
 });
+
+test("a picture-less shot that NAMES an entity shows that entity's glyph plate (silhouette / building / pin), not a bare label; one that names nothing shows the excerpt card", () => {
+  const beats = [
+    beat(0, 0, 6, SENT, { sentence: SENT, named_entities: [{ type: "person", name: "Mary Moriarty" }] }),
+    beat(1, 6, 6, "Its air held almost no oxygen and a great deal of sulfur.", { sentence: "Its air held almost no oxygen and a great deal of sulfur.", named_entities: [] }),
+  ];
+  const plan = planClone(beats, { laws: G.laws, profile: G.profiles["cutout-collage"] });
+  const named = plan.shots.filter((x) => x.beat === 0), unnamed = plan.shots.filter((x) => x.beat === 1);
+  const g = named.filter((x) => x.glyph);
+  assert.ok(g.length >= 1);
+  for (const sh of g) { assert.equal(sh.glyph.type, "person"); assert.equal(sh.treatment, "plate"); assert.equal(sh.hero, null); assert.equal(sh.excerpt, null); }
+  for (const sh of unnamed) { assert.equal(sh.glyph, null); assert.ok(sh.excerpt); }
+  const rec = cloneCanvasFor({ named_entities: [{ type: "person", name: "Mary Moriarty" }] }, named);
+  assert.deepEqual(rec.art.kinds, ["plate-person"]);
+});

@@ -147,6 +147,29 @@ function Card({ shot, B, st, P, profile }) {
   );
 }
 
+// GLYPH PLATES: when no picture of an entity exists, a generic, NON-IDENTIFYING mark stands for what KIND of thing it is (a person's silhouette, an
+// organisation's building, a place's pin) with its name under it: the canvas engine's own fallback, drawn here. It never depicts the entity itself.
+function GlyphMark({ type, color, size }) {
+  const common = { width: size, height: size, viewBox: "0 0 100 100", fill: color };
+  if (type === "person") return <svg {...common}><circle cx="50" cy="30" r="17" /><path d="M14 92 C14 62 30 52 50 52 C70 52 86 62 86 92 Z" /></svg>;
+  if (type === "place") return <svg {...common}><path d="M50 6 C31 6 18 20 18 38 C18 62 50 94 50 94 C50 94 82 62 82 38 C82 20 69 6 50 6 Z M50 50 A12 12 0 1 1 50.01 50 Z" fillRule="evenodd" /></svg>;
+  return <svg {...common}><path d="M50 8 L92 30 L92 38 L8 38 L8 30 Z" /><rect x="16" y="44" width="10" height="34" /><rect x="36" y="44" width="10" height="34" /><rect x="54" y="44" width="10" height="34" /><rect x="74" y="44" width="10" height="34" /><rect x="8" y="82" width="84" height="10" /></svg>;
+}
+
+function GlyphPlate({ shot, B, st, P, profile }) {
+  const box = B.hero, g = shot.glyph, fam = profile.type.display.family, caps = profile.type.display.case === "upper";
+  const name = caps ? g.name.toUpperCase() : g.name;
+  const { lines, size } = fitLines(name, box.w - 80, { family: fam, caps, max: 96, min: 44, maxLines: 2 });
+  return (
+    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", padding: "56px 40px 40px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", border: `10px solid ${P.accent}` }}>
+      <GlyphMark type={g.type} color={P.ink} size={Math.round(box.h * 0.46)} />
+      <div style={{ textAlign: "center" }}>
+        {lines.map((l, i) => <div key={i} style={{ fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, fontSize: size, lineHeight: 1.04, color: P.ink, whiteSpace: "nowrap" }}>{l}</div>)}
+      </div>
+    </div>
+  );
+}
+
 function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
   const B = treatmentBoxes(shot.treatment, shotIndex);
   const local = frame - shot.f0;
@@ -162,6 +185,7 @@ function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
     <AbsoluteFill>
       {stShape ? <Shape shot={shot} B={B} st={stShape} P={P} /> : null}
       <Hero shot={shot} B={B} st={stHero} P={P} profile={profile} bw={bw} local={local} idx={shotIndex} />
+      {shot.glyph && !shot.hero ? <GlyphPlate shot={shot} B={B} st={stHero} P={P} profile={profile} /> : null}
       {shot.excerpt && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
       {stDisp && shot.display ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
