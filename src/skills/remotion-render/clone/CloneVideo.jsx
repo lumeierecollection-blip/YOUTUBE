@@ -53,7 +53,7 @@ function Display({ shot, B, st, P, profile }) {
   const emph = shot.display.emphasis ? (caps ? shot.display.emphasis.toUpperCase() : shot.display.emphasis) : null;
   const plated = !!B.text.plated;
   const innerW = B.text.w - (plated ? 72 : 0);
-  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : B.text.align === "center" ? 190 : 170, min: 64, maxLines: B.text.h > 450 ? 4 : 3 });
+  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : (shot.hero || shot.subject || shot.excerpt) ? 118 : B.text.align === "center" ? 190 : 170, min: 56, maxLines: B.text.h > 450 ? 4 : 3 });
   const inkOn = plated ? P.paper : P.ink;
   const accent = readableAccent(P.accent, plated ? P.ink : P.ground);
   const word = (w, key) => {
@@ -160,17 +160,18 @@ function GlyphMark({ type, color, size }) {
 // building, a place's pin) with its name; a stated figure is the figure, big; a stated date is a calendar page. Each says what the beat is about without
 // depicting anything it has no picture of (the canvas engine's own fallback, drawn here). One cell fills a plate; several share one panel as a grid, so the
 // single frame the entity check samples shows every subject.
-function SubjectCell({ g, w, h, P, profile, round }) {
+function SubjectCell({ g, w, h, P, profile, round, inv }) {
+  const ink = inv ? P.paper : P.ink;
   const fam = profile.type.display.family, caps = profile.type.display.case === "upper";
   const small = Math.min(w, h) < 520;
-  const face = { fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, color: P.ink, whiteSpace: "nowrap", lineHeight: 1.04 };
-  const labelFace = { fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: P.ink, textAlign: "center" };
+  const face = { fontFamily: `"${fam}", Helvetica, Arial, sans-serif`, fontStyle: profile.type.display.style === "italic" ? "italic" : "normal", fontWeight: profile.type.display.weight, color: ink, whiteSpace: "nowrap", lineHeight: 1.04 };
+  const labelFace = { fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: ink, textAlign: "center" };
   const wrap = { width: w, height: h, boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: round ? "10% 12%" : small ? "5% 6%" : "7%", overflow: "hidden" };
   if (g.kind === "figure") {
     const { size } = fitLines(g.name, w * 0.8, { family: fam, caps: false, max: small ? 150 : 300, min: 44, maxLines: 1 });
     return (
       <div style={wrap}>
-        <div style={{ ...face, fontSize: size, color: readableAccent(P.accent, "#FFFFFF") }}>{g.name}</div>
+        <div style={{ ...face, fontSize: size, color: inv ? P.paper : readableAccent(P.accent, "#FFFFFF") }}>{g.name}</div>
         {g.label ? <div style={{ ...labelFace, marginTop: 12, fontSize: small ? 26 : 40, whiteSpace: "normal", maxWidth: w * 0.84 }}>{g.label}</div> : null}
       </div>
     );
@@ -193,7 +194,7 @@ function SubjectCell({ g, w, h, P, profile, round }) {
   const { lines, size } = fitLines(name, w * 0.86, { family: fam, caps, max: small ? 56 : 96, min: 28, maxLines: 2 });
   return (
     <div style={{ ...wrap, justifyContent: "space-between" }}>
-      <GlyphMark type={g.type} color={P.ink} size={Math.round(h * (small ? 0.4 : 0.46))} />
+      <GlyphMark type={g.type} color={ink} size={Math.round(h * (small ? 0.4 : 0.46))} />
       <div style={{ textAlign: "center" }}>{lines.map((l, i) => <div key={i} style={{ ...face, fontSize: size }}>{l}</div>)}</div>
     </div>
   );
@@ -202,15 +203,15 @@ function SubjectCell({ g, w, h, P, profile, round }) {
 function SubjectPlate({ shot, B, st, P, profile }) {
   const box = B.hero, subs = (shot.subjects && shot.subjects.length ? shot.subjects : [shot.subject]).filter(Boolean);
   const round = shot.treatment === "disc" && subs.length === 1;
-  const shell = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", border: `10px solid ${P.accent}`, borderRadius: round ? "50%" : 0, overflow: "hidden" };
+  const shell = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: shot.inv ? P.ink : "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", border: `10px solid ${P.accent}`, borderRadius: round ? "50%" : 0, overflow: "hidden" };
   const inner = { w: box.w - 20, h: box.h - 20 };
-  if (subs.length === 1) return <div style={shell}><SubjectCell g={subs[0]} w={inner.w} h={inner.h} P={P} profile={profile} round={round} /></div>;
+  if (subs.length === 1) return <div style={shell}><SubjectCell g={subs[0]} w={inner.w} h={inner.h} P={P} profile={profile} round={round} inv={!!shot.inv} /></div>;
   const cols = subs.length <= 2 ? subs.length : 2, rows = Math.ceil(subs.length / cols), cw = inner.w / cols, ch = inner.h / rows;
   return (
     <div style={{ ...shell, display: "grid", gridTemplateColumns: `repeat(${cols}, 1fr)`, gridTemplateRows: `repeat(${rows}, 1fr)` }}>
       {subs.map((g, i) => (
         <div key={i} style={{ borderRight: (i % cols) < cols - 1 ? `3px solid ${P.accent}` : "none", borderBottom: Math.floor(i / cols) < rows - 1 ? `3px solid ${P.accent}` : "none", boxSizing: "border-box" }}>
-          <SubjectCell g={g} w={cw} h={ch} P={P} profile={profile} round={false} />
+          <SubjectCell g={g} w={cw} h={ch} P={P} profile={profile} round={false} inv={!!shot.inv} />
         </div>
       ))}
     </div>
@@ -237,6 +238,7 @@ function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
       {stDisp && shot.display ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stDisp && shot.figure ? <Figure shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
+      {stateOf("tick") ? <div style={{ position: "absolute", left: B.text.x + B.text.w / 2 - 170, top: B.text.y + 40, width: 340, height: 20, backgroundColor: P.accent, opacity: stateOf("tick").o, transform: `scale(${stateOf("tick").s})`, zIndex: 4 }} /> : null}
     </AbsoluteFill>
   );
 }

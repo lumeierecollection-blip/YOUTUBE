@@ -24,6 +24,8 @@ const STOP = new Set("a an the and or but of to in on at by for with from as is 
 // ("AIR HELD ALMOST", "CAVE SITS", "SOUTHEASTERN ROMANIA FAR", "DEAL ANIMALS" were real picks). Without a parser this is a list, not a grammar: it stops
 // the commonest fragments, it does not guarantee a phrase.
 const WEAK = new Set("held sits sit sat said says say made make makes found find finds got get gets had have went go goes came come comes took take takes seemed seem seems became become becomes almost far very quite rather really still even also ever never always often just only nearly mostly already soon later early late deal lot kind sort way thing things something anything".split(" "));
+const NUMBER_WORDS = new Set("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million billion percent dollars dollar twenty-six twenty-five twenty-four twenty-three twenty-two twenty-one first second third fourth fifth".split(" "));
+const MONTH_WORDS = new Set("january february march april may june july august september october november december".split(" "));
 const isNumberWord = (w) => /^[\$€£]?\d[\d,.]*(?:%|[kmb]|million|billion|thousand)?$/i.test(w);
 const clean = (w) => String(w || "").replace(/^[^\w$€£]+|[^\w%]+$/g, "");
 
@@ -111,7 +113,7 @@ const shown = (t) => String(t || "").replace(/^[^\w$€£]+/, "").replace(/[^\w%
  * "nobody knew existed") which says more than one word alone, so each extra content word earns a bonus and each function word inside costs one.
  * A run never starts or ends on a function word, and never crosses the end of a sentence.
  */
-export function displayWords(spoken, from, to, names, max = 3) {
+export function displayWords(spoken, from, to, names, max = 3, exclude = null) {
   const ws = (spoken || []).filter((w) => w.abs >= from && w.abs < to && clean(w.text));
   if (!ws.length) return null;
   const isStop = (w) => STOP.has(clean(w.text).toLowerCase());
@@ -133,6 +135,8 @@ export function displayWords(spoken, from, to, names, max = 3) {
         return hits > 0 && hits < nt.length;
       });
       if (splitsName) continue;
+      // words the shot's plate already says are not said again ("TWENTY-SIX" under a date plate, "NEWARK" under a Newark pin): that is the headline competing with the picture
+      if (exclude && toks.some((t) => exclude.has(t))) continue;
       const content = run.filter((w) => !isStop(w)).length;
       const sc = run.reduce((a, w) => a + scoreWord(w.text, names), 0) + (content - 1) * 1.2 - (n - content) * 1;
       if (!best || sc > best.sc) best = { sc, run };
@@ -196,7 +200,8 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
         if (prev && prev.hero && prev.hero.asset === hero.asset && treatments[ti] === prev.treatment) ti = (ti + 1) % treatments.length;
         treatment = treatments[ti];
       }
-      const disp = displayWords(spoken, f0, f1, names, profile.display_words || 3);
+      // (the display words are chosen below, after the shot's subjects are known, so they can avoid repeating them)
+      let disp = null;
       // EVERY entity the beat names gets a plate in some shot of the beat: entity j goes to shot j mod n. A beat that names more entities than it has
       // shots shows several on one plate. (What the manifest says was drawn is computed from this, so entity coverage judges the pixels' truth.)
       const eligible = cuts.slice(0, -1).map((c0, i) => i).filter((i) => cuts[i + 1] - cuts[i] >= PLATE_MIN_FRAMES);
@@ -212,8 +217,12 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       // ALL of them in ONE frame (up to four, as cells of a panel; more than four rotate), so the single frame the entity check samples shows every subject
       // (board 38781391920 ch-9: a beat naming the UN and Ethiopia showed only the UN in the sampled frame; the date was missing in another).
       const MAXCELLS = 4;
-      const subjects = !hero && subjectsAll.length && f1 - f0 >= PLATE_MIN_FRAMES
+      let subjects = !hero && subjectsAll.length && f1 - f0 >= PLATE_MIN_FRAMES
         ? (subjectsAll.length <= MAXCELLS ? subjectsAll : Array.from({ length: MAXCELLS }, (_, j) => subjectsAll[(k + j) % subjectsAll.length])) : [];
+      // Successive panels must DIFFER or a cut between them is invisible (cadence fell on board 38790006358 when every shot of a beat showed the same panel): the cells rotate
+      // by one each shot, and every other shot is inverted (ink plate, paper type).
+      if (subjects.length > 1) { const r = k % subjects.length; subjects.push(...subjects.splice(0, r)); }
+      const inv = k % 2 === 1;
       const subject = subjects[0] || null;
       const glyph = subject && subject.kind === "glyph" ? subject : null;
       if (subject) {
@@ -222,6 +231,13 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       }
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
       const figHere = hero && figs.length ? figs[k % figs.length] : null;
+      {
+        const exclude = new Set();
+        const addToks = (t) => String(t || "").toLowerCase().split(/[^a-z0-9']+/).filter(Boolean).forEach((x) => exclude.add(x));
+        for (const sj of subjects) { addToks(sj.name); addToks(sj.label); }
+        if (subjects.some((sj) => sj.kind === "figure" || sj.kind === "date")) { NUMBER_WORDS.forEach((w) => exclude.add(w)); MONTH_WORDS.forEach((w) => exclude.add(w)); }
+        disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, subjects.length ? exclude : null);
+      }
       const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
       const labelPlates = plates.filter((x) => !shownNames.has(x.name));
       const el = [];
@@ -236,11 +252,12 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       if (shape) el.push({ kind: "shape", at: at(hasLabel ? ELEMENT_OFFSET.shape : ELEMENT_OFFSET.plate) });
       if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + ELEMENT_OFFSET.display, disp.at)) });
+      else el.push({ kind: "tick", at: at(ELEMENT_OFFSET.display) });   // no phrase that adds to the plate: a rule under it arrives instead, so the shot still has its three events
       if (labelPlates.length && (roomForPlate || subject)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
         display: figHere ? null : disp, figure: figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null,
-        subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
+        inv, subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
         plates: plates.length && (roomForPlate || subject) ? plates : [], plate: labelPlates.length && (roomForPlate || subject) ? labelPlates.map((x) => x.name).join(" · ") : null,
         elements: el,
       });

@@ -252,3 +252,29 @@ test("a display phrase never shows PART of a named entity ('ACKIE' for 'Naomi Ac
     }
   }
 });
+
+test("a display phrase does not repeat what the shot's plate already says (TWENTY-SIX under a date plate, NEWARK under a Newark pin)", () => {
+  const T = "Newark landlords must pass the October thirteen twenty twenty-six rule on every single violation";
+  const c = { sentence: T, named_entities: [{ type: "place", name: "Newark" }, { type: "date", name: "October 13, 2026" }] };
+  const plan = planClone([beat(0, 0, 7, T, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const banned = new Set(["newark", "october", "thirteen", "twenty", "twenty-six", "2026"]);
+  for (const sh of plan.shots) if (sh.display) for (const w of sh.display.text.toLowerCase().split(/\s+/)) assert.ok(!banned.has(w), `"${sh.display.text}" repeats the plate`);
+});
+
+test("successive panels of a beat DIFFER (rotated cells, alternate inversion): a cut between identical frames is invisible and the cadence falls", () => {
+  const ents = ["Newark", "Essex County"].map((n) => ({ type: "place", name: n }));
+  const plan = planClone([beat(0, 0, 8, SENT, { sentence: SENT, named_entities: ents, data: { value: "$1,250", label: "per violation" } })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  assert.ok(plan.shots.length >= 4 && plan.shots.every((x) => x.subjects.length === 3));
+  for (let i = 1; i < plan.shots.length; i++) {
+    const a = plan.shots[i - 1], b = plan.shots[i];
+    const order = (x) => x.subjects.map((y) => y.name).join("|");
+    assert.ok(order(a) !== order(b) || a.inv !== b.inv, `shots ${i - 1}/${i} are the same panel`);
+    assert.notEqual(a.inv, b.inv, "the inversion does not alternate");
+  }
+});
+
+test("a shot with no phrase that adds to its plate gets a tick instead, so it still has three events", () => {
+  const T = "Newark Newark Newark";
+  const plan = planClone([beat(0, 0, 4, T, { sentence: T, named_entities: [{ type: "place", name: "Newark" }] })], { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  for (const sh of plan.shots) { assert.equal(sh.display, null); assert.ok(sh.elements.some((e) => e.kind === "tick")); }
+});
