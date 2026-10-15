@@ -1,0 +1,64 @@
+{
+  "topic_slug": "ethiopia-eritrea-tigray-border-invasion-un-2026",
+  "strongest_angle": "Ethiopia accuses Eritrea of an all-out invasion in the northern Tigray region, prompting letters to the UN Security Council and raising fears of renewed regional war.",
+  "key_facts": [
+    {
+      "fact": "Ethiopia accused Eritrea of launching an all-out invasion into the northern Tigray region and sent a letter to the UN Security Council warning it will defend itself.",
+      "source_url": "https://www.bbc.com/news/articles/c65ynvw250y1o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "UN Secretary-General António Guterres expressed grave concern over renewed fighting in northern Ethiopia and reports of Eritrean forces present in the country.",
+      "source_url": "https://news.un.org/en/story/2026/10/1168570",
+      "source_name": "UN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Eritrea asked the United Nations to take deterrent measures after describing Ethiopia's actions as a declaration of war in the Tigray region conflict.",
+      "source_url": "https://www.aljazeera.com/news/2026/10/10/eritrea-urges-un-to-intervene-in-standoff-with",
+      "source_name": "Al Jazeera",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ethiopian military vehicles and troops entered Adigrat near the Eritrean border on Saturday while residents celebrated.",
+      "source_url": "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Advance distance reported by Addis Ababa",
+      "value": 60,
+      "unit": "kilometers",
+      "source_url": "https://www.aljazeera.com/news/2026/10/10/eritrea-urges-un-to-intervene-in-standoff-with"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    },
+    {
+      "name": "UN Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "António Guterres",
+      "kind": "person"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    }
+  ]
+}
