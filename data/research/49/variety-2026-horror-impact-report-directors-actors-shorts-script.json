@@ -1,0 +1,32 @@
+{
+  "channel_id": "49",
+  "topic_slug": "variety-2026-horror-impact-report-directors-actors",
+  "format": "shorts",
+  "hook": "Variety named James Wan on its Horror Impact List.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Variety named James Wan on its Horror Impact List."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Variety published its second annual Horror Impact Report on October 7, 2026. Does Variety highlight Naomi Ackie on this list? Is Curry Barker leading Variety's list?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the industry's evolution started back in 2025 with creators like Ryan Coogler."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "James Wan, Sam Raimi, and Na Hong-jin now lead this 2026 industry ranking."
+    },
+    {
+      "id": "close",
+      "voiceover": "Variety confirmed these visionaries during the 2026 annual report cycle."
+    }
+  ],
+  "sources_used": [
+    "https://variety.com/lists/horror-list-best-directors-actors-2026",
+    "https://variety.com/lists/horror-impact-report"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "topic_slug": "variety-2026-horror-impact-report-directors-actors",
+  "strongest_angle": "A breakdown of Variety's October 2026 Horror Impact List highlighting the top directors, actors, and creative forces shaping modern horror cinema.",
+  "key_facts": [
+    {
+      "fact": "Variety published its second annual Horror Impact Report on October 7, 2026, highlighting top industry figures like James Wan, Curry Barker, and Naomi Ackie.",
+      "source_url": "https://variety.com/lists/horror-list-best-directors-actors-2026",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "Director Na Hong-jin was selected as a key figure in Variety's 2026 Horror Impact Report alongside filmmakers Sam Raimi and James Wan.",
+      "source_url": "https://en.edaily.co.kr/news/eda202610085698",
+      "source_name": "EDDAILY",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Variety's Horror Impact Report originally launched its inaugural edition in October 2025, featuring creators like Ryan Coogler and Osgood Perkins.",
+      "source_url": "https://variety.com/lists/horror-impact-report",
+      "source_name": "Variety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Report Year 2026",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://variety.com/lists/horror-list-best-directors-actors-2026"
+    },
+    {
+      "label": "Report Year 2025",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://variety.com/lists/horror-impact-report"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Variety",
+      "kind": "organization"
+    },
+    {
+      "name": "James Wan",
+      "kind": "person"
+    },
+    {
+      "name": "Curry Barker",
+      "kind": "person"
+    },
+    {
+      "name": "Naomi Ackie",
+      "kind": "person"
+    },
+    {
+      "name": "Na Hong-jin",
+      "kind": "person"
+    },
+    {
+      "name": "Sam Raimi",
+      "kind": "person"
+    },
+    {
+      "name": "Ryan Coogler",
+      "kind": "person"
+    },
+    {
+      "name": "Osgood Perkins",
+      "kind": "person"
+    }
+  ]
+}
