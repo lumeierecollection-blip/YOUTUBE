@@ -1846,9 +1846,14 @@
           "topic": "Trump and Putin's Diesel Deal: Suspending US Sanctions Through April 2027",
           "slug": "trump-putin-diesel-deal-sanctions-suspension",
           "reserved_at": "2026-10-15T14:43:17.315Z"
+        },
+        {
+          "topic": "Ethiopia Accuses Eritrea of Tigray Border Invasion at UN Security Council",
+          "slug": "ethiopia-eritrea-tigray-border-invasion-un-2026",
+          "reserved_at": "2026-10-15T18:06:40.580Z"
         }
       ],
-      "last_generated": "2026-10-15T14:43:17.316Z"
+      "last_generated": "2026-10-15T18:06:40.580Z"
     },
     "10": {
       "channel_name": "Margin Note",
