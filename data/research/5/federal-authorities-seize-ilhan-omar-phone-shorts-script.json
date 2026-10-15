@@ -1,0 +1,65 @@
+{
+  "channel_id": "5",
+  "topic_slug": "federal-authorities-seize-ilhan-omar-phone",
+  "format": "shorts",
+  "hook": "Federal agents seized the mobile phone of Representative Ilhan Omar in an ongoing criminal probe.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Federal agents seized the mobile phone of Representative Ilhan Omar in an ongoing criminal probe.",
+      "b_roll": [
+        "Close up of a mobile phone seized by federal agents in a criminal investigation"
+      ],
+      "text_overlay": {
+        "text": "FEDERAL PHONE SEIZURE"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Homeland Security Investigations executed a court-approved search warrant at the Washington DC home on October 12. Agents took personal devices during the raid. Where did the grand jury subpoenas point next?",
+      "b_roll": [
+        "Exterior shot of a Washington DC home during a search warrant execution",
+        "Homeland Security badge and official documents on a desk"
+      ],
+      "text_overlay": {
+        "text": "OCTOBER 12 RAID"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But multiple relatives received grand jury subpoenas concerning immigration history and paperwork.",
+      "b_roll": [
+        "Grand jury subpoena paperwork resting on a wooden table"
+      ],
+      "text_overlay": {
+        "text": "SUBPOENAS ISSUED"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Investigators target immigration status paperwork for Representative Ilhan Omar and her family members.",
+      "b_roll": [
+        "Investigators reviewing immigration records and legal files",
+        "Federal agency seal on a courtroom document"
+      ],
+      "text_overlay": {
+        "text": "IMMIGRATION PROBE"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Homeland Security Investigations agents continue probing the family immigration records in Washington DC.",
+      "b_roll": [
+        "Capitol building dome in Washington DC under an overcast sky"
+      ],
+      "text_overlay": {
+        "text": "FEDERAL INVESTIGATION"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/ilhan-omar-search-f968cfe403d61ad61812422f1252fd2c",
+    "https://www.cbsnews.com/news/ilhan-omar-subpoenas-relatives-investigation-homeland-security",
+    "https://www.bbc.com/news/articles/cq98zpk30pd5o"
+  ]
+}
