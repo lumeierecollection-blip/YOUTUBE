@@ -2502,9 +2502,14 @@
           "topic": "The Brooklyn DA Crackdown on Eastern European Crypto Scam Servers",
           "slug": "brooklyn-da-crypto-scam-server-bust",
           "reserved_at": "2026-10-15T13:31:01.857Z"
+        },
+        {
+          "topic": "The $8 Million Marchesi Antinori Wine Cellar Heist Investigation",
+          "slug": "marchesi-antinori-8m-wine-heist",
+          "reserved_at": "2026-10-15T14:43:44.816Z"
         }
       ],
-      "last_generated": "2026-10-15T13:31:01.857Z"
+      "last_generated": "2026-10-15T14:43:44.816Z"
     },
     "27": {
       "channel_name": "Trial Files",
