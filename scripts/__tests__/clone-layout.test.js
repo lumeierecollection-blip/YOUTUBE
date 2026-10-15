@@ -7,7 +7,7 @@ import { paletteFor } from "../../src/skills/remotion-render/clone/clone-palette
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 
 for (const t of TREATMENTS) {
-  test(`treatment ${t}: legal at both tilts`, () => { assert.deepEqual(layoutProblems(t, 0), []); assert.deepEqual(layoutProblems(t, 1), []); });
+  test(`treatment ${t}: legal at every index (tilt and the panel's three layouts)`, () => { for (const i of [0, 1, 2, 3, 4, 5]) assert.deepEqual(layoutProblems(t, i), [], `${t} idx ${i}`); });
 }
 
 test("every treatment a profile uses is a treatment that exists", () => {
