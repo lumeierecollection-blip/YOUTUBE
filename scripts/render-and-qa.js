@@ -358,10 +358,10 @@ async function probeDuration(path, streamSelector) {
   return { ok: true, value: Number.isFinite(v) ? v : 0, raw: r.stdout.trim() };
 }
 
-async function silenceSpans(path, endAt) {
+async function silenceSpans(path, endAt, minPause = 0.5) {
   const r = await runChild("ffmpeg", [
     "-hide_banner", "-nostats", "-i", path,
-    "-af", "silencedetect=noise=-40dB:d=0.5",
+    "-af", `silencedetect=noise=-40dB:d=${minPause}`,
     "-f", "null", "-",
   ], { label: "silence/detect" });
   if (r.code !== 0) return { ok: false, error: `ffmpeg silencedetect exited ${r.code} on ${path}` };
@@ -399,24 +399,15 @@ async function detectSilence(videoPath, audioPath) {
   // boundary — run 35817394030 rejected both renders on exactly those.
   const vid = await silenceSpans(videoPath, audioDuration);
   if (!vid.ok) return { ok: false, gaps: [], reason: vid.error };
-  const src = await silenceSpans(audioPath, audioDuration);
+  // The voiceover is scanned for pauses down to 0.2 s: its quiet lead-in is under 0.5 s and was never listed (scripts/lib/silence-match.mjs).
+  const src = await silenceSpans(audioPath, audioDuration, 0.2);
   if (!src.ok) return { ok: false, gaps: [], reason: src.error };
 
-  const START_TOL = 0.4;   // s — mux/encode offset between the two
-  const EXTRA_TOL = 0.3;   // s — how much longer than the source pause is still the same pause
-  // A video silence is legitimate when it lies INSIDE a voiceover pause.
-  // The old test also required it to START within 0.4 s of the pause, which
-  // assumed nothing plays during pauses; with the kalimba bed, the bed can
-  // cover the start of a pause and then decay, so the video's silence begins
-  // later — run 36369197918 ch-1: VO pause 29.19-30.28, video silence
-  // 29.65-30.32, flagged "unmatched". Containment keeps the rule's purpose:
-  // silence while the narration is SPEAKING (a dropout) lies inside no
-  // pause and still fails.
-  const gaps = vid.spans.filter((g) => {
-    if (g.start >= audioDuration - 0.1 || g.duration <= 0.5) return false;
-    const match = src.spans.find((s) => g.start >= s.start - START_TOL && g.end <= s.end + EXTRA_TOL);
-    return !match;
-  });
+  // The matching (and why the video's spans are first put on the voiceover's clock) lives in scripts/lib/silence-match.mjs, where it is unit-tested.
+  const { unmatchedSilences, clockOffset } = await import("./lib/silence-match.mjs");
+  const offset = clockOffset(vid.spans, src.spans);
+  if (Math.abs(offset) > 0.01) console.log(`[silence] the video's clock runs ${offset.toFixed(3)} s from the voiceover's; its pauses are matched on the voiceover's clock`);
+  const gaps = unmatchedSilences(vid.spans, src.spans, audioDuration);
   console.log(`[silence] voiceover pauses ${src.spans.length}, video pauses ${vid.spans.length}, unmatched ${gaps.length}`);
 
   if (gaps.length > 0) {

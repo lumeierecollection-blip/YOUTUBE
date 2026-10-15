@@ -66,7 +66,7 @@ function Display({ shot, B, st, P, profile }) {
       : <span key={key} style={{ color: accent }}>{w}</span>;
   };
   return (
-    <Plate box={B.text} bg={plated ? P.ink : "transparent"} style={{ padding: plated ? "28px 36px" : 0, boxSizing: "border-box", outline: plated ? `3px solid ${P.paper}` : "none", opacity: st.o, transform: `scale(${st.s})`, transformOrigin: B.text.align === "center" ? "50% 40%" : B.text.align === "right" ? "100% 40%" : "0% 40%", textAlign: B.text.align, width: plated ? "auto" : B.text.w, maxWidth: B.text.w }}>
+    <Plate box={B.text} bg={plated ? P.ink : "transparent"} style={{ zIndex: 5, padding: plated ? "28px 36px" : 0, boxSizing: "border-box", outline: plated ? `3px solid ${P.paper}` : "none", opacity: st.o, transform: `scale(${st.s})`, transformOrigin: B.text.align === "center" ? "50% 40%" : B.text.align === "right" ? "100% 40%" : "0% 40%", textAlign: B.text.align, width: plated ? "auto" : B.text.w, maxWidth: B.text.w }}>
       {lines.map((l, i) => (
         <div key={i} style={{ fontFamily: `"${d.family}", Helvetica, Arial, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1.02, letterSpacing: caps ? "0.01em" : "-0.01em", color: inkOn, whiteSpace: "nowrap" }}>
           {l.split(" ").map((w, k, a) => <React.Fragment key={k}>{word(w, k)}{k < a.length - 1 ? " " : ""}</React.Fragment>)}
@@ -80,7 +80,7 @@ function Figure({ shot, B, st, P, profile }) {
   const d = profile.type.display;
   const { size } = fitLines(shot.figure.value, B.text.w, { family: d.family, caps: false, max: 300, min: 90, maxLines: 1 });
   return (
-    <Plate box={B.text} bg="transparent" style={{ opacity: st.o, transform: `scale(${st.s})`, textAlign: B.text.align === "right" ? "right" : "center" }}>
+    <Plate box={B.text} bg="transparent" style={{ zIndex: 5, opacity: st.o, transform: `scale(${st.s})`, textAlign: B.text.align === "right" ? "right" : "center" }}>
       <div style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1, color: readableAccent(P.accent, P.ground), whiteSpace: "nowrap" }}>{shot.figure.value}</div>
       {shot.figure.label ? <div style={{ marginTop: 14, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 40, letterSpacing: "0.12em", textTransform: "uppercase", color: P.ink }}>{shot.figure.label}</div> : null}
     </Plate>

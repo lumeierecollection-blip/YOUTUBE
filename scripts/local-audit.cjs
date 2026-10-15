@@ -513,8 +513,13 @@ async function textGrid(video, beats, fps = 30) {
     const buf = rgbFrame(video, at, W, H);
     if (!buf) continue;
     const g = frameGround(buf, W, H);
-    const x0 = Math.max(0, Math.floor((t.x - 60) * sc)), x1 = Math.min(W - 1, Math.ceil((t.x + t.w + 60) * sc));
-    const y0 = Math.max(0, Math.floor((t.y - 40) * sc)), y1 = Math.min(H - 1, Math.ceil((t.y + t.h + (t.desc || 0) + 40) * sc));
+    // The window is the words' own box plus what the sway can move them (+-30 px across, +-12 down) and a margin: wider than that reaches the
+    // NEIGHBOURS. It used to reach 60 px sideways and 40 up and down, so on a diagram or a photo the ink of a process node or a bright patch of the
+    // picture read as "the words" (CI 38742395747: PROCESS-FULL "centred at x 590", SCENE-LOW "centred at x 593, ending at y 1367" when every
+    // other beat ended at 1312-1331).
+    const PAD_X = 36, PAD_Y = 20;
+    const x0 = Math.max(0, Math.floor((t.x - PAD_X) * sc)), x1 = Math.min(W - 1, Math.ceil((t.x + t.w + PAD_X) * sc));
+    const y0 = Math.max(0, Math.floor((t.y - PAD_Y) * sc)), y1 = Math.min(H - 1, Math.ceil((t.y + t.h + (t.desc || 0) + PAD_Y) * sc));
     let minX = Infinity, maxX = -Infinity, maxY = -Infinity, n = 0;
     for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
       const o = (y * W + x) * 3, l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2];

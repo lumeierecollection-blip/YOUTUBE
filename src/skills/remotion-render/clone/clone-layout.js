@@ -26,9 +26,9 @@ export function treatmentBoxes(treatment, idx = 0) {
     case "strip":
       return { hero: rect(0, 380, 1080, 700), label: rect(90, 1130, 700, 48), text: rect(90, 1210, 900, 420, { align: "left" }), shape: { block: rect(0, 1080, 1080, 24), bar: rect(90, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1112, 900, 6) } };
     case "inset-left":
-      return { hero: rect(0, 260, 600, 1000), label: rect(640, 470, 380, 44), text: rect(640, 520, 380, 560, { align: "left" }), shape: { block: rect(40, 300, 560, 1000), bar: rect(640, 1130, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(640, 450, 380, 6) } };
+      return { hero: rect(0, 260, 540, 1000), label: rect(580, 470, 440, 48), text: rect(580, 520, 440, 600, { align: "left" }), shape: { block: rect(40, 300, 500, 1000), bar: rect(580, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(580, 450, 440, 6) } };
     case "inset-right":
-      return { hero: rect(480, 260, 600, 1000), label: rect(60, 470, 380, 44), text: rect(60, 520, 380, 560, { align: "right" }), shape: { block: rect(480, 300, 560, 1000), bar: rect(140, 1130, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 380, 6) } };
+      return { hero: rect(540, 260, 540, 1000), label: rect(60, 470, 440, 48), text: rect(60, 520, 440, 600, { align: "right" }), shape: { block: rect(540, 300, 500, 1000), bar: rect(200, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 440, 6) } };
     case "plate":
     default:
       return { hero: rect(180, 380, 720, 720, { plate: true }), label: rect(90, 1160, 900, 48), text: rect(90, 1240, 900, 380, { align: "center" }), shape: { block: rect(140, 420, 720, 720), bar: rect(390, 1700, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(90, 1142, 900, 6) } };
