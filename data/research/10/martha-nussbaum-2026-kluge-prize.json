@@ -1,0 +1,70 @@
+{
+  "topic_slug": "martha-nussbaum-2026-kluge-prize",
+  "strongest_angle": "Examine the philosophical contributions of Martha Nussbaum following her September 2026 selection for the prestigious John W. Kluge Prize by the Library of Congress.",
+  "key_facts": [
+    {
+      "fact": "The Library of Congress announced on September 22, 2026, that Professor Martha C. Nussbaum is the recipient of the 2026 John W. Kluge Prize for Achievement in the Study of Humanity.",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+      "source_name": "University of Chicago News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The John W. Kluge Prize is awarded every other year by the Library of Congress to recognize work that advances the understanding of the human experience.",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+      "source_name": "University of Chicago News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Martha C. Nussbaum received her Bachelor of Arts from New York University and her Master of Arts and Doctor of Philosophy from Harvard University.",
+      "source_url": "https://www.law.uchicago.edu/faculty/nussbaum",
+      "source_name": "University of Chicago Law School",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Kluge Prize award year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum"
+    },
+    {
+      "label": "Start year of World Institute for Development Economics Research advisory role",
+      "value": 1986,
+      "unit": "year",
+      "source_url": "https://www.law.uchicago.edu/faculty/nussbaum"
+    },
+    {
+      "label": "End year of World Institute for Development Economics Research advisory role",
+      "value": 1993,
+      "unit": "year",
+      "source_url": "https://www.law.uchicago.edu/faculty/nussbaum"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Martha C. Nussbaum",
+      "kind": "person"
+    },
+    {
+      "name": "Library of Congress",
+      "kind": "organization"
+    },
+    {
+      "name": "John W. Kluge Prize",
+      "kind": "object"
+    },
+    {
+      "name": "University of Chicago",
+      "kind": "organization"
+    },
+    {
+      "name": "New York University",
+      "kind": "organization"
+    },
+    {
+      "name": "Harvard University",
+      "kind": "organization"
+    }
+  ]
+}
