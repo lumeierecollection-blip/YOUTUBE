@@ -2,65 +2,67 @@
   "channel_id": "49",
   "topic_slug": "terry-matalas-visionquest-mcu-timeline-placement",
   "format": "shorts",
-  "hook": "You won't believe when VisionQuest actually happens because Terry Matalas just flipped the whole MCU timeline.",
+  "hook": "VisionQuest smashes the timeline by landing years after WandaVision.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "You won't believe when VisionQuest actually happens because Terry Matalas just flipped the whole MCU timeline.",
+      "voiceover": "VisionQuest smashes the timeline by landing years after WandaVision.",
       "b_roll": [
-        "Portrait of Paul Bettany in character",
-        "Title logo for VisionQuest"
+        "Title card showing VisionQuest logo",
+        "Cinematic glitch effect over timeline graphic"
       ],
       "text_overlay": {
-        "text": "VisionQuest Timeline Shocker"
+        "text": "Timeline Shocker"
       }
     },
     {
       "id": "setup",
-      "voiceover": "Paul Bettany previously expected the show to take place in 2024. Fans assumed that date matched the broader Marvel chronology. Where does the super-powered robot actually fit?",
+      "voiceover": "Showrunner Terry Matalas revealed in a Polygon interview that years have passed. Paul Bettany portrays the hero introduced in the 2015 film Avengers: Age of Ultron. Where does Tommy Shepherd fit into this?",
       "b_roll": [
-        "Timeline graphic showing 2024",
-        "Clip of the robot from Avengers: Age of Ultron"
+        "Terry Matalas interview footage clip",
+        "Paul Bettany in Avengers Age of Ultron",
+        "Tommy Shepherd character art"
       ],
       "text_overlay": {
-        "text": "The 2024 Expectation"
+        "text": "Years After WandaVision"
       }
     },
     {
       "id": "rehook",
-      "voiceover": "Terry Matalas revealed a completely different position for the WandaVision spin-off.",
+      "voiceover": "GamesRadar reported that the synthezoid retreats into his own head.",
       "b_roll": [
-        "Portrait of Terry Matalas",
-        "WandaVision promotional art"
+        "Synthezoid internal diagnostics graphic",
+        "MCU multiverse map animation"
       ],
       "text_overlay": {
-        "text": "The Matalas Reveal"
+        "text": "Inside The Mind"
       }
     },
     {
       "id": "payoff",
-      "voiceover": "Avengers: Age of Ultron introduced the character back in 2015. Terry Matalas revealed a timeline position that contradicts the earlier 2024 expectation.",
+      "voiceover": "Terry Matalas confirmed the show runs concurrently with Spider-Man: Brand New Day. Tommy Shepherd receives a contact from his grieving father inside the mind.",
       "b_roll": [
-        "TechRadar article excerpt on screen",
-        "Archive footage from 2015 release"
+        "Spider-Man Brand New Day title treatment",
+        "Father and son digital projection scene"
       ],
       "text_overlay": {
-        "text": "Contradicting 2024"
+        "text": "Brand New Day Concurrency"
       }
     },
     {
       "id": "close",
-      "voiceover": "The 2015 debut origin defines the updated chronology.",
+      "voiceover": "VisionQuest arrives years after WandaVision to shake up the timeline.",
       "b_roll": [
-        "Final close-up of Vision in Avengers: Age of Ultron"
+        "Vision silhouette fading into digital code"
       ],
       "text_overlay": {
-        "text": "Origin 2015"
+        "text": "VisionQuest"
       }
     }
   ],
   "sources_used": [
-    "https://www.techradar.com/streaming/disney-plus/visionquest-marvel-timeline",
-    "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas"
+    "https://screenrant.com/visionquest-mcu-timeline-comparison-confirmed-terry-matalas",
+    "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
+    "https://www.gamesradar.com/entertainment/marvel-tv-shows/visionquest-showrunner-confirms-when-the-upcoming-tv-show-takes-place-on-the-marvel-timeline"
   ]
 }
