@@ -2,65 +2,64 @@
   "channel_id": "9",
   "topic_slug": "ethiopia-eritrea-tigray-border-invasion-un-2026",
   "format": "shorts",
-  "hook": "Ethiopia accused Eritrea of a massive invasion into Tigray, raising fears of a renewed regional war.",
+  "hook": "Eritrea's all-out invasion of the Tigray region has shocked Ethiopia into filing an emergency UN complaint.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "Ethiopia accused Eritrea of a massive invasion into Tigray, raising fears of a renewed regional war.",
+      "voiceover": "Eritrea's all-out invasion of the Tigray region has shocked Ethiopia into filing an emergency UN complaint.",
       "b_roll": [
-        "Satellite map highlighting the Tigray region border."
+        "Map showing the border between Eritrea and Ethiopia"
       ],
       "text_overlay": {
-        "text": "Eritrean Invasion Accusation"
+        "text": "Border Invasion"
       }
     },
     {
       "id": "setup",
-      "voiceover": "On Saturday, Ethiopian military vehicles and troops entered Adigrat near the border while residents celebrated. Where did the 60 kilometers advance reach?",
+      "voiceover": "On October 9, Foreign Minister Gedion Timothewos sent an official letter to the United Nations Security Council. Ethiopian military vehicles and troops entered Adigrat near the border. Where will this conflict lead?",
       "b_roll": [
-        "Archive footage of troops moving into Adigrat.",
-        "Map showing distance to the border."
+        "UN headquarters building",
+        "Military vehicles in Adigrat"
       ],
       "text_overlay": {
-        "text": "Troops Enter Adigrat"
+        "text": "UN Security Council Appeal"
       }
     },
     {
       "id": "rehook",
-      "voiceover": "Eritrea described Ethiopia's actions as a declaration of war, but asked the United Nations to take deterrent measures.",
+      "voiceover": "Foreign Minister Gedion Timothewos called the military incursion a blatant act of aggression.",
       "b_roll": [
-        "UN headquarters building shot."
+        "Border outpost sign"
       ],
       "text_overlay": {
-        "text": "Declaration of War"
+        "text": "Act of Aggression"
       }
     },
     {
       "id": "payoff",
-      "voiceover": "Addis Ababa reported a 60 kilometers advance as Ethiopian troops entered Adigrat near the border.",
+      "voiceover": "Troops secured the northern territory.",
       "b_roll": [
-        "UN Security Council chamber.",
-        "Document graphic showing the letter to the UN."
+        "Tigray region landscape",
+        "Troops deployed in the north"
       ],
       "text_overlay": {
-        "text": "UN Security Council Alert"
+        "text": "Right to Self-Defense"
       }
     },
     {
       "id": "close",
-      "voiceover": "Eritrea urged the United Nations to intervene in the standoff.",
+      "voiceover": "Ethiopia filed the official letter regarding Tigray at the United Nations.",
       "b_roll": [
-        "Border map overview."
+        "Official UN document"
       ],
       "text_overlay": {
-        "text": "UN Intervention Requested"
+        "text": "Official UN Letter"
       }
     }
   ],
   "sources_used": [
     "https://www.bbc.com/news/articles/c65ynvw250y1o",
-    "https://news.un.org/en/story/2026/10/1168570",
-    "https://www.aljazeera.com/news/2026/10/10/eritrea-urges-un-to-intervene-in-standoff-with",
+    "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war",
     "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b"
   ]
 }
