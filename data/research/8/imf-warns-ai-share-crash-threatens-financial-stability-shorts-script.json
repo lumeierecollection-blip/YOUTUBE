@@ -1,0 +1,69 @@
+{
+  "channel_id": "8",
+  "topic_slug": "imf-warns-ai-share-crash-threatens-financial-stability",
+  "format": "shorts",
+  "hook": "The International Monetary Fund warned that an artificial intelligence share crash is coming.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The International Monetary Fund warned that an artificial intelligence share crash is coming.",
+      "b_roll": [
+        "Digital financial market display showing downward trend",
+        "Abstract server racks with warning light"
+      ],
+      "text_overlay": {
+        "text": "AI Share Crash Risk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 13, 2026, the International Monetary Fund published its Global Financial Stability Report. Authors Athanasios Vamvakidis and Jason Wu detailed rising market risks. What caused the report?",
+      "b_roll": [
+        "IMF building exterior in Washington",
+        "Document pages turning on screen",
+        "Financial analysts reviewing market charts"
+      ],
+      "text_overlay": {
+        "text": "October 13, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Weaker investment in artificial intelligence could trigger a sharp market correction today.",
+      "b_roll": [
+        "Stock exchange trading floor ticker flashing red",
+        "Data graph showing steep drop"
+      ],
+      "text_overlay": {
+        "text": "Rising Leverage"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Guardian reported that high valuations create severe danger. Background analysis section 1.1 reveals heavy technology sector debt. Technology firms face massive earnings expectations according to the Global Financial Stability Report.",
+      "b_roll": [
+        "Newspaper headlines scrolling across screen",
+        "Server room lights flickering",
+        "Financial data stream scrolling fast"
+      ],
+      "text_overlay": {
+        "text": "Section 1.1 Analysis"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "World financial stability faces 2026 threats.",
+      "b_roll": [
+        "Global financial district skyline at dusk",
+        "Final market close ticker"
+      ],
+      "text_overlay": {
+        "text": "Global Financial Stability"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026",
+    "https://www.imf.org/en/blogs/articles/2026/10/12/global-financial-markets-face-rising-risks-from-ai-bond-yields-and-cyberattacks"
+  ]
+}
