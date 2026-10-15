@@ -1,0 +1,68 @@
+{
+  "channel_id": "8",
+  "topic_slug": "turkeys-investment-fund-bubble-burst-2026",
+  "format": "shorts",
+  "hook": "Half a million investors just lost access to $20 billion in a sudden market freeze.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Half a million investors just lost access to $20 billion in a sudden market freeze.",
+      "b_roll": [
+        "Market ticker freezing",
+        "Anxious investors looking at phones"
+      ],
+      "text_overlay": {
+        "text": "$20 Billion Frozen"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Turkish regulators ordered the liquidation of 131 funds across 7 asset managers after payments stopped. Which firms failed first?",
+      "b_roll": [
+        "Official government seal in Ankara",
+        "Financial charts showing steady 3-year growth"
+      ],
+      "text_overlay": {
+        "text": "131 Funds Liquidated"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, two Tera funds hold 6.5 billion euros alone as pressure builds.",
+      "b_roll": [
+        "Bank headquarters exterior",
+        "Redemption request forms stacking up"
+      ],
+      "text_overlay": {
+        "text": "Redemption Freeze"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Independent banks now oversee the asset liquidations after the September disruption. Reuters confirmed the systemic collapse.",
+      "b_roll": [
+        "Independent auditors reviewing ledgers",
+        "Reuters news terminal screen"
+      ],
+      "text_overlay": {
+        "text": "6-Month Wait"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Those 131 liquidated funds left half a million investors waiting.",
+      "b_roll": [
+        "Empty trading floor",
+        "Clock ticking downward"
+      ],
+      "text_overlay": {
+        "text": "500,000 Investors"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02",
+    "https://www.dw.com/en/turkeys-stock-market-scandal-affects-nearly-half-a-million-investors-police-have-made-several-arrests-and-an-akp-politician-has-resigned/a-79494710",
+    "https://www.al-monitor.com/originals/2026/10/turkeys-20b-fund-crisis-who-profited-and-who-will-pay"
+  ]
+}
