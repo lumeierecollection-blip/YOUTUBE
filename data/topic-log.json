@@ -1208,9 +1208,14 @@
           "topic": "Reuters Investigation Uncovers Iran's Global Apparatus Hunting Dissidents",
           "slug": "reuters-investigation-irans-global-dissident-hunting-apparat",
           "reserved_at": "2026-10-15T13:32:34.411Z"
+        },
+        {
+          "topic": "Turkish Authorities Raid Halk TV Headquarters Amid Corruption Probe",
+          "slug": "turkish-authorities-raid-halk-tv-headquarters",
+          "reserved_at": "2026-10-15T14:47:04.026Z"
         }
       ],
-      "last_generated": "2026-10-15T13:32:34.411Z"
+      "last_generated": "2026-10-15T14:47:04.026Z"
     },
     "6": {
       "channel_name": "Archive Room",
