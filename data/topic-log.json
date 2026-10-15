@@ -1843,9 +1843,14 @@
           "topic": "Pope Leo XIV and the Philosophical Boundaries of AI Consciousness",
           "slug": "pope-leo-xiv-ai-consciousness-debate",
           "reserved_at": "2026-10-10T14:48:45.553Z"
+        },
+        {
+          "topic": "Martha Nussbaum and the 2026 Library of Congress Kluge Prize",
+          "slug": "martha-nussbaum-2026-kluge-prize",
+          "reserved_at": "2026-10-15T11:10:21.160Z"
         }
       ],
-      "last_generated": "2026-10-10T14:48:45.553Z"
+      "last_generated": "2026-10-15T11:10:21.160Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
