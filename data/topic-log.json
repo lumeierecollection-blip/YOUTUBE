@@ -3080,9 +3080,14 @@
           "topic": "Navigating the Low-Hire Low-Fire Job Market in October 2026",
           "slug": "navigating-low-hire-low-fire-job-market-2026",
           "reserved_at": "2026-10-15T11:07:03.553Z"
+        },
+        {
+          "topic": "Anthropic Claude Motion and Live Dashboards: Building Workflow Visualizations",
+          "slug": "anthropic-claude-motion-live-dashboards-productivity",
+          "reserved_at": "2026-10-15T13:29:17.358Z"
         }
       ],
-      "last_generated": "2026-10-15T11:07:03.553Z"
+      "last_generated": "2026-10-15T13:29:17.358Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
