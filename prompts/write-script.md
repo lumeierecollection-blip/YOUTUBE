@@ -66,7 +66,16 @@ the HOOK sentence, word for word.
    Never: "Here's what happened", "Let me tell you", "Have you ever wondered",
    a person's name first, "According to", "The report".
 2. **SETUP** (section `setup`, 3 sentences, 26–34 words). Just enough context for
-   the payoff to land. Each sentence adds one specific fact — a number, a name,
+   the payoff to land. **The FIRST setup sentence says WHAT HAPPENED** — the
+   event itself, as the research's `strongest_angle` and `key_facts` state it:
+   who did what, to or with whom, where and when (shape: "On [date], [who] [did what]
+   to or with [whom] at [where].", filled ONLY with what the research states). A
+   charge, a statute, a sentence or a number is a CONSEQUENCE of the event, not
+   the event: a viewer who has heard only the charges and never the incident has
+   been told nothing ("raising intense legal questions" is filler, not context —
+   never write it). Only facts the research states; if it does not state the
+   event, say what it does state and name the gap rather than inventing one.
+   Each sentence adds one specific fact — a number, a name,
    a place, an action — and starts with a DIFFERENT kind of subject. The LAST
    setup sentence ends on a question the viewer now has (a literal question,
    or a line that withholds the answer) — and the question NAMES its figure,

@@ -49,6 +49,7 @@ import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasSfxEvents } from "./visual/canvas-sfx.js";
+import { toneOf } from "../../utils/video-tone.js";
 import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
@@ -436,6 +437,10 @@ async function main() {
   const channel = loadChannel(channelId);
   const script = loadScript(scriptPath);
   const sections = toContentSections(script);
+  // THE VIDEO'S TONE (src/utils/video-tone.js): the same decision the voice was read under. A grave or serious story plays no kalimba
+  // bed and a restrained (or no) SFX set — owner, 2026-10-15: "the sound is too playful".
+  const videoTone = toneOf({ text: (script.sections || []).map((s) => s.voiceover || "").join(" "), channelTone: channel.tone });
+  console.log(`[tone] ${videoTone.gravity} — ${videoTone.emotion}; music bed ${videoTone.music ? "on" : "OFF"}; SFX max ${Number.isFinite(videoTone.sfx.max) ? videoTone.sfx.max : "unlimited"}`);
 
   if (sections.length === 0) {
     console.error("Script has no voiceover sections — nothing to render.");
@@ -599,7 +604,7 @@ async function main() {
     // deterministically from channel + script filename (kalimba-pool.js).
     // DirectedShorts played the voiceover only until this — no bed at all.
     const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
-    sentencePlan.kalimba = kal.file;
+    sentencePlan.kalimba = videoTone.music ? kal.file : null;
     // Full-canvas style (visual/full-canvas.jsx) when the resolved plan
     // carries canvas content. The accent colour lives in channels.json
     // (colors.canvas_accent — CLAUDE.md: colour never in a script); a channel
@@ -642,7 +647,7 @@ async function main() {
     const sfx = sentencePlan.canvas ? (() => {
       const recorded = recordedFiles();
       if (!recorded.size) console.warn("::warning::[sfx] no judged-recorded SFX (sfx/cc0/verdicts.json missing or empty) — this video plays no SFX");
-      const r = canvasSfxEvents(beats, { peaks: peakFrames(30), recorded });
+      const r = canvasSfxEvents(beats, { peaks: peakFrames(30), recorded, tone: videoTone });
       return { events: r.events, warnings: r.dropped.map((d) => `[sfx] dropped: ${d}`) };
     })() : semanticSfxEvents(beats);
     const playable = [];
@@ -808,7 +813,7 @@ async function main() {
   // fail the render. hasUnderscore just tells the composition whether to
   // render the <Audio> bed at all; the actual staticFile() resolution
   // happens in motion-graphics.jsx, at render time, inside the bundle.
-  const hasUnderscore = existsSync(join(__dirname, "public", "music", "underscore.mp3"));
+  const hasUnderscore = videoTone.music && existsSync(join(__dirname, "public", "music", "underscore.mp3"));
 
   // DirectedShorts expects { plan } as input prop.
   // All other compositions expect the legacy prop bag.

@@ -119,14 +119,19 @@ export const push = (local, dur, fps, amp = AMBIENT.amp) => { const s = Math.max
 // The push decelerates (ease-out, monotone, never past 1): fastest at the beat's start, when only the first words are in and the frame
 // is sparse, slowing as the frame fills (layout-proof 38017734111: a linear push left the first 2 s of a long words-only beat under the
 // pace threshold while the rest moved).
-export const ambientScale = (local, dur, fps, words = false) => { const s = Math.max(1, dur / fps), amp = words ? 0.26 : 0.22, a = Math.min(amp, 0.04 * s), u = clamp01(local / Math.max(1, dur)); return 1 - a + a * u; };   // constant speed, 4%/s: a half-ease-out settle decelerated under the pace threshold in the last seconds of a 10 s number beat (layout-proof 38038331178 beat 30: 1.5 s static)
+export const ambientScale = () => 1;   // NO ZOOM (owner, 2026-10-15: "I don't like the zoom ... it's leaving"). This was a settle from 78-97% to 100% at 4%/s, which on a 13 s beat read as a slow zoom on a small object. The universal sway (sway.js) still keeps every beat moving; the signature stays so the callers do not change.
 export const sweep = (local, fps, amp, dur = 6 * fps) => push(local, dur, fps, amp);
 // A long beat needs a longer move, not a slower one (board 38034289156: the Gemini narrator's beats run 6-10 s and a fixed 6-10% push sat
 // still 8-10 s). `grow(local, dur, fps, floor)` is the push a picture makes over its beat: at least `floor`, else 3%/s up to 30%, as
 // half ease-out / half linear (monotone, never past its end, never reversing).
-export const grow = (local, dur, fps, floor = 0.06, rate = 0.03, cap = 0.30) => growAmount(dur / fps, floor, rate, cap) * clamp01(local / Math.max(1, dur));   // constant speed (a decelerating push faded under the pace threshold on a 10 s photo beat, layout-proof 38037366442). The RATE belongs to the element: 3%/s up to 30% by default (art, plates, maps, graphs); a small framed photo moves too few pixels to register under that and takes 8%/s up to 80% (1056); a full-bleed photo takes 4%/s up to 40% (SceneFull). One shared rate pushed a logo plate out of the box the flat-look audit judges (board 38047691386 ch 6).
+export const grow = () => 0;   // NO ZOOM (owner, 2026-10-15): nothing pushes in over its beat any more. Callers write `1 + grow(...)`, so 0 is "stays its laid-out size". growAmount (canvas-layout.js) is still what the layout RESERVES room for, which is now only slack.
 const AMBIENT_SKIP = [...FULL_PHOTO_COMPS, ...FRAMED_PHOTO_COMPS, "DATA-FULL", "MAP-CENTERED", "ENTITY-ART"];
 const camP = (local, dur, start = 0) => easeInOut(clamp01((local - start) / Math.max(1, (dur - start) * CAMERA.endAt)));
+// THE CAMERA IS A PAN, NOT A ZOOM (owner, 2026-10-15). A photo sits at a fixed 16% overscan and slides sideways 14% of its width across the beat at constant
+// speed (no ease, so no still moment), alternating direction by beat. The 8%-or-more floor (CAMERA.min) is met by SHIFT, which the camera-moves audit and
+// gemini-frame-review --camera-check both accept ("larger, or shifted sideways, up or down"). The overscan is static: nothing scales over time.
+export const PAN = Object.freeze({ overscan: 1.16, travel: 14 });
+export const panX = (local, dur, start, idx) => (idx % 2 ? -1 : 1) * PAN.travel * (clamp01((local - start) / Math.max(1, dur - start)) - 0.5);
 export const cameraStart = (c) => (Number.isFinite(c?.entity_pop?.frame) && c.photo ? Math.max(0, c.entity_pop.frame) : 0);
 const Hero = React.createContext(null);
 // The colours a beat's text and chart furniture are drawn in. A dark beat
@@ -821,11 +826,12 @@ function DataFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   // laid-out size about its floor on the frame's axis — inside its band at every frame.
   // the graph grows to its laid-out size; a long beat grows it further than CAMERA.graph so it keeps moving (never past 1)
   const gA = Math.max(CAMERA.graph, Math.min(0.30, 0.03 * Math.max(1, dur / fps)));
-  const gk = 1 / (1 + gA) + (1 - 1 / (1 + gA)) * (grow(local, dur, fps, gA) / gA);
+  const gk = 1;   // NO ZOOM (owner, 2026-10-15): the figure keeps its laid-out size and PANS sideways across the beat instead (gx below), 8% of the frame.
+  const gx = (idx % 2 ? -1 : 1) * CAMERA.graph * 1080 * (clamp01(local / Math.max(1, dur)) - 0.5);
   // About the chart's own floor: the middle band's floor, or — a chart in the upper middle band (its headline under it) — its bottom edge.
   const pivotY = ch && ch.y + ch.h < BOTTOM - 100 ? ch.y + ch.h : BOTTOM;
   return (
-    <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${pivotY}px`, transform: `scale(${gk.toFixed(4)})` }}>
+    <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${pivotY}px`, transform: `translateX(${gx.toFixed(1)}px) scale(${gk.toFixed(4)})` }}>
       <HeroEl name="chart" b={ch}>{chart}</HeroEl>
       {B.number && (vt === "PIE" || vt === "GAUGE") ? <NumberHero b={B.number} q={parseQuantity(`${d.percent}%`)} t={count} local={local} fps={fps} at={tl.numberAt} color={th.ink} m={m} hero={false} /> : null}
       {B.label ? <DataLabel b={B.label} name="label" color={th.ink} local={local} fps={fps} at={tl.labelAt} /> : null}
@@ -857,7 +863,8 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
     // DOCUMENT: a slow scroll down the page. MONEY: a slow push.
     // A full-bleed photo keeps moving after the camera's ease has finished (a 5 s SCENE-FULL beat sat still for 1.75-2.75 s: board 38047691386 ch 6 beat 0,
     // ch 9 beat 4): the ease-in-out reaches CAMERA.photo at CAMERA.endAt of the beat and stops, so the rest of the beat grows at a constant 4%/s.
-    const scale = 1 + Math.max(CAMERA.photo * p01, grow(local - cameraStart(c), dur - cameraStart(c), fps, CAMERA.photo, 0.04, 0.40));
+    const scale = PAN.overscan;   // static overscan, not an animated zoom
+    const px = panX(local, dur, cameraStart(c), idx);
     const ty = comp === "DOCUMENT" ? lerp(0, -4, p01) : 0;
     // (The major beat's circle reveal is gone: a mask is not a pop — owner's spec 2026-10-02.)
     if (part === "header") {
@@ -908,8 +915,8 @@ function SceneFull({ c, L, local, dur, fps, accent, idx, part = "body" }) {
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", }}>
           <Img src={staticFile(c.photo.asset)} style={{ width: "100%", height: "100%", objectFit: "cover",
             objectPosition: c.photo.position || B.photo?.focus || (comp === "DOCUMENT" ? "50% 0%" : comp === "ARCHITECTURE" ? "50% 50%" : "50% 30%"),
-            transformOrigin: comp === "DOCUMENT" ? "50% 0%" : `${idx % 2 ? 35 : 65}% 40%`,
-            transform: `translateY(${ty.toFixed(2)}%) scale(${scale.toFixed(4)})`, filter: comp === "DOCUMENT" ? "none" : "saturate(0.92) contrast(1.05)" }} />
+            transformOrigin: comp === "DOCUMENT" ? "50% 0%" : "50% 50%",
+            transform: `translateX(${px.toFixed(2)}%) translateY(${ty.toFixed(2)}%) scale(${scale.toFixed(4)})`, filter: comp === "DOCUMENT" ? "none" : "saturate(0.92) contrast(1.05)" }} />
           <div style={{ position: "absolute", inset: 0, background: veil }} />
         </div>
       </HeroEl>
@@ -1023,7 +1030,7 @@ function EntityArt({ c, L, local, dur, fps, accent, idx, part = "body" }) {
       <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, ...flat }}>
         <div style={{ position: "absolute", inset: 0, transformOrigin: "50% 100%", transform: `scale(${fk.toFixed(4)})` }}>
           <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", border: `6px solid ${th.ink}`, overflow: "hidden" }}>
-            <Img src={staticFile(a.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", transformOrigin: "50% 50%", transform: `scale(${(1 + CAMERA.photo * easeInOut(live)).toFixed(4)})` }} />
+            <Img src={staticFile(a.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", transformOrigin: "50% 50%", transform: "none" }} />
           </div>
         </div>
       </div>
@@ -1146,7 +1153,7 @@ function PhotoFrame({ c, L, local, dur, fps, accent, idx, part = "body" }) {
   const p = clamp01(local / Math.max(1, dur));
   const img = (extra = {}) => (
     <Img src={staticFile(c.photo.asset)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: c.photo.position || b.focus || "50% 40%",
-      transformOrigin: `${idx % 2 ? 30 : 70}% 40%`, transform: `scale(${(1 + Math.max(CAMERA.photo * camP(local, dur, cameraStart(c)), grow(local - cameraStart(c), dur - cameraStart(c), fps, CAMERA.photo, 0.08, 0.80))).toFixed(4)})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
+      transformOrigin: "50% 50%", transform: `translateX(${panX(local, dur, cameraStart(c), idx).toFixed(2)}%) scale(${PAN.overscan})`, filter: "saturate(0.92) contrast(1.05)", ...extra }} />
   );
   const bar = (x, y, w, h) => <div style={{ position: "absolute", left: x, top: y, width: w, height: h, backgroundColor: accent }} />;
   const f = b.frame;
@@ -1551,14 +1558,14 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   // on a dark ground, darker on a light one, the channel's hue kept. (It was a fixed lift on dark beats only.)
   if (c.dark && !c.photo) accent = liftAccent(accent);
   if (!c.photo) accent = readableAccent(accent, c.ground_color || GROUND);
-  const zoom0 = (c.motion_tier || "medium") === "major" ? majorZoom(L) : null;
+  const zoom0 = null;   // NO ZOOM (owner, 2026-10-15): a "major" beat no longer zooms; majorZoom() stays for its audits.
   const zk0 = zoom0 ? 1 + (zoom0.k - 1) * easeInOut(clamp01(bodyLocal / Math.max(1, dur))) : 1;
   // Zones: the camera and the major zoom move only as far as keeps the body inside its zone.
   const fitted = keepBodyInZone(L, cameraAt(c, L, bodyLocal, dur, fps), zoom0, zk0, !!c.photo && PHOTO_COMPS.includes(L.composition));
   // still: the pop-up compositor (PopGroups) — the camera is static, no push, no zoom.
   // A shot's framed photo is not a zoned element the camera clamp can see (elementType: photo), so a
   // push could carry it across a zone edge: the camera is still on those shots, as in the reference.
-  const shotStill = still || FRAMED_PHOTO_COMPS.includes(L.composition);
+  const shotStill = true;   // NO ZOOM (owner, 2026-10-15): the camera-through-information moves (camera_focus) scale and translate the body, so they are off too.
   const cam = shotStill ? { s: 1, x: 0, y: 0 } : fitted.cam, zoom = zoom0, zk = shotStill ? 1 : fitted.zk;
   // AMBIENT (owner, 2026-10-09: "the screen must never be static inside a beat"): a beat whose picture has no motion of its
   // own (words, numbers, objects, lists, diagrams) settles into place — it grows from 97% to 100% of its size about the

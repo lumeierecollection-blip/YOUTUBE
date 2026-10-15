@@ -57,6 +57,7 @@ export const familyOf = (comp) => String(comp || "").split("-")[0];
  * @param beats DirectedShorts canvas beats ({ start_frame, duration_frames, scene: { canvas } })
  * @param opts.peaks    { [file]: frames from the file's start to its loudest sample } (default 0)
  * @param opts.recorded Set of files judged "recorded"; when given, any other file is dropped
+ * @param opts.tone     video-tone.js toneOf() result; its sfx.max / sfx.deny only remove sounds (default: none removed)
  * @returns {{ events: Array<{trigger, role, file, db, atFrame, eventFrame, peakFrames, beat, reason}>, dropped: string[] }}
  */
 export function canvasSfxEvents(beats = [], opts = {}) {
@@ -116,12 +117,25 @@ export function canvasSfxEvents(beats = [], opts = {}) {
   // 2. Transitions alternate whoosh / whip.
   let alt = 0;
   for (const e of kept) if (e.kind === "transition") e.role = alt++ % 2 ? "whip" : "whoosh";
+  // 2b. THE VIDEO'S TONE (src/utils/video-tone.js; owner, 2026-10-15: "the sound is too playful"): a grave story plays no effects, a serious
+  //     one at most `tone.sfx.max` and never the playful sounds (whip, swish). Only ever removes — every rule above and below still holds.
+  if (opts.tone?.sfx) {
+    const { max, deny } = opts.tone.sfx;
+    kept = kept.filter((e) => {
+      if (deny.includes(e.role)) { why(e, `a ${opts.tone.gravity} story plays no ${e.role}`); return false; }
+      return true;
+    });
+    if (Number.isFinite(max) && kept.length > max) {
+      kept.sort((a, b) => rank(a) - rank(b) || a.eventFrame - b.eventFrame).slice(max).forEach((e) => why(e, `a ${opts.tone.gravity} story plays at most ${max} effects`));
+      kept = kept.sort((a, b) => rank(a) - rank(b) || a.eventFrame - b.eventFrame).slice(0, max).sort((a, b) => a.eventFrame - b.eventFrame);
+    }
+  }
   // 3. Only judged-recorded files; a transition whose sound was not judged recorded takes the other.
   if (recorded) {
     kept = kept.filter((e) => {
       if (recorded.has(SFX_PALETTE[e.role].file)) return true;
       const other = e.role === "whoosh" ? "whip" : e.role === "whip" ? "whoosh" : null;
-      if (other && recorded.has(SFX_PALETTE[other].file)) { e.role = other; return true; }
+      if (other && !(opts.tone?.sfx?.deny || []).includes(other) && recorded.has(SFX_PALETTE[other].file)) { e.role = other; return true; }
       why(e, `${SFX_PALETTE[e.role].file} not judged "recorded"`);
       return false;
     });

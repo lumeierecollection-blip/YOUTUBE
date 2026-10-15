@@ -104,6 +104,7 @@ function parseScriptForTTS(scriptContent, isJson = false) {
  * subtitle file for caption sync.
  */
 import { geminiVoiceFor } from "./gemini-voice.js";
+import { toneOf } from "./video-tone.js";
 export { geminiVoiceFor };
 
 async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
@@ -118,8 +119,11 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const srtPath = join(outputDir, `${topic}-vo.srt`);
   const wordsPath = join(outputDir, `${topic}-vo-words.json`);
 
-  const rate = settings.rate || "+0%";
-  const pitch = settings.pitch || "+0Hz";
+  // THE VIDEO'S TONE (video-tone.js): what the story is about decides how it is read. A channel's own tts_rate / tts_pitch still win.
+  const tone = toneOf({ text: fullText, channelTone: settings.tone });
+  console.log(`[tone] ${tone.gravity} — ${tone.emotion}${tone.hits.length ? ` (read from: ${tone.hits.slice(0, 6).join(", ")})` : ""}`);
+  const rate = settings.rate || tone.edge.rate || "+0%";
+  const pitch = settings.pitch || tone.edge.pitch || "+0Hz";
 
   // Write text to a temp file to avoid shell escaping issues with special
   // characters (Unicode, quotes, etc.) in the inline --text argument.
@@ -135,7 +139,7 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   // SYNTHETIC 4/10 and gemini-3.1-flash-tts-preview HUMAN 9/10 on the same sentence. src/utils/tts_gemini.py writes the mp3, the
   // sentence SRT and per-word timings (faster-whisper alignment) in tts_words.py's exact shape; any failure falls through to the chain below.
   if (process.env.TTS_PROVIDER !== "edge" && ["GEMINI_API_KEY_4", "GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3"].some((k) => process.env[k])) {
-    const g = geminiVoiceFor(voice, settings.gemini_voice);
+    const g = geminiVoiceFor(voice, settings.gemini_voice, tone.gravity);
     const helper = join(ROOT, "src", "utils", "tts_gemini.py");
     const args = `--voice "${g.voice}" --style "${g.style.replace(/"/g, "'")}" --file "${tmpTextPath}" --display-file "${displayPath}" --mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
     const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
@@ -334,6 +338,7 @@ async function main() {
         pitch: channel.tts_pitch,
         python: channel.tts_python,
         gemini_voice: channel.gemini_voice,
+        tone: channel.tone,
         channel: channelId,
       });
     } catch (err) {

@@ -3,6 +3,7 @@
 // sources and the WAV peak reader — not the files.
 import { canvasSfxEvents, sfxRuleProblems, SFX_PALETTE, MAX_SFX, MIN_GAP, ALIGN_MS } from "../src/skills/remotion-render/visual/canvas-sfx.js";
 import { SFX_SOURCES, wavPeak, creditFor } from "./sfx-cc0.mjs";
+import { toneOf } from "../src/utils/video-tone.js";
 let bad = 0;
 const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.stringify(want); if (!ok) bad++; console.log(`${ok ? "ok  " : "FAIL"} ${name} -> ${JSON.stringify(got)}${ok ? "" : ` (want ${JSON.stringify(want)})`}`); };
 
@@ -58,6 +59,15 @@ eq("transitions alternate whoosh / whip", tr.every((t, i) => i === 0 || t !== tr
 eq("every sound's peak lands ON its event (±100 ms)", r.events.every((e) => e.eventFrame === 0 || Math.abs(e.atFrame + e.peakFrames - e.eventFrame) <= (ALIGN_MS / 1000) * 30), true);
 eq("only palette files", r.events.every((e) => Object.values(SFX_PALETTE).some((s) => s.file === e.file)), true);
 eq("over the cap / gap is reported as dropped, not silently lost", r.dropped.length > 0, true);
+
+// THE VIDEO'S TONE (owner, 2026-10-15: "the sound is too playful"): the tone only ever REMOVES sounds.
+const grave = canvasSfxEvents(beats, { peaks, tone: toneOf({ text: "An agent faces assault charges." }) });
+eq("a grave story plays no SFX", grave.events.length, 0);
+eq("...and says why each was dropped", grave.dropped.some((d) => /grave story/.test(d)), true);
+const serious = canvasSfxEvents(beats, { peaks, tone: toneOf({ text: "The company faces fraud charges." }) });
+eq("a serious story plays at most 3", serious.events.length <= 3, true);
+eq("...and never whip or swish", serious.events.some((e) => ["whip", "swish"].includes(e.trigger)), false);
+eq("a measured story is unchanged", canvasSfxEvents(beats, { peaks, tone: toneOf({ text: "The company opened a new office." }) }).events.length, r.events.length);
 
 // Only judged-recorded files play.
 const only = canvasSfxEvents(beats, { peaks, recorded: new Set(["cc0/whoosh.wav", "cc0/swish.wav"]) });
