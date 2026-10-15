@@ -1878,9 +1878,14 @@
           "topic": "Martha Nussbaum and the 2026 Library of Congress Kluge Prize",
           "slug": "martha-nussbaum-2026-kluge-prize",
           "reserved_at": "2026-10-15T11:10:21.160Z"
+        },
+        {
+          "topic": "Integrated Information Theory and the Scientific Countermovement",
+          "slug": "integrated-information-theory-scientific-countermovement",
+          "reserved_at": "2026-10-15T13:33:53.256Z"
         }
       ],
-      "last_generated": "2026-10-15T11:10:21.160Z"
+      "last_generated": "2026-10-15T13:33:53.256Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
