@@ -3160,9 +3160,14 @@
           "topic": "Anthropic Claude Motion: Animating Dashboards and Workflows",
           "slug": "anthropic-claude-motion-animated-dashboards-workflows",
           "reserved_at": "2026-10-15T14:43:50.023Z"
+        },
+        {
+          "topic": "Anthropic Claude Motion: Building Animated Explainers in October 2026",
+          "slug": "anthropic-claude-motion-animated-explainers",
+          "reserved_at": "2026-10-15T18:06:38.815Z"
         }
       ],
-      "last_generated": "2026-10-15T14:43:50.023Z"
+      "last_generated": "2026-10-15T18:06:38.816Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
