@@ -1,0 +1,66 @@
+{
+  "channel_id": "1",
+  "topic_slug": "penny-hoarder-2026-state-of-savings",
+  "format": "shorts",
+  "hook": "Only 35% of working Americans have an emergency fund right now.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Only 35% of working Americans have an emergency fund right now.",
+      "b_roll": [
+        "A bank vault door closing slowly.",
+        "A stack of empty dollar bills."
+      ],
+      "text_overlay": {
+        "text": "35% Have Savings"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Penny Hoarder published the October 2026 State of Savings survey with Katie Sartoris and Tiffany Connors. Where did the missing funds go?",
+      "b_roll": [
+        "A digital survey form glowing on a tablet screen.",
+        "A financial report document resting on a wooden desk."
+      ],
+      "text_overlay": {
+        "text": "State of Savings Survey"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Penny Hoarder survey published by Katie Sartoris and Tiffany Connors shows more data.",
+      "b_roll": [
+        "A red warning symbol flashing on a computer monitor."
+      ],
+      "text_overlay": {
+        "text": "The Hidden Reality"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The survey revealed that 44% lack $1,000 in emergency savings. Katie Sartoris and Tiffany Connors published the survey on October 1, 2026. Yahoo Finance published The Penny Hoarder survey on October 1, 2026.",
+      "b_roll": [
+        "A coin dropping into an empty glass jar.",
+        "A calendar page flipping rapidly."
+      ],
+      "text_overlay": {
+        "text": "44% Lack $1,000"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only 35% of workers across the country kept that money in reserve.",
+      "b_roll": [
+        "A single coin resting at the bottom of a jar."
+      ],
+      "text_overlay": {
+        "text": "Only 35%"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thepennyhoarder.com/save-money/state-of-savings",
+    "https://www.thepennyhoarder.com/save-money/how-to-save-money",
+    "https://finance.yahoo.com/markets/articles/state-savings-america-only-37-145231939.html"
+  ]
+}
