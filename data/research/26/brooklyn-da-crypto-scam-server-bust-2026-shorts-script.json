@@ -1,0 +1,67 @@
+{
+  "channel_id": "26",
+  "topic_slug": "brooklyn-da-crypto-scam-server-bust-2026",
+  "format": "shorts",
+  "hook": "Hundreds of servers fueled a crypto scam that stole tens of millions.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Hundreds of servers fueled a crypto scam that stole tens of millions.",
+      "b_roll": [
+        "Server racks blinking with red light",
+        "Digital crypto wallet interface"
+      ],
+      "text_overlay": {
+        "text": "Millions Stolen"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 14, 2026, the Brooklyn District Attorney's Office dismantled a multinational crypto network. Investigators targeted operations defrauding Russian speakers. Where did those hundreds of servers hide?",
+      "b_roll": [
+        "District Attorney office exterior",
+        "Map highlighting Brooklyn and international nodes",
+        "Server room corridor"
+      ],
+      "text_overlay": {
+        "text": "October 14, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, fake advisers and Facebook ads snared the victims.",
+      "b_roll": [
+        "Social media advertisement close-up",
+        "Smartphone screen showing fraudulent profile"
+      ],
+      "text_overlay": {
+        "text": "Fake Advisers"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CoinDesk confirmed prosecutors and the FBI seized the infrastructure. The 2026 operation smashed the fraud network completely.",
+      "b_roll": [
+        "FBI seal on press conference podium",
+        "Seized server domains scrolling past"
+      ],
+      "text_overlay": {
+        "text": "FBI Seizure"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Hundreds of hidden domains finally fell during the massive 2026 operation.",
+      "b_roll": [
+        "Shutdown notice on computer monitor"
+      ],
+      "text_overlay": {
+        "text": "2026 Bust"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers",
+    "https://www.coindesk.com/business/2026/10/15/how-brooklyn-prosecutors-and-the-fbi-took-down-a-massive-crypto-fraud-network-targeting-russian-speakers"
+  ]
+}

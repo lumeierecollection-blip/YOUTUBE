@@ -1,0 +1,60 @@
+{
+  "topic_slug": "brooklyn-da-crypto-scam-server-bust-2026",
+  "strongest_angle": "Investigating how the Brooklyn District Attorney's Virtual Currency Unit and federal authorities dismantled an international cryptocurrency scam network operating hundreds of servers that targeted Russian speakers.",
+  "key_facts": [
+    {
+      "fact": "The Brooklyn District Attorney's Office announced on October 14, 2026, that its Virtual Currency Unit dismantled the infrastructure of a multinational crypto investment scam.",
+      "source_url": "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers",
+      "source_name": "The Brooklyn District Attorney's Office",
+      "confidence": "high"
+    },
+    {
+      "fact": "Law360 reported on October 14, 2026, that the Brooklyn District Attorney's Office took down hundreds of servers and domains used to defraud Russian speakers.",
+      "source_url": "https://www.law360.com/articles/2538006/brooklyn-da-busts-crypto-scam-targeting-russian-speakers",
+      "source_name": "Law360",
+      "confidence": "high"
+    },
+    {
+      "fact": "CoinDesk reported on October 15, 2026, that Brooklyn prosecutors and the FBI took down a massive crypto fraud network that stole tens of millions through fake advisers and Facebook ads.",
+      "source_url": "https://www.coindesk.com/business/2026/10/15/how-brooklyn-prosecutors-and-the-fbi-took-down-a-massive-crypto-fraud-network-targeting-russian-speakers",
+      "source_name": "CoinDesk",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Month of operation",
+      "value": 14,
+      "unit": "day",
+      "source_url": "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers"
+    },
+    {
+      "label": "Year of operation",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Brooklyn District Attorney's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "Virtual Currency Unit",
+      "kind": "organization"
+    },
+    {
+      "name": "FBI",
+      "kind": "organization"
+    },
+    {
+      "name": "Law360",
+      "kind": "organization"
+    },
+    {
+      "name": "CoinDesk",
+      "kind": "organization"
+    }
+  ]
+}
