@@ -69,6 +69,7 @@ per channel, mostly unattended. See `README.md` for the full system and
 | Render engine (Remotion) | `src/skills/remotion-render/` |
 | Skills (OpenCode-style, agent-discoverable) | `.opencode/skills/*/SKILL.md` — **not yet migrated** to `.claude/skills/`; see the script-pipeline rebuild notes for why that migration was scoped out of this change |
 | Motion-graphics render contract | `MOTION-GRAPHICS-MANUAL.md`, `DETAIL-REFERENCE.md`, `LAYOUT-SYSTEM.md` |
+| Clone family (the reference videos' *laws*, measured: cadence, shot length, type roles) — a channel's `clone.profile` in `channels.json`; `CLONE_ENGINE=off` is the kill switch | `config/clone-grammar.json` (derived by `scripts/derive-clone-grammar.mjs`, never hand-typed), `src/skills/remotion-render/clone/`, `scripts/lib/novelty.mjs`, `scripts/gate-clone-cadence.mjs`, `CHECK-REGISTER.md` §3.20 `CLN` |
 | Every check that gates this pipeline, in one place | `CHECK-REGISTER.md` — the single source of truth for check IDs; do not invent a new ID scheme, extend the existing namespace table in §0.3 |
 
 ## The pipeline stages

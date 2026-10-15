@@ -81,6 +81,7 @@ never `L7` or `Â§3.1`.
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 | `L2` | style advisory — CLIP similarity to the shared motion-graphics reference family. ADVISORY ONLY, non-gating: reports a number, never escalates or retries, because CLIP-SIM cannot separate a blank frame from this family (a blank frame scores 0.68-0.81 against a 0.4570 floor) | `scripts/eval-layer2-style.js` (per render — advisory input to `L3`) |
 | `L3` | Gemini full-video judge — whole-video upload, four axis scores, locally-computed weighted aggregate, weak beats with timestamps. Scores; the retry loop decides | `scripts/eval-layer3-judge.js` + `src/lib/gemini-files.js` (per render) |
+| `CLN` | the clone family - the reference videos' measured laws (cadence: how often something new appears, the longest wait), staged by clone-plan.js and drawn by CloneVideo.jsx, with its own legality | `scripts/lib/novelty.mjs` + `config/clone-grammar.json` + `scripts/local-audit.cjs --canvas-only` (clone branch) + `scripts/gate-clone-cadence.mjs` (per render - see 3.20) |
 
 ---
 
@@ -3088,6 +3089,28 @@ counts any dark or saturated pixel as content, so it cannot tell a
 composition from stray ink — it proves the frame is used, not that it is
 used well; that judgement stays with the whole-video review, whose rubric
 now states the full-canvas grammar instead of sending the paper reference.
+
+## 3.20 `CLN` - the clone family (the reference videos' laws, 2026-10-15)
+
+Owner, 2026-10-15: clone "the concepts behind" the reference videos, "the laws that govern it ... how quickly every X seconds there is a change". The laws are
+MEASURED from nine reference videos by `scripts/derive-clone-grammar.mjs` (decoded pixels, `scripts/lib/novelty.mjs`) into `config/clone-grammar.json`; they are
+never typed by hand. A channel with `clone.profile` in `channels.json` is staged by them (`CLONE_ENGINE=off` is the kill switch). The canvas engine keeps every
+check it had; the canvas-layout checks (`LAY`/`CNV` geometry) do not describe a clone frame and are not run on it. What judges it:
+
+| ID | Check | Evidence | Where |
+|---|---|---|---|
+| `CLN-01` | New elements per 10 s >= `laws.events_per_10s_min` (13) | the rendered pixels, edge-novelty metric | `local-audit.cjs` `clone-cadence-events`; `gate-clone-cadence.mjs` |
+| `CLN-02` | Whole-frame cuts per 10 s >= `laws.cuts_per_10s.min` (4.9) | the rendered pixels | `clone-cadence-cuts` |
+| `CLN-03` | 90th-percentile wait for something new <= `laws.gap_p90_max_s` (1.7 s) | the rendered pixels | `clone-cadence-wait-p90` |
+| `CLN-04` | Longest wait for something new <= `laws.gap_max_s` (4 s) | the rendered pixels | `clone-cadence-wait-max` |
+| `CLN-05` | Plan meets the same laws before rendering; >= 65% of shots carry a picture; display text <= 3 words; no same frame twice | the plan (pure function) | `clone/clone-plan.js` `lawProblems`, `scripts/__tests__/clone-plan.test.js` |
+| `CLN-06` | Layout legality CLONE-1..4: boxes inside the 40 px margin; display type on a picture only on a solid plate; text and picture regions do not overlap; display region >= 150 px | geometry (pure) | `clone/clone-layout.js` `layoutProblems`, `scripts/__tests__/clone-layout.test.js` |
+| `CLN-07` | The grammar still matches what the references measure (no drift) | re-measure the references | `node scripts/derive-clone-grammar.mjs --check` |
+
+Where this stops: the metric sees edges that appear, not meaning. A flickering video background would read as constant novelty, and a flat colour change with no edge
+reads as none. It is a CADENCE check; whether a picture is the right one is still the entity gates' and the frame review's job. The clone family deliberately brings
+back what the canvas engine's owner rules excluded (a ground that is not white, type beside objects, solid shapes) because the references do; it keeps pop-only entrances,
+no zoom, real sourced pictures only, and colour from `channels.json`.
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

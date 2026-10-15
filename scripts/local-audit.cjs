@@ -1016,6 +1016,21 @@ function middleZoneFilled(video, beats) {
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
+  // THE CLONE FAMILY (src/skills/remotion-render/clone/; owner, 2026-10-15) is staged by the reference videos' laws, not by the canvas engine's layouts, so the
+  // canvas-layout checks below (zones, grid, canvas-type, coverage...) describe a frame it does not have and are not run on it. What judges it is the references'
+  // own cadence law, measured on the pixels with the references' own metric (scripts/lib/novelty.mjs, config/clone-grammar.json `laws`). A video that breaks a law
+  // fails here exactly as a canvas check fails; nothing is loosened for the canvas engine, which keeps every check it had.
+  if (m.engine === "clone") {
+    const { measureVideo } = await import(require("node:url").pathToFileURL(join(ROOT, "scripts", "lib", "novelty.mjs")).href);
+    const G = JSON.parse(readFileSync(join(ROOT, "config", "clone-grammar.json"), "utf8")), L = G.laws, v = measureVideo(video);
+    const chk = (id, got, want, ok) => out.push({ id, pass: ok, detail: `${got} (law ${want})` });
+    chk("clone-cadence-events", `${v.events_per_10s} new elements per 10 s`, `>= ${L.events_per_10s_min}`, v.events_per_10s >= L.events_per_10s_min);
+    chk("clone-cadence-cuts", `${v.cuts_per_10s} cuts per 10 s`, `>= ${L.cuts_per_10s.min}`, v.cuts_per_10s >= L.cuts_per_10s.min);
+    chk("clone-cadence-wait-p90", `nine waits in ten up to ${v.gap_s.p90} s`, `<= ${L.gap_p90_max_s} s`, v.gap_s.p90 <= L.gap_p90_max_s);
+    chk("clone-cadence-wait-max", `longest wait for something new ${v.gap_s.max} s`, `<= ${L.gap_max_s} s`, v.gap_s.max <= L.gap_max_s);
+    out.push({ id: "canvas-layout", pass: true, detail: `not judged: the clone family (${(m.clone && m.clone.profile) || "?"}) has its own legality (clone/clone-layout.js)` });
+    return out;
+  }
   const fit = canvasFit(beats);
   out.push({ id: "canvas-fit", pass: !fit.length, detail: fit.length ? fit.join("; ") : `${beats.length} beat(s): every element inside the safe area, no text overlap, caption band clear` });
   const cov = canvasCoverage(video, beats);

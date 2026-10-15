@@ -50,6 +50,7 @@ import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasSfxEvents } from "./visual/canvas-sfx.js";
 import { toneOf } from "../../utils/video-tone.js";
+import { paletteFor } from "./clone/clone-palette.js";
 import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
@@ -619,6 +620,15 @@ async function main() {
       // Uniform white on every beat of every channel (visual/backgrounds.js).
       sentencePlan.ground = GROUND;
       console.log(`[canvas] ground: uniform ${GROUND}`);
+      // THE CLONE FAMILY (src/skills/remotion-render/clone/, config/clone-grammar.json): a channel with `clone.profile` is staged by the reference videos'
+      // measured laws instead of the canvas engine's layouts. Same resolved beats, same sourced assets; CLONE_ENGINE=off is the kill switch.
+      if (channel.clone && channel.clone.profile && process.env.CLONE_ENGINE !== "off") {
+        const G = JSON.parse(readFileSync(join(ROOT, "config", "clone-grammar.json"), "utf-8"));
+        const profile = G.profiles[channel.clone.profile];
+        if (!profile) { console.error(`::error::[clone] ch-${channel.id ?? channelId}: no clone profile "${channel.clone.profile}" in config/clone-grammar.json`); process.exit(1); }
+        sentencePlan.clone = { id: channel.clone.profile, profile, laws: G.laws, palette: paletteFor(profile, channel), bw: channel.asset_treatment === "bw" };
+        console.log(`[clone] ch-${channel.id ?? channelId}: profile ${channel.clone.profile} (cloned from ${profile.from}); ground ${sentencePlan.clone.palette.ground}, accent ${sentencePlan.clone.palette.accent}`);
+      }
       const comps = {};
       beats.forEach((b, bi) => { const k = canvasLayout(normalizeCanvas(b.scene.canvas, bi)).composition; comps[k] = (comps[k] || 0) + 1; });
       console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
@@ -644,7 +654,7 @@ async function main() {
     // skipped — the render never fails over a sound (owner's spec 2026-10-03, D.4).
     // A full-canvas plan plays only the CC0 recordings Gemini judged "recorded" (scripts/sfx-cc0.mjs
     // fetch + judge run before this step on CI), each landed by its measured peak.
-    const sfx = sentencePlan.canvas ? (() => {
+    const sfx = sentencePlan.clone ? { events: [], warnings: ["[sfx] clone engine: no canvas-layout SFX (their timing keys on the canvas engine's groups)"] } : sentencePlan.canvas ? (() => {
       const recorded = recordedFiles();
       if (!recorded.size) console.warn("::warning::[sfx] no judged-recorded SFX (sfx/cc0/verdicts.json missing or empty) — this video plays no SFX");
       const r = canvasSfxEvents(beats, { peaks: peakFrames(30), recorded, tone: videoTone });
@@ -890,6 +900,9 @@ async function main() {
       // Full-canvas: the channel accent the renderer drew with (local-audit canvas-accent).
       accent: sentencePlan.accent || null,
       ground: sentencePlan.ground || null,
+      // Which engine drew the frames: render-and-qa.js judges a clone render by the clone family's own checks (cadence, legality), not the canvas layout's.
+      engine: sentencePlan.clone ? "clone" : "canvas",
+      ...(sentencePlan.clone ? { clone: { profile: sentencePlan.clone.id } } : {}),
       // Part D: every SFX that plays — role, file, level, frame, beat, why.
       sfx: (sentencePlan.sfx || []).map((e) => ({ role: e.trigger || e.role, file: e.file, db: e.db, at_frame: e.atFrame, event_frame: e.eventFrame, peak_frames: e.peakFrames, beat: e.beat, reason: e.reason, credit: creditFor(e.file) })),
       totalFrames: frames,

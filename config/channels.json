@@ -9,6 +9,7 @@
     {
       "id": 1,
       "niche": "Personal Finance (Budgeting for Beginners)",
+      "clone": { "profile": "cutout-collage" },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -113,6 +114,7 @@
     {
       "id": 2,
       "niche": "Legal Education (Know Your Rights)",
+      "clone": { "profile": "dossier-mono" },
       "style": "motion-graphics",
       "visual_engine": "template",
       "bg_mode": "black",
@@ -603,6 +605,7 @@
     {
       "id": 9,
       "niche": "Geopolitical Explainers (Maps & Power)",
+      "clone": { "profile": "dossier-mono" },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -1445,6 +1448,7 @@
     {
       "id": 26,
       "niche": "Financial Crimes & Heists",
+      "clone": { "profile": "dossier-mono" },
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
@@ -2425,6 +2429,7 @@
     {
       "id": 44,
       "niche": "Professional Skill Development",
+      "clone": { "profile": "cutout-collage" },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -2748,6 +2753,7 @@
     {
       "id": 49,
       "niche": "Movies, Cinematic Universes (Release Calendars, Box Office)",
+      "clone": { "profile": "cutout-collage" },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -2852,6 +2858,7 @@
     {
       "id": 5,
       "niche": "True Crime & Investigative Journalism",
+      "clone": { "profile": "dossier-mono" },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "bw",
@@ -2900,6 +2907,7 @@
     {
       "id": 6,
       "niche": "Cold Cases & Unsolved Mysteries",
+      "clone": { "profile": "archive-italic" },
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
@@ -2948,6 +2956,7 @@
     {
       "id": 8,
       "niche": "Financial History & Institutional Collapse",
+      "clone": { "profile": "archive-italic" },
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "color",
@@ -2996,6 +3005,7 @@
     {
       "id": 10,
       "niche": "Concept Explainers & Intellectual History",
+      "clone": { "profile": "archive-italic" },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
