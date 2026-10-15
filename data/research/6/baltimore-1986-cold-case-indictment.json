@@ -1,0 +1,66 @@
+{
+  "topic_slug": "baltimore-1986-cold-case-indictment",
+  "strongest_angle": "Explore the breakthrough indictment of 67-year-old David Alexander Williams in the 1986 murder and rape of 23-year-old Teresa Ann Houck in Druid Hill Park, nearly four decades later.",
+  "key_facts": [
+    {
+      "fact": "Sixty-seven-year-old David Alexander Williams was indicted on murder, rape, and handgun charges in connection with the 1986 homicide of Teresa Ann Houck in Druid Hill Park.",
+      "source_url": "https://www.cbsnews.com/baltimore/news/1986-baltimore-cold-case-suspect-indicted-murder-rape-handgun",
+      "source_name": "CBS Baltimore",
+      "confidence": "high"
+    },
+    {
+      "fact": "Baltimore City State’s Attorney Ivan J. Bates announced charges against David Alexander Williams for the fatal shooting of 23-year-old Teresa Ann Houck in October 1986.",
+      "source_url": "https://www.stattorney.org/news-media/press-releases/charges-announced-1986-cold-case-homicide",
+      "source_name": "Office of the State's Attorney for Baltimore City",
+      "confidence": "high"
+    },
+    {
+      "fact": "The suspect David Alexander Williams was already an incarcerated man in Maryland, previously convicted of his wife's murder, when he was linked to the 1986 Baltimore cold case.",
+      "source_url": "https://foxbaltimore.com/news/local/man-in-prison-murder-indicted-baltimore-dancer-1986-killing-rape",
+      "source_name": "FOX45 News / Baltimore Sun",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Suspect Age",
+      "value": 67,
+      "unit": "years",
+      "source_url": "https://www.cbsnews.com/baltimore/news/1986-baltimore-cold-case-suspect-indicted-murder-rape-handgun"
+    },
+    {
+      "label": "Victim Age",
+      "value": 23,
+      "unit": "years",
+      "source_url": "https://www.wbal.com/murder-charges-filed-nearly-40-years-after-baltimore-womans-killing"
+    },
+    {
+      "label": "Year of Crime",
+      "value": 1986,
+      "unit": "year",
+      "source_url": "https://www.wbal.com/murder-charges-filed-nearly-40-years-after-baltimore-womans-killing"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "David Alexander Williams",
+      "kind": "person"
+    },
+    {
+      "name": "Teresa Ann Houck",
+      "kind": "person"
+    },
+    {
+      "name": "Druid Hill Park",
+      "kind": "place"
+    },
+    {
+      "name": "Ivan J. Bates",
+      "kind": "person"
+    },
+    {
+      "name": "Office of the State's Attorney for Baltimore City",
+      "kind": "organization"
+    }
+  ]
+}
