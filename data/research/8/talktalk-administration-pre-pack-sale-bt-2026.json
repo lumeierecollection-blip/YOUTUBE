@@ -1,0 +1,68 @@
+{
+  "topic_slug": "talktalk-administration-pre-pack-sale-bt-2026",
+  "strongest_angle": "Examines the October 2026 collapse and rapid pre-pack administration of UK telecom provider TalkTalk, focusing on the lender complaints submitted to ministers and the Competition and Markets Authority.",
+  "key_facts": [
+    {
+      "fact": "BT Group acquired TalkTalk Telecommunications Limited and PlatformX Communications Limited out of administration on October 5, 2026, to protect service continuity for 2.5 million customers.",
+      "source_url": "https://newsroom.bt.com/bt-group-has-acquired-talktalk-and-platformx-ensuring-continuity-of-service-for-millions-of-customers",
+      "source_name": "BT Group Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "BT Group agreed to pay £400 million ($530 million) for TalkTalk's consumer and wholesale units in an immediate pre-pack administration sale on October 5, 2026.",
+      "source_url": "https://www.reuters.com/business/uks-bt-group-acquires-talktalk-out-administration-2026-10-05",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Competition and Markets Authority (CMA) launched a merger inquiry and served an order under the Enterprise Act 2002 regarding BT's completed acquisition of TalkTalk.",
+      "source_url": "https://www.gov.uk/cma-cases/bt-slash-talktalk-merger-inquiry",
+      "source_name": "GOV.UK",
+      "confidence": "high"
+    },
+    {
+      "fact": "TalkTalk entered administration and was sold to BT the same morning in a pre-pack administration that drew complaints from its largest lender to ministers and the CMA.",
+      "source_url": "https://gattusopierre01-cloud.github.io/The-Restructuring-Newsletter/pdf/the-restructuring-brief-issue-03.pdf",
+      "source_name": "The Restructuring Brief",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Customers protected",
+      "value": 2.5,
+      "unit": "million",
+      "source_url": "https://newsroom.bt.com/bt-group-has-acquired-talktalk-and-platformx-ensuring-continuity-of-service-for-millions-of-customers"
+    },
+    {
+      "label": "Acquisition price in pounds",
+      "value": 400,
+      "unit": "million pounds",
+      "source_url": "https://www.reuters.com/business/uks-bt-group-acquires-talktalk-out-administration-2026-10-05"
+    },
+    {
+      "label": "Acquisition price in dollars",
+      "value": 530,
+      "unit": "million dollars",
+      "source_url": "https://www.reuters.com/business/uks-bt-group-acquires-talktalk-out-administration-2026-10-05"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "BT Group",
+      "kind": "organization"
+    },
+    {
+      "name": "TalkTalk",
+      "kind": "organization"
+    },
+    {
+      "name": "PlatformX Communications Limited",
+      "kind": "organization"
+    },
+    {
+      "name": "Competition and Markets Authority",
+      "kind": "organization"
+    }
+  ]
+}
