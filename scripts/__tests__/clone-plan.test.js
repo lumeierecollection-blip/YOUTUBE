@@ -195,7 +195,7 @@ test("a picture-less beat that states a figure and a date shows ALL its subjects
     assert.equal(kinds, "date,figure,glyph", "a shot is missing a subject: " + kinds);
   }
   const rec = cloneCanvasFor(c, plan.shots);
-  assert.equal(rec.data.value, "35%");
+  assert.equal(rec.data.value, "35 percent");   // the figure as the SENTENCE writes it ("only 35 percent of workers"), unit and all
   assert.equal(rec.composition, "NUMBER-STAT");
   assert.ok(rec.art.names.includes("The Penny Hoarder"));
 });
