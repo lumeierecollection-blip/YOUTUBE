@@ -1,0 +1,67 @@
+{
+  "topic_slug": "doj-probes-tv-networks-trump-pool-coverage",
+  "strongest_angle": "An investigative breakdown of the antitrust probe launched by the Department of Justice against major television networks following their joint suspension of White House press pool coverage.",
+  "key_facts": [
+    {
+      "fact": "The Justice Department notified major television networks including ABC, CBS, CNN, NBC, and Fox News on Friday that it is examining whether they violated antitrust laws by jointly suspending pool coverage of President Trump.",
+      "source_url": "https://www.nytimes.com/2026/10/10/business/media/trump-justice-department-tv-networks.html",
+      "source_name": "The New York Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The networks paused pooled video coverage after the White House barred CNN, MS NOW, and Politico from access, though they later resumed coverage.",
+      "source_url": "https://www.cnbc.com/2026/10/11/trump-doj-white-house-tv-press-pool-antitrust.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Legal experts note that the Justice Department's antitrust probe into the networks' pause of White House pool coverage rests on thin legal grounds and may be spurious.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/11/justice-probe-into-tv-networks-rests-thin-legal-grounds-lawyers-say",
+      "source_name": "The Washington Post",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Justice Department",
+      "kind": "organization"
+    },
+    {
+      "name": "ABC",
+      "kind": "organization"
+    },
+    {
+      "name": "CBS",
+      "kind": "organization"
+    },
+    {
+      "name": "CNN",
+      "kind": "organization"
+    },
+    {
+      "name": "NBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Fox News",
+      "kind": "organization"
+    },
+    {
+      "name": "President Trump",
+      "kind": "person"
+    },
+    {
+      "name": "White House",
+      "kind": "place"
+    },
+    {
+      "name": "MS NOW",
+      "kind": "organization"
+    },
+    {
+      "name": "Politico",
+      "kind": "organization"
+    }
+  ]
+}
