@@ -1,0 +1,62 @@
+{
+  "channel_id": "44",
+  "topic_slug": "anthropic-claude-motion-animated-dashboards-workflows",
+  "format": "shorts",
+  "hook": "Claude turns text prompts into 30-second animated videos instantly.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Claude turns text prompts into 30-second animated videos instantly.",
+      "b_roll": [
+        "Screen recording of text prompt entering Claude"
+      ],
+      "text_overlay": {
+        "text": "Claude Motion Beta"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Anthropic launched Claude Dashboards and Claude Motion in beta on October 8, 2026. The Verge reported users can download MP4 files. Where are teams building workflows?",
+      "b_roll": [
+        "Anthropic interface showing dashboard creation"
+      ],
+      "text_overlay": {
+        "text": "October 8, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Team and Enterprise plans get access starting October 8, 2026, except free tiers miss out.",
+      "b_roll": [
+        "Plan selection screen for Team accounts"
+      ],
+      "text_overlay": {
+        "text": "Team & Enterprise"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Artifact types generate interactive workflows and charts. Claude Motion exports a 30-second explainer file. Anthropic built new dashboard tools for live data.",
+      "b_roll": [
+        "Exporting MP4 file from Claude"
+      ],
+      "text_overlay": {
+        "text": "30 Seconds"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Download the 30-second MP4 file from Claude Motion today.",
+      "b_roll": [
+        "Completed animated workflow on screen"
+      ],
+      "text_overlay": {
+        "text": "Claude Motion"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://claude.com/resources/articles/dashboards-and-motion",
+    "https://www.theverge.com/ai-artificial-intelligence/1008134/claude-can-now-turn-data-into-animated-explainers"
+  ]
+}
