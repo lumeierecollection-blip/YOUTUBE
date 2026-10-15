@@ -1,0 +1,65 @@
+{
+  "channel_id": "5",
+  "topic_slug": "turkish-authorities-raid-halk-tv-headquarters",
+  "format": "shorts",
+  "hook": "Turkish financial crimes police raided Halk TV in Istanbul today, halting live broadcasts completely.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Turkish financial crimes police raided Halk TV in Istanbul today, halting live broadcasts completely.",
+      "b_roll": [
+        "Police officers entering the headquarters of Halk TV in Istanbul"
+      ],
+      "text_overlay": {
+        "text": "Halk TV Raided"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Officers took 11 people into custody during the sudden operation. Authorities appointed a government trustee manager to oversee the station. Where did those detained staff members go?",
+      "b_roll": [
+        "Law enforcement officers escorting detained individuals",
+        "Document showing government trustee appointment"
+      ],
+      "text_overlay": {
+        "text": "11 Detained"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This sudden raid hit Istanbul just hours before Ekrem İmamoğlu began his defense.",
+      "b_roll": [
+        "Exterior view of the courthouse in Istanbul"
+      ],
+      "text_overlay": {
+        "text": "Hours Before Trial"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ekrem İmamoğlu faced defense arguments alongside 400 other defendants. Prosecutors pressed corruption charges during the ongoing courtroom proceedings. Investigators locked down the broadcaster completely.",
+      "b_roll": [
+        "Mayor Ekrem İmamoğlu arriving at court",
+        "Courtroom interior during corruption proceedings"
+      ],
+      "text_overlay": {
+        "text": "400 Defendants"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Government trustee managers now control Halk TV after arresting 11 individuals in Istanbul.",
+      "b_roll": [
+        "Empty newsroom inside Halk TV headquarters"
+      ],
+      "text_overlay": {
+        "text": "Trustee Control"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/crx23y3d970vo",
+    "https://apnews.com/article/turkey-tv-raid-halk-erdogan-press-freedom-59176d1028ef288e959f06e123dd7009",
+    "https://www.euronews.com/2026/10/14/turkish-police-take-pro-opposition-channel-halk-tv-off-air-and-arrest-11-in-istanbul-raid"
+  ]
+}

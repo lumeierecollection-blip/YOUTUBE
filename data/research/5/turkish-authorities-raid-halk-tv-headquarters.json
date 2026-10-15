@@ -1,0 +1,56 @@
+{
+  "topic_slug": "turkish-authorities-raid-halk-tv-headquarters",
+  "strongest_angle": "Turkish financial crimes police raided the opposition broadcaster Halk TV in Istanbul, arresting 11 individuals and appointing a government trustee manager amid a sweeping corruption investigation.",
+  "key_facts": [
+    {
+      "fact": "Turkish financial crimes police raided the Istanbul headquarters of the pro-opposition broadcaster Halk TV, halting live broadcasts and taking 11 people into custody.",
+      "source_url": "https://www.bbc.com/news/articles/crx23y3d970vo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Authorities appointed a government trustee manager to oversee Halk TV as part of an ongoing corruption investigation.",
+      "source_url": "https://apnews.com/article/turkey-tv-raid-halk-erdogan-press-freedom-59176d1028ef288e959f06e123dd7009",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "The raid on Halk TV occurred in Istanbul just hours before the defense arguments began in the corruption trial of jailed Istanbul mayor Ekrem İmamoğlu and approximately 400 other defendants.",
+      "source_url": "https://www.euronews.com/2026/10/14/turkish-police-take-pro-opposition-channel-halk-tv-off-air-and-arrest-11-in-istanbul-raid",
+      "source_name": "Euronews",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "People taken into custody",
+      "value": 11,
+      "unit": "people",
+      "source_url": "https://www.bbc.com/news/articles/crx23y3d970vo"
+    },
+    {
+      "label": "Defendants in İmamoğlu corruption trial",
+      "value": 400,
+      "unit": "defendants",
+      "source_url": "https://www.euronews.com/2026/10/14/turkish-police-take-pro-opposition-channel-halk-tv-off-air-and-arrest-11-in-istanbul-raid"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Halk TV",
+      "kind": "organization"
+    },
+    {
+      "name": "Istanbul",
+      "kind": "place"
+    },
+    {
+      "name": "Ekrem İmamoğlu",
+      "kind": "person"
+    },
+    {
+      "name": "Turkey",
+      "kind": "place"
+    }
+  ]
+}
