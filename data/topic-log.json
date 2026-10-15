@@ -2537,9 +2537,14 @@
           "topic": "The $8 Million Marchesi Antinori Wine Cellar Heist Investigation",
           "slug": "marchesi-antinori-8m-wine-heist",
           "reserved_at": "2026-10-15T14:43:44.816Z"
+        },
+        {
+          "topic": "Brooklyn DA Cracks Global Crypto Scam Network in Major Server Bust",
+          "slug": "brooklyn-da-crypto-scam-server-bust-2026",
+          "reserved_at": "2026-10-15T18:06:48.067Z"
         }
       ],
-      "last_generated": "2026-10-15T14:43:44.816Z"
+      "last_generated": "2026-10-15T18:06:48.067Z"
     },
     "27": {
       "channel_name": "Trial Files",
