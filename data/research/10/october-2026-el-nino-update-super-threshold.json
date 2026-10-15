@@ -1,0 +1,104 @@
+{
+  "topic_slug": "october-2026-el-nino-update-super-threshold",
+  "strongest_angle": "Break down the climatological definitions and temperature metrics that officially classified the autumn 2026 Niño 3.4 region anomaly as a strong El Niño heading toward Super El Niño status.",
+  "key_facts": [
+    {
+      "fact": "The Niño 3.4 region averaged 2.3 degrees Celsius above normal in October 2026, placing it 0.3 degrees Celsius shy of the threshold for a very strong Super El Niño according to Action News 5 reporting.",
+      "source_url": "https://www.actionnews5.com/2026/10/12/breakdown-october-2026-el-nio-update",
+      "source_name": "Action News 5",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Climate Prediction Center reported in October 2026 that sea surface temperature anomalies exceeded plus 4.0 degrees Celsius in portions of the eastern equatorial Pacific.",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.shtml",
+      "source_name": "Climate Prediction Center",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The National Climate Centre of the China Meteorological Administration officially stated that an eastern Pacific-type super strong El Niño event formed in September 2026.",
+      "source_url": "https://www.cma.gov.cn/en/news/NewsEvents/news/202610/t20261012_8085473.html",
+      "source_name": "China Meteorological Administration",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Climate Prediction Center's ENSO Diagnostic Discussion indicated a strong-to-very strong El Niño is likely through January-March 2027 with greater than an 83 percent chance.",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_oct2026/ensodisc.pdf",
+      "source_name": "Climate Prediction Center",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Niño 3.4 region average above normal",
+      "value": 2.3,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.actionnews5.com/2026/10/12/breakdown-october-2026-el-nio-update"
+    },
+    {
+      "label": "Shy of Super El Niño threshold",
+      "value": 0.3,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.actionnews5.com/2026/10/12/breakdown-october-2026-el-nio-update"
+    },
+    {
+      "label": "Eastern equatorial Pacific temperature anomaly",
+      "value": 4,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.shtml"
+    },
+    {
+      "label": "Likelihood of strong-to-very strong El Niño",
+      "value": 83,
+      "unit": "percent",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_oct2026/ensodisc.pdf"
+    },
+    {
+      "label": "Niño-3.4 index",
+      "value": 2.1,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_oct2026/ensodisc.pdf"
+    },
+    {
+      "label": "Niño-3 index",
+      "value": 3,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_oct2026/ensodisc.pdf"
+    },
+    {
+      "label": "Niño-1+2 index",
+      "value": 3.9,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_oct2026/ensodisc.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Action News 5",
+      "kind": "organization"
+    },
+    {
+      "name": "Climate Prediction Center",
+      "kind": "organization"
+    },
+    {
+      "name": "National Climate Centre",
+      "kind": "organization"
+    },
+    {
+      "name": "China Meteorological Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Niño 3.4",
+      "kind": "place"
+    },
+    {
+      "name": "Riley Winch",
+      "kind": "person"
+    },
+    {
+      "name": "mhalpert",
+      "kind": "person"
+    }
+  ]
+}
