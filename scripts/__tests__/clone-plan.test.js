@@ -345,3 +345,9 @@ test("a figure label ends on a content word; contractions are never display type
   const d = displayWords(sp, 0, 200, [], 3);
   assert.ok(!/that's/i.test(d.text), d.text);
 });
+
+test("a beat's further verified pictures (clone_extra) are heroes too: a logo as a mark, a person as a portrait (board 38870271640 ch-49 NPR)", () => {
+  const hs = heroesOf({ photo: { asset: "entities/people/a.jpg", entity: "A Person", kind: "person" }, clone_extra: [{ kind: "logo", name: "NPR", asset: "cutouts-live/49/1-npr-logo.png" }, { kind: "person", name: "B Person", asset: "entities/people/b.jpg", cutout: "cutouts-live/49/photo-x-g.png", cutout_grounded: true }] });
+  assert.deepEqual(hs.map((h) => [h.kind, h.name]), [["portrait", "A Person"], ["logo", "NPR"], ["portrait", "B Person"]]);
+  assert.equal(hs[2].cutout, "cutouts-live/49/photo-x-g.png");
+});

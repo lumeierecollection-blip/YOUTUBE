@@ -638,9 +638,8 @@ async function main() {
         // ch-26). Each new file is copied into the bundle's own public/ too.
         const serveDir = process.env.REMOTION_SERVE_URL;
         if (cut.cut && serveDir && !/^https?:/.test(serveDir) && existsSync(serveDir)) {
-          for (const b of beats) {
-            const rel = b?.scene?.canvas?.photo?.cutout;
-            if (!rel) continue;
+          const rels = beats.flatMap((b) => [b?.scene?.canvas?.photo?.cutout, ...((b?.scene?.canvas?.clone_extra || []).map((x) => x && x.cutout))]).filter(Boolean);
+          for (const rel of rels) {
             const dst = join(serveDir, "public", ...rel.split("/"));
             try { mkdirSync(dirname(dst), { recursive: true }); copyFileSync(join(__dirname, "public", ...rel.split("/")), dst); } catch (e) { console.log(`[clone] could not copy ${rel} into the bundle: ${e.message}`); }
           }

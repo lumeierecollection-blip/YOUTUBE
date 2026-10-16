@@ -71,10 +71,15 @@ export function cutoutPhoto(photo, channelId) {
  */
 export function attachCutouts(beats, channelId, log = console.log) {
   let cut = 0, soft = 0;
+  const photos = [];
   for (const b of beats || []) {
-    const p = b?.scene?.canvas?.photo;
+    const c = b?.scene?.canvas;
+    if (c?.photo) photos.push(c.photo);
+    for (const x of c?.clone_extra || []) if (x && x.kind !== "logo") photos.push(x);
+  }
+  for (const p of photos) {
     if (!p || !p.asset || p.cutout || p.vignette) continue;
-    const r = cutoutPhoto(p, channelId);
+    const r = cutoutPhoto({ ...p, kind: p.kind === "person" ? "person" : p.kind }, channelId);
     if (r.ok) { p.cutout = r.cutout; p.cutout_grounded = !!r.grounded; p.cutout_bust = !!r.bust; cut++; log(`[clone] cut out ${p.entity || p.asset} -> ${r.cutout}`); }
     else { p.vignette = true; soft++; log(`[clone] ${p.entity || p.asset}: not cut out (${r.why}) -> soft-edged vignette`); }
   }

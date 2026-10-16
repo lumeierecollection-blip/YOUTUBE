@@ -41,6 +41,12 @@ export function heroesOf(canvas) {
   const out = [];
   if (c.photo && c.photo.asset) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", asset: c.photo.asset, name: c.photo.entity || null, w: c.photo.w || null, h: c.photo.h || null, view: c.photo.view || null, credit: c.photo.credit || c.source_credit || null, cutout: c.photo.cutout || null, grounded: !!c.photo.cutout_grounded, bust: !!c.photo.cutout_bust, vignette: !!c.photo.vignette });
   for (const v of c.concept_visuals || []) if (v && v.asset) out.push({ kind: v.logo ? "logo" : v.class === "cutout" ? "cutout" : "symbol", asset: v.asset, name: v.name || null, w: v.w || null, h: v.h || null, view: null, cutout: v.asset });   // a logo / cut-out / symbol asset is already a transparent PNG
+  // further verified pictures of the beat's entities (render-and-qa.js [clone-extra]): a logo is a transparent mark; a photo is cut out or soft-edged like the main one
+  for (const x of c.clone_extra || []) {
+    if (!x || !x.asset || out.some((o) => o.asset === x.asset)) continue;
+    if (x.kind === "logo") out.push({ kind: "logo", asset: x.asset, name: x.name || null, w: x.w || null, h: x.h || null, view: null, cutout: x.asset });
+    else out.push({ kind: x.kind === "person" ? "portrait" : "photo", asset: x.asset, name: x.name || null, w: x.w || null, h: x.h || null, view: x.view || null, credit: x.credit || null, cutout: x.cutout || null, grounded: !!x.cutout_grounded, bust: !!x.cutout_bust, vignette: !!x.vignette });
+  }
   if (c.art && c.art.asset) out.push({ kind: c.art.kind === "plate-organization" ? "logo" : c.art.kind || "art", asset: c.art.asset, name: c.art.name || null, w: null, h: null, view: null });
   if (c.art && Array.isArray(c.art.items)) for (const it of c.art.items) if (it && it.asset) out.push({ kind: "logo", asset: it.asset, name: it.name || null, w: null, h: null, view: null });
   return out;

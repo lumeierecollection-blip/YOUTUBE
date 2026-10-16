@@ -1704,6 +1704,8 @@ function canvasContentFor(b, { photo = null } = {}) {
   applyShot(c, b);
   // The art of a named entity the beat had no picture of (scripts/entity-ladder.js): a date, a span, a plate, a flag.
   if (b.art) { c.art = b.art; c.composition = "ENTITY-ART"; c.photo = null; c.concept_visuals = []; delete c.type_layout; delete c.name_card; }
+  // A clone channel's further verified pictures of this beat's entities (see [clone-extra]); only the clone family reads them.
+  if (Array.isArray(b.clone_extra) && b.clone_extra.length) c.clone_extra = b.clone_extra;
   // What became of the planner's layout for this beat (canvas-layout.js canvasLayout): used, or not
   // used because it breaks a Layer 1 rule the default arrangement keeps.
   if (c.layout) {
@@ -1974,6 +1976,15 @@ async function resolveCanvas(channelId, planPath, plan) {
         console.log(`[visual-choice] ch-${channelId} beat ${b.index}: ${choice.source} ${choice.visual}${choice.valid ? "" : " (fallback)"} — ${choice.reason}${choice.skipped.length ? ` | skipped: ${choice.skipped.map((s) => `${s.asset} (${s.why})`).join("; ")}` : ""}${choice.missing ? ` | missing: ${choice.missing}` : ""}`);
         for (const s of choice.skipped) entities.fell_back.push(`beat ${b.index}: ${s.asset} skipped — ${s.why}`);
         const pick = choice.asset ? found.find((f) => f.id === String(choice.asset.id)) : null;
+        // THE OTHER VERIFIED PICTURES of this beat's entities, kept for a clone channel (board 38870271640 ch-49 beat 1: NPR's logo was fetched and verified MATCH,
+        // then dropped because the canvas engine draws ONE visual per beat). The clone family shows a beat's pictures one per shot, so they are its other shots.
+        // Same assets the verifiers passed, of entities this sentence names; nothing new is sourced.
+        if (isCloneChannel(channelId)) {
+          b.clone_extra = found.filter((f) => f !== pick).map(({ e0, r }) => r.logo
+            ? { kind: "logo", name: e0.name, asset: r.logo.asset, w: r.logo.w || null, h: r.logo.h || null, source_url: r.logo.source_url || null }
+            : { kind: e0.type === "person" ? "person" : "photo", name: e0.name, asset: r.photo.asset, w: r.photo.w || null, h: r.photo.h || null, view: r.photo.view || (e0.type === "person" ? "person" : null), source_url: r.photo.source_url || null, credit: r.photo.credit || null });
+          if (b.clone_extra.length) console.log(`[clone-extra] ch-${channelId} beat ${b.index}: also shows ${b.clone_extra.map((x) => `${x.kind} ${x.name}`).join(", ")}`);
+        }
         if (pick && pick.r.logo) {
           // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
           b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
@@ -2444,6 +2455,8 @@ async function guardPlanAssets(channelId, planPath) {
     ...plan.beats.map((b, i) => ({ b, i, asset: b.canvas?.photo?.asset })).filter((r) => r.asset),
     // concept cutouts (concept_visuals): a missing PNG drops that visual only
     ...plan.beats.flatMap((b, i) => (b.canvas?.concept_visuals || []).filter((v) => v.asset).map((v) => ({ b, i, asset: v.asset, concept: v.name }))),
+    // a clone channel's further verified pictures ([clone-extra]): one that is not in the bundle is dropped, never drawn broken
+    ...plan.beats.flatMap((b, i) => (b.canvas?.clone_extra || []).filter((v) => v && v.asset).map((v) => ({ b, i, asset: v.asset, extra: v.name }))),
     // entity art (scripts/entity-ladder.js): a flag, or an organisation's real mark — fetched AFTER the pre-bundle, so it is checked here too
     // (board 38010438091 ch-9: the ladder's IEA logo was not in the bundle and the render died "the source image cannot be decoded").
     ...plan.beats.flatMap((b, i) => [
@@ -2468,7 +2481,12 @@ async function guardPlanAssets(channelId, planPath) {
     missing = refs.filter((r) => bad.has(r.asset) || !inBundle(r.asset));
   }
   if (!missing.length) return planPath;
-  for (const { b, i, asset, concept, art } of missing) {
+  for (const { b, i, asset, concept, art, extra } of missing) {
+    if (extra !== undefined) {
+      console.warn(`::warning::[assets] ch-${channelId} beat ${i}: extra picture ${asset} is not in the render bundle — "${extra}" dropped`);
+      b.canvas.clone_extra = (b.canvas.clone_extra || []).filter((v) => v.asset !== asset);
+      continue;
+    }
     if (art !== undefined) {
       // The entity stays shown: a mark that cannot be drawn becomes the name in type; a flag that cannot be drawn, a plate with the place's name.
       const a = b.canvas.art;
