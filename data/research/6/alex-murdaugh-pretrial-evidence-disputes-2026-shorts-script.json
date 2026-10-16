@@ -1,0 +1,69 @@
+{
+  "channel_id": "6",
+  "topic_slug": "alex-murdaugh-pretrial-evidence-disputes-2026",
+  "format": "shorts",
+  "hook": "58-year-old Alex Murdaugh walked back into a South Carolina courtroom for a high-stakes evidence battle.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "58-year-old Alex Murdaugh walked back into a South Carolina courtroom for a high-stakes evidence battle.",
+      "b_roll": [
+        "Exterior shot of the South Carolina courthouse",
+        "Archive photo of Alex Murdaugh in courtroom attire"
+      ],
+      "text_overlay": {
+        "text": "Alex Murdaugh Returns To Court"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Judge Debra McCaslin oversaw fierce arguments over disputed forensic reports, DNA testing, and cellphone evidence in Colleton County. What cell data will Judge McCaslin's October 16 court ruling actually admit?",
+      "b_roll": [
+        "Judge Debra McCaslin seated at the bench",
+        "Legal briefs and forensic files stacked on a desk",
+        "Close up of court documents in Colleton County"
+      ],
+      "text_overlay": {
+        "text": "Disputed Forensic Reports And DNA"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Judge Debra McCaslin's October 16 ruling targets DNA testing and cellphone evidence.",
+      "b_roll": [
+        "Lawyers conferring across the defense table",
+        "Close up of evidence exhibits"
+      ],
+      "text_overlay": {
+        "text": "Contested Evidence Files"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judge Debra McCaslin set Alex Murdaugh's retrial for April 5, 2027. Judge Debra McCaslin scheduled the October 16 hearing for the South Carolina court.",
+      "b_roll": [
+        "Prosecutors reviewing files in the courtroom",
+        "Defense attorneys speaking before the judge",
+        "Calendar showing the scheduled hearing date"
+      ],
+      "text_overlay": {
+        "text": "2027 Retrial Preparations"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The scheduled year 2027 looms heavily over the entire legal system in South Carolina.",
+      "b_roll": [
+        "Wide shot of the courthouse steps in South Carolina"
+      ],
+      "text_overlay": {
+        "text": "The 2027 Retrial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+    "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7",
+    "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e"
+  ]
+}
