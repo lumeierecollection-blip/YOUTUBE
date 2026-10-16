@@ -36,6 +36,7 @@
  */
 
 import { execFileSync } from "node:child_process";
+import { createRequire } from "node:module";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -299,7 +300,30 @@ function logKeyProjects() {
   }
 }
 
+/**
+ * THE SAME GEMINI MODEL THROUGH OPENROUTER when Google's own keys cannot answer (owner, 2026-10-16: "try using OpenRouter").
+ * Board 38889577784 spent all four free-tier keys; every direct callGemini site (props, the script writer, the clarity read)
+ * then fell to a 3B local model and wrote / chose badly. OpenRouter serves google/<model> (openrouter-check.yml, run 38976034607:
+ * gemini-3.5-flash-lite / 3.6-flash / 3.8-flash answered text and image), paid per token from the OPENROUTER_API_KEY credit.
+ * Same model, same messages, no JSON mode forced: only the route changes. It runs only after EVERY key and every sibling model
+ * failed with quota / unavailable / no key; FORCE_PLANNER=ollama and a hard error never reach it. GEMINI_VIA_OPENROUTER=off turns it off.
+ */
 export async function callGemini(messages, opts = {}) {
+  const r = await callGeminiDirect(messages, opts);
+  if (opts._noModelFallback || !(r && r.source === "gemini" && ["quota_exhausted", "unavailable", "no_key"].includes(r.error))) return r;
+  if (!process.env.OPENROUTER_API_KEY || String(process.env.GEMINI_VIA_OPENROUTER || "").toLowerCase() === "off") return r;
+  const model = opts.model || "gemini-3.5-flash-lite";
+  const { callOpenRouter } = createRequire(import.meta.url)("../../scripts/openrouter-client.cjs");
+  const o = await callOpenRouter(messages, { ...opts, openrouterModel: `google/${model}`, openrouterJson: false });
+  if (o && o.source === "openrouter" && o.error) {
+    console.error(`[${opts.tag || "gemini"}] google/${model} via openrouter: ${o.error} (${String(o.detail || "").slice(0, 140)}) — keeping the Gemini failure`);
+    return r;
+  }
+  console.error(`[${opts.tag || "gemini"}] Gemini ${r.error} on every key — answered by google/${model} via openrouter`);
+  return o;
+}
+
+async function callGeminiDirect(messages, opts = {}) {
   const {
     maxTokens = 1200,
     temperature = 0,

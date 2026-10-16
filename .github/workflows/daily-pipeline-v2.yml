@@ -1224,6 +1224,10 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
           VISION_API_KEY: ${{ secrets.GEMINI_API_KEY_4 || secrets.GEMINI_API_KEY }}
           VISION_MODEL: gemini-3.5-flash-lite
+          # OpenRouter is the second tier of every model chain (llm.js, the image verifiers, gemini-client's
+          # quota fallback). It was never passed to THIS step, so on 2026-10-16 every render-side call went
+          # Gemini 429 -> "openrouter: no_key" -> Groq rate limit -> a 3B Ollama model (board 38889577784).
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           # Real-asset fetcher (scripts/fetch-assets.cjs). Unset secrets are
           # empty and that source is skipped with a logged reason —
           # data/ci-runs/blocked-asset-api-keys.txt.
