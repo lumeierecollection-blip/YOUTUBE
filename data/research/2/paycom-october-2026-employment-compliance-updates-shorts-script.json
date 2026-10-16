@@ -1,0 +1,68 @@
+{
+  "channel_id": "2",
+  "topic_slug": "paycom-october-2026-employment-compliance-updates",
+  "format": "shorts",
+  "hook": "New federal tax corrections will catch employers off guard on Form W-2.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "New federal tax corrections will catch employers off guard on Form W-2.",
+      "b_roll": [
+        "Close up of IRS tax form on an office desk"
+      ],
+      "text_overlay": {
+        "text": "W-2 TAX CHANGES"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 1, 2026, Connecticut enforced new pay transparency amendments. Will your dependent care reporting pass the $5000 exclusion limit?",
+      "b_roll": [
+        "State Capitol building in Connecticut",
+        "Official IRS documentation pages",
+        "Calculator showing numerical data"
+      ],
+      "text_overlay": {
+        "text": "IRS BOX 10 UPDATE"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, the Internal Revenue Service requires employer payments for leave to count as wages.",
+      "b_roll": [
+        "Payroll software dashboard screen"
+      ],
+      "text_overlay": {
+        "text": "WAGES RULE SHIFT"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Paycom published the State of Compliance October 2026 report detailing these exact rules. Companies face strict audits for failing to report employee and employer payments correctly. Federal tax forms W-2 and W-3 demand exact compliance.",
+      "b_roll": [
+        "Paycom corporate report on screen",
+        "Audit stamp on compliance document",
+        "Completed tax form W-2 and W-3"
+      ],
+      "text_overlay": {
+        "text": "AUDIT RISK"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Form W-2 reporting changes take effect immediately.",
+      "b_roll": [
+        "Calendar showing October 2026"
+      ],
+      "text_overlay": {
+        "text": "OCTOBER 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.paycom.com/resources/blog/state-of-compliance-october-2026-federal-and-state-compliance-updates",
+    "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3",
+    "https://www.paycom.com/resources/blog/pay-transparency",
+    "https://www.irs.gov/pub/irs-prior/iw2w3--2026.pdf"
+  ]
+}
