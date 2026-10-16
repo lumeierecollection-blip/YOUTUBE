@@ -1,0 +1,69 @@
+{
+  "channel_id": "49",
+  "topic_slug": "mahershala-ali-acting-strategy-new-roles",
+  "format": "shorts",
+  "hook": "Two Oscars changed nothing until 7 years of waiting forced a total cinematic reset.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two Oscars changed nothing until 7 years of waiting forced a total cinematic reset.",
+      "b_roll": [
+        "Portrait of Mahershala Ali",
+        "Award statuettes on a dark surface"
+      ],
+      "text_overlay": {
+        "text": "7 Years Lost"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 12, 2026, NPR reported Mahershala Ali stars as Latif in Your Mother Your Mother Your Mother. Where did 7 years on Marvel project Blade go before this?",
+      "b_roll": [
+        "Poster for Your Mother Your Mother Your Mother",
+        "Director Bassam Tariq on set",
+        "Marvel logo"
+      ],
+      "text_overlay": {
+        "text": "Latif's Story"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "CultureCon revealed complex themes of Black fatherhood, but playing a killer raised the stakes.",
+      "b_roll": [
+        "CultureCon stage lights",
+        "Crowd at convention"
+      ],
+      "text_overlay": {
+        "text": "CultureCon 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Zetik reported that winning 2 Oscars left him fearless on set. Physical risks defined Your Mother Your Mother Your Mother.",
+      "b_roll": [
+        "Film set monitor showing a take",
+        "Actor rehearsing a stunt"
+      ],
+      "text_overlay": {
+        "text": "Fearless Strategy"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Bassam Tariq directed 2 Oscars winner Mahershala Ali in Your Mother Your Mother Your Mother.",
+      "b_roll": [
+        "Credits roll for Your Mother Your Mother Your Mother"
+      ],
+      "text_overlay": {
+        "text": "Your Mother Your Mother Your Mother"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.npr.org/2026/10/12/nx-s1-5996551/mahershala-ali-your-mother",
+    "https://www.zetik.com/news/article/story_id-p008-223436",
+    "https://www.ebony.com/culturecon-mahershala-ali-killer-role-emotional-pay-off",
+    "https://www.gq.com/story/mahershala-ali-your-mother-your-mother-your-mother"
+  ]
+}

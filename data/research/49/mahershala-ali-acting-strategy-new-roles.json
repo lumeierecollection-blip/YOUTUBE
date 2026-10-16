@@ -1,0 +1,86 @@
+{
+  "topic_slug": "mahershala-ali-acting-strategy-new-roles",
+  "strongest_angle": "Analyze Mahershala Ali's October 2026 press tour comments on embracing imperfection, overcoming fear, and taking physical risks for his new film Your Mother Your Mother Your Mother.",
+  "key_facts": [
+    {
+      "fact": "Actor Mahershala Ali stars as a devout Muslim family man and assassin named Latif in the film Your Mother Your Mother Your Mother, directed by Bassam Tariq.",
+      "source_url": "https://www.npr.org/2026/10/12/nx-s1-5996551/mahershala-ali-your-mother",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mahershala Ali stated that decades in the film industry and winning two Oscars have left him with less fear on set, summarizing his experimental acting strategy as letting everyone fail on camera until they find the right performance.",
+      "source_url": "https://www.zetik.com/news/article/story_id-p008-223436",
+      "source_name": "Zetik",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mahershala Ali discussed his role at CultureCon 2026, detailing how playing a killer involves complex themes of Black fatherhood and emotional pay-offs after loss.",
+      "source_url": "https://www.ebony.com/culturecon-mahershala-ali-killer-role-emotional-pay-off",
+      "source_name": "EBONY",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mahershala Ali waited seven years after a 2019 Comic Con Marvel panel before moving on from the vampire project Blade to collaborate with director Bassam Tariq on Your Mother Your Mother Your Mother.",
+      "source_url": "https://www.gq.com/story/mahershala-ali-your-mother-your-mother-your-mother",
+      "source_name": "GQ",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Oscars won by Mahershala Ali",
+      "value": 2,
+      "unit": "Oscars",
+      "source_url": "https://www.npr.org/2026/10/12/nx-s1-5996551/mahershala-ali-your-mother"
+    },
+    {
+      "label": "Years Mahershala Ali waited for the Marvel Blade project",
+      "value": 7,
+      "unit": "years",
+      "source_url": "https://www.gq.com/story/mahershala-ali-your-mother-your-mother-your-mother"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Sometimes you give your all to something, it doesn’t come out like you wanted it to, or it comes out and peopl",
+      "speaker": "Mahershala Ali",
+      "source_name": "EBONY",
+      "source_url": "https://www.ebony.com/culturecon-mahershala-ali-killer-role-emotional-pay-off"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Mahershala Ali",
+      "kind": "person"
+    },
+    {
+      "name": "Bassam Tariq",
+      "kind": "person"
+    },
+    {
+      "name": "Latif",
+      "kind": "person"
+    },
+    {
+      "name": "Your Mother Your Mother Your Mother",
+      "kind": "object"
+    },
+    {
+      "name": "Blade",
+      "kind": "object"
+    },
+    {
+      "name": "Marvel",
+      "kind": "organization"
+    },
+    {
+      "name": "NPR",
+      "kind": "organization"
+    },
+    {
+      "name": "CultureCon",
+      "kind": "organization"
+    }
+  ]
+}
