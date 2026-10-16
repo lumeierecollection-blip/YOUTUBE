@@ -609,7 +609,9 @@ jobs:
                 #     data/ci-runs/blocked-voice-<ch>.txt and THIS CHANNEL IS SKIPPED this run —
                 #     skip=true, no TTS / render / upload; other channels are unaffected.
                 set +e
-                if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
+                # Up to THREE targeted repairs (was one): the clarity reader (SCR-16) flags an unanswered question or an unexplained term that one
+                # repair often leaves half-fixed (board 38877895872 ch-1: the payoff still did not answer "Where does worker confidence stand today?").
+                if [ "$SPEC_REASKED" -lt 3 ] && [ "$ATTEMPT" -lt 5 ]; then
                   node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/spec-out-$FORMAT.log 2>&1
                 else
                   node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" --blocked data/ci-runs > /tmp/spec-out-$FORMAT.log 2>&1
@@ -618,8 +620,8 @@ jobs:
                 set -e
                 cat /tmp/spec-out-$FORMAT.log
                 if [ "$SPEC_EXIT" -ne 0 ]; then
-                  if [ "$SPEC_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 5 ]; then
-                    SPEC_REASKED=1
+                  if [ "$SPEC_REASKED" -lt 3 ] && [ "$ATTEMPT" -lt 5 ]; then
+                    SPEC_REASKED=$((SPEC_REASKED + 1))
                     # The one re-ask: repair only the flagged sentences in place (a full
                     # regeneration fixed them and broke others — runs 37154369091, 37154668613).
                     grep -E '^  - ' /tmp/spec-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true

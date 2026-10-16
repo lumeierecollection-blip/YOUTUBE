@@ -71,8 +71,8 @@ function validateClarity(script, research, { scriptPath = null, researchPath = n
     else {
       log.push(`[clarity] viewer read: what happened = ${view.what_happened || "(not stated)"}; question = ${view.question || "(none)"}; answered = ${view.answered}`);
       if (!view.what_happened) lines.push(`  - NARRATIVE: SETUP never says what happened (who did what, where, when) — a viewer who knows nothing cannot follow the story. Make the first setup sentence state the event from the research.`);
-      if (view.question && !view.answered) lines.push(`  - NARRATIVE: PAYOFF does not answer the question the script opens ("${view.question}"). The payoff must state the answer plainly, from the research.`);
-      for (const p of view.unclear || []) if (p && Number(p.n) > 0) lines.push(`  - CLARITY: sentence ${Number(p.n)} "${String(p.text || "").slice(0, 160)}" — ${String(p.why || "unclear to a viewer").slice(0, 200)}.`);
+      if (view.question && !view.answered) lines.push(`  - NARRATIVE: PAYOFF does not answer the question the script opens ("${view.question}"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.`);
+      for (const p of view.unclear || []) if (p && Number(p.n) > 0) lines.push(`  - CLARITY: sentence ${Number(p.n)} "${String(p.text || "").slice(0, 160)}" — ${String(p.why || "unclear to a viewer").slice(0, 200)}. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.`);
     }
   }
   return { pass: lines.length === 0, lines, log, word, view };
