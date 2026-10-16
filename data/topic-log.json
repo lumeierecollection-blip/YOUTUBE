@@ -485,9 +485,14 @@
           "topic": "CNBC Select's October 2026 Ranking of the Best Budgeting Apps",
           "slug": "cnbc-select-october-2026-best-budgeting-apps",
           "reserved_at": "2026-10-15T18:08:35.080Z"
+        },
+        {
+          "topic": "Why Workplace Financial Education Beats Raw Income for Confidence",
+          "slug": "workplace-financial-education-confidence-index",
+          "reserved_at": "2026-10-16T12:24:28.830Z"
         }
       ],
-      "last_generated": "2026-10-15T18:08:35.080Z"
+      "last_generated": "2026-10-16T12:24:28.830Z"
     },
     "2": {
       "channel_name": "Legal Brief",
