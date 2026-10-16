@@ -1,0 +1,66 @@
+{
+  "channel_id": "8",
+  "topic_slug": "fsb-bank-resolution-backstop-compliance-2026",
+  "format": "shorts",
+  "hook": "Only 4 of 19 major economies meet emergency backstop rules for failing banks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Only 4 of 19 major economies meet emergency backstop rules for failing banks.",
+      "b_roll": [
+        "Global financial district skyline",
+        "Emergency alert graphic"
+      ],
+      "text_overlay": {
+        "text": "4 of 19 economies compliant"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 9, 2026, the Financial Stability Board published a peer review report on public sector backstop funding mechanisms. Which eight members landed on the materially non-compliant list?",
+      "b_roll": [
+        "Report document pages turning",
+        "World map with highlighted financial centers"
+      ],
+      "text_overlay": {
+        "text": "October 9, 2026 Report"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet Switzerland and the European Union Banking Union landed among eight materially non-compliant members.",
+      "b_roll": [
+        "European central bank facade",
+        "Swiss alpine bank vault door"
+      ],
+      "text_overlay": {
+        "text": "Switzerland & EU flagged"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Only the United States, United Kingdom, Japan, and Hong Kong fully met resolution standards. Those four economies avoided the non-compliant rating entirely. The Financial Stability Board adopted these rules back in 2011.",
+      "b_roll": [
+        "Washington DC federal building",
+        "Tokyo stock exchange trading floor"
+      ],
+      "text_overlay": {
+        "text": "US, UK, Japan, Hong Kong compliant"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Financial Stability Board reviewed all 19 economies in its report.",
+      "b_roll": [
+        "Financial Stability Board logo"
+      ],
+      "text_overlay": {
+        "text": "19 economies reviewed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant",
+    "https://www.fsb.org/2026/10/thematic-review-on-public-sector-backstop-funding-mechanisms-peer-review-report"
+  ]
+}
