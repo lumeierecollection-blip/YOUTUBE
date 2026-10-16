@@ -1,0 +1,62 @@
+{
+  "channel_id": "1",
+  "topic_slug": "cnbc-select-october-2026-holiday-budgeting-tools",
+  "format": "shorts",
+  "hook": "Most holiday shoppers think budgets work, yet only 36% actually stick to them.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most holiday shoppers think budgets work, yet only 36% actually stick to them.",
+      "b_roll": [
+        "Display holiday shopping bags piled high next to a glowing smartphone screen showing a red warning percentage."
+      ],
+      "text_overlay": {
+        "text": "Only 36% stick to a holiday budget"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 14, 2026, CNBC Select published a new report reviewing holiday budgeting tools. Over two dozen products faced testing for costs and features. Which app costs $14.99 a month?",
+      "b_roll": [
+        "Show a digital calendar flipping to October 14, followed by a lineup of glowing app logos on a sleek desk."
+      ],
+      "text_overlay": {
+        "text": "CNBC Select reviewed over two dozen products"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Rocket Money offers a free tier, but its Premium plan costs $7 to $14 a month.",
+      "b_roll": [
+        "Display a mobile screen showing a zero dollar tier upgrade button."
+      ],
+      "text_overlay": {
+        "text": "Rocket Money premium plan costs up to $14"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "YNAB charges $14.99 a month for zero-based budgeting features. YNAB costs $14.99 a month according to CNBC Select. CNBC Select tested Rocket Money and YNAB to find your best option.",
+      "b_roll": [
+        "Show a price tag ticking up to $14.99 beside a monthly subscription dashboard."
+      ],
+      "text_overlay": {
+        "text": "YNAB costs $14.99 a month"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only 36% of holiday shoppers keep their budget.",
+      "b_roll": [
+        "Flash the final percentage statistic on a clean dark background."
+      ],
+      "text_overlay": {
+        "text": "Only 36% keep their budget"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnbc.com/select/budgeting-tools-for-holiday-shopping",
+    "https://www.bootstrappedwealth.com/2026/10/15/paypal-survey-finds-58-more-worried-about-holiday-finances"
+  ]
+}
