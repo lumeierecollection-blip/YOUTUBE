@@ -1,0 +1,32 @@
+{
+  "channel_id": "6",
+  "topic_slug": "human-dna-olney-house",
+  "format": "shorts",
+  "hook": "Human DNA found in Olney house linked to seven missing women",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Human DNA found in Olney house linked to seven missing women, CBS Philadelphia reported on October 14, 2026, citing police sources."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Investigators used luminol to search the Olney house for evidence. Human DNA was found in several places inside the house, including the kitchen and bedrooms."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This discovery shakes the community and raises serious concerns about the investigation."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Human DNA was found in 1 of the 7 places searched, leading to a potential breakthrough in the missing women case."
+    },
+    {
+      "id": "close",
+      "voiceover": "Keep an eye on the investigation for more updates."
+    }
+  ],
+  "sources_used": [
+    "https://northeasttimes.com/2026/10/14/human-dna-found-in-several-spots-at-olney-chew-avenue-home-police-sources",
+    "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol"
+  ]
+}

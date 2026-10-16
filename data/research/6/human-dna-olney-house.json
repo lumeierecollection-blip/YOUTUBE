@@ -1,0 +1,80 @@
+{
+  "topic_slug": "human-dna-olney-house",
+  "strongest_angle": "Investigator discovers human DNA at the site of a missing persons case in Philadelphia",
+  "key_facts": [
+    {
+      "fact": "Human DNA was found in the Olney house connected to seven missing women.",
+      "source_url": "https://northeasttimes.com/2026/10/14/human-dna-found-in-several-spots-at-olney-chew-avenue-home-police-sources",
+      "source_name": "Northeast Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigators used luminol to search the Olney house for evidence.",
+      "source_url": "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol",
+      "source_name": "CBS Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Human DNA was found in several places inside the Olney house.",
+      "source_url": "https://northeasttimes.com/2026/10/14/human-dna-found-in-several-spots-at-olney-chew-avenue-home-police-sources",
+      "source_name": "Northeast Times",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "7 missing women",
+      "value": 7,
+      "unit": "women",
+      "source_url": "https://northeasttimes.com/2026/10/14/human-dna-found-in-several-spots-at-olney-chew-avenue-home-police-sources"
+    },
+    {
+      "label": "DNA found in several spots",
+      "value": 1,
+      "unit": "places",
+      "source_url": "https://northeasttimes.com/2026/10/14/human-dna-found-in-several-spots-at-olney-chew-avenue-home-police-sources"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Olney",
+      "kind": "place"
+    },
+    {
+      "name": "West Chew Avenue",
+      "kind": "place"
+    },
+    {
+      "name": "CBS Philadelphia",
+      "kind": "organization"
+    },
+    {
+      "name": "Northeast Times",
+      "kind": "organization"
+    },
+    {
+      "name": "Ray Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Joe Holden",
+      "kind": "person"
+    },
+    {
+      "name": "Tom Ignudo",
+      "kind": "person"
+    },
+    {
+      "name": "Bryanna Gallagher",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Human DNA was found in several places inside the West Chew Avenue home in Olney that is tied to seven missing women, CBS Philadelphia reported Tuesday, citing police sources.",
+      "speaker": "CBS Philadelphia",
+      "source_name": "CBS Philadelphia",
+      "source_url": "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol"
+    }
+  ]
+}
