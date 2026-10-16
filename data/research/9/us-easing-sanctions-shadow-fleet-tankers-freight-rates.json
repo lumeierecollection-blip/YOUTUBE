@@ -1,0 +1,60 @@
+{
+  "topic_slug": "us-easing-sanctions-shadow-fleet-tankers-freight-rates",
+  "strongest_angle": "The Trump administration is exploring easing sanctions on shadow fleet tankers that transported oil from Russia, Iran, and Venezuela to lower global freight rates, though analysts warn the impact on tanker availability will be minimal.",
+  "key_facts": [
+    {
+      "fact": "The Trump administration is considering easing sanctions on shadow fleet vessels that transported oil and petroleum products from Russia, Iran, and Venezuela in an effort to reduce record-high global freight rates, according to a US official.",
+      "source_url": "https://en.apa.az/america/us-considers-easing-sanctions-on-shadow-fleet-vessels-to-cut-freight-rates-official-says-530140",
+      "source_name": "APA",
+      "confidence": "high"
+    },
+    {
+      "fact": "Traders and analysts in Houston stated on Thursday that a potential Trump administration plan to ease sanctions on vessels that transported sanctioned oil and fuel would likely have a limited impact on boosting tanker availability.",
+      "source_url": "https://www.investing.com/news/commodities-news/us-plan-to-ease-shadow-fleet-sanctions-unlikely-to-free-up-many-tankers-analysts-say-4952464",
+      "source_name": "Investing.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Energy Intelligence journalists Jessica Sondgeroth and Paul Merolli reported from Washington that the Trump administration is considering sanctions relief for some shadow fleet tankers to reduce freight costs despite minimal expected market impact.",
+      "source_url": "https://www.energyintel.com/000001a1-4105-d65e-a5e3-55e551930000",
+      "source_name": "Energy Intelligence",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Trump administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Russia",
+      "kind": "place"
+    },
+    {
+      "name": "Iran",
+      "kind": "place"
+    },
+    {
+      "name": "Venezuela",
+      "kind": "place"
+    },
+    {
+      "name": "Houston",
+      "kind": "place"
+    },
+    {
+      "name": "Jessica Sondgeroth",
+      "kind": "person"
+    },
+    {
+      "name": "Paul Merolli",
+      "kind": "person"
+    },
+    {
+      "name": "Washington",
+      "kind": "place"
+    }
+  ]
+}

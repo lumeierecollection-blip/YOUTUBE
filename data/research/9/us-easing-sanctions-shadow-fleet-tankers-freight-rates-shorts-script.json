@@ -1,0 +1,63 @@
+{
+  "channel_id": "9",
+  "topic_slug": "us-easing-sanctions-shadow-fleet-tankers-freight-rates",
+  "format": "shorts",
+  "hook": "What if easing sanctions on shadow fleet tankers could lower global freight rates across Russia, Iran, and Venezuela?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if easing sanctions on shadow fleet tankers could lower global freight rates across Russia, Iran, and Venezuela?",
+      "b_roll": [
+        "Map of tanker routes across global waters"
+      ],
+      "text_overlay": {
+        "text": "Easing Sanctions on Shadow Fleet"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Trump administration is considering sanctions relief for vessels that transported oil from Russia, Iran, and Venezuela. Where will those tankers sail first?",
+      "b_roll": [
+        "Washington D.C. federal buildings and shipping lanes"
+      ],
+      "text_overlay": {
+        "text": "Washington Considers Relief"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except analysts in Houston warn the impact on tanker availability will be minimal.",
+      "b_roll": [
+        "Port of Houston industrial skyline"
+      ],
+      "text_overlay": {
+        "text": "Minimal Market Impact"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Energy Intelligence journalists Jessica Sondgeroth and Paul Merolli confirmed this policy shift in Washington. Global markets face persistent freight rate pressures despite potential sanctions relief for shadow fleet vessels.",
+      "b_roll": [
+        "Energy Intelligence newsroom and oil tankers"
+      ],
+      "text_overlay": {
+        "text": "Journalists Confirm Policy Shift"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Shadow fleet tankers navigate global freight routes.",
+      "b_roll": [
+        "Shadow fleet tanker at sea"
+      ],
+      "text_overlay": {
+        "text": "Shadow Fleet Tankers"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.apa.az/america/us-considers-easing-sanctions-on-shadow-fleet-vessels-to-cut-freight-rates-official-says-530140",
+    "https://www.investing.com/news/commodities-news/us-plan-to-ease-shadow-fleet-sanctions-unlikely-to-free-up-many-tankers-analysts-say-4952464",
+    "https://www.energyintel.com/000001a1-4105-d65e-a5e3-55e551930000"
+  ]
+}
