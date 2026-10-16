@@ -1320,9 +1320,14 @@
           "topic": "Baltimore Cold Case Suspect Indicted on Murder and Rape Charges After Decades",
           "slug": "baltimore-1986-cold-case-indictment",
           "reserved_at": "2026-10-15T18:11:51.625Z"
+        },
+        {
+          "topic": "Human Remains Recovered at Philadelphia Horsch Home in Missing Women Investigation",
+          "slug": "philadelphia-horsch-home-bones-recovery",
+          "reserved_at": "2026-10-16T12:28:30.885Z"
         }
       ],
-      "last_generated": "2026-10-15T18:11:51.625Z"
+      "last_generated": "2026-10-16T12:28:30.886Z"
     },
     "7": {
       "channel_name": "Dead Companies",
