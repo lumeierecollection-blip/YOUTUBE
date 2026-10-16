@@ -1,0 +1,62 @@
+{
+  "topic_slug": "universities-ai-philosopher-hiring-spree",
+  "strongest_angle": "Academic institutions are rapidly expanding their philosophy departments to address the existential and ethical implications of artificial intelligence.",
+  "key_facts": [
+    {
+      "fact": "Washington University in St. Louis (WashU) has launched a cluster hiring campaign to employ over 30 new tenure-track faculty members by 2029.",
+      "source_url": "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program",
+      "source_name": "Student Life",
+      "confidence": "high"
+    },
+    {
+      "fact": "In 2013, only 1 percent of job roles listed on the academic platform PhilJobs were focused on philosophy of artificial intelligence.",
+      "source_url": "https://www.theatlantic.com/technology/2026/06/ai-companies-hiring-philosophers/687417",
+      "source_name": "The Atlantic",
+      "confidence": "high"
+    },
+    {
+      "fact": "Inside Higher Ed reports that universities are experiencing an exploding demand for philosophy professors capable of investigating the nature of knowledge and humanity in the age of AI.",
+      "source_url": "https://www.insidehighered.com/news/faculty/2026/10/15/universities-have-gone-ai-philosopher-hiring-spree",
+      "source_name": "Inside Higher Ed",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "New tenure-track faculty members sought by WashU",
+      "value": 30,
+      "unit": "people",
+      "source_url": "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program"
+    },
+    {
+      "label": "Target year for completion of WashU hiring program",
+      "value": 2029,
+      "unit": "year",
+      "source_url": "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program"
+    },
+    {
+      "label": "Percentage of PhilJobs roles related to AI in 2013",
+      "value": 1,
+      "unit": "percent",
+      "source_url": "https://www.theatlantic.com/technology/2026/06/ai-companies-hiring-philosophers/687417"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Washington University in St. Louis",
+      "kind": "organization"
+    },
+    {
+      "name": "PhilJobs",
+      "kind": "organization"
+    },
+    {
+      "name": "Inside Higher Ed",
+      "kind": "organization"
+    },
+    {
+      "name": "The Atlantic",
+      "kind": "organization"
+    }
+  ]
+}
