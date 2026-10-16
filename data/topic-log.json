@@ -1479,9 +1479,14 @@
           "topic": "Bank Failures in 2026",
           "slug": "bank-failures-2026",
           "reserved_at": "2026-10-16T12:33:07.388Z"
+        },
+        {
+          "topic": "Why Six US Regional Banks Failed in 2026: The Decade's Highest Count",
+          "slug": "six-us-regional-banks-failed-in-2026-highest-decade-count",
+          "reserved_at": "2026-10-16T22:46:59.945Z"
         }
       ],
-      "last_generated": "2026-10-16T12:33:07.388Z"
+      "last_generated": "2026-10-16T22:46:59.945Z"
     },
     "9": {
       "channel_name": "Border Lines",
