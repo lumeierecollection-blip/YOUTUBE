@@ -1,0 +1,70 @@
+{
+  "channel_id": "49",
+  "topic_slug": "mahershala-ali-acting-philosophy-profile",
+  "format": "shorts",
+  "hook": "Winning 2 Oscars changed how Mahershala Ali approaches his craft.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Winning 2 Oscars changed how Mahershala Ali approaches his craft.",
+      "b_roll": [
+        "Portrait of Mahershala Ali holding an award",
+        "Close up shot on a dark film set"
+      ],
+      "text_overlay": {
+        "text": "Two Oscars Changed Everything"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did spending decades in the film business give Mahershala Ali a deep foundation?",
+      "b_roll": [
+        "Film still from Swan Song showing dual characters",
+        "Apple TV+ interface screen",
+        "Clapperboard on a movie set"
+      ],
+      "text_overlay": {
+        "text": "Swan Song Dual Roles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet winning 2 Oscars left Mahershala Ali less fearful and ready to push further.",
+      "b_roll": [
+        "Stage lights focusing on an actor",
+        "Golden statuette close up"
+      ],
+      "text_overlay": {
+        "text": "2 Oscars Won"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mahershala Ali used his 2 Oscars to unlock total experimentation. Mahershala Ali brought that experimental mindset to Your Mother Your Mother Your Mother. Mahershala Ali lets everyone fail on camera until they find an authentic performance.",
+      "b_roll": [
+        "Director monitoring a camera screen on set",
+        "Actor performing in front of studio lights",
+        "Script pages with handwritten notes"
+      ],
+      "text_overlay": {
+        "text": "The Acting Philosophy"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "He secured absolute creative freedom by winning 2 Academy Awards.",
+      "b_roll": [
+        "Wide shot of a quiet soundstage",
+        "Film credits rolling in a dark theater"
+      ],
+      "text_overlay": {
+        "text": "Mahershala Ali"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.npr.org/2026/10/12/nx-s1-5996551/mahershala-ali-your-mother",
+    "https://ew.com/movies/mahershala-ali-swan-song-interview",
+    "https://www.zetik.com/news/article/story_id-p008-223436"
+  ]
+}
