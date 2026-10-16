@@ -1,0 +1,85 @@
+{
+  "topic_slug": "harvard-research-10-negotiation-tactics",
+  "strongest_angle": "Examine ten evidence-based negotiation tactics backed by Harvard Law School's Program on Negotiation designed to help professionals replace contests of wills with structured mutual-gains maneuvers during salary reviews and vendor calls.",
+  "key_facts": [
+    {
+      "fact": "Harvard Law School's Program on Negotiation outlines 10 common hard-bargaining tactics and negotiation skills that professionals encounter during business discussions.",
+      "source_url": "https://www.pon.harvard.edu/daily/batna/10-hardball-tactics-in-negotiation",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Roger Fisher, William Ury, and Bruce Patton published the 3rd edition of Getting to Yes with Penguin in 2011, establishing foundational mutual-gains negotiation frameworks.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/six-guidelines-for-getting-to-yes",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Quartz reported on October 9, 2026, that ten negotiation tactics backed by research from Harvard's Program on Negotiation help workers achieve better professional outcomes.",
+      "source_url": "https://qz.com/negotiation-tactics-backed-by-harvard-research",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Katie Shonk authored an article published by the Program on Negotiation at Harvard Law School on October 6, 2026, detailing the top 10 negotiation skills required for business success.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Negotiation Tactics Count",
+      "value": 10,
+      "unit": "tactics",
+      "source_url": "https://qz.com/negotiation-tactics-backed-by-harvard-research"
+    },
+    {
+      "label": "Book Edition",
+      "value": 3,
+      "unit": "edition",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/six-guidelines-for-getting-to-yes"
+    },
+    {
+      "label": "Publication Year",
+      "value": 2011,
+      "unit": "year",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/six-guidelines-for-getting-to-yes"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Harvard University",
+      "kind": "organization"
+    },
+    {
+      "name": "Harvard Law School",
+      "kind": "organization"
+    },
+    {
+      "name": "Roger Fisher",
+      "kind": "person"
+    },
+    {
+      "name": "William Ury",
+      "kind": "person"
+    },
+    {
+      "name": "Bruce Patton",
+      "kind": "person"
+    },
+    {
+      "name": "Penguin",
+      "kind": "organization"
+    },
+    {
+      "name": "Katie Shonk",
+      "kind": "person"
+    },
+    {
+      "name": "Quartz",
+      "kind": "organization"
+    }
+  ]
+}

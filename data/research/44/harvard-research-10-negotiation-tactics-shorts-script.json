@@ -1,0 +1,67 @@
+{
+  "channel_id": "44",
+  "topic_slug": "harvard-research-10-negotiation-tactics",
+  "format": "shorts",
+  "hook": "Ten negotiation tactics from Harvard Law School change professional outcomes completely.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Ten negotiation tactics from Harvard Law School change professional outcomes completely.",
+      "b_roll": [
+        "University campus exterior",
+        "Close up of negotiation handbook"
+      ],
+      "text_overlay": {
+        "text": "Harvard Negotiation Tactics"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 6, 2026, Katie Shonk published research detailing 10 negotiation skills for business success. Where did those 10 tactics originate?",
+      "b_roll": [
+        "Author writing at desk",
+        "Quartz publication article screenshot"
+      ],
+      "text_overlay": {
+        "text": "10 Negotiation Skills"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Penguin published the 3rd edition of Getting to Yes in 2011 to build those frameworks.",
+      "b_roll": [
+        "Book cover Getting to Yes",
+        "Library bookshelf"
+      ],
+      "text_overlay": {
+        "text": "Getting to Yes 3rd Edition"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Harvard Law School outlines these hard-bargaining strategies to replace contests of wills with mutual gains. Professionals utilize the Program on Negotiation frameworks during business discussions and vendor calls. 10 core principles drive every successful salary review.",
+      "b_roll": [
+        "Business professionals in meeting",
+        "Handshake contract signing"
+      ],
+      "text_overlay": {
+        "text": "Mutual-Gains Frameworks"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Harvard Law School established 10 foundational tactics for professional success.",
+      "b_roll": [
+        "Harvard seal logo",
+        "Graduation hall"
+      ],
+      "text_overlay": {
+        "text": "10 Harvard Tactics"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.pon.harvard.edu/daily/batna/10-hardball-tactics-in-negotiation",
+    "https://qz.com/negotiation-tactics-backed-by-harvard-research"
+  ]
+}
