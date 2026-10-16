@@ -1,0 +1,68 @@
+{
+  "topic_slug": "777-partners-founder-pleads-guilty-500m-fraud",
+  "strongest_angle": "Examine how Josh Wander, founder of Miami-based 777 Partners, orchestrated a massive $500 million fraud scheme before pleading guilty in federal court.",
+  "key_facts": [
+    {
+      "fact": "Josh Wander, co-founder of Miami-based investment firm 777 Partners, pleaded guilty in Manhattan federal court to wire fraud and securities fraud charges.",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Federal prosecutors stated that Josh Wander orchestrated a scheme to bilk lenders and investors out of at least $500 million before 777 Partners collapsed.",
+      "source_url": "https://news.bloomberglaw.com/bankruptcy-law/777-partners-co-founder-wander-pleads-guilty-to-fraud",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "Josh Wander, aged 45, agreed to pay back $500 million in losses caused by the massive fraud scheme tied to 777 Partners.",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total fraud losses / restitution amount",
+      "value": 500000000,
+      "unit": "dollars",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e"
+    },
+    {
+      "label": "Age of Josh Wander",
+      "value": 45,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "An American businessman whose firm invested in several European soccer clubs that struggled under its ownership pleaded guilty to fraud charges Thursday in New York and agreed to pay back $500 million in losses caused by the scheme.",
+      "speaker": "Associated Press",
+      "source_name": "Associated Press",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Josh Wander",
+      "kind": "person"
+    },
+    {
+      "name": "777 Partners",
+      "kind": "organization"
+    },
+    {
+      "name": "Miami",
+      "kind": "place"
+    },
+    {
+      "name": "Manhattan",
+      "kind": "place"
+    },
+    {
+      "name": "United States Department of Justice",
+      "kind": "organization"
+    }
+  ]
+}

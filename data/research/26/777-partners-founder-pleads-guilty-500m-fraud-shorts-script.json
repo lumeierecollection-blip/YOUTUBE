@@ -1,0 +1,65 @@
+{
+  "channel_id": "26",
+  "topic_slug": "777-partners-founder-pleads-guilty-500m-fraud",
+  "format": "shorts",
+  "hook": "Josh Wander orchestrated a massive $500 million fraud scheme before pleading guilty in federal court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Josh Wander orchestrated a massive $500 million fraud scheme before pleading guilty in federal court.",
+      "b_roll": [
+        "Courtroom exterior in Manhattan",
+        "Financial district skyline"
+      ],
+      "text_overlay": {
+        "text": "$500M FRAUD PLEA"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal prosecutors stated that 777 Partners bilked lenders out of funds before collapsing. Miami became the base of operations for the firm. Where did the $500 million disappear?",
+      "b_roll": [
+        "Miami corporate headquarters building",
+        "Stack of financial documents"
+      ],
+      "text_overlay": {
+        "text": "$500M MISSING"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Josh Wander agreed to pay back every dollar of the losses.",
+      "b_roll": [
+        "Signed legal plea document"
+      ],
+      "text_overlay": {
+        "text": "FULL RESTITUTION"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Manhattan federal court recorded the guilty plea for wire fraud. 777 Partners collapsed under massive debts. The 45 year old founder faces severe consequences.",
+      "b_roll": [
+        "Federal courthouse doors",
+        "New York news press room"
+      ],
+      "text_overlay": {
+        "text": "GUILTY PLEA"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Josh Wander admitted to securities fraud in New York.",
+      "b_roll": [
+        "Manhattan skyline at dusk"
+      ],
+      "text_overlay": {
+        "text": "SEC FRAUD"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+    "https://news.bloomberglaw.com/bankruptcy-law/777-partners-co-founder-wander-pleads-guilty-to-fraud"
+  ]
+}
