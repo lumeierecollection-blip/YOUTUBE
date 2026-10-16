@@ -1,0 +1,68 @@
+{
+  "channel_id": "6",
+  "topic_slug": "alex-murdaugh-court-evidence-disputes-retrial",
+  "format": "shorts",
+  "hook": "Alex Murdaugh's legal battle explodes as new evidence disputes rock a South Carolina courtroom.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Alex Murdaugh's legal battle explodes as new evidence disputes rock a South Carolina courtroom.",
+      "b_roll": [
+        "Close up of courtroom gavel resting on wooden desk",
+        "Archival photo of Alex Murdaugh in orange jumpsuit"
+      ],
+      "text_overlay": {
+        "text": "The Murdaugh Retrial Evidence Fight"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Judge Debra McCaslin presided over pretrial hearings regarding DNA testing at the Lexington County courthouse. How will prosecutors resolve these massive evidence disputes before the 2027 retrial?",
+      "b_roll": [
+        "Exterior shot of Lexington County courthouse building",
+        "Law books stacked on a wooden table"
+      ],
+      "text_overlay": {
+        "text": "Lexington County Pretrial Hearings"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Defense attorneys clashed with prosecutors, but ballistics data remains heavily contested for the retrial.",
+      "b_roll": [
+        "Stacked legal documents under fluorescent lighting",
+        "A courtroom bench viewed from the gallery"
+      ],
+      "text_overlay": {
+        "text": "Contested Ballistics Data"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "South Carolina courts officially scheduled the double murder retrial. Age 58 brings Alex Murdaugh back into the legal spotlight. April 5 marks the exact return date.",
+      "b_roll": [
+        "South Carolina state seal engraved on wall",
+        "A calendar page showing April 2027"
+      ],
+      "text_overlay": {
+        "text": "Trial Set For April 5, 2027"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Colleton County relinquished jurisdiction for the upcoming 2027 proceedings.",
+      "b_roll": [
+        "Wide angle of empty courtroom seating",
+        "A wooden door slowly closing"
+      ],
+      "text_overlay": {
+        "text": "Leaving Colleton County"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+    "https://www.fitsnews.com/2026/10/15/murdaugh-evidence-fights-court",
+    "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+  ]
+}
