@@ -47,6 +47,8 @@ export function heroesOf(canvas) {
     if (x.kind === "logo") out.push({ kind: "logo", asset: x.asset, name: x.name || null, w: x.w || null, h: x.h || null, view: null, cutout: x.asset });
     else out.push({ kind: x.kind === "person" ? "portrait" : "photo", asset: x.asset, name: x.name || null, w: x.w || null, h: x.h || null, view: x.view || null, credit: x.credit || null, cutout: x.cutout || null, grounded: !!x.cutout_grounded, bust: !!x.cutout_bust, vignette: !!x.vignette });
   }
+  // the beat's PROPS (render-and-qa.js attachCloneProps): generic photographed objects / places Gemini chose for the sentence, cut out and verified
+  for (const x of c.clone_props || []) if (x && x.asset && !out.some((o) => o.asset === x.asset)) out.push({ kind: "cutout", asset: x.asset, name: null, prop: x.name || null, w: x.w || null, h: x.h || null, view: null, cutout: x.asset, grounded: !!x.grounded });
   if (c.art && c.art.asset) out.push({ kind: c.art.kind === "plate-organization" ? "logo" : c.art.kind || "art", asset: c.art.asset, name: c.art.name || null, w: null, h: null, view: null });
   if (c.art && Array.isArray(c.art.items)) for (const it of c.art.items) if (it && it.asset) out.push({ kind: "logo", asset: it.asset, name: it.name || null, w: null, h: null, view: null });
   return out;
@@ -250,7 +252,11 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
     // entities are shown where no picture is, on a trailing panel shot (a beat of three or more shots gives its last one to them).
     const heroNames = new Set(heroes.map((h) => String(h.name || "").toLowerCase()).filter(Boolean));
     const extra = ents.filter((x) => !heroNames.has(x.name.toLowerCase()));
-    const panelLast = heroes.length > 0 && extra.length > 0 && nShots >= 3;
+    // With PROPS every shot has a picture (owner, 2026-10-16: "a PNG cutout in every frame"), so the beat's other entities are named in TYPE on the prop shots
+    // (never as a label under a picture of something else) instead of on a picture-less trailing panel.
+    const hasProps = heroes.some((h) => h.prop);
+    const panelLast = !hasProps && heroes.length > 0 && extra.length > 0 && nShots >= 3;
+    let propNameAt = 0;
     for (let k = 0; k < nShots; k++) {
       const f0 = cuts[k], f1 = cuts[k + 1];
       const lastPanel = panelLast && k === nShots - 1;
@@ -312,6 +318,11 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
         // The measurement said the opposite: with the captions gone ch-44 went from approved-review to TEMPLATE_MONOCULTURE 100%, ch-26 from 50% to 100% (ch-2 stayed 100%): bare
         // identical plates read as one template. The short caption stays (smaller than the plate, and never repeating it: see the exclusion above); a tick still stands in when none fits.
         disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
+        // a PROP shot names one of the beat's entities that has no picture, as the sentence writes it, so every entity the beat names is on screen
+        if (hero && hero.prop && extra.length && !figHere) {
+          const nm = extra[propNameAt++ % extra.length];
+          disp = { text: nm.name, at: Math.min(f1 - 9, f0 + ELEMENT_OFFSET.display), emphasis: null, words: nm.name.split(/\s+/).length };
+        }
       }
       // KICKER (ref-03, owner 2026-10-16 "look how much better they look"): a shot with no picture and no subject sets the narration it is SPEAKING, word by word on each
       // word's own onset, in a small serif line next to the big phrase — the words the big phrase does not say ("the more it" + "SLIPS AWAY"). It replaces the paper
@@ -428,7 +439,7 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   if (out.photo) parts.push("a photograph of " + (out.photo.entity || "the subject") + " in a framed or full-bleed layout");
   if (out.concept_visuals.length) parts.push("a logo or object picture");
   const glyphs = (shots || []).flatMap((x) => (x.subjects || []).filter((y) => y.kind === "glyph").map((y) => y.type));
-  if (glyphs.length) parts.push("generic " + [...new Set(glyphs)].map((t) => (t === "person" ? "person-silhouette" : t === "place" ? "map-pin" : "building")).join(" / ") + " icon plates with the entity's name");
+  if (glyphs.length) parts.push("the names of entities it has no picture of, set large in type (no icons)");
   if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");
   if (date) parts.push("a calendar-date plate");
   if ((shots || []).some((x) => x.excerpt)) parts.push("the narration set word by word in a serif line (no excerpt cards)");

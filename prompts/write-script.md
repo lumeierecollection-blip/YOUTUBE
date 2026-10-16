@@ -221,6 +221,21 @@ show:
 - One word per sentence carries the weight — put it at the end of a clause, where the voice naturally lands on it.
 - No ellipses, no exclamation marks, no ALL CAPS: they make the voice sing-song or shout.
 
+## CLARITY — a viewer who knows nothing must follow it (owner, 2026-10-16)
+
+The script is checked by a reader who has never heard of this story (scripts/validate-script-clarity.cjs).
+
+- **Open, then close.** The setup opens ONE question; the payoff ANSWERS it in plain words,
+  with the fact from the research. Never leave it hanging, hinted at, or answered "sort of".
+- **Context first.** By the end of the setup the viewer knows WHAT happened, WHO did it,
+  WHERE and WHEN — the research's own facts.
+- **Name before pronoun.** Never "he", "she", "her", "his" before that person's full name
+  has been said. "This", "that" and "it" must point at something the previous sentence named.
+- **No comment-only sentences.** "That's a shocking reality.", "That's the specific action
+  you can take.", "This changes everything." say nothing — every sentence carries a fact.
+- **No undefined terms.** A term the viewer may not know (a law, a programme, a ratio) is
+  explained in a few words the first time.
+
 ## BANNED
 
 Banned OPENINGS (no sentence starts with): a person's full name, "According

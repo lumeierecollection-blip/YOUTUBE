@@ -22,6 +22,7 @@ const { join } = require("node:path");
 const S = require("./validate-script.cjs");
 const V = require("./validate-script-voice.cjs");
 const N = require("./validate-script-narrative.cjs");
+const C = require("./validate-script-clarity.cjs");
 
 const args = process.argv.slice(2);
 const bi = args.indexOf("--blocked");
@@ -46,6 +47,11 @@ const n = N.validateNarrative(script, research);
 out.narrative.push(`[script] ch-${ch}: beats read by ${n.by}`);
 out.narrative.push(N.summary(ch, n));
 out.narrative.push(...N.feedbackLines(n));
+// CLARITY (owner, 2026-10-16): no comment-only sentences, no "she" before anyone is named, the event stated, the opened question answered.
+// Its failures are NARRATIVE failures: the same one re-ask repairs them (validate-script-clarity.cjs).
+const c = C.validateClarity(script, research, { scriptPath, researchPath, useModel: process.env.CLARITY_MODEL !== "off" });
+out.narrative.push(...c.log.map((l) => `[script] ch-${ch}: ${l}`), ...c.lines);
+if (!c.pass) { n.pass = false; n.failures = (n.failures || 0) + c.lines.length; }
 
 for (const k of ["narrative", "voice", "specificity"]) for (const l of out[k]) console.log(l);
 const failed = { narrative: !n.pass, voice: !v.pass, specificity: !s.pass };

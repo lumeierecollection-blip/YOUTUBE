@@ -6,18 +6,23 @@
  * out (a ground that is not white, type beside objects, solid shapes) because the references do; what it keeps from the pipeline is every
  * rule that is not about those: pop-only entrances (no bounce, no overshoot), no zoom, real sourced pictures only, colour from channels.json.
  *
- * Every element enters with the pipeline's own pop (pop-groups.js popInState: 94% -> 100% over 6 frames, no pass beyond 1). The previous
- * shot stays under the new one for 6 frames, fading, so a cut is never an empty frame.
+ * TRANSITIONS (owner, 2026-10-16: "make sure the transitions aren't weird, fading"): every shot change is a HARD CUT, as in the references — the
+ * picture is there on the cut's first frame, nothing of the previous shot lingers under it (the old 6-frame hold read as a ghosted double image), and
+ * no element fades. Words and labels arrive with a SNAP: fully opaque on their first frame, settling from 92% to 100% scale over 4 frames.
  */
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { popInState, popOutState } from "../visual/pop-groups.js";
+// A snap: opaque on the first frame (never an opacity ramp), scale 0.92 -> 1 over 4 frames, ease-out, no overshoot.
+function snapState(f) {
+  if (f < 0) return null;
+  const t = Math.min(1, f / 4);
+  return { o: 1, s: 0.92 + 0.08 * (1 - (1 - t) * (1 - t)) };
+}
 import { sway, SWAY_X, SWAY_Y } from "../visual/sway.js";
 import { readableAccent } from "../visual/canvas-layout.js";
 import { planClone } from "./clone-plan.js";
 import { treatmentBoxes, FRAME, parseDate } from "./clone-layout.js";
 
-const HOLD = 6;   // frames the outgoing shot stays under the incoming one
 
 // Width of a character in em, per family: conservative averages (a caps condensed face is narrow, a serif italic wider). The fit errs wide.
 const ADV = { "Roboto Condensed": 0.5, "Playfair Display": 0.56, "Fraunces": 0.58, "DM Sans": 0.6, "JetBrains Mono": 0.62 };
@@ -170,7 +175,7 @@ function Card({ shot, B, st, P, profile, frame, stDisp }) {
         {ws.map((w, i) => {
           const age = frame - w.at;
           if (age < 0) return <span key={i} style={{ opacity: 0, marginRight: "0.26em" }}>{w.text}</span>;
-          return <span key={i} style={{ display: "inline-block", opacity: Math.min(1, age / 4), transform: `translateY(${Math.max(0, 10 - age * 2.5)}px)`, marginRight: "0.26em" }}>{w.text}</span>;
+          return <span key={i} style={{ display: "inline-block", transform: `translateY(${Math.max(0, 8 - age * 2.7).toFixed(1)}px)`, marginRight: "0.26em" }}>{w.text}</span>;
         })}
       </div>
     );
@@ -193,15 +198,6 @@ function Card({ shot, B, st, P, profile, frame, stDisp }) {
       {small(k.after)}
     </div>
   );
-}
-
-// GLYPH PLATES: when no picture of an entity exists, a generic, NON-IDENTIFYING mark stands for what KIND of thing it is (a person's silhouette, an
-// organisation's building, a place's pin) with its name under it: the canvas engine's own fallback, drawn here. It never depicts the entity itself.
-function GlyphMark({ type, color, size }) {
-  const common = { width: size, height: size, viewBox: "0 0 100 100", fill: color };
-  if (type === "person") return <svg {...common}><circle cx="50" cy="30" r="17" /><path d="M14 92 C14 62 30 52 50 52 C70 52 86 62 86 92 Z" /></svg>;
-  if (type === "place") return <svg {...common}><path d="M50 6 C31 6 18 20 18 38 C18 62 50 94 50 94 C50 94 82 62 82 38 C82 20 69 6 50 6 Z M50 50 A12 12 0 1 1 50.01 50 Z" fillRule="evenodd" /></svg>;
-  return <svg {...common}><path d="M50 8 L92 30 L92 38 L8 38 L8 30 Z" /><rect x="16" y="44" width="10" height="34" /><rect x="36" y="44" width="10" height="34" /><rect x="54" y="44" width="10" height="34" /><rect x="74" y="44" width="10" height="34" /><rect x="8" y="82" width="84" height="10" /></svg>;
 }
 
 // SUBJECT CELLS: the visual of a picture-less shot. An entity with no picture is a generic, NON-IDENTIFYING glyph (a person's silhouette, an organisation's
@@ -239,10 +235,10 @@ function SubjectCell({ g, w, h, P, profile, round, inv, free }) {
     );
   }
   const name = caps ? g.name.toUpperCase() : g.name;
-  const { lines, size } = fitLines(name, w * 0.86, { family: fam, caps, max: small ? 56 : 96, min: 28, maxLines: 2 });
+  // NO ICONS, EVER (owner, 2026-10-16: "We never ever have icons"). An entity with no picture is its NAME, set large; the shot's picture is the beat's prop.
+  const { lines, size } = fitLines(name, w * 0.9, { family: fam, caps, max: small ? 84 : 150, min: 32, maxLines: 3 });
   return (
-    <div style={{ ...wrap, justifyContent: "space-between" }}>
-      <GlyphMark type={g.type} color={ink} size={Math.round(h * (small ? 0.4 : 0.46))} />
+    <div style={{ ...wrap, justifyContent: "center" }}>
       <div style={{ textAlign: "center" }}>{lines.map((l, i) => <div key={i} style={{ ...face, fontSize: size }}>{l}</div>)}</div>
     </div>
   );
@@ -304,15 +300,16 @@ function Quote({ shot, B, st, P, profile }) {
   );
 }
 
-function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
+function ShotView({ shot, shotIndex, frame, P, profile, bw }) {
   const B = treatmentBoxes(shot.treatment, shotIndex);
   const local = frame - shot.f0;
   const stateOf = (kind) => {
     const el = shot.elements.find((e) => e.kind === kind);
     if (!el) return null;
-    return hold != null ? popOutState(hold) : popInState(frame - el.at);
+    return snapState(frame - el.at) || { o: 0, s: 1 };
   };
-  const stHero = stateOf("hero") || { o: 1, s: 1 };
+  // the picture is part of the cut itself: there from the shot's first frame, at full size
+  const stHero = { o: 1, s: 1 };
   const stShape = stateOf("shape"), stDisp = stateOf("display") || stateOf("figure"), stPlate = stateOf("plate");
   const plated = !!B.text.plated;
   return (
@@ -338,8 +335,7 @@ export function CloneVideo({ plan }) {
   const shots = React.useMemo(() => planClone(plan.beats, { laws: cfg.laws, profile: cfg.profile, fps, quotes: cfg.quotes || [] }).shots, [plan.beats, cfg, fps]);
   let i = shots.findIndex((s) => frame >= s.f0 && frame < s.f1);
   if (i < 0) i = frame < shots[0].f0 ? 0 : shots.length - 1;
-  const shot = shots[i], prev = i > 0 ? shots[i - 1] : null;
-  const local = frame - shot.f0;
+  const shot = shots[i];
   const grid = cfg.profile.grid;
   return (
     <AbsoluteFill style={{ backgroundColor: P.ground }}>
@@ -349,8 +345,7 @@ export function CloneVideo({ plan }) {
           {Array.from({ length: Math.ceil(FRAME.h / 60) + 1 }, (_, k) => <line key={`h${k}`} x1={0} y1={k * 60} x2={FRAME.w} y2={k * 60} stroke={P.grid} strokeWidth={1.5} />)}
         </svg>
       ) : null}
-      {prev && local < HOLD ? <ShotView shot={prev} shotIndex={i - 1} frame={prev.f1 - 1} hold={local} P={P} profile={cfg.profile} bw={cfg.bw} /> : null}
-      <ShotView shot={shot} shotIndex={i} frame={frame} hold={null} P={P} profile={cfg.profile} bw={cfg.bw} />
+      <ShotView shot={shot} shotIndex={i} frame={frame} P={P} profile={cfg.profile} bw={cfg.bw} />
       {shot.hero && shot.hero.credit ? <div style={{ position: "absolute", right: 40, bottom: 40, font: "500 20px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.55 }}>Source: {shot.hero.credit}</div> : null}
     </AbsoluteFill>
   );

@@ -1706,6 +1706,8 @@ function canvasContentFor(b, { photo = null } = {}) {
   if (b.art) { c.art = b.art; c.composition = "ENTITY-ART"; c.photo = null; c.concept_visuals = []; delete c.type_layout; delete c.name_card; }
   // A clone channel's further verified pictures of this beat's entities (see [clone-extra]); only the clone family reads them.
   if (Array.isArray(b.clone_extra) && b.clone_extra.length) c.clone_extra = b.clone_extra;
+  // ... and its props (attachCloneProps): generic photographed objects / places Gemini chose for the sentence
+  if (Array.isArray(b.clone_props) && b.clone_props.length) c.clone_props = b.clone_props;
   // What became of the planner's layout for this beat (canvas-layout.js canvasLayout): used, or not
   // used because it breaks a Layer 1 rule the default arrangement keeps.
   if (c.layout) {
@@ -1846,6 +1848,57 @@ export function attachConceptVisuals({ wanted, results, used, stats, channelId }
       console.log(`[cutout] ch-${channelId} beat ${w.b.index}: source=${v.source_url || "?"}`);
     }
   }
+}
+
+/**
+ * PROPS FOR EVERY BEAT of a clone channel (owner, 2026-10-16: "a PNG cutout in every frame ... make that Gemini's task ... a PNG photo of a court, of a
+ * house ... never icons"). Gemini proposes generic, photographable props per beat (scripts/lib/plan-props.mjs, which also refuses people, text, marks,
+ * drawings, abstractions and specific named things); each is fetched as a Pixabay PHOTO, isolated and verified LITERAL by fetch-cutout-once.cjs, best
+ * proposal first, until the beat has PROPS_PER_BEAT. No picture is shown twice in a video (usedImages). Gemini silent -> nothing invented, logged.
+ */
+const PROPS_PER_BEAT = 2;
+async function attachCloneProps({ plan, channelId, used }) {
+  const { planProps } = await import("./lib/plan-props.mjs");
+  const { callGemini } = await import("../src/lib/gemini-client.js");
+  const beats = plan.beats.map((b) => ({ index: b.index, sentence: b.narration || "", named_entities: b.named_entities || [] }));
+  const ask = async (prompt) => {
+    try { return await callGemini([{ role: "user", content: prompt }], { model: "gemini-3.5-flash-lite", maxTokens: 3000, temperature: 0.2, noCache: true, tag: `props ch-${channelId}` }); }
+    catch (e) { return { error: e.message }; }
+  };
+  const plans = await planProps({ topic: channelTopic(channelId) || "", beats, ask });
+  if (![...plans.values()].some((v) => v.kept.length)) { console.log(`::warning::[props] ch-${channelId}: Gemini proposed no usable props — beats keep only their entity pictures`); return; }
+  const T0 = Date.now(), BUDGET = Number(process.env.CLONE_PROPS_BUDGET_MS || 10 * 60000);
+  const shown = new Set();
+  const queue = [...plan.beats];
+  let got = 0, beatsWith = 0;
+  const worker = async () => {
+    while (queue.length) {
+      const b = queue.shift();
+      const v = plans.get(b.index);
+      if (!v) continue;
+      for (const d of v.dropped) console.log(`[props] ch-${channelId} beat ${b.index}: "${d}" refused`);
+      const mine = [];
+      for (const p of v.kept) {
+        if (mine.length >= PROPS_PER_BEAT) break;
+        if (Date.now() - T0 > BUDGET) { console.log(`[props] ch-${channelId} beat ${b.index}: props budget spent (${BUDGET / 1000}s), "${p.object}" not fetched`); break; }
+        if (shown.has(p.object)) continue;
+        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building }, scene: null });
+        if (!r) continue;
+        const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building };
+        if (!used.keep([vis], `beat ${b.index} prop`).length) continue;
+        shown.add(p.object);
+        mine.push(vis);
+        console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" -> ${r.png_path} (${r.source}, saw "${r.seen}")`);
+      }
+      if (mine.length) {
+        b.clone_props = mine;
+        if (b.canvas) b.canvas.clone_props = mine;
+        got += mine.length; beatsWith++;
+      } else console.log(`::warning::[props] ch-${channelId} beat ${b.index}: no prop verified (${v.kept.map((p) => p.object).join(", ") || "none proposed"})`);
+    }
+  };
+  await Promise.all([worker(), worker(), worker()]);
+  console.log(`[props] ch-${channelId}: ${got} prop(s) on ${beatsWith}/${plan.beats.length} beats in ${((Date.now() - T0) / 1000).toFixed(0)}s`);
 }
 
 async function resolveCanvas(channelId, planPath, plan) {
@@ -2219,6 +2272,7 @@ async function resolveCanvas(channelId, planPath, plan) {
     // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours), against the
     // SAME usedImages every other path fills (attachConceptVisuals).
     attachConceptVisuals({ wanted: wanted.filter((w) => !w.altOnly), results, used: usedImages, stats, channelId });
+    if (cloneObjects) await attachCloneProps({ plan, channelId, used: usedImages });
     // The number beats' objects: kept on the beat as alternatives (alt_visuals) for chooseShots — only
     // verified cutouts, and only ones no beat already shows (checked, not recorded: an offer is not a use).
     for (const w of wanted.filter((x) => x.altOnly)) {
@@ -2457,6 +2511,7 @@ async function guardPlanAssets(channelId, planPath) {
     ...plan.beats.flatMap((b, i) => (b.canvas?.concept_visuals || []).filter((v) => v.asset).map((v) => ({ b, i, asset: v.asset, concept: v.name }))),
     // a clone channel's further verified pictures ([clone-extra]): one that is not in the bundle is dropped, never drawn broken
     ...plan.beats.flatMap((b, i) => (b.canvas?.clone_extra || []).filter((v) => v && v.asset).map((v) => ({ b, i, asset: v.asset, extra: v.name }))),
+    ...plan.beats.flatMap((b, i) => (b.canvas?.clone_props || []).filter((v) => v && v.asset).map((v) => ({ b, i, asset: v.asset, prop: v.name }))),
     // entity art (scripts/entity-ladder.js): a flag, or an organisation's real mark — fetched AFTER the pre-bundle, so it is checked here too
     // (board 38010438091 ch-9: the ladder's IEA logo was not in the bundle and the render died "the source image cannot be decoded").
     ...plan.beats.flatMap((b, i) => [
@@ -2481,7 +2536,12 @@ async function guardPlanAssets(channelId, planPath) {
     missing = refs.filter((r) => bad.has(r.asset) || !inBundle(r.asset));
   }
   if (!missing.length) return planPath;
-  for (const { b, i, asset, concept, art, extra } of missing) {
+  for (const { b, i, asset, concept, art, extra, prop } of missing) {
+    if (prop !== undefined) {
+      console.warn(`::warning::[assets] ch-${channelId} beat ${i}: prop ${asset} is not in the render bundle — "${prop}" dropped`);
+      b.canvas.clone_props = (b.canvas.clone_props || []).filter((v) => v.asset !== asset);
+      continue;
+    }
     if (extra !== undefined) {
       console.warn(`::warning::[assets] ch-${channelId} beat ${i}: extra picture ${asset} is not in the render bundle — "${extra}" dropped`);
       b.canvas.clone_extra = (b.canvas.clone_extra || []).filter((v) => v.asset !== asset);

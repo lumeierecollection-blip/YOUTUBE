@@ -232,7 +232,7 @@ test("the manifest says truthfully what a beat's frames are, for the frame revie
   const c = { sentence: SENT, named_entities: [{ type: "place", name: "Newark" }], data: { value: "9 to 0", label: "vote" } };
   const plan = planClone([beat(0, 0, 7, SENT, c)], { laws: G.laws, profile: G.profiles["dossier-mono"] });
   const rec = cloneCanvasFor(c, plan.shots);
-  assert.ok(rec.clone_label && /map-pin icon plates/.test(rec.clone_label) && /large figure plates/.test(rec.clone_label), rec.clone_label);
+  assert.ok(rec.clone_label && /names of entities it has no picture of/.test(rec.clone_label) && /large figure plates/.test(rec.clone_label), rec.clone_label);
   assert.ok(!/typography/i.test(rec.clone_label.replace("secondary caption", "")));
   const nothing = cloneCanvasFor({ sentence: SENT }, planClone([beat(0, 0, 6, SENT, { sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] }).shots);
   assert.match(nothing.clone_label, /narration set word by word/);
@@ -350,4 +350,18 @@ test("a beat's further verified pictures (clone_extra) are heroes too: a logo as
   const hs = heroesOf({ photo: { asset: "entities/people/a.jpg", entity: "A Person", kind: "person" }, clone_extra: [{ kind: "logo", name: "NPR", asset: "cutouts-live/49/1-npr-logo.png" }, { kind: "person", name: "B Person", asset: "entities/people/b.jpg", cutout: "cutouts-live/49/photo-x-g.png", cutout_grounded: true }] });
   assert.deepEqual(hs.map((h) => [h.kind, h.name]), [["portrait", "A Person"], ["logo", "NPR"], ["portrait", "B Person"]]);
   assert.equal(hs[2].cutout, "cutouts-live/49/photo-x-g.png");
+});
+
+test("with PROPS every shot of a beat has a picture, and the beat's picture-less entities are named in type on the prop shots (owner 2026-10-16)", () => {
+  const words = "Russell Brand appeared at Southwark Crown Court in London on Monday for the opening of his trial.".split(" ");
+  const beat = { start_frame: 0, duration_frames: 210, text: words.join(" "),
+    spoken: words.map((t, k) => ({ text: t, from: 6 + k * 11, to: 16 + k * 11 })),
+    scene: { canvas: { sentence: words.join(" "), named_entities: [{ type: "person", name: "Russell Brand" }, { type: "building", name: "Southwark Crown Court" }],
+      clone_props: [{ name: "courthouse", asset: "cutouts-live/5/0-courthouse.png", grounded: true }, { name: "gavel", asset: "cutouts-live/5/0-gavel.png" }] } } };
+  const plan = planClone([beat], { laws: G.laws, profile: G.profiles["dossier-mono"], fps: 30 });
+  assert.ok(plan.shots.length >= 3);
+  for (const sh of plan.shots) assert.ok(sh.hero, `shot ${sh.k} has no picture`);
+  const named = plan.shots.map((sh) => sh.display && sh.display.text).filter(Boolean).join(" | ");
+  assert.match(named, /Russell Brand/);
+  assert.match(named, /Southwark Crown Court/);
 });
