@@ -1,0 +1,68 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-eritrea-un-border-accusations-horn-of-africa",
+  "format": "shorts",
+  "hook": "What happens when two Horn of Africa neighbors trade all-out invasion charges at the United Nations?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when two Horn of Africa neighbors trade all-out invasion charges at the United Nations?",
+      "b_roll": [
+        "Map zooming in on the Horn of Africa border region",
+        "United Nations headquarters exterior shot"
+      ],
+      "text_overlay": {
+        "text": "Invasion Charges at the UN"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Saturday, Ethiopian military vehicles entered Adigrat near the Eritrean border as residents celebrated. Where did the invasion claims start?",
+      "b_roll": [
+        "Ethiopian military vehicles entering Adigrat town",
+        "Letter document addressed to the United Nations Security Council",
+        "Map pinpointing Adigrat near the border"
+      ],
+      "text_overlay": {
+        "text": "Adigrat Border Escalation"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Eritrea requested the United Nations to take deterrent measures against Addis Ababa, but tensions keep rising.",
+      "b_roll": [
+        "Eritrean flag outside diplomatic building",
+        "United Nations assembly hall"
+      ],
+      "text_overlay": {
+        "text": "Eritrea Requests UN Action"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ethiopian military vehicles rolled through Adigrat. United States Secretary of State Marco Rubio urged peace talks. Addis Ababa filed a letter with the United Nations Security Council.",
+      "b_roll": [
+        "Northern town streets with military presence",
+        "Portrait of Marco Rubio speaking on foreign policy",
+        "Stacked diplomatic paperwork on a desk"
+      ],
+      "text_overlay": {
+        "text": "Regional Standoff Deepens"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Ethiopia submitted the letter to the United Nations Security Council.",
+      "b_roll": [
+        "Wide aerial shot of Adigrat landscape"
+      ],
+      "text_overlay": {
+        "text": "Adigrat Flashpoint"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+    "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war"
+  ]
+}
