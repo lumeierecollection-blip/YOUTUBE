@@ -1867,7 +1867,7 @@ async function attachCloneProps({ plan, channelId, used }) {
   };
   const plans = await planProps({ topic: channelTopic(channelId) || "", beats, ask });
   if (![...plans.values()].some((v) => v.kept.length)) { console.log(`::warning::[props] ch-${channelId}: Gemini proposed no usable props — beats keep only their entity pictures`); return; }
-  const T0 = Date.now(), BUDGET = Number(process.env.CLONE_PROPS_BUDGET_MS || 10 * 60000);
+  const T0 = Date.now(), BUDGET = Number(process.env.CLONE_PROPS_BUDGET_MS || 16 * 60000);
   const shown = new Set();
   const queue = [...plan.beats];
   let got = 0, beatsWith = 0;
@@ -1897,7 +1897,7 @@ async function attachCloneProps({ plan, channelId, used }) {
       } else console.log(`::warning::[props] ch-${channelId} beat ${b.index}: no prop verified (${v.kept.map((p) => p.object).join(", ") || "none proposed"})`);
     }
   };
-  await Promise.all([worker(), worker(), worker()]);
+  await Promise.all([worker(), worker(), worker(), worker()]);
   console.log(`[props] ch-${channelId}: ${got} prop(s) on ${beatsWith}/${plan.beats.length} beats in ${((Date.now() - T0) / 1000).toFixed(0)}s`);
 }
 

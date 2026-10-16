@@ -264,7 +264,8 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       // sentence named James Wan, and the check failed). When a beat has a picture of something it NAMES, that picture takes the KEY shot (the one holding
       // 62% of the beat) and two shots in three; the props take the rest. A beat with no named picture is all props.
       const named = heroes.filter((h) => !h.prop), props = heroes.filter((h) => h.prop);
-      const keyF = s + 0.62 * (e - s), isKey = f0 <= keyF && keyF < f1;
+      // the frames the checks sample: the beat's midpoint (beat check) and 62% (entity / naming checks)
+      const isKey = [0.5, 0.62].some((q) => { const kf = s + q * (e - s); return f0 <= kf && kf < f1; });
       let hero = null;
       if (!lastPanel && heroes.length) {
         if (!named.length) hero = props[k % props.length];
@@ -448,6 +449,9 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   const parts = [];
   if (out.photo) parts.push("a photograph of " + (out.photo.entity || "the subject") + " in a framed or full-bleed layout");
   if (out.concept_visuals.length) parts.push("a logo or object picture");
+  // PROPS (owner, 2026-10-16): generic photographed objects that ILLUSTRATE the sentence's subject; recorded so the frame checks judge them as that
+  const propsDrawn = (c.clone_props || []).filter((v) => v && v.asset && drawn.has(v.asset)).map((v) => v.name);
+  if (propsDrawn.length) { out.clone_props = propsDrawn; parts.push(`cut-out photos of generic objects illustrating the sentence (${propsDrawn.join(", ")})`); }
   const glyphs = (shots || []).flatMap((x) => (x.subjects || []).filter((y) => y.kind === "glyph").map((y) => y.type));
   if (glyphs.length) parts.push("the names of entities it has no picture of, set large in type (no icons)");
   if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");
