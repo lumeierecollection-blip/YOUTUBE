@@ -118,7 +118,8 @@ export function figuresOf(canvas) {
   if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? trimLabel(c.data.label) : null);
   for (const e of c.named_entities || c.entities || []) {
     if (!e || !e.name) continue;
-    if (e.type === "number") add("figure", e.name);
+    // a figure is drawn only when the sentence writes it in DIGITS: "three" and "one" as big type read as stray words (board 38870271640 ch-5: "one three" panels)
+    if (e.type === "number") { if (/\d/.test(String(e.name))) add("figure", e.name); }
     else if (e.type === "date") add("date", e.name);
   }
   // "9" from the entities is the start of "9 to 0" from the data: keep the longer, drop the part
@@ -298,6 +299,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
       const figHere = hero && figs.length ? figs[k % figs.length] : null;
       const quote = quoteOf.has(bi) && k === (nShots >= 2 ? 1 : 0) ? quoteOf.get(bi) : null;   // the beat's quoted statement, once, on its second shot
+      if (quote) treatment = hero ? (hero.cutout && !hero.bust ? "quote-cut" : "quote-soft") : "quote";
       {
         const exclude = new Set();
         const addToks = (t) => String(t || "").toLowerCase().split(/[^a-z0-9']+/).filter(Boolean).forEach((x) => exclude.add(x));
@@ -315,7 +317,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       // word's own onset, in a small serif line next to the big phrase — the words the big phrase does not say ("the more it" + "SLIPS AWAY"). It replaces the paper
       // excerpt card with marked words (a sticky note; and the marker highlight is now reserved for quoted statements).
       let kicker = null;
-      if (!hero && !subject) {
+      if (!hero && !subject && !quote) {
         const inShot = spoken.filter((w) => w.abs >= f0 && w.abs < f1 && clean(w.text));
         const runAt = disp ? inShot.findIndex((w) => w.abs === disp.at) : -1;
         const mk = (ws) => ws.map((w) => ({ text: String(w.text).trim(), at: Math.max(f0 + 1, Math.min(f1 - 4, w.abs)) }));

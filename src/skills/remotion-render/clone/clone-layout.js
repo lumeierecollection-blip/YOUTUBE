@@ -47,6 +47,14 @@ export function treatmentBoxes(treatment, idx = 0) {
     case "vignette":
       // a photo that cannot be cut out, soft-edged, no border (ref-03's portrait); a short line above it
       return { hero: rect(90, 520, 900, 1100, { vignette: true }), label: rect(90, 210, 900, 48), text: rect(90, 270, 900, 220, { align: "center" }), quote: rect(90, 270, 900, 220, { align: "center" }), shape: { rule: rect(90, 190, 900, 6), bar: rect(390, 1700, 300, 14) } };
+    // A QUOTED STATEMENT gets the frame (board 38870271640 ch-5: the prosecutor's verified quote was set 380 px wide beside a cut-out and read as fine print).
+    // The picture, if the shot has one, sits small above it: cut out (quote-cut) or soft-edged (quote-soft); the quote takes the full width below.
+    case "quote-cut":
+      return { hero: rect(240, 180, 600, 640, { cutout: true }), label: rect(90, 860, 900, 48), text: rect(90, 930, 900, 760, { align: "center" }), quote: rect(90, 930, 900, 760, { align: "center" }), shape: { rule: rect(390, 900, 300, 6), bar: rect(390, 1760, 300, 14) } };
+    case "quote-soft":
+      return { hero: rect(240, 180, 600, 640, { vignette: true }), label: rect(90, 860, 900, 48), text: rect(90, 930, 900, 760, { align: "center" }), quote: rect(90, 930, 900, 760, { align: "center" }), shape: { rule: rect(390, 900, 300, 6), bar: rect(390, 1760, 300, 14) } };
+    case "quote":
+      return { hero: rect(90, 200, 900, 380, { subject: true }), label: rect(90, 600, 900, 48), text: rect(90, 660, 900, 900, { align: "center" }), quote: rect(90, 660, 900, 900, { align: "center" }), shape: { rule: rect(390, 600, 300, 6), bar: rect(390, 1700, 300, 14) } };
     case "subject":
       // a picture-less shot's SUBJECTS (entity glyphs, figures, dates) drawn straight on the paper, no plate, no border
       return { hero: rect(90, 340, 900, 860, { subject: true }), label: rect(90, 1250, 900, 48), text: rect(90, 1310, 900, 400, { align: "center" }), quote: rect(90, 1310, 900, 400, { align: "center" }), shape: { rule: rect(90, 1230, 900, 6), bar: rect(390, 1760, 300, 14) } };
@@ -93,7 +101,7 @@ export function layoutProblems(treatment, idx = 0) {
   return out;
 }
 
-export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "panel", "type", "stand", "float", "edge", "vignette", "subject"];
+export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "panel", "type", "stand", "float", "edge", "vignette", "subject", "quote-cut", "quote-soft", "quote"];
 /** Treatments a profile may rotate through: `type` is the planner's own choice for a shot with no picture, never a rotation entry. */
 export const PICTURE_TREATMENTS = TREATMENTS.filter((t) => t !== "type" && t !== "panel");
 

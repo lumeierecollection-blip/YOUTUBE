@@ -292,7 +292,7 @@ function Quote({ shot, B, st, P, profile }) {
   const plain = (w) => w.toLowerCase().split("").filter((ch) => (ch >= "a" && ch <= "z") || (ch >= "0" && ch <= "9")).join("");
   const key = words.reduce((a, w) => (!QUOTE_STOP.has(plain(w)) && plain(w).length > plain(a).length ? w : a), "");
   const fam = (profile.type.quote && profile.type.quote.family) || "Playfair Display";
-  const { size } = fitLines(OPEN_Q + words.join(" ") + CLOSE_Q, box.w, { family: fam, caps: false, max: 72, min: 40, maxLines: 4 });
+  const { size } = fitLines(OPEN_Q + words.join(" ") + CLOSE_Q, box.w, { family: fam, caps: false, max: 96, min: 52, maxLines: 6 });
   const who = [q.speaker, q.source_name && q.source_name !== q.speaker ? q.source_name : null].filter(Boolean).join(", ");
   return (
     <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, zIndex: 7, opacity: st.o, transform: `scale(${st.s})`, transformOrigin: box.align === "right" ? "100% 0%" : box.align === "center" ? "50% 0%" : "0% 0%", textAlign: box.align }}>
