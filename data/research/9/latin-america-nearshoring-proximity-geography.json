@@ -1,0 +1,100 @@
+{
+  "topic_slug": "latin-america-nearshoring-proximity-geography",
+  "strongest_angle": "Examining how Latin America is attempting to convert its historical geographical proximity to the United States and global powers into durable trade growth and supply chain resilience following disruptions like the COVID-19 pandemic and US-China tensions.",
+  "key_facts": [
+    {
+      "fact": "César Addario Soljancic noted in UPI on October 8, 2026, that Latin America's economic history involves a long argument with geography regarding European silver, U.S. industry, and Chinese demand for commodities like copper, soybeans, and oil.",
+      "source_url": "https://www.upi.com/Voices/2026/10/08/latam-perspectives-nearshoring-test-proximity-growth/7341791466013",
+      "source_name": "UPI.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Georgetown Americas Institute published a report on April 4, 2024, assessing Latin America and the Caribbean's preparedness to leverage shifts in global value chains driven by technology, sustainability, and geopolitics.",
+      "source_url": "https://americas.georgetown.edu/publications/latin-america-in-the-new-geometry-of-global-supply-chains",
+      "source_name": "Georgetown Americas Institute",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Ana Aguilar, Julián Caballero, Jon Frost, and Alejandro Parada analyzed trade patterns in a Bank for International Settlements bulletin examining nearshoring evidence in the Americas.",
+      "source_url": "https://www.bis.org/publications/bulletin-94-evidence-nearshoring-americas.pdf",
+      "source_name": "Bank for International Settlements",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Atlantic Council reported on September 17, 2024, that US-China tensions, COVID-19, and Russia's 2022 invasion of Ukraine exposed supply chain vulnerabilities and pushed resilience to the top of the agenda for Latin America and the Caribbean.",
+      "source_url": "https://www.atlanticcouncil.org/in-depth-research-reports/report/from-rhetoric-to-reality-nearshoring-in-the-americas",
+      "source_name": "Atlantic Council",
+      "confidence": "medium"
+    },
+    {
+      "fact": "JLL published a report on August 27, 2024, exploring nearshoring potential in Latin America by assessing markets on business environments, foreign investment track records, workforce costs, and real estate infrastructure.",
+      "source_url": "https://www.jll.com/en-us/insights/nearshoring-unveiling-latin-americas-potential",
+      "source_name": "JLL",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "César Addario Soljancic",
+      "kind": "person"
+    },
+    {
+      "name": "UPI",
+      "kind": "organization"
+    },
+    {
+      "name": "Georgetown Americas Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Latin America and the Caribbean",
+      "kind": "place"
+    },
+    {
+      "name": "Ana Aguilar",
+      "kind": "person"
+    },
+    {
+      "name": "Julián Caballero",
+      "kind": "person"
+    },
+    {
+      "name": "Jon Frost",
+      "kind": "person"
+    },
+    {
+      "name": "Alejandro Parada",
+      "kind": "person"
+    },
+    {
+      "name": "Bank for International Settlements",
+      "kind": "organization"
+    },
+    {
+      "name": "Atlantic Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Russia",
+      "kind": "place"
+    },
+    {
+      "name": "Ukraine",
+      "kind": "place"
+    },
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "JLL",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

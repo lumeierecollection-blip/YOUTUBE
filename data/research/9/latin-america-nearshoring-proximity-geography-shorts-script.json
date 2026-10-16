@@ -1,0 +1,65 @@
+{
+  "channel_id": "9",
+  "topic_slug": "latin-america-nearshoring-proximity-geography",
+  "format": "shorts",
+  "hook": "You won't believe how Latin America leverages its proximity to the United States.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You won't believe how Latin America leverages its proximity to the United States.",
+      "b_roll": [
+        "Map of Latin America highlighting proximity to the United States"
+      ],
+      "text_overlay": {
+        "text": "Geographic Proximity"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 8, 2026, César Addario Soljancic noted in UPI that Latin America faces a long argument over US industry and Chinese demand. Where does regional trade head next?",
+      "b_roll": [
+        "Shipping containers at a major Latin American port",
+        "Global trade routes connecting the Americas and Asia"
+      ],
+      "text_overlay": {
+        "text": "Supply Chain Vulnerabilities"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except geography alone does not guarantee trade growth without structural preparation.",
+      "b_roll": [
+        "Digital logistics dashboard displaying trade data"
+      ],
+      "text_overlay": {
+        "text": "The Nearshoring Test"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Georgetown Americas Institute published a report on April 4, 2024. JLL published a report on August 27, 2024. JLL explored nearshoring potential across Latin America.",
+      "b_roll": [
+        "Industrial manufacturing facility in Latin America",
+        "Corporate office reviewing supply chain analytics"
+      ],
+      "text_overlay": {
+        "text": "Value Chain Shifts"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the Atlantic Council report from September 17, 2024.",
+      "b_roll": [
+        "Cargo ship navigating coastal waters"
+      ],
+      "text_overlay": {
+        "text": "Durable Trade Growth"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.upi.com/Voices/2026/10/08/latam-perspectives-nearshoring-test-proximity-growth/7341791466013",
+    "https://americas.georgetown.edu/publications/latin-america-in-the-new-geometry-of-global-supply-chains",
+    "https://www.jll.com/en-us/insights/nearshoring-unveiling-latin-americas-potential"
+  ]
+}
