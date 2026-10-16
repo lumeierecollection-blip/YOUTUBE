@@ -104,6 +104,13 @@ export function trimLabel(label) {
 }
 
 /** The figures and dates a beat states, in order: [{ kind: "figure"|"date", name, label }]. From the canvas's own data and from its named number / date entities. */
+/** The figure a beat's KEY shot carries: a stated quantity ("1%", "$40 million") before a bare year or a date. Board 38889577784 ch-10: the key shot showed
+ * "2013" for "a 2013 report where only 1% of job roles..." and the challenger called it a contradiction (the point is the 1%). */
+export function keyFigureIndex(figs) {
+  const i = (figs || []).findIndex((f) => f && f.kind === "figure" && !/^(1[89]|20)\d\d$/.test(String(f.name).trim()));
+  return i >= 0 ? i : 0;
+}
+
 export function figuresOf(canvas) {
   const c = canvas || {};
   const out = [];
@@ -314,7 +321,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
         for (const g of subjects) if (g.kind === "glyph" && !plates.some((x) => x.name === g.name)) plates.push({ name: g.name, type: g.type });
       }
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
-      const figHere = hero && figs.length ? figs[isKey ? 0 : k % figs.length] : null;   // the key shot carries the beat's first figure / date
+      const figHere = hero && figs.length ? figs[isKey ? keyFigureIndex(figs) : k % figs.length] : null;   // the key shot carries the beat's main figure
       const quote = quoteOf.has(bi) && k === (nShots >= 2 ? 1 : 0) ? quoteOf.get(bi) : null;   // the beat's quoted statement, once, on its second shot
       if (quote) treatment = hero ? (hero.cutout && !hero.bust ? "quote-cut" : "quote-soft") : "quote";
       {

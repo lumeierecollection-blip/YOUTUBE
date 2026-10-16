@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf, quantityIn } from "../../src/skills/remotion-render/clone/clone-plan.js";
+import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf, quantityIn, keyFigureIndex } from "../../src/skills/remotion-render/clone/clone-plan.js";
 
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 const FPS = 30;
@@ -378,4 +378,10 @@ test("a beat with a named picture and props: the named picture holds the key sho
   const named = plan.shots.filter((sh) => sh.hero && sh.hero.name === "James Wan").length;
   assert.ok(named >= plan.shots.length / 2, `${named}/${plan.shots.length}`);
   assert.ok(plan.shots.every((sh) => sh.hero));
+});
+
+test("the key shot carries the stated quantity, not a bare year (board 38889577784 ch-10: '2013' shown where the point was '1%')", () => {
+  assert.equal(keyFigureIndex([{ kind: "figure", name: "2013" }, { kind: "figure", name: "1%" }]), 1);
+  assert.equal(keyFigureIndex([{ kind: "date", name: "October 6, 2026" }, { kind: "figure", name: "$40 million" }]), 1);
+  assert.equal(keyFigureIndex([{ kind: "figure", name: "2013" }]), 0);
 });
