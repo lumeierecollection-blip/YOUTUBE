@@ -1,0 +1,118 @@
+{
+  "topic_slug": "russell-brand-trial-opens-london-prosecutors",
+  "strongest_angle": "Examine the opening arguments and charges presented by prosecutor Riel Karmy-Jones KC at Southwark Crown Court against comedian Russell Brand in his criminal trial.",
+  "key_facts": [
+    {
+      "fact": "At Southwark Crown Court, actor and comedian Russell Brand went on trial facing multiple charges including rape and sexual assault.",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prosecutor Riel Karmy-Jones KC alleged in court that Russell Brand acted as a ruthless sexual predator targeting six women.",
+      "source_url": "https://www.telegraph.co.uk/news/2026/10/14/russell-brand-rape-trial-live-prosecution-outline-case",
+      "source_name": "The Telegraph",
+      "confidence": "high"
+    },
+    {
+      "fact": "Russell Brand faced three counts of rape, three counts of sexual assault, and one count of indecent assault covering allegations between 1999 and 2009.",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "At age 51, Russell Brand appeared in London at Southwark Crown Court where he pleaded not guilty to the charges.",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of Russell Brand",
+      "value": 51,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t"
+    },
+    {
+      "label": "Number of women allegedly assaulted",
+      "value": 6,
+      "unit": "women",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+    },
+    {
+      "label": "Number of rape counts",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Number of sexual assault counts",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Number of indecent assault counts",
+      "value": 1,
+      "unit": "count",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Start year of allegations",
+      "value": 1999,
+      "unit": "year",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "End year of allegations",
+      "value": 2009,
+      "unit": "year",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Russell Brand behaved as a “ruthless” sexual predator when he assaulted six women over a decade, a prosecutor said Wednesday",
+      "speaker": "Associated Press",
+      "source_name": "Associated Press",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+    },
+    {
+      "text": "Russell Brand was a “ruzthless sexual predator” during the years in which he is alleged to have assaulted six women, a court has been told.",
+      "speaker": "Martin Evans",
+      "source_name": "The Telegraph",
+      "source_url": "https://www.telegraph.co.uk/news/2026/10/14/russell-brand-rape-trial-live-prosecution-outline-case"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Russell Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Southwark Crown Court",
+      "kind": "place"
+    },
+    {
+      "name": "Riel Karmy-Jones KC",
+      "kind": "person"
+    },
+    {
+      "name": "Associated Press",
+      "kind": "organization"
+    },
+    {
+      "name": "The Telegraph",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    }
+  ]
+}
