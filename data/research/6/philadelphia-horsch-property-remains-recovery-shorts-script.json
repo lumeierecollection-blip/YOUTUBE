@@ -1,0 +1,32 @@
+{
+  "channel_id": "6",
+  "topic_slug": "philadelphia-horsch-property-remains-recovery",
+  "format": "shorts",
+  "hook": "Bones found in yard linked to missing women case",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Investigators are searching a Chew Avenue home in Olney linked to 7 missing women's cases."
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Philadelphia Police Department and FBI recovered bones from the yard of the Chew Avenue property. Will the human DNA found at this Olney house of horrors identify the 7 missing women?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Investigators used luminol at the Chew Avenue home and confirmed human DNA inside the residence."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Medical Examiner's Office recovered 1 bone during the second of 2 total property searches."
+    },
+    {
+      "id": "close",
+      "voiceover": "The Philadelphia Police Department and FBI continue investigating the Chew Avenue home for more evidence."
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcphiladelphia.com/news/local/bones-found-yard-chew-avenue-oleny-philadelphia-investigation/4480307",
+    "https://6abc.com/post/bones-recovered-philadelphia-horsch-home-center-missing-women-case-sources/19941546"
+  ]
+}
