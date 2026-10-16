@@ -107,7 +107,12 @@ export function placeGate(manifest) {
     if (ent && !namedIn(ent, sentence)) return fail(i, "P2", `photo of "${ent}" — the sentence does not name it`);
     const provenance = `${p.verified_as || ""} ${p.seen || ""} ${p.place_check?.about || ""}`;
     const photoRegions = regionsIn(provenance, { properOnly: false });
-    if (contradicts(photoRegions, scriptRegions)) {
+    // A story names more than one city of the same country: "Miami firm" in a case heard in New York (board 38890511624 ch-26, a verified night skyline of
+    // Miami REJECTED as "from us:FL; the script is set in us:NY"). When the sentence names this place by an unambiguous name and its verified identity is in
+    // the script's country, the state is the place's own, not a contradiction: compare countries. Alexandria, Egypt still fails (ambiguous, other country).
+    const own = regionsIn(p.verified_as || "", { properOnly: false });
+    const namedCity = ent && !AMBIGUOUS_PLACE_NAMES.has(ent.toLowerCase()) && own.size && !contradicts(new Set([...own].map(countryOf)), new Set([...scriptRegions].map(countryOf)));
+    if (namedCity ? contradicts(new Set([...photoRegions].map(countryOf)), new Set([...scriptRegions].map(countryOf))) : contradicts(photoRegions, scriptRegions)) {
       return fail(i, "P3", `photo of "${ent}" is from ${[...photoRegions].join(", ")}; the script is set in ${[...scriptRegions].join(", ")}`);
     }
   });

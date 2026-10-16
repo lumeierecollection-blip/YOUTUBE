@@ -28,8 +28,15 @@ on:
   # Nothing goes public from this schedule. review-publish uploads
   # approved-review/ as private (line ~1435: "Publishing approved-review videos
   # of run N ... (private)"); only the owner publishes.
+  #
+  # 08:15 UTC, not 06:00: the Gemini free-tier daily quota resets at midnight
+  # Pacific (07:00 UTC in summer, 08:00 UTC in winter). At 06:00 the run shared
+  # the PREVIOUS quota day with any board run that day, and on 2026-10-16 every
+  # key was spent: props, beat checks and scripts all fell to the 3B fallback.
+  # 08:15 is after the reset in both seasons, so the daily run always starts
+  # on a full quota whatever was run by hand the day before.
   schedule:
-    - cron: "0 6 * * *"
+    - cron: "15 8 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -1528,6 +1535,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Materialize OAuth credentials
+        id: creds
         env:
           REQUESTED: ${{ steps.target.outputs.channels }}
           CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
@@ -1561,25 +1569,32 @@ jobs:
           CH49_CLIENT_SECRET:   ${{ secrets.CHANNEL_49_CLIENT_SECRET }}
           CH49_REFRESH_TOKEN:   ${{ secrets.CHANNEL_49_REFRESH_TOKEN }}
           
+        # A channel with no OAuth secrets is SKIPPED with a warning, not fatal: exiting on the first one stopped the whole upload, so the 2026-10-16
+        # cron (run 38890511624) uploaded nothing for 1/2/9/26/44, which have secrets, because ch-49 (6th in the list) has none.
         run: |
           mkdir -p config/creds
           node -e "
             const fs = require('fs');
+            const ok = [];
             for (const id of process.env.REQUESTED.split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean)) {
               const p = String(Number(id)).padStart(2, '0');
               const c = { client_id: process.env['CH' + p + '_CLIENT_ID'], client_secret: process.env['CH' + p + '_CLIENT_SECRET'], refresh_token: process.env['CH' + p + '_REFRESH_TOKEN'] };
-              if (!(c.client_id && c.client_secret && c.refresh_token)) { console.error('::error::No credentials configured for channel ' + p); process.exit(1); }
+              if (!(c.client_id && c.client_secret && c.refresh_token)) { console.log('::warning::No credentials configured for channel ' + p + ' - its video stays in the review queue, not uploaded'); continue; }
               fs.writeFileSync('config/creds/ch-' + p + '.json', JSON.stringify(c, null, 2));
               console.log('Credentials materialized for channel ' + p);
+              ok.push(String(Number(id)));
             }
+            if (!ok.length) console.log('::warning::no requested channel has credentials - nothing can be uploaded');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'channels=' + ok.join(',') + '\\n');
           "
 
       # run.js --review: approved-review/ only, marker must match the channel, refuses any
       # channel outside 1/2/9/26/44/49, uploads privacyStatus "private", and queues the entry
       # cancelled so process-queue never makes it public.
       - name: Publish approved-review videos (private)
+        if: steps.creds.outputs.channels != ''
         env:
-          REQUESTED: ${{ steps.target.outputs.channels }}
+          REQUESTED: ${{ steps.creds.outputs.channels }}
         run: |
           ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
           FAIL=0
@@ -1665,6 +1680,8 @@ jobs:
           git commit -m "uploaded: digest for $TODAY (review-publish of run ${{ steps.target.outputs.run_id }})"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
+            # downloaded artifacts (data/research, data/renders, ...) are untracked copies of files main may already hold: they block the rebase
+            git clean -fdq -- data ':!data/uploaded' ':!data/publish-queue'
             git rebase --autostash "origin/${{ github.ref_name }}"
             if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
             if [ "$attempt" -eq 5 ]; then echo "::error::Could not push the digest"; exit 1; fi
@@ -1681,6 +1698,8 @@ jobs:
           git commit -m "publish-queue: review-publish of run ${{ steps.target.outputs.run_id }} [run ${{ github.run_id }}]"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
+            # downloaded artifacts (data/research, data/renders, ...) are untracked copies of files main may already hold: they block the rebase
+            git clean -fdq -- data ':!data/uploaded' ':!data/publish-queue'
             git rebase --autostash "origin/${{ github.ref_name }}"
             if git push origin "HEAD:${{ github.ref_name }}"; then break; fi
             if [ "$attempt" -eq 5 ]; then echo "::error::Could not push the publish queue"; exit 1; fi

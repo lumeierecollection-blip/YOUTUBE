@@ -44,6 +44,15 @@ test("map rules: unnamed place, longer place, no sentence", () => {
   assert.equal(placeGate(m("Germany", undefined)).failures[0].rule, "M0");
 });
 
+test("a story naming two US cities passes P3 for the one the sentence names (board 38890511624 ch-26: Miami firm, New York court)", () => {
+  const photo = (entity, verified_as, seen) => ({ kind: "place", entity, verified_as, seen, place_check: { verdict: "SAME" } });
+  const m = (p, sentence) => ({ beats: [{ canvas: { sentence, photo: p } }, { canvas: { sentence: "He pleaded guilty in New York federal court." } }] });
+  assert.equal(placeGate(m(photo("Miami", "Miami (City in Florida, United States)", "night skyline of Miami, Florida"), "Miami firm collapses.")).pass, true);
+  // the same photo in a beat that does not name Miami still fails (P2), and another country still contradicts
+  assert.equal(placeGate(m(photo("Miami", "Miami (City in Florida, United States)", "night skyline of Miami, Florida"), "The firm collapses.")).failures[0].rule, "P2");
+  assert.equal(placeGate(m(photo("Toronto", "Toronto (City in Ontario, Canada)", "Toronto skyline, Canada"), "Toronto lenders lost out.")).failures[0]?.rule, "P3");
+});
+
 test("region contradiction compares states when both name one, else countries", () => {
   assert.equal(contradicts(regionsIn("City in Pennsylvania", { properOnly: false }), regionsIn("Florida real estate")), true);
   assert.equal(contradicts(regionsIn("City in Pennsylvania", { properOnly: false }), regionsIn("the United States")), false);
