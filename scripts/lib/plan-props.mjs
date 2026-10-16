@@ -29,6 +29,9 @@ const ABSTRACT = /\b(idea|ideas|concept|success|failure|growth|economy|policy|ri
 /** A proposal kept only if it is a short concrete noun phrase that is none of the above and names nothing the beat names. */
 export function validateProps(props, namedEntities = []) {
   const names = (namedEntities || []).map((e) => String(e && e.name || e || "").toLowerCase()).filter(Boolean);
+  // A beat that names a PLACE (a city, a state, a country) gets no generic BUILDING: the viewer reads it as that place (board 38889577784 ch-26: an apartment
+  // block for "Alexandria, Virginia" -> beat check NO). A named court, company or agency still gets its model building (owner: "a court -> a photo of a court").
+  const namesPlace = (namedEntities || []).some((e) => e && /^(place|location|city|country|region|state|county)$/i.test(String(e.type || e.kind || "")));
   const kept = [], dropped = [];
   for (const p of Array.isArray(props) ? props : []) {
     const object = String((p && (p.object || p.name)) || p || "").toLowerCase().replace(/[^a-z\s-]/g, " ").replace(/\s+/g, " ").trim();
@@ -37,6 +40,7 @@ export function validateProps(props, namedEntities = []) {
       : PEOPLE.test(object) ? "a person"
       : NOT_PHOTO.test(object) ? "not a photographable object (text / mark / drawing)"
       : ABSTRACT.test(object) ? "an abstract idea"
+      : namesPlace && p && (p.building || p.kind === "building" || p.kind === "place") ? "a generic building on a beat that names a place (it would read as that place)"
       : names.some((n) => n && (object.includes(n) || n.split(/\s+/).filter((w) => w.length > 3).some((w) => object.split(" ").includes(w)))) ? "names a specific entity of the beat"
       : null;
     if (why) { dropped.push(`${object || "?"}: ${why}`); continue; }

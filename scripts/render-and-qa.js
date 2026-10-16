@@ -1860,7 +1860,7 @@ const PROPS_PER_BEAT = 2;
 async function attachCloneProps({ plan, channelId, used }) {
   const { planProps } = await import("./lib/plan-props.mjs");
   const { callGemini } = await import("../src/lib/gemini-client.js");
-  const beats = plan.beats.map((b) => ({ index: b.index, sentence: b.narration || "", named_entities: b.named_entities || [] }));
+  const beats = plan.beats.map((b) => ({ index: b.index, sentence: b.narration || "", named_entities: [...(b.named_entities || []), ...(b.canvas?.named_entities || [])] }));
   const ask = async (prompt) => {
     try { return await callGemini([{ role: "user", content: prompt }], { model: "gemini-3.5-flash-lite", maxTokens: 3000, temperature: 0.2, noCache: true, tag: `props ch-${channelId}` }); }
     catch (e) { return { error: e.message }; }
@@ -1882,7 +1882,7 @@ async function attachCloneProps({ plan, channelId, used }) {
         if (mine.length >= PROPS_PER_BEAT) break;
         if (Date.now() - T0 > BUDGET) { console.log(`[props] ch-${channelId} beat ${b.index}: props budget spent (${BUDGET / 1000}s), "${p.object}" not fetched`); break; }
         if (shown.has(p.object)) continue;
-        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building }, scene: null });
+        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene: null });
         if (!r) continue;
         const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building };
         if (!used.keep([vis], `beat ${b.index} prop`).length) continue;

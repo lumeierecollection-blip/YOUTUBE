@@ -91,7 +91,7 @@ function runPy(args, timeoutMs = 180000) {
 }
 
 // 8 candidates per concept (owner's spec 2026-10-03, part E.3; was 6).
-const MAX_CANDIDATES = 8;
+const MAX_CANDIDATES_DEFAULT = 8;
 const runCache = new Map();   // per process: `${channel}:${slug(concept)}` -> Promise<result|null>
 const { verifyImage } = require("./verify-image.cjs");
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; cutouts)";
@@ -180,6 +180,9 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   const tag = `ch-${channel} beat ${beat_index} "${concept}"`;
   const log = (m) => console.log(`[cutout] ${tag}: ${m}`);
   const cands = [], seen = new Set();
+  // spec.max_candidates: a PROP (render-and-qa.js attachCloneProps) tries at most 3 — every candidate costs one vision call, and a board of props on every beat
+  // with 8 each ran all four Gemini keys out of quota (board 38889577784): the beat checks after it could not run. A prop that fails 3 gives way to the beat's next.
+  const MAX_CANDIDATES = Math.max(1, Number(spec.max_candidates) || MAX_CANDIDATES_DEFAULT);
   const money = FLAT_MONEY(concept);
   if (money) {
     for (const c of await moneyCandidates(concept, scene)) if (!seen.has(c.url) && cands.length < MAX_CANDIDATES) { seen.add(c.url); cands.push(c); }

@@ -19,3 +19,10 @@ test("planProps maps Gemini's answer per beat and returns nothing invented when 
   const none = await planProps({ topic: "t", beats, ask: async () => ({ error: "quota_exhausted" }) });
   assert.deepEqual(none.get(0).kept, []);
 });
+
+test("a beat naming a place gets no generic building prop (board 38889577784 ch-26); a named court still gets a courthouse", () => {
+  const city = validateProps([{ object: "apartment building", building: true }, { object: "stack of cash" }], [{ name: "Alexandria", type: "place" }]);
+  assert.deepEqual(city.kept.map((p) => p.object), ["stack of cash"]);
+  const court = validateProps([{ object: "courthouse", building: true }], [{ name: "Southwark Crown Court", type: "building" }]);
+  assert.deepEqual(court.kept.map((p) => p.object), ["courthouse"]);
+});
