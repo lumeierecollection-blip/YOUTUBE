@@ -634,6 +634,17 @@ async function main() {
         // one that cannot be is shown soft-edged. Never boxed.
         const cut = attachCutouts(beats, channel.id ?? channelId, (m) => console.log(m));
         console.log(`[clone] pictures: ${cut.cut} cut out, ${cut.soft} soft-edged`);
+        // A PRE-BUILT bundle (REMOTION_SERVE_URL, as CI renders) copied public/ BEFORE these cut-outs existed, so the page served a 404 for them ("The source image cannot be decoded", board 38864901359
+        // ch-26). Each new file is copied into the bundle's own public/ too.
+        const serveDir = process.env.REMOTION_SERVE_URL;
+        if (cut.cut && serveDir && !/^https?:/.test(serveDir) && existsSync(serveDir)) {
+          for (const b of beats) {
+            const rel = b?.scene?.canvas?.photo?.cutout;
+            if (!rel) continue;
+            const dst = join(serveDir, "public", ...rel.split("/"));
+            try { mkdirSync(dirname(dst), { recursive: true }); copyFileSync(join(__dirname, "public", ...rel.split("/")), dst); } catch (e) { console.log(`[clone] could not copy ${rel} into the bundle: ${e.message}`); }
+          }
+        }
         // QUOTED STATEMENTS: the research artifact's quotes that were confirmed word for word against the raw search text (scripts/lib/quote-verify.mjs).
         sentencePlan.clone.quotes = verifiedQuotesFor(scriptPath, ROOT);
         console.log(`[clone] quoted statements available: ${sentencePlan.clone.quotes.length}`);
