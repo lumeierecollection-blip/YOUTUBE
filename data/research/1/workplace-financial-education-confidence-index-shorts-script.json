@@ -1,0 +1,42 @@
+{
+  "channel_id": "1",
+  "topic_slug": "workplace-financial-education-confidence-index",
+  "format": "shorts",
+  "hook": "Voya Financial, Inc. data shows that a higher salary doesn't guarantee long-term financial confidence.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Voya Financial, Inc. data shows that a higher salary doesn't guarantee long-term financial confidence."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Voya Financial, Inc. recently launched America's Financial Confidence Index to track employee habits. Where does actual stability come from?",
+      "text_overlay": {
+        "text": "21-point confidence gap"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Employee Benefit Research Institute shows that employer-provided education programs drive higher literacy and satisfaction.",
+      "text_overlay": {
+        "text": "Education vs. Income"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Research from the FINRA Foundation shows 50 percent of workplace program participants earn over 150,000 dollars annually. Employee Benefit News reports a 21-point gap between retirement confidence and other daily financial habits.",
+      "text_overlay": {
+        "text": "50% of participants earn >$150k"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check your own workplace for the financial education programs highlighted by Voya Financial, Inc."
+    }
+  ],
+  "sources_used": [
+    "https://www.voya.com/news/2026/10/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive",
+    "https://www.finrafoundation.org/sites/finrafoundation/files/2026-07/From_the_Break_Room_to_the_Bank.pdf",
+    "https://www.benefitnews.com/news/Workplace-Financial-Education-Boosts-Employee-Financial-Habits"
+  ]
+}
