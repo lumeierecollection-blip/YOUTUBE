@@ -1,0 +1,53 @@
+{
+  "topic_slug": "imf-october-2026-warning-ai-valuations-financial-stability",
+  "strongest_angle": "Examining how soaring artificial intelligence valuations and rising corporate leverage highlighted in the International Monetary Fund's October 2026 reports could trigger systemic market turmoil and sharp corrections.",
+  "key_facts": [
+    {
+      "fact": "The International Monetary Fund published its Global Financial Stability Report in October 2026 warning that weaker artificial intelligence investment and profitability could trigger a market correction.",
+      "source_url": "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026",
+      "source_name": "International Monetary Fund",
+      "confidence": "high"
+    },
+    {
+      "fact": "Authors Athanasios Vamvakidis and Jason Wu noted in an October 2026 IMF blog post that artificial intelligence-driven market corrections represent one of three key escalating risks.",
+      "source_url": "https://www.imf.org/en/blogs/articles/2026/10/12/global-financial-markets-face-rising-risks-from-ai-bond-yields-and-cyberattacks",
+      "source_name": "International Monetary Fund",
+      "confidence": "high"
+    },
+    {
+      "fact": "The International Monetary Fund background analysis released in October 2026 noted that corporate debt issuance leverage has risen sharply as artificial intelligence investment surges.",
+      "source_url": "https://www.imf.org/-/media/files/publications/gfsr/2026/october/english/backgroundanalysis11.pdf",
+      "source_name": "International Monetary Fund",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elaine Kurtenbach reported for the Associated Press in October 2026 that the International Monetary Fund slightly upgraded its global economic growth forecast while warning of risks from the artificial intelligence boom and debt.",
+      "source_url": "https://apnews.com/article/imf-economy-growth-ai-war-oil-23aa01c0c6922fbf0b564a0ff9b2c8e5",
+      "source_name": "Associated Press",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "International Monetary Fund",
+      "kind": "organization"
+    },
+    {
+      "name": "Athanasios Vamvakidis",
+      "kind": "person"
+    },
+    {
+      "name": "Jason Wu",
+      "kind": "person"
+    },
+    {
+      "name": "Elaine Kurtenbach",
+      "kind": "person"
+    },
+    {
+      "name": "Associated Press",
+      "kind": "organization"
+    }
+  ]
+}

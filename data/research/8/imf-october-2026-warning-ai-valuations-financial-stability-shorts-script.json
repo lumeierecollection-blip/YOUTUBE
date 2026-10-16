@@ -1,0 +1,67 @@
+{
+  "channel_id": "8",
+  "topic_slug": "imf-october-2026-warning-ai-valuations-financial-stability",
+  "format": "shorts",
+  "hook": "Are you ready for the International Monetary Fund warning about artificial intelligence market corrections?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Are you ready for the International Monetary Fund warning about artificial intelligence market corrections?",
+      "b_roll": [
+        "Data centers flashing red",
+        "Stock market ticker dropping"
+      ],
+      "text_overlay": {
+        "text": "AI Valuations Risk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, the International Monetary Fund published its Global Financial Stability Report. Corporate debt issuance leverage has risen sharply as artificial intelligence investment surges. Where did investigators spot the escalation?",
+      "b_roll": [
+        "IMF headquarters building in Washington",
+        "Financial documents and debt charts"
+      ],
+      "text_overlay": {
+        "text": "IMF October 2026 Warning"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Authors Athanasios Vamvakidis and Jason Wu noted artificial intelligence corrections represent escalating risks.",
+      "b_roll": [
+        "Close-up of research report pages",
+        "Global markets map graphic"
+      ],
+      "text_overlay": {
+        "text": "Escalating Risks"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Associated Press reporter Elaine Kurtenbach detailed the updated global economic growth forecast.",
+      "b_roll": [
+        "Associated Press newsroom displays",
+        "Stock exchange trading floors"
+      ],
+      "text_overlay": {
+        "text": "Profitability Threat"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Artificial intelligence investment volatility accelerates market corrections.",
+      "b_roll": [
+        "Market indices blinking downward",
+        "IMF report cover graphic"
+      ],
+      "text_overlay": {
+        "text": "Market Correction"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026",
+    "https://apnews.com/article/imf-economy-growth-ai-war-oil-23aa01c0c6922fbf0b564a0ff9b2c8e5"
+  ]
+}
