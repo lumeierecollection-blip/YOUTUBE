@@ -1,0 +1,69 @@
+{
+  "topic_slug": "colorado-ag-weiser-domestic-violence-housing-rules",
+  "strongest_angle": "Colorado Attorney General Phil Weiser issued an official advisory on October 6, 2026, reminding landlords of their legal obligations under House Bill 25-1168 to provide expanded housing protections and prevent illegal evictions for victim-survivors of domestic violence.",
+  "key_facts": [
+    {
+      "fact": "On October 6, 2026, Colorado Attorney General Phil Weiser issued a public advisory reminding Colorado landlords of expanded housing protections for victim-survivors of domestic violence under House Bill 25-1168.",
+      "source_url": "https://coag.gov/press-releases/weiser-reminds-colorado-landlords-of-expanded-housing-protections-for-domestic-violence-survivors",
+      "source_name": "Colorado Attorney General",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Colorado Attorney General’s Office issued the public advisory because it received reports of landlords not following their legal obligations under HB 25-1168.",
+      "source_url": "https://coag.gov/app/uploads/2026/10/Public-Advisory-Housing-Protections-for-DV-Victims-Survivors.pdf",
+      "source_name": "Colorado Attorney General",
+      "confidence": "medium"
+    },
+    {
+      "fact": "House Bill 25-1168 prime sponsors include Representative Mandy Lindsay, Representative Cecelia Espenoza, and Senator Mike Weissman according to the Division of Real Estate summary.",
+      "source_url": "https://dre.colorado.gov/hb25-1168-summary",
+      "source_name": "Division of Real Estate",
+      "confidence": "high"
+    },
+    {
+      "fact": "Colorado Courts Daily reported that Attorney General Phil Weiser reminded Colorado landlords about new legal obligations toward survivors of domestic violence under House Bill 25-1168.",
+      "source_url": "https://cocourtsdaily.com/attorney-general-weiser-reminds-landlords-of-expanded-protections-for-domestic-violence-survivors",
+      "source_name": "Colorado Courts Daily",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "House Bill Number",
+      "value": 251168,
+      "unit": "HB",
+      "source_url": "https://coag.gov/app/uploads/2026/10/Public-Advisory-Housing-Protections-for-DV-Victims-Survivors.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Phil Weiser",
+      "kind": "person"
+    },
+    {
+      "name": "Colorado",
+      "kind": "place"
+    },
+    {
+      "name": "Colorado Attorney General's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "Mandy Lindsay",
+      "kind": "person"
+    },
+    {
+      "name": "Cecelia Espenoza",
+      "kind": "person"
+    },
+    {
+      "name": "Mike Weissman",
+      "kind": "person"
+    },
+    {
+      "name": "Division of Real Estate",
+      "kind": "organization"
+    }
+  ]
+}
