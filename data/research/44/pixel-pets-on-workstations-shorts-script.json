@@ -1,0 +1,65 @@
+{
+  "channel_id": "44",
+  "topic_slug": "pixel-pets-on-workstations",
+  "format": "shorts",
+  "hook": "Claude Code now hides a virtual pet named Buddy right inside your workstation.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Claude Code now hides a virtual pet named Buddy right inside your workstation.",
+      "b_roll": [
+        "Close-up shot of a monitor displaying a coding environment with a pixel pet"
+      ],
+      "text_overlay": {
+        "text": "Virtual Pet on Your Workstation"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Anthropic added a virtual pet named Buddy into Claude Code during April 2026. Desktamer offers 3,000 community-created pets across Windows and Mac. How do tiny pixel creatures make unattended coding agents engaging?",
+      "b_roll": [
+        "Screen recording showing Claude Code interface",
+        "Window displaying Desktamer pet library selection"
+      ],
+      "text_overlay": {
+        "text": "3,000 Pets Available"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Desktop pets actually accompany unattended AI coding agents.",
+      "b_roll": [
+        "Split screen showing an active code execution and an animated desktop pet"
+      ],
+      "text_overlay": {
+        "text": "Real Utility"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Arol Wright reported on August 29, 2026, that desktop pets have found genuine utility on workstations. Desktamer offers over 3,000 pixel pets to keep you company.",
+      "b_roll": [
+        "Arol Wright article excerpt on HowToGeek",
+        "Coding workstation setup with active pixel pet"
+      ],
+      "text_overlay": {
+        "text": "Workflow Companions"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch Buddy accompany Claude Code while running your unattended tasks.",
+      "b_roll": [
+        "Wide shot of a developer workstation with Buddy visible"
+      ],
+      "text_overlay": {
+        "text": "Buddy in Claude Code"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.tmtpost.com/8141972.html",
+    "https://desktamer.com",
+    "https://www.howtogeek.com/desktop-pets-are-having-a-renaissance-and-they-actually-make-you-more-productive-now"
+  ]
+}

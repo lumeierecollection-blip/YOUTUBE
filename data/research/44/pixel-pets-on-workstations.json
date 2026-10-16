@@ -1,0 +1,74 @@
+{
+  "topic_slug": "pixel-pets-on-workstations",
+  "strongest_angle": "How Anthropic and other AI companies are integrating virtual pixel pets like Buddy into coding assistants and workstations to make unattended tasks more engaging.",
+  "key_facts": [
+    {
+      "fact": "In April 2026, Anthropic added a virtual pet feature named Buddy into Claude Code to accompany users while writing code.",
+      "source_url": "https://www.tmtpost.com/8141972.html",
+      "source_name": "TMTPost",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Desktamer offers pixel pets for Mac, Windows, and Linux across a selection of over 3,000 community-created pets.",
+      "source_url": "https://desktamer.com",
+      "source_name": "Desktamer",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Arol Wright reported on August 29, 2026, that desktop pets have found genuine utility by accompanying unattended AI coding agents.",
+      "source_url": "https://www.howtogeek.com/desktop-pets-are-having-a-renaissance-and-they-actually-make-you-more-productive-now",
+      "source_name": "HowToGeek",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total pets available on Desktamer",
+      "value": 3000,
+      "unit": "pets",
+      "source_url": "https://desktamer.com"
+    },
+    {
+      "label": "Month of Anthropic's Claude Code virtual pet launch",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://www.tmtpost.com/8141972.html"
+    },
+    {
+      "label": "Year of Anthropic's Claude Code virtual pet launch",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.tmtpost.com/8141972.html"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Desktop pets are back, and this time they are not just nostalgic clutter.",
+      "speaker": "Arol Wright",
+      "source_name": "HowToGeek",
+      "source_url": "https://www.howtogeek.com/desktop-pets-are-having-a-renaissance-and-they-actually-make-you-more-productive-now"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude Code",
+      "kind": "object"
+    },
+    {
+      "name": "Buddy",
+      "kind": "object"
+    },
+    {
+      "name": "Desktamer",
+      "kind": "organization"
+    },
+    {
+      "name": "Arol Wright",
+      "kind": "person"
+    }
+  ]
+}
