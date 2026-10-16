@@ -71,7 +71,15 @@ def _largest_component(solid, w, h):
     return best
 
 
-def alpha_report(alpha, rect_ok=False, grounded=False, multi=False):
+def run_side_ok(opaque):
+    """A bust touches the left/right edges only in its lower part (the shoulders) and never runs along the top edge for more than 40%."""
+    h = opaque.shape[0]
+    top_run = float(opaque[0, :].mean())
+    upper = opaque[: int(h * 0.55), :]
+    return top_run <= 0.40 and not upper[:, 0].any() and not upper[:, -1].any()
+
+
+def alpha_report(alpha, rect_ok=False, grounded=False, multi=False, bust=False):
     """alpha: a 2-D numpy uint8 array (the photo's mask BEFORE cropping). Returns a dict with ok / why / measurements."""
     import numpy as np
 
@@ -91,14 +99,16 @@ def alpha_report(alpha, rect_ok=False, grounded=False, multi=False):
     # 2. touches all four edges
     top, bottom, left, right = opaque[0, :].any(), opaque[-1, :].any(), opaque[:, 0].any(), opaque[:, -1].any()
     rep["touches"] = {"top": bool(top), "bottom": bool(bottom), "left": bool(left), "right": bool(right)}
-    if top and bottom and left and right:
+    if top and bottom and left and right and not (bust and run_side_ok(opaque)):
         rep["why"] = "opaque pixels touch all four edges: the object is cropped, not isolated"
         return rep
     # 3. the frame cuts the object along an edge
     run = {"top": float(opaque[0, :].mean()), "bottom": float(opaque[-1, :].mean()), "left": float(opaque[:, 0].mean()), "right": float(opaque[:, -1].mean())}
     rep["edge_run"] = {k: round(v, 3) for k, v in run.items()}
     for side, v in run.items():
-        lim = 0.90 if (grounded and side == "bottom") else 0.40
+        # --bust: a head-and-shoulders portrait, cut by the bottom edge across its whole width. Allowed ONLY because the caller draws it with that
+        # edge ON the video's bottom edge (clone family "stand"), where the cut is the frame's own edge. Top and sides keep the 40% rule.
+        lim = 1.01 if (bust and side == "bottom") else 0.90 if (grounded and side == "bottom") else 0.40
         if v > lim:
             rep["why"] = f"the mask runs along the photo's {side} edge for {v * 100:.0f}% of it (> {lim * 100:.0f}%): cut by the frame"
             return rep
@@ -140,7 +150,7 @@ def alpha_report(alpha, rect_ok=False, grounded=False, multi=False):
     return rep
 
 
-def isolate(src, out, rect_ok=False, grounded=False, multi=False, max_side=1024):
+def isolate(src, out, rect_ok=False, grounded=False, multi=False, max_side=1024, bust=False):
     import numpy as np
     from PIL import Image
 
@@ -159,7 +169,7 @@ def isolate(src, out, rect_ok=False, grounded=False, multi=False, max_side=1024)
         rgb = im.convert("RGB")
         rgba = remove(rgb, session=new_session("u2net")).convert("RGBA")
     alpha = np.asarray(rgba)[:, :, 3]
-    rep = alpha_report(alpha, rect_ok=rect_ok, grounded=grounded, multi=multi)
+    rep = alpha_report(alpha, rect_ok=rect_ok, grounded=grounded, multi=multi, bust=bust)
     rep["source_size"] = [im.size[0], im.size[1]]
     if not rep["ok"]:
         return rep
@@ -185,7 +195,7 @@ def main(argv):
         if "--max-side" in argv:
             ms = int(argv[argv.index("--max-side") + 1])
         try:
-            rep = isolate(argv[1], argv[2], rect_ok="--rect-ok" in flags, grounded="--grounded" in flags, multi="--multi" in flags, max_side=ms)
+            rep = isolate(argv[1], argv[2], rect_ok="--rect-ok" in flags, grounded="--grounded" in flags, multi="--multi" in flags, max_side=ms, bust="--bust" in flags)
         except Exception as e:  # noqa: BLE001
             rep = {"ok": False, "why": f"isolation failed: {type(e).__name__}: {e}"}
         print(json.dumps(rep))

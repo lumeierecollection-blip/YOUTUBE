@@ -39,7 +39,7 @@ const clean = (w) => String(w || "").replace(/^[^\w$€£]+|[^\w%]+$/g, "");
 export function heroesOf(canvas) {
   const c = canvas || {};
   const out = [];
-  if (c.photo && c.photo.asset) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", asset: c.photo.asset, name: c.photo.entity || null, w: c.photo.w || null, h: c.photo.h || null, view: c.photo.view || null, credit: c.photo.credit || c.source_credit || null, cutout: c.photo.cutout || null, grounded: !!c.photo.cutout_grounded, vignette: !!c.photo.vignette });
+  if (c.photo && c.photo.asset) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", asset: c.photo.asset, name: c.photo.entity || null, w: c.photo.w || null, h: c.photo.h || null, view: c.photo.view || null, credit: c.photo.credit || c.source_credit || null, cutout: c.photo.cutout || null, grounded: !!c.photo.cutout_grounded, bust: !!c.photo.cutout_bust, vignette: !!c.photo.vignette });
   for (const v of c.concept_visuals || []) if (v && v.asset) out.push({ kind: v.logo ? "logo" : v.class === "cutout" ? "cutout" : "symbol", asset: v.asset, name: v.name || null, w: v.w || null, h: v.h || null, view: null, cutout: v.asset });   // a logo / cut-out / symbol asset is already a transparent PNG
   if (c.art && c.art.asset) out.push({ kind: c.art.kind === "plate-organization" ? "logo" : c.art.kind || "art", asset: c.art.asset, name: c.art.name || null, w: null, h: null, view: null });
   if (c.art && Array.isArray(c.art.items)) for (const it of c.art.items) if (it && it.asset) out.push({ kind: "logo", asset: it.asset, name: it.name || null, w: null, h: null, view: null });
@@ -255,7 +255,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       if (hero) {
         // FRAMELESS, chosen by what the picture IS (owner, 2026-10-16: "the frames are not needed"): a person cut-out stands on the floor, runs off an edge or
         // floats; an object / logo cut-out floats or runs off an edge; a photo that could not be cut out is a soft-edged vignette or a full bleed. Never a box.
-        const set = hero.cutout ? (hero.grounded ? ["stand", "edge", "float"] : ["float", "edge"]) : ["vignette", "bleed"];
+        const set = hero.cutout ? (hero.bust ? ["stand"] : hero.grounded ? ["stand", "edge", "float"] : ["float", "edge"]) : ["vignette", "bleed"];
         let ti = shots.filter((x) => x.hero).length % set.length;
         // never the same treatment twice in a row on the same hero: that is the same frame twice
         if (prev && prev.hero && prev.hero.asset === hero.asset && set[ti] === prev.treatment) ti = (ti + 1) % set.length;

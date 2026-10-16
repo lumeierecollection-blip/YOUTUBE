@@ -51,10 +51,16 @@ export function cutoutPhoto(photo, channelId) {
   }
   mkdirSync(dirname(out), { recursive: true });
   const args = [CUTOUT_LIB, "isolate", src, out, "--max-side", "1400", ...(person ? ["--grounded"] : [])];
-  const r = spawnSync(py, args, { encoding: "utf8", timeout: 240000 });
-  let rep = { ok: false, why: `isolation did not answer (${r.status})` };
-  try { rep = JSON.parse(String(r.stdout || "").trim().split("\n").pop()); } catch { /* keep the failure */ }
-  const res = rep.ok ? { ok: true, cutout: rel, grounded: person, size: rep.size || null, why: "ok" } : { ok: false, why: rep.why || "refused" };
+  const run = (a) => {
+    const r = spawnSync(py, a, { encoding: "utf8", timeout: 240000 });
+    try { return JSON.parse(String(r.stdout || "").trim().split("\n").pop()); } catch { return { ok: false, why: `isolation did not answer (${r.status})` }; }
+  };
+  let rep = run(args), bust = false;
+  // A HEAD-AND-SHOULDERS portrait is cut by the photo's bottom edge across its whole width (board 38864901359 ch-49, Chris Rock: "runs along the bottom edge for
+  // 100%"). Drawn with that edge ON the video's bottom edge it is the references' bust, not a cropped object: tried again as a bust, and marked so the planner only
+  // ever stands it on the floor.
+  if (!rep.ok && person && /bottom edge/.test(String(rep.why || ""))) { const again = run([...args, "--bust"]); if (again.ok) { rep = again; bust = true; } }
+  const res = rep.ok ? { ok: true, cutout: rel, grounded: person, bust, size: rep.size || null, why: "ok" } : { ok: false, why: rep.why || "refused" };
   try { writeFileSync(sidecar, JSON.stringify(res)); } catch { /* cache only */ }
   return res;
 }
@@ -69,7 +75,7 @@ export function attachCutouts(beats, channelId, log = console.log) {
     const p = b?.scene?.canvas?.photo;
     if (!p || !p.asset || p.cutout || p.vignette) continue;
     const r = cutoutPhoto(p, channelId);
-    if (r.ok) { p.cutout = r.cutout; p.cutout_grounded = !!r.grounded; cut++; log(`[clone] cut out ${p.entity || p.asset} -> ${r.cutout}`); }
+    if (r.ok) { p.cutout = r.cutout; p.cutout_grounded = !!r.grounded; p.cutout_bust = !!r.bust; cut++; log(`[clone] cut out ${p.entity || p.asset} -> ${r.cutout}`); }
     else { p.vignette = true; soft++; log(`[clone] ${p.entity || p.asset}: not cut out (${r.why}) -> soft-edged vignette`); }
   }
   return { cut, soft };

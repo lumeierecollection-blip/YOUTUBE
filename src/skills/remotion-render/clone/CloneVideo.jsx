@@ -115,8 +115,9 @@ function Hero({ shot, B, st, P, profile, bw, local, idx }) {
     const shadow = "drop-shadow(0 26px 34px rgba(0,0,0,0.30))";
     const tone = h.kind === "logo" ? "" : toneFilter(profile.photo_tone, bw) + " ";
     return (
-      <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, zIndex: 6,
-        transform: `translate(${swayX.toFixed(2)}px, ${swayY.toFixed(2)}px) rotate(${box.rot || 0}deg) scale(${st.s})`, transformOrigin: box.anchor === "bottom" ? "50% 100%" : "50% 50%" }}>
+      <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h + (h.bust ? 30 : 0), opacity: st.o, zIndex: 6,
+        // a BUST's straight cut sits 30 px under the video's bottom edge and never sways up: the cut is the frame's own edge, never seen
+        transform: `translate(${swayX.toFixed(2)}px, ${(h.bust ? 0 : swayY).toFixed(2)}px) rotate(${h.bust ? 0 : box.rot || 0}deg) scale(${h.bust ? 1 : st.s})`, transformOrigin: box.anchor === "bottom" ? "50% 100%" : "50% 50%" }}>
         <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: box.anchor === "bottom" ? "50% 100%" : "50% 50%", filter: tone + shadow }} />
       </div>
     );

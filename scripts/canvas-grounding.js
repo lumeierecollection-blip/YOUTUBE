@@ -298,6 +298,7 @@ export function quantitiesOf(sentence) {
     if (!/\d/.test(v)) continue;
     const before = text.slice(0, m.index).trimEnd();
     if (ID_BEFORE.test(before)) continue;                           // Article 10, Section 357-A, Phase 2
+    { const at = m.index + m[0].search(/\S/); if (/^\d/.test(m[0].trim()) && /[A-Za-z]$/.test(text.slice(0, at))) continue; }              // a number glued to a letter is part of a NAME, not a figure: "A24", "F1", "G7" (board 38864901359 ch-49: the A24 logo became a "24" stat card)
     if (/^\d+[-\u2013]?[A-Za-z]{1,2}\b/.test(text.slice(m.index))) continue;
     const after = words(text.slice(m.index + m[0].length).split(/[,;.]/)[0] || "");
     let lab = trimEdges(after).slice(0, 4);

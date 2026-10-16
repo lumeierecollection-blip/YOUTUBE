@@ -3140,8 +3140,17 @@ async function main() {
   const results = [];
   const queued = { "approved-review": 0, rejected: 0 };
 
+  const minFaceDefault = process.env.PERSON_MIN_FACE_FRACTION;
   for (const { channelId, scriptPath } of work) {
     const format = formatFromScriptPath(scriptPath);
+    // FULL-LENGTH PEOPLE on a clone channel (board 38864901359 ch-49: six photos of Rosalind Eleazar verified MATCH, PORTRAIT, were all refused because her face
+    // covered 8% of a full-length frame — the canvas engine crops a portrait, so it needs a big face). The clone family cuts the person out and stands them on the
+    // paper, the way the references draw people, so a full-length photo is what it wants. Identity MATCH, PORTRAIT framing, a visible face and NO text overlay are
+    // all still required; only the face-size floor drops, to 5%, and only for a clone channel. (verify-person-image.cjs reads the env at call time.)
+    if (minFaceDefault === undefined) {
+      if (isCloneChannel(channelId)) process.env.PERSON_MIN_FACE_FRACTION = process.env.CLONE_PERSON_MIN_FACE || "0.05";
+      else delete process.env.PERSON_MIN_FACE_FRACTION;
+    }
     let result;
     try {
       result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA);
