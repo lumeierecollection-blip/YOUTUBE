@@ -1335,9 +1335,14 @@
           "topic": "Human Remains Recovered at Philadelphia Horsch Home in Missing Women Investigation",
           "slug": "philadelphia-horsch-home-bones-recovery",
           "reserved_at": "2026-10-16T12:28:30.885Z"
+        },
+        {
+          "topic": "Alex Murdaugh Retrial Hearing Focuses on DNA and Murder Weapons Evidence",
+          "slug": "alex-murdaugh-retrial-dna-weapons-evidence",
+          "reserved_at": "2026-10-16T22:46:26.383Z"
         }
       ],
-      "last_generated": "2026-10-16T12:28:30.886Z"
+      "last_generated": "2026-10-16T22:46:26.384Z"
     },
     "7": {
       "channel_name": "Dead Companies",
