@@ -365,3 +365,17 @@ test("with PROPS every shot of a beat has a picture, and the beat's picture-less
   assert.match(named, /Russell Brand/);
   assert.match(named, /Southwark Crown Court/);
 });
+
+test("a beat with a named picture and props: the named picture holds the key shot (62% of the beat, what the checks sample) and most shots", () => {
+  const words = "Director James Wan said the horror slate grew this year at Variety's annual impact report in October.".split(" ");
+  const beat = { start_frame: 0, duration_frames: 240, text: words.join(" "),
+    spoken: words.map((t, k) => ({ text: t, from: 6 + k * 12, to: 16 + k * 12 })),
+    scene: { canvas: { sentence: words.join(" "), named_entities: [{ type: "person", name: "James Wan" }], photo: { asset: "entities/people/james-wan.jpg", entity: "James Wan", kind: "person" },
+      clone_props: [{ name: "film camera", asset: "cutouts-live/49/1-film-camera.png" }, { name: "clapperboard", asset: "cutouts-live/49/1-clapperboard.png" }] } } };
+  const plan = planClone([beat], { laws: G.laws, profile: G.profiles["cutout-collage"], fps: 30 });
+  const key = plan.shots.find((sh) => sh.f0 <= 0.62 * 240 && 0.62 * 240 < sh.f1);
+  assert.equal(key.hero.name, "James Wan");
+  const named = plan.shots.filter((sh) => sh.hero && sh.hero.name === "James Wan").length;
+  assert.ok(named >= plan.shots.length / 2, `${named}/${plan.shots.length}`);
+  assert.ok(plan.shots.every((sh) => sh.hero));
+});

@@ -260,7 +260,17 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
     for (let k = 0; k < nShots; k++) {
       const f0 = cuts[k], f1 = cuts[k + 1];
       const lastPanel = panelLast && k === nShots - 1;
-      const hero = !lastPanel && heroes.length ? heroes[k % heroes.length] : null;
+      // ENTITY PICTURES LEAD, PROPS FILL (board 38877895872 ch-49: the shot the beat check samples, at 62% of the beat, showed a film camera prop where the
+      // sentence named James Wan, and the check failed). When a beat has a picture of something it NAMES, that picture takes the KEY shot (the one holding
+      // 62% of the beat) and two shots in three; the props take the rest. A beat with no named picture is all props.
+      const named = heroes.filter((h) => !h.prop), props = heroes.filter((h) => h.prop);
+      const keyF = s + 0.62 * (e - s), isKey = f0 <= keyF && keyF < f1;
+      let hero = null;
+      if (!lastPanel && heroes.length) {
+        if (!named.length) hero = props[k % props.length];
+        else if (!props.length || isKey || k % 3 !== 1) hero = named[(k - Math.floor((k + 1) / 3)) % named.length];
+        else hero = props[Math.floor(k / 3) % props.length];
+      }
       const prev = shots[shots.length - 1];
       // A shot with NO picture is a designed type shot (an editorial pull-quote), never a picture treatment with the picture missing: that left a
       // bare accent block standing alone on real beats (board 38752797116 ch-2). The treatment rotation is for pictures only.
@@ -303,7 +313,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
         for (const g of subjects) if (g.kind === "glyph" && !plates.some((x) => x.name === g.name)) plates.push({ name: g.name, type: g.type });
       }
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
-      const figHere = hero && figs.length ? figs[k % figs.length] : null;
+      const figHere = hero && figs.length ? figs[isKey ? 0 : k % figs.length] : null;   // the key shot carries the beat's first figure / date
       const quote = quoteOf.has(bi) && k === (nShots >= 2 ? 1 : 0) ? quoteOf.get(bi) : null;   // the beat's quoted statement, once, on its second shot
       if (quote) treatment = hero ? (hero.cutout && !hero.bust ? "quote-cut" : "quote-soft") : "quote";
       {
