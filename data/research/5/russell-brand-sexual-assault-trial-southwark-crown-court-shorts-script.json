@@ -1,0 +1,65 @@
+{
+  "channel_id": "5",
+  "topic_slug": "russell-brand-sexual-assault-trial-southwark-crown-court",
+  "format": "shorts",
+  "hook": "Seven serious charges bring 51-year-old Russell Brand into Southwark Crown Court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Seven serious charges bring 51-year-old Russell Brand into Southwark Crown Court.",
+      "b_roll": [
+        "Exterior shot of Southwark Crown Court building"
+      ],
+      "text_overlay": {
+        "text": "7 Charges at Southwark"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Prosecutor Riel Karmy-Jones KC labeled the 51-year-old comedian a ruthless predator. He faces 3 counts of rape and 3 counts of sexual assault. What led to this dramatic courtroom showdown?",
+      "b_roll": [
+        "Newspaper headlines and court documents",
+        "Microphone stand in a press briefing room"
+      ],
+      "text_overlay": {
+        "text": "3 Counts of Rape"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except 1 count of indecent assault joins the 3 counts of rape.",
+      "b_roll": [
+        "Gavel striking a wooden block inside a courtroom"
+      ],
+      "text_overlay": {
+        "text": "Indecent Assault Charge"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Russell Brand arrived at Southwark Crown Court pleading not guilty to the charges. Prosecutor Riel Karmy-Jones KC delivered opening arguments to the jury. Southwark Crown Court continues hearing the trial involving 3 counts of sexual assault.",
+      "b_roll": [
+        "Lawyers walking through court corridors",
+        "Jury box seating area"
+      ],
+      "text_overlay": {
+        "text": "Not Guilty Plea"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Southwark Crown Court hears the ongoing proceedings.",
+      "b_roll": [
+        "Main entrance of Southwark Crown Court"
+      ],
+      "text_overlay": {
+        "text": "Southwark Crown Court"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates",
+    "https://www.bbc.co.uk/news/live/c52e9xd9mvk2t",
+    "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+  ]
+}
