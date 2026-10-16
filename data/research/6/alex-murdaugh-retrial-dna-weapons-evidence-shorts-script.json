@@ -1,0 +1,45 @@
+{
+  "channel_id": "6",
+  "topic_slug": "alex-murdaugh-retrial-dna-weapons-evidence",
+  "format": "shorts",
+  "hook": "Judge Debra McCaslin just handed Alex Murdaugh's defense team a massive DNA testing win.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Judge Debra McCaslin just handed Alex Murdaugh's defense team a massive DNA testing win."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2021, Alex Murdaugh faced charges for the murders of his wife Maggie and son Paul at their estate. Can the defense test unknown DNA found under Maggie Murdaugh's fingernails in South Carolina?",
+      "text_overlay": {
+        "text": "2021 Murders"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the defense team hit a major roadblock in a Lexington, South Carolina courtroom today.",
+      "text_overlay": {
+        "text": "Lexington Courtroom"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Lexington judge Debra McCaslin denied their separate request regarding ballistics evidence. Alex Murdaugh awaits his retrial over the 2021 murders as these legal hurdles mount up.",
+      "text_overlay": {
+        "text": "Ballistics Denied"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The battle over evidence from 2021 continues in court.",
+      "text_overlay": {
+        "text": "2021 Case Status"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wisn.com/article/evidence-alex-murdaugh-retrial-dna-missing-murder-weapons/74160726",
+    "https://www.foxnews.com/us/alex-murdaughs-wild-goose-chase-missing-murder-guns-targets-police-chief-expert",
+    "https://www.thestate.com/news/local/crime/article317639302.html"
+  ]
+}
