@@ -1,0 +1,86 @@
+{
+  "topic_slug": "uk-prosecutor-labels-russell-brand-sexual-predator-trial",
+  "strongest_angle": "An in-depth look at the opening arguments at Southwark Crown Court where prosecutors accused Russell Brand of being a ruthless sexual predator targeting six women over a decade.",
+  "key_facts": [
+    {
+      "fact": "Russell Brand went on trial at Southwark Crown Court facing charges involving six women over the course of a decade.",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "British prosecutors accused 51-year-old Russell Brand of being a ruthless sexual predator as his trial opened in London.",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Russell Brand is facing three counts of rape, three counts of sexual assault, and one count of indecent assault at Southwark Crown Court.",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates",
+      "source_name": "The Guardian",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of women allegedly assaulted",
+      "value": 6,
+      "unit": "women",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+    },
+    {
+      "label": "Age of Russell Brand",
+      "value": 51,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t"
+    },
+    {
+      "label": "Counts of rape",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Counts of sexual assault",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Count of indecent assault",
+      "value": 1,
+      "unit": "count",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Russell Brand behaved as a “ruthless” sexual predator when he assaulted six women over a decade",
+      "speaker": "Prosecutor",
+      "source_name": "Associated Press",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Russell Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Southwark Crown Court",
+      "kind": "place"
+    },
+    {
+      "name": "Associated Press",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    }
+  ]
+}
