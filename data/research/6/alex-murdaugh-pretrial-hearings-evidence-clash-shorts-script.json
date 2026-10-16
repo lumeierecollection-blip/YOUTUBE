@@ -1,0 +1,65 @@
+{
+  "channel_id": "6",
+  "topic_slug": "alex-murdaugh-pretrial-hearings-evidence-clash",
+  "format": "shorts",
+  "hook": "Intense evidentiary disputes emerge as Alex Murdaugh faces a 2027 murder retrial in South Carolina.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Intense evidentiary disputes emerge as Alex Murdaugh faces a 2027 murder retrial in South Carolina.",
+      "b_roll": [
+        "Courthouse exterior in South Carolina"
+      ],
+      "text_overlay": {
+        "text": "Alex Murdaugh 2027 Retrial"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "He stands trial again amid escalating disputes over evidence for his retrial. Judge Debra McCaslin evaluates cellphone records, ballistics data, and crime-scene scans. Where will independent DNA testing lead?",
+      "b_roll": [
+        "Judge bench in courtroom",
+        "Digital evidence files on screen"
+      ],
+      "text_overlay": {
+        "text": "Evidence Disputes"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Independent testing of DNA from Maggie Murdaugh's nails changes the legal battle.",
+      "b_roll": [
+        "Forensic laboratory workspace"
+      ],
+      "text_overlay": {
+        "text": "DNA Testing"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judge Debra McCaslin ruled the case must leave Colleton County. April 5, 2027 marks the official start date for the double murder retrial. DNA testing, cellphone evidence, ballistics data, and crime-scene scans drive the defense.",
+      "b_roll": [
+        "Courtroom filings and documents",
+        "Calendar showing April 2027"
+      ],
+      "text_overlay": {
+        "text": "April 5, 2027 Retrial"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Alex Murdaugh faces 2027 in South Carolina.",
+      "b_roll": [
+        "South Carolina state seal"
+      ],
+      "text_overlay": {
+        "text": "South Carolina 2027"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+    "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e",
+    "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+  ]
+}
