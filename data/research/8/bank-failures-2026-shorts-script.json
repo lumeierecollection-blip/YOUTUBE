@@ -1,0 +1,32 @@
+{
+  "channel_id": "8",
+  "topic_slug": "bank-failures-2026",
+  "format": "shorts",
+  "hook": "In 2026, 6 banks failed in the US, with Nano Banc closing on September 25.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 2026, 6 banks failed in the US, with Nano Banc closing on September 25."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In the US, 6 banks failed in 2026, with Nano Banc closing on September 25. In India, no bank failures were reported."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "In the US, 6 banks failed in 2026, with Nano Banc closing on September 25. In India, no failures were reported."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The FDIC reported 3,526 bank failures from 1934 to 2026."
+    },
+    {
+      "id": "close",
+      "voiceover": "The FDIC reported 3,526 bank failures from 1934 to 2026."
+    }
+  ],
+  "sources_used": [
+    "https://www.fdic.gov/bank/individual/failed/inatbank.html",
+    "https://www.bankregreports.com/events/failures"
+  ]
+}

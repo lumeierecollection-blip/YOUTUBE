@@ -1,0 +1,56 @@
+{
+  "topic_slug": "bank-failures-2026",
+  "strongest_angle": "An Overview of Bank Failures in the United States and India in 2026",
+  "key_facts": [
+    {
+      "fact": "In 2026, there were 6 bank failures in the United States, with the most recent being Nano Banc, which closed on September 25, 2026.",
+      "source_url": "https://www.fdic.gov/bank/individual/failed/inatbank.html",
+      "source_name": "FDIC.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "The FDIC reported that the total number of bank failures in the United States from 1934 to 2026 is 3,526, sourced from the FDIC's failed-bank list.",
+      "source_url": "https://www.bankregreports.com/events/failures",
+      "source_name": "BankRegReports.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "In India, there were no bank failures reported in 2026, based on the available data.",
+      "source_url": "https://www.fdic.gov/bank/individual/failed/inatbank.html",
+      "source_name": "FDIC.gov",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of bank failures in the United States in 2026",
+      "value": 6,
+      "unit": "bank failures",
+      "source_url": "https://www.fdic.gov/bank/individual/failed/inatbank.html"
+    },
+    {
+      "label": "Total number of bank failures in the United States from 1934 to 2026",
+      "value": 3526,
+      "unit": "bank failures",
+      "source_url": "https://www.bankregreports.com/events/failures"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Nano Banc",
+      "kind": "organization"
+    },
+    {
+      "name": "FDIC",
+      "kind": "organization"
+    },
+    {
+      "name": "Second Federal Savings and Loan Association of Philadelphia",
+      "kind": "organization"
+    },
+    {
+      "name": "Tioga-Franklin Savings Bank",
+      "kind": "organization"
+    }
+  ]
+}
