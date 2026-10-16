@@ -1,0 +1,59 @@
+{
+  "topic_slug": "brazilian-man-12-year-money-laundering-sentencing",
+  "strongest_angle": "Break down the federal prison sentencing of 35-year-old Brazilian national Ygor Fokin Saviolli, who received 12 years for supervising an international money laundering ring that laundered over $30 million.",
+  "key_facts": [
+    {
+      "fact": "Ygor Fokin Saviolli, a 35-year-old Brazilian national, was sentenced to 12 years in prison for his managerial role in a money laundering conspiracy.",
+      "source_url": "https://news.vaquill.com/item/1dab6a96-e99a-4149-a5bc-ba16485a858f",
+      "source_name": "DOJ News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The international money laundering organization supervised by Ygor Fokin Saviolli laundered over $30 million in illicit cash proceeds.",
+      "source_url": "https://news.vaquill.com/item/1dab6a96-e99a-4149-a5bc-ba16485a858f",
+      "source_name": "DOJ News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The United States Department of Justice Office of Public Affairs announced the sentencing of the Brazilian man for his managerial role in the conspiracy.",
+      "source_url": "https://www.justice.gov/opa/pr/brazilian-man-sentenced-12-years-prison-managerial-role-conspiracy-launder-tens-millions",
+      "source_name": "United States Department of Justice",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Prison Sentence",
+      "value": 12,
+      "unit": "years",
+      "source_url": "https://news.vaquill.com/item/1dab6a96-e99a-4149-a5bc-ba16485a858f"
+    },
+    {
+      "label": "Age",
+      "value": 35,
+      "unit": "years",
+      "source_url": "https://news.vaquill.com/item/1dab6a96-e99a-4149-a5bc-ba16485a858f"
+    },
+    {
+      "label": "Laundered Proceeds",
+      "value": 30,
+      "unit": "million dollars",
+      "source_url": "https://news.vaquill.com/item/1dab6a96-e99a-4149-a5bc-ba16485a858f"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ygor Fokin Saviolli",
+      "kind": "person"
+    },
+    {
+      "name": "United States Department of Justice Office of Public Affairs",
+      "kind": "organization"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    }
+  ]
+}
