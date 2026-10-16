@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "us-russia-sanctions-impact-2026",
+  "format": "shorts",
+  "hook": "Will the new US-Russia diesel agreement between Donald Trump and Vladimir Putin actually change your life?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Will the new US-Russia diesel agreement between Donald Trump and Vladimir Putin actually change your life?",
+      "b_roll": [
+        "Split screen showing US gas station and Russian oil tanker"
+      ],
+      "text_overlay": {
+        "text": "US-Russia Deal: Impact?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why would this deal fail to lower fuel prices for the United States before April 1, 2027?",
+      "b_roll": [
+        "Map showing flow of oil from Russia to the US",
+        "Calendar graphic highlighting April 1, 2027",
+        "Close up of gas price sign"
+      ],
+      "text_overlay": {
+        "text": "Sanctions Suspended until 2027"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Guardian reports that the limited volume of Russian diesel won't shift global fuel prices.",
+      "b_roll": [
+        "Graphic showing a tiny drop of oil against a large US flag"
+      ],
+      "text_overlay": {
+        "text": "Too Little Oil"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Long shipping times prevent this deal from lowering fuel costs for the United States today. KSE Institute data confirms that global energy flow disruptions undermine the effectiveness of these sanctions.",
+      "b_roll": [
+        "Cargo ship on the ocean",
+        "Bar chart comparing energy flow disruptions",
+        "Driver filling up at a pump"
+      ],
+      "text_overlay": {
+        "text": "No Price Change"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Sanctions stay suspended until April 1, 2027, despite these limited impacts on the fuel market.",
+      "b_roll": [
+        "Calendar zoomed in on April 1, 2027"
+      ],
+      "text_overlay": {
+        "text": "Deadline: April 1, 2027"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://carnegieendowment.org/russia-eurasia/politika/2026/10/russia-usa-diesel-agreement",
+    "https://www.theguardian.com/us-news/2026/oct/11/trump-russia-diesel-deal-putin-little-impact-prices"
+  ]
+}
