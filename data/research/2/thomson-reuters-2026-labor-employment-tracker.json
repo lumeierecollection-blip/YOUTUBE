@@ -1,0 +1,55 @@
+{
+  "topic_slug": "thomson-reuters-2026-labor-employment-tracker",
+  "strongest_angle": "Examine the Thomson Reuters 2026 Labor and Employment Law Developments Tracker, which monitors federal and state court decisions, regulations, and administrative agency guidance.",
+  "key_facts": [
+    {
+      "fact": "Thomson Reuters publishes the 2026 Labor & Employment Law Developments Tracker as a Practice Note tracking key US labor and employment law developments enacted or issued in 2026.",
+      "source_url": "https://content.next.westlaw.com/practical-law/document/I4c182700c77f11ef989cc1f7e8600ddb/2026-Labor-Employment-Law-Developments-Tracker?contextData=%28sc.Default%29&transitionType=Default&viewType=FullText",
+      "source_name": "Thomson Reuters Practical Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2026 Labor and Employment Law Developments Tracker excludes traditional labor law and immigration law, which are tracked in separate resources by Thomson Reuters.",
+      "source_url": "https://anzlaw.thomsonreuters.com/w-045-4343?contextData=%28sc.Default%29&transitionType=Default",
+      "source_name": "Thomson Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "The September 2026 release of the Guide to Employment Law and Regulation, 2d includes material on civil rights immunity issues and qualified immunity in a section 1983 action.",
+      "source_url": "https://thomsonreuters.scene7.com/is/content/thomsonreuterscloudprod/277878_WN",
+      "source_name": "Thomson Reuters Scene7",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the Thomson Reuters Labor and Employment Law Developments Tracker",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://content.next.westlaw.com/practical-law/document/I4c182700c77f11ef989cc1f7e8600ddb/2026-Labor-Employment-Law-Developments-Tracker?contextData=%28sc.Default%29&transitionType=Default&viewType=FullText"
+    },
+    {
+      "label": "Edition number for the Guide to Employment Law and Regulation",
+      "value": 2,
+      "unit": "edition",
+      "source_url": "https://thomsonreuters.scene7.com/is/content/thomsonreuterscloudprod/277878_WN"
+    },
+    {
+      "label": "Section number for the civil rights immunity action",
+      "value": 1983,
+      "unit": "section",
+      "source_url": "https://thomsonreuters.scene7.com/is/content/thomsonreuterscloudprod/277878_WN"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Thomson Reuters",
+      "kind": "organization"
+    },
+    {
+      "name": "Practical Law",
+      "kind": "organization"
+    }
+  ]
+}
