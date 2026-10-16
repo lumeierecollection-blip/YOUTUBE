@@ -1,0 +1,47 @@
+{
+  "channel_id": "44",
+  "topic_slug": "seasonal-career-planning-2026-agility",
+  "format": "shorts",
+  "hook": "Your five-year career plan is dead, and the 30-year ladder failed.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your five-year career plan is dead, and the 30-year ladder failed.",
+      "text_overlay": {
+        "text": "Career ladder is dead"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Dr. Diane Hamilton reports that AI makes traditional five-year plans obsolete today. Why do these 5-year and 30-year career models crumble in today's disruptive job market?",
+      "text_overlay": {
+        "text": "Traditional plans obsolete"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Journalist Farai Chideya’s book, The Episodic Career, explains how we navigate this increasingly disruptive landscape.",
+      "text_overlay": {
+        "text": "Disruptive landscape"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This book documents how professionals navigate an episodic approach instead of a traditional linear path. Sanjay Menon of Publicis Sapient India says episodic work replaces the 30-year hierarchy for relevance.",
+      "text_overlay": {
+        "text": "The Episodic Career"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Ditch the 30-year climb and embrace 5-year episodic cycles to secure your future.",
+      "text_overlay": {
+        "text": "Agile seasonal loops"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://timesofindia.indiatimes.com/technology/times-techies/think-of-your-careers-as-many-short-loops/articleshow/131846262.cms",
+    "https://www.forbes.com/sites/dianehamilton/2026/08/04/what-to-do-now-that-five-year-career-plans-are-becoming-less-reliable"
+  ]
+}
