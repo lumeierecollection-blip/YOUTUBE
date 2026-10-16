@@ -1,0 +1,61 @@
+{
+  "channel_id": "26",
+  "topic_slug": "cia-officer-david-rush-40m-fraud-scheme",
+  "format": "shorts",
+  "hook": "Inside an Alexandria home, authorities discovered 400 gold bars belonging to CIA officer David Rush.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Inside an Alexandria home, authorities discovered 400 gold bars belonging to CIA officer David Rush."
+    },
+    {
+      "id": "setup",
+      "voiceover": "How did he hide the $200 million total fraud involving fake contracts and real estate deals?",
+      "b_roll": [
+        "David Rush portrait",
+        "CIA headquarters building",
+        "gold bars pile"
+      ],
+      "text_overlay": {
+        "text": "$200 Million Fraud"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the trap was his $200 million scam, which funneled fake contracts into real estate.",
+      "b_roll": [
+        "legal documents"
+      ],
+      "text_overlay": {
+        "text": "Stakes Escalated"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Rush pleaded guilty to a $195 million fraud involving those gold bars and real estate. Federal authorities in Washington now demand restitution for the $195 million stolen.",
+      "b_roll": [
+        "courtroom sketch",
+        "gold bars",
+        "US government seal"
+      ],
+      "text_overlay": {
+        "text": "$195 Million Pleaded"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The CIA confirms this is the largest financial fraud ever committed by one member.",
+      "b_roll": [
+        "CIA logo"
+      ],
+      "text_overlay": {
+        "text": "Largest CIA Fraud"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcnews.com/politics/national-security/perplexing-case-cia-officer-duped-fellow-spies-rcna602375",
+    "https://www.washingtonpost.com/national-security/2026/10/06/ex-cia-official-expected-plead-guilty-40-million-gold-bar-case",
+    "https://www.bbc.com/news/articles/cr3wvq965dngo"
+  ]
+}
