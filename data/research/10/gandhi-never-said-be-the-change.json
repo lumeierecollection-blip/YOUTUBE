@@ -1,0 +1,75 @@
+{
+  "topic_slug": "gandhi-never-said-be-the-change",
+  "strongest_angle": "Investigating the true origins of the famous quotation Be the change you wish to see in the world reveals that Mahatma Gandhi never actually wrote or said it, and researchers instead attribute it to educator Arleen Lorrance in 1974.",
+  "key_facts": [
+    {
+      "fact": "Educator Arleen Lorrance wrote the earliest close match to the quote within a book chapter published in 1974, decades after Mahatma Gandhi died in 1948.",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change",
+      "source_name": "Quote Investigator",
+      "confidence": "high"
+    },
+    {
+      "fact": "The British Broadcasting Corporation notes that Mahatma Gandhi was the leader of the independence movement against British rule in India, yet there is no record of him saying or writing the famous phrase.",
+      "source_url": "https://www.bbc.co.uk/bitesize/articles/zmvwwnb",
+      "source_name": "BBC Bitesize",
+      "confidence": "high"
+    },
+    {
+      "fact": "Literary Hub contributor Benoit Denizet-Lewis and contemporary researchers credit Arleen Lorrance, rather than Mahatma Gandhi, with originating the popular slogan.",
+      "source_url": "https://lithub.com/be-the-change-on-the-misattributed-origins-of-a-popular-slogan",
+      "source_name": "Literary Hub",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year Gandhi died",
+      "value": 1948,
+      "unit": "year",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change"
+    },
+    {
+      "label": "Year of earliest close match",
+      "value": 1974,
+      "unit": "year",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change"
+    },
+    {
+      "label": "Works in corpus searched",
+      "value": 13826,
+      "unit": "works",
+      "source_url": "https://sapir861.com/quote-check/be-the-change-you-wish-to-see-in-the-world"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Mahatma Gandhi",
+      "kind": "person"
+    },
+    {
+      "name": "Arleen Lorrance",
+      "kind": "person"
+    },
+    {
+      "name": "India",
+      "kind": "place"
+    },
+    {
+      "name": "Quote Investigator",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC Bitesize",
+      "kind": "organization"
+    },
+    {
+      "name": "Literary Hub",
+      "kind": "organization"
+    },
+    {
+      "name": "Benoit Denizet-Lewis",
+      "kind": "person"
+    }
+  ]
+}
