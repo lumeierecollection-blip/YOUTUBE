@@ -1,0 +1,66 @@
+{
+  "channel_id": "10",
+  "topic_slug": "how-ancient-dna-s-rewriting-history",
+  "format": "shorts",
+  "hook": "Bones are rewriting two decades of human history through ancient DNA.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Bones are rewriting two decades of human history through ancient DNA.",
+      "b_roll": [
+        "ancient bone specimens in a laboratory archive"
+      ],
+      "text_overlay": {
+        "text": "Rewriting History"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1950, radiocarbon dating transformed archaeology forever. Yichen Liu and Xiaowei Mao watched laboratories expand that archive. Who migrated and who conquered, Qiaomei Fu?",
+      "b_roll": [
+        "radiocarbon dating equipment from the 1950s",
+        "DNA sequencing lab with researchers Yichen Liu and Xiaowei Mao",
+        "ancient migration map"
+      ],
+      "text_overlay": {
+        "text": "The 1950 Milestone"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet Razib Khan reported in Quillette how genetics settled long arguments.",
+      "b_roll": [
+        "Quillette publication pages"
+      ],
+      "text_overlay": {
+        "text": "Genetics Settles Arguments"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Curry calls paleogenomics the biggest development in archaeology since radiocarbon dating. Johannes Krause documented this rapid temporal expansion in Science.",
+      "b_roll": [
+        "National Geographic magazine featuring Andrew Curry",
+        "Science journal article by Johannes Krause and Qiaomei Fu"
+      ],
+      "text_overlay": {
+        "text": "The Biggest Shift"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read Science to see ancient DNA archives rewrite human history.",
+      "b_roll": [
+        "ancient DNA genome helix model"
+      ],
+      "text_overlay": {
+        "text": "Ancient DNA"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.science.org/doi/10.1126/science.abi8202",
+    "https://quillette.com/2026/10/13/how-genetics-rewrote-history-ancient-dna",
+    "https://www.nationalgeographic.com/premium/article/ancient-dna-neanderthals-plague-genome-archaeology"
+  ]
+}

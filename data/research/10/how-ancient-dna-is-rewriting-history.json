@@ -1,0 +1,96 @@
+{
+  "topic_slug": "how-ancient-dna-is-rewriting-history",
+  "strongest_angle": "Examining how ancient DNA and the discipline of paleogenomics have transformed archaeology and settled long-running historical arguments about human migration.",
+  "key_facts": [
+    {
+      "fact": "Over the past decade, advancements in DNA sequencing technologies and laboratory protocols have rapidly expanded ancient DNA research temporally and geographically, as documented by researchers like Yichen Liu, Xiaowei Mao, Johannes Krause, and Qiaomei Fu in Science.",
+      "source_url": "https://www.science.org/doi/10.1126/science.abi8202",
+      "source_name": "Science",
+      "confidence": "high"
+    },
+    {
+      "text": "Ancient DNA has given historians a new archive, and in two decades it has settled long-running arguments about who migrated, who conquered, and who replaced whom, according to Razib Khan writing in Quillette.",
+      "fact": "Ancient DNA has given historians a new archive, and in two decades it has settled long-running arguments about who migrated, who conquered, and who replaced whom, as reported by Razib Khan in Quillette.",
+      "source_url": "https://quillette.com/2026/10/13/how-genetics-rewrote-history-ancient-dna",
+      "source_name": "Quillette",
+      "confidence": "medium"
+    },
+    {
+      "text": "The remarkable growth of ancient DNA research—the focus of an entirely new discipline called paleogenomics—may be the biggest thing to hit archaeology since the development of radiocarbon dating in the 1950s, according to Andrew Curry in National Geographic.",
+      "fact": "The remarkable growth of ancient DNA research, forming a new discipline called paleogenomics, is considered by National Geographic author Andrew Curry to be the biggest development in archaeology since radiocarbon dating was created in the 1950s.",
+      "source_url": "https://www.nationalgeographic.com/premium/article/ancient-dna-neanderthals-plague-genome-archaeology",
+      "source_name": "National Geographic",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Decade of 1950s radiocarbon dating",
+      "value": 1950,
+      "unit": "year",
+      "source_url": "https://www.nationalgeographic.com/premium/article/ancient-dna-neanderthals-plague-genome-archaeology"
+    },
+    {
+      "label": "Two decades of ancient DNA archive progress",
+      "value": 2,
+      "unit": "decades",
+      "source_url": "https://quillette.com/2026/10/13/how-genetics-rewrote-history-ancient-dna"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The remarkable growth of ancient DNA research—the focus of an entirely new discipline called paleogenomics—may be the biggest thing to hit archaeology since the development of radiocarbon dating in the 1950s.",
+      "speaker": "Andrew Curry",
+      "source_name": "National Geographic",
+      "source_url": "https://www.nationalgeographic.com/premium/article/ancient-dna-neanderthals-plague-genome-archaeology"
+    },
+    {
+      "text": "Ancient DNA has given historians a new archive, and in two decades it has settled long-running arguments about who migrated, who conquered, and who replaced whom.",
+      "speaker": "Razib Khan",
+      "source_name": "Quillette",
+      "source_url": "https://quillette.com/2026/10/13/how-genetics-rewrote-history-ancient-dna"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Yichen Liu",
+      "kind": "person"
+    },
+    {
+      "name": "Xiaowei Mao",
+      "kind": "person"
+    },
+    {
+      "name": "Johannes Krause",
+      "kind": "person"
+    },
+    {
+      "name": "Qiaomei Fu",
+      "kind": "person"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    },
+    {
+      "name": "Razib Khan",
+      "kind": "person"
+    },
+    {
+      "name": "Quillette",
+      "kind": "organization"
+    },
+    {
+      "name": "Andrew Curry",
+      "kind": "person"
+    },
+    {
+      "name": "National Geographic",
+      "kind": "organization"
+    },
+    {
+      "name": "Svante Pääbo",
+      "kind": "person"
+    }
+  ]
+}
