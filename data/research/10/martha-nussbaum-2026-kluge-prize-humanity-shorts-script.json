@@ -1,0 +1,69 @@
+{
+  "channel_id": "10",
+  "topic_slug": "martha-nussbaum-2026-kluge-prize-humanity",
+  "format": "shorts",
+  "hook": "On September 22, 2026, the Library of Congress honored Martha C. Nussbaum.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "On September 22, 2026, the Library of Congress honored Martha C. Nussbaum.",
+      "b_roll": [
+        "Library of Congress building exterior",
+        "Portrait of Martha C. Nussbaum"
+      ],
+      "text_overlay": {
+        "text": "The 2026 Kluge Prize"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The University of Chicago professor won the John W. Kluge Prize for her study of humanity. What did her philosophy prove about human emotions?",
+      "b_roll": [
+        "University of Chicago campus quad",
+        "Library book shelves and historical texts",
+        "Philosophical manuscript pages"
+      ],
+      "text_overlay": {
+        "text": "Advancing Human Experience"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Nussbaum defended a neo-Stoic account of emotions.",
+      "b_roll": [
+        "Close up of antique philosophy text",
+        "Bronze statue detail"
+      ],
+      "text_overlay": {
+        "text": "Neo-Stoic Account"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Martha C. Nussbaum proved emotions are appraisals ascribing great significance to things outside the agent's control. The Library of Congress recognized this breakthrough in 2026. Her groundbreaking work explores how emotions relate to things outside the agent's control.",
+      "b_roll": [
+        "Library of Congress grand reading room",
+        "Kluge Prize medal close up",
+        "Archival papers on a wooden desk"
+      ],
+      "text_overlay": {
+        "text": "Appraisals of Significance"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The prestigious 2026 Kluge Prize honors the deepest study of humanity.",
+      "b_roll": [
+        "Library of Congress seal",
+        "University of Chicago sign"
+      ],
+      "text_overlay": {
+        "text": "The John W. Kluge Prize"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+    "https://en.wikipedia.org/wiki/Martha_Nussbaum"
+  ]
+}
