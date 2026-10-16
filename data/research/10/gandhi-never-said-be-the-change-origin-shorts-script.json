@@ -1,0 +1,64 @@
+{
+  "channel_id": "10",
+  "topic_slug": "gandhi-never-said-be-the-change-origin",
+  "format": "shorts",
+  "hook": "Millions of posters print the popular 'be the change' slogan.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Millions of posters print the popular 'be the change' slogan.",
+      "b_roll": [
+        "Historical portrait of Gandhi"
+      ],
+      "text_overlay": {
+        "text": "Gandhi never said it"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Mahatma Gandhi died in 1948, which predates the slogan entirely. Educator Arleen Lorrance wrote it in a 1974 book chapter in Brooklyn, New York. Where did the famous attribution start?",
+      "b_roll": [
+        "Vintage book pages",
+        "Map of Brooklyn"
+      ],
+      "text_overlay": {
+        "text": "Brooklyn, 1974"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Quote Investigator researchers found the misattribution except thousands of digitized pages prove Gandhi left zero trace.",
+      "b_roll": [
+        "Archival research documents"
+      ],
+      "text_overlay": {
+        "text": "The real origin"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Literary Hub author Benoit Denizet-Lewis met Arleen Lorrance to uncover the truth.",
+      "b_roll": [
+        "Digital archives scrolling"
+      ],
+      "text_overlay": {
+        "text": "Zero trace found"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 1948 death date proves Gandhi missed the book entirely.",
+      "b_roll": [
+        "Closed book on a wooden desk"
+      ],
+      "text_overlay": {
+        "text": "1948"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://quoteinvestigator.com/2017/10/23/be-change",
+    "https://slate.com/transcripts/TnkvVmlONG45SWJiUm00L2JWRU41Ui9EVVVuMVFrZjFQU25wd1FNUlRlUT0=",
+    "https://lithub.com/be-the-change-on-the-misattributed-origins-of-a-popular-slogan"
+  ]
+}
