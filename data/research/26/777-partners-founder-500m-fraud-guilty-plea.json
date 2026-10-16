@@ -1,0 +1,61 @@
+{
+  "topic_slug": "777-partners-founder-500m-fraud-guilty-plea",
+  "strongest_angle": "Examine how Josh Wander, co-founder of Miami-based investment firm 777 Partners, orchestrated a $500 million fraud scheme before pleading guilty in federal court.",
+  "key_facts": [
+    {
+      "fact": "Josh Wander, 45, co-founder of Miami-based investment firm 777 Partners, pleaded guilty in Manhattan federal court to wire fraud and securities fraud.",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Federal prosecutors in the Southern District of New York stated the scheme bilked lenders and investors out of at least $500 million before the firm collapsed.",
+      "source_url": "https://news.bloomberglaw.com/financial-accounting/777-partners-co-founder-wander-pleads-guilty-to-fraud",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "Josh Wander agreed to pay back $500 million in losses caused by the massive fraud scheme after entering his guilty plea.",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fraud losses agreed to pay back",
+      "value": 500,
+      "unit": "million dollars",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e"
+    },
+    {
+      "label": "Josh Wander age",
+      "value": 45,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Josh Wander",
+      "kind": "person"
+    },
+    {
+      "name": "777 Partners",
+      "kind": "organization"
+    },
+    {
+      "name": "Miami",
+      "kind": "place"
+    },
+    {
+      "name": "Manhattan",
+      "kind": "place"
+    },
+    {
+      "name": "Southern District of New York",
+      "kind": "organization"
+    }
+  ]
+}
