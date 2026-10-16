@@ -1459,9 +1459,14 @@
           "topic": "IMF Warns AI Share Crash Threatens Global Financial Stability in October 2026",
           "slug": "imf-warns-ai-share-crash-threatens-financial-stability",
           "reserved_at": "2026-10-15T18:10:11.457Z"
+        },
+        {
+          "topic": "Bank Failures in 2026",
+          "slug": "bank-failures-2026",
+          "reserved_at": "2026-10-16T12:33:07.388Z"
         }
       ],
-      "last_generated": "2026-10-15T18:10:11.457Z"
+      "last_generated": "2026-10-16T12:33:07.388Z"
     },
     "9": {
       "channel_name": "Border Lines",
