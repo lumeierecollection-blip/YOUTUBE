@@ -107,6 +107,7 @@ function Hero({ shot, B, st, P, profile, bw, local, idx }) {
   if (!h) return null;
   const t = shot.treatment, box = B.hero;
   const [fx, fy] = shot.crop;
+  const swayX = sway(local / 30, SWAY_X) * 0.5, swayY = sway(local / 30, SWAY_Y) * 0.5;
   // FRAMELESS (owner, 2026-10-16: "the frames are not needed"). A cut-out is the object itself on the paper, with a soft shadow, as large as the references draw
   // them and allowed to run off the frame; a photo that could not be cut out is soft-edged. No mat, no border, no plate, no disc.
   if (box.cutout && (h.cutout || h.asset)) {
@@ -130,7 +131,6 @@ function Hero({ shot, B, st, P, profile, bw, local, idx }) {
   }
   const logo = h.kind === "logo" || h.kind === "cutout" || h.kind === "symbol";
   const filter = toneFilter(profile.photo_tone, bw);
-  const swayX = sway(local / 30, SWAY_X) * 0.5, swayY = sway(local / 30, SWAY_Y) * 0.5;
   const common = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, zIndex: 1 };
   if (t === "bleed") {
     // the picture IS the frame: a static 8% overscan and a slow slide sideways, never a zoom
