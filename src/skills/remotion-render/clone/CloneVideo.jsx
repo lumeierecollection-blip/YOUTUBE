@@ -272,7 +272,7 @@ function Quote({ shot, B, st, P, profile }) {
   return (
     <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, zIndex: 7, opacity: st.o, transform: `scale(${st.s})`, transformOrigin: box.align === "right" ? "100% 0%" : box.align === "center" ? "50% 0%" : "0% 0%", textAlign: box.align }}>
       <div style={{ fontFamily: `"${fam}", Georgia, serif`, fontSize: size, lineHeight: 1.28, color: P.ink }}>
-        {OPEN_Q}{words.map((w, i) => <React.Fragment key={i}>{w === key ? <span style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.16em" }}>{w}</span> : w}{i < words.length - 1 ? " " : ""}</React.Fragment>)}{CLOSE_Q}
+        {OPEN_Q}{words.map((w, i) => <React.Fragment key={i}>{w === key ? <>{(() => { let n = w.length; while (n > 0 && !plain(w[n - 1])) n--; return <><span style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.16em" }}>{w.slice(0, n)}</span>{w.slice(n)}</>; })()}</> : w}{i < words.length - 1 ? " " : ""}</React.Fragment>)}{CLOSE_Q}
       </div>
       {who ? <div style={{ marginTop: 18, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 32, letterSpacing: "0.12em", textTransform: "uppercase", color: P.ink, opacity: 0.85 }}>{DASH + " " + who}</div> : null}
     </div>
