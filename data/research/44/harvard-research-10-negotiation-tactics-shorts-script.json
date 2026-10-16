@@ -2,66 +2,47 @@
   "channel_id": "44",
   "topic_slug": "harvard-research-10-negotiation-tactics",
   "format": "shorts",
-  "hook": "Ten negotiation tactics from Harvard Law School change professional outcomes completely.",
+  "hook": "Harvard research found that ten specific negotiation tactics win better outcomes.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "Ten negotiation tactics from Harvard Law School change professional outcomes completely.",
-      "b_roll": [
-        "University campus exterior",
-        "Close up of negotiation handbook"
-      ],
+      "voiceover": "Harvard research found that ten specific negotiation tactics win better outcomes.",
       "text_overlay": {
-        "text": "Harvard Negotiation Tactics"
+        "text": "10 Harvard Tactics"
       }
     },
     {
       "id": "setup",
-      "voiceover": "On October 6, 2026, Katie Shonk published research detailing 10 negotiation skills for business success. Where did those 10 tactics originate?",
-      "b_roll": [
-        "Author writing at desk",
-        "Quartz publication article screenshot"
-      ],
+      "voiceover": "On October 6, 2026, Katie Shonk detailed integrative bargaining skills for the Program on Negotiation. What strategies do Harvard experts recommend for workplace negotiations?",
       "text_overlay": {
-        "text": "10 Negotiation Skills"
+        "text": "Katie Shonk & Harvard"
       }
     },
     {
       "id": "rehook",
-      "voiceover": "Penguin published the 3rd edition of Getting to Yes in 2011 to build those frameworks.",
-      "b_roll": [
-        "Book cover Getting to Yes",
-        "Library bookshelf"
-      ],
+      "voiceover": "Except Luis Reyes warned that hard-bargaining tactics often fail during professional negotiations.",
       "text_overlay": {
-        "text": "Getting to Yes 3rd Edition"
+        "text": "The Hardball Trap"
       }
     },
     {
       "id": "payoff",
-      "voiceover": "Harvard Law School outlines these hard-bargaining strategies to replace contests of wills with mutual gains. Professionals utilize the Program on Negotiation frameworks during business discussions and vendor calls. 10 core principles drive every successful salary review.",
-      "b_roll": [
-        "Business professionals in meeting",
-        "Handshake contract signing"
-      ],
+      "voiceover": "Katie Shonk explains that integrative bargaining replaces aggressive posturing with collaborative problem-solving. Luis Reyes shows how professionals mastering these 10 tactics improve their office results. Harvard's Program on Negotiation creates lasting agreements instead of temporary wins.",
       "text_overlay": {
-        "text": "Mutual-Gains Frameworks"
+        "text": "10 Collaborative Tactics"
       }
     },
     {
       "id": "close",
-      "voiceover": "Harvard Law School established 10 foundational tactics for professional success.",
-      "b_roll": [
-        "Harvard seal logo",
-        "Graduation hall"
-      ],
+      "voiceover": "Harvard identifies 10 tactics for achieving better professional outcomes.",
       "text_overlay": {
-        "text": "10 Harvard Tactics"
+        "text": "10 Tactics"
       }
     }
   ],
   "sources_used": [
-    "https://www.pon.harvard.edu/daily/batna/10-hardball-tactics-in-negotiation",
-    "https://qz.com/negotiation-tactics-backed-by-harvard-research"
+    "https://qz.com/negotiation-tactics-backed-by-harvard-research",
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills",
+    "https://www.pon.harvard.edu/daily/batna/10-hardball-tactics-in-negotiation"
   ]
 }
