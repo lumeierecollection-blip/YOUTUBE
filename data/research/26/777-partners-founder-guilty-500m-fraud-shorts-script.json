@@ -1,0 +1,67 @@
+{
+  "channel_id": "26",
+  "topic_slug": "777-partners-founder-guilty-500m-fraud",
+  "format": "shorts",
+  "hook": "Manhattan federal court heard the confession that exposed a massive $500 million financial scheme.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Manhattan federal court heard the confession that exposed a massive $500 million financial scheme.",
+      "b_roll": [
+        "Exterior shot of Manhattan federal courthouse",
+        "Courtroom gavel hitting wood"
+      ],
+      "text_overlay": {
+        "text": "$500M FRAUD SCHEME"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Josh Wander, aged 45, admitted to wire fraud in Manhattan. Prosecutors in Miami charged 777 Partners with bilking lenders out of funds. Where did those millions vanish?",
+      "b_roll": [
+        "Headshot graphic of Josh Wander",
+        "Miami corporate skyline",
+        "Document stacks on a desk"
+      ],
+      "text_overlay": {
+        "text": "777 PARTNERS COLLAPSE"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Miami-based 777 Partners couldn't hide securities fraud across the multi-layered operation.",
+      "b_roll": [
+        "Department of Justice seal",
+        "Financial ledger pages turning"
+      ],
+      "text_overlay": {
+        "text": "SECURITIES FRAUD CHARGES"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Guilty pleas revealed $500 million in losses tied to Manhattan federal court. Lenders lost $500 million before the firm collapsed completely in court.",
+      "b_roll": [
+        "Courtroom indictment document",
+        "Falling financial chart graphic"
+      ],
+      "text_overlay": {
+        "text": "$500 MILLION LOSSES"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Manhattan courtroom recorded the final $500 million guilty plea.",
+      "b_roll": [
+        "Manhattan federal courthouse doors closing"
+      ],
+      "text_overlay": {
+        "text": "GUILTY PLEA ENTERED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+    "https://www.justice.gov/usao-sdny/pr/founder-and-former-ceo-777-partners-pleads-guilty-500-million-fraud-scheme"
+  ]
+}
