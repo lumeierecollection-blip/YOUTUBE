@@ -1,0 +1,69 @@
+{
+  "channel_id": "8",
+  "topic_slug": "imf-warns-ai-share-crash-global-stability",
+  "format": "shorts",
+  "hook": "The International Monetary Fund warns that an artificial intelligence share crash puts world financial stability at risk.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The International Monetary Fund warns that an artificial intelligence share crash puts world financial stability at risk.",
+      "b_roll": [
+        "Global stock market trading screens showing downward trend lines",
+        "Financial data charts displaying market volatility"
+      ],
+      "text_overlay": {
+        "text": "AI Share Crash Risk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 13, 2026, the International Monetary Fund published the Global Financial Stability Report. Where did the Guardian report the warnings lead?",
+      "b_roll": [
+        "International Monetary Fund headquarters building exterior",
+        "Document pages of the Global Financial Stability Report",
+        "Financial analysts reviewing market reports on computers"
+      ],
+      "text_overlay": {
+        "text": "IMF Report 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Authors Athanasios Vamvakidis and Jason Wu detailed that weaker artificial intelligence investment could trigger a severe market correction.",
+      "b_roll": [
+        "Red downward stock graph highlighting investment decline",
+        "Digital servers processing financial data"
+      ],
+      "text_overlay": {
+        "text": "Investment Correction"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Authors Athanasios Vamvakidis and Jason Wu show stability hangs in the balance.",
+      "b_roll": [
+        "Stock exchange trading floor with concerned traders",
+        "Global map overlaid with financial network connections",
+        "Market indices showing plunging percentages"
+      ],
+      "text_overlay": {
+        "text": "Market Selloffs"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "October 2026 brought the warning regarding global financial stability and artificial intelligence market crashes.",
+      "b_roll": [
+        "Calendar graphic focusing on October 2026",
+        "International Monetary Fund logo on screen"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Warning"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026",
+    "https://www.theguardian.com/business/2026/oct/13/ai-share-crash-risk-global-imf-debt-corrowing-cyber-attacks"
+  ]
+}
