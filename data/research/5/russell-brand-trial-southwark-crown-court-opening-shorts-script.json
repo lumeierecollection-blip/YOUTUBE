@@ -1,0 +1,67 @@
+{
+  "channel_id": "5",
+  "topic_slug": "russell-brand-trial-southwark-crown-court-opening",
+  "format": "shorts",
+  "hook": "Seven criminal charges face Russell Brand at Southwark Crown Court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Seven criminal charges face Russell Brand at Southwark Crown Court.",
+      "b_roll": [
+        "Exterior shot of Southwark Crown Court building in London",
+        "Newspaper headlines detailing the trial opening"
+      ],
+      "text_overlay": {
+        "text": "7 Charges at Southwark Crown Court"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Southwark Crown Court in London heard prosecutors detail multiple charges today. Six different women brought allegations forward. What drove these 10 years of incidents?",
+      "b_roll": [
+        "Courtroom sketching of the legal teams",
+        "Timeline graphic showing the years 1999 to 2009"
+      ],
+      "text_overlay": {
+        "text": "6 Women Step Forward"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Karmy-Jones KC stated at Southwark Crown Court that Russell Brand acted as a ruthless predator.",
+      "b_roll": [
+        "Close up of court documents and case files",
+        "Press microphones outside the courthouse steps"
+      ],
+      "text_overlay": {
+        "text": "Prosecutor Delivers Opening Statement"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Three counts of rape form the core of the indictment. Three counts of sexual assault add to the charges.",
+      "b_roll": [
+        "Legal charge sheet document on screen",
+        "Graphics highlighting the exact count breakdown"
+      ],
+      "text_overlay": {
+        "text": "3 Counts of Rape"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The trial examines incidents spanning across the decade between 1999 and 2009.",
+      "b_roll": [
+        "Wide shot of Southwark Crown Court entrance",
+        "Archive footage from the early 2000s"
+      ],
+      "text_overlay": {
+        "text": "1999 to 2009"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates",
+    "https://www.independent.co.uk/news/uk/crime/russell-brand-trial-allegations-in-full-b3066704.html"
+  ]
+}
