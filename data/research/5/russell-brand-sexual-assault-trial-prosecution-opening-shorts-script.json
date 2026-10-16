@@ -1,0 +1,68 @@
+{
+  "channel_id": "5",
+  "topic_slug": "russell-brand-sexual-assault-trial-prosecution-opening",
+  "format": "shorts",
+  "hook": "Six women who never met built a case of calculated assault against 51-year-old Russell Brand.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six women who never met built a case of calculated assault against 51-year-old Russell Brand.",
+      "b_roll": [
+        "Exterior shot of Southwark Crown Court in London",
+        "Courtroom interior legal documents"
+      ],
+      "text_overlay": {
+        "text": "6 Women. 7 Charges."
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "What evidence does Riel Karmy-Jones KC use to link these six women to the charges?",
+      "b_roll": [
+        "Prosecution files on courtroom desk",
+        "Gavel resting on wooden podium"
+      ],
+      "text_overlay": {
+        "text": "Southwark Crown Court Opening"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But these six women never met, coming forward independently to testify at Southwark Crown Court.",
+      "b_roll": [
+        "Split screen showing separate witness statements",
+        "Legal paperwork close up"
+      ],
+      "text_overlay": {
+        "text": "Independent Testimonies"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Karmy-Jones KC frames the 51-year-old defendant as a ruthless and calculating sexual predator. The prosecution pursues three counts of rape and four counts of sexual assault against him.",
+      "b_roll": [
+        "Courtroom scales of justice symbol",
+        "Legal transcripts turning pages"
+      ],
+      "text_overlay": {
+        "text": "3 Counts of Rape"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Southwark Crown Court is now processing these seven criminal charges against the defendant.",
+      "b_roll": [
+        "Court entrance view",
+        "Subtle pan over legal brief"
+      ],
+      "text_overlay": {
+        "text": "7 Total Charges"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+    "https://www.bbc.com/news/articles/c3qjn45pepx1o",
+    "https://www.bbc.co.uk/programmes/m0033fw2"
+  ]
+}

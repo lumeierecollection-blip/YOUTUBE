@@ -1,0 +1,76 @@
+{
+  "topic_slug": "russell-brand-sexual-assault-trial-prosecution-opening",
+  "strongest_angle": "The prosecution at Southwark Crown Court is framing Russell Brand as a calculated, ruthless predator, centering their case on the independent testimonies of six separate women.",
+  "key_facts": [
+    {
+      "fact": "Prosecutor Riel Karmy-Jones KC opened the case at Southwark Crown Court by describing 51-year-old Russell Brand as a ruthless and calculating sexual predator.",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal proceedings involve allegations from six women who the prosecution states have never met each other and came forward independently.",
+      "source_url": "https://www.bbc.com/news/articles/c3qjn45pepx1o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Russell Brand faces a total of seven criminal charges, specifically three counts of rape and four counts of sexual assault.",
+      "source_url": "https://www.bbc.co.uk/programmes/m0033fw2",
+      "source_name": "BBC Sounds",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of defendant",
+      "value": 51,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t"
+    },
+    {
+      "label": "Number of women alleging assault",
+      "value": 6,
+      "unit": "women",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+    },
+    {
+      "label": "Total charges of rape",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.bbc.co.uk/programmes/m0033fw2"
+    },
+    {
+      "label": "Total charges of sexual assault",
+      "value": 4,
+      "unit": "counts",
+      "source_url": "https://www.bbc.co.uk/programmes/m0033fw2"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Riel Karmy-Jones KC, for the prosecution, told Southwark Crown Court in London the women did not know each other, have never met each other and came forward independently of each other.",
+      "speaker": "Riel Karmy-Jones KC",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.com/news/articles/c3qjn45pepx1o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Russell Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Riel Karmy-Jones KC",
+      "kind": "person"
+    },
+    {
+      "name": "Southwark Crown Court",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    }
+  ]
+}
