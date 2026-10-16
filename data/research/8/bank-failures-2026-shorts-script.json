@@ -2,31 +2,46 @@
   "channel_id": "8",
   "topic_slug": "bank-failures-2026",
   "format": "shorts",
-  "hook": "In 2026, 6 banks failed in the US, with Nano Banc closing on September 25.",
+  "hook": "Six American banks collapsed in 2026, leaving regulators to manage closures.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "In 2026, 6 banks failed in the US, with Nano Banc closing on September 25."
+      "voiceover": "Six American banks collapsed in 2026, leaving regulators to manage closures.",
+      "text_overlay": {
+        "text": "6 Bank Failures in 2026"
+      }
     },
     {
       "id": "setup",
-      "voiceover": "In the US, 6 banks failed in 2026, with Nano Banc closing on September 25. In India, no bank failures were reported."
+      "voiceover": "In Lenexa, Kansas, Small Business Bank failed on July 17 with 73 million dollars in assets. What specific institutions were involved in these six total bank failures during 2026?",
+      "text_overlay": {
+        "text": "$73M in Assets"
+      }
     },
     {
       "id": "rehook",
-      "voiceover": "In the US, 6 banks failed in 2026, with Nano Banc closing on September 25. In India, no failures were reported."
+      "voiceover": "But the Federal Deposit Insurance Corporation, the government agency protecting deposits, managed every single closure.",
+      "text_overlay": {
+        "text": "FDIC Oversight"
+      }
     },
     {
       "id": "payoff",
-      "voiceover": "The FDIC reported 3,526 bank failures from 1934 to 2026."
+      "voiceover": "Nano Banc in Irvine, California, was one of these six, closing on September 25, 2026. These events confirmed the total of six bank failures recorded throughout the year 2026.",
+      "text_overlay": {
+        "text": "6 Failures Total"
+      }
     },
     {
       "id": "close",
-      "voiceover": "The FDIC reported 3,526 bank failures from 1934 to 2026."
+      "voiceover": "Six banks vanished from the market throughout 2026.",
+      "text_overlay": {
+        "text": "6 Banks Closed"
+      }
     }
   ],
   "sources_used": [
-    "https://www.fdic.gov/bank/individual/failed/inatbank.html",
-    "https://www.bankregreports.com/events/failures"
+    "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/2026",
+    "https://banks.data.fdic.gov/bankfind-suite/failures"
   ]
 }
