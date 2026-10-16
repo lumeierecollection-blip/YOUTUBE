@@ -1,0 +1,64 @@
+{
+  "channel_id": "9",
+  "topic_slug": "taiwan-alaska-lng-bet-energy-geography",
+  "format": "shorts",
+  "hook": "A massive 4.4 billion dollar Alaska energy deal was just announced by Donald Trump!",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive 4.4 billion dollar Alaska energy deal was just announced by Donald Trump!",
+      "b_roll": [
+        "Map showing Alaska connected to Taiwan through a pipeline"
+      ],
+      "text_overlay": {
+        "text": "$4.4B Alaska-Taiwan Gas Bet"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Taiwan's CPC Corporation agreed to buy 30 percent of the proposed Alaska LNG project output. CPC Corporation plans to buy 6 million metric tons annually. Are these 20-year energy supply contracts actually signed and sealed yet?",
+      "b_roll": [
+        "Port facility in Alaska",
+        "LNG tanker ship at sea"
+      ],
+      "text_overlay": {
+        "text": "30% Output Deal"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Taiwan's Economic Affairs Ministry states binding agreements aren't finalized yet.",
+      "b_roll": [
+        "Government building in Taipei"
+      ],
+      "text_overlay": {
+        "text": "No Binding Commitment Yet"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CPC Corporation could invest up to 4.4 billion dollars in the project.",
+      "b_roll": [
+        "Economic Affairs Ministry seal",
+        "Contract documents on desk"
+      ],
+      "text_overlay": {
+        "text": "20-Year Project Under Review"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 20-year energy timeline shapes future geography.",
+      "b_roll": [
+        "Globe centering on the Pacific Rim"
+      ],
+      "text_overlay": {
+        "text": "20-Year Energy Timeline"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.voanews.com/a/8211677.html",
+    "https://apnews.com/article/taiwan-us-gas-alaska-35e41251ac55327ae2f83fbbf73d101d"
+  ]
+}
