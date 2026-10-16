@@ -61,8 +61,10 @@ function Display({ shot, B, st, P, profile }) {
     if (!hit) return <span key={key}>{w}</span>;
     // On a solid plate (or in a highlight profile) the emphasised word is HIGHLIGHTED: paper on the accent, legible by construction. Coloured type
     // is only used on the paper ground, where readableAccent has measured it. (Dark red on an ink plate was invisible: CI 38746641163 dossier-mono.)
-    return plated || profile.highlight
-      ? <span key={key} style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.14em" }}>{w}</span>
+    // The MARKER highlight is reserved for quoted statements (owner, 2026-10-16); a display word is emphasised by colour only. On an ink plate the emphasis is
+    // the paper colour, underlined, so it stays legible.
+    return plated
+      ? <span key={key} style={{ color: P.paper, borderBottom: `8px solid ${P.accent}` }}>{w}</span>
       : <span key={key} style={{ color: accent }}>{w}</span>;
   };
   return (
@@ -105,6 +107,27 @@ function Hero({ shot, B, st, P, profile, bw, local, idx }) {
   if (!h) return null;
   const t = shot.treatment, box = B.hero;
   const [fx, fy] = shot.crop;
+  // FRAMELESS (owner, 2026-10-16: "the frames are not needed"). A cut-out is the object itself on the paper, with a soft shadow, as large as the references draw
+  // them and allowed to run off the frame; a photo that could not be cut out is soft-edged. No mat, no border, no plate, no disc.
+  if (box.cutout && (h.cutout || h.asset)) {
+    const src = h.cutout || h.asset;
+    const shadow = "drop-shadow(0 26px 34px rgba(0,0,0,0.30))";
+    const tone = h.kind === "logo" ? "" : toneFilter(profile.photo_tone, bw) + " ";
+    return (
+      <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, zIndex: 6,
+        transform: `translate(${swayX.toFixed(2)}px, ${swayY.toFixed(2)}px) rotate(${box.rot || 0}deg) scale(${st.s})`, transformOrigin: box.anchor === "bottom" ? "50% 100%" : "50% 50%" }}>
+        <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: box.anchor === "bottom" ? "50% 100%" : "50% 50%", filter: tone + shadow }} />
+      </div>
+    );
+  }
+  if (box.vignette) {
+    const mask = "radial-gradient(ellipse 62% 58% at 50% 46%, #000 58%, rgba(0,0,0,0.6) 72%, transparent 88%)";
+    return (
+      <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, zIndex: 1, transform: `translate(${swayX.toFixed(2)}px, ${swayY.toFixed(2)}px) scale(${st.s})` }}>
+        <Img src={staticFile(h.asset)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: `${fx}% ${fy}%`, filter: toneFilter(profile.photo_tone, bw), WebkitMaskImage: mask, maskImage: mask }} />
+      </div>
+    );
+  }
   const logo = h.kind === "logo" || h.kind === "cutout" || h.kind === "symbol";
   const filter = toneFilter(profile.photo_tone, bw);
   const swayX = sway(local / 30, SWAY_X) * 0.5, swayY = sway(local / 30, SWAY_Y) * 0.5;
@@ -160,7 +183,7 @@ function GlyphMark({ type, color, size }) {
 // building, a place's pin) with its name; a stated figure is the figure, big; a stated date is a calendar page. Each says what the beat is about without
 // depicting anything it has no picture of (the canvas engine's own fallback, drawn here). One cell fills a plate; several share one panel as a grid, so the
 // single frame the entity check samples shows every subject.
-function SubjectCell({ g, w, h, P, profile, round, inv }) {
+function SubjectCell({ g, w, h, P, profile, round, inv, free }) {
   const ink = inv ? P.paper : P.ink;
   const fam = profile.type.display.family, caps = profile.type.display.case === "upper";
   const small = Math.min(w, h) < 520;
@@ -182,7 +205,7 @@ function SubjectCell({ g, w, h, P, profile, round, inv }) {
     const { size } = fitLines(String(main), w * 0.7, { family: fam, caps: false, max: small ? 130 : 260, min: 44, maxLines: 1 });
     return (
       <div style={{ ...wrap, padding: 0, justifyContent: "flex-start" }}>
-        <div style={{ ...labelFace, width: "100%", backgroundColor: P.accent, color: P.paper, fontWeight: 700, padding: round ? "16% 0 4%" : "4% 0", fontSize: small ? 30 : 50, letterSpacing: "0.16em" }}>{d.month || "DATE"}</div>
+        <div style={free ? { ...labelFace, width: "100%", color: readableAccent(P.accent, P.ground), fontWeight: 700, padding: "6% 0 2%", fontSize: small ? 34 : 58, letterSpacing: "0.18em", borderBottom: `6px solid ${P.accent}` } : { ...labelFace, width: "100%", backgroundColor: P.accent, color: P.paper, fontWeight: 700, padding: round ? "16% 0 4%" : "4% 0", fontSize: small ? 30 : 50, letterSpacing: "0.16em" }}>{d.month || "DATE"}</div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
           <div style={{ ...face, fontSize: size }}>{main}</div>
           {d.day && d.year ? <div style={{ ...labelFace, marginTop: 6, fontSize: small ? 28 : 52 }}>{d.year}</div> : null}
@@ -202,6 +225,21 @@ function SubjectCell({ g, w, h, P, profile, round, inv }) {
 
 function SubjectPlate({ shot, B, st, P, profile }) {
   const box = B.hero, subs = (shot.subjects && shot.subjects.length ? shot.subjects : [shot.subject]).filter(Boolean);
+  if (box.subject) {
+    // FRAMELESS: the subjects straight on the paper. One fills the area; two sit side by side; three or four take two rows. Odd shots stagger the cells so
+    // successive shots of a beat differ (a cut between identical frames adds nothing).
+    const cols = subs.length <= 1 ? 1 : 2, rows = Math.ceil(subs.length / cols), cw = box.w / cols, ch = box.h / rows;
+    const stagger = shot.inv ? 46 : 0;
+    return (
+      <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1 }}>
+        {subs.map((g, i) => (
+          <div key={i} style={{ position: "absolute", left: (i % cols) * cw, top: Math.floor(i / cols) * ch + ((i % 2) ? stagger : -stagger), width: cw, height: ch }}>
+            <SubjectCell g={g} w={cw} h={ch} P={P} profile={profile} round={false} inv={false} free />
+          </div>
+        ))}
+      </div>
+    );
+  }
   const round = shot.treatment === "disc" && subs.length === 1;
   const shell = { position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, opacity: st.o, transform: `scale(${st.s})`, zIndex: 1, backgroundColor: shot.inv ? P.ink : "#FFFFFF", boxShadow: "0 18px 40px rgba(0,0,0,0.22)", boxSizing: "border-box", border: `10px solid ${P.accent}`, borderRadius: round ? "50%" : 0, overflow: "hidden" };
   const inner = { w: box.w - 20, h: box.h - 20 };
@@ -214,6 +252,29 @@ function SubjectPlate({ shot, B, st, P, profile }) {
           <SubjectCell g={g} w={cw} h={ch} P={P} profile={profile} round={false} inv={!!shot.inv} />
         </div>
       ))}
+    </div>
+  );
+}
+
+// QUOTED STATEMENT (owner, 2026-10-16: "the highlighted text style should be quoted statements from sites and people"): verbatim words from a source the
+// research found and quote-verify.mjs confirmed, in a serif line with ONE word marker-highlighted (ref-03), and who said it under it.
+const QUOTE_STOP = new Set("the a an and or but of to in on at by for with from as is are was were be been it its this that these those he she they we you i his her their our your not no do does did has have had will would can could should may might than then so if into".split(" "));
+const OPEN_Q = String.fromCharCode(8220), CLOSE_Q = String.fromCharCode(8221), DASH = String.fromCharCode(8212);
+function Quote({ shot, B, st, P, profile }) {
+  const q = shot.quote, box = B.quote || B.text;
+  const bare = String(q.text).trim().split(OPEN_Q).join("").split(CLOSE_Q).join("").split('"').join("");
+  const words = bare.split(" ").filter(Boolean);
+  const plain = (w) => w.toLowerCase().split("").filter((ch) => (ch >= "a" && ch <= "z") || (ch >= "0" && ch <= "9")).join("");
+  const key = words.reduce((a, w) => (!QUOTE_STOP.has(plain(w)) && plain(w).length > plain(a).length ? w : a), "");
+  const fam = (profile.type.quote && profile.type.quote.family) || "Playfair Display";
+  const { size } = fitLines(OPEN_Q + words.join(" ") + CLOSE_Q, box.w, { family: fam, caps: false, max: 72, min: 40, maxLines: 4 });
+  const who = [q.speaker, q.source_name && q.source_name !== q.speaker ? q.source_name : null].filter(Boolean).join(", ");
+  return (
+    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, zIndex: 7, opacity: st.o, transform: `scale(${st.s})`, transformOrigin: box.align === "right" ? "100% 0%" : box.align === "center" ? "50% 0%" : "0% 0%", textAlign: box.align }}>
+      <div style={{ fontFamily: `"${fam}", Georgia, serif`, fontSize: size, lineHeight: 1.28, color: P.ink }}>
+        {OPEN_Q}{words.map((w, i) => <React.Fragment key={i}>{w === key ? <span style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.16em" }}>{w}</span> : w}{i < words.length - 1 ? " " : ""}</React.Fragment>)}{CLOSE_Q}
+      </div>
+      {who ? <div style={{ marginTop: 18, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 32, letterSpacing: "0.12em", textTransform: "uppercase", color: P.ink, opacity: 0.85 }}>{DASH + " " + who}</div> : null}
     </div>
   );
 }
@@ -237,6 +298,7 @@ function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
       {shot.excerpt && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
       {stDisp && shot.display ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
+      {stDisp && shot.quote ? <Quote shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stDisp && shot.figure ? <Figure shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stateOf("tick") ? <div style={{ position: "absolute", left: B.text.x + B.text.w / 2 - 170, top: B.text.y + 40, width: 340, height: 20, backgroundColor: P.accent, opacity: stateOf("tick").o, transform: `scale(${stateOf("tick").s})`, zIndex: 4 }} /> : null}
     </AbsoluteFill>
@@ -248,7 +310,7 @@ export function CloneVideo({ plan }) {
   const { fps } = useVideoConfig();
   const cfg = plan.clone;
   const P = cfg.palette;
-  const shots = React.useMemo(() => planClone(plan.beats, { laws: cfg.laws, profile: cfg.profile, fps }).shots, [plan.beats, cfg, fps]);
+  const shots = React.useMemo(() => planClone(plan.beats, { laws: cfg.laws, profile: cfg.profile, fps, quotes: cfg.quotes || [] }).shots, [plan.beats, cfg, fps]);
   let i = shots.findIndex((s) => frame >= s.f0 && frame < s.f1);
   if (i < 0) i = frame < shots[0].f0 ? 0 : shots.length - 1;
   const shot = shots[i], prev = i > 0 ? shots[i - 1] : null;

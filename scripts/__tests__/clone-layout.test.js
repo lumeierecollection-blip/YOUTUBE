@@ -23,8 +23,11 @@ test("type over a full-bleed picture always sits on a solid plate", () => {
 test("no treatment puts display type on a picture except the plated bleed", () => {
   for (const t of TREATMENTS.filter((x) => x !== "bleed")) {
     const b = treatmentBoxes(t, 0);
-    const overlap = b.hero.x < b.text.x + b.text.w && b.text.x < b.hero.x + b.hero.w && b.hero.y < b.text.y + b.text.h && b.text.y < b.hero.y + b.hero.h;
-    assert.equal(overlap, false, t);
+    const ox = Math.max(0, Math.min(b.hero.x + b.hero.w, b.text.x + b.text.w) - Math.max(b.hero.x, b.text.x));
+    const oy = Math.max(0, Math.min(b.hero.y + b.hero.h, b.text.y + b.text.h) - Math.max(b.hero.y, b.text.y));
+    // a frameless CUT-OUT may overlap the type by up to 25% of the text box (CLONE-5: the references' objects overlap words); nothing else may touch it
+    const allowed = b.hero.cutout ? 0.25 * b.text.w * b.text.h : 0;
+    assert.ok(ox * oy <= allowed, t);
   }
 });
 

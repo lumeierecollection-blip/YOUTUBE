@@ -30,7 +30,7 @@
  * fed back and retried up to --max-retries. Nothing is padded or defaulted.
  */
 
-import { readFileSync, appendFileSync, mkdirSync } from "node:fs";
+import { readFileSync, appendFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
@@ -504,6 +504,14 @@ async function main() {
         lastError = `[${spec}] every web search failed — cannot ground this stage`;
         log(lastError);
         continue;
+      }
+      // --search-out: the RAW search text, kept beside the research artifact so a quotation the model reports can be confirmed word for word against what the
+      // search actually returned (scripts/lib/quote-verify.mjs). Nothing in it is model-written.
+      if (typeof args["search-out"] === "string") {
+        try {
+          mkdirSync(dirname(args["search-out"]), { recursive: true });
+          writeFileSync(args["search-out"], JSON.stringify({ searches: searches.map((x) => ({ query: x.query, text: String(x.text || "").slice(0, 40000) })) }));
+        } catch (e) { log(`[search-out] not written: ${e.message}`); }
       }
       // Discovery: a result whose title is a topic this channel already
       // covered is removed before the model reads it. qwen2.5:3b picked the

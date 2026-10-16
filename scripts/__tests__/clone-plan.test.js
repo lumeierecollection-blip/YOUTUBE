@@ -165,8 +165,7 @@ test("a picture-less shot that NAMES an entity shows that entity's glyph plate (
   const named = plan.shots.filter((x) => x.beat === 0), unnamed = plan.shots.filter((x) => x.beat === 1);
   // EVERY shot of the picture-less beat shows the glyph (the entity check samples one frame per beat), alternating plate and disc so successive shots differ
   assert.ok(named.length >= 3 && named.every((x) => x.glyph), "a shot of the beat has no glyph");
-  for (const sh of named) { assert.equal(sh.glyph.type, "person"); assert.ok(["plate", "disc"].includes(sh.treatment)); assert.equal(sh.hero, null); assert.equal(sh.excerpt, null); }
-  for (let i = 1; i < named.length; i++) assert.notEqual(named[i].treatment, named[i - 1].treatment, "two glyph plates in a row look the same");
+  for (const sh of named) { assert.equal(sh.glyph.type, "person"); assert.equal(sh.treatment, "subject"); assert.equal(sh.hero, null); assert.equal(sh.excerpt, null); }   // frameless (owner, 2026-10-16: "the frames are not needed")
   for (const sh of unnamed) { assert.equal(sh.glyph, null); assert.ok(sh.excerpt); }
   const rec = cloneCanvasFor({ named_entities: [{ type: "person", name: "Mary Moriarty" }] }, named);
   assert.deepEqual(rec.art.kinds, ["plate-person"]);
@@ -190,7 +189,7 @@ test("a picture-less beat that states a figure and a date shows ALL its subjects
   const plan = planClone([beat(0, 0, 7, SENT2, c)], { laws: G.laws, profile: G.profiles["cutout-collage"] });
   assert.ok(plan.shots.length >= 3);
   for (const sh of plan.shots) {
-    assert.equal(sh.treatment, "panel");
+    assert.equal(sh.treatment, "subject");
     const kinds = sh.subjects.map((x) => x.kind).sort().join();
     assert.equal(kinds, "date,figure,glyph", "a shot is missing a subject: " + kinds);
   }

@@ -52,6 +52,8 @@ import { canvasSfxEvents } from "./visual/canvas-sfx.js";
 import { toneOf } from "../../utils/video-tone.js";
 import { paletteFor } from "./clone/clone-palette.js";
 import { planClone, cloneCanvasFor } from "./clone/clone-plan.js";
+import { attachCutouts } from "./clone/clone-cutouts.js";
+import { verifiedQuotesFor } from "../../../scripts/lib/quote-verify.mjs";
 import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
@@ -628,6 +630,13 @@ async function main() {
         const profile = G.profiles[channel.clone.profile];
         if (!profile) { console.error(`::error::[clone] ch-${channel.id ?? channelId}: no clone profile "${channel.clone.profile}" in config/clone-grammar.json`); process.exit(1); }
         sentencePlan.clone = { id: channel.clone.profile, profile, laws: G.laws, palette: paletteFor(profile, channel), bw: channel.asset_treatment === "bw" };
+        // FRAMELESS PICTURES (owner, 2026-10-16): each beat's own verified photo is cut out of its background (clone-cutouts.js -> scripts/cutout_lib.py, rembg);
+        // one that cannot be is shown soft-edged. Never boxed.
+        const cut = attachCutouts(beats, channel.id ?? channelId, (m) => console.log(m));
+        console.log(`[clone] pictures: ${cut.cut} cut out, ${cut.soft} soft-edged`);
+        // QUOTED STATEMENTS: the research artifact's quotes that were confirmed word for word against the raw search text (scripts/lib/quote-verify.mjs).
+        sentencePlan.clone.quotes = verifiedQuotesFor(scriptPath, ROOT);
+        console.log(`[clone] quoted statements available: ${sentencePlan.clone.quotes.length}`);
         console.log(`[clone] ch-${channel.id ?? channelId}: profile ${channel.clone.profile} (cloned from ${profile.from}); ground ${sentencePlan.clone.palette.ground}, accent ${sentencePlan.clone.palette.accent}`);
       }
       const comps = {};
@@ -891,7 +900,7 @@ async function main() {
       "STRUCTURAL_BREAKDOWN", "EVIDENCE_FIGURE", "ACTION_CONSEQUENCE",
       "VISIBLE_CONSUMPTION", "STATE_CHANGE",
     ]);
-    const cloneShots = sentencePlan.clone ? planClone(sentencePlan.beats, { laws: sentencePlan.clone.laws, profile: sentencePlan.clone.profile, fps }).shots : null;
+    const cloneShots = sentencePlan.clone ? planClone(sentencePlan.beats, { laws: sentencePlan.clone.laws, profile: sentencePlan.clone.profile, fps, quotes: sentencePlan.clone.quotes || [] }).shots : null;
     if (cloneShots) console.log(`[clone] ${cloneShots.length} shots, ${cloneShots.filter((x) => x.hero).length} with a picture, ${cloneShots.filter((x) => !x.hero).length} type-led`);
     const manifest = {
       video: basename(outputPath),

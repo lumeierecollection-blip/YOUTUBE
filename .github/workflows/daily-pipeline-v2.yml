@@ -472,6 +472,7 @@ jobs:
                 --agent pipeline-research \
                 --model "$OPENCODE_MODELS_RESEARCH" \
                 --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$SLUG" \
+                --search-out "data/research/$CH/$SLUG-search.json" \
                 > /tmp/research-raw.json 2> >(tee /tmp/research-err.log >&2)
           AGENT_EXIT=$?
           set -e
@@ -709,6 +710,7 @@ jobs:
                             --agent pipeline-research \
                             --model "$OPENCODE_MODELS_RESEARCH" \
                             --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$NEXT" \
+                            --search-out "data/research/$CH/$NEXT-search.json" \
                             > /tmp/research-repick.json 2> >(tee /tmp/research-repick-err.log >&2)
                       RP_EXIT=$?
                       set -e

@@ -191,5 +191,19 @@
       ],
       "motion_tier": "medium"
     }
+  },
+  {
+    "text": "Fixture Speaker closes the proof with one sentence about how strange the cave remains.",
+    "seconds": 6,
+    "c": {
+      "visual_type": "TYPE",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Fixture Speaker"
+        }
+      ],
+      "motion_tier": "medium"
+    }
   }
 ]

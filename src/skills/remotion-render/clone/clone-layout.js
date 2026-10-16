@@ -29,6 +29,27 @@ export function treatmentBoxes(treatment, idx = 0) {
       return { hero: rect(0, 260, 540, 1000), label: rect(580, 470, 440, 48), text: rect(580, 520, 440, 600, { align: "left" }), shape: { block: rect(40, 300, 500, 1000), bar: rect(580, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(580, 450, 440, 6) } };
     case "inset-right":
       return { hero: rect(540, 260, 540, 1000), label: rect(60, 470, 440, 48), text: rect(60, 520, 440, 600, { align: "right" }), shape: { block: rect(540, 300, 500, 1000), bar: rect(200, 1160, 300, 20), stripe: rect(640, 0, 440, 96), rule: rect(60, 450, 440, 6) } };
+    // FRAMELESS treatments (owner, 2026-10-16: "the frames are not needed"; the references never box a picture). A CUT-OUT may run off the frame's edge and may sit
+    // in front of part of the type (ref-03's figure falling through "SLIPS AWAY"); a soft-edged VIGNETTE photo has no border.
+    case "stand": {
+      // a person cut-out standing on the frame's floor, large (the Zalando video's three brothers); the words above them
+      const left = idx % 2 === 0;
+      return { hero: rect(left ? 60 : 140, 600, 880, 1320, { cutout: true, anchor: "bottom" }), label: rect(80, 190, 920, 48), text: rect(80, 250, 920, 330, { align: left ? "left" : "right" }), quote: rect(80, 250, 920, 330, { align: left ? "left" : "right" }), shape: { rule: rect(80, 170, 920, 6), bar: rect(80, 580, 260, 14) } };
+    }
+    case "float":
+      // a cut-out object or figure floating at an angle with its shadow on the paper (ref-03's money bag, falling man, cash)
+      return { hero: rect(150, 260, 780, 940, { cutout: true, rot: idx % 2 ? -5 : 5 }), label: rect(90, 1250, 900, 48), text: rect(90, 1310, 900, 420, { align: "center" }), quote: rect(90, 1310, 900, 420, { align: "center" }), shape: { rule: rect(90, 1230, 900, 6), bar: rect(390, 1760, 300, 14) } };
+    case "edge": {
+      // a big cut-out running off one side of the frame (the alarm clock), the words on the other side
+      const right = idx % 2 === 0;
+      return { hero: rect(right ? 420 : -260, 380, 920, 1100, { cutout: true }), label: rect(right ? 60 : 640, 820, 380, 48), text: rect(right ? 60 : 640, 880, 380, 520, { align: right ? "left" : "right" }), quote: rect(right ? 60 : 640, 880, 380, 520, { align: right ? "left" : "right" }), shape: { rule: rect(right ? 60 : 640, 800, 380, 6), bar: rect(right ? 60 : 760, 1420, 260, 14) } };
+    }
+    case "vignette":
+      // a photo that cannot be cut out, soft-edged, no border (ref-03's portrait); a short line above it
+      return { hero: rect(90, 520, 900, 1100, { vignette: true }), label: rect(90, 210, 900, 48), text: rect(90, 270, 900, 220, { align: "center" }), quote: rect(90, 270, 900, 220, { align: "center" }), shape: { rule: rect(90, 190, 900, 6), bar: rect(390, 1700, 300, 14) } };
+    case "subject":
+      // a picture-less shot's SUBJECTS (entity glyphs, figures, dates) drawn straight on the paper, no plate, no border
+      return { hero: rect(90, 340, 900, 860, { subject: true }), label: rect(90, 1250, 900, 48), text: rect(90, 1310, 900, 400, { align: "center" }), quote: rect(90, 1310, 900, 400, { align: "center" }), shape: { rule: rect(90, 1230, 900, 6), bar: rect(390, 1760, 300, 14) } };
     case "type":
       // NO PICTURE: the visual is the narration itself, set as a tilted paper EXCERPT CARD (the references' page scans) with the key words big below it.
       // The accent block is the card's own offset (32 px right and down), the same size, so it reads as a second sheet under it, never as a slab.
@@ -56,6 +77,15 @@ export function layoutProblems(treatment, idx = 0) {
   const B = treatmentBoxes(treatment, idx), out = [];
   for (const k of ["label", "text"]) if (!inside(B[k])) out.push(`${treatment}: ${k} box leaves the frame margin`);
   if (B.hero.none) { if (B.text.h < 150) out.push(`${treatment}: display region ${B.text.h}px is too short for its type`); return out; }
+  if (B.hero.cutout) {
+    // CLONE-5: a cut-out may run off the frame and stand in front of PART of the type: at most a quarter of the text box
+    const ix = Math.max(0, Math.min(B.hero.x + B.hero.w, B.text.x + B.text.w) - Math.max(B.hero.x, B.text.x));
+    const iy = Math.max(0, Math.min(B.hero.y + B.hero.h, B.text.y + B.text.h) - Math.max(B.hero.y, B.text.y));
+    if ((ix * iy) / (B.text.w * B.text.h) > 0.25) out.push(`${treatment}: the cut-out covers ${Math.round((ix * iy) / (B.text.w * B.text.h) * 100)}% of the type (at most 25%)`);
+    for (const k of ["label", "text"]) if (!inside(B[k])) out.push(`${treatment}: ${k} box leaves the frame margin`);
+    if (B.text.h < 150) out.push(`${treatment}: display region ${B.text.h}px is too short for its type`);
+    return out;
+  }
   if (!B.hero.bleed && !inside({ ...B.hero, x: B.hero.x < MARGIN ? MARGIN : B.hero.x, w: Math.min(B.hero.w, FRAME.w - MARGIN - Math.max(B.hero.x, MARGIN)) }) && !(B.hero.x === 0 || B.hero.x + B.hero.w === FRAME.w)) out.push(`${treatment}: picture leaves the frame margin without running to an edge`);
   if (!B.hero.bleed && overlap(B.hero, B.text)) out.push(`${treatment}: display text overlaps the picture (only a plated bleed may)`);
   if (B.hero.bleed && !B.text.plated) out.push(`${treatment}: type over a full-bleed picture must sit on a solid plate`);
@@ -63,7 +93,7 @@ export function layoutProblems(treatment, idx = 0) {
   return out;
 }
 
-export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "panel", "type"];
+export const TREATMENTS = ["bleed", "framed", "disc", "strip", "inset-left", "inset-right", "plate", "panel", "type", "stand", "float", "edge", "vignette", "subject"];
 /** Treatments a profile may rotate through: `type` is the planner's own choice for a shot with no picture, never a rotation entry. */
 export const PICTURE_TREATMENTS = TREATMENTS.filter((t) => t !== "type" && t !== "panel");
 

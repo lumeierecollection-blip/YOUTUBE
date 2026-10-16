@@ -37,8 +37,8 @@ const clean = (w) => String(w || "").replace(/^[^\w$€£]+|[^\w%]+$/g, "");
 export function heroesOf(canvas) {
   const c = canvas || {};
   const out = [];
-  if (c.photo && c.photo.asset) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", asset: c.photo.asset, name: c.photo.entity || null, w: c.photo.w || null, h: c.photo.h || null, view: c.photo.view || null, credit: c.photo.credit || c.source_credit || null });
-  for (const v of c.concept_visuals || []) if (v && v.asset) out.push({ kind: v.logo ? "logo" : v.class === "cutout" ? "cutout" : "symbol", asset: v.asset, name: v.name || null, w: v.w || null, h: v.h || null, view: null });
+  if (c.photo && c.photo.asset) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", asset: c.photo.asset, name: c.photo.entity || null, w: c.photo.w || null, h: c.photo.h || null, view: c.photo.view || null, credit: c.photo.credit || c.source_credit || null, cutout: c.photo.cutout || null, grounded: !!c.photo.cutout_grounded, vignette: !!c.photo.vignette });
+  for (const v of c.concept_visuals || []) if (v && v.asset) out.push({ kind: v.logo ? "logo" : v.class === "cutout" ? "cutout" : "symbol", asset: v.asset, name: v.name || null, w: v.w || null, h: v.h || null, view: null, cutout: v.asset });   // a logo / cut-out / symbol asset is already a transparent PNG
   if (c.art && c.art.asset) out.push({ kind: c.art.kind === "plate-organization" ? "logo" : c.art.kind || "art", asset: c.art.asset, name: c.art.name || null, w: null, h: null, view: null });
   if (c.art && Array.isArray(c.art.items)) for (const it of c.art.items) if (it && it.asset) out.push({ kind: "logo", asset: it.asset, name: it.name || null, w: null, h: null, view: null });
   return out;
@@ -187,16 +187,39 @@ const ELEMENT_OFFSET = { ground: 0, hero: 1, shape: 3, display: 14, plate: 27 };
 const PLATE_MIN_FRAMES = 24;   // a shot shorter than 0.8 s cannot hold a plate; its entities go to the shots that can   // frames after the cut: one new thing about every 0.35 s
 
 /**
+ * QUOTED STATEMENTS (owner, 2026-10-16: "the highlighted text style should be quoted statements from sites and people"). `quotes` are VERBATIM statements the
+ * research stage found in its search results and scripts/lib/quote-verify.mjs confirmed word for word against them: { text, speaker, source_name, source_url }.
+ * A quote goes on a beat whose sentence NAMES its speaker or its source, never elsewhere: the naming check reads every name on screen against the beat's
+ * sentence, and an attribution the narration never mentions would read as an unnamed entity. Each quote is used once. Returns Map(beatIndex -> quote).
+ */
+export function assignQuotes(beats, quotes) {
+  const out = new Map();
+  const used = new Set();
+  const tokens = (t) => String(t || "").toLowerCase().split(/[^a-z0-9']+/).filter((w) => w.length >= 4);
+  (beats || []).forEach((b, bi) => {
+    const sentence = String((b.scene && b.scene.canvas && b.scene.canvas.sentence) || b.original_text || b.text || "").toLowerCase();
+    if (!sentence) return;
+    const q = (quotes || []).find((x, qi) => !used.has(qi) && x && x.text && [x.speaker, x.source_name].some((who) => {
+      const t = tokens(who);
+      return t.length && t.every((w) => sentence.includes(w));
+    }));
+    if (q) { used.add(quotes.indexOf(q)); out.set(bi, q); }
+  });
+  return out;
+}
+
+/**
  * @param beats   [{ index, start_frame, duration_frames, spoken: [{text, from, to}] (beat-relative frames), scene: { canvas } }]
  * @param opts    { laws, profile, fps }
  * @returns { shots, events, report }
  */
-export function planClone(beats, { laws, profile, fps = FPS } = {}) {
+export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {}) {
   if (!laws || !profile) throw new Error("planClone needs the grammar's laws and a profile");
   const shotS = Math.min(profile.shot_s || 1.8, 10 / laws.cuts_per_10s.min);
   const len = Math.round(shotS * fps), minLen = Math.round(1.0 * fps);
   const treatments = profile.treatments, crops = profile.crops || [[50, 35], [35, 50], [65, 50], [50, 62]];
   const shots = [];
+  const quoteOf = assignQuotes(beats, quotes);
   beats.forEach((b, bi) => {
     const s = b.start_frame, e = b.start_frame + b.duration_frames;
     const canvas = b.scene?.canvas || {};
@@ -219,10 +242,13 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       // bare accent block standing alone on real beats (board 38752797116 ch-2). The treatment rotation is for pictures only.
       let treatment = "type";
       if (hero) {
-        let ti = shots.filter((x) => x.hero).length % treatments.length;
+        // FRAMELESS, chosen by what the picture IS (owner, 2026-10-16: "the frames are not needed"): a person cut-out stands on the floor, runs off an edge or
+        // floats; an object / logo cut-out floats or runs off an edge; a photo that could not be cut out is a soft-edged vignette or a full bleed. Never a box.
+        const set = hero.cutout ? (hero.grounded ? ["stand", "edge", "float"] : ["float", "edge"]) : ["vignette", "bleed"];
+        let ti = shots.filter((x) => x.hero).length % set.length;
         // never the same treatment twice in a row on the same hero: that is the same frame twice
-        if (prev && prev.hero && prev.hero.asset === hero.asset && treatments[ti] === prev.treatment) ti = (ti + 1) % treatments.length;
-        treatment = treatments[ti];
+        if (prev && prev.hero && prev.hero.asset === hero.asset && set[ti] === prev.treatment) ti = (ti + 1) % set.length;
+        treatment = set[ti];
       }
       // (the display words are chosen below, after the shot's subjects are known, so they can avoid repeating them)
       let disp = null;
@@ -249,11 +275,12 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       const subject = subjects[0] || null;
       const glyph = subject && subject.kind === "glyph" ? subject : null;
       if (subject) {
-        treatment = subjects.length === 1 ? (k % 2 === 0 ? "plate" : "disc") : "panel";
+        treatment = "subject";   // frameless: glyphs, figures and dates straight on the paper (the panel, plate and disc boxes are gone)
         for (const g of subjects) if (g.kind === "glyph" && !plates.some((x) => x.name === g.name)) plates.push({ name: g.name, type: g.type });
       }
       // A shot WITH a picture shows the beat's figures / dates in its text region, cycling through them, in place of the display words.
       const figHere = hero && figs.length ? figs[k % figs.length] : null;
+      const quote = quoteOf.has(bi) && k === (nShots >= 2 ? 1 : 0) ? quoteOf.get(bi) : null;   // the beat's quoted statement, once, on its second shot
       {
         const exclude = new Set();
         const addToks = (t) => String(t || "").toLowerCase().split(/[^a-z0-9']+/).filter(Boolean).forEach((x) => exclude.add(x));
@@ -279,13 +306,14 @@ export function planClone(beats, { laws, profile, fps = FPS } = {}) {
       // shot has three separate events (picture at the cut, key phrase ~0.47 s, accent / label ~0.9 s). Real archive-italic video measured 12.17 per 10 s against 13.
       const hasLabel = labelPlates.length && (roomForPlate || subject);
       if (shape) el.push({ kind: "shape", at: at(hasLabel ? ELEMENT_OFFSET.shape : ELEMENT_OFFSET.plate) });
-      if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
+      if (quote) el.push({ kind: "display", at: at(ELEMENT_OFFSET.display) });
+      else if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + ELEMENT_OFFSET.display, disp.at)) });
       else el.push({ kind: "tick", at: at(ELEMENT_OFFSET.display) });   // no phrase that adds to the plate: a rule under it arrives instead, so the shot still has its three events
       if (labelPlates.length && (roomForPlate || subject)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
-        display: figHere ? null : disp, figure: figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null,
+        display: quote || figHere ? null : disp, figure: !quote && figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null, quote,
         inv, subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
         plates: plates.length && (roomForPlate || subject) ? plates : [], plate: labelPlates.length && (roomForPlate || subject) ? labelPlates.map((x) => x.name).join(" · ") : null,
         elements: el,

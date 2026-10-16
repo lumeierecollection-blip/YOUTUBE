@@ -270,8 +270,7 @@
         "framed"
       ],
       "accent_shapes": [
-        "bar",
-        "block"
+        "bar"
       ],
       "highlight": true,
       "type": {
@@ -311,8 +310,8 @@
         "bleed"
       ],
       "accent_shapes": [
-        "block",
-        "stripe"
+        "stripe",
+        "bar"
       ],
       "highlight": false,
       "type": {

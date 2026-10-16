@@ -225,15 +225,19 @@ jobs:
         id: chrome
         with:
           chrome-version: stable
+      - name: Install rembg (frameless cut-outs)
+        run: |
+          pip install --quiet "rembg[cpu]" pillow numpy
+          python -c "from rembg import new_session; new_session('u2net'); print('u2net ready')"
       - name: Unit tests for the clone family and the metric
-        run: node --test scripts/__tests__/novelty.test.js scripts/__tests__/clone-plan.test.js scripts/__tests__/clone-layout.test.js
+        run: node --test scripts/__tests__/novelty.test.js scripts/__tests__/clone-plan.test.js scripts/__tests__/clone-layout.test.js scripts/__tests__/quote-verify.test.js
       - name: Render the fixture beats
         env:
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
           PROFILE: ${{ matrix.profile }}
         run: |
           CLONE=""; [ "$PROFILE" != "canvas-baseline" ] && CLONE="--clone $PROFILE"
-          node scripts/qa-canvas-render.mjs --out out/clone --only-extra --extra-beats scripts/fixtures/clone-proof/beats.json --moments 0.08,0.3,0.55,0.8 --video $CLONE --accent "#8B1E1E"
+          node scripts/qa-canvas-render.mjs --out out/clone --only-extra --extra-beats scripts/fixtures/clone-proof/beats.json --moments 0.08,0.3,0.55,0.8 --video $CLONE --quotes scripts/fixtures/clone-proof/quotes.json --accent "#8B1E1E"
       - name: Contact sheet (4 moments of every beat)
         if: always()
         run: |

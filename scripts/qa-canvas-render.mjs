@@ -138,6 +138,11 @@ if (arg("clone")) {
   const { paletteFor } = await import("../src/skills/remotion-render/clone/clone-palette.js");
   plan.clone = { profile, laws: G.laws, palette: paletteFor(profile, { colors: { canvas_accent: accent } }), bw: false };
   console.log(`[clone] profile ${arg("clone")} (from ${profile.from})`);
+  // Frameless pictures, as render.js does: each beat photo cut out (rembg) or soft-edged. --quotes <file.json> is a FIXTURE of quoted statements for the layout proof only.
+  const { attachCutouts } = await import("../src/skills/remotion-render/clone/clone-cutouts.js");
+  const cut = attachCutouts(beats, "qa", (m) => console.log(m));
+  console.log(`[clone] pictures: ${cut.cut} cut out, ${cut.soft} soft-edged`);
+  if (arg("quotes")) plan.clone.quotes = JSON.parse(readFileSync(arg("quotes"), "utf8"));
 }
 // --sfx: the plan carries the SFX the real renderer would play for these beats (visual/canvas-sfx.js, each file
 // landed by its measured peak), so the mp4's audio can be measured against the frames (scripts/sfx-sync-proof.mjs).

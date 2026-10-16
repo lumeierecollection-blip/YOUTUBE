@@ -33,6 +33,21 @@
         "required": ["label", "value", "unit", "source_url"]
       }
     },
+    "quotes": {
+      "type": "array",
+      "maxItems": 3,
+      "description": "OPTIONAL. Statements a named person or a named source made, copied word for word from the search results. Checked against the raw search text; one that does not appear there is dropped.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text":        { "type": "string", "minLength": 30 },
+          "speaker":     { "type": "string" },
+          "source_name": { "type": "string" },
+          "source_url":  { "type": "string" }
+        },
+        "required": ["text", "speaker", "source_name", "source_url"]
+      }
+    },
     "named_entities": {
       "type": "array",
       "items": {
