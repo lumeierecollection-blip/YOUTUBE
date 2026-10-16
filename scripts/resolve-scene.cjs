@@ -486,6 +486,13 @@ async function resolveSceneEntityRaw({ channel, beatIndex, entity, context = "",
     return fb || { ok: false, kind, why: `no bundled fallback for ${kind}` };
   }
   if (!name || !["person", "place", "building", "organization", "company", "institution"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
+  // A BARE AMBIGUOUS PLACE NAME is not looked up: "Federal authorities in Washington" (the US federal government, D.C.) resolved to the seal of Washington STATE
+  // (Wikidata Q1223) and the beat check called it a different entity (board 38889577784 ch-26). Only "Washington State" / "State of Georgia"-style names,
+  // or a sentence that says so, are resolved; the bare word stays a name in type.
+  if (/^(washington|georgia)$/i.test(name) && !new RegExp(`\\b(state of ${name}|${name} state)\\b`, "i").test(sentence)) {
+    console.log(`[resolve] ${tag}\n    → "${name}" is ambiguous (a US state, a city, a country or a government) and the sentence does not say which — not looked up`);
+    return { ok: false, kind: type, why: "ambiguous place name", refused: true };
+  }
   // A real-world entity is a PROPER name: "field office" (typed as a building by the planner)
   // was resolved to a Taiwanese "MJIB Penghu County Field Office" and verified MATCH as "a
   // field office" (CI run 37110620556 ch-2 beat 2) — a generic photo for a common noun.
