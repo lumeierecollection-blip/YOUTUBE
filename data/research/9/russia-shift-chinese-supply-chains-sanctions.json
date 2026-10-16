@@ -1,0 +1,80 @@
+{
+  "topic_slug": "russia-shift-chinese-supply-chains-sanctions",
+  "strongest_angle": "Western export controls have forced Russia to pivot its defense and industrial supply chains toward China, creating a new, deep-seated economic dependency for dual-use technologies.",
+  "key_facts": [
+    {
+      "fact": "In May 2026, Ukraine’s sanctions commissioner Vladyslav Vlasiuk identified that Russia has been forced to substitute Western components with Chinese alternatives in its missiles and drones.",
+      "source_url": "https://www.csis.org/analysis/russias-turn-china-under-sanctions",
+      "source_name": "Center for Strategic and International Studies",
+      "confidence": "high"
+    },
+    {
+      "fact": "In mid-April 2024, the United States and the United Kingdom jointly announced a ban on imports of Russian aluminum, copper, and nickel to restrict Russian industrial revenue.",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2024/07/china-russia-metal-partners",
+      "source_name": "Carnegie Endowment for International Peace",
+      "confidence": "high"
+    },
+    {
+      "fact": "Research by the Institute for Evaluation of Labour Market and Education Policy indicates that Russian import reorientation involves rerouting goods through Hong Kong, Armenia, Kazakhstan, Kyrgyzstan, and Türkiye.",
+      "source_url": "https://www.ifn.se/media/irppcjis/wp1560.pdf?v=20260526110348",
+      "source_name": "Institute for Evaluation of Labour Market and Education Policy",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the joint US and UK ban on Russian metals",
+      "value": 2024,
+      "unit": "year",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2024/07/china-russia-metal-partners"
+    },
+    {
+      "label": "Month of the joint US and UK ban on Russian metals",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2024/07/china-russia-metal-partners"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Vladyslav Vlasiuk",
+      "kind": "person"
+    },
+    {
+      "name": "Ukraine",
+      "kind": "place"
+    },
+    {
+      "name": "United States",
+      "kind": "organization"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "organization"
+    },
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "Hong Kong",
+      "kind": "place"
+    },
+    {
+      "name": "Armenia",
+      "kind": "place"
+    },
+    {
+      "name": "Kazakhstan",
+      "kind": "place"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "kind": "place"
+    },
+    {
+      "name": "Türkiye",
+      "kind": "place"
+    }
+  ]
+}

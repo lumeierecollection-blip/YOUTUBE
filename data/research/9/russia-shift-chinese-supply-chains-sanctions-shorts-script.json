@@ -1,0 +1,63 @@
+{
+  "channel_id": "9",
+  "topic_slug": "russia-shift-chinese-supply-chains-sanctions",
+  "format": "shorts",
+  "hook": "Western export controls forced Russia into a deep-seated economic dependency on China for dual-use tech.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Western export controls forced Russia into a deep-seated economic dependency on China for dual-use tech.",
+      "b_roll": [
+        "Satellite view of trade routes between Russia and China"
+      ],
+      "text_overlay": {
+        "text": "The Russian Supply Chain Pivot"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How did Ukraine's sanctions commissioner Vladyslav Vlasiuk uncover that Russia substituted Western components with Chinese alternatives in May 2026?",
+      "b_roll": [
+        "Map highlighting Beijing and Moscow",
+        "Cargo port showing shipping containers"
+      ],
+      "text_overlay": {
+        "text": "Component Substitutions"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, these goods now flow through Hong Kong, Armenia, Kazakhstan, Kyrgyzstan, and Türkiye to reach Russia.",
+      "b_roll": [
+        "Flashing points across Central Asia on a dark map"
+      ],
+      "text_overlay": {
+        "text": "Rerouted Hubs"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This reliance on Chinese alternatives creates a dependency for dual-use technologies, which serve both civilian and military purposes.",
+      "b_roll": [
+        "Industrial factory floor with active robotic arms"
+      ],
+      "text_overlay": {
+        "text": "Economic Realignment"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Chinese alternatives power Russian missiles today, replacing Western components identified by Vladyslav Vlasiuk in May 2026.",
+      "b_roll": [
+        "Close-up of microchips on a circuit board"
+      ],
+      "text_overlay": {
+        "text": "China-Russia Supply Links"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.csis.org/analysis/russias-turn-china-under-sanctions",
+    "https://carnegieendowment.org/russia-eurasia/politika/2024/07/china-russia-metal-partners"
+  ]
+}
