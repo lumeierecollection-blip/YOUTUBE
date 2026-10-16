@@ -1,0 +1,64 @@
+{
+  "channel_id": "49",
+  "topic_slug": "chris-rock-directs-rosalind-eleazar-misty-green",
+  "format": "shorts",
+  "hook": "Twelve years passed before Chris Rock directed another film.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Twelve years passed before Chris Rock directed another film.",
+      "b_roll": [
+        "Chris Rock on film set"
+      ],
+      "text_overlay": {
+        "text": "12 Years Later"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October, A24 scheduled the theatrical release of Misty Green after festival premieres. Slow Horses star Rosalind Eleazar portrays a struggling actress facing a stalled career. Where did her stalled career lead?",
+      "b_roll": [
+        "A24 logo and film slate",
+        "Rosalind Eleazar in character"
+      ],
+      "text_overlay": {
+        "text": "A24 Release"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Hollywood satire became the director's sharpest weapon yet.",
+      "b_roll": [
+        "Hollywood sign behind production lights"
+      ],
+      "text_overlay": {
+        "text": "The Satire"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Chris Rock wrote and directed this blistering new feature. Rosalind Eleazar anchors the A24 project in the title role. A24 brings the satirical drama to theaters.",
+      "b_roll": [
+        "Director chair with script",
+        "Theatrical poster reveal"
+      ],
+      "text_overlay": {
+        "text": "Misty Green"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Twelve years defines this directorial return.",
+      "b_roll": [
+        "Film credits rolling"
+      ],
+      "text_overlay": {
+        "text": "Chris Rock Returns"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://variety.com/2026/film/features/chris-rock-interview-misty-green-oscar-buzz-will-smith-slap-1236852060",
+    "https://www.wsj.com/arts-culture/film/rosalind-eleazar-chris-rock-misty-green-ceea10b9"
+  ]
+}

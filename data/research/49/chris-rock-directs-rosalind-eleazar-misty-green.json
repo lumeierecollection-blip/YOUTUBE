@@ -1,0 +1,55 @@
+{
+  "topic_slug": "chris-rock-directs-rosalind-eleazar-misty-green",
+  "strongest_angle": "Chris Rock returns to feature filmmaking with the A24 release Misty Green, starring Rosalind Eleazar as a struggling actress in a blistering Hollywood satire.",
+  "key_facts": [
+    {
+      "fact": "Actor and filmmaker Chris Rock wrote and directed the film Misty Green, which serves as his first directorial effort in 12 years.",
+      "source_url": "https://variety.com/2026/film/features/chris-rock-interview-misty-green-oscar-buzz-will-smith-slap-1236852060",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "Actor Rosalind Eleazar, known for her work in Slow Horses, stars in the title role of Misty Green as an actress facing a stalled career.",
+      "source_url": "https://www.wsj.com/arts-culture/film/rosalind-eleazar-chris-rock-misty-green-ceea10b9",
+      "source_name": "The Wall Street Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Distributor A24 scheduled the theatrical release of Misty Green for October following festival premieres.",
+      "source_url": "https://variety.com/2026/film/features/chris-rock-interview-misty-green-oscar-buzz-will-smith-slap-1236852060",
+      "source_name": "Variety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "years since last directorial effort",
+      "value": 12,
+      "unit": "years",
+      "source_url": "https://variety.com/2026/film/features/chris-rock-interview-misty-green-oscar-buzz-will-smith-slap-1236852060"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Chris Rock",
+      "kind": "person"
+    },
+    {
+      "name": "Rosalind Eleazar",
+      "kind": "person"
+    },
+    {
+      "name": "Misty Green",
+      "kind": "object"
+    },
+    {
+      "name": "A24",
+      "kind": "organization"
+    },
+    {
+      "name": "Slow Horses",
+      "kind": "object"
+    }
+  ]
+}
