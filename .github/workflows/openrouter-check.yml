@@ -1,0 +1,48 @@
+# OpenRouter account check (2026-10-16): the key's remaining credit, and whether the Gemini models the pipeline uses answer through
+# OpenRouter (text and image). Read-only; prints statuses and short answers, never the key.
+name: openrouter-check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - name: Credit and models
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, base64, zlib, struct
+          key = os.environ.get("OPENROUTER_API_KEY", "")
+          if not key: print("OPENROUTER_API_KEY: NOT SET"); raise SystemExit(1)
+          def get(url):
+              return subprocess.run(["curl", "-sS", "--max-time", "60", "-H", f"Authorization: Bearer {key}", url], capture_output=True, text=True).stdout
+          k = json.loads(get("https://openrouter.ai/api/v1/key") or "{}").get("data", {})
+          print("key:", {x: k.get(x) for x in ("label", "limit", "limit_remaining", "usage", "usage_daily", "is_free_tier", "rate_limit")})
+          cr = get("https://openrouter.ai/api/v1/credits")
+          print("credits:", cr[:300])
+          cat = json.loads(get("https://openrouter.ai/api/v1/models") or "{}").get("data", [])
+          for m in cat:
+              if m["id"].startswith("google/gemini"):
+                  p = m.get("pricing", {})
+                  print(f"  {m['id']}: prompt {p.get('prompt')} completion {p.get('completion')} image {p.get('image')} in={m.get('architecture',{}).get('input_modalities')}")
+          w = h = 16
+          raw = b"".join(b"\x00" + b"\xff\x00\x00" * w for _ in range(h))
+          ch = lambda t, d: struct.pack(">I", len(d)) + t + d + struct.pack(">I", zlib.crc32(t + d) & 0xffffffff)
+          png = b"\x89PNG\r\n\x1a\n" + ch(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0)) + ch(b"IDAT", zlib.compress(raw)) + ch(b"IEND", b"")
+          img = [{"type": "text", "text": "Reply with JSON {\"colour\": <one word>}: what colour is this image?"}, {"type": "image_url", "image_url": {"url": "data:image/png;base64," + base64.b64encode(png).decode()}}]
+          for model in ("google/gemini-3.5-flash-lite", "google/gemini-3.6-flash", "google/gemini-3.8-flash"):
+              for name, content in (("text", "Reply with JSON {\"ok\": true}"), ("image", img)):
+                  body = {"model": model, "max_tokens": 300, "temperature": 0, "messages": [{"role": "user", "content": content}]}
+                  open("b.json", "w").write(json.dumps(body))
+                  out = subprocess.run(["curl", "-sS", "--max-time", "120", "-o", "r.json", "-w", "%{http_code}", "-H", "Content-Type: application/json",
+                      "-H", f"Authorization: Bearer {key}", "-d", "@b.json", "https://openrouter.ai/api/v1/chat/completions"], capture_output=True, text=True).stdout.strip()
+                  try: j = json.load(open("r.json"))
+                  except Exception as e: print(f"{model} {name}: HTTP {out} unreadable"); continue
+                  if "error" in j: print(f"{model} {name}: HTTP {out} error {str(j['error'])[:200]}"); continue
+                  c = (j.get("choices") or [{}])[0]
+                  print(f"{model} {name}: HTTP {out} answer={str((c.get('message') or {}).get('content'))[:80]!r} usage={j.get('usage', {}).get('cost')}")
+          PY
