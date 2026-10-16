@@ -1,0 +1,57 @@
+{
+  "topic_slug": "columbia-university-mental-accounting-study-2026",
+  "strongest_angle": "Explore the multi-country study published in the Journal of Consumer Research in 2026, featuring researchers from Columbia University's Mailman School of Public Health, which validates mental accounting theory across 21 countries.",
+  "key_facts": [
+    {
+      "fact": "Columbia University's Mailman School of Public Health highlighted a study published in the Journal of Consumer Research titled The Robustness of Mental Accounting Across 21 Countries.",
+      "source_url": "https://www.eurekalert.org/news-releases/1146760",
+      "source_name": "EurekAlert!",
+      "confidence": "high"
+    },
+    {
+      "fact": "The international study testing mental accounting effects across 21 countries was published in the Journal of Consumer Research on July 10, 2026.",
+      "source_url": "https://doi.org/10.1093/jcr/ucag022",
+      "source_name": "Journal of Consumer Research",
+      "confidence": "high"
+    },
+    {
+      "fact": "The concept of mental accounting was first introduced four decades ago to explain how people mentally organize, evaluate, and track financial activities.",
+      "source_url": "https://academic.oup.com/jcr/advance-article/doi/10.1093/jcr/ucag022/8732294",
+      "source_name": "Oxford Academic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Countries tested in the mental accounting study",
+      "value": 21,
+      "unit": "countries",
+      "source_url": "https://doi.org/10.1093/jcr/ucag022"
+    },
+    {
+      "label": "Decades since mental accounting was first introduced",
+      "value": 4,
+      "unit": "decades",
+      "source_url": "https://academic.oup.com/jcr/advance-article/doi/10.1093/jcr/ucag022/8732294"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Columbia University's Mailman School of Public Health",
+      "kind": "organization"
+    },
+    {
+      "name": "Journal of Consumer Research",
+      "kind": "organization"
+    },
+    {
+      "name": "Giulia Priolo",
+      "kind": "person"
+    },
+    {
+      "name": "Federica Stablum",
+      "kind": "person"
+    }
+  ]
+}
