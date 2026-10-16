@@ -152,20 +152,44 @@ function Label({ text, B, st, P, profile, plated }) {
   );
 }
 
-function Card({ shot, B, st, P, profile }) {
-  // The narration itself, set as a tilted paper excerpt card: the visual of a shot that has no picture. The key words of the shot are marked inside it.
-  const box = B.hero, c = (profile.type && profile.type.card) || { family: "DM Sans", style: "normal", weight: 500 };
-  const marked = new Set(String((shot.display && shot.display.text) || "").toLowerCase().split(/\s+/).map((w) => w.replace(/[^\w$%]/g, "")).filter(Boolean));
-  const words = String(shot.excerpt || "").split(" ");
-  // Fit: the largest size at which the excerpt's estimated wrapped height fits the card's inner box (width and height less the padding).
-  const innerW = box.w - 104, innerH = box.h - 112, adv = advOf(c.family, false) * 1.08, len = String(shot.excerpt || "").length;
-  let size = 30;
-  for (let z = 56; z >= 30; z -= 2) { const lines = Math.ceil((len * adv * z) / innerW); if (lines * z * 1.36 <= innerH) { size = z; break; } }
+function Card({ shot, B, st, P, profile, frame, stDisp }) {
+  // KICKER (ref-03 "the more it / SLIPS AWAY"): the shot's own narration as ONE continuous line in two sizes — the words before the key phrase in a small serif
+  // italic, the key phrase big, the words after it small again — each word appearing on its spoken frame. No card, no box, no marker highlight (the marker is
+  // reserved for quoted statements, owner 2026-10-16).
+  const k = shot.kicker;
+  if (!k) return null;
+  const fam = (profile.type.quote && profile.type.quote.family) || "Playfair Display";
+  const d = profile.type.display, caps = d.case === "upper";
+  const W = 900, X = 90;
+  const small = (ws) => {
+    if (!ws.length) return null;
+    const { size } = fitLines(ws.map((w) => w.text).join(" "), W, { family: fam, caps: false, max: 78, min: 50, maxLines: 2 });
+    return (
+      <div style={{ fontFamily: `"${fam}", Georgia, serif`, fontStyle: "italic", fontWeight: 400, fontSize: size, lineHeight: 1.16, color: P.ink }}>
+        {ws.map((w, i) => {
+          const age = frame - w.at;
+          if (age < 0) return <span key={i} style={{ opacity: 0, marginRight: "0.26em" }}>{w.text}</span>;
+          return <span key={i} style={{ display: "inline-block", opacity: Math.min(1, age / 4), transform: `translateY(${Math.max(0, 10 - age * 2.5)}px)`, marginRight: "0.26em" }}>{w.text}</span>;
+        })}
+      </div>
+    );
+  };
+  let big = null;
+  if (shot.display) {
+    const text = caps ? shot.display.text.toUpperCase() : shot.display.text;
+    const { lines, size } = fitLines(text, W, { family: d.family, caps, max: 210, min: 90, maxLines: 2 });
+    const s2 = stDisp || { o: 0, s: 1 };
+    big = (
+      <div style={{ margin: "10px 0 6px", opacity: s2.o, transform: `scale(${s2.s})`, transformOrigin: "50% 50%" }}>
+        {lines.map((l, i) => <div key={i} style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1.0, color: i === 0 ? readableAccent(P.accent, P.ground) : P.ink, whiteSpace: "nowrap" }}>{l}</div>)}
+      </div>
+    );
+  }
   return (
-    <div style={{ position: "absolute", left: box.x, top: box.y, width: box.w, height: box.h, overflow: "hidden", boxSizing: "border-box", padding: "56px 52px", backgroundColor: P.paper, boxShadow: "0 18px 40px rgba(0,0,0,0.22)", transform: `rotate(${box.rot || 0}deg) scale(${st.s})`, opacity: st.o, zIndex: 1, fontFamily: `"${c.family}", Georgia, serif`, fontStyle: c.style === "italic" ? "italic" : "normal", fontWeight: c.weight, fontSize: size, lineHeight: 1.36, color: P.ink }}>
-      {words.map((w, i) => (marked.has(w.toLowerCase().replace(/[^\w$%]/g, ""))
-        ? <span key={i} style={{ backgroundColor: P.accent, color: P.paper, padding: "0 0.18em" }}>{w}{" "}</span>
-        : <span key={i}>{w}{" "}</span>))}
+    <div style={{ position: "absolute", left: X, top: 0, width: W, height: 1920, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center", zIndex: 5, opacity: st.o }}>
+      {small(k.before)}
+      {big}
+      {small(k.after)}
     </div>
   );
 }
@@ -295,9 +319,9 @@ function ShotView({ shot, shotIndex, frame, hold, P, profile, bw }) {
       {stShape ? <Shape shot={shot} B={B} st={stShape} P={P} /> : null}
       <Hero shot={shot} B={B} st={stHero} P={P} profile={profile} bw={bw} local={local} idx={shotIndex} />
       {shot.subject && !shot.hero ? <SubjectPlate shot={shot} B={B} st={stHero} P={P} profile={profile} /> : null}
-      {shot.excerpt && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} /> : null}
+      {shot.kicker && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} frame={frame} stDisp={stDisp} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
-      {stDisp && shot.display ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
+      {stDisp && shot.display && !shot.kicker ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stDisp && shot.quote ? <Quote shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stDisp && shot.figure ? <Figure shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stateOf("tick") ? <div style={{ position: "absolute", left: B.text.x + B.text.w / 2 - 170, top: B.text.y + 40, width: 340, height: 20, backgroundColor: P.accent, opacity: stateOf("tick").o, transform: `scale(${stateOf("tick").s})`, zIndex: 4 }} /> : null}

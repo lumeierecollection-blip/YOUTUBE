@@ -148,6 +148,15 @@ function loadChannelIds(override) {
   return channels.map((c) => String(c.id));
 }
 
+// Does this channel render through the clone family (channels.json clone.profile; CLONE_ENGINE=off is the kill switch)?
+function isCloneChannel(channelId) {
+  if (process.env.CLONE_ENGINE === "off") return false;
+  try {
+    const ch = resolveChannel(channelId);
+    return !!(ch && ch.clone && ch.clone.profile);
+  } catch { return false; }
+}
+
 function findScripts(channelId) {
   // data/research/<channelId>/*-script.json is committed to git and never
   // pruned, so a fresh checkout on every CI run sees every script this
@@ -2120,6 +2129,10 @@ async function resolveCanvas(channelId, planPath, plan) {
     const stats = { bank: 0, live: 0, symbol: 0, none: 0, rejected: [] };
     // 1. Which beats, which concepts.
     const wanted = [];
+    // OBJECTS ON EVERY BEAT for a clone channel (owner, 2026-10-16: the references put a real cut-out in nearly every shot; board 38831133468 gave ch-1 5 pictures
+    // in 29 shots, ch-44 and ch-5 none). The clone family stages every beat the same way whatever the canvas composition says, so a DATA / COUNTER / emphasis beat
+    // whose sentence names an object gets that object too. The grounding is unchanged: the sentence must name it, and the fetched PNG is verified LITERAL.
+    const cloneObjects = isCloneChannel(channelId);
     for (const [bi, b] of plan.beats.entries()) {
       const c = b.canvas;
       // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
@@ -2128,8 +2141,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       // A NUMBER beat whose sentence names a physical object ("$500 in cash"): its object is fetched
       // too, but only OFFERED — to Gemini at render time as an object shot (chooseShots), the
       // reference's number-with-its-object (ref-02 "1 MILLION dollar" among the money). Not attached.
-      const altOnly = c.composition === "NUMBER-FULL" && String(c.visual_type).toUpperCase() === "COUNTER" && !!c.data?.value;
-      if (!altOnly && (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE")) continue;
+      const altOnly = !cloneObjects && c.composition === "NUMBER-FULL" && String(c.visual_type).toUpperCase() === "COUNTER" && !!c.data?.value;
+      if (cloneObjects ? (c.photo || (c.concept_visuals || []).length || c.art) : (!altOnly && (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE"))) continue;
       // The hook and the CTA get their object too (owner's spec 2026-10-03, "PNGs on every
       // beat" — this replaces "the hook and the CTA stay TYPE").
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);

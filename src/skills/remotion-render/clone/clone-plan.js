@@ -30,6 +30,8 @@ for (const w of "first second third fourth fifth sixth seventh eighth ninth tent
 for (const t of ["twenty", "thirty"]) for (const u of "first second third fourth fifth sixth seventh eighth ninth".split(" ")) NUMBER_WORDS.add(t + "-" + u);
 for (const t of ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]) for (const u of "one two three four five six seven eight nine".split(" ")) NUMBER_WORDS.add(t + "-" + u);
 const MONTH_WORDS = new Set("january february march april may june july august september october november december".split(" "));
+// Contractions and pronoun openers are never display type: board 38831133468 ch-1 showed "IT'S" and "THAT'S" as the shot's big words.
+for (const w of "it's that's there's here's what's who's where's i'm you're we're they're he's she's isn't aren't wasn't weren't don't doesn't didn't can't won't wouldn't couldn't shouldn't let's yet still even".split(" ")) STOP.add(w);
 const isNumberWord = (w) => /^[\$€£]?\d[\d,.]*(?:%|[kmb]|million|billion|thousand)?$/i.test(w);
 const clean = (w) => String(w || "").replace(/^[^\w$€£]+|[^\w%]+$/g, "");
 
@@ -84,6 +86,15 @@ export function quantityIn(sentence, name) {
   return String(name || "");
 }
 
+/** A figure's label ends on a content word: the planner's "working Americans have an" (board 38831133468 ch-1) is cut to "working Americans". Null when nothing is left. */
+export function trimLabel(label) {
+  const ws = String(label || "").replace(/\s+/g, " ").trim().split(" ");
+  while (ws.length && (STOP.has(clean(ws[ws.length - 1]).toLowerCase()) || WEAK.has(clean(ws[ws.length - 1]).toLowerCase()))) ws.pop();
+  while (ws.length && STOP.has(clean(ws[0]).toLowerCase())) ws.shift();
+  const out = ws.join(" ").replace(/[,;:]+$/, "");
+  return out.length ? out : null;
+}
+
 /** The figures and dates a beat states, in order: [{ kind: "figure"|"date", name, label }]. From the canvas's own data and from its named number / date entities. */
 export function figuresOf(canvas) {
   const c = canvas || {};
@@ -98,7 +109,7 @@ export function figuresOf(canvas) {
     if (out.some((x) => x.kind === kind && (kind === "date" ? x.name.toLowerCase() === n.toLowerCase() : digits(x.name) === digits(n) && digits(n)))) return;
     out.push({ kind, name: n, label });
   };
-  if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? String(c.data.label) : null);
+  if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? trimLabel(c.data.label) : null);
   for (const e of c.named_entities || c.entities || []) {
     if (!e || !e.name) continue;
     if (e.type === "number") add("figure", e.name);
@@ -294,6 +305,18 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
         // identical plates read as one template. The short caption stays (smaller than the plate, and never repeating it: see the exclusion above); a tick still stands in when none fits.
         disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
       }
+      // KICKER (ref-03, owner 2026-10-16 "look how much better they look"): a shot with no picture and no subject sets the narration it is SPEAKING, word by word on each
+      // word's own onset, in a small serif line next to the big phrase — the words the big phrase does not say ("the more it" + "SLIPS AWAY"). It replaces the paper
+      // excerpt card with marked words (a sticky note; and the marker highlight is now reserved for quoted statements).
+      let kicker = null;
+      if (!hero && !subject) {
+        const inShot = spoken.filter((w) => w.abs >= f0 && w.abs < f1 && clean(w.text));
+        const runAt = disp ? inShot.findIndex((w) => w.abs === disp.at) : -1;
+        const mk = (ws) => ws.map((w) => ({ text: String(w.text).trim(), at: Math.max(f0 + 1, Math.min(f1 - 4, w.abs)) }));
+        const before = runAt >= 0 ? inShot.slice(0, runAt) : inShot;
+        const after = runAt >= 0 ? inShot.slice(runAt + disp.words) : [];
+        kicker = before.length || after.length ? { before: mk(before), after: mk(after) } : null;
+      }
       const shownNames = new Set(subjects.filter((x) => x.kind === "glyph").map((x) => x.name));
       const labelPlates = plates.filter((x) => !shownNames.has(x.name));
       const el = [];
@@ -314,7 +337,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       shots.push({
         beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
         display: quote || figHere ? null : disp, figure: !quote && figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null, quote,
-        inv, subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null,
+        inv, subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null, kicker,
         plates: plates.length && (roomForPlate || subject) ? plates : [], plate: labelPlates.length && (roomForPlate || subject) ? labelPlates.map((x) => x.name).join(" · ") : null,
         elements: el,
       });
@@ -400,7 +423,7 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   if (glyphs.length) parts.push("generic " + [...new Set(glyphs)].map((t) => (t === "person" ? "person-silhouette" : t === "place" ? "map-pin" : "building")).join(" / ") + " icon plates with the entity's name");
   if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");
   if (date) parts.push("a calendar-date plate");
-  if ((shots || []).some((x) => x.excerpt)) parts.push("typewriter excerpt cards of the narration");
+  if ((shots || []).some((x) => x.excerpt)) parts.push("the narration set word by word in a serif line (no excerpt cards)");
   if (parts.length) out.clone_label = "a designed multi-shot frame with " + parts.join(", ") + "; a short highlighted key phrase is only a secondary caption";
   // The frame review's labels read these: the ground this beat chose (a non-white ground is declared, not left to read as a mistake), and what the beat
   // DRAWS (a photograph, a logo, or typography) so a beat with a picture is not called typography because the canvas engine's plan said TYPE.

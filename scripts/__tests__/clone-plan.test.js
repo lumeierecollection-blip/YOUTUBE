@@ -235,7 +235,7 @@ test("the manifest says truthfully what a beat's frames are, for the frame revie
   assert.ok(rec.clone_label && /map-pin icon plates/.test(rec.clone_label) && /large figure plates/.test(rec.clone_label), rec.clone_label);
   assert.ok(!/typography/i.test(rec.clone_label.replace("secondary caption", "")));
   const nothing = cloneCanvasFor({ sentence: SENT }, planClone([beat(0, 0, 6, SENT, { sentence: SENT })], { laws: G.laws, profile: G.profiles["dossier-mono"] }).shots);
-  assert.match(nothing.clone_label, /excerpt cards/);
+  assert.match(nothing.clone_label, /narration set word by word/);
 });
 
 test("a display phrase never shows PART of a named entity ('ACKIE' for 'Naomi Ackie' failed the naming check)", () => {
@@ -335,4 +335,13 @@ test("a subject-plate shot keeps a short caption that never repeats its plate (r
 test("a figure that is only the start of a longer one is dropped ('9' beside '9 to 0')", () => {
   const f = figuresOf({ sentence: "The council voted 9 to 0", data: { value: "9 to 0", label: "vote" }, named_entities: [{ type: "number", name: "9" }, { type: "number", name: "0" }] });
   assert.deepEqual(f.map((x) => x.name), ["9 to 0"]);
+});
+
+test("a figure label ends on a content word; contractions are never display type (board 38831133468 ch-1)", async () => {
+  const { trimLabel } = await import("../../src/skills/remotion-render/clone/clone-plan.js");
+  assert.equal(trimLabel("working Americans have an"), "working Americans");
+  assert.equal(trimLabel("of the"), null);
+  const sp = "That's shockingly low, but you can prepare for it.".split(" ").map((t, i) => ({ text: t, abs: i * 10 }));
+  const d = displayWords(sp, 0, 200, [], 3);
+  assert.ok(!/that's/i.test(d.text), d.text);
 });
