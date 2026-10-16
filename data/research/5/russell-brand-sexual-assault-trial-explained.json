@@ -1,0 +1,84 @@
+{
+  "topic_slug": "russell-brand-sexual-assault-trial-explained",
+  "strongest_angle": "The prosecution at Southwark Crown Court has framed Russell Brand as a calculated predator, alleging a decade-long pattern of abuse against six women who came forward independently.",
+  "key_facts": [
+    {
+      "fact": "Prosecutor Riel Karmy-Jones KC opened the case at Southwark Crown Court by describing Russell Brand as a ruthless and calculated sexual predator.",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The prosecution alleges that Russell Brand assaulted six women over the course of a decade.",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Riel Karmy-Jones KC stated that the six women involved in the case did not know each other and came forward independently to report the offenses.",
+      "source_url": "https://www.bbc.com/news/articles/c3qjn45pepx1o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Russell Brand is 51 years old and is currently facing seven sexual offense charges at his trial in London.",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of women allegedly assaulted",
+      "value": 6,
+      "unit": "women",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+    },
+    {
+      "label": "Age of defendant",
+      "value": 51,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t"
+    },
+    {
+      "label": "Number of sexual offense charges",
+      "value": 7,
+      "unit": "charges",
+      "source_url": "https://www.channel4.com/news/the-rules-court-procedures-and-russell-brand-trial-explained"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The women did not know each other, have never met each other and came forward independently of each other.",
+      "speaker": "Riel Karmy-Jones KC",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.com/news/articles/c3qjn45pepx1o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Russell Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Riel Karmy-Jones KC",
+      "kind": "person"
+    },
+    {
+      "name": "Southwark Crown Court",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    }
+  ]
+}
