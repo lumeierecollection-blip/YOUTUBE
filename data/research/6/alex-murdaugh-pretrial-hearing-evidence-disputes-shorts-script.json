@@ -1,0 +1,64 @@
+{
+  "channel_id": "6",
+  "topic_slug": "alex-murdaugh-pretrial-hearing-evidence-disputes",
+  "format": "shorts",
+  "hook": "Scheduled for 2027, the 58-year-old inmate faces another trial.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Scheduled for 2027, the 58-year-old inmate faces another trial.",
+      "b_roll": [
+        "Lexington County Courthouse exterior in South Carolina"
+      ],
+      "text_overlay": {
+        "text": "Alex Murdaugh's 2027 Retrial"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Judge Debra McCaslin called an in-person hearing at 10 am. Attorneys fought over DNA testing on Maggie Murdaugh's nails. Where is the cellphone evidence?",
+      "b_roll": [
+        "Courtroom interior",
+        "Evidence files on a desk"
+      ],
+      "text_overlay": {
+        "text": "Evidence Disputes"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except ballistics data and crime-scene scans are locked in dispute.",
+      "b_roll": [
+        "Crime scene scan graphic"
+      ],
+      "text_overlay": {
+        "text": "Ballistics & Scans"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 58-year-old inmate faces Colleton County leaving the case. Prosecutors argued over DNA testing during October hearings. New evidence battles exploded in South Carolina.",
+      "b_roll": [
+        "South Carolina state map",
+        "Court documents"
+      ],
+      "text_overlay": {
+        "text": "New Legal Battles"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Alex Murdaugh faces the 2027 retrial outside Colleton County.",
+      "b_roll": [
+        "Court gavel resting on wood"
+      ],
+      "text_overlay": {
+        "text": "2027 Retrial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+    "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e"
+  ]
+}
