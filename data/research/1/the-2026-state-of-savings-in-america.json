@@ -1,0 +1,68 @@
+{
+  "topic_slug": "the-2026-state-of-savings-in-america",
+  "strongest_angle": "The Penny Hoarder's 2026 State of Savings survey reveals that only 35% of working Americans have an emergency fund",
+  "key_facts": [
+    {
+      "fact": "Only 35% of working Americans have an emergency fund, according to The Penny Hoarder's 2026 State of Savings survey.",
+      "source_url": "https://www.thepennyhoarder.com/save-money/state-of-savings",
+      "source_name": "The Penny Hoarder",
+      "confidence": "high"
+    },
+    {
+      "fact": "Pew Research Center found that more than half of Americans do not have rainy day funds, according to their 2026 State of Savings in America survey.",
+      "source_url": "https://www.pewresearch.org/chart/more-than-half-of-americans-do-not-have-rainy-day-funds",
+      "source_name": "Pew Research Center",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2026 State of Savings in America survey found that 44% of Americans do not have $1,000 in emergency savings.",
+      "source_url": "https://www.thepennyhoarder.com/save-money/state-of-savings",
+      "source_name": "The Penny Hoarder",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Emergency Fund Coverage",
+      "value": 35,
+      "unit": "%",
+      "source_url": "https://www.thepennyhoarder.com/save-money/state-of-savings"
+    },
+    {
+      "label": "Emergency Savings",
+      "value": 1000,
+      "unit": "$",
+      "source_url": "https://www.thepennyhoarder.com/save-money/state-of-savings"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "The Penny Hoarder",
+      "kind": "organization"
+    },
+    {
+      "name": "Katie Sartoris, CEPF®",
+      "kind": "person"
+    },
+    {
+      "name": "Tiffany Connors, CEPF®",
+      "kind": "person"
+    },
+    {
+      "name": "Mackenzie Raetz, CEPF®",
+      "kind": "person"
+    },
+    {
+      "name": "Katie Sartoris, CEPF®",
+      "kind": "person"
+    },
+    {
+      "name": "Catherine Hiles",
+      "kind": "person"
+    },
+    {
+      "name": "Pew Research Center",
+      "kind": "organization"
+    }
+  ]
+}
