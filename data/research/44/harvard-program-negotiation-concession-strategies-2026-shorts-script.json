@@ -1,0 +1,47 @@
+{
+  "channel_id": "44",
+  "topic_slug": "harvard-program-negotiation-concession-strategies-2026",
+  "format": "shorts",
+  "hook": "Four strategies change how negotiations work when concessions go unappreciated.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Four strategies change how negotiations work when concessions go unappreciated.",
+      "text_overlay": {
+        "text": "Four Negotiation Strategies"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 14, 2026, Harvard Business School professor Deepak Malhotra published guidance through Harvard Law School's Program on Negotiation. Where do these four concession strategies apply?",
+      "text_overlay": {
+        "text": "October 14, 2026 Guidance"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Unappreciated concessions risk failing to build goodwill and reciprocity in negotiations.",
+      "text_overlay": {
+        "text": "Building Goodwill"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Katie Shonk authored guidance on August 4, 2026 for Harvard Law School's Program on Negotiation regarding best practices. Deepak Malhotra originally detailed four strategies to build goodwill and reciprocity as published by Harvard Business School Working Knowledge in 2006.",
+      "text_overlay": {
+        "text": "Best Practices Published"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 2006 publication established four concession strategies for negotiations.",
+      "text_overlay": {
+        "text": "Four Concession Strategies"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/four-strategies-for-making-concessions",
+    "https://www.library.hbs.edu/working-knowledge/four-strategies-for-making-concessions"
+  ]
+}
