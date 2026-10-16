@@ -1,0 +1,60 @@
+{
+  "topic_slug": "bait-and-switch-job-career-pivot-2026",
+  "strongest_angle": "The rise of misleading 'bait-and-switch' jobs and how to avoid them",
+  "key_facts": [
+    {
+      "fact": "Nearly one in five workers say their job has changed significantly since they were hired.",
+      "source_url": "https://www.fastcompany.com/91621593/the-rise-of-misleading-bait-and-switch-jobs-and-how-to-avoid-them",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jobs are always evolving, particularly in the age of artificial intelligence.",
+      "source_url": "https://www.fastcompany.com/91621593/the-rise-of-misleading-bait-and-switch-jobs-and-how-to-avoid-them",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "More than half of workers say they've faced a 'bait-and-switch' in the hiring process.",
+      "source_url": "https://www.cnbc.com/2024/10/25/more-than-half-of-workers-say-theyve-faced-a-bait-and-switch-in-the-hiring-process.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Percentage of workers with significant job changes",
+      "value": 20,
+      "unit": "%",
+      "source_url": "https://www.fastcompany.com/91621593/the-rise-of-misleading-bait-and-switch-jobs-and-how-to-avoid-them"
+    },
+    {
+      "label": "Percentage of workers facing 'bait-and-switch'",
+      "value": 53,
+      "unit": "%",
+      "source_url": "https://www.cnbc.com/2024/10/25/more-than-half-of-workers-say-theyve-faced-a-bait-and-switch-in-the-hiring-process.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Fast Company",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Jessica",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I joined as the first corporate lawyer at a tech startup, with the exciting opportunity to grow my career quickly. Yet as soon as I started, the dream unraveled.",
+      "speaker": "Jessica",
+      "source_name": "What is a 'bait and switch' job, and what to do if you get one? - Fast Company",
+      "source_url": "https://www.fastcompany.com/91153986/bait-and-switch-jobs-are-surprisingly-common-heres-what-to-do-if-it-happens-to-you"
+    }
+  ]
+}

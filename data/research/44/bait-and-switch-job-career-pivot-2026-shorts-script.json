@@ -1,0 +1,32 @@
+{
+  "channel_id": "44",
+  "topic_slug": "bait-and-switch-job-career-pivot-2026",
+  "format": "shorts",
+  "hook": "Nearly one in five workers say their job has changed significantly since they were hired, and more than half have faced a 'bait-and-switch' in the hiring process.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Nearly one in five workers say their job has changed significantly since they were hired, and more than half have faced a 'bait-and-switch' in the hiring process. That's a shocking reality."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Yet as soon as she started, the dream unraveled."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "While more than half of workers have faced a 'bait-and-switch', only one in five say their job has changed significantly."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "That's the staggering statistic that highlights how quickly things can change in the workplace."
+    },
+    {
+      "id": "close",
+      "voiceover": "To avoid a 'bait-and-switch', always ask questions and verify the promises made by employers. That's the specific action you can take."
+    }
+  ],
+  "sources_used": [
+    "https://www.fastcompany.com/91621593/the-rise-of-misleading-bait-and-switch-jobs-and-how-to-avoid-them",
+    "https://www.cnbc.com/2024/10/25/more-than-half-of-workers-say-theyve-faced-a-bait-and-switch-in-the-hiring-process.html"
+  ]
+}
