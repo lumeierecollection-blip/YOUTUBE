@@ -1,0 +1,78 @@
+{
+  "topic_slug": "idealens-ai-generated-concepts-detection",
+  "strongest_angle": "Examine the technical and philosophical challenges of IdeaLens, a new detector developed by researchers like Rishanth Rajendhran and Minjoon Choi, which distinguishes between human and AI-generated concepts in scientific papers by analyzing outlines rather than prose.",
+  "key_facts": [
+    {
+      "fact": "Researchers including Rishanth Rajendhran and Minjoon Choi introduced IdeaLens, a new detector designed to determine whether a document's ideas came from a human or AI, regardless of who wrote the words.",
+      "source_url": "https://arxiv.org/abs/2610.06778",
+      "source_name": "arXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Gibney reported in Nature that IdeaLens helps judge whether concepts in scientific papers are AI-generated rather than just examining the writing style.",
+      "source_url": "https://www.nature.com/articles/d41586-026-03247-0",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jeffrey Brainard wrote in Science that journal editors and conference managers are increasingly drawing a line between using AI to polish text and producing an entire paper with artificial intelligence.",
+      "source_url": "https://www.science.org/content/article/did-ai-or-human-write-paper-new-detector-decides-examining-its-ideas",
+      "source_name": "Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "To focus specifically on ideas rather than prose, IdeaLens represents documents as outlines consisting of items that pair a discourse role with a brief description.",
+      "source_url": "https://arxiv.org/html/2610.06778",
+      "source_name": "arXiv",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "IdeaLens",
+      "kind": "object"
+    },
+    {
+      "name": "Rishanth Rajendhran",
+      "kind": "person"
+    },
+    {
+      "name": "Minjoon Choi",
+      "kind": "person"
+    },
+    {
+      "name": "Jenna Russell",
+      "kind": "person"
+    },
+    {
+      "name": "Ramya Namuduri",
+      "kind": "person"
+    },
+    {
+      "name": "Deniz Bölöni-Turgut",
+      "kind": "person"
+    },
+    {
+      "name": "Elizabeth Gibney",
+      "kind": "person"
+    },
+    {
+      "name": "Jeffrey Brainard",
+      "kind": "person"
+    },
+    {
+      "name": "Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    },
+    {
+      "name": "arXiv",
+      "kind": "organization"
+    }
+  ]
+}
