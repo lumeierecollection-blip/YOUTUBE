@@ -87,7 +87,8 @@ export function typedEntitiesOf(canvas) {
 export function quantityIn(sentence, name) {
   const digits = String(name || "").replace(/[^\d]/g, "");
   if (!digits || !sentence) return String(name || "");
-  const re = /\$?\d[\d,.]*(?:-[A-Za-z]+|%|(?:\s(?:million|billion|thousand|hundred))?(?:\s(?:percent|euros|dollars|pounds|years|days|hours|minutes|seconds|points|people|species))?)/g;
+  // "47-year-old", not "47-year" (board 38976972038 ch-49: the naming check failed the shortened form)
+  const re = /\$?\d[\d,.]*(?:(?:-[A-Za-z]+)+|%|(?:\s(?:million|billion|thousand|hundred))?(?:\s(?:percent|euros|dollars|pounds|years|days|hours|minutes|seconds|points|people|species))?)/g;
   for (const m of String(sentence).matchAll(re)) {
     if (m[0].replace(/[^\d]/g, "") === digits) return m[0].trim().replace(/[.,]$/, "");
   }
@@ -127,7 +128,8 @@ export function figuresOf(canvas) {
   // the label never repeats the figure's own unit: "736 million dollars" over "DOLLARS ASSETS" (board 38976972038 ch-8) is "736 million dollars" over "ASSETS"
   const labelOf = (value, label) => {
     const own = new Set(String(value).toLowerCase().split(/[^a-z]+/).filter(Boolean));
-    return trimLabel(String(label).split(/\s+/).filter((w) => !own.has(w.toLowerCase().replace(/[^a-z]/g, ""))).join(" "));
+    const dup = (w) => { const parts = w.toLowerCase().split(/[^a-z]+/).filter(Boolean); return parts.length > 0 && parts.every((x) => own.has(x)); };   // "year-old" under "47-year-old"
+    return trimLabel(String(label).split(/\s+/).filter((w) => !dup(w)).join(" "));
   };
   if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? labelOf(quantityIn(c.sentence, c.data.value), c.data.label) : null);
   for (const e of c.named_entities || c.entities || []) {

@@ -425,3 +425,13 @@ test("a beat whose plan lists no figure or date still shows the ones its sentenc
   // a plan that DID list them is not second-guessed
   assert.deepEqual(figuresOf({ sentence: "It fell 40% in 2026.", named_entities: [{ type: "number", name: "40%" }] }).map((x) => x.name), ["40%"]);
 });
+
+test("quantityIn keeps every hyphenated part of a figure (47-year-old, not 47-year)", () => {
+  assert.equal(quantityIn("The 47-year-old actor directs his first film.", "47"), "47-year-old");
+  assert.equal(quantityIn("a 30-second ad", "30"), "30-second");
+});
+
+test("a figure's label drops hyphenated words the figure already says (YEAR-OLD ACTOR under 47-year-old)", () => {
+  const f = figuresOf({ sentence: "The 47-year-old actor described the debut.", data: { value: "47", label: "year-old actor" }, named_entities: [] });
+  assert.deepEqual([f[0].name, f[0].label], ["47-year-old", "actor"]);
+});
