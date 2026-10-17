@@ -1350,9 +1350,14 @@
           "topic": "Alex Murdaugh Retrial Hearing Focuses on DNA and Murder Weapons Evidence",
           "slug": "alex-murdaugh-retrial-dna-weapons-evidence",
           "reserved_at": "2026-10-16T22:46:26.383Z"
+        },
+        {
+          "topic": "Lexington Police Use DNA Testing to Investigate 1963 Barbara Lunsford Disappearance",
+          "slug": "lexington-police-dna-barbara-lunsford-disappearance",
+          "reserved_at": "2026-10-17T12:19:15.681Z"
         }
       ],
-      "last_generated": "2026-10-16T22:46:26.384Z"
+      "last_generated": "2026-10-17T12:19:15.681Z"
     },
     "7": {
       "channel_name": "Dead Companies",
