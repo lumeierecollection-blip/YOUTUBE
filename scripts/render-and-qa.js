@@ -1884,7 +1884,10 @@ async function attachCloneProps({ plan, channelId, used }) {
         if (mine.length >= PROPS_PER_BEAT) break;
         if (Date.now() - T0 > BUDGET) { console.log(`[props] ch-${channelId} beat ${b.index}: props budget spent (${BUDGET / 1000}s), "${p.object}" not fetched`); break; }
         if (shown.has(p.object)) continue;
-        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene: null });
+        // the verifier judges the picture against the SENTENCE ("What the beat needs"), not the bare word: with scene null a blank old book passed as
+        // "document" twice (board 38976972038 ch-8 "ordered ... to cease operations", ch-9 "are these contracts actually signed?")
+        const scene = b.narration ? `a photo of ${p.object} for the sentence: "${String(b.narration).slice(0, 300)}"` : null;
+        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene });
         if (!r) continue;
         const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building };
         if (!used.keep([vis], `beat ${b.index} prop`).length) continue;
