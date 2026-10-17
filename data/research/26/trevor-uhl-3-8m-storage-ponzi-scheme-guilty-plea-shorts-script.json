@@ -1,0 +1,47 @@
+{
+  "channel_id": "26",
+  "topic_slug": "trevor-uhl-3-8m-storage-ponzi-scheme-guilty-plea",
+  "format": "shorts",
+  "hook": "A 29-year-old MML Investors Services associate stole $3.8 million from 60 Missouri victims.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 29-year-old MML Investors Services associate stole $3.8 million from 60 Missouri victims.",
+      "text_overlay": {
+        "text": "$3.8 Million Stolen"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, Trevor Uhls of Lee's Summit, Missouri, pleaded guilty to wire fraud. This former associate of MML Investors Services operated a calculated Ponzi scheme. How did Trevor Uhls trick 60 investors?",
+      "text_overlay": {
+        "text": "60 Victims Defrauded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the trap is set, as he now faces 20 years in federal prison.",
+      "text_overlay": {
+        "text": "Federal Fraud Charges"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Prosecutors confirmed Trevor Uhls drained more than $3.8 million from 60 unsuspecting victims. MML Investors Services saw federal authorities secure his guilty plea.",
+      "text_overlay": {
+        "text": "20 Year Sentence"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The court confirmed the total loss reached $3.8 million.",
+      "text_overlay": {
+        "text": "$3.8 Million Total Loss"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.kansascity.com/news/local/article317649756.html",
+    "https://www.wealthmanagement.com/ibd-news/ex-mml-advisor-pleads-guilty-to-3-8m-fraud-as-victims-prepare-arbitration-against-firm"
+  ]
+}
