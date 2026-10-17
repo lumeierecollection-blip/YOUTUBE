@@ -3,13 +3,17 @@
  * draws them). Pure — no React — so it is unit-tested (scripts/test-entity-sync.mjs).
  *
  * A beat is shown as GROUPS: the full-bleed photo (if any), the top-zone band and the
- * middle-zone band. Each pops in place, staggered; with word-level sync
+ * middle-zone band. Each enters after the cut (transitions.js enterKind: a cutout band rises,
+ * the photo settles from a zoom, the rest is there and builds itself), staggered; with word-level sync
  * (visual/entity-sync.js, scheduled in render.js) the group holding the entity visual pops
  * on its word instead.
  */
 import { flattenBoxes, ZONES, CAPTION } from "./canvas-layout.js";
+import { enterKind } from "./transitions.js";
 
-export const POP = Object.freeze({ IN: 6, OUT: 6, STAGGER: 8, START: 1, S0: 0.94, OVER: 1.04 });
+// START 0: a beat's first group is on screen on the cut frame itself (the boundary is a hard
+// cut, transitions.js — nothing of the outgoing beat is left to cover frame 0).
+export const POP = Object.freeze({ IN: 6, STAGGER: 8, START: 0 });
 // Entrance styles (owner's spec 2026-10-03, part C.4; scripts/composition-variety.js assigns
 // one per beat, never the same twice in a row). Frames from the beat's start, per group:
 //   together      every group pops at 0 (all landed by frame 6)
@@ -35,7 +39,7 @@ const BANDS = { top: [0, ZONES.top[1]], middle: [ZONES.middle[0], CAPTION.y - 10
 export function popGroups(c, L) {
   const photo = !!c.photo && PHOTO_COMPS.includes(L.composition);
   const groups = [];
-  if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960 });
+  if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960, enter: "photo" });
   for (const [band, [y0, y1]] of Object.entries(BANDS)) {
     const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
     if (!kb.length) continue;
@@ -47,7 +51,7 @@ export function popGroups(c, L) {
     // until the statement arrives (CI run 36985423031 ch-44: frames 6-8 of
     // two boundaries held only a hairline rule).
     const major = kb.some(([k, b]) => !/^(rule|kicker|folio|end|line)/.test(k) && b.role !== "rule" && b.role !== "data");
-    groups.push({ key: band, show: photo ? "header" : "all", clip: [y0, y1], cx: (x0 + x1) / 2, cy: (t0 + t1) / 2, major });
+    groups.push({ key: band, show: photo ? "header" : "all", clip: [y0, y1], cx: (x0 + x1) / 2, cy: (t0 + t1) / 2, major, enter: enterKind({ key: band }, kb) });
   }
   // Arrival order: the photo, then major groups (top before middle), then minor ones.
   const order = [...groups.filter((g) => g.key === "photo"), ...groups.filter((g) => g.key !== "photo" && g.major), ...groups.filter((g) => g.key !== "photo" && !g.major)];

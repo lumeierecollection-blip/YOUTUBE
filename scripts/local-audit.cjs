@@ -613,13 +613,13 @@ async function zonesNoOverlap(video, beats) {
 }
 
 /**
- * pop-transitions (owner's spec 2026-10-02): across every beat boundary the
- * composition replaces itself in place — no frame of the 10-frame window may
- * be empty (the old "cut" left blank frames between beats). Every frame from
- * the boundary to +10 must hold content above the caption row (>= 12 ink rows
- * at 1/4 scale). Where it stops: element MOVEMENT (> 10 px) is not measured
- * here — the compositor (full-canvas.jsx PopGroups) only scales elements in
- * place about their own centre, with a static camera, by construction.
+ * pop-transitions (owner's spec 2026-10-02; the boundary is a hard cut since
+ * 2026-10-18, visual/transitions.js, measured from the reference videos): no
+ * frame of the 10-frame window after a cut may be empty. Every frame from the
+ * boundary to +10 must hold content above the caption row (>= 12 ink rows at
+ * 1/4 scale). Where it stops: it measures presence, not motion — a cutout band
+ * rising in from below counts as soon as it is inside the frame, and nothing
+ * here checks that the rise looks right (that is the rendered-frame review).
  */
 function popTransitions(video, m) {
   const bad = [];

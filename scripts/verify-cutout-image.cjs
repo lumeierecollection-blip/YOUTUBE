@@ -18,10 +18,8 @@
  * "no provider answered" (NONE) all reject. Nothing is cached: every PNG is
  * verified every time it is about to be used.
  *
- * Providers, the same chain as verify-person-image.cjs: Groq
- * $GROQ_VISION_MODEL (qwen/qwen3.8-27b) -> Gemini gemini-3.5-flash-lite ->
- * Ollama $OLLAMA_VISION_MODEL (qwen2.5vl:3b). A provider that errors or
- * answers malformed JSON falls to the next.
+ * Providers: vision-providers.cjs — Ollama ($OLLAMA_VISION_MODEL) by default;
+ * $VISION_PROVIDERS can add groq / gemini.
  *
  * Where this stops: the verdict is a vision model's reading of one image,
  * not ground truth; a small model can be wrong in either direction. The
@@ -86,41 +84,10 @@ async function imageDataUrl(pngPath) {
   return `data:image/jpeg;base64,${buf.toString("base64")}`;
 }
 
-// `norm`: the answer parser (verify-place-image.cjs passes its own).
+// `norm`: the answer parser (verify-place-image.cjs passes its own). Which
+// model answers is decided in vision-providers.cjs (Ollama by default).
 async function askProviders(messages, norm = normalize) {
-  const tried = [];
-  // 1. Groq (vision model). Its free tier rate-limits per minute and says how
-  // long to wait ("try again in 16.9s"): wait that out (<= 30 s, twice) rather
-  // than reject — run 36944700437 lost 72 verifications to these 429s.
-  try {
-    const groq = require("./groq-client.cjs");
-    for (let k = 0; k < 3; k++) {
-      const g = await groq.callGroq(messages, { maxTokens: 200, temperature: 0 });
-      const v = norm(g);
-      if (v) return { provider: "groq", v, tried };
-      const wait = Number((String(g?.detail || "").match(/try again in ([\d.]+)s/) || [])[1]);
-      if (g?.error === "quota_exhausted" && Number.isFinite(wait) && wait <= 30 && k < 2) { await new Promise((r) => setTimeout(r, (wait + 1) * 1000)); continue; }
-      tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
-      break;
-    }
-  } catch (e) { tried.push(`groq: ${e.message}`); }
-  // 2. Gemini flash-lite.
-  try {
-    const { callGemini } = await import("../src/lib/gemini-client.js");
-    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 200, temperature: 0, noCache: true, tag: "verify-cutout" });
-    const v = norm(g);
-    if (v) return { provider: "gemini", v, tried };
-    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`gemini: ${e.message}`); }
-  // 3. Ollama (local vision model).
-  try {
-    const ollama = require("./ollama-client.cjs");
-    const o = await ollama.callOllama(messages, { maxTokens: 200, temperature: 0 });
-    const v = norm(o);
-    if (v) return { provider: "ollama", v, tried };
-    tried.push(`ollama: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`ollama: ${e.message}`); }
-  return { provider: null, v: null, tried };
+  return require("./vision-providers.cjs").askVision(messages, norm, { maxTokens: 200 });
 }
 
 async function verifyCutoutImage(pngPath, name) {

@@ -1027,6 +1027,9 @@ jobs:
             data/visual-plans/${{ matrix.channel_id }}/
             data/renders/qa-counts.json
             src/skills/remotion-render/public/asset-library/manifest.json
+            # Every accepted cutout PNG with its sidecar (source, licence, the Ollama verdict and
+            # the blind pass's subject) — what reached the video, and why.
+            src/skills/remotion-render/public/cutouts-live/
           retention-days: 7
 
       # No-render must not pass (run 37380168306, ch-1).

@@ -185,6 +185,8 @@ async function callOllama(messages, opts = {}) {
   try {
     const r = await request("/api/generate", {
       model, prompt, images: images.length ? images : undefined, format: "json", stream: false,
+      // Thinking models (qwen3.5) spend the whole answer budget on reasoning and return nothing under format:json.
+      think: opts.think === true,
       options: { temperature, num_predict: maxTokens, num_ctx: numCtx },
       ...(opts.keepAlive !== undefined ? { keep_alive: opts.keepAlive } : {}),
     }, timeoutMs);

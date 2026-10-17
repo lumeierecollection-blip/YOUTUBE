@@ -19,9 +19,8 @@
  * malformed answer, and "no provider answered" all reject — an unverified
  * photo never reaches the render.
  *
- * Providers, cheapest first: Groq $GROQ_VISION_MODEL (qwen/qwen3.8-27b) ->
- * Gemini gemini-3.5-flash-lite -> Ollama $OLLAMA_VISION_MODEL (qwen2.5vl:3b).
- * A provider that errors or answers malformed JSON falls to the next.
+ * Providers: vision-providers.cjs — Ollama ($OLLAMA_VISION_MODEL) by default;
+ * $VISION_PROVIDERS can add groq / gemini.
  *
  * Cache: src/skills/remotion-render/public/entities/verified.json, keyed by
  * the person's slug. The entry holds the latest ACCEPTED photo's verdict
@@ -129,32 +128,7 @@ async function imageDataUrl(imagePath) {
 }
 
 async function askProviders(messages) {
-  const tried = [];
-  // 1. Groq (vision model).
-  try {
-    const groq = require("./groq-client.cjs");
-    const g = await groq.callGroq(messages, { maxTokens: 300, temperature: 0 });
-    const v = normalize(g);
-    if (v) return { provider: "groq", v, tried };
-    tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`groq: ${e.message}`); }
-  // 2. Gemini flash-lite.
-  try {
-    const { callGemini } = await import("../src/lib/gemini-client.js");
-    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 300, temperature: 0, noCache: true, tag: "verify" });
-    const v = normalize(g);
-    if (v) return { provider: "gemini", v, tried };
-    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`gemini: ${e.message}`); }
-  // 3. Ollama (local vision model).
-  try {
-    const ollama = require("./ollama-client.cjs");
-    const o = await ollama.callOllama(messages, { maxTokens: 300, temperature: 0 });
-    const v = normalize(o);
-    if (v) return { provider: "ollama", v, tried };
-    tried.push(`ollama: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
-  } catch (e) { tried.push(`ollama: ${e.message}`); }
-  return { provider: null, v: null, tried };
+  return require("./vision-providers.cjs").askVision(messages, normalize, { maxTokens: 300 });
 }
 
 async function verifyPersonImage(imagePath, personName, { sourceUrl = null, useCache = true } = {}) {

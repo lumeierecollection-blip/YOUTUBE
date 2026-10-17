@@ -36,8 +36,11 @@
  *             only pops
  *   data      labels, kickers, chart labels, captions: POP_SOFT
  *   emphasis  the one-word beat: POP_EMPHASIS
- * Beat transitions never carry the incoming beat's text in: the header is
- * drawn outside the transition layer and pops once the outgoing beat is gone.
+ * Beat transitions (transitions.js, measured from the reference videos
+ * 2026-10-18): a hard cut, then the new scene's groups enter — a cutout band
+ * rises in from below with motion blur, a full-bleed photo settles from a
+ * slight zoom, text is there and builds word by word — under a slow camera
+ * push. Nothing of the outgoing beat survives the cut.
  *
  * Camera through information (beat.canvas.camera_focus): each focus event
  * {at_percent, target} moves the camera over 0.7 s to frame that element
@@ -55,6 +58,7 @@
  */
 import React from "react";
 import { POP, PHOTO_COMPS, popGroups } from "./pop-groups.js";
+import { enterState, cameraPush } from "./transitions.js";
 export { POP, popGroups };
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import { StudioBG } from "./studio-bg.jsx";
@@ -1141,29 +1145,11 @@ function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent
   );
 }
 
-// ── pop-up transitions (owner's spec 2026-10-02) ──────────────────────
-// A beat is shown as element GROUPS — the full-bleed photo (if any), the
-// top-zone group (headline), the middle-zone group (chart / map / number /
-// statement / cutout) — each rendered SETTLED (fully composed: no internal
-// draw, sweep, mask, roll or word-exit is ever on screen), clipped to its
-// zone band and popped IN PLACE about its own centre:
-//   arriving  frames 0-6: scale 0.94 -> 1.04 -> 1.00, opacity 0 -> 1
-//   leaving   frames 0-6 of the next beat: scale 1.00 -> 0.94, opacity 1 -> 0
-// Within a beat the groups arrive in order, 8 frames apart (photo, headline,
-// middle). Across a boundary the outgoing groups shrink and fade while the
-// incoming ones pop, so at the crossover (frame 4) the leaving group is at
-// ~40% and the arriving one at ~60%: the frame is never empty. Nothing moves
-// in space: no slide, wipe, mask, iris, flip, match cut or camera move.
-export function popInState(f) {
-  if (f < 0) return { o: 0, s: POP.S0 };
-  const o = clamp01(f / 5);
-  const s = f <= 4 ? POP.S0 + (POP.OVER - POP.S0) * easeOut(clamp01(f / 4)) : POP.OVER + (1 - POP.OVER) * easeInOut(clamp01((f - 4) / 2));
-  return { o, s: f >= POP.IN ? 1 : s };
-}
-export function popOutState(f) {
-  if (f <= 0) return { o: 1, s: 1 };
-  return { o: 1 - clamp01(f / 6.5), s: 1 - (1 - POP.S0) * clamp01(f / POP.OUT) };
-}
+// ── groups (owner's spec 2026-10-02, entrances re-measured 2026-10-18) ──
+// A beat is shown as element GROUPS (pop-groups.js) — the full-bleed photo (if any), the
+// top-zone group (headline), the middle-zone group (chart / map / number / statement /
+// cutout) — each clipped to its zone band and entering after the hard cut by its
+// transitions.js enterState: o, s, tx, ty and a motion blur along the travel.
 /** The frame a beat is drawn at: every element in, none leaving (word exits start at >= 70%). */
 // LIST-BUILD / TIMELINE add items as the narrator reaches them (up to 0.6 s before
 // the end) and have no word exits: they settle at the last frame, or later items
@@ -1191,16 +1177,28 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
   return groups.map((g) => {
     const p = state(g);
     if (p.o <= 0.001) return null;
+    // The band's clip rides WITH it (it is on the moving layer): a band travelling in from below
+    // enters from the frame's edge, still cut to its own band — the header drawn in the same
+    // layer never shows inside it.
     const clip = g.clip ? `inset(${g.clip[0]}px 0 ${FRAME.h - g.clip[1]}px 0)` : "none";
+    const blur = p.blur > 0.5 ? Math.round(p.blur) : 0, fid = `mb-${idx}-${g.key}-${blur}`;
+    const dir = Math.hypot(p.tx || 0, p.ty || 0) || 1;
     return (
-      <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
-        <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
+      <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, opacity: p.o,
+        transform: `translate(${(p.tx || 0).toFixed(1)}px, ${(p.ty || 0).toFixed(1)}px)`, filter: blur ? `url(#${fid})` : "none" }}>
+        {blur ? (
+          <svg width="0" height="0" style={{ position: "absolute" }}>
+            <filter id={fid} x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation={`${(blur * Math.abs(p.tx || 0) / dir).toFixed(1)} ${(blur * Math.abs(p.ty || 0) / dir).toFixed(1)}`} />
+            </filter>
+          </svg>
+        ) : null}
+        <div style={{ position: "absolute", inset: 0, clipPath: clip, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
           {/* Part D (owner's spec 2026-10-03, "motion on every beat"): every group is drawn at the
               beat's LIVE frame, so its own build plays — words pop one by one, bars grow, the
               line and the arrows draw, nodes pop in sequence, the number counts up, the map
               outlines its region. (Until today the compositor drew every group SETTLED.) Word
-              exits are off (exitAt 9), so nothing leaves before the beat's pop-out. The
-              outgoing beat is drawn at its last frame: complete. */}
+              exits are off (exitAt 9), so nothing leaves before the hard cut. */}
           <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
         </div>
       </div>
@@ -1266,24 +1264,12 @@ export function CanvasVideo({ plan }) {
   // White caption only once the photo group has popped in behind it.
   // (the photo group may pop on its word — word-level sync — so its own arrival frame is used)
   const photoAt = popGroups(c, cLayout).find((g) => g.key === "photo")?.at ?? 0;
-  const onPhoto = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo && local >= start + photoAt + 3;
-  // The outgoing beat must stay mounted until the incoming one actually has something on
-  // screen. It used to be unmounted on a fixed count (`local <= POP.OUT`, 6 frames), which
-  // can only honour "the frame is never empty" if the incoming beat's FIRST group always
-  // lands inside those 6 frames. It does not: arrival is content-dependent, and
-  // entrance_style "visual-first" on a TYPE beat schedules the top band — the headline,
-  // i.e. the sentence's own statement — at `at: ENTRANCE.TEXT_AFTER_VISUAL` (14). Measured
-  // on run 37380168306 ch-2 (avalonbay beat 5, TYPE-FULL + visual-first): ink rows above
-  // the caption fell 360 -> 319 -> 0 for seven frames (f6-f12) and only returned at f14, so
-  // pop-transitions rejected the video. The same class is recorded at pop-groups.js:45-48
-  // from run 36985423031 ch-44.
-  //
-  // So the gate is the incoming beat's own opacity, not a frame budget. The outgoing beat
-  // keeps rendering its LAST frame (live={prev.duration_frames - 1}), so holding it is a
-  // complete, static frame - not a frozen or half-drawn one - and it releases as soon as the
-  // incoming group is visible.
-  const inGroups = popGroups(c, cLayout);
-  const incomingHasInk = inGroups.some((g) => popInState(local - start - g.at).o > 0.001);
+  const photoBeat = PHOTO_COMPS.includes(cLayout.composition) && !!c.photo;
+  const onPhoto = photoBeat && local >= start + photoAt;
+  // A hard cut (transitions.js): only this beat is drawn; each group enters at its own frame.
+  // Cutouts alternate straight up / up from the bottom-left, beat by beat.
+  const side = i % 2 ? -1 : 0;
+  const inState = (g) => enterState(g.enter || "cut", local - start - g.at, { side });
   return (
     <ShadowOn.Provider value={false}>
     {/* Uniform white on every beat (backgrounds.js); a full-bleed photo beat
@@ -1296,12 +1282,9 @@ export function CanvasVideo({ plan }) {
         {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
         {bg.gradient ? <div style={{ position: "absolute", inset: 0, background: BG_GRADIENT }} /> : null}
       </>); })()}
-      {prev && (local <= POP.OUT || !incomingHasInk) ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
-      {/* Micro motion (part D.1, every beat): the composition is never still — a 1 px drift
-          across the beat and a 0.3% breath (one cycle per 3 s), about the frame's centre. */}
-      <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
-        transform: `translate(${(-0.5 + clamp01(local / Math.max(1, beat.duration_frames))).toFixed(3)}px, 0px) scale(${(1 + 0.003 * Math.sin((2 * Math.PI * local) / (3 * fps))).toFixed(5)})` }}>
-        <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
+      {/* The camera never stops (the references): a slow push across the beat, about the centre. */}
+      <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px", transform: `scale(${cameraPush(local, beat.duration_frames).toFixed(5)})` }}>
+        <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={inState} live={local} />
       </div>
       <CanvasCaption words={beat.spoken} local={local} fps={fps} emphasis={c.emphasis_word} onPhoto={onPhoto} dark={!!c.dark} align={cLayout.flip ? "right" : "left"} blend={cLayout.composition === "COMPARISON-SPLIT"} maxSize={cLayout.boxes.cutout0 ? 40 : 58} />
       {/* Source credit (owner's spec 2026-10-03, part C): only on a beat that shows a fetched

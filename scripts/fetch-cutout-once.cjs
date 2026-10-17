@@ -8,14 +8,17 @@
  *     -> { png_path, abs_path, source_url, license, verdict: "MATCH", literal, seen, width, height } | null
  *
  * For the concept: search Pixabay ("<concept> isolated", then "<concept>";
- * image_type=photo, safesearch=true), keep the first 6 results whose tags
- * name every word of the concept, and for each in order: download the
+ * image_type=photo, safesearch=true) and then Wikimedia Commons (free licences
+ * only; the second source, and the only one where there is no Pixabay key), keep
+ * up to 8 results whose tags / file title name every word of the concept, and
+ * for each in order: download the
  * largest size -> rembg u2net + the geometric checks (scripts/cutout_lib.py:
  * object >= 12% of the image, no opaque pixel on all four edges, one object,
  * real transparency) -> content verification of the ISOLATED PNG
  * (verify-cutout-image.cjs: accepted only for verdict LITERAL and
  * recognizable; FIGURATIVE, DIFFERENT, not recognizable and "no provider
- * answered" all reject) -> saved to
+ * answered" all reject; then a blind pass names the subject without being told
+ * the concept, and it must agree) -> saved to
  * public/cutouts-live/<channel>/<beat>-<slug>.png with a sidecar JSON.
  * All 6 rejected -> null, never the second-best: the beat renders without a
  * cutout. There is no library to fall back to (deleted 2026-10-02).
@@ -26,6 +29,10 @@
  * Reuse: per process (one channel's render), a concept in two beats is
  * fetched once, but the PNG is verified again before each reuse. Nothing is
  * kept across runs; public/cutouts-live/ is not committed.
+ *
+ * Resolution: an isolated object smaller than MIN_SIDE px on its long side is rejected
+ * before the judge sees it — the hero cutout is drawn ~600-900 px tall on a 1080x1920
+ * frame (the reference videos' cutouts are crisp), and an upscaled thumbnail is not.
  *
  * Where this stops: the verdict is a vision model's reading (an older prompt
  * once passed a sun dial as "calendar"); the frame reviewer checks the
@@ -92,6 +99,9 @@ function runPy(args, timeoutMs = 180000) {
 
 // 8 candidates per concept (owner's spec 2026-10-03, part E.3; was 6).
 const MAX_CANDIDATES = 8;
+const MIN_SIDE = Number(process.env.CUTOUT_MIN_SIDE || 600);
+// Commercial use and derivatives allowed (a cutout IS a derivative): no NC, no ND.
+const FREE_LICENCE = /^(cc0|cc[- ]by(-sa)?( \d\.\d)?|public domain|pdm?)(\s|$)/i;
 const runCache = new Map();   // per process: `${channel}:${slug(concept)}` -> Promise<result|null>
 const { verifyImage } = require("./verify-image.cjs");
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; cutouts)";
@@ -176,6 +186,26 @@ async function moneyCandidates(concept, scene) {
   return out.filter((c) => c.url);
 }
 
+// Wikimedia Commons, any concept: file search, then each file's URL and licence. Only a free
+// licence (CC0, CC BY, CC BY-SA, public domain) is kept; its author is kept for attribution.
+async function commonsCandidates(concept, want) {
+  const j = await getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=30&srsearch=${encodeURIComponent(concept)}`);
+  const titles = (j?.query?.search || []).map((h) => h.title)
+    .filter((t) => /\.(jpe?g|png)$/i.test(t) && wordsOf(concept).every((w) => new Set(wordsOf(t)).has(w))).slice(0, want);
+  if (!titles.length) return [];
+  const info = await getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url|size|extmetadata&iiurlwidth=1600&titles=${encodeURIComponent(titles.join("|"))}`);
+  const out = [];
+  for (const pg of Object.values(info?.query?.pages || {})) {
+    const ii = pg.imageinfo?.[0];
+    const lic = String(ii?.extmetadata?.LicenseShortName?.value || "").trim();
+    if (!ii || !FREE_LICENCE.test(lic) || Math.max(ii.width || 0, ii.height || 0) < 900) continue;
+    const artist = String(ii.extmetadata?.Artist?.value || "").replace(/<[^>]+>/g, "").trim().slice(0, 80);
+    out.push({ url: ii.thumburl || ii.url, page: ii.descriptionurl || `https://commons.wikimedia.org/wiki/${encodeURIComponent(pg.title.replace(/ /g, "_"))}`,
+      user: artist, source: "wikimedia commons", license: lic });
+  }
+  return out;
+}
+
 async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   const tag = `ch-${channel} beat ${beat_index} "${concept}"`;
   const log = (m) => console.log(`[cutout] ${tag}: ${m}`);
@@ -202,6 +232,11 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
       if (cands.length >= MAX_CANDIDATES) break;
     }
   }
+  if (cands.length < MAX_CANDIDATES) {
+    const before = cands.length;
+    for (const c of await commonsCandidates(concept, MAX_CANDIDATES - cands.length)) if (!seen.has(c.url) && cands.length < MAX_CANDIDATES) { seen.add(c.url); cands.push(c); }
+    if (cands.length > before) log(`Wikimedia Commons: ${cands.length - before} free-licence candidate(s)`);
+  }
   if (!cands.length) { log(`no candidate whose tags name it, beat renders without a cutout`); return null; }
   // A bill is a rectangle by nature: the isolation keeps a rectangular object (cutout_lib --rect-ok).
   const flags = ["--max-side", "1024", ...(spec.rect_ok || money ? ["--rect-ok"] : []), ...(spec.grounded ? ["--grounded"] : []), ...(spec.multi ? ["--multi"] : [])];
@@ -227,6 +262,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
     } else rep = await runPy([join(ROOT, "scripts", "cutout_lib.py"), "isolate", raw, iso, ...flags]);
     rmSync(raw, { force: true });
     if (!rep.ok) { log(`candidate ${n} REJECTED (isolation: ${rep.why})`); rejected.isolation++; rmSync(iso, { force: true }); continue; }
+    if (rep.size && Math.max(...rep.size) < MIN_SIDE) { log(`candidate ${n} REJECTED (isolated object ${rep.size.join("x")} px, < ${MIN_SIDE} px on its long side)`); rejected.isolation++; rmSync(iso, { force: true }); continue; }
     const v = await verify(iso, concept, scene);
     if (!v.accept) {
       for (const k of ["shows", "kind", "quality", "flat"]) if (String(v.reason).includes(`${k}=`)) rejected[k]++;
@@ -243,8 +279,9 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
     let width = null, height = null;
     try { const m = await require("sharp")(join(dir, file)).metadata(); width = m.width; height = m.height; } catch {}
     const out = { png_path: `cutouts-live/${channel}/${file}`, abs_path: join(dir, file), concept, name, source: c.source || "pixabay", source_url: c.page,
-      license: c.license || "Pixabay Content License", attribution: c.user ? `Image by ${c.user} on Pixabay` : c.source === "pixabay" ? "Pixabay" : "Wikimedia",
-      verdict: "MATCH", literal: v.kind, shows: v.shows, quality: v.quality, flat: v.flat, seen: v.seen, provider: v.provider,
+      license: c.license || "Pixabay Content License",
+      attribution: c.source === "pixabay" ? (c.user ? `Image by ${c.user} on Pixabay` : "Pixabay") : c.user ? `${c.user}, ${c.license}, via Wikimedia Commons` : `Wikimedia Commons (${c.license})`,
+      verdict: "MATCH", literal: v.kind, shows: v.shows, quality: v.quality, flat: v.flat, seen: v.seen, blind: v.blind || null, provider: v.provider,
       width, height, fetched_at: new Date().toISOString() };
     writeFileSync(join(dir, file.replace(/\.png$/, ".json")), JSON.stringify(out, null, 2) + "\n");
     log(`candidate ${n} ACCEPTED (${v.reason}, saw "${v.seen}") ${c.page}`);
@@ -254,7 +291,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   return null;
 }
 
-module.exports = { fetchCutoutForBeat, qualifyConcept, pixabay, wordsOf, FLAT_MONEY, _resetRunCache: () => runCache.clear() };
+module.exports = { fetchCutoutForBeat, qualifyConcept, pixabay, commonsCandidates, wordsOf, FLAT_MONEY, FREE_LICENCE, _resetRunCache: () => runCache.clear() };
 
 if (require.main === module) {
   require("dotenv/config");
