@@ -20,7 +20,7 @@ function snapState(f) {
 }
 import { sway, SWAY_X, SWAY_Y } from "../visual/sway.js";
 import { readableAccent } from "../visual/canvas-layout.js";
-import { planClone } from "./clone-plan.js";
+import { planClone, splitFigure } from "./clone-plan.js";
 import { treatmentBoxes, FRAME, parseDate } from "./clone-layout.js";
 
 
@@ -85,10 +85,14 @@ function Display({ shot, B, st, P, profile }) {
 
 function Figure({ shot, B, st, P, profile }) {
   const d = profile.type.display;
-  const { size } = fitLines(shot.figure.value, B.text.w, { family: d.family, caps: false, max: 300, min: 90, maxLines: 1 });
+  // the NUMBER big on its own line, the unit under it: on one line "1.4 billion dollars" fitted the width at ~90 px (board 38976972038 ch-8)
+  const { num, unit } = splitFigure(shot.figure.value);
+  const { size } = fitLines(num, B.text.w, { family: d.family, caps: false, max: 300, min: 90, maxLines: 1 });
+  const u = unit ? fitLines(unit, B.text.w, { family: d.family, caps: false, max: Math.round(size * 0.42), min: 44, maxLines: 1 }).size : 0;
   return (
     <Plate box={B.text} bg={B.text.plated ? P.ink : "transparent"} style={{ zIndex: 5, padding: B.text.plated ? "28px 36px" : 0, boxSizing: "border-box", outline: B.text.plated ? `3px solid ${P.paper}` : "none", width: B.text.plated ? "auto" : B.text.w, maxWidth: B.text.w, opacity: st.o, transform: `scale(${st.s})`, textAlign: B.text.align === "right" ? "right" : B.text.plated ? "left" : "center" }}>
-      <div style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1, color: B.text.plated ? P.paper : readableAccent(P.accent, P.ground), whiteSpace: "nowrap" }}>{shot.figure.value}</div>
+      <div style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: size, lineHeight: 1, color: B.text.plated ? P.paper : readableAccent(P.accent, P.ground), whiteSpace: "nowrap" }}>{num}</div>
+      {unit ? <div style={{ fontFamily: `"${d.family}", Helvetica, sans-serif`, fontStyle: d.style === "italic" ? "italic" : "normal", fontWeight: d.weight, fontSize: u, lineHeight: 1.05, color: B.text.plated ? P.paper : P.ink, whiteSpace: "nowrap" }}>{unit}</div> : null}
       {shot.figure.label ? <div style={{ marginTop: 14, fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, fontSize: 40, letterSpacing: "0.12em", textTransform: "uppercase", color: B.text.plated ? P.paper : P.ink }}>{shot.figure.label}</div> : null}
     </Plate>
   );
@@ -212,10 +216,15 @@ function SubjectCell({ g, w, h, P, profile, round, inv, free }) {
   const labelFace = { fontFamily: `"${profile.type.label.family}", Helvetica, sans-serif`, fontWeight: 500, letterSpacing: "0.08em", textTransform: "uppercase", color: ink, textAlign: "center" };
   const wrap = { width: w, height: h, boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: round ? "10% 12%" : small ? "5% 6%" : "7%", overflow: "hidden" };
   if (g.kind === "figure") {
-    const { size } = fitLines(g.name, w * 0.8, { family: fam, caps: false, max: small ? 150 : 300, min: 44, maxLines: 1 });
+    // the number big, its unit on the line under it ("736" / "million dollars"), so the figure is the frame's biggest thing (board 38976972038 ch-8: one line fitted to
+    // the width left "736 million dollars" smaller than the caption word beside it)
+    const { num, unit } = splitFigure(g.name);
+    const { size } = fitLines(num, w * 0.8, { family: fam, caps: false, max: small ? 170 : 340, min: 44, maxLines: 1 });
+    const u = unit ? fitLines(unit, w * 0.86, { family: fam, caps: false, max: Math.round(size * 0.42), min: 30, maxLines: 1 }).size : 0;
     return (
       <div style={wrap}>
-        <div style={{ ...face, fontSize: size, color: inv ? P.paper : readableAccent(P.accent, "#FFFFFF") }}>{g.name}</div>
+        <div style={{ ...face, fontSize: size, color: inv ? P.paper : readableAccent(P.accent, "#FFFFFF") }}>{num}</div>
+        {unit ? <div style={{ ...face, fontSize: u, lineHeight: 1.05 }}>{unit}</div> : null}
         {g.label ? <div style={{ ...labelFace, marginTop: 12, fontSize: small ? 26 : 40, whiteSpace: "normal", maxWidth: w * 0.84 }}>{g.label}</div> : null}
       </div>
     );

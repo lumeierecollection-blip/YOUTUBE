@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf, quantityIn, keyFigureIndex } from "../../src/skills/remotion-render/clone/clone-plan.js";
+import { planClone, lawProblems, cutPoints, displayWords, heroesOf, namesOf, typedEntitiesOf, cloneCanvasFor, excerptOf, figuresOf, quantityIn, keyFigureIndex, writtenWords, splitFigure } from "../../src/skills/remotion-render/clone/clone-plan.js";
 
 const G = JSON.parse(readFileSync(new URL("../../config/clone-grammar.json", import.meta.url), "utf8"));
 const FPS = 30;
@@ -384,4 +384,34 @@ test("the key shot carries the stated quantity, not a bare year (board 388895777
   assert.equal(keyFigureIndex([{ kind: "figure", name: "2013" }, { kind: "figure", name: "1%" }]), 1);
   assert.equal(keyFigureIndex([{ kind: "date", name: "October 6, 2026" }, { kind: "figure", name: "$40 million" }]), 1);
   assert.equal(keyFigureIndex([{ kind: "figure", name: "2013" }]), 0);
+});
+
+// board 38976972038 ch-8: the kicker line set "twenty twenty-six on September twenty-fifth" on screen where the sentence says "2026 on September 25th"
+test("writtenWords: the spoken words come back as the sentence writes them; a number run is one written figure", () => {
+  const sp = (s) => s.split(" ").map((text) => ({ text }));
+  assert.deepEqual(writtenWords(sp("bank to fail in twenty twenty-six on September twenty-fifth."), "Nano Banc became the sixth U.S. bank to fail in 2026 on September 25th."),
+    ["bank", "to", "fail", "in", "2026", null, "on", "September", "25th."]);
+  assert.deepEqual(writtenWords(sp("held roughly one point four billion dollars in total value."), "These six failed banks held roughly 1.4 billion dollars in total value."),
+    ["held", "roughly", "1.4 billion dollars", null, null, null, null, "in", "total", "value."]);
+  assert.deepEqual(writtenWords(sp("the sixth U.S. bank"), "Nano Banc became the sixth U.S. bank"), ["the", "sixth", "U.S.", "bank"]);
+  assert.deepEqual(writtenWords(sp("Six regional banks"), "6 regional banks"), ["6", "regional", "banks"]);
+  // a number run the sentence has no figure for is never shown in its spoken form
+  assert.deepEqual(writtenWords(sp("about twenty people"), "about a score of people"), ["about", null, "people"]);
+});
+
+test("splitFigure: the number on its own line, the unit under it", () => {
+  assert.deepEqual(splitFigure("736 million dollars"), { num: "736", unit: "million dollars" });
+  assert.deepEqual(splitFigure("$1.4 billion"), { num: "$1.4", unit: "billion" });
+  assert.deepEqual(splitFigure("35%"), { num: "35%", unit: "" });
+  assert.deepEqual(splitFigure("30-second"), { num: "30-second", unit: "" });
+});
+
+test("a figure's label does not repeat the figure's unit (DOLLARS ASSETS under 736 million dollars)", () => {
+  const f = figuresOf({ sentence: "Nano Banc holds 736 million dollars in assets.", data: { value: "736 million dollars", label: "dollars assets" }, named_entities: [] });
+  assert.equal(f[0].label, "assets");
+});
+
+test("display words keep an abbreviation's last period (U.S., not U.S)", () => {
+  const spoken = [{ text: "U.S.", abs: 0 }, { text: "banks", abs: 10 }, { text: "failed", abs: 20 }];
+  assert.match(displayWords(spoken, 0, 100, [], 3).text, /^U\.S\.(\s|$)/);
 });

@@ -23,7 +23,7 @@ const STOP = new Set("a an the and or but of to in on at by for with from as is 
 // Words a display phrase may not START or END on although they are not function words: verbs of being / holding / saying and adverbs that dangle
 // ("AIR HELD ALMOST", "CAVE SITS", "SOUTHEASTERN ROMANIA FAR", "DEAL ANIMALS" were real picks). Without a parser this is a list, not a grammar: it stops
 // the commonest fragments, it does not guarantee a phrase.
-const WEAK = new Set("held sits sit sat said says say made make makes found find finds got get gets had have went go goes came come comes took take takes seemed seem seems became become becomes almost far very quite rather really still even also ever never always often just only nearly mostly already soon later early late deal lot kind sort way thing things something anything great many much some several few little various certain other another such whole each every any".split(" "));
+const WEAK = new Set("held hold holds holding sits sit sat said says say made make makes found find finds got get gets had have went go goes came come comes took take takes seemed seem seems became become becomes almost far very quite rather really still even also ever never always often just only nearly mostly already soon later early late deal lot kind sort way thing things something anything great many much some several few little various certain other another such whole each every any".split(" "));
 const NUMBER_WORDS = new Set("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred thousand million billion percent dollars dollar twenty-six twenty-five twenty-four twenty-three twenty-two twenty-one first second third fourth fifth".split(" "));
 // spoken ordinals ("April sixteenth", "the twenty-first"): the spoken form of a date's day, never display type either
 for (const w of "first second third fourth fifth sixth seventh eighth ninth tenth eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth eighteenth nineteenth twentieth thirtieth fortieth fiftieth".split(" ")) NUMBER_WORDS.add(w);
@@ -124,7 +124,12 @@ export function figuresOf(canvas) {
     if (out.some((x) => x.kind === kind && (kind === "date" ? x.name.toLowerCase() === n.toLowerCase() : digits(x.name) === digits(n) && digits(n)))) return;
     out.push({ kind, name: n, label });
   };
-  if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? trimLabel(c.data.label) : null);
+  // the label never repeats the figure's own unit: "736 million dollars" over "DOLLARS ASSETS" (board 38976972038 ch-8) is "736 million dollars" over "ASSETS"
+  const labelOf = (value, label) => {
+    const own = new Set(String(value).toLowerCase().split(/[^a-z]+/).filter(Boolean));
+    return trimLabel(String(label).split(/\s+/).filter((w) => !own.has(w.toLowerCase().replace(/[^a-z]/g, ""))).join(" "));
+  };
+  if (c.data && c.data.value) add("figure", c.data.value, c.data.label ? labelOf(quantityIn(c.sentence, c.data.value), c.data.label) : null);
   for (const e of c.named_entities || c.entities || []) {
     if (!e || !e.name) continue;
     // a figure is drawn only when the sentence writes it in DIGITS: "three" and "one" as big type read as stray words (board 38870271640 ch-5: "one three" panels)
@@ -149,7 +154,54 @@ function scoreWord(text, names) {
 }
 
 /** A word as it is DISPLAYED: the spoken word without the punctuation around it (a figure keeps its $ % and decimal point). */
-const shown = (t) => String(t || "").replace(/^[^\w$€£]+/, "").replace(/[^\w%]+$/, "");
+const shown = (t) => {
+  const s = String(t || "").replace(/^[^\w$€£]+/, "").replace(/[^\w%]+$/, "");
+  // an abbreviation keeps its last period: "U.S." shown as "U.S" (board 38976972038 ch-8) is a misspelling on screen
+  return /^(?:[A-Za-z]\.)+[A-Za-z]$/.test(s) ? s + "." : s;
+};
+
+/** A figure as two lines: the number, big, and its unit under it ("736" / "million dollars"). { num, unit } — unit is "" when the figure is one token. */
+export function splitFigure(value) {
+  const m = String(value || "").trim().match(/^([$€£]?\d[\d,.]*(?:%|[kmb]\b)?)\s+(.+)$/i);
+  return m ? { num: m[1], unit: m[2] } : { num: String(value || "").trim(), unit: "" };
+}
+
+/**
+ * The narration as the SENTENCE WRITES IT, word for word against the spoken words: [displayText | null] aligned with `spoken`. The TTS words are the spoken
+ * form ("twenty twenty-six on September twenty-fifth"); the kicker line set them on screen as such (board 38976972038 ch-8) where the sentence says
+ * "2026 on September 25th", and the naming check reads the spoken form as a wrong figure. A spoken word matches the sentence's next words directly; a run
+ * of spoken number words is ONE written figure (the next sentence token with a digit, plus the scale / unit words the run also spoke: "1.4 billion dollars"),
+ * shown on the run's first word, its other words null. A number run with no written figure to match is null (never the spoken form); any other word the
+ * sentence does not have is shown as spoken.
+ */
+export function writtenWords(spoken, sentence) {
+  const W = String(sentence || "").split(/\s+/).filter(Boolean);
+  const norm = (t) => String(t || "").toLowerCase().replace(/^[^\w$€£]+|[^\w%]+$/g, "");
+  const numberish = (t) => NUMBER_WORDS.has(norm(t)) || /^(point|and|oh)$/.test(norm(t));
+  const out = new Array((spoken || []).length).fill(undefined);
+  let p = 0;
+  for (let i = 0; i < out.length; i++) {
+    const sw = norm(spoken[i].text);
+    if (!sw) { out[i] = String(spoken[i].text || "").trim(); continue; }
+    let j = -1;
+    for (let q = p; q < Math.min(W.length, p + 12); q++) if (norm(W[q]) === sw) { j = q; break; }
+    if (j >= 0) { out[i] = W[j]; p = j + 1; continue; }
+    if (!NUMBER_WORDS.has(sw)) { out[i] = String(spoken[i].text || "").trim(); continue; }
+    let e = i;
+    while (e + 1 < out.length && numberish(spoken[e + 1].text) && !(norm(spoken[e + 1].text) === "and" && !NUMBER_WORDS.has(norm(spoken[e + 2]?.text)))) e++;
+    const group = new Set(spoken.slice(i, e + 1).map((w) => norm(w.text)));
+    let d = -1;
+    for (let q = p; q < Math.min(W.length, p + 5); q++) if (/\d/.test(W[q])) { d = q; break; }
+    if (d < 0) { for (let x = i; x <= e; x++) out[x] = null; i = e; continue; }
+    const parts = [W[d]];
+    let q = d + 1;
+    while (q < W.length && group.has(norm(W[q])) && !/\d/.test(W[q])) parts.push(W[q++]);
+    out[i] = parts.join(" ");
+    for (let x = i + 1; x <= e; x++) out[x] = null;
+    p = q; i = e;
+  }
+  return out;
+}
 
 /**
  * The best run of <= `max` contiguous spoken words inside [from, to): { text, at, emphasis, words } (at = the first word's frame).
@@ -252,6 +304,8 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
     const canvas = b.scene?.canvas || {};
     const heroes = heroesOf(canvas), names = namesOf(canvas), ents = typedEntitiesOf(canvas), figs = figuresOf(canvas);
     const spoken = (b.spoken || []).map((w) => ({ ...w, abs: s + w.from }));
+    const written = writtenWords(spoken, canvas.sentence || b.original_text || b.text || "");
+    spoken.forEach((w, i) => { w.written = written[i]; });
     const cuts = cutPoints(s, e, len, minLen, spoken);
     const nShots = cuts.length - 1;
     // A LABEL UNDER A PICTURE NAMES THAT PICTURE'S OWN ENTITY, NEVER ANOTHER. Board 38805009555 ch-49 beat 5: a photo of James Wan carried a plate "Sam Raimi" (another entity
@@ -349,7 +403,8 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       if (!hero && !subject && !quote) {
         const inShot = spoken.filter((w) => w.abs >= f0 && w.abs < f1 && clean(w.text));
         const runAt = disp ? inShot.findIndex((w) => w.abs === disp.at) : -1;
-        const mk = (ws) => ws.map((w) => ({ text: String(w.text).trim(), at: Math.max(f0 + 1, Math.min(f1 - 4, w.abs)) }));
+        // each word as the sentence writes it (writtenWords): "2026", never "twenty twenty-six"; the other words of a number run are dropped
+        const mk = (ws) => ws.filter((w) => w.written !== null).map((w) => ({ text: w.written === undefined ? String(w.text).trim() : String(w.written), at: Math.max(f0 + 1, Math.min(f1 - 4, w.abs)) }));
         const before = runAt >= 0 ? inShot.slice(0, runAt) : inShot;
         const after = runAt >= 0 ? inShot.slice(runAt + disp.words) : [];
         kicker = before.length || after.length ? { before: mk(before), after: mk(after) } : null;
