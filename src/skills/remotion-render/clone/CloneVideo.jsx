@@ -162,7 +162,7 @@ function Label({ text, B, st, P, profile, plated }) {
   );
 }
 
-function Card({ shot, B, st, P, profile, frame, stDisp }) {
+function Card({ shot, B, st, P, profile, frame, stDisp, stRule }) {
   // KICKER (ref-03 "the more it / SLIPS AWAY"): the shot's own narration as ONE continuous line in two sizes — the words before the key phrase in a small serif
   // italic, the key phrase big, the words after it small again — each word appearing on its spoken frame. No card, no box, no marker highlight (the marker is
   // reserved for quoted statements, owner 2026-10-16).
@@ -200,6 +200,7 @@ function Card({ shot, B, st, P, profile, frame, stDisp }) {
       {small(k.before)}
       {big}
       {small(k.after)}
+      {stRule ? <div style={{ marginTop: 34, width: 520, height: 0, borderTop: `3px solid ${P.ink}`, borderBottom: `3px solid ${P.ink}`, paddingTop: 4, boxSizing: "content-box", opacity: stRule.o, transform: `scaleX(${stRule.s})` }} /> : null}
     </div>
   );
 }
@@ -323,10 +324,12 @@ function ShotView({ shot, shotIndex, frame, P, profile, bw }) {
   const plated = !!B.text.plated;
   return (
     <AbsoluteFill>
-      {stShape ? <Shape shot={shot} B={B} st={stShape} P={P} /> : null}
+      {/* a narration (kicker) shot draws its rule INSIDE its own text column (Card): at the layout's fixed y it struck through the centred words
+          ("unknown DNA", "roadblock", "court": board 38976972038 ch-6) */}
+      {stShape && !(shot.kicker && shot.shape === "rule") ? <Shape shot={shot} B={B} st={stShape} P={P} /> : null}
       <Hero shot={shot} B={B} st={stHero} P={P} profile={profile} bw={bw} local={local} idx={shotIndex} />
       {shot.subject && !shot.hero ? <SubjectPlate shot={shot} B={B} st={stHero} P={P} profile={profile} /> : null}
-      {shot.kicker && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} frame={frame} stDisp={stDisp} /> : null}
+      {shot.kicker && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} frame={frame} stDisp={stDisp} stRule={shot.shape === "rule" ? stShape || { o: 0, s: 1 } : null} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
       {stDisp && shot.display && !shot.kicker ? <Display shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}
       {stDisp && shot.quote ? <Quote shot={shot} B={B} st={stDisp} P={P} profile={profile} /> : null}

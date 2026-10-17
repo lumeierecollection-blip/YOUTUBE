@@ -1856,7 +1856,9 @@ export function attachConceptVisuals({ wanted, results, used, stats, channelId }
  * drawings, abstractions and specific named things); each is fetched as a Pixabay PHOTO, isolated and verified LITERAL by fetch-cutout-once.cjs, best
  * proposal first, until the beat has PROPS_PER_BEAT. No picture is shown twice in a video (usedImages). Gemini silent -> nothing invented, logged.
  */
-const PROPS_PER_BEAT = 2;
+// 3, not 2 (board 38976972038 ch-8): a beat that verified one of its two props showed that ONE picture on every shot for 13 s. A beat of ~6 shots needs
+// three pictures to rotate; the extra fetches are bounded by CLONE_PROPS_BUDGET_MS.
+const PROPS_PER_BEAT = Number(process.env.CLONE_PROPS_PER_BEAT || 3);
 async function attachCloneProps({ plan, channelId, used }) {
   const { planProps } = await import("./lib/plan-props.mjs");
   const { callGemini } = await import("../src/lib/gemini-client.js");
