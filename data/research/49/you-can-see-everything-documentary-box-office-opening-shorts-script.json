@@ -1,0 +1,66 @@
+{
+  "channel_id": "49",
+  "topic_slug": "you-can-see-everything-documentary-box-office-opening",
+  "format": "shorts",
+  "hook": "Imprisoned Theranos CEO Elizabeth Holmes just drove distributor A24 to a shocking 12 million dollar debut.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Imprisoned Theranos CEO Elizabeth Holmes just drove distributor A24 to a shocking 12 million dollar debut.",
+      "b_roll": [
+        "Cinematic title reveal of You Can See Everything in cinemas"
+      ],
+      "text_overlay": {
+        "text": "Box Office Shock"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On opening weekend, distributor A24 launched You Can See Everything across 800 theaters. Nathan Fielder and Lance Oppenheim directed the project. Elizabeth Holmes stars in You Can See Everything.",
+      "b_roll": [
+        "A24 logo and theater marquee showing 800 screens",
+        "Directors Nathan Fielder and Lance Oppenheim working on set",
+        "Elizabeth Holmes portrait from Theranos era"
+      ],
+      "text_overlay": {
+        "text": "800 Theaters"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Imprisoned Theranos founder Elizabeth Holmes drives the A24 documentary You Can See Everything.",
+      "b_roll": [
+        "Courtroom sketch and prison gates"
+      ],
+      "text_overlay": {
+        "text": "The Theranos Founder"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Critical praise propelled the feature to an estimated 12 million dollar debut. A24 secured massive ticket sales.",
+      "b_roll": [
+        "Box office charts climbing to 12 million dollars",
+        "Packed cinema auditorium with glowing screen light",
+        "Ticket counter with sold out sign"
+      ],
+      "text_overlay": {
+        "text": "$12 Million Debut"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch You Can See Everything in 800 theaters.",
+      "b_roll": [
+        "Movie poster for You Can See Everything"
+      ],
+      "text_overlay": {
+        "text": "You Can See Everything"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://entertainment.ftmq.com/story/a24-releases-nathan-fielder-and-lance-oppenheim-elizabeth-holmes-documentary-1341fc",
+    "https://www.vulture.com/article/you-can-see-everything-box-office-predictions.html"
+  ]
+}

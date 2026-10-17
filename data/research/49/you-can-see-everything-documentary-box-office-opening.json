@@ -1,0 +1,65 @@
+{
+  "topic_slug": "you-can-see-everything-documentary-box-office-opening",
+  "strongest_angle": "Analyzing A24's documentary You Can See Everything, directed by Nathan Fielder and Lance Oppenheim about Elizabeth Holmes, and its impressive box office opening.",
+  "key_facts": [
+    {
+      "fact": "Distributor A24 has released the documentary You Can See Everything in cinemas, directed by filmmakers Nathan Fielder and Lance Oppenheim.",
+      "source_url": "https://entertainment.ftmq.com/story/a24-releases-nathan-fielder-and-lance-oppenheim-elizabeth-holmes-documentary-1341fc",
+      "source_name": "FTMQ Entertainment",
+      "confidence": "high"
+    },
+    {
+      "fact": "The documentary You Can See Everything has opened in cinemas following critical praise and an estimated 12 million dollar debut weekend.",
+      "source_url": "https://entertainment.ftmq.com/story/a24-releases-nathan-fielder-and-lance-oppenheim-elizabeth-holmes-documentary-1341fc",
+      "source_name": "FTMQ Entertainment",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The A24 documentary featuring Nathan Fielder and the now-imprisoned former Theranos CEO Elizabeth Holmes opened in approximately 800 theaters.",
+      "source_url": "https://www.vulture.com/article/you-can-see-everything-box-office-predictions.html",
+      "source_name": "Vulture",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estimated debut weekend box office",
+      "value": 12,
+      "unit": "million dollars",
+      "source_url": "https://entertainment.ftmq.com/story/a24-releases-nathan-fielder-and-lance-oppenheim-elizabeth-holmes-documentary-1341fc"
+    },
+    {
+      "label": "Number of opening theaters",
+      "value": 800,
+      "unit": "theaters",
+      "source_url": "https://www.vulture.com/article/you-can-see-everything-box-office-predictions.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "You Can See Everything",
+      "kind": "object"
+    },
+    {
+      "name": "Elizabeth Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Nathan Fielder",
+      "kind": "person"
+    },
+    {
+      "name": "Lance Oppenheim",
+      "kind": "person"
+    },
+    {
+      "name": "A24",
+      "kind": "organization"
+    },
+    {
+      "name": "Theranos",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
