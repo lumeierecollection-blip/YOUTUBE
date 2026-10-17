@@ -123,7 +123,9 @@ jobs:
       - id: channels
         name: Build channel matrix
         env:
-          REQUESTED: ${{ steps.target.outputs.channels }}
+          # The dispatch INPUT. 8f18b76d's blanket replace pointed this at steps.target (a step of the review-publish job, absent here), so a dispatch's
+          # channel list was always empty and every priority channel ran (run 39012478515: channels=26 started all ten). Schedule events have no inputs -> priority set.
+          REQUESTED: ${{ github.event.inputs.channels }}
         run: |
           MATRIX=$(node -e "
             const fs = require('fs');
