@@ -1,0 +1,62 @@
+{
+  "topic_slug": "adam-lebor-bank-for-international-settlements-history",
+  "strongest_angle": "Explore the hidden history and global influence of the Bank for International Settlements through insights from historian Adam LeBor in his book Tower of Basel.",
+  "key_facts": [
+    {
+      "fact": "Historian Adam LeBor documented the Bank for International Settlements in his book Tower of Basel as an influential global financial institution set up in 1930.",
+      "source_url": "https://adamlebor.com/books/tower_of_basel",
+      "source_name": "Adam LeBor Author Website",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Bank for International Settlements is described by Reuters as one of the world's most important yet opaque institutions, serving as a bank for central banks.",
+      "source_url": "https://www.hachettebookgroup.com/titles/adam-lebor/tower-of-basel/9781541706217",
+      "source_name": "Hachette Book Group",
+      "confidence": "high"
+    },
+    {
+      "fact": "Adam LeBor wrote Tower of Basel as the first investigative history of the Bank for International Settlements, as noted by the Museum of American Finance.",
+      "source_url": "https://www.moaf.org/events/2013-06-04-adam-lebor-on-tower-of-basel-the-first-investigative-history-of-the-bank-for-international-settlements",
+      "source_name": "Museum of American Finance",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Bank for International Settlements creation",
+      "value": 1930,
+      "unit": "year",
+      "source_url": "https://adamlebor.com/books/tower_of_basel"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "An absorbing and thorough examination of one of the world’s most important yet opaque institutions.",
+      "speaker": "Reuters",
+      "source_name": "Hachette Book Group",
+      "source_url": "https://www.hachettebookgroup.com/titles/adam-lebor/tower-of-basel/9781541706217"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Adam LeBor",
+      "kind": "person"
+    },
+    {
+      "name": "Bank for International Settlements",
+      "kind": "organization"
+    },
+    {
+      "name": "Basel",
+      "kind": "place"
+    },
+    {
+      "name": "Tower of Basel",
+      "kind": "object"
+    },
+    {
+      "name": "Reuters",
+      "kind": "organization"
+    }
+  ]
+}
