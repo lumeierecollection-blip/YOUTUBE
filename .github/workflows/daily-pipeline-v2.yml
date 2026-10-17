@@ -606,6 +606,15 @@ jobs:
                   if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=1; fi
                 fi
               fi
+              # REPEATS (scripts/dedupe-sentences.js): a sentence that says what another already said is deleted (nothing reworded); one that
+              # deletion cannot remove (both copies are their section's only sentence) is handed to the story repair below as a CLARITY line.
+              # Board 39031532519 ch-44 narrated its hook twice and the setup's line again as the re-hook. A deletion re-runs the script gate.
+              : > /tmp/dedupe-out-$FORMAT.log
+              if [ "$GATE_OK" -eq 1 ]; then
+                node scripts/dedupe-sentences.js "data/research/$CH/${SCRIPT_SLUG}-script.json" > /tmp/dedupe-out-$FORMAT.log 2>&1 || true
+                cat /tmp/dedupe-out-$FORMAT.log
+                if grep -q '^\[dedupe\] removed' /tmp/dedupe-out-$FORMAT.log && ! node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=0; fi
+              fi
               if [ "$GATE_OK" -eq 1 ]; then
                 # STORY (scripts/validate-script-story.cjs): the narrative engine —
                 # hook / setup / re-hook / payoff / close (validate-script-narrative.cjs), the
@@ -627,6 +636,7 @@ jobs:
                 fi
                 SPEC_EXIT=$?
                 set -e
+                if grep -q '^  - CLARITY:' /tmp/dedupe-out-$FORMAT.log; then grep '^  - ' /tmp/dedupe-out-$FORMAT.log >> /tmp/spec-out-$FORMAT.log; [ "$SPEC_EXIT" -eq 0 ] && SPEC_EXIT=2; fi
                 cat /tmp/spec-out-$FORMAT.log
                 if [ "$SPEC_EXIT" -ne 0 ]; then
                   if [ "$SPEC_REASKED" -lt 3 ] && [ "$ATTEMPT" -lt 5 ]; then
@@ -742,6 +752,27 @@ jobs:
                   echo "skip_reason=claims" >> "$GITHUB_OUTPUT"
                   exit 0
                 fi
+                # REPEATS, last word before the voiceover (a claims repair can write a copy of another sentence — ch-44 above). Deletion first;
+                # a repeat deletion cannot fix gets one targeted repair while attempts remain, and otherwise the channel is skipped: a video that
+                # narrates the same line twice is not shipped.
+                set +e
+                node scripts/dedupe-sentences.js "data/research/$CH/${SCRIPT_SLUG}-script.json" --strict > /tmp/dedupe-final-$FORMAT.log 2>&1
+                DD_EXIT=$?
+                set -e
+                cat /tmp/dedupe-final-$FORMAT.log
+                if [ "$DD_EXIT" -eq 3 ]; then
+                  grep -E '^  - ' /tmp/dedupe-final-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                  if [ "$ATTEMPT" -lt 5 ] && node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                    echo "[script] ch-$CH: repeated sentences, repaired them"
+                    SKIP_GEN=1
+                    continue
+                  fi
+                  echo "::warning::[script] ch-$CH: the script repeats a sentence that deleting cannot fix — channel skipped this run"
+                  echo "skip=true" >> "$GITHUB_OUTPUT"
+                  echo "skip_reason=repeats" >> "$GITHUB_OUTPUT"
+                  exit 0
+                fi
+                if [ "$DD_EXIT" -ne 0 ]; then echo "::warning::[script] ch-$CH: repeat check could not run (exit $DD_EXIT) — continuing"; fi
                 # LENGTH, measured on the real voiceover. render.js caps a
                 # Short at 60s, so a longer narration is cut off mid-word —
                 # a since-cut channel's 61.06s voiceover in run 35830826546. Word count
@@ -1411,7 +1442,8 @@ jobs:
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             git checkout -- data/research data/tts data/thumbnails data/renders 2>/dev/null || true
-            git rebase "origin/${{ github.ref_name }}"
+            # --autostash: the render leaves other tracked files modified (run 39031532519 ch-1: "cannot rebase: You have unstaged changes", queue never pushed)
+            git rebase --autostash "origin/${{ github.ref_name }}" || git rebase --abort
             if git push origin "${{ github.ref_name }}"; then
               break
             fi
@@ -1602,11 +1634,17 @@ jobs:
         env:
           REQUESTED: ${{ steps.creds.outputs.channels }}
         run: |
+          # On a SCHEDULE run the render job has already uploaded (or tried to upload) every approved/ video of this very run. Its record of
+          # that is the publish-queue it pushes, and when that push failed (run 39031532519 ch-1: "cannot rebase") this job uploaded the same
+          # render a second time. approved/ belongs to the render job here; this job takes approved-review/ only. A dispatch keeps both queues.
+          if [ "${{ github.event_name }}" = "schedule" ]; then rm -rf data/renders/approved; echo "schedule: approved/ was the render job's to upload — approved-review/ only"; fi
           ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
           FAIL=0
           for CH in $(echo "$REQUESTED" | tr ',' ' '); do
             CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
-            node src/skills/youtube-publish/run.js "$CH" --review || FAIL=1
+            # each channel's own outcome, for the digest (it reported a rejected OAuth secret as "no credentials" — run 39031532519 ch-9/26/44)
+            node src/skills/youtube-publish/run.js "$CH" --review > "/tmp/publish-out-$CH.log" 2>&1 || FAIL=1
+            cat "/tmp/publish-out-$CH.log"
           done
           exit $FAIL
 
@@ -1657,18 +1695,31 @@ jobs:
             }
             uploads.sort((a, b) => String(a.channel).localeCompare(String(b.channel)));
             const requested = String(process.env.REQUESTED || "").split(",").map(s => s.trim()).filter(Boolean);
-            const noCreds = requested.filter(c => !uploads.some(u => String(u.channel).replace(/^0+/, "") === c.replace(/^0+/, "")));
+            const uploaded = (c) => uploads.some(u => String(u.channel).replace(/^0+/, "") === c.replace(/^0+/, ""));
+            // What the publish step said for each channel it tried (no log = it had no credentials, so it was never tried).
+            const outcome = {};
+            for (const c of requested) {
+              const n = c.replace(/^0+/, "");
+              let log = null; try { log = fs.readFileSync("/tmp/publish-out-" + n + ".log", "utf8"); } catch {}
+              if (uploaded(c)) continue;
+              const err = log && (log.match(/ERROR: ([^\n]+)/) || [])[1];
+              outcome[n] = !log ? "no OAuth credentials configured"
+                : err ? "upload FAILED: " + err.slice(0, 160)
+                : /No approved-review\/ or approved\/ renders found|No approved-review/.test(log) ? "no video passed QA this run"
+                : /already uploaded as/.test(log) ? "already uploaded (" + ((log.match(/already uploaded as (\S+)/) || [])[1] || "") + ")"
+                : "not uploaded (see the review-publish log)";
+            }
+            const noCreds = Object.keys(outcome).filter((c) => outcome[c] === "no OAuth credentials configured");
             const digest = {
               date: TODAY,
               review_run_id: RUN || null,
               generated_at: new Date().toISOString(),
               uploads,
+              not_uploaded: outcome,
               no_credentials: noCreds,
               note: uploads.length
                 ? "Everything above is PRIVATE. Open each Studio link and click Publish to make it public."
-                : "Nothing was uploaded today. " + (noCreds.length
-                    ? "No video reached approved-review, and/or these channels have no OAuth secrets yet: " + noCreds.join(", ")
-                    : "No video reached approved-review for the channels requested."),
+                : "Nothing was uploaded today — see not_uploaded for each channel's reason.",
             };
             fs.mkdirSync("data/uploaded", { recursive: true });
             fs.writeFileSync("data/uploaded/" + TODAY + ".json", JSON.stringify(digest, null, 2) + "\n");

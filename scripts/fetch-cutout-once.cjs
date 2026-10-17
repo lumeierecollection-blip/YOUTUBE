@@ -101,8 +101,19 @@ const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOU
 const FLAT_MONEY = (c) => /\b(bills?|banknotes?|bank notes?|notes?|coins?|dollar)\b/i.test(c) && !/\b(stack|bundle|pile|banded|wad|jar|wallet|piggy|statement|card|receipt|purse)\b/i.test(c);
 
 // Three questions (verify-image.cjs, part E): shows YES, LITERAL, CLEAN (and FLAT for money).
+// What the verifier SAW may still put a person or a costume next to the object (board 39031532519 ch-26: "a hand holding a red marker pen" passed as
+// "pen", next to a named defendant; "a green piggy bank wearing sunglasses"). A stranger's hand reads as the story's person and a dressed-up object is a
+// joke, so either refuses the photo whatever the three answers were. Only when the concept itself is not about a person or clothing.
+const SAW_PERSON = /(?<!-)\b(hands?|fingers?|person|people|man|men|woman|women|boy|girl|child|someone|holding|held by|wearing|dressed|costume|sunglasses|cartoon|smiling)\b(?!-)/i;
+function sawRefusal(seen, concept) {
+  if (!seen || SAW_PERSON.test(String(concept || ""))) return null;
+  const m = String(seen).match(SAW_PERSON);
+  return m ? `the photo shows "${m[0]}" with the object (a stranger or a costume)` : null;
+}
 async function verify(png, concept, scene) {
-  return verifyImage(png, { entity: concept, type: "object", scene, money: FLAT_MONEY(concept) });
+  const v = await verifyImage(png, { entity: concept, type: "object", scene, money: FLAT_MONEY(concept) });
+  const refused = v.accept ? sawRefusal(v.seen, concept) : null;
+  return refused ? { ...v, accept: false, reason: refused } : v;
 }
 const why = (v) => (v.unavailable ? "verifier unavailable" : v.reason);
 
@@ -260,7 +271,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   return null;
 }
 
-module.exports = { fetchCutoutForBeat, qualifyConcept, pixabay, wordsOf, FLAT_MONEY, _resetRunCache: () => runCache.clear() };
+module.exports = { fetchCutoutForBeat, qualifyConcept, sawRefusal, pixabay, wordsOf, FLAT_MONEY, _resetRunCache: () => runCache.clear() };
 
 if (require.main === module) {
   require("dotenv/config");

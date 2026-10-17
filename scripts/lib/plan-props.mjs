@@ -54,9 +54,12 @@ const DEPICTS = [
   [/\b(electric\w*|power grid|grid|power plants?|solar|wind)\b/i, ["power line", "transformer", "power plant", "solar", "turbine", "pylon"]],
   [/\b(ships?|shipping|shipments?|exports?|imports?|trade|traders?|tariffs?|supply chains?|cargo|ports?|goods|freight|sanction\w*|smuggl\w*)\b/i,
     ["cargo", "ship", "container", "crane", "freight", "truck", "crate", "pallet", "box"]],
-  [/\b(compan\w*|firms?|business\w*|corporat\w*|offices?|employ\w*|workers?|workplace|jobs?|careers?|hir\w*|fired|layoffs?|negotiat\w*|deals?|contracts?|signed|agreements?|meetings?|managers?|bosses?|promot\w*)\b/i,
+  // Things an office HAS, not what people DO there: board 39031532519 ch-44 put an antique desk next to "Deepak Malhotra published research" and a
+  // laptop next to "Katie Shonk analyzed business skills" — "negotiators", "business", "research", "study" are activities, and a desk / laptop / book
+  // for them is a loose association. Those words were dropped from these two rows; the objects still come from what the sentence names.
+  [/\b(compan\w*|firms?|corporat\w*|offices?|workplace|layoffs?|contracts?|signed)\b/i,
     ["office", "desk", "laptop", "briefcase", "chair", "computer", "filing cabinet", "folder", "document", "paperwork", "pen", "fountain pen", "contract", "conference table"]],
-  [/\b(schools?|universit\w*|colleges?|students?|educat\w*|stud(y|ies|ied)|research\w*|professors?|degrees?|campus|scien\w*|lab|labs|laborator\w*|experiments?|dna|forensic\w*|tests?|tested|remains|bones?|autops\w*)\b/i,
+  [/\b(schools?|universit\w*|colleges?|students?|classrooms?|professors?|campus|lab|labs|laborator\w*|experiments?|dna|forensic\w*|remains|bones?|autops\w*)\b/i,
     ["university", "school", "book", "textbook", "graduation", "academic cap", "mortarboard", "classroom", "notebook", "microscope", "test tube", "lab", "petri", "beaker", "flask", "pen"]],
   [/\b(hospitals?|health\w*|medical|medicines?|doctors?|patients?|drugs?|disease\w*|vaccin\w*|virus\w*|therap\w*|clinic\w*|nurses?|pharma\w*)\b/i,
     ["hospital", "stethoscope", "pill", "syringe", "ambulance", "medicine", "clinic"]],

@@ -934,6 +934,7 @@ For each one judge it against the sentence:
 - spelling: exactly as the sentence spells it (case aside). "Gemany" for "Germany", "Elon Musc" for "Elon Musk" are wrong.
 - identity: the same place / person / organisation the sentence names — not a broader region (a "Europe" label for "France"), not a different place with the same name, not a different company.
 - figures: the number and its unit as the sentence states them ("$86 million", not "$86" or "86 billion").
+Lettering that is part of a real object's own artwork — an organisation's emblem or seal, a coin, a banknote — is judged for IDENTITY only: it must be the organisation / place the sentence names (a court seal reading "District of Columbia" on a beat about a Florida court is wrong). Its own abbreviation ("T.P.L.F" on the Tigray People's Liberation Front's emblem), its own script, and dates or numbers minted or printed on it (the year on a coin) are part of that artwork, not a misspelling or an extra figure.
 A frame that shows no name, date or figure passes.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on screen>","expected":"<as the sentence has it>","ok":true|false,"problem":"<empty or what is wrong>"}],"verdict":"PASS"|"FAIL"}]} — one entry per beat listed, by beat_index.` }];
   const header = content[0];

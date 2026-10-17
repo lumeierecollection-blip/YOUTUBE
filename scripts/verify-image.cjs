@@ -40,14 +40,17 @@ Company: "${entity}"
 
 Look at the image. Answer:
 
-1. What company or brand does this logo represent?
-2. Is it the logo of "${entity}" specifically?
+1. Copy the words written on the logo, exactly as printed (Latin letters only; empty if it has none).
+2. What company or brand does this logo represent? Go by what it SAYS, not by the name above.
+3. Is it the logo of "${entity}" specifically?
    MATCH — this is the logo of the named company
    SIMILAR — this is the logo of a different company with a similar name
    DIFFERENT — this is not a logo, or is a different company entirely
+   A seal or emblem whose words name a different place, district, branch or body (a "District of Columbia" court seal for a Florida court) is DIFFERENT.
 
 Return JSON only:
 {
+  "text": "...",
   "recognized": "...",
   "verdict": "MATCH" | "SIMILAR" | "DIFFERENT"
 }`;
@@ -97,7 +100,7 @@ function normalizer(money, logo = false) {
       const verdict = up(a.verdict);
       const recognized = String(a.recognized || "").trim().slice(0, 160);
       if (!["MATCH", "SIMILAR", "DIFFERENT"].includes(verdict) || !recognized) return null;
-      return { shows: "YES", kind: "LITERAL", quality: "CLEAN", seen: recognized, verdict, recognized };
+      return { shows: "YES", kind: "LITERAL", quality: "CLEAN", seen: recognized, verdict, recognized, text: String(a.text || "").trim().slice(0, 200) };
     }
     const shows = up(a.shows), kind = up(a.kind), quality = up(a.quality), flat = money ? up(a.flat) : null;
     const seen = String(a.seen || "").trim().slice(0, 160);
@@ -106,6 +109,24 @@ function normalizer(money, logo = false) {
     return { shows, kind, quality, flat, seen };
   };
 }
+/**
+ * Does the logo's own printed text name something else? Board 39031532519 ch-26: the Wikipedia file for the "U.S. District Court for the Southern
+ * District of Florida" was the DISTRICT OF COLUMBIA court's seal, and the model, handed the name, answered MATCH. So the words printed on the logo are
+ * checked here too: when they carry distinguishing words (not "united states district court"), at least one must be a distinguishing word of the
+ * entity, or the text must spell its initials ("T.P.L.F" for the Tigray People's Liberation Front). A logo with no Latin text is not judged here.
+ */
+const LOGO_GENERIC = new Set("united states the for and of de la del des court courts district department ministry office bureau agency national federal state government official seal emblem inc llc ltd corp corporation company group holdings international university college school institute association society council committee commission board authority republic kingdom party front foundation bank city county est established since".split(" "));
+const logoWords = (s) => String(s || "").toLowerCase().normalize("NFKD").replace(/[^a-z\s]/g, " ").split(/\s+/).filter((w) => w.length >= 3);
+function logoTextContradicts(text, entity) {
+  const said = logoWords(text).filter((w) => !LOGO_GENERIC.has(w));
+  const own = logoWords(entity).filter((w) => !LOGO_GENERIC.has(w));
+  if (!said.length || !own.length) return null;
+  const initials = String(entity || "").split(/[\s-]+/).filter((w) => /^[A-Za-z]/.test(w) && !/^(of|the|for|and|de|la)$/i.test(w)).map((w) => w[0].toUpperCase()).join("");
+  if (initials.length >= 2 && String(text).toUpperCase().replace(/[^A-Z]/g, "").includes(initials)) return null;
+  const close = (a, b) => a === b || (a.length >= 4 && b.length >= 4 && (a.startsWith(b) || b.startsWith(a)));
+  return said.some((w) => own.some((o) => close(w, o))) ? null : `the logo reads "${String(text).slice(0, 80)}", which names none of "${entity}"`;
+}
+
 /** The owner's rule (E.2, G.3): YES and LITERAL and CLEAN (and FLAT for money). */
 function judge(v, money, logo = false) {
   if (logo) {
@@ -132,14 +153,16 @@ async function verifyImage(png, opts = {}) {
   let r = await askProviders(messages, norm);
   for (let k = 0; k < 2 && !r.v; k++) { await new Promise((res) => setTimeout(res, 15000)); r = await askProviders(messages, norm); }
   if (!r.v) return { accept: false, reason: "no vision provider answered", seen: "", provider: null, unavailable: true };
-  return { ...r.v, ...judge(r.v, money, logo), provider: r.provider };
+  const verdict = { ...r.v, ...judge(r.v, money, logo), provider: r.provider };
+  const wrongText = logo && verdict.accept ? logoTextContradicts(r.v.text, opts.entity) : null;
+  return wrongText ? { ...verdict, accept: false, reason: wrongText } : verdict;
 }
 
 /** A money object (G): bills, coins, cash — gets the flatness question. */
 const MONEY_RE = /\b(dollar|bill|bills|banknote|bank note|note|notes|cash|currency|coin|coins|euro|pound|yen|rupee|peso|money)\b/i;
 const isMoney = (name) => MONEY_RE.test(String(name || "").replace(/-/g, " ")) && !/\b(statement|card|receipt|wallet|jar|piggy)\b/i.test(String(name || ""));
 
-module.exports = { verifyImage, promptFor, normalizer, judge, isMoney };
+module.exports = { verifyImage, promptFor, normalizer, judge, isMoney, logoTextContradicts };
 
 if (require.main === module) {
   require("dotenv/config");
