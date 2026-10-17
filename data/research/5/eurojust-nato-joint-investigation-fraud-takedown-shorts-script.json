@@ -1,0 +1,67 @@
+{
+  "channel_id": "5",
+  "topic_slug": "eurojust-nato-joint-investigation-fraud-takedown",
+  "format": "shorts",
+  "hook": "A million euro fraud scheme targeted NATO naval operations until international police raided multiple countries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A million euro fraud scheme targeted NATO naval operations until international police raided multiple countries.",
+      "b_roll": [
+        "Digital map of Europe highlighting international jurisdictions",
+        "Naval vessel at sea"
+      ],
+      "text_overlay": {
+        "text": "NATO Fraud Takedown"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On an international sweep, Økokrim arrested five people in Norway for supplying fraudulent equipment to warships. Eurojust coordinated simultaneous searches across Germany and Romania. How did a supplier exploit NATO naval contracts?",
+      "b_roll": [
+        "Police badge and investigative files",
+        "Map showing Norway, Germany, and Romania"
+      ],
+      "text_overlay": {
+        "text": "1 Million EUR Fraud"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Eurojust uncovered bribery networks inside defense supply chains.",
+      "b_roll": [
+        "Financial transaction records on screen",
+        "Confidential documents"
+      ],
+      "text_overlay": {
+        "text": "Deep Bribery Networks"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Officers searched properties in Germany and Romania. The EUR 1 million fraud collapsed completely.",
+      "b_roll": [
+        "Law enforcement officers entering a facility",
+        "Seized digital evidence screens"
+      ],
+      "text_overlay": {
+        "text": "Company Dismantled"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Five suspects face prosecution in Bergen.",
+      "b_roll": [
+        "Courthouse exterior in Norway"
+      ],
+      "text_overlay": {
+        "text": "Bergen Arrests"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.okokrim.no/investigation-into-fraud-against-nato.6754989-549344.html",
+    "https://apnews.com/article/nato-fraud-agency-eurojust-ships-contracts-ea26cb52ed1083b40e01c154e75431bc",
+    "https://www.eurojust.europa.eu/news/joint-investigation-takes-down-company-suspected-bribery-and-eur-1-million-fraud-supplied-nato-vessels"
+  ]
+}

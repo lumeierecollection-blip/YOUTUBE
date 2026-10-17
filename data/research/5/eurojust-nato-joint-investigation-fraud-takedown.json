@@ -1,0 +1,69 @@
+{
+  "topic_slug": "eurojust-nato-joint-investigation-fraud-takedown",
+  "strongest_angle": "Examining how international authorities including Eurojust and Økokrim dismantled a supplier involved in bribery and fraud affecting NATO naval operations, leading to arrests in Norway and searches in Germany and Romania.",
+  "key_facts": [
+    {
+      "fact": "Five people were arrested in the Bergen area of Norway by Økokrim in connection with an investigation into fraud against NATO involving EUR 1 million.",
+      "source_url": "https://www.okokrim.no/investigation-into-fraud-against-nato.6754989-549344.html",
+      "source_name": "Økokrim",
+      "confidence": "high"
+    },
+    {
+      "fact": "Searches were carried out in Germany and Romania as part of a wider international police operation coordinated by Eurojust targeting NATO ship contracts.",
+      "source_url": "https://apnews.com/article/nato-fraud-agency-eurojust-ships-contracts-ea26cb52ed1083b40e01c154e75431bc",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The European Union's criminal justice agency Eurojust coordinated the joint investigation that took down a company suspected of bribery and EUR 1 million fraud supplied to NATO vessels.",
+      "source_url": "https://www.eurojust.europa.eu/news/joint-investigation-takes-down-company-suspected-bribery-and-eur-1-million-fraud-supplied-nato-vessels",
+      "source_name": "Eurojust",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Arrested individuals in Norway",
+      "value": 5,
+      "unit": "people",
+      "source_url": "https://apnews.com/article/nato-fraud-agency-eurojust-ships-contracts-ea26cb52ed1083b40e01c154e75431bc"
+    },
+    {
+      "label": "Fraud amount linked to NATO contracts",
+      "value": 1000000,
+      "unit": "EUR",
+      "source_url": "https://www.eurojust.europa.eu/news/joint-investigation-takes-down-company-suspected-bribery-and-eur-1-million-fraud-supplied-nato-vessels"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Eurojust",
+      "kind": "organization"
+    },
+    {
+      "name": "Økokrim",
+      "kind": "organization"
+    },
+    {
+      "name": "NATO",
+      "kind": "organization"
+    },
+    {
+      "name": "Norway",
+      "kind": "place"
+    },
+    {
+      "name": "Germany",
+      "kind": "place"
+    },
+    {
+      "name": "Romania",
+      "kind": "place"
+    },
+    {
+      "name": "Bergen",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}
