@@ -20,6 +20,11 @@ test("image requests turn reasoning off (qwen3.7-plus returns no answer when rea
   assert.equal("reasoning" in buildBody(TEXT, {}), false);
 });
 
+test("an image request to a google/* model sends no reasoning field (OpenRouter 400: reasoning is mandatory for that endpoint)", () => {
+  assert.equal("reasoning" in buildBody(IMG, { openrouterModel: "google/gemini-3.5-flash-lite" }), false);
+  assert.deepEqual(buildBody(IMG, { openrouterModel: "qwen/qwen3.7-plus" }).reasoning, { enabled: false });
+});
+
 test("the request asks for a JSON object, with the caller's temperature and token cap", () => {
   const b = buildBody(TEXT, { temperature: 0, maxTokens: 300 });
   assert.deepEqual(b.response_format, { type: "json_object" });

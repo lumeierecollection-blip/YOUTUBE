@@ -48,7 +48,11 @@ function buildBody(messages, opts = {}) {
   // Image requests run with reasoning OFF. The CI probe (2026-10-10) showed qwen/qwen3.7-plus spends a
   // 200-300 token budget on reasoning and returns no message (finish_reason=length); with reasoning off the
   // same image got the correct answer in 2 tokens and 0 reasoning tokens. Text requests keep the model's default.
-  if (images) body.reasoning = { enabled: false };
+  // NOT for google/* models: OpenRouter refuses them with 400 "Reasoning is mandatory for this endpoint and cannot be
+  // disabled" (board 38976972038 — every image call routed to google/gemini-3.5-flash-lite failed this way: the planner,
+  // verify-cutout, frame review, beat/entity checks). openrouter-check.yml sent the same models images with no reasoning
+  // field and they answered, so the field is left out for them.
+  if (images && !/^google\//.test(model)) body.reasoning = { enabled: false };
   return body;
 }
 
