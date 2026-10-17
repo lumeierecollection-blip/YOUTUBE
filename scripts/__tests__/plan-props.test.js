@@ -58,3 +58,10 @@ test("board 39031532519: a police station / badge is an object, not a person; an
   assert.equal(isLiteral("laptop", "Katie Shonk analyzed business skills regarding how negotiators avoid capitulation."), null);
   assert.ok(isLiteral("desk", "The company closed its Boston office."));
 });
+
+test("test run 39037009215 ch-6: the tool of a dig is literal; luminol's spray bottle is; a magnifying glass is still a symbol", () => {
+  assert.ok(isLiteral("shovel", "The FBI brought heavy machinery and excavators to dig up the backyard."));
+  assert.ok(isLiteral("excavator", "Philadelphia Police and the FBI excavated 417 West Chew Avenue."));
+  assert.ok(isLiteral("spray bottle", "What did luminol reveal inside the house?"));
+  assert.equal(isLiteral("magnifying glass", "What did luminol reveal inside the house?"), null);
+});

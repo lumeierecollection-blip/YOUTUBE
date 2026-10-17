@@ -438,3 +438,17 @@ test("a figure's label drops hyphenated words the figure already says (YEAR-OLD 
   const f = figuresOf({ sentence: "The 47-year-old actor described the debut.", data: { value: "47", label: "year-old actor" }, named_entities: [] });
   assert.deepEqual([f[0].name, f[0].label], ["47-year-old", "actor"]);
 });
+
+// test run 39037009215 ch-49: "A24" was drawn as a big figure "24"; its logo was cropped to "A2" and theranos's to a giant "a"
+test("a number inside a name is not a figure; a logo is always a whole floating cut-out", () => {
+  const s = "Elizabeth Holmes stars in the A24 documentary, which opened to 12 million dollars.";
+  assert.deepEqual(figuresOf({ sentence: s }).map((f) => f.name), ["12 million dollars"]);
+  assert.deepEqual(figuresOf({ sentence: s, named_entities: [{ type: "number", name: "24" }] }).map((f) => f.name), ["12 million dollars"]);
+  const hs = heroesOf({ art: { kind: "plates", items: [{ asset: "cutouts-live/49/theranos-logo.png", name: "Theranos" }] }, clone_extra: [{ kind: "logo", name: "A24", asset: "cutouts-live/49/a24.png" }] });
+  assert.ok(hs.every((h) => h.kind === "logo" && h.cutout === h.asset));
+  const beats = [0, 1, 2].map((i) => beat(i, i * 6, 6, "A24 released the Theranos documentary in eight hundred theaters this weekend", { clone_extra: [{ kind: "logo", name: "A24", asset: `cutouts-live/49/a24-${i}.png` }], named_entities: [{ type: "organization", name: "A24" }] }));
+  const plan = planClone(beats, { laws: G.laws, profile: G.profiles["dossier-mono"] });
+  const logoShots = plan.shots.filter((x) => x.hero && x.hero.kind === "logo");
+  assert.ok(logoShots.length > 0);
+  assert.deepEqual([...new Set(logoShots.map((x) => x.treatment))], ["float"]);
+});

@@ -80,6 +80,10 @@ const DEPICTS = [
   [/\b(shops?|shopping|stores?|retail\w*|buy\w*|bought|purchas\w*|consumers?|customers?|sales?|sold|sell\w*)\b/i, ["shopping cart", "shopping bag", "store", "receipt", "box", "package"]],
   [/\b(military|war|troops?|army|soldiers?|missiles?|drones?|weapons?|defen[cs]e)\b/i, ["tank", "drone", "missile", "military truck", "helmet"]],
   [/\b(fires?|burn\w*|blaze|flames?)\b/i, ["fire truck", "fire hydrant", "fire extinguisher"]],
+  // digging is done WITH a shovel / an excavator: the literal tool of the act (test run 39037009215 ch-6: "dug up the backyard", "excavated", "unearthed"
+  // left 7 of 8 beats without a picture). Luminol / DNA are forensic work: the kit it uses.
+  [/\b(dig|digs|digging|dug|excavat\w*|unearth\w*|backyard|soil|dirt)\b/i, ["shovel", "spade", "excavator", "wheelbarrow", "heavy machinery"]],
+  [/\b(luminol|blood\w*|fingerprints?|evidence)\b/i, ["evidence bag", "test tube", "spray bottle", "fingerprint kit"]],
   [/\b(bod(y|ies)|dead|death|killed|murder\w*|homicide|victims?|graves?|buried|cemeter\w*)\b/i, ["evidence bag", "police car", "shovel"]],
 ];
 const MODIFIER = new Set(["stack", "stacks", "pile", "piles", "pair", "set", "bundle", "bundles", "box", "bag", "of", "the", "a", "an", "old", "new", "small", "large", "big", "vintage", "modern", "empty", "full", "wooden", "metal", "open", "closed", "red", "black", "white", "blue"]);

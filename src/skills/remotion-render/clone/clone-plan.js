@@ -51,6 +51,9 @@ export function heroesOf(canvas) {
   for (const x of c.clone_props || []) if (x && x.asset && !out.some((o) => o.asset === x.asset)) out.push({ kind: "cutout", asset: x.asset, name: null, prop: x.name || null, w: x.w || null, h: x.h || null, view: null, cutout: x.asset, grounded: !!x.grounded });
   if (c.art && c.art.asset) out.push({ kind: c.art.kind === "plate-organization" ? "logo" : c.art.kind || "art", asset: c.art.asset, name: c.art.name || null, w: null, h: null, view: null });
   if (c.art && Array.isArray(c.art.items)) for (const it of c.art.items) if (it && it.asset) out.push({ kind: "logo", asset: it.asset, name: it.name || null, w: null, h: null, view: null });
+  // A LOGO is a transparent mark, always drawn whole: without `cutout` an art logo took the photo treatments (vignette / bleed, cover-cropped) and a
+  // photo-slot logo the "edge" one, and the frame showed a giant "a" of theranos and "A2" of A24 (test run 39037009215 ch-49).
+  for (const o of out) if (o.kind === "logo" || (o === out[0] && c.photo && (c.photo.logo || c.photo.kind === "logo"))) { o.kind = "logo"; o.cutout = o.asset; o.grounded = false; o.bust = false; }
   return out;
 }
 
@@ -122,6 +125,11 @@ export function figuresOf(canvas) {
     if (!n) return;
     if (kind === "figure" && parseDate(n).month) kind = "date";
     if (kind === "figure") n = quantityIn(c.sentence, n);   // "October 13, 2026" arrives as a figure when the planner filed it under data.value: it is a date
+    // a figure whose digits the sentence only writes inside a name ("A24", "5G", "F-35" stays: the hyphen frees it) is that name, not a number
+    if (kind === "figure" && c.sentence && digits(n)) {
+      const holders = String(c.sentence).split(/\s+/).filter((t) => digits(t).includes(digits(n)));
+      if (holders.length && holders.every((t) => /[A-Za-z]\d|\d[A-Za-z]/.test(t.replace(/(st|nd|rd|th|s|m|bn|k)\b/gi, "")))) return;
+    }
     if (out.some((x) => x.kind === kind && (kind === "date" ? x.name.toLowerCase() === n.toLowerCase() : digits(x.name) === digits(n) && digits(n)))) return;
     out.push({ kind, name: n, label });
   };
@@ -146,7 +154,8 @@ export function figuresOf(canvas) {
     for (const d of dates) add("date", d);
     const rest = dates.reduce((a, d) => a.replace(d, " "), s);
     // never a bare year: the frame showed "2026" for every shot of "Six regional U.S. banks failed in 2026" (local proof stills) — the year is not the point
-    for (const m of rest.matchAll(/\$?\d[\d,.]*%?/g)) { const v = m[0].replace(/[.,]+$/, ""); if (/\d/.test(v) && !/^(1[89]|20)\d\d$/.test(v)) add("figure", v); }
+    // a number that is part of a NAME is not a figure: "A24" showed as a big "24" on every shot (test run 39037009215 ch-49)
+    for (const m of rest.matchAll(/(?<![A-Za-z\d])\$?\d[\d,.]*%?(?![A-Za-z])/g)) { const v = m[0].replace(/[.,]+$/, ""); if (/\d/.test(v) && !/^(1[89]|20)\d\d$/.test(v)) add("figure", v); }
   }
   // "9" from the entities is the start of "9 to 0" from the data: keep the longer, drop the part
   return out.filter((f) => !out.some((g) => g !== f && g.kind === f.kind && g.name.length > f.name.length && g.name.includes(f.name)));
@@ -359,7 +368,7 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       if (hero) {
         // FRAMELESS, chosen by what the picture IS (owner, 2026-10-16: "the frames are not needed"): a person cut-out stands on the floor, runs off an edge or
         // floats; an object / logo cut-out floats or runs off an edge; a photo that could not be cut out is a soft-edged vignette or a full bleed. Never a box.
-        const set = hero.cutout ? (hero.bust ? ["stand"] : hero.grounded ? ["stand", "edge", "float"] : ["float", "edge"]) : ["vignette", "bleed"];
+        const set = hero.kind === "logo" ? ["float"] : hero.cutout ? (hero.bust ? ["stand"] : hero.grounded ? ["stand", "edge", "float"] : ["float", "edge"]) : ["vignette", "bleed"];   // a logo never runs off an edge
         let ti = shots.filter((x) => x.hero).length % set.length;
         // never the same treatment twice in a row on the same hero: that is the same frame twice
         if (prev && prev.hero && prev.hero.asset === hero.asset && set[ti] === prev.treatment) ti = (ti + 1) % set.length;
