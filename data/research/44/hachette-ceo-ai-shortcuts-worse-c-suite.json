@@ -1,0 +1,65 @@
+{
+  "topic_slug": "hachette-ceo-ai-shortcuts-worse-c-suite",
+  "strongest_angle": "Analyze how David Shelley of Hachette warns that reliance on AI summaries and email drafts degrades C-suite executive capabilities and critical thinking.",
+  "key_facts": [
+    {
+      "fact": "David Shelley, CEO of book publisher Hachette, writes every email himself and warns that AI shortcuts are creating a worse C-suite.",
+      "source_url": "https://fortune.com/2026/10/13/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite",
+      "source_name": "Fortune",
+      "confidence": "high"
+    },
+    {
+      "fact": "More than two-thirds, or 68 percent, of leaders in the U.S. and U.K. turn to AI to summarize documents according to a survey.",
+      "source_url": "https://jbiznews.com/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite",
+      "source_name": "JBizNews",
+      "confidence": "medium"
+    },
+    {
+      "fact": "A survey shows that 58 percent of leaders in the U.S. and U.K. use AI to draft emails.",
+      "source_url": "https://jbiznews.com/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite",
+      "source_name": "JBizNews",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "leaders using AI to summarize documents",
+      "value": 68,
+      "unit": "percent",
+      "source_url": "https://jbiznews.com/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite"
+    },
+    {
+      "label": "leaders using AI to draft emails",
+      "value": 58,
+      "unit": "percent",
+      "source_url": "https://jbiznews.com/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "David Shelley",
+      "kind": "person"
+    },
+    {
+      "name": "Hachette",
+      "kind": "organization"
+    },
+    {
+      "name": "General Assembly",
+      "kind": "organization"
+    },
+    {
+      "name": "Ezra",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S.",
+      "kind": "place"
+    },
+    {
+      "name": "U.K.",
+      "kind": "place"
+    }
+  ]
+}
