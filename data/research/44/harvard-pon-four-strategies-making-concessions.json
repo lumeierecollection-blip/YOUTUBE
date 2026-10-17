@@ -1,0 +1,51 @@
+{
+  "topic_slug": "harvard-pon-four-strategies-making-concessions",
+  "strongest_angle": "Examine how Harvard Business School professor Deepak Malhotra outlines four distinct strategies for making concessions in negotiation to build goodwill and reciprocity.",
+  "key_facts": [
+    {
+      "fact": "Harvard Business School professor Deepak Malhotra published research detailing four strategies for making concessions in business negotiations.",
+      "source_url": "https://hbswk.hbs.edu/archive/four-strategies-for-making-concessions",
+      "source_name": "HBS Working Knowledge",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Program on Negotiation at Harvard Law School published guidance authored by Katie Shonk outlining best practices for trading concessions effectively with counterparts.",
+      "source_url": "https://www.pon.harvard.edu/daily/business-negotiations/business-skills-make-concessions-strategically-in-negotiation",
+      "source_name": "PON - Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Author Katie Shonk analyzed business skills regarding how negotiators can avoid capitulation or impasse by following careful patterns when conceding.",
+      "source_url": "https://www.pon.harvard.edu/uncategorized/making-concessions-in-negotiation-best-practices",
+      "source_name": "PON - Program on Negotiation at Harvard Law School",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "quotes": [
+    {
+      "text": "Concessions are often necessary in negotiation, but they often go unappreciated and unreciprocated.",
+      "speaker": "Deepak Malhotra",
+      "source_name": "HBS Working Knowledge",
+      "source_url": "https://hbswk.hbs.edu/archive/four-strategies-for-making-concessions"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Deepak Malhotra",
+      "kind": "person"
+    },
+    {
+      "name": "Harvard Business School",
+      "kind": "organization"
+    },
+    {
+      "name": "Program on Negotiation at Harvard Law School",
+      "kind": "organization"
+    },
+    {
+      "name": "Katie Shonk",
+      "kind": "person"
+    }
+  ]
+}

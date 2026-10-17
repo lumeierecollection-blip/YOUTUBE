@@ -1,0 +1,66 @@
+{
+  "channel_id": "44",
+  "topic_slug": "harvard-pon-four-strategies-making-concessions",
+  "format": "shorts",
+  "hook": "Harvard Business School professor Deepak Malhotra published research detailing four strategies for making concessions.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Harvard Business School professor Deepak Malhotra published research detailing four strategies for making concessions.",
+      "b_roll": [
+        "A business meeting room with negotiators facing each other across a wooden table."
+      ],
+      "text_overlay": {
+        "text": "Four Negotiation Strategies"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Harvard Business School professor Deepak Malhotra published research detailing four strategies for making concessions. Author Katie Shonk analyzed business skills regarding how negotiators avoid capitulation.",
+      "b_roll": [
+        "Harvard Business School campus buildings under daylight.",
+        "A person reviewing negotiation documents on a desk.",
+        "Close up of contract pages with handwritten notes."
+      ],
+      "text_overlay": {
+        "text": "Deepak Malhotra Research"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Katie Shonk analyzed business skills regarding how negotiators avoid capitulation.",
+      "b_roll": [
+        "A law school library interior with bookshelves and study desks."
+      ],
+      "text_overlay": {
+        "text": "Harvard Law Guidance"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Katie Shonk detailed best practices for trading concessions effectively with counterparts. Katie Shonk helped negotiators avoid capitulation or impasse.",
+      "b_roll": [
+        "A negotiator shaking hands with a counterpart across a desk.",
+        "A laptop screen displaying business strategy notes.",
+        "Two professionals reviewing a signed agreement document."
+      ],
+      "text_overlay": {
+        "text": "Building Reciprocity"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Harvard Business School published this research detailing four strategies.",
+      "b_roll": [
+        "A business book resting on a modern office desk."
+      ],
+      "text_overlay": {
+        "text": "Four Strategies"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://hbswk.hbs.edu/archive/four-strategies-for-making-concessions",
+    "https://www.pon.harvard.edu/daily/business-negotiations/business-skills-make-concessions-strategically-in-negotiation"
+  ]
+}
