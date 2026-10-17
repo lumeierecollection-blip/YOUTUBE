@@ -198,6 +198,13 @@ export function writtenWords(spoken, sentence) {
     let j = -1;
     for (let q = p; q < Math.min(W.length, p + 12); q++) if (norm(W[q]) === sw) { j = q; break; }
     if (j >= 0) { out[i] = W[j]; p = j + 1; continue; }
+    // One hyphenated spoken token for a written hyphenated figure: "twenty-three-year-old" <- "23-year-old" (board 39031532519 ch-6 showed the
+    // spoken form). Only onto a written token with a digit AND a hyphen, so "one-time" or "second-largest" keep their own words.
+    if (sw.includes("-") && NUMBER_WORDS.has(sw.split("-")[0])) {
+      let h = -1;
+      for (let q = p; q < Math.min(W.length, p + 5); q++) if (/\d/.test(W[q]) && W[q].includes("-")) { h = q; break; }
+      if (h >= 0) { out[i] = W[h]; p = h + 1; continue; }
+    }
     if (!NUMBER_WORDS.has(sw)) { out[i] = String(spoken[i].text || "").trim(); continue; }
     let e = i;
     while (e + 1 < out.length && numberish(spoken[e + 1].text) && !(norm(spoken[e + 1].text) === "and" && !NUMBER_WORDS.has(norm(spoken[e + 2]?.text)))) e++;

@@ -397,6 +397,9 @@ test("writtenWords: the spoken words come back as the sentence writes them; a nu
   assert.deepEqual(writtenWords(sp("Six regional banks"), "6 regional banks"), ["6", "regional", "banks"]);
   // a number run the sentence has no figure for is never shown in its spoken form
   assert.deepEqual(writtenWords(sp("about twenty people"), "about a score of people"), ["about", null, "people"]);
+  // board 39031532519 ch-6: one hyphenated spoken token for a hyphenated written figure
+  assert.deepEqual(writtenWords(sp("a twenty-three-year-old woman"), "a 23-year-old woman"), ["a", "23-year-old", "woman"]);
+  assert.deepEqual(writtenWords(sp("a one-time payment"), "a one-time payment of $5"), ["a", "one-time", "payment"]);
 });
 
 test("splitFigure: the number on its own line, the unit under it", () => {

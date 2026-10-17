@@ -28,7 +28,9 @@ import { treatmentBoxes, FRAME, parseDate } from "./clone-layout.js";
 const ADV = { "Roboto Condensed": 0.5, "Playfair Display": 0.56, "Fraunces": 0.58, "DM Sans": 0.6, "JetBrains Mono": 0.62 };
 const advOf = (fam, caps) => (ADV[fam] || 0.58) * (caps ? 1.06 : 1);
 
-function fitLines(text, width, { family, caps, max, min, maxLines }) {
+// maxHeight: the lines also fit the box's HEIGHT. Without it three lines of 190 px ran 600 px down a 420 px text box, over the accent bar laid out under
+// the box ("KATIE SHONK HELPED" struck through: board 39031532519 ch-44).
+function fitLines(text, width, { family, caps, max, min, maxLines, maxHeight = Infinity, lineHeight = 1.02 }) {
   const words = String(text).split(/\s+/).filter(Boolean);
   for (let size = max; size >= min; size -= 4) {
     const per = advOf(family, caps) * size;
@@ -39,7 +41,7 @@ function fitLines(text, width, { family, caps, max, min, maxLines }) {
       if (next.length * per <= width || !cur.length) cur.push(w); else { lines.push(cur.join(" ")); cur = [w]; }
     }
     if (cur.length) lines.push(cur.join(" "));
-    if (lines.length <= maxLines && Math.max(...lines.map((l) => l.length)) * per <= width * 1.0) return { lines, size };
+    if (lines.length <= maxLines && Math.max(...lines.map((l) => l.length)) * per <= width * 1.0 && lines.length * size * lineHeight <= maxHeight) return { lines, size };
   }
   const per = advOf(family, caps) * min;
   return { lines: [words.join(" ")], size: Math.max(28, Math.min(min, Math.floor(width / Math.max(1, words.join(" ").length * advOf(family, caps))))) , overflow: words.join(" ").length * per > width };
@@ -58,7 +60,7 @@ function Display({ shot, B, st, P, profile }) {
   const emph = shot.display.emphasis ? (caps ? shot.display.emphasis.toUpperCase() : shot.display.emphasis) : null;
   const plated = !!B.text.plated;
   const innerW = B.text.w - (plated ? 72 : 0);
-  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : (shot.hero || shot.subject || shot.excerpt) ? 118 : B.text.align === "center" ? 190 : 170, min: 56, maxLines: B.text.h > 450 ? 4 : 3 });
+  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : (shot.hero || shot.subject || shot.excerpt) ? 118 : B.text.align === "center" ? 190 : 170, min: 56, maxLines: B.text.h > 450 ? 4 : 3, maxHeight: B.text.h - (plated ? 56 : 0) });
   const inkOn = plated ? P.paper : P.ink;
   const accent = readableAccent(P.accent, plated ? P.ink : P.ground);
   const word = (w, key) => {
@@ -155,9 +157,15 @@ function Hero({ shot, B, st, P, profile, bw, local, idx }) {
 function Label({ text, B, st, P, profile, plated }) {
   if (!text) return null;
   const l = profile.type.label, bg = plated ? P.accent : "transparent";
+  // the label fits its column: at a fixed 38 px on one line, "TIGRAY PEOPLE'S LIBERATION FRONT" ran out of a 440 px split column and off the frame
+  // (board 39031532519 ch-9 showed "TIGRAY PEOPLE'S LI"). Smaller down to 22 px, then it wraps.
+  const per = (advOf(l.family, l.case === "upper") + (Number(l.tracking) || 0)) * String(text).length;
+  const avail = B.label.w - (plated ? 32 : 0);
+  const fs = Math.max(22, Math.min(38, Math.floor(avail / Math.max(1, per))));
+  const wraps = per * fs > avail;
   return (
     <div style={{ position: "absolute", left: B.label.x, top: B.label.y, width: B.label.w, opacity: st.o, transform: `scale(${st.s})`, transformOrigin: "0% 50%", textAlign: B.text.align === "right" ? "right" : B.text.align === "center" ? "center" : "left", zIndex: 4 }}>
-      <span style={{ display: "inline-block", padding: plated ? "6px 16px" : 0, backgroundColor: bg, fontFamily: `"${l.family}", Helvetica, sans-serif`, fontWeight: l.weight, fontSize: 38, letterSpacing: `${l.tracking}em`, textTransform: l.case === "upper" ? "uppercase" : "none", color: plated ? P.paper : P.ink, whiteSpace: "nowrap" }}>{text}</span>
+      <span style={{ display: "inline-block", padding: plated ? "6px 16px" : 0, backgroundColor: bg, fontFamily: `"${l.family}", Helvetica, sans-serif`, fontWeight: l.weight, fontSize: fs, lineHeight: 1.15, maxWidth: B.label.w, boxSizing: "border-box", letterSpacing: `${l.tracking}em`, textTransform: l.case === "upper" ? "uppercase" : "none", color: plated ? P.paper : P.ink, whiteSpace: wraps ? "normal" : "nowrap" }}>{text}</span>
     </div>
   );
 }

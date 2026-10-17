@@ -50,3 +50,11 @@ test("the plain physical form of what the sentence says passes; a word that only
   assert.equal(isLiteral("film camera", "Crime scene investigators arrived."), null); // a crime scene is not a film scene
   assert.equal(isLiteral("pill bottle", "Mental accounting shapes how we spend."), null);
 });
+
+test("board 39031532519: a police station / badge is an object, not a person; an activity word no longer qualifies office furniture", () => {
+  const s = "Lexington Police reopened the case and expanded the department's cold case unit with two detectives.";
+  assert.deepEqual(validateProps([{ object: "police station", building: true }, { object: "police officer" }], [], s).kept.map((k) => k.object), ["police station"]);
+  assert.equal(isLiteral("wooden desk", "Deepak Malhotra published research detailing four strategies for making concessions."), null);
+  assert.equal(isLiteral("laptop", "Katie Shonk analyzed business skills regarding how negotiators avoid capitulation."), null);
+  assert.ok(isLiteral("desk", "The company closed its Boston office."));
+});

@@ -33,7 +33,7 @@
 export const MAX_PROPS = 4;
 
 // Never a prop: people (a stranger reads as the story's named person), words on things, marks, drawings and abstractions.
-const PEOPLE = /\b(man|men|woman|women|person|people|boy|girl|child|children|kid|kids|baby|worker|workers|officer|officers|police|judge|lawyer|doctor|nurse|teacher|student|students|ceo|businessman|businesswoman|crowd|family|couple|actor|actress|politician|president|soldier|player|fan|fans|face|hand|hands|silhouette|figure|portrait|selfie|human|humans)\b/i;
+const PEOPLE = /\b(man|men|woman|women|person|people|boy|girl|child|children|kid|kids|baby|worker|workers|officer|officers|judge|lawyer|doctor|nurse|teacher|student|students|ceo|businessman|businesswoman|crowd|family|couple|actor|actress|politician|president|soldier|player|fan|fans|face|hand|hands|silhouette|figure|portrait|selfie|human|humans)\b/i;
 const NOT_PHOTO = /\b(icon|icons|logo|logos|symbol|symbols|emoji|illustration|drawing|cartoon|vector|clipart|clip-art|graphic|graphics|chart|graph|diagram|infographic|sign|signs|signage|banner|poster|text|word|words|letter|letters|headline|newspaper|screen|screenshot|website|app|map|flag|arrow|arrows|silhouette)\b/i;
 const ABSTRACT = /\b(idea|ideas|concept|success|failure|growth|economy|policy|risk|future|change|freedom|justice|truth|power|love|fear|hope|time|money\s+concept|strategy|problem|solution|crisis|trend|market|markets|inflation|value|values|culture|history|news|story|life|death|anxiety|stress)\b/i;
 
