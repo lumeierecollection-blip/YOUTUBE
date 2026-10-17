@@ -1,0 +1,65 @@
+{
+  "topic_slug": "fbi-philadelphia-police-excavate-olney-home",
+  "strongest_angle": "Investigating the October 2026 FBI and Philadelphia Police excavation at Raymond 'RC' Horsch's Chew Avenue property in Olney tied to seven missing women.",
+  "key_facts": [
+    {
+      "fact": "Philadelphia Police and the FBI conducted an extensive excavation at 417 West Chew Avenue in the Olney section, linked to seven missing women.",
+      "source_url": "https://www.fox29.com/news/horsch-house-investigators-will-use-heavy-machinery-excavate-more-olney-property",
+      "source_name": "FOX 29 Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Human DNA was found at the Olney property after investigators sprayed luminol to search the home on West Chew Avenue, according to police sources.",
+      "source_url": "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol",
+      "source_name": "CBS Philadelphia",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Investigators returned with heavy machinery and excavators to dig up the backyard of the late pornographer Raymond 'RC' Horsch and his son Eugene.",
+      "source_url": "https://www.foxnews.com/us/fbi-philly-police-dig-up-horsch-backyard-home-tied-7-missing-women-possible-serial-killer-probe",
+      "source_name": "Fox News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Missing women linked to property",
+      "value": 7,
+      "unit": "missing women",
+      "source_url": "https://www.fox29.com/news/horsch-house-investigators-will-use-heavy-machinery-excavate-more-olney-property"
+    },
+    {
+      "label": "Street number on West Chew Avenue",
+      "value": 417,
+      "unit": "address number",
+      "source_url": "https://www.fox29.com/news/horsch-house-investigators-will-use-heavy-machinery-excavate-more-olney-property"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Raymond 'RC' Horsch",
+      "kind": "person"
+    },
+    {
+      "name": "Eugene Horsch",
+      "kind": "person"
+    },
+    {
+      "name": "FBI",
+      "kind": "organization"
+    },
+    {
+      "name": "Philadelphia Police",
+      "kind": "organization"
+    },
+    {
+      "name": "West Chew Avenue",
+      "kind": "place"
+    },
+    {
+      "name": "Olney",
+      "kind": "place"
+    }
+  ]
+}
