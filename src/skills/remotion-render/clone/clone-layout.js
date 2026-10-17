@@ -111,6 +111,7 @@ export function parseDate(text) {
   const t = String(text || "");
   const m = MONTHS.find((x) => new RegExp("(^|[^a-z])(" + x + "|" + x.slice(0, 3) + ")([^a-z]|$)", "i").test(t));   // a boundary without a backslash: "mar" in "marketplace" is not March
   const year = (t.match(/\b(?:1[89]|20)\d{2}\b/) || [])[0] || null;
-  const day = (t.replace(year || "", "").match(/\b(\d{1,2})\b/) || [])[1] || null;
+  // an ordinal day counts ("September 25th": board 38976972038 ch-8 read no day and drew the whole phrase under the month)
+  const day = (t.replace(year || "", "").match(/\b(\d{1,2})(?:st|nd|rd|th)?\b/i) || [])[1] || null;
   return { month: m ? m.toUpperCase() : null, day, year };
 }

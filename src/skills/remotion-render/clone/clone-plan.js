@@ -136,6 +136,16 @@ export function figuresOf(canvas) {
     if (e.type === "number") { if (/\d/.test(String(e.name))) add("figure", e.name); }
     else if (e.type === "date") add("date", e.name);
   }
+  // THE SENTENCE'S OWN DATES AND FIGURES when the plan listed none (board 38976972038 ch-8 beat 4: "Nano Banc became the sixth U.S. bank to fail in 2026 on
+  // September 25th" arrived with no entities from a fallback planner, and its shots were near-empty narration lines). Only what the sentence writes, in digits.
+  if (!out.length && c.sentence) {
+    const s = String(c.sentence);
+    const dates = [...s.matchAll(/\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:st|nd|rd|th)?(?:,?\s+(?:1[89]|20)\d{2})?\b/g)].map((m) => m[0]);
+    for (const d of dates) add("date", d);
+    const rest = dates.reduce((a, d) => a.replace(d, " "), s);
+    // never a bare year: the frame showed "2026" for every shot of "Six regional U.S. banks failed in 2026" (local proof stills) — the year is not the point
+    for (const m of rest.matchAll(/\$?\d[\d,.]*%?/g)) { const v = m[0].replace(/[.,]+$/, ""); if (/\d/.test(v) && !/^(1[89]|20)\d\d$/.test(v)) add("figure", v); }
+  }
   // "9" from the entities is the start of "9 to 0" from the data: keep the longer, drop the part
   return out.filter((f) => !out.some((g) => g !== f && g.kind === f.kind && g.name.length > f.name.length && g.name.includes(f.name)));
 }

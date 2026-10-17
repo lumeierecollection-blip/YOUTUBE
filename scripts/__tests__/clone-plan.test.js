@@ -415,3 +415,13 @@ test("display words keep an abbreviation's last period (U.S., not U.S)", () => {
   const spoken = [{ text: "U.S.", abs: 0 }, { text: "banks", abs: 10 }, { text: "failed", abs: 20 }];
   assert.match(displayWords(spoken, 0, 100, [], 3).text, /^U\.S\.(\s|$)/);
 });
+
+test("a beat whose plan lists no figure or date still shows the ones its sentence writes", () => {
+  const f = figuresOf({ sentence: "Nano Banc became the sixth U.S. bank to fail in 2026 on September 25th.", named_entities: [] });
+  assert.deepEqual(f.map((x) => [x.kind, x.name]), [["date", "September 25th"]]);   // the bare year is not a figure
+  assert.deepEqual(figuresOf({ sentence: "Six regional U.S. banks failed in 2026.", named_entities: [] }), []);
+  const g = figuresOf({ sentence: "These banks held roughly 1.4 billion dollars.", named_entities: [] });
+  assert.deepEqual(g.map((x) => x.name), ["1.4 billion dollars"]);
+  // a plan that DID list them is not second-guessed
+  assert.deepEqual(figuresOf({ sentence: "It fell 40% in 2026.", named_entities: [{ type: "number", name: "40%" }] }).map((x) => x.name), ["40%"]);
+});
