@@ -1,0 +1,67 @@
+{
+  "channel_id": "6",
+  "topic_slug": "lexington-police-dna-barbara-lunsford-disappearance",
+  "format": "shorts",
+  "hook": "Six decades after a 23-year-old vanished, modern DNA testing is finally reopening the case.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six decades after a 23-year-old vanished, modern DNA testing is finally reopening the case.",
+      "b_roll": [
+        "Archive photo of Lexington from 1963",
+        "Close up of case files"
+      ],
+      "text_overlay": {
+        "text": "1963 Cold Case"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 12, 1963, Barbara Lunsford left her Lexington home for a doctor's appointment. She never made it to that doctor's appointment. Can expanded department resources finally solve the 1963 disappearance?",
+      "b_roll": [
+        "Historical map of Lexington streets",
+        "Calendar page showing October 1963"
+      ],
+      "text_overlay": {
+        "text": "October 12, 1963"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Lexington Police are using DNA testing in the 1963 disappearance, but the trail went cold.",
+      "b_roll": [
+        "Modern forensic laboratory equipment",
+        "DNA strand graphic animation"
+      ],
+      "text_overlay": {
+        "text": "Modern DNA Testing"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Lexington Police are utilizing expanded department resources to review the Barbara Lunsford case. The Lexington Police Department unsolved case unit features 2 detectives and 2 officers.",
+      "b_roll": [
+        "Police department archive room",
+        "Detectives reviewing old documents"
+      ],
+      "text_overlay": {
+        "text": "2 Detectives Assigned"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Barbara Lunsford remains missing after 63 years.",
+      "b_roll": [
+        "Fading archival photograph of Lexington",
+        "Darkened station exterior"
+      ],
+      "text_overlay": {
+        "text": "63 Years Later"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wkyt.com/2026/10/08/wkyt-investigates-lexington-police-working-solve-63-year-old-missing-persons-case",
+    "https://www.wkyt.com/2026/10/09/lexington-police-use-expanded-resources-work-unsolved-cases"
+  ]
+}
