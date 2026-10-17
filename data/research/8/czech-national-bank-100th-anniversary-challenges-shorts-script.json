@@ -1,0 +1,65 @@
+{
+  "channel_id": "8",
+  "topic_slug": "czech-national-bank-100th-anniversary-challenges",
+  "format": "shorts",
+  "hook": "The National Bank of Czechoslovakia began its operations 100 years ago, marking a century of independence.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The National Bank of Czechoslovakia began its operations 100 years ago, marking a century of independence.",
+      "b_roll": [
+        "Historical facade of the central bank in Prague"
+      ],
+      "text_overlay": {
+        "text": "100 Years of Central Banking"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 6, 2026, the Czech National Bank hosted its conference at the Congress Centre, Prague. What did the centennial conference address?",
+      "b_roll": [
+        "Exterior view of the Czech National Bank Congress Centre",
+        "Archive documents from 100 years ago"
+      ],
+      "text_overlay": {
+        "text": "Prague Conference 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Deputy Governor Jan Frait opened the Prague conference, warning that central bank independence faces risks.",
+      "b_roll": [
+        "Jan Frait speaking at the podium"
+      ],
+      "text_overlay": {
+        "text": "Opening Remarks"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Experts tackled excess liquidity management during 100 years of history. Central bank independence faced major discussions on October 6, 2026.",
+      "b_roll": [
+        "Panelists seated on stage during the conference",
+        "Audience listening in the main hall"
+      ],
+      "text_overlay": {
+        "text": "Liquidity and Independence"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Prague celebrated 100 years of banking history during the centennial conference.",
+      "b_roll": [
+        "View of the Prague skyline over the river"
+      ],
+      "text_overlay": {
+        "text": "100 Years"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnb.cz/en/cnb-news/press-releases/The-CNB-commemorates-100nbspyears-since-the-establishment-of-the-first-Czechoslovak-central-bank",
+    "https://www.cnb.cz/en/economic-research/conferences-seminars-and-workshops/new-challenges-in-central-banking-conference/index.html",
+    "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment"
+  ]
+}

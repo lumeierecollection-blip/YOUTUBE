@@ -1,0 +1,97 @@
+{
+  "topic_slug": "czech-national-bank-100th-anniversary-challenges",
+  "strongest_angle": "Analyze the centennial conference of the National Bank of Czechoslovakia and its historical panels on central bank independence and excess liquidity management hosted in Prague.",
+  "key_facts": [
+    {
+      "fact": "Spring 2026 marks 100 years since the National Bank of Czechoslovakia began operations as the first independent Czechoslovak central bank.",
+      "source_url": "https://www.cnb.cz/en/cnb-news/press-releases/The-CNB-commemorates-100nbspyears-since-the-establishment-of-the-first-Czechoslovak-central-bank",
+      "source_name": "Czech National Bank",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Czech National Bank held the New Challenges in Central Banking Conference on October 6, 2026 at the Czech National Bank Congress Centre in Prague.",
+      "source_url": "https://www.cnb.cz/en/economic-research/conferences-seminars-and-workshops/new-challenges-in-central-banking-conference/index.html",
+      "source_name": "Czech National Bank",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jan Frait, Deputy Governor of the Czech National Bank, delivered opening remarks at the centennial conference in Prague on October 6, 2026.",
+      "source_url": "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment",
+      "source_name": "Bank for International Settlements",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years since establishment",
+      "value": 100,
+      "unit": "years",
+      "source_url": "https://www.cnb.cz/en/cnb-news/press-releases/The-CNB-commemorates-100nbspyears-since-the-establishment-of-the-first-Czechoslovak-central-bank"
+    },
+    {
+      "label": "Years since independent state",
+      "value": 8,
+      "unit": "years",
+      "source_url": "https://www.cnb.cz/cnb/100letnbc_en/index.html"
+    },
+    {
+      "label": "Years since currency introduction",
+      "value": 7,
+      "unit": "years",
+      "source_url": "https://www.cnb.cz/cnb/100letnbc_en/index.html"
+    },
+    {
+      "label": "Conference street number",
+      "value": 30,
+      "unit": "number",
+      "source_url": "https://www.cnb.cz/en/economic-research/conferences-seminars-and-workshops/new-challenges-in-central-banking-conference/index.html"
+    },
+    {
+      "label": "Conference district",
+      "value": 1,
+      "unit": "district",
+      "source_url": "https://www.cnb.cz/en/economic-research/conferences-seminars-and-workshops/new-challenges-in-central-banking-conference/index.html"
+    },
+    {
+      "label": "Years since Bretton Woods system",
+      "value": 50,
+      "unit": "years",
+      "source_url": "https://www.cnb.cz/en/public/media-service/speeches-conferences-seminars/presentations-and-speeches/The-Czech-koruna-50-years-after-the-beginning-of-the-post-Bretton-Woods-system-and-the-Czech-National-Bank-100-years-after-the-establishment-of-the-National-Bank-of-Czechoslovakia"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "National Bank of Czechoslovakia",
+      "kind": "organization"
+    },
+    {
+      "name": "Czech National Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Prague",
+      "kind": "place"
+    },
+    {
+      "name": "Jan Frait",
+      "kind": "person"
+    },
+    {
+      "name": "Lubos Pastor",
+      "kind": "person"
+    },
+    {
+      "name": "Claudio Borio",
+      "kind": "person"
+    },
+    {
+      "name": "Goldman Sachs",
+      "kind": "organization"
+    },
+    {
+      "name": "Michl Aleš",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}
