@@ -163,8 +163,11 @@ async function moneyCandidates(concept, scene) {
       for (const f of files) out.push({ commonsFile: f, page: `https://commons.wikimedia.org/wiki/${encodeURIComponent(f.replace(/ /g, "_"))}`, user: "", source: "wikimedia commons", license: "Public domain (US federal work)" });
     }
   } else {
-    const j = await getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`${concept} obverse`)}`);
-    for (const h of (j?.query?.search || []).filter((x) => /\.(jpe?g|png)$/i.test(x.title)).slice(0, 4)) out.push({ commonsFile: h.title, page: `https://commons.wikimedia.org/wiki/${encodeURIComponent(h.title.replace(/ /g, "_"))}`, user: "", source: "wikimedia commons", license: "see Commons" });
+    // A US story gets US coins only: "coin" for "$3.8 million" fetched an Iranian Pahlavi gold coin with two men's portraits (run 39012850944 ch-26). With no
+    // US file in the results nothing is taken here and Pixabay's generic coins are tried instead.
+    const j = await getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=20&srsearch=${encodeURIComponent(`${us ? "United States " : ""}${concept} obverse`)}`);
+    const usFile = (t) => /united states|\bu\.?s\.?\b|quarter|dime|nickel|\bcent\b|penny|half dollar|dollar coin|eagle/i.test(t);
+    for (const h of (j?.query?.search || []).filter((x) => /\.(jpe?g|png)$/i.test(x.title) && (!us || usFile(x.title))).slice(0, 4)) out.push({ commonsFile: h.title, page: `https://commons.wikimedia.org/wiki/${encodeURIComponent(h.title.replace(/ /g, "_"))}`, user: "", source: "wikimedia commons", license: "see Commons" });
   }
   // A Commons file's own URL (and licence, which must be free).
   for (const c of out.filter((x) => x.commonsFile)) {
