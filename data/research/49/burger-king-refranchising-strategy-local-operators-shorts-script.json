@@ -1,0 +1,66 @@
+{
+  "channel_id": "49",
+  "topic_slug": "burger-king-refranchising-strategy-local-operators",
+  "format": "shorts",
+  "hook": "Burger King is selling company-operated restaurants to local franchisees to rescue its U.S. turnaround.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Burger King is selling company-operated restaurants to local franchisees to rescue its U.S. turnaround.",
+      "b_roll": [
+        "Burger King restaurant exterior",
+        "Local franchisee signing paperwork"
+      ],
+      "text_overlay": {
+        "text": "Burger King Refranchising Strategy"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Restaurant Brands International bought Carrols Restaurant Group for $1 billion dollars to kick off the pivot. Where are 200 locations heading by year end?",
+      "b_roll": [
+        "Corporate boardroom meeting",
+        "Renovated dining room"
+      ],
+      "text_overlay": {
+        "text": "$1 Billion Carrols Acquisition"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Local operators are taking over those exact restaurants right now.",
+      "b_roll": [
+        "Franchise owner greeting customers",
+        "Kitchen staff preparing food"
+      ],
+      "text_overlay": {
+        "text": "Local Operators Take Over"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Restaurant Brands International plans to hold only 300 restaurants directly in the long term. Local buyers acquired the rest to accelerate store growth. 200 locations are changing hands by the end of 2026.",
+      "b_roll": [
+        "Growth chart showing franchise expansion",
+        "Packed Burger King counter"
+      ],
+      "text_overlay": {
+        "text": "Only 300 Direct Restaurants Left"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "300 restaurants remain under direct corporate control.",
+      "b_roll": [
+        "Burger King sign glowing at dusk"
+      ],
+      "text_overlay": {
+        "text": "300 Direct Restaurants Remaining"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://qz.com/burger-king-refranchising-local-franchisees-us-turnaround-100226",
+    "https://www.rttnews.com/3696252/burger-king-refranchises-u-s-restaurants-as-it-pushes-turnaround.aspx"
+  ]
+}

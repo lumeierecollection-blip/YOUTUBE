@@ -1,0 +1,78 @@
+{
+  "topic_slug": "burger-king-refranchising-strategy-local-operators",
+  "strongest_angle": "Burger King is shifting its U.S. turnaround strategy by refranchising company-owned locations to local operators, following its acquisition of Carrols Restaurant Group.",
+  "key_facts": [
+    {
+      "fact": "Burger King is selling company-operated restaurants to local franchisees, expecting about 200 locations to change hands by the end of 2026.",
+      "source_url": "https://qz.com/burger-king-refranchising-local-franchisees-us-turnaround-100226",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Restaurant Brands International set a long-term goal to hold onto only around 300 U.S. restaurants directly, leaving the remainder to franchisees.",
+      "source_url": "https://qz.com/burger-king-refranchising-local-franchisees-us-turnaround-100226",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "The refranchising strategy follows Restaurant Brands International's roughly $1 billion acquisition of Carrols Restaurant Group in 2024.",
+      "source_url": "https://www.rttnews.com/3696252/burger-king-refranchises-u-s-restaurants-as-it-pushes-turnaround.aspx",
+      "source_name": "RTTNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Burger King invested $700 million into the Reclaim the Flame turnaround project to boost marketing and remodels.",
+      "source_url": "https://www.qsrmagazine.com/story/burger-king-has-spent-hundreds-of-millions-on-remodels-heres-a-look-at-why",
+      "source_name": "QSR Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Locations changing hands by year-end",
+      "value": 200,
+      "unit": "locations",
+      "source_url": "https://qz.com/burger-king-refranchising-local-franchisees-us-turnaround-100226"
+    },
+    {
+      "label": "U.S. restaurants held directly long-term",
+      "value": 300,
+      "unit": "restaurants",
+      "source_url": "https://qz.com/burger-king-refranchising-local-franchisees-us-turnaround-100226"
+    },
+    {
+      "label": "Acquisition cost of Carrols Restaurant Group",
+      "value": 1,
+      "unit": "billion dollars",
+      "source_url": "https://www.rttnews.com/3696252/burger-king-refranchises-u-s-restaurants-as-it-pushes-turnaround.aspx"
+    },
+    {
+      "label": "Investment into Reclaim the Flame",
+      "value": 700,
+      "unit": "million dollars",
+      "source_url": "https://www.qsrmagazine.com/story/burger-king-has-spent-hundreds-of-millions-on-remodels-heres-a-look-at-why"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Burger King",
+      "kind": "organization"
+    },
+    {
+      "name": "Restaurant Brands International",
+      "kind": "organization"
+    },
+    {
+      "name": "Carrols Restaurant Group",
+      "kind": "organization"
+    },
+    {
+      "name": "Tom Curtis",
+      "kind": "person"
+    },
+    {
+      "name": "Kline",
+      "kind": "person"
+    }
+  ]
+}
