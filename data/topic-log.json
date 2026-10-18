@@ -1263,9 +1263,14 @@
           "topic": "Eurojust and NATO Joint Investigation Takes Down Company in EUR 1 Million Fraud",
           "slug": "eurojust-nato-joint-investigation-fraud-takedown",
           "reserved_at": "2026-10-17T12:18:12.621Z"
+        },
+        {
+          "topic": "DOJ Fraud Division and IRS Expose 490 Million in Tax Fraud",
+          "slug": "doj-fraud-division-irs-tax-fraud-surge",
+          "reserved_at": "2026-10-18T12:44:21.666Z"
         }
       ],
-      "last_generated": "2026-10-17T12:18:12.622Z"
+      "last_generated": "2026-10-18T12:44:21.666Z"
     },
     "6": {
       "channel_name": "Archive Room",
