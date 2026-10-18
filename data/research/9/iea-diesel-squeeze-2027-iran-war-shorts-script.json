@@ -1,0 +1,62 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iea-diesel-squeeze-2027-iran-war",
+  "format": "shorts",
+  "hook": "Why are global diesel supplies projected to remain constrained well into 2027?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Why are global diesel supplies projected to remain constrained well into 2027?",
+      "b_roll": [
+        " tanker ships in the Persian Gulf"
+      ],
+      "text_overlay": {
+        "text": "Diesel Squeeze 2027"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Middle East conflicts disrupted fuel exports from Iran. Why did global diesel exports fall by 700,000 barrels as Middle East shipments struggled?",
+      "b_roll": [
+        " refinery map of Europe and Middle East"
+      ],
+      "text_overlay": {
+        "text": "Exports down 700,000 barrels"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet replenishing lost diesel inventories may not begin before the second half of 2027.",
+      "b_roll": [
+        " calendar graphic showing 2027"
+      ],
+      "text_overlay": {
+        "text": "Late 2027 Recovery"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The International Energy Agency reported tight markets and high prices persist through 2027. World oil demand projects a recovery of 2.6 mb/d in 2027.",
+      "b_roll": [
+        " IEA report documents and price charts"
+      ],
+      "text_overlay": {
+        "text": "IEA Report on Diesel Markets"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Tight diesel markets and constrained supplies will definitely persist throughout 2027.",
+      "b_roll": [
+        " global oil shipping lanes"
+      ],
+      "text_overlay": {
+        "text": "2027 Diesel Outlook"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.bloomberglaw.com/international-trade/diesel-supplies-to-remain-constrained-well-into-2027-iea-warns",
+    "https://www.cnbc.com/2026/10/14/diesel-deal-oil-price-iea-report.html"
+  ]
+}
