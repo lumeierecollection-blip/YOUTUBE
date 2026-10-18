@@ -48,6 +48,11 @@ describe("youtube-publish approves exactly config/priority-channels.json", () =>
   });
 
   it("the ch- form is accepted exactly like the bare form", () => {
-    assert.doesNotMatch(dry("ch-05").out, REFUSED);
+    assert.doesNotMatch(dry("ch-02").out, REFUSED);
+  });
+
+  // owner, 2026-10-19: only channels whose credentials work are scheduled; ch-9 (invalid_client) waits until it is added back to the config
+  it("a channel waiting for working credentials is refused until it is added back", () => {
+    assert.match(dry("9").out, REFUSED);
   });
 });

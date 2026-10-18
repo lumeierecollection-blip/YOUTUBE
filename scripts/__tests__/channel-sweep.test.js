@@ -19,8 +19,10 @@ const EXPECTED = {
 describe("every dispatched key resolves to its OWN channel", () => {
   const priority = JSON.parse(readFileSync(join(ROOT, "config", "priority-channels.json"), "utf8")).channels.map(String);
 
-  it("the expectation table covers exactly the priority channels", () => {
-    assert.deepEqual(Object.keys(EXPECTED).sort(), [...priority].sort());
+  // every SCHEDULED channel is in the table; the table keeps the ten that were approved, so the ones waiting for credentials (owner, 2026-10-19) still
+  // resolve to their own names when they are added back
+  it("the expectation table covers every priority channel", () => {
+    for (const k of priority) assert.ok(k in EXPECTED, `priority channel ${k} has no expected name`);
   });
 
   for (const [key, name] of Object.entries(EXPECTED)) {
