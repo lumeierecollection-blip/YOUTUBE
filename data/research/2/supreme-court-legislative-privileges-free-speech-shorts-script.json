@@ -1,0 +1,68 @@
+{
+  "channel_id": "2",
+  "topic_slug": "supreme-court-legislative-privileges-free-speech",
+  "format": "shorts",
+  "hook": "Article 194(3) gives the Tamil Nadu Assembly privileges that often clash with free speech.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Article 194(3) gives the Tamil Nadu Assembly privileges that often clash with free speech.",
+      "b_roll": [
+        "Supreme Court courtroom exterior",
+        "Constitution text closeup"
+      ],
+      "text_overlay": {
+        "text": "Absolute Power vs Free Speech"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "A 7-judge bench of the Supreme Court of India examined legislative privileges under Article 194 against press freedom. Editors of The Hindu faced arrest after a 2003 Tamil Nadu Assembly resolution. What happened to that case?",
+      "b_roll": [
+        "Supreme Court bench gavel",
+        "The Hindu newspaper archive",
+        "Tamil Nadu Assembly building"
+      ],
+      "text_overlay": {
+        "text": "Article 194 vs Article 19"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Tamil Nadu Assembly withdrew the 2003 resolution back in 2004.",
+      "b_roll": [
+        "Court judgment document",
+        "Assembly records archive"
+      ],
+      "text_overlay": {
+        "text": "The 2004 Withdrawal"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Supreme Court of India unanimously closed the seven-judge reference as pointless since it lacked any remaining practical purpose. Constitutional protections remain active across India.",
+      "b_roll": [
+        "Supreme Court judges bench",
+        "Indian Constitution book",
+        "Newspaper headline"
+      ],
+      "text_overlay": {
+        "text": "Reference Dismissed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Article 19(1)(a) protects freedom of speech.",
+      "b_roll": [
+        "Constitution emblem closeup"
+      ],
+      "text_overlay": {
+        "text": "Article 19(1)(a)"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://theprint.in/judiciary/scs-7-judge-bench-disposes-of-reference-on-extent-of-legislative-privileges-vs-free-speech-for-now/3063077",
+    "https://www.newindianexpress.com/india/2026/Oct/07/seven-judge-sc-bench-closes-reference-on-legislative-privilege-and-free-speech"
+  ]
+}
