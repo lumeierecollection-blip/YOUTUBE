@@ -90,3 +90,21 @@ test("OLLAMA_FIRST: Ollama Cloud answers before Gemini is asked — in callLLMWi
     process.env.OLLAMA_API_KEY = "test-key";
   }
 });
+
+test("OLLAMA_FIRST never takes the WRITING stages (run 39176119939: gpt-oss wrote invented claims, three channels skipped)", async () => {
+  process.env.OLLAMA_API_KEY = "test-key";
+  process.env.OLLAMA_FIRST = "1";
+  try {
+    const { callGemini } = await import("../../src/lib/gemini-client.js");
+    for (const tag of ["script write-script", "research ch-1", "discover-topics ch-?"]) {
+      seen = [];
+      await callGemini([{ role: "user", content: "x" }], { tag });   // no Gemini key here: Gemini answers no_key, and Ollama is never asked
+      assert.equal(seen.length, 0, `${tag} reached Ollama Cloud`);
+    }
+    seen = [];
+    await callGemini([{ role: "user", content: "x" }], { tag: "props ch-1" });
+    assert.equal(seen.length, 1, "a judging stage still goes to Ollama first");
+  } finally {
+    delete process.env.OLLAMA_FIRST;
+  }
+});

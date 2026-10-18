@@ -311,7 +311,11 @@ function logKeyProjects() {
 export async function callGemini(messages, opts = {}) {
   // OLLAMA_FIRST (scripts/ollama-client.cjs ollamaFirst): Ollama Cloud answers first, Gemini only when it cannot. Callers that record WHO answered
   // (llm.js, the image checkers) ask Ollama Cloud themselves and pass _noOllamaFirst, so an answer is never labelled with the wrong provider.
-  if (!opts._noOllamaFirst) {
+  // NEVER for the WRITING stages (topic discovery, research, the script): on run 39176119939 gpt-oss:120b wrote ch-1 / 9 / 49's scripts with claims
+  // the research does not hold ("Ten Experian debt-payoff tricks look like fluff") and the claim gate skipped all three channels. Gemini writes;
+  // Ollama Cloud judges (props, image checks, frame review), where it was free and answered correctly.
+  const writing = /^(discover-topics|research|script)\b/i.test(String(opts.tag || ""));
+  if (!opts._noOllamaFirst && !writing) {
     const ollama = createRequire(import.meta.url)("../../scripts/ollama-client.cjs");
     if (ollama.ollamaFirst()) {
       const o = await ollama.callOllamaCloud(messages, opts);
