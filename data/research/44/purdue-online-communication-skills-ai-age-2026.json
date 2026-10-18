@@ -1,0 +1,95 @@
+{
+  "topic_slug": "purdue-online-communication-skills-ai-age-2026",
+  "strongest_angle": "Examines October 2026 findings from Purdue University and McKinsey showing how human communication skills and problem-solving outrank AI proficiency in modern hiring.",
+  "key_facts": [
+    {
+      "fact": "Purdue University published an article on October 9, 2026, authored by RM Barton, addressing whether communication skills remain important in the age of artificial intelligence.",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+      "source_name": "Purdue Online",
+      "confidence": "high"
+    },
+    {
+      "fact": "Purdue Global published a report on October 13, 2026, citing McKinsey research that existing AI and related technologies could automate tasks accounting for more than half of all U.S. work hours.",
+      "source_url": "https://www.purdueglobal.edu/blog/careers/human-skills-age-of-ai",
+      "source_name": "Purdue Global",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2026 GMAC Corporate Recruiters Survey surveyed over 600 global employers, finding that 64 percent named communication as the most in-demand skill for business school graduates.",
+      "source_url": "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters",
+      "source_name": "Graduate Management Admission Council",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mark George published an analysis on October 13, 2026, through Masters in Communications examining the Purdue University findings on communication majors and AI tools.",
+      "source_url": "https://www.mastersincommunications.org/communication-skills-in-the-age-of-ai-2026-10-10",
+      "source_name": "Masters in Communications",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "U.S. work hours automatable by AI according to McKinsey",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://www.purdueglobal.edu/blog/careers/human-skills-age-of-ai"
+    },
+    {
+      "label": "Global employers surveyed in the 2026 GMAC Corporate Recruiters Survey",
+      "value": 600,
+      "unit": "employers",
+      "source_url": "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters"
+    },
+    {
+      "label": "Employers naming communication as the most in-demand skill",
+      "value": 64,
+      "unit": "percent",
+      "source_url": "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters"
+    },
+    {
+      "label": "Employers ranking problem-solving as a top skill",
+      "value": 62,
+      "unit": "percent",
+      "source_url": "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters"
+    },
+    {
+      "label": "Employers ranking adaptability as a top skill",
+      "value": 60,
+      "unit": "percent",
+      "source_url": "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters"
+    },
+    {
+      "label": "Ranking of using AI tools in recruiter priority",
+      "value": 14,
+      "unit": "place",
+      "source_url": "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Purdue Global",
+      "kind": "organization"
+    },
+    {
+      "name": "McKinsey",
+      "kind": "organization"
+    },
+    {
+      "name": "RM Barton",
+      "kind": "person"
+    },
+    {
+      "name": "Mark George",
+      "kind": "person"
+    },
+    {
+      "name": "Graduate Management Admission Council",
+      "kind": "organization"
+    }
+  ]
+}
