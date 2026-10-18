@@ -1,0 +1,96 @@
+{
+  "topic_slug": "wef-october-2026-authentic-leadership-impact",
+  "strongest_angle": "Analyze the World Economic Forum's October 2026 brief and discussions on authentic leadership, examining how purpose-driven principles bridge the gap between values and strategy following the rise of artificial intelligence.",
+  "key_facts": [
+    {
+      "fact": "The World Economic Forum published the Authentic Leadership Revisited brief and panel discussion featuring CEO Mershad Javan and Michael Riedl.",
+      "source_url": "https://www.linkedin.com/posts/octiive_authenticleadership-wef-leadership-activity-7514159237179248640-O7qu",
+      "source_name": "LinkedIn",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The World Economic Forum held its 56th Annual Meeting in Davos bringing together nearly 3000 leaders from more than 130 countries.",
+      "source_url": "https://www.weforum.org/videos/am_26_closing_film",
+      "source_name": "World Economic Forum",
+      "confidence": "high"
+    },
+    {
+      "fact": "Rashimah Rajah authored the research publication Authentic Leadership Revisited: What Drives Real Impact at the University of Twente.",
+      "source_url": "https://research.utwente.nl/en/publications/authentic-leadership-revisited-what-drives-real-impact",
+      "source_name": "University of Twente Research Information",
+      "confidence": "high"
+    },
+    {
+      "fact": "The World Economic Forum released the audio podcast episode titled Authentic Leadership Revisited: What Drives Real Impact with a runtime of 28 minutes and 21 seconds.",
+      "source_url": "https://playpodcasts.com/podcasts/agenda-dialogues/authentic-leadership-revisited-what-drives-real-impact-c4c26d9b3c",
+      "source_name": "Play Podcasts",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Leaders attending Davos Annual Meeting",
+      "value": 3000,
+      "unit": "leaders",
+      "source_url": "https://www.weforum.org/videos/am_26_closing_film"
+    },
+    {
+      "label": "Countries represented at Davos Annual Meeting",
+      "value": 130,
+      "unit": "countries",
+      "source_url": "https://www.weforum.org/videos/am_26_closing_film"
+    },
+    {
+      "label": "Annual Meeting edition",
+      "value": 56,
+      "unit": "meeting",
+      "source_url": "https://www.weforum.org/videos/am_26_closing_film"
+    },
+    {
+      "label": "Podcast duration minutes",
+      "value": 28,
+      "unit": "minutes",
+      "source_url": "https://playpodcasts.com/podcasts/agenda-dialogues/authentic-leadership-revisited-what-drives-real-impact-c4c26d9b3c"
+    },
+    {
+      "label": "Podcast duration seconds",
+      "value": 21,
+      "unit": "seconds",
+      "source_url": "https://playpodcasts.com/podcasts/agenda-dialogues/authentic-leadership-revisited-what-drives-real-impact-c4c26d9b3c"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Authentic Leadership Revisited: What Drives Real Impact?",
+      "speaker": "Rashimah Rajah",
+      "source_name": "University of Twente Research Information",
+      "source_url": "https://research.utwente.nl/en/publications/authentic-leadership-revisited-what-drives-real-impact"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "World Economic Forum",
+      "kind": "organization"
+    },
+    {
+      "name": "Mershad Javan",
+      "kind": "person"
+    },
+    {
+      "name": "Michael Riedl",
+      "kind": "person"
+    },
+    {
+      "name": "Rashimah Rajah",
+      "kind": "person"
+    },
+    {
+      "name": "University of Twente",
+      "kind": "organization"
+    },
+    {
+      "name": "Davos",
+      "kind": "place"
+    }
+  ]
+}

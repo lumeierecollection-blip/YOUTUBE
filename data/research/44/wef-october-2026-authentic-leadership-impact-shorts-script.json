@@ -1,0 +1,64 @@
+{
+  "channel_id": "44",
+  "topic_slug": "wef-october-2026-authentic-leadership-impact",
+  "format": "shorts",
+  "hook": "Nearly 3,000 leaders arrived at Davos during the 56th Annual Meeting.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Nearly 3,000 leaders arrived at Davos during the 56th Annual Meeting.",
+      "b_roll": [
+        "Davos conference hall overview"
+      ],
+      "text_overlay": {
+        "text": "Davos Leadership Summit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "During the 56th Annual Meeting in Davos, representatives gathered from 130 countries. Rashimah Rajah authored research about authentic leadership at the University of Twente. What drives real impact in modern organizations?",
+      "b_roll": [
+        "University of Twente campus",
+        "Research publication document"
+      ],
+      "text_overlay": {
+        "text": "56th Annual Meeting"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "CEOs Mershad Javan and Michael Riedl joined discussions, but artificial intelligence changed everything.",
+      "b_roll": [
+        "Panel discussion stage"
+      ],
+      "text_overlay": {
+        "text": "CEO Panel"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The World Economic Forum published a 28 minute and 21 second audio podcast. Davos panels connected core principles with decisions.",
+      "b_roll": [
+        "Podcast audio waveform",
+        "World Economic Forum logo"
+      ],
+      "text_overlay": {
+        "text": "28 Minutes 21 Seconds"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the World Economic Forum's Authentic Leadership Revisited brief.",
+      "b_roll": [
+        "Global leadership network map"
+      ],
+      "text_overlay": {
+        "text": "Global Impact"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.weforum.org/videos/am_26_closing_film",
+    "https://research.utwente.nl/en/publications/authentic-leadership-revisited-what-drives-real-impact"
+  ]
+}
