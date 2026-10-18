@@ -1062,9 +1062,14 @@
           "topic": "Maryland's 2027 Tenants' Bill of Rights: What Changed October 2026",
           "slug": "maryland-2027-tenants-bill-of-rights-october-2026",
           "reserved_at": "2026-10-16T12:24:23.817Z"
+        },
+        {
+          "topic": "Supreme Court Rules on Legislative Privileges Versus Free Speech",
+          "slug": "supreme-court-legislative-privileges-free-speech",
+          "reserved_at": "2026-10-18T20:55:00.377Z"
         }
       ],
-      "last_generated": "2026-10-18T12:41:25.031Z"
+      "last_generated": "2026-10-18T20:55:00.377Z"
     },
     "3": {
       "channel_name": "AI Tested",
