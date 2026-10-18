@@ -1,0 +1,64 @@
+{
+  "channel_id": "49",
+  "topic_slug": "marvel-adamantium-mcu-canon-visionquest",
+  "format": "shorts",
+  "hook": "How did the Disney Plus series VisionQuest episode 2 prove adamantium finally exists in the Marvel Cinematic Universe?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "How did the Disney Plus series VisionQuest episode 2 prove adamantium finally exists in the Marvel Cinematic Universe?",
+      "b_roll": [
+        "Close up of Marvel logo transition"
+      ],
+      "text_overlay": {
+        "text": "Adamantium in MCU?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 13, Disney Plus debuted episode 2 of VisionQuest on their streaming platform. Why did assassin Paladin shoot White Vision with adamantium bullets during the sequence?",
+      "b_roll": [
+        "Calendar graphic showing October 13",
+        "White Vision character render"
+      ],
+      "text_overlay": {
+        "text": "VisionQuest Episode 2"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse yet, those adamantium bullets actually damaged White Vision during the fight.",
+      "b_roll": [
+        "Metallic bullet impact visual"
+      ],
+      "text_overlay": {
+        "text": "MCU Canon Shift"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Actor Todd Stashwick played Paladin in 18 episodes of the Disney Plus miniseries. ScreenHacker reported 2 episodes of VisionQuest premiered on October 13. Creator Terry Matalas made VisionQuest for Disney Plus as a WandaVision spin-off.",
+      "b_roll": [
+        "Actor portrait graphic",
+        "ScreenHacker article screenshot crop"
+      ],
+      "text_overlay": {
+        "text": "First MCU Appearance"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Episode 2 of VisionQuest changed cinematic history.",
+      "b_roll": [
+        "Disney Plus logo badge"
+      ],
+      "text_overlay": {
+        "text": "VisionQuest"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://se7en.ws/marvel-series-visionquest-resolves-major-mcu-canon-issues/?lang=en",
+    "https://screenhacker.com/visionquest-just-officially-fixed-a-huge-problem-with-mcu-canon"
+  ]
+}

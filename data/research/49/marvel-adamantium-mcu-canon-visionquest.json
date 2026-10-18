@@ -1,0 +1,85 @@
+{
+  "topic_slug": "marvel-adamantium-mcu-canon-visionquest",
+  "strongest_angle": "The introduction of adamantium in the Disney+ series VisionQuest resolves long-standing MCU continuity questions by featuring the assassin Paladin using adamantium bullets against White Vision in episode 2.",
+  "key_facts": [
+    {
+      "fact": "In the second episode of VisionQuest on Disney Plus, the assassin Paladin, played by Todd Stashwick, uses adamantium bullets to damage White Vision.",
+      "source_url": "https://se7en.ws/marvel-series-visionquest-resolves-major-mcu-canon-issues/?lang=en",
+      "source_name": "Se7en",
+      "confidence": "high"
+    },
+    {
+      "fact": "Episode 2 of VisionQuest debuted on October 13 on Disney Plus alongside episode 1, marking the official introduction of adamantium into the Marvel Cinematic Universe.",
+      "source_url": "https://se7en.ws/marvel-series-visionquest-resolves-major-mcu-canon-issues/?lang=en",
+      "source_name": "Se7en",
+      "confidence": "high"
+    },
+    {
+      "fact": "VisionQuest is an American television miniseries created by Terry Matalas for Disney+ as a spin-off from WandaVision.",
+      "source_url": "https://en.wikipedia.org/wiki/Untitled_Vision_series",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "ScreenHacker reported that episode 2 of VisionQuest showed Vision getting shot with adamantium bullets, marking the first time the metal is used in the MCU.",
+      "source_url": "https://screenhacker.com/visionquest-just-officially-fixed-a-huge-problem-with-mcu-canon",
+      "source_name": "ScreenHacker",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "VisionQuest Episode",
+      "value": 2,
+      "unit": "episode",
+      "source_url": "https://se7en.ws/marvel-series-visionquest-resolves-major-mcu-canon-issues/?lang=en"
+    },
+    {
+      "label": "VisionQuest Release Date",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://se7en.ws/marvel-series-visionquest-resolves-major-mcu-canon-issues/?lang=en"
+    },
+    {
+      "label": "Television Series Number",
+      "value": 18,
+      "unit": "series",
+      "source_url": "https://en.wikipedia.org/wiki/Untitled_Vision_series"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "VisionQuest",
+      "kind": "organization"
+    },
+    {
+      "name": "Paladin",
+      "kind": "person"
+    },
+    {
+      "name": "Todd Stashwick",
+      "kind": "person"
+    },
+    {
+      "name": "White Vision",
+      "kind": "object"
+    },
+    {
+      "name": "Disney Plus",
+      "kind": "organization"
+    },
+    {
+      "name": "Terry Matalas",
+      "kind": "person"
+    },
+    {
+      "name": "WandaVision",
+      "kind": "organization"
+    },
+    {
+      "name": "Marvel Studios",
+      "kind": "organization"
+    }
+  ]
+}
