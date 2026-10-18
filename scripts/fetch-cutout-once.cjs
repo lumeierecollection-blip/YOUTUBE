@@ -125,8 +125,9 @@ function sawRefusal(seen, concept) {
   const m = String(seen).match(SAW_PERSON);
   return m ? `the photo shows "${m[0]}" with the object (a stranger or a costume)` : null;
 }
-async function verify(png, concept, scene) {
-  const v = await verifyImage(png, { entity: concept, type: "object", scene, money: FLAT_MONEY(concept), alone: true });
+// explains: the claim an EXPLAINING prop shows (plan-props.mjs role "explains"); the verifier then also asks whether the photo explains it.
+async function verify(png, concept, scene, explains = null) {
+  const v = await verifyImage(png, { entity: concept, type: "object", scene, money: FLAT_MONEY(concept), alone: true, explains });
   const refused = v.accept ? sawRefusal(v.seen, concept) : null;
   return refused ? { ...v, accept: false, reason: refused } : v;
 }
@@ -152,20 +153,21 @@ function qualifyConcept(concept, text) {
   return any ? `${any[1]} ${c}` : c;
 }
 
-async function fetchCutoutForBeat({ concept, name = null, channel, beat_index, spec = {}, scene = null }) {
-  const key = `${channel}:${slug(concept)}`;
+async function fetchCutoutForBeat({ concept, name = null, channel, beat_index, spec = {}, scene = null, explains = null }) {
+  // an explaining fetch is judged on one more question; its refusal ("decorative" for that claim) must not block the object where a sentence names it
+  const key = `${channel}:${slug(concept)}${explains ? ":explains" : ""}`;
   if (runCache.has(key)) {
     // A concept already fetched this run: its PNG is verified again before it is reused.
     const r = await runCache.get(key);
     const tag = `[cutout] ch-${channel} beat ${beat_index} "${concept}"`;
     if (!r) { console.log(`${tag}: already rejected this run, beat renders without a cutout`); return null; }
-    const v = await verify(r.abs_path, concept, scene);
+    const v = await verify(r.abs_path, concept, scene, explains);
     if (!v.accept) { console.log(`${tag}: reuse of ${r.png_path} REJECTED (${why(v)}, saw "${v.seen}")`); return null; }
     console.log(`${tag}: reuse of ${r.png_path} ACCEPTED (${v.reason}, saw "${v.seen}")`);
     return { ...r, literal: v.kind, seen: v.seen, provider: v.provider };
   }
   // A concept that only hit the rate limit is not remembered as rejected: the cache entry is dropped, so the next beat that wants it fetches it again.
-  const job = fetchOnce({ concept, name, channel, beat_index, spec, scene }).then((r) => {
+  const job = fetchOnce({ concept, name, channel, beat_index, spec, scene, explains }).then((r) => {
     if (r !== RATE_LIMITED) return r;
     if (runCache.get(key) === job) runCache.delete(key);
     return null;
@@ -210,7 +212,7 @@ async function moneyCandidates(concept, scene) {
   return out.filter((c) => c.url);
 }
 
-async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
+async function fetchOnce({ concept, name, channel, beat_index, spec, scene, explains = null }) {
   const tag = `ch-${channel} beat ${beat_index} "${concept}"`;
   const log = (m) => console.log(`[cutout] ${tag}: ${m}`);
   const cands = [], seen = new Set();
@@ -266,7 +268,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
     } else rep = await runPy([join(ROOT, "scripts", "cutout_lib.py"), "isolate", raw, iso, ...flags]);
     rmSync(raw, { force: true });
     if (!rep.ok) { log(`candidate ${n} REJECTED (isolation: ${rep.why})`); rejected.isolation++; rmSync(iso, { force: true }); continue; }
-    const v = await verify(iso, concept, scene);
+    const v = await verify(iso, concept, scene, explains);
     if (!v.accept) {
       for (const k of ["shows", "kind", "quality", "flat"]) if (String(v.reason).includes(`${k}=`)) rejected[k]++;
       if (v.unavailable) rejected.other++;

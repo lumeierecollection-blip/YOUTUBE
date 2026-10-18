@@ -28,3 +28,14 @@ test("asked whether the subject is alone and not answered: refused, not passed u
   assert.match(j.reason, /alone=unanswered/);
   assert.equal(judge(normalizer(false)({ shows: "YES", kind: "LITERAL", quality: "CLEAN", alone: "ALONE", seen: "a wallet" }), false, false, true).accept, true);
 });
+
+test("an explaining prop: asked whether it EXPLAINS the claim; DECORATIVE or no answer refuses; a real photo used as a metaphor (META) may pass", () => {
+  const base = { shows: "YES", quality: "CLEAN", alone: "ALONE", seen: "an empty brown wallet" };
+  assert.match(promptFor({ entity: "empty wallet", type: "object", alone: true, explains: "nothing is left after rent" }), /"helps": "EXPLAINS" \| "DECORATIVE"/);
+  assert.equal(judge(normalizer(false)({ ...base, kind: "META", helps: "EXPLAINS" }), false, false, true, true).accept, true);
+  assert.match(judge(normalizer(false)({ ...base, kind: "LITERAL", helps: "DECORATIVE" }), false, false, true, true).reason, /helps=DECORATIVE/);
+  assert.match(judge(normalizer(false)({ ...base, kind: "LITERAL" }), false, false, true, true).reason, /helps=unanswered/);
+  assert.match(judge(normalizer(false)({ ...base, kind: "FIGURATIVE", helps: "EXPLAINS" }), false, false, true, true).reason, /kind=FIGURATIVE/);
+  // a named prop is still LITERAL-only
+  assert.match(judge(normalizer(false)({ ...base, kind: "META" }), false, false, true, false).reason, /kind=META/);
+});

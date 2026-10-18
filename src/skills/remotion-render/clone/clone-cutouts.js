@@ -69,6 +69,62 @@ export function cutoutPhoto(photo, channelId) {
  * Give every beat photo of a clone render its cut-out (photo.cutout) or mark it a vignette (photo.vignette). Mutates the beats' canvases in place and logs
  * each decision. Never throws: a photo that cannot be cut out is shown soft-edged, never boxed.
  */
+/**
+ * IS THE CUT-OUT USABLE? (owner, 2026-10-18: "make sure that the photo is properly usable to cut out. If not, then as it is, it's fine, but it should look
+ * good.") The geometric checks in cutout_lib.py refuse a scene, a frame-cut object or a rectangle, but they cannot see a head sliced off, a hand missing, a
+ * hole through a coat or a lump of the old background left on a shoulder. A vision model looks at the cut-out flattened on white and answers USABLE or
+ * BROKEN; BROKEN — or no answer at all — shows the photo AS IT IS (the soft-edged vignette / bleed treatments), never a broken cut-out. The verdict is kept in
+ * the cut-out's sidecar, so a render attempt after the first does not ask again.
+ */
+const CHECK_PROMPT = (entity) => `This image is a photograph of ${entity ? `"${String(entity).slice(0, 80)}"` : "a subject"} cut out of its background by software, shown on white.
+Is the cut-out USABLE in a video?
+  USABLE — the whole subject is there (for a person: the whole head, hair and face; shoulders may end at the bottom edge), its outline is clean, and no
+    piece of the old background is left attached
+  BROKEN — part of the subject is cut away (a slice of the head, a missing hand or ear, a hole through it), or chunks of the old background remain,
+    or the outline is ragged or blotchy
+Return JSON only: {"cutout": "USABLE" | "BROKEN", "why": "short reason"}`;
+const checkNorm = (a) => (a && typeof a === "object" && !a.error && ["USABLE", "BROKEN"].includes(String(a.cutout || "").toUpperCase().trim()) ? { cutout: String(a.cutout).toUpperCase().trim(), why: String(a.why || "").slice(0, 140) } : null);
+async function cutoutUsable(rel, entity) {
+  const { createRequire } = await import("node:module");
+  const req = createRequire(import.meta.url);
+  const { askProviders, imageDataUrl } = req("../../../../scripts/verify-cutout-image.cjs");
+  const messages = [{ role: "user", content: [{ type: "text", text: CHECK_PROMPT(entity) }, { type: "image_url", image_url: { url: await imageDataUrl(join(RR, "public", rel)) } }] }];
+  try {
+    const r = await askProviders(messages, checkNorm);
+    return r && r.v ? { ok: r.v.cutout === "USABLE", why: r.v.why, provider: r.provider } : { ok: false, why: "no vision provider answered", provider: null };
+  } catch (e) { return { ok: false, why: `check failed: ${e.message}`, provider: null }; }
+}
+
+/** attachCutouts + the vision check above on every cut-out it made. Async; render.js awaits it. */
+export async function attachCutoutsChecked(beats, channelId, log = console.log, check = cutoutUsable) {
+  const res = attachCutouts(beats, channelId, log);
+  const photos = [];
+  for (const b of beats || []) {
+    const c = b?.scene?.canvas;
+    if (c?.photo) photos.push(c.photo);
+    for (const x of c?.clone_extra || []) if (x && x.kind !== "logo") photos.push(x);
+  }
+  const seen = new Map();   // one check per cut-out file
+  for (const p of photos) {
+    if (!p || !p.cutout) continue;
+    const sidecar = join(RR, "public", p.cutout.replace(/\.png$/, ".json"));
+    let side = null;
+    try { side = JSON.parse(readFileSync(sidecar, "utf8")); } catch { /* no sidecar */ }
+    let v = seen.get(p.cutout) || (side && side.check) || null;
+    if (!v) {
+      v = await check(p.cutout, p.entity || p.name || null);
+      try { if (side) writeFileSync(sidecar, JSON.stringify({ ...side, check: v })); } catch { /* cache only */ }
+    }
+    seen.set(p.cutout, v);
+    if (v.ok) continue;
+    log(`[clone] ${p.entity || p.asset}: cut-out ${p.cutout} not usable (${v.why}) -> the photo as it is`);
+    delete p.cutout; delete p.cutout_grounded; delete p.cutout_bust;
+    p.vignette = true;
+    res.cut--; res.soft++;
+  }
+  return res;
+}
+
 export function attachCutouts(beats, channelId, log = console.log) {
   let cut = 0, soft = 0;
   const photos = [];

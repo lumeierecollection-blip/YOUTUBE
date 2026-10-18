@@ -138,6 +138,14 @@ export function depictsOf(depicts, sentence) {
   return dw.filter((w) => sw.has(w)).length * 3 >= dw.length * 2 ? String(depicts) : null;
 }
 
+// EXPLAINING PROPS (owner, 2026-10-18: "have the ability to represent words, not just the person, places ... it is just visualizing what is being talked
+// about, explaining visually what is going on"). The references show what a sentence MEANS — ref-03 hangs a money bag on a rope for "chase money" and drops a
+// man for "it slips away". A prop with role "explains" is a photographable object that shows the sentence's point: it quotes the claim it explains
+// ("explains", words of the sentence, checked like "depicts") and says what the viewer sees ("shows"). It is not judged by the DEPICTS table but by the
+// image check, which asks whether the photo EXPLAINS that claim or is DECORATIVE (scripts/verify-image.cjs) — a picture merely on the topic is refused
+// there. Stock symbols stay refused here, whatever the claim: they are the decoration the owner called random (boards 38889577784 / 38890511624).
+const CLICHE = /\b(compass|padlock|hourglass|clock|anchor|ladder|light ?bulb|puzzle|chess|scales?|target|dartboard|trophy|medal|magnifying glass|statue|mailbox|crystal ball|globe|rocket|crown|key ?hole|maze|crossroads|signpost|thumbs?)\b/i;
+
 /**
  * A proposal kept only if it is a short concrete noun phrase that is none of the above and names nothing the beat names.
  * strict (planProps): the proposal must say which words of the sentence it depicts, and it is judged against THOSE words, not the whole line — a
@@ -159,13 +167,26 @@ export function validateProps(props, namedEntities = [], sentence = "", { strict
       : namesPlace && p && (p.building || p.kind === "building" || p.kind === "place") ? "a generic building on a beat that names a place (it would read as that place)"
       : names.some((n) => n && (object.includes(n) || n.split(/\s+/).filter((w) => w.length > 3).some((w) => object.split(" ").includes(w)))) ? "names a specific entity of the beat"
       : null;
+    if (strict && p && typeof p === "object" && p.role === "explains") {
+      const claim = p.explains ? depictsOf(p.explains, sentence) : null;
+      const shows = String(p.shows || "").trim().slice(0, 140);
+      const whyX = why || (CLICHE.test(object) ? "a stock symbol, not an explanation"
+        : !p.explains ? "no \"explains\" (which words of the sentence it explains)"
+        : !claim ? `"explains" ("${String(p.explains).slice(0, 60)}") is not words of the sentence`
+        : !shows ? "no \"shows\" (what the viewer sees)" : null);
+      if (whyX) { dropped.push(`${object || "?"} (explains): ${whyX}`); continue; }
+      if (kept.some((k) => k.object === object)) continue;
+      kept.push({ object, building: !!(p.building || p.kind === "building" || p.kind === "place"), role: "explains", explains: claim, shows, why: `explains "${claim}": ${shows}` });
+      if (kept.length >= MAX_PROPS) break;
+      continue;
+    }
     const cited = p && typeof p === "object" && p.depicts ? depictsOf(p.depicts, sentence) : null;
     const why2 = why || (strict && !(p && p.depicts) ? "no \"depicts\" (which words of the sentence it shows)"
       : strict && !cited ? `"depicts" ("${String(p.depicts).slice(0, 60)}") is not words of the sentence` : null);
     const literal = why2 ? null : isLiteral(object, strict ? cited : sentence);
     if (why2 || !literal) { dropped.push(`${object || "?"}: ${why2 || (strict ? `not what "${cited}" shows (a symbol or a loose association)` : "not something the sentence says (a symbol or a loose association)")}`); continue; }
     if (kept.some((k) => k.object === object)) continue;
-    kept.push({ object, building: !!(p && (p.building || p.kind === "building" || p.kind === "place")), why: literal });
+    kept.push({ object, building: !!(p && (p.building || p.kind === "building" || p.kind === "place")), role: "named", why: literal });
     if (kept.length >= MAX_PROPS) break;
   }
   return { kept, dropped };
@@ -175,9 +196,24 @@ export function propsPrompt({ topic, beats }) {
   return `You choose the PHOTOS for a vertical news-explainer video. The style is the editorial "cut-out collage": a shot shows a real photograph of an
 object or a place, cut out of its background (a stack of cash, a courthouse, a house, a gavel, a shipping container, a police car).
 
-For EACH beat below, propose AT MOST 3 props for its sentence, best first. ZERO is a correct answer and is often the right one.
+For EACH beat below, propose AT MOST 3 props for its sentence, best first. A prop has one of two ROLES:
 
-THE TEST every prop must pass: a viewer hears ONLY this sentence while the photo is on screen. Would they instantly say "yes — that is the thing
+  "named"    — the thing the sentence NAMES or is literally about (rules below).
+  "explains" — a photo that EXPLAINS what the sentence says: it lets the viewer SEE the point. The sentence need not name the object. This is how
+               explainer videos visualise ideas, not only people and places:
+                 "debt payments now eat most of the raise"    -> "unpaid bills"           (shows: the bills that take the raise)
+                 "after rent, nothing is left"                 -> "empty wallet"           (shows: nothing left)
+                 "prices at the pump doubled in a year"        -> "fuel pump nozzle"       (shows: where the price is paid)
+                 "the factory shut down"                       -> "closed factory gate"    (shows: closed)
+                 "the money slips away the more you chase it"  -> "falling banknotes"      (shows: money slipping away)
+               An "explains" prop must give "explains" (the exact words of the claim, copied from the sentence) and "shows" (one short line: what the
+               viewer sees and why that is the claim). It FAILS if it is only on the same topic, or if the viewer would have to work out why it is
+               there — every one is checked against the claim by a vision model, and a decorative one is thrown away.
+
+Give a "named" prop first when the sentence names a photographable thing; add "explains" props for what the sentence is SAYING, especially on beats
+that name no object (a statement about leadership, a trend, a decision, a comparison). ZERO is still correct when nothing shows the point.
+
+THE TEST for a "named" prop: a viewer hears ONLY this sentence while the photo is on screen. Would they instantly say "yes — that is the thing
 being talked about"? If they would have to think about why it is there, it fails. Being on the same TOPIC is not enough.
   FAILS (real rejections from our videos): a calculator, a wallet or a credit card for "debt payments grow eight times faster than pay"; a microphone
   for a columnist; headphones, a radio or an armchair for a podcast; a newspaper for "The Washington Post reports"; a laptop for "analyzed business
@@ -185,15 +221,17 @@ being talked about"? If they would have to think about why it is there, it fails
   PASSES: "gold bars" for "agents found gold bars in his house"; "stack of cash" for "he was paid $40,000"; "gavel" for "she pleaded guilty";
   "courthouse" for "the case went to federal court"; "shovel" for "they dug up the backyard"; "oil tanker" for "diesel exports doubled".
 
-A prop is:
+A "named" prop is:
 - the thing the sentence NAMES or the thing it is ABOUT — what was found, taken, paid, sold, built, seized or used — or the one plain physical form of
   what it says ("pleaded guilty" -> "gavel"; "$40 million" -> "dollar bills"; "tenants" -> "apartment building"); never a tool, accessory or setting
   that merely goes with the topic;
-- NEVER a symbol or metaphor: no compass, padlock, hourglass, clock, anchor, ladder, lightbulb, puzzle, chess piece, scales, target, trophy,
-  magnifying glass, statue, mailbox. Debt, a budget, a report, a strategy, research, growth or a comparison have NO physical form: give those beats
-  no prop unless the sentence also names a real object;
-- "depicts": the exact words of the sentence this prop shows, copied from it (2-6 words). It is checked: a prop is judged against these words only;
-- 1 to 3 words, a plain common noun phrase a stock-photo search would find ("stack of coins", "gavel", "suitcase"); one object, not a scene;
+- "depicts": the exact words of the sentence this prop shows, copied from it (2-6 words). It is checked: a prop is judged against these words only.
+Debt, a budget, a report, a strategy, research, growth or a comparison have no "named" prop — show them with an "explains" prop or not at all.
+
+EVERY prop (both roles):
+- NEVER a stock symbol: no compass, hourglass, clock, anchor, ladder, lightbulb, puzzle, chess piece, scales, target, trophy, magnifying glass, statue,
+  mailbox, globe, rocket, crown, maze, signpost — they decorate, they do not explain;
+- 1 to 3 words, a plain common noun phrase a stock-photo search would find ("stack of coins", "gavel", "empty wallet"); one object, not a scene;
 - GENERIC: never a named or specific thing (not "Southwark Crown Court", not "Apple iPhone", not "the White House"), never a brand;
 - NEVER a person or a body part, never a crowd; never text, a sign, a newspaper, a screen, a logo, an icon, a symbol, an arrow, a chart, a map, a flag,
   a drawing or an illustration; never an abstract idea ("success", "risk", "justice").
@@ -206,7 +244,7 @@ Beats:
 ${beats.map((b) => `${b.index}. ${b.sentence}`).join("\n")}
 
 Answer with ONE JSON object and nothing else:
-{"beats": [{"index": 0, "props": [{"object": "gold bars", "depicts": "found gold bars", "building": false}, {"object": "house", "depicts": "in his house", "building": true}]}, {"index": 1, "props": []}, ...]}`;
+{"beats": [{"index": 0, "props": [{"role": "named", "object": "gold bars", "depicts": "found gold bars", "building": false}, {"role": "named", "object": "house", "depicts": "in his house", "building": true}]}, {"index": 1, "props": [{"role": "explains", "object": "unpaid bills", "explains": "debt payments now eat most of the raise", "shows": "the bills that take the raise", "building": false}]}, {"index": 2, "props": []}, ...]}`;
 }
 
 /**

@@ -63,3 +63,30 @@ test("llm.js: Gemini without a key falls to Ollama Cloud first, and says so", as
   assert.deepEqual(r.chain, ["gemini", "ollama-cloud"]);
   assert.deepEqual(r.value, { ok: true });
 });
+
+test("OLLAMA_FIRST: Ollama Cloud answers before Gemini is asked — in callLLMWithProvenance (labelled) and in callGemini's direct callers", async () => {
+  process.env.OLLAMA_API_KEY = "test-key";
+  process.env.OLLAMA_FIRST = "1";
+  process.env.GEMINI_API_KEY_1 = "would-be-called";   // a Gemini key exists: OLLAMA_FIRST must not reach it
+  reply = () => ({ status: 200, body: { message: { content: '{"first": true}' } } });
+  try {
+    const { callLLMWithProvenance } = await import("../../src/lib/llm.js");
+    seen = [];
+    const p = await callLLMWithProvenance([{ role: "user", content: "x" }], {}, "t");
+    assert.equal(p.provider, "ollama-cloud");
+    assert.deepEqual(p.chain, ["ollama-cloud"]);
+    assert.deepEqual(p.value, { first: true });
+    assert.equal(seen.length, 1);
+    const { callGemini } = await import("../../src/lib/gemini-client.js");
+    seen = [];
+    assert.deepEqual(await callGemini([{ role: "user", content: "x" }], { tag: "t" }), { first: true });
+    assert.equal(seen.length, 1);
+    // off without a key, whatever the switch says
+    delete process.env.OLLAMA_API_KEY;
+    assert.equal(client().ollamaFirst(), false);
+  } finally {
+    delete process.env.OLLAMA_FIRST;
+    delete process.env.GEMINI_API_KEY_1;
+    process.env.OLLAMA_API_KEY = "test-key";
+  }
+});

@@ -52,7 +52,7 @@ import { canvasSfxEvents } from "./visual/canvas-sfx.js";
 import { toneOf } from "../../utils/video-tone.js";
 import { paletteFor } from "./clone/clone-palette.js";
 import { planClone, cloneCanvasFor } from "./clone/clone-plan.js";
-import { attachCutouts } from "./clone/clone-cutouts.js";
+import { attachCutoutsChecked } from "./clone/clone-cutouts.js";
 import { verifiedQuotesFor } from "../../../scripts/lib/quote-verify.mjs";
 import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
@@ -632,7 +632,8 @@ async function main() {
         sentencePlan.clone = { id: channel.clone.profile, profile, laws: G.laws, palette: paletteFor(profile, channel), bw: channel.asset_treatment === "bw" };
         // FRAMELESS PICTURES (owner, 2026-10-16): each beat's own verified photo is cut out of its background (clone-cutouts.js -> scripts/cutout_lib.py, rembg);
         // one that cannot be is shown soft-edged. Never boxed.
-        const cut = attachCutouts(beats, channel.id ?? channelId, (m) => console.log(m));
+        // ... and each cut-out is LOOKED AT (attachCutoutsChecked): a broken one (a sliced head, background left on) is shown as the photo itself instead
+        const cut = await attachCutoutsChecked(beats, channel.id ?? channelId, (m) => console.log(m));
         console.log(`[clone] pictures: ${cut.cut} cut out, ${cut.soft} soft-edged`);
         // A PRE-BUILT bundle (REMOTION_SERVE_URL, as CI renders) copied public/ BEFORE these cut-outs existed, so the page served a 404 for them ("The source image cannot be decoded", board 38864901359
         // ch-26). Each new file is copied into the bundle's own public/ too.

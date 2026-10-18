@@ -111,20 +111,30 @@ function cutoutCacheKey(jpeg, name, version = CUTOUT_VERIFIER_VERSION, models = 
 // `norm`: the answer parser (verify-place-image.cjs passes its own).
 async function askProviders(messages, norm = normalize) {
   const tried = [];
+  const ollama = require("./ollama-client.cjs");
+  // 0. OLLAMA_FIRST (ollama-client.cjs): Ollama Cloud before Gemini.
+  const cloudFirst = ollama.ollamaFirst();
+  if (cloudFirst) {
+    try {
+      const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
+      const v = norm(o);
+      if (v) return { provider: "ollama-cloud", v, tried };
+      tried.push(`ollama-cloud: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    } catch (e) { tried.push(`ollama-cloud: ${e.message}`); }
+  }
   // Google first (owner's 2026-10-08 brief): Gemini across every key, then every sibling
   // model (src/lib/gemini-client.js), before any other provider. This was Groq first.
   // 1. Gemini flash-lite (maxTokens 1024: a sibling reasoning model spends from the same budget).
   try {
     const { callGemini } = await import("../src/lib/gemini-client.js");
-    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 1024, temperature: 0, noCache: true, tag: "verify-cutout" });
+    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 1024, temperature: 0, noCache: true, tag: "verify-cutout", _noOllamaFirst: true });
     const v = norm(g);
     if (v) return { provider: "gemini", v, tried };
     tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`gemini: ${e.message}`); }
   // 2. Ollama Cloud (qwen3-vl:235b on ollama.com), when OLLAMA_API_KEY is set (owner, 2026-10-17). Same messages, same parser.
   try {
-    const ollama = require("./ollama-client.cjs");
-    if (ollama.hasCloudKey()) {
+    if (!cloudFirst && ollama.hasCloudKey()) {
       const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
       const v = norm(o);
       if (v) return { provider: "ollama-cloud", v, tried };

@@ -188,11 +188,19 @@ export async function callLLMWithProvenance(messages, opts = {}, tag = "llm") {
     const value = await callOllamaOnly(messages, opts, tag);
     return { value, provider: "ollama", error: isProviderError(value) ? value.error : null, chain: ["ollama"] };
   }
-  const r = await callGemini(messages, { ...opts, tag });
+  // OLLAMA_FIRST: Ollama Cloud is asked here, by name, so the answer carries its real provider; Gemini is then told not to ask it again.
+  const pre = [];
+  if (ollama.ollamaFirst()) {
+    const o = await ollama.callOllamaCloud(messages, opts);
+    if (!isProviderError(o)) return { value: o, provider: "ollama-cloud", error: null, chain: ["ollama-cloud"] };
+    console.error(`[${tag}] ollama-cloud: ${o.error} (OLLAMA_FIRST) → gemini`);
+    pre.push("ollama-cloud");
+  }
+  const r = await callGemini(messages, { ...opts, tag, _noOllamaFirst: true });
   if (!(r && r.source === "gemini" && r.error)) {
-    return { value: r, provider: "gemini", error: null, chain: ["gemini"] };
+    return { value: r, provider: "gemini", error: null, chain: [...pre, "gemini"] };
   }
   console.error(`[${tag}] gemini: ${r.error} → ${nextAfterGemini()}${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
   const { value, provider, tried } = await fallbackWithProvenance(messages, opts, tag);
-  return { value, provider, error: isProviderError(value) ? value.error : null, chain: ["gemini", ...tried] };
+  return { value, provider, error: isProviderError(value) ? value.error : null, chain: [...pre, "gemini", ...tried] };
 }

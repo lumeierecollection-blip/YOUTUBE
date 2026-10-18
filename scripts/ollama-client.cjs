@@ -209,6 +209,9 @@ const CLOUD_TEXT_MODEL = () => process.env.OLLAMA_CLOUD_TEXT_MODEL || "gpt-oss:1
 const CLOUD_VISION_MODEL = () => process.env.OLLAMA_CLOUD_VISION_MODEL || "qwen3-vl:235b";
 const cloudKey = () => String(process.env.OLLAMA_API_KEY || "").trim();
 const hasCloudKey = () => !!cloudKey();
+// OLLAMA_FIRST=1 (workflow input ollama_first; owner, 2026-10-18: "use Ollama for that because it's practically free"): Ollama Cloud is asked FIRST by every
+// model chain — callGemini's direct callers, callLLM, both image checkers — and Gemini becomes its fallback. Off without a key.
+const ollamaFirst = () => /^(1|true|on|yes)$/i.test(String(process.env.OLLAMA_FIRST || "").trim()) && hasCloudKey();
 function cloudError(e) {
   const s = e && e.status;
   return s === 429 ? "quota_exhausted" : s === 401 || s === 403 ? "unauthorized" : s === 404 ? "model_not_found" : e && e.name === "AbortError" ? "timed_out" : s >= 500 ? "unavailable" : "failed";
@@ -250,7 +253,7 @@ async function check(model, timeoutS) {
   console.log(`Ollama ready: ${OLLAMA_URL}, model ${model}, warm-up ${((Date.now() - t0) / 1000).toFixed(1)}s → "${String(out).trim()}"`);
 }
 
-module.exports = { waitForModels, generate, waitForServer, callOllama, callOllamaCloud, hasCloudKey, cloudError, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL, request, CLOUD_URL, cloudKey };
+module.exports = { waitForModels, generate, waitForServer, callOllama, callOllamaCloud, hasCloudKey, ollamaFirst, cloudError, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL, request, CLOUD_URL, cloudKey };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);

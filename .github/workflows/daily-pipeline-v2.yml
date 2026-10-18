@@ -80,6 +80,10 @@ on:
         # dropdown never dispatched. evalLoopMode() throws on any value outside
         # off/dry/live and is unit-tested for exactly that, so validation lives there.
         type: string
+      ollama_first:
+        description: "Ask Ollama Cloud FIRST in every model chain (planner, props, image checks, frame review); Gemini becomes the fallback. Needs the OLLAMA_API_KEY secret."
+        type: boolean
+        default: false
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -96,6 +100,8 @@ env:
   # Ollama Cloud (ollama.com hosted models, owner 2026-10-17): the second provider after Gemini in src/lib/llm.js, the image verifiers and the
   # script/research runner ("ollama-cloud/<model>" specs below). Empty secret = skipped at once, the chain is unchanged.
   OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  # ollama_first (dispatch input): scripts/ollama-client.cjs ollamaFirst() puts Ollama Cloud ahead of Gemini everywhere. Empty on the cron = off.
+  OLLAMA_FIRST: ${{ inputs.ollama_first && '1' || '' }}
   # Ollama's default context is 4096 tokens; the research/script prompts are
   # longer, and a truncated prompt is how llama3.2 ended up answering
   # "To print Hello World in Python…". opencode.json declares 16384 to match.

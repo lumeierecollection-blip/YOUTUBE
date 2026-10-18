@@ -309,6 +309,16 @@ function logKeyProjects() {
  * failed with quota / unavailable / no key; FORCE_PLANNER=ollama and a hard error never reach it. GEMINI_VIA_OPENROUTER=off turns it off.
  */
 export async function callGemini(messages, opts = {}) {
+  // OLLAMA_FIRST (scripts/ollama-client.cjs ollamaFirst): Ollama Cloud answers first, Gemini only when it cannot. Callers that record WHO answered
+  // (llm.js, the image checkers) ask Ollama Cloud themselves and pass _noOllamaFirst, so an answer is never labelled with the wrong provider.
+  if (!opts._noOllamaFirst) {
+    const ollama = createRequire(import.meta.url)("../../scripts/ollama-client.cjs");
+    if (ollama.ollamaFirst()) {
+      const o = await ollama.callOllamaCloud(messages, opts);
+      if (o && !o.error) { console.error(`[${opts.tag || "gemini"}] answered by ollama-cloud (OLLAMA_FIRST)`); return o; }
+      console.error(`[${opts.tag || "gemini"}] ollama-cloud: ${o?.error} (OLLAMA_FIRST) — asking Gemini`);
+    }
+  }
   const r = await callGeminiDirect(messages, opts);
   if (opts._noModelFallback || !(r && r.source === "gemini" && ["quota_exhausted", "unavailable", "no_key"].includes(r.error))) return r;
   if (!process.env.OPENROUTER_API_KEY || String(process.env.GEMINI_VIA_OPENROUTER || "").toLowerCase() === "off") return r;

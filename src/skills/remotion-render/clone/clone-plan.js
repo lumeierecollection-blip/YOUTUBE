@@ -545,6 +545,10 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   // PROPS (owner, 2026-10-16): generic photographed objects that ILLUSTRATE the sentence's subject; recorded so the frame checks judge them as that
   const propsDrawn = (c.clone_props || []).filter((v) => v && v.asset && drawn.has(v.asset)).map((v) => v.name);
   if (propsDrawn.length) { out.clone_props = propsDrawn; parts.push(`cut-out photos of generic objects illustrating the sentence (${propsDrawn.join(", ")})`); }
+  // EXPLAINING props (plan-props.mjs role "explains") with the claim each explains: the beat check is told what it shows, so it judges the explanation,
+  // not "is this object named"
+  const explained = (c.clone_props || []).filter((v) => v && v.asset && v.explains && drawn.has(v.asset)).map((v) => ({ name: v.name, explains: v.explains }));
+  if (explained.length) out.clone_props_explain = explained;
   const glyphs = (shots || []).flatMap((x) => (x.subjects || []).filter((y) => y.kind === "glyph").map((y) => y.type));
   if (glyphs.length) parts.push("the names of entities it has no picture of, set large in type (no icons)");
   if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");

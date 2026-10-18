@@ -30,7 +30,7 @@
 const { existsSync } = require("node:fs");
 const { askProviders, imageDataUrl } = require("./verify-cutout-image.cjs");
 
-function promptFor({ scene, entity, type, logo = false, money = false, alone = false }) {
+function promptFor({ scene, entity, type, logo = false, money = false, alone = false, explains = null }) {
   // Task 2.2 — a company/institution logo is verified with the owner's exact
   // three-answer identity prompt, not the generic image rubric.
   if (logo) {
@@ -87,12 +87,19 @@ ${money ? 5 : 4}. Is the subject alone in the picture?
      (the bills of a stack of cash, the coins in a jar, the wheels of a car)
    OTHERS — a different, separate object shares the picture
      (a magnifying glass beside a wallet, cash heaped on credit cards, a pen on a document)
+` : ""}${explains ? `
+${4 + (money ? 1 : 0) + (alone ? 1 : 0)}. The photo is shown while the narrator says: "${String(explains).slice(0, 200)}".
+   Does it help a viewer SEE what that means?
+   EXPLAINS — hearing those words and seeing this photo, a viewer gets the point faster (unpaid bills for
+     "debt payments are eating the raise", an empty wallet for "nothing is left after rent")
+   DECORATIVE — it is only on the same topic, or the viewer would have to work out why it is there
+     (a calculator for "debt grows faster than pay", a lightbulb for "a new idea", a compass for "direction")
 ` : ""}
 Return JSON only:
 {
   "shows": "YES" | "CLOSE" | "NO",
   "kind": "LITERAL" | "FIGURATIVE" | "META",
-  "quality": "CLEAN" | "DIRTY",${money ? `\n  "flat": "FLAT" | "ANGLED",` : ""}${alone ? `\n  "alone": "ALONE" | "OTHERS",\n  "others": "the other objects, or empty",` : ""}
+  "quality": "CLEAN" | "DIRTY",${money ? `\n  "flat": "FLAT" | "ANGLED",` : ""}${alone ? `\n  "alone": "ALONE" | "OTHERS",\n  "others": "the other objects, or empty",` : ""}${explains ? `\n  "helps": "EXPLAINS" | "DECORATIVE",` : ""}
   "seen": "short phrase describing the image"
 }`;
 }
@@ -114,7 +121,8 @@ function normalizer(money, logo = false) {
     if (money && !["FLAT", "ANGLED"].includes(flat)) return null;
     // "alone" is read when the model gave it; judge() refuses a missing answer only when the question was asked
     const alone = ["ALONE", "OTHERS"].includes(up(a.alone)) ? up(a.alone) : null;
-    return { shows, kind, quality, flat, seen, alone, others: String(a.others || "").trim().slice(0, 120) };
+    const helps = ["EXPLAINS", "DECORATIVE"].includes(up(a.helps)) ? up(a.helps) : null;
+    return { shows, kind, quality, flat, seen, alone, helps, others: String(a.others || "").trim().slice(0, 120) };
   };
 }
 /**
@@ -136,14 +144,16 @@ function logoTextContradicts(text, entity) {
 }
 
 /** The owner's rule (E.2, G.3): YES and LITERAL and CLEAN (and FLAT for money). */
-function judge(v, money, logo = false, askedAlone = false) {
+function judge(v, money, logo = false, askedAlone = false, askedExplain = false) {
   if (logo) {
     const accept = v.verdict === "MATCH";
     return { accept, reason: accept ? "MATCH" : `${v.verdict} (saw "${v.recognized}")` };
   }
   const why = [];
   if (v.shows !== "YES") why.push(`shows=${v.shows}`);
-  if (v.kind !== "LITERAL") why.push(`kind=${v.kind}`);
+  // An EXPLAINING prop (plan-props.mjs role "explains") may be a real photo used as a visual metaphor (META) — the explanation question below then decides;
+  // a drawing or symbol (FIGURATIVE) is refused for every prop.
+  if (v.kind !== "LITERAL" && !(askedExplain && v.kind === "META")) why.push(`kind=${v.kind}`);
   if (v.quality !== "CLEAN") why.push(`quality=${v.quality}`);
   if (money && v.flat !== "FLAT") why.push(`flat=${v.flat}`);
   // Board 39031532519 ch-1: "a brown leather wallet with coins and a magnifying glass" and "credit cards with crumpled cash on top" passed as a wallet and a
@@ -152,6 +162,8 @@ function judge(v, money, logo = false, askedAlone = false) {
   // ASKED and not answered (a small fallback model drops the field): unjudged is not "alone" — like "no provider answered", it refuses. A prompt that never
   // asked (alone not requested) is still not judged on it.
   else if (askedAlone && v.alone == null) why.push("alone=unanswered");
+  // owner, 2026-10-18: props also EXPLAIN what is said, not only name it — and an explaining photo must actually explain it (unanswered refuses too)
+  if (askedExplain && v.helps !== "EXPLAINS") why.push(`helps=${v.helps || "unanswered"}`);
   return { accept: why.length === 0, reason: why.join(", ") || "YES, LITERAL, CLEAN" + (money ? ", FLAT" : "") };
 }
 
@@ -167,7 +179,7 @@ async function verifyImage(png, opts = {}) {
   let r = await askProviders(messages, norm);
   for (let k = 0; k < 2 && !r.v; k++) { await new Promise((res) => setTimeout(res, 15000)); r = await askProviders(messages, norm); }
   if (!r.v) return { accept: false, reason: "no vision provider answered", seen: "", provider: null, unavailable: true };
-  const verdict = { ...r.v, ...judge(r.v, money, logo, !!opts.alone), provider: r.provider };
+  const verdict = { ...r.v, ...judge(r.v, money, logo, !!opts.alone, !!opts.explains), provider: r.provider };
   const wrongText = logo && verdict.accept ? logoTextContradicts(r.v.text, opts.entity) : null;
   return wrongText ? { ...verdict, accept: false, reason: wrongText } : verdict;
 }

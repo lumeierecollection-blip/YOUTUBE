@@ -1908,10 +1908,12 @@ async function attachCloneProps({ plan, channelId, used }) {
         if (shown.has(p.object)) continue;
         // the verifier judges the picture against the SENTENCE ("What the beat needs"), not the bare word: with scene null a blank old book passed as
         // "document" twice (board 38976972038 ch-8 "ordered ... to cease operations", ch-9 "are these contracts actually signed?")
-        const scene = b.narration ? `a photo of ${p.object} for the sentence: "${String(b.narration).slice(0, 300)}"` : null;
-        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene });
+        // an EXPLAINING prop (plan-props.mjs) is judged on the claim it explains as well: the check refuses a photo that is only decorative
+        const explains = p.role === "explains" ? p.explains : null;
+        const scene = explains ? `a photo of ${p.object}, shown to explain "${explains}" (${p.shows}) in the sentence: "${String(b.narration || "").slice(0, 300)}"` : sceneFor(b, p.object);
+        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene, explains });
         if (!r) continue;
-        const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building };
+        const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building, role: p.role || "named", ...(explains ? { explains, shows: p.shows } : {}) };
         // the same file under another name ("bank note" and "dollar bills" both fetch Wikipedia's $100 scan): refused, and SAID, so the warning below is not
         // read as "nothing verified" (run 39128017438 ch-1 beat 4)
         if (!used.keep([vis], `beat ${b.index} prop`).length) { console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" verified but not used — that picture is already shown in this video`); continue; }

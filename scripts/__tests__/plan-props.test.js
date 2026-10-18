@@ -90,3 +90,32 @@ test("strict (planProps): a prop is judged against the words it says it depicts;
   assert.match(v.dropped[1], /gavel: "depicts" .* is not words of the sentence/);
   assert.match(v.dropped[2], /office chair: no "depicts"/);
 });
+
+// owner, 2026-10-18: props also EXPLAIN what is said ("visualizing what is being talked about, explaining visually what is going on"), not only name it
+test("an EXPLAINING prop is kept when it quotes the claim it explains and says what it shows", () => {
+  const s = "Debt payments now eat most of the raise workers got this year.";
+  const { kept } = validateProps([{ role: "explains", object: "unpaid bills", explains: "debt payments now eat most of the raise", shows: "the bills that take the raise" }], [], s, { strict: true });
+  assert.equal(kept.length, 1);
+  assert.equal(kept[0].role, "explains");
+  assert.equal(kept[0].explains, "debt payments now eat most of the raise");
+});
+
+test("an EXPLAINING prop is refused without a real claim, without 'shows', or when it is a stock symbol", () => {
+  const s = "Leaders at Davos debated what drives real impact in modern organisations.";
+  const bad = [
+    { role: "explains", object: "conference table", explains: "nothing like the sentence at all here", shows: "a table" },
+    { role: "explains", object: "conference table", explains: "debated what drives real impact" },
+    { role: "explains", object: "compass", explains: "what drives real impact", shows: "direction" },
+    { role: "explains", object: "lightbulb", explains: "what drives real impact", shows: "an idea" },
+    { role: "explains", object: "businessman", explains: "leaders at Davos debated", shows: "a leader" },
+  ];
+  const { kept, dropped } = validateProps(bad, [], s, { strict: true });
+  assert.deepEqual(kept, []);
+  assert.equal(dropped.length, 5, dropped.join("\n"));
+});
+
+test("a 'named' prop is still judged by the literal rules (no role = named)", () => {
+  const { kept, dropped } = validateProps([{ object: "calculator", depicts: "debt payments" }], [], "Debt payments grow eight times faster than pay.", { strict: true });
+  assert.deepEqual(kept, []);
+  assert.equal(dropped.length, 1);
+});
