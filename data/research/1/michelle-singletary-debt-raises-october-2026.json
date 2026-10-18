@@ -1,0 +1,59 @@
+{
+  "topic_slug": "michelle-singletary-debt-raises-october-2026",
+  "strongest_angle": "Financial columnist Michelle Singletary detailed in October 2026 how growing consumer debt payments consume a massive portion of worker pay raises.",
+  "key_facts": [
+    {
+      "fact": "Washington Post personal finance columnist Michelle Singletary published an analysis on October 10, 2026, examining why pay raises leave workers feeling broke.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC journalist Sharon Epperson reported on October 16, 2026, on research showing debt payments are eating up more of consumer income gains.",
+      "source_url": "https://www.cnbc.com/2026/10/16/debt-payments-rise-more-than-income.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Kamaron McNair reported for CNBC on October 16, 2026, about Michelle Singletary and her work hosting the Dollars & Sense podcast.",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/16/michelle-singletary-debt-money-advice.html",
+      "source_name": "CNBC",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "quotes": [
+    {
+      "text": "Longtime money columnist on the advice everyone needs to hear: 'If debt was a person I would slap it'",
+      "speaker": "Michelle Singletary",
+      "source_name": "CNBC",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/16/michelle-singletary-debt-money-advice.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Michelle Singletary",
+      "kind": "person"
+    },
+    {
+      "name": "Sharon Epperson",
+      "kind": "person"
+    },
+    {
+      "name": "Kamaron McNair",
+      "kind": "person"
+    },
+    {
+      "name": "The Washington Post",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Dollars & Sense",
+      "kind": "object"
+    }
+  ]
+}
