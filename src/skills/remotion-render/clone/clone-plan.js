@@ -420,10 +420,14 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
         // The measurement said the opposite: with the captions gone ch-44 went from approved-review to TEMPLATE_MONOCULTURE 100%, ch-26 from 50% to 100% (ch-2 stayed 100%): bare
         // identical plates read as one template. The short caption stays (smaller than the plate, and never repeating it: see the exclusion above); a tick still stands in when none fits.
         disp = displayWords(spoken, f0, f1, names, profile.display_words || 3, exclude);
-        // a PROP shot names one of the beat's entities that has no picture, as the sentence writes it, so every entity the beat names is on screen
+        // a PROP shot names one of the beat's entities that has no picture, as the sentence writes it, so every entity the beat names is on screen. It goes
+        // on the LABEL line when the shot has a spoken phrase, which stays the big type (owner, 2026-10-19 "there is no typography": run 39169019904 ch-1 replaced the
+        // spoken phrase with "FINANCIAL INDUSTRY REGULATORY AUTHORITY" on four shots in a row). A shot too short for a label still sets the name big.
         if (hero && hero.prop && extra.length && !figHere) {
           const nm = extra[propNameAt++ % extra.length];
-          disp = { text: nm.name, at: Math.min(f1 - 9, f0 + ELEMENT_OFFSET.display), emphasis: null, words: nm.name.split(/\s+/).length };
+          // ... unless the shot has no spoken phrase of its own (its words ARE the name): then the name is the big type, never an empty middle
+          if (roomForPlate && disp) plates.push({ name: nm.name, type: nm.type });
+          else disp = { text: nm.name, at: Math.min(f1 - 9, f0 + ELEMENT_OFFSET.display), emphasis: null, words: nm.name.split(/\s+/).length };
         }
       }
       // KICKER (ref-03, owner 2026-10-16 "look how much better they look"): a shot with no picture and no subject sets the narration it is SPEAKING, word by word on each

@@ -37,17 +37,21 @@ export function treatmentBoxes(treatment, idx = 0) {
       const left = idx % 2 === 0;
       return { hero: rect(left ? 60 : 140, 600, 880, 1320, { cutout: true, anchor: "bottom" }), label: rect(80, 190, 920, 48), text: rect(80, 250, 920, 330, { align: left ? "left" : "right" }), quote: rect(80, 250, 920, 330, { align: left ? "left" : "right" }), shape: { rule: rect(80, 170, 920, 6), bar: rect(80, 580, 260, 14) } };
     }
+    // TYPE THE REFERENCES' SIZE (owner, 2026-10-19: "there is no typography ... they feel like a slideshow"). Run 39169019904 set the key phrase of a
+    // picture shot at <= 118 px, in a 380 px column beside an edge cut-out, and the float layout ran its words down to y 1730 — under the Shorts title and
+    // buttons (bottom 20%). ref-03 sets its key word ("MONEY", "ENDLESSLY") about a third of the frame wide. Every picture layout now has a FULL-WIDTH
+    // text band inside the safe area (y 200-1536), and the picture takes the rest.
     case "float":
-      // a cut-out object or figure floating at an angle with its shadow on the paper (ref-03's money bag, falling man, cash)
-      return { hero: rect(150, 260, 780, 940, { cutout: true, rot: idx % 2 ? -5 : 5 }), label: rect(90, 1250, 900, 48), text: rect(90, 1310, 900, 420, { align: "center" }), quote: rect(90, 1310, 900, 420, { align: "center" }), shape: { rule: rect(90, 1230, 900, 6), bar: rect(390, 1760, 300, 14) } };
+      // a cut-out object or figure floating at an angle with its shadow on the paper (ref-03's money bag, falling man, cash); the words under it
+      return { hero: rect(150, 200, 780, 860, { cutout: true, rot: idx % 2 ? -5 : 5 }), label: rect(90, 1100, 900, 48), text: rect(90, 1160, 900, 370, { align: "center" }), quote: rect(90, 1160, 900, 370, { align: "center" }), shape: { rule: rect(90, 1082, 900, 6), bar: rect(390, 1560, 300, 14) } };
     case "edge": {
-      // a big cut-out running off one side of the frame (the alarm clock), the words on the other side
+      // a big cut-out running off one side of the frame (the alarm clock); the words across the top, above it
       const right = idx % 2 === 0;
-      return { hero: rect(right ? 420 : -260, 380, 920, 1100, { cutout: true }), label: rect(right ? 60 : 640, 820, 380, 48), text: rect(right ? 60 : 640, 880, 380, 520, { align: right ? "left" : "right" }), quote: rect(right ? 60 : 640, 880, 380, 520, { align: right ? "left" : "right" }), shape: { rule: rect(right ? 60 : 640, 800, 380, 6), bar: rect(right ? 60 : 760, 1420, 260, 14) } };
+      return { hero: rect(right ? 380 : -220, 580, 920, 1100, { cutout: true }), label: rect(60, 196, 960, 44), text: rect(60, 250, 960, 320, { align: right ? "left" : "right" }), quote: rect(60, 250, 960, 320, { align: right ? "left" : "right" }), shape: { rule: rect(right ? 60 : 640, 186, 380, 6), bar: rect(right ? 60 : 760, 1600, 260, 14) } };
     }
     case "vignette":
-      // a photo that cannot be cut out, soft-edged, no border (ref-03's portrait); a short line above it
-      return { hero: rect(90, 520, 900, 1100, { vignette: true }), label: rect(90, 210, 900, 48), text: rect(90, 270, 900, 220, { align: "center" }), quote: rect(90, 270, 900, 220, { align: "center" }), shape: { rule: rect(90, 190, 900, 6), bar: rect(390, 1700, 300, 14) } };
+      // a photo that cannot be cut out, soft-edged, no border (ref-03's portrait); the words above it
+      return { hero: rect(90, 640, 900, 1000, { vignette: true }), label: rect(90, 196, 900, 44), text: rect(90, 250, 900, 360, { align: "center" }), quote: rect(90, 250, 900, 360, { align: "center" }), shape: { rule: rect(90, 186, 900, 6), bar: rect(390, 1680, 300, 14) } };
     // A QUOTED STATEMENT gets the frame (board 38870271640 ch-5: the prosecutor's verified quote was set 380 px wide beside a cut-out and read as fine print).
     // The picture, if the shot has one, sits small above it: cut out (quote-cut) or soft-edged (quote-soft); the quote takes the full width below.
     case "quote-cut":
@@ -90,18 +94,18 @@ export function supportBoxes(treatment, idx = 0) {
   switch (treatment) {
     // sizes: ref-03's cash stack is about half the frame wide; a first render at 400-460 px boxes drew the supports at a quarter (2026-10-18)
     case "float":
-      return [rect(620, -70, 540, 500, { from: "top", rot: 8 }), rect(-160, 740, 500, 500, { from: "left", rot: -6 })];
+      return [rect(620, -70, 540, 500, { from: "top", rot: 8 }), rect(-160, 600, 480, 460, { from: "left", rot: -6 })];
     case "edge": {
-      // the main cut-out runs off one side; the supports take the other side's top and the bottom corner, around the words
+      // the main cut-out runs off one side; the supports take the other side, under the words
       const right = idx % 2 === 0;
-      return right ? [rect(-120, 220, 520, 500, { from: "left", rot: -6 }), rect(-90, 1440, 540, 540, { from: "bottom", rot: 5 })]
-        : [rect(680, 220, 520, 500, { from: "right", rot: 6 }), rect(630, 1440, 540, 540, { from: "bottom", rot: -5 })];
+      return right ? [rect(-120, 640, 500, 480, { from: "left", rot: -6 }), rect(-90, 1300, 520, 520, { from: "bottom", rot: 5 })]
+        : [rect(700, 640, 500, 480, { from: "right", rot: 6 }), rect(650, 1300, 520, 520, { from: "bottom", rot: -5 })];
     }
     case "stand":
       // behind the standing figure, in the floor's corners
       return [rect(-180, 1340, 540, 540, { from: "left", rot: -5 }), rect(720, 1380, 540, 540, { from: "right", rot: 5 })];
     case "vignette":
-      return [rect(-140, 1440, 540, 540, { from: "bottom", rot: -6 }), rect(700, 1460, 520, 520, { from: "right", rot: 6 })];
+      return [rect(-140, 1300, 540, 540, { from: "bottom", rot: -6 }), rect(700, 1320, 520, 520, { from: "right", rot: 6 })];
     default:
       return [];
   }

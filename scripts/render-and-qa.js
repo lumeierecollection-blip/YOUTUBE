@@ -1862,6 +1862,8 @@ export function attachConceptVisuals({ wanted, results, used, stats, channelId }
 // planner's scene description. Used by every cutout path: props, concept cutouts, png-bank files and money.
 const sceneFor = (b, concept) => (b && b.narration ? `a photo of ${concept} for the sentence: "${String(b.narration).slice(0, 300)}"` : (b && b.scene_description) || null);
 const PROPS_PER_BEAT = Number(process.env.CLONE_PROPS_PER_BEAT || 3);
+// vision looks per prop: 3 on Gemini (every look is quota: board 38889577784 ran all four keys dry); 5 when Ollama Cloud answers first (free tier, OLLAMA_FIRST)
+const PROP_LOOKS = Number(process.env.CLONE_PROP_LOOKS || (/^(1|true|on|yes)$/i.test(String(process.env.OLLAMA_FIRST || "")) && process.env.OLLAMA_API_KEY ? 5 : 3));
 // ACROSS RENDER ATTEMPTS (one process renders a channel's attempts 1..3): what Gemini proposed for a sentence and the props that passed verification for it.
 // Each attempt used to plan its props from scratch — a fresh Gemini proposal, a fresh fetch — so ch-1's one verified prop of attempt 1 ("bank note") was gone
 // from attempts 2 and 3, which rendered with none (run 39128017438; attempt 1 had been rejected for "monotonous centered typography", i.e. too few pictures).
@@ -1923,7 +1925,7 @@ async function attachCloneProps({ plan, channelId, used }) {
         // an EXPLAINING prop (plan-props.mjs) is judged on the claim it explains as well: the check refuses a photo that is only decorative
         const explains = p.role === "explains" ? p.explains : null;
         const scene = explains ? `a photo of ${p.object}, shown to explain "${explains}" (${p.shows}) in the sentence: "${String(b.narration || "").slice(0, 300)}"` : sceneFor(b, p.object);
-        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene, explains });
+        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: PROP_LOOKS }, scene, explains });
         if (!r) continue;
         const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building, role: p.role || "named", ...(explains ? { explains, shows: p.shows } : {}), ...(p.person ? { person: true, note: personNote } : {}) };
         // the same file under another name ("bank note" and "dollar bills" both fetch Wikipedia's $100 scan): refused, and SAID, so the warning below is not

@@ -108,7 +108,8 @@ function Display({ shot, B, st, P, profile, room }) {
   const emph = shot.display.emphasis ? (caps ? shot.display.emphasis.toUpperCase() : shot.display.emphasis) : null;
   const plated = !!B.text.plated;
   const innerW = B.text.w - (plated ? 72 : 0);
-  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : (shot.hero || shot.subject || shot.excerpt) ? 118 : B.text.align === "center" ? 190 : 170, min: 56, maxLines: B.text.h > 450 ? 4 : 3, maxHeight: B.text.h - (plated ? 56 : 0) });
+  // a picture shot's key word at the references' size (owner 2026-10-19 "there is no typography": it was capped at 118 px)
+  const { lines, size } = fitLines(text, innerW, { family: d.family, caps, max: shot.treatment === "type" ? 230 : shot.hero && !/^quote/.test(shot.treatment) ? 210 : (shot.subject || shot.excerpt || shot.hero) ? 118 : B.text.align === "center" ? 190 : 170, min: 56, maxLines: B.text.h > 450 ? 4 : 3, maxHeight: B.text.h - (plated ? 56 : 0) });
   const inkOn = plated ? P.paper : P.ink;
   const accent = readableAccent(P.accent, plated ? P.ink : P.ground);
   const styleOf = (w) => {

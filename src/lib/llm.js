@@ -1,6 +1,6 @@
 /**
  * llm.js — one call, five providers: Gemini → Ollama Cloud → OpenRouter → Groq → local Ollama.
- * Ollama Cloud (scripts/ollama-client.cjs callOllamaCloud: gpt-oss:120b / qwen3-vl:235b on ollama.com, OLLAMA_API_KEY) is the
+ * Ollama Cloud (scripts/ollama-client.cjs callOllamaCloud: gpt-oss:120b / gemma4:31b on ollama.com, OLLAMA_API_KEY) is the
  * second provider (owner, 2026-10-17); without a key it is skipped at once.
  * OpenRouter (scripts/openrouter-client.cjs) answers when Gemini cannot; Groq
  * (scripts/groq-client.cjs) when OpenRouter cannot; Ollama is the last resort
@@ -115,7 +115,7 @@ export async function callGroqThenOllama(messages, opts = {}, tag = "llm") {
 // Groq still gets the split request when it is reached.
 async function fallbackWithProvenance(messages, opts, tag) {
   const tried = [];
-  // Ollama Cloud first: the large hosted models (gpt-oss:120b text, qwen3-vl:235b vision) take every frame in one call, like Gemini.
+  // Ollama Cloud first: the large hosted models (gpt-oss:120b text, gemma4:31b vision) take every frame in one call, like Gemini.
   if (ollama.hasCloudKey()) {
     const oc = await ollama.callOllamaCloud(messages, opts);
     if (!isProviderError(oc)) return { value: oc, provider: "ollama-cloud", tried: ["ollama-cloud"] };

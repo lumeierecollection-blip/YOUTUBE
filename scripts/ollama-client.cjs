@@ -201,12 +201,13 @@ async function callOllama(messages, opts = {}) {
 // ── Ollama Cloud ───────────────────────────────────────────────────
 // Owner, 2026-10-17: "using OLLAMA as well would make sense for our provider". The local server above runs 3B/7B models on a CPU runner, and boards
 // run on it are not evidence (planner / props / verifier quality collapses). Ollama's hosted API (https://ollama.com, OLLAMA_API_KEY) serves the large
-// open models — gpt-oss:120b for text, qwen3-vl:235b for images — with the same request shape, so it is the SECOND provider (src/lib/llm.js: Gemini ->
+// open models — gpt-oss:120b for text, gemma4:31b for images — with the same request shape, so it is the SECOND provider (src/lib/llm.js: Gemini ->
 // Ollama Cloud -> OpenRouter -> Groq -> local Ollama). Direct-API model names carry no "-cloud" suffix. Without a key it answers { error: "no_key" } at
 // once and the chain moves on. Errors: 429 -> quota_exhausted (the free tier has hourly / weekly limits), 401/403 -> unauthorized, 404 -> model_not_found.
 const CLOUD_URL = () => (process.env.OLLAMA_CLOUD_URL || "https://ollama.com").replace(/\/$/, "");
 const CLOUD_TEXT_MODEL = () => process.env.OLLAMA_CLOUD_TEXT_MODEL || "gpt-oss:120b";
-const CLOUD_VISION_MODEL = () => process.env.OLLAMA_CLOUD_VISION_MODEL || "qwen3-vl:235b";
+// qwen3-vl:235b was retired on ollama.com (HTTP 410, 2026-10-19); gemma4:31b is the free-tier model that reads images (tested: "a stack of cash bills", 0.9 s)
+const CLOUD_VISION_MODEL = () => process.env.OLLAMA_CLOUD_VISION_MODEL || "gemma4:31b";
 const cloudKey = () => String(process.env.OLLAMA_API_KEY || "").trim();
 const hasCloudKey = () => !!cloudKey();
 // OLLAMA_FIRST=1 (workflow input ollama_first; owner, 2026-10-18: "use Ollama for that because it's practically free"): Ollama Cloud is asked FIRST by every
