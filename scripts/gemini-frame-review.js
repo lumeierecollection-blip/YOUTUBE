@@ -329,7 +329,9 @@ function neutralizeGroundClauses(text) {
  * evidence the video is bad. Veto-only would have meant letting it reject on fabricated
  * grounds, which is the failure mode, not a mitigation of it.
  */
-const VERDICT_PROVIDERS = new Set(["gemini", "groq"]);
+// ollama-cloud: qwen3-vl:235b on ollama.com (owner, 2026-10-17: Ollama as a provider) — a larger vision model than the accepted Groq one. Local Ollama
+// (a 3B vision model on a CPU runner) stays excluded.
+const VERDICT_PROVIDERS = new Set(["gemini", "groq", "ollama-cloud"]);
 
 /** 0/1/2/3 were already in use (0 ok, 1 verdict blocks, 2 usage, 3 beat-check could not run). */
 const EXIT_PROVIDER_UNAVAILABLE = 4;

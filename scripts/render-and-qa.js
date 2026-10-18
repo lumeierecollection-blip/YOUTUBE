@@ -2254,7 +2254,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         let v = bankCutout(name, concept);
         if (v) {
           // A person supplied it, but it is verified like any fetched PNG.
-          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: w.b.scene_description || null, money: FLAT_MONEY(concept) });
+          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: w.b.scene_description || null, money: FLAT_MONEY(concept), alone: true });
           if (vr.accept) { Object.assign(v, { verdict: vr.kind, seen: vr.seen, source_url: `png-bank/${v.file}` }); console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} ACCEPTED (${vr.reason}, saw "${vr.seen}")`); results.set(`${w.bi}:${name}`, v); continue; }
           console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} REJECTED (${vr.reason}, saw "${vr.seen}")`);
           v = null;

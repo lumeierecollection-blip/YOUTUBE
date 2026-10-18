@@ -111,7 +111,7 @@ function sawRefusal(seen, concept) {
   return m ? `the photo shows "${m[0]}" with the object (a stranger or a costume)` : null;
 }
 async function verify(png, concept, scene) {
-  const v = await verifyImage(png, { entity: concept, type: "object", scene, money: FLAT_MONEY(concept) });
+  const v = await verifyImage(png, { entity: concept, type: "object", scene, money: FLAT_MONEY(concept), alone: true });
   const refused = v.accept ? sawRefusal(v.seen, concept) : null;
   return refused ? { ...v, accept: false, reason: refused } : v;
 }

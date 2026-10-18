@@ -1,7 +1,7 @@
 // plan-props: Gemini proposes a prop per beat; only generic, photographable, non-person objects that are LITERALLY what the sentence says survive.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { validateProps, planProps, isLiteral } from "../lib/plan-props.mjs";
+import { validateProps, planProps, isLiteral, depictsOf } from "../lib/plan-props.mjs";
 
 test("a courthouse and a gavel are props; a named court, a person, an icon, text and an idea are not", () => {
   const v = validateProps([{ object: "courthouse", building: true }, { object: "Southwark Crown Court" }, { object: "judge" }, { object: "gavel icon" }, { object: "newspaper" }, { object: "justice" }, { object: "gavel" }],
@@ -13,7 +13,7 @@ test("a courthouse and a gavel are props; a named court, a person, an icon, text
 
 test("planProps maps Gemini's answer per beat and returns nothing invented when Gemini does not answer", async () => {
   const beats = [{ index: 0, sentence: "The house sold for $2 million.", named_entities: [] }, { index: 1, sentence: "Their savings fell.", named_entities: [] }];
-  const m = await planProps({ topic: "t", beats, ask: async () => ({ beats: [{ index: 0, props: [{ object: "house", building: true }] }, { index: 1, props: [{ object: "piggy bank" }] }] }) });
+  const m = await planProps({ topic: "t", beats, ask: async () => ({ beats: [{ index: 0, props: [{ object: "house", depicts: "The house sold", building: true }] }, { index: 1, props: [{ object: "piggy bank", depicts: "Their savings" }] }] }) });
   assert.deepEqual(m.get(0).kept.map((p) => p.object), ["house"]);
   assert.deepEqual(m.get(1).kept.map((p) => p.object), ["piggy bank"]);
   const none = await planProps({ topic: "t", beats, ask: async () => ({ error: "quota_exhausted" }) });
@@ -64,4 +64,29 @@ test("test run 39037009215 ch-6: the tool of a dig is literal; luminol's spray b
   assert.ok(isLiteral("excavator", "Philadelphia Police and the FBI excavated 417 West Chew Avenue."));
   assert.ok(isLiteral("spray bottle", "What did luminol reveal inside the house?"));
   assert.equal(isLiteral("magnifying glass", "What did luminol reveal inside the house?"), null);
+});
+
+test("board 39031532519 ch-1 (owner 2026-10-17 'random PNGs'): a money word no longer admits a calculator, a wallet or a credit card", () => {
+  const s0 = "Your debt payments grow eight times faster than your take-home pay.";
+  const s3 = "The Washington Post reports debt payments grow eight times faster.";
+  for (const o of ["calculator", "wallet", "credit card", "briefcase", "piggy bank"]) assert.equal(isLiteral(o, s3), null, `${o} for "${s3}"`);
+  for (const o of ["pen", "notebook", "folder"]) assert.equal(isLiteral(o, s3), null, `${o}: "reports" is news, not paperwork`);
+  assert.ok(isLiteral("stack of cash", s0));                                   // pay -> cash
+  assert.equal(isLiteral("microphone", "In October 2026, columnist Michelle Singletary launched Dollars and Sense at The Washington Post."), null);
+  assert.ok(isLiteral("microphone", "Her podcast featured a family tackling student debt."));
+  assert.equal(isLiteral("backpack", "Her podcast featured a family tackling $100,000 in student debt."), null);
+  assert.equal(isLiteral("police car", "Researchers investigated the claims."), null);
+  assert.equal(isLiteral("fire truck", "Workers reported burnout."), null);
+});
+
+test("strict (planProps): a prop is judged against the words it says it depicts; it must cite real words of the sentence", () => {
+  const s = "Agents seized $2 million in cash and a calculator ledger from his office.";
+  assert.equal(depictsOf("seized $2 million", s), "seized $2 million");
+  assert.equal(depictsOf("financial records", s), null);
+  const v = validateProps([{ object: "stack of cash", depicts: "$2 million in cash" }, { object: "desk", depicts: "$2 million" }, { object: "gavel", depicts: "the trial" },
+    { object: "office chair" }, { object: "desk", depicts: "from his office" }], [], s, { strict: true });
+  assert.deepEqual(v.kept.map((k) => k.object), ["stack of cash", "desk"]);
+  assert.match(v.dropped[0], /desk: not what "\$2 million" shows/);
+  assert.match(v.dropped[1], /gavel: "depicts" .* is not words of the sentence/);
+  assert.match(v.dropped[2], /office chair: no "depicts"/);
 });

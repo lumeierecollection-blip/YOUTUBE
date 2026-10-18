@@ -30,7 +30,7 @@
 const { existsSync } = require("node:fs");
 const { askProviders, imageDataUrl } = require("./verify-cutout-image.cjs");
 
-function promptFor({ scene, entity, type, logo = false, money = false }) {
+function promptFor({ scene, entity, type, logo = false, money = false, alone = false }) {
   // Task 2.2 — a company/institution logo is verified with the owner's exact
   // three-answer identity prompt, not the generic image rubric.
   if (logo) {
@@ -81,12 +81,18 @@ ${money ? `
    (no edges cut off)?
    FLAT — centered, flat, all edges visible
    ANGLED — perspective, folded, or partially cut off
+` : ""}${alone ? `
+${money ? 5 : 4}. Is the subject alone in the picture?
+   ALONE — only the subject. Its own parts and contents count as the subject
+     (the bills of a stack of cash, the coins in a jar, the wheels of a car)
+   OTHERS — a different, separate object shares the picture
+     (a magnifying glass beside a wallet, cash heaped on credit cards, a pen on a document)
 ` : ""}
 Return JSON only:
 {
   "shows": "YES" | "CLOSE" | "NO",
   "kind": "LITERAL" | "FIGURATIVE" | "META",
-  "quality": "CLEAN" | "DIRTY",${money ? `\n  "flat": "FLAT" | "ANGLED",` : ""}
+  "quality": "CLEAN" | "DIRTY",${money ? `\n  "flat": "FLAT" | "ANGLED",` : ""}${alone ? `\n  "alone": "ALONE" | "OTHERS",\n  "others": "the other objects, or empty",` : ""}
   "seen": "short phrase describing the image"
 }`;
 }
@@ -106,7 +112,9 @@ function normalizer(money, logo = false) {
     const seen = String(a.seen || "").trim().slice(0, 160);
     if (!["YES", "CLOSE", "NO"].includes(shows) || !["LITERAL", "FIGURATIVE", "META"].includes(kind) || !["CLEAN", "DIRTY"].includes(quality) || !seen) return null;
     if (money && !["FLAT", "ANGLED"].includes(flat)) return null;
-    return { shows, kind, quality, flat, seen };
+    // "alone" is read when the model gave it (a prompt without the question, or a small fallback model that drops it, leaves it unjudged)
+    const alone = ["ALONE", "OTHERS"].includes(up(a.alone)) ? up(a.alone) : null;
+    return { shows, kind, quality, flat, seen, alone, others: String(a.others || "").trim().slice(0, 120) };
   };
 }
 /**
@@ -138,6 +146,9 @@ function judge(v, money, logo = false) {
   if (v.kind !== "LITERAL") why.push(`kind=${v.kind}`);
   if (v.quality !== "CLEAN") why.push(`quality=${v.quality}`);
   if (money && v.flat !== "FLAT") why.push(`flat=${v.flat}`);
+  // Board 39031532519 ch-1: "a brown leather wallet with coins and a magnifying glass" and "credit cards with crumpled cash on top" passed as a wallet and a
+  // credit card. A second object in a prop photo is a still-life, and the extra thing (a magnifying glass) says something the sentence does not.
+  if (v.alone === "OTHERS") why.push(`others=${v.others || "another object"}`);
   return { accept: why.length === 0, reason: why.join(", ") || "YES, LITERAL, CLEAN" + (money ? ", FLAT" : "") };
 }
 

@@ -140,7 +140,17 @@ async function askProviders(messages) {
     if (v) return { provider: "gemini", v, tried };
     tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
   } catch (e) { tried.push(`gemini: ${e.message}`); }
-  // 2. OpenRouter (vision model), same messages, one attempt.
+  // 2. Ollama Cloud (qwen3-vl:235b on ollama.com), when OLLAMA_API_KEY is set (owner, 2026-10-17). Same messages, same parser.
+  try {
+    const ollama = require("./ollama-client.cjs");
+    if (ollama.hasCloudKey()) {
+      const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
+      const v = normalize(o);
+      if (v) return { provider: "ollama-cloud", v, tried };
+      tried.push(`ollama-cloud: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    }
+  } catch (e) { tried.push(`ollama-cloud: ${e.message}`); }
+  // 2b. OpenRouter (vision model), same messages, one attempt.
   try {
     const openrouter = require("./openrouter-client.cjs");
     const o = await openrouter.callOpenRouter(messages, { maxTokens: 300, temperature: 0 });

@@ -1,5 +1,7 @@
 /**
- * llm.js — one call, four providers: Gemini → OpenRouter → Groq → local Ollama.
+ * llm.js — one call, five providers: Gemini → Ollama Cloud → OpenRouter → Groq → local Ollama.
+ * Ollama Cloud (scripts/ollama-client.cjs callOllamaCloud: gpt-oss:120b / qwen3-vl:235b on ollama.com, OLLAMA_API_KEY) is the
+ * second provider (owner, 2026-10-17); without a key it is skipped at once.
  * OpenRouter (scripts/openrouter-client.cjs) answers when Gemini cannot; Groq
  * (scripts/groq-client.cjs) when OpenRouter cannot; Ollama is the last resort
  * when all three are down (slow on a CPU runner, rarely used). Used by every model
@@ -45,17 +47,17 @@ export function forcedOllama() {
  */
 export function forcedProvider() {
   const p = String(process.env.FORCE_PROVIDER || "").toLowerCase();
-  return ["gemini", "openrouter", "groq", "ollama"].includes(p) ? p : null;
+  return ["gemini", "ollama-cloud", "openrouter", "groq", "ollama"].includes(p) ? p : null;
 }
 
 // A model can answer: a Gemini key, or a configured local Ollama server.
 export function llmConfigured() {
   const gemini = !!(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
-  return (gemini && !forcedOllama()) || (!!process.env.OPENROUTER_API_KEY && !forcedOllama()) || (!!process.env.GROQ_API_KEY && !forcedOllama()) || !!process.env.OLLAMA_URL;
+  return (gemini && !forcedOllama()) || (!!process.env.OPENROUTER_API_KEY && !forcedOllama()) || (!!process.env.GROQ_API_KEY && !forcedOllama()) || (!!process.env.OLLAMA_API_KEY && !forcedOllama()) || !!process.env.OLLAMA_URL;
 }
 
 export function isProviderError(r) {
-  return !!(r && (r.source === "gemini" || r.source === "openrouter" || r.source === "groq" || r.source === "ollama") && r.error);
+  return !!(r && (r.source === "gemini" || r.source === "ollama-cloud" || r.source === "openrouter" || r.source === "groq" || r.source === "ollama") && r.error);
 }
 
 export async function callOllamaOnly(messages, opts = {}, tag = "llm") {
@@ -113,6 +115,13 @@ export async function callGroqThenOllama(messages, opts = {}, tag = "llm") {
 // Groq still gets the split request when it is reached.
 async function fallbackWithProvenance(messages, opts, tag) {
   const tried = [];
+  // Ollama Cloud first: the large hosted models (gpt-oss:120b text, qwen3-vl:235b vision) take every frame in one call, like Gemini.
+  if (ollama.hasCloudKey()) {
+    const oc = await ollama.callOllamaCloud(messages, opts);
+    if (!isProviderError(oc)) return { value: oc, provider: "ollama-cloud", tried: ["ollama-cloud"] };
+    tried.push("ollama-cloud");
+    console.error(`[${tag}] ollama-cloud: ${oc.error} → openrouter${oc.detail ? ` (${String(oc.detail).slice(0, 120)})` : ""}`);
+  }
   const or = await openrouter.callOpenRouter(messages, opts);
   if (!isProviderError(or)) return { value: or, provider: "openrouter", tried: ["openrouter"] };
   tried.push("openrouter");
@@ -124,6 +133,8 @@ async function fallbackWithProvenance(messages, opts, tag) {
   return { value: await callOllamaOnly(messages, opts, tag), provider: "ollama", tried: [...tried, "ollama"] };
 }
 
+const nextAfterGemini = () => (ollama.hasCloudKey() ? "ollama-cloud" : "openrouter");
+
 export async function callLLM(messages, opts = {}, tag = "llm") {
   if (forcedOllama()) {
     console.error(`[${tag}] ollama (FORCE_PLANNER=ollama — Gemini and Groq not called)`);
@@ -131,7 +142,7 @@ export async function callLLM(messages, opts = {}, tag = "llm") {
   }
   const r = await callGemini(messages, { ...opts, tag });
   if (!(r && r.source === "gemini" && r.error)) return r;
-  console.error(`[${tag}] gemini: ${r.error} → openrouter${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
+  console.error(`[${tag}] gemini: ${r.error} → ${nextAfterGemini()}${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
   return callGroqThenOllama(messages, opts, tag);
 }
 
@@ -151,6 +162,11 @@ export async function callLLMWithProvenance(messages, opts = {}, tag = "llm") {
     console.error(`[${tag}] ollama (FORCE_PROVIDER=ollama — pinned, no failover)`);
     const value = await callOllamaOnly(messages, opts, tag);
     return { value, provider: "ollama", error: isProviderError(value) ? value.error : null, chain: ["ollama"], pinned: true };
+  }
+  if (pin === "ollama-cloud") {
+    console.error(`[${tag}] ollama-cloud (FORCE_PROVIDER=ollama-cloud — pinned, no failover)`);
+    const o = await ollama.callOllamaCloud(messages, opts);
+    return { value: o, provider: "ollama-cloud", error: isProviderError(o) ? o.error : null, chain: ["ollama-cloud"], pinned: true };
   }
   if (pin === "openrouter") {
     console.error(`[${tag}] openrouter (FORCE_PROVIDER=openrouter — pinned, no failover)`);
@@ -176,7 +192,7 @@ export async function callLLMWithProvenance(messages, opts = {}, tag = "llm") {
   if (!(r && r.source === "gemini" && r.error)) {
     return { value: r, provider: "gemini", error: null, chain: ["gemini"] };
   }
-  console.error(`[${tag}] gemini: ${r.error} → openrouter${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
+  console.error(`[${tag}] gemini: ${r.error} → ${nextAfterGemini()}${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
   const { value, provider, tried } = await fallbackWithProvenance(messages, opts, tag);
   return { value, provider, error: isProviderError(value) ? value.error : null, chain: ["gemini", ...tried] };
 }
