@@ -414,7 +414,10 @@ export function CloneVideo({ plan }) {
         const m = motionAt(shots, i, frame);
         return m.shape ? <ShapeAt r={m.shape} P={P} /> : null;
       })()}
-      {shot.hero && shot.hero.credit ? <div style={{ position: "absolute", right: 40, bottom: 40, font: "500 20px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.55 }}>Source: {shot.hero.credit}</div> : null}
+      {/* a generic-person prop says on screen that it is not the story's person (plan-props.mjs PEOPLE). Top left, not where the credit sits: the bottom and
+          the right edge are under the Shorts title and buttons, and a disclaimer nobody can see is not one. Backed by the ground so it reads over a bled photo. */}
+      {shot.hero && shot.hero.note ? <div style={{ position: "absolute", left: 40, top: 150, padding: "6px 14px", borderRadius: 6, background: P.ground, font: "600 26px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.85 }}>{shot.hero.note}</div>
+        : shot.hero && shot.hero.credit ? <div style={{ position: "absolute", right: 40, bottom: 40, font: "500 20px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.55 }}>Source: {shot.hero.credit}</div> : null}
     </AbsoluteFill>
   );
 }

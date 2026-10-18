@@ -10,7 +10,8 @@
  *   - GEMINI decides WHAT each beat shows: 3-4 PROPS per beat, generic photographable things that illustrate that sentence (what it names first: "court"
  *     -> a courthouse; then its subject matter: savings -> a piggy bank). One call for the whole video, so props differ from beat to beat.
  *   - THIS FILE checks every proposal (validateProps): a short concrete noun phrase; never a named / specific entity (that is the real-photo path in
- *     entity-assets.cjs); never a person (a stranger standing in a story about a named person reads as that person); never text, a screen, a logo, an
+ *     entity-assets.cjs); a generic person only on a beat that names no person, and always captioned as not the story's person (see PEOPLE below);
+ *     never text, a screen, a logo, an
  *     icon, a symbol, a chart or an illustration; never an abstract idea.
  *   - scripts/fetch-cutout-once.cjs fetches each prop (Pixabay PHOTOS only, image_type=photo), isolates it (rembg + geometric checks) and has a vision
  *     model confirm the isolated PNG LITERALLY shows the prop. A prop that fails is replaced by the beat's next proposal.
@@ -32,8 +33,16 @@
 
 export const MAX_PROPS = 4;
 
-// Never a prop: people (a stranger reads as the story's named person), words on things, marks, drawings and abstractions.
+// GENERIC PEOPLE (owner, 2026-10-18: "people, but it should be mentioned that this is not them ... this is not the person being talked about"). The
+// references use strangers to show a point (ref-03's falling man, reaching hands), so a generic person is a prop now, on two conditions:
+//   - never on a beat that names a person: the stranger would be on screen while that name is spoken, and a caption cannot undo that;
+//   - every frame showing one carries a caption saying it is an illustrative photo, not the person in the story (render-and-qa.js attachCloneProps sets
+//     `note`, CloneVideo.jsx draws it).
+// A face, a portrait or a selfie stays refused: a close-up reads as one particular person whatever the caption says.
 const PEOPLE = /\b(man|men|woman|women|person|people|boy|girl|child|children|kid|kids|baby|worker|workers|officer|officers|judge|lawyer|doctor|nurse|teacher|student|students|ceo|businessman|businesswoman|crowd|family|couple|actor|actress|politician|president|soldier|player|fan|fans|face|hand|hands|silhouette|figure|portrait|selfie|human|humans)\b/i;
+const CLOSEUP = /\b(face|faces|portrait|portraits|selfie|selfies|headshot|headshots)\b/i;
+export const isPersonProp = (object) => PEOPLE.test(String(object || ""));
+// Never a prop: words on things, marks, drawings and abstractions.
 const NOT_PHOTO = /\b(icon|icons|logo|logos|symbol|symbols|emoji|illustration|drawing|cartoon|vector|clipart|clip-art|graphic|graphics|chart|graph|diagram|infographic|sign|signs|signage|banner|poster|text|word|words|letter|letters|headline|newspaper|screen|screenshot|website|app|map|flag|arrow|arrows|silhouette)\b/i;
 const ABSTRACT = /\b(idea|ideas|concept|success|failure|growth|economy|policy|risk|future|change|freedom|justice|truth|power|love|fear|hope|time|money\s+concept|strategy|problem|solution|crisis|trend|market|markets|inflation|value|values|culture|history|news|story|life|death|anxiety|stress)\b/i;
 
@@ -156,12 +165,14 @@ export function validateProps(props, namedEntities = [], sentence = "", { strict
   // A beat that names a PLACE (a city, a state, a country) gets no generic BUILDING: the viewer reads it as that place (board 38889577784 ch-26: an apartment
   // block for "Alexandria, Virginia" -> beat check NO). A named court, company or agency still gets its model building (owner: "a court -> a photo of a court").
   const namesPlace = (namedEntities || []).some((e) => e && /^(place|location|city|country|region|state|county)$/i.test(String(e.type || e.kind || "")));
+  const namesPerson = (namedEntities || []).some((e) => e && /^(person|people)$/i.test(String(e.type || e.kind || "")));
   const kept = [], dropped = [];
   for (const p of Array.isArray(props) ? props : []) {
     const object = String((p && (p.object || p.name)) || p || "").toLowerCase().replace(/[^a-z\s-]/g, " ").replace(/\s+/g, " ").trim();
     const why = !object ? "empty"
       : object.split(" ").length > 3 ? "more than 3 words"
-      : PEOPLE.test(object) ? "a person"
+      : CLOSEUP.test(object) ? "a face or portrait (a close-up reads as one particular person)"
+      : PEOPLE.test(object) && namesPerson ? "a stranger on a beat that names a person (it would read as that person)"
       : NOT_PHOTO.test(object) ? "not a photographable object (text / mark / drawing)"
       : ABSTRACT.test(object) ? "an abstract idea"
       : namesPlace && p && (p.building || p.kind === "building" || p.kind === "place") ? "a generic building on a beat that names a place (it would read as that place)"
@@ -176,7 +187,7 @@ export function validateProps(props, namedEntities = [], sentence = "", { strict
         : !shows ? "no \"shows\" (what the viewer sees)" : null);
       if (whyX) { dropped.push(`${object || "?"} (explains): ${whyX}`); continue; }
       if (kept.some((k) => k.object === object)) continue;
-      kept.push({ object, building: !!(p.building || p.kind === "building" || p.kind === "place"), role: "explains", explains: claim, shows, why: `explains "${claim}": ${shows}` });
+      kept.push({ object, building: !!(p.building || p.kind === "building" || p.kind === "place"), role: "explains", explains: claim, shows, why: `explains "${claim}": ${shows}`, ...(PEOPLE.test(object) ? { person: true } : {}) });
       if (kept.length >= MAX_PROPS) break;
       continue;
     }
@@ -186,7 +197,7 @@ export function validateProps(props, namedEntities = [], sentence = "", { strict
     const literal = why2 ? null : isLiteral(object, strict ? cited : sentence);
     if (why2 || !literal) { dropped.push(`${object || "?"}: ${why2 || (strict ? `not what "${cited}" shows (a symbol or a loose association)` : "not something the sentence says (a symbol or a loose association)")}`); continue; }
     if (kept.some((k) => k.object === object)) continue;
-    kept.push({ object, building: !!(p && (p.building || p.kind === "building" || p.kind === "place")), role: "named", why: literal });
+    kept.push({ object, building: !!(p && (p.building || p.kind === "building" || p.kind === "place")), role: "named", why: literal, ...(PEOPLE.test(object) ? { person: true } : {}) });
     if (kept.length >= MAX_PROPS) break;
   }
   return { kept, dropped };
@@ -233,7 +244,10 @@ EVERY prop (both roles):
   mailbox, globe, rocket, crown, maze, signpost — they decorate, they do not explain;
 - 1 to 3 words, a plain common noun phrase a stock-photo search would find ("stack of coins", "gavel", "empty wallet"); one object, not a scene;
 - GENERIC: never a named or specific thing (not "Southwark Crown Court", not "Apple iPhone", not "the White House"), never a brand;
-- NEVER a person or a body part, never a crowd; never text, a sign, a newspaper, a screen, a logo, an icon, a symbol, an arrow, a chart, a map, a flag,
+- a GENERIC person is allowed ("worker on a factory floor", "man counting coins", "reaching hands") ONLY on a beat that names NO person — on a beat
+  that names someone, a stranger would read as them. Never a face close-up, a portrait or a selfie. Every person photo is captioned on screen as an
+  illustrative photo, not the person in the story;
+- never text, a sign, a newspaper, a screen, a logo, an icon, a symbol, an arrow, a chart, a map, a flag,
   a drawing or an illustration; never an abstract idea ("success", "risk", "justice").
 Use different props on different beats: the same object twice in one video is not allowed.
 Mark "building": true for a building or a place (it stands on the ground), false for a loose object.

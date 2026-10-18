@@ -1887,6 +1887,11 @@ async function attachCloneProps({ plan, channelId, used }) {
   if (![...plans.values()].some((v) => v.kept.length)) { console.log(`::warning::[props] ch-${channelId}: Gemini proposed no usable props — beats keep only their entity pictures`); return; }
   const T0 = Date.now(), BUDGET = Number(process.env.CLONE_PROPS_BUDGET_MS || 16 * 60000);
   const shown = new Set();
+  // A GENERIC PERSON prop (plan-props.mjs, owner 2026-10-18: "it should be mentioned that this is not them") is captioned on every frame that shows it.
+  // The caption names nobody: a name in it would be read by the naming checks as a claim about the frame.
+  const namedPeople = new Set(plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e && e.type === "person").map((e) => String(e.name || "").toLowerCase())).filter(Boolean));
+  const personNote = namedPeople.size === 1 ? "Illustrative photo — not the person in this story"
+    : namedPeople.size > 1 ? "Illustrative photo — not anyone named in this story" : "Illustrative photo";
   const queue = [...plan.beats];
   let got = 0, beatsWith = 0;
   const worker = async () => {
@@ -1913,7 +1918,7 @@ async function attachCloneProps({ plan, channelId, used }) {
         const scene = explains ? `a photo of ${p.object}, shown to explain "${explains}" (${p.shows}) in the sentence: "${String(b.narration || "").slice(0, 300)}"` : sceneFor(b, p.object);
         const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene, explains });
         if (!r) continue;
-        const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building, role: p.role || "named", ...(explains ? { explains, shows: p.shows } : {}) };
+        const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building, role: p.role || "named", ...(explains ? { explains, shows: p.shows } : {}), ...(p.person ? { person: true, note: personNote } : {}) };
         // the same file under another name ("bank note" and "dollar bills" both fetch Wikipedia's $100 scan): refused, and SAID, so the warning below is not
         // read as "nothing verified" (run 39128017438 ch-1 beat 4)
         if (!used.keep([vis], `beat ${b.index} prop`).length) { console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" verified but not used — that picture is already shown in this video`); continue; }

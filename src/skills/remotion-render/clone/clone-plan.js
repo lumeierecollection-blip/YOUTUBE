@@ -48,7 +48,7 @@ export function heroesOf(canvas) {
     else out.push({ kind: x.kind === "person" ? "portrait" : "photo", asset: x.asset, name: x.name || null, w: x.w || null, h: x.h || null, view: x.view || null, credit: x.credit || null, cutout: x.cutout || null, grounded: !!x.cutout_grounded, bust: !!x.cutout_bust, vignette: !!x.vignette });
   }
   // the beat's PROPS (render-and-qa.js attachCloneProps): generic photographed objects / places Gemini chose for the sentence, cut out and verified
-  for (const x of c.clone_props || []) if (x && x.asset && !out.some((o) => o.asset === x.asset)) out.push({ kind: "cutout", asset: x.asset, name: null, prop: x.name || null, w: x.w || null, h: x.h || null, view: null, cutout: x.asset, grounded: !!x.grounded });
+  for (const x of c.clone_props || []) if (x && x.asset && !out.some((o) => o.asset === x.asset)) out.push({ kind: "cutout", asset: x.asset, name: null, prop: x.name || null, w: x.w || null, h: x.h || null, view: null, cutout: x.asset, grounded: !!x.grounded, note: x.note || null });
   if (c.art && c.art.asset) out.push({ kind: c.art.kind === "plate-organization" ? "logo" : c.art.kind || "art", asset: c.art.asset, name: c.art.name || null, w: null, h: null, view: null });
   if (c.art && Array.isArray(c.art.items)) for (const it of c.art.items) if (it && it.asset) out.push({ kind: "logo", asset: it.asset, name: it.name || null, w: null, h: null, view: null });
   // A LOGO is a transparent mark, always drawn whole: without `cutout` an art logo took the photo treatments (vignette / bleed, cover-cropped) and a
@@ -549,6 +549,9 @@ export function cloneCanvasFor(canvas, shots, palette = null) {
   // not "is this object named"
   const explained = (c.clone_props || []).filter((v) => v && v.asset && v.explains && drawn.has(v.asset)).map((v) => ({ name: v.name, explains: v.explains }));
   if (explained.length) out.clone_props_explain = explained;
+  // GENERIC PEOPLE props (plan-props.mjs PEOPLE): the beat check is told the stranger is captioned as not the story's person, so it is not read as a misnamed photo
+  const people = (c.clone_props || []).filter((v) => v && v.asset && v.person && drawn.has(v.asset)).map((v) => v.name);
+  if (people.length) out.clone_props_people = people;
   const glyphs = (shots || []).flatMap((x) => (x.subjects || []).filter((y) => y.kind === "glyph").map((y) => y.type));
   if (glyphs.length) parts.push("the names of entities it has no picture of, set large in type (no icons)");
   if (figs.some((f) => f.kind === "figure")) parts.push("large figure plates");

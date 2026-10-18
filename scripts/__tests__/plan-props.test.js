@@ -53,7 +53,9 @@ test("the plain physical form of what the sentence says passes; a word that only
 
 test("board 39031532519: a police station / badge is an object, not a person; an activity word no longer qualifies office furniture", () => {
   const s = "Lexington Police reopened the case and expanded the department's cold case unit with two detectives.";
-  assert.deepEqual(validateProps([{ object: "police station", building: true }, { object: "police officer" }], [], s).kept.map((k) => k.object), ["police station"]);
+  // since 2026-10-18 a generic officer is a (captioned) prop on a beat that names no person; never on one that does
+  assert.deepEqual(validateProps([{ object: "police station", building: true }, { object: "police officer" }], [], s).kept.map((k) => k.object), ["police station", "police officer"]);
+  assert.deepEqual(validateProps([{ object: "police station", building: true }, { object: "police officer" }], [{ name: "Jane Doe", type: "person" }], s).kept.map((k) => k.object), ["police station"]);
   assert.equal(isLiteral("wooden desk", "Deepak Malhotra published research detailing four strategies for making concessions."), null);
   assert.equal(isLiteral("laptop", "Katie Shonk analyzed business skills regarding how negotiators avoid capitulation."), null);
   assert.ok(isLiteral("desk", "The company closed its Boston office."));
@@ -107,7 +109,7 @@ test("an EXPLAINING prop is refused without a real claim, without 'shows', or wh
     { role: "explains", object: "conference table", explains: "debated what drives real impact" },
     { role: "explains", object: "compass", explains: "what drives real impact", shows: "direction" },
     { role: "explains", object: "lightbulb", explains: "what drives real impact", shows: "an idea" },
-    { role: "explains", object: "businessman", explains: "leaders at Davos debated", shows: "a leader" },
+    { role: "explains", object: "businessman portrait", explains: "leaders at Davos debated", shows: "a leader" },   // a close-up; a stranger in full is allowed since 2026-10-18 (test below)
   ];
   const { kept, dropped } = validateProps(bad, [], s, { strict: true });
   assert.deepEqual(kept, []);
@@ -118,4 +120,17 @@ test("a 'named' prop is still judged by the literal rules (no role = named)", ()
   const { kept, dropped } = validateProps([{ object: "calculator", depicts: "debt payments" }], [], "Debt payments grow eight times faster than pay.", { strict: true });
   assert.deepEqual(kept, []);
   assert.equal(dropped.length, 1);
+});
+
+test("owner 2026-10-18: a generic person is a prop only on a beat that names no person, and is flagged for the on-screen caption; a face is never one", () => {
+  const s = "Most workers spend the raise before it arrives.";
+  const free = validateProps([{ role: "explains", object: "worker counting coins", explains: "workers spend the raise", shows: "the raise going out as fast as it comes" }, { role: "explains", object: "worker face", explains: "workers spend the raise", shows: "a worker" }], [], s, { strict: true });
+  assert.deepEqual(free.kept.map((p) => p.object), ["worker counting coins"]);
+  assert.equal(free.kept[0].person, true);
+  assert.match(free.dropped.join(" | "), /face or portrait/);
+  const named = validateProps([{ role: "explains", object: "worker counting coins", explains: "workers spend the raise", shows: "the raise going out" }], [{ name: "Katie Shonk", type: "person" }], "Katie Shonk says most workers spend the raise before it arrives.", { strict: true });
+  assert.deepEqual(named.kept, []);
+  assert.match(named.dropped[0], /names a person/);
+  const obj = validateProps([{ role: "named", object: "gold bars", depicts: "found gold bars" }], [], "Agents found gold bars.", { strict: true });
+  assert.equal(obj.kept[0].person, undefined);
 });
