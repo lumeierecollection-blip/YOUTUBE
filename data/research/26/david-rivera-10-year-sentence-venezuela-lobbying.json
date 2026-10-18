@@ -1,0 +1,89 @@
+{
+  "topic_slug": "david-rivera-10-year-sentence-venezuela-lobbying",
+  "strongest_angle": "Profile the high-stakes white collar case of former U.S. Representative David Rivera, who was sentenced in October 2026 to 10 years in federal prison for acting as an unregistered foreign agent for Nicolas Maduro's regime in a $50 million lobbying scheme.",
+  "key_facts": [
+    {
+      "fact": "Former U.S. Congressman David Rivera was sentenced to 10 years in federal prison in October 2026 for money laundering and secretly acting as an unregistered foreign agent for Venezuela.",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "David Rivera was convicted following a seven-week trial where jurors heard his consulting firm was hired for a $50 million lobbying contract by Venezuela's state-run oil company.",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/02/ex-congressman-rubio-ally-gets-10-years-secret-venezuela-lobbying",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "David Rivera served in the United States Congress as a Republican representing Florida from 2011 to 2013.",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo",
+      "source_name": "Reuters via BBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Prison Sentence",
+      "value": 10,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo"
+    },
+    {
+      "label": "Age of David Rivera",
+      "value": 61,
+      "unit": "years old",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo"
+    },
+    {
+      "label": "Lobbying Contract Value",
+      "value": 50,
+      "unit": "million dollars",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/02/ex-congressman-rubio-ally-gets-10-years-secret-venezuela-lobbying"
+    },
+    {
+      "label": "Trial Duration",
+      "value": 7,
+      "unit": "weeks",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo"
+    },
+    {
+      "label": "Congressional Service Start",
+      "value": 2011,
+      "unit": "year",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo"
+    },
+    {
+      "label": "Congressional Service End",
+      "value": 2013,
+      "unit": "year",
+      "source_url": "https://www.bbc.com/news/articles/crz98wnx4n1wo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "David Rivera",
+      "kind": "person"
+    },
+    {
+      "name": "Marco Rubio",
+      "kind": "person"
+    },
+    {
+      "name": "Nicolás Maduro",
+      "kind": "person"
+    },
+    {
+      "name": "United States Congress",
+      "kind": "organization"
+    },
+    {
+      "name": "Venezuela",
+      "kind": "place"
+    },
+    {
+      "name": "Miami",
+      "kind": "place"
+    }
+  ]
+}
