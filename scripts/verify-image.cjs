@@ -112,7 +112,7 @@ function normalizer(money, logo = false) {
     const seen = String(a.seen || "").trim().slice(0, 160);
     if (!["YES", "CLOSE", "NO"].includes(shows) || !["LITERAL", "FIGURATIVE", "META"].includes(kind) || !["CLEAN", "DIRTY"].includes(quality) || !seen) return null;
     if (money && !["FLAT", "ANGLED"].includes(flat)) return null;
-    // "alone" is read when the model gave it (a prompt without the question, or a small fallback model that drops it, leaves it unjudged)
+    // "alone" is read when the model gave it; judge() refuses a missing answer only when the question was asked
     const alone = ["ALONE", "OTHERS"].includes(up(a.alone)) ? up(a.alone) : null;
     return { shows, kind, quality, flat, seen, alone, others: String(a.others || "").trim().slice(0, 120) };
   };
@@ -136,7 +136,7 @@ function logoTextContradicts(text, entity) {
 }
 
 /** The owner's rule (E.2, G.3): YES and LITERAL and CLEAN (and FLAT for money). */
-function judge(v, money, logo = false) {
+function judge(v, money, logo = false, askedAlone = false) {
   if (logo) {
     const accept = v.verdict === "MATCH";
     return { accept, reason: accept ? "MATCH" : `${v.verdict} (saw "${v.recognized}")` };
@@ -149,6 +149,9 @@ function judge(v, money, logo = false) {
   // Board 39031532519 ch-1: "a brown leather wallet with coins and a magnifying glass" and "credit cards with crumpled cash on top" passed as a wallet and a
   // credit card. A second object in a prop photo is a still-life, and the extra thing (a magnifying glass) says something the sentence does not.
   if (v.alone === "OTHERS") why.push(`others=${v.others || "another object"}`);
+  // ASKED and not answered (a small fallback model drops the field): unjudged is not "alone" — like "no provider answered", it refuses. A prompt that never
+  // asked (alone not requested) is still not judged on it.
+  else if (askedAlone && v.alone == null) why.push("alone=unanswered");
   return { accept: why.length === 0, reason: why.join(", ") || "YES, LITERAL, CLEAN" + (money ? ", FLAT" : "") };
 }
 
@@ -164,7 +167,7 @@ async function verifyImage(png, opts = {}) {
   let r = await askProviders(messages, norm);
   for (let k = 0; k < 2 && !r.v; k++) { await new Promise((res) => setTimeout(res, 15000)); r = await askProviders(messages, norm); }
   if (!r.v) return { accept: false, reason: "no vision provider answered", seen: "", provider: null, unavailable: true };
-  const verdict = { ...r.v, ...judge(r.v, money, logo), provider: r.provider };
+  const verdict = { ...r.v, ...judge(r.v, money, logo, !!opts.alone), provider: r.provider };
   const wrongText = logo && verdict.accept ? logoTextContradicts(r.v.text, opts.entity) : null;
   return wrongText ? { ...verdict, accept: false, reason: wrongText } : verdict;
 }

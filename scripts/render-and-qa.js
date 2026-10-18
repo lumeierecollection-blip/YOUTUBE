@@ -1858,7 +1858,16 @@ export function attachConceptVisuals({ wanted, results, used, stats, channelId }
  */
 // 3, not 2 (board 38976972038 ch-8): a beat that verified one of its two props showed that ONE picture on every shot for 13 s. A beat of ~6 shots needs
 // three pictures to rotate; the extra fetches are bounded by CLONE_PROPS_BUDGET_MS.
+// What a fetched object is judged against: the beat's SENTENCE when there is one (a bare word let a blank old book pass as "document"; board 38976972038), else the
+// planner's scene description. Used by every cutout path: props, concept cutouts, png-bank files and money.
+const sceneFor = (b, concept) => (b && b.narration ? `a photo of ${concept} for the sentence: "${String(b.narration).slice(0, 300)}"` : (b && b.scene_description) || null);
 const PROPS_PER_BEAT = Number(process.env.CLONE_PROPS_PER_BEAT || 3);
+// ACROSS RENDER ATTEMPTS (one process renders a channel's attempts 1..3): what Gemini proposed for a sentence and the props that passed verification for it.
+// Each attempt used to plan its props from scratch — a fresh Gemini proposal, a fresh fetch — so ch-1's one verified prop of attempt 1 ("bank note") was gone
+// from attempts 2 and 3, which rendered with none (run 39128017438; attempt 1 had been rejected for "monotonous centered typography", i.e. too few pictures).
+// A remembered prop is put through this attempt's no-repeat ledger again like any other picture.
+const PROPOSALS_BY_SENTENCE = new Map();   // `${channel}|${sentence}` -> planProps entry { kept, dropped }
+const PROPS_BY_SENTENCE = new Map();       // `${channel}|${sentence}` -> [vis] verified on an earlier attempt
 async function attachCloneProps({ plan, channelId, used }) {
   const { planProps } = await import("./lib/plan-props.mjs");
   const { callGemini } = await import("../src/lib/gemini-client.js");
@@ -1867,7 +1876,14 @@ async function attachCloneProps({ plan, channelId, used }) {
     try { return await callGemini([{ role: "user", content: prompt }], { model: "gemini-3.5-flash-lite", maxTokens: 3000, temperature: 0.2, noCache: true, tag: `props ch-${channelId}` }); }
     catch (e) { return { error: e.message }; }
   };
-  const plans = await planProps({ topic: channelTopic(channelId) || "", beats, ask });
+  const memoKey = (b) => `${channelId}|${b.narration || b.sentence || ""}`;
+  // Gemini is asked only about sentences it has not answered for this channel yet (a retry re-asks nothing: same proposals, no quota spent)
+  const fresh = beats.filter((b) => !PROPOSALS_BY_SENTENCE.has(memoKey(b)));
+  if (fresh.length) {
+    const got = await planProps({ topic: channelTopic(channelId) || "", beats: fresh, ask });
+    for (const b of fresh) if (got.has(b.index) && got.get(b.index).kept.length) PROPOSALS_BY_SENTENCE.set(memoKey(b), got.get(b.index));
+  }
+  const plans = new Map(beats.map((b) => [b.index, PROPOSALS_BY_SENTENCE.get(memoKey(b))]).filter(([, v]) => v));
   if (![...plans.values()].some((v) => v.kept.length)) { console.log(`::warning::[props] ch-${channelId}: Gemini proposed no usable props — beats keep only their entity pictures`); return; }
   const T0 = Date.now(), BUDGET = Number(process.env.CLONE_PROPS_BUDGET_MS || 16 * 60000);
   const shown = new Set();
@@ -1880,6 +1896,12 @@ async function attachCloneProps({ plan, channelId, used }) {
       if (!v) continue;
       for (const d of v.dropped) console.log(`[props] ch-${channelId} beat ${b.index}: "${d}" refused`);
       const mine = [];
+      for (const vis of PROPS_BY_SENTENCE.get(memoKey(b)) || []) {
+        if (mine.length >= PROPS_PER_BEAT || shown.has(vis.name) || !used.keep([vis], `beat ${b.index} prop (kept from an earlier attempt)`).length) continue;
+        shown.add(vis.name);
+        mine.push(vis);
+        console.log(`[props] ch-${channelId} beat ${b.index}: "${vis.name}" -> ${vis.asset} (verified on an earlier attempt)`);
+      }
       for (const p of v.kept) {
         if (mine.length >= PROPS_PER_BEAT) break;
         if (Date.now() - T0 > BUDGET) { console.log(`[props] ch-${channelId} beat ${b.index}: props budget spent (${BUDGET / 1000}s), "${p.object}" not fetched`); break; }
@@ -1890,12 +1912,15 @@ async function attachCloneProps({ plan, channelId, used }) {
         const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: 3 }, scene });
         if (!r) continue;
         const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building };
-        if (!used.keep([vis], `beat ${b.index} prop`).length) continue;
+        // the same file under another name ("bank note" and "dollar bills" both fetch Wikipedia's $100 scan): refused, and SAID, so the warning below is not
+        // read as "nothing verified" (run 39128017438 ch-1 beat 4)
+        if (!used.keep([vis], `beat ${b.index} prop`).length) { console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" verified but not used — that picture is already shown in this video`); continue; }
         shown.add(p.object);
         mine.push(vis);
         console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" -> ${r.png_path} (${r.source}, saw "${r.seen}")`);
       }
       if (mine.length) {
+        PROPS_BY_SENTENCE.set(memoKey(b), mine);
         b.clone_props = mine;
         if (b.canvas) b.canvas.clone_props = mine;
         got += mine.length; beatsWith++;
@@ -1948,10 +1973,13 @@ async function resolveCanvas(channelId, planPath, plan) {
       // denomination, a stack of bills, a coin, a piggy bank...) as a clean, verified cutout —
       // a bill or coin from Wikipedia / Wikimedia first and checked FLAT (fetch-cutout-once.cjs),
       // shown whole as the hero; not a full-bleed photo that crops it.
-      const obj = String(b.data?.object || "dollar bill").toLowerCase();
+      // No object named by the planner: a bill only when the SENTENCE says bills / notes / cash — "$4.2 billion in fines" names no bill, and a stock dollar
+      // bill there is a symbol, which the cutout rule refuses (an object is shown only when its own words are in the sentence). Otherwise no cutout.
+      const obj = String(b.data?.object || (/\b(bills?|banknotes?|bank notes?|cash)\b/i.test(b.narration || "") ? "dollar bill" : "")).toLowerCase();
       const value = b.data?.value || null;
       const spec = CUTOUT_SPECS.find((x) => x.name === obj.replace(/\s+/g, "-")) || {};
-      let r = await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: b.scene_description || null });
+      if (!obj) console.log(`[cutout] ch-${channelId} beat ${b.index}: money beat names no object and its sentence no bill or cash — no cutout`);
+      let r = !obj ? null : await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: sceneFor(b, obj) });
       if (r && reused({ asset: r.png_path, source_url: r.source_url }, `beat ${b.index} money cutout`)) r = null;
       b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
       if (r) {
@@ -2254,13 +2282,13 @@ async function resolveCanvas(channelId, planPath, plan) {
         let v = bankCutout(name, concept);
         if (v) {
           // A person supplied it, but it is verified like any fetched PNG.
-          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: w.b.scene_description || null, money: FLAT_MONEY(concept), alone: true });
+          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: sceneFor(w.b, concept), money: FLAT_MONEY(concept), alone: true });
           if (vr.accept) { Object.assign(v, { verdict: vr.kind, seen: vr.seen, source_url: `png-bank/${v.file}` }); console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} ACCEPTED (${vr.reason}, saw "${vr.seen}")`); results.set(`${w.bi}:${name}`, v); continue; }
           console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} REJECTED (${vr.reason}, saw "${vr.seen}")`);
           v = null;
         } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": not in bank, fetching live`);
         if (Date.now() - T0 < BUDGET_MS) {
-          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec, scene: w.b.scene_description || null });
+          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec, scene: sceneFor(w.b, concept) });
           if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url, verdict: r.literal, seen: r.seen }; }
         } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": ${(BUDGET_MS / 60000).toFixed(0)}-minute budget spent, not fetched — beat renders without a cutout`);
         results.set(`${w.bi}:${name}`, v);

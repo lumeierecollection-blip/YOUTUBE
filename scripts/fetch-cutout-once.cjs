@@ -43,7 +43,8 @@ const ROOT = join(__dirname, "..");
 const PUBLIC = join(ROOT, "src", "skills", "remotion-render", "public");
 const LIVE = join(PUBLIC, "cutouts-live");
 const PY = process.env.CUTOUT_PYTHON || "python3";
-const PACE_MS = 2000;
+const PACE_MS = Number(process.env.CUTOUT_PACE_MS || 2000);
+const WAIT_429_MS = Number(process.env.CUTOUT_429_WAIT_MS || 20000);   // first wait after a download 429 without Retry-After (doubles once)
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 48);
 
@@ -76,6 +77,20 @@ async function pixabay(q, log) {
     return { hits: j.hits || [] };
   }
   return { hits: [], why: "pixabay 429" };
+}
+
+// A candidate's image DOWNLOAD. Pixabay's image host rate-limits too: on 2026-10-18 (run 39128017438) nearly every download answered 429 while the search API
+// still answered, and each 429 was counted as a rejected candidate — ch-44 got 0 props on 8 beats, ch-1 0-1 — with no picture ever looked at. So a Pixabay
+// download is paced through the same bucket as the search, a 429 waits (Retry-After, at most 60 s) and retries twice, and a download still refused is
+// reported as RATE-LIMITED, not as a rejected picture.
+async function download(c) {
+  for (let k = 0; ; k++) {
+    if (c.source === "pixabay") await pace();
+    const res = await fetch(c.url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30000) });
+    if (res.status !== 429 || k >= 2) return res;
+    const ra = Number(res.headers.get("retry-after"));
+    await sleep(Math.min(60000, Number.isFinite(ra) && ra > 0 ? ra * 1000 : WAIT_429_MS * (k + 1)));
+  }
 }
 
 function runPy(args, timeoutMs = 180000) {
@@ -149,7 +164,12 @@ async function fetchCutoutForBeat({ concept, name = null, channel, beat_index, s
     console.log(`${tag}: reuse of ${r.png_path} ACCEPTED (${v.reason}, saw "${v.seen}")`);
     return { ...r, literal: v.kind, seen: v.seen, provider: v.provider };
   }
-  const job = fetchOnce({ concept, name, channel, beat_index, spec, scene });
+  // A concept that only hit the rate limit is not remembered as rejected: the cache entry is dropped, so the next beat that wants it fetches it again.
+  const job = fetchOnce({ concept, name, channel, beat_index, spec, scene }).then((r) => {
+    if (r !== RATE_LIMITED) return r;
+    if (runCache.get(key) === job) runCache.delete(key);
+    return null;
+  });
   runCache.set(key, job);
   return job;
 }
@@ -205,7 +225,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   for (const q of [`${concept} isolated`, concept]) {
     if (cands.length >= MAX_CANDIDATES) break;
     const r = await pixabay(q, log);
-    if (r.rate) { if (cands.length) break; log(`Pixabay rate limit, beat renders without a cutout`); return null; }
+    if (r.rate) { if (cands.length) break; log(`Pixabay rate limit, beat renders without a cutout`); return RATE_LIMITED; }
     if (r.why) log(`Pixabay search "${q}": ${r.why}`);
     for (const h of r.hits) {
       const url = h.largeImageURL || h.webformatURL;
@@ -225,10 +245,12 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
   const work = join(tmpdir(), `cutout-live-${process.pid}`);
   mkdirSync(work, { recursive: true });
   const rejected = { shows: 0, kind: 0, quality: 0, flat: 0, isolation: 0, other: 0 };
+  let limited = 0;
   for (const [i, c] of cands.entries()) {
     const n = i + 1, raw = join(work, `${slug(concept)}-${n}.img`), iso = join(work, `${slug(concept)}-${n}.png`);
     try {
-      const res = await fetch(c.url, { headers: { "user-agent": UA }, signal: AbortSignal.timeout(30000) });
+      const res = await download(c);
+      if (res.status === 429) { log(`candidate ${n} NOT CHECKED (download rate-limited, HTTP 429 after retries)`); limited++; continue; }
       if (!res.ok) { log(`candidate ${n} REJECTED (download failed, HTTP ${res.status})`); rejected.other++; continue; }
       writeFileSync(raw, Buffer.from(await res.arrayBuffer()));
     } catch (e) { log(`candidate ${n} REJECTED (download failed, ${e.message})`); rejected.other++; continue; }
@@ -267,9 +289,11 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene }) {
     log(`candidate ${n} ACCEPTED (${v.reason}, saw "${v.seen}") ${c.page}`);
     return out;
   }
-  log(`${cands.length} candidates, 0 accepted (rejected: shows ${rejected.shows}, kind ${rejected.kind}, quality ${rejected.quality}${money ? `, flat ${rejected.flat}` : ""}, isolation ${rejected.isolation}, other ${rejected.other}), beat renders as name card / TYPE`);
-  return null;
+  log(`${cands.length} candidates, 0 accepted (rejected: shows ${rejected.shows}, kind ${rejected.kind}, quality ${rejected.quality}${money ? `, flat ${rejected.flat}` : ""}, isolation ${rejected.isolation}, other ${rejected.other}${limited ? `; ${limited} never checked: rate-limited` : ""}), beat renders as name card / TYPE`);
+  // Only pictures that were LOOKED AT and refused make the concept "rejected this run"; one that was never downloaded may be tried again by a later beat.
+  return limited ? RATE_LIMITED : null;
 }
+const RATE_LIMITED = Symbol("rate-limited");
 
 module.exports = { fetchCutoutForBeat, qualifyConcept, sawRefusal, pixabay, wordsOf, FLAT_MONEY, _resetRunCache: () => runCache.clear() };
 
