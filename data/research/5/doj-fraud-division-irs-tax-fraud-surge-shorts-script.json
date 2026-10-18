@@ -1,0 +1,68 @@
+{
+  "channel_id": "5",
+  "topic_slug": "doj-fraud-division-irs-tax-fraud-surge",
+  "format": "shorts",
+  "hook": "Federal investigators just exposed nearly $490 million in tax fraud across America.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Federal investigators just exposed nearly $490 million in tax fraud across America.",
+      "b_roll": [
+        "Federal seal",
+        "Tax documents"
+      ],
+      "text_overlay": {
+        "text": "$490 Million Tax Fraud"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How did the United States Department of Justice Fraud Division, IRS, and IRS-CI conduct their first-ever National Tax Enforcement Surge? Why did thirty-five U.S. attorneys' offices team up with internal revenue investigators?",
+      "b_roll": [
+        "DOJ building",
+        "IRS offices",
+        "Investigative files"
+      ],
+      "text_overlay": {
+        "text": "35 Offices Involved"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Department of Justice prosecutors returned 23 actions with new charges against 31 defendants.",
+      "b_roll": [
+        "Court documents",
+        "Defendant list"
+      ],
+      "text_overlay": {
+        "text": "31 New Defendants"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The United States Department of Justice prosecuted 76 people linked to federal revenue losses.",
+      "b_roll": [
+        "Courtroom gavel",
+        "Financial charts",
+        "Federal agents"
+      ],
+      "text_overlay": {
+        "text": "76 Defendants Prosecuted"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Seventy-six defendants faced federal charges in the surge.",
+      "b_roll": [
+        "Justice scale"
+      ],
+      "text_overlay": {
+        "text": "76 Defendants"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.law360.com/tax-authority/federal/articles/2537924/doj-irs-say-enforcement-surge-exposed-490m-in-tax-fraud",
+    "https://www.justice.gov/usao-wdmi/pr/WDMI_2026_Tax_Surge_PR"
+  ]
+}
