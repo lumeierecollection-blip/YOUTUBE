@@ -1956,9 +1956,14 @@
           "topic": "Ethiopia and Eritrea Deploy Troops in Tigray as Border War Looms",
           "slug": "ethiopia-eritrea-tigray-border-war-2026",
           "reserved_at": "2026-10-17T12:15:19.243Z"
+        },
+        {
+          "topic": "IEA Warns Global Diesel Squeeze Will Last Until 2027 Due to Iran War",
+          "slug": "iea-diesel-squeeze-2027-iran-war",
+          "reserved_at": "2026-10-18T12:41:19.986Z"
         }
       ],
-      "last_generated": "2026-10-17T12:15:19.243Z"
+      "last_generated": "2026-10-18T12:41:19.986Z"
     },
     "10": {
       "channel_name": "Margin Note",
