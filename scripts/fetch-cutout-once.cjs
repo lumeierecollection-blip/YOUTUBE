@@ -120,8 +120,18 @@ const FLAT_MONEY = (c) => /\b(bills?|banknotes?|bank notes?|notes?|coins?|dollar
 // "pen", next to a named defendant; "a green piggy bank wearing sunglasses"). A stranger's hand reads as the story's person and a dressed-up object is a
 // joke, so either refuses the photo whatever the three answers were. Only when the concept itself is not about a person or clothing.
 const SAW_PERSON = /(?<!-)\b(hands?|fingers?|person|people|man|men|woman|women|boy|girl|child|someone|holding|held by|wearing|dressed|costume|sunglasses|cartoon|smiling)\b(?!-)/i;
+// A concept that IS a generic person (plan-props.mjs PEOPLE, allowed since 2026-10-18, captioned on screen) is not refused for showing one: "worker counting
+// coins" or "police officer" would otherwise always fail here, since the verifier says "a man ..." of every such photo.
+const PERSON_CONCEPT = /\b(man|men|woman|women|person|people|boy|girl|child|children|kid|kids|worker|workers|officer|officers|judge|lawyer|doctor|nurse|teacher|student|students|ceo|businessman|businesswoman|crowd|family|couple|soldier|player|fans?|hands?|human|humans)\b/i;
+// A BLANK object shows nothing (run 39169019904 ch-1: "stack of papers" accepted as "stack of blank white paper" and held a featureless white box on
+// screen for 8 s; board 38976972038: a blank old book passed as "document" twice). Refused unless the concept asks for blankness.
+const SAW_BLANK = /\b(blank|plain white|empty white|unprinted|featureless|unlabell?ed)\b/i;
 function sawRefusal(seen, concept) {
-  if (!seen || SAW_PERSON.test(String(concept || ""))) return null;
+  if (!seen) return null;
+  const c = String(concept || "");
+  const b = SAW_BLANK.test(c) || /\bempty\b/i.test(c) ? null : String(seen).match(SAW_BLANK);
+  if (b) return `the photo shows a "${b[0]}" object: nothing a viewer can read at a glance`;
+  if (SAW_PERSON.test(c) || PERSON_CONCEPT.test(c)) return null;
   const m = String(seen).match(SAW_PERSON);
   return m ? `the photo shows "${m[0]}" with the object (a stranger or a costume)` : null;
 }

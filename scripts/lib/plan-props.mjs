@@ -176,7 +176,14 @@ export function validateProps(props, namedEntities = [], sentence = "", { strict
       : NOT_PHOTO.test(object) ? "not a photographable object (text / mark / drawing)"
       : ABSTRACT.test(object) ? "an abstract idea"
       : namesPlace && p && (p.building || p.kind === "building" || p.kind === "place") ? "a generic building on a beat that names a place (it would read as that place)"
-      : names.some((n) => n && (object.includes(n) || n.split(/\s+/).filter((w) => w.length > 3).some((w) => object.split(" ").includes(w)))) ? "names a specific entity of the beat"
+      // a ONE-word name blocks any object containing it ("apple iphone" for Apple); a longer name only its full form or two of its words: one shared
+      // common word refused "restaurant interior" for Restaurant Brands International and "credit card" for a credit firm (run 39169019904)
+      : names.some((n) => {
+        if (!n) return false;
+        if (object.includes(n)) return true;
+        const nw = n.split(/\s+/).filter((w) => w.length > 3), ow = object.split(" ");
+        return nw.length === 1 ? ow.includes(nw[0]) : nw.filter((w) => ow.includes(w)).length >= 2;
+      }) ? "names a specific entity of the beat"
       : null;
     if (strict && p && typeof p === "object" && p.role === "explains") {
       const claim = p.explains ? depictsOf(p.explains, sentence) : null;

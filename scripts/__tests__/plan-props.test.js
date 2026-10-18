@@ -134,3 +134,11 @@ test("owner 2026-10-18: a generic person is a prop only on a beat that names no 
   const obj = validateProps([{ role: "named", object: "gold bars", depicts: "found gold bars" }], [], "Agents found gold bars.", { strict: true });
   assert.equal(obj.kept[0].person, undefined);
 });
+
+test("run 39169019904: one common word shared with a multi-word name no longer refuses a generic prop; a one-word brand still does", () => {
+  const s = "Restaurant Brands International will sell restaurants to local operators.";
+  const rbi = [{ name: "Restaurant Brands International", type: "organization" }];
+  assert.deepEqual(validateProps([{ role: "explains", object: "restaurant interior", explains: "sell restaurants to local operators", shows: "the restaurants being sold" }], rbi, s, { strict: true }).kept.map((k) => k.object), ["restaurant interior"]);
+  assert.match(validateProps([{ object: "restaurant brands" }], rbi, s).dropped[0], /names a specific entity/);
+  assert.match(validateProps([{ object: "apple iphone" }], [{ name: "Apple", type: "organization" }], "Apple sold more phones.").dropped[0], /names a specific entity/);
+});
