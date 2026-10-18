@@ -2732,9 +2732,14 @@
           "topic": "Former US Congressman David Rivera's 10-Year Prison Sentence for Venezuelan Lobbying",
           "slug": "david-rivera-10-year-sentence-venezuela-lobbying",
           "reserved_at": "2026-10-18T12:41:41.314Z"
+        },
+        {
+          "topic": "Anatoliy Koval pleads guilty to $250 million cyber‑money‑laundering scheme",
+          "slug": "anatoliy-koval-international-money-laundering-guilty-plea",
+          "reserved_at": "2026-10-18T23:28:38.159Z"
         }
       ],
-      "last_generated": "2026-10-18T20:54:17.068Z"
+      "last_generated": "2026-10-18T23:28:38.159Z"
     },
     "27": {
       "channel_name": "Trial Files",
