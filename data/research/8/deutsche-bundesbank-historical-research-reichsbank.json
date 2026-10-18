@@ -1,0 +1,77 @@
+{
+  "topic_slug": "deutsche-bundesbank-historical-research-reichsbank",
+  "strongest_angle": "Examines the Deutsche Bundesbank's comprehensive scientific research project published into the historical roots and operations of the Reichsbank, Bank deutscher Länder, and early Bundesbank.",
+  "key_facts": [
+    {
+      "fact": "In 2017, the Deutsche Bundesbank commissioned a comprehensive study on the history of central banking in Germany between the years 1924 and 1970.",
+      "source_url": "https://www.bundesbank.de/en/publications/reports/studies/from-the-reichsbank-to-the-bundesbank-927730",
+      "source_name": "Deutsche Bundesbank",
+      "confidence": "high"
+    },
+    {
+      "fact": "A team of academics led by renowned historians Professor Magnus Brechtken investigated the historical roots of the Reichsbank, Bank deutscher Länder, and early Bundesbank.",
+      "source_url": "https://www.bundesbank.de/en/publications/reports/studies/from-the-reichsbank-to-the-bundesbank-927730",
+      "source_name": "Deutsche Bundesbank",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Bloomberg report notes that the Reichsbank played a crucial role in Hitler’s Germany according to the published historical findings.",
+      "source_url": "https://www.bloomberg.com/news/articles/2024-03-15/reichsbank-played-crucial-role-in-hitler-s-germany-report-shows",
+      "source_name": "Bloomberg",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Study start year",
+      "value": 2017,
+      "unit": "year",
+      "source_url": "https://www.bundesbank.de/en/publications/reports/studies/from-the-reichsbank-to-the-bundesbank-927730"
+    },
+    {
+      "label": "Historical period start year",
+      "value": 1924,
+      "unit": "year",
+      "source_url": "https://www.bundesbank.de/en/publications/reports/studies/from-the-reichsbank-to-the-bundesbank-927730"
+    },
+    {
+      "label": "Historical period end year",
+      "value": 1970,
+      "unit": "year",
+      "source_url": "https://www.bundesbank.de/en/publications/reports/studies/from-the-reichsbank-to-the-bundesbank-927730"
+    },
+    {
+      "label": "Study page count",
+      "value": 100,
+      "unit": "pages",
+      "source_url": "https://www.bloomberg.com/news/articles/2024-03-15/reichsbank-played-crucial-role-in-hitler-s-germany-report-shows"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Deutsche Bundesbank",
+      "kind": "organization"
+    },
+    {
+      "name": "Reichsbank",
+      "kind": "organization"
+    },
+    {
+      "name": "Bank deutscher Länder",
+      "kind": "organization"
+    },
+    {
+      "name": "Magnus Brechtken",
+      "kind": "person"
+    },
+    {
+      "name": "Hitler",
+      "kind": "person"
+    },
+    {
+      "name": "Bloomberg",
+      "kind": "organization"
+    }
+  ]
+}

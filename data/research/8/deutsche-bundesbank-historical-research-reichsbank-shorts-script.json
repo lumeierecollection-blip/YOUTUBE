@@ -1,0 +1,68 @@
+{
+  "channel_id": "8",
+  "topic_slug": "deutsche-bundesbank-historical-research-reichsbank",
+  "format": "shorts",
+  "hook": "In 2017, the Deutsche Bundesbank launched a study into its dark past.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 2017, the Deutsche Bundesbank launched a study into its dark past.",
+      "b_roll": [
+        "Archives of the Deutsche Bundesbank in Frankfurt",
+        "Historical documents on a wooden desk"
+      ],
+      "text_overlay": {
+        "text": "Deutsche Bundesbank Study"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Historian Magnus Brechtken investigated the roots of the Reichsbank from 1924 to 1970. Bloomberg revealed the institution played a crucial role in Hitler's Germany. What did academics uncover about the Reichsbank?",
+      "b_roll": [
+        "Portrait of historian Magnus Brechtken",
+        "Historical Reichsbank building facade in Berlin",
+        "Old currency notes and ledgers"
+      ],
+      "text_overlay": {
+        "text": "1924 to 1970 Archive"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Bloomberg revealed the findings, but the study didn't stop there.",
+      "b_roll": [
+        "Closed-up historical vault door",
+        "Detailed financial records turning pages"
+      ],
+      "text_overlay": {
+        "text": "Deeper Operational History"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Professor Magnus Brechtken's team published one hundred pages on the early Bundesbank.",
+      "b_roll": [
+        "Modern Bloomberg terminal screen showing archives",
+        "Stacks of historical reports",
+        "Bundesbank headquarters exterior"
+      ],
+      "text_overlay": {
+        "text": "100 Pages of Findings"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the Bloomberg report to see how the Reichsbank operated under Hitler.",
+      "b_roll": [
+        "Deutsche Bundesbank official seal on paper"
+      ],
+      "text_overlay": {
+        "text": "The 2017 Study"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bundesbank.de/en/publications/reports/studies/from-the-reichsbank-to-the-bundesbank-927730",
+    "https://www.bloomberg.com/news/articles/2024-03-15/reichsbank-played-crucial-role-in-hitler-s-germany-report-shows"
+  ]
+}
