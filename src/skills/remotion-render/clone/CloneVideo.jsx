@@ -6,17 +6,18 @@
  * out (a ground that is not white, type beside objects, solid shapes) because the references do; what it keeps from the pipeline is every
  * rule that is not about those: pop-only entrances (no bounce, no overshoot), no zoom, real sourced pictures only, colour from channels.json.
  *
- * TRANSITIONS (owner, 2026-10-16: "make sure the transitions aren't weird, fading"): nothing ever fades — no element has an opacity ramp and nothing
- * of the previous shot lingers as a ghost under the next (the old 6-frame hold read as a double image). The picture is there on the cut's first frame.
+ * TRANSITIONS (owner, 2026-10-16: "make sure the transitions aren't weird, fading"; re-measured on the references 2026-10-18): every shot change is a
+ * HARD CUT on the spoken word. Nothing fades — no element has an opacity ramp and nothing of the previous shot lingers as a ghost under the next. The
+ * full-frame panel wipe at a new sentence (2026-10-17) was removed 2026-10-18: no reference changes scene that way.
  *
- * MOTION GRAPHICS, NOT PLAYFUL (owner, 2026-10-17: "it shouldn't look playful. It should look like morphing graphics"). The 92% -> 100% scale snap read
- * as a pop. Every move is now a solid graphic moving on an ease-in-out or a long ease-out — never a spring, a bounce, an overshoot or a scale-pop:
+ * MOTION GRAPHICS, NOT PLAYFUL (owner, 2026-10-17: "it shouldn't look playful. It should look like morphing graphics"). Every move is a solid graphic on an
+ * ease-in-out or a long ease-out — never a spring, a bounce, an overshoot or a scale-pop:
  *   - SHAPE MORPH: the accent shape (bar, rule, block, stripe) is ONE object across the video. On a cut it holds where it was, then slides and resizes
  *     into the new shot's place (MORPH_F frames, ease-in-out); a shot without one retracts it; the first one draws in from its own edge.
- *   - PANEL WIPE at each new sentence: the shape grows over the whole frame (WIPE_IN_F), the cut happens under it, and it shrinks into the new shot's
- *     shape (WIPE_OUT_F) — the sentence change is a graphic transforming, not a dissolve.
- *   - TYPE: each display line rises from behind its own mask; a plate, a label and a quote are wiped on edge to edge; a rule draws from its end.
- *   - PICTURE: a cut-out or photo settles 40 px into place over 10 frames (ease-out), opaque from its first frame; no zoom.
+ *   - TYPE: words rise on their spoken frame; the key phrase is revealed letter by letter (LetterLine); a plate, a label and a quote are wiped on edge to
+ *     edge; a rule draws from its end.
+ *   - MAIN PICTURE: there on the cut's first frame, settling 40 px into place over 10 frames (ease-out); no zoom.
+ *   - SUPPORTING CUT-OUTS (Support): the beat's other cut-outs slide in from their own frame edges after the cut, one after another (ref-03's collage).
  */
 import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
@@ -195,6 +196,23 @@ function Hero({ shot, B, st, P, profile, bw, local, idx }) {
   const mat = box.mat || 0;
   const shell = { ...common, transform: `translate(${swayX.toFixed(2)}px, ${swayY.toFixed(2)}px) rotate(${box.rot || 0}deg)`, boxShadow: t === "disc" ? "none" : "0 18px 40px rgba(0,0,0,0.22)", backgroundColor: logo || mat ? "#FFFFFF" : "transparent", padding: mat || (logo ? 40 : 0), boxSizing: "border-box", borderRadius: box.circle ? "50%" : 0, overflow: "hidden", border: box.circle ? `10px solid ${P.accent}` : "none" };
   return <div style={shell}><Img src={staticFile(h.asset)} style={{ width: "100%", height: "100%", objectFit: logo ? "contain" : "cover", objectPosition: `${fx}% ${fy}%`, filter, borderRadius: box.circle ? "50%" : 0 }} /></div>;
+}
+
+// A SUPPORTING CUT-OUT (clone-layout.js supportBoxes): slides in from its own frame edge, starting fully outside the frame, over SLIDE_F frames on an ease-out,
+// opaque the whole way (ref-03's cash stack and reaching hands); then sways with the main picture. Behind the main picture (z 5), never on the words.
+const SLIDE_F = 9;
+function Support({ s, frame, P, profile, bw }) {
+  const t = frame - s.at;
+  if (t < 0) return null;
+  const b = s.box, p = easeOut(t / SLIDE_F);
+  const away = { left: [-(b.x + b.w) - 20, 0], right: [FRAME.w - b.x + 20, 0], top: [0, -(b.y + b.h) - 20], bottom: [0, FRAME.h - b.y + 20] }[b.from] || [0, 0];
+  const dx = away[0] * (1 - p) + sway(t / 30, SWAY_Y) * 0.4, dy = away[1] * (1 - p) + sway(t / 30, SWAY_X) * 0.4;
+  const tone = s.kind === "logo" ? "" : toneFilter(profile.photo_tone, bw) + " ";
+  return (
+    <div style={{ position: "absolute", left: b.x, top: b.y, width: b.w, height: b.h, zIndex: 5, transform: `translate(${dx.toFixed(2)}px, ${dy.toFixed(2)}px) rotate(${b.rot || 0}deg)` }}>
+      <Img src={staticFile(s.cutout || s.asset)} style={{ width: "100%", height: "100%", objectFit: "contain", filter: tone + "drop-shadow(0 22px 28px rgba(0,0,0,0.28))" }} />
+    </div>
+  );
 }
 
 function Label({ text, B, st, P, profile, plated }) {
@@ -380,6 +398,7 @@ function ShotView({ shot, shotIndex, frame, P, profile, bw }) {
     <AbsoluteFill>
       {/* the accent shape is drawn by CloneVideo's morph layer (motionAt), one object across the cuts */}
       <Hero shot={shot} B={B} st={stHero} P={P} profile={profile} bw={bw} local={local} idx={shotIndex} />
+      {(shot.supports || []).map((s, j) => <Support key={j} s={s} frame={frame} P={P} profile={profile} bw={bw} />)}
       {shot.subject && !shot.hero ? <SubjectPlate shot={shot} B={B} st={stHero} P={P} profile={profile} /> : null}
       {shot.kicker && stateOf("card") ? <Card shot={shot} B={B} st={stateOf("card")} P={P} profile={profile} frame={frame} stDisp={stDisp} room={room} stRule={shot.shape === "rule" ? stShape || { o: 0, s: 1 } : null} /> : null}
       {stPlate && shot.plate ? <Label text={shot.plate} B={B} st={stPlate} P={P} profile={profile} plated={plated} /> : null}
@@ -416,7 +435,12 @@ export function CloneVideo({ plan }) {
       })()}
       {/* a generic-person prop says on screen that it is not the story's person (plan-props.mjs PEOPLE). Top left, not where the credit sits: the bottom and
           the right edge are under the Shorts title and buttons, and a disclaimer nobody can see is not one. Backed by the ground so it reads over a bled photo. */}
-      {shot.hero && shot.hero.note ? <div style={{ position: "absolute", left: 40, top: 150, padding: "6px 14px", borderRadius: 6, background: P.ground, font: "600 26px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.85 }}>{shot.hero.note}</div>
+      {(() => {
+        // the main picture or any supporting cut-out already on screen
+        const note = (shot.hero && shot.hero.note) || ((shot.supports || []).find((s) => s.note && frame >= s.at) || {}).note;
+        return note ? <div style={{ position: "absolute", left: 40, top: 150, padding: "6px 14px", borderRadius: 6, background: P.ground, font: "600 26px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.85, zIndex: 9 }}>{note}</div> : null;
+      })()}
+      {shot.hero && shot.hero.note ? null
         : shot.hero && shot.hero.credit ? <div style={{ position: "absolute", right: 40, bottom: 40, font: "500 20px DM Sans, Helvetica, sans-serif", color: P.ink, opacity: 0.55 }}>Source: {shot.hero.credit}</div> : null}
     </AbsoluteFill>
   );

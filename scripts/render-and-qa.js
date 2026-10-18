@@ -1882,6 +1882,13 @@ async function attachCloneProps({ plan, channelId, used }) {
   if (fresh.length) {
     const got = await planProps({ topic: channelTopic(channelId) || "", beats: fresh, ask });
     for (const b of fresh) if (got.has(b.index) && got.get(b.index).kept.length) PROPOSALS_BY_SENTENCE.set(memoKey(b), got.get(b.index));
+    // A beat left with NO usable proposal says why: run 39165054721 ch-49 had props planned for 1 of 8 beats and the log never said whether the model proposed
+    // nothing or every proposal was refused here (only kept beats reached the per-beat log below).
+    for (const b of fresh) {
+      const v = got.get(b.index);
+      if (v && v.kept.length) continue;
+      console.log(`::warning::[props] ch-${channelId} beat ${b.index}: no usable proposal — ${v && v.dropped.length ? `refused: ${v.dropped.join("; ")}` : "the model proposed nothing"}`);
+    }
   }
   const plans = new Map(beats.map((b) => [b.index, PROPOSALS_BY_SENTENCE.get(memoKey(b))]).filter(([, v]) => v));
   if (![...plans.values()].some((v) => v.kept.length)) { console.log(`::warning::[props] ch-${channelId}: Gemini proposed no usable props — beats keep only their entity pictures`); return; }

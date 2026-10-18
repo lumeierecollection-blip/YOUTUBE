@@ -16,7 +16,7 @@
  * Where it stops: the planner places elements by rule; whether the photo it was handed is a good one is decided upstream (entity resolution and
  * its gates). It cannot make a sentence with nothing to show show something — it reports it.
  */
-import { parseDate } from "./clone-layout.js";
+import { parseDate, supportBoxes } from "./clone-layout.js";
 
 export const FPS = 30;
 const STOP = new Set("a an the and or but of to in on at by for with from as is are was were be been it its this that these those he she they we you i his her their our your not no do does did has have had will would can could should may might than then so if into over under about after before while which who whom what when where why how also just only very more most".split(" "));
@@ -291,6 +291,8 @@ export function cutPoints(s, e, len, min, spoken) {
 // shape arrives with the picture (it is its second sheet), not as a third thing. Measured on real boards: spacing them 0.35 s apart merged three into one and
 // left real videos at 12.3-12.99 events per 10 s against the law's 13.
 const ELEMENT_OFFSET = { ground: 0, hero: 1, shape: 3, display: 14, plate: 27 };
+// supporting cut-outs arrive 0.2 s and 0.67 s after the cut (ref-03: the cash stack, then the hands, then the coins, 0.1-0.3 s apart)
+const SUPPORT_AT = [6, 20];
 const PLATE_MIN_FRAMES = 24;   // a shot shorter than 0.8 s cannot hold a plate; its entities go to the shots that can   // frames after the cut: one new thing about every 0.35 s
 
 /**
@@ -457,8 +459,22 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + (hero || subject ? ELEMENT_OFFSET.display : ELEMENT_OFFSET.hero), disp.at)) });
       else el.push({ kind: "tick", at: at(ELEMENT_OFFSET.display) });   // no phrase that adds to the plate: a rule under it arrives instead, so the shot still has its three events
       if (labelPlates.length && (roomForPlate || subject)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
+      // SUPPORTING CUT-OUTS (clone-layout.js supportBoxes): the beat's OTHER cut-outs slide in around the main picture, one after another, as the references
+      // build a shot. Only transparent cut-outs (props, logos, cut-out buildings): never a named person's portrait in a corner, never a bust (its straight cut
+      // must sit on the frame's floor), never the main picture again. They rotate with k, so successive shots of a beat show different collages.
+      const supports = [];
+      if (hero && !quote) {
+        const pool = heroes.filter((x) => x !== hero && x.asset !== hero.asset && x.cutout && x.kind !== "portrait" && !x.bust);
+        supportBoxes(treatment, shots.length).forEach((box, j) => {
+          const pic = pool.length > j ? pool[(k + j) % pool.length] : null;
+          const arrive = f0 + SUPPORT_AT[j];
+          if (!pic || arrive > f1 - 6 || supports.some((x) => x.asset === pic.asset)) return;
+          supports.push({ ...pic, box, at: arrive });
+          el.push({ kind: "support", at: arrive });
+        });
+      }
       shots.push({
-        beat: bi, k, f0, f1, hero, treatment, crop: crops[(shots.length) % crops.length], shape,
+        beat: bi, k, f0, f1, hero, supports, treatment, crop: crops[(shots.length) % crops.length], shape,
         display: quote || figHere ? null : disp, figure: !quote && figHere ? { value: figHere.name, label: figHere.label, kind: figHere.kind } : null, quote,
         inv, subject, subjects, glyph, excerpt: !hero && !subject ? excerptOf(b, canvas) : null, kicker,
         plates: plates.length && (roomForPlate || subject) ? plates : [], plate: labelPlates.length && (roomForPlate || subject) ? labelPlates.map((x) => x.name).join(" · ") : null,
@@ -515,7 +531,7 @@ export function lawProblems(plan, laws, { minHeroShare = 0.65 } = {}) {
  */
 export function cloneCanvasFor(canvas, shots, palette = null) {
   const c = canvas || {};
-  const drawn = new Set((shots || []).filter((x) => x.hero).map((x) => x.hero.asset));
+  const drawn = new Set((shots || []).flatMap((x) => [x.hero, ...(x.supports || [])]).filter(Boolean).map((h) => h.asset));
   const plates = [];
   for (const sh of shots || []) for (const p of sh.plates || []) if (!plates.some((q) => q.name.toLowerCase() === p.name.toLowerCase())) plates.push(p);
   // figures and dates the shots drew (in the text region, or as a subject plate)

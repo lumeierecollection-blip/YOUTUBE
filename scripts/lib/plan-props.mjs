@@ -207,7 +207,9 @@ export function propsPrompt({ topic, beats }) {
   return `You choose the PHOTOS for a vertical news-explainer video. The style is the editorial "cut-out collage": a shot shows a real photograph of an
 object or a place, cut out of its background (a stack of cash, a courthouse, a house, a gavel, a shipping container, a police car).
 
-For EACH beat below, propose AT MOST 3 props for its sentence, best first. A prop has one of two ROLES:
+The reference videos have a cut-out in nearly EVERY shot, and a shot is a collage: its main picture, with 1-2 more cut-outs of the same sentence sliding
+in around it. So for EACH beat below, propose 3 props for its sentence, best first (2 if only two are good). Each is checked — by the rules below and by
+a vision model looking at the photo — and a wrong one is thrown away, so propose the three best you can, not the one safest. A prop has one of two ROLES:
 
   "named"    — the thing the sentence NAMES or is literally about (rules below).
   "explains" — a photo that EXPLAINS what the sentence says: it lets the viewer SEE the point. The sentence need not name the object. This is how
@@ -222,7 +224,8 @@ For EACH beat below, propose AT MOST 3 props for its sentence, best first. A pro
                there — every one is checked against the claim by a vision model, and a decorative one is thrown away.
 
 Give a "named" prop first when the sentence names a photographable thing; add "explains" props for what the sentence is SAYING, especially on beats
-that name no object (a statement about leadership, a trend, a decision, a comparison). ZERO is still correct when nothing shows the point.
+that name no object (a statement about leadership, a trend, a decision, a comparison). A beat that names only people or brands still gets "explains"
+props for what it SAYS about them. Propose ZERO only for a beat with nothing to show at all (a sign-off such as "follow for more").
 
 THE TEST for a "named" prop: a viewer hears ONLY this sentence while the photo is on screen. Would they instantly say "yes — that is the thing
 being talked about"? If they would have to think about why it is there, it fails. Being on the same TOPIC is not enough.

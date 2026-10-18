@@ -7,6 +7,7 @@
  *   CLONE-2  display type never sits on a picture except on a SOLID plate (`bleed`), so its contrast is guaranteed by construction
  *   CLONE-3  the text region and the picture region do not overlap, except a bleed picture (under its plate)
  *   CLONE-4  the display region is tall enough for its type: at least 150 px
+ *   CLONE-6  a supporting cut-out (supportBoxes) stays off the words: at most 5% of the text or label box
  */
 export const FRAME = Object.freeze({ w: 1080, h: 1920 });
 export const MARGIN = 40;
@@ -77,12 +78,47 @@ export function treatmentBoxes(treatment, idx = 0) {
   }
 }
 
+/**
+ * SUPPORTING CUT-OUTS (owner, 2026-10-18: "every frame has a PNG and how it's used to explain"). The references build ONE shot as a collage of 2-5 cut-outs
+ * for one sentence, not one picture: ref-03 1.0-2.3 s hangs a money bag on a rope, slides a cash stack in from the right, raises reaching hands from the
+ * bottom and drops coins into the corners, each from its own frame edge 0.1-0.3 s apart, the outer ones running off the frame. Our shots drew ONE picture
+ * and the beat's other pictures waited for later shots. These are the slots for the beat's other cut-outs around the main one: in the frame's corners and
+ * edges, partly off it, never on the type (CLONE-6), each with the edge it slides in from. A treatment with no free corner (a full bleed, a quote that
+ * needs the width, the picture-less shots) has none.
+ */
+export function supportBoxes(treatment, idx = 0) {
+  switch (treatment) {
+    // sizes: ref-03's cash stack is about half the frame wide; a first render at 400-460 px boxes drew the supports at a quarter (2026-10-18)
+    case "float":
+      return [rect(620, -70, 540, 500, { from: "top", rot: 8 }), rect(-160, 740, 500, 500, { from: "left", rot: -6 })];
+    case "edge": {
+      // the main cut-out runs off one side; the supports take the other side's top and the bottom corner, around the words
+      const right = idx % 2 === 0;
+      return right ? [rect(-120, 220, 520, 500, { from: "left", rot: -6 }), rect(-90, 1440, 540, 540, { from: "bottom", rot: 5 })]
+        : [rect(680, 220, 520, 500, { from: "right", rot: 6 }), rect(630, 1440, 540, 540, { from: "bottom", rot: -5 })];
+    }
+    case "stand":
+      // behind the standing figure, in the floor's corners
+      return [rect(-180, 1340, 540, 540, { from: "left", rot: -5 }), rect(720, 1380, 540, 540, { from: "right", rot: 5 })];
+    case "vignette":
+      return [rect(-140, 1440, 540, 540, { from: "bottom", rot: -6 }), rect(700, 1460, 520, 520, { from: "right", rot: 6 })];
+    default:
+      return [];
+  }
+}
+
 const inside = (b) => b.x >= MARGIN - 1e-6 && b.y >= MARGIN - 1e-6 && b.x + b.w <= FRAME.w - MARGIN + 1e-6 && b.y + b.h <= FRAME.h - MARGIN + 1e-6;
 const overlap = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
 
 /** Legality of one treatment's layout: [] when every CLONE rule holds. */
 export function layoutProblems(treatment, idx = 0) {
   const B = treatmentBoxes(treatment, idx), out = [];
+  // CLONE-6: a supporting cut-out never covers the words (at most 5% of the text or label box: a shadow's edge, not a letter)
+  for (const s of supportBoxes(treatment, idx)) for (const k of ["label", "text"]) {
+    const ix = Math.max(0, Math.min(s.x + s.w, B[k].x + B[k].w) - Math.max(s.x, B[k].x));
+    const iy = Math.max(0, Math.min(s.y + s.h, B[k].y + B[k].h) - Math.max(s.y, B[k].y));
+    if ((ix * iy) / (B[k].w * B[k].h) > 0.05) out.push(`${treatment}: a supporting cut-out covers ${Math.round((ix * iy) / (B[k].w * B[k].h) * 100)}% of the ${k} (at most 5%)`);
+  }
   for (const k of ["label", "text"]) if (!inside(B[k])) out.push(`${treatment}: ${k} box leaves the frame margin`);
   if (B.hero.none) { if (B.text.h < 150) out.push(`${treatment}: display region ${B.text.h}px is too short for its type`); return out; }
   if (B.hero.cutout) {

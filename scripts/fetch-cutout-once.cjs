@@ -216,39 +216,50 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene, expl
   const tag = `ch-${channel} beat ${beat_index} "${concept}"`;
   const log = (m) => console.log(`[cutout] ${tag}: ${m}`);
   const cands = [], seen = new Set();
-  // spec.max_candidates: a PROP (render-and-qa.js attachCloneProps) tries at most 3 — every candidate costs one vision call, and a board of props on every beat
-  // with 8 each ran all four Gemini keys out of quota (board 38889577784): the beat checks after it could not run. A prop that fails 3 gives way to the beat's next.
+  // spec.max_candidates: how many candidates a VISION MODEL looks at — a PROP (render-and-qa.js attachCloneProps) at most 3: every look costs one vision call,
+  // and a board of props on every beat with 8 each ran all four Gemini keys out of quota (board 38889577784). A prop that fails 3 gives way to the beat's next.
+  // The cap counts LOOKS, not downloads (run 39165054721: ch-9 "mineral rock sample", "federal document", "industrial furnace" spent all 3 slots on photos the
+  // free local isolation refused — 0.0% / 5.5% / 8.6% object, "nothing removed" — so no picture was ever looked at and 6 of 7 beats got none). Up to
+  // MAX_POOL candidates are downloaded and isolated (local, no model); the vision cap applies only to those that come out as a clean single object.
   const MAX_CANDIDATES = Math.max(1, Number(spec.max_candidates) || MAX_CANDIDATES_DEFAULT);
+  const MAX_POOL = Math.max(MAX_CANDIDATES, Number(process.env.CUTOUT_POOL || 8));
   const money = FLAT_MONEY(concept);
   if (money) {
     for (const c of await moneyCandidates(concept, scene)) if (!seen.has(c.url) && cands.length < MAX_CANDIDATES) { seen.add(c.url); cands.push(c); }
     log(`money: ${cands.length} Wikipedia / Wikimedia candidate(s) before Pixabay`);
   }
-  for (const q of [`${concept} isolated`, concept]) {
-    if (cands.length >= MAX_CANDIDATES) break;
+  // Tags: a hit whose tags name EVERY word of the concept comes first; then one whose tags name its HEAD noun (the last word: "bill" of "unpaid bills").
+  // Every word was once required — "bank" alone let piggy banks in for "bank statement" (CI run 36988420698) — and the head noun still is ("statement"),
+  // but uploaders do not tag the explaining word: "unpaid bills", "falling banknotes", "empty wallet" found nothing to look at (run 39165054721 ch-1).
+  // The vision check, not the tags, decides whether the picture shows the concept.
+  const want = wordsOf(concept), head = want[want.length - 1];
+  const full = [], partial = [];
+  for (const q of [`${concept} isolated`, concept, ...(want.length > 1 && head ? [`${head} isolated`] : [])]) {
+    if (cands.length + full.length >= MAX_POOL) break;
     const r = await pixabay(q, log);
-    if (r.rate) { if (cands.length) break; log(`Pixabay rate limit, beat renders without a cutout`); return RATE_LIMITED; }
+    if (r.rate) { if (cands.length || full.length || partial.length) break; log(`Pixabay rate limit, beat renders without a cutout`); return RATE_LIMITED; }
     if (r.why) log(`Pixabay search "${q}": ${r.why}`);
     for (const h of r.hits) {
       const url = h.largeImageURL || h.webformatURL;
       if (!url || seen.has(url)) continue;
       seen.add(url);
-      // The uploader's tags must name EVERY word of the concept: "bank" alone
-      // let piggy banks and coins in for "bank statement" (CI run 36988420698).
-      { const tags = new Set(wordsOf(h.tags)); if (![...wordsOf(concept)].every((w) => tags.has(w))) continue; }
       if (Math.max(h.imageWidth || 0, h.imageHeight || 0) < 900) continue;
-      cands.push({ url, page: h.pageURL || "", user: h.user || "", source: "pixabay", license: "Pixabay Content License" });
-      if (cands.length >= MAX_CANDIDATES) break;
+      const tags = new Set(wordsOf(h.tags));
+      const c = { url, page: h.pageURL || "", user: h.user || "", source: "pixabay", license: "Pixabay Content License" };
+      if (want.every((w) => tags.has(w))) full.push(c);
+      else if (head && tags.has(head)) partial.push(c);
     }
   }
+  cands.push(...[...full, ...partial].slice(0, Math.max(0, MAX_POOL - cands.length)));
   if (!cands.length) { log(`no candidate whose tags name it, beat renders without a cutout`); return null; }
   // A bill is a rectangle by nature: the isolation keeps a rectangular object (cutout_lib --rect-ok).
   const flags = ["--max-side", "1024", ...(spec.rect_ok || money ? ["--rect-ok"] : []), ...(spec.grounded ? ["--grounded"] : []), ...(spec.multi ? ["--multi"] : [])];
   const work = join(tmpdir(), `cutout-live-${process.pid}`);
   mkdirSync(work, { recursive: true });
   const rejected = { shows: 0, kind: 0, quality: 0, flat: 0, isolation: 0, other: 0 };
-  let limited = 0;
+  let limited = 0, looks = 0;
   for (const [i, c] of cands.entries()) {
+    if (looks >= MAX_CANDIDATES) break;
     const n = i + 1, raw = join(work, `${slug(concept)}-${n}.img`), iso = join(work, `${slug(concept)}-${n}.png`);
     try {
       const res = await download(c);
@@ -268,6 +279,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene, expl
     } else rep = await runPy([join(ROOT, "scripts", "cutout_lib.py"), "isolate", raw, iso, ...flags]);
     rmSync(raw, { force: true });
     if (!rep.ok) { log(`candidate ${n} REJECTED (isolation: ${rep.why})`); rejected.isolation++; rmSync(iso, { force: true }); continue; }
+    looks++;
     const v = await verify(iso, concept, scene, explains);
     if (!v.accept) {
       for (const k of ["shows", "kind", "quality", "flat"]) if (String(v.reason).includes(`${k}=`)) rejected[k]++;
@@ -291,7 +303,7 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene, expl
     log(`candidate ${n} ACCEPTED (${v.reason}, saw "${v.seen}") ${c.page}`);
     return out;
   }
-  log(`${cands.length} candidates, 0 accepted (rejected: shows ${rejected.shows}, kind ${rejected.kind}, quality ${rejected.quality}${money ? `, flat ${rejected.flat}` : ""}, isolation ${rejected.isolation}, other ${rejected.other}${limited ? `; ${limited} never checked: rate-limited` : ""}), beat renders as name card / TYPE`);
+  log(`${cands.length} candidates, ${looks} looked at, 0 accepted (rejected: shows ${rejected.shows}, kind ${rejected.kind}, quality ${rejected.quality}${money ? `, flat ${rejected.flat}` : ""}, isolation ${rejected.isolation}, other ${rejected.other}${limited ? `; ${limited} never checked: rate-limited` : ""}), beat renders as name card / TYPE`);
   // Only pictures that were LOOKED AT and refused make the concept "rejected this run"; one that was never downloaded may be tried again by a later beat.
   return limited ? RATE_LIMITED : null;
 }

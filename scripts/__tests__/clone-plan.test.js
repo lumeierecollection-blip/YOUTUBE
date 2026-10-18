@@ -452,3 +452,32 @@ test("a number inside a name is not a figure; a logo is always a whole floating 
   assert.ok(logoShots.length > 0);
   assert.deepEqual([...new Set(logoShots.map((x) => x.treatment))], ["float"]);
 });
+
+test("owner 2026-10-18 collage: a picture shot's OTHER cut-outs of the beat slide in around it, never on the words, never a named person's portrait", async () => {
+  const { supportBoxes, layoutProblems } = await import("../../src/skills/remotion-render/clone/clone-layout.js");
+  const props = ["money bag", "stack of cash", "reaching hands"].map((n, i) => ({ name: n, asset: `cutouts-live/1/0-p${i}.png` }));
+  const b = beat(0, 0, 7, "Most people think money is the thing they chase endlessly", { clone_props: props, named_entities: [] });
+  const plan = planClone([b], { laws: G.laws, profile: G.profiles["cutout-collage"] });
+  const withSupport = plan.shots.filter((s) => s.supports && s.supports.length);
+  assert.ok(withSupport.length >= 2, `only ${withSupport.length} shots carry supporting cut-outs`);
+  for (const s of withSupport) {
+    for (const x of s.supports) {
+      assert.notEqual(x.asset, s.hero.asset, "the main picture again");
+      assert.ok(x.at > s.f0 && x.at <= s.f1 - 6, "arrives inside its shot");
+      assert.ok(s.elements.some((e) => e.kind === "support" && e.at === x.at), "on the shot's timeline");
+    }
+    assert.ok(s.supports.length <= supportBoxes(s.treatment).length);
+  }
+  // successive shots show different collages
+  const sig = withSupport.map((s) => [s.hero.asset, ...s.supports.map((x) => x.asset)].join("|"));
+  assert.ok(new Set(sig).size > 1);
+  // a named person's portrait is never a corner piece
+  const p = beat(0, 0, 7, "Mary Moriarty announced the case", { photo: { asset: "entities/people/mm.jpg", entity: "Mary Moriarty", kind: "person", view: "person", cutout: "entities/people/mm-cut.png" }, clone_props: props, named_entities: [{ type: "person", name: "Mary Moriarty" }] });
+  const pp = planClone([p], { laws: G.laws, profile: G.profiles["cutout-collage"] });
+  for (const s of pp.shots) for (const x of s.supports || []) assert.notEqual(x.kind, "portrait");
+  // CLONE-6 holds for every treatment that has supports
+  for (const t of ["float", "edge", "stand", "vignette"]) for (const i of [0, 1, 2]) assert.deepEqual(layoutProblems(t, i), [], `${t} ${i}`);
+  // the manifest counts a picture shown only as a support as drawn
+  const drawnProps = cloneCanvasFor({ clone_props: props }, plan.shots).clone_props || [];
+  assert.equal(drawnProps.length, 3);
+});
