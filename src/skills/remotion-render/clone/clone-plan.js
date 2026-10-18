@@ -451,7 +451,10 @@ export function planClone(beats, { laws, profile, fps = FPS, quotes = [] } = {})
       if (shape) el.push({ kind: "shape", at: at(hasLabel ? ELEMENT_OFFSET.shape : ELEMENT_OFFSET.plate) });
       if (quote) el.push({ kind: "display", at: at(ELEMENT_OFFSET.display) });
       else if (figHere) el.push({ kind: "figure", at: at(ELEMENT_OFFSET.display) });
-      else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + ELEMENT_OFFSET.display, disp.at)) });
+      // A shot with NO picture has nothing at its cut but the key phrase, so the phrase IS the cut's event: it arrives on its own spoken word. Held to the
+      // 0.47 s window, it left the frame empty while that word was spoken (ch-44 "detailing": cut 155, word spoken 155, phrase at 169). The references
+      // never hold a spoken key word back; it lands on the cut.
+      else if (disp) el.push({ kind: "display", at: Math.min(f1 - 9, Math.max(f0 + (hero || subject ? ELEMENT_OFFSET.display : ELEMENT_OFFSET.hero), disp.at)) });
       else el.push({ kind: "tick", at: at(ELEMENT_OFFSET.display) });   // no phrase that adds to the plate: a rule under it arrives instead, so the shot still has its three events
       if (labelPlates.length && (roomForPlate || subject)) el.push({ kind: "plate", at: Math.min(f1 - 8, f0 + ELEMENT_OFFSET.plate) });
       shots.push({
