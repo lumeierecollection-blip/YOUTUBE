@@ -3837,9 +3837,14 @@
           "topic": "Metro Drivers Safety Performance and Human-Machine Interaction Study",
           "slug": "metro-drivers-safety-performance-human-machine-interaction",
           "reserved_at": "2026-10-19T20:08:04.258Z"
+        },
+        {
+          "topic": "The 80,000-Hour Problem: Office Chair Makers Bet on Sensors and Split Backrests",
+          "slug": "office-chair-sensors-split-backrests-ergonomics",
+          "reserved_at": "2026-10-19T21:11:21.489Z"
         }
       ],
-      "last_generated": "2026-10-19T20:08:04.259Z"
+      "last_generated": "2026-10-19T21:11:21.489Z"
     },
     "49": {
       "channel_name": "Picture House",
