@@ -515,9 +515,14 @@
           "topic": "Why 26 Percent of Americans Spend More Than They Earn in FINRA Data",
           "slug": "finra-data-26-percent-spending-more-than-earn",
           "reserved_at": "2026-10-18T21:46:33.678Z"
+        },
+        {
+          "topic": "Pew Research Center October 2026 Survey: Why Fewer Than Half of Americans Saved Money",
+          "slug": "pew-research-center-october-2026-saving-survey",
+          "reserved_at": "2026-10-19T15:47:23.799Z"
         }
       ],
-      "last_generated": "2026-10-18T23:25:04.281Z"
+      "last_generated": "2026-10-19T15:47:23.799Z"
     },
     "2": {
       "channel_name": "Legal Brief",
