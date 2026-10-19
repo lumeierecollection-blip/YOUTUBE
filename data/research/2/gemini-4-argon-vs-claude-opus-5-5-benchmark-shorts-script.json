@@ -1,0 +1,87 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+  "format": "shorts",
+  "hook": "Gemini 4 Argon costs $4.51 to build four motion graphics prompts while Claude Opus 5.5 charges $9.23.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Gemini 4 Argon costs $4.51 to build four motion graphics prompts while Claude Opus 5.5 charges $9.23.",
+      "visual_cue": "Split screen comparing dollar cost figures of both AI models.",
+      "sfx_cue": "whoosh sound",
+      "b_roll": [
+        "benchmark cost comparison chart"
+      ],
+      "animation_cue": "slide in from left",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Gemini 4 Argon vs Opus Cost"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "Charlie Hills tested Gemini 4 Argon and Anthropic Claude Opus 5.5 on four motion graphics prompts. Which model completed the task faster?",
+      "visual_cue": "Documentary footage of benchmarking interface and timer.",
+      "sfx_cue": "typing click",
+      "b_roll": [
+        "Charlie Hills benchmark report screenshot"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Benchmark testing by Charlie Hills"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Yet Gemini 4 Argon takes 69.5 minutes to complete the task.",
+      "visual_cue": "Timer graphic ticking upward to a slower duration.",
+      "sfx_cue": "clock tick",
+      "b_roll": [
+        "completion time graph"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "69.5 minutes for Argon"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "Claude Opus 5.5 finishes faster at 31.7 minutes. Gemini 4 Argon cuts your prompt cost in half.",
+      "visual_cue": "Dashboard showing passing test suite results and price comparison.",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "Python Tablet repository benchmark interface"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "382 passing tests on Python Tablet"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "Gemini 4 Argon saves money on your prompts.",
+      "visual_cue": "Final cost summary card displaying $4.51.",
+      "sfx_cue": "soft thud",
+      "b_roll": [
+        "cost summary graphic"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "$4.51 total cost"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts",
+    "https://www.artofsm.art/t/gemini-4-argon-vs-opus-5-5-i-gave-both-the-same-repo/25943"
+  ]
+}
