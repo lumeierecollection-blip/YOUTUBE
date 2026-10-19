@@ -1,0 +1,64 @@
+{
+  "channel_id": "2",
+  "topic_slug": "boston-bus-cameras-stop-sign-enforcement-2026",
+  "format": "shorts",
+  "hook": "Passing a Boston school bus now costs you a steep AI-enabled camera fine.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Passing a Boston school bus now costs you a steep AI-enabled camera fine.",
+      "b_roll": [
+        "Close-up of a school bus stop sign extending"
+      ],
+      "text_overlay": {
+        "text": "Automated Camera Fine"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, Boston Public Schools announced AI stop-arm cameras, but how do they work? Mayor Michelle Wu revealed how the new safety plan catches illegal drivers.",
+      "b_roll": [
+        "City hall exterior shot",
+        "Mayor Michelle Wu speaking at podium"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Program"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Boston gives drivers a three-month warning period before fines start.",
+      "b_roll": [
+        "Warning letter graphic overlay on street view"
+      ],
+      "text_overlay": {
+        "text": "Warning Period"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Fines come after a three-month warning period set by Boston Public Schools.",
+      "b_roll": [
+        "Transportation department building at 2300 Washington Street",
+        "Camera mounted on school bus arm"
+      ],
+      "text_overlay": {
+        "text": "3 Month Pilot"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 3 month pilot starts now across Boston.",
+      "b_roll": [
+        "School bus driving down Roxbury street"
+      ],
+      "text_overlay": {
+        "text": "Boston Pilot Starts"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bostonglobe.com/2026/10/08/metro/city-of-boston-cameras-school-bus-stop-signs",
+    "https://whdh.com/news/boston-schools-pilot-program-aims-to-increase-school-bus-safety"
+  ]
+}
