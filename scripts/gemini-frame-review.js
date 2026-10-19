@@ -366,16 +366,39 @@ function compositionLabelBase(b) {
   // the reviewer counted a 640 px drawn symbol beat as headline-led (CI run 37129265971 ch-48,
   // TEMPLATE_MONOCULTURE 60%). The label says what the frame actually draws; the reviewer
   // still judges the frame itself. A name card stays typography (it is the entity's name).
+  //
+  // The label must describe the manifest's OWN record. Two ways it lied (run 39315927175
+  // ch-48, 66% headline-dominated with the reviewer's own notes "repetitive centered
+  // typography" while frames drew plates, logos and a figure): a hero visual with no asset
+  // is a PLATE — the entity's name set in type, never "a photographed X"; and a TYPE beat
+  // carrying an art row (entity-ladder's plates: person, organisation logo, figure) was
+  // labelled "typography" while the frame drew the row. Both labels are accurate now.
+  const visDesc = (v) => v.logo ? `the logo of ${v.name || "a named organization"}`
+    : v.money ? "a photographed banknote / coin"
+    : v.class === "symbol" ? `a large drawn ${String(v.name || "symbol").replace(/-/g, " ")} symbol`
+    : v.class === "figure" ? `the figure ${v.name}`
+    : v.asset ? `a photographed ${v.name || "object"}`
+    : `the name of ${v.name || "a named entity"} set in type`;
+  const artNames = vt === "TYPE" && Array.isArray(c.art?.names) && c.art.names.length ? c.art.names : null;
+  if (artNames) {
+    const items = Array.isArray(c.art.items) ? c.art.items : [];
+    const parts = artNames.slice(0, 3).map((n, i) => {
+      const k = (c.art.kinds || [])[i];
+      const it = items[i];
+      if (k === "figure") return `the figure ${n}`;
+      if (it && it.asset) return `the logo of ${n}`;
+      return `the name of ${n} set in type`;
+    });
+    return ` | beat: ${c.composition} — a row of plates, not a typography beat: ${parts.join(", ")}`
+      + (artNames.length > parts.length ? `, +${artNames.length - parts.length} more` : "");
+  }
   const hero = (c.concept_visuals || [])[0];
   if (vt === "TYPE" && hero) {
-    const heroWhat = hero.logo ? `the logo of ${hero.name || "a named organization"} as the hero visual`
-      : hero.money ? "a photographed banknote / coin as the hero visual"
-      : hero.class === "symbol" ? `a large drawn ${String(hero.name || "symbol").replace(/-/g, " ")} symbol as the hero visual`
-      : `a photographed ${hero.name || "object"} as the hero visual`;
     // The composition NAME is left out: "TYPE-FULL with a hero object" was counted as a TYPE-FULL
     // beat ("Excessive use of TYPE-FULL beats (4/9 frames)", CI run 37837731824 ch-49, where two of
     // the four were verified Universal Pictures / Blumhouse logos). The reviewer still sees the frame.
-    return ` | beat: a visual beat — ${heroWhat}`;
+    const rest = (c.concept_visuals || []).slice(1, 2).map(visDesc);
+    return ` | beat: a visual beat — ${visDesc(hero)} as the hero visual${rest.length ? `, beside ${rest.join(" and ")}` : ""}`;
   }
   if (vt === "TYPE" && c.name_card) return ` | beat: ${c.composition} — typography: the name of ${c.name_card.name}`;
   return ` | beat: ${c.composition} — ${what}`;

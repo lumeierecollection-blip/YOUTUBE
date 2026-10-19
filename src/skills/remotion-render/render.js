@@ -256,9 +256,24 @@ function getCompositionForStyle(style, format) {
   //
   // Legacy path (USE_LEGACY_3D=true): the original Three.js compositions
   // that require chromiumOptions: { gl: "swangle" } for GPU-less CI.
-  if (style === "motion-graphics" && !USE_LEGACY_3D) {
+  //
+  // EVERY short-form render goes through DirectedShorts, whatever the
+  // channel's style. The pipeline's checks — the render manifest, the
+  // per-beat frame check, the camera check, the entity check and the
+  // pre-ship place gate — read the manifest only this composition writes.
+  // MinimalShorts and CinematicDocumentaryShorts write none, so every render
+  // through them fails the first manifest-dependent check (run 39315927175:
+  // ch-2 beat-check ENOENT on a 1224-frame MinimalShorts render; ch-1 hits
+  // the same checks after its CinematicDocumentary render). The minimal and
+  // cinematic object vocabularies are still outstanding (OPENCODE-BRIEF.md:
+  // "every template and object so far is motion-graphics"), so until they
+  // exist their plans draw with the same 2D canvas engine.
+  //
+  // Longform stays on the legacy compositions, and USE_LEGACY_3D=true
+  // restores the original Three.js short path.
+  if (!USE_LEGACY_3D) {
     if (format === "shorts") return "DirectedShorts";
-    console.warn("MG 2D: longform not yet supported by DirectedShorts — falling back to legacy MotionGraphicsLongform.");
+    console.warn("2D engine: longform is not supported by DirectedShorts yet — falling back to the legacy longform composition.");
   }
   const compositions = {
     "cinematic-documentary": { shorts: "CinematicDocumentaryShorts", longform: "CinematicDocumentaryLongform" },
