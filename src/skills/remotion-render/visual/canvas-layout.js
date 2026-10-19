@@ -1007,6 +1007,16 @@ function entityArtLayout(c, flip) {
   // No caption left: a short hairline closes the frame at the body's floor (the reference's rules), so the plate is not left floating.
   if (!caption) boxes.rule_end = { ...rule(!flip, BOTTOM - 6), keep: true };
   if (caption) boxes.statement = headlineBox(caption, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 2, maxHeight: BOTTOM - 12 - (y + h + 24), max: 120, min: 52, tier: false });   // left / right by beat (the art is centred; the caption alternates sides)
+  // The accent under the caption, on the manual's rule-under-the-headline
+  // (a 96x6 mark alone stayed below the audit's coverage floor: ch-48's
+  // ENTITY-ART beats measured 0.17% against the canvas-accent gate's 0.2%,
+  // run 39308784564). The bar is the beat's own accent element, not a new one.
+  if (caption) {
+    const bw = Math.min(420, boxes.statement.w);
+    const bx = flip ? boxes.statement.x + boxes.statement.w - bw : boxes.statement.x;
+    const by = Math.min(BOTTOM - 8, boxes.statement.y + boxes.statement.h + 6);
+    boxes.underline = { ...box(bx, by, bw, 6), role: "rule", accent: true };
+  }
   return { composition: "ENTITY-ART", boxes, hero: "art", flip };
 }
 

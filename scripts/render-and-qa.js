@@ -138,6 +138,62 @@ function srtSentenceList(p) {
   } catch { return []; }
 }
 
+// The figures a sentence states WITH A UNIT. A COUNTER built from a model
+// version ("Claude Opus 5.5") or from a count the sentence mentions in passing
+// ("four prompts") is grounded by the old rule but contradicts the sentence's
+// measured result ("31.7 minutes"); run 39308784564 ch-2 failed the challenger
+// on exactly that. Only a unique unit-bearing figure is safe to auto-correct
+// to; with zero or several, the caller falls back to a text card instead.
+const UNIT_FIGURE = /(\$?\d[\d,]*(?:\.\d+)?)\s*(%|percent\b|million\b|billion\b|thousand\b|dollars?\b|minutes?\b|seconds?\b|hours?\b|days?\b|years?\b|months?\b|weeks?\b|people\b|countries\b|states\b|points?\b|degrees?\b)/gi;
+function measuredFigures(sentence) {
+  const out = [];
+  const seen = new Set();
+  for (const m of String(sentence || "").matchAll(UNIT_FIGURE)) {
+    const key = `${m[1]}|${m[2].toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ value: m[1], unit: m[2] });
+  }
+  return out;
+}
+
+// A blocked beat whose picture cannot be repaired (a logo that does not show
+// the action, a number that is not the measured figure) becomes the one thing
+// that cannot contradict its sentence: a text card. The headline is kept when
+// it was not the thing the challenger rejected (a MISMATCH is about the
+// picture); otherwise the sentence itself is the card.
+function forceTypeCard(beat, sentence, keepHeadline) {
+  beat.kind = "TYPE";
+  beat.visual_type = "TYPE";
+  beat.canvas_composition = "TYPE-FULL";
+  beat.shot = "STATEMENT";
+  beat.scene_description = sentence;
+  beat.headline = keepHeadline && typeof beat.headline === "string" && beat.headline.trim()
+    ? beat.headline
+    : sentence;
+  beat.lead_in = null;
+  beat.data = null;
+  beat.named_entities = [];
+  beat.concepts = [];
+  beat.emphasis_word = null;
+  beat.emphasis_words = [];
+  beat.entity_anchor_word = null;
+  beat.camera_focus = null;
+  beat.hero_cutout = null;
+  beat.fallback_symbol = null;
+  beat.concept_visuals = [];
+  beat.art = null;
+  beat.name_card = null;
+  beat.type_layout = null;
+  beat.pull_phrase = null;
+  beat.label = null;
+  beat.visual_events = [];
+  beat.objects = {};
+  beat.ground = "white";
+  beat.ground_source = "default";
+  if (beat.typography_direction) beat.typography_direction.phrase = beat.headline;
+}
+
 function parseArgs(argv) {
   const flag = (name) => {
     const i = argv.indexOf(name);
@@ -2811,37 +2867,53 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         }
       }
       // Still blocked after the re-plan (and the merge, when it applied): repair
-      // the on-screen TEXT deterministically instead of failing the video
-      // (owner, 2026-10-19). A beat blocked twice got a generic instruction and
-      // stayed wrong (run 39128017438 ch-10: "no element-level correction could
-      // be derived" → re-plan rejected again → backup audit → no video). The one
-      // string that cannot contradict the sentence is the sentence itself, so
-      // the blocked beat's on-screen text becomes it. The corrected plan still
-      // goes to the challenger, and only a pass proceeds.
+      // the beat deterministically instead of failing the video (owner,
+      // 2026-10-19). A beat blocked twice got a generic instruction and stayed
+      // wrong (run 39128017438 ch-10: "no element-level correction could be
+      // derived" → re-plan rejected again → backup audit → no video). Two
+      // repairs, both grounded in the sentence itself:
+      //   - a COUNTER showing a model version or a passing count -> the one
+      //     measured figure with a unit the sentence states (ch-2's "4" / "5.5"
+      //     against "69.5 minutes" / "31.7 minutes", run 39308784564);
+      //   - a picture no repair can make truthful -> a TYPE card. A MISMATCH
+      //     keeps the headline (the picture was the problem); a contradiction
+      //     that is not a countable figure becomes the sentence.
+      // The corrected plan still goes to the challenger, and only a pass proceeds.
       if (challenge.code === 1) {
-        const stillBlocked = (challenge.review?.beats || []).filter(isBlock).map((v) => v.beat_index);
+        const blockedNow = (challenge.review?.beats || []).filter(isBlock);
+        const stillBlocked = blockedNow.map((v) => v.beat_index);
+        const verdicts = new Map(blockedNow.map((v) => [v.beat_index, v.verdict]));
         const corrected = readJsonSafe(planPath);
         const sentences = srtSentenceList(srtPath);
-        let touched = 0;
+        const repairs = [];
         if (corrected?.beats?.length && stillBlocked.length) {
           for (const i of stillBlocked) {
             const beat = corrected.beats[i];
             const sentence = sentences[i];
             if (!beat || !sentence) continue;
-            let beatTouched = false;
-            if (typeof beat.headline === "string") { beat.headline = sentence; beatTouched = true; }
-            if (beat.typography_direction && typeof beat.typography_direction.phrase === "string") {
-              beat.typography_direction.phrase = sentence;
-              beatTouched = true;
+            const verdict = verdicts.get(i);
+            let repair = null;
+            if (verdict === "CONTRADICTION" && beat.data && typeof beat.data === "object" && beat.data.value !== undefined) {
+              const figures = measuredFigures(sentence);
+              if (figures.length === 1) {
+                const f = figures[0];
+                beat.data = { ...beat.data, value: f.value, label: f.unit };
+                if (typeof beat.headline === "string" && !beat.headline.includes(f.value)) beat.headline = sentence;
+                repair = `number -> ${f.value} ${f.unit}`;
+              }
             }
-            if (!beatTouched && typeof beat.lead_in === "string") { beat.lead_in = sentence; beatTouched = true; }
-            if (beatTouched) touched++;
+            if (!repair) {
+              const keep = verdict === "MISMATCH" && typeof beat.headline === "string" && beat.headline.trim();
+              forceTypeCard(beat, sentence, keep);
+              repair = keep ? "photo -> TYPE card (headline kept)" : "-> TYPE card with its sentence";
+            }
+            repairs.push(`beat ${i}: ${repair}`);
           }
         }
-        if (touched) {
+        if (repairs.length) {
           const correctedPath = planPath.replace(/\.json$/, "-autocorrected.json");
           writeFileSync(correctedPath, JSON.stringify(corrected, null, 2) + "\n");
-          console.log(`[challenger] auto-corrected on-screen text to its own sentence on beat(s) ${stillBlocked.join(", ")} — challenging the corrected plan`);
+          console.log(`[challenger] deterministic repair: ${repairs.join("; ")} — challenging the corrected plan`);
           const finalChallenge = await challengePlan(channelId, correctedPath, srtPath, "-autocorrect");
           if (finalChallenge.code === 0) { planPath = correctedPath; challenge = finalChallenge; }
           else console.log(`[challenger] the auto-corrected plan was rejected too (exit ${finalChallenge.code})`);
@@ -3390,7 +3462,7 @@ async function main() {
 }
 
 // Only as the CLI: importing the module (scripts/test-resolver-canvas.mjs) runs nothing.
-export { resolveAssets, canvasContentFor, guardPlanAssets, queueVideo };
+export { resolveAssets, canvasContentFor, guardPlanAssets, queueVideo, measuredFigures, forceTypeCard };
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((e) => {
     console.error(e);

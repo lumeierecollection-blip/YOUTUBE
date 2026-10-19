@@ -8,8 +8,8 @@
 #   render → Plan → Render → silence/duration/frame gates → Publish (private)
 #
 # Budget: every job's timeout is the dispatch input timeout_minutes (default
-# 20 — fast iteration; production passes 90 so a local-model run can
-# finish). Each model call is capped at a share of it (JOB_TIMEOUT_MIN in
+# 90 — the daily schedule uses the default, so production gets the full
+# budget; a manual iteration can pass 20). Each model call is capped at a share of it (JOB_TIMEOUT_MIN in
 # scripts/ollama-client.cjs: plan 40%, challenger 15%, vision 20%). Every model call goes to Gemini
 # first and to local Ollama when Gemini cannot answer (src/lib/llm.js), and a
 # 7B / 3B model on a CPU runner needs far more than 18 minutes; a render that
@@ -52,9 +52,9 @@ on:
         type: boolean
         default: false
       timeout_minutes:
-        description: "Every job's timeout in minutes (20 = iteration; 90 = production, room for the local-model fallback)"
+        description: "Every job's timeout in minutes (90 = default/production, room for the local-model fallback; 20 = fast iteration)"
         type: string
-        default: "20"
+        default: "90"
       force_planner:
         description: "'ollama' = answer EVERY model call with local Ollama; Gemini is never called (the fallback test)"
         type: string
@@ -123,7 +123,7 @@ jobs:
     # log-results check the same input.
     if: github.event.inputs.publish != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
     outputs:
       matrix: ${{ steps.channels.outputs.matrix }}
     steps:
@@ -199,7 +199,7 @@ jobs:
   prep:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
     permissions:
       contents: write
     strategy:
@@ -1028,8 +1028,9 @@ jobs:
     # pulls: run 37380168306 SIGTERMed ch-9, ch-44 and ch-49 at 22:16/22:17/22:18 - all three
     # at the job timeout, ~20 min after the 22:05 start - and exit 143 is indistinguishable
     # from a crash in the log. The fast render finished (ch-2, rejected on canvas checks); the
-    # slow ones were killed. Raised to 45, still overridable per dispatch via timeout_minutes.
-    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '45') }}
+    # slow ones were killed. Raised to 45, then the dispatch input default to 90:
+    # with a 20-min default the daily schedule killed ch-1 at 22% (run 39308784564).
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
     permissions:
       contents: write
     strategy:
@@ -1260,7 +1261,7 @@ jobs:
           # proxy/artifact split sizes the vision caps (gate-visual-qa.js:227,
           # ollama-client.cjs:145), which were likewise built for a job half
           # as long as the real one.
-          JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '45' }}
+          JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '90' }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # gemini-client makes ONE attempt (429 -> quota_exhausted at once,
           # 503 -> one retry after 5 s); any failure goes to Ollama.
@@ -1855,7 +1856,7 @@ jobs:
     needs: [setup, prep, render]
     if: always() && github.event.inputs.publish != 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '20') }}
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
     steps:
       - name: Generate run report
         run: |
