@@ -1102,9 +1102,14 @@
           "topic": "Anthropic Haiku 5.5 and October 2026 AI API Pricing Breakdown",
           "slug": "anthropic-haiku-5-5-october-2026-pricing-breakdown",
           "reserved_at": "2026-10-19T20:07:59.057Z"
+        },
+        {
+          "topic": "MiniMax M3.1 Flash vs DeepSeek and Opus 5 Benchmarks",
+          "slug": "minimax-m3-1-flash-benchmark-analysis",
+          "reserved_at": "2026-10-19T21:10:37.851Z"
         }
       ],
-      "last_generated": "2026-10-19T20:07:59.058Z"
+      "last_generated": "2026-10-19T21:10:37.851Z"
     },
     "3": {
       "channel_name": "AI Tested",
