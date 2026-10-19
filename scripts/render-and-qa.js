@@ -127,6 +127,17 @@ function readJsonSafe(p) {
   try { return existsSync(p) ? JSON.parse(readFileSync(p, "utf-8")) : null; } catch { return null; }
 }
 
+// The challenger pairs plan beat i with SRT cue i. The deterministic
+// auto-correct below needs that same sentence text as the string it can put on
+// screen — a sentence cannot contradict itself.
+function srtSentenceList(p) {
+  try {
+    return readFileSync(p, "utf-8").replace(/\r/g, "").split(/\n\n+/)
+      .map((block) => block.trim().split("\n")).filter((lines) => lines.length >= 3)
+      .map((lines) => lines.slice(2).join(" "));
+  } catch { return []; }
+}
+
 function parseArgs(argv) {
   const flag = (name) => {
     const i = argv.indexOf(name);
@@ -2736,8 +2747,9 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Step 1b: CHALLENGER — a second AI checks the plan against the script's
     // sentences before anything renders. A rejection (MISMATCH or
     // CONTRADICTION) gets ONE re-plan with the rejected beats as
-    // corrections; a second rejection fails the video. A challenger that
-    // can't run fails the video too — it is never skipped.
+    // corrections, then a deterministic on-screen-text auto-correct and one
+    // more challenge; only then does a rejection fail the video. A challenger
+    // that can't run fails the video too — it is never skipped.
     const srtPath = join(dirname(audioPathFor(channelId, scriptPath)), basename(audioPathFor(channelId, scriptPath), ".mp3") + ".srt");
     let challenge = await challengePlan(channelId, planPath, srtPath, "");
     if (challenge.code === 1) {
@@ -2796,6 +2808,43 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
           const third = await challengePlan(channelId, mergedPath, srtPath, "-3");
           if (third.code === 0) { planPath = mergedPath; challenge = third; }
           else console.log(`[challenger] the merged plan was rejected too (exit ${third.code})`);
+        }
+      }
+      // Still blocked after the re-plan (and the merge, when it applied): repair
+      // the on-screen TEXT deterministically instead of failing the video
+      // (owner, 2026-10-19). A beat blocked twice got a generic instruction and
+      // stayed wrong (run 39128017438 ch-10: "no element-level correction could
+      // be derived" → re-plan rejected again → backup audit → no video). The one
+      // string that cannot contradict the sentence is the sentence itself, so
+      // the blocked beat's on-screen text becomes it. The corrected plan still
+      // goes to the challenger, and only a pass proceeds.
+      if (challenge.code === 1) {
+        const stillBlocked = (challenge.review?.beats || []).filter(isBlock).map((v) => v.beat_index);
+        const corrected = readJsonSafe(planPath);
+        const sentences = srtSentenceList(srtPath);
+        let touched = 0;
+        if (corrected?.beats?.length && stillBlocked.length) {
+          for (const i of stillBlocked) {
+            const beat = corrected.beats[i];
+            const sentence = sentences[i];
+            if (!beat || !sentence) continue;
+            let beatTouched = false;
+            if (typeof beat.headline === "string") { beat.headline = sentence; beatTouched = true; }
+            if (beat.typography_direction && typeof beat.typography_direction.phrase === "string") {
+              beat.typography_direction.phrase = sentence;
+              beatTouched = true;
+            }
+            if (!beatTouched && typeof beat.lead_in === "string") { beat.lead_in = sentence; beatTouched = true; }
+            if (beatTouched) touched++;
+          }
+        }
+        if (touched) {
+          const correctedPath = planPath.replace(/\.json$/, "-autocorrected.json");
+          writeFileSync(correctedPath, JSON.stringify(corrected, null, 2) + "\n");
+          console.log(`[challenger] auto-corrected on-screen text to its own sentence on beat(s) ${stillBlocked.join(", ")} — challenging the corrected plan`);
+          const finalChallenge = await challengePlan(channelId, correctedPath, srtPath, "-autocorrect");
+          if (finalChallenge.code === 0) { planPath = correctedPath; challenge = finalChallenge; }
+          else console.log(`[challenger] the auto-corrected plan was rejected too (exit ${finalChallenge.code})`);
         }
       }
     }

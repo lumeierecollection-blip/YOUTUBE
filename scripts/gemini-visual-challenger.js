@@ -175,6 +175,8 @@ Verdicts per beat:
 - "MISMATCH": the visual is about something the sentence does not say, or conveys nothing of it.
 - "CONTRADICTION": the subject, change or on-screen text states or implies something that contradicts the sentence's factual claim (e.g. text says "recovered" when the sentence says "stolen"; a number that differs from the sentence's number).
 
+On-screen text is part of the claim. Any on-screen text that names a person, organisation, place, product or publication must be spelled EXACTLY as the sentence spells it, and any number or date in on-screen text must be the sentence's own. A near-miss ("Washington Pest" for "Washington Post", "90 million" for "95 million") is a CONTRADICTION: the frame would show something the narration does not say. Lettering inside a real object's own artwork (a seal, a coin, a sign in a photograph) is judged for identity only, not spelling.
+
 You judge the PLAN against the SENTENCE — never the sentence against the world. Treat every sentence as true as written. Do not use your own knowledge to say a sentence is factually wrong: the narration is checked against its sources elsewhere, and a re-plan cannot change it. A CONTRADICTION is only ever the plan disagreeing with its own sentence.
 
 Be strict about CONTRADICTION and MISMATCH — those block the video. WEAK does not block.

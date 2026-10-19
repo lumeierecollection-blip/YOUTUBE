@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Gate — script quality (CHECK-REGISTER.md SCR-03..SCR-08, SCR-12..SCR-14).
+ * Gate — script quality (CHECK-REGISTER.md SCR-03..SCR-08, SCR-12..SCR-14, SCR-18).
  * SCR-09/SCR-10/SCR-11 are enforced earlier, in reserve-topics.js at Stage A.
  *
  * BLOCKER checks fail the process (exit 1). MAJOR checks print a warning
@@ -73,6 +73,130 @@ function loadChannel(channelId) {
 
 function wordCount(text) {
   return String(text || "").split(/\s+/).filter(Boolean).length;
+}
+
+// ── SCR-18: names are copied from the research, not retyped ─────────────────
+const NAME_TOKEN = /^[A-Z][A-Za-z'’-]+$/;
+// Tokens allowed INSIDE a multi-word name: "Bank of Nowhere", "Van der Waals".
+const NAME_CONNECTOR = new Set(["of", "the", "and", "for", "de", "del", "van", "von", "da", "di", "la", "le", "du"]);
+// Sentence-initial words that are not names and must not turn the next word into a
+// multi-word "name" ("On September", "But Powell").
+const NAME_LEAD = new Set(["the", "a", "an", "on", "in", "at", "by", "for", "from", "after", "before", "when", "but", "and", "if", "as", "his", "her", "its", "their", "this", "that", "these", "those", "he", "she", "it", "they"]);
+
+function nameTokens(text) {
+  return String(text || "")
+    .split(/\s+/)
+    .map((t) => t.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9'’-]+$/g, "").replace(/['’]s$/i, ""))
+    .filter(Boolean);
+}
+const stripLead = (tokens) => {
+  let t = tokens.slice();
+  while (t.length > 1 && NAME_LEAD.has(t[0])) t = t.slice(1);
+  return t;
+};
+const editDistanceAtMost1 = (a, b) => {
+  if (a === b) return true;
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, edits = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++edits > 1) return false;
+    if (a.length > b.length) i++;
+    else if (b.length > a.length) j++;
+    else { i++; j++; }
+  }
+  return true;
+};
+
+/**
+ * SCR-18 (BLOCKER near-miss / MAJOR unknown) — every proper noun is copied from
+ * the research artifact, character for character.
+ *
+ * Run 39128017438 rendered "The Washington Pest": the writer's script said
+ * "Post", an enforced plan edit changed the headline on attempt 3, and nothing
+ * between the planner and the frame compared the name with the research
+ * spelling. The naming check compares the two rendered looks against each
+ * other, so two looks rendering the SAME typo agree.
+ *
+ * Conservative by design. A near-miss is a capitalised sequence (or a token of
+ * a researched name) that differs from a research name by exactly one edit and
+ * starts with the same letter — the shape of a typo, not a paraphrase.
+ * Everything else capitalised and absent from the research is a MAJOR warning,
+ * because sentence-initial words and legitimate paraphrase live there.
+ */
+export function nameFidelityProblems(script, research) {
+  const blockers = [], majors = [];
+  if (!research) return { blockers, majors };
+
+  const collect = (node, out = []) => {
+    if (typeof node === "string") out.push(node);
+    else if (Array.isArray(node)) node.forEach((n) => collect(n, out));
+    else if (node && typeof node === "object") Object.values(node).forEach((n) => collect(n, out));
+    return out;
+  };
+  const researchSeq = ` ${collect(research).flatMap((s) => nameTokens(s).map((t) => t.toLowerCase())).join(" ")} `;
+  const researchNames = (research.named_entities || []).map((e) => String(e.name || "")).filter(Boolean);
+  const nameLower = researchNames.map((n) => ({ name: n, tokens: stripLead(nameTokens(n).map((t) => t.toLowerCase())) }));
+
+  const present = (tokens) => {
+    const t = stripLead(tokens);
+    return !t.length || researchSeq.includes(` ${t.join(" ")} `);
+  };
+  const nearMissOfToken = (token) => {
+    for (const { name, tokens } of nameLower) {
+      for (const t of tokens) {
+        if (t === token || t.length < 4 || t[0] !== token[0]) continue;
+        if (editDistanceAtMost1(token, t)) return name;
+      }
+    }
+    return null;
+  };
+  const nearMissOfWindow = (tokens) => {
+    for (const { name, tokens: nt } of nameLower) {
+      if (nt.length !== tokens.length || !nt.length) continue;
+      let matching = 0, near = 0, ok = true;
+      for (let k = 0; k < nt.length; k++) {
+        if (nt[k] === tokens[k]) { matching++; continue; }
+        if (nt[k][0] !== tokens[k][0] || nt[k].length < 4 || !editDistanceAtMost1(tokens[k], nt[k])) { ok = false; break; }
+        near++;
+      }
+      if (ok && matching >= 1 && near === 1) return name;
+    }
+    return null;
+  };
+
+  const seen = new Set();
+  for (const text of collect(script)) {
+    const toks = nameTokens(String(text));
+    const runs = [];
+    let cur = [];
+    for (let i = 0; i < toks.length; i++) {
+      if (NAME_TOKEN.test(toks[i]) && toks[i] !== "I") { cur.push(toks[i]); continue; }
+      const connector = NAME_CONNECTOR.has(toks[i].toLowerCase());
+      if (connector && cur.length && i + 1 < toks.length && NAME_TOKEN.test(toks[i + 1])) { cur.push(toks[i]); continue; }
+      if (cur.length) runs.push(cur);
+      cur = [];
+    }
+    if (cur.length) runs.push(cur);
+
+    for (const run of runs) {
+      const win = run.slice(0, 5);
+      const lower = win.map((t) => t.toLowerCase());
+      const core = stripLead(lower);
+      const key = core.join(" ");
+      if (!key || seen.has(key)) continue;
+      seen.add(key);
+      if (present(core)) continue;
+
+      const near = nearMissOfWindow(core) || (core.length === 1 ? nearMissOfToken(core[0]) : null);
+      if (near) {
+        blockers.push(`SCR-18: "${win.join(" ")}" is a near-miss of the research name "${near}" — copy the name exactly as the research artifact spells it.`);
+      } else if (core.length >= 2) {
+        majors.push(`SCR-18: "${win.join(" ")}" is not named in the research artifact — use the research's own name, or drop the name.`);
+      }
+    }
+  }
+  return { blockers, majors };
 }
 
 /**
@@ -289,6 +413,15 @@ function main() {
     if (sentences.length >= 6 && (bare.length / sentences.length > 1 / 3 || run >= 3)) {
       majors.push(`SCR-17: ${bare.length}/${sentences.length} sentences name no figure, date or proper noun (longest run ${run}) — the renderer allows at most one words-only beat in three: "${bare.slice(0, 3).join('" / "').slice(0, 220)}"`);
     }
+  }
+
+  // SCR-18 — proper nouns are copied from the research artifact (BLOCKER
+  // near-miss, MAJOR unknown). This is the script-stage half of the fix for
+  // "The Washington Pest"; the challenger and the auto-correct cover the plan.
+  if (research) {
+    const nameFidelity = nameFidelityProblems(script, research);
+    blockers.push(...nameFidelity.blockers);
+    majors.push(...nameFidelity.majors);
   }
 
   // SCR-12 — text_overlay is an object or null, never a bare string.

@@ -134,6 +134,15 @@ must state it of *them*, not of someone else.
 - Never invent a team, desk, unit or body by naming a plausible one ("the
   Research Team at X"). Use only bodies the research names.
 
+### Spelling — a hard gate (SCR-18)
+
+**Copy every proper noun character-for-character from the research.** A person,
+organisation, place, programme or publication is spelled the way the research
+artifact spells it — never retyped from memory, never "corrected", never
+inferred. A single wrong letter ("Pest" for "Post") is a BLOCKER at the script
+gate, and if it survives into a visual plan the video is held. If you cannot
+find the exact string in the research, do not use the name.
+
 If you cannot find the verb, rewrite the sentence as the fact itself, unattributed:
 "Repayment plans fail, the research team noted" — never "…suggests paying off
 debt."
@@ -269,6 +278,9 @@ day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
   the VERB you used one the research uses of that source? "Suggest",
   "recommend", "advise", "warn", "urge" and "call for" are the ones that get
   scripts skipped. Rewrite as the fact, unattributed, if the verb is not there.
+- **NAME SWEEP.** Compare every proper noun in your script with the research
+  artifact, letter by letter. Every name is one the research names, spelled
+  identically — a near-miss is a BLOCKER, not a typo to shrug at.
 - **IMPERATIVE SWEEP.** Does any sentence tell the VIEWER to do something
   ("apply", "start", "keep", "avoid", "remember", "make sure")? The close must not
   be an instruction. Move it to a fact, or to an echo of the hook's key noun or
