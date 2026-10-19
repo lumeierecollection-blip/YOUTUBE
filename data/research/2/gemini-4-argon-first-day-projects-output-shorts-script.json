@@ -1,0 +1,92 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gemini-4-argon-first-day-projects-output",
+  "format": "shorts",
+  "hook": "Google DeepMind researchers revealed that four Gemini 4 Argon agents built 2,783 programs and beat Minecraft in 27 hours.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Google DeepMind researchers revealed that four Gemini 4 Argon agents built 2,783 programs and beat Minecraft in 27 hours.",
+      "visual_cue": "Close-up split screen showing multiple autonomous agents executing code streams alongside Minecraft gameplay footage.",
+      "sfx_cue": "Digital interface activation chime followed by rapid typing sounds.",
+      "b_roll": [
+        "Google DeepMind research laboratory monitor display",
+        "Minecraft digital environment simulation render"
+      ],
+      "animation_cue": "Scale up numbers 2,783 and 27 on screen.",
+      "transition_out": "Hard cut to code editor interface.",
+      "text_overlay": {
+        "text": "2,783 Programs Built"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:20",
+      "voiceover": "How did these autonomous agents manage such a complex win without human help?",
+      "visual_cue": "Wide shot of Google Cloud developer dashboard displaying code repository metrics and API release announcements.",
+      "sfx_cue": "Subtle data transfer hum building in pitch.",
+      "b_roll": [
+        "Google Developers Blog release interface",
+        "Python codebase lines scrolling rapidly on dark screen"
+      ],
+      "animation_cue": "Highlight 200,000-line Python codebase metric.",
+      "transition_out": "Slide left into physical robotics testing laboratory.",
+      "text_overlay": {
+        "text": "200,000-Line Codebase Optimized"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:28",
+      "voiceover": "Except Minecraft wasn't the only real-world task Google's new system conquered that week.",
+      "visual_cue": "Medium shot of Apptronik's Apollo robot standing in a testing facility facing a basketball hoop.",
+      "sfx_cue": "Mechanical servo whir and sharp basketball net swish.",
+      "b_roll": [
+        "Apptronik robotics testing facility interior",
+        "Apollo robot hydraulic arm calibration sequence"
+      ],
+      "animation_cue": "Zoom in on robot manipulator hand gripping basketball.",
+      "transition_out": "Quick fade to basketball court sensor overlay.",
+      "text_overlay": {
+        "text": "Apptronik Apollo Robot Enters"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:28-0:45",
+      "voiceover": "Google Cloud software engineers George Weale, Bo Yang, and Andrew Biernat optimized a 200,000-line Python codebase overnight.",
+      "visual_cue": "Action shot of Apollo robot releasing a basketball toward the hoop with tracking vectors overlaid.",
+      "sfx_cue": "Ball bouncing through nylon net followed by success chime.",
+      "b_roll": [
+        "Apollo robot successive basketball throw sequences",
+        "Fairwind program security dashboard interface"
+      ],
+      "animation_cue": "Counter ticking up to 7 successful shots.",
+      "transition_out": "Hard cut to final metrics display.",
+      "text_overlay": {
+        "text": "7 Shots Sunk In A Row"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:45-0:50",
+      "voiceover": "Apptronik's Apollo robot sank 7 shots in a row after self-correction during testing.",
+      "visual_cue": "Full-screen summary graphic showing total programs built alongside execution time and cost.",
+      "sfx_cue": "Clean digital confirmation tone ending on a sustained note.",
+      "b_roll": [
+        "Gemini 4 Argon main execution summary dashboard"
+      ],
+      "animation_cue": "Pulse final aggregate statistics on screen.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "27 Hours to Autonomous Victory"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thenextweb.com/news/gemini-4-argon-agents-beat-minecraft-27-hours",
+    "https://thejarrus.com/en/news/gemini-argon-projects",
+    "https://developers.googleblog.com/optimizing-a-200000-line-python-codebase-overnight-with-gemini-4-argon"
+  ]
+}
