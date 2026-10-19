@@ -1082,9 +1082,14 @@
           "topic": "Boston Adds Bus Cameras to Enforce Stop Sign Violations",
           "slug": "boston-bus-cameras-stop-sign-enforcement-2026",
           "reserved_at": "2026-10-19T15:48:17.580Z"
+        },
+        {
+          "topic": "Google Gemini 4 Argon vs Anthropic Claude Opus 5.5 Real-World Test",
+          "slug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+          "reserved_at": "2026-10-19T19:15:19.038Z"
         }
       ],
-      "last_generated": "2026-10-19T18:18:55.330Z"
+      "last_generated": "2026-10-19T19:15:19.039Z"
     },
     "3": {
       "channel_name": "AI Tested",
