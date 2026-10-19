@@ -183,8 +183,12 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
       save: () => { for (const f of kept) if (existsSync(f)) copyFileSync(f, `${f}.besttake`); },
       restore: () => { for (const f of kept) if (existsSync(`${f}.besttake`)) copyFileSync(`${f}.besttake`, f); },
     });
-    cleanup();
-    if (r.outcome !== "none") return audioPath;   // none = no take at all: the chain below, as before
+    if (r.outcome !== "none") { cleanup(); return audioPath; }
+    // NO take: every Gemini attempt failed and the fallback below is EdgeTTS,
+    // which READS the text files written above. Cleaning up here deleted them
+    // before it ran (run 39300736182 ch-2: every fallback died FileNotFoundError
+    // on -tts-input.txt, then prep failed). Keep them; the EdgeTTS success and
+    // error paths below delete them.
   }
 
   // Task 4.1 — natural voiceover provider chain: ElevenLabs → MAI-Voice →

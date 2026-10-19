@@ -134,6 +134,16 @@ must state it of *them*, not of someone else.
 - Never invent a team, desk, unit or body by naming a plausible one ("the
   Research Team at X"). Use only bodies the research names.
 
+### SCOPE — keep the source's own population and actor
+
+A number or finding belongs to the EXACT population, place, time, actor and
+comparison the research states. Never widen it ("19% of Wikipedia biographies
+about women" is not "19% of digital archive platforms"), never transfer it to
+another actor ("announced in partnership" is not "Cambridge built it"), and
+never add a purpose the research does not state ("to fix historical bias").
+If the research's claim is narrower than the sentence you want, write the
+narrower claim — or cut the sentence.
+
 ### Spelling — a hard gate (SCR-18)
 
 **Copy every proper noun character-for-character from the research.** A person,
@@ -281,6 +291,9 @@ day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
 - **NAME SWEEP.** Compare every proper noun in your script with the research
   artifact, letter by letter. Every name is one the research names, spelled
   identically — a near-miss is a BLOCKER, not a typo to shrug at.
+- **SCOPE SWEEP.** For every number and every actor, check the research states
+  it of the SAME population and the SAME actor. No widening the population, no
+  transferring the action, no invented purpose.
 - **IMPERATIVE SWEEP.** Does any sentence tell the VIEWER to do something
   ("apply", "start", "keep", "avoid", "remember", "make sure")? The close must not
   be an instruction. Move it to a fact, or to an echo of the hook's key noun or
