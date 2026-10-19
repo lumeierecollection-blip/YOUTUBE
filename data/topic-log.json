@@ -1112,9 +1112,14 @@
           "topic": "MiniMax M3.1 Flash vs DeepSeek and Opus 5 Benchmarks",
           "slug": "minimax-m3-1-flash-benchmark-analysis",
           "reserved_at": "2026-10-19T21:10:37.851Z"
+        },
+        {
+          "topic": "Gemini 4 Argon Projects: Inside the First Day of Outputs",
+          "slug": "gemini-4-argon-first-day-projects-output",
+          "reserved_at": "2026-10-19T22:10:12.011Z"
         }
       ],
-      "last_generated": "2026-10-19T21:10:37.851Z"
+      "last_generated": "2026-10-19T22:10:12.011Z"
     },
     "3": {
       "channel_name": "AI Tested",
