@@ -328,12 +328,26 @@ const ACRONYMS = {
   IMF: "International Monetary Fund", WTO: "World Trade Organization", NATO: "NATO",
   UN: "United Nations", EU: "European Union", ECB: "European Central Bank", OPEC: "OPEC",
   WHO: "World Health Organization", SEBI: "Securities and Exchange Board of India", RBI: "Reserve Bank of India",
+  ETS: "École de technologie supérieure",
 };
 function expandName(type, name) {
   const bare = String(name || "").trim().replace(/^the\s+/i, "").replace(/\./g, "");
-  if (type !== "organization" || !/^[A-Z&]{2,6}s?$/.test(bare)) return { name };
-  const full = ACRONYMS[bare.replace(/s$/, "")] || ACRONYMS[bare];
-  return full ? { name: full, note: `acronym "${bare}" -> "${full}"` } : { refuse: `"${bare}" is an acronym with no unambiguous expansion (it names different organizations in different countries)` };
+  if (type !== "organization") return { name };
+  // A short all-caps token may be an acronym and may carry a place qualifier:
+  // "ÉTS Montréal" names the school, not a Montréal branch of an unknown
+  // "ÉTS". The qualifier is dropped for the lookup only — the plan's display
+  // name is unchanged. Accents are folded for the key ("ÉTS" -> "ETS"), and a
+  // token with no expansion and a qualifier is left alone (a short
+  // capitalised word is not necessarily an acronym); a bare unknown acronym
+  // is still refused, as before.
+  const m = bare.match(/^([\p{Lu}&]{2,6}s?)\s+(.+)$/u);
+  const token = m ? m[1] : bare;
+  if (!/^[\p{Lu}&]{2,6}s?$/u.test(token)) return { name };
+  const key = token.replace(/s$/, "").normalize("NFD").replace(/\p{M}/gu, "");
+  const full = ACRONYMS[key] || ACRONYMS[token.replace(/s$/, "")] || ACRONYMS[token];
+  if (full) return { name: full, note: `${m ? `acronym "${token}" in "${bare}"` : `acronym "${token}"`} -> "${full}"` };
+  if (m) return { name };
+  return { refuse: `"${token}" is an acronym with no unambiguous expansion (it names different organizations in different countries)` };
 }
 
 // Download a candidate's 1400 px rendition and store it as JPEG at `abs`.

@@ -1503,13 +1503,27 @@ export async function entityLadder(plan, channelId, log = console.log) {
           if (!qn.ent?.name) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" — ${qn.note || "not qualified"} — its name in type`); throw new Error("generic name not qualified"); }
           if (qn.note) log(`[ladder] ch-${channelId} beat ${b.index}: ${qn.note}`);
           const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: qn.ent.name }, context: b.narration || "" });
-          if (r?.ok && r.logo?.asset) it = { name: nm, asset: r.logo.asset, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
+          if (r?.ok && r.logo?.asset) {
+            // A wide wordmark is the brand's NAME drawn in its face, not a mark.
+            // Drawn into a square plate slot its letters are a few pixels tall
+            // and the naming check reads them as a misspelling (board
+            // 39332364472 ch-2 beat 0: an 8:1 "Google DeepMind" wordmark read
+            // "Goog'e DeepMind" at 810x1440). The name set in type is the same
+            // name and it is legible; the plate still carries the entity, so
+            // coverage is unchanged (entity-coverage.js counts the plate item).
+            const lw = Number(r.logo.w) || 0, lh = Number(r.logo.h) || 0;
+            if (lw > 0 && lh > 0 && lw / lh >= 3) {
+              log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is a ${(lw / lh).toFixed(1)}:1 wordmark — its name in type (not a plate-sized mark)`);
+            } else {
+              it = { name: nm, asset: r.logo.asset, w: lw || null, h: lh || null, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
+            }
+          }
           const seenAt = usedMarks.get(String(nm).toLowerCase());
           if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
           if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
         } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
         d.art.items.push(it);
-        log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type (no free verified mark)"}`);
+        log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type"}`);
       }
     }
     if (d.figures) {
@@ -1597,11 +1611,22 @@ export async function entityLadder(plan, channelId, log = console.log) {
       // ("plate-organization" / "plate-person" / "plate-place"), which
       // coverageOf() matches by name.
       const entityType = String((b.named_entities || []).find((e) => e && sameName(e.name, one))?.type || "");
-      const cls = d.art && d.art.kind === "plates"
-        ? (entityType === "person" ? "plate-person" : entityType === "place" ? "plate-place" : "plate-organization")
-        : (d.art ? d.art.kind : "plate-place");
       const item = rowItems[pickIdx] || null;
-      b.concept_visuals = existing.concat([{ name: one, class: cls, logo: cls === "plate-organization", asset: (item && item.asset) || null, source_url: (item && item.source_url) || null, license: (item && item.license) || null }]);
+      const hasAsset = !!(item && item.asset);
+      // A REAL mark beside the beat's own visual is a CUTOUT, sized by the
+      // ink the file actually shows. It was passed as plate-organization with
+      // no w/h/ink, so placeHero defaulted the box to 1:1: a 1:1 canvas whose
+      // ink is a wide wordmark (the Fox News logo) sat in a 440x440 square at
+      // 2.4% ink and the beat read as visual-less (board 39332364472 ch-1
+      // beat 4). A plate with no asset keeps its honest non-identifying class.
+      let ink = null;
+      if (hasAsset) { try { ink = await inkOf(join(PUBLIC_DIR, item.asset)); } catch { ink = null; } }
+      const cls = hasAsset
+        ? "cutout"
+        : (d.art && d.art.kind === "plates"
+          ? (entityType === "person" ? "plate-person" : entityType === "place" ? "plate-place" : "plate-organization")
+          : (d.art ? d.art.kind : "plate-place"));
+      b.concept_visuals = existing.concat([{ name: one, class: cls, logo: cls === "cutout" || cls === "plate-organization", asset: hasAsset ? item.asset : null, w: hasAsset ? (item.w || null) : null, h: hasAsset ? (item.h || null) : null, ...(ink ? { ink } : {}), source_url: (item && item.source_url) || null, license: (item && item.license) || null }]);
       b.ladder_visual = { art: { kind: cls, name: one } };
       b.canvas = canvasContentFor(b, {});
       done.art++;
