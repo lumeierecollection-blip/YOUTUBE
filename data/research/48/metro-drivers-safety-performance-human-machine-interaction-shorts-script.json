@@ -1,0 +1,69 @@
+{
+  "channel_id": "48",
+  "topic_slug": "metro-drivers-safety-performance-human-machine-interaction",
+  "format": "shorts",
+  "hook": "Did you know train automation shifts metro drivers from tense operation to severe boredom?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know train automation shifts metro drivers from tense operation to severe boredom?",
+      "b_roll": [
+        "Modern metro train interior cab with automated control panels",
+        "Driver staring blankly out of a front windshield window"
+      ],
+      "text_overlay": {
+        "text": "Metro Automation Danger"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Yiting Wang and researchers at Beijing Jiaotong University published a human-machine interaction study. Aleksandrs Rjabovs from Network Rail and Roberto Palacín from Newcastle University tracked metro drivers.",
+      "b_roll": [
+        "Yiting Wang studying human-machine interaction at Beijing Jiaotong University",
+        "Aleksandrs Rjabovs analyzing eye-tracking data at Network Rail",
+        "Urban rail transit tracks viewed from an accelerating metro train"
+      ],
+      "text_overlay": {
+        "text": "Vigilance Loss"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Peter Spring and researchers at Macquarie University tested 40 student participants on train automation levels.",
+      "b_roll": [
+        "Macquarie University campus building exterior",
+        "Laboratory experiment setup testing participant reaction times"
+      ],
+      "text_overlay": {
+        "text": "40 Participants"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Drivers suffered total vigilance loss during the transit.",
+      "b_roll": [
+        "Automated train driving dashboard showing system diagnostics",
+        "Newcastle University researchers reviewing transit eye-tracking monitors",
+        "Empty metro control room with blinking indicator lights"
+      ],
+      "text_overlay": {
+        "text": "Severe Boredom"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the Beijing Jiaotong University study on human-machine interaction today.",
+      "b_roll": [
+        "Metro train speeding through a dark underground tunnel"
+      ],
+      "text_overlay": {
+        "text": "Vigilance Loss"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1080/08959285.2026.2744148",
+    "https://doi.org/10.1007/s40864-019-00115-1",
+    "https://researchers.mq.edu.au/en/publications/level-of-automation-effects-on-train-driver-vigilance"
+  ]
+}
