@@ -10,10 +10,12 @@ const require = createRequire(import.meta.url);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const channels = loadChannels();
 
-// The ten dispatched keys: config/priority-channels.json, as the workflow normalises them.
+// Dispatch keys (the bare upload slot), as the workflow normalises them: the current
+// priority set plus the historical approved set that must still resolve correctly.
 const EXPECTED = {
-  1: "Money Mind", 2: "Legal Brief", 5: "Broadsheet", 6: "Archive Room", 8: "Ledger",
-  9: "Border Lines", 10: "Margin Note", 26: "Fraud Files", 44: "Skill Stack", 49: "Picture House",
+  1: "Hidden Past", 2: "AI Tested", 5: "Broadsheet", 6: "Archive Room", 8: "Ledger",
+  9: "Border Lines", 10: "Margin Note", 26: "Fraud Files", 44: "Skill Stack", 48: "Chileleko",
+  49: "Picture House",
 };
 
 describe("every dispatched key resolves to its OWN channel", () => {

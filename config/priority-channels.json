@@ -1,4 +1,4 @@
 {
-  "channels": [1, 2],
-  "description": "Channels approved for YouTube publishing. Owner, 2026-10-19: only channels whose upload credentials WORK are scheduled; the rest are added back when their credentials are fixed. Last tested: ch-1 uploaded 2026-10-18; ch-2 has uploaded before with no failure since. Waiting: ch-9 and ch-26 (invalid_client, 2026-10-18), ch-44 (invalid_grant, 2026-10-17), ch-49 / 5 / 6 / 8 / 10 (no credentials)."
+  "channels": [1, 2, 48],
+  "description": "Channels approved for YouTube publishing, keyed by upload slot (the workflow dispatches the bare channel_id). Owner, 2026-10-19: only channels whose upload credentials WORK are scheduled; the rest are added back when their credentials are fixed. Verified by OAuth probe (run 39277404352, 2026-10-19): slot 1 = Hidden Past (ch-01), slot 2 = AI Tested (ch-02), slot 48 = Chileleko (ch-48, config id 48). Waiting: ch-3, ch-4, ch-7, ch-44 (invalid_grant, 2026-10-19), ch-9, ch-26 (invalid_client, 2026-10-19), ch-5/6/8/10/49 (no credentials)."
 }

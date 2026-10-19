@@ -8,115 +8,191 @@
   "channels": [
     {
       "id": 1,
-      "niche": "Personal Finance (Budgeting for Beginners)",
-      "clone": { "profile": "cutout-collage" },
-      "style": "motion-graphics",
-      "bg_mode": "white",
-      "asset_treatment": "color",
-      "channel_name": "Money Mind",
-      "handle": "@moneymind",
-      "tts_voice": "en-US-AriaNeural",
-      "font": "Inter",
-      "estimated_rpm": "8-15",
+      "niche": "History Untold (What Really Happened)",
+      "style": "cinematic-documentary",
+      "bg_mode": "black",
+      "channel_name": "Hidden Past",
+      "handle": "@hiddenpast",
+      "tts_voice": "en-GB-RyanNeural",
+      "font": "Cormorant Garamond",
+      "estimated_rpm": "6-10",
       "google_account": "CH1",
       "channel_id": "ch-01",
       "youtube_credentials_path": "config/creds/ch-01.json",
       "stay_private": true,
       "skip_thumbnail_upload": true,
-      "description": "Simple budgeting strategies for real people. No jargon, no get-rich-quick. Just proven systems to take control of your money.",
+      "description": "The historical events they didn't teach you in school. Cover-ups, forgotten tragedies, and the stories that shaped the world.",
       "content_pillars": [
-        "50/30/20 budget breakdowns",
-        "debt payoff strategies",
-        "saving challenges",
-        "budget tool reviews",
-        "money mindset shifts"
+        "forgotten historical events",
+        "cover-up deep dives",
+        "alternative history perspectives",
+        "archival discovery stories",
+        "history's hidden figures"
       ],
       "tags": [
-        "budgeting",
-        "personal finance",
-        "money management",
-        "saving money",
-        "debt free"
+        "hidden history",
+        "untold history",
+        "historical cover-up",
+        "forgotten events",
+        "what really happened"
       ],
       "colors": {
-        "primary": "#0F172A",
-        "secondary": "#1E293B",
-        "accent": "#22C55E",
-        "bg": "#0A1020",
-        "canvas_accent": "#1B7A4D"
+        "primary": "#1A100A",
+        "secondary": "#2D1A12",
+        "accent": "#D4A574",
+        "bg": "#0F0A05"
       },
-      "target_audience": "Adults 18-40 seeking financial control",
-      "tone": "friendly-encouraging",
+      "target_audience": "History enthusiasts 20-55",
+      "tone": "investigative-revelatory",
       "thumbnail_spec": {
-        "style": "clean-infographic",
+        "style": "dramatic-visual",
         "text_max_words": 4,
-        "baseHue": 265.8,
-        "accentHue": 149.6,
-        "text_font": "Inter Bold"
+        "baseHue": 7.1,
+        "accentHue": 67.1,
+        "text_font": "Cormorant Garamond Bold"
       },
       "sfx_profile": {
-        "music_style": "upbeat lo-fi electronic, light and motivating",
+        "music_style": "cinematic orchestral with mystery undertones, building tension",
         "primary_sfx": [
-          "cash-register-ding",
-          "notification-pop",
-          "whoosh-soft",
-          "coin-drop",
-          "page-turn"
+          "paper-flip",
+          "archive-reel",
+          "dramatic-sting",
+          "clock-tick",
+          "door-creak"
         ],
-        "music_bpm": "100-120",
-        "silence_technique": "1-2 second pause after key budget rule reveal"
+        "music_bpm": "70-90",
+        "silence_technique": "3 second silence before major revelation"
       },
       "script_template": {
-        "hook_type": "contrarian",
-        "section_count": 4,
-        "reveal_placement": "50-60% through video",
-        "closing_type": "call-to-action",
+        "hook_type": "curiosity-gap",
+        "section_count": 5,
+        "reveal_placement": "60-70% through video",
+        "closing_type": "reflection",
         "avg_section_length": "2-3 min"
       },
       "visual_spec": {
-        "color_grade": "clean bright with green accent highlights",
+        "color_grade": "warm sepia with desaturated shadows, archival film look",
         "b_roll_sources": [
-          "screen recordings of budget apps",
-          "stock office/desk footage",
-          "infographic animations",
-          "phone screen recordings",
-          "whiteboard animations"
+          "archival footage",
+          "historical photographs",
+          "document animations",
+          "map territory changes",
+          "museum artifact footage"
         ],
         "camera_angles": [
-          "top-down desk flat-lay",
-          "phone screen close-up",
-          "infographic animated build",
-          "medium talking head equivalent",
-          "data visualization"
+          "archival photo Ken Burns",
+          "document zoom-in",
+          "map territory pan",
+          "artifact close-up",
+          "era-transition dissolve"
         ],
-        "pacing": "steady with info-dense segments",
+        "pacing": "slow-build with dramatic reveals",
         "transitions": [
-          "smooth-slide",
-          "infographic-build",
-          "fade-gentle"
+          "archive-reel",
+          "dissolve-era",
+          "document-slide",
+          "impact-sting"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_01",
-      "concepts": {
-        "primary": [
-          "PROGRESS",
-          "HERO_NUMBER"
-        ],
-        "secondary": [
-          "LIST_ITEM",
-          "TERM_DEFINE"
-        ],
-        "excluded": [
-          "IMAGE_BEAT"
-        ]
-      }
+      "creds_secret_prefix": "CHANNEL_01"
     },
     {
       "id": 2,
+      "niche": "AI Tool Reviews (Real Results Only)",
+      "style": "minimal",
+      "bg_mode": "black",
+      "channel_name": "AI Tested",
+      "handle": "@aitested",
+      "tts_voice": "en-US-TonyNeural",
+      "font": "Space Grotesk",
+      "estimated_rpm": "8-14",
+      "google_account": "CH2",
+      "channel_id": "ch-02",
+      "youtube_credentials_path": "config/creds/ch-02.json",
+      "stay_private": true,
+      "skip_thumbnail_upload": true,
+      "description": "We test AI tools with real projects so you don't waste money. Honest reviews with actual outputs shown.",
+      "content_pillars": [
+        "AI tool head-to-head tests",
+        "real project outputs shown",
+        "pricing breakdowns",
+        "workflow integrations",
+        "new tool first looks"
+      ],
+      "tags": [
+        "AI tools",
+        "AI review",
+        "artificial intelligence",
+        "AI productivity",
+        "tool comparison"
+      ],
+      "colors": {
+        "primary": "#0A0A1A",
+        "secondary": "#1A1A3A",
+        "accent": "#8B5CF6",
+        "bg": "#050510"
+      },
+      "target_audience": "Tech-curious professionals 20-45",
+      "tone": "casual-authoritative",
+      "thumbnail_spec": {
+        "style": "before-after",
+        "text_max_words": 4,
+        "baseHue": 232.7,
+        "accentHue": 292.7,
+        "text_font": "Space Grotesk Bold"
+      },
+      "sfx_profile": {
+        "music_style": "modern electronic with tech textures, upbeat but not distracting",
+        "primary_sfx": [
+          "notification-ding",
+          "glitch-static",
+          "keyboard-type",
+          "whoosh-fast",
+          "success-chime"
+        ],
+        "music_bpm": "110-130",
+        "silence_technique": "1 second pause before showing tool output"
+      },
+      "script_template": {
+        "hook_type": "specific-result",
+        "section_count": 4,
+        "reveal_placement": "55-65% through video",
+        "closing_type": "verdict",
+        "avg_section_length": "2-3 min"
+      },
+      "visual_spec": {
+        "color_grade": "dark mode with purple accent glows, clean tech aesthetic",
+        "b_roll_sources": [
+          "screen recordings of AI tools",
+          "output comparisons",
+          "pricing page screenshots",
+          "workflow demonstrations",
+          "stock tech footage"
+        ],
+        "camera_angles": [
+          "screen capture primary",
+          "split-screen comparison",
+          "output zoom-in",
+          "pricing table",
+          "workflow diagram"
+        ],
+        "pacing": "fast-paced with clear comparisons",
+        "transitions": [
+          "screen-switch",
+          "split-reveal",
+          "glitch-cut"
+        ]
+      },
+      "creds_secret_prefix": "CHANNEL_02"
+    },
+    {
+      "id": 3,
       "niche": "Legal Education (Know Your Rights)",
-      "clone": { "profile": "dossier-mono" },
-      "style": "motion-graphics",
+      "clone": {
+        "profile": "dossier-mono"
+      },
       "visual_engine": "template",
+      "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
       "channel_name": "Legal Brief",
@@ -124,11 +200,10 @@
       "tts_voice": "en-US-GuyNeural",
       "font": "DM Sans",
       "estimated_rpm": "10-18",
-      "google_account": "CH2",
-      "channel_id": "ch-02",
-      "stay_private": true,
-      "youtube_credentials_path": "config/creds/ch-02.json",
-      "skip_thumbnail_upload": true,
+      "google_account": "UNASSIGNED-3",
+      "channel_id": "ch-03",
+      "youtube_credentials_path": "config/creds/ch-03.json",
+      "paused": true,
       "description": "Your constitutional rights explained in plain English. What to do during traffic stops, police encounters, and legal situations.",
       "content_pillars": [
         "constitutional rights explained",
@@ -203,7 +278,7 @@
           "scale-impact"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_02",
+      "creds_secret_prefix": "CHANNEL_03",
       "concepts": {
         "primary": [
           "CONTRAST",
@@ -217,181 +292,110 @@
       }
     },
     {
-      "id": 3,
-      "niche": "AI Tool Reviews (Real Results Only)",
-      "style": "minimal",
-      "bg_mode": "black",
-      "channel_name": "AI Tested",
-      "handle": "@aitested",
-      "tts_voice": "en-US-TonyNeural",
-      "font": "Space Grotesk",
-      "estimated_rpm": "8-14",
-      "google_account": "UNASSIGNED-3",
-      "channel_id": "ch-03",
-      "youtube_credentials_path": "config/creds/ch-03.json",
-      "paused": true,
-      "description": "We test AI tools with real projects so you don't waste money. Honest reviews with actual outputs shown.",
-      "content_pillars": [
-        "AI tool head-to-head tests",
-        "real project outputs shown",
-        "pricing breakdowns",
-        "workflow integrations",
-        "new tool first looks"
-      ],
-      "tags": [
-        "AI tools",
-        "AI review",
-        "artificial intelligence",
-        "AI productivity",
-        "tool comparison"
-      ],
-      "colors": {
-        "primary": "#0A0A1A",
-        "secondary": "#1A1A3A",
-        "accent": "#8B5CF6",
-        "bg": "#050510"
-      },
-      "target_audience": "Tech-curious professionals 20-45",
-      "tone": "casual-authoritative",
-      "thumbnail_spec": {
-        "style": "before-after",
-        "text_max_words": 4,
-        "baseHue": 232.7,
-        "accentHue": 292.7,
-        "text_font": "Space Grotesk Bold"
-      },
-      "sfx_profile": {
-        "music_style": "modern electronic with tech textures, upbeat but not distracting",
-        "primary_sfx": [
-          "notification-ding",
-          "glitch-static",
-          "keyboard-type",
-          "whoosh-fast",
-          "success-chime"
-        ],
-        "music_bpm": "110-130",
-        "silence_technique": "1 second pause before showing tool output"
-      },
-      "script_template": {
-        "hook_type": "specific-result",
-        "section_count": 4,
-        "reveal_placement": "55-65% through video",
-        "closing_type": "verdict",
-        "avg_section_length": "2-3 min"
-      },
-      "visual_spec": {
-        "color_grade": "dark mode with purple accent glows, clean tech aesthetic",
-        "b_roll_sources": [
-          "screen recordings of AI tools",
-          "output comparisons",
-          "pricing page screenshots",
-          "workflow demonstrations",
-          "stock tech footage"
-        ],
-        "camera_angles": [
-          "screen capture primary",
-          "split-screen comparison",
-          "output zoom-in",
-          "pricing table",
-          "workflow diagram"
-        ],
-        "pacing": "fast-paced with clear comparisons",
-        "transitions": [
-          "screen-switch",
-          "split-reveal",
-          "glitch-cut"
-        ]
-      },
-      "creds_secret_prefix": "CHANNEL_03"
-    },
-    {
       "id": 4,
-      "niche": "History Untold (What Really Happened)",
-      "style": "cinematic-documentary",
-      "bg_mode": "black",
-      "channel_name": "Hidden Past",
-      "handle": "@hiddenpast",
-      "tts_voice": "en-GB-RyanNeural",
-      "font": "Cormorant Garamond",
-      "estimated_rpm": "6-10",
+      "niche": "Personal Finance (Budgeting for Beginners)",
+      "clone": {
+        "profile": "cutout-collage"
+      },
+      "style": "motion-graphics",
+      "bg_mode": "white",
+      "asset_treatment": "color",
+      "channel_name": "Money Mind",
+      "handle": "@moneymind",
+      "tts_voice": "en-US-AriaNeural",
+      "font": "Inter",
+      "estimated_rpm": "8-15",
       "google_account": "CH4",
       "channel_id": "ch-04",
       "youtube_credentials_path": "config/creds/ch-04.json",
       "paused": true,
-      "description": "The historical events they didn't teach you in school. Cover-ups, forgotten tragedies, and the stories that shaped the world.",
+      "description": "Simple budgeting strategies for real people. No jargon, no get-rich-quick. Just proven systems to take control of your money.",
       "content_pillars": [
-        "forgotten historical events",
-        "cover-up deep dives",
-        "alternative history perspectives",
-        "archival discovery stories",
-        "history's hidden figures"
+        "50/30/20 budget breakdowns",
+        "debt payoff strategies",
+        "saving challenges",
+        "budget tool reviews",
+        "money mindset shifts"
       ],
       "tags": [
-        "hidden history",
-        "untold history",
-        "historical cover-up",
-        "forgotten events",
-        "what really happened"
+        "budgeting",
+        "personal finance",
+        "money management",
+        "saving money",
+        "debt free"
       ],
       "colors": {
-        "primary": "#1A100A",
-        "secondary": "#2D1A12",
-        "accent": "#D4A574",
-        "bg": "#0F0A05"
+        "primary": "#0F172A",
+        "secondary": "#1E293B",
+        "accent": "#22C55E",
+        "bg": "#0A1020",
+        "canvas_accent": "#1B7A4D"
       },
-      "target_audience": "History enthusiasts 20-55",
-      "tone": "investigative-revelatory",
+      "target_audience": "Adults 18-40 seeking financial control",
+      "tone": "friendly-encouraging",
       "thumbnail_spec": {
-        "style": "dramatic-visual",
+        "style": "clean-infographic",
         "text_max_words": 4,
-        "baseHue": 7.1,
-        "accentHue": 67.1,
-        "text_font": "Cormorant Garamond Bold"
+        "baseHue": 265.8,
+        "accentHue": 149.6,
+        "text_font": "Inter Bold"
       },
       "sfx_profile": {
-        "music_style": "cinematic orchestral with mystery undertones, building tension",
+        "music_style": "upbeat lo-fi electronic, light and motivating",
         "primary_sfx": [
-          "paper-flip",
-          "archive-reel",
-          "dramatic-sting",
-          "clock-tick",
-          "door-creak"
+          "cash-register-ding",
+          "notification-pop",
+          "whoosh-soft",
+          "coin-drop",
+          "page-turn"
         ],
-        "music_bpm": "70-90",
-        "silence_technique": "3 second silence before major revelation"
+        "music_bpm": "100-120",
+        "silence_technique": "1-2 second pause after key budget rule reveal"
       },
       "script_template": {
-        "hook_type": "curiosity-gap",
-        "section_count": 5,
-        "reveal_placement": "60-70% through video",
-        "closing_type": "reflection",
+        "hook_type": "contrarian",
+        "section_count": 4,
+        "reveal_placement": "50-60% through video",
+        "closing_type": "call-to-action",
         "avg_section_length": "2-3 min"
       },
       "visual_spec": {
-        "color_grade": "warm sepia with desaturated shadows, archival film look",
+        "color_grade": "clean bright with green accent highlights",
         "b_roll_sources": [
-          "archival footage",
-          "historical photographs",
-          "document animations",
-          "map territory changes",
-          "museum artifact footage"
+          "screen recordings of budget apps",
+          "stock office/desk footage",
+          "infographic animations",
+          "phone screen recordings",
+          "whiteboard animations"
         ],
         "camera_angles": [
-          "archival photo Ken Burns",
-          "document zoom-in",
-          "map territory pan",
-          "artifact close-up",
-          "era-transition dissolve"
+          "top-down desk flat-lay",
+          "phone screen close-up",
+          "infographic animated build",
+          "medium talking head equivalent",
+          "data visualization"
         ],
-        "pacing": "slow-build with dramatic reveals",
+        "pacing": "steady with info-dense segments",
         "transitions": [
-          "archive-reel",
-          "dissolve-era",
-          "document-slide",
-          "impact-sting"
+          "smooth-slide",
+          "infographic-build",
+          "fade-gentle"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_04"
+      "creds_secret_prefix": "CHANNEL_04",
+      "concepts": {
+        "primary": [
+          "PROGRESS",
+          "HERO_NUMBER"
+        ],
+        "secondary": [
+          "LIST_ITEM",
+          "TERM_DEFINE"
+        ],
+        "excluded": [
+          "IMAGE_BEAT"
+        ]
+      }
     },
     {
       "id": 5,
@@ -605,7 +609,9 @@
     {
       "id": 9,
       "niche": "Geopolitical Explainers (Maps & Power)",
-      "clone": { "profile": "dossier-mono" },
+      "clone": {
+        "profile": "dossier-mono"
+      },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -1126,15 +1132,16 @@
       "creds_secret_prefix": "CHANNEL_17"
     },
     {
-      "id": 18,
+      "id": 48,
       "niche": "Ergonomics & Human Factors",
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "color",
-      "channel_name": "Fit",
+      "channel_name": "Chileleko",
       "handle": "@fit",
       "tts_voice": "en-US-JennyNeural",
       "font": "Inter",
+      "estimated_rpm": "5-10",
       "google_account": "UNASSIGNED-48",
       "channel_id": "ch-48",
       "youtube_credentials_path": "config/creds/ch-48.json",
@@ -1160,7 +1167,7 @@
       },
       "target_audience": "Design & health enthusiasts 18-45",
       "tone": "practical-educational",
-      "estimated_rpm": "5-10",
+      "creds_secret_prefix": "CHANNEL_48",
       "visual_identity": {
         "philosophy": "Fit unique visual approach"
       }
@@ -1448,7 +1455,9 @@
     {
       "id": 26,
       "niche": "Financial Crimes & Heists",
-      "clone": { "profile": "dossier-mono" },
+      "clone": {
+        "profile": "dossier-mono"
+      },
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
@@ -1684,7 +1693,7 @@
       "channel_id": "ch-30",
       "youtube_credentials_path": "config/creds/ch-30.json",
       "paused": true,
-      "description": "How DNA genealogy is solving decades-old cold cases. From unidentified victims to killer family trees \u00e2\u20ac\u201d science delivers justice.",
+      "description": "How DNA genealogy is solving decades-old cold cases. From unidentified victims to killer family trees \\u00e2\\u20ac\\u201d science delivers justice.",
       "content_pillars": [
         "DNA genealogy case breakdowns",
         "forensic technology explainers",
@@ -1970,7 +1979,7 @@
     },
     {
       "id": 35,
-      "niche": "Real Engineering \u00e2\u20ac\u201d Cinematic Tech Deep Dives",
+      "niche": "Real Engineering \\u00e2\\u20ac\\u201d Cinematic Tech Deep Dives",
       "style": "cinematic-documentary",
       "bg_mode": "white",
       "channel_name": "The Engineering Archive",
@@ -1982,7 +1991,7 @@
       "channel_id": "ch-35",
       "youtube_credentials_path": "config/creds/ch-35.json",
       "paused": true,
-      "description": "How complex technology actually works. Electric aircraft, fusion reactors, hyperloops \u00e2\u20ac\u201d the engineering behind tomorrow's world.",
+      "description": "How complex technology actually works. Electric aircraft, fusion reactors, hyperloops \\u00e2\\u20ac\\u201d the engineering behind tomorrow's world.",
       "content_pillars": [
         "future tech engineering",
         "electric vehicle deep dives",
@@ -2179,7 +2188,7 @@
     },
     {
       "id": 39,
-      "niche": "Medical Case Studies \u00e2\u20ac\u201d ER Mysteries",
+      "niche": "Medical Case Studies \\u00e2\\u20ac\\u201d ER Mysteries",
       "style": "cinematic-documentary",
       "bg_mode": "white",
       "channel_name": "Case File Medicine",
@@ -2429,7 +2438,9 @@
     {
       "id": 44,
       "niche": "Professional Skill Development",
-      "clone": { "profile": "cutout-collage" },
+      "clone": {
+        "profile": "cutout-collage"
+      },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -2623,8 +2634,8 @@
           "page-turn",
           "success-chime"
         ],
-        "music_bpm": "N/A \u00e2\u20ac\u201d mostly voice-driven",
-        "silence_technique": "Silence during answer delivery \u00e2\u20ac\u201d voice is the star"
+        "music_bpm": "N/A \\u00e2\\u20ac\\u201d mostly voice-driven",
+        "silence_technique": "Silence during answer delivery \\u00e2\\u20ac\\u201d voice is the star"
       },
       "script_template": {
         "hook_type": "direct-problem",
@@ -2748,12 +2759,14 @@
       },
       "creds_secret_prefix": "CHANNEL_47",
       "requires_human_review": true,
-      "human_review_notes": "NICHE-AUDIT.md \u00c2\u00a73.3 \u00e2\u20ac\u201d US Medicare marketing is federally regulated (CMS rules), operated from outside the US, via an automated pipeline. Keep condition: human approval required before every upload, strictly educational framing, no plan comparisons, no enrollment guidance. youtube-publish/run.js enforces this as a hard gate."
+      "human_review_notes": "NICHE-AUDIT.md \\u00c2\\u00a73.3 \\u00e2\\u20ac\\u201d US Medicare marketing is federally regulated (CMS rules), operated from outside the US, via an automated pipeline. Keep condition: human approval required before every upload, strictly educational framing, no plan comparisons, no enrollment guidance. youtube-publish/run.js enforces this as a hard gate."
     },
     {
       "id": 49,
       "niche": "Movies, Cinematic Universes (Release Calendars, Box Office)",
-      "clone": { "profile": "cutout-collage" },
+      "clone": {
+        "profile": "cutout-collage"
+      },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
@@ -2858,7 +2871,9 @@
     {
       "id": 5,
       "niche": "True Crime & Investigative Journalism",
-      "clone": { "profile": "dossier-mono" },
+      "clone": {
+        "profile": "dossier-mono"
+      },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "bw",
@@ -2907,7 +2922,9 @@
     {
       "id": 6,
       "niche": "Cold Cases & Unsolved Mysteries",
-      "clone": { "profile": "archive-italic" },
+      "clone": {
+        "profile": "archive-italic"
+      },
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
@@ -2956,7 +2973,9 @@
     {
       "id": 8,
       "niche": "Financial History & Institutional Collapse",
-      "clone": { "profile": "archive-italic" },
+      "clone": {
+        "profile": "archive-italic"
+      },
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "color",
@@ -3005,7 +3024,9 @@
     {
       "id": 10,
       "niche": "Concept Explainers & Intellectual History",
-      "clone": { "profile": "archive-italic" },
+      "clone": {
+        "profile": "archive-italic"
+      },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",

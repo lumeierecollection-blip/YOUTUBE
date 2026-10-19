@@ -34,8 +34,8 @@ describe("youtube-publish approves exactly config/priority-channels.json", () =>
     });
   }
 
-  // 48 and 30 are in channels.json but are not approved; 48 was on the old hardcoded list.
-  for (const ch of ["48", "30", "3"]) {
+  // 30 and 3 are in channels.json but are not approved.
+  for (const ch of ["30", "3"]) {
     it(`ch ${ch} is refused`, () => {
       const r = dry(ch);
       assert.match(r.out, REFUSED);
@@ -44,7 +44,7 @@ describe("youtube-publish approves exactly config/priority-channels.json", () =>
   }
 
   it("names the config file as the source of truth in the refusal", () => {
-    assert.match(dry("48").out, /config\/priority-channels\.json/);
+    assert.match(dry("30").out, /config\/priority-channels\.json/);
   });
 
   it("the ch- form is accepted exactly like the bare form", () => {

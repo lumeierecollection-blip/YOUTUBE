@@ -129,10 +129,14 @@ describe("fetch-trending CATEGORY map", () => {
     assert.ok(!terms.includes("music"), `terms: ${terms.join(",")}`);
   });
 
+  it("key 48 resolves to Chileleko (ch-48) instead of being skipped", () => {
+    assert.equal(T.findChannel("48", T.loadChannels()).channel_name, "Chileleko");
+  });
+
   it("an ambiguous key (no row whose id and channel_id agree) is skipped, never guessed", () => {
     const realLog = console.log;
     console.log = () => {};
-    try { assert.equal(T.findChannel("48", T.loadChannels()), null); } finally { console.log = realLog; }
+    try { assert.equal(T.findChannel("48", [{ id: 9, channel_id: "ch-48", channel_name: "Wrong slot" }]), null); } finally { console.log = realLog; }
   });
 
   it("no longer carries its own collision guard", () => {
