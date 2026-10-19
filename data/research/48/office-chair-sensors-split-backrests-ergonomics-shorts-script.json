@@ -1,0 +1,65 @@
+{
+  "channel_id": "48",
+  "topic_slug": "office-chair-sensors-split-backrests-ergonomics",
+  "format": "shorts",
+  "hook": "Slumped in your office chair right now, your spine takes 190% of its normal standing load.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Slumped in your office chair right now, your spine takes 190% of its normal standing load.",
+      "b_roll": [
+        "Close up of office worker slumped in chair"
+      ],
+      "text_overlay": {
+        "text": "190% Spinal Load"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Japan, 1 out of 10 healthy office workers suffer from low back pain. Tohoku University researchers built smart sensor-equipped chairs to tackle this exact physical toll. How high does spinal load climb in a rounded posture to reach 190%?",
+      "b_roll": [
+        "Laboratory view of sensors on office chair",
+        "Tohoku University campus exterior"
+      ],
+      "text_overlay": {
+        "text": "1 in 10 in Japan"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "North America's office chair market hit $4.5 billion last year, but demand keeps surging.",
+      "b_roll": [
+        "Spine biomechanics diagram showing high stress"
+      ],
+      "text_overlay": {
+        "text": "190% rounded posture"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Scott Kramer cited Google data in Forbes showing growth exceeding 3.2 percent.",
+      "b_roll": [
+        "Ergonomic split-backrest chair in modern office",
+        "Chart showing market growth"
+      ],
+      "text_overlay": {
+        "text": "$4.5 Billion Market"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That market is growing at 3.2 percent annually.",
+      "b_roll": [
+        "Close up of high-tech ergonomic chair adjustment"
+      ],
+      "text_overlay": {
+        "text": "3.2% Annual Growth"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencedaily.com/releases/2021/10/211027122109.htm",
+    "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests",
+    "https://www.forbes.com/sites/scottkramer/2025/10/10/office-chairs-are-getting-pricey-and-techy"
+  ]
+}

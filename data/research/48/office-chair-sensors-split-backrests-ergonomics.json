@@ -1,0 +1,113 @@
+{
+  "topic_slug": "office-chair-sensors-split-backrests-ergonomics",
+  "strongest_angle": "Examining how ergonomic seating manufacturers are integrating biometric sensors and split-backrest biomechanics to tackle the physical toll of sedentary office work, where spinal load reaches 190% in rounded seated postures.",
+  "key_facts": [
+    {
+      "fact": "In Japan, 1 out of 10 otherwise healthy office workers suffer from low back pain, prompting research at Tohoku University into smart sensor-equipped chairs.",
+      "source_url": "https://www.sciencedaily.com/releases/2021/10/211027122109.htm",
+      "source_name": "ScienceDaily",
+      "confidence": "high"
+    },
+    {
+      "fact": "Taking standing disc pressure as 100%, spinal load drops to 24% when lying down, climbs to 140% on a standard chair, 170% in a static seated posture, and 190% with a rounded posture.",
+      "source_url": "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests",
+      "source_name": "NewsCase",
+      "confidence": "high"
+    },
+    {
+      "fact": "The market for office chairs in North America clocked in at roughly $4.5 billion last year, with an anticipated growth rate of more than 3.2 percent for the next six years according to Google data cited by Scott Kramer in Forbes.",
+      "source_url": "https://www.forbes.com/sites/scottkramer/2025/10/10/office-chairs-are-getting-pricey-and-techy",
+      "source_name": "Forbes",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Spinal load standing baseline",
+      "value": 100,
+      "unit": "%",
+      "source_url": "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests"
+    },
+    {
+      "label": "Spinal load lying down",
+      "value": 24,
+      "unit": "%",
+      "source_url": "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests"
+    },
+    {
+      "label": "Spinal load on a standard chair",
+      "value": 140,
+      "unit": "%",
+      "source_url": "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests"
+    },
+    {
+      "label": "Spinal load in a static seated posture",
+      "value": 170,
+      "unit": "%",
+      "source_url": "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests"
+    },
+    {
+      "label": "Spinal load with a rounded posture",
+      "value": 190,
+      "unit": "%",
+      "source_url": "https://www.newscase.com/the-80000-hour-problem-why-office-chair-makers-are-betting-big-on-sensors-and-split-backrests"
+    },
+    {
+      "label": "North American office chair market size",
+      "value": 4.5,
+      "unit": "billion dollars",
+      "source_url": "https://www.forbes.com/sites/scottkramer/2025/10/10/office-chairs-are-getting-pricey-and-techy"
+    },
+    {
+      "label": "Anticipated market growth rate",
+      "value": 3.2,
+      "unit": "percent",
+      "source_url": "https://www.forbes.com/sites/scottkramer/2025/10/10/office-chairs-are-getting-pricey-and-techy"
+    },
+    {
+      "label": "Proportion of healthy office workers suffering from low back pain in Japan",
+      "value": 1,
+      "unit": "out of 10",
+      "source_url": "https://www.sciencedaily.com/releases/2021/10/211027122109.htm"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Tohoku University",
+      "kind": "organization"
+    },
+    {
+      "name": "Japan",
+      "kind": "place"
+    },
+    {
+      "name": "North America",
+      "kind": "place"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "Forbes",
+      "kind": "organization"
+    },
+    {
+      "name": "Scott Kramer",
+      "kind": "person"
+    },
+    {
+      "name": "Brett Shapiro",
+      "kind": "person"
+    },
+    {
+      "name": "Omni",
+      "kind": "object"
+    },
+    {
+      "name": "LiberNovo",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
