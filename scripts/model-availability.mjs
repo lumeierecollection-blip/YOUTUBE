@@ -9,11 +9,15 @@
  *                production key order (collectKeys, src/lib/gemini-client.js); OpenRouter and Groq are checked
  *                against their public model lists. A model is RETIRED when Gemini answers 404 on every key, or
  *                when the list does not contain it, or when the official deprecations page gives a shutdown
- *                date that has passed.
+ *                date that has passed. A 5xx/network failure is retried (2 extra attempts, 30 s ceiling each);
+ *                if every key still fails that way, the verdict is PROBE-TRANSIENT — the provider was down,
+ *                which is not a retirement and must not fail the weekly gate (2026-10-19: both Gemini models
+ *                answered HTTP 503 all morning).
  *   3. DEPRECATION  the official deprecations page (rendered to text by the workflow) gives each Gemini model's
  *                shutdown date. Within DEPRECATED_WINDOW_DAYS it is a warning; after it, RETIRED.
  *
- * Exit 1 if any called model is RETIRED or MISSING. Warnings do not fail the run.
+ * Exit 1 if any called model is RETIRED, MISSING, KEY-REJECTED or UNKNOWN (and any unregistered ID).
+ * Warnings (DEPRECATED-SOON, NOT-CHECKED, PROBE-LIMIT, PROBE-TRANSIENT) do not fail the run.
  * It prints the key indices and which keys are the same key (equal strings), never a key value.
  *
  *   node scripts/model-availability.mjs --deprecations <rendered-deprecations.txt> [--now 2026-10-10]
@@ -70,6 +74,7 @@ export function deprecationFor(id, pageText) {
 //   not called by the code                                  -> NOT-CALLED
 //   Gemini: 404 on every key                                -> RETIRED
 //   Gemini: rejected on every key (bad key, not the model)  -> KEY-REJECTED
+//   Gemini: 5xx/network on every key after retries          -> PROBE-TRANSIENT (warning, not a verdict)
 //   Gemini: no key answered alive and none was retired      -> UNKNOWN (transient, re-run)
 //   list (OpenRouter/Groq) does not contain the model       -> MISSING
 //   official shutdown date has passed                       -> RETIRED
@@ -80,6 +85,9 @@ export function verdictFor({ id = "", called = true, gemini = [], list = null, s
   if (!called) return "NOT-CALLED";
   if (gemini.length && gemini.every((s) => s === "retired")) return "RETIRED";
   if (gemini.length && gemini.every((s) => s === "key-rejected")) return "KEY-REJECTED";
+  // Every key answering 5xx/network after retries is the provider being unavailable, not a verdict on the
+  // model. A warning, so a transient outage cannot page as "model retired" or fail the weekly gate.
+  if (gemini.length && gemini.every((s) => s === "unknown-transient")) return "PROBE-TRANSIENT";
   // A TTS model answers only an audio request. If the probe still gets no usable answer from one, that is a limit of
   // the probe, not a verdict on the model: a warning, so the weekly gate does not fail on it.
   if (gemini.length && !gemini.some((s) => s === "alive" || s === "alive-quota") && /tts/i.test(id)) return "PROBE-LIMIT";
@@ -139,24 +147,34 @@ export function probeBody(id) {
   return JSON.stringify({ contents: [{ parts: [{ text: "ok" }] }], generationConfig });
 }
 
+// Retries are bounded so a provider hang cannot eat the workflow's 20-minute budget: 3 attempts, 30 s each.
+const PROBE_ATTEMPTS = 3;
+const PROBE_TIMEOUT_MS = 30000;
+
 async function geminiChecks(id, keys) {
   const out = [];
   const body = probeBody(id);
   for (const [i, key] of keys.entries()) {
-    try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent`, {
-        method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": key }, body,
-        signal: AbortSignal.timeout(60000),
-      });
-      const text = await res.text();
-      const cls = classifyGeminiStatus(res.status, text);
-      // Print the status of anything that is not a plain answer, so the next person can read the cause.
-      if (!["alive", "alive-quota"].includes(cls)) console.log(`  ${id} key ${i + 1} HTTP ${res.status} (${cls}): ${text.slice(0, 300).replace(/\s+/g, " ")}`);
-      out.push(cls);
-    } catch (e) {
-      console.log(`  ${id} key ${i + 1} request failed: ${String(e.message || e).slice(0, 200)}`);
-      out.push("unknown-transient");
+    let cls = "unknown-transient";
+    for (let attempt = 1; attempt <= PROBE_ATTEMPTS; attempt++) {
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent`, {
+          method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": key }, body,
+          signal: AbortSignal.timeout(PROBE_TIMEOUT_MS),
+        });
+        const text = await res.text();
+        cls = classifyGeminiStatus(res.status, text);
+        // Print the status of anything that is not a plain answer, so the next person can read the cause.
+        if (!["alive", "alive-quota"].includes(cls)) console.log(`  ${id} key ${i + 1} attempt ${attempt}/${PROBE_ATTEMPTS} HTTP ${res.status} (${cls}): ${text.slice(0, 300).replace(/\s+/g, " ")}`);
+      } catch (e) {
+        cls = "unknown-transient";
+        console.log(`  ${id} key ${i + 1} attempt ${attempt}/${PROBE_ATTEMPTS} request failed: ${String(e.message || e).slice(0, 200)}`);
+      }
+      // Only a 5xx/network failure is worth retrying; a 404/401/403 is the answer.
+      if (cls !== "unknown-transient") break;
+      if (attempt < PROBE_ATTEMPTS) await new Promise((r) => setTimeout(r, attempt * 2000));
     }
+    out.push(cls);
   }
   return out;
 }
@@ -229,7 +247,7 @@ async function main() {
     if (r.provider === "groq") list = groqIds ? (groqIds.has(id) ? "present" : "absent") : "not-checked";
     const verdict = verdictFor({ id, called, gemini, list, shutdown, now });
     if (["RETIRED", "MISSING", "UNKNOWN", "KEY-REJECTED"].includes(verdict)) failures++;
-    if (["DEPRECATED-SOON", "NOT-CHECKED", "PROBE-LIMIT"].includes(verdict)) warnings++;
+    if (["DEPRECATED-SOON", "NOT-CHECKED", "PROBE-LIMIT", "PROBE-TRANSIENT"].includes(verdict)) warnings++;
     const geminiCol = gemini.length ? gemini.map((s) => s).join(" / ") : (list ? `list: ${list}` : "-");
     rows.push(`| ${r.provider} | \`${id}\` | ${called ? "yes" : "no"} | ${geminiCol} | ${dep.found ? (dep.shutdown || "-") : "not on page"} | ${dep.replacement || "-"} | **${verdict}** |`);
   }

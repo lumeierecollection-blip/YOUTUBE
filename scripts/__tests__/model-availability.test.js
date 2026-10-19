@@ -62,9 +62,14 @@ test("a shutdown inside the window is DEPRECATED-SOON, outside it ALIVE", () => 
   assert.equal(verdictFor({ gemini: ["alive"], shutdown: new Date("2027-05-07T00:00:00Z"), now: NOW }), "ALIVE");
 });
 
-test("a key that is rejected everywhere is KEY-REJECTED, and an answer with no alive key is UNKNOWN", () => {
+test("a key that is rejected everywhere is KEY-REJECTED; a 5xx everywhere is PROBE-TRANSIENT, not UNKNOWN", () => {
   assert.equal(verdictFor({ gemini: ["key-rejected", "key-rejected"], now: NOW }), "KEY-REJECTED");
-  assert.equal(verdictFor({ gemini: ["unknown-transient"], now: NOW }), "UNKNOWN");
+  // 2026-10-19: both Gemini models answered HTTP 503 on every key and the weekly gate failed as if the
+  // models were broken. The provider was down; that is a warning, not a verdict.
+  assert.equal(verdictFor({ gemini: ["unknown-transient", "unknown-transient"], now: NOW }), "PROBE-TRANSIENT");
+  // A non-5xx unknown is still a failure, and a mixed result is not "every key 5xx".
+  assert.equal(verdictFor({ gemini: ["unknown"], now: NOW }), "UNKNOWN");
+  assert.equal(verdictFor({ gemini: ["unknown-transient", "unknown"], now: NOW }), "UNKNOWN");
 });
 
 test("a TTS model is probed with the audio response modality; other models with plain text", () => {
