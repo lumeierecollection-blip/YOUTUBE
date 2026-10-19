@@ -535,9 +535,14 @@
           "topic": "Unsealed Files Suggest OJ Simpson Had Help Covering Up 1994 Murders",
           "slug": "oj-simpson-1994-murders-unsealed-files",
           "reserved_at": "2026-10-19T22:11:40.724Z"
+        },
+        {
+          "topic": "Sandi Toksvig and University of Cambridge Launch Mappa Mundi Project to Fix Wikipedia Bias",
+          "slug": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative",
+          "reserved_at": "2026-10-19T23:59:19.971Z"
         }
       ],
-      "last_generated": "2026-10-19T22:11:40.724Z"
+      "last_generated": "2026-10-19T23:59:19.971Z"
     },
     "2": {
       "channel_name": "AI Tested",
