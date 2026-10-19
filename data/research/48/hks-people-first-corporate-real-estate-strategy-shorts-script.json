@@ -1,0 +1,63 @@
+{
+  "channel_id": "48",
+  "topic_slug": "hks-people-first-corporate-real-estate-strategy",
+  "format": "shorts",
+  "hook": "Architecture firm HKS operates more than two dozen offices worldwide.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Architecture firm HKS operates more than two dozen offices worldwide.",
+      "b_roll": [
+        "Exterior shot of a corporate office building"
+      ],
+      "text_overlay": {
+        "text": "Two Dozen Offices"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Architecture firm HKS partnered with consulting firm McKinley Advisors in Washington, D.C. to reimagine their office space following COVID-19 closures.",
+      "b_roll": [
+        "Meeting room in Washington, D.C."
+      ],
+      "text_overlay": {
+        "text": "Washington, D.C. Office"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except architecture firm HKS also designed a sustainable hub for client Gen in Mountain View.",
+      "b_roll": [
+        "Tech hub building exterior in Mountain View"
+      ],
+      "text_overlay": {
+        "text": "Mountain View Hub"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Architecture firm HKS completed the sustainable workspace in Mountain View, California in December 2023. Architecture firm HKS delivered a people-first model for their Washington, D.C. office.",
+      "b_roll": [
+        "Interior workspace showing sustainable design"
+      ],
+      "text_overlay": {
+        "text": "December 2023 Completion"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Architecture firm HKS manages two dozen offices globally.",
+      "b_roll": [
+        "Global map highlighting office locations"
+      ],
+      "text_overlay": {
+        "text": "Global Design Company"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.hksinc.com/how-we-think/reports/an-inside-look-at-a-people-first-real-estate-model",
+    "https://www.hksinc.com/what-we-do/projects/a-future-thinking-office-refresh-embraces-a-digital-forward-strategy",
+    "https://www.workdesign.com/2025/08/hks-designs-gens-sustainable-tech-forward-hub-in-silicon-valley"
+  ]
+}
