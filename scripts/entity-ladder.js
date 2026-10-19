@@ -53,6 +53,16 @@ export function yieldsTo(b, g) {
   if (c.composition === "PROCESS-FULL") return true;
   // A bare stat card yields to a person / organisation / place the sentence names: that is what the sentence is about (RANK in entity-coverage.js).
   if (kinds.every((k) => k === "figure") && ["person", "organization", "place", "date"].includes(g.primary?.type)) return true;
+  // A CHART THAT SHOWS NONE OF THE PERSON / ORGANISATION / PLACE THE SENTENCE IS ABOUT YIELDS TO IT.
+  // Gaps are fatal, not reported: entity-coverage is a canvas check, so a chart kept here rejects the
+  // video. DATA-FULL lays out no slot for a second object (render-and-qa.js COMPOSITION_TAKES_SECOND),
+  // so it could never be answered beside the chart. The row that replaces it carries every figure the
+  // sentence states as its own entry (a figure entry draws the number), so no stated figure is lost.
+  // Board 39324629999: ch-2 beat 3 (PIE 77%, "Tech City Authority"), ch-2 beat 5 (GAUGE 73.7%,
+  // "MiniMax"), ch-1 beat 4 (BAR 3 / 26, "National Museum of American History") and ch-48 beat 5
+  // (GAUGE 3.2%, "Scott Kramer") were all rejected for exactly this. A chart whose primary is a
+  // NUMBER / DATE / SPAN is unchanged.
+  if (kinds.some((k) => k === "chart") && g.primary && ["person", "organization", "place", "date"].includes(g.primary.type)) return true;
   // a bare stat card whose only figure is the number of a span the sentence states ("30" of "30 years") carries nothing of whatever
   // else is named (board 37973067720: France / "30 years"; "The Fund Guide" / "90-day").
   const spans = (g.ents || []).filter((e) => e.type === "span");
@@ -311,8 +321,19 @@ export function ladderAll(b, plan) {
     // beat, the other number already has its own beat.
     const only = rowable[0];
     if (only.type === "number") {
-      const d = directiveFor(only, { ...g, ents: missing, primary: only }, b, true);
-      if (d) { d.replaces = true; d.alongside = false; out.push(d); }
+      // NEVER TRADE AWAY THE ENTITY THE FRAME ALREADY SHOWS. gapOf() nulls `primary` once it is
+      // covered, so this branch used to take a lone missing figure and REPLACE a visual that was
+      // answering the subject: on ch-48 beat 1 the map of Japan was replaced by a stat card for the
+      // number 10, and entity-coverage then failed the beat for drawing none of Japan (board
+      // 39324629999). When the beat already answers its subject the number rides beside it only where
+      // the composition has a slot (render-and-qa.js COMPOSITION_TAKES_SECOND) and otherwise stays in
+      // the headline; the gate only requires the primary to be shown.
+      // The sentence's own figure still missing (g.primary is a number) is the entity the gate is
+      // asking for: it must take the beat even though the canvas draws some other figure. Only when
+      // the primary is already covered (gapOf nulls it) does the number stay off the beat.
+      const replaces = Boolean(g.primary) || !keeps;
+      const d = directiveFor(only, { ...g, ents: missing, primary: only }, b, replaces);
+      if (d) { d.replaces = replaces; d.alongside = !replaces && keeps; out.push(d); }
     } else {
       const d = directiveFor(only, { ...g, ents: missing, primary: only }, b, !keeps);
       if (d) { d.alongside = keeps; out.push(d); }
@@ -329,8 +350,9 @@ export function ladderAll(b, plan) {
   // visual_type/data rather than art), so it is set here.
   if (!out.length) {
     for (const e of missing.filter((x) => x.type === "number")) {
-      const d = directiveFor(e, { ...g, ents: missing, primary: e }, b, !keeps);
-      if (d) { d.replaces = !keeps; d.alongside = false; out.push(d); }
+      const replaces = Boolean(g.primary) || !keeps;
+      const d = directiveFor(e, { ...g, ents: missing, primary: e }, b, replaces);
+      if (d) { d.replaces = replaces; d.alongside = !replaces && keeps; out.push(d); }
     }
   }
   return out;

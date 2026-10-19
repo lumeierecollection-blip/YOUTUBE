@@ -64,7 +64,10 @@ test("the ladder fills the gap with the visual of the entity, and leaves a beat 
   assert.equal(ladderFor(beat("It began on August 24, 2026.")).art.kind, "date");
   assert.equal(ladderFor(beat("It took 57 years to name her.")).art.kind, "span");
   assert.deepEqual(ladderFor(beat("Losses reached $352 million.")), { figure: { value: "$352 million", label: "Losses reached" } }.figure ? ladderFor(beat("Losses reached $352 million.")) : null);
-  assert.equal(ladderFor(beat("France now faces the highest costs.", { composition: "DATA-FULL", visual_type: "BAR", data: { bars: [{ label: "France", value: "9%" }] } })), null, "a chart is left to the gate");
+  // A chart that shows none of the place the sentence is about yields to it (board 39324629999: a
+  // PIE/GAUGE/BAR naming an organisation or person was rejected at canvas-checks because DATA-FULL
+  // lays out no slot for a second object, so the chart could never answer the entity).
+  assert.deepEqual(ladderFor(beat("France now faces the highest costs.", { composition: "DATA-FULL", visual_type: "BAR", data: { bars: [{ label: "France", value: "9%" }] } })), { map: "France", region: "country:FRA", flag: "fr", replaces: true });
   assert.equal(gapOf(beat("That changes everything.")).covered, true);
 });
 
@@ -114,8 +117,9 @@ test("a visual that carries nothing of the entity yields to it (board 3796752404
   // a span drawn as a bare figure becomes the time scale
   const span = ladderFor(beat("The investigation lasted 2 years before the Guardia Civil secured the document.", { visual_type: "COUNTER", composition: "NUMBER-STAT", data: { value: "2", label: "years before Guardia" } }));
   assert.equal(span.art.kind, "span"); assert.equal(span.replaces, true);
-  // data with figures, a photo, a map and a portrait are still left alone for the gate
-  assert.equal(ladderFor(beat("Runway grew 40% in 2024.", { visual_type: "BAR", composition: "DATA-FULL", data: { bars: [{ label: "Runway", value: "40%" }] } }, [{ type: "company", name: "Runway" }])), null);
+  // a chart whose sentence names an organisation the chart does not draw yields to it; a chart whose
+  // primary is a number / date / span is left alone (see row-dedupe-and-photo-yield.test.js)
+  assert.deepEqual(ladderFor(beat("Runway grew 40% in 2024.", { visual_type: "BAR", composition: "DATA-FULL", data: { bars: [{ label: "Runway", value: "40%" }] } }, [{ type: "company", name: "Runway" }])), { art: { kind: "plate-organization", name: "Runway" }, replaces: true });
 });
 
 test("the caption never repeats the entity the plate carries; a logo item covers its organisation like a typeset plate", () => {
