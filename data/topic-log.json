@@ -1097,9 +1097,14 @@
           "topic": "Google Gemini 4 Argon vs Anthropic Claude Opus 5.5 Real-World Test",
           "slug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
           "reserved_at": "2026-10-19T19:15:19.038Z"
+        },
+        {
+          "topic": "Anthropic Haiku 5.5 and October 2026 AI API Pricing Breakdown",
+          "slug": "anthropic-haiku-5-5-october-2026-pricing-breakdown",
+          "reserved_at": "2026-10-19T20:07:59.057Z"
         }
       ],
-      "last_generated": "2026-10-19T19:15:19.039Z"
+      "last_generated": "2026-10-19T20:07:59.058Z"
     },
     "3": {
       "channel_name": "AI Tested",
