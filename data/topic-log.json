@@ -3,8 +3,8 @@
   "description": "Tracks all topics used per channel to prevent duplicates. Updated after each script generation.",
   "channels": {
     "1": {
-      "channel_name": "Money Mind",
-      "niche": "Personal Finance (Budgeting for Beginners)",
+      "channel_name": "Hidden Past",
+      "niche": "History Untold (What Really Happened)",
       "used_topics": [
         {
           "topic": "How Often You Should Get Paid (And Why It Matters More Than You Think)",
@@ -515,9 +515,14 @@
           "topic": "Why 26 Percent of Americans Spend More Than They Earn in FINRA Data",
           "slug": "finra-data-26-percent-spending-more-than-earn",
           "reserved_at": "2026-10-18T21:46:33.678Z"
+        },
+        {
+          "topic": "Sandi Toksvig Launches Mappa Mundi Project to Counter Wikipedia Bias",
+          "slug": "sandi-toksvig-mappa-mundi-project-counter-wikipedia-bias",
+          "reserved_at": "2026-10-19T18:19:33.317Z"
         }
       ],
-      "last_generated": "2026-10-19T15:47:23.799Z"
+      "last_generated": "2026-10-19T18:19:33.317Z"
     },
     "2": {
       "channel_name": "AI Tested",
