@@ -515,9 +515,14 @@
           "topic": "Why 26 Percent of Americans Spend More Than They Earn in FINRA Data",
           "slug": "finra-data-26-percent-spending-more-than-earn",
           "reserved_at": "2026-10-18T21:46:33.678Z"
+        },
+        {
+          "topic": "The 1917 Holt-Putilov Alexander Nevsky Heavy Tank and Alternative Russian WWI History",
+          "slug": "1917-holt-putilov-alexander-nevsky-heavy-tank",
+          "reserved_at": "2026-10-19T19:15:34.606Z"
         }
       ],
-      "last_generated": "2026-10-19T18:19:33.317Z"
+      "last_generated": "2026-10-19T19:15:34.606Z"
     },
     "2": {
       "channel_name": "AI Tested",
