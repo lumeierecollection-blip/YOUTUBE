@@ -1,0 +1,63 @@
+{
+  "channel_id": "48",
+  "topic_slug": "robin-powered-claude-first-ai-space-planning-seating",
+  "format": "shorts",
+  "hook": "On October 6, 2026, workplace platform Robin launched Claude-First AI space planning in Boston, which lets users build stack plans through conversation.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "On October 6, 2026, workplace platform Robin launched Claude-First AI space planning in Boston, which lets users build stack plans through conversation.",
+      "b_roll": [
+        "Digital office floor plan on a screen in Boston"
+      ],
+      "text_overlay": {
+        "text": "AI Space Planning"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Robin announced the Workplace Management Connector for Claude, but how do employees connect accounts?",
+      "b_roll": [
+        "Connector interface graphic",
+        "Data charts displaying attendance metrics"
+      ],
+      "text_overlay": {
+        "text": "Workplace Management Connector"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Robin Help Center documents a 2-step process to book desks and plan layouts.",
+      "b_roll": [
+        "Desk booking interface animation"
+      ],
+      "text_overlay": {
+        "text": "2 Steps"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Boston teams build stack plans, update seating, and model growth through conversation.",
+      "b_roll": [
+        "Seating charts updating automatically via AI"
+      ],
+      "text_overlay": {
+        "text": "Agentic Orchestration"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Connect your Robin account in 2 steps today.",
+      "b_roll": [
+        "Robin logo on office display"
+      ],
+      "text_overlay": {
+        "text": "Robin Powered"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://robinpowered.com/press-releases/robin-reinvents-space-planning-for-the-workplace",
+    "https://support.robinpowered.com/hc/en-us/articles/49332437441933-Connect-Robin-to-Claude"
+  ]
+}

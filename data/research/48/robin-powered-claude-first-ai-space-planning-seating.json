@@ -1,0 +1,65 @@
+{
+  "topic_slug": "robin-powered-claude-first-ai-space-planning-seating",
+  "strongest_angle": "Examine how Robin Powered integrates Anthropic's Claude into workplace operations, enabling workplace teams in Boston to automate stack plans, floor layouts, and seating charts through natural language conversations using their own office maps and utilization data.",
+  "key_facts": [
+    {
+      "fact": "On October 6, 2026, workplace platform Robin launched Claude-First AI space planning in Boston to help teams build stack plans, update seating, and model growth through conversation.",
+      "source_url": "https://robinpowered.com/press-releases/robin-reinvents-space-planning-for-the-workplace",
+      "source_name": "Robin Press Releases",
+      "confidence": "high"
+    },
+    {
+      "fact": "Robin announced the Workplace Management Connector for Claude on October 6, 2026, transitioning its platform from basic operations to agentic workplace orchestration.",
+      "source_url": "https://robinpowered.com/press-releases/robin-moves-workplace-management-from-operations-to-orchestration-launches-workplace-management-connector-for-claude",
+      "source_name": "Robin Press Releases",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Robin Help Center documents that employees can connect their Robin accounts to Claude in a two-step process to book desks and plan floor layouts.",
+      "source_url": "https://support.robinpowered.com/hc/en-us/articles/49332437441933-Connect-Robin-to-Claude",
+      "source_name": "Robin Help Center",
+      "confidence": "medium"
+    },
+    {
+      "fact": "PR Newswire reported on October 6, 2026, that Robin's space planning feature combines maps, attendance, utilization, and policy data with Anthropic's Claude context.",
+      "source_url": "https://www.prnewswire.com/news-releases/robin-reinvents-space-planning-for-the-workplace-claude-first-302899566.html",
+      "source_name": "PR Newswire",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Setup Steps",
+      "value": 2,
+      "unit": "steps",
+      "source_url": "https://support.robinpowered.com/hc/en-us/articles/49332437441933-Connect-Robin-to-Claude"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Robin",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude",
+      "kind": "object"
+    },
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Boston",
+      "kind": "place"
+    },
+    {
+      "name": "Katie White",
+      "kind": "person"
+    },
+    {
+      "name": "The Robin Team",
+      "kind": "organization"
+    }
+  ]
+}
