@@ -844,6 +844,7 @@ jobs:
                     FEEDBACK=$( { printf '%s\n%s\n' "$FEEDBACK" "$GATE_LINES" | grep -v '  - LENGTH:'; printf '  - LENGTH: your voiceover is %s words and runs %ss; a Short must finish inside 58s. Rewrite it to AT MOST %s words in total across all sections (count them). Keep every sourced fact you keep worded exactly as before.\n' "$WORDS" "$VO_END" "$MAXW"; } | grep -E '^  - ' | sort -u)
                     continue
                   fi
+fi
                 fi
                 PASSED=1
                 break
@@ -852,13 +853,14 @@ jobs:
               cat /tmp/gate-out-$FORMAT.log
               # STRICT STARVATION -> ONE TOPIC RE-PICK (SCR-19). The strict
               # rule can only be satisfied with sentences the RESEARCH can
-              # support; when attempt 5 still fails it and nothing else, the
-              # topic is the problem, not the wording. Run 39399514270 ch-48
-              # burned all 8 attempts on a paper whose every fact was "X
-              # analysed Y" - no rewrite can ground that without inventing.
+              # support; when attempt 3 still fails it and nothing else, the
+              # topic is the problem, not the wording. Run 39467488717 ch-48:
+              # the biomechanics paper had 5 figureless sentences, the script
+              # fit the length, so the old re-pick (inside the FITS block) never
+              # ran. Now it runs on EVERY gate rejection for strict channels.
               # Same machinery and one-per-run budget as the claims re-pick
               # (REPICKED/BURNED, ~45 lines above); the replacement topic
-              # starts with a clean feedback slate and 3 attempts left.
+              # starts with a clean feedback slate and 5 attempts left.
               #
               # SCR-18 belongs here too (run 39422270500 ch-48): the writer
               # invented study labels ("Studies Analyzed", "Online
