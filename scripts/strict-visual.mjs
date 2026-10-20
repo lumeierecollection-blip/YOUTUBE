@@ -158,6 +158,18 @@ export function strictVisualAudit(beats = [], { log = () => {} } = {}) {
       });
       continue;
     }
+    // MONEY / DOCUMENT are drawn from a FETCHED banknote photo / document scan
+    // (canvasContentFor degrades them to TYPE without one), and this audit runs
+    // after the fetch stage — an upgrade here could pass the audit and still
+    // render as type. The plan stage had its chance to fetch them; say so.
+    if (g.visual_type === "MONEY" || g.visual_type === "DOCUMENT") {
+      failures.push({
+        beat: b.index ?? "?",
+        sentence,
+        reason: `the sentence grounds ${g.visual_type}, which is drawn from a fetched ${g.visual_type === "MONEY" ? "banknote photo" : "document scan"}; the beat resolved without one and the fetch stage is past`,
+      });
+      continue;
+    }
     const why = `the sentence grounds ${g.visual_type}${g.data ? ` ${JSON.stringify(g.data).slice(0, 60)}` : ""}`;
     log(`[strict-visual] beat ${b.index ?? "?"}: ${c.composition || "TYPE"} has no visual — ${why}`);
     upgrades.push({ beat: b.index ?? "?", target: b, from: c.composition || "TYPE", to: g.visual_type, data: g.data, why });

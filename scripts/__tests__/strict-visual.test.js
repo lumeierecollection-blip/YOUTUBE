@@ -116,6 +116,23 @@ test("the audit upgrades a text beat whose sentence grounds a figure, and report
   assert.equal(upgrades.length + failures.length + 1, 3, "the already-visual beat is untouched");
 });
 
+test("numbers glued to letters are not figures (3D, A24), and trailing commas are cleaned", () => {
+  assert.equal(groundedVisualFor("Generated 3D models fail 3D printing."), null);
+  const g = groundedVisualFor("On August 28, 2026, the team published it.");
+  assert.ok(g);
+  assert.equal(g.visual_type, "COUNTER");
+  assert.equal(g.data.value, "2026");
+  assert.ok(!/,$/.test(String(g.data.value)), "a value must never keep the extractor's trailing comma");
+});
+
+test("MONEY / DOCUMENT cannot be upgraded after the fetch stage — they fail instead of degrading to type", () => {
+  const b = { index: 5, narration: "The receipt shows the full amount.", canvas: { composition: "TYPE-FULL", visual_type: "TYPE" }, visual_type: "TYPE", data: null };
+  const { upgrades, failures } = strictVisualAudit([b]);
+  assert.equal(upgrades.length, 0);
+  assert.equal(failures.length, 1);
+  assert.match(failures[0].reason, /fetched/);
+});
+
 test("the script gate's strict check flags only sentences with no drawable content and no entity", () => {
   const bad = strictUngroundableSentences([
     "Prices rose sharply last spring.",          // TREND

@@ -32,7 +32,7 @@ import { assignCanvasAnimations } from "./anim-plan.js";
 import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor, symbolFor } from "./composition-variety.js";
 import { quantitiesOf } from "./canvas-grounding.js";
 import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
-import { strictVisualEnabled, strictVisualAudit } from "./strict-visual.mjs";
+import { strictVisualEnabled, strictVisualAudit, canvasHasRealVisual } from "./strict-visual.mjs";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
@@ -2621,6 +2621,13 @@ async function resolveCanvas(channelId, planPath, plan) {
       b.visual_type = u.to;
       b.data = u.data;
       b.canvas = canvasContentFor(b, {});
+      if (!canvasHasRealVisual(b.canvas)) {
+        // The rebuilt canvas must still be a real visual (a candidate that
+        // needs a fetched asset degrades to TYPE without one — never let an
+        // upgrade pass the audit and render as text).
+        audit.failures.push({ beat: u.beat, sentence: b.narration || "", reason: `the ${u.to} candidate rebuilt as ${b.canvas.composition} with no asset` });
+        continue;
+      }
       console.log(`[strict-visual] ch-${channelId} beat ${u.beat}: ${u.from} -> ${b.canvas.composition} (${u.why})`);
     }
     if (audit.failures.length) {
