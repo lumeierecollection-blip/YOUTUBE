@@ -49,14 +49,22 @@ const FIGURE_PATTERNS = [
 ];
 
 const MEASURABLE_KEYWORDS = [
-  "percent", "percentage", "%", "increase", "decrease", "rise", "fall", "growth", "decline",
-  "survey", "study", "report", "data", "statistics", "statistic", "number", "numbers",
-  "million", "billion", "trillion", "thousand", "percent", "ratio", "rate",
-  "increased", "decreased", "grew", "fell", "rose", "dropped", "jumped", "surged",
-  "quarter", "year", "month", "week", "day", "hour", "minute", "second",
-  "km", "miles", "meters", "feet", "inches", "kg", "pounds", "dollars", "euros",
-  "billion", "million", "trillion", "k", "m", "b",
-  "ratio", "rate", "score", "index", "benchmark", "benchmark", "metric", "metrics",
+  // Explicit quantitative/measurable terms only
+  "percent", "percentage", "%",
+  "survey", "poll", "census",
+  "statistics", "statistic", "statistics",
+  "million", "millions", "billion", "billions", "trillion", "trillions",
+  "thousand", "thousands",
+  "increase", "increases", "increased", "decrease", "decreases", "decreased",
+  "growth", "growth rate", "decline", "declined",
+  "survey", "surveyed", "poll", "polled",
+  "ratio", "rate", "rate of",
+  "score", "index", "benchmark", "benchmark",
+  "metric", "metrics", "measurement", "measurements",
+  "quarter", "quarters", "fiscal",
+  "revenue", "profit", "loss", "earnings",
+  "participants", "respondents", "sample size",
+  "significant", "significance", "p-value", "confidence interval",
 ];
 
 function hasMeasurableKeywords(text) {
