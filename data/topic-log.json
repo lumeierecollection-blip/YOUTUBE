@@ -1177,11 +1177,6 @@
           "topic": "Interact MCP Server Brings Enterprise Intranet to AI Assistants",
           "slug": "interact-mcp-enterprise-intranet-server",
           "reserved_at": "2026-10-20T16:11:35.130Z"
-        },
-        {
-          "topic": "OpenAI and Microsoft Retire Legacy Completions API in October 2026",
-          "slug": "openai-microsoft-legacy-completions-api-sunset",
-          "reserved_at": "2026-10-20T21:01:21.286Z"
         }
       ],
       "last_generated": "2026-10-20T21:01:21.286Z"
