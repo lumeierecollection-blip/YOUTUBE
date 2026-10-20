@@ -1468,6 +1468,9 @@ jobs:
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             git checkout -- data/research data/tts data/thumbnails data/renders 2>/dev/null || true
+            # downloaded artifacts are untracked copies of files main may already hold: they block the rebase
+            # (run 39344506422 ch-1: the queue entry was committed but never pushed; video stayed private)
+            git clean -fdq -- data ':!data/publish-queue'
             # --autostash: the render leaves other tracked files modified (run 39031532519 ch-1: "cannot rebase: You have unstaged changes", queue never pushed)
             git rebase --autostash "origin/${{ github.ref_name }}" || git rebase --abort
             if git push origin "${{ github.ref_name }}"; then
