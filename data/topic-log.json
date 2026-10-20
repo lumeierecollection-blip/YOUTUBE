@@ -1132,9 +1132,14 @@
           "topic": "OVHcloud Public Cloud October 2026 Price Increases Analyzed",
           "slug": "ovhcloud-public-cloud-october-2026-pricing-update",
           "reserved_at": "2026-10-20T00:00:04.334Z"
+        },
+        {
+          "topic": "Amazon MWAA Adds AI Agent Skills for Apache Airflow Workflows",
+          "slug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+          "reserved_at": "2026-10-20T00:48:29.674Z"
         }
       ],
-      "last_generated": "2026-10-20T00:00:04.334Z"
+      "last_generated": "2026-10-20T00:48:29.674Z"
     },
     "3": {
       "channel_name": "AI Tested",
