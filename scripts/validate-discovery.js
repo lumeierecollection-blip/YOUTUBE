@@ -89,6 +89,16 @@ async function checkFigureDensity(topic) {
   return totalFigures >= 8 ? { pass: true, figures: totalFigures } : { pass: false, figures: totalFigures };
 }
 
+async function quickSearchDomains(query) {
+  const url = `${WEBSEARCH_URL}?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
+  const data = await getJson(url);
+  if (!data?.Abstract || !data?.AbstractURL) return [];
+  try {
+    const host = new URL(data.AbstractURL).hostname.replace(/^www\./, "");
+    return [host];
+  } catch { return []; }
+}
+
 async function checkTwoDomains(topic) {
   const query = `${topic.topic} ${topic.angle || ""}`.trim();
   const domains = new Set();
