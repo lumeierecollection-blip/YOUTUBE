@@ -1,0 +1,66 @@
+{
+  "channel_id": "48",
+  "topic_slug": "state-farm-mit-agelab-drivefulness-research",
+  "format": "shorts",
+  "hook": "Distracted driving causes 10,000 deaths every year.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Distracted driving causes 10,000 deaths every year.",
+      "b_roll": [
+        "A counter showing 10,000 annual deaths on American roadways."
+      ],
+      "text_overlay": {
+        "text": "10,000 Deaths Yearly"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, State Farm and MIT AgeLab collaborated in Bloomington, Illinois to study driver distraction through Drivefulness. Where did 100 billion dollars in roadway risks originate?",
+      "b_roll": [
+        "A document from October 2026 showing the collaboration in Bloomington, Illinois.",
+        "A chart displaying 1.3 million annual injuries.",
+        "A financial graphic showing 100 billion dollars in roadway risks."
+      ],
+      "text_overlay": {
+        "text": "1.3 Million Injuries"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "State Farm data reports that 68% of drivers admit to engaging in distracted behaviors.",
+      "b_roll": [
+        "A percentage chart showing 68% of drivers admitting distraction."
+      ],
+      "text_overlay": {
+        "text": "68% Admit Distraction"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "State Farm and MIT AgeLab launched Drivefulness to tackle nearly 100 billion dollars in roadway risks.",
+      "b_roll": [
+        "A diagram showing 100 billion dollars in roadway risks.",
+        "Statistics highlighting 10,000 deaths and 1.3 million injuries.",
+        "Survey graphics showing 68% of drivers admitting distraction."
+      ],
+      "text_overlay": {
+        "text": "$100 Billion Risks"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "State Farm statistics confirm that 10,000 deaths occur annually across the United States.",
+      "b_roll": [
+        "A final graphic displaying 10,000 annual deaths."
+      ],
+      "text_overlay": {
+        "text": "10,000 Annual Deaths"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://newsroom.statefarm.com/state-farm-and-mit-agelab-collaborate-on-distracted-driving-research",
+    "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+  ]
+}
