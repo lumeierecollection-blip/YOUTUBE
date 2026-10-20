@@ -1157,9 +1157,14 @@
           "topic": "MIT InstructMesh Tool Repairs and Fabricates AI 3D Models",
           "slug": "mit-instructmesh-ai-3d-models-fabrication",
           "reserved_at": "2026-10-20T08:38:22.452Z"
+        },
+        {
+          "topic": "UiPath October 2026 Integration Service and TypeSafe Connector Test",
+          "slug": "uipath-october-2026-integration-service-typesafe",
+          "reserved_at": "2026-10-20T09:21:51.915Z"
         }
       ],
-      "last_generated": "2026-10-20T08:38:22.452Z"
+      "last_generated": "2026-10-20T09:21:51.915Z"
     },
     "3": {
       "channel_name": "AI Tested",
