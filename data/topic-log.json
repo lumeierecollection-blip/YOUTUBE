@@ -545,9 +545,14 @@
           "topic": "The CIA, Havana Syndrome, and the 2026 Revelations on Russia",
           "slug": "cia-havana-syndrome-russia-revelations-2026",
           "reserved_at": "2026-10-20T08:39:34.015Z"
+        },
+        {
+          "topic": "British Library Acquires the Extensive Archive of A.S. Byatt",
+          "slug": "british-library-acquires-as-byatt-archive",
+          "reserved_at": "2026-10-20T09:21:26.125Z"
         }
       ],
-      "last_generated": "2026-10-20T08:39:34.015Z"
+      "last_generated": "2026-10-20T09:21:26.125Z"
     },
     "2": {
       "channel_name": "AI Tested",
