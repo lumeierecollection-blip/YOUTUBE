@@ -1,0 +1,70 @@
+{
+  "topic_slug": "british-library-acquires-as-byatt-archive",
+  "strongest_angle": "Examine the newly acquired 68-box archive of Booker Prize-winning author Dame A.S. Byatt at the British Library, detailing her decades of working papers, diaries, and manuscripts.",
+  "key_facts": [
+    {
+      "fact": "The British Library acquired the extensive literary archive of Dame A.S. Byatt, consisting of 68 boxes filled with working notebooks, manuscripts, personal diaries, and correspondence.",
+      "source_url": "https://thepublishingtimes.com/blog/as-byatt-archive-british-library-68-boxes",
+      "source_name": "The Publishing Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "Dame A.S. Byatt passed away in 2023 at the age of 87, leaving behind a prodigious literary career that spanned six decades.",
+      "source_url": "https://thepublishingtimes.com/blog/as-byatt-archive-british-library-68-boxes",
+      "source_name": "The Publishing Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The archive includes early life papers such as a September 1956 diary entry written when A.S. Byatt was twenty years old.",
+      "source_url": "https://www.modezone.com/a-new-as-byatt-archive-looks-inside-an-extraordinary-literary-mind",
+      "source_name": "ModeZone",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Boxes in the archive",
+      "value": 68,
+      "unit": "boxes",
+      "source_url": "https://thepublishingtimes.com/blog/as-byatt-archive-british-library-68-boxes"
+    },
+    {
+      "label": "Age at death",
+      "value": 87,
+      "unit": "years",
+      "source_url": "https://thepublishingtimes.com/blog/as-byatt-archive-british-library-68-boxes"
+    },
+    {
+      "label": "Age in 1956 diary entry",
+      "value": 20,
+      "unit": "years",
+      "source_url": "https://www.modezone.com/a-new-as-byatt-archive-looks-inside-an-extraordinary-literary-mind"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Today, I know I can do anything. But not yet.",
+      "speaker": "A.S. Byatt",
+      "source_name": "ModeZone",
+      "source_url": "https://www.modezone.com/a-new-as-byatt-archive-looks-inside-an-extraordinary-literary-mind"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "British Library",
+      "kind": "organization"
+    },
+    {
+      "name": "A.S. Byatt",
+      "kind": "person"
+    },
+    {
+      "name": "Possession: A Romance",
+      "kind": "object"
+    },
+    {
+      "name": "The Children’s Book",
+      "kind": "object"
+    }
+  ]
+}
