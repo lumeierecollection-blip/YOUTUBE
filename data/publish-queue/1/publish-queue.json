@@ -100,9 +100,10 @@
     "uploaded_at": "2026-10-20T00:23:16.835Z",
     "publish_delay_hours": 1,
     "go_public_at": "2026-10-20T01:23:16.835Z",
-    "privacy_status": "private",
+    "privacy_status": "public",
     "cancelled": false,
     "source_file": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative-shorts-shorts-2026-10-20.mp4",
-    "source_queue": "approved"
+    "source_queue": "approved",
+    "published_at": "2026-10-20T09:38:44.014Z"
   }
 ]
