@@ -843,6 +843,62 @@ jobs:
               fi
               echo "::warning::script gate rejected attempt $ATTEMPT/8 for $SCRIPT_SLUG"
               cat /tmp/gate-out-$FORMAT.log
+              # STRICT STARVATION -> ONE TOPIC RE-PICK (SCR-19). The strict
+              # rule can only be satisfied with sentences the RESEARCH can
+              # support; when attempt 5 still fails it and nothing else, the
+              # topic is the problem, not the wording. Run 39399514270 ch-48
+              # burned all 8 attempts on a paper whose every fact was "X
+              # analysed Y" - no rewrite can ground that without inventing.
+              # Same machinery and one-per-run budget as the claims re-pick
+              # (REPICKED/BURNED, ~45 lines above); the replacement topic
+              # starts with a clean feedback slate and 3 attempts left.
+              if [ "$ATTEMPT" -eq 5 ] && [ "$REPICKED" -eq 0 ] \
+                 && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
+                 && [ -f /tmp/topics.json ]; then
+                BURNED="${BURNED:-} $SLUG"
+                NEXT=""; NEXT_TOPIC=""; NEXT_ANGLE=""
+                N=$(jq '.topics | length' /tmp/topics.json 2>/dev/null || echo 0)
+                for IDX in $(seq 0 $((N - 1))); do
+                  T=$(jq -r ".topics[$IDX].topic" /tmp/topics.json)
+                  S=$(jq -r ".topics[$IDX].slug" /tmp/topics.json)
+                  [ "$S" = "$SLUG" ] && continue
+                  case " $BURNED " in *" $S "*) continue ;; esac
+                  set +e
+                  node scripts/reserve-topic-single.js "$CH" "$T" "$S" > /dev/null 2>&1
+                  R=$?
+                  set -e
+                  [ "$R" -eq 0 ] || continue
+                  NEXT="$S"; NEXT_TOPIC="$T"; NEXT_ANGLE=$(jq -r ".topics[$IDX].angle // \"\"" /tmp/topics.json)
+                  break
+                done
+                if [ -n "$NEXT" ]; then
+                  echo "[script] ch-$CH: strict visual rule starved by this topic - re-picking: $SLUG -> $NEXT"
+                  jq -n --arg s "$NEXT" --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" '{slug:$s,topic:$t,angle:$a}' > /tmp/channel-topic.json
+                  set +e
+                  jq -n --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" --arg s "$NEXT" --arg c "$CH" \
+                        '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null}' \
+                    | node scripts/ollama-agent.js \
+                        --prompt-file prompts/research.md \
+                        --schema-file schemas/research.json \
+                        --agent pipeline-research \
+                        --model "$OPENCODE_MODELS_RESEARCH" \
+                        --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$NEXT" \
+                        --search-out "data/research/$CH/$NEXT-search.json" \
+                        > /tmp/research-repick.json 2> >(tee /tmp/research-repick-err.log >&2)
+                  RP_EXIT=$?
+                  set -e
+                  if [ "$RP_EXIT" -eq 0 ] && jq -e '.structured_output.key_facts | length >= 3' /tmp/research-repick.json > /dev/null; then
+                    jq '.structured_output' /tmp/research-repick.json > "data/research/$CH/$NEXT.json"
+                    SLUG="$NEXT"; SCRIPT_SLUG="${SLUG}-${FORMAT}"
+                    CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""
+                    REPICKED=1
+                    continue
+                  fi
+                  echo "::warning::[script] ch-$CH: research for the strict re-pick $NEXT failed - continuing with the current topic"
+                else
+                  echo "::warning::[script] ch-$CH: no spare topic left for the strict re-pick"
+                fi
+              fi
               # Accumulate violations across attempts (see run 35289507647).
               NEW_FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
               FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$NEW_FEEDBACK" \

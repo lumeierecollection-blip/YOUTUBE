@@ -57,6 +57,17 @@ function main() {
       try { return JSON.parse(readFileSync(join(ROOT, "data", "trending", `${channelId}-keywords.json`), "utf-8")).keywords.slice(0, 12).map((k) => k.term); }
       catch { return []; }
     })(),
+    // STRICT VISUAL RULE (config strict_visual: ch-02, ch-48; CHECK-REGISTER
+    // SCR-19). The writer used to learn this only from gate feedback after
+    // eight failed attempts (run 39399514270 ch-48 starved at 4-5 ungroundable
+    // sentences per attempt). Say it up front, and say what does not count:
+    // naming a person/organisation is not a visual. Everything stated must
+    // still come from `research` — the rule changes WHAT to select, never
+    // licenses an invented number.
+    visual_rule: channel.strict_visual ? {
+      required: true,
+      rule: "EVERY voiceover sentence must state something a frame can draw: a sourced number, date, place, list, comparison, document, money object or cause/effect sequence. Naming a person, paper or organisation alone is NOT enough - a name plate is a text card. Prefer the research facts that carry a scene, a place, a measured figure or a step-by-step process; do not write method-only sentences like 'X analyzed Y' unless you can name the Y, where, or a result in that same sentence WITHOUT inventing anything. The figures must appear verbatim in the research artifact.",
+    } : null,
     research,
   };
 

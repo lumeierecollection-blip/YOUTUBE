@@ -430,7 +430,7 @@ function main() {
     const bad = strictUngroundableSentences(wordsOnlyShare(sections).sentences);
     if (bad.length) {
       blockers.push(
-        `SCR-17 STRICT (strict_visual channel): ${bad.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence and name no entity that can carry a picture — every beat must draw a real visual. Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw: "${bad.slice(0, 4).join('" / "').slice(0, 300)}"`
+        `SCR-17 STRICT (strict_visual channel): ${bad.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — naming a person or organisation is not enough, a name plate is a text card. Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts verbatim from the research; invent nothing): "${bad.slice(0, 4).join('" / "').slice(0, 300)}"`
       );
     }
   }
