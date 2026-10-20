@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Gate — script quality (CHECK-REGISTER.md SCR-03..SCR-08, SCR-12..SCR-14, SCR-18).
+ * Gate â€” script quality (CHECK-REGISTER.md SCR-03..SCR-08, SCR-12..SCR-14, SCR-18).
  * SCR-09/SCR-10/SCR-11 are enforced earlier, in reserve-topics.js at Stage A.
  *
  * BLOCKER checks fail the process (exit 1). MAJOR checks print a warning
@@ -11,7 +11,7 @@
 
 import { readFileSync, existsSync } from "fs";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
-import { strictUngroundableSentences } from "./strict-visual.mjs";
+import { strictUngroundableSentences, sentenceNamesEntity } from "./strict-visual.mjs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -22,7 +22,7 @@ const ROOT = join(__dirname, "..");
 // write-script prompt must advertise. The prompt used to state a flat
 // "75-130 words" for every channel, which is BELOW this gate's floor for
 // motion-graphics (78) and minimal (83) and ABOVE its ceiling for
-// cinematic-documentary (112) — so a model that obeyed the prompt failed
+// cinematic-documentary (112) â€” so a model that obeyed the prompt failed
 // SCR-16 deterministically. Channels 1 and 48 failed this way in runs
 // 35211514030 and 35266860427 (62, 64, 57 words). If these numbers change,
 // that test fails and the prompt has to be updated with them.
@@ -32,13 +32,13 @@ const ROOT = join(__dirname, "..");
 // 38034289156 with ch 1, 5, 26 and 44 skipped. The board's two minimal channels (6, 8) get the
 // same figure; cinematic-documentary is not on the board and is left until it has a measured run.
 export const WPM_TARGET = { "cinematic-documentary": 135, "motion-graphics": 125, minimal: 125 };
-// Midpoint of render.js's clamp ranges, used only to sanity-check pacing —
+// Midpoint of render.js's clamp ranges, used only to sanity-check pacing â€”
 // actual duration is decided later by the real voiceover audio length.
 const FORMAT_MIDPOINT_MINUTES = { shorts: 44 / 60, longform: (2 + 12) / 2 };
 // Duration cap: all videos target 30-50 seconds (wide window - model oscillates)
 // Render.js clamps final duration to the actual voiceover length anyway.
-// 2026-10-03, the narrative engine (prompts/write-script.md): five beats — hook, setup,
-// re-hook, payoff, close — need ~100 words. Shorts move from 30-45 s to 36-52 s at the
+// 2026-10-03, the narrative engine (prompts/write-script.md): five beats â€” hook, setup,
+// re-hook, payoff, close â€” need ~100 words. Shorts move from 30-45 s to 36-52 s at the
 // gate's effective rate, (superseded 2026-10-10: 80-98 words at the Gemini voice's pace) (scripts/test-word-budget.mjs).
 // Measured the same day the narrator speaks 1.8-2.5 words/s, so ~100 words is 40-55 s of
 // real voiceover; the workflow still trims anything over 58 s (scripts/fit-short.js).
@@ -52,7 +52,7 @@ export const DURATION_RANGE_SECONDS = { shorts: { min: 36, max: 52 }, longform: 
  * documentary pace"), and no channel overrides it. The gate was converting
  * words to seconds at the NOMINAL wpm, which is ~9% optimistic: 129 words
  * was predicted at 49.9s and ch48 actually rendered at 55.49s in run
- * 35319923732 — inside the gate, outside the target.
+ * 35319923732 â€” inside the gate, outside the target.
  *
  * Applying the rate here makes the gate's prediction match what the
  * renderer will actually produce, so the 30-45s target is real rather than
@@ -76,8 +76,8 @@ function wordCount(text) {
   return String(text || "").split(/\s+/).filter(Boolean).length;
 }
 
-// ── SCR-18: names are copied from the research, not retyped ─────────────────
-const NAME_TOKEN = /^[A-Z][A-Za-z'’-]+$/;
+// â”€â”€ SCR-18: names are copied from the research, not retyped â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+const NAME_TOKEN = /^[A-Z][A-Za-z'â€™-]+$/;
 // Tokens allowed INSIDE a multi-word name: "Bank of Nowhere", "Van der Waals".
 const NAME_CONNECTOR = new Set(["of", "the", "and", "for", "de", "del", "van", "von", "da", "di", "la", "le", "du"]);
 // Sentence-initial words that are not names and must not turn the next word into a
@@ -87,7 +87,7 @@ const NAME_LEAD = new Set(["the", "a", "an", "on", "in", "at", "by", "for", "fro
 function nameTokens(text) {
   return String(text || "")
     .split(/\s+/)
-    .map((t) => t.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9'’-]+$/g, "").replace(/['’]s$/i, ""))
+    .map((t) => t.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9'â€™-]+$/g, "").replace(/['â€™]s$/i, ""))
     .filter(Boolean);
 }
 const stripLead = (tokens) => {
@@ -110,7 +110,7 @@ const editDistanceAtMost1 = (a, b) => {
 };
 
 /**
- * SCR-18 (BLOCKER near-miss / MAJOR unknown) — every proper noun is copied from
+ * SCR-18 (BLOCKER near-miss / MAJOR unknown) â€” every proper noun is copied from
  * the research artifact, character for character.
  *
  * Run 39128017438 rendered "The Washington Pest": the writer's script said
@@ -121,7 +121,7 @@ const editDistanceAtMost1 = (a, b) => {
  *
  * Conservative by design. A near-miss is a capitalised sequence (or a token of
  * a researched name) that differs from a research name by exactly one edit and
- * starts with the same letter — the shape of a typo, not a paraphrase.
+ * starts with the same letter â€” the shape of a typo, not a paraphrase.
  * Everything else capitalised and absent from the research is a MAJOR warning,
  * because sentence-initial words and legitimate paraphrase live there.
  */
@@ -191,9 +191,9 @@ export function nameFidelityProblems(script, research) {
 
       const near = nearMissOfWindow(core) || (core.length === 1 ? nearMissOfToken(core[0]) : null);
       if (near) {
-        blockers.push(`SCR-18: "${win.join(" ")}" is a near-miss of the research name "${near}" — copy the name exactly as the research artifact spells it.`);
+        blockers.push(`SCR-18: "${win.join(" ")}" is a near-miss of the research name "${near}" â€” copy the name exactly as the research artifact spells it.`);
       } else if (core.length >= 2) {
-        majors.push(`SCR-18: "${win.join(" ")}" is not named in the research artifact — use the research's own name, or drop the name.`);
+        majors.push(`SCR-18: "${win.join(" ")}" is not named in the research artifact â€” use the research's own name, or drop the name.`);
       }
     }
   }
@@ -256,13 +256,13 @@ function main() {
   // Grounding checks (SCR-08, SCR-12..14) still apply to every script.
   const readsBeats = isMg && !(script.format === "shorts" && process.env.USE_LEGACY_3D !== "true");
   if (isMg && !readsBeats) {
-    console.log("SCR-03/04/05/06/07/15: not applicable — DirectedShorts does not read sections[].beats (CHECK-REGISTER.md scope note).");
+    console.log("SCR-03/04/05/06/07/15: not applicable â€” DirectedShorts does not read sections[].beats (CHECK-REGISTER.md scope note).");
   }
 
   if (readsBeats) {
     const allBeats = sections.flatMap((s) => (s.beats || []).map((b) => ({ ...b, sectionId: s.id, voiceover: s.voiceover })));
 
-    // SCR-03 — anchor_token appears verbatim in its section's voiceover.
+    // SCR-03 â€” anchor_token appears verbatim in its section's voiceover.
     for (const b of allBeats) {
       const vo = (b.voiceover || "").toLowerCase();
       if (!b.anchor_token || !vo.includes(String(b.anchor_token).toLowerCase())) {
@@ -270,7 +270,7 @@ function main() {
       }
     }
 
-    // SCR-04 — every PROGRESS beat has data.series with >=2 points.
+    // SCR-04 â€” every PROGRESS beat has data.series with >=2 points.
     for (const b of allBeats.filter((x) => x.archetype === "PROGRESS")) {
       const n = b.data?.series?.length || 0;
       if (n < 2) {
@@ -284,13 +284,13 @@ function main() {
         // (CLAUDE.md), so the escape hatch has to be stated here.
         blockers.push(
           `SCR-04: PROGRESS beat in section "${b.sectionId}" ("${b.text}") has ${n} series point(s), needs >=2. ` +
-          `Do NOT invent a second point (no "baseline"=0, no zero rows, no made-up comparison) — SCR-05 will reject it. ` +
+          `Do NOT invent a second point (no "baseline"=0, no zero rows, no made-up comparison) â€” SCR-05 will reject it. ` +
           `If the research only supports ONE number for this beat, change the archetype to HERO_NUMBER instead.`
         );
       }
     }
 
-    // SCR-05 — every series value traces to research.numbers.
+    // SCR-05 â€” every series value traces to research.numbers.
     if (research) {
       const knownValues = new Set((research.numbers || []).map((n) => n.value));
       for (const b of allBeats) {
@@ -298,22 +298,22 @@ function main() {
           const matches = [...knownValues].some((v) => Math.abs(v - point.value) < 1e-9);
           if (!matches) {
             // Show what IS available. The model was being told its value was
-            // wrong without being shown the legal set, so it guessed again —
+            // wrong without being shown the legal set, so it guessed again â€”
             // the same information gap that made ajv's enum errors useless.
             const available = [...knownValues].slice(0, 12).join(", ");
             blockers.push(
               `SCR-05: series point "${point.label}"=${point.value} in section "${b.sectionId}" doesn't match any research.numbers[].value. ` +
-              `Use only these researched values: [${available}${knownValues.size > 12 ? ", …" : ""}]. ` +
-              `If none of them fit this beat, use HERO_NUMBER with a single real number, or drop the chart — never invent a value to fill a series.`
+              `Use only these researched values: [${available}${knownValues.size > 12 ? ", â€¦" : ""}]. ` +
+              `If none of them fit this beat, use HERO_NUMBER with a single real number, or drop the chart â€” never invent a value to fill a series.`
             );
           }
         }
       }
     } else {
-      majors.push(`SCR-05: research artifact not found at ${researchPath} — could not verify chart data traces to sourced numbers.`);
+      majors.push(`SCR-05: research artifact not found at ${researchPath} â€” could not verify chart data traces to sourced numbers.`);
     }
 
-    // SCR-06 (soft) — archetype mix vs. channel.concepts, only if declared.
+    // SCR-06 (soft) â€” archetype mix vs. channel.concepts, only if declared.
     if (channel.concepts) {
       const total = allBeats.length || 1;
       const counts = {};
@@ -324,18 +324,18 @@ function main() {
       if (excluded.length > 0) majors.push(`SCR-06: excluded archetype(s) used: ${excluded.join(", ")}.`);
     }
 
-    // SCR-07 — STATEMENT <=30% of beats.
+    // SCR-07 â€” STATEMENT <=30% of beats.
     const statementShare = allBeats.filter((b) => b.archetype === "STATEMENT").length / (allBeats.length || 1);
     if (statementShare > 0.3) {
       majors.push(`SCR-07: STATEMENT is ${(statementShare * 100).toFixed(0)}% of beats, must be <=30%.`);
     }
 
     /**
-     * SCR-15 (soft) — the writer actually directed the visuals.
+     * SCR-15 (soft) â€” the writer actually directed the visuals.
      *
      * The style contract requires a `visual` block on every beat. When it is
      * missing, visual/director.js falls back to picking a strategy by
-     * keyword match on the narration — which still renders, so nothing
+     * keyword match on the narration â€” which still renders, so nothing
      * fails, it just quietly produces the templated look this gate exists
      * to catch. Reported as MAJOR rather than BLOCKER for that reason: a
      * script with no direction is worse, not broken, and failing the run
@@ -349,7 +349,7 @@ function main() {
     const share = directed.length / (allBeats.length || 1);
     if (directed.length === 0) {
       majors.push(
-        `SCR-15: no beat carries a visual block — every one will be planned by keyword fallback. The style contract requires the writer to direct each beat.`
+        `SCR-15: no beat carries a visual block â€” every one will be planned by keyword fallback. The style contract requires the writer to direct each beat.`
       );
     } else if (share < 0.6) {
       majors.push(
@@ -359,13 +359,13 @@ function main() {
       const mix = new Set(directed.map((b) => String(b.visual.strategy).toUpperCase()));
       if (directed.length >= 4 && mix.size === 1) {
         majors.push(
-          `SCR-15: all ${directed.length} directed beats chose the same strategy (${[...mix][0]}) — that is defaulting, not directing.`
+          `SCR-15: all ${directed.length} directed beats chose the same strategy (${[...mix][0]}) â€” that is defaulting, not directing.`
         );
       }
     }
   }
 
-  // SCR-08 (soft, both schemas) — pacing sanity check against style WPM target.
+  // SCR-08 (soft, both schemas) â€” pacing sanity check against style WPM target.
   // Real duration is decided later from actual voiceover audio length; this
   // only catches scripts that are wildly too dense or too sparse for their format.
   const totalWords = sections.reduce((sum, s) => sum + wordCount(s.voiceover), 0);
@@ -373,7 +373,7 @@ function main() {
   const midpointMinutes = FORMAT_MIDPOINT_MINUTES[script.format] || FORMAT_MIDPOINT_MINUTES.longform;
   const impliedWpm = totalWords / midpointMinutes;
   if (impliedWpm < targetWpm * 0.5 || impliedWpm > targetWpm * 1.5) {
-    majors.push(`SCR-08: ${totalWords} words implies ~${impliedWpm.toFixed(0)} WPM at the ${script.format} midpoint duration, vs. this channel's ${targetWpm} WPM target — check pacing.`);
+    majors.push(`SCR-08: ${totalWords} words implies ~${impliedWpm.toFixed(0)} WPM at the ${script.format} midpoint duration, vs. this channel's ${targetWpm} WPM target â€” check pacing.`);
   }
 
   // SCR-16 (BLOCKER) - duration must be 30-50 seconds.
@@ -387,7 +387,7 @@ function main() {
   if (impliedSeconds < durationRange.min || impliedSeconds > durationRange.max) {
     // Report the fix in WORDS, which is what the model controls.
     //
-    // This used to say only "~27s duration — outside 30-50s target", leaving
+    // This used to say only "~27s duration â€” outside 30-50s target", leaving
     // the model to reverse-engineer a word count from a duration it never
     // sees. It guessed low over and over: channel 44 produced 70, 67 then 61
     // words and channel 48 produced 76, 74 then 53 in run 35293642808, every
@@ -398,13 +398,13 @@ function main() {
       ? `ADD at least ${minWords - totalWords} more words`
       : `CUT at least ${totalWords - maxWords} words`;
     blockers.push(
-      `SCR-16: ${totalWords} words implies ~${impliedSeconds.toFixed(0)}s duration — outside the ${durationRange.min}-${durationRange.max}s target. ` +
+      `SCR-16: ${totalWords} words implies ~${impliedSeconds.toFixed(0)}s duration â€” outside the ${durationRange.min}-${durationRange.max}s target. ` +
       `This channel needs ${minWords}-${maxWords} words of voiceover (at ${targetWpm} wpm): ${delta}. ` +
-      `Count the words in every section's voiceover and hit that range — shorter is NOT safer, under ${minWords} fails exactly like over ${maxWords}.`
+      `Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under ${minWords} fails exactly like over ${maxWords}.`
     );
   }
 
-  // SCR-17 (soft) — beats have something to show (short-video-scripter rules, 2026-10-09).
+  // SCR-17 (soft) â€” beats have something to show (short-video-scripter rules, 2026-10-09).
   // Heuristic: a sentence "names something drawable" if it holds a figure, a date, or a proper
   // noun after its first word. A real object noun ("a courthouse") is invisible to this, so it
   // can only WARN; the renderer's shot legality (at most one words-only beat in three) is the
@@ -412,30 +412,44 @@ function main() {
   {
     const { sentences, bare, run } = wordsOnlyShare(sections);
     if (sentences.length >= 6 && (bare.length / sentences.length > 1 / 3 || run >= 3)) {
-      majors.push(`SCR-17: ${bare.length}/${sentences.length} sentences name no figure, date or proper noun (longest run ${run}) — the renderer allows at most one words-only beat in three: "${bare.slice(0, 3).join('" / "').slice(0, 220)}"`);
+      majors.push(`SCR-17: ${bare.length}/${sentences.length} sentences name no figure, date or proper noun (longest run ${run}) â€” the renderer allows at most one words-only beat in three: "${bare.slice(0, 3).join('" / "').slice(0, 220)}"`);
     }
   }
 
-  // SCR-17 STRICT (BLOCKER, config strict_visual channels only: ch-02, ch-48 —
-  // owner's frame rule 2026-10-20: "every frame must have a visual asset. No
-  // pure text cards."). SCR-17 above can only warn for every channel; for the
-  // channels the frame review keeps rejecting as TEMPLATE_MONOCULTURE it
-  // blocks: every voiceover sentence must ground a figure the frame can draw
-  // (number / chart / date / place / list / comparison / document / money /
-  // cause-effect) or name an entity that can carry a real logo or photo. A
-  // sentence that does neither becomes a text-only beat — the exact failure
-  // the renderer now refuses. The gate-feedback loop re-asks the writer with
-  // these lines (workflow: FEEDBACK grep '^  - ').
+  // SCR-17 STRICT (config strict_visual channels only: ch-02, ch-48 â€” owner's
+  // frame rule 2026-10-20: "every frame must have a visual asset. No pure
+  // text cards."). SCR-17 above can only warn for every channel; for the
+  // channels the frame review keeps rejecting as TEMPLATE_MONOCULTURE it is
+  // stricter: every sentence should ground a figure (number / chart / date /
+  // place / list / comparison / document / money / cause-effect).
+  //
+  // Two tiers, because the two verifiers know different things:
+  //  - no figure AND no entity -> BLOCKER. Nothing can draw it.
+  //  - names an entity but grounds no figure -> WARNING. The plan stage is
+  //    told to attach that entity's real logo/photo and the RENDER audit is
+  //    what can verify one was found; blocking it here deadlocked topics
+  //    whose every fact is "X API calls Y" (run 39405490346 ch-2/ch-48 spent
+  //    all 8 attempts on sentences that cannot state a figure without
+  //    inventing one).
+  // Both tiers print `  - ` lines, so the gate-feedback loop still re-asks
+  // the writer with them (workflow: FEEDBACK grep '^  - ').
   if (channel.strict_visual) {
     const bad = strictUngroundableSentences(wordsOnlyShare(sections).sentences);
-    if (bad.length) {
+    const entityOnly = bad.filter((s) => sentenceNamesEntity(s));
+    const hard = bad.filter((s) => !sentenceNamesEntity(s));
+    if (hard.length) {
       blockers.push(
-        `SCR-17 STRICT (strict_visual channel): ${bad.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — naming a person or organisation is not enough, a name plate is a text card. Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts verbatim from the research; invent nothing): "${bad.slice(0, 4).join('" / "').slice(0, 300)}"`
+        `SCR-17 STRICT (strict_visual channel): ${hard.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence and name nothing an asset can be looked up for â€” every beat must draw a real visual. Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts verbatim from the research; invent nothing): "${hard.slice(0, 4).join('" / "').slice(0, 300)}"`
+      );
+    }
+    if (entityOnly.length) {
+      majors.push(
+        `SCR-17 STRICT: ${entityOnly.length} sentence(s) ground no figure and rely on the named entity's real logo/photo being found (a name plate is a text card if it is not). Prefer a sourced figure: "${entityOnly.slice(0, 4).join('" / "').slice(0, 300)}"`
       );
     }
   }
 
-  // SCR-18 — proper nouns are copied from the research artifact (BLOCKER
+  // SCR-18 â€” proper nouns are copied from the research artifact (BLOCKER
   // near-miss, MAJOR unknown). This is the script-stage half of the fix for
   // "The Washington Pest"; the challenger and the auto-correct cover the plan.
   if (research) {
@@ -444,7 +458,7 @@ function main() {
     majors.push(...nameFidelity.majors);
   }
 
-  // SCR-12 — text_overlay is an object or null, never a bare string.
+  // SCR-12 â€” text_overlay is an object or null, never a bare string.
   // (Already enforced by --json-schema at the CLI boundary; checked again
   // here as defense in depth against hand-edited files.)
   for (const s of sections) {
@@ -453,14 +467,14 @@ function main() {
     }
   }
 
-  // SCR-13 (soft) — no hex colour values anywhere in the script JSON.
+  // SCR-13 (soft) â€” no hex colour values anywhere in the script JSON.
   const rawJson = JSON.stringify(script);
   const hexHits = rawJson.match(HEX_COLOR);
   if (hexHits) {
     majors.push(`SCR-13: hex colour value(s) found in script JSON: ${[...new Set(hexHits)].join(", ")}. Colour belongs in channels.json, not the script.`);
   }
 
-  // SCR-14 — sources_used >=3, all appear in the research file.
+  // SCR-14 â€” sources_used >=3, all appear in the research file.
   const sourcesUsed = script.sources_used || [];
   if (sourcesUsed.length < 2) {
     blockers.push(`SCR-14: sources_used has ${sourcesUsed.length} entries, needs >=2.`);
@@ -477,7 +491,7 @@ function main() {
   }
 
   if (majors.length > 0) {
-    console.warn(`Script gate — ${majors.length} MAJOR warning(s) for ${channelId}/${scriptSlug}:`);
+    console.warn(`Script gate â€” ${majors.length} MAJOR warning(s) for ${channelId}/${scriptSlug}:`);
     majors.forEach((m) => console.warn(`  - ${m}`));
   }
   if (blockers.length > 0) {
@@ -495,7 +509,7 @@ function main() {
 
 // Only run the CLI when invoked directly. Importing this file for its
 // exported gate constants (scripts/test-word-budget.mjs) previously executed
-// main() and exited on the missing arguments — the same import side-effect
+// main() and exited on the missing arguments â€” the same import side-effect
 // that made local-visual-auditor.js untestable.
 const invokedDirectly = process.argv[1] &&
   fileURLToPath(import.meta.url) === resolve(process.argv[1]);

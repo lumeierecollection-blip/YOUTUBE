@@ -182,20 +182,18 @@ export function strictVisualAudit(beats = [], { log = () => {} } = {}) {
  * must ground a figure the frame can draw, because only then is the render
  * guaranteed to carry a visual on every beat.
  *
- * A sentence that NAMES an entity is not enough: whether the entity resolves
- * to a real logo/photo is only known at plan time (it fetches), and when it
- * does not the beat becomes a name plate — exactly the text card this rule
- * bans. Run 39393998131 proved it: ch-2's "Alongside Ahmed Katary and
- * Demircan Tas, Faruqi helped detail the tool." and ch-48's "Except consumer
- * sensors do more than track pace." named people / looked entity-ish and
- * passed a name-based gate, then the render had to refuse four / one beats.
- * Named entities may still appear — every sentence must ALSO state a figure,
- * date, place, list, comparison, flow or other drawable the frame can draw.
+ * A sentence that names an entity is still returned here (it grounds no
+ * figure), but the GATE demotes entity-only sentences to a warning instead
+ * of a blocker: the plan stage is instructed to attach the named entity's
+ * real logo/photo and the render audit verifies it. Making entity-only a
+ * blocker starved real topics in run 39405490346 (ch-2 and ch-48 burned all
+ * 8 attempts on topics whose every fact was "X API calls Y", which cannot
+ * state a figure without inventing one). The hard-blocker line is: no
+ * figure AND no entity to look up. The render audit remains the enforcer for
+ * the entity cases - it refuses a beat whose canvas carries no real asset.
  *
- * Minimising false positives is not a goal here: a rejected sentence costs
- * one re-ask, a false pass costs a whole rendered topic. MONEY / DOCUMENT are
- * allowed (they fetch a banknote photo / document scan); the render-stage
- * audit is the backstop when that fetch fails.
+ * MONEY / DOCUMENT are allowed (they fetch a banknote photo / document scan);
+ * the render-stage audit is the backstop when that fetch fails.
  */
 export function strictUngroundableSentences(sentences = []) {
   const bad = [];
@@ -206,4 +204,18 @@ export function strictUngroundableSentences(sentences = []) {
     bad.push(text);
   }
   return bad;
+}
+
+/**
+ * Does the sentence name something the plan stage can look up a real asset
+ * for? Deliberately loose (capitalised word outside the sentence-starter
+ * list): the plan stage fetches and the render audit verifies, so a false
+ * positive costs a refused render, not an invented visual. Used by the gate
+ * to demote "entity but no figure" sentences to a WARNING - the planner is
+ * explicitly told to show the named entity's real logo or photo, and the
+ * render audit (not the script gate) is what can actually verify one exists.
+ */
+export function sentenceNamesEntity(text = "") {
+  const words = String(text).replace(/[.!?]+$/, "").split(/\s+/);
+  return words.some((w) => /^[A-Z][A-Za-z'’-]+$/.test(w) && !/^(The|This|That|These|Those|It|He|She|They|We|You|But|And|So|Then|Now|After|Before|In|On|At|For|With|From|A|An|Its|There|Here|When|While|If|As|Except|Unlike|Instead|Because|Since|Yet|Still|Most|Many|Some|Every|Each|No|Not|Only|Even|Also|Just|Like|Despite|Without|Within|Across|Around|Beyond|During)$/.test(w));
 }
