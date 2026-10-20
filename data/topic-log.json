@@ -1162,9 +1162,14 @@
           "topic": "UiPath Integration Service Introduces TypeSafe Connector for Automated Workflows",
           "slug": "uipath-integration-service-typesafe-connector",
           "reserved_at": "2026-10-20T11:12:00.031Z"
+        },
+        {
+          "topic": "WSO2 Integrator 5.1 Deepens AI-Powered Enterprise Integration",
+          "slug": "wso2-integrator-5-1-ai-workflow-release",
+          "reserved_at": "2026-10-20T11:38:56.762Z"
         }
       ],
-      "last_generated": "2026-10-20T11:12:00.031Z"
+      "last_generated": "2026-10-20T11:38:56.762Z"
     },
     "3": {
       "channel_name": "AI Tested",
