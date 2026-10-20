@@ -37,7 +37,56 @@ const getJson = async (url) => {
 
 const WEBSEARCH_URL = "https://api.duckduckgo.com/";
 
-async function quickSearchDomains(query) {
+const FIGURE_PATTERNS = [
+  /\$\s*\d[\d,.]*/,           // currency
+  /\d[\d,.]*\s*%\b/,          // percentages
+  /\b\d[\d,.]*\s*(?:km|m|cm|mm|mi|ft|in|kg|g|lb|oz|l|ml|gal|tbsp|tsp)\b/i,  // measurements
+  /\b\d[\d,.]*\s*(?:years?|months?|weeks?|days?|hours?|minutes?|seconds?)\b/i, // time
+  /\b\d[\d,.]*\s*(?:million|billion|trillion|thousand|k|M|B)\b/i, // large numbers
+  /\b\d[\d,.]*\s*(?:times|x|fold|percent)\b/i, // multipliers
+  /\b\d{1,3}(?:,\d{3})*(?:\.\d+)?\b/, // formatted numbers (1,000)
+  /\b\d{4,}\b/, // raw large numbers
+];
+
+function countFigures(text) {
+  if (!text) return 0;
+  let count = 0;
+  for (const pattern of FIGURE_PATTERNS) {
+    const matches = text.match(pattern);
+    if (matches) count += matches.length;
+  }
+  return count;
+}
+
+async function searchAndCountFigures(query) {
+  const url = `${WEBSEARCH_URL}?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
+  const data = await getJson(url);
+  if (!data) return 0;
+  const text = [data.Abstract, data.AbstractText, data.RelatedTopics?.map(t => t.Text || t).join(" ")].join(" ");
+  return countFigures(text);
+}
+
+async function checkFigureDensity(topic) {
+  const query = `${topic.topic} ${topic.angle || ""}`.trim();
+  const searchQueries = [
+    query,
+    `${query} statistics`,
+    `${query} data`,
+    `${query} numbers`,
+    `${query} report`,
+  ];
+
+  let totalFigures = 0;
+  for (const q of searchQueries) {
+    const count = await searchAndCountFigures(q);
+    totalFigures += count;
+    if (totalFigures >= 4) break; // need at least 4 distinct figures for a shorts script (6-8 beats)
+  }
+
+  return totalFigures >= 4 ? { pass: true, figures: totalFigures } : { pass: false, figures: totalFigures };
+}
+
+async function checkTwoDomains(topic) {
   const url = `${WEBSEARCH_URL}?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
   const data = await getJson(url);
   if (!data?.Abstract || !data?.AbstractURL) return [];
@@ -117,6 +166,13 @@ async function main() {
       continue;
     }
 
+    const figureCheck = await checkFigureDensity(topic);
+    if (!figureCheck.pass) {
+      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — only ${figureCheck.figures} measurable figures in search results (need ≥4)`);
+      rejected.push({ ...topic, reject_reason: `only ${figureCheck.figures} measurable figures (need ≥4)` });
+      continue;
+    }
+
     const visualCheck = await checkVisualCoverage(topic);
     if (!visualCheck.pass) {
       const pct = Math.round(visualCheck.coverage * 100);
@@ -125,7 +181,7 @@ async function main() {
       continue;
     }
 
-    console.log(`[validate-discovery] ch-${channelId}: ACCEPTED "${topic.topic}" — ${domainCheck.domains.length} domains, ${Math.round(visualCheck.coverage * 100)}% visual coverage`);
+    console.log(`[validate-discovery] ch-${channelId}: ACCEPTED "${topic.topic}" — ${domainCheck.domains.length} domains, ${figureCheck.figures} figures, ${Math.round(visualCheck.coverage * 100)}% visual coverage`);
     chosen = topic;
     break;
   }
