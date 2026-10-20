@@ -537,9 +537,16 @@ jobs:
           # The one topic re-pick in the claims-gate path re-runs research for
           # the replacement topic, so this step needs the research model too.
           OPENCODE_MODELS_RESEARCH: "ollama-cloud/gpt-oss:120b,ollama/qwen2.5:3b"
+          # This run script is 26k chars. As soon as a run block contains
+          # `${{ }}`, GitHub parses the WHOLE scalar as one expression
+          # template and rejects it above 21,000 chars ("Exceeded max
+          # expression length 21000", line 540; push 749a7be7 failed to
+          # parse and the workflow could not be dispatched). Keep the
+          # matrix value in env so the script itself stays literal.
+          CHANNEL_ID: ${{ matrix.channel_id }}
         run: |
           set -euo pipefail
-          CH="${{ matrix.channel_id }}"
+          CH="$CHANNEL_ID"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           STYLE=$(node scripts/channel-style.js "$CH")
           for FORMAT in $FORMATS; do
