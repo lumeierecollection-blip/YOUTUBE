@@ -1,0 +1,87 @@
+{
+  "channel_id": "2",
+  "topic_slug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "format": "shorts",
+  "hook": "Amazon Managed Workflows for Apache Airflow now includes four specific AI skills for AWS.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Amazon Managed Workflows for Apache Airflow now includes four specific AI skills for AWS.",
+      "visual_cue": "Close-up shot of code editor displaying AWS configuration file",
+      "sfx_cue": "Digital activation chime",
+      "b_roll": [
+        "AWS management console screen capture"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "NEW AWS AI SKILLS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-15s",
+      "voiceover": "Amazon Managed Workflows for Apache Airflow integrates with the Agent Toolkit for AWS. Which exact skill executes the upgrade process?",
+      "visual_cue": "Split screen showing AWS documentation and terminal window",
+      "sfx_cue": "Keyboard typing sounds",
+      "b_roll": [
+        "AWS Data Analytics plugin documentation page"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Agent Toolkit Integration"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "15-20s",
+      "voiceover": "Amazon MWAA enables upgrading environments using any AI coding assistant, but the toolkit also includes authoring-mwaa-workflow and debugging-mwaa-workflow.",
+      "visual_cue": "Zoom in on upgrading-mwaa-workflow code snippet in terminal",
+      "sfx_cue": "Subtle whoosh",
+      "b_roll": [
+        "MWPro blog post screenshot"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Coding Assistant Support"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "20-31s",
+      "voiceover": "Amazon Managed Workflows for Apache Airflow includes authoring-mwaa-workflow and debugging-mwaa-workflow skills.",
+      "visual_cue": "List graphic highlighting four workflow skills on screen",
+      "sfx_cue": "Confirmation beep",
+      "b_roll": [
+        "West Loop Strategy post interface"
+      ],
+      "animation_cue": "Staggered list reveal",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "All Four Skills Revealed"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "31-35s",
+      "voiceover": "Use upgrading-mwaa-workflow in Amazon Managed Workflows for Apache Airflow.",
+      "visual_cue": "Terminal window showing successful workflow deployment",
+      "sfx_cue": "Soft success chime",
+      "b_roll": [
+        "AWS console success indicator"
+      ],
+      "animation_cue": "Pulse highlight",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "upgrading-mwaa-workflow"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-mwaa-ai-agent-skills",
+    "https://www.westloop.io/post/amazon-managed-workflows-for-apache-airflow-now-offers-ai-agent-skills"
+  ]
+}
