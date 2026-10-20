@@ -179,10 +179,23 @@ export function strictVisualAudit(beats = [], { log = () => {} } = {}) {
 
 /**
  * STRICT SCRIPT CHECK (gate-script.js, strict channels only): every sentence
- * must ground a figure the frame can draw. A sentence that names a real,
- * resolvable entity is allowed through (a logo/photo is a visual); the plan
- * stage then fails the ones whose entity has no asset. Everything else is
- * returned so the script agent is re-asked with concrete lines to rewrite.
+ * must ground a figure the frame can draw, because only then is the render
+ * guaranteed to carry a visual on every beat.
+ *
+ * A sentence that NAMES an entity is not enough: whether the entity resolves
+ * to a real logo/photo is only known at plan time (it fetches), and when it
+ * does not the beat becomes a name plate — exactly the text card this rule
+ * bans. Run 39393998131 proved it: ch-2's "Alongside Ahmed Katary and
+ * Demircan Tas, Faruqi helped detail the tool." and ch-48's "Except consumer
+ * sensors do more than track pace." named people / looked entity-ish and
+ * passed a name-based gate, then the render had to refuse four / one beats.
+ * Named entities may still appear — every sentence must ALSO state a figure,
+ * date, place, list, comparison, flow or other drawable the frame can draw.
+ *
+ * Minimising false positives is not a goal here: a rejected sentence costs
+ * one re-ask, a false pass costs a whole rendered topic. MONEY / DOCUMENT are
+ * allowed (they fetch a banknote photo / document scan); the render-stage
+ * audit is the backstop when that fetch fails.
  */
 export function strictUngroundableSentences(sentences = []) {
   const bad = [];
@@ -190,14 +203,6 @@ export function strictUngroundableSentences(sentences = []) {
     const text = String(s || "").trim();
     if (!text) continue;
     if (groundedVisualFor(text)) continue;
-    // A proper noun anywhere, sentence-initial included: the entity may resolve
-    // to a real logo/photo at plan time (only the plan stage knows — it
-    // fetches, and it fails the render when nothing resolves). The common
-    // sentence starters are excluded ("The platform simply works" is not an
-    // entity — it was caught in testing).
-    const words = text.replace(/[.!?]+$/, "").split(/\s+/);
-    const proper = words.some((w) => /^[A-Z][A-Za-z'’-]+$/.test(w) && !/^(The|This|That|These|Those|It|He|She|They|We|You|But|And|So|Then|Now|After|Before|In|On|At|For|With|From|A|An|Its|There|Here|When|While|If|As)$/.test(w));
-    if (proper || /\d/.test(text)) continue;
     bad.push(text);
   }
   return bad;

@@ -133,15 +133,20 @@ test("MONEY / DOCUMENT cannot be upgraded after the fetch stage — they fail in
   assert.match(failures[0].reason, /fetched/);
 });
 
-test("the script gate's strict check flags only sentences with no drawable content and no entity", () => {
+test("the script gate's strict check flags EVERY sentence with no drawable content, named entity or not", () => {
   const bad = strictUngroundableSentences([
     "Prices rose sharply last spring.",          // TREND
     "It cut review time by 57%.",                // PIE
-    "OVHcloud announced the plan.",              // named entity — may resolve to a real logo
     "In 2026 the team shipped it.",              // a figure
+    "OVHcloud announced the plan.",              // names an entity but grounds nothing: a name plate is a text card
+    "Alongside Ahmed Katary and Demircan Tas, Faruqi helped detail the tool.", // run 39393998131 ch-2 beat 2
+    "Except consumer sensors do more than track pace.",                        // run 39393998131 ch-48 beat 3
     "The platform simply works better this way.",// nothing
     "It keeps going.",                           // nothing
   ]);
-  assert.equal(bad.length, 2);
-  assert.ok(bad[0].includes("platform") && bad[1].includes("keeps going"));
+  assert.equal(bad.length, 5);
+  assert.ok(bad.some((s) => s.includes("OVHcloud")));
+  assert.ok(bad.some((s) => s.includes("Katary")));
+  assert.ok(bad.some((s) => s.includes("Except")));
+  assert.ok(bad.some((s) => s.includes("platform")) && bad.some((s) => s.includes("keeps going")));
 });
