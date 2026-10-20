@@ -1,0 +1,67 @@
+{
+  "channel_id": "48",
+  "topic_slug": "state-farm-mit-agelab-driver-distraction",
+  "format": "shorts",
+  "hook": "State Farm and MIT AgeLab launched Drivefulness research exploring human sides of roadway risk.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "State Farm and MIT AgeLab launched Drivefulness research exploring human sides of roadway risk.",
+      "b_roll": [
+        "Exterior shot of a modern laboratory building with signage",
+        "Close-up of a connected vehicle dashboard screen glowing"
+      ],
+      "text_overlay": {
+        "text": "$100 Billion Roadway Risk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Distracted driving leads to over 10,000 deaths every year. Why do 1.3 million injuries happen annually from distracted driving?",
+      "b_roll": [
+        "Busy multi-lane highway traffic shot from an overhead bridge",
+        "Ambulance lights flashing in night traffic",
+        "Driver holding a smartphone while steering"
+      ],
+      "text_overlay": {
+        "text": "10,000 Annual Deaths"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet sixty-eight percent of drivers admit to engaging in distracted behaviors.",
+      "b_roll": [
+        "Driver tapping a digital console display in a car"
+      ],
+      "text_overlay": {
+        "text": "68 Percent Distracted"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "State Farm data shows distracted driving causes over 10,000 deaths. State Farm reports 68 percent of drivers admit engaging in distracted behaviors. State Farm data reveals 1.3 million injuries occur from distracted driving.",
+      "b_roll": [
+        "Infographic showing driver glance duration timers",
+        "Crash test dummy impact sequence in slow motion",
+        "Data charts displaying annual incident rates"
+      ],
+      "text_overlay": {
+        "text": "62% Think 2-Second Glances Are Safe"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Advanced Vehicle Technology Consortium at MIT launched in 2015.",
+      "b_roll": [
+        "Researchers analyzing eye-tracking monitors in a vehicle simulator"
+      ],
+      "text_overlay": {
+        "text": "MIT AVT Consortium"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://newsroom.statefarm.com/state-farm-and-mit-agelab-collaborate-on-distracted-driving-research",
+    "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+  ]
+}
