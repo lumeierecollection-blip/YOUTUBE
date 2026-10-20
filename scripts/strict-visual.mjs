@@ -11,7 +11,7 @@
  *
  * What "a visual" means here, per beat:
  *   photo / logo / money object / drawn symbol / entity-art asset / figure  ->
- *   a real drawn thing; NUMBER-FULL, DATA-FULL, MAP-CENTERED, PROCESS-FULL,
+ *   a real drawn thing; NUMBER-FULL / NUMBER-STAT (the stat card the renderer actually composes), DATA-FULL, MAP-CENTERED, PROCESS-FULL,
  *   TIMELINE, COMPARISON-SPLIT, LIST-BUILD, SCENE-FULL, ARCHITECTURE,
  *   PORTRAIT, DOCUMENT, MONEY -> a figure the sentence's own words ground;
  *   TYPE-FULL with a name card or a date/organisation plate -> TEXT, illegal.
@@ -106,7 +106,7 @@ export function groundedVisualFor(sentence, { entities = [] } = {}) {
 
 /** The compositions whose frame is a drawn figure, not typography. */
 const VISUAL_COMPOSITIONS = new Set([
-  "NUMBER-FULL", "DATA-FULL", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE",
+  "NUMBER-FULL", "NUMBER-STAT", "DATA-FULL", "MAP-CENTERED", "PROCESS-FULL", "TIMELINE",
   "COMPARISON-SPLIT", "LIST-BUILD", "SCENE-FULL", "ARCHITECTURE", "PORTRAIT",
   "DOCUMENT", "MONEY",
 ]);

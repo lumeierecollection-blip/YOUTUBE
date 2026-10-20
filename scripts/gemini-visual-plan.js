@@ -335,7 +335,7 @@ export function groundedOptions(sentence) {
 // "Article 10", "Section 357-A", "Rule 10b-5", "Resolution 2231", "No. 7",
 // "Phase 2": the number is a name. True when the value carries a letter
 // suffix ("357-A") or the sentence writes the number right after such a word.
-const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|#|part|schedule|phase|stage|level|tier|form|flight|route|highway|interstate|model|version|article\s+no\.?|paragraph|para|subsection|item|exhibit|appendix|annex|protocol)\s*$/i;
+const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|#|part|schedule|phase|stage|level|tier|form|flight|route|highway|interstate|model|article\s+no\.?|paragraph|para|subsection|item|exhibit|appendix|annex|protocol)\s*$/i;
 // TWO-NUMBER RULE (owner's spec 2026-10-03, part D): a sentence with a comparison word and
 // TWO DISTINCT comparable numbers is a DATA-FULL chart. Returns those numbers, or null —
 // a single number is a COUNTER, not this rule. Not counted: a bare year ("in 2019"), an

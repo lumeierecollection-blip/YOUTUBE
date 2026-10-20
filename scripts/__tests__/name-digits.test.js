@@ -21,3 +21,8 @@ test("number words in idioms and magnitudes do not become figures", () => {
   assert.deepEqual(quantitiesOf("The team tested one of the devices."), []);
   assert.deepEqual(quantitiesOf("It saved two million dollars."), []);
 });
+
+test("a software version is the sentence's figure; article numbers stay identifiers", () => {
+  assert.ok(quantitiesOf("The platform ships version 5.1 today.").some((q) => q.value === "5.1"));
+  assert.deepEqual(quantitiesOf("Under Article 10 the rule applies."), []);
+});

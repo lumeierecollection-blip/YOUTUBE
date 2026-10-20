@@ -159,3 +159,9 @@ test("the gate's entity tier separates lookupable names from pure abstraction", 
   assert.equal(sentenceNamesEntity("In 2026 the team shipped it."), false);
   assert.equal(sentenceNamesEntity("It keeps going."), false);
 });
+
+test("a stat card is the frame the rubric calls a visual; a version grounds it", () => {
+  assert.equal(canvasHasRealVisual({ composition: "NUMBER-STAT" }), true);
+  const g = groundedVisualFor("How are integration workflows constructed across version 5.1?");
+  assert.equal(g && g.visual_type, "COUNTER");
+});
