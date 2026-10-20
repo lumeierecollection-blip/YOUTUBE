@@ -305,6 +305,29 @@ export function quantitiesOf(sentence) {
     if (!lab.length) lab = trimEdges(words(before.split(/[,;.]/).pop() || "")).slice(-4);
     out.push({ value: v, label: lab.map(clean).filter(Boolean).join(" ") || null });
   }
+  // Figures written as words are figures too: "eighteen parameters proved
+  // excellent" (run 39412692456 ch-48 beat 3) is a number the frame can draw,
+  // but the digit-only scan left it ungrounded and the beat was refused.
+  // Single words and tens compounds only (one..ninety); "two million" stays
+  // out because a wrong magnitude is worse than no chart.
+  for (const m of text.matchAll(NUM_WORD_RE)) {
+    const before = text.slice(0, m.index).trimEnd();
+    if (ID_BEFORE.test(before)) continue;
+    const prev = (before.split(/\s+/).pop() || "").toLowerCase();
+    if (WORD_NUM_PREV.has(prev)) continue;                          // "no one", "the one", "another two"
+    const afterWords = words(text.slice(m.index + m[0].length).split(/[,;.]/)[0] || "");
+    const next = clean(afterWords[0] || "").toLowerCase();
+    if (!next || WORD_NUM_NEXT.has(next)) continue;                 // "one of", "two million", "four to five"
+    const lab = trimEdges(afterWords).slice(0, 4).map(clean).filter(Boolean).join(" ") || null;
+    out.push({ value: String(numWordValue(m[1], m[2])), label: lab });
+  }
   return out;
 }
+const NUM_WORD = "(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)";
+const NUM_WORD_RE = new RegExp(`\\b${NUM_WORD}(?:-(one|two|three|four|five|six|seven|eight|nine))?\\b`, "gi");
+const ONES = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19 };
+const TENS = { twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const numWordValue = (head, unit) => (TENS[head.toLowerCase()] || 0) + (unit ? ONES[unit.toLowerCase()] : 0) + (ONES[head.toLowerCase()] || 0);
+const WORD_NUM_PREV = new Set(["no", "not", "the", "a", "an", "another", "any", "each", "every", "this", "that", "one", "someone", "anyone", "everyone"]);
+const WORD_NUM_NEXT = new Set(["of", "the", "a", "an", "to", "in", "on", "at", "for", "with", "and", "or", "but", "is", "was", "were", "are", "be", "been", "being", "has", "have", "had", "that", "this", "these", "those", "it", "its", "their", "his", "her", "as", "than", "per", "about", "more", "less", "only", "also", "too", "very", "so", "such", "which", "who", "whom", "whose", "when", "where", "while", "if", "then", "hundred", "thousand", "million", "billion", "trillion"]);
 const ID_BEFORE = /\b(?:article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|part|schedule|phase|stage|level|tier|form|flight|route|highway|model|version|paragraph|item|exhibit|appendix|annex)\s*$/i;
