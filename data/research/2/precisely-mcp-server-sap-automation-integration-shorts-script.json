@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "precisely-mcp-server-sap-automation-integration",
+  "format": "shorts",
+  "hook": "Precisely launched the Precisely Automate MCP Server on October 14, 2026, in Burlington, Massachusetts.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Precisely launched the Precisely Automate MCP Server on October 14, 2026, in Burlington, Massachusetts.",
+      "visual_cue": "Close up view of company announcement screen in Burlington office showing launch date details.",
+      "sfx_cue": "Digital notification chime",
+      "b_roll": [
+        "Burlington Massachusetts office building exterior establishing shot"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Precisely Automate MCP Server"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:15",
+      "voiceover": "Precisely Software Limited published the press release on October 14, 2026. This release introduces native OData support. How do AI assistants trigger SAP workflows directly through this release?",
+      "visual_cue": "Text document highlighting press release publication details and OData support architecture.",
+      "sfx_cue": "Paper rustle",
+      "b_roll": [
+        "Digital press release document scrolling on monitor"
+      ],
+      "animation_cue": "Slide from right",
+      "transition_out": "Slide left",
+      "text_overlay": {
+        "text": "Native OData Support"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:22",
+      "voiceover": "Precisely Software Limited published more details from Burlington, Massachusetts on October 14, 2026.",
+      "visual_cue": "Corporate headquarters sign in Burlington displaying company branding.",
+      "sfx_cue": "Subtle low hum",
+      "b_roll": [
+        "Burlington Massachusetts corporate street sign"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Burlington Headquarters"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:22-0:35",
+      "voiceover": "Precisely Software Limited released this update from Burlington, Massachusetts.",
+      "visual_cue": "Software interface dashboard showing connection between AI assistants and SAP systems.",
+      "sfx_cue": "Interface click and connect sound",
+      "b_roll": [
+        "Enterprise software architecture diagram connecting AI to SAP"
+      ],
+      "animation_cue": "Pan across screen",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Connecting AI to SAP"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:35-0:42",
+      "voiceover": "Precisely Software Limited released the Precisely Automate MCP Server on October 14, 2026.",
+      "visual_cue": "Final title card showing release date and company name.",
+      "sfx_cue": "Soft chime",
+      "b_roll": [
+        "Precisely corporate logo graphic"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "October 14, 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.hpcwire.com/bigdatawire/this-just-in/precisely-launches-mcp-server-for-precisely-automate",
+    "https://www.digitalisationworld.com/news/24319-precisely-links-ai-assistants-to-sap-automation-via-mcp-server",
+    "https://www.prnewswire.com/news-releases/precisely-launches-mcp-server-for-precisely-automate-connecting-ai-assistants-to-sap-automation-302907674.html"
+  ]
+}
