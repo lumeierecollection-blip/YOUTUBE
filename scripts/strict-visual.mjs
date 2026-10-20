@@ -78,7 +78,19 @@ export function groundedVisualFor(sentence, { entities = [] } = {}) {
   // they stay available as a hero COUNTER (the renderer snaps a year in), but
   // a chart is built from the sentence's measured figures only.
   const isYear = (q) => /^(?:19|20)\d{2}$/.test(String(q.value).replace(/\s/g, ""));
-  const qs = quantitiesOf(st);
+  // Two extractor leaks cleaned here (found testing the ch-2 MIT script):
+  // a trailing comma ("28," / "2026," — "On August 28, 2026, ...") and a
+  // number glued to letters, which quantitiesOf's own guard misses when the
+  // match grabbed the leading space: "fail 3D printing" yielded two "3"
+  // bars. "3D", "A24" name things; they are not figures.
+  const cleanQty = (q) => {
+    const v = String(q.value || "").trim().replace(/[,\s]+$/, "");
+    if (!v) return null;
+    const esc = v.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (new RegExp(`${esc}[A-Za-z]`).test(st) || new RegExp(`[A-Za-z]${esc}(?![\\d])`).test(st)) return null;
+    return { value: v, label: q.label || null };
+  };
+  const qs = quantitiesOf(st).map(cleanQty).filter(Boolean);
   const figs = qs.filter((q) => !isYear(q));
   if (figs.length >= 2) { const c = tryC("BAR", { bars: figs.slice(0, 5).map((q) => ({ label: q.label || "", value: q.value })) }); if (c) return c; }
   for (const q of figs.concat(qs)) {
