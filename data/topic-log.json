@@ -3917,9 +3917,14 @@
           "topic": "Trunk Posture Feedback System Tested in Distribution Center Field Study",
           "slug": "trunk-posture-feedback-distribution-center-study",
           "reserved_at": "2026-10-20T10:32:06.856Z"
+        },
+        {
+          "topic": "Markerless Motion Capture Proves Reliable for Older Hip and Knee Patients",
+          "slug": "markerless-motion-capture-older-hip-knee-patients-gait",
+          "reserved_at": "2026-10-20T11:11:52.998Z"
         }
       ],
-      "last_generated": "2026-10-20T10:32:06.856Z"
+      "last_generated": "2026-10-20T11:11:52.998Z"
     },
     "49": {
       "channel_name": "Picture House",
