@@ -74,16 +74,19 @@ async function checkFigureDensity(topic) {
     `${query} data`,
     `${query} numbers`,
     `${query} report`,
+    `${query} study`,
+    `${query} survey`,
+    `${query} results`,
   ];
 
   let totalFigures = 0;
   for (const q of searchQueries) {
     const count = await searchAndCountFigures(q);
     totalFigures += count;
-    if (totalFigures >= 4) break; // need at least 4 distinct figures for a shorts script (6-8 beats)
+    if (totalFigures >= 8) break; // need at least 8 distinct figures for a shorts script (6-8 beats)
   }
 
-  return totalFigures >= 4 ? { pass: true, figures: totalFigures } : { pass: false, figures: totalFigures };
+  return totalFigures >= 8 ? { pass: true, figures: totalFigures } : { pass: false, figures: totalFigures };
 }
 
 async function checkTwoDomains(topic) {
