@@ -1,0 +1,64 @@
+{
+  "channel_id": "48",
+  "topic_slug": "lower-limb-biomechanical-alterations-plantar-fasciitis",
+  "format": "shorts",
+  "hook": "Plantar fasciitis changes how 294 subjects walk and run.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Plantar fasciitis changes how 294 subjects walk and run.",
+      "b_roll": [
+        "Medical illustration of a foot showing plantar fascia strain"
+      ],
+      "text_overlay": {
+        "text": "Plantar fasciitis gait changes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, did Glaucia Bordignon publish a systematic review in the Journal of Bodywork and Movement Therapies?",
+      "b_roll": [
+        "Academic journal article cover",
+        "Biomechanics laboratory gait analysis equipment"
+      ],
+      "text_overlay": {
+        "text": "October 2026 review"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Ryan Chang previously investigated ground reaction forces during gait.",
+      "b_roll": [
+        "Foot pressure distribution heat map"
+      ],
+      "text_overlay": {
+        "text": "Previous gait research"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Glaucia Bordignon evaluated lower-limb biomechanical alterations across 294 subjects. Elsevier published the meta-analysis by Glaucia Bordignon on kinetic forces. Precisely 294 subjects participated in the study indexed by ScienceDirect.",
+      "b_roll": [
+        "Bar chart showing 294 total subjects",
+        "Lower-limb skeletal model"
+      ],
+      "text_overlay": {
+        "text": "294 subjects evaluated"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Glaucia Bordignon authored the study covering 294 subjects.",
+      "b_roll": [
+        "Journal publication logo"
+      ],
+      "text_overlay": {
+        "text": "294 subjects total"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencedirect.com/science/article/pii/S1360859226002640",
+    "https://www.bodyworkmovementtherapies.com/article/S1360-8592(26)00264-0/pdf"
+  ]
+}

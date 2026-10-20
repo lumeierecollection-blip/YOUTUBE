@@ -1,0 +1,61 @@
+{
+  "topic_slug": "lower-limb-biomechanical-alterations-plantar-fasciitis",
+  "strongest_angle": "Examining the October 2026 systematic review and meta-analysis published in the Journal of Bodywork and Movement Therapies regarding lower-limb biomechanics in plantar fasciitis patients.",
+  "key_facts": [
+    {
+      "fact": "The systematic review and meta-analysis published in the Journal of Bodywork and Movement Therapies evaluates lower-limb biomechanical alterations in patients with plantar fasciitis during walking and running.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S1360859226002640",
+      "source_name": "ScienceDirect",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researcher Glaucia Bordignon and colleagues authored the study on multi-segment foot motion and kinetic forces in individuals with plantar fasciitis published in October 2026.",
+      "source_url": "https://www.bodyworkmovementtherapies.com/article/S1360-8592(26)00264-0/fulltext",
+      "source_name": "Journal of Bodywork and Movement Therapies",
+      "confidence": "high"
+    },
+    {
+      "fact": "A previous study by Ryan Chang and colleagues investigated multi-segment foot kinematics and ground reaction forces during the gait of individuals with plantar fasciitis.",
+      "source_url": "https://pubmed.ncbi.nlm.nih.gov/24992816",
+      "source_name": "PubMed",
+      "confidence": "high"
+    },
+    {
+      "fact": "The study published in the Journal of Bodywork and Movement Therapies and indexed by Elsevier covers both male and female participants numbering 294 subjects.",
+      "source_url": "https://www.bodyworkmovementtherapies.com/article/S1360-8592(26)00264-0/pdf",
+      "source_name": "Journal of Bodywork and Movement Therapies",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total subjects in study inclusion criteria",
+      "value": 294,
+      "unit": "subjects",
+      "source_url": "https://www.bodyworkmovementtherapies.com/article/S1360-8592(26)00264-0/pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Journal of Bodywork and Movement Therapies",
+      "kind": "organization"
+    },
+    {
+      "name": "Glaucia Bordignon",
+      "kind": "person"
+    },
+    {
+      "name": "Elsevier",
+      "kind": "organization"
+    },
+    {
+      "name": "Ryan Chang",
+      "kind": "person"
+    },
+    {
+      "name": "ScienceDirect",
+      "kind": "organization"
+    }
+  ]
+}
