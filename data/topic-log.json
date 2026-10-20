@@ -1127,9 +1127,14 @@
           "topic": "Gemini 4 Argon Projects: Inside the First Day of Outputs",
           "slug": "gemini-4-argon-first-day-projects-output",
           "reserved_at": "2026-10-19T22:10:12.011Z"
+        },
+        {
+          "topic": "OVHcloud Public Cloud October 2026 Price Increases Analyzed",
+          "slug": "ovhcloud-public-cloud-october-2026-pricing-update",
+          "reserved_at": "2026-10-20T00:00:04.334Z"
         }
       ],
-      "last_generated": "2026-10-19T22:10:12.011Z"
+      "last_generated": "2026-10-20T00:00:04.334Z"
     },
     "3": {
       "channel_name": "AI Tested",
