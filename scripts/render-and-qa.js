@@ -44,6 +44,7 @@ const { resolveDocument, resolveMoney, qualifyEntity, qualifyEntityWith } = crea
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
 const { resolveSceneEntity, sceneEntities, fallbackAsset, wikiSummary } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
 import { dropContainedEntities } from "./lib/contained-entities.mjs";
+import { sameName } from "./entity-coverage.js";
 const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
 import { chooseBeatVisual } from "./beat-visual.js";
 import { createUsedImages, imageKeys, isMark } from "./lib/used-images.js";
