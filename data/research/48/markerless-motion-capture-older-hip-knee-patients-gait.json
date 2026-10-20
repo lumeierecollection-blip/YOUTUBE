@@ -1,0 +1,75 @@
+{
+  "topic_slug": "markerless-motion-capture-older-hip-knee-patients-gait",
+  "strongest_angle": "Explore how multi-camera markerless motion capture technology accurately assesses three-dimensional walking patterns in forty-one older patients with hip and knee conditions, achieving excellent reliability across eighteen of thirty-six parameters.",
+  "key_facts": [
+    {
+      "fact": "A study published by Leonhard Stein, Lukas Gschoßmann, Mareike Barthel, and Sebastian Dendorfer evaluated multi-camera markerless motion capture during walking in forty-one older participants with hip or knee pathology.",
+      "source_url": "https://www.frontiersin.org/journals/medical-technology/articles/10.3389/fmedt.2026.1940851/full",
+      "source_name": "Frontiers in Medical Technology",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers found that inter-system reliability was predominantly high, with eighteen of thirty-six parameters classified as excellent.",
+      "source_url": "https://doi.org/10.3389/fmedt.2026.1940851",
+      "source_name": "Frontiers in Medical Technology",
+      "confidence": "high"
+    },
+    {
+      "fact": "Editorial coverage by Denise Maddox on Scienmag detailed how markerless motion capture proves reliable for older hip and knee patients during walking assessments.",
+      "source_url": "https://scienmag.com/markerless-motion-capture-proves-reliable-for-older-hip-and-knee-patients-during-walking",
+      "source_name": "Scienmag",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Participants evaluated in the study",
+      "value": 41,
+      "unit": "participants",
+      "source_url": "https://www.frontiersin.org/journals/medical-technology/articles/10.3389/fmedt.2026.1940851/full"
+    },
+    {
+      "label": "Parameters classified as excellent reliability",
+      "value": 18,
+      "unit": "parameters",
+      "source_url": "https://doi.org/10.3389/fmedt.2026.1940851"
+    },
+    {
+      "label": "Total parameters evaluated",
+      "value": 36,
+      "unit": "parameters",
+      "source_url": "https://doi.org/10.3389/fmedt.2026.1940851"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Leonhard Stein",
+      "kind": "person"
+    },
+    {
+      "name": "Lukas Gschoßmann",
+      "kind": "person"
+    },
+    {
+      "name": "Mareike Barthel",
+      "kind": "person"
+    },
+    {
+      "name": "Sebastian Dendorfer",
+      "kind": "person"
+    },
+    {
+      "name": "Denise Maddox",
+      "kind": "person"
+    },
+    {
+      "name": "Frontiers in Medical Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Scienmag",
+      "kind": "organization"
+    }
+  ]
+}
