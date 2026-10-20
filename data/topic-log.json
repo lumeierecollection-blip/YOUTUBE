@@ -1172,9 +1172,14 @@
           "topic": "September 2026 U.S. Consumer Price Index Inflation Breakdown",
           "slug": "september-2026-cpi-inflation-breakdown",
           "reserved_at": "2026-10-20T12:38:30.453Z"
+        },
+        {
+          "topic": "Pipefy Integrations Introduces AI Powered Routing and Connectors",
+          "slug": "pipefy-integrations-ai-routing-connectors",
+          "reserved_at": "2026-10-20T14:05:22.520Z"
         }
       ],
-      "last_generated": "2026-10-20T12:38:30.454Z"
+      "last_generated": "2026-10-20T14:05:22.520Z"
     },
     "3": {
       "channel_name": "AI Tested",
