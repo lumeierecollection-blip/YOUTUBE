@@ -11,6 +11,7 @@
 
 import { readFileSync, existsSync } from "fs";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
+import { strictUngroundableSentences } from "./strict-visual.mjs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -412,6 +413,25 @@ function main() {
     const { sentences, bare, run } = wordsOnlyShare(sections);
     if (sentences.length >= 6 && (bare.length / sentences.length > 1 / 3 || run >= 3)) {
       majors.push(`SCR-17: ${bare.length}/${sentences.length} sentences name no figure, date or proper noun (longest run ${run}) — the renderer allows at most one words-only beat in three: "${bare.slice(0, 3).join('" / "').slice(0, 220)}"`);
+    }
+  }
+
+  // SCR-17 STRICT (BLOCKER, config strict_visual channels only: ch-02, ch-48 —
+  // owner's frame rule 2026-10-20: "every frame must have a visual asset. No
+  // pure text cards."). SCR-17 above can only warn for every channel; for the
+  // channels the frame review keeps rejecting as TEMPLATE_MONOCULTURE it
+  // blocks: every voiceover sentence must ground a figure the frame can draw
+  // (number / chart / date / place / list / comparison / document / money /
+  // cause-effect) or name an entity that can carry a real logo or photo. A
+  // sentence that does neither becomes a text-only beat — the exact failure
+  // the renderer now refuses. The gate-feedback loop re-asks the writer with
+  // these lines (workflow: FEEDBACK grep '^  - ').
+  if (channel.strict_visual) {
+    const bad = strictUngroundableSentences(wordsOnlyShare(sections).sentences);
+    if (bad.length) {
+      blockers.push(
+        `SCR-17 STRICT (strict_visual channel): ${bad.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence and name no entity that can carry a picture — every beat must draw a real visual. Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw: "${bad.slice(0, 4).join('" / "').slice(0, 300)}"`
+      );
     }
   }
 

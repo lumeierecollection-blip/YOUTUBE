@@ -728,6 +728,13 @@ ${example}
 
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
   let dynamicPart = `${styleReferenceBlock(styleRef)}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
+  // STRICT VISUAL (owner's frame rule, 2026-10-20 — channels with
+  // config strict_visual, currently ch-02 and ch-48): every beat must draw a
+  // real visual. The renderer refuses to render a text-only beat on these
+  // channels (scripts/strict-visual.mjs), so tell the planner up front.
+  if (strictPlanChannel(channelId)) {
+    dynamicPart += `\n\nSTRICT VISUAL (this channel, the owner's frame rule): EVERY beat must draw a real visual — a photo, logo, map, chart, number, process, timeline, comparison, list, document or money object. A typography-only beat (TYPE) without one of those is rejected and fails the video. For each sentence, translate the figure it states: a number -> NUMBER/COUNTER, two numbers -> a chart, dates -> TIMELINE, a place -> MAP, a cause or sequence -> PROCESS, an enumeration -> LIST, a comparison -> COMPARE, a legal instrument -> DOCUMENT, money -> MONEY, a stated rise/fall -> TREND; a sentence that states none of those must show the named entity's real logo or photo. There is no "nothing to show" fallback on this channel.`;
+  }
   if (corrections?.length) {
     // A re-plan answered the corrections and dropped the optional fields it was not asked about
     // (CI runs 37705693390 and 37713312537: the plan carried 9/9 and 10/10 layouts, the re-plan 0).
@@ -735,6 +742,19 @@ Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in ord
       corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
   }
   return { staticPart, dynamicPart };
+}
+
+/** Channels carrying the owner's strict frame rule (config channels.json strict_visual). */
+let STRICT_PLAN_CHANNELS = null;
+function strictPlanChannel(channelId) {
+  if (STRICT_PLAN_CHANNELS === null) {
+    try {
+      const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+      const channels = data.channels || data;
+      STRICT_PLAN_CHANNELS = new Set(channels.filter((c) => c && c.strict_visual).map((c) => String(c.id)));
+    } catch { STRICT_PLAN_CHANNELS = new Set(); }
+  }
+  return STRICT_PLAN_CHANNELS.has(String(channelId));
 }
 
 function buildPlanPrompt(sentences, corrections, channelId, styleRef = null) {

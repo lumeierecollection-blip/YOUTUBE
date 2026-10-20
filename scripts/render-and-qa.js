@@ -32,6 +32,7 @@ import { assignCanvasAnimations } from "./anim-plan.js";
 import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor, symbolFor } from "./composition-variety.js";
 import { quantitiesOf } from "./canvas-grounding.js";
 import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
+import { strictVisualEnabled, strictVisualAudit } from "./strict-visual.mjs";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
@@ -2600,6 +2601,35 @@ async function resolveCanvas(channelId, planPath, plan) {
   }
   // Every entity a sentence names is drawn (entityLadder): before the chrome pass, which reads what each beat draws.
   await entityLadder(plan, channelId);
+  // STRICT FRAME RULE (owner, 2026-10-20) — the channels the frame review kept
+  // rejecting as TEMPLATE_MONOCULTURE only (config strict_visual: ch-02,
+  // ch-48). "Every frame must have a visual asset. No pure text cards."
+  // A beat whose final canvas is typography or name plates is upgraded to a
+  // figure its sentence itself grounds (chart / number / timeline / map /
+  // process / comparison / list / document / money); a beat whose sentence
+  // grounds NONE of those fails the render here, before rendering — no
+  // invented figures, no decorative icons (the fallback-5 rule in
+  // composition-variety.js). Running before chrome / legaliseGrounds /
+  // chooseShots / assignCanvasAnimations so everything below sees these
+  // finals. The frame-review gate itself is NOT loosened.
+  if (strictVisualEnabled(channelId)) {
+    const audit = strictVisualAudit(plan.beats, { log: (m) => console.log(`ch-${channelId} ${m}`) });
+    for (const u of audit.upgrades) {
+      const b = u.target;
+      delete b.hero_cutout; delete b.art; delete b.name_card; delete b.fallback_symbol; delete b.type_layout;
+      b.concept_visuals = [];
+      b.visual_type = u.to;
+      b.data = u.data;
+      b.canvas = canvasContentFor(b, {});
+      console.log(`[strict-visual] ch-${channelId} beat ${u.beat}: ${u.from} -> ${b.canvas.composition} (${u.why})`);
+    }
+    if (audit.failures.length) {
+      console.error(`::error::[strict-visual] ch-${channelId}: ${audit.failures.length} beat(s) have no grounded visual — refusing to render a text-only video`);
+      for (const f of audit.failures) console.error(`::error::[strict-visual] ch-${channelId} beat ${f.beat}: "${f.sentence}" — ${f.reason}`);
+      return { ok: false, reason: `strict-visual: ${audit.failures.length} beat(s) with no grounded visual (${audit.failures.map((f) => `beat ${f.beat}`).join(", ")}); rewrite the script to state figures/places, or pick another topic` };
+    }
+    if (audit.upgrades.length) console.log(`[strict-visual] ch-${channelId}: ${audit.upgrades.length} text beat(s) upgraded to grounded figures; every beat now draws a visual`);
+  }
   // CHROME (owner, 2026-10-08 "kill the template"): the planner's label / pull phrase, grounded,
   // then the three-beat window rule (scripts/template-check.js) enforced by REMOVAL only.
   {
