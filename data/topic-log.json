@@ -1167,9 +1167,14 @@
           "topic": "WSO2 Integrator 5.1 Deepens AI-Powered Enterprise Integration",
           "slug": "wso2-integrator-5-1-ai-workflow-release",
           "reserved_at": "2026-10-20T11:38:56.762Z"
+        },
+        {
+          "topic": "September 2026 U.S. Consumer Price Index Inflation Breakdown",
+          "slug": "september-2026-cpi-inflation-breakdown",
+          "reserved_at": "2026-10-20T12:38:30.453Z"
         }
       ],
-      "last_generated": "2026-10-20T11:38:56.762Z"
+      "last_generated": "2026-10-20T12:38:30.454Z"
     },
     "3": {
       "channel_name": "AI Tested",
