@@ -92,5 +92,17 @@
     "cancelled": true,
     "source_file": "michelle-singletary-debt-raises-october-2026-shorts-shorts-2026-10-18.mp4",
     "source_queue": "approved-review"
+  },
+  {
+    "video_id": "hOYJOrB9lR4",
+    "channel_id": "1",
+    "title": "Sandi Toksvig and University of Cambridge Launch Mappa.",
+    "uploaded_at": "2026-10-20T00:23:16.835Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-20T01:23:16.835Z",
+    "privacy_status": "private",
+    "cancelled": false,
+    "source_file": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative-shorts-shorts-2026-10-20.mp4",
+    "source_queue": "approved"
   }
 ]
