@@ -1182,9 +1182,14 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "Introducing the TypeSafe Connector: Bringing Jev Models to UiPath",
+          "slug": "uipath-integration-service-typesafe-connector",
+          "reserved_at": "2026-10-20T22:35:47.931Z"
         }
       ],
-      "last_generated": "2026-10-20T22:18:16.324Z"
+      "last_generated": "2026-10-20T22:35:47.931Z"
     },
     "3": {
       "channel_name": "AI Tested",
