@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "uipath-integration-service-typesafe-connector",
+  "format": "shorts",
+  "hook": "On October 16, 2026, UiPath released a preview that changed automation decision-making.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "On October 16, 2026, UiPath released a preview that changed automation decision-making.",
+      "visual_cue": "UiPath release notes document showing October 16, 2026 date and preview details.",
+      "sfx_cue": "ui_whoosh_light",
+      "b_roll": [
+        "UiPath Documentation release notes screen recording"
+      ],
+      "animation_cue": "zoom in on date 2026",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "October 16, 2026 Release"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Integration Service in Automation Cloud gained the TypeSafe connector on that exact day.",
+      "visual_cue": "Integration Service dashboard in Automation Cloud displaying the connector interface.",
+      "sfx_cue": "data_tick",
+      "b_roll": [
+        "Automation Cloud dashboard screenshot",
+        "Gartner research report excerpt"
+      ],
+      "animation_cue": "highlight TypeSafe connector list item",
+      "transition_out": "slide",
+      "text_overlay": {
+        "text": "Automation Cloud Integration Service"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:26",
+      "voiceover": "Except the TypeSafe connector calls the System One API to make rapid yes or no decisions.",
+      "visual_cue": "System One API architectural flow diagram showing JSON input and decision output.",
+      "sfx_cue": "tech_chime",
+      "b_roll": [
+        "System One API documentation schema"
+      ],
+      "animation_cue": "pulse API endpoint link",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "System One API Logic"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:40",
+      "voiceover": "Gartner confirmed this market growth based on revenue trends and growing reputation. UiPath deployed this tool in 2026 to handle scoring and decision logic directly inside workflows.",
+      "visual_cue": "Gartner software market growth chart with revenue trend lines.",
+      "sfx_cue": "success_ding",
+      "b_roll": [
+        "UiPath blog post featuring Charlie Greenberg"
+      ],
+      "animation_cue": "highlight 2021 publication year and market growth metric",
+      "transition_out": "slide",
+      "text_overlay": {
+        "text": "Fastest Growing Market"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "Automation Cloud now runs scoring decisions in 2026.",
+      "visual_cue": "UiPath Integration Service preview dashboard with active workflow execution.",
+      "sfx_cue": "ui_click",
+      "b_roll": [
+        "UiPath platform interface final view"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "UiPath 2026 Preview"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://docs.uipath.com/integration-service/automation-cloud/latest/release-notes/october-2026",
+    "https://www.uipath.com/blog/product-and-updates/introducing-uipath-integration-service"
+  ]
+}
