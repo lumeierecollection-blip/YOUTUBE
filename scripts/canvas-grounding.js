@@ -317,14 +317,16 @@ export function quantitiesOf(sentence) {
     if (WORD_NUM_PREV.has(prev)) continue;                          // "no one", "the one", "another two"
     const afterWords = words(text.slice(m.index + m[0].length).split(/[,;.]/)[0] || "");
     const next = clean(afterWords[0] || "").toLowerCase();
+    if (m[3] === undefined && next === "point") continue;           // "one point of view", not a figure
     if (!next || WORD_NUM_NEXT.has(next)) continue;                 // "one of", "two million", "four to five"
     const lab = trimEdges(afterWords).slice(0, 4).map(clean).filter(Boolean).join(" ") || null;
-    out.push({ value: String(numWordValue(m[1], m[2])), label: lab });
+    const base = numWordValue(m[1], m[2]);
+    out.push({ value: m[3] ? `${base}.${ONES[m[3].toLowerCase()]}` : String(base), label: lab });
   }
   return out;
 }
 const NUM_WORD = "(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)";
-const NUM_WORD_RE = new RegExp(`\\b${NUM_WORD}(?:-(one|two|three|four|five|six|seven|eight|nine))?\\b`, "gi");
+const NUM_WORD_RE = new RegExp(`\\b${NUM_WORD}(?:-(one|two|three|four|five|six|seven|eight|nine))?(?:\\s+point\\s+(one|two|three|four|five|six|seven|eight|nine))?\\b`, "gi");
 const ONES = { one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19 };
 const TENS = { twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
 const numWordValue = (head, unit) => (TENS[head.toLowerCase()] || 0) + (unit ? ONES[unit.toLowerCase()] : 0) + (ONES[head.toLowerCase()] || 0);

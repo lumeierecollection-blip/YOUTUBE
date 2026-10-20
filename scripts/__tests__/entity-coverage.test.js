@@ -151,3 +151,14 @@ test("a resolved hero_cutout is a draw before it is appended to concept_visuals;
   assert.equal(gapOf({ narration: sentence, named_entities: ents, canvas: withHero }).covered, true);
   assert.equal(gapOf({ narration: sentence, named_entities: ents, canvas: { composition: "TYPE-FULL", concept_visuals: cv } }).covered, false);
 });
+
+test("a cited outlet is the sentence's source, not what it is about", () => {
+  const cnbc = [{ type: "company", name: "CNBC" }];
+  assert.deepEqual(entitiesOf({ sentence: "CNBC reported that gasoline prices climbed.", named_entities: cnbc, dropSources: true }), []);
+  assert.deepEqual(entitiesOf({ sentence: "According to CNBC, gasoline prices climbed.", named_entities: cnbc, dropSources: true }), []);
+  assert.deepEqual(entitiesOf({ sentence: "CNBC reported record profits.", named_entities: cnbc, dropSources: true }).map((e) => e.name), ["CNBC"]);
+  assert.deepEqual(entitiesOf({ sentence: "CNBC reported that gasoline prices climbed.", named_entities: cnbc }).map((e) => e.name), ["CNBC"]);
+  const chart = { visual_type: "BAR", composition: "DATA-FULL", data: { bars: [{ label: "gasoline", value: "2.6" }] } };
+  assert.equal(checkEntityCoverage([beat("CNBC reported that gasoline prices climbed.", chart, cnbc)]).failures.length, 0);
+  assert.equal(checkEntityCoverage([beat("CNBC reported record profits.", chart, cnbc)]).failures.length, 1);
+});

@@ -859,8 +859,16 @@ jobs:
               # Same machinery and one-per-run budget as the claims re-pick
               # (REPICKED/BURNED, ~45 lines above); the replacement topic
               # starts with a clean feedback slate and 3 attempts left.
+              #
+              # SCR-18 belongs here too (run 39422270500 ch-48): the writer
+              # invented study labels ("Studies Analyzed", "Online
+              # Meta-Analysis", an author) that the research artifact does not
+              # name, on every attempt. Names are the writer's invention, but a
+              # research artifact with no usable names is the topic's; three
+              # invented names in one gate log means re-picking is the fix.
               if [ "$ATTEMPT" -eq 5 ] && [ "$REPICKED" -eq 0 ] \
-                 && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
+                 && { grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
+                      || [ "$(grep -c 'SCR-18' /tmp/gate-out-$FORMAT.log 2>/dev/null || true)" -ge 3 ]; } \
                  && [ -f /tmp/topics.json ]; then
                 BURNED="${BURNED:-} $SLUG"
                 NEXT=""; NEXT_TOPIC=""; NEXT_ANGLE=""

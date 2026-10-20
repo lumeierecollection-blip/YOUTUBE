@@ -26,3 +26,9 @@ test("a software version is the sentence's figure; article numbers stay identifi
   assert.ok(quantitiesOf("The platform ships version 5.1 today.").some((q) => q.value === "5.1"));
   assert.deepEqual(quantitiesOf("Under Article 10 the rule applies."), []);
 });
+
+test("a spelled-out decimal is one figure, not two", () => {
+  const q = quantitiesOf("Core CPI posted an annual reading of two point six percent.");
+  assert.deepEqual(q.map((x) => x.value), ["2.6"]);
+  assert.deepEqual(quantitiesOf("That is one point of view."), []);
+});

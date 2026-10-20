@@ -46,14 +46,45 @@ export function sameName(a, b) {
   return small.length >= 1 && small.every((w) => big.includes(w)) && small.join("").length >= 4;
 }
 
+/**
+ * Is this organisation cited as the sentence's SOURCE rather than its subject?
+ * "CNBC reported that prices climbed" / "according to CNBC" / "data from CNBC
+ * showed" — the frame is about the claim, and a chart answers it. Matched only
+ * in those attribution shapes, so "CNBC reported record profits" (the outlet
+ * is the subject) still requires the outlet's visual.
+ */
+const ATTRIB_AFTER = /\b(?:reported|reports|said|says|told|noted|notes|found|wrote|writes|cited|confirmed|estimates|estimated|projects|projected|predicts|predicted|announced|announces|showed|shows)\s+(?:that\b|,|:)/i;
+const ATTRIB_BEFORE = /\b(according to|as reported by|reported by|cited by|data from|figures from|numbers from|analysis by)\s*$/i;
+export function isAttributionSource(name, sentence) {
+  const s = String(sentence || "");
+  const n = String(name || "").trim();
+  if (!s || !n) return false;
+  const words = n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  const re = new RegExp(`(?:^|[^\\p{L}\\p{N}])${words}(?![\\p{L}\\p{N}])`, "giu");
+  for (const m of s.matchAll(re)) {
+    const after = s.slice(m.index + m[0].length);
+    if (ATTRIB_AFTER.test(after.match(/^\s*([^,;.!?]{0,40})/)?.[1] || "")) return true;
+    if (ATTRIB_BEFORE.test(s.slice(Math.max(0, m.index - 40), m.index))) return true;
+  }
+  return false;
+}
+
 /** The entities a beat's sentence names: [{ type, name, region? }] (person / organization / place / date / span / number). */
-export function entitiesOf({ sentence = "", named_entities = [] } = {}) {
+export function entitiesOf({ sentence = "", named_entities = [], dropSources = false } = {}) {
   const out = [];
   const push = (e) => { if (e.name && !out.some((o) => o.type === e.type && sameName(o.name, e.name))) out.push(e); };
   for (const e of Array.isArray(named_entities) ? named_entities : []) {
     const type = typeOf(e?.type);
     if (!["person", "place", "organization"].includes(type)) continue;
     if (!entityShape(e.name, type === "organization" ? "institution" : type, sentence).ok) continue;   // scripts/lib/entity-shape.mjs: a specific named thing only
+    // A cited outlet is the SOURCE of the sentence, not what it is about
+    // (owner's "show the one the sentence is about", 2026-10-09). Run
+    // 39422270500 ch-2 beat 2 said "CNBC reported that gasoline prices
+    // climbed" and drew the gasoline-price chart: the coverage gate failed it
+    // because the organisation outranked the figure, even though the sentence
+    // is about the prices. The same words with the outlet as the SUBJECT
+    // ("The FBI joined the case") are still required.
+    if (dropSources && type === "organization" && isAttributionSource(e.name, sentence)) continue;
     const nm = type === "place" ? placeName(e.name) : String(e.name).trim();
     push({ type, name: nm, ...(type === "place" && resolveRegion(nm) ? { region: resolveRegion(nm) } : {}) });
   }
@@ -282,7 +313,7 @@ export function checkEntityCoverage(beats) {
   beats.forEach((b, i) => {
     const c = b.canvas || {};
     const sentence = String(b.sentence ?? c.sentence ?? b.narration ?? "");
-    const ents = entitiesOf({ sentence, named_entities: b.named_entities ?? c.named_entities ?? c.entities ?? [] });
+    const ents = entitiesOf({ sentence, named_entities: b.named_entities ?? c.named_entities ?? c.entities ?? [], dropSources: true });
     const hint = c.photo?.entity || c.data?.entity || null;
     const primary = primaryOf(ents, hint);
     if (!ents.length) { rows.push({ beat: i, entities: [], covered: null, note: wordsOnly(c) ? "words only — names nothing" : "names nothing" }); return; }
