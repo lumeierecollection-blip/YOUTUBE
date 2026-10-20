@@ -1137,9 +1137,14 @@
           "topic": "Amazon MWAA Adds AI Agent Skills for Apache Airflow Workflows",
           "slug": "amazon-mwaa-ai-agent-skills-apache-airflow",
           "reserved_at": "2026-10-20T00:48:29.674Z"
+        },
+        {
+          "topic": "Precisely Launches MCP Server for SAP Automation Integration",
+          "slug": "precisely-mcp-server-sap-automation-integration",
+          "reserved_at": "2026-10-20T01:15:09.737Z"
         }
       ],
-      "last_generated": "2026-10-20T00:48:29.674Z"
+      "last_generated": "2026-10-20T01:15:09.737Z"
     },
     "3": {
       "channel_name": "AI Tested",
