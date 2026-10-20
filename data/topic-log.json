@@ -1177,9 +1177,14 @@
           "topic": "Interact MCP Server Brings Enterprise Intranet to AI Assistants",
           "slug": "interact-mcp-enterprise-intranet-server",
           "reserved_at": "2026-10-20T16:11:35.130Z"
+        },
+        {
+          "topic": "MIT InstructMesh: Repairing and Fabricating AI-Generated 3D Models",
+          "slug": "mit-instructmesh-ai-3d-model-fabrication",
+          "reserved_at": "2026-10-20T17:42:43.194Z"
         }
       ],
-      "last_generated": "2026-10-20T16:11:35.130Z"
+      "last_generated": "2026-10-20T17:42:43.194Z"
     },
     "3": {
       "channel_name": "AI Tested",
