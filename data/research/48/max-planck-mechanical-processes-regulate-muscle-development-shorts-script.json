@@ -1,0 +1,63 @@
+{
+  "channel_id": "48",
+  "topic_slug": "max-planck-mechanical-processes-regulate-muscle-development",
+  "format": "shorts",
+  "hook": "Did you know 1 physical force triggers human muscle building through structural sarcomere formation?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know 1 physical force triggers human muscle building through structural sarcomere formation?",
+      "b_roll": [
+        "Macro shot of muscle fibers under tension in a laboratory setting"
+      ],
+      "text_overlay": {
+        "text": "Muscle Building Trigger"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 16, 2026, the Max Planck Institute published research detailing how mechanical processes regulate muscle development. How do mechanical forces govern structural strength?",
+      "b_roll": [
+        "Exterior view of the Max Planck Institute building",
+        "Microscope laboratory showing cellular alignment"
+      ],
+      "text_overlay": {
+        "text": "Max Planck Institute Discovery"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Max Planck scientist F. Schnorrer discovered tension drives sarcomere formation.",
+      "b_roll": [
+        "Scientific diagram illustrating sarcomere structures"
+      ],
+      "text_overlay": {
+        "text": "Sarcomere Formation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers at the Max Planck Institute mapped 1 exact mechanism of muscle development.",
+      "b_roll": [
+        "Animation of cellular mechanics and muscle fiber development"
+      ],
+      "text_overlay": {
+        "text": "Structural Strength Regulation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the October 16, 2026 report from the Max Planck Institute to see how mechanical processes build muscle.",
+      "b_roll": [
+        "Close up of laboratory data screens showing muscle growth metrics"
+      ],
+      "text_overlay": {
+        "text": "Mechanical Regulation"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://phys.org/news/2026-10-strength-mechanical-muscle.html",
+    "https://www.mpg.de/8017746/muscle-building"
+  ]
+}
