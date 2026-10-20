@@ -11,3 +11,13 @@ Prefer stories whose main subjects are known well enough to have a Wikipedia art
 company, a university, an official, a public figure. A story whose only subjects are a local committee, a small firm or a private consultant
 has nothing to show on screen. The pipeline looks each subject up and reserves the best-illustrated candidate first, so three candidates with
 three different, well-known sets of subjects keep the channel from a video made of text.
+
+STRICT VISUAL CHANNELS (`strict_visual: true` in the context) — these draw
+every beat and refuse text cards, so the facts matter as much as the
+subjects. A portrait or logo is a real asset, but a whole story of "this
+person said/studied X" beats is refused. Include in `subjects` the
+pictureable place, object, company or agency the story is about (a
+ship, a factory, a city, a device), not only the authors. Do not propose a
+topic whose facts are only authorship or method, or a product/API release
+note, unless the search results also give measurements, dates, places or a
+process the video can draw.

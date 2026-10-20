@@ -40,7 +40,7 @@
               "minLength": 2,
               "maxLength": 80
             },
-            "description": "The specific people and organizations this story is ABOUT, by their full public names as the sources give them (not places, not generic groups like 'police' or 'prosecutors'). scripts/rank-topics-imagery.js looks each one up for a free logo or portrait and puts the best-illustrated candidate first."
+            "description": "The specific subjects this story is ABOUT, by the full public names the sources give them: people, organizations, and - especially on strict_visual channels - the pictureable place, object or agency (never generic groups like 'police' or 'prosecutors'). scripts/rank-topics-imagery.js looks each one up for a free logo, portrait or Commons lead image and puts the best-illustrated candidate first."
           }
         },
         "required": [

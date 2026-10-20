@@ -59,6 +59,26 @@ contain: title, URL, publication date, and the returned text highlights.
 - `slug`: lowercase, hyphens only, 8–60 characters, derived from the topic.
 - `pillar`: the exact `content_pillars` string this topic falls under.
 
+## Strict visual channels (`strict_visual: true`)
+
+Some channels draw every beat and refuse a text card. Their context carries
+`topic_visual_rule`; follow it when choosing and when ordering the three
+candidates. Concretely:
+
+- Pick a topic whose FACTS are drawable: a dated event, a named place, a
+  measured figure, a list, a comparison, a physical object or a process.
+- Do not pick a topic whose only facts are "researcher X analysed Y", an
+  API/product release note, or a paper abstract with no measurements. The
+  script stage cannot state a figure that the sources do not contain, and
+  the render is refused rather than inventing one.
+- `subjects` should include the pictureable place, object, company or agency,
+  not only the authors. The best candidate is one whose story has both a
+  real asset (logo/photo) and facts a chart, map, timeline or process can
+  draw.
+- Order the three candidates best-first under these rules; the pipeline
+  reserves the first non-duplicate and re-tries the next one if the chosen
+  topic's script cannot be grounded.
+
 ## Focus pillar (when present)
 
 A channel may carry `focus_pillar`: the content pillar its recent topics
