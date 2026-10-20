@@ -866,7 +866,7 @@ jobs:
               # name, on every attempt. Names are the writer's invention, but a
               # research artifact with no usable names is the topic's; three
               # invented names in one gate log means re-picking is the fix.
-              if [ "$ATTEMPT" -eq 5 ] && [ "$REPICKED" -eq 0 ] \
+              if [ "$ATTEMPT" -eq 3 ] && [ "$REPICKED" -eq 0 ] \
                  && { grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
                       || [ "$(grep -c 'SCR-18' /tmp/gate-out-$FORMAT.log 2>/dev/null || true)" -ge 3 ]; } \
                  && [ -f /tmp/topics.json ]; then

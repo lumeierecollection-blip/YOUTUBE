@@ -11,7 +11,7 @@
 
 import { readFileSync, existsSync } from "fs";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
-import { strictUngroundableSentences, sentenceNamesEntity } from "./strict-visual.mjs";
+import { strictUngroundableSentences } from "./strict-visual.mjs";
 import { join, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -423,28 +423,18 @@ function main() {
   // stricter: every sentence should ground a figure (number / chart / date /
   // place / list / comparison / document / money / cause-effect).
   //
-  // Two tiers, because the two verifiers know different things:
-  //  - no figure AND no entity -> BLOCKER. Nothing can draw it.
-  //  - names an entity but grounds no figure -> WARNING. The plan stage is
-  //    told to attach that entity's real logo/photo and the RENDER audit is
-  //    what can verify one was found; blocking it here deadlocked topics
-  //    whose every fact is "X API calls Y" (run 39405490346 ch-2/ch-48 spent
-  //    all 8 attempts on sentences that cannot state a figure without
-  //    inventing one).
-  // Both tiers print `  - ` lines, so the gate-feedback loop still re-asks
-  // the writer with them (workflow: FEEDBACK grep '^  - ').
+  // REVERTED TO ONE TIER (run 39454114003 ch-2): the warning tier assumed the
+  // plan would attach the named entity's real logo/photo, so the render audit
+  // could verify it. It cannot: a small company has no fetched mark, the
+  // ladder falls back to a name plate, and the audit - correctly - refuses
+  // plates as text cards. Seven beats passed on warning and failed the render
+  // with no retry. A sentence that grounds nothing must fail HERE, where the
+  // writer is re-asked and the strict re-pick can change the topic.
   if (channel.strict_visual) {
     const bad = strictUngroundableSentences(wordsOnlyShare(sections).sentences);
-    const entityOnly = bad.filter((s) => sentenceNamesEntity(s));
-    const hard = bad.filter((s) => !sentenceNamesEntity(s));
-    if (hard.length) {
+    if (bad.length) {
       blockers.push(
-        `SCR-17 STRICT (strict_visual channel): ${hard.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence and name nothing an asset can be looked up for â€” every beat must draw a real visual. Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts verbatim from the research; invent nothing): "${hard.slice(0, 4).join('" / "').slice(0, 300)}"`
-      );
-    }
-    if (entityOnly.length) {
-      majors.push(
-        `SCR-17 STRICT: ${entityOnly.length} sentence(s) ground no figure and rely on the named entity's real logo/photo being found (a name plate is a text card if it is not). Prefer a sourced figure: "${entityOnly.slice(0, 4).join('" / "').slice(0, 300)}"`
+        `SCR-17 STRICT (strict_visual channel): ${bad.length} sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts verbatim from the research; invent nothing): "${bad.slice(0, 4).join('" / "').slice(0, 300)}"`
       );
     }
   }
