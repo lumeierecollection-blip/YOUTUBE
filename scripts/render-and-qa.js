@@ -1603,6 +1603,14 @@ export async function entityLadder(plan, channelId, log = console.log) {
       const rowItems = (d.art && Array.isArray(d.art.items)) ? d.art.items : [];
       const pickIdx = Math.max(0, rowItems.findIndex((x) => x && x.asset));
       const one = rowNames[pickIdx] || rowNames[0];
+      // A second visual that draws the SAME thing the beat already draws is not
+      // a second visual: the retry plan already carried a date plate, the ladder
+      // added another, and the pair filled both slots (board 39344506422 ch-2
+      // beat 1). Keep the ladder's first entry, never a duplicate.
+      if (existing.some((v) => v && sameName(v.name, one)) || (b.hero_cutout && sameName(b.hero_cutout.name, one))) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: "${one}" is already on the beat — no duplicate second visual`);
+        continue;
+      }
       // The class must be one coverageOf() RECOGNISES. It was "plate", which
       // drawnOf() reported but no branch of coverageOf() matched, so the beat
       // still read as words-only and ch-26/ch-1 were rejected with the visual
@@ -1733,6 +1741,13 @@ function canvasContentFor(b, { photo = null } = {}) {
     persists_from: Number.isInteger(b.persists_from) ? b.persists_from : null,
     match_cut_prev: !!b.match_cut_prev,
     named_entities: Array.isArray(b.named_entities) ? b.named_entities : [],
+    // The beat's own resolved hero (a logo / money object). It is appended to
+    // concept_visuals below for the renderer, but it also travels as its own
+    // field so coverageOf() can see it BEFORE that append: the ladder ran on a
+    // canvas whose concept_visuals were full of a secondary date, concluded the
+    // primary organisation was uncovered, and added a second date — the retry
+    // then drew date + date and lost the OVHcloud logo (board 39344506422 ch-2).
+    hero_cutout: b.hero_cutout || null,
     // The planner's text entrance for the statement (a POP name or null);
     // scripts/anim-plan.js checks it against the video (POP_HARD on the hook /
     // CTA only, POP_LETTER once, POP_WORD_STACK only where it fits).
@@ -1764,8 +1779,15 @@ function canvasContentFor(b, { photo = null } = {}) {
   // room for a second object (canvas-layout.js draws cutout0/cutout1).
   const ladderVisuals = Array.isArray(b.concept_visuals) ? b.concept_visuals.filter(Boolean) : [];
   if (ladderVisuals.length) c.concept_visuals = ladderVisuals.slice(0, 2);
-  if (vt === "TYPE" && b.hero_cutout && (c.concept_visuals || []).length < 2) {
-    c.concept_visuals = [...(c.concept_visuals || []), b.hero_cutout].slice(0, 2);
+  if (vt === "TYPE" && b.hero_cutout) {
+    // The hero is the beat's primary entity's real visual, so it takes the first
+    // slot; a same-name plate beside it is the same thing drawn worse and is
+    // dropped, and a secondary visual keeps the second slot if there is one.
+    // It used to append only when fewer than two concept visuals existed, so a
+    // pair of date plates displaced the OVHcloud logo entirely (board
+    // 39344506422 ch-2 beat 1: "draws date + date, none of it the entity").
+    const rest = (c.concept_visuals || []).filter((v) => v && !sameName(v.name, b.hero_cutout.name));
+    c.concept_visuals = [b.hero_cutout, ...rest].slice(0, 2);
   }
   // Composition variety's drawn-symbol fallback (scripts/composition-variety.js): the symbol for
   // what the sentence states ("risk" -> warning triangle) is the beat's hero. A name card keeps its name.

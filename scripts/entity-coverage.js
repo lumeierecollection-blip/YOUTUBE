@@ -92,6 +92,11 @@ export function drawnOf(c) {
   const out = [];
   if (!c) return out;
   if (c.photo) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", name: c.photo.entity, region: c.photo.region || null });
+  // The beat's resolved hero is a draw even before canvasContentFor() appends it
+  // to concept_visuals. The ladder read a beat with a logo hero and a date concept
+  // as "primary organisation uncovered", added a second date, and the retry drew
+  // date + date instead of the logo (board 39344506422 ch-2 beat 1).
+  if (c.hero_cutout?.name) out.push({ kind: c.hero_cutout.logo ? "logo" : c.hero_cutout.class === "cutout" ? "cutout" : c.hero_cutout.class || "visual", name: c.hero_cutout.name });
   for (const v of c.concept_visuals || []) out.push({ kind: v.logo ? "logo" : v.class === "symbol" ? "symbol" : v.class === "cutout" ? "cutout" : v.class || "visual", name: v.name });
   // A plates row carries SEVERAL named things, each with its own kind. It used to
   // report every one of them as "plate-organization", which made a person or a

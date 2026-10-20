@@ -2,7 +2,7 @@
 // ENTITY-ART compositions that answer an entity the sentence names.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { entitiesOf, coverageOf, checkEntityCoverage, sameName } from "../entity-coverage.js";
+import { entitiesOf, coverageOf, checkEntityCoverage, drawnOf, sameName } from "../entity-coverage.js";
 import { ladderFor, gapOf } from "../entity-ladder.js";
 import { canvasLayout, canvasManifest, layoutViolations, normalizeCanvas } from "../../src/skills/remotion-render/visual/canvas-layout.js";
 import { flagCodeOf } from "../../src/skills/remotion-render/visual/flags.js";
@@ -140,4 +140,14 @@ test("a process diagram and a bare stat card yield to the person / organisation 
   assert.equal(proc.art.kind, "plate-organization"); assert.equal(proc.replaces, true);
   const stat = ladderFor(beat("Disney+ launched in 4 countries.", { visual_type: "COUNTER", composition: "NUMBER-FULL", data: { value: "4", label: "countries" } }, [{ type: "company", name: "Disney+" }]));
   assert.equal(stat.art.name, "Disney+");
+});
+
+test("a resolved hero_cutout is a draw before it is appended to concept_visuals; without it the primary organisation is uncovered", () => {
+  const sentence = "On October 1, 2026, OVHcloud stopped including a local disk.";
+  const ents = [{ type: "company", name: "OVHcloud" }, { type: "date", name: "October 1, 2026" }];
+  const cv = [{ name: "October 1, 2026", class: "date" }];
+  const withHero = { composition: "TYPE-FULL", concept_visuals: cv, hero_cutout: { name: "OVHcloud", class: "cutout", logo: true, asset: "cutouts-live/2/1-ovhcloud-logo.png" } };
+  assert.equal(drawnOf(withHero).some((d) => d.kind === "logo" && d.name === "OVHcloud"), true);
+  assert.equal(gapOf({ narration: sentence, named_entities: ents, canvas: withHero }).covered, true);
+  assert.equal(gapOf({ narration: sentence, named_entities: ents, canvas: { composition: "TYPE-FULL", concept_visuals: cv } }).covered, false);
 });
