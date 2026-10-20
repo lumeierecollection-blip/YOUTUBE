@@ -66,7 +66,7 @@ function main() {
     // licenses an invented number.
     visual_rule: channel.strict_visual ? {
       required: true,
-      rule: "EVERY voiceover sentence must state something a frame can draw: a sourced number, date, place, list, comparison, document, money object or cause/effect sequence. Naming a person, paper or organisation alone is NOT enough - a name plate is a text card. Prefer the research facts that carry a scene, a place, a measured figure or a step-by-step process; do not write method-only sentences like 'X analyzed Y' unless you can name the Y, where, or a result in that same sentence WITHOUT inventing anything. The figures must appear verbatim in the research artifact.",
+      rule: "EVERY voiceover sentence must state something a frame can draw: a sourced number, date, place, list, comparison, document, money object or cause/effect sequence. Naming a person, paper or organisation alone is NOT enough - a name plate is a text card. Prefer the research facts that carry a scene, a place, a measured figure or a step-by-step process; do not write method-only sentences like 'X analyzed Y' unless you can name the Y, where, or a result in that same sentence WITHOUT inventing anything. The figures must appear verbatim in the research artifact. NEVER name a study's authors, researchers, journals, databases or websites: the pipeline has no portrait or logo for them, and the beat is refused at render even when it also states a figure (run 39434350384 ch-48). Attribute findings to 'the study', 'the review' or 'the researchers' instead. Name a company only when the video is ABOUT that company and the research names it.",
     } : null,
     research,
   };
