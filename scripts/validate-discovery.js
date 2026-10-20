@@ -48,6 +48,29 @@ const FIGURE_PATTERNS = [
   /\b\d{4,}\b/, // raw large numbers
 ];
 
+const MEASURABLE_KEYWORDS = [
+  "percent", "percentage", "%", "increase", "decrease", "rise", "fall", "growth", "decline",
+  "survey", "study", "report", "data", "statistics", "statistic", "number", "numbers",
+  "million", "billion", "trillion", "thousand", "percent", "ratio", "rate",
+  "increased", "decreased", "grew", "fell", "rose", "dropped", "jumped", "surged",
+  "quarter", "year", "month", "week", "day", "hour", "minute", "second",
+  "km", "miles", "meters", "feet", "inches", "kg", "pounds", "dollars", "euros",
+  "billion", "million", "trillion", "k", "m", "b",
+  "ratio", "rate", "score", "index", "benchmark", "benchmark", "metric", "metrics",
+];
+
+function hasMeasurableKeywords(text) {
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  return MEASURABLE_KEYWORDS.some(kw => lower.includes(kw.toLowerCase()));
+}
+
+async function checkMeasurableKeywords(topic) {
+  const text = `${topic.topic} ${topic.angle || ""} ${topic.pillar || ""} ${topic.why_now || ""}`;
+  const hasKeywords = hasMeasurableKeywords(text);
+  return hasKeywords ? { pass: true } : { pass: false, reason: "no measurable keywords in topic/angle/pillar/why_now" };
+}
+
 function countFigures(text) {
   if (!text) return 0;
   let count = 0;
@@ -162,6 +185,13 @@ async function main() {
   for (const topic of topics) {
     console.log(`[validate-discovery] ch-${channelId}: checking "${topic.topic}"...`);
 
+    const keywordCheck = await checkMeasurableKeywords(topic);
+    if (!keywordCheck.pass) {
+      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${keywordCheck.reason}`);
+      rejected.push({ ...topic, reject_reason: keywordCheck.reason });
+      continue;
+    }
+
     const domainCheck = await checkTwoDomains(topic);
     if (!domainCheck.pass) {
       console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${domainCheck.domains.length} domain(s) (${domainCheck.domains.join(", ")}), need 2`);
@@ -171,8 +201,8 @@ async function main() {
 
     const figureCheck = await checkFigureDensity(topic);
     if (!figureCheck.pass) {
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — only ${figureCheck.figures} measurable figures in search results (need ≥4)`);
-      rejected.push({ ...topic, reject_reason: `only ${figureCheck.figures} measurable figures (need ≥4)` });
+      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — only ${figureCheck.figures} measurable figures in search results (need ≥8)`);
+      rejected.push({ ...topic, reject_reason: `only ${figureCheck.figures} measurable figures (need ≥8)` });
       continue;
     }
 
