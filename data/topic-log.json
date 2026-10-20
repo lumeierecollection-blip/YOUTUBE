@@ -1142,9 +1142,14 @@
           "topic": "Precisely Launches MCP Server for SAP Automation Integration",
           "slug": "precisely-mcp-server-sap-automation-integration",
           "reserved_at": "2026-10-20T01:15:09.737Z"
+        },
+        {
+          "topic": "MIT InstructMesh Tool Repairs and Fabricates AI 3D Models",
+          "slug": "mit-instructmesh-ai-3d-models-fabrication",
+          "reserved_at": "2026-10-20T08:38:22.452Z"
         }
       ],
-      "last_generated": "2026-10-20T01:15:09.737Z"
+      "last_generated": "2026-10-20T08:38:22.452Z"
     },
     "3": {
       "channel_name": "AI Tested",
