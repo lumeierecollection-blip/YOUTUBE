@@ -1172,9 +1172,14 @@
           "topic": "September 2026 U.S. Consumer Price Index Inflation Breakdown",
           "slug": "september-2026-cpi-inflation-breakdown",
           "reserved_at": "2026-10-20T12:38:30.453Z"
+        },
+        {
+          "topic": "Interact MCP Server Brings Enterprise Intranet to AI Assistants",
+          "slug": "interact-mcp-enterprise-intranet-server",
+          "reserved_at": "2026-10-20T16:11:35.130Z"
         }
       ],
-      "last_generated": "2026-10-20T14:05:22.520Z"
+      "last_generated": "2026-10-20T16:11:35.130Z"
     },
     "3": {
       "channel_name": "AI Tested",
