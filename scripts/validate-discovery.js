@@ -74,20 +74,19 @@ function hasMeasurableKeywords(text) {
 }
 
 async function checkMeasurableKeywords(topic) {
-  // Only check the topic title and angle — these are what the discovery agent controls.
-  // pillar/why_now are generated later and may contain misleading keywords.
-  // Require the topic title ITSELF to contain a measurable keyword (strong signal),
-  // OR the angle to contain at least 2 measurable keywords.
+  // Require the topic TITLE itself to contain a measurable keyword (strong signal).
+  // Topics like "API release", "product launch", "model release" lack measurable keywords.
   const titleLower = topic.topic.toLowerCase();
   for (const kw of MEASURABLE_KEYWORDS) {
     if (titleLower.includes(kw.toLowerCase())) return { pass: true };
   }
+  // If title lacks measurable keyword, require angle to have ≥2 measurable keywords
   let count = 0;
   const angleLower = (topic.angle || "").toLowerCase();
   for (const kw of MEASURABLE_KEYWORDS) {
     if (angleLower.includes(kw.toLowerCase())) count++;
   }
-  return count >= 2 ? { pass: true } : { pass: false, reason: "topic/angle lack ≥2 measurable keywords (percent, survey, million, revenue, etc.)" };
+  return count >= 2 ? { pass: true } : { pass: false, reason: "topic title lacks measurable keyword; angle needs ≥2 (percent, survey, million, revenue, etc.)" };
 }
 
 function countFigures(text) {
