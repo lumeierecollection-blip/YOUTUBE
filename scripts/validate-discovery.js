@@ -49,17 +49,16 @@ const FIGURE_PATTERNS = [
 ];
 
 const MEASURABLE_KEYWORDS = [
-  // Explicit quantitative/measurable terms only
-  "percent", "percentage", "%",
+  // Explicit quantitative/measurable terms only — no generic "%" or "release"
   "survey", "poll", "census",
-  "statistics", "statistic", "statistics",
+  "statistics", "statistic",
   "million", "millions", "billion", "billions", "trillion", "trillions",
   "thousand", "thousands",
   "increase", "increases", "increased", "decrease", "decreases", "decreased",
   "growth", "growth rate", "decline", "declined",
   "survey", "surveyed", "poll", "polled",
   "ratio", "rate", "rate of",
-  "score", "index", "benchmark", "benchmark",
+  "score", "index", "benchmark",
   "metric", "metrics", "measurement", "measurements",
   "quarter", "quarters", "fiscal",
   "revenue", "profit", "loss", "earnings",
