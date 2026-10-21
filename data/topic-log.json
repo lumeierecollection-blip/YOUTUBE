@@ -1177,9 +1177,14 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "ASAPIO Integration Add-on October 2026 Release and AI Control",
+          "slug": "asapio-integration-add-on-october-2026-release",
+          "reserved_at": "2026-10-21T14:02:18.791Z"
         }
       ],
-      "last_generated": "2026-10-21T02:08:32.095Z"
+      "last_generated": "2026-10-21T14:02:18.791Z"
     },
     "3": {
       "channel_name": "AI Tested",
