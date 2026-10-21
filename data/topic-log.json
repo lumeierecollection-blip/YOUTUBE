@@ -1177,9 +1177,14 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "Mintlify Autopilot: Inside the Always-On AI Doc Updating Agent",
+          "slug": "mintlify-autopilot-always-on-agent-docs",
+          "reserved_at": "2026-10-21T01:29:50.943Z"
         }
       ],
-      "last_generated": "2026-10-21T00:46:24.197Z"
+      "last_generated": "2026-10-21T01:29:50.943Z"
     },
     "3": {
       "channel_name": "AI Tested",
