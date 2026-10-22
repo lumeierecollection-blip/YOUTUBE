@@ -1,0 +1,132 @@
+import { describe, it } from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { buildSceneBriefs, usableObs } from "../direction/scene-brief.mjs";
+import { checkBriefsAgainstRender } from "../direction/check-briefs.mjs";
+import { locateInputs } from "../direction/brief-cli.mjs";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
+const R = (f) => JSON.parse(readFileSync(join(ROOT, "data", "research", "1", f), "utf8"));
+const script = R("elizabeth-van-lew-union-espionage-network-shorts-script.json");   // real, committed
+const research = R("elizabeth-van-lew-union-espionage-network.json");              // real, committed
+
+// Synthetic manifest/plan: one beat per sentence of the real script.
+const sentences = script.sections.flatMap((s) => s.voiceover.match(/[^.?!]+[.?!]/g).map((x) => x.trim()));
+const manifest = {
+  video: "elizabeth-van-lew-union-espionage-network-shorts-shorts-2026-10-22.mp4", fps: 30, engine: "clone",
+  sfx: [{ role: "hit", beat: 1, at_frame: 150, reason: "photo lands" }],
+  beats: sentences.map((s, i) => ({
+    index: i, start_sec: i * 3, duration_sec: i === 2 ? 5 : 3, narrative_text: ["Union", "Spy"],
+    canvas: { sentence: s, visual_type: "PHOTO", composition: "PHOTO-FULL", emphasis_words: ["Richmond"],
+      photo: i === 0 ? { asset: "asset-library/missing.jpg", entity: "Elizabeth Van Lew", verified_as: null } : null, concept_visuals: [] },
+  })),
+};
+const plan = { beats: sentences.map((_, i) => ({ index: i, named_entities: i === 0 ? [{ type: "person", name: "Elizabeth Van Lew" }] : [], text_entrance: "POP_HARD" })) };
+const grammar = { laws: { gap_max_s: 4 }, profiles: { "archive-italic": {} } };
+const channel = { id: 1, clone: { profile: "archive-italic" } };
+const build = (extra = {}) => buildSceneBriefs({ script, research, plan, manifest, channel, grammar, ...extra });
+
+describe("scene briefs", () => {
+  it("ids are stable, unique and carry index + narration hash", () => {
+    const a = build(), b = build();
+    assert.deepEqual(a.map((x) => x.scene_id), b.map((x) => x.scene_id));
+    assert.equal(new Set(a.map((x) => x.scene_id)).size, a.length);
+    assert.match(a[0].scene_id, /-s0-[0-9a-f]{6}$/);
+    const changed = JSON.parse(JSON.stringify(manifest));
+    changed.beats[0].canvas.sentence += " Extra words.";
+    assert.notEqual(buildSceneBriefs({ script, research, plan, manifest: changed, channel, grammar })[0].scene_id, a[0].scene_id);
+  });
+
+  it("matches research evidence deterministically and never invents it", () => {
+    const briefs = build();
+    const allowed = new Set([...research.key_facts.map((f) => f.fact), ...research.numbers.map((n) => `${n.label}: ${n.value} ${n.unit}`)]);
+    for (const b of briefs) for (const e of b.source_evidence) {
+      assert.ok(allowed.has(e.fact), `unknown fact: ${e.fact}`);
+      assert.ok(research.key_facts.some((f) => f.source_url === e.source_url) || research.numbers.some((n) => n.source_url === e.source_url));
+    }
+    const birth = briefs.find((b) => /October 12, 1818/.test(b.narration));
+    assert.ok(birth.source_evidence.some((e) => /October 12, 1818/.test(e.fact)));
+    assert.equal(birth.narrative_purpose, "evidence");
+    const none = build().find((b) => /^Visit/.test(b.narration));
+    assert.deepEqual(none.source_evidence.filter((e) => /1861|Libby/.test(e.fact)), []);
+    const noEv = buildSceneBriefs({ script, research: { key_facts: [], numbers: [], named_entities: [] }, plan, manifest, channel, grammar });
+    assert.ok(noEv.every((b) => b.source_evidence.length === 0 && b.evidence_status === "none" && b.flags.includes("no-research-evidence-for-sentence")));
+  });
+
+  it("maps beats to script sections and narration comes only from the manifest sentence", () => {
+    const b = build();
+    assert.equal(b[0].section, "hook");
+    assert.equal(b[0].narrative_purpose, "hook");
+    assert.ok(b.every((x) => sentences.includes(x.narration)));
+  });
+
+  const ref = (over = {}) => ({
+    source: { file: "ref-01.mp4" }, direction: { status: "complete" },
+    transitions: [{ text: "hard cut on the beat", type: "hard-cut", confidence: "high", evidence: ["f003", "f004"] }],
+    sound_cues: [{ t: 1.2, text: "whoosh at cut", confidence: "medium", evidence: ["f005"] }],
+    ...over,
+  });
+
+  it("uses reference observations only when confidence >= medium and frames are cited", () => {
+    const b = build({ referenceDirection: ref() });
+    assert.equal(b[1].transition.in, "hard-cut");
+    assert.match(b[1].transition.rationale, /f003/);
+    assert.ok(b[1].justification.some((j) => j.evidence.includes("ref:ref-01#f003")));
+    const bad = build({ referenceDirection: ref({
+      transitions: [{ text: "dissolve", confidence: "low", evidence: ["f001"] }, { text: "wipe", confidence: "high", evidence: [] }, { text: "spin", confidence: "high", evidence: ["frame-9"] }],
+      sound_cues: [{ t: 1, text: "boom", confidence: "low", evidence: ["f001"] }],
+    }) });
+    assert.ok(bad.every((x) => !/dissolve|wipe|spin/.test(JSON.stringify(x.transition))));
+    assert.ok(bad.every((x) => x.sound_cues.every((c) => c.kind !== "boom")));
+    assert.match(bad[1].transition.rationale, /clone profile "archive-italic"/);
+    const measured = build({ referenceDirection: ref({ direction: { status: "measured-only" } }) });
+    assert.match(measured[1].transition.rationale, /No usable reference direction/);
+    assert.equal(usableObs({ confidence: "medium", evidence: ["f010"] }), true);
+    assert.equal(usableObs({ confidence: "low", evidence: ["f010"] }), false);
+  });
+
+  it("says so when neither reference nor clone profile exists", () => {
+    const b = buildSceneBriefs({ script, research, plan, manifest, channel: {}, grammar });
+    assert.match(b[1].transition.rationale, /not specified/);
+  });
+
+  it("every brief has objective and subjective criteria; justification cites evidence", () => {
+    for (const b of build()) {
+      assert.ok(b.acceptance_criteria.some((c) => c.objective) && b.acceptance_criteria.some((c) => !c.objective));
+      assert.ok(b.justification.every((j) => j.evidence.length > 0));
+    }
+  });
+});
+
+describe("check-briefs", () => {
+  it("turns failed objective criteria into defects with scene_id; subjective go to vision review", () => {
+    const briefs = build();
+    const r = checkBriefsAgainstRender(briefs, { manifest, publicDir: join(ROOT, "src", "skills", "remotion-render", "public") });
+    const checks = r.new_defects.map((d) => d.check);
+    assert.ok(checks.includes("brief:asset_file_exists"), checks.join());
+    assert.ok(checks.includes("brief:entity_photo_verified"));
+    assert.ok(checks.includes("brief:display_words_subset"));   // "Union Spy" is not in beat 0 narration
+    const hold = r.new_defects.find((d) => d.check === "brief:max_hold");
+    assert.equal(hold.beat_index, 2);
+    assert.ok(r.new_defects.every((d) => d.scene_id === briefs[d.beat_index].scene_id && d.source === "objective"));
+    assert.ok(r.for_vision_review.length > 0 && r.for_vision_review.every((c) => c.objective === false && c.scene_id));
+  });
+
+  it("a clean beat produces no defect", () => {
+    const m = JSON.parse(JSON.stringify(manifest));
+    m.beats[0].canvas.photo = { asset: "ok.jpg", verified_as: "Elizabeth Van Lew (Wikipedia)" };
+    m.beats.forEach((b) => { b.narrative_text = []; b.duration_sec = 3; });
+    const briefs = buildSceneBriefs({ script, research, plan, manifest: m, channel, grammar });
+    const r = checkBriefsAgainstRender(briefs, { manifest: m, exists: () => true });
+    assert.deepEqual(r.new_defects, []);
+  });
+});
+
+describe("locateInputs", () => {
+  it("skips with a reason when the video name or siblings cannot be found", () => {
+    assert.match(locateInputs("C:/x/renders/1/odd.mp4").skip, /does not match/);
+    assert.match(locateInputs("C:/x/renders/1/a-shorts-shorts-2026-10-22.mp4", join(ROOT, "nowhere")).skip, /not found/);
+  });
+});
