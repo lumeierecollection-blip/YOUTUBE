@@ -187,8 +187,11 @@ export async function runCritic({ direction, index, round = 0, call = null, mode
     const rec = await ask({ call, prompt: buildScenePrompt(b), images, validate: validateScene, model });
     if (rec.status === "answered" && rec.answer.beat_index !== b.beat_index) rec.answer.beat_index = b.beat_index; // ids are ours, not the model's
     const eff = effectiveVerdict(rec.answer);
-    doc.scenes.push({ beat_index: b.beat_index, sentence: b.sentence, images: images.length, ...rec,
-      verdict: rec.answer?.verdict ?? null, effective_verdict: eff.verdict, escalated: eff.escalated });
+    // Order matters: direct.mjs puts the first ~1500 chars of this record in its re-direct prompt,
+    // so the verdict and the critique come before bookkeeping (sentence, usage, model).
+    const { answer, ...meta } = rec;
+    doc.scenes.push({ beat_index: b.beat_index, effective_verdict: eff.verdict, escalated: eff.escalated, verdict: answer?.verdict ?? null,
+      answer, ...meta, sentence: b.sentence, images: images.length });
   }
   if (index.sheet && existsSync(index.sheet)) {
     doc.whole_video = await ask({ call, prompt: buildWholePrompt(direction), images: [index.sheet], validate: validateWhole, model });
