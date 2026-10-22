@@ -24,7 +24,7 @@ import "../wait-for-fonts.js";
 import { SfxPalette } from "../visual/audio-mix.js";
 import {
   FW, FH, FPS, clamp01, EASE, scheduleShots, layoutWorld, resolveCamera, cameraAt, coverWidth, framingToCamera,
-  subjectOnScreen, textSlotFor, TEXT_SLOTS, CAPTION_BAND, syncFrame,
+  subjectOnScreen, textSlotFor, TEXT_SLOTS, CAPTION_BAND, syncFrame, finishCamera, AR_VIEW,
 } from "./geometry.js";
 import { mechanismPieces } from "./mechanisms.js";
 
@@ -43,11 +43,23 @@ export function planShots(props) {
     s.world = layoutWorld(s.shot, family, materials);
     s.ids = s.shot.materials.filter(drawable).map((m) => m.id);
     s.cam = resolveCamera(s.shot, family, s.world, materials);
+    let matched = false;
     if (prev && (prev.shot.transition_out === "match-cut" || s.shot.camera.move === "match-cut") && s.ids.length && prev.ids.length) {
+      matched = true;
       // MATCH CUT: the incoming shot opens on its focus at the same relative scale the outgoing one ended on
       const pr = prev.world.rects[prev.ids[0]], r = s.world.rects[s.ids[0]];
       const rel = coverWidth(pr) / prev.cam.b.w;
       s.cam.a = framingToCamera({ zoom: rel, fx: null, fy: null }, r, materials[s.ids[0]].focus || { x: 0.5, y: 0.5 });
+    }
+    if (s.ids.length) {
+      finishCamera(s.cam, s.shot.camera.move, s.world.rects[s.ids[0]], materials[s.ids[0]], matched);
+      if (matched && s.cam.ratio < 1.2 && /push-in|pull-out/.test(s.shot.camera.move)) {
+        // the matched scale left no room for the move (the picture cannot be magnified further without going soft):
+        // the MOVE wins over the match — re-resolve without the held start, and say so in proof mode
+        s.cam = resolveCamera(s.shot, family, s.world, materials);
+        finishCamera(s.cam, s.shot.camera.move, s.world.rects[s.ids[0]], materials[s.ids[0]], false);
+        s.matchDropped = true;
+      }
     }
     s.prevTransition = prev ? prev.shot.transition_out || "cut" : null;
     const sync = syncFrame(s, words, FPS);
@@ -77,7 +89,7 @@ function MaterialPiece({ m, rect, pc, palette, proof }) {
   };
   if (m.status !== "verified") {
     if (!proof) return null;
-    return <div style={style}><div style={placeholderStyle(palette)}>PROOF PLACEHOLDER — material “{m.id}” is {m.status}; not drawn in production</div></div>;
+    return <div style={{ ...style, clipPath: pc.clip || undefined }}><div style={placeholderStyle(palette)}>PROOF PLACEHOLDER — material “{m.id}” is {m.status}; not drawn in production</div></div>;
   }
   const print = rect.print || rect.cutout || pc.border;
   const cut = rect.cutout && m.alpha;
@@ -185,7 +197,11 @@ function ShotView({ s, frame, props, xform }) {
   const scale = FW / cam.w;
   const x0 = cam.cx - cam.w / 2, y0 = cam.cy - (cam.w * FH / FW) / 2;
   const mainIds = s.ids.filter((id) => !s.world.rects[id].inset);
-  const { pieces } = mechanismPieces(s.family, p, mainIds, s.world.rects, (id) => materials[id]?.focus || { x: 0.5, y: 0.5 });
+  const r0 = mainIds.length ? s.world.rects[mainIds[0]] : null;
+  // the opening framing in the first material's own 0..1 units: a reveal opens OUTWARD FROM WHAT THE CAMERA SHOWS FIRST
+  const vh = s.cam.a.w * AR_VIEW;
+  const view = r0 ? { x: (s.cam.a.cx - s.cam.a.w / 2 - r0.x) / r0.w, y: (s.cam.a.cy - vh / 2 - r0.y) / r0.h, w: s.cam.a.w / r0.w, h: vh / r0.h } : null;
+  const { pieces } = mechanismPieces(s.family, p, mainIds, s.world.rects, (id) => materials[id]?.focus || { x: 0.5, y: 0.5 }, view);
   if (s.shot.camera.move === "rack" && mainIds.length >= 2) {
     // RACK: focus is pulled from the first material to the last as the camera reframes (depth of field, not a fade)
     const e = s.cam.ease(p);

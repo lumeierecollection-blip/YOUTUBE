@@ -49,7 +49,7 @@ const piece = (o) => ({ dx: 0, dy: 0, rot: 0, scale: 1, clip: null, filter: null
  * family: beat.mechanism.family; ids: the shot's drawable picture material ids in order; rects: world rects;
  * focus(id) -> {x,y}. Returns { [id]: piece[] } and `events`: [{at: p, kind}] (the moments an sfx cue hangs on).
  */
-export function mechanismPieces(family, p, ids, rects, focus) {
+export function mechanismPieces(family, p, ids, rects, focus, view = null) {
   const out = {};
   const events = [];
   ids.forEach((id) => { out[id] = [piece({})]; });
@@ -59,10 +59,14 @@ export function mechanismPieces(family, p, ids, rects, focus) {
   switch (family) {
     case "reveal":
     case "context-reveal": {
+      // The window starts as 78% of the OPENING framing (the first frame is the picture with its edges just inside
+      // the frame, never a strip on black: run 39862567098 b0s1/b1s2) and opens to the whole material.
+      // Without a view (tests): a window on the focus point.
       const f = focus(A), e = EASE.inOut(win(p, 0.12, 0.72));
-      const half = lerp(0.14, 0.75, e); // half-size of the window, in material units
-      const l = Math.max(0, f.x - half), r = Math.max(0, 1 - f.x - half);
-      const t = Math.max(0, f.y - half * 0.75), b = Math.max(0, 1 - f.y - half * 0.75);
+      const v = view || { x: f.x - 0.15, y: f.y - 0.15, w: 0.3, h: 0.3 };
+      const k0 = 0.78;
+      const l = Math.max(0, lerp(v.x + (v.w * (1 - k0)) / 2, 0, e)), r = Math.max(0, lerp(1 - v.x - (v.w * (1 + k0)) / 2, 0, e));
+      const t = Math.max(0, lerp(v.y + (v.h * (1 - k0)) / 2, 0, e)), b = Math.max(0, lerp(1 - v.y - (v.h * (1 + k0)) / 2, 0, e));
       out[A] = [piece({ clip: `inset(${(t * 100).toFixed(2)}% ${(r * 100).toFixed(2)}% ${(b * 100).toFixed(2)}% ${(l * 100).toFixed(2)}%)`, shadow: true })];
       events.push({ at: 0.12, kind: "reveal" });
       break;
