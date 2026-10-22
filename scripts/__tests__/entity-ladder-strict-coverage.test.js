@@ -14,7 +14,8 @@ import { wordmarkFitsRow, markHeightInRow, MIN_MARK_H, markRepeatAllowed } from 
 const org = (name) => ({ type: "organization", name });
 const S0 = "OpenAI and AI Agents Library scored the agent test overall across six tasks.";
 const S2 = "OpenAI scored better than Meta on the same test.";
-const S3 = "Gemini scored well in the same test.";
+// The real beat 3 states its figure (num3 below draws "8.5"); a figure-less sentence has nothing to upgrade to.
+const S3 = "Gemini scored 8.5 in the same test.";
 
 // Before the fix: the manifest canvases of beats 0, 2, 3 (chart / stat card only).
 const chart0 = { composition: "DATA-FULL", visual_type: "BAR", data: { bars: [{ label: "score overall across six", value: "9.08" }] } };
