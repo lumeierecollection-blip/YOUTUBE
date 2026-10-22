@@ -78,7 +78,7 @@ jobs:
           FONT=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
           mkdir -p out/vd/frames/half out/vd/frames/shots
           grab () { # $1 time-s  $2 out.png  $3 label
-            ffmpeg -loglevel error -y -ss "$1" -i out/vd/fixture.mp4 -frames:v 1 \
+            ffmpeg -nostdin -loglevel error -y -ss "$1" -i out/vd/fixture.mp4 -frames:v 1 \
               -vf "scale=216:384,drawbox=y=ih-34:w=iw:h=34:color=black@0.8:t=fill,drawtext=fontfile=$FONT:text='$3':x=6:y=h-28:fontsize=17:fontcolor=white" "$2"
           }
           # every 0.5 s
@@ -92,7 +92,8 @@ jobs:
             const s = require("./out/vd/fixture.shots.json");
             for (const sh of s.shots) for (const [k, q] of [["in",0],["25",0.25],["50",0.5],["75",0.75],["out",1]]) {
               const f = q === 0 ? sh.from : q === 1 ? sh.to - 1 : Math.round(sh.from + (sh.to - sh.from) * q);
-              console.log([((f + 0.5) / s.fps).toFixed(3), `${sh.id} ${k} f${f}`].join("|"));
+              // -ss before -i returns the first frame with pts >= t, so aim a quarter frame EARLY to land on frame f
+              console.log([Math.max(0, (f - 0.25) / s.fps).toFixed(3), `${sh.id} ${k} f${f}`].join("|"));
             }' > out/vd/frames/shot-points.txt
           n=0
           while IFS='|' read -r t label; do

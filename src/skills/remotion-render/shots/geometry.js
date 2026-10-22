@@ -17,6 +17,7 @@ export const FW = 1080;
 export const FH = 1920;
 export const FPS = 30;
 const AR = FH / FW; // 16:9 portrait
+export const AR_VIEW = AR;
 
 export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 export const clamp01 = (t) => clamp(t, 0, 1);
@@ -109,7 +110,10 @@ export const containWidth = (r, m = 0.12) => Math.max(r.w, r.h / AR) * (1 + m);
  * wide-of-context framings centre the material and let the ground show around it.
  */
 export function framingToCamera(phrase, target, focus = { x: 0.5, y: 0.5 }) {
-  const f = typeof phrase === "string" ? parseFraming(phrase) : phrase;
+  let f = typeof phrase === "string" ? parseFraming(phrase) : phrase;
+  // A full-bleed picture never pulls back past "fills the frame": a landscape photo shrunk below cover is a thin
+  // strip on an empty ground (CI run 39862567098, b0s1). Only prints / cut-outs sit on the ground as objects.
+  if (f.zoom < 1 && !(target.print || target.cutout || target.union)) f = { ...f, zoom: 1 };
   if (f.both && f.zoom >= 1 && f.zoom < 1.5) return { cx: target.x + target.w / 2, cy: target.y + target.h / 2, w: containWidth(target, 0.08) };
   const base = coverWidth(target);
   const close = f.zoom > 1.01;
@@ -143,7 +147,7 @@ export function toScreen(r, cam) {
 export function unionRect(rs) {
   const x = Math.min(...rs.map((r) => r.x)), y = Math.min(...rs.map((r) => r.y));
   const x2 = Math.max(...rs.map((r) => r.x + r.w)), y2 = Math.max(...rs.map((r) => r.y + r.h));
-  return { x, y, w: x2 - x, h: y2 - y };
+  return { x, y, w: x2 - x, h: y2 - y, union: rs.length > 1 };
 }
 
 /* ── world layout per shot ──────────────────────────────────────────────── */
@@ -180,6 +184,15 @@ export function layoutWorld(shot, family, mats) {
     pics.slice(0, 2).forEach((m, i) => { rects[m.id] = { ...coverBox(mats[m.id], FW / 2, FH / 4 + i * (FH / 2), FW, FH / 2) }; });
     pics.slice(2).forEach((m) => { rects[m.id] = fitRect(mats[m.id], FW / 2, FH / 2, FW * 0.5, FH * 0.3); });
     return { rects };
+  }
+  if (shot.camera.move === "rack" && pics.length >= 2) {
+    // RACK: two subjects at different depths in ONE frame, overlapping (B behind, below-right of A), so the
+    // reframe never crosses empty ground (CI run 39862567098: b2s2 mid-move was a black frame)
+    pics.forEach((m, i) => {
+      const r = fitRect(mats[m.id], FW / 2 + (i ? 110 : -110), FH * 0.36 + i * FH * 0.36, FW * 0.92, FH * 0.5);
+      rects[m.id] = { ...r, print: true };
+    });
+    return { rects, sideBySide: true, samePlace: false, horizontal: false };
   }
   pics.forEach((m, i) => {
     const mm = mats[m.id];
@@ -286,6 +299,58 @@ export function resolveCamera(shot, family, world, mats) {
   return { a, b, ease };
 }
 
+// screen px per source px. Past this the photo goes visibly soft (b2s1, run 39862567098). KNOWN LIMIT: a 1920 px
+// landscape photo full-bleed in a portrait frame is ALREADY ~1.5x at "fills the frame", so a push into it can only
+// reach ~1.45x before this cap; the move is then smaller than ZOOM_MIN_RATIO and the shots sidecar records it.
+const MAX_UPSCALE = 2.2;
+
+/** Widen a viewport so the material under it is never magnified past MAX_UPSCALE of its own pixels. */
+export function capMagnification(cam, rect, native) {
+  if (!native || !native.w) return cam;
+  const minW = (FW * rect.w) / (MAX_UPSCALE * native.w);
+  if (cam.w >= minW) return cam;
+  const c = { ...cam, w: minW };
+  const h = minW * AR;
+  if (minW <= rect.w) c.cx = clamp(c.cx, rect.x + minW / 2, rect.x + rect.w - minW / 2);
+  if (h <= rect.h) c.cy = clamp(c.cy, rect.y + h / 2, rect.y + rect.h - h / 2);
+  return c;
+}
+
+/**
+ * Final pass over a resolved camera: cap magnification on both ends, then make sure a push/pull still changes the
+ * framing by ZOOM_MIN_RATIO by widening the WIDE end (never by magnifying past the cap). Sets res.ratio.
+ */
+export function finishCamera(res, move, rect, native, fixedStart = false) {
+  res.a = capMagnification(res.a, rect, native);
+  res.b = capMagnification(res.b, rect, native);
+  if (fixedStart && (move === "push-in" || move === "pull-out" || move === "match-cut")) {
+    // the start is held by a match cut: move the END far enough instead (and cap it)
+    const ratio = Math.max(res.a.w, res.b.w) / Math.min(res.a.w, res.b.w);
+    if (ratio < ZOOM_MIN_RATIO) res.b = capMagnification({ ...res.b, w: move === "pull-out" ? res.a.w * ZOOM_MIN_RATIO : res.a.w / ZOOM_MIN_RATIO }, rect, native);
+  } else if (move === "push-in" || move === "pull-out" || move === "match-cut") {
+    const [wide, close] = res.a.w >= res.b.w ? ["a", "b"] : ["b", "a"];
+    if (res[wide].w / res[close].w < ZOOM_MIN_RATIO) {
+      // widen the wide end — but a full-bleed picture never past "fills the frame" (no strip on an empty ground)
+      const maxWide = rect.print || rect.cutout || rect.union ? Infinity : coverWidth(rect);
+      const w = Math.max(res[wide].w, Math.min(res[close].w * ZOOM_MIN_RATIO, maxWide));
+      res[wide] = capMagnification({ ...res[wide], w, cx: lerp(res[wide].cx, rect.x + rect.w / 2, 0.5), cy: lerp(res[wide].cy, rect.y + rect.h / 2, 0.5) }, rect, native);
+      if (!(rect.print || rect.cutout || rect.union)) res[wide] = framingClamp(res[wide], rect);
+    }
+    if (move === "push-in" && res.a.w < res.b.w) [res.a, res.b] = [res.b, res.a];
+    if (move === "pull-out" && res.a.w > res.b.w) [res.a, res.b] = [res.b, res.a];
+  }
+  res.ratio = Math.max(res.a.w, res.b.w) / Math.min(res.a.w, res.b.w);
+  return res;
+}
+
+/** Keep a viewport inside a rect (when it fits) so a full-bleed picture never shows the ground at an edge. */
+export function framingClamp(cam, rect) {
+  const h = cam.w * AR, c = { ...cam };
+  c.cx = cam.w <= rect.w ? clamp(c.cx, rect.x + cam.w / 2, rect.x + rect.w - cam.w / 2) : rect.x + rect.w / 2;
+  c.cy = h <= rect.h ? clamp(c.cy, rect.y + h / 2, rect.y + rect.h - h / 2) : rect.y + rect.h / 2;
+  return c;
+}
+
 /** The camera at progress p (0..1) through the shot. */
 export function cameraAt(resolved, p) {
   return mixCamera(resolved.a, resolved.b, resolved.ease(clamp01(p)));
@@ -329,5 +394,8 @@ export function syncFrame(shotSched, words, fps = FPS) {
   const hit = words.find((w) => w.start >= t0 && w.start <= t1 && norm(w.word) === want)
     || words.find((w) => w.start >= t0 && w.start <= t1 && norm(w.word).startsWith(want));
   if (!hit) return { frame: fallback, matched: false };
-  return { frame: Math.round(hit.start * fps), matched: true };
+  const f = Math.round(hit.start * fps);
+  // spoken outside this shot's window: the text would flash for a few frames at the edge; land it early instead
+  if (f < shotSched.from || f > shotSched.from + shotSched.dur - 20) return { frame: fallback, matched: false, outside: true };
+  return { frame: f, matched: true };
 }

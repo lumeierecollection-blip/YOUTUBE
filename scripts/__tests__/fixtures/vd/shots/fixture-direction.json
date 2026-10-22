@@ -103,18 +103,18 @@
       {
        "id": "tunnel",
        "kind": "photo",
-       "must_show": "a dark lava-tube tunnel",
-       "why": "renderer fixture: Dark cave tunnel interior (30s exposure, lava tube) - hook 'flashlight beam cutt",
+       "must_show": "a vertical cave shaft",
+       "why": "renderer fixture: Vertical cave shaft - section_2 'vertical shaft descent'",
        "search": [
-        "File:Lava River Cave - 20578435368.jpg"
+        "File:Vertical Shaft of Wine Cave - panoramio.jpg"
        ],
        "treatment": "full-bleed",
        "resolved": {
         "status": "verified",
-        "file": "b-roll/ch-fixture/flashlight-beam.jpg",
-        "source_url": "https://commons.wikimedia.org/wiki/File:Lava_River_Cave_-_20578435368.jpg",
-        "license": "Public domain (US Forest Service)",
-        "credit": "Brady Smith / US Forest Service, Coconino National Forest — File:Lava River Cave - 20578435368.jpg, Public domain (US Forest Service)",
+        "file": "b-roll/ch-fixture/vertical-shaft.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Vertical_Shaft_of_Wine_Cave_-_panoramio.jpg",
+        "license": "CC BY 3.0",
+        "credit": "Wikimedia Commons contributor — File:Vertical Shaft of Wine Cave - panoramio.jpg, CC BY 3.0",
         "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
        }
       }
