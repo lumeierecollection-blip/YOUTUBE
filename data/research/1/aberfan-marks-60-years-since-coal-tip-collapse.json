@@ -1,0 +1,73 @@
+{
+  "topic_slug": "aberfan-marks-60-years-since-coal-tip-collapse",
+  "strongest_angle": "Examining the history, survival accounts, and ongoing efforts to preserve the memory of the 1966 Aberfan disaster 60 years later as the village marks the poignant anniversary.",
+  "key_facts": [
+    {
+      "fact": "On 21 October 1966 at approximately 9.15am, a coal tip from Merthyr Vale Colliery collapsed onto the village of Aberfan, killing 116 children and 28 adults.",
+      "source_url": "https://museum.wales/aberfan60",
+      "source_name": "Museum Wales",
+      "confidence": "high"
+    },
+    {
+      "fact": "BBC Cymru Wales announced a comprehensive season of television, radio, and online programming to mark the 60th anniversary of the Aberfan disaster in October 2026.",
+      "source_url": "https://www.bbc.co.uk/mediacentre/mediapacks/cymru-wales-aberfan-60th-anniversary",
+      "source_name": "BBC Mediacentre",
+      "confidence": "high"
+    },
+    {
+      "fact": "Communities and survivors gathered in Aberfan to observe a moment of silence at 9.15am, exactly 60 years after the devastating coal tip collapse.",
+      "source_url": "https://www.lbc.co.uk/article/royals-mark-60th-anniversary-aberfan-disaster-5HjdkBr_2",
+      "source_name": "LBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total lives lost",
+      "value": 144,
+      "unit": "people",
+      "source_url": "https://www.bbc.co.uk/programmes/l00590dp"
+    },
+    {
+      "label": "Children killed",
+      "value": 116,
+      "unit": "children",
+      "source_url": "https://www.bbc.co.uk/news/live/crd930p80900t"
+    },
+    {
+      "label": "Adults killed",
+      "value": 28,
+      "unit": "adults",
+      "source_url": "https://www.bbc.co.uk/news/live/crd930p80900t"
+    },
+    {
+      "label": "Anniversary year",
+      "value": 60,
+      "unit": "years",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Aberfan",
+      "kind": "place"
+    },
+    {
+      "name": "Merthyr Vale Colliery",
+      "kind": "organization"
+    },
+    {
+      "name": "Pantglas School",
+      "kind": "object"
+    },
+    {
+      "name": "BBC Cymru Wales",
+      "kind": "organization"
+    },
+    {
+      "name": "Amgueddfa Cymru",
+      "kind": "organization"
+    }
+  ]
+}

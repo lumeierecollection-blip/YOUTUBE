@@ -1,0 +1,89 @@
+{
+  "channel_id": "2",
+  "topic_slug": "openai-dots-vs-meta-muse-ai-agent-test",
+  "format": "shorts",
+  "hook": "OpenAI Dots scored a 9.08 score overall across six overlapping tasks tested by AI Agents Library.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "OpenAI Dots scored a 9.08 score overall across six overlapping tasks tested by AI Agents Library.",
+      "visual_cue": "Benchmark leaderboard showing OpenAI Dots with score 9.08",
+      "sfx_cue": "Subtle digital chime",
+      "b_roll": [
+        "AI Agents Library benchmark dashboard"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Score: 9.08"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Husain Parvez reported for Engadget in October 2026 that OpenAI Dots and Meta Muse differ considerably on price, permissions, and where they can work.",
+      "visual_cue": "Split screen showing Meta Muse and OpenAI Dots testing interface",
+      "sfx_cue": "Keyboard typing sounds",
+      "b_roll": [
+        "Scientific American testing article screenshot",
+        "Engadget publication page in October 2026"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "One-week agent test"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:26",
+      "voiceover": "OpenAI Dots achieved a 9.08 score compared to Meta Muse achieving a 7.75 score.",
+      "visual_cue": "Bar chart comparing 9.08 score against 7.75 score",
+      "sfx_cue": "Whoosh transition",
+      "b_roll": [
+        "Comparative bar graph graphic"
+      ],
+      "animation_cue": "Scale up",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "9.08 versus 7.75"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:40",
+      "voiceover": "Gemini Spark scored an 8.5 score in the same test. Meta Muse recorded a 7.75 score.",
+      "visual_cue": "Ranked list graphic showing OpenAI Dots at 9.08 score, Gemini Spark at 8.5 score, and Meta Muse at 7.75 score",
+      "sfx_cue": "Confirmation beep",
+      "b_roll": [
+        "AI Agents Library full rankings table"
+      ],
+      "animation_cue": "Slide up",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "OpenAI Dots leads"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:46",
+      "voiceover": "OpenAI Dots reached a final 9.08 score across the benchmark test.",
+      "visual_cue": "Final stat callout showing 9.08 score on screen with complete benchmark details",
+      "sfx_cue": "Soft tone",
+      "b_roll": [
+        "Final results summary screen showing OpenAI Dots performance metrics"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Final score: 9.08"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.aiagentslibrary.com/blog/openai-dots-vs-gemini-spark-vs-meta-muse",
+    "https://www.scientificamerican.com/article/i-gave-metas-muse-and-openais-dots-my-passwords-for-a-week",
+    "https://www.engadget.com/2281289/openai-dot-vs-meta-muse-ai-agents-comparison"
+  ]
+}
