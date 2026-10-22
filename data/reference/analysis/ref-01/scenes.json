@@ -163,27 +163,27 @@
   "novelty_events": [
     {
       "t": 0.2,
-      "novelty": 0.029,
+      "novelty": 0.03,
       "cut": false
     },
     {
       "t": 1,
-      "novelty": 0.045,
+      "novelty": 0.044,
       "cut": false
     },
     {
       "t": 1.8,
-      "novelty": 0.072,
+      "novelty": 0.073,
       "cut": false
     },
     {
       "t": 2.2,
-      "novelty": 0.068,
+      "novelty": 0.067,
       "cut": false
     },
     {
       "t": 3,
-      "novelty": 0.099,
+      "novelty": 0.098,
       "cut": false
     },
     {
@@ -193,12 +193,12 @@
     },
     {
       "t": 4.6,
-      "novelty": 0.711,
+      "novelty": 0.709,
       "cut": true
     },
     {
       "t": 5,
-      "novelty": 0.114,
+      "novelty": 0.113,
       "cut": false
     },
     {
@@ -213,52 +213,52 @@
     },
     {
       "t": 6.2,
-      "novelty": 0.06,
+      "novelty": 0.058,
       "cut": false
     },
     {
       "t": 6.6,
-      "novelty": 0.44,
+      "novelty": 0.437,
       "cut": true
     },
     {
       "t": 7,
-      "novelty": 0.444,
+      "novelty": 0.443,
       "cut": true
     },
     {
       "t": 7.4,
-      "novelty": 0.059,
+      "novelty": 0.061,
       "cut": false
     },
     {
       "t": 7.8,
-      "novelty": 0.76,
+      "novelty": 0.756,
       "cut": true
     },
     {
       "t": 8.2,
-      "novelty": 0.027,
+      "novelty": 0.028,
       "cut": false
     },
     {
       "t": 8.6,
-      "novelty": 0.746,
+      "novelty": 0.744,
       "cut": true
     },
     {
       "t": 9,
-      "novelty": 0.04,
+      "novelty": 0.029,
       "cut": false
     },
     {
       "t": 9.4,
-      "novelty": 0.776,
+      "novelty": 0.777,
       "cut": true
     },
     {
       "t": 10.2,
-      "novelty": 0.653,
+      "novelty": 0.66,
       "cut": true
     },
     {
@@ -268,7 +268,7 @@
     },
     {
       "t": 11.6,
-      "novelty": 0.759,
+      "novelty": 0.76,
       "cut": true
     },
     {
@@ -283,12 +283,12 @@
     },
     {
       "t": 13.4,
-      "novelty": 0.805,
+      "novelty": 0.811,
       "cut": true
     },
     {
       "t": 14.8,
-      "novelty": 0.878,
+      "novelty": 0.88,
       "cut": true
     },
     {
@@ -298,7 +298,7 @@
     },
     {
       "t": 15.6,
-      "novelty": 0.087,
+      "novelty": 0.088,
       "cut": false
     },
     {
@@ -313,7 +313,7 @@
     },
     {
       "t": 17.4,
-      "novelty": 0.089,
+      "novelty": 0.082,
       "cut": false
     },
     {
@@ -323,42 +323,42 @@
     },
     {
       "t": 19.6,
-      "novelty": 0.826,
+      "novelty": 0.838,
       "cut": true
     },
     {
       "t": 20,
-      "novelty": 0.08,
+      "novelty": 0.082,
       "cut": false
     },
     {
       "t": 20.6,
-      "novelty": 0.058,
+      "novelty": 0.057,
       "cut": false
     },
     {
       "t": 21,
-      "novelty": 0.361,
+      "novelty": 0.373,
       "cut": true
     },
     {
       "t": 21.4,
-      "novelty": 0.144,
+      "novelty": 0.142,
       "cut": false
     },
     {
       "t": 21.8,
-      "novelty": 0.039,
+      "novelty": 0.04,
       "cut": false
     },
     {
       "t": 22.4,
-      "novelty": 0.203,
+      "novelty": 0.207,
       "cut": true
     },
     {
       "t": 22.8,
-      "novelty": 0.224,
+      "novelty": 0.225,
       "cut": true
     },
     {
@@ -378,12 +378,12 @@
     },
     {
       "t": 29.4,
-      "novelty": 0.197,
+      "novelty": 0.203,
       "cut": true
     },
     {
       "t": 29.8,
-      "novelty": 0.061,
+      "novelty": 0.076,
       "cut": false
     },
     {
@@ -393,17 +393,17 @@
     },
     {
       "t": 35.6,
-      "novelty": 0.767,
+      "novelty": 0.777,
       "cut": true
     },
     {
       "t": 36,
-      "novelty": 0.033,
+      "novelty": 0.032,
       "cut": false
     },
     {
       "t": 36.6,
-      "novelty": 0.037,
+      "novelty": 0.033,
       "cut": false
     },
     {
@@ -413,37 +413,37 @@
     },
     {
       "t": 37.6,
-      "novelty": 0.029,
+      "novelty": 0.026,
       "cut": false
     },
     {
       "t": 38.2,
-      "novelty": 0.023,
+      "novelty": 0.022,
       "cut": false
     },
     {
       "t": 38.6,
-      "novelty": 0.03,
+      "novelty": 0.028,
       "cut": false
     },
     {
       "t": 39,
-      "novelty": 0.024,
+      "novelty": 0.025,
       "cut": false
     },
     {
       "t": 39.4,
-      "novelty": 0.04,
+      "novelty": 0.043,
       "cut": false
     },
     {
       "t": 39.8,
-      "novelty": 0.238,
+      "novelty": 0.243,
       "cut": true
     },
     {
       "t": 42.6,
-      "novelty": 0.814,
+      "novelty": 0.821,
       "cut": true
     },
     {
@@ -453,27 +453,27 @@
     },
     {
       "t": 45.6,
-      "novelty": 0.06,
+      "novelty": 0.059,
       "cut": false
     },
     {
       "t": 46.8,
-      "novelty": 0.962,
+      "novelty": 0.961,
       "cut": true
     },
     {
       "t": 47.2,
-      "novelty": 1.094,
+      "novelty": 1.098,
       "cut": true
     },
     {
       "t": 47.6,
-      "novelty": 0.34,
+      "novelty": 0.343,
       "cut": true
     },
     {
       "t": 48,
-      "novelty": 0.354,
+      "novelty": 0.353,
       "cut": true
     },
     {
@@ -488,47 +488,47 @@
     },
     {
       "t": 50,
-      "novelty": 0.142,
+      "novelty": 0.139,
       "cut": false
     },
     {
       "t": 51.2,
-      "novelty": 0.12,
+      "novelty": 0.119,
       "cut": false
     },
     {
       "t": 51.8,
-      "novelty": 0.048,
+      "novelty": 0.047,
       "cut": false
     },
     {
       "t": 52.4,
-      "novelty": 0.059,
+      "novelty": 0.056,
       "cut": false
     },
     {
       "t": 52.8,
-      "novelty": 0.104,
+      "novelty": 0.101,
       "cut": false
     },
     {
       "t": 53.2,
-      "novelty": 0.031,
+      "novelty": 0.032,
       "cut": false
     },
     {
       "t": 53.8,
-      "novelty": 1.069,
+      "novelty": 1.067,
       "cut": true
     },
     {
       "t": 54.6,
-      "novelty": 0.123,
+      "novelty": 0.122,
       "cut": false
     },
     {
       "t": 55,
-      "novelty": 0.095,
+      "novelty": 0.094,
       "cut": false
     },
     {
@@ -538,32 +538,32 @@
     },
     {
       "t": 56.4,
-      "novelty": 0.577,
+      "novelty": 0.558,
       "cut": true
     },
     {
       "t": 56.8,
-      "novelty": 0.035,
+      "novelty": 0.041,
       "cut": false
     },
     {
       "t": 57.2,
-      "novelty": 0.145,
+      "novelty": 0.146,
       "cut": false
     },
     {
       "t": 57.8,
-      "novelty": 0.131,
+      "novelty": 0.128,
       "cut": false
     },
     {
       "t": 58.2,
-      "novelty": 0.032,
+      "novelty": 0.031,
       "cut": false
     },
     {
       "t": 59,
-      "novelty": 0.092,
+      "novelty": 0.093,
       "cut": false
     },
     {
@@ -578,37 +578,37 @@
     },
     {
       "t": 63.6,
-      "novelty": 0.091,
+      "novelty": 0.084,
       "cut": false
     },
     {
       "t": 64.4,
-      "novelty": 0.668,
+      "novelty": 0.667,
       "cut": true
     },
     {
       "t": 66,
-      "novelty": 0.916,
+      "novelty": 0.917,
       "cut": true
     },
     {
       "t": 67.6,
-      "novelty": 0.504,
+      "novelty": 0.505,
       "cut": true
     },
     {
       "t": 68.8,
-      "novelty": 0.632,
+      "novelty": 0.631,
       "cut": true
     },
     {
       "t": 70.2,
-      "novelty": 0.748,
+      "novelty": 0.747,
       "cut": true
     },
     {
       "t": 70.6,
-      "novelty": 0.042,
+      "novelty": 0.041,
       "cut": false
     },
     {
@@ -618,7 +618,7 @@
     },
     {
       "t": 71.4,
-      "novelty": 0.039,
+      "novelty": 0.04,
       "cut": false
     },
     {
@@ -628,12 +628,12 @@
     },
     {
       "t": 74.8,
-      "novelty": 0.377,
+      "novelty": 0.365,
       "cut": true
     },
     {
       "t": 75.4,
-      "novelty": 1.694,
+      "novelty": 1.691,
       "cut": true
     }
   ]

@@ -11,20 +11,31 @@ import {
 
 const CHANNELS = [{ id: 2, channel_id: "ch-02", channel_name: "T", niche: "n" }, { id: 5, channel_id: "ch-05", channel_name: "U", niche: "n" }];
 
-test("a shared-reference channel reads the committed measured-only analyses; pacing is measured, no observation is invented", () => {
+test("a shared-reference channel reads the committed ref-01 vision analysis (qa-proof run 39816705908); pacing stays measured, observations cite frames", () => {
   const d = loadChannelDirection("2");
   assert.ok(d.shared, "ch-02 has no reference of its own");
   assert.ok(d.refs.some((r) => r.stem === "ref-01"), `ref-01 analysis committed (${d.why || ""})`);
   const r = d.refs.find((x) => x.stem === "ref-01");
-  assert.equal(r.doc.direction.status, "measured-only");
+  assert.equal(r.doc.direction.status, "complete");
   const line = pacingLine(r);
-  assert.match(line, /^ref-01 \[measured-only: /);
+  assert.match(line, /^ref-01 /);
   assert.match(line, /16 cuts \(4\.5, 13\.4, 14\.7/, "cut times are the measured ones");
   assert.match(line, /longest hold 13\.9s @28\.7-42\.6s/);
-  assert.deepEqual(observationLines(r), [], "measured-only contributes no typography/composition/transition text");
+  const obs = observationLines(r);
+  assert.ok(obs.length > 0, "a complete analysis contributes observations");
+  for (const o of obs) assert.match(o, /f\d{3}@\d+(\.\d)?s/, `every observation cites a frame@time: ${o}`);
+  assert.ok(!obs.some((o) => /cream|monochrome|#[0-9a-f]{6}/i.test(o)), "colour observations never reach the planner");
   const s = directionSummary(d);
   assert.ok(s.text.startsWith("REFERENCE DIRECTION"));
   assert.ok(s.chars <= DIRECTION_SUMMARY_MAX_CHARS, `${s.chars} chars`);
+});
+
+test("a measured-only reference (ref-02, --no-vision) contributes pacing and no observation", () => {
+  const d = loadChannelDirection("2");
+  const r = d.refs.find((x) => x.stem === "ref-02");
+  if (!r) return; // ch-02's shared set may not include ref-02; the synthetic tests below cover the rule
+  assert.equal(r.doc.direction.status, "measured-only");
+  assert.deepEqual(observationLines(r), []);
 });
 
 const doc = (status, extra = {}) => ({

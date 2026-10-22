@@ -8,13 +8,13 @@
       "id": "f004",
       "t": 4.35,
       "duplicate_of": "f003",
-      "distance": 0.83
+      "distance": 0.84
     },
     {
       "id": "f015",
       "t": 19.12,
       "duplicate_of": "f014",
-      "distance": 0.47
+      "distance": 0.48
     },
     {
       "id": "f019",
@@ -26,7 +26,7 @@
       "id": "f020",
       "t": 26.62,
       "duplicate_of": "f018",
-      "distance": 0.83
+      "distance": 0.82
     },
     {
       "id": "f025",
@@ -44,13 +44,13 @@
       "id": "f029",
       "t": 42.42,
       "duplicate_of": "f028",
-      "distance": 0.42
+      "distance": 0.41
     },
     {
       "id": "f031",
       "t": 44,
       "duplicate_of": "f030",
-      "distance": 0.95
+      "distance": 0.93
     },
     {
       "id": "f033",
@@ -62,7 +62,7 @@
       "id": "f037",
       "t": 50,
       "duplicate_of": "f036",
-      "distance": 0.71
+      "distance": 0.7
     },
     {
       "id": "f046",
@@ -74,7 +74,7 @@
       "id": "f051",
       "t": 66,
       "duplicate_of": "f050",
-      "distance": 0.18
+      "distance": 0.16
     },
     {
       "id": "f053",
