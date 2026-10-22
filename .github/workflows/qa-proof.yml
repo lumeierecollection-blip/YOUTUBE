@@ -15,6 +15,7 @@ on:
   push:
     paths:
       - "scripts/qa/**"
+      - "scripts/render-and-qa.js"
       - "scripts/reference/**"
       - "scripts/direction/**"
       - "scripts/jobs/**"
@@ -23,6 +24,10 @@ on:
       - "schemas/scene-brief.json"
       - ".github/workflows/qa-proof.yml"
   workflow_dispatch:
+    inputs:
+      script:
+        description: "Committed script the production-loop job renders (needs edge-tts in CI)"
+        default: "data/research/1/debt-snowball-vs-debt-avalanche-shorts-script.json"
 
 permissions:
   contents: read
@@ -70,7 +75,7 @@ jobs:
         run: |
           node --test scripts/__tests__/qa-loop.test.js scripts/__tests__/qa-objective.test.js \
             scripts/__tests__/reference-analysis.test.js scripts/__tests__/scene-brief.test.js \
-            scripts/__tests__/job-state.test.js scripts/__tests__/script-context-inventory.test.js \
+            scripts/__tests__/qa-production.test.js scripts/__tests__/job-state.test.js scripts/__tests__/script-context-inventory.test.js \
             scripts/__tests__/script-name-fidelity.test.js scripts/__tests__/resolve-place-typed-org.test.js
       - name: Render the clone-proof fixture (production renderer)
         env:
@@ -108,6 +113,111 @@ jobs:
             out/clone/*manifest*.json
             out/qa-clean
             out/qa-damaged
+          if-no-files-found: warn
+          retention-days: 14
+
+  # The PRODUCTION entry (scripts/render-and-qa.js) end to end on a real committed script, with the QA
+  # loop ENFORCED: plan (Gemini chain), challenger, assets, Remotion render, canvas checks, QA loop
+  # (repair + re-render), then the existing gates. Only on workflow_dispatch: it spends model quota.
+  # Nothing is uploaded to YouTube (no OAuth secrets here); the video and every QA file are artifacts.
+  production-loop:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      SCRIPT: ${{ inputs.script || 'data/research/1/debt-snowball-vs-debt-avalanche-shorts-script.json' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install edge-tts + rembg
+        run: |
+          pip install --quiet edge-tts "rembg[cpu]" pillow numpy
+          python -c "from rembg import new_session; new_session('u2net'); print('u2net ready')"
+      - name: Voiceover (edge-tts, word timings)
+        env:
+          TTS_PROVIDER: edge
+        run: |
+          CH=$(basename "$(dirname "$SCRIPT")")
+          echo "CH=$CH" >> "$GITHUB_ENV"
+          node src/utils/tts.js "$CH" "$SCRIPT"
+          ls -la "data/tts/$CH" | head
+      - name: render-and-qa.js with QA_LOOP=enforce
+        id: render
+        env:
+          QA_LOOP: enforce
+          QA_MAX_ATTEMPTS: "3"
+          QA_MAX_COST_UNITS: "2"
+          QA_MAX_MS: "1800000"
+          JOB_TIMEOUT_MIN: "70"
+          RENDER_PROGRESS_MS: 15000
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          VISION_API_KEY: ${{ secrets.GEMINI_API_KEY_4 || secrets.GEMINI_API_KEY }}
+          VISION_MODEL: gemini-3.5-flash-lite
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_TEXT_MODEL: openai/gpt-oss-120b
+          GROQ_CHALLENGER_MODEL: openai/gpt-oss-120b
+          GROQ_VISION_MODEL: qwen/qwen3.8-27b
+          GROQ_MAX_IMAGES: "3"
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          set +e
+          node scripts/render-and-qa.js --channel "$CH" --script "$SCRIPT"
+          echo "render-and-qa exit $?" | tee out-exit.txt
+          ls -la "data/renders/$CH" || true
+          ls -d data/renders/*/*-qa-frames 2>/dev/null || true
+      - name: Step summary
+        if: always()
+        run: |
+          cat out-exit.txt >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+          for f in data/renders/*/*-qa-loop-defects.md; do [ -f "$f" ] && { echo "### $f"; cat "$f"; } >> "$GITHUB_STEP_SUMMARY"; done
+      - name: Upload the video + QA loop evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-loop-${{ github.run_id }}
+          path: |
+            data/renders/**/*.mp4
+            data/renders/**/*-manifest.json
+            data/renders/**/*-qa-loop-defects.*
+            data/renders/**/*-defects.*
+            data/renders/**/*-qa-frames/**
+            data/visual-plans/**/*.json
+            data/renders/*/*.json
+            out-exit.txt
           if-no-files-found: warn
           retention-days: 14
 
