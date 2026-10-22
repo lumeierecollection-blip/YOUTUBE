@@ -1,0 +1,101 @@
+{
+  "topic_slug": "openai-dots-vs-meta-muse-ai-agent-test",
+  "strongest_angle": "Comparing OpenAI's Dots and Meta's Muse reveals distinct strengths across benchmark tasks, pricing models, and user workflow permissions tested by technology journalists in October 2026.",
+  "key_facts": [
+    {
+      "fact": "OpenAI Dots scored highest overall across six overlapping tasks tested by AI Agents Library, averaging a score of 9.08 compared to Meta Muse's 7.75.",
+      "source_url": "https://www.aiagentslibrary.com/blog/openai-dots-vs-gemini-spark-vs-meta-muse",
+      "source_name": "AI Agents Library",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Journalist Mary Randolph tested Meta's Muse and OpenAI's Dots over a one-week period, naming them Mark and Sam respectively after company executives.",
+      "source_url": "https://www.scientificamerican.com/article/i-gave-metas-muse-and-openais-dots-my-passwords-for-a-week",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "Husain Parvez reported for Engadget in October 2026 that OpenAI Dots and Meta Muse differ considerably on price, permissions, and where they can work.",
+      "source_url": "https://www.engadget.com/2281289/openai-dot-vs-meta-muse-ai-agents-comparison",
+      "source_name": "Engadget",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "OpenAI Dots Average Score",
+      "value": 9.08,
+      "unit": "score",
+      "source_url": "https://www.aiagentslibrary.com/blog/openai-dots-vs-gemini-spark-vs-meta-muse"
+    },
+    {
+      "label": "Gemini Spark Average Score",
+      "value": 8.5,
+      "unit": "score",
+      "source_url": "https://www.aiagentslibrary.com/blog/openai-dots-vs-gemini-spark-vs-meta-muse"
+    },
+    {
+      "label": "Meta Muse Average Score",
+      "value": 7.75,
+      "unit": "score",
+      "source_url": "https://www.aiagentslibrary.com/blog/openai-dots-vs-gemini-spark-vs-meta-muse"
+    },
+    {
+      "label": "Journalist age",
+      "value": 22,
+      "unit": "years",
+      "source_url": "https://www.scientificamerican.com/article/i-gave-metas-muse-and-openais-dots-my-passwords-for-a-week"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Meta",
+      "kind": "organization"
+    },
+    {
+      "name": "Dots",
+      "kind": "object"
+    },
+    {
+      "name": "Muse",
+      "kind": "object"
+    },
+    {
+      "name": "Mary Randolph",
+      "kind": "person"
+    },
+    {
+      "name": "Mark",
+      "kind": "person"
+    },
+    {
+      "name": "Sam",
+      "kind": "person"
+    },
+    {
+      "name": "Zuckerberg",
+      "kind": "person"
+    },
+    {
+      "name": "Altman",
+      "kind": "person"
+    },
+    {
+      "name": "Husain Parvez",
+      "kind": "person"
+    },
+    {
+      "name": "Engadget",
+      "kind": "organization"
+    },
+    {
+      "name": "Scientific American",
+      "kind": "organization"
+    }
+  ]
+}
