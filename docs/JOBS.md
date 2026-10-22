@@ -24,9 +24,15 @@ All `job-state.mjs` calls print a warning and exit 0 on error.
 ## Limits
 - Prep failures before the script commit are not persisted (nothing is pushed on that path).
 - A rejected or approved video closes the job (terminal): a re-render of an already-judged video is a manual `render_only`.
-- Rendering still `needs: prep` for the whole matrix. Per-channel unblocking needs a reusable-workflow split:
-  1. move prep+render for one channel into `.github/workflows/channel.yml` (`on: workflow_call`, input `channel_id`);
-  2. `setup` stays; a caller job `channel` with `matrix` and `uses: ./.github/workflows/channel.yml` (max-parallel 6);
-  3. prep->render handoff becomes `needs` inside the reusable workflow, so channel A renders as soon as A's prep ends;
-  4. review-publish/preview/log-results `needs: [channel]` as today;
-  5. secrets pass via `secrets: inherit`; the artifact name already carries the channel.
+- Per-channel isolation (done): prep and render live in `.github/workflows/channel-pipeline.yml`
+  (`on: workflow_call`, input `channel_id`); `daily-pipeline-v2.yml` job `channel` calls it once per channel
+  (matrix from `setup`, max-parallel 6, fail-fast false, `secrets: inherit`). A channel renders as soon as its
+  own prep ends. review-publish / preview / log-results need `[setup, channel]`.
+- Off main, on `dry_run`, `render_only` or `no_push` the record is not committed; render closes it with the
+  publish skip reason (`Close job record (uncommitted runs)`) and every render uploads it as the 14-day artifact
+  `jobs-<ch>-<run>` (with `data/publish-status/`).
+- Retries: `scripts/jobs/retry.mjs` `withRetry` (cap 3 by default, hard max 6, exponential backoff capped at
+  `maxMs`, transient errors only). Used for the OAuth token exchange in run.js; never around an upload. Git push
+  loops in the workflow are capped at 5; render resume is capped at 3 attempts (`resume.mjs`).
+
+Publishing is a capability check, see `docs/PUBLISHING.md`.

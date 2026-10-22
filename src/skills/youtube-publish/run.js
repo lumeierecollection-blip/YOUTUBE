@@ -28,6 +28,8 @@ import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
 import { unresolvedPlaceholdersForChannel } from "../../utils/placeholders.js";
+import { classifyPublishError, recordPublishStatus, SKIP_EXIT } from "../../../scripts/jobs/publish-gate.mjs";
+import { withRetry } from "../../../scripts/jobs/retry.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -371,7 +373,12 @@ async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
   console.log(`  Video: ${videoPath}`);
   console.log(`  Thumbnail: ${thumb || "none"}`);
 
-  const token = await getAccessToken(channel);
+  // The token exchange is idempotent, so a transient failure (network, 5xx, 429) is retried, bounded
+  // (3 attempts, waits 2 s then 4 s). invalid_grant / invalid_client are NOT retried: see main()'s SKIP_EXIT.
+  const token = await withRetry(() => getAccessToken(channel), {
+    attempts: 3, baseMs: 2000,
+    onRetry: (e, n, ms) => console.log(`  OAuth: transient failure (${String(e.message).slice(0, 120)}), retry ${n + 1}/3 in ${ms} ms`),
+  });
   console.log(`  OAuth: access token OK`);
 
   const metadata = await buildMetadata(channel, videoPath, seo, scriptSlug);
@@ -514,6 +521,18 @@ function main() {
 
   uploadChannel(channelId, videoArg, dryRun, review)
     .catch((err) => {
+      // Credentials Google rejects (invalid_grant / invalid_client ...) are an owner action, not a
+      // pipeline failure: the render and its queue marker are kept and the upload is SKIPPED with the
+      // exact reason (data/publish-status/<channel_id>.json, read by the digest and the job record).
+      // Exit SKIP_EXIT (78) so the workflow can tell a skip from a real upload failure (exit 1).
+      const cred = classifyPublishError(err.message);
+      if (cred) {
+        let id = channelId;
+        try { id = loadChannel(channelId).channel_id; } catch {}
+        recordPublishStatus(ROOT, id, { status: "skipped", reason: cred.reason });
+        console.log(`\n[YOUTUBE-PUBLISH] SKIPPED: ${cred.reason}`);
+        process.exit(SKIP_EXIT);
+      }
       console.error(`\n[YOUTUBE-PUBLISH] ERROR: ${err.message}`);
       process.exit(1);
     });

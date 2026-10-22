@@ -45,6 +45,7 @@ const ALLOWED_PATHS = [
   "src/skills/remotion-render/visual-engine/beat-interpreter.js",
   "src/skills/remotion-render/visual-engine/director/visual-director.js",
   ".github/workflows/daily-pipeline-v2.yml",
+  ".github/workflows/channel-pipeline.yml", // prep + render moved here (per-channel isolation)
   "package.json", // dependencies and overrides only — see packageJsonChangeIsScoped()
   "config/priority-channels.json",
 ];

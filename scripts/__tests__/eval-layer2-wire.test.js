@@ -24,7 +24,8 @@ describe("Layer 2 is wired at the render call site", () => {
     assert.match(src, /styleMatch: l2\?\.style_match \?\? null/);
   });
   it("the workflow caches the HuggingFace weights", () => {
-    const wf = readFileSync(join(ROOT, ".github", "workflows", "daily-pipeline-v2.yml"), "utf8");
+    // the render job lives in channel-pipeline.yml (called per channel by daily-pipeline-v2.yml)
+    const wf = ["daily-pipeline-v2.yml", "channel-pipeline.yml"].map((f) => readFileSync(join(ROOT, ".github", "workflows", f), "utf8")).join("\n");
     assert.match(wf, /name: Cache HuggingFace models[\s\S]*?path: ~\/\.cache\/huggingface/);
   });
 });

@@ -1,0 +1,1555 @@
+﻿# Channel pipeline: prep -> render for ONE channel (called by daily-pipeline-v2.yml, job `channel`).
+#
+# Why a separate file (audit 2026-10-22 root cause #6): in daily-pipeline-v2.yml `render` had
+# `needs: [setup, prep]` over the whole matrix, so every channel's render waited for the SLOWEST
+# channel's prep (a strict channel spending 8 script attempts held up every other channel).
+# GitHub has no per-leg dependency between two matrix jobs; a reusable workflow per matrix leg is
+# the way to get one: here `render` needs only THIS channel's `prep`.
+#
+# The prep and render jobs are moved here unchanged (steps, artifacts, gates). What changed:
+#   - `needs: setup` / `needs: [setup, prep]` -> none / `needs: [prep]` (setup runs once, in the caller);
+#   - the matrix is one leg named channel_id, so `matrix.channel_id` reads as before;
+#   - the workflow-level env is repeated here (a called workflow does not inherit the caller's env),
+#     reading github.event.inputs (the github context is the CALLER's) instead of `inputs`.
+# Secrets come from the caller (`secrets: inherit`); max-parallel and fail-fast live on the caller.
+# The `github.ref == 'refs/heads/main'` publish gates are unchanged: off main nothing is uploaded.
+
+name: Channel pipeline (prep -> render)
+
+on:
+  workflow_call:
+    inputs:
+      channel_id:
+        description: "Bare channel id (upload slot) from config/priority-channels.json"
+        type: string
+        required: true
+
+env:
+  NODE_VERSION: "22"
+  # Eval loop mode. Default off; the schedule trigger leaves inputs empty, which
+  # evalLoopMode() reads as "off", so cron never enters the loop.
+  EVAL_LOOP_MODE: ${{ github.event.inputs.eval_loop_mode }}
+  PYTHON_VERSION: "3.11"
+  OLLAMA_MODEL: "qwen2.5:3b"
+  OLLAMA_URL: "http://127.0.0.1:11434"
+  # Ollama Cloud (ollama.com hosted models, owner 2026-10-17): the second provider after Gemini in src/lib/llm.js, the image verifiers and the
+  # script/research runner ("ollama-cloud/<model>" specs below). Empty secret = skipped at once, the chain is unchanged.
+  OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+  # ollama_first (dispatch input): scripts/ollama-client.cjs ollamaFirst() puts Ollama Cloud ahead of Gemini everywhere. Empty on the cron = off.
+  OLLAMA_FIRST: ${{ github.event.inputs.ollama_first == 'true' && '1' || '' }}
+  # Ollama's default context is 4096 tokens; the research/script prompts are
+  # longer, and a truncated prompt is how llama3.2 ended up answering
+  # "To print Hello World in PythonΓÇª". opencode.json declares 16384 to match.
+  OLLAMA_CONTEXT_LENGTH: "16384"
+  OPENCODE_MODELS_RESEARCH: "ollama-cloud/gpt-oss:120b,ollama/qwen2.5:3b"
+  OPENCODE_MODELS_REASONING: "ollama-cloud/gpt-oss:120b,ollama/qwen2.5:3b"
+  OPENCODE_MODELS: "ollama/qwen2.5:3b"
+  OPENCODE_ENABLE_EXA: "1"
+  PREP_CALL_TIMEOUT_S: "300"
+  RENDER_SCALE: "0.75"
+  RENDER_CONCURRENCY: "4"
+
+jobs:
+  # ============================================================
+  # STAGE 1: PREP
+  # ============================================================
+  prep:
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
+    permissions:
+      contents: write
+    strategy:
+      # One leg: this workflow runs ONE channel. The leg keeps the name matrix.channel_id so every
+      # step reads it exactly as it did in daily-pipeline-v2.yml; the board-wide matrix, max-parallel
+      # and fail-fast live on the caller job (daily-pipeline-v2.yml `channel`).
+      matrix:
+        channel_id: ["${{ inputs.channel_id }}"]
+      max-parallel: 6
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Cache pip packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-edge-tts-faster-whisper
+
+      # The voiceover is Gemini TTS (src/utils/tts_gemini.py); faster-whisper aligns its words. edge-tts stays as the fallback.
+      - name: Cache the word-alignment model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-align-${{ runner.os }}-faster-whisper-base.en
+
+      - name: Install EdgeTTS + faster-whisper
+        run: pip install --quiet edge-tts faster-whisper
+
+      # Gemini TTS returns raw PCM; src/utils/tts_gemini.py writes the mp3 with ffmpeg (board 38033771445: missing here, every channel fell back to edge-tts).
+      - name: Ensure ffmpeg (Gemini TTS)
+        run: |
+          if ! command -v ffmpeg >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      # —— Ollama —————————————————————————————————————————————————————————
+      # .github/actions/ollama: one server per job, the only place one is
+      # started (the "address already in use" fix), models from the cache.
+      - name: Ollama (prep model)
+        if: github.event.inputs.render_only != 'true'
+        uses: ./.github/actions/ollama
+        with:
+          models: ${{ env.OLLAMA_MODEL }}
+          cache-key: ollama-${{ runner.os }}-qwen2.5-3b
+
+      # —— Resume: a committed, gate-passed script whose render never finished ——
+      # (scripts/jobs/resume.mjs, docs/JOBS.md). resume=true skips discover/research/script and
+      # reuses the script through the render_only step below; false changes nothing.
+      - name: Resume check (unfinished job)
+        id: resume
+        if: github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          R=$(node scripts/jobs/resume.mjs --channel "$CH" 2>/dev/null || echo '{"resume":false}')
+          echo "$R"
+          if [ "$(echo "$R" | jq -r '.resume')" = "true" ]; then
+            echo "::notice::ch-$CH resuming $(echo "$R" | jq -r .slug) from $(echo "$R" | jq -r .from_stage) ($(echo "$R" | jq -r .why))"
+            echo "resume=true" >> "$GITHUB_OUTPUT"
+            echo "slug=$(echo "$R" | jq -r .slug)" >> "$GITHUB_OUTPUT"
+          else
+            echo "resume=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # —— Stage A: discover topics for THIS channel ——————————————————————
+      # —— Trending feed (YouTube Data API v3; scripts/fetch-trending.cjs) ——
+      # A topic signal for discovery, cached 12 h per channel across runs
+      # (the script checks fetched_at). Never fails the job: no key / 403 /
+      # 429 / quota -> unseeded discovery. VidIQ is not used (paid API plan).
+      - name: Restore trending cache
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        uses: actions/cache@v4
+        with:
+          path: data/trending/
+          key: trending-${{ matrix.channel_id }}-${{ github.run_id }}
+          restore-keys: trending-${{ matrix.channel_id }}-
+
+      - name: Trending feed
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/fetch-trending.cjs "${{ matrix.channel_id }}" || true
+
+      - name: Discover topic
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        id: discover
+        env:
+          # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          set -u
+          CH="${{ matrix.channel_id }}"
+          node scripts/build-discovery-context.js --channel "$CH" > /tmp/context.json
+
+          set +e
+          cat /tmp/context.json | node scripts/ollama-agent.js \
+            --prompt-file prompts/discover-topics.md \
+            --append-system-prompt-file prompts/discover-candidates.md \
+            --min-items topics=3 --reject-duplicates-for "$CH" \
+            --schema-file schemas/topics.json \
+            --search-budget 3 \
+            --agent pipeline-research \
+            --model "$OPENCODE_MODELS_RESEARCH" \
+            --task-label discover-topics --max-retries 4 \
+            > /tmp/topics-raw.json 2> >(tee /tmp/topics-err.log >&2)
+          AGENT_EXIT=$?
+          set -e
+
+          if [ "$AGENT_EXIT" -ne 0 ]; then
+            echo "::error::discover-topics failed for channel $CH"
+            echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
+            exit 1
+          fi
+          if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
+            echo "::error::No topics discovered for channel $CH"
+            cat /tmp/topics-raw.json
+            exit 1
+          fi
+          jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
+          echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s)"
+          # Rank the candidates by whether their subjects can be SHOWN (a free logo or portrait), best first, before the first
+          # non-duplicate is reserved (scripts/rank-topics-imagery.js). Never drops one and never fails the run.
+          node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
+          # Validate 2-domain sourcing + visual coverage BEFORE reservation
+          node scripts/validate-discovery.js /tmp/topics.json "$CH" || {
+            echo "::error::discovery validation failed for channel $CH — no valid topics"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
+
+
+      # —— Reserve the first NON-duplicate topic —————————————————————————
+      - name: Reserve topic
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        id: reserve
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CH="${{ matrix.channel_id }}"
+          git config user.name  "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          COUNT=$(jq '.topics | length' /tmp/topics.json)
+
+          # Discovery returns several candidates. Only reserving topics[0]
+          # turned every duplicate into a skipped channel (30 of 50 in run
+          # 35763687213); walk the list and take the first non-duplicate.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${{ github.ref_name }}"
+            git rebase "origin/${{ github.ref_name }}"
+
+            RESERVED=0
+            for IDX in $(seq 0 $((COUNT - 1))); do
+              TOPIC=$(jq -r ".topics[$IDX].topic" /tmp/topics.json)
+              SLUG=$(jq -r ".topics[$IDX].slug" /tmp/topics.json)
+              set +e
+              node scripts/reserve-topic-single.js "$CH" "$TOPIC" "$SLUG"
+              RESERVE_EXIT=$?
+              set -e
+              if [ "$RESERVE_EXIT" -eq 2 ]; then
+                echo "Candidate $IDX is a duplicate ΓÇö trying the next one"
+                continue
+              fi
+              if [ "$RESERVE_EXIT" -ne 0 ]; then
+                echo "::error::Topic reservation error for channel $CH"
+                exit 1
+              fi
+              jq ".topics[$IDX] | {topic, slug, angle, pillar, why_now}" /tmp/topics.json > /tmp/channel-topic.json
+              RESERVED=1
+              break
+            done
+
+            if [ "$RESERVED" -ne 1 ]; then
+              echo "::warning::Channel $CH ΓÇö all $COUNT candidate topics are duplicates; skipping this channel today"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            # Dry runs check for duplicates but never push the reservation.
+            # Pushing it made every debug run consume topics for 90 days
+            # (11 were burned this way during the CI loop).
+            # no_push (feature-branch exercise): same as a dry run here, nothing is pushed.
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ] || [ "${{ github.event.inputs.no_push }}" = "true" ]; then
+              echo "Dry run: \"$(jq -r .slug /tmp/channel-topic.json)\" passed the duplicate check; reservation not pushed"
+              break
+            fi
+
+            git add data/topic-log.json
+            if git diff --staged --quiet; then
+              break
+            fi
+            git commit -m "topic: ch-$CH $(jq -r .slug /tmp/channel-topic.json)"
+            if git push origin "${{ github.ref_name }}"; then
+              break
+            fi
+            if [ "$attempt" -lt 5 ]; then
+              echo "Push conflict ΓÇö retrying ($attempt/5) ..."
+              git reset --hard HEAD~1
+              sleep $((attempt * 3))
+            else
+              echo "::error::Failed to push topic-log for channel $CH after 5 attempts"
+              exit 1
+            fi
+          done
+          if [ -f "data/trending/$CH.json" ]; then
+            echo "[research] ch-$CH: trending topics loaded ($(jq '.videos[:5] | length' "data/trending/$CH.json")), chose: $(jq -r .topic /tmp/channel-topic.json)"
+          else
+            echo "[research] ch-$CH: no trending feed, chose (unseeded): $(jq -r .topic /tmp/channel-topic.json)"
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "slug=$(jq -r .slug /tmp/channel-topic.json)" >> "$GITHUB_OUTPUT"
+          if [ "${{ github.event.inputs.dry_run }}" != "true" ] && [ "${{ github.event.inputs.no_push }}" != "true" ]; then
+            echo "pushed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: "Render-only: use latest committed script"
+        if: github.event.inputs.render_only == 'true' || steps.resume.outputs.resume == 'true'
+        env:
+          RESUME_SLUG: ${{ steps.resume.outputs.slug }}
+        run: |
+          # Also the auto-resume path (Resume check): RESUME_SLUG names the script, no "latest" search.
+          # DEBUG path ΓÇö exercises render with a script that already exists
+          # in git, so render failures can be fixed while prep is blocked.
+          # Never publishes (every publish step is gated on render_only).
+          CH="${{ matrix.channel_id }}"
+          if [ -n "$RESUME_SLUG" ]; then
+            SCRIPT="data/research/$CH/$RESUME_SLUG-shorts-script.json"
+          else
+          # checkout is depth 1; history (no blobs) is needed to find "latest".
+          git fetch -q --unshallow --filter=blob:none origin "${{ github.ref_name }}"
+          SCRIPT=$(git log --format= --name-only --diff-filter=AM -- "data/research/$CH/*-shorts-script.json" \
+            | grep -v '^$' | while read -r f; do [ -f "$f" ] && echo "$f" && break; done)
+          fi
+          if [ -z "$SCRIPT" ]; then
+            echo "::error::render_only: no committed shorts script for channel $CH"
+            exit 1
+          fi
+          SLUG=$(basename "$SCRIPT" -shorts-script.json)
+          echo "render_only: channel $CH ΓåÆ $SCRIPT"
+          jq -n --arg s "$SLUG" '{slug:$s, topic:$s}' > /tmp/channel-topic.json
+
+      - name: Ensure output directories
+        if: steps.reserve.outputs.skip != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          mkdir -p data/research/$CH data/tts/$CH data/thumbnails/$CH
+          echo "FORMATS=shorts" >> "$GITHUB_ENV"
+
+      # —— Stage B: research ——————————————————————————————————————————————
+      - name: Research topic
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        env:
+          # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          set -u
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r  '.slug'  /tmp/channel-topic.json)
+          TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
+          ANGLE=$(jq -r '.angle' /tmp/channel-topic.json)
+          echo "=== RESEARCH: $CH ΓÇö $SLUG ==="
+
+          # Trending entities (scripts/trending-entities.cjs, task 3): the named
+          # people / places / organizations / numbers of this week's top trending
+          # titles, as research subjects. null when the trending feed is
+          # unavailable (no YOUTUBE_API_KEY) ΓÇö research.md then still requires
+          # named facts.
+          TE=null
+          if [ -s "data/trending/$CH-entities.json" ]; then
+            TE=$(jq -c '{people, places, organizations, names, numbers}' "data/trending/$CH-entities.json" 2>/dev/null || echo null)
+            echo "[research] ch-$CH: trending entities fed to research: $TE"
+          else
+            echo "[research] ch-$CH: no trending entities (feed unavailable) ΓÇö research prompt requires named facts"
+          fi
+
+          # Strict channels (SCR-19) tell research so: every key fact must carry
+          # something a frame can draw (run 39705589195 ch-48: 2 drawable facts
+          # could not ground a whole script). Exported for the re-pick research
+          # calls in Write script.
+          SV=$(node -e "const {resolveChannel}=require('./scripts/lib/channel-lookup.cjs');process.stdout.write(String(!!resolveChannel(process.argv[1]).strict_visual))" "$CH" 2>/dev/null || echo false)
+          echo "STRICT_VISUAL=$SV" >> "$GITHUB_ENV"
+          set +e
+          jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
+                --arg s "$SLUG"  --arg c "$CH" --argjson te "$TE" --argjson sv "$SV" \
+                '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:$te, strict_visual:$sv}' \
+            | node scripts/ollama-agent.js \
+                --prompt-file prompts/research.md \
+                --schema-file schemas/research.json \
+                --agent pipeline-research \
+                --model "$OPENCODE_MODELS_RESEARCH" \
+                --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$SLUG" \
+                --search-out "data/research/$CH/$SLUG-search.json" \
+                > /tmp/research-raw.json 2> >(tee /tmp/research-err.log >&2)
+          AGENT_EXIT=$?
+          set -e
+
+          if [ "$AGENT_EXIT" -ne 0 ]; then
+            echo "::error::research failed for channel $CH"
+            echo "--- stderr ---"; cat /tmp/research-err.log 2>/dev/null || echo "(empty)"
+            exit 1
+          fi
+          if ! jq -e '.structured_output.key_facts | length >= 3' /tmp/research-raw.json > /dev/null; then
+            echo "::error::research didn't meet the quality bar for channel $CH"
+            cat /tmp/research-raw.json
+            exit 1
+          fi
+          jq '.structured_output' /tmp/research-raw.json > "data/research/$CH/$SLUG.json"
+          cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
+
+      - name: Gate research
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          node scripts/gate-research.js "$CH" "$SLUG"
+
+      # —— Stage C: script (gate-feedback retry) ——————————————————————————
+      - name: Write script
+        id: script
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
+        env:
+          # The script is written by Gemini (scripts/ollama-agent.js geminiAnswer, the
+          # planner's src/lib/gemini-client.js): qwen2.5:3b copied the prompt's example and
+          # repeated sentences (docs/V2-NARRATIVE-SCRIPT-GREEN.md). OPENCODE_MODELS_REASONING
+          # (Ollama) is the fallback when Gemini cannot answer. force_planner=ollama skips Gemini.
+          SCRIPT_GEMINI_MODEL: gemini-3.5-flash-lite
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # The one topic re-pick in the claims-gate path re-runs research for
+          # the replacement topic, so this step needs the research model too.
+          OPENCODE_MODELS_RESEARCH: "ollama-cloud/gpt-oss:120b,ollama/qwen2.5:3b"
+          # This run script is 26k chars. As soon as a run block contains
+          # `${{ }}`, GitHub parses the WHOLE scalar as one expression
+          # template and rejects it above 21,000 chars ("Exceeded max
+          # expression length 21000", line 540; push 749a7be7 failed to
+          # parse and the workflow could not be dispatched). Keep the
+          # matrix value in env so the script itself stays literal.
+          CHANNEL_ID: ${{ matrix.channel_id }}
+        run: |
+          set -euo pipefail
+          CH="$CHANNEL_ID"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          STYLE=$(node scripts/channel-style.js "$CH")
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            # Motion-graphics SHORTS render through DirectedShorts, which
+            # builds visuals from the SRT + visual plan and never reads
+            # sections[].beats ΓÇö so the writer isn't asked for beats, and the
+            # style contract is cut before its beat/section-schema chapters.
+            # (CHECK-REGISTER.md: SCR-03/04/05/06/07/15 scope.)
+            CONTRACT=prompts/style-contract.md
+            if [ "$STYLE" = "motion-graphics" ] && [ "$FORMAT" = "shorts" ] && [ "${USE_LEGACY_3D:-}" != "true" ]; then
+              SCHEMA="schemas/script.directed.json"
+              awk '/^## If you were given the motion-graphics beat schema/{exit} {print}' prompts/style-contract.md > /tmp/style-contract-directed.md
+              CONTRACT=/tmp/style-contract-directed.md
+            elif [ "$STYLE" = "motion-graphics" ]; then
+              SCHEMA="schemas/script.mg.json"
+            else
+              SCHEMA="schemas/script.section.json"
+            fi
+            FEEDBACK=""
+            PASSED=0
+            SPEC_REASKED=0
+            CLAIM_REASKED=0
+            SKIP_GEN=0
+            # ONE topic re-pick per channel per run, across all formats.
+            REPICKED=0
+            # Eight iterations, not five: a repair validation (SKIP_GEN) consumes
+            # an iteration without a new generation, and three story repairs plus
+            # one claims repair used to exhaust the budget before the ONE topic
+            # re-pick could run (run 39300736182 ch-1 was skipped at attempt 5
+            # with the re-pick still unused).
+            for ATTEMPT in 1 2 3 4 5 6 7 8; do
+              echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/8) ==="
+              if [ "$SKIP_GEN" -eq 1 ]; then
+              # The re-ask was a targeted repair (scripts/repair-sentences.mjs): the script
+              # file was rewritten in place ΓÇö only the flagged sentences ΓÇö so there is no new
+              # model call; every gate below runs again on the repaired script.
+              SKIP_GEN=0
+              echo "[script] ch-$CH: validating the repaired script"
+              else
+              PROMPT_FILE=prompts/write-script.md
+              if [ -n "$FEEDBACK" ]; then
+                cp prompts/write-script.md /tmp/write-script-feedback.md
+                printf '\n\n## Quality gate rejected your previous script\n\n%s\n\nRewrite the FULL script JSON now, fixing exactly the problems above. Keep everything the gate did not flag identical ΓÇö same research grounding, same sources_used, same structure. Return only the JSON object.\n' "$FEEDBACK" >> /tmp/write-script-feedback.md
+                PROMPT_FILE=/tmp/write-script-feedback.md
+              fi
+              set +e
+              node scripts/build-script-context.js "$CH" "$SLUG" --format "$FORMAT" \
+                | node scripts/ollama-agent.js \
+                    --prompt-file "$PROMPT_FILE" \
+                    --append-system-prompt-file "$CONTRACT" \
+                    --schema-file "$SCHEMA" \
+                    --agent pipeline-script \
+                    --model "$OPENCODE_MODELS_REASONING" \
+                    --task-label write-script --max-retries 4 --channel-id "$CH" --video-id "$SCRIPT_SLUG" \
+                    > /tmp/script-raw-$FORMAT.json 2> >(tee /tmp/script-err-$FORMAT.log >&2)
+              AGENT_EXIT=$?
+              set -e
+              if [ "$AGENT_EXIT" -ne 0 ]; then
+                echo "::error::script model call failed for channel $CH format $FORMAT"
+                echo "--- stderr ---"; cat /tmp/script-err-$FORMAT.log 2>/dev/null || echo "(empty)"
+                exit 1
+              fi
+              jq '.structured_output' /tmp/script-raw-$FORMAT.json \
+                > "data/research/$CH/${SCRIPT_SLUG}-script.json"
+              fi
+              # Too long for the gate (SCR-16 "CUT"): remove whole sentences
+              # (scripts/fit-short.js ΓÇö deletion only, hook and payoff kept, every
+              # remaining fact exactly as written) and gate again, instead of
+              # spending a model attempt. Run 37125010644: ch-26 returned 121 words
+              # four times against a 106-word ceiling and the channel failed prep.
+              GATE_OK=0
+              if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=1;
+              elif grep -q "SCR-16:.*CUT at least" /tmp/gate-out-$FORMAT.log; then
+                CEIL=$(grep -oE 'needs [0-9]+-[0-9]+ words' /tmp/gate-out-$FORMAT.log | head -1 | grep -oE '[0-9]+' | tail -1)
+                if [ -n "$CEIL" ] && node scripts/fit-short.js "data/research/$CH/${SCRIPT_SLUG}-script.json" "$CEIL"; then
+                  echo "[script] ch-$CH: trimmed to <= $CEIL words by removing whole sentences; gating again"
+                  if node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=1; fi
+                fi
+              fi
+              # REPEATS (scripts/dedupe-sentences.js): a sentence that says what another already said is deleted (nothing reworded); one that
+              # deletion cannot remove (both copies are their section's only sentence) is handed to the story repair below as a CLARITY line.
+              # Board 39031532519 ch-44 narrated its hook twice and the setup's line again as the re-hook. A deletion re-runs the script gate.
+              : > /tmp/dedupe-out-$FORMAT.log
+              if [ "$GATE_OK" -eq 1 ]; then
+                node scripts/dedupe-sentences.js "data/research/$CH/${SCRIPT_SLUG}-script.json" > /tmp/dedupe-out-$FORMAT.log 2>&1 || true
+                cat /tmp/dedupe-out-$FORMAT.log
+                if grep -q '^\[dedupe\] removed' /tmp/dedupe-out-$FORMAT.log && ! node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then GATE_OK=0; fi
+              fi
+              if [ "$GATE_OK" -eq 1 ]; then
+                # STORY (scripts/validate-script-story.cjs): the narrative engine ΓÇö
+                # hook / setup / re-hook / payoff / close (validate-script-narrative.cjs), the
+                # voice rules ΓÇö banned openings, <= 25 words, at most one person-name start
+                # (validate-script-voice.cjs) ΓÇö and specificity (validate-script.cjs). Any
+                # failure -> ONE re-ask with every failing beat / sentence marked. Still failing:
+                #   narrative / specificity (exit 2) -> logged to
+                #     data/ci-runs/blocked-script-{narrative,specificity}-<ch>.txt, script continues;
+                #   VOICE (exit 3) -> a hard gate (owner's ruling 2026-10-03): logged to
+                #     data/ci-runs/blocked-voice-<ch>.txt and THIS CHANNEL IS SKIPPED this run ΓÇö
+                #     skip=true, no TTS / render / upload; other channels are unaffected.
+                set +e
+                # Up to THREE targeted repairs (was one): the clarity reader (SCR-16) flags an unanswered question or an unexplained term that one
+                # repair often leaves half-fixed (board 38877895872 ch-1: the payoff still did not answer "Where does worker confidence stand today?").
+                if [ "$SPEC_REASKED" -lt 3 ] && [ "$ATTEMPT" -lt 8 ]; then
+                  node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/spec-out-$FORMAT.log 2>&1
+                else
+                  node scripts/validate-script-story.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" --blocked data/ci-runs > /tmp/spec-out-$FORMAT.log 2>&1
+                fi
+                SPEC_EXIT=$?
+                set -e
+                if grep -q '^  - CLARITY:' /tmp/dedupe-out-$FORMAT.log; then grep '^  - ' /tmp/dedupe-out-$FORMAT.log >> /tmp/spec-out-$FORMAT.log; [ "$SPEC_EXIT" -eq 0 ] && SPEC_EXIT=2; fi
+                cat /tmp/spec-out-$FORMAT.log
+                if [ "$SPEC_EXIT" -ne 0 ]; then
+                  if [ "$SPEC_REASKED" -lt 3 ] && [ "$ATTEMPT" -lt 8 ]; then
+                    SPEC_REASKED=$((SPEC_REASKED + 1))
+                    # The one re-ask: repair only the flagged sentences in place (a full
+                    # regeneration fixed them and broke others ΓÇö runs 37154369091, 37154668613).
+                    grep -E '^  - ' /tmp/spec-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                    if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                      echo "[script] ch-$CH: story checks FAIL ($(grep -c '^  - ' /tmp/spec-out-$FORMAT.log) marked), repaired the flagged sentences (the one re-ask)"
+                      SKIP_GEN=1
+                      continue
+                    fi
+                    echo "[script] ch-$CH: story checks FAIL ($(grep -c '^  - ' /tmp/spec-out-$FORMAT.log) marked), re-asking once"
+                    FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - ' /tmp/spec-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
+                    continue
+                  fi
+                  # VOICE IS A WARNING, NOT A GATE (owner, 2026-10-05). validate-script-story.cjs
+                  # no longer returns 3 ΓÇö it logs "[voice] ch-N: N warnings, continuing" and the
+                  # channel carries on. This branch is kept only so an unexpected 3 can never
+                  # silently skip a channel: it logs and falls THROUGH instead of skipping.
+                  if [ "$SPEC_EXIT" -eq 3 ]; then
+                    echo "::warning::[script] ch-$CH: unexpected voice exit 3 ΓÇö treating as a warning, continuing (data/ci-runs/blocked-voice-$CH.txt)"
+                  fi
+                  echo "::warning::[script] ch-$CH: story checks still FAIL after the re-ask ΓÇö continuing with this script (logged to data/ci-runs/blocked-script-*-$CH.txt)"
+                fi
+                # CLAIMS (scripts/validate-script-claims.cjs, owner's Fix 4): every sentence's
+                # (subject, verb, object) claims judged against THIS research by Gemini. An
+                # INVENTED claim -> ONE re-ask with the sentences marked; still INVENTED ->
+                # data/ci-runs/blocked-claims-<ch>.txt and the channel is SKIPPED (exit 2 with
+                # --blocked). PARTIAL is logged and accepted. Gemini failing twice -> exit 4,
+                # "claim check unavailable, proceeding without".
+                set +e
+                if [ "$CLAIM_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 8 ]; then
+                  node scripts/validate-script-claims.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" > /tmp/claims-out-$FORMAT.log 2>&1
+                else
+                  node scripts/validate-script-claims.cjs "$CH" "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" --blocked data/ci-runs > /tmp/claims-out-$FORMAT.log 2>&1
+                fi
+                CLAIM_EXIT=$?
+                set -e
+                cat /tmp/claims-out-$FORMAT.log
+                if [ "$CLAIM_EXIT" -eq 2 ]; then
+                  if [ "$CLAIM_REASKED" -eq 0 ] && [ "$ATTEMPT" -lt 8 ]; then
+                    CLAIM_REASKED=1
+                    grep -E '^  - CLAIM' /tmp/claims-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                    if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                      echo "[script] ch-$CH: INVENTED claims ($(grep -c '^  - CLAIM' /tmp/claims-out-$FORMAT.log)), repaired those sentences (the one re-ask)"
+                      SKIP_GEN=1
+                      continue
+                    fi
+                    echo "[script] ch-$CH: INVENTED claims ($(grep -c '^  - CLAIM' /tmp/claims-out-$FORMAT.log)), re-asking once"
+                    FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$(grep -E '^  - CLAIM' /tmp/claims-out-$FORMAT.log || true)" | grep -E '^  - ' | sort -u || true)
+                    continue
+                  fi
+                  # ONE TOPIC RE-PICK, NOT A CHANNEL FAILURE. The claims gate
+                  # is right and is not loosened ΓÇö but a channel that simply
+                  # cannot ground one topic has not failed: discovery returned a
+                  # list, and the honest response to an ungroundable topic is
+                  # the next one, not an empty channel. Board 38325399088 ch-44:
+                  # "Apply these Harvard strategies to your next deal" was
+                  # correctly rejected as INVENTED after the re-ask, and the
+                  # channel shipped nothing.
+                  #
+                  # Once only. If the replacement topic is also rejected, the
+                  # channel IS skipped ΓÇö two ungroundable topics in a row is a
+                  # content problem, and re-picking forever would hide it.
+                  if [ "$REPICKED" -eq 0 ] && [ "$ATTEMPT" -lt 8 ]; then
+                    BURNED="${BURNED:-} $SLUG"
+                    NEXT=""; NEXT_TOPIC=""; NEXT_ANGLE=""
+                    N=$(jq '.topics | length' /tmp/topics.json 2>/dev/null || echo 0)
+                    for IDX in $(seq 0 $((N - 1))); do
+                      T=$(jq -r ".topics[$IDX].topic" /tmp/topics.json)
+                      S=$(jq -r ".topics[$IDX].slug" /tmp/topics.json)
+                      [ "$S" = "$SLUG" ] && continue
+                      case " $BURNED " in *" $S "*) continue ;; esac
+                      set +e
+                      node scripts/reserve-topic-single.js "$CH" "$T" "$S" > /dev/null 2>&1
+                      R=$?
+                      set -e
+                      [ "$R" -eq 0 ] || continue
+                      NEXT="$S"; NEXT_TOPIC="$T"; NEXT_ANGLE=$(jq -r ".topics[$IDX].angle // \"\"" /tmp/topics.json)
+                      break
+                    done
+                    if [ -n "$NEXT" ]; then
+                      echo "[script] ch-$CH: claims gate held after the re-ask ΓÇö re-picking a topic: $SLUG -> $NEXT"
+                      jq -n --arg s "$NEXT" --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" '{slug:$s,topic:$t,angle:$a}' > /tmp/channel-topic.json
+                      set +e
+                      jq -n --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" --arg s "$NEXT" --arg c "$CH" \
+                            '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null, strict_visual:(env.STRICT_VISUAL == "true")}' \
+                        | node scripts/ollama-agent.js \
+                            --prompt-file prompts/research.md \
+                            --schema-file schemas/research.json \
+                            --agent pipeline-research \
+                            --model "$OPENCODE_MODELS_RESEARCH" \
+                            --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$NEXT" \
+                            --search-out "data/research/$CH/$NEXT-search.json" \
+                            > /tmp/research-repick.json 2> >(tee /tmp/research-repick-err.log >&2)
+                      RP_EXIT=$?
+                      set -e
+                      if [ "$RP_EXIT" -eq 0 ] && jq -e '.structured_output.key_facts | length >= 3' /tmp/research-repick.json > /dev/null; then
+                        jq '.structured_output' /tmp/research-repick.json > "data/research/$CH/$NEXT.json"
+                        SLUG="$NEXT"; SCRIPT_SLUG="${SLUG}-${FORMAT}"
+                        CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""
+                        REPICKED=1
+                        continue
+                      fi
+                      echo "::warning::[script] ch-$CH: research for the re-picked topic $NEXT failed ΓÇö falling through to the skip"
+                    else
+                      echo "::warning::[script] ch-$CH: no spare topic left to re-pick"
+                    fi
+                  fi
+                  echo "::warning::[script] ch-$CH: invented claims after the re-ask ΓÇö channel skipped this run (data/ci-runs/blocked-claims-$CH.txt)"
+                  echo "skip=true" >> "$GITHUB_OUTPUT"
+                  echo "skip_reason=claims" >> "$GITHUB_OUTPUT"
+                  exit 0
+                fi
+                # REPEATS, last word before the voiceover (a claims repair can write a copy of another sentence ΓÇö ch-44 above). Deletion first;
+                # a repeat deletion cannot fix gets one targeted repair while attempts remain, and otherwise the channel is skipped: a video that
+                # narrates the same line twice is not shipped.
+                set +e
+                node scripts/dedupe-sentences.js "data/research/$CH/${SCRIPT_SLUG}-script.json" --strict > /tmp/dedupe-final-$FORMAT.log 2>&1
+                DD_EXIT=$?
+                set -e
+                cat /tmp/dedupe-final-$FORMAT.log
+                if [ "$DD_EXIT" -eq 3 ]; then
+                  grep -E '^  - ' /tmp/dedupe-final-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                  if [ "$ATTEMPT" -lt 8 ] && node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                    echo "[script] ch-$CH: repeated sentences, repaired them"
+                    SKIP_GEN=1
+                    continue
+                  fi
+                  echo "::warning::[script] ch-$CH: the script repeats a sentence that deleting cannot fix ΓÇö channel skipped this run"
+                  echo "skip=true" >> "$GITHUB_OUTPUT"
+                  echo "skip_reason=repeats" >> "$GITHUB_OUTPUT"
+                  exit 0
+                fi
+                if [ "$DD_EXIT" -ne 0 ]; then echo "::warning::[script] ch-$CH: repeat check could not run (exit $DD_EXIT) ΓÇö continuing"; fi
+                # LENGTH, measured on the real voiceover. render.js caps a
+                # Short at 60s, so a longer narration is cut off mid-word ΓÇö
+                # a since-cut channel's 61.06s voiceover in run 35830826546. Word count
+                # doesn't predict it (131 words ran 32.8s, 87 words 50.6s),
+                # so the audio is generated here and its SRT end is checked.
+                if [ "$FORMAT" = "shorts" ]; then
+                  SCRIPT_FILE="data/research/$CH/${SCRIPT_SLUG}-script.json"
+                  FITS=0
+                  # Up to 3 measure ΓåÆ trim rounds. Trimming only DELETES whole
+                  # sentences (scripts/fit-short.js ΓÇö hook and payoff kept);
+                  # qwen2.5:3b never converged on a length when asked to
+                  # rewrite (ch-9 68/60/75s; one cut channel 70/66/64/90s).
+                  for FIT in 1 2 3; do
+                    TTS_DONE=0
+                    for tts_try in 1 2 3; do
+                      if node src/utils/tts.js "$CH" "$SCRIPT_FILE"; then TTS_DONE=1; break; fi
+                      sleep 15
+                    done
+                    if [ "$TTS_DONE" -ne 1 ]; then
+                      echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
+                      exit 1
+                    fi
+                    VO_SRT="data/tts/$CH/${SCRIPT_SLUG}-script-vo.srt"
+                    VO_END=$(node -e "
+                      const t=require('fs').readFileSync(process.argv[1],'utf8').match(/\d+:\d+:\d+[,.]\d+(?=\s*\r?\n)/g)||[];
+                      const [h,m,s]=(t.pop()||'0:0:0,0').replace(',','.').split(':');
+                      console.log((+h*3600+ +m*60+ +s).toFixed(2));" "$VO_SRT")
+                    echo "Voiceover length: ${VO_END}s (Short limit 58s)"
+                    if ! awk "BEGIN{exit !($VO_END > 58)}"; then FITS=1; break; fi
+                    # Word ceiling from this script's own measured words/second.
+                    WORDS=$(node -e "const s=require('./'+process.argv[1]);console.log((s.sections||[]).map(x=>x.voiceover||'').join(' ').split(/\s+/).filter(Boolean).length)" "$SCRIPT_FILE")
+                    MAXW=$(awk "BEGIN{printf \"%d\", $WORDS*52/$VO_END}")
+                    rm -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo."* "data/tts/$CH/${SCRIPT_SLUG}-script-vo-words.json"
+                    echo "::warning::voiceover ${VO_END}s (${WORDS} words) is over the Short limit ΓÇö removing sentences to <= ${MAXW} words (fit $FIT/3)"
+                    if ! node scripts/fit-short.js "$SCRIPT_FILE" "$MAXW"; then break; fi
+                    if ! node scripts/gate-script.js "$CH" "$SCRIPT_SLUG" "$SLUG" > /tmp/gate-out-$FORMAT.log 2>&1; then
+                      echo "::warning::script gate rejected the trimmed script"
+                      cat /tmp/gate-out-$FORMAT.log
+                      break
+                    fi
+                  done
+                  if [ "$FITS" -ne 1 ]; then
+                    # Trimming couldn't fit it (hook + payoff alone too long,
+                    # or the trimmed script failed the gate): ask for a
+                    # shorter script with a concrete word ceiling.
+                    rm -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo."* "data/tts/$CH/${SCRIPT_SLUG}-script-vo-words.json"
+                    GATE_LINES=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+                    FEEDBACK=$( { printf '%s\n%s\n' "$FEEDBACK" "$GATE_LINES" | grep -v '  - LENGTH:'; printf '  - LENGTH: your voiceover is %s words and runs %ss; a Short must finish inside 58s. Rewrite it to AT MOST %s words in total across all sections (count them). Keep every sourced fact you keep worded exactly as before.\n' "$WORDS" "$VO_END" "$MAXW"; } | grep -E '^  - ' | sort -u)
+                    continue
+                  fi
+                fi
+                PASSED=1
+                break
+              fi
+              echo "::warning::script gate rejected attempt $ATTEMPT/8 for $SCRIPT_SLUG"
+              cat /tmp/gate-out-$FORMAT.log
+              # STRICT STARVATION -> ONE TOPIC RE-PICK (SCR-19). The strict
+              # rule can only be satisfied with sentences the RESEARCH can
+              # support; when attempt 5 still fails it and nothing else, the
+              # topic is the problem, not the wording. Run 39399514270 ch-48
+              # burned all 8 attempts on a paper whose every fact was "X
+              # analysed Y" - no rewrite can ground that without inventing.
+              # Same machinery and one-per-run budget as the claims re-pick
+              # (REPICKED/BURNED, ~45 lines above); the replacement topic
+              # starts with a clean feedback slate and 5 attempts left.
+              # Attempt 3, not 5: a78e717e set 3 and c2507db1 (a discovery
+              # change) silently put 5 back; runs 39522796613..39611317543
+              # then gave every replacement topic only 3 tries.
+              # Starved research re-picks after attempt 1: a topic whose research
+              # draws fewer than MIN_DRAWABLE items (scripts/strict-inventory.mjs,
+              # the gate's own extractor) cannot be grounded by rewording (run
+              # 39705589195 ch-48: 2 items, 8 failed attempts).
+              REPICK_AT=3
+              if grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
+                INV=$(node scripts/strict-inventory.mjs "$CH" "$SLUG" 2>/dev/null || echo -1)
+                if [ "$INV" -ge 0 ] && [ "$INV" -lt 3 ]; then
+                  REPICK_AT=1
+                  echo "[script] ch-$CH: research for $SLUG draws only $INV item(s) (< 3) - strict re-pick now"
+                fi
+              fi
+              if [ "$ATTEMPT" -ge "$REPICK_AT" ] && [ "$REPICKED" -eq 0 ] \
+                 && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
+                 && [ -f /tmp/topics.json ]; then
+                BURNED="${BURNED:-} $SLUG"
+                NEXT=""; NEXT_TOPIC=""; NEXT_ANGLE=""
+                N=$(jq '.topics | length' /tmp/topics.json 2>/dev/null || echo 0)
+                for IDX in $(seq 0 $((N - 1))); do
+                  T=$(jq -r ".topics[$IDX].topic" /tmp/topics.json)
+                  S=$(jq -r ".topics[$IDX].slug" /tmp/topics.json)
+                  [ "$S" = "$SLUG" ] && continue
+                  case " $BURNED " in *" $S "*) continue ;; esac
+                  set +e
+                  node scripts/reserve-topic-single.js "$CH" "$T" "$S" > /dev/null 2>&1
+                  R=$?
+                  set -e
+                  [ "$R" -eq 0 ] || continue
+                  NEXT="$S"; NEXT_TOPIC="$T"; NEXT_ANGLE=$(jq -r ".topics[$IDX].angle // \"\"" /tmp/topics.json)
+                  break
+                done
+                if [ -n "$NEXT" ]; then
+                  echo "[script] ch-$CH: strict visual rule starved by this topic - re-picking: $SLUG -> $NEXT"
+                  jq -n --arg s "$NEXT" --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" '{slug:$s,topic:$t,angle:$a}' > /tmp/channel-topic.json
+                  set +e
+                  jq -n --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" --arg s "$NEXT" --arg c "$CH" \
+                        '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null, strict_visual:(env.STRICT_VISUAL == "true")}' \
+                    | node scripts/ollama-agent.js \
+                        --prompt-file prompts/research.md \
+                        --schema-file schemas/research.json \
+                        --agent pipeline-research \
+                        --model "$OPENCODE_MODELS_RESEARCH" \
+                        --task-label research --max-retries 4 --min-source-domains 2 --channel-id "$CH" --video-id "$NEXT" \
+                        --search-out "data/research/$CH/$NEXT-search.json" \
+                        > /tmp/research-repick.json 2> >(tee /tmp/research-repick-err.log >&2)
+                  RP_EXIT=$?
+                  set -e
+                  if [ "$RP_EXIT" -eq 0 ] && jq -e '.structured_output.key_facts | length >= 3' /tmp/research-repick.json > /dev/null; then
+                    jq '.structured_output' /tmp/research-repick.json > "data/research/$CH/$NEXT.json"
+                    SLUG="$NEXT"; SCRIPT_SLUG="${SLUG}-${FORMAT}"
+                    CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""
+                    REPICKED=1
+                    continue
+                  fi
+                  echo "::warning::[script] ch-$CH: research for the strict re-pick $NEXT failed - continuing with the current topic"
+                else
+                  echo "::warning::[script] ch-$CH: no spare topic left for the strict re-pick"
+                fi
+              fi
+              # Accumulate violations across attempts (see run 35289507647).
+              NEW_FEEDBACK=$(grep -E '^  - ' /tmp/gate-out-$FORMAT.log || true)
+              FEEDBACK=$(printf '%s\n%s\n' "$FEEDBACK" "$NEW_FEEDBACK" \
+                | grep -E '^  - ' | sort -u || true)
+            done
+            if [ "$PASSED" -ne 1 ]; then
+              echo "::error::script gate still failing for $SCRIPT_SLUG after 8 attempts"
+              exit 1
+            fi
+          done
+
+      # —— Stage D: TTS voiceover —————————————————————————————————————————
+      - name: Generate TTS voiceover
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          set -euo pipefail
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
+            if [ ! -f "$SCRIPT" ]; then
+              echo "::error::Script not found: $SCRIPT"
+              exit 1
+            fi
+            if [ -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo.mp3" ] && [ -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo.srt" ] && [ -f "data/tts/$CH/${SCRIPT_SLUG}-script-vo-words.json" ]; then
+              echo "TTS for $SCRIPT_SLUG was generated by the script length check ΓÇö reusing it"
+              continue
+            fi
+            echo "=== TTS: $CH ΓÇö $SCRIPT_SLUG ==="
+            TTS_OK=0
+            for tts_try in 1 2 3; do
+              if node src/utils/tts.js "$CH" "$SCRIPT"; then
+                TTS_OK=1; break
+              fi
+              if [ "$tts_try" -lt 3 ]; then
+                echo "TTS attempt $tts_try failed ΓÇö retrying in 15s..."
+                sleep 15
+              fi
+            done
+            if [ "$TTS_OK" -ne 1 ]; then
+              echo "::error::TTS failed after 3 attempts for $SCRIPT_SLUG"
+              exit 1
+            fi
+          done
+
+      # —— Stage E: Thumbnail —————————————————————————————————————————————
+      - name: Generate thumbnail
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          for FORMAT in $FORMATS; do
+            SCRIPT_SLUG="${SLUG}-${FORMAT}"
+            SCRIPT="data/research/$CH/${SCRIPT_SLUG}-script.json"
+            echo "=== THUMBNAIL: $CH ΓÇö $SCRIPT_SLUG ==="
+            node src/skills/thumbnail-maker/generate.js "$CH" "$SCRIPT" || echo "WARN: thumbnail spec failed"
+            node src/skills/thumbnail-maker/render-thumb.js "$CH" "$SCRIPT_SLUG" || echo "WARN: thumbnail render failed"
+          done
+
+      # —— Stage F: SEO + metadata ————————————————————————————————————————
+      - name: Generate SEO + metadata
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          TOPIC=$(jq -r '.topic' /tmp/channel-topic.json)
+          echo "=== METADATA: $CH ΓÇö $SLUG ==="
+          jq -n --arg t "$TOPIC" --arg s "$SLUG" '{topic:$t, slug:$s}' \
+            > "data/research/$CH/next-topic.json"
+          node src/utils/pipeline.js "$CH" --step 5 || echo "WARN: metadata generation had issues"
+
+      - name: Ollama request log
+        if: always()
+        run: |
+          # One line per model request: status, duration, endpoint. Plus any
+          # prompt-truncation warnings. This is where prep time actually goes.
+          grep -E "\[GIN\]|truncat|error|level=WARN" /tmp/ollama.log | tail -60 || echo "(no ollama log)"
+
+      # Job record (data/jobs/<ch>/<slug>.json, docs/JOBS.md): the prep stages that just passed. Never fails the step.
+      - name: Record job state (prep)
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          JS="node scripts/jobs/job-state.mjs"
+          if [ "${{ steps.resume.outputs.resume }}" = "true" ]; then
+            $JS skip --channel "$CH" --slug "$SLUG" --stage discover,research,script --reason "resumed from committed script" || echo "::warning::job-state skip failed"
+          else
+            $JS finish --channel "$CH" --slug "$SLUG" --stage discover,research,script || echo "::warning::job-state finish failed"
+          fi
+          $JS start --channel "$CH" --slug "$SLUG" --stage tts || echo "::warning::job-state start failed"
+          $JS finish --channel "$CH" --slug "$SLUG" --stage tts || echo "::warning::job-state finish failed"
+
+      # —— Commit this run's script (the record a fix is verified against) —
+      # render_only re-renders the latest COMMITTED shorts script. Until this step, a
+      # script existed only inside the prep upload-artifact bundle, so a render that
+      # failed could not be reproduced from git. Pushed on dry runs too. Only when the
+      # script gate passed (a blocked script is never committed).
+      - name: Commit this run's script and research
+        # no_push: the script stays in the prep artifact only (nothing reaches any branch).
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.no_push != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          FILES=$(ls "data/research/$CH/${SLUG}-shorts-script.json" "data/research/$CH/$SLUG.json" 2>/dev/null || true)
+          if [ -z "$FILES" ]; then echo "::warning::no script to commit for channel $CH"; exit 0; fi
+          git config user.name  "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git add -- $FILES
+          [ -d "data/jobs/$CH" ] && git add -- "data/jobs/$CH"
+          if git diff --staged --quiet; then echo "script already committed"; exit 0; fi
+          git commit -q -m "script: ch-$CH $SLUG (run ${{ github.run_id }})"
+          for attempt in 1 2 3 4 5; do
+            if git pull -q --rebase --autostash origin "${{ github.ref_name }}" && git push -q origin "HEAD:${{ github.ref_name }}"; then
+              echo "committed $FILES"; exit 0
+            fi
+            sleep $((attempt * 3))
+          done
+          echo "::error::could not push the script for channel $CH"; exit 1
+
+      # —— Prep status + artifact (ALWAYS uploaded) ———————————————————————
+      # A channel that skipped (all candidates duplicate) still uploads an
+      # artifact carrying {"skipped": true}, so its render job can see WHY
+      # there is nothing to render instead of failing on a missing artifact.
+      - name: Write prep status
+        if: always()
+        run: |
+          CH="${{ matrix.channel_id }}"
+          mkdir -p data/prep-status
+          if [ "${{ steps.reserve.outputs.skip }}" = "true" ]; then
+            echo '{"skipped": true, "reason": "duplicate-topic"}' > "data/prep-status/$CH.json"
+          elif [ "${{ steps.script.outputs.skip }}" = "true" ]; then
+            echo '{"skipped": true, "reason": "${{ steps.script.outputs.skip_reason || 'script-validation' }}"}' > "data/prep-status/$CH.json"
+          else
+            echo "{\"skipped\": false, \"prep\": \"${{ job.status }}\"}" > "data/prep-status/$CH.json"
+          fi
+          cat "data/prep-status/$CH.json"
+
+      - name: Upload prep artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/prep-status/
+            data/research/${{ matrix.channel_id }}/
+            data/tts/${{ matrix.channel_id }}/
+            data/thumbnails/${{ matrix.channel_id }}/
+            data/jobs/${{ matrix.channel_id }}/
+            data/ci-runs/blocked-script-specificity-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-voice-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-claims-${{ matrix.channel_id }}.txt
+            data/ci-runs/blocked-script-narrative-${{ matrix.channel_id }}.txt
+          retention-days: 1
+
+      # A reservation whose video never gets made is released, so a failed
+      # or cancelled prep ΓÇö or a channel skipped by the voice gate ΓÇö doesn't
+      # block that topic for 90 days.
+      - name: Release topic reservation (prep failed)
+        if: (failure() || cancelled() || steps.script.outputs.skip == 'true') && steps.reserve.outputs.pushed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG="${{ steps.reserve.outputs.slug }}"
+          git config user.name  "pipeline-bot"
+          git config user.email "pipeline@youtube-automation.local"
+          git stash --include-untracked -q || true
+          for attempt in 1 2 3 4 5; do
+            git fetch -q origin "${{ github.ref_name }}"
+            git reset -q --hard "origin/${{ github.ref_name }}"
+            node scripts/release-topic.js "$CH" "$SLUG"
+            git add data/topic-log.json
+            if git diff --staged --quiet; then break; fi
+            git commit -q -m "topic: release ch-$CH $SLUG (prep failed, run ${{ github.run_id }})"
+            if git push -q origin "HEAD:${{ github.ref_name }}"; then break; fi
+            sleep $((attempt * 3))
+          done
+
+  # ============================================================
+  # STAGE 2: RENDER
+  # ============================================================
+  render:
+    needs: [prep]
+    # !cancelled() stops renders when the RUN is cancelled. It no longer
+    # also requires needs.prep.result != 'cancelled': that is the matrix's
+    # AGGREGATE result, so one prep leg hitting its 18-min timeout
+    # (run 36367836941, ch-2 research) skipped every channel's render. A
+    # channel whose own prep died still fails its render leg at "Check prep
+    # status" (no artifact) ΓÇö honestly, and only that channel.
+    if: ${{ !cancelled() && github.event.inputs.publish != 'true' }}
+    runs-on: ubuntu-latest
+    # 20 min was not enough once six renders competed for runners alongside the Ollama model
+    # pulls: run 37380168306 SIGTERMed ch-9, ch-44 and ch-49 at 22:16/22:17/22:18 - all three
+    # at the job timeout, ~20 min after the 22:05 start - and exit 143 is indistinguishable
+    # from a crash in the log. The fast render finished (ch-2, rejected on canvas checks); the
+    # slow ones were killed. Raised to 45, then the dispatch input default to 90:
+    # with a 20-min default the daily schedule killed ch-1 at 22% (run 39308784564).
+    timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
+    permissions:
+      contents: write
+    strategy:
+      # One leg: this workflow runs ONE channel. The leg keeps the name matrix.channel_id so every
+      # step reads it exactly as it did in daily-pipeline-v2.yml; the board-wide matrix, max-parallel
+      # and fail-fast live on the caller job (daily-pipeline-v2.yml `channel`).
+      matrix:
+        channel_id: ["${{ inputs.channel_id }}"]
+      # 6 (2026-10-09): 4 made a ten-channel board an hour; the quota burn it was set against was mostly the SFX judge,
+      # whose verdicts are cached per file now.
+      max-parallel: 6
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Verify a single Remotion version
+        run: |
+          # The frame-0 AudioForRendering crash came from mixed remotion copies.
+          V=$(find node_modules src/skills/remotion-render/node_modules -path '*/node_modules/remotion/package.json' -exec node -p "require('./{}').version" \; | sort -u)
+          echo "remotion versions installed: $V"
+          [ "$(echo "$V" | wc -l)" -eq 1 ] || { echo "::error::more than one remotion version installed"; exit 1; }
+
+      - name: Download prep artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: prep-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: data/
+
+      - name: Check prep status
+        id: status
+        run: |
+          CH="${{ matrix.channel_id }}"
+          F="data/prep-status/$CH.json"
+          if [ ! -f "$F" ]; then
+            echo "::error::prep artifact for channel $CH has no status file"
+            exit 1
+          fi
+          cat "$F"
+          if [ "$(jq -r .skipped "$F")" = "true" ]; then
+            echo "::notice::Channel $CH skipped in prep ($(jq -r .reason "$F")) ΓÇö nothing to render"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # The render job's checkout predates prep's job-record commit, so the record is kept OUTSIDE the
+      # workspace (JOBS_ROOT) and copied in after the rebase in "Commit publish queue" (no add/add conflict).
+      - name: Seed job state (render)
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          mkdir -p "$RUNNER_TEMP/jobroot/data/jobs"
+          [ -d "data/jobs/$CH" ] && cp -r "data/jobs/$CH" "$RUNNER_TEMP/jobroot/data/jobs/"
+          echo "JOBS_ROOT=$RUNNER_TEMP/jobroot" >> "$GITHUB_ENV"
+          ls "$RUNNER_TEMP/jobroot/data/jobs/$CH" 2>/dev/null || echo "::warning::ch-$CH: no job record in the prep artifact"
+
+      - name: Ensure ffmpeg/ffprobe
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      - uses: browser-actions/setup-chrome@v1
+        if: steps.status.outputs.skip != 'true'
+        with:
+          chrome-version: stable
+
+      - uses: actions/setup-python@v5
+        if: steps.status.outputs.skip != 'true'
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # edge-tts too: a voiceover without word timings (from before
+      # tts_words.py) is re-synthesized by render-and-qa.js before planning.
+      - name: Install edge-tts
+        if: steps.status.outputs.skip != 'true'
+        run: pip install --quiet edge-tts
+
+      # On-demand cutouts (scripts/fetch-cutout-once.cjs): each beat's cutout
+      # is fetched, isolated (rembg u2net) and verified before the render.
+      - name: Cache rembg (pip + u2net model)
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.u2net
+          key: rembg-render-${{ runner.os }}-v1
+
+      - name: Install rembg
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          pip install "rembg[cpu]" pillow numpy
+          python -c "from rembg import remove; print('rembg ok')"
+          python -c "from rembg import new_session; new_session('u2net'); print('u2net model cached')"
+
+      - name: Cache Remotion Chrome
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/remotion
+          key: remotion-chrome-${{ runner.os }}
+
+      # Layer 2 (scripts/eval-layer2-wire.js): CLIP weights (Xenova/clip-vit-base-patch32, ~350 MB).
+      # The wire points @xenova/transformers' cacheDir at ~/.cache/huggingface/transformers-js, so
+      # this path is where the weights actually land (the library's own default is
+      # node_modules/@xenova/transformers/.cache, which this cache would not cover).
+      - name: Cache HuggingFace models
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ runner.os }}-clip-vit-base-patch32
+          restore-keys: hf-${{ runner.os }}-
+
+      # The local models behind every model call (src/lib/llm.js): Gemini
+      # first, Ollama when Gemini cannot answer ΓÇö or Ollama only with
+      # force_planner=ollama. qwen2.5:7b answers the text calls (planner,
+      # challenger); qwen2.5vl:3b answers the calls that carry frames (beat
+      # check, frame reviews, section-7 QA) ΓÇö qwen2.5:7b cannot see images.
+      - name: Ollama (text + vision models)
+        if: steps.status.outputs.skip != 'true'
+        uses: ./.github/actions/ollama
+        with:
+          # qwen2.5:14b was dropped from this job (2026-10-08): warming it
+          # (~9-12 GB with a 16k context) beside Chrome + rembg on the 15 GB
+          # runner is what lost 4 of 10 render runners in run 37776924101
+          # ("received a shutdown signal", exit 143, 1.5-5 min into the job).
+          # The challenger's local tier is qwen2.5:7b (OLLAMA_CHALLENGER_MODEL).
+          models: "qwen2.5:7b qwen2.5vl:3b"
+          cache-key: ollama-${{ runner.os }}-qwen2.5-7b+qwen2.5vl-3b
+          # Nothing stays resident: the render and Chromium need the RAM.
+          unload-after-warm: "true"
+          # Pull only; a model is loaded only when a fallback call reaches it.
+          warm: "false"
+          # Pull in the background: the job renders while 17 GB download
+          # (the local models are the LAST tier ΓÇö Gemini, then Groq, first).
+          background: "true"
+
+      # SFX (scripts/sfx-cc0.mjs): five CC0 recordings from Remotion's library, no API key. Fetched
+      # once and kept in the runner cache; every run re-judges them (Gemini listens: recorded or
+      # robotic) and only "recorded" files play. A failed fetch or judge means a video with no SFX,
+      # never a failed render and never an unjudged sound.
+      # THE RESPONSE CACHE (owner, 2026-10-10: `.cache/gemini` was not in any cache path, so no gate's answer survived to the next board and every
+      # identical request was paid for again). Keyed on the client and on the verifier that writes into it, so a client change starts clean.
+      # save-always: a channel whose gate fails still saves the answers it paid for. A per-run key plus a prefix restore: the newest entry wins.
+      - name: Cache Gemini responses
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/gemini
+            .cache/cutout-verify
+          key: gemini-resp-${{ runner.os }}-${{ hashFiles('src/lib/gemini-client.js', 'src/lib/llm.js', 'scripts/verify-cutout-image.cjs') }}-${{ github.run_id }}
+          restore-keys: |
+            gemini-resp-${{ runner.os }}-${{ hashFiles('src/lib/gemini-client.js', 'src/lib/llm.js', 'scripts/verify-cutout-image.cjs') }}-
+          save-always: true
+
+      - name: Cache CC0 SFX
+        if: steps.status.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: src/skills/remotion-render/public/sfx/cc0
+          key: sfx-cc0-v2   # bump when SFX_SOURCES changes; verdicts inside are keyed by each file's sha256
+
+      - name: Fetch CC0 SFX
+        if: steps.status.outputs.skip != 'true'
+        continue-on-error: true
+        run: node scripts/sfx-cc0.mjs fetch
+
+      # The verdicts judged ONCE in setup (above). Copied where the render reads them; a missing file means no SFX play, never an unjudged one.
+      - name: Use the SFX verdicts from setup
+        if: steps.status.outputs.skip != 'true'
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: sfx-verdicts
+          path: sfx-verdicts-in
+      - name: Place the SFX verdicts for the render
+        if: steps.status.outputs.skip != 'true'
+        continue-on-error: true
+        run: |
+          mkdir -p src/skills/remotion-render/public/sfx/cc0 data/sfx
+          if [ -f sfx-verdicts-in/verdicts.json ]; then
+            cp sfx-verdicts-in/verdicts.json src/skills/remotion-render/public/sfx/cc0/verdicts.json
+            cp sfx-verdicts-in/verdicts.json data/sfx/verdicts.json
+            echo "SFX verdicts placed from setup"
+          else
+            echo "::warning::no SFX verdicts from setup ΓÇö no SFX will play this board"
+          fi
+
+      - name: Render + QA
+        id: render
+        if: steps.status.outputs.skip != 'true'
+        env:
+          RENDER_PROGRESS_MS: 10000
+          # Local fallback (scripts/ollama-client.cjs). force_planner=ollama
+          # routes EVERY model call to Ollama; Gemini is never called.
+          OLLAMA_TEXT_MODEL: qwen2.5:7b
+          OLLAMA_VISION_MODEL: qwen2.5vl:3b
+          OLLAMA_CHALLENGER_MODEL: qwen2.5:7b
+          # Second tier of the chain (Gemini ΓåÆ Groq ΓåÆ Ollama): scripts/groq-client.cjs.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # The models this account's key can call (GET /openai/v1/models);
+          # llama-3.3-70b / llama-3.2-90b-vision answer 404 on it.
+          # qwen3.8-27b takes at most 3 images per request.
+          GROQ_TEXT_MODEL: openai/gpt-oss-120b
+          GROQ_CHALLENGER_MODEL: openai/gpt-oss-120b
+          GROQ_VISION_MODEL: qwen/qwen3.8-27b
+          GROQ_MAX_IMAGES: "3"
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          # The job budget: render-and-qa.js stops correction attempts inside
+          # it, and every model call is capped at a share of it. Must match the
+          # render job's own timeout-minutes default (45, line ~905): at 20 the
+          # budget was 15 min, so a 13-min first attempt (ch-9, run 38100803605)
+          # refused the frame-review correction re-render that would have fit.
+          # Confirmed still needed after this landed: run 38102260955 ch-9
+          # logged "attempt 2 would take ~9.6 min at 10.0 min in" (19.6 total)
+          # against a 15-min budget -> "no further attempt" again. Same
+          # proxy/artifact split sizes the vision caps (gate-visual-qa.js:227,
+          # ollama-client.cjs:145), which were likewise built for a job half
+          # as long as the real one.
+          JOB_TIMEOUT_MIN: ${{ github.event.inputs.timeout_minutes || '90' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # gemini-client makes ONE attempt (429 -> quota_exhausted at once,
+          # 503 -> one retry after 5 s); any failure goes to Ollama.
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          VISION_API_KEY: ${{ secrets.GEMINI_API_KEY_4 || secrets.GEMINI_API_KEY }}
+          VISION_MODEL: gemini-3.5-flash-lite
+          # OpenRouter is the second tier of every model chain (llm.js, the image verifiers, gemini-client's
+          # quota fallback). It was never passed to THIS step, so on 2026-10-16 every render-side call went
+          # Gemini 429 -> "openrouter: no_key" -> Groq rate limit -> a 3B Ollama model (board 38889577784).
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          # Real-asset fetcher (scripts/fetch-assets.cjs). Unset secrets are
+          # empty and that source is skipped with a logged reason ΓÇö
+          # data/ci-runs/blocked-asset-api-keys.txt.
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        # QA is ON. --skip-qa was on every CI run until docs/AI-DECISION-AUDIT.md
+        # showed 0 of 31 Gemini beats reached the screen while every gate
+        # passed. The challenger (plan vs script) and the per-beat frame check
+        # (frame vs sentence) now run on every video; so does the Gemini
+        # review/correction loop.
+        run: |
+          CH="${{ matrix.channel_id }}"
+          JS="node scripts/jobs/job-state.mjs"
+          $JS start --channel "$CH" --stage render || echo "::warning::job-state start failed"
+          if node scripts/render-and-qa.js --channel "$CH"; then
+            $JS finish --channel "$CH" --stage render || echo "::warning::job-state finish failed"
+          else
+            RC=$?
+            $JS fail --channel "$CH" --stage render --error "render-and-qa exited $RC" || echo "::warning::job-state fail failed"
+            exit $RC
+          fi
+
+      # Backup QA (scripts/local-audit.cjs): a video an AI stage failed is
+      # queued for a human, never uploaded. The queues live on the runner, so
+      # they are uploaded as an artifact or they would vanish with the job.
+      - name: QA counts
+        if: always() && steps.status.outputs.skip != 'true'
+        run: |
+          if [ -f data/renders/qa-counts.json ]; then
+            A=$(jq -r '.approved' data/renders/qa-counts.json)
+          else
+            A=0; echo "::warning::render-and-qa.js wrote no qa-counts.json (it did not reach its summary)"
+          fi
+          R=$(ls data/renders/approved-review/*.json 2>/dev/null | wc -l)
+          J=$(ls data/renders/rejected/*.json 2>/dev/null | wc -l)
+          echo "Approved: $A ┬╖ Approved-review: $R ┬╖ Rejected: $J"
+          echo "### Channel ${{ matrix.channel_id }} ΓÇö Approved: $A ┬╖ Approved-review: $R ┬╖ Rejected: $J" >> "$GITHUB_STEP_SUMMARY"
+          for f in data/renders/approved/*.json data/renders/approved-review/*.json data/renders/rejected/*.json; do
+            [ -f "$f" ] && echo "  $f: $(jq -c '{verdict, failed_stage, failed_check, reason, duration_s}' "$f")"
+          done
+          # Nothing is deleted: an MP4 left in the channel's render dir is outside every queue.
+          for f in data/renders/${{ matrix.channel_id }}/*.mp4; do
+            [ -f "$f" ] && echo "::error::$f is in no queue (approved / approved-review / rejected)"
+          done
+          true
+
+      - name: Upload QA review queues
+        if: always() && steps.status.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-queues-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/renders/approved/
+            data/renders/approved-review/
+            data/renders/rejected/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      # The eval loop's JSONL (layer1_result, Layer 2 advisory, Layer 3 axes) and the Layer 3
+      # provenance: gitignored runner state that was lost when the job ended.
+      - name: Upload eval-loop audit
+        if: always() && steps.status.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-audit-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/audit/eval-loop/
+            data/audit/layer3/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Upload rendered video
+        if: always() && steps.status.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            data/renders/${{ matrix.channel_id }}/
+            data/visual-plans/${{ matrix.channel_id }}/
+            data/renders/qa-counts.json
+            src/skills/remotion-render/public/asset-library/manifest.json
+          retention-days: 7
+
+      # No-render must not pass (run 37380168306, ch-1).
+      # ch-1's render job reported SUCCESS while rendering nothing. Its prep leg had
+      # legitimately skipped the channel - the claims gate rejected the script
+      # ("INVENTED claims after the re-ask ... nothing was rendered or uploaded",
+      # prep-status/1.json = {"skipped": true, "reason": "claims"}) - and every render
+      # step is gated on `skip != 'true'`, so all of them skipped and the job passed
+      # vacuously. Same fail-loud principle as REVIEW_FAILED and PROVIDER_UNAVAILABLE: an
+      # outcome that produced no video is not a pass.
+      #
+      # This softens nothing. It only refuses to report a vacuous success, and it reports
+      # the two reasons separately so a legitimate content rejection stays
+      # distinguishable from a render that completed and silently produced nothing - the
+      # first is a content decision, the second is a defect.
+      - name: Assert a video was rendered
+        if: always()
+        run: |
+          MP4S=$(find data/renders -name '*.mp4' -type f 2>/dev/null | wc -l | tr -d ' ')
+          if [ "${{ steps.status.outputs.skip }}" = "true" ]; then
+            echo "::error::NO RENDER - the prep leg skipped this channel (reason recorded in prep-status/*.json). Nothing was rendered or uploaded."
+            exit 1
+          fi
+          if [ "$MP4S" -eq 0 ]; then
+            echo "::error::NO RENDER - Render + QA ran but produced no MP4 under data/renders."
+            exit 1
+          fi
+          echo "rendered $MP4S file(s) under data/renders"
+
+      # —— Publish (private) ——————————————————————————————————————————————
+      # Publishing is a CAPABILITY CHECK, not a stage that can fail a finished deliverable (audit
+      # 2026-10-22 #7, scripts/jobs/publish-gate.mjs, docs/PUBLISHING.md). A channel that cannot upload
+      # (not main, dry_run, render_only, no_push, no OAuth secrets, OAuth rejected by Google) keeps its
+      # render, QA verdict and queue marker; the upload is SKIPPED, green, with the exact reason in
+      # data/publish-status/<channel_id>.json, the job record and the digest.
+      # main only (audit 2026-10-03): a dispatch with --ref <other branch> renders but never reads the
+      # OAuth secrets or uploads; every publish step below also repeats the main/dry_run conditions.
+      - name: Publish capability check
+        id: gate
+        if: always() && steps.status.outputs.skip != 'true'
+        env:
+          GATE_REF: ${{ github.ref }}
+          GATE_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          GATE_RENDER_ONLY: ${{ github.event.inputs.render_only }}
+          GATE_NO_PUSH: ${{ github.event.inputs.no_push }}
+        run: node scripts/jobs/publish-gate.mjs gate --channel "${{ matrix.channel_id }}"
+
+      - name: Materialize OAuth credentials
+        id: creds
+        # always(): a failed render must not strand an ALREADY-uploaded private
+        # video past its go_public_at (ch-1 hOYJOrB9lR4 sat private 8 h on
+        # 2026-10-20 because the render step failed before this one ran).
+        # Only THIS channel's own secrets are read, into its own config/creds/<channel_id>.json; a row
+        # pointing at another channel's file is refused (exit 1). Missing secrets: creds=missing, exit 0.
+        if: always() && steps.gate.outputs.enabled == 'true' && steps.status.outputs.skip != 'true' && github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.no_push != 'true'
+        env:
+          CH01_CLIENT_ID:       ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET:   ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN:   ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_CLIENT_ID:       ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET:   ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN:   ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH09_CLIENT_ID:       ${{ secrets.CHANNEL_09_CLIENT_ID }}
+          CH09_CLIENT_SECRET:   ${{ secrets.CHANNEL_09_CLIENT_SECRET }}
+          CH09_REFRESH_TOKEN:   ${{ secrets.CHANNEL_09_REFRESH_TOKEN }}
+          CH26_CLIENT_ID:       ${{ secrets.CHANNEL_26_CLIENT_ID }}
+          CH26_CLIENT_SECRET:   ${{ secrets.CHANNEL_26_CLIENT_SECRET }}
+          CH26_REFRESH_TOKEN:   ${{ secrets.CHANNEL_26_REFRESH_TOKEN }}
+          CH44_CLIENT_ID:       ${{ secrets.CHANNEL_44_CLIENT_ID }}
+          CH44_CLIENT_SECRET:   ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
+          CH44_REFRESH_TOKEN:   ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+          CH05_CLIENT_ID:       ${{ secrets.CHANNEL_05_CLIENT_ID }}
+          CH05_CLIENT_SECRET:   ${{ secrets.CHANNEL_05_CLIENT_SECRET }}
+          CH05_REFRESH_TOKEN:   ${{ secrets.CHANNEL_05_REFRESH_TOKEN }}
+          CH06_CLIENT_ID:       ${{ secrets.CHANNEL_06_CLIENT_ID }}
+          CH06_CLIENT_SECRET:   ${{ secrets.CHANNEL_06_CLIENT_SECRET }}
+          CH06_REFRESH_TOKEN:   ${{ secrets.CHANNEL_06_REFRESH_TOKEN }}
+          CH08_CLIENT_ID:       ${{ secrets.CHANNEL_08_CLIENT_ID }}
+          CH08_CLIENT_SECRET:   ${{ secrets.CHANNEL_08_CLIENT_SECRET }}
+          CH08_REFRESH_TOKEN:   ${{ secrets.CHANNEL_08_REFRESH_TOKEN }}
+          CH10_CLIENT_ID:       ${{ secrets.CHANNEL_10_CLIENT_ID }}
+          CH10_CLIENT_SECRET:   ${{ secrets.CHANNEL_10_CLIENT_SECRET }}
+          CH10_REFRESH_TOKEN:   ${{ secrets.CHANNEL_10_REFRESH_TOKEN }}
+          CH49_CLIENT_ID:       ${{ secrets.CHANNEL_49_CLIENT_ID }}
+          CH49_CLIENT_SECRET:   ${{ secrets.CHANNEL_49_CLIENT_SECRET }}
+          CH49_REFRESH_TOKEN:   ${{ secrets.CHANNEL_49_REFRESH_TOKEN }}
+          CH48_CLIENT_ID:       ${{ secrets.CHANNEL_48_CLIENT_ID }}
+          CH48_CLIENT_SECRET:   ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
+          CH48_REFRESH_TOKEN:   ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+        run: node scripts/jobs/publish-gate.mjs materialize --channel "${{ matrix.channel_id }}"
+
+      - name: Publish to YouTube (private)
+        id: publish
+        if: steps.gate.outputs.enabled == 'true' && steps.creds.outputs.creds == 'ok' && steps.status.outputs.skip != 'true' && github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.no_push != 'true'
+        run: |
+          # run.js exits 78 when Google rejects the credentials (invalid_grant / invalid_client): a skip
+          # with its reason recorded in data/publish-status, not a failure. Any other non-zero is a real failure.
+          set +e
+          node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
+          RC=$?
+          set -e
+          if [ "$RC" -eq 78 ]; then echo "result=skipped" >> "$GITHUB_OUTPUT"; echo "::warning::ch-${{ matrix.channel_id }} publish skipped: OAuth credentials rejected (see data/publish-status)"; exit 0; fi
+          if [ "$RC" -eq 0 ]; then echo "result=done" >> "$GITHUB_OUTPUT"; fi
+          exit "$RC"
+
+      - name: Process publish queue
+        # always(): this flips videos the DAILY RUN ALREADY UPLOADED private;
+        # today's render failing has nothing to do with yesterday's queue entry
+        # (the watch item behind the ch-1 hOYJOrB9lR4 delay, 2026-10-20).
+        if: always() && steps.gate.outputs.enabled == 'true' && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.hold_public != 'true' && github.event.inputs.no_push != 'true'
+        run: node src/skills/youtube-publish/run.js process-queue
+
+      - name: Commit publish queue
+        if: always() && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.no_push != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          CH="${{ matrix.channel_id }}"
+          git config user.name  "lumeierecollection-blip"
+          git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          # Close the job record (qa/publish) from the queue marker. Never fails the step.
+          # The skip reason is the one the capability check / run.js recorded (exact, e.g. the missing secret names).
+          if [ "${{ steps.publish.outcome }}" = "success" ] && [ "${{ steps.publish.outputs.result }}" != "skipped" ]; then PUB=(--publish done)
+          else
+            WHY=$(node scripts/jobs/publish-gate.mjs reason --channel "$CH" 2>/dev/null | grep -v '^::' | head -1 || true)
+            PUB=(--publish skipped --reason "${WHY:-publish-step-${{ steps.publish.outcome }}}")
+          fi
+          node scripts/jobs/job-state.mjs queue-sync --channel "$CH" "${PUB[@]}" || echo "::warning::job-state queue-sync failed"
+          git add data/publish-queue
+          # Why a channel did NOT upload (scripts/jobs/publish-gate.mjs, or run.js on an OAuth rejection).
+          [ -d data/publish-status ] && git add data/publish-status
+          # The job record is committed even when the queue is unchanged (a failed render changes only the record).
+          if git diff --cached --quiet; then
+            echo "Publish queue unchanged — committing the job record only."
+          else
+            git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
+          fi
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${{ github.ref_name }}"
+            git checkout -- data/research data/tts data/thumbnails data/renders 2>/dev/null || true
+            git checkout -- data/jobs 2>/dev/null || true  # separate: a missing pathspec fails the whole checkout
+            # downloaded artifacts are untracked copies of files main may already hold: they block the rebase
+            # (run 39344506422 ch-1: the queue entry was committed but never pushed; video stayed private)
+            git clean -fdq -- data ':!data/publish-queue' ':!data/publish-status'
+            # --autostash: the render leaves other tracked files modified (run 39031532519 ch-1: "cannot rebase: You have unstaged changes", queue never pushed)
+            git rebase --autostash "origin/${{ github.ref_name }}" || git rebase --abort
+            # job record: copied in AFTER the rebase so it modifies prep's committed file instead of colliding with it
+            if [ -d "$JOBS_ROOT/data/jobs/$CH" ]; then
+              mkdir -p data/jobs && cp -r "$JOBS_ROOT/data/jobs/$CH" data/jobs/
+              git add -- "data/jobs/$CH"
+              git diff --cached --quiet || git commit -q -m "jobs: ch-$CH [run ${{ github.run_id }}]"
+            fi
+            if git push origin "${{ github.ref_name }}"; then
+              break
+            fi
+            if [ "$attempt" -lt 5 ]; then
+              echo "Push conflict ΓÇö retrying ($attempt/5) ..."
+              sleep $((attempt * 2))
+            else
+              echo "::error::Could not push publish-queue for channel $CH after 5 attempts"
+              exit 1
+            fi
+          done
+
+      # Runs that commit nothing (not main, dry_run, render_only, no_push) still close the job record with
+      # the publish skip reason, and every run keeps the record as a 14-day artifact (jobs-<ch>-<run>), the
+      # durable copy when it is not committed. Never fails the job.
+      - name: Close job record (uncommitted runs)
+        if: always() && steps.status.outputs.skip != 'true' && (github.ref != 'refs/heads/main' || github.event.inputs.dry_run == 'true' || github.event.inputs.render_only == 'true' || github.event.inputs.no_push == 'true')
+        run: |
+          CH="${{ matrix.channel_id }}"
+          WHY=$(node scripts/jobs/publish-gate.mjs reason --channel "$CH" 2>/dev/null | grep -v '^::' | head -1 || true)
+          node scripts/jobs/job-state.mjs queue-sync --channel "$CH" --publish skipped --reason "${WHY:-not published}" || echo "::warning::job-state queue-sync failed"
+
+      - name: Upload job record
+        if: always() && steps.status.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: jobs-${{ matrix.channel_id }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/jobroot/data/jobs/${{ matrix.channel_id }}/
+            data/publish-status/
+          if-no-files-found: ignore
+          retention-days: 14
