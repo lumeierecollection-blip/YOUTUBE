@@ -198,5 +198,7 @@ export function mechanismPieces(family, p, ids, rects, focus, view = null) {
 /** The p at which a family's main physical event happens (where its sfx cue lands). */
 export function eventAt(family) {
   const { events } = mechanismPieces(family, 0, ["a", "b"], { a: { x: 0, y: 0, w: 1, h: 1 }, b: { x: 2, y: 0, w: 1, h: 1 } }, () => ({ x: 0.5, y: 0.5 }));
-  return events.length ? events[0].at : 0.15;
+  // first event INSIDE the shot (accumulation's first print is down before frame one: its at < 0)
+  const inside = events.filter((e) => e.at >= 0);
+  return inside.length ? inside[0].at : 0.15;
 }

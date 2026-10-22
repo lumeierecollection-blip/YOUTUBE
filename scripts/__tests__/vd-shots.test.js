@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import {
   scheduleShots, layoutWorld, resolveCamera, framingToCamera, parseFraming, toScreen, textSlotFor, TEXT_SLOTS, FW, FH,
 } from "../../src/skills/remotion-render/shots/geometry.js";
-import { mechanismPieces } from "../../src/skills/remotion-render/shots/mechanisms.js";
+import { mechanismPieces, eventAt } from "../../src/skills/remotion-render/shots/mechanisms.js";
 import { mapSfx } from "../../src/skills/remotion-render/shots/sfx-map.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -100,6 +100,7 @@ test("mechanisms move the materials: separation splits, erosion eats, accumulati
 test("sfx cues map to committed files or stay unmapped", () => {
   assert.ok(mapSfx("heavy thud").file);
   assert.equal(mapSfx("paper slide"), null);
+  for (const f of ["accumulation", "depletion", "reveal", "separation", "statement"]) assert.ok(eventAt(f) >= 0 && eventAt(f) <= 1, f);
 });
 
 test("render entry refuses an unverified material in production, accepts it in proof mode", () => {
