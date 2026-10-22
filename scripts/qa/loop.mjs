@@ -35,7 +35,8 @@ export async function runQaLoop({ render, inspect, repair, revert = null, budget
 
     const finish = (s) => { rec.duration_ms = now() - a0; status = s; };
     if (!bad(defects).length) { finish("pass"); log(`[qa-loop] attempt ${n}: pass`); break; }
-    if (prev && sigOf(prev.defects) === sigOf(defects)) { finish("no-progress"); log(`[qa-loop] attempt ${n}: same defect set as attempt ${n - 1}`); break; }
+    // A repair that declared a stronger next tier (repairs.escalates) gets one more try before no-progress.
+    if (prev && sigOf(prev.defects) === sigOf(defects) && !prev.repairs?.escalates) { finish("no-progress"); log(`[qa-loop] attempt ${n}: same defect set as attempt ${n - 1}`); break; }
     if (n >= maxAttempts || now() - t0 >= maxMs || cost >= maxCostUnits) { finish("budget-exhausted"); log(`[qa-loop] attempt ${n}: budget exhausted`); break; }
 
     const r = (await repair(defects, ctx, n)) || { changed: false };

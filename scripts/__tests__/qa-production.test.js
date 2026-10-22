@@ -190,3 +190,18 @@ test("off: nothing runs", async () => {
   const res = await runProductionQa({ mode: "off", first: { videoPath: join(dir, "x.mp4") }, rerender: async () => assert.fail("rendered") });
   assert.equal(res.skipped, true);
 });
+
+test("enforce: canvas-fit that survives the declutter escalates to a TYPE card on attempt 3 (no-progress waits for the stronger tier)", async () => {
+  const v = videoWithManifest("esc.mp4");
+  const planPath = writePlan(plan3());
+  const plans = [];
+  const res = await runProductionQa({
+    mode: "enforce", budgets: { maxAttempts: 4, maxMs: 60000, maxCostUnits: 5 }, log: () => {},
+    first: { videoPath: v, planPath, canvasStdout: FAIL_B1, canvasCode: 1 },
+    rerender: async (p) => { plans.push(JSON.parse(readFileSync(p, "utf8"))); return { videoPath: v, planPath: p, canvasStdout: FAIL_B1, canvasCode: 1 }; },
+  });
+  assert.equal(plans.length, 2);
+  assert.equal(plans[0].beats[1].visual_type, "PHOTO");
+  assert.equal(plans[1].beats[1].visual_type, "TYPE");
+  assert.equal(res.status, "no-progress");
+});

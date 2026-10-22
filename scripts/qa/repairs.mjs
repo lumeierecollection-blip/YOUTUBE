@@ -62,6 +62,8 @@ const PLAN_REPAIRS = {
   "missing-media": (b, { sentence }) => { typeCard(b, sentence, true); return "missing asset dropped -> TYPE card (headline kept)"; },
 };
 
+// Repairs with a stronger second tier (the loop allows one more attempt on the same defect set).
+const ESCALATES = new Set(["canvas-fit"]);
 const INPUT_REPAIRS = new Set(["captions-overlap", "captions-past-end", "captions-timing"]);
 const POST_REPAIRS = new Set(["audio-clipping"]);
 
@@ -81,6 +83,7 @@ export function repairFor(defect) {
 export function applyPlanRepairs(plan, defects, { sentences = [], history = new Map(), rebuildCanvas = null } = {}) {
   const out = clone(plan);
   const applied = [];
+  let escalates = false;
   const byBeat = new Map();
   for (const d of defects) {
     const r = d.repair || repairFor(d);
@@ -98,14 +101,14 @@ export function applyPlanRepairs(plan, defects, { sentences = [], history = new 
       const tier = (history.get(key) || 0) + 1;
       const entities = ds.filter((d) => d.check === kind).flatMap((d) => d.entities || []);
       const note = PLAN_REPAIRS[kind](beat, { sentence: sentences[i] || beat.scene_description || beat.headline || "", tier, entities });
-      if (note) { notes.push(`${kind}: ${note}`); history.set(key, tier); }
+      if (note) { notes.push(`${kind}: ${note}`); history.set(key, tier); if (ESCALATES.has(kind) && tier === 1) escalates = true; }
     }
     if (!notes.length || JSON.stringify(beat) === JSON.stringify(out.beats[i])) continue;
     if (rebuildCanvas) beat.canvas = rebuildCanvas(beat);
     out.beats[i] = beat;
     applied.push({ beat_index: i, scope: "plan", notes });
   }
-  return { plan: out, applied, changed: applied.length > 0 };
+  return { plan: out, applied, changed: applied.length > 0, escalates };
 }
 
 /** SRT repair: every cue ends before the next starts, after it starts, and by the video's end. Returns {text, changed, fixes}. */

@@ -123,12 +123,13 @@ export async function runProductionQa({ mode = qaMode(), budgets = qaBudgets(), 
     const actionable = defects.filter((d) => d.severity !== "minor" && d.repair);
     const sc = scopes(defects);
     const entry = { attempt: n, plan: [], input: [], post: [] };
-    let rerenderNeeded = false, changed = false;
+    let rerenderNeeded = false, changed = false, escalates = false;
     let planPath = ctx.planPath;
     if (sc.has("plan") && ctx.planPath && existsSync(ctx.planPath)) {
       const plan = JSON.parse(readFileSync(ctx.planPath, "utf8"));
       const r = applyPlanRepairs(plan, actionable, { sentences, history, rebuildCanvas });
       entry.plan = r.applied;
+      escalates = r.escalates;
       if (r.changed) {
         planPath = ctx.planPath.replace(/(-qa-a\d+)?\.json$/, `-qa-a${n + 1}.json`);
         if (mode === "enforce") writeFileSync(planPath, JSON.stringify(r.plan, null, 2) + "\n");
@@ -155,7 +156,7 @@ export async function runProductionQa({ mode = qaMode(), budgets = qaBudgets(), 
     repairsLog.push(entry);
     pending = { rerender: rerenderNeeded, planPath, videoPath };
     if (mode !== "enforce") return { changed: false, proposed: changed, entry }; // advisory: stop after attempt 1
-    return { changed, cost: rerenderNeeded ? 1 : 0, entry };
+    return { changed, cost: rerenderNeeded ? 1 : 0, entry, escalates };
   };
 
   const result = await runQaLoop({ render, inspect, repair, budgets: mode === "enforce" ? budgets : { ...budgets, maxAttempts: 2 }, now, log });
