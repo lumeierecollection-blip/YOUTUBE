@@ -555,9 +555,14 @@
           "topic": "Elizabeth Van Lew and the Mastermind Union Espionage Network",
           "slug": "elizabeth-van-lew-union-espionage-network",
           "reserved_at": "2026-10-21T14:02:45.502Z"
+        },
+        {
+          "topic": "Aberfan Marks 60 Years Since the Devastating 1966 Coal Tip Collapse",
+          "slug": "aberfan-marks-60-years-since-coal-tip-collapse",
+          "reserved_at": "2026-10-22T01:30:28.838Z"
         }
       ],
-      "last_generated": "2026-10-21T14:02:45.502Z"
+      "last_generated": "2026-10-22T01:30:28.838Z"
     },
     "2": {
       "channel_name": "AI Tested",
