@@ -512,10 +512,16 @@ jobs:
             echo "[research] ch-$CH: no trending entities (feed unavailable) ΓÇö research prompt requires named facts"
           fi
 
+          # Strict channels (SCR-19) tell research so: every key fact must carry
+          # something a frame can draw (run 39705589195 ch-48: 2 drawable facts
+          # could not ground a whole script). Exported for the re-pick research
+          # calls in Write script.
+          SV=$(node -e "const {resolveChannel}=require('./scripts/lib/channel-lookup.cjs');process.stdout.write(String(!!resolveChannel(process.argv[1]).strict_visual))" "$CH" 2>/dev/null || echo false)
+          echo "STRICT_VISUAL=$SV" >> "$GITHUB_ENV"
           set +e
           jq -n --arg t "$TOPIC" --arg a "$ANGLE" \
-                --arg s "$SLUG"  --arg c "$CH" --argjson te "$TE" \
-                '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:$te}' \
+                --arg s "$SLUG"  --arg c "$CH" --argjson te "$TE" --argjson sv "$SV" \
+                '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:$te, strict_visual:$sv}' \
             | node scripts/ollama-agent.js \
                 --prompt-file prompts/research.md \
                 --schema-file schemas/research.json \
@@ -777,7 +783,7 @@ jobs:
                       jq -n --arg s "$NEXT" --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" '{slug:$s,topic:$t,angle:$a}' > /tmp/channel-topic.json
                       set +e
                       jq -n --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" --arg s "$NEXT" --arg c "$CH" \
-                            '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null}' \
+                            '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null, strict_visual:(env.STRICT_VISUAL == "true")}' \
                         | node scripts/ollama-agent.js \
                             --prompt-file prompts/research.md \
                             --schema-file schemas/research.json \
@@ -894,7 +900,19 @@ jobs:
               # Attempt 3, not 5: a78e717e set 3 and c2507db1 (a discovery
               # change) silently put 5 back; runs 39522796613..39611317543
               # then gave every replacement topic only 3 tries.
-              if [ "$ATTEMPT" -eq 3 ] && [ "$REPICKED" -eq 0 ] \
+              # Starved research re-picks after attempt 1: a topic whose research
+              # draws fewer than MIN_DRAWABLE items (scripts/strict-inventory.mjs,
+              # the gate's own extractor) cannot be grounded by rewording (run
+              # 39705589195 ch-48: 2 items, 8 failed attempts).
+              REPICK_AT=3
+              if grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
+                INV=$(node scripts/strict-inventory.mjs "$CH" "$SLUG" 2>/dev/null || echo -1)
+                if [ "$INV" -ge 0 ] && [ "$INV" -lt 3 ]; then
+                  REPICK_AT=1
+                  echo "[script] ch-$CH: research for $SLUG draws only $INV item(s) (< 3) - strict re-pick now"
+                fi
+              fi
+              if [ "$ATTEMPT" -ge "$REPICK_AT" ] && [ "$REPICKED" -eq 0 ] \
                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
                  && [ -f /tmp/topics.json ]; then
                 BURNED="${BURNED:-} $SLUG"
@@ -918,7 +936,7 @@ jobs:
                   jq -n --arg s "$NEXT" --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" '{slug:$s,topic:$t,angle:$a}' > /tmp/channel-topic.json
                   set +e
                   jq -n --arg t "$NEXT_TOPIC" --arg a "$NEXT_ANGLE" --arg s "$NEXT" --arg c "$CH" \
-                        '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null}' \
+                        '{topic:$t, angle:$a, slug:$s, channel_id:$c, trending_entities:null, strict_visual:(env.STRICT_VISUAL == "true")}' \
                     | node scripts/ollama-agent.js \
                         --prompt-file prompts/research.md \
                         --schema-file schemas/research.json \

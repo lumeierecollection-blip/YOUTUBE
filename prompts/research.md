@@ -46,6 +46,19 @@ text highlights.
 - Populate `numbers[]` whenever the sources state concrete figures; a
   motion-graphics script downstream can only chart values that appear here.
 
+## When the INPUT has `strict_visual: true`
+
+This channel's video must draw a real visual on EVERY sentence, and the script
+may only state what you return. So return **6 to 8 `key_facts`** (not 3-4), and
+make each one carry at least one thing a frame can draw, exactly as the source
+states it: a figure with its unit, a date, a place, a list of named items, a
+comparison of two figures, or a cause-and-effect sequence. A fact that only says
+who studied or announced something ("X analysed Y", "Z released an update")
+draws nothing — keep it only if the same fact also states the result, where, or
+when. Never invent or round a figure to reach the count; if the sources hold
+fewer drawable facts, return the ones they hold — the pipeline will pick another
+topic rather than pad this one.
+
 ## Quotations (optional, up to 3)
 
 If a search result contains a sentence that a NAMED person said (or that a named

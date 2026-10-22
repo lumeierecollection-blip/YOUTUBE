@@ -43,6 +43,23 @@ test("a strict channel's context lists only the research items the gate can draw
   assert.ok(inv[0].draws);
 });
 
+test("strict-inventory CLI prints the count the workflow re-picks on (< MIN_DRAWABLE = starved)", async () => {
+  const { MIN_DRAWABLE } = await import("../strict-inventory.mjs");
+  assert.equal(MIN_DRAWABLE, 3);
+  const dir = join(ROOT, "data", "research", "48");
+  mkdirSync(dir, { recursive: true });
+  const f = join(dir, `${SLUG}.json`);
+  writeFileSync(f, JSON.stringify(RESEARCH));
+  try {
+    const n = execFileSync(process.execPath, [join(ROOT, "scripts", "strict-inventory.mjs"), "48", SLUG], { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString();
+    assert.equal(n, "1");
+  } finally {
+    rmSync(f, { force: true });
+  }
+  const missing = execFileSync(process.execPath, [join(ROOT, "scripts", "strict-inventory.mjs"), "48", "__no-such-slug"], { cwd: ROOT, stdio: ["ignore", "pipe", "ignore"] }).toString();
+  assert.equal(missing, "-1");
+});
+
 test("a non-strict channel gets no visual rule or inventory", () => {
   const c = context(1);
   assert.equal(c.visual_rule, null);

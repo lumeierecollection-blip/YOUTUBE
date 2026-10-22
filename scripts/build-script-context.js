@@ -24,26 +24,9 @@ const ROOT = join(__dirname, "..");
  * hands the writer the concrete list, computed by the SAME extractor the
  * SCR-17 STRICT gate uses (groundedVisualFor), so "restate one of these" is
  * a rule it can follow on attempt 1. Facts only from the research.
+ * The inventory itself lives in strict-inventory.mjs (the workflow uses it too).
  */
-async function drawableInventory(research) {
-  // strict-visual.mjs logs its vocabulary on stdout at import; stdout here is
-  // the JSON context, so route that to stderr.
-  const log = console.log;
-  console.log = (...a) => console.error(...a);
-  let groundedVisualFor;
-  try { ({ groundedVisualFor } = await import("./strict-visual.mjs")); }
-  finally { console.log = log; }
-  const out = [];
-  const add = (text, source) => {
-    const g = groundedVisualFor(String(text || ""));
-    if (g) out.push({ draws: g.visual_type, from: source, text: String(text).trim() });
-  };
-  (research.key_facts || []).forEach((k, i) => add(k.fact || k, `key_facts[${i}]`));
-  (research.numbers || []).forEach((n, i) => {
-    if (n && n.value != null) add(`${n.label || ""}: ${n.value} ${n.unit || ""}`.trim(), `numbers[${i}]`);
-  });
-  return out;
-}
+import { drawableInventory } from "./strict-inventory.mjs";
 
 async function main() {
   const [channelId, slug] = process.argv.slice(2);
