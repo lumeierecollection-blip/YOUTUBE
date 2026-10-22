@@ -1467,7 +1467,7 @@ Respond ONLY with JSON: {"sequence": <number>}`);
 export async function entityLadder(plan, channelId, log = console.log) {
   // The script's named countries (the same set resolveCanvas qualifies a generic institution with).
   const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
-  const { ladderFor, ladderAll } = await import("./entity-ladder.js");
+  const { ladderFor, ladderAll, wordmarkFitsRow, markHeightInRow, MIN_MARK_H, markRepeatAllowed } = await import("./entity-ladder.js");
   const { sameName } = await import("./entity-coverage.js");
   const { fetchFlag } = await import("./fetch-flag.mjs");
   const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
@@ -1517,14 +1517,15 @@ export async function entityLadder(plan, channelId, log = console.log) {
             // name and it is legible; the plate still carries the entity, so
             // coverage is unchanged (entity-coverage.js counts the plate item).
             const lw = Number(r.logo.w) || 0, lh = Number(r.logo.h) || 0;
-            if (lw > 0 && lh > 0 && lw / lh >= 3) {
-              log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is a ${(lw / lh).toFixed(1)}:1 wordmark — its name in type (not a plate-sized mark)`);
+            // Width-bound, not ratio-bound: a wide mark is kept when it still draws MIN_MARK_H px high in this row (entity-ladder.js).
+            if (lw > 0 && lh > 0 && lw / lh >= 3 && !wordmarkFitsRow(lw / lh, names.length)) {
+              log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is a ${(lw / lh).toFixed(1)}:1 wordmark that would draw ${markHeightInRow(lw / lh, names.length)} px high (< ${MIN_MARK_H}) — its name in type (not a plate-sized mark)`);
             } else {
               it = { name: nm, asset: r.logo.asset, w: lw || null, h: lh || null, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
             }
           }
           const seenAt = usedMarks.get(String(nm).toLowerCase());
-          if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
+          if (it && seenAt !== undefined && seenAt !== b.index && !markRepeatAllowed(strictVisualEnabled(channelId), b.canvas)) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
           if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
         } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
         d.art.items.push(it);

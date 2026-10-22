@@ -357,3 +357,29 @@ export function ladderAll(b, plan) {
   }
   return out;
 }
+
+/**
+ * A WIDE WORDMARK IN A PLATE ROW, DECIDED BY HOW BIG IT DRAWS (not by ratio alone).
+ * The old rule dropped every mark at >= 3:1 to the name in type, which on a strict_visual channel left a figure
+ * beat with an organisation named and nothing of it drawn (run 39705589195 ch-2: OpenAI's 3.7:1 wordmark was refused,
+ * the plates row was all type, strict-visual then swapped it for a chart, entity-coverage failed). full-canvas.jsx
+ * MarkPlate draws a mark `contain` in 92% of a square slot, so a wordmark is WIDTH-bound: its height is 0.92 * side / ratio.
+ * The failure the ratio rule guarded (board 39332364472: an 8:1 mark at ~45 px high read "Goog'e DeepMind") is a
+ * height problem, so the test is the height: MIN_MARK_H px of mark box (about 55 px cap height at 1080x1920).
+ * PLATES_SIZES mirrors canvas-layout.js (a test pins them equal).
+ */
+export const MIN_MARK_H = 80;
+const ROW_BOX = { 1: [440, 440], 2: [800, 500], 3: [960, 440], 4: [960, 350] };
+export function markHeightInRow(ratio, n = 1) {
+  const k = Math.max(1, Math.min(4, n | 0 || 1)), [w, h] = ROW_BOX[k];
+  const side = Math.max(120, Math.min(h - 70, Math.floor((w - 32 * (k - 1)) / k)));
+  return Math.floor((0.92 * side) / Math.max(1, Number(ratio) || 1));
+}
+export const wordmarkFitsRow = (ratio, n = 1) => markHeightInRow(ratio, n) >= MIN_MARK_H;
+
+/**
+ * May a mark already shown elsewhere be drawn again on this beat? Only on a strict_visual channel (no words-only fallback
+ * exists there, so the alternative is a beat naming an organisation and drawing none of it) and only when the beat draws
+ * no verified picture of its own. The "no repeats" rule (ch-44 Glassdoor on three beats) stands everywhere else.
+ */
+export const markRepeatAllowed = (strict, canvas) => Boolean(strict) && !drawnOf(canvas || {}).some((d) => ["portrait", "photo", "logo", "cutout", "map", "flag"].includes(d.kind));
