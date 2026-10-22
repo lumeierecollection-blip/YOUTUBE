@@ -4,15 +4,16 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { buildSceneBriefs, briefsToMarkdown } from "./scene-brief.mjs";
+import { resolveChannel } from "../lib/channel-lookup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
 
 export function loadChannel(arg) {
   if (existsSync(arg)) return readJson(arg);
-  const all = readJson(join(ROOT, "config", "channels.json"));
-  const list = Array.isArray(all) ? all : all.channels || [];
-  return list.find((c) => String(c.id) === String(arg) || String(c.channel_id) === String(arg)) || null;
+  // The shared lookup (config ids are duplicated for legacy rows; the guard test
+  // channel-lookup forbids id-first matching).
+  try { return resolveChannel(String(arg)); } catch { return null; }
 }
 
 // Mirrors render-and-qa.js: video = data/renders/<ch>/<scriptStem minus -script>-<format>-<date>.mp4 (expectedOutputPath, :277-281);
