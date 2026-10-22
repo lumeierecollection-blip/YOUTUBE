@@ -144,7 +144,8 @@ describe("scene briefs justify every choice (real script: aberfan)", async () =>
   const m2 = { video: "aberfan-marks-60-years-since-coal-tip-collapse-shorts-shorts-2026-10-22.mp4", fps: 30, engine: "canvas",
     beats: sents.map((t, i) => ({ index: i, start_sec: i * 3, duration_sec: 3, canvas: { sentence: t, visual_type: /\d/.test(t) ? "COUNTER" : "TYPE", composition: /\d/.test(t) ? "STAT" : "STATEMENT" } })) };
   const p2 = { beats: sents.map((_, i) => ({ index: i, named_entities: /Aberfan/.test(sents[i]) ? [{ type: "place", name: "Aberfan" }] : [], text_entrance: "POP_SOFT" })) };
-  const refDoc = JSON.parse(readFileSync(join(ROOT, "data", "reference", "analysis", "ref-01", "direction.json"), "utf8"));   // committed, measured-only
+  const refDoc = JSON.parse(readFileSync(join(ROOT, "data", "reference", "analysis", "ref-01", "direction.json"), "utf8"));   // committed, vision complete (qa-proof run 39816705908)
+  const refMeasured = JSON.parse(readFileSync(join(ROOT, "data", "reference", "analysis", "ref-02", "direction.json"), "utf8"));   // committed, measured-only
   const FIELDS = ["narrative_purpose", "source_evidence", "asset_requirements", "timing", "composition", "text", "animation", "transition", "sound_cues", "acceptance_criteria", "justification"];
 
   it("every brief carries the ten direction fields and validates against the schema", () => {
@@ -164,8 +165,20 @@ describe("scene briefs justify every choice (real script: aberfan)", async () =>
     assert.ok(missing.filter((x) => x.source_evidence.length).every((x) => x.flags.includes("evidence-url-not-in-sources_used")));
   });
 
-  it("the composition rationale cites the narration; a measured-only reference is flagged, never cited", () => {
+  it("the real ref-01 vision analysis is cited by frame in the composition rationale", () => {
+    assert.equal(refDoc.direction.status, "complete");
     const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {}, referenceDirection: refDoc });
+    for (const x of b) {
+      const c = x.justification.find((j) => j.choice.startsWith("composition:"));
+      assert.ok(c && c.evidence.includes("narration"), x.scene_id);
+      assert.ok(c.evidence.some((e) => /^ref:ref-01#f\d{3}$/.test(e)), `${x.scene_id} cites a ref-01 frame`);
+      assert.ok(!x.flags.includes("reference-direction-measured-only"));
+    }
+  });
+
+  it("the composition rationale cites the narration; a measured-only reference is flagged, never cited", () => {
+    assert.equal(refMeasured.direction.status, "measured-only");
+    const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {}, referenceDirection: refMeasured });
     for (const x of b) {
       const c = x.justification.find((j) => j.choice.startsWith("composition:"));
       assert.ok(c && c.evidence.includes("narration"), x.scene_id);
