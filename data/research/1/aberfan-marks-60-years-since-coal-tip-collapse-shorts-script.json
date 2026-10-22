@@ -1,0 +1,90 @@
+{
+  "channel_id": "1",
+  "topic_slug": "aberfan-marks-60-years-since-coal-tip-collapse",
+  "format": "shorts",
+  "hook": "On 21 October 1966 at approximately 9.15am, a towering black mountain of waste buried Aberfan in seconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:03",
+      "voiceover": "On 21 October 1966 at approximately 9.15am, a towering black mountain of waste buried Aberfan in seconds.",
+      "visual_cue": "Archive photograph showing the black coal tip slide descending toward the village.",
+      "sfx_cue": "Low heavy rumble building abruptly and cutting off.",
+      "b_roll": [
+        "Historical archival photograph of Merthyr Vale Colliery waste tip"
+      ],
+      "animation_cue": "Slow cinematic zoom in on the disaster aftermath zone.",
+      "transition_out": "Hard cut to dark tone.",
+      "text_overlay": {
+        "text": "21 October 1966"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:03-00:15",
+      "voiceover": "Merthyr Vale Colliery sent thousands of tons of slurry crashing straight down onto Pantglas School.",
+      "visual_cue": "Archival footage panning across ruined school buildings with rescue workers.",
+      "sfx_cue": "Subtle melancholic string swell.",
+      "b_roll": [
+        "Pantglas School archive wreckage photo",
+        "Rescue workers digging in debris"
+      ],
+      "animation_cue": "Slide right transition into documentary archive view.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "144 lives lost"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:15-00:22",
+      "voiceover": "Yet 60 years later, communities gathered in Aberfan to observe a solemn moment of silence.",
+      "visual_cue": "Modern documentary footage showing villagers standing in silence.",
+      "sfx_cue": "Single church bell chime.",
+      "b_roll": [
+        "Aberfan memorial gathering and wreath laying"
+      ],
+      "animation_cue": "Subtle pulse zoom on memorial plaque.",
+      "transition_out": "Dissolve to archival clip.",
+      "text_overlay": {
+        "text": "60 years later"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:22-00:35",
+      "voiceover": "BBC Cymru Wales announced a comprehensive season of programming for the 60 years anniversary. A total of 144 lives were lost when the Aberfan coal tip collapsed.",
+      "visual_cue": "Close up archival recording log document and contemporary memorial flowers.",
+      "sfx_cue": "Warm acoustic guitar undertone supporting narration.",
+      "b_roll": [
+        "BBC Cymru Wales broadcasting archive documentary reel",
+        "Aberfan cemetery memorial stones"
+      ],
+      "animation_cue": "Gentle pan left across memorial names.",
+      "transition_out": "Fade to dark final frame.",
+      "text_overlay": {
+        "text": "Never forgotten"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:35-00:42",
+      "voiceover": "The total count of 144 lives lost remains forever marked in the village.",
+      "visual_cue": "Wide cinematic shot of the Aberfan valley memorial landscape today.",
+      "sfx_cue": "Fading ambient wind sound.",
+      "b_roll": [
+        "Aberfan valley scenic drone shot"
+      ],
+      "animation_cue": "Slow fade out to black screen.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "Aberfan 1966"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://museum.wales/aberfan60",
+    "https://www.bbc.co.uk/mediacentre/mediapacks/cymru-wales-aberfan-60th-anniversary",
+    "https://www.lbc.co.uk/article/royals-mark-60th-anniversary-aberfan-disaster-5HjdkBr_2"
+  ]
+}
