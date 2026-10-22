@@ -25,6 +25,8 @@ import { execFileSync } from "node:child_process";
 // or Ollama only under FORCE_PLANNER=ollama. Transitions are logged.
 import { callLLM, callLLMWithProvenance, isProviderError, llmConfigured, GROQ_MAX_IMAGES } from "../src/lib/llm.js";
 import { tmpdir } from "node:os";
+import { criticReferenceImages } from "./reference/channel-direction.mjs";
+import { referenceFramesFor } from "./reference-frames.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -404,7 +406,7 @@ function compositionLabelBase(b) {
   return ` | beat: ${c.composition} — ${what}`;
 }
 
-async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle = false, manifestBeats = []) {
+async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle = false, manifestBeats = [], channelId = null) {
   const step = Math.max(1, Math.floor(framePaths.length / 8));
   const selected = [];
   selected.push(0);
@@ -423,7 +425,16 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   // video and its three frames are no longer sent: the video is judged
   // against the owner's full-canvas spec, stated here in text. There is no
   // reference_match any more (render-and-qa.js frameReviewVerdict).
-  const refFrames = [];
+  // 2026-10-22 (audit root cause #3: "the whole-video critic receives no reference frames"): the
+  // channel's REAL reference is shown again, as context — the contact sheets of its analysed reference
+  // (scripts/reference/channel-direction.mjs: labelled grids of scene-sampled frames), else the
+  // planner's committed reference stills, else nothing and the reason is logged. The verdict still
+  // does not read reference_match; the frames inform the style judgement, they do not gate.
+  const refImg = channelId != null && channelId !== "" ? criticReferenceImages(channelId, { framesFor: (c) => referenceFramesFor(c) }) : { files: [], why: "no --channel given" };
+  const refFrames = refImg.files;
+  if (refFrames.length) console.log(`[review] reference images for the critic: ${refFrames.length} — ${refImg.source}`);
+  else console.log(`[review] reference_images_missing — ${refImg.why}; judging against the rubric alone`);
+  const imgPart = (f) => ({ type: "image_url", image_url: { url: `data:image/${/\.jpe?g$/i.test(f) ? "jpeg" : "png"};base64,${readFileSync(f).toString("base64")}` } });
   // The STYLE block below replaced a clause that read, in effect, "do not call a beat
   // empty, unbalanced or off-centre because its middle is clear or its text sits to one
   // side". It is deliberately NOT restated inside the prompt: a model pattern-matches the
@@ -437,6 +448,10 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   const isClone = (manifestBeats || []).some((b) => b && b.canvas && b.canvas.clone);
   if (isClone) content.push({ type: "text", text: "\n=== THE STYLE — the CLONE family: fast-cut editorial shorts built on the measured laws of reference videos (a hard cut to a new shot every 1-2 s, something new on screen at least every ~0.8 s). The channel's ground colour fills every frame (declared in the frame label). Each shot is ONE of: a CUT-OUT PHOTO (a real photographed object, person or logo cut out of its background, standing on the ground, often large or running off an edge) with a short key phrase, a name or a figure in type beside it; a FIGURE (an oversized number with its unit on the line under it and a small label); a DATE PLATE (the month over the day); NAME TYPE (an entity the pipeline has no verified picture of, its name set large in type — icons are never used); a NARRATION LINE (the words being spoken appearing one by one in a small italic line, with one key phrase large). PROPS are generic real objects that literally illustrate what the sentence says (cash for money, a calculator for a calculation, a gavel for a court ruling) or, when marked EXPLAINS, show the point the sentence makes (unpaid bills for debt eating a raise) — explainer videos visualise ideas, not only people and places; a prop never stands in for a named person, place or organization. There is no word-by-word caption at the bottom, no card, no frame or border around a picture. Judge each frame's CONTENT against its voiceover line: a picture that is not literally about what its sentence says is a defect, a generic stock image standing in for a named person, place or organization is a CRITICAL defect, and type too small to read on a phone or a frame that is mostly empty ground is a finding. A cut-out picture must be VISIBLE and make SENSE (owner, 2026-10-19): one too small to recognise on a phone, mostly outside the frame, hidden behind type, or that a viewer could not connect to the words on screen is a finding; a frame that is only pictures with no words at all is a finding (the references always set the spoken key word big beside their pictures). In the headline test, a frame showing a cut-out photo, a figure or a date plate is a VISUAL frame, not a headline frame; name type and narration lines are typography. The video is headline-dominated only when most sampled frames are typography with no picture, figure or date. Score overall_score on how well each frame matches its line and how well the video realises this style. ===" });
   else content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics with an editorial serif/sans type system (Financial Times x high-end documentary x contemporary magazine). Every beat is composed for the WHOLE 1080x1920 frame. The house ground is white. The plan chooses each beat's ground, and a beat that chose another one says so in its frame label (| ground: #RRGGBB): a beat on white, on a dark colour or on a tint is as the plan intended. Judge whether the beat reads well on the ground it has — type, charts and photos legible against it — and whether the grounds across the video hang together; a ground that reads flat or empty for what the beat is doing is a finding, report it like any other. That the render drew the ground the plan declared is checked deterministically (local-audit.cjs canvas-ground). All text pops into place (a quick scale-up and settle); a word mid-pop may be slightly small or translucent in a sampled frame. There is NO paper, NO card, NO container. Each beat is ONE of: TYPE-FULL / TYPE-SPLIT (a serif statement, sentence case, anchored to one side or split across opposite corners), NUMBER-FULL (ONE oversized serif numeral 260-420 px with a small uppercase sans label), DATA-FULL (bars / donut / line / gauge as the composition), SCENE-FULL / ARCHITECTURE / DOCUMENT / MONEY (a real photograph or scan edge to edge, type over it), MAP-CENTERED (the map fills the frame, labelled at the region), PROCESS-FULL (2-3 nodes, thick arrows), TIMELINE (dated events on a vertical line), COMPARISON-SPLIT (the frame cut on a diagonal, value A / value B), LIST-BUILD (items appearing one by one). Type has three roles: a serif headline (never all-caps), an oversized serif numeral, a small uppercase sans data label. LAYOUTS ARE ASYMMETRIC ON A GRID AND NEGATIVE SPACE IS INTENTIONAL: judge whether the composition spans the frame (elements anchored to opposite regions) and whether the type roles and the picture support the line. ASYMMETRY IS NOT EMPTINESS. 'Intentional negative space' means the space AROUND a composed element, never the absence of one. A beat that carries no element for its sentence, however clean and intentional it looks, is a fallback frame: report it as one under HEADLINE TEST and headline_test. The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. A small section folio ('03 / 08') and a hairline rule are page furniture, not defects. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization is a CRITICAL defect (a MONEY beat's picture of currency and a DOCUMENT beat's scan illustrate the literal object the sentence names, not a named entity). A card, a paper page or a framed panel is a HIGH defect; so is a composition shrunk into a small area with no element reaching the frame's regions. Two beats of the same composition kind in a row is a defect. In the headline test, a TYPE-FULL / TYPE-SPLIT typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process, timeline, list, comparison, photograph, document or money is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
+  if (refFrames.length) {
+    content.push({ type: "text", text: `\n=== THE CHANNEL'S REFERENCE — ${refFrames.length} image(s) from its reference video (${refImg.kind === "contact-sheet" ? "contact sheets: grids of frames, each tile labelled with its frame id and time" : "single frames"}). Use them to judge whether the video belongs to the reference's visual language: type, density, composition, how often the frame changes. They are context, not a template: never mark a frame down for showing different content, and never ask for a copy of a reference frame. ===` });
+    for (const f of refFrames) content.push(imgPart(f));
+  }
   content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
   // A1b: strip the ground mandate from the assembled rubric before `head` is taken, so
   // the Groq batch split carries the neutralized text too. No-ops now that production
@@ -469,7 +484,7 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   // wins, issues concatenated). Where this stops: each Groq batch sees part
   // of the video, so its continuity and repetition calls are per batch.
   // Gemini and Ollama still get the one full call.
-  const refMid = refFrames.length ? { type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(refFrames[Math.floor(refFrames.length / 2)]).toString("base64")}` } } : null;
+  const refMid = refFrames.length ? imgPart(refFrames[Math.floor(refFrames.length / 2)]) : null;
   const perBatch = refMid && GROQ_MAX_IMAGES > 1 ? GROQ_MAX_IMAGES - 1 : GROQ_MAX_IMAGES;
   const useRef = refMid && GROQ_MAX_IMAGES > 1;
   const nBatches = Math.ceil(framePartsList.length / perBatch);
@@ -1155,7 +1170,7 @@ async function main() {
     // the restated rubric; the variable keeps its old name.
     let paperStyle = false, manifestBeats = [];
     try { manifestBeats = JSON.parse(readFileSync(video.replace(/\.mp4$/, "-manifest.json"), "utf-8")).beats || []; paperStyle = manifestBeats.some((b) => b.canvas); } catch {}
-    const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle, manifestBeats);
+    const wholeResult = await reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey, bible, paperStyle, manifestBeats, channelId);
 
     if (wholeResult.error) {
       console.log(`  Whole-video review ERROR: ${wholeResult.error}`);
