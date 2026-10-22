@@ -17,7 +17,7 @@
 // A scene the critic did not answer (not_run / invalid) is NOT kept: it ends `unresolved` with the reason.
 import { spawnSync } from "node:child_process";
 import { mkdirSync, writeFileSync, readFileSync, existsSync, copyFileSync } from "node:fs";
-import { join, relative, resolve } from "node:path";
+import { join, relative, resolve, basename } from "node:path";
 
 const now = () => Date.now();
 const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
@@ -52,7 +52,9 @@ export function spliceBeats(prev, next, targets, { round, critique } = {}) {
     const n = byIdx.get(b.beat_index);
     if (!n) { missing.push(b.beat_index); return b; }
     const sc = critique?.scenes?.find((s) => s.beat_index === b.beat_index);
-    const hist = [...(b.critic_history || []), ...(sc ? [{ round, source: critique.source || "critic", verdict: sc.effective_verdict,
+    // direct.mjs writes its own critic_history entry; append ours only when it did not.
+    const own = (n.critic_history || []).length > (b.critic_history || []).length;
+    const hist = own ? n.critic_history : [...(b.critic_history || []), ...(sc ? [{ round, source: critique.source || "critic", verdict: sc.effective_verdict,
       what_to_change: sc.answer?.what_to_change ?? null, delete_reason: sc.answer?.delete_reason ?? null }] : [])];
     return { ...n, status: "rebuilt", critic_history: hist };
   });
@@ -130,13 +132,33 @@ export const realSteps = {
     return r;
   },
   resolve: ({ direction, out, assetsDir, report, research, log }) => node(`${VD}/materials/resolve.mjs`, ["--direction", direction, "--out", out, "--assets-dir", assetsDir, "--report", report, ...(research ? ["--research", research] : [])], log),
-  render: ({ direction, out, tts, channel, assetsDir, log }) => node(`${VD}/render-direction.mjs`, ["--direction", direction, "--out", out, "--tts", tts, "--channel", channel, "--assets-dir", assetsDir], log),
-  frames: async ({ video, direction, outDir }) => (await import("./frames.mjs")).extractFrames({ video, direction, outDir }),
+  // render-direction.mjs (feat/vd-shots) takes --audio + --words [{word,start,end}]; edge-tts writes
+  // {words:[{text,start,end}]} in <tts>/<script stem>-vo-words.json, so the loop converts it here.
+  // --proof: an unverified material renders as a MARKED placeholder (production refuses such a direction);
+  // the critic sees the placeholder and judges it as what it is.
+  render: ({ direction, out, tts, script, log }) => {
+    const stem = basename(script).replace(/\.json$/, "");
+    const mp3 = join(tts, `${stem}-vo.mp3`), wj = join(tts, `${stem}-vo-words.json`);
+    const args = ["--direction", direction, "--out", out, "--proof"];
+    if (existsSync(mp3)) args.push("--audio", mp3);
+    if (existsSync(wj)) {
+      const w = readJson(wj); const arr = (Array.isArray(w) ? w : w.words || []).map((x) => ({ word: x.word ?? x.text, start: x.start, end: x.end }));
+      const wp = out.replace(/\.mp4$/i, ".words.json"); writeJson(wp, arr); args.push("--words", wp);
+    }
+    return node(`${VD}/render-direction.mjs`, args, log);
+  },
+  // the renderer's <out>.shots.json has the real shot frame windows; frames.mjs labels from it when present.
+  frames: async ({ video, direction, outDir }) => {
+    const sp = video.replace(/\.mp4$/i, ".shots.json");
+    let manifest = null;
+    if (existsSync(sp)) { const s = readJson(sp); manifest = { shots: (s.shots || []).map((x) => ({ id: x.id, t_start: x.from / s.fps, t_end: x.to / s.fps })) }; }
+    return (await import("./frames.mjs")).extractFrames({ video, direction, outDir, manifest });
+  },
   critic: async ({ direction, index, round }) => (await import("./critic.mjs")).runCritic({ direction, index, round }),
 };
 
 // ---------------------------------------------------------------- the loop
-export async function runLoop({ script, research, tts, channel, outDir, maxRounds = 2, maxMs = 40 * 60 * 1000, steps = realSteps, clock = now }) {
+export async function runLoop({ script, research, tts, channel, outDir, maxRounds = 2, maxMs = 40 * 60 * 1000, steps = realSteps, clock = now, gateMode = "enforce" }) {
   const t0 = clock();
   mkdirSync(outDir, { recursive: true });
   const assetsDir = join(outDir, "assets");
@@ -161,7 +183,8 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     // 1) direct (whole script in round 0, only the targets after)
     const raw = join(rd, "direction.raw.json");
     let critiquePath = null;
-    if (round > 0) { critiquePath = join(outDir, `round-${round - 1}`, "critic.json"); }
+    // direct.mjs re-directs IN PLACE: with --critique it reads the previous direction from --out.
+    if (round > 0) { critiquePath = join(outDir, `round-${round - 1}`, "critic.json"); writeJson(raw, current); }
     const d = await steps.direct({ script, research, tts, channel, out: raw, critique: critiquePath, beats: targets, log });
     if (!d.ok || !existsSync(raw)) { rec.error = `direct failed (exit ${d.status}): ${String(d.stderr).slice(-400)}`; report.stop_reason = rec.error; break; }
     let direction = readJson(raw);
@@ -177,7 +200,10 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     // 2) gate
     const g = await steps.gate({ direction: dirPath, script, research, tts, log, report: join(rd, "gate.json") });
     rec.gate = g.ok ? "pass" : `fail: ${String(g.stdout + g.stderr).slice(-600)}`;
-    if (!g.ok) {
+    // VD_GATE=record (proof runs): a gate failure is recorded and the round still renders, so the
+    // critic sees what the failing direction looks like. Default (enforce): a failing direction never renders.
+    if (!g.ok && gateMode === "record") rec.gate_recorded_only = true;
+    else if (!g.ok) {
       if (round === 0) { report.stop_reason = "round-0 direction failed the gate"; break; }
       // A failed rebuild keeps the previous round's scenes; they stay unresolved.
       rec.rebuilt = []; rec.error = `rebuild direction failed the gate`; report.stop_reason = `round ${round} rebuild failed the gate`; break;
@@ -195,6 +221,7 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
       writeJson(mcPath, mc);
       const raw2 = join(rd, "direction.materials-redirect.raw.json");
       const ids = missing.map((x) => x.beat_index);
+      copyFileSync(resolved, raw2);
       const d2 = await steps.direct({ script, research, tts, channel, out: raw2, critique: mcPath, beats: ids, log });
       if (d2.ok && existsSync(raw2)) {
         const s2 = spliceBeats(readJson(resolved), readJson(raw2), ids, { round, critique: mc });
@@ -217,7 +244,7 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
 
     // 4) render
     const video = join(rd, "video.mp4");
-    const r = await steps.render({ direction: resolved, out: video, tts, channel, assetsDir, log });
+    const r = await steps.render({ direction: resolved, out: video, tts, script, channel, assetsDir, log });
     if (!r.ok || !existsSync(video)) { rec.error = `render failed (exit ${r.status}): ${String(r.stderr).slice(-400)}`; report.stop_reason = rec.error; break; }
     rec.video = video;
 
@@ -246,7 +273,7 @@ if (process.argv[1] && process.argv[1].replace(/\\/g, "/").endsWith("visual-dire
   const req = ["script", "research", "tts", "channel", "out"];
   if (req.some((k) => !arg(k))) { console.error(`usage: loop.mjs ${req.map((k) => `--${k} <..>`).join(" ")}`); process.exit(2); }
   const rep = await runLoop({ script: arg("script"), research: arg("research"), tts: arg("tts"), channel: arg("channel"), outDir: resolve(arg("out")),
-    maxRounds: Number(process.env.VD_MAX_ROUNDS || 2), maxMs: Number(process.env.VD_MAX_MS || 40 * 60 * 1000) });
+    maxRounds: Number(process.env.VD_MAX_ROUNDS || 2), maxMs: Number(process.env.VD_MAX_MS || 40 * 60 * 1000), gateMode: process.env.VD_GATE || "enforce" });
   console.log(`stop: ${rep.stop_reason}`);
   for (const f of rep.final) console.log(`b${f.beat_index}: ${f.status} [${f.verdicts.join(" -> ")}]${f.reason ? ` ${f.reason}` : ""}`);
   process.exit(rep.rounds.some((r) => r.critic) ? 0 : 1);

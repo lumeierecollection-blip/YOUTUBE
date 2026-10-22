@@ -122,6 +122,7 @@ jobs:
         id: loop
         env:
           VD_MAX_ROUNDS: "2"
+          VD_GATE: record
           VD_MAX_MS: "2700000"
           VD_CRITIC_MODEL: gemini-3.8-flash
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
