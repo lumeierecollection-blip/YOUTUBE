@@ -3111,13 +3111,64 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Each beat's rendered ink span, as canvas-coverage measured it ("[audit] ch-N beat i coverage: x").
     const inkSpansOf = (out) => Object.fromEntries([...String(out || "").matchAll(/\[audit\] ch-\S+ beat (\d+) coverage: ([0-9.]+)/g)].map((m) => [Number(m[1]), Number(m[2])]));
     let canvasInk = null;
-    if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.canvas)) {
-      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", result.outputPath, "--manifest", manifestPath],
-        { label: `canvas-checks ${channelId}/${basename(scriptPath)}` });
-      canvasInk = inkSpansOf(fit.stdout);
-      if (fit.code !== 0) {
-        const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
-        canvasFailure = { code: fit.code, failedIds };
+    // One canvas-checks run on an MP4: { stdout, code } (code 0 also when the manifest has no canvas beats).
+    const runCanvasChecks = async (mp4, tag = "") => {
+      const man = mp4.replace(/\.mp4$/, "-manifest.json");
+      if (!(readJsonSafe(man)?.beats || []).some((b) => b.canvas)) return { stdout: "", code: 0 };
+      const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", mp4, "--manifest", man], { label: `canvas-checks${tag} ${channelId}/${basename(scriptPath)}` });
+      return { stdout: String(fit.stdout || ""), code: fit.code };
+    };
+    const canvasFailureOf = (fit) => fit.code === 0 ? null : { code: fit.code, failedIds: [...fit.stdout.matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]) };
+    let canvasRun = await runCanvasChecks(result.outputPath);
+    canvasInk = inkSpansOf(canvasRun.stdout);
+    canvasFailure = canvasFailureOf(canvasRun);
+
+    // ── QA loop (scripts/qa/production.mjs, docs/QA-LOOP.md; QA_LOOP=off|advisory|enforce, default advisory) ──
+    // Objective checks + the canvas checks above -> defects with machine-readable repairs (canvas-fit,
+    // pop-transitions, entity-coverage, missing-media: ONE beat of the plan; caption timing: the SRT;
+    // true peak: the MP4's audio) -> re-render -> re-inspect, until pass / no-progress / budget. Advisory
+    // inspects attempt 1 and writes the repairs it would make; it changes nothing. Enforce continues below
+    // with the BEST attempt (copied to the canonical output path) and its remaining blockers fail the video.
+    // No model call is made here: the report says vision not_run (the frame review below gates on its own).
+    const { runProductionQa, qaMode, qaBudgets } = await import("./qa/production.mjs");
+    const qaLoopMode = qaMode();
+    let qaLoop = null;
+    if (qaLoopMode !== "off") {
+      try {
+        qaLoop = await runProductionQa({
+          mode: qaLoopMode, budgets: qaBudgets(), format, srtPath,
+          publicDir: join(ROOT, "src", "skills", "remotion-render", "public"),
+          first: { videoPath: result.outputPath, planPath, canvasStdout: canvasRun.stdout, canvasCode: canvasRun.code },
+          rerender: async (p, n) => {
+            const r = await renderOne(channelId, scriptPath, format, p);
+            if (!r.ok) return { error: `re-render of ${basename(p)} failed`, planPath: p };
+            const c = await runCanvasChecks(r.outputPath, ` (qa attempt ${n})`);
+            return { videoPath: r.outputPath, planPath: p, canvasStdout: c.stdout, canvasCode: c.code };
+          },
+          canvasCheck: (mp4) => runCanvasChecks(mp4, " (qa post-repair)"),
+          rebuildCanvas: (b) => canvasContentFor(b, {}),
+          sentences: srtSentenceList(srtPath),
+        });
+      } catch (e) {
+        console.warn(`::warning::QA loop (${qaLoopMode}) failed to run: ${e.message} — the existing gates still apply`);
+      }
+    }
+    if (qaLoopMode === "enforce" && qaLoop && !qaLoop.skipped) {
+      if (qaLoop.best_attempt !== 1 || qaLoop.attempts.length > 1) {
+        planPath = qaLoop.best.planPath || planPath;
+        backupArgs.planPath = planPath;
+        canvasRun = { stdout: qaLoop.best.canvasStdout || "", code: qaLoop.best.canvasCode ?? 0 };
+        canvasInk = inkSpansOf(canvasRun.stdout);
+        canvasFailure = canvasFailureOf(canvasRun);
+        if (outputOverride) copyFileSync(result.outputPath, outputOverride);
+        // The re-render did not pass through the silence / duration gates above: run them on what ships.
+        const s2 = await detectSilence(result.outputPath, result.audio);
+        const v2 = await verifyRender(result.outputPath, result.audio, channelId);
+        if (!s2.ok || !v2.ok) return backupAudit({ ...backupArgs, stage: "qa-loop", check: !s2.ok ? "silence" : "verify-render", reason: !s2.ok ? s2.reason : v2.problems.join("; "), forceReject: true });
+      }
+      if (qaLoop.blockers.length) {
+        console.error(`::error::QA loop: ${qaLoop.blockers.length} blocker(s) unresolved after ${qaLoop.attempts.length} attempt(s): ${qaLoop.blockers.map((d) => d.check).join(", ")}`);
+        return backupAudit({ ...backupArgs, stage: "qa-loop", check: [...new Set(qaLoop.blockers.map((d) => d.check))].join(","), reason: `unresolved blockers (${qaLoop.status}); see ${basename(qaLoop.report.mdPath)}`, forceReject: true });
       }
     }
 
