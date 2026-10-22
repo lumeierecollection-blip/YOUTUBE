@@ -115,6 +115,26 @@ test("comparison.md lists each round's contact sheet and old vs new strips for r
   assert.ok(existsSync(join(o.outDir, "loop-report.json")));
 });
 
+test("re-direct gets the previous direction at --out (direct.mjs re-directs in place)", async () => {
+  const { steps } = fakes({ verdicts: [["KEEP", "REBUILD", "KEEP", "KEEP"], ["KEEP", "KEEP", "KEEP", "KEEP"]] });
+  const seen = [];
+  const inner = steps.direct;
+  steps.direct = async (a) => { if (a.critique) seen.push(existsSync(a.out) ? JSON.parse(readFileSync(a.out)).beats.length : 0); return inner(a); };
+  await runLoop({ ...base(), maxRounds: 1, steps });
+  assert.deepEqual(seen, [4]);
+});
+
+test("gate: enforce stops before render; record renders and marks the round", async () => {
+  const a = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]] });
+  a.steps.gate = async () => ({ ok: false, status: 1, stdout: "statement cap", stderr: "" });
+  const rep = await runLoop({ ...base(), steps: a.steps });
+  assert.equal(a.calls.render, 0); assert.match(rep.stop_reason, /gate/);
+  const b = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]] });
+  b.steps.gate = a.steps.gate;
+  const rep2 = await runLoop({ ...base(), steps: b.steps, gateMode: "record" });
+  assert.equal(b.calls.render, 1); assert.equal(rep2.rounds[0].gate_recorded_only, true);
+});
+
 test("helpers: splice reports beats the director failed to return; essentialMissing tolerates shapes", () => {
   const prev = { beats: [mkBeat(0, "a"), mkBeat(1, "a")] };
   const s = spliceBeats(prev, { beats: [mkBeat(0, "b")] }, [0, 1]);
