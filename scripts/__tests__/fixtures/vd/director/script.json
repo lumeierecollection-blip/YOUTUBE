@@ -1,0 +1,16 @@
+{
+  "channel_id": "1",
+  "topic": "FIXTURE — test data for scripts/__tests__/vd-director.test.js, not a production script",
+  "format": "shorts",
+  "hook": "The fire began in Thomas Farriner's bakery on Pudding Lane.",
+  "sections": [
+    {
+      "id": "body",
+      "voiceover": "In four days it destroyed 13,200 houses and 87 churches.\n\nThe flames moved west on a strong east wind. Samuel Pepys buried his cheese in his garden. Here's what nobody tells you."
+    }
+  ],
+  "sources_used": [
+    "https://www.britannica.com/event/Great-Fire-of-London",
+    "https://www.museumoflondon.org.uk/discover/great-fire-london"
+  ]
+}

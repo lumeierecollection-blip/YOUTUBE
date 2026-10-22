@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "channel_id": "1",
+  "script": "scripts/__tests__/fixtures/vd/director/script.json",
+  "reference": null,
+  "model": "fixture",
+  "beats": [
+    {
+      "beat_index": 0,
+      "sentence": "The fire began in Thomas Farriner's bakery on Pudding Lane.",
+      "t_start": 0,
+      "t_end": 2.96,
+      "semantic": {
+        "subject": "the fire",
+        "state": null,
+        "action": "began",
+        "relationship": "one small bakery as the origin of a city-wide fire",
+        "change": "from one building to many",
+        "consequence": null,
+        "environment": "Pudding Lane, a narrow street of timber houses"
+      },
+      "visual_question": "how do you show that something enormous started in one small, specific place?",
+      "mechanism": {
+        "family": "context-reveal",
+        "construction": "Start on the doorway of the bakery in a period engraving of Pudding Lane, then pull out across the engraved street until the lane is one thin line in a 1666 map of the walled city.",
+        "why": "the origin only matters once you see how small it is against the city it destroyed"
+      },
+      "shots": [
+        {
+          "id": "b0s0",
+          "duration_s": 2.96,
+          "camera": {
+            "move": "pull-out",
+            "from": "extreme close on the bakery doorway in the engraving",
+            "to": "the whole walled city on the map, the lane a thin line",
+            "motivation": "context-reveal: begin on the origin, widen until its smallness against the city is the point"
+          },
+          "materials": [
+            {
+              "id": "m0",
+              "kind": "artwork-scan",
+              "must_show": "an engraving of Thomas Farriner's bakery on Pudding Lane",
+              "why": "the origin the sentence names",
+              "search": [
+                "Pudding Lane bakery engraving Thomas Farriner",
+                "Great Fire of London Pudding Lane print"
+              ]
+            },
+            {
+              "id": "m1",
+              "kind": "map",
+              "must_show": "a 1666 map of the City of London showing Pudding Lane",
+              "why": "the space the origin sits in",
+              "search": [
+                "1666 map City of London Pudding Lane",
+                "Hollar map London 1666"
+              ]
+            }
+          ],
+          "action": "the bakery engraving shrinks into its place on the map as the frame widens across the City of London",
+          "text": {
+            "words": "Pudding Lane",
+            "role": "name",
+            "placement": "beside the lane on the map",
+            "sync_word": "Pudding"
+          },
+          "transition_out": "cut",
+          "sfx": null
+        }
+      ],
+      "mute_test": "a whole city's story began at one small doorway",
+      "evidence": [
+        "https://www.britannica.com/event/Great-Fire-of-London"
+      ],
+      "status": "directed"
+    },
+    {
+      "beat_index": 1,
+      "sentence": "In four days it destroyed 13,200 houses and 87 churches.",
+      "t_start": 3.4,
+      "t_end": 6.36,
+      "semantic": {
+        "subject": "the fire",
+        "state": null,
+        "action": "destroyed",
+        "relationship": "houses and churches lost",
+        "change": "a city emptied of buildings",
+        "consequence": "13,200 houses and 87 churches gone",
+        "environment": "the City of London"
+      },
+      "visual_question": "how do you make 13,200 lost houses feel like space rather than a number?",
+      "mechanism": {
+        "family": "accumulation",
+        "construction": "On the 1666 survey map, burned blocks are struck through street by street over four days until the destroyed area covers most of the walled city; the counts for houses and churches are the data the strike-through follows.",
+        "why": "the loss accumulates as area, so the scale arrives as space taken away"
+      },
+      "shots": [
+        {
+          "id": "b1s0",
+          "duration_s": 2.96,
+          "camera": {
+            "move": "tilt",
+            "from": "the east end of the survey map",
+            "to": "the west edge where the burned area stops",
+            "motivation": "follows the burned area as it accumulates westward across the map"
+          },
+          "materials": [
+            {
+              "id": "m0",
+              "kind": "map",
+              "must_show": "a 1666 survey map of the burned area of the City of London",
+              "why": "the real extent of the loss",
+              "search": [
+                "1666 map burnt area London Leake survey"
+              ]
+            },
+            {
+              "id": "m1",
+              "kind": "data",
+              "must_show": "the sourced counts of houses and churches destroyed",
+              "why": "the quantities the sentence states",
+              "search": [
+                "Great Fire of London houses destroyed 13,200"
+              ],
+              "data": {
+                "values": [
+                  {
+                    "label": "houses destroyed",
+                    "value": 13200,
+                    "unit": "houses",
+                    "source_url": "https://www.museumoflondon.org.uk/discover/great-fire-london"
+                  },
+                  {
+                    "label": "churches destroyed",
+                    "value": 87,
+                    "unit": "churches",
+                    "source_url": "https://www.museumoflondon.org.uk/discover/great-fire-london"
+                  }
+                ]
+              }
+            }
+          ],
+          "action": "burned blocks on the survey map are struck through block by block as the houses count reaches 13,200",
+          "text": {
+            "words": "13,200 houses",
+            "role": "figure",
+            "placement": "low, on the burned area",
+            "sync_word": "13,200"
+          },
+          "transition_out": "cut",
+          "sfx": null
+        }
+      ],
+      "mute_test": "most of the city on the map has been taken away",
+      "evidence": [
+        "https://www.museumoflondon.org.uk/discover/great-fire-london"
+      ],
+      "status": "directed"
+    },
+    {
+      "beat_index": 2,
+      "sentence": "The flames moved west on a strong east wind.",
+      "t_start": 7.2,
+      "t_end": 9.86,
+      "semantic": {
+        "subject": "the flames",
+        "state": null,
+        "action": "moved west",
+        "relationship": "the wind drives the fire",
+        "change": "the fire's front moves",
+        "consequence": null,
+        "environment": "a strong east wind over the city"
+      },
+      "visual_question": "how do you show a wind pushing a fire across a city?",
+      "mechanism": {
+        "family": "flow",
+        "construction": "A painting of the fire seen from the river, tracked right-to-left so the smoke column leans and the burning skyline moves west with the camera.",
+        "why": "the direction of the camera matches the direction the wind pushes the flames"
+      },
+      "shots": [
+        {
+          "id": "b2s0",
+          "duration_s": 2.66,
+          "camera": {
+            "move": "track",
+            "from": "the burning skyline at the east end of the painting",
+            "to": "the smoke leaning west over the unburned roofs",
+            "motivation": "flow: the camera travels with the wind, the way the fire did"
+          },
+          "materials": [
+            {
+              "id": "m0",
+              "kind": "artwork-scan",
+              "must_show": "a contemporary painting of the Great Fire of London seen from the Thames",
+              "why": "shows the smoke and skyline the wind moved",
+              "search": [
+                "Great Fire of London painting Thames 1666",
+                "Lieve Verschuier Great Fire painting"
+              ]
+            }
+          ],
+          "action": "the painting slides past as the smoke in the painting leans west over the roofs",
+          "transition_out": "cut",
+          "sfx": "low wind"
+        }
+      ],
+      "mute_test": "the fire is being pushed in one direction across the city",
+      "evidence": [
+        "https://www.britannica.com/event/Great-Fire-of-London"
+      ],
+      "status": "directed"
+    },
+    {
+      "beat_index": 3,
+      "sentence": "Samuel Pepys buried his cheese in his garden.",
+      "t_start": 10.3,
+      "t_end": 12.66,
+      "semantic": {
+        "subject": "Samuel Pepys",
+        "state": null,
+        "action": "buried his cheese",
+        "relationship": "a man protecting a small possession from the fire",
+        "change": "cheese moved from house to ground",
+        "consequence": null,
+        "environment": "his garden"
+      },
+      "visual_question": "how do you show a person choosing what to save?",
+      "mechanism": {
+        "family": "transfer",
+        "construction": "A portrait of Samuel Pepys, then a match-cut to his diary page for the day, the line about burying his Parmesan held in an inset detail.",
+        "why": "the possession passes from the man into the ground, recorded in his own hand"
+      },
+      "shots": [
+        {
+          "id": "b3s0",
+          "duration_s": 1.18,
+          "camera": {
+            "move": "push-in",
+            "from": "Samuel Pepys's portrait, head and shoulders",
+            "to": "his eyes",
+            "motivation": "pushes in to the person making the choice before showing what he chose"
+          },
+          "materials": [
+            {
+              "id": "m0",
+              "kind": "artwork-scan",
+              "must_show": "the portrait of Samuel Pepys by John Hayls",
+              "why": "the person the sentence names",
+              "search": [
+                "Samuel Pepys portrait John Hayls"
+              ]
+            }
+          ],
+          "action": "the portrait of Pepys fills the frame as the camera closes on his face",
+          "transition_out": "match-cut",
+          "sfx": null
+        },
+        {
+          "id": "b3s1",
+          "duration_s": 1.18,
+          "camera": {
+            "move": "pan",
+            "from": "the top of the diary page",
+            "to": "the line about the cheese",
+            "motivation": "the pan reads down the page to the record of what he buried"
+          },
+          "materials": [
+            {
+              "id": "m1",
+              "kind": "document-scan",
+              "must_show": "Samuel Pepys's diary page for September 1666 mentioning the Parmesan cheese",
+              "why": "his own record of the act",
+              "search": [
+                "Pepys diary September 1666 parmesan manuscript"
+              ],
+              "treatment": "inset-detail"
+            }
+          ],
+          "action": "the diary page slides up until the cheese line sits in the inset",
+          "text": {
+            "words": "Parmesan",
+            "role": "key-word",
+            "placement": "under the diary line",
+            "sync_word": "cheese"
+          },
+          "transition_out": "cut",
+          "sfx": null
+        }
+      ],
+      "mute_test": "a man recorded hiding something precious from the fire",
+      "evidence": [
+        "https://www.britannica.com/event/Great-Fire-of-London"
+      ],
+      "status": "directed"
+    },
+    {
+      "beat_index": 4,
+      "sentence": "Here's what nobody tells you.",
+      "t_start": 13.2,
+      "t_end": 14.76,
+      "semantic": {
+        "subject": "the untold part",
+        "state": null,
+        "action": null,
+        "relationship": "a promise to the viewer",
+        "change": null,
+        "consequence": null,
+        "environment": null
+      },
+      "visual_question": "how do you hold a turn in the story without inventing a new picture?",
+      "mechanism": {
+        "family": "statement",
+        "construction": "The diary page from the previous shot stays in frame, darkened under the words, while the narration turns to what comes next.",
+        "why": "a turn in the story with no new fact; the words carry it over an image already established"
+      },
+      "shots": [
+        {
+          "id": "b4s0",
+          "duration_s": 1.56,
+          "camera": {
+            "move": "hold",
+            "from": "the diary page, darkened",
+            "to": "the diary page, darkened",
+            "motivation": "the stillness is the pause before the story turns; nothing new is shown yet"
+          },
+          "materials": [
+            {
+              "id": "m0",
+              "kind": "document-scan",
+              "must_show": "Samuel Pepys's diary page for September 1666",
+              "why": "the established image the words sit on",
+              "search": [
+                "Pepys diary September 1666 manuscript"
+              ]
+            }
+          ],
+          "action": "the diary page sinks back under the words as they land",
+          "text": {
+            "words": "what nobody tells you",
+            "role": "quote",
+            "placement": "centre-left",
+            "sync_word": "nobody"
+          },
+          "transition_out": "cut",
+          "sfx": null
+        }
+      ],
+      "mute_test": "a turn: there is more to this story",
+      "evidence": [],
+      "status": "directed"
+    }
+  ]
+}

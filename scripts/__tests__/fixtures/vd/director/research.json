@@ -1,0 +1,18 @@
+{
+  "topic_slug": "fixture-great-fire",
+  "strongest_angle": "FIXTURE research for vd-director tests; not a production research artifact.",
+  "key_facts": [
+    { "fact": "The fire began in Thomas Farriner's bakery on Pudding Lane in September 1666.", "source_url": "https://www.britannica.com/event/Great-Fire-of-London", "source_name": "Britannica", "confidence": "high" },
+    { "fact": "The fire destroyed 13,200 houses and 87 parish churches over four days.", "source_url": "https://www.museumoflondon.org.uk/discover/great-fire-london", "source_name": "Museum of London", "confidence": "high" },
+    { "fact": "Samuel Pepys buried his Parmesan cheese in his garden to save it.", "source_url": "https://www.britannica.com/event/Great-Fire-of-London", "source_name": "Britannica", "confidence": "medium" }
+  ],
+  "numbers": [
+    { "label": "houses destroyed", "value": 13200, "unit": "houses", "source_url": "https://www.museumoflondon.org.uk/discover/great-fire-london" },
+    { "label": "churches destroyed", "value": 87, "unit": "churches", "source_url": "https://www.museumoflondon.org.uk/discover/great-fire-london" }
+  ],
+  "named_entities": [
+    { "name": "Thomas Farriner", "kind": "person" },
+    { "name": "Pudding Lane", "kind": "place" },
+    { "name": "Samuel Pepys", "kind": "person" }
+  ]
+}

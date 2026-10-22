@@ -1,0 +1,286 @@
+{
+ "version": 1,
+ "source": "FIXTURE (hand-made in tts_words.py's shape; not a real synthesis)",
+ "voice": "fixture",
+ "words": [
+  {
+   "text": "The",
+   "start": 0,
+   "end": 0.26,
+   "sentence": 0
+  },
+  {
+   "text": "fire",
+   "start": 0.3,
+   "end": 0.56,
+   "sentence": 0
+  },
+  {
+   "text": "began",
+   "start": 0.6,
+   "end": 0.86,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 0.9,
+   "end": 1.16,
+   "sentence": 0
+  },
+  {
+   "text": "Thomas",
+   "start": 1.2,
+   "end": 1.46,
+   "sentence": 0
+  },
+  {
+   "text": "Farriner's",
+   "start": 1.5,
+   "end": 1.76,
+   "sentence": 0
+  },
+  {
+   "text": "bakery",
+   "start": 1.8,
+   "end": 2.06,
+   "sentence": 0
+  },
+  {
+   "text": "on",
+   "start": 2.1,
+   "end": 2.36,
+   "sentence": 0
+  },
+  {
+   "text": "Pudding",
+   "start": 2.4,
+   "end": 2.66,
+   "sentence": 0
+  },
+  {
+   "text": "Lane",
+   "start": 2.7,
+   "end": 2.96,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 3.4,
+   "end": 3.66,
+   "sentence": 1
+  },
+  {
+   "text": "four",
+   "start": 3.7,
+   "end": 3.96,
+   "sentence": 1
+  },
+  {
+   "text": "days",
+   "start": 4,
+   "end": 4.26,
+   "sentence": 1
+  },
+  {
+   "text": "it",
+   "start": 4.3,
+   "end": 4.56,
+   "sentence": 1
+  },
+  {
+   "text": "destroyed",
+   "start": 4.6,
+   "end": 4.86,
+   "sentence": 1
+  },
+  {
+   "text": "13,200",
+   "start": 4.9,
+   "end": 5.16,
+   "sentence": 1
+  },
+  {
+   "text": "houses",
+   "start": 5.2,
+   "end": 5.46,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 5.5,
+   "end": 5.76,
+   "sentence": 1
+  },
+  {
+   "text": "87",
+   "start": 5.8,
+   "end": 6.06,
+   "sentence": 1
+  },
+  {
+   "text": "churches",
+   "start": 6.1,
+   "end": 6.36,
+   "sentence": 1
+  },
+  {
+   "text": "The",
+   "start": 7.2,
+   "end": 7.46,
+   "sentence": 2
+  },
+  {
+   "text": "flames",
+   "start": 7.5,
+   "end": 7.76,
+   "sentence": 2
+  },
+  {
+   "text": "moved",
+   "start": 7.8,
+   "end": 8.06,
+   "sentence": 2
+  },
+  {
+   "text": "west",
+   "start": 8.1,
+   "end": 8.36,
+   "sentence": 2
+  },
+  {
+   "text": "on",
+   "start": 8.4,
+   "end": 8.66,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 8.7,
+   "end": 8.96,
+   "sentence": 2
+  },
+  {
+   "text": "strong",
+   "start": 9,
+   "end": 9.26,
+   "sentence": 2
+  },
+  {
+   "text": "east",
+   "start": 9.3,
+   "end": 9.56,
+   "sentence": 2
+  },
+  {
+   "text": "wind",
+   "start": 9.6,
+   "end": 9.86,
+   "sentence": 2
+  },
+  {
+   "text": "Samuel",
+   "start": 10.3,
+   "end": 10.56,
+   "sentence": 3
+  },
+  {
+   "text": "Pepys",
+   "start": 10.6,
+   "end": 10.86,
+   "sentence": 3
+  },
+  {
+   "text": "buried",
+   "start": 10.9,
+   "end": 11.16,
+   "sentence": 3
+  },
+  {
+   "text": "his",
+   "start": 11.2,
+   "end": 11.46,
+   "sentence": 3
+  },
+  {
+   "text": "cheese",
+   "start": 11.5,
+   "end": 11.76,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 11.8,
+   "end": 12.06,
+   "sentence": 3
+  },
+  {
+   "text": "his",
+   "start": 12.1,
+   "end": 12.36,
+   "sentence": 3
+  },
+  {
+   "text": "garden",
+   "start": 12.4,
+   "end": 12.66,
+   "sentence": 3
+  },
+  {
+   "text": "Here's",
+   "start": 13.2,
+   "end": 13.48,
+   "sentence": 4
+  },
+  {
+   "text": "what",
+   "start": 13.52,
+   "end": 13.8,
+   "sentence": 4
+  },
+  {
+   "text": "nobody",
+   "start": 13.84,
+   "end": 14.12,
+   "sentence": 4
+  },
+  {
+   "text": "tells",
+   "start": 14.16,
+   "end": 14.44,
+   "sentence": 4
+  },
+  {
+   "text": "you",
+   "start": 14.48,
+   "end": 14.76,
+   "sentence": 4
+  }
+ ],
+ "sentences": [
+  {
+   "text": "The fire began in Thomas Farriner's bakery on Pudding Lane.",
+   "start": 0,
+   "end": 2.96
+  },
+  {
+   "text": "In four days it destroyed 13,200 houses and 87 churches.",
+   "start": 3.4,
+   "end": 6.36
+  },
+  {
+   "text": "The flames moved west on a strong east wind.",
+   "start": 7.2,
+   "end": 9.86
+  },
+  {
+   "text": "Samuel Pepys buried his cheese in his garden.",
+   "start": 10.3,
+   "end": 12.66
+  },
+  {
+   "text": "Here's what nobody tells you.",
+   "start": 13.2,
+   "end": 14.76
+  }
+ ]
+}
