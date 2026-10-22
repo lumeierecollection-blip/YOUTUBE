@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "scene-brief.json",
+  "title": "scene-brief",
+  "description": "One semantic brief per beat (scripts/direction/scene-brief.mjs). Narration and evidence come ONLY from the script and research; reference observations are used only at confidence >= medium with valid frame ids. Objective acceptance criteria are tested by scripts/direction/check-briefs.mjs; subjective ones go to the vision judge.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["scene_id", "beat_index", "section", "narrative_purpose", "narration", "source_evidence", "evidence_status", "asset_requirements", "timing", "composition", "text", "animation", "transition", "sound_cues", "justification", "acceptance_criteria", "flags"],
+    "properties": {
+      "scene_id": { "type": "string", "pattern": "^.+-s[0-9]+-[0-9a-f]{6}$" },
+      "beat_index": { "type": "integer", "minimum": 0 },
+      "section": { "type": ["string", "null"] },
+      "narrative_purpose": { "enum": ["hook", "setup", "evidence", "escalation", "turn", "payoff", "cta"] },
+      "narration": { "type": "string" },
+      "source_evidence": { "type": "array", "items": { "type": "object", "required": ["fact", "source_url"], "properties": { "fact": { "type": "string" }, "source_url": { "type": "string" }, "ref": { "type": "string" } } } },
+      "evidence_status": { "enum": ["matched", "none"] },
+      "asset_requirements": {
+        "type": "array",
+        "items": { "type": "object", "required": ["kind", "must_be_verified"], "properties": { "kind": { "enum": ["photo", "logo", "map", "chart", "document", "none"] }, "entity": { "type": "string" }, "must_be_verified": { "type": "boolean" } } }
+      },
+      "timing": { "type": "object", "required": ["start", "end"], "properties": { "start": { "type": ["number", "null"] }, "end": { "type": ["number", "null"] }, "words": { "type": "array", "items": { "type": "object", "required": ["w", "t"], "properties": { "w": { "type": "string" }, "t": { "type": "number" } } } } } },
+      "composition": { "type": "object", "properties": { "engine": { "type": ["string", "null"] }, "layout": { "type": ["string", "null"] }, "visual_type": { "type": ["string", "null"] }, "hero_asset": { "type": ["string", "null"] } } },
+      "text": { "type": "object", "required": ["display_words", "emphasis_words"], "properties": { "display_words": { "type": "array", "items": { "type": "string" } }, "emphasis_words": { "type": "array", "items": { "type": "object", "required": ["w"], "properties": { "w": { "type": "string" }, "t": { "type": ["number", "null"] } } } } } },
+      "animation": { "type": "object", "properties": { "entrance": { "type": ["string", "null"] }, "camera": { "type": ["string", "null"] } } },
+      "transition": { "type": "object", "required": ["in", "out", "rationale"], "properties": { "in": { "type": ["string", "null"] }, "out": { "type": ["string", "null"] }, "rationale": { "type": "string" } } },
+      "sound_cues": { "type": "array", "items": { "type": "object", "required": ["t", "kind", "rationale"], "properties": { "t": { "type": ["number", "null"] }, "kind": { "type": "string" }, "rationale": { "type": "string" } } } },
+      "justification": { "type": "array", "items": { "type": "object", "required": ["choice", "because", "evidence"], "properties": { "choice": { "type": "string" }, "because": { "type": "string" }, "evidence": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^(narration|research:.+|ref:.+#f[0-9]{3,}|grammar:.+)$" } } } } },
+      "acceptance_criteria": { "type": "array", "items": { "type": "object", "required": ["id", "check", "expect", "objective"], "properties": { "id": { "type": "string" }, "check": { "type": "string" }, "expect": { "type": "string" }, "objective": { "type": "boolean" }, "params": { "type": "object" } } } },
+      "flags": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
