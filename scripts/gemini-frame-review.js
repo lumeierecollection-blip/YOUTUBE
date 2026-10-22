@@ -430,7 +430,11 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   // (scripts/reference/channel-direction.mjs: labelled grids of scene-sampled frames), else the
   // planner's committed reference stills, else nothing and the reason is logged. The verdict still
   // does not read reference_match; the frames inform the style judgement, they do not gate.
-  const refImg = channelId != null && channelId !== "" ? criticReferenceImages(channelId, { framesFor: (c) => referenceFramesFor(c) }) : { files: [], why: "no --channel given" };
+  // OPT-IN (orchestrator, 2026-10-22): showing reference images reverses the owner's 2026-09-29
+  // decision above, so it stays off until the owner sets REVIEW_REFERENCE_IMAGES=1.
+  const refOptIn = process.env.REVIEW_REFERENCE_IMAGES === "1";
+  const refImg = !refOptIn ? { files: [], why: "REVIEW_REFERENCE_IMAGES is not 1 (owner decision 2026-09-29 stands)" }
+    : channelId != null && channelId !== "" ? criticReferenceImages(channelId, { framesFor: (c) => referenceFramesFor(c) }) : { files: [], why: "no --channel given" };
   const refFrames = refImg.files;
   if (refFrames.length) console.log(`[review] reference images for the critic: ${refFrames.length} — ${refImg.source}`);
   else console.log(`[review] reference_images_missing — ${refImg.why}; judging against the rubric alone`);
