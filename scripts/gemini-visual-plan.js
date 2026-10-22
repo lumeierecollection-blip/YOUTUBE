@@ -34,6 +34,7 @@ import {
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi, createCachedContent } from "../src/lib/gemini-client.js";
 import { referenceFramesFor, imageParts, withReferenceImages } from "./reference-frames.js";
+import { loadChannelDirection, directionSummary, DIRECTION_SUMMARY_MAX_CHARS } from "./reference/channel-direction.mjs";
 import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/lib/llm.js";
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
@@ -685,7 +686,11 @@ export function checkVisual(b, sentence) {
 // fetches a person from a stock site, the verifier takes MATCH only, the
 // layout fills the middle zone). Every rule the model needs to DECIDE is kept.
 const SCENE_EXAMPLE = (() => { try { return JSON.parse(readFileSync(join(ROOT, "prompts", "scene-example.json"), "utf-8")); } catch { return null; } })();
-export function buildPlanPromptParts(sentences, corrections, channelId, styleRef = null) {
+// `direction` is the channel's REFERENCE DIRECTION section (scripts/reference/channel-direction.mjs
+// directionSummary): measured pacing + evidenced observations from its reference analysis. It goes in
+// the dynamic part (it differs per channel; the static part stays one cache entry) and is hard-capped
+// at DIRECTION_SUMMARY_MAX_CHARS so the owner's 4,500-token budget holds (test-plan-gates.mjs).
+export function buildPlanPromptParts(sentences, corrections, channelId, styleRef = null, direction = "") {
   // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
   const example = SCENE_EXAMPLE
     ? `EXAMPLE — sentence "${SCENE_EXAMPLE.sentence}" -> ${JSON.stringify(SCENE_EXAMPLE.beat)}`
@@ -727,7 +732,8 @@ MOTION. "entrance_style": "together"|"staggered"|"visual-first" — how this bea
 ${example}
 
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
-  let dynamicPart = `${styleReferenceBlock(styleRef)}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
+  const dirText = String(direction || "").slice(0, DIRECTION_SUMMARY_MAX_CHARS);
+  let dynamicPart = `${styleReferenceBlock(styleRef)}${dirText}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
   // STRICT VISUAL (owner's frame rule, 2026-10-20 — channels with
   // config strict_visual, currently ch-02 and ch-48): every beat must draw a
   // real visual. The renderer refuses to render a text-only beat on these
@@ -757,8 +763,8 @@ function strictPlanChannel(channelId) {
   return STRICT_PLAN_CHANNELS.has(String(channelId));
 }
 
-function buildPlanPrompt(sentences, corrections, channelId, styleRef = null) {
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, styleRef);
+function buildPlanPrompt(sentences, corrections, channelId, styleRef = null, direction = "") {
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, styleRef, direction);
   return `${staticPart}\n\n${dynamicPart}`;
 }
 
@@ -815,10 +821,17 @@ async function main() {
   const refParts = refFrames.files.length ? imageParts(refFrames.files) : [];
   if (refParts.length) console.log(`[planner] ch-${channelId}: reference frames attached to the planner call: ${refParts.length} from ${refFrames.source} (${refFrames.files.map((f) => f.split(/[\\/]/).slice(-3).join("/")).join(", ")})`);
   else console.log(`[planner] ch-${channelId}: reference_frames_missing — ${refFrames.why}; planning without them`);
-  const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref);
+  // The reference's creative direction as TEXT (scripts/reference/channel-direction.mjs): unlike the
+  // frames above it reaches every provider (Groq and Ollama get the same prompt, no images). Only what
+  // a committed analysis measured or evidenced; none -> logged and nothing added.
+  const dirLoaded = loadChannelDirection(channelId);
+  const dir = directionSummary(dirLoaded);
+  if (dir.text) console.log(`[planner] ch-${channelId}: reference direction attached: ${dir.lines} line(s), ${dir.chars} chars from ${dirLoaded.refs.map((r) => `${r.stem}(${r.doc.direction?.status})`).join(", ")}${dir.truncated ? " (capped)" : ""}${dirLoaded.missing.length ? `; missing: ${dirLoaded.missing.map((m) => m.video).join(", ")}` : ""}`);
+  else console.log(`[planner] ch-${channelId}: reference_direction_missing — ${dir.why}; planning without it`);
+  const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref, dir.text);
   // Context caching (owner's token spec 2026-10-03, A.1): the static part is uploaded once
   // and referenced; each Gemini call then sends only this video's sentences.
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, style.ref);
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, style.ref, dir.text);
   const estTok = (t) => Math.ceil(String(t || "").length / 3.6);
   let geminiCache = null;
   if (!forcedOllama()) {
