@@ -269,13 +269,31 @@ jobs:
           models: ${{ env.OLLAMA_MODEL }}
           cache-key: ollama-${{ runner.os }}-qwen2.5-3b
 
+      # —— Resume: a committed, gate-passed script whose render never finished ——
+      # (scripts/jobs/resume.mjs, docs/JOBS.md). resume=true skips discover/research/script and
+      # reuses the script through the render_only step below; false changes nothing.
+      - name: Resume check (unfinished job)
+        id: resume
+        if: github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          R=$(node scripts/jobs/resume.mjs --channel "$CH" 2>/dev/null || echo '{"resume":false}')
+          echo "$R"
+          if [ "$(echo "$R" | jq -r '.resume')" = "true" ]; then
+            echo "::notice::ch-$CH resuming $(echo "$R" | jq -r .slug) from $(echo "$R" | jq -r .from_stage) ($(echo "$R" | jq -r .why))"
+            echo "resume=true" >> "$GITHUB_OUTPUT"
+            echo "slug=$(echo "$R" | jq -r .slug)" >> "$GITHUB_OUTPUT"
+          else
+            echo "resume=false" >> "$GITHUB_OUTPUT"
+          fi
+
       # —— Stage A: discover topics for THIS channel ——————————————————————
       # —— Trending feed (YouTube Data API v3; scripts/fetch-trending.cjs) ——
       # A topic signal for discovery, cached 12 h per channel across runs
       # (the script checks fetched_at). Never fails the job: no key / 403 /
       # 429 / quota -> unseeded discovery. VidIQ is not used (paid API plan).
       - name: Restore trending cache
-        if: github.event.inputs.render_only != 'true'
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         uses: actions/cache@v4
         with:
           path: data/trending/
@@ -283,13 +301,13 @@ jobs:
           restore-keys: trending-${{ matrix.channel_id }}-
 
       - name: Trending feed
-        if: github.event.inputs.render_only != 'true'
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: node scripts/fetch-trending.cjs "${{ matrix.channel_id }}" || true
 
       - name: Discover topic
-        if: github.event.inputs.render_only != 'true'
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         id: discover
         env:
           # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
@@ -346,7 +364,7 @@ jobs:
 
       # —— Reserve the first NON-duplicate topic —————————————————————————
       - name: Reserve topic
-        if: github.event.inputs.render_only != 'true'
+        if: github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         id: reserve
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -427,16 +445,23 @@ jobs:
           fi
 
       - name: "Render-only: use latest committed script"
-        if: github.event.inputs.render_only == 'true'
+        if: github.event.inputs.render_only == 'true' || steps.resume.outputs.resume == 'true'
+        env:
+          RESUME_SLUG: ${{ steps.resume.outputs.slug }}
         run: |
+          # Also the auto-resume path (Resume check): RESUME_SLUG names the script, no "latest" search.
           # DEBUG path ΓÇö exercises render with a script that already exists
           # in git, so render failures can be fixed while prep is blocked.
           # Never publishes (every publish step is gated on render_only).
           CH="${{ matrix.channel_id }}"
+          if [ -n "$RESUME_SLUG" ]; then
+            SCRIPT="data/research/$CH/$RESUME_SLUG-shorts-script.json"
+          else
           # checkout is depth 1; history (no blobs) is needed to find "latest".
           git fetch -q --unshallow --filter=blob:none origin "${{ github.ref_name }}"
           SCRIPT=$(git log --format= --name-only --diff-filter=AM -- "data/research/$CH/*-shorts-script.json" \
             | grep -v '^$' | while read -r f; do [ -f "$f" ] && echo "$f" && break; done)
+          fi
           if [ -z "$SCRIPT" ]; then
             echo "::error::render_only: no committed shorts script for channel $CH"
             exit 1
@@ -454,7 +479,7 @@ jobs:
 
       # —— Stage B: research ——————————————————————————————————————————————
       - name: Research topic
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         env:
           # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
@@ -516,7 +541,7 @@ jobs:
           cp /tmp/research-raw.json "data/research/$CH/.agent-raw.json"
 
       - name: Gate research
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         run: |
           CH="${{ matrix.channel_id }}"
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
@@ -525,7 +550,7 @@ jobs:
       # —— Stage C: script (gate-feedback retry) ——————————————————————————
       - name: Write script
         id: script
-        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true' && steps.resume.outputs.resume != 'true'
         env:
           # The script is written by Gemini (scripts/ollama-agent.js geminiAnswer, the
           # planner's src/lib/gemini-client.js): qwen2.5:3b copied the prompt's example and
@@ -1001,6 +1026,21 @@ jobs:
           # prompt-truncation warnings. This is where prep time actually goes.
           grep -E "\[GIN\]|truncat|error|level=WARN" /tmp/ollama.log | tail -60 || echo "(no ollama log)"
 
+      # Job record (data/jobs/<ch>/<slug>.json, docs/JOBS.md): the prep stages that just passed. Never fails the step.
+      - name: Record job state (prep)
+        if: steps.reserve.outputs.skip != 'true' && steps.script.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
+          JS="node scripts/jobs/job-state.mjs"
+          if [ "${{ steps.resume.outputs.resume }}" = "true" ]; then
+            $JS skip --channel "$CH" --slug "$SLUG" --stage discover,research,script --reason "resumed from committed script" || echo "::warning::job-state skip failed"
+          else
+            $JS finish --channel "$CH" --slug "$SLUG" --stage discover,research,script || echo "::warning::job-state finish failed"
+          fi
+          $JS start --channel "$CH" --slug "$SLUG" --stage tts || echo "::warning::job-state start failed"
+          $JS finish --channel "$CH" --slug "$SLUG" --stage tts || echo "::warning::job-state finish failed"
+
       # —— Commit this run's script (the record a fix is verified against) —
       # render_only re-renders the latest COMMITTED shorts script. Until this step, a
       # script existed only inside the prep upload-artifact bundle, so a render that
@@ -1016,6 +1056,7 @@ jobs:
           git config user.name  "pipeline-bot"
           git config user.email "pipeline@youtube-automation.local"
           git add -- $FILES
+          [ -d "data/jobs/$CH" ] && git add -- "data/jobs/$CH"
           if git diff --staged --quiet; then echo "script already committed"; exit 0; fi
           git commit -q -m "script: ch-$CH $SLUG (run ${{ github.run_id }})"
           for attempt in 1 2 3 4 5; do
@@ -1054,6 +1095,7 @@ jobs:
             data/research/${{ matrix.channel_id }}/
             data/tts/${{ matrix.channel_id }}/
             data/thumbnails/${{ matrix.channel_id }}/
+            data/jobs/${{ matrix.channel_id }}/
             data/ci-runs/blocked-script-specificity-${{ matrix.channel_id }}.txt
             data/ci-runs/blocked-voice-${{ matrix.channel_id }}.txt
             data/ci-runs/blocked-claims-${{ matrix.channel_id }}.txt
@@ -1166,6 +1208,17 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
+
+      # The render job's checkout predates prep's job-record commit, so the record is kept OUTSIDE the
+      # workspace (JOBS_ROOT) and copied in after the rebase in "Commit publish queue" (no add/add conflict).
+      - name: Seed job state (render)
+        if: steps.status.outputs.skip != 'true'
+        run: |
+          CH="${{ matrix.channel_id }}"
+          mkdir -p "$RUNNER_TEMP/jobroot/data/jobs"
+          [ -d "data/jobs/$CH" ] && cp -r "data/jobs/$CH" "$RUNNER_TEMP/jobroot/data/jobs/"
+          echo "JOBS_ROOT=$RUNNER_TEMP/jobroot" >> "$GITHUB_ENV"
+          ls "$RUNNER_TEMP/jobroot/data/jobs/$CH" 2>/dev/null || echo "::warning::ch-$CH: no job record in the prep artifact"
 
       - name: Ensure ffmpeg/ffprobe
         if: steps.status.outputs.skip != 'true'
@@ -1305,6 +1358,7 @@ jobs:
           fi
 
       - name: Render + QA
+        id: render
         if: steps.status.outputs.skip != 'true'
         env:
           RENDER_PROGRESS_MS: 10000
@@ -1360,7 +1414,17 @@ jobs:
         # passed. The challenger (plan vs script) and the per-beat frame check
         # (frame vs sentence) now run on every video; so does the Gemini
         # review/correction loop.
-        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
+        run: |
+          CH="${{ matrix.channel_id }}"
+          JS="node scripts/jobs/job-state.mjs"
+          $JS start --channel "$CH" --stage render || echo "::warning::job-state start failed"
+          if node scripts/render-and-qa.js --channel "$CH"; then
+            $JS finish --channel "$CH" --stage render || echo "::warning::job-state finish failed"
+          else
+            RC=$?
+            $JS fail --channel "$CH" --stage render --error "render-and-qa exited $RC" || echo "::warning::job-state fail failed"
+            exit $RC
+          fi
 
       # Backup QA (scripts/local-audit.cjs): a video an AI stage failed is
       # queued for a human, never uploaded. The queues live on the runner, so
@@ -1531,6 +1595,7 @@ jobs:
           "
 
       - name: Publish to YouTube (private)
+        id: publish
         if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && steps.creds.outputs.creds == 'ok' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
@@ -1549,22 +1614,35 @@ jobs:
           CH="${{ matrix.channel_id }}"
           git config user.name  "lumeierecollection-blip"
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          # Close the job record (qa/publish) from the queue marker. Never fails the step.
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then PUB="--publish skipped --reason dry-run"
+          elif [ "${{ steps.publish.outcome }}" = "success" ]; then PUB="--publish done"
+          else PUB="--publish skipped --reason publish-step-${{ steps.publish.outcome }}"; fi
+          node scripts/jobs/job-state.mjs queue-sync --channel "$CH" $PUB || echo "::warning::job-state queue-sync failed"
           git add data/publish-queue
           # Why a channel did NOT upload (written by Materialize OAuth credentials).
           [ -d data/publish-status ] && git add data/publish-status
+          # The job record is committed even when the queue is unchanged (a failed render changes only the record).
           if git diff --cached --quiet; then
-            echo "Publish queue unchanged ΓÇö nothing to commit."
-            exit 0
+            echo "Publish queue unchanged — committing the job record only."
+          else
+            git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
           fi
-          git commit -m "publish-queue: ch-$CH $(date -u +%F) [run ${{ github.run_id }}]"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             git checkout -- data/research data/tts data/thumbnails data/renders 2>/dev/null || true
+            git checkout -- data/jobs 2>/dev/null || true  # separate: a missing pathspec fails the whole checkout
             # downloaded artifacts are untracked copies of files main may already hold: they block the rebase
             # (run 39344506422 ch-1: the queue entry was committed but never pushed; video stayed private)
             git clean -fdq -- data ':!data/publish-queue' ':!data/publish-status'
             # --autostash: the render leaves other tracked files modified (run 39031532519 ch-1: "cannot rebase: You have unstaged changes", queue never pushed)
             git rebase --autostash "origin/${{ github.ref_name }}" || git rebase --abort
+            # job record: copied in AFTER the rebase so it modifies prep's committed file instead of colliding with it
+            if [ -d "$JOBS_ROOT/data/jobs/$CH" ]; then
+              mkdir -p data/jobs && cp -r "$JOBS_ROOT/data/jobs/$CH" data/jobs/
+              git add -- "data/jobs/$CH"
+              git diff --cached --quiet || git commit -q -m "jobs: ch-$CH [run ${{ github.run_id }}]"
+            fi
             if git push origin "${{ github.ref_name }}"; then
               break
             fi
@@ -1953,6 +2031,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: ${{ fromJSON(github.event.inputs.timeout_minutes || '90') }}
     steps:
+      # Stalled-job table (scripts/jobs/stalled.mjs). Sparse checkout of the branch tip, so this run's job commits are visible.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          sparse-checkout: |
+            scripts/jobs
+            data/jobs
+      - name: Stalled jobs
+        run: |
+          { echo "### Stalled jobs"; node scripts/jobs/stalled.mjs; } >> "$GITHUB_STEP_SUMMARY" || echo "::warning::stalled.mjs failed"
+
       - name: Generate run report
         run: |
           echo "=== PIPELINE RUN REPORT ==="
