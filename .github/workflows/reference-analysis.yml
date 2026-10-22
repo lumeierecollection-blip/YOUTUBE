@@ -1,0 +1,80 @@
+name: reference-analysis
+
+# Manual only (no schedule): runs scripts/reference/analyze-reference.mjs WITH the vision model on one reference
+# video and uploads the whole analysis dir (metadata, scenes, frames, contact sheets, audio, direction.json/md).
+# Docs: docs/REFERENCE-ANALYSIS.md. Read-only: nothing is committed or published.
+on:
+  workflow_dispatch:
+    inputs:
+      video:
+        description: "Repo path of the reference video, e.g. research/motion-graphics-ref/ref-01.mp4"
+        required: true
+        default: "research/motion-graphics-ref/ref-01.mp4"
+      mode:
+        description: "standard (cap 60 frames) or dense (cap 200, 4 fps in high-novelty / --dense windows)"
+        required: true
+        default: "standard"
+        type: choice
+        options: [standard, dense]
+      dense:
+        description: "Optional dense ranges in seconds, comma separated, e.g. 12.5-18,40-44 (implies dense mode)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci --no-audit --no-fund
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - name: Analyze the reference (with vision)
+        env:
+          VIDEO: ${{ inputs.video }}
+          MODE: ${{ inputs.mode }}
+          DENSE: ${{ inputs.dense }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          args=(--mode "$MODE" --out out/reference-analysis)
+          IFS=',' read -ra ranges <<< "$DENSE"
+          for r in "${ranges[@]}"; do [ -n "$r" ] && args+=(--dense "$r"); done
+          node scripts/reference/analyze-reference.mjs "$VIDEO" "${args[@]}"
+          cat out/reference-analysis/direction.md
+
+      - name: Upload the analysis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reference-analysis-${{ github.run_id }}
+          path: out/reference-analysis
+          if-no-files-found: ignore
+          retention-days: 14
