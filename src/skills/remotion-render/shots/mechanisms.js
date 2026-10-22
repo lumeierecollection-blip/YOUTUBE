@@ -111,7 +111,8 @@ export function mechanismPieces(family, p, ids, rects, focus, view = null) {
       const n = 6;
       const copies = [];
       for (let i = 0; i < n; i++) {
-        const land = family === "accumulation" ? 0.08 + (i / n) * 0.62 : null;
+        // the first print is already down on the first frame (run 39863863642 b5s1 opened on empty ground)
+        const land = family === "accumulation" ? (i === 0 ? -1 : 0.06 + (i / n) * 0.62) : null;
         const leave = family === "depletion" ? 0.15 + ((n - 1 - i) / n) * 0.6 : null;
         let dy = 0, dx = 0, show = true;
         if (land != null) { const k = EASE.out(win(p, land, land + 0.12)); dy = -(1 - k) * 2200; show = p >= land; }

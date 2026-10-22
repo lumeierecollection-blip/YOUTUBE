@@ -24,7 +24,7 @@ import "../wait-for-fonts.js";
 import { SfxPalette } from "../visual/audio-mix.js";
 import {
   FW, FH, FPS, clamp01, EASE, scheduleShots, layoutWorld, resolveCamera, cameraAt, coverWidth, framingToCamera,
-  subjectOnScreen, textSlotFor, TEXT_SLOTS, CAPTION_BAND, syncFrame, finishCamera, AR_VIEW,
+  subjectOnScreen, textSlotFor, textSlotForAll, TEXT_SLOTS, CAPTION_BAND, syncFrame, finishCamera, AR_VIEW,
 } from "./geometry.js";
 import { mechanismPieces } from "./mechanisms.js";
 
@@ -51,13 +51,16 @@ export function planShots(props) {
       const rel = coverWidth(pr) / prev.cam.b.w;
       s.cam.a = framingToCamera({ zoom: rel, fx: null, fy: null }, r, materials[s.ids[0]].focus || { x: 0.5, y: 0.5 });
     }
-    if (s.ids.length) {
-      finishCamera(s.cam, s.shot.camera.move, s.world.rects[s.ids[0]], materials[s.ids[0]], matched);
+    const onRect = (cam, order) => order.find((id) => { const r = s.world.rects[id]; return cam.cx >= r.x && cam.cx <= r.x + r.w && cam.cy >= r.y && cam.cy <= r.y + r.h; }) || order[0];
+    const mainIds = s.ids.filter((id) => !s.world.rects[id].inset);
+    const idA = mainIds.length ? onRect(s.cam.a, mainIds) : null, idB = mainIds.length ? onRect(s.cam.b, [...mainIds].reverse()) : null;
+    if (idA) {
+      finishCamera(s.cam, s.shot.camera.move, s.world.rects[idA], materials[idA], matched, s.world.rects[idB], materials[idB]);
       if (matched && s.cam.ratio < 1.2 && /push-in|pull-out/.test(s.shot.camera.move)) {
         // the matched scale left no room for the move (the picture cannot be magnified further without going soft):
         // the MOVE wins over the match — re-resolve without the held start, and say so in proof mode
         s.cam = resolveCamera(s.shot, family, s.world, materials);
-        finishCamera(s.cam, s.shot.camera.move, s.world.rects[s.ids[0]], materials[s.ids[0]], false);
+        finishCamera(s.cam, s.shot.camera.move, s.world.rects[idA], materials[idA], false, s.world.rects[idB], materials[idB]);
         s.matchDropped = true;
       }
     }
@@ -65,11 +68,14 @@ export function planShots(props) {
     const sync = syncFrame(s, words, FPS);
     s.textFrame = Math.max(s.from, Math.min(s.from + s.dur - 10, sync.frame));
     s.textSynced = sync.matched;
-    const camAtText = cameraAt(s.cam, (s.textFrame - s.from) / s.dur);
-    const r0 = s.ids.length ? s.world.rects[s.ids[0]] : { x: 0, y: 0, w: FW, h: FH };
-    const subj = subjectOnScreen(r0, s.ids.length ? materials[s.ids[0]].focus : null, camAtText);
-    s.textSlot = textSlotFor(subj);
-    s.subjectAtText = subj;
+    const pts = [];
+    for (const q of [(s.textFrame - s.from) / s.dur, 0.6, 1]) {
+      const c = cameraAt(s.cam, q);
+      for (const id of mainIds) pts.push(subjectOnScreen(s.world.rects[id], materials[id].focus, c));
+    }
+    if (!pts.length) pts.push({ x: FW / 2, y: FH / 2 });
+    s.textSlot = textSlotForAll(pts);
+    s.subjectAtText = pts[0];
     prev = s;
   }
   return sched;
@@ -141,7 +147,7 @@ function DataValues({ m, palette, font, slot, frame, at }) {
   const rows = (Array.isArray(d.values) ? d.values : Object.entries(d).filter(([k]) => k !== "source" && k !== "sources").map(([label, value]) => ({ label, value })))
     .filter((r) => r && r.value != null && (r.source || d.source || (d.sources && d.sources.length)));
   if (!rows.length) return null;
-  const s = slot === "top" ? TEXT_SLOTS.low : TEXT_SLOTS.top;
+  const s = slot === "top" ? TEXT_SLOTS.low : TEXT_SLOTS.top; // the slot the shot text is NOT using
   return (
     <div style={{ position: "absolute", left: s.x, top: s.y, width: s.w, zIndex: 25 }}>
       {rows.slice(0, 3).map((r, i) => {
@@ -167,11 +173,12 @@ function ShotText({ s, frame, palette, font }) {
   const lf = frame - s.textFrame;
   if (lf < 0) return null;
   const size = { figure: 168, date: 150, "key-word": 116, name: 96, quote: 72 }[t.role] || 100;
+  const align = s.textSlot === "top" ? "flex-start" : s.textSlot === "mid" ? "center" : "flex-end";
   const big = t.role === "figure" || t.role === "date";
   const slot = TEXT_SLOTS[s.textSlot];
   const color = big ? palette.accent : palette.paper;
   return (
-    <div style={{ position: "absolute", left: slot.x, top: slot.y, width: slot.w, height: slot.h, display: "flex", flexWrap: "wrap", alignContent: s.textSlot === "top" ? "flex-start" : "flex-end", zIndex: 30 }}>
+    <div style={{ position: "absolute", left: slot.x, top: slot.y, width: slot.w, height: slot.h, display: "flex", flexWrap: "wrap", alignContent: align, zIndex: 30 }}>
       {words.map((w, i) => {
         const k = EASE.out(clamp01((lf - i * 3) / 9));
         return (
@@ -227,7 +234,7 @@ function ShotView({ s, frame, props, xform }) {
       {insets.map((id) => <InsetDetail key={id} m={{ ...materials[id], id }} palette={palette} p={p} slot={s.textSlot} />)}
       {data.map((m) => <DataValues key={m.id} m={m} palette={palette} font={channel.font} slot={s.textSlot} frame={frame} at={s.textFrame} />)}
       {/* a soft scrim only behind the text slot in use, so type reads without a card */}
-      {s.shot.text ? <AbsoluteFill style={{ background: s.textSlot === "top" ? "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 38%)" : "linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 45%)", opacity: frame >= s.textFrame ? 1 : 0 }} /> : null}
+      {s.shot.text ? <AbsoluteFill style={{ background: s.textSlot === "top" ? "linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 38%)" : s.textSlot === "mid" ? "linear-gradient(180deg, rgba(0,0,0,0) 36%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0) 64%)" : "linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 45%)", opacity: frame >= s.textFrame ? 1 : 0 }} /> : null}
       <ShotText s={s} frame={frame} palette={palette} font={channel.font} />
       {proof && !s.textSynced && s.shot.text?.sync_word ? <div style={{ position: "absolute", left: 20, bottom: 20, fontSize: 26, color: "#fff", background: "#000", padding: 6, zIndex: 50 }}>sync_word “{s.shot.text.sync_word}” not in timings</div> : null}
     </AbsoluteFill>

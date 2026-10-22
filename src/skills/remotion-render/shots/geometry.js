@@ -320,9 +320,10 @@ export function capMagnification(cam, rect, native) {
  * Final pass over a resolved camera: cap magnification on both ends, then make sure a push/pull still changes the
  * framing by ZOOM_MIN_RATIO by widening the WIDE end (never by magnifying past the cap). Sets res.ratio.
  */
-export function finishCamera(res, move, rect, native, fixedStart = false) {
+export function finishCamera(res, move, rect, native, fixedStart = false, rectB = rect, nativeB = native) {
+  // each end is capped against the material it is ON (a reframe/rack ends on a different one than it starts)
   res.a = capMagnification(res.a, rect, native);
-  res.b = capMagnification(res.b, rect, native);
+  res.b = capMagnification(res.b, rectB, nativeB);
   if (fixedStart && (move === "push-in" || move === "pull-out" || move === "match-cut")) {
     // the start is held by a match cut: move the END far enough instead (and cap it)
     const ratio = Math.max(res.a.w, res.b.w) / Math.min(res.a.w, res.b.w);
@@ -361,14 +362,33 @@ export function cameraAt(resolved, p) {
 // Text slots, clear of the platform UI (Shorts safe area) and of the caption band (1380..1560).
 export const TEXT_SLOTS = {
   top: { x: 90, y: 250, w: 900, h: 360 },
+  mid: { x: 90, y: 790, w: 900, h: 280 },
   low: { x: 90, y: 1000, w: 900, h: 340 },
 };
 export const CAPTION_BAND = { x: 90, y: 1390, w: 900, h: 180 };
 
 /** Choose the text slot farthest from the subject's on-screen position (sx, sy in px). */
 export function textSlotFor(subject) {
-  const d = (s) => Math.hypot(subject.x - (s.x + s.w / 2), subject.y - (s.y + s.h / 2));
-  return d(TEXT_SLOTS.top) >= d(TEXT_SLOTS.low) ? "top" : "low";
+  return textSlotForAll([subject]);
+}
+
+/**
+ * The slot whose centre is farthest from the NEAREST subject, over every subject point given (each drawn material's
+ * focus, sampled at the text's first frame and at the shot's end, so a subject the camera brings under the text
+ * later counts too — run 39863863642 b2s1 put the name over the spider once the reframe moved it up).
+ * "mid" is only a candidate when there are several subjects (the gap between two stacked prints).
+ */
+export function textSlotForAll(points) {
+  const pts = points.filter((p) => p.x > -200 && p.x < FW + 200 && p.y > -200 && p.y < FH + 200);
+  if (!pts.length) return "top";
+  const names = pts.length > 1 ? ["top", "mid", "low"] : ["top", "low"];
+  let best = "top", bestD = -1;
+  for (const n of names) {
+    const s = TEXT_SLOTS[n], cx = s.x + s.w / 2, cy = s.y + s.h / 2;
+    const d = Math.min(...pts.map((p) => Math.hypot((p.x - cx) * 0.35, p.y - cy)));
+    if (d > bestD + 1) { best = n; bestD = d; }
+  }
+  return best;
 }
 
 /** The subject's screen point under a camera: the focus point of the shot's first picture material. */
