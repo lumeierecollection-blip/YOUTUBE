@@ -82,7 +82,7 @@ export function probeDuration(video) {
 const label = (f) => `b${f.beat_index} ${f.shot_id} ${f.t.toFixed(2)}s ${f.kind}`.replace(/[:'\\%]/g, " ");
 
 function ff(args) {
-  const r = spawnSync("ffmpeg", ["-v", "error", "-y", ...args], { encoding: "utf8" });
+  const r = spawnSync("ffmpeg", ["-nostdin", "-v", "error", "-y", ...args], { encoding: "utf8" });
   if (r.status !== 0) throw new Error(`ffmpeg failed: ${(r.stderr || "").slice(0, 400)}`);
 }
 
