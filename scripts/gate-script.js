@@ -83,6 +83,12 @@ const NAME_CONNECTOR = new Set(["of", "the", "and", "for", "de", "del", "van", "
 // Sentence-initial words that are not names and must not turn the next word into a
 // multi-word "name" ("On September", "But Powell").
 const NAME_LEAD = new Set(["the", "a", "an", "on", "in", "at", "by", "for", "from", "after", "before", "when", "but", "and", "if", "as", "his", "her", "its", "their", "this", "that", "these", "those", "he", "she", "it", "they"]);
+// Sentence-initial adverbs that glue onto a following name ("Then Matt Graney",
+// run 39611317543 ch-2). Only ever dropped as the FIRST token of a run.
+const NAME_LEAD_ADVERB = new Set(["then", "now", "today", "yesterday", "tomorrow", "still", "also", "meanwhile", "however", "instead", "finally", "next", "later", "soon", "so", "yet", "here", "there", "since", "until", "while", "with", "without", "under", "over", "inside", "across", "during", "through", "against", "among", "between", "according"]);
+// Calendar words are capitalised but are not names ("Scientific Reports October",
+// run 39611317543 ch-48): a run may END or contain them without being an unknown name.
+const CALENDAR_WORD = new Set(["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
 
 function nameTokens(text) {
   return String(text || "")
@@ -138,6 +144,7 @@ export function nameFidelityProblems(script, research) {
   const researchSeq = ` ${collect(research).flatMap((s) => nameTokens(s).map((t) => t.toLowerCase())).join(" ")} `;
   const researchNames = (research.named_entities || []).map((e) => String(e.name || "")).filter(Boolean);
   const nameLower = researchNames.map((n) => ({ name: n, tokens: stripLead(nameTokens(n).map((t) => t.toLowerCase())) }));
+  const singleNames = new Set(nameLower.filter((n) => n.tokens.length === 1).map((n) => n.tokens[0]));
 
   const present = (tokens) => {
     const t = stripLead(tokens);
@@ -189,10 +196,35 @@ export function nameFidelityProblems(script, research) {
       seen.add(key);
       if (present(core)) continue;
 
-      const near = nearMissOfWindow(core) || (core.length === 1 ? nearMissOfToken(core[0]) : null);
+      // The near-miss test also runs without a leading adverb, which would
+      // otherwise hide "Then Michelle Singletry" from the length-matched window.
+      const bare = core.length > 1 && NAME_LEAD_ADVERB.has(core[0]) ? core.slice(1) : core;
+      const near = nearMissOfWindow(core) || nearMissOfWindow(bare)
+        || (bare.length === 1 ? nearMissOfToken(bare[0]) : null);
+      // A run made ONLY of researched names, calendar words and at most one
+      // leading adverb is not an unknown name — it is two things side by side.
+      // Checked after the near-miss test, so a typo still blocks.
+      const covered = (() => {
+        const ok = new Array(core.length + 1).fill(false);
+        ok[0] = true;
+        for (let i = 0; i < core.length; i++) {
+          if (!ok[i]) continue;
+          for (let j = i + 1; j <= core.length; j++) {
+            const seg = core.slice(i, j);
+            const single = seg.length === 1 ? seg[0] : null;
+            if ((single && CALENDAR_WORD.has(single)) || (single && i === 0 && NAME_LEAD_ADVERB.has(single))
+                || (!NAME_CONNECTOR.has(seg[0]) && researchSeq.includes(` ${seg.join(" ")} `)
+                    // A lone word only counts when it is part of a researched NAME —
+                    // two research words side by side ("Washington" + "Times") are
+                    // not a researched name.
+                    && (seg.length >= 2 || singleNames.has(single)))) ok[j] = true;
+          }
+        }
+        return ok[core.length];
+      })();
       if (near) {
         blockers.push(`SCR-18: "${win.join(" ")}" is a near-miss of the research name "${near}" â€” copy the name exactly as the research artifact spells it.`);
-      } else if (core.length >= 2) {
+      } else if (core.length >= 2 && !covered) {
         majors.push(`SCR-18: "${win.join(" ")}" is not named in the research artifact â€” use the research's own name, or drop the name.`);
       }
     }

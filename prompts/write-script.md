@@ -165,6 +165,15 @@ allows at most one words-only card in any three sentences, so a script of
 abstractions cannot be arranged at all. Write so each sentence has a thing to
 show:
 
+**If the INPUT has `visual_rule.required: true` (a strict channel), there is NO
+words-only allowance at all — every sentence must draw.** `visual_rule.drawable_inventory`
+lists the research items that already draw (`draws` = the graphic, `text` = the
+research's own words). Anchor every sentence on one inventory item, restating its
+figure, date or place inside that sentence; reuse an item rather than add a
+sentence that anchors on nothing. Never write a question, a transition or a
+setup line ("Where do teams connect these servers?", "Here is why it matters.")
+on a strict channel — each one fails the gate and costs an attempt.
+
 - **What the renderer can draw from a sentence** — name these where the research
   gives them, in the sentence that needs the picture:
   a figure with its unit ("$352 million", "34%") → a number or chart (two figures

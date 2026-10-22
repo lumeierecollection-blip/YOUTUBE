@@ -865,8 +865,11 @@ jobs:
               # analysed Y" - no rewrite can ground that without inventing.
               # Same machinery and one-per-run budget as the claims re-pick
               # (REPICKED/BURNED, ~45 lines above); the replacement topic
-              # starts with a clean feedback slate and 3 attempts left.
-              if [ "$ATTEMPT" -eq 5 ] && [ "$REPICKED" -eq 0 ] \
+              # starts with a clean feedback slate and 5 attempts left.
+              # Attempt 3, not 5: a78e717e set 3 and c2507db1 (a discovery
+              # change) silently put 5 back; runs 39522796613..39611317543
+              # then gave every replacement topic only 3 tries.
+              if [ "$ATTEMPT" -eq 3 ] && [ "$REPICKED" -eq 0 ] \
                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
                  && [ -f /tmp/topics.json ]; then
                 BURNED="${BURNED:-} $SLUG"
@@ -1451,6 +1454,7 @@ jobs:
       # main only (audit 2026-10-03): a dispatch with --ref <other branch> renders but never
       # reads the OAuth secrets or uploads. 135 v2 dispatches ran on a development branch.
       - name: Materialize OAuth credentials
+        id: creds
         # always(): a failed render must not strand an ALREADY-uploaded private
         # video past its go_public_at (ch-1 hOYJOrB9lR4 sat private 8 h on
         # 2026-10-20 because the render step failed before this one ran).
@@ -1509,15 +1513,25 @@ jobs:
             const clientSecret = process.env['CH' + p + '_CLIENT_SECRET'];
             const refreshToken = process.env['CH' + p + '_REFRESH_TOKEN'];
             if (!(clientId && clientSecret && refreshToken)) {
-              console.error('::error::No credentials configured for ' + ch.channel_id + ' (dispatch key ' + id + '): missing CH' + p + '_* secrets');
-              process.exit(1);
+              // A channel without OAuth is a configured state, not a failure:
+              // its render, QA and queue entry are already saved. Skip the
+              // upload with the exact reason (publish step reads creds=missing)
+              // instead of turning a finished deliverable into a red job.
+              const missing = ['CLIENT_ID', 'CLIENT_SECRET', 'REFRESH_TOKEN'].filter((k) => !process.env['CH' + p + '_' + k]);
+              const reason = 'no OAuth credentials configured: missing secrets CHANNEL_' + p + '_' + missing.join(', CHANNEL_' + p + '_');
+              console.log('::warning::' + ch.channel_id + ' publish skipped - ' + reason);
+              fs.mkdirSync('data/publish-status', { recursive: true });
+              fs.writeFileSync('data/publish-status/' + ch.channel_id + '.json', JSON.stringify({ channel_id: ch.channel_id, status: 'skipped', reason, run_id: process.env.GITHUB_RUN_ID || null, at: new Date().toISOString() }, null, 2));
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, 'creds=missing\n');
+              process.exit(0);
             }
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'creds=ok\n');
             fs.writeFileSync(own, JSON.stringify({client_id:clientId, client_secret:clientSecret, refresh_token:refreshToken}, null, 2));
             console.log('Credentials materialized for ' + ch.channel_id + ' (dispatch key ' + id + ')');
           "
 
       - name: Publish to YouTube (private)
-        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && steps.creds.outputs.creds == 'ok' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
@@ -1536,6 +1550,8 @@ jobs:
           git config user.name  "lumeierecollection-blip"
           git config user.email "lumeierecollection-blip@users.noreply.github.com"
           git add data/publish-queue
+          # Why a channel did NOT upload (written by Materialize OAuth credentials).
+          [ -d data/publish-status ] && git add data/publish-status
           if git diff --cached --quiet; then
             echo "Publish queue unchanged ΓÇö nothing to commit."
             exit 0
@@ -1546,7 +1562,7 @@ jobs:
             git checkout -- data/research data/tts data/thumbnails data/renders 2>/dev/null || true
             # downloaded artifacts are untracked copies of files main may already hold: they block the rebase
             # (run 39344506422 ch-1: the queue entry was committed but never pushed; video stayed private)
-            git clean -fdq -- data ':!data/publish-queue'
+            git clean -fdq -- data ':!data/publish-queue' ':!data/publish-status'
             # --autostash: the render leaves other tracked files modified (run 39031532519 ch-1: "cannot rebase: You have unstaged changes", queue never pushed)
             git rebase --autostash "origin/${{ github.ref_name }}" || git rebase --abort
             if git push origin "${{ github.ref_name }}"; then

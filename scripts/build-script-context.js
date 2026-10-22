@@ -15,7 +15,37 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
-function main() {
+/**
+ * DRAWABLE INVENTORY (strict_visual channels). Runs 39522796613..39611317543:
+ * ch-2/ch-48 research was groundable (3-4 facts, every one drawable by the
+ * gate's own extractor) but the writer padded 7-9 sentences with questions
+ * ("Where do teams connect these servers?") and transitions that ground
+ * nothing, and burned all 8 attempts. The abstract rule wasn't enough; this
+ * hands the writer the concrete list, computed by the SAME extractor the
+ * SCR-17 STRICT gate uses (groundedVisualFor), so "restate one of these" is
+ * a rule it can follow on attempt 1. Facts only from the research.
+ */
+async function drawableInventory(research) {
+  // strict-visual.mjs logs its vocabulary on stdout at import; stdout here is
+  // the JSON context, so route that to stderr.
+  const log = console.log;
+  console.log = (...a) => console.error(...a);
+  let groundedVisualFor;
+  try { ({ groundedVisualFor } = await import("./strict-visual.mjs")); }
+  finally { console.log = log; }
+  const out = [];
+  const add = (text, source) => {
+    const g = groundedVisualFor(String(text || ""));
+    if (g) out.push({ draws: g.visual_type, from: source, text: String(text).trim() });
+  };
+  (research.key_facts || []).forEach((k, i) => add(k.fact || k, `key_facts[${i}]`));
+  (research.numbers || []).forEach((n, i) => {
+    if (n && n.value != null) add(`${n.label || ""}: ${n.value} ${n.unit || ""}`.trim(), `numbers[${i}]`);
+  });
+  return out;
+}
+
+async function main() {
   const [channelId, slug] = process.argv.slice(2);
   const format = process.argv.includes("--format")
     ? process.argv[process.argv.indexOf("--format") + 1]
@@ -40,6 +70,7 @@ function main() {
     process.exit(1);
   }
   const research = JSON.parse(readFileSync(researchPath, "utf-8"));
+  const inventory = channel.strict_visual ? await drawableInventory(research) : null;
 
   const context = {
     channel_id: String(channelId),
@@ -67,6 +98,8 @@ function main() {
     visual_rule: channel.strict_visual ? {
       required: true,
       rule: "EVERY voiceover sentence must state something a frame can draw: a sourced number, date, place, list, comparison, document, money object or cause/effect sequence. Naming a person, paper or organisation alone is NOT enough - a name plate is a text card. Prefer the research facts that carry a scene, a place, a measured figure or a step-by-step process; do not write method-only sentences like 'X analyzed Y' unless you can name the Y, where, or a result in that same sentence WITHOUT inventing anything. The figures must appear verbatim in the research artifact. NEVER name a study's authors, researchers, journals, databases or websites: the pipeline has no portrait or logo for them, and the beat is refused at render even when it also states a figure (run 39434350384 ch-48). Attribute findings to 'the study', 'the review' or 'the researchers' instead. Name a company only when the video is ABOUT that company and the research names it.",
+      drawable_inventory: inventory,
+      how_to_use_inventory: "drawable_inventory lists every research item the gate can already draw (draws = the graphic it becomes). Build EVERY sentence around one of these items, restating its figure, date or place in the sentence itself; the same item may anchor more than one sentence. No question sentences, no transitions, no rhetorical setups: a sentence that only links two others ('Where does this matter?', 'Here is why.') draws nothing and fails the gate. Fewer, fuller sentences beat padding.",
     } : null,
     research,
   };
@@ -74,4 +107,4 @@ function main() {
   process.stdout.write(JSON.stringify(context, null, 2));
 }
 
-main();
+main().catch((e) => { console.error(e.stack || e.message); process.exit(1); });

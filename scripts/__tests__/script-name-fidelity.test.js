@@ -69,6 +69,36 @@ test("a sentence-initial date or ordinary capitalised word is not a name warning
   assert.deepEqual(majors, []);
 });
 
+// Run 39611317543: these fragments filled every re-ask with false SCR-18 MAJORs.
+test("a leading adverb glued to a researched name is not an unknown name", () => {
+  const { blockers, majors } = nameFidelityProblems(
+    script("Then Michelle Singletary wrote about it."),
+    RESEARCH,
+  );
+  assert.deepEqual(blockers, []);
+  assert.deepEqual(majors, []);
+});
+
+test("a researched name followed by a month is not an unknown name", () => {
+  const { blockers, majors } = nameFidelityProblems(
+    script("The Washington Post October column said rates rise."),
+    RESEARCH,
+  );
+  assert.deepEqual(blockers, []);
+  assert.deepEqual(majors, []);
+});
+
+test("two research words side by side that are not a researched name still warn", () => {
+  const { majors } = nameFidelityProblems(script("It ran in the Washington Reserve."), RESEARCH);
+  assert.equal(majors.length, 1);
+  assert.match(majors[0], /Washington Reserve/);
+});
+
+test("an adverb in front of a near-miss still blocks", () => {
+  const { blockers } = nameFidelityProblems(script("Then Michelle Singletry wrote."), RESEARCH);
+  assert.equal(blockers.length, 1);
+});
+
 test("no research artifact means no name check", () => {
   const { blockers, majors } = nameFidelityProblems(script("Anyone can write anything."), null);
   assert.deepEqual(blockers, []);

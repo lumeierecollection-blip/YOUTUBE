@@ -206,8 +206,17 @@ async function main() {
   }
 
   // Only the deprecated V1 workflow called this uploader; the live path is
-  // src/skills/youtube-publish/run.js. Same allow-list as there (audit 2026-10-03).
-  const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+  // src/skills/youtube-publish/run.js. Same allow-list as there: the one file
+  // config/priority-channels.json (was a stale hardcoded copy; audit 2026-10-22).
+  // Fail closed: unreadable or empty approves nothing.
+  let PUBLISH_CHANNELS = [];
+  try {
+    PUBLISH_CHANNELS = JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "..", "config", "priority-channels.json"), "utf8")).channels || [];
+  } catch (e) {
+    console.error(`cannot read config/priority-channels.json: ${e.message} — refusing the upload`);
+    process.exit(1);
+  }
+  PUBLISH_CHANNELS = PUBLISH_CHANNELS.map((c) => Number(String(c).replace(/^ch-?/i, "")));
   if (!PUBLISH_CHANNELS.includes(Number(String(opts.channel).replace(/^ch-?/i, "")))) {
     console.error(`channel "${opts.channel}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
     process.exit(1);
