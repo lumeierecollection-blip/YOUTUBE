@@ -78,7 +78,7 @@ jobs:
           FONT=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
           mkdir -p out/vd/frames/half out/vd/frames/shots
           grab () { # $1 time-s  $2 out.png  $3 label
-            ffmpeg -loglevel error -y -ss "$1" -i out/vd/fixture.mp4 -frames:v 1 \
+            ffmpeg -nostdin -loglevel error -y -ss "$1" -i out/vd/fixture.mp4 -frames:v 1 \
               -vf "scale=216:384,drawbox=y=ih-34:w=iw:h=34:color=black@0.8:t=fill,drawtext=fontfile=$FONT:text='$3':x=6:y=h-28:fontsize=17:fontcolor=white" "$2"
           }
           # every 0.5 s
