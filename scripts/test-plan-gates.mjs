@@ -4,6 +4,7 @@
 // resolver's acronym rule (scripts/entity-assets.cjs).
 import { createRequire } from "node:module";
 import { flowNodes, checkVisual, isIdentifierNumber, groundedOptions, VISUAL_TYPES, checkEntities, buildPlanPromptParts } from "./gemini-visual-plan.js";
+import { DIRECTION_SUMMARY_MAX_CHARS } from "./reference/channel-direction.mjs";
 const { expandName } = createRequire(import.meta.url)("./entity-assets.cjs");
 
 let bad = 0;
@@ -81,6 +82,12 @@ eq("groundedOptions offers PROCESS only for a stated flow", groundedOptions("Rat
 const must = ["THE VISUAL LANGUAGE", "HOW TO DESCRIBE A BEAT", "TYPE AND COMPOSITION", "two-number rule", "entity_anchor_word", "company", "institution", "scene_description", "what ground does THIS beat need", "Jerome Powell", "POP_LETTER (at most one beat)", "typography_direction"];
   eq("the prompt still carries every decision rule", must.filter((m) => !(staticPart + dynamicPart).includes(m)), []);
   eq("the static part holds no sentence (it is cached across videos)", staticPart.includes("part 0."), false);
+  // The reference direction section (scripts/reference/channel-direction.mjs) at its hard cap still fits the budget.
+  const fullDir = "R".repeat(DIRECTION_SUMMARY_MAX_CHARS * 3);
+  const withDir = buildPlanPromptParts(sents, null, "2", null, fullDir);
+  eq("a reference direction is capped at DIRECTION_SUMMARY_MAX_CHARS in the prompt", withDir.dynamicPart.length - dynamicPart.length, DIRECTION_SUMMARY_MAX_CHARS);
+  eq("prompt for 12 sentences + a capped reference direction is under 4,500 tokens", Math.ceil((withDir.staticPart.length + withDir.dynamicPart.length) / 3.6) < 4500, true);
+  eq("the reference direction never enters the cached static part", withDir.staticPart === staticPart, true);
 }
 
 console.log(bad ? `${bad} FAILED` : "all pass");

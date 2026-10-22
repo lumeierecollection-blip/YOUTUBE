@@ -34,6 +34,7 @@ import {
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi, createCachedContent } from "../src/lib/gemini-client.js";
 import { referenceFramesFor, imageParts, withReferenceImages } from "./reference-frames.js";
+import { loadChannelDirection, directionSummary, DIRECTION_SUMMARY_MAX_CHARS } from "./reference/channel-direction.mjs";
 import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/lib/llm.js";
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
@@ -685,7 +686,11 @@ export function checkVisual(b, sentence) {
 // fetches a person from a stock site, the verifier takes MATCH only, the
 // layout fills the middle zone). Every rule the model needs to DECIDE is kept.
 const SCENE_EXAMPLE = (() => { try { return JSON.parse(readFileSync(join(ROOT, "prompts", "scene-example.json"), "utf-8")); } catch { return null; } })();
-export function buildPlanPromptParts(sentences, corrections, channelId, styleRef = null) {
+// `direction` is the channel's REFERENCE DIRECTION section (scripts/reference/channel-direction.mjs
+// directionSummary): measured pacing + evidenced observations from its reference analysis. It goes in
+// the dynamic part (it differs per channel; the static part stays one cache entry) and is hard-capped
+// at DIRECTION_SUMMARY_MAX_CHARS so the owner's 4,500-token budget holds (test-plan-gates.mjs).
+export function buildPlanPromptParts(sentences, corrections, channelId, styleRef = null, direction = "") {
   // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
   const example = SCENE_EXAMPLE
     ? `EXAMPLE — sentence "${SCENE_EXAMPLE.sentence}" -> ${JSON.stringify(SCENE_EXAMPLE.beat)}`
@@ -703,11 +708,11 @@ OBJECT beats (a cutout, logo, money object or symbol): "HERO-STACK" centred unde
 WORDS-ONLY beats: "STATEMENT" low on one side [low]; "TITLE" very large and heavy over an accent bar [low]; "CHAPTER" one small line in an empty frame [low]; "DEFINITION" the words over a double rule, the sentence set as text [low]. Three words-only beats in a row break the rule whatever their shots: put a picture or a figure between them.
 Checked on the render: never the same shot on two beats in a row; never the words in the TOP band on three beats in a row; a shot that does not fit what the beat shows is not drawn.
 
-LAYOUT. "layout": how should THIS beat be laid out — where does each element sit? It is yours to decide per beat, from what the beat says; nothing is preset. Answer {"cols": <your grid's columns>, "rows": <its rows>, "slots": [{"id": <element>, "col": <0-based>, "row": <0-based>, "col_span": n, "row_span": n, "align": "left"|"right" for text (headline, statement, kicker, number), "left"|"center"|"right" for a visual, "v_align": "top"|"center"|"bottom"}]}. The grid is yours (any cols/rows) and spans the content area, x 48-1032, y 130-1340 of the 1080x1920 frame; a slot may instead give {"id", "x", "y", "w", "h"} in pixels. Element ids: "headline", "kicker", "number", "label", "chart", "map", "nodes", "items", "markers", "portrait", "cutout0", or "hero" for the beat's main visual. Give every FIGURE and STATEMENT beat a layout (without one the default arrangement is drawn); on a photo or object shot the SHOT is the arrangement and no layout is used. Place at least the headline and the beat's visual; elements you do not name keep the default. If you are unsure which visual the beat will end up drawing (a figure you planned may be drawn as a statement or a photo), name it "hero": it places whatever visual the beat draws. Elements keep the size their content needs (a headline is fitted to its words, a number to its digits): the layout says WHERE, not how big. Below y 1340 belongs to the caption, on every beat. The finished frame is audited, and a frame that fails is rejected — so know the rules: no two elements overlap; each element sits wholly in the top region (y 0-620) or the middle region (620-1340), never across y 620; the two regions never hold two kinds of element — the headline / statement / kicker are one kind, the visual (number with its label, chart, map, nodes, items, portrait, cutout) the other — so a layout that puts the headline in the same region as the visual is rejected and the beat falls back to the default arrangement; the beat's content must reach from near its top (y ~130-200) to well into the middle region (y ~1200-1340) to span 60% of the height; text (headline, statement, number) is never centred on the frame's vertical centre line, so align it "left" or "right". An element's kicker and its label travel with it. A slot is a region: give "align" / "v_align" to anchor the element in it; without them the element keeps its default spot, moved only as far as it takes to sit inside the slot — so a slot covering the whole grid with no alignment changes nothing. Decide each layout from what its sentence needs; do not repeat one arrangement across beats.
+LAYOUT. "layout": how should THIS beat be laid out — where does each element sit? Yours per beat; nothing is preset. Answer {"cols": <your grid's columns>, "rows": <its rows>, "slots": [{"id": <element>, "col": <0-based>, "row": <0-based>, "col_span": n, "row_span": n, "align": "left"|"right" for text (headline, statement, kicker, number), "left"|"center"|"right" for a visual, "v_align": "top"|"center"|"bottom"}]}. The grid is yours (any cols/rows) and spans the content area, x 48-1032, y 130-1340 of the 1080x1920 frame; a slot may instead give {"id", "x", "y", "w", "h"} in pixels. Element ids: "headline", "kicker", "number", "label", "chart", "map", "nodes", "items", "markers", "portrait", "cutout0", or "hero" for the beat's main visual. Give every FIGURE and STATEMENT beat a layout; on a photo or object shot the SHOT is the arrangement. Place at least the headline and the beat's visual; unnamed elements keep the default. Unsure which visual the beat will draw? Name it "hero": it places whatever visual is drawn. The layout says WHERE, not how big (elements keep the size their content needs). Below y 1340 is the caption's. The frame is audited and a failing frame rejected: no two elements overlap; each element sits wholly in the top region (y 0-620) or the middle region (620-1340), never across y 620; the two regions never hold two kinds of element (headline / statement / kicker vs. the visual) — a headline in the visual's region is rejected and the beat falls back to the default arrangement; content spans y ~130-200 to ~1200-1340 (60% of the height); text is never centred on the vertical centre line: align it "left" or "right". An element's kicker and its label travel with it. A slot is a region: "align" / "v_align" anchor the element in it; without them it keeps its default spot, moved only into the slot. Do not repeat one arrangement across beats.
 
-ONE ELEMENT RENDERS AUTOMATICALLY AND YOU MUST NOT DESCRIBE IT: a small "Source: <domain>" credit in the bottom-right corner when the beat uses a fetched photo, logo or portrait. Nothing else is automatic — there is NO running caption, NO page counter and NO corner label unless you ask for one (CHROME, under TEXT).
+DO NOT DESCRIBE the "Source: <domain>" credit: it renders automatically, bottom-right, on a fetched photo, logo or portrait. Nothing else is automatic (no running caption, page counter or corner label unless you ask: CHROME, under TEXT).
 
-NAME CARD FALLBACK. If a named entity has no verified source - no Wikipedia lead image, no Wikimedia Commons photo, no logo - the beat renders a name card: the entity's name in the headline style with the sentence's key phrase beneath. When you describe a beat that names a specific entity, this is the fallback if the entity cannot be sourced. If you expect the entity to resolve, describe the visual it would use. If you suspect the entity is too niche, describe the name card as the intended visual.
+NAME CARD FALLBACK. A named entity with no verified photo or logo renders as a name card (its name in the headline style, the key phrase beneath). Describe the visual it would use if you expect it to resolve; the name card if it is too niche.
 
 HOW TO DESCRIBE A BEAT. "scene_description": what a viewer should see for this sentence, in plain language, the way you would describe it to a designer — no mechanism names, no zones. Be specific about the primary element (a photo, a number, a chart, a logo, a scene) and NAME it if the sentence names it (person, place, company, object) so the system can fetch it; where it sits ("fills the frame", "upper third"); how it moves ("slow push in", "counts up", "draws left to right", "pops in"); what supports it (a small label, a reference line). A person -> their portrait and how it moves; a company -> its logo and how it enters; a number -> how it builds; an abstract sentence -> the metaphor or type treatment that makes it land. Example — "Mortgage rates hit 7.2% in October." -> "A big number, 7.2%, fills the centre of the frame, the percent sign smaller than the digits; below it in small caps, MORTGAGE RATES; behind it a thin line draws left to right, the rate's climb over the past year."
 The beat's type and composition are yours to choose (TYPE AND COMPOSITION below); the system checks what you choose against the sentence (scripts/scene-translate.js) and enforces variety, the two-number rule (two compared figures are drawn as a chart) and the data rules in code. Describe only what the sentence supports: a number you describe is one the sentence says, exactly as it says it; a person, place, company or object you describe is one it names. A money beat: say which object. A sentence with nothing to show: say the type treatment that makes it land.
@@ -727,13 +732,14 @@ MOTION. "entrance_style": "together"|"staggered"|"visual-first" — how this bea
 ${example}
 
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
-  let dynamicPart = `${styleReferenceBlock(styleRef)}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
+  const dirText = String(direction || "").slice(0, DIRECTION_SUMMARY_MAX_CHARS);
+  let dynamicPart = `${styleReferenceBlock(styleRef)}${dirText}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
   // STRICT VISUAL (owner's frame rule, 2026-10-20 — channels with
   // config strict_visual, currently ch-02 and ch-48): every beat must draw a
   // real visual. The renderer refuses to render a text-only beat on these
   // channels (scripts/strict-visual.mjs), so tell the planner up front.
   if (strictPlanChannel(channelId)) {
-    dynamicPart += `\n\nSTRICT VISUAL (this channel, the owner's frame rule): EVERY beat must draw a real visual — a photo, logo, map, chart, number, process, timeline, comparison, list, document or money object. A typography-only beat (TYPE) without one of those is rejected and fails the video. For each sentence, translate the figure it states: a number -> NUMBER/COUNTER, two numbers -> a chart, dates -> TIMELINE, a place -> MAP, a cause or sequence -> PROCESS, an enumeration -> LIST, a comparison -> COMPARE, a legal instrument -> DOCUMENT, money -> MONEY, a stated rise/fall -> TREND; a sentence that states none of those must show the named entity's real logo or photo. There is no "nothing to show" fallback on this channel.`;
+    dynamicPart += `\n\nSTRICT VISUAL (this channel): EVERY beat draws a real visual; a TYPE-only beat fails the video. Translate what the sentence states: number -> COUNTER, two numbers -> chart, dates -> TIMELINE, place -> MAP, sequence -> PROCESS, enumeration -> LIST, comparison -> COMPARE, legal instrument -> DOCUMENT, money -> MONEY, rise/fall -> TREND; else the named entity's real logo or photo.`;
   }
   if (corrections?.length) {
     // A re-plan answered the corrections and dropped the optional fields it was not asked about
@@ -757,8 +763,8 @@ function strictPlanChannel(channelId) {
   return STRICT_PLAN_CHANNELS.has(String(channelId));
 }
 
-function buildPlanPrompt(sentences, corrections, channelId, styleRef = null) {
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, styleRef);
+function buildPlanPrompt(sentences, corrections, channelId, styleRef = null, direction = "") {
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, styleRef, direction);
   return `${staticPart}\n\n${dynamicPart}`;
 }
 
@@ -815,10 +821,17 @@ async function main() {
   const refParts = refFrames.files.length ? imageParts(refFrames.files) : [];
   if (refParts.length) console.log(`[planner] ch-${channelId}: reference frames attached to the planner call: ${refParts.length} from ${refFrames.source} (${refFrames.files.map((f) => f.split(/[\\/]/).slice(-3).join("/")).join(", ")})`);
   else console.log(`[planner] ch-${channelId}: reference_frames_missing — ${refFrames.why}; planning without them`);
-  const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref);
+  // The reference's creative direction as TEXT (scripts/reference/channel-direction.mjs): unlike the
+  // frames above it reaches every provider (Groq and Ollama get the same prompt, no images). Only what
+  // a committed analysis measured or evidenced; none -> logged and nothing added.
+  const dirLoaded = loadChannelDirection(channelId);
+  const dir = directionSummary(dirLoaded);
+  if (dir.text) console.log(`[planner] ch-${channelId}: reference direction attached: ${dir.lines} line(s), ${dir.chars} chars from ${dirLoaded.refs.map((r) => `${r.stem}(${r.doc.direction?.status})`).join(", ")}${dir.truncated ? " (capped)" : ""}${dirLoaded.missing.length ? `; missing: ${dirLoaded.missing.map((m) => m.video).join(", ")}` : ""}`);
+  else console.log(`[planner] ch-${channelId}: reference_direction_missing — ${dir.why}; planning without it`);
+  const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref, dir.text);
   // Context caching (owner's token spec 2026-10-03, A.1): the static part is uploaded once
   // and referenced; each Gemini call then sends only this video's sentences.
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, style.ref);
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, style.ref, dir.text);
   const estTok = (t) => Math.ceil(String(t || "").length / 3.6);
   let geminiCache = null;
   if (!forcedOllama()) {

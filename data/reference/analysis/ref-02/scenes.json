@@ -1,0 +1,58 @@
+{
+  "threshold": 0.3,
+  "duration_s": 5,
+  "cuts": [
+    2.067
+  ],
+  "scene_cuts": 1,
+  "shots": [
+    {
+      "index": 0,
+      "start": 0,
+      "end": 2.067
+    },
+    {
+      "index": 1,
+      "start": 2.067,
+      "end": 5
+    }
+  ],
+  "cadence": {
+    "events_per_10s": 8,
+    "cuts_per_10s": 4,
+    "p90_gap_s": 1.76,
+    "median_gap_s": 1,
+    "longest_hold": {
+      "start": 2.067,
+      "end": 5,
+      "length_s": 2.93
+    },
+    "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+    "novelty_cuts_at": [
+      0.2,
+      2
+    ]
+  },
+  "novelty_events": [
+    {
+      "t": 0.2,
+      "novelty": 0.371,
+      "cut": true
+    },
+    {
+      "t": 0.6,
+      "novelty": 0.114,
+      "cut": false
+    },
+    {
+      "t": 2,
+      "novelty": 1.449,
+      "cut": true
+    },
+    {
+      "t": 3,
+      "novelty": 0.042,
+      "cut": false
+    }
+  ]
+}

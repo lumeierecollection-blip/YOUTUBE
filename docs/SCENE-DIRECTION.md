@@ -20,6 +20,12 @@ for and how to tell whether it did its job. Schema: `schemas/scene-brief.json`.
   them as `ref:<video>#<frame>`. `measured-only` directions contribute nothing. Else the clone profile's measured grammar; else the brief says
   nothing was specified.
 - Rendered SFX (`manifest.sfx`) are recorded as the scene's cues. A reference cue is only placed (at the scene start) when nothing rendered.
+- Every brief carries a `composition:<visual_type>/<layout>` justification citing the narration (and the matched research refs);
+  when the reference direction is `complete` with a medium/high composition or typography observation, it cites those frames
+  (`ref:<video>#f###`) instead. Measured-only or absent reference direction is flagged on every brief
+  (`reference-direction-measured-only` / `no-reference-direction`) and nothing from it is cited. (All committed analyses are
+  measured-only as of 2026-10-22: see docs/REFERENCE-ANALYSIS.md.)
+- Matched evidence whose `source_url` is not in the script's `sources_used` is flagged `evidence-url-not-in-sources_used` (SCR-14).
 - Colour is never set here.
 
 ## Objective criteria and what they can really test

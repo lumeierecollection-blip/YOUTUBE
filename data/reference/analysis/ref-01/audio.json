@@ -1,0 +1,88 @@
+{
+  "has_audio": true,
+  "loudness": {
+    "integrated_lufs": -14.3,
+    "loudness_range_lu": 3.6,
+    "true_peak_dbfs": -0.5
+  },
+  "silences": [
+    {
+      "start": 75.22,
+      "end": 75.84
+    },
+    {
+      "start": 77.05,
+      "end": 79.39
+    }
+  ],
+  "candidate_cues": [
+    {
+      "t": 0.2,
+      "rms_db": -10.2,
+      "jump_db": 51.7
+    },
+    {
+      "t": 1.4,
+      "rms_db": -8.6,
+      "jump_db": 10.7
+    },
+    {
+      "t": 4.9,
+      "rms_db": -10,
+      "jump_db": 10.2
+    },
+    {
+      "t": 13.1,
+      "rms_db": -13.4,
+      "jump_db": 14.9
+    },
+    {
+      "t": 16.6,
+      "rms_db": -13,
+      "jump_db": 9.3
+    },
+    {
+      "t": 19.3,
+      "rms_db": -16.1,
+      "jump_db": 12
+    },
+    {
+      "t": 26.2,
+      "rms_db": -11,
+      "jump_db": 10.4
+    },
+    {
+      "t": 33.1,
+      "rms_db": -14.6,
+      "jump_db": 11.6
+    },
+    {
+      "t": 44.2,
+      "rms_db": -19.6,
+      "jump_db": 10.3
+    },
+    {
+      "t": 63.2,
+      "rms_db": -11,
+      "jump_db": 11.2
+    },
+    {
+      "t": 70.3,
+      "rms_db": -16.6,
+      "jump_db": 10.1
+    },
+    {
+      "t": 73.8,
+      "rms_db": -24.9,
+      "jump_db": 11.6
+    },
+    {
+      "t": 75.9,
+      "rms_db": -4.9,
+      "jump_db": 72.1
+    }
+  ],
+  "cue_method": "RMS per 0.1 s window; a cue is a window >= 9 dB above the previous 3 and above -40 dB. Level jumps only, sound type unknown.",
+  "transcript": null,
+  "why": "faster_whisper is not importable in this python"
+}

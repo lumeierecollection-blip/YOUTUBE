@@ -130,3 +130,75 @@ describe("locateInputs", () => {
     assert.match(locateInputs("C:/x/renders/1/a-shorts-shorts-2026-10-22.mp4", join(ROOT, "nowhere")).skip, /not found/);
   });
 });
+
+// Every scene must justify itself (owner's direction brief, 2026-10-22): the ten fields, validated against
+// schemas/scene-brief.json, on a second real committed script, plus a rationale tied to the narration and,
+// where one exists, to an evidenced reference observation. Where the reference is measured-only, it says so.
+describe("scene briefs justify every choice (real script: aberfan)", async () => {
+  const Ajv = (await import("ajv")).default;
+  const validate = new Ajv({ allErrors: true, strict: false }).compile(JSON.parse(readFileSync(join(ROOT, "schemas", "scene-brief.json"), "utf8")));
+  const A = (f) => JSON.parse(readFileSync(join(ROOT, "data", "research", "1", f), "utf8"));
+  const s2 = A("aberfan-marks-60-years-since-coal-tip-collapse-shorts-script.json");
+  const r2 = A("aberfan-marks-60-years-since-coal-tip-collapse.json");
+  const sents = s2.sections.flatMap((s) => s.voiceover.match(/[^.?!]+[.?!]/g).map((x) => x.trim()));
+  const m2 = { video: "aberfan-marks-60-years-since-coal-tip-collapse-shorts-shorts-2026-10-22.mp4", fps: 30, engine: "canvas",
+    beats: sents.map((t, i) => ({ index: i, start_sec: i * 3, duration_sec: 3, canvas: { sentence: t, visual_type: /\d/.test(t) ? "COUNTER" : "TYPE", composition: /\d/.test(t) ? "STAT" : "STATEMENT" } })) };
+  const p2 = { beats: sents.map((_, i) => ({ index: i, named_entities: /Aberfan/.test(sents[i]) ? [{ type: "place", name: "Aberfan" }] : [], text_entrance: "POP_SOFT" })) };
+  const refDoc = JSON.parse(readFileSync(join(ROOT, "data", "reference", "analysis", "ref-01", "direction.json"), "utf8"));   // committed, vision complete (qa-proof run 39816705908)
+  const refMeasured = JSON.parse(readFileSync(join(ROOT, "data", "reference", "analysis", "ref-02", "direction.json"), "utf8"));   // committed, measured-only
+  const FIELDS = ["narrative_purpose", "source_evidence", "asset_requirements", "timing", "composition", "text", "animation", "transition", "sound_cues", "acceptance_criteria", "justification"];
+
+  it("every brief carries the ten direction fields and validates against the schema", () => {
+    const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {}, referenceDirection: refDoc });
+    assert.equal(b.length, sents.length);
+    assert.ok(validate(b), JSON.stringify(validate.errors?.slice(0, 3)));
+    for (const x of b) for (const f of FIELDS) assert.ok(x[f] !== undefined && x[f] !== null, `${x.scene_id} lacks ${f}`);
+    assert.ok(b.every((x) => x.timing.start != null && x.timing.end > x.timing.start));
+  });
+
+  it("evidence URLs come from research and are checked against the script's sources_used", () => {
+    const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {} });
+    const urls = new Set([...(r2.key_facts || []).map((f) => f.source_url), ...(r2.numbers || []).map((n) => n.source_url)]);
+    assert.ok(b.some((x) => x.source_evidence.length), "a real sentence matched real research");
+    for (const x of b) for (const e of x.source_evidence) assert.ok(urls.has(e.source_url));
+    const missing = buildSceneBriefs({ script: { ...s2, sources_used: [] }, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {} });
+    assert.ok(missing.filter((x) => x.source_evidence.length).every((x) => x.flags.includes("evidence-url-not-in-sources_used")));
+  });
+
+  it("the real ref-01 vision analysis is cited by frame in the composition rationale", () => {
+    assert.equal(refDoc.direction.status, "complete");
+    const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {}, referenceDirection: refDoc });
+    for (const x of b) {
+      const c = x.justification.find((j) => j.choice.startsWith("composition:"));
+      assert.ok(c && c.evidence.includes("narration"), x.scene_id);
+      assert.ok(c.evidence.some((e) => /^ref:ref-01#f\d{3}$/.test(e)), `${x.scene_id} cites a ref-01 frame`);
+      assert.ok(!x.flags.includes("reference-direction-measured-only"));
+    }
+  });
+
+  it("the composition rationale cites the narration; a measured-only reference is flagged, never cited", () => {
+    assert.equal(refMeasured.direction.status, "measured-only");
+    const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {}, referenceDirection: refMeasured });
+    for (const x of b) {
+      const c = x.justification.find((j) => j.choice.startsWith("composition:"));
+      assert.ok(c && c.evidence.includes("narration"), x.scene_id);
+      assert.match(c.because, /no usable reference composition observation/);
+      assert.ok(x.flags.includes("reference-direction-measured-only"));
+      assert.ok(!JSON.stringify(x.justification).includes("ref:"), "measured-only: no ref citation");
+    }
+    assert.ok(buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {} }).every((x) => x.flags.includes("no-reference-direction")));
+  });
+
+  it("with an evidenced reference composition observation the rationale cites its frames", () => {
+    const complete = { source: { file: "ref-01.mp4" }, direction: { status: "complete" }, transitions: [], sound_cues: [],
+      composition: [{ text: "figure fills the lower two thirds, label top-left", confidence: "high", evidence: ["f012"] }, { text: "guess", confidence: "low", evidence: ["f001"] }] };
+    const b = buildSceneBriefs({ script: s2, research: r2, plan: p2, manifest: m2, channel: {}, grammar: {}, referenceDirection: complete });
+    assert.ok(validate(b), JSON.stringify(validate.errors?.slice(0, 3)));
+    for (const x of b) {
+      const c = x.justification.find((j) => j.choice.startsWith("composition:"));
+      assert.deepEqual(c.evidence, ["narration", "ref:ref-01#f012"]);
+      assert.ok(!c.because.includes("guess"));
+      assert.ok(!x.flags.some((f) => f.startsWith("reference-direction") || f === "no-reference-direction"));
+    }
+  });
+});

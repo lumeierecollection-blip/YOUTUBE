@@ -124,9 +124,14 @@ export function buildSceneBriefs({ script, research, plan, manifest, channel, gr
   const refName = referenceDirection?.source?.file ? String(referenceDirection.source.file).replace(/^.*[\\/]/, "").replace(/\.[^.]+$/, "") : null;
   const complete = referenceDirection && referenceDirection.direction?.status !== "measured-only";
   const refUse = {
+    composition: complete ? [...(referenceDirection.composition || []), ...(referenceDirection.typography || [])].filter(usableObs) : [],
     transitions: complete ? (referenceDirection.transitions || []).filter(usableObs) : [],
     sounds: complete ? (referenceDirection.sound_cues || []).filter((c) => usableObs(c) && Number.isFinite(c.t)) : [],
   };
+  // Where the reference direction stops, say so on every brief (never filled in): none, or measured-only
+  // (numbers but no observation a scene could cite).
+  const refFlag = !referenceDirection ? "no-reference-direction" : !complete ? "reference-direction-measured-only" : null;
+  const sourcesUsed = Array.isArray(script?.sources_used) ? new Set(script.sources_used) : null;
   const briefs = [];
   for (let i = 0; i < n; i++) {
     const mb = mBeats[i] || {};
@@ -141,6 +146,10 @@ export function buildSceneBriefs({ script, research, plan, manifest, channel, gr
     const purpose = purposeOf(section, narration, i, n, matched);
     const source_evidence = matched.map(({ fact, source_url, ref }) => ({ fact, source_url, ref }));
     if (!source_evidence.length) flags.push("no-research-evidence-for-sentence");
+    // SCR-14: a script's claims trace to sources_used. Evidence matched from research whose URL the script
+    // did not list is reported, not dropped (the research fact is real; the script's citation is missing).
+    if (sourcesUsed && source_evidence.some((e) => !sourcesUsed.has(e.source_url))) flags.push("evidence-url-not-in-sources_used");
+    if (refFlag) flags.push(refFlag);
     const start = Number.isFinite(mb.start_sec) ? mb.start_sec : null;
     const end = start != null && Number.isFinite(mb.duration_sec) ? +(start + mb.duration_sec).toFixed(2) : null;
     const ww = windowWords(wordTimings, start, end);
@@ -165,6 +174,15 @@ export function buildSceneBriefs({ script, research, plan, manifest, channel, gr
 
     const justification = [{ choice: `purpose:${purpose}`, because: `section "${section ?? "unknown"}" and the sentence role${matched.some((m) => m.figure) ? " (states a researched figure)" : ""}`, evidence: ["narration", ...matched.map((m) => m.ref)] }];
     if (reqs[0].kind !== "none") justification.push({ choice: `assets:${reqs.map((r) => r.kind).join("+")}`, because: "the sentence names these things; people and places need a verified real photo", evidence: ["narration"] });
+    const vtype = canvas?.visual_type || mb.visual_type || pb.visual_type || null;
+    const layout = canvas?.composition || pb.canvas_composition || null;
+    if (vtype || layout) {
+      const states = matched.some((m) => m.figure) ? "states a researched figure" : reqs[0].kind !== "none" ? `names ${reqs.map((r) => r.entity || r.kind).join(", ")}` : "states no figure or named thing";
+      const co = refUse.composition[i % Math.max(1, refUse.composition.length)];
+      justification.push(co
+        ? { choice: `composition:${[vtype, layout].filter(Boolean).join("/")}`, because: `the sentence ${states}; reference ${refName}: "${String(co.text).slice(0, 100)}" (${co.confidence})`, evidence: ["narration", ...co.evidence.map((f) => `ref:${refName}#${f}`)] }
+        : { choice: `composition:${[vtype, layout].filter(Boolean).join("/")}`, because: `the sentence ${states}; no usable reference composition observation`, evidence: ["narration", ...matched.map((m) => m.ref)] });
+    }
     if (tr.just) justification.push(tr.just);
     if (soundJust) justification.push(soundJust);
     if (laws.gap_max_s != null) justification.push({ choice: `max_hold:${laws.gap_max_s}s`, because: "measured reference law: no wait is longer", evidence: ["grammar:gap_max_s"] });

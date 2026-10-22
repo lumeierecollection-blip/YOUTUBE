@@ -1,0 +1,756 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file": "ref-01.mp4",
+    "size_bytes": 7650146
+  },
+  "direction": {
+    "status": "complete",
+    "why": null,
+    "model": null,
+    "provider": "gemini"
+  },
+  "measured": {
+    "metadata": {
+      "duration_s": 79.39,
+      "fps": 30,
+      "width": 720,
+      "height": 1280,
+      "aspect": 0.5625,
+      "orientation": "vertical",
+      "codec": "h264",
+      "has_audio": true,
+      "audio_sample_rate": 44100,
+      "audio_channels": 2,
+      "audio_codec": "aac"
+    },
+    "cuts": [
+      4.5,
+      13.367,
+      14.733,
+      19.267,
+      26.767,
+      28.667,
+      42.567,
+      46.7,
+      49.5,
+      53.833,
+      54.833,
+      63.167,
+      64.467,
+      66.067,
+      67.533,
+      70.267
+    ],
+    "cadence": {
+      "events_per_10s": 11.97,
+      "cuts_per_10s": 4.91,
+      "p90_gap_s": 1.7,
+      "median_gap_s": 0.4,
+      "longest_hold": {
+        "start": 28.667,
+        "end": 42.567,
+        "length_s": 13.9
+      },
+      "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+      "novelty_cuts_at": [
+        4.6,
+        6.6,
+        7,
+        7.8,
+        8.6,
+        9.4,
+        10.2,
+        11.6,
+        13.4,
+        14.8,
+        19.2,
+        19.6,
+        21,
+        22.4,
+        22.8,
+        26.8,
+        28.6,
+        29.4,
+        32.2,
+        35.6,
+        39.8,
+        42.6,
+        46.8,
+        47.2,
+        47.6,
+        48,
+        49.6,
+        53.8,
+        56,
+        56.4,
+        63.2,
+        64.4,
+        66,
+        67.6,
+        68.8,
+        70.2,
+        73.8,
+        74.8,
+        75.4
+      ]
+    },
+    "audio": {
+      "loudness": {
+        "integrated_lufs": -14.3,
+        "loudness_range_lu": 3.6,
+        "true_peak_dbfs": -0.5
+      },
+      "silences": [
+        {
+          "start": 75.22,
+          "end": 75.84
+        },
+        {
+          "start": 77.05,
+          "end": 79.39
+        }
+      ],
+      "candidate_cues": [
+        {
+          "t": 0.2,
+          "rms_db": -10.2,
+          "jump_db": 51.7
+        },
+        {
+          "t": 1.4,
+          "rms_db": -8.6,
+          "jump_db": 10.7
+        },
+        {
+          "t": 4.9,
+          "rms_db": -10,
+          "jump_db": 10.2
+        },
+        {
+          "t": 13.1,
+          "rms_db": -13.4,
+          "jump_db": 14.9
+        },
+        {
+          "t": 16.6,
+          "rms_db": -13,
+          "jump_db": 9.3
+        },
+        {
+          "t": 19.3,
+          "rms_db": -16.1,
+          "jump_db": 12
+        },
+        {
+          "t": 26.2,
+          "rms_db": -11,
+          "jump_db": 10.4
+        },
+        {
+          "t": 33.1,
+          "rms_db": -14.6,
+          "jump_db": 11.6
+        },
+        {
+          "t": 44.2,
+          "rms_db": -19.6,
+          "jump_db": 10.3
+        },
+        {
+          "t": 63.2,
+          "rms_db": -11,
+          "jump_db": 11.2
+        },
+        {
+          "t": 70.3,
+          "rms_db": -16.6,
+          "jump_db": 10.1
+        },
+        {
+          "t": 73.8,
+          "rms_db": -24.9,
+          "jump_db": 11.6
+        },
+        {
+          "t": 75.9,
+          "rms_db": -4.9,
+          "jump_db": 72.1
+        }
+      ],
+      "transcript": null,
+      "transcript_why": "faster_whisper is not importable in this python"
+    }
+  },
+  "frames_sent": [
+    "f001",
+    "f002",
+    "f003",
+    "f005",
+    "f006",
+    "f007",
+    "f008",
+    "f009",
+    "f010",
+    "f011",
+    "f012",
+    "f013",
+    "f014",
+    "f016",
+    "f017",
+    "f018",
+    "f021",
+    "f022",
+    "f023",
+    "f024",
+    "f026",
+    "f028",
+    "f030",
+    "f032",
+    "f034",
+    "f035",
+    "f036",
+    "f038",
+    "f039",
+    "f040",
+    "f041",
+    "f042",
+    "f043",
+    "f044",
+    "f045",
+    "f047",
+    "f048",
+    "f049",
+    "f050",
+    "f052",
+    "f054",
+    "f056",
+    "f058",
+    "f059",
+    "f060"
+  ],
+  "typography": [
+    {
+      "text": "Did ü know 1940s folks made their typewriter Emojis?",
+      "evidence": [
+        "f001",
+        "f002",
+        "f003"
+      ],
+      "confidence": "high",
+      "families": [
+        "Serif"
+      ],
+      "weights": [
+        "Regular",
+        "Italic",
+        "Bold"
+      ],
+      "case": "Mixed Case",
+      "sizes": "Medium, Large",
+      "role": "Title/Headline",
+      "entrance": "Sequential lines typing on"
+    },
+    {
+      "text": "Fast forward a hundred years...",
+      "evidence": [
+        "f021",
+        "f022"
+      ],
+      "confidence": "high",
+      "families": [
+        "Serif"
+      ],
+      "weights": [
+        "Italic"
+      ],
+      "case": "Mixed Case",
+      "sizes": "Medium",
+      "role": "Narrative transition",
+      "entrance": "Fade in over typewriter keys"
+    }
+  ],
+  "composition": [
+    {
+      "text": "Centered vertical composition with typewriter illustrations and retro mobile UI elements.",
+      "evidence": [
+        "f001",
+        "f010",
+        "f012",
+        "f021",
+        "f030"
+      ],
+      "confidence": "high",
+      "grid": "Single-column vertical center",
+      "safe_zones": "Top and bottom margins clear except for standard platform UI",
+      "density": "Balanced"
+    }
+  ],
+  "pacing": {
+    "measured": {
+      "duration_s": 79.39,
+      "scene_cuts": 16,
+      "events_per_10s": 11.97,
+      "cuts_per_10s": 4.91,
+      "p90_gap_s": 1.7,
+      "median_gap_s": 0.4,
+      "longest_hold": {
+        "start": 28.667,
+        "end": 42.567,
+        "length_s": 13.9
+      },
+      "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+      "novelty_cuts_at": [
+        4.6,
+        6.6,
+        7,
+        7.8,
+        8.6,
+        9.4,
+        10.2,
+        11.6,
+        13.4,
+        14.8,
+        19.2,
+        19.6,
+        21,
+        22.4,
+        22.8,
+        26.8,
+        28.6,
+        29.4,
+        32.2,
+        35.6,
+        39.8,
+        42.6,
+        46.8,
+        47.2,
+        47.6,
+        48,
+        49.6,
+        53.8,
+        56,
+        56.4,
+        63.2,
+        64.4,
+        66,
+        67.6,
+        68.8,
+        70.2,
+        73.8,
+        74.8,
+        75.4
+      ]
+    },
+    "observations": [
+      {
+        "text": "Pacing aligns with frequent text line reveals and rapid archival photo/illustration montages matching scene cuts.",
+        "evidence": [
+          "f001",
+          "f002",
+          "f003",
+          "f006",
+          "f007"
+        ],
+        "confidence": "high"
+      }
+    ]
+  },
+  "transitions": [
+    {
+      "text": "Hard cuts between archival typewritten art, typewriter overhead shots, and mobile phone UI screens.",
+      "evidence": [
+        "f005",
+        "f010",
+        "f012",
+        "f021"
+      ],
+      "confidence": "high",
+      "type": "Cut",
+      "duration_s": 0,
+      "at_cuts": [
+        4.5,
+        13.367,
+        14.733,
+        19.267,
+        26.767,
+        28.667,
+        42.567,
+        46.7,
+        49.5,
+        53.833,
+        54.833,
+        63.167,
+        64.467,
+        66.067,
+        67.533,
+        70.267
+      ]
+    }
+  ],
+  "camera_movement": [
+    {
+      "text": "Static framing across all shots with occasional close-up scaling or graphic element reveals.",
+      "evidence": [
+        "f001",
+        "f005",
+        "f010",
+        "f021"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "effects": [
+    {
+      "text": "Vintage paper texture overlay, scanlines on screen close-ups, and typewriter mechanical motion.",
+      "evidence": [
+        "f001",
+        "f005",
+        "f012",
+        "f024"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "color": [
+    {
+      "text": "Muted cream/off-white paper backgrounds, monochrome black and white typewriter imagery, and retro blue/green mobile LCD screens.",
+      "evidence": [
+        "f001",
+        "f005",
+        "f010",
+        "f012",
+        "f017"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "sound_cues": [
+    {
+      "t": 0.2,
+      "text": "Initial typewriter image and text appearance on cream paper.",
+      "evidence": [
+        "f001"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "t": 4.9,
+      "text": "Transition to overhead live-action typewriter typing shot.",
+      "evidence": [
+        "f005"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "t": 13.1,
+      "text": "Cut to close-up of typewriter body.",
+      "evidence": [
+        "f010"
+      ],
+      "confidence": "medium"
+    }
+  ],
+  "narration_visual": [
+    {
+      "text": "Visual narrative traces the history of typographic art from 1940s typewriters to early digital kaomojis, pixel art, and modern emoji keyboards.",
+      "evidence": [
+        "f003",
+        "f008",
+        "f030",
+        "f042",
+        "f044"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "storyboard": [
+    {
+      "scene_id": "s1",
+      "start": 0,
+      "end": 4.5,
+      "frames": [
+        "f001",
+        "f002",
+        "f003"
+      ],
+      "description": "Title sequence introducing the topic with typewritten text and a vintage typewriter illustration.",
+      "technique": "Text fade/type-on with archival paper background",
+      "evidence": [
+        "f001",
+        "f002",
+        "f003"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s2",
+      "start": 4.5,
+      "end": 13.367,
+      "frames": [
+        "f005",
+        "f006",
+        "f007",
+        "f008",
+        "f009"
+      ],
+      "description": "Overhead live-action shot of hands using a typewriter, followed by archival typewriter art examples.",
+      "technique": "Live-action footage mixed with scanned vintage illustrations",
+      "evidence": [
+        "f005",
+        "f006",
+        "f007",
+        "f008",
+        "f009"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s3",
+      "start": 13.367,
+      "end": 14.733,
+      "frames": [
+        "f010"
+      ],
+      "description": "Product shot close-up of a vintage portable typewriter.",
+      "technique": "Static photographic shot",
+      "evidence": [
+        "f010"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s4",
+      "start": 14.733,
+      "end": 19.267,
+      "frames": [
+        "f012",
+        "f013",
+        "f014"
+      ],
+      "description": "Retro mobile phone screen displaying early text characters.",
+      "technique": "UI mockup graphic display",
+      "evidence": [
+        "f012",
+        "f013",
+        "f014"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s5",
+      "start": 19.267,
+      "end": 26.767,
+      "frames": [
+        "f017",
+        "f018"
+      ],
+      "description": "Historical document clippings and typographic art layouts.",
+      "technique": "Archival document montage",
+      "evidence": [
+        "f017",
+        "f018"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s6",
+      "start": 26.767,
+      "end": 28.667,
+      "frames": [
+        "f021",
+        "f022"
+      ],
+      "description": "Typewriter keyboard macro shot with narrative text overlay.",
+      "technique": "Macro photography with typographic overlay",
+      "evidence": [
+        "f021",
+        "f022"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s7",
+      "start": 28.667,
+      "end": 42.567,
+      "frames": [
+        "f024",
+        "f026",
+        "f028",
+        "f030"
+      ],
+      "description": "Early computer terminal interface and mobile screen showing text symbols.",
+      "technique": "Retro UI screen recordings/mockups",
+      "evidence": [
+        "f024",
+        "f026",
+        "f028",
+        "f030"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s8",
+      "start": 42.567,
+      "end": 46.7,
+      "frames": [
+        "f032"
+      ],
+      "description": "Mobile phone screen showcasing Japanese kaomoji options.",
+      "technique": "Phone UI interface mockup",
+      "evidence": [
+        "f032"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s9",
+      "start": 46.7,
+      "end": 49.5,
+      "frames": [
+        "f034",
+        "f035"
+      ],
+      "description": "Flip phones decorated with stickers and kaomoji annotations.",
+      "technique": "Product photography collage",
+      "evidence": [
+        "f034",
+        "f035"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s10",
+      "start": 49.5,
+      "end": 53.833,
+      "frames": [
+        "f036",
+        "f038",
+        "f039"
+      ],
+      "description": "Retro desktop computer interface showing weather forecast widgets.",
+      "technique": "Vintage OS mockup animation",
+      "evidence": [
+        "f036",
+        "f038",
+        "f039"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s11",
+      "start": 53.833,
+      "end": 54.833,
+      "frames": [
+        "f040",
+        "f041"
+      ],
+      "description": "Grid of pixel art icons expanding across the screen.",
+      "technique": "Pixel icon grid animation",
+      "evidence": [
+        "f040",
+        "f041"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s12",
+      "start": 54.833,
+      "end": 63.167,
+      "frames": [
+        "f042",
+        "f043"
+      ],
+      "description": "Detailed grid of colored pixel emojis and symbols.",
+      "technique": "Pixel asset layout",
+      "evidence": [
+        "f042",
+        "f043"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s13",
+      "start": 63.167,
+      "end": 64.467,
+      "frames": [
+        "f044",
+        "f045"
+      ],
+      "description": "Modern smartphone emoji keyboard interface introduction.",
+      "technique": "UI composition",
+      "evidence": [
+        "f044",
+        "f045"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s14",
+      "start": 64.467,
+      "end": 66.067,
+      "frames": [
+        "f048",
+        "f049"
+      ],
+      "description": "Transition back to typewriter mechanics.",
+      "technique": "Typewriter macro shot",
+      "evidence": [
+        "f048",
+        "f049"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s15",
+      "start": 66.067,
+      "end": 67.533,
+      "frames": [
+        "f050",
+        "f052"
+      ],
+      "description": "Comparison between typewriter and mobile text interface.",
+      "technique": "Split/sequential screen cuts",
+      "evidence": [
+        "f050",
+        "f052"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s16",
+      "start": 67.533,
+      "end": 70.267,
+      "frames": [
+        "f054",
+        "f056"
+      ],
+      "description": "Archival typewriter character portrait collection.",
+      "technique": "Vintage document display",
+      "evidence": [
+        "f054",
+        "f056"
+      ],
+      "confidence": "high"
+    },
+    {
+      "scene_id": "s17",
+      "start": 70.267,
+      "end": 79.39,
+      "frames": [
+        "f058",
+        "f059",
+        "f060"
+      ],
+      "description": "Concluding mobile screen and fade to black outro.",
+      "technique": "UI screen fade out",
+      "evidence": [
+        "f058",
+        "f059",
+        "f060"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "rejected_observations": []
+}
