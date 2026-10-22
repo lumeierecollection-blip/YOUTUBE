@@ -2,6 +2,8 @@ name: visual-director-proof
 
 # Proof, on GitHub runners only, of the visual director loop (docs/VISUAL-DIRECTOR.md):
 # direct -> gate -> materials -> render -> frames -> critic -> rebuild REBUILD/DELETE scenes -> critic again.
+# Proof scripts: Aberfan (ch-1, history) and Homeplus (ch-8, business). Great Fire (ch-4) was dropped: its
+# script has no sources_used and its research no URLs, so no scene could cite evidence (CLAUDE.md hard rule).
 # Read-only: nothing is published, pushed or uploaded to YouTube (no OAuth secrets here).
 # Evidence = this run's artifact visual-director-<run_id> (direction/materials/critic per round, MP4s,
 # frames, contact sheets, comparison.md) and the step summary (every scene's verdict per round).
@@ -59,7 +61,7 @@ jobs:
             R="${ONE%-shorts-script.json}.json"
             echo "list=[{\"script\":\"$ONE\",\"research\":\"$R\"}]" >> "$GITHUB_OUTPUT"
           else
-            echo 'list=[{"script":"data/research/4/great-fire-of-london-shorts-script.json","research":"data/research/4/great-fire-of-london.json"},{"script":"data/research/1/aberfan-marks-60-years-since-coal-tip-collapse-shorts-script.json","research":"data/research/1/aberfan-marks-60-years-since-coal-tip-collapse.json"}]' >> "$GITHUB_OUTPUT"
+            echo 'list=[{"script":"data/research/1/aberfan-marks-60-years-since-coal-tip-collapse-shorts-script.json","research":"data/research/1/aberfan-marks-60-years-since-coal-tip-collapse.json"},{"script":"data/research/8/homeplus-bankruptcy-crisis-october-2026-shorts-script.json","research":"data/research/8/homeplus-bankruptcy-crisis-october-2026.json"}]' >> "$GITHUB_OUTPUT"
           fi
 
   loop:
