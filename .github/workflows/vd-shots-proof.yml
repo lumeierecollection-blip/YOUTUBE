@@ -1,0 +1,124 @@
+name: vd-shots-proof
+
+# Proof of the visual-director SHOT RENDERER (src/skills/remotion-render/shots/, DirectedShots composition):
+# renders the fixture direction (scripts/__tests__/fixtures/vd/shots/fixture-direction.json, committed Commons
+# images from public/b-roll/ch-fixture) through scripts/visual-director/render-direction.mjs in PROOF mode, then
+# extracts frames every 0.5 s and at 5 points inside every shot (first frame, 25/50/75%, last frame), and tiles
+# them into labelled contact sheets. The MP4, sheets and sidecars are the artifact `vd-shots-<run id>`.
+#
+# Known limits stated in the artifact: there is no committed voiceover with word timings, so the track is SILENT
+# (ffmpeg anullsrc) and word timings are SYNTHESISED evenly per beat; the fixture's sulfur material is deliberately
+# "unverified" so the proof placeholder is exercised. Read-only: no secrets, no publish.
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/vd-shots]
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe + a label font
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg fonts-dejavu-core
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Unit tests (renderer maths, production refusal)
+        run: node --test scripts/__tests__/vd-shots*.test.js
+
+      - name: Production mode must refuse the fixture (it has an unverified material)
+        run: |
+          set +e
+          node scripts/visual-director/render-direction.mjs --direction scripts/__tests__/fixtures/vd/shots/fixture-direction.json --out out/prod/refused.mp4 --frames-only
+          code=$?
+          set -e
+          echo "production exit code: $code"
+          test "$code" = "2"
+
+      - name: Render the fixture (proof mode)
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          RENDER_CONCURRENCY: "4"
+        run: |
+          node scripts/visual-director/render-direction.mjs --direction scripts/__tests__/fixtures/vd/shots/fixture-direction.json --out out/vd/fixture.mp4 --proof
+          ls -la out/vd
+
+      - name: Frames + contact sheets
+        run: |
+          set -e
+          FONT=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf
+          mkdir -p out/vd/frames/half out/vd/frames/shots
+          grab () { # $1 time-s  $2 out.png  $3 label
+            ffmpeg -loglevel error -y -ss "$1" -i out/vd/fixture.mp4 -frames:v 1 \
+              -vf "scale=216:384,drawbox=y=ih-34:w=iw:h=34:color=black@0.8:t=fill,drawtext=fontfile=$FONT:text='$3':x=6:y=h-28:fontsize=17:fontcolor=white" "$2"
+          }
+          # every 0.5 s
+          dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 out/vd/fixture.mp4)
+          n=0
+          for t in $(awk -v d="$dur" 'BEGIN{for(t=0.25;t<d;t+=0.5) printf "%.2f\n", t}'); do
+            grab "$t" "out/vd/frames/half/$(printf %03d $n).png" "t=${t}s"; n=$((n+1))
+          done
+          # 5 points inside every shot: first frame, 25/50/75 %, last frame (shot boundaries from the sidecar)
+          node -e '
+            const s = require("./out/vd/fixture.shots.json");
+            for (const sh of s.shots) for (const [k, q] of [["in",0],["25",0.25],["50",0.5],["75",0.75],["out",1]]) {
+              const f = q === 0 ? sh.from : q === 1 ? sh.to - 1 : Math.round(sh.from + (sh.to - sh.from) * q);
+              console.log([((f + 0.5) / s.fps).toFixed(3), `${sh.id} ${k} f${f}`].join("|"));
+            }' > out/vd/frames/shot-points.txt
+          n=0
+          while IFS='|' read -r t label; do
+            grab "$t" "out/vd/frames/shots/$(printf %03d $n).png" "$label"; n=$((n+1))
+          done < out/vd/frames/shot-points.txt
+          # sheets: 5 shots x 5 points per sheet (1080x1920), and the 0.5 s strip 5 x 5 per sheet
+          ffmpeg -loglevel error -y -framerate 1 -start_number 0 -i out/vd/frames/shots/%03d.png -vf "tile=5x5:padding=0" -frames:v 2 out/vd/sheet-shots-%d.png || true
+          ffmpeg -loglevel error -y -framerate 1 -start_number 0 -i out/vd/frames/half/%03d.png -vf "tile=5x5:padding=0" out/vd/sheet-half-%d.png || true
+          ls -la out/vd
+          {
+            echo "## vd-shots-proof"
+            echo "- audio: $(node -p 'require("./out/vd/fixture.shots.json").audio'), word timings: $(node -p 'require("./out/vd/fixture.shots.json").words')"
+            echo "- shots: $(node -p 'require("./out/vd/fixture.shots.json").shots.map(s=>s.id+" "+s.move+"/"+s.family).join(", ")')"
+            echo "- refused in production: $(node -p 'JSON.stringify(require("./out/vd/fixture.shots.json").refused)')"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vd-shots-${{ github.run_id }}
+          path: |
+            out/vd/fixture.mp4
+            out/vd/*.json
+            out/vd/sheet-*.png
+            out/vd/frames/shots/*.png
+            out/vd/frames/shot-points.txt
+          if-no-files-found: warn
+          retention-days: 14

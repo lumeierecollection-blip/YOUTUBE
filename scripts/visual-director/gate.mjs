@@ -276,9 +276,9 @@ export function implicatedBeats(failures, direction) {
 
 // ── CLI ───────────────────────────────────────────────────────────
 const isMain = process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href;
-if (isMain) {
+// Not a top-level await: direct.mjs imports this module, so awaiting it here would deadlock the cycle.
+if (isMain) import("./direct.mjs").then(({ contextFor }) => {
   const arg = (k) => { const i = process.argv.indexOf(`--${k}`); return i > -1 ? process.argv[i + 1] : null; };
-  const { contextFor } = await import("./direct.mjs");
   const dirPath = arg("direction"), scriptPath = arg("script");
   if (!dirPath || !scriptPath || !existsSync(dirPath)) { console.error("usage: gate.mjs --direction <direction.json> --script <script.json> [--research <research.json>] [--tts <dir>]"); process.exit(2); }
   const ctx = contextFor({ scriptPath, researchPath: arg("research"), ttsDir: arg("tts") });
@@ -286,4 +286,4 @@ if (isMain) {
   for (const f of fails) console.log(`[vd-gate] beat ${f.beat_index ?? "*"} ${f.rule}: ${f.detail}`);
   console.log(`[vd-gate] ${fails.length} failure(s)`);
   process.exit(fails.length ? 1 : 0);
-}
+});
