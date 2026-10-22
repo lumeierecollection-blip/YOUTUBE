@@ -35,7 +35,7 @@ export function materialsCritique(missing, round) {
   return { schema_version: 1, round, source: "materials", status: "complete",
     scenes: missing.map((m) => ({ beat_index: m.beat_index, status: "answered", verdict: "REBUILD", effective_verdict: "REBUILD",
       answer: { beat_index: m.beat_index, verdict: "REBUILD", delete_reason: null,
-        what_to_change: `These essential materials could not be found or verified: ${m.missing.map((x) => typeof x === "string" ? x : (x.must_show || x.id || JSON.stringify(x))).join("; ")}. Rebuild the scene around what CAN be shown with real, verified material; never a look-alike.` } })) };
+        what_to_change: `These essential materials could not be found or verified: ${m.missing.map((x) => typeof x === "string" ? x : (x.must_show ? `"${x.must_show}"${x.why ? ` (${x.why})` : ""}` : (x.id || JSON.stringify(x)))).join("; ")}. Rebuild the scene around what CAN be shown with real, verified material; never a look-alike.` } })) };
 }
 
 /** Beats to re-direct after a critic pass. Pure; tested. */
@@ -129,7 +129,7 @@ export const realSteps = {
     writeFileSync(report, JSON.stringify({ ok: r.ok, exit: r.status, output: (r.stdout + r.stderr).slice(-8000) }, null, 2));
     return r;
   },
-  resolve: ({ direction, out, assetsDir, report, log }) => node(`${VD}/materials/resolve.mjs`, ["--direction", direction, "--out", out, "--assets-dir", assetsDir, "--report", report], log),
+  resolve: ({ direction, out, assetsDir, report, research, log }) => node(`${VD}/materials/resolve.mjs`, ["--direction", direction, "--out", out, "--assets-dir", assetsDir, "--report", report, ...(research ? ["--research", research] : [])], log),
   render: ({ direction, out, tts, channel, assetsDir, log }) => node(`${VD}/render-direction.mjs`, ["--direction", direction, "--out", out, "--tts", tts, "--channel", channel, "--assets-dir", assetsDir], log),
   frames: async ({ video, direction, outDir }) => (await import("./frames.mjs")).extractFrames({ video, direction, outDir }),
   critic: async ({ direction, index, round }) => (await import("./critic.mjs")).runCritic({ direction, index, round }),
@@ -185,7 +185,7 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
 
     // 3) materials; beats with essential material missing go back to the director once, before render
     let resolved = join(rd, "direction.resolved.json"), matReport = join(rd, "materials-report.json");
-    const m = await steps.resolve({ direction: dirPath, out: resolved, assetsDir, report: matReport, log });
+    const m = await steps.resolve({ direction: dirPath, out: resolved, assetsDir, report: matReport, research, log });
     if (!m.ok || !existsSync(resolved)) { rec.error = `materials resolve failed (exit ${m.status})`; report.stop_reason = rec.error; break; }
     const missing = existsSync(matReport) ? essentialMissing(readJson(matReport)) : [];
     rec.materials_missing = missing;
@@ -203,7 +203,7 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
         const g2 = await steps.gate({ direction: dir2, script, research, tts, log, report: join(rd, "gate.materials-redirect.json") });
         if (g2.ok) {
           const res2 = join(rd, "direction.resolved.2.json"), rep2 = join(rd, "materials-report.2.json");
-          const m2 = await steps.resolve({ direction: dir2, out: res2, assetsDir, report: rep2, log });
+          const m2 = await steps.resolve({ direction: dir2, out: res2, assetsDir, report: rep2, research, log });
           if (m2.ok && existsSync(res2)) {
             resolved = res2; matReport = rep2;
             rec.materials_redirected = ids;
