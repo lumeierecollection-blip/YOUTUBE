@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QA defect report",
+  "type": "object",
+  "required": ["video", "generated_at", "defects"],
+  "properties": {
+    "video": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "meta": { "type": "object" },
+    "defects": { "type": "array", "items": { "$ref": "#/definitions/defect" } }
+  },
+  "definitions": {
+    "defect": {
+      "type": "object",
+      "required": ["id", "check", "source", "severity", "scene_id", "beat_index", "t_start", "t_end", "frame_paths", "evidence", "expected", "actual", "repair", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "check": { "type": "string" },
+        "source": { "enum": ["objective", "vision", "audit"] },
+        "severity": { "enum": ["blocker", "major", "minor"] },
+        "scene_id": { "type": ["string", "null"] },
+        "beat_index": { "type": ["integer", "null"] },
+        "t_start": { "type": ["number", "null"] },
+        "t_end": { "type": ["number", "null"] },
+        "frame_paths": { "type": "array", "items": { "type": "string" } },
+        "evidence": { "type": "string" },
+        "expected": { "type": "string" },
+        "actual": { "type": "string" },
+        "repair": {
+          "type": ["object", "null"],
+          "required": ["kind", "params"],
+          "properties": { "kind": { "type": "string" }, "params": { "type": "object" } }
+        },
+        "status": { "enum": ["open", "repaired", "unresolved"] }
+      }
+    }
+  }
+}

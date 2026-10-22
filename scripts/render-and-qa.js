@@ -917,6 +917,9 @@ async function queueVideo({ verdict, videoPath, channelId, stage = null, check =
       verdict = "rejected"; stage = "place-gate"; check = pg.failures.map((f) => f.rule).join(",");
     }
   }
+  // ADVISORY (scripts/qa): objective checks + sidecars -> <stem>-defects.json/.md. Never changes the verdict or exit code.
+  try { (await import("./qa/advisory.mjs")).writeAdvisoryDefects(videoPath, { verdict }); }
+  catch (e) { console.log(`::warning::qa defect report failed for ${basename(videoPath)}: ${e?.stack || e}`); }
   const dest = QUEUE_DIRS[verdict];
   const stem = basename(videoPath, ".mp4");
   const pd = await probeDuration(videoPath).catch(() => null);
