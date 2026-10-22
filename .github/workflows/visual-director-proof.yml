@@ -172,6 +172,8 @@ jobs:
             data/tts/${{ env.CH }}
           if-no-files-found: warn
           retention-days: 14
+      - name: Fail the job when the loop did not finish a critic round
+        run: grep -q "loop exit 0" "out/vd/$STEM/loop-exit.txt"
 
   artifact:
     needs: loop
