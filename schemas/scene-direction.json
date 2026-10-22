@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "scene-direction.json",
+  "title": "Visual director output: one constructed scene per narration beat",
+  "description": "Contract between the visual director (scripts/visual-director/direct.mjs), the material resolver (scripts/visual-director/materials/), the shot renderer (src/skills/remotion-render/shots/) and the critic loop (scripts/visual-director/critic.mjs). A scene is CONSTRUCTED from the sentence's meaning: semantic model -> visual question -> mechanism -> shots -> materials -> camera -> animation -> typography. There is no field that selects a component or a 'visual type'. See docs/VISUAL-DIRECTOR.md.",
+  "type": "object",
+  "required": ["schema_version", "channel_id", "script", "beats"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "channel_id": { "type": "string" },
+    "script": { "type": "string", "description": "repo-relative path of the script JSON this direction was made from" },
+    "reference": { "type": ["string", "null"], "description": "stem of the reference analysis consulted (data/reference/analysis/<stem>), null when none" },
+    "model": { "type": ["string", "null"] },
+    "beats": { "type": "array", "minItems": 1, "items": { "$ref": "#/definitions/beat" } }
+  },
+  "definitions": {
+    "beat": {
+      "type": "object",
+      "required": ["beat_index", "sentence", "t_start", "t_end", "semantic", "visual_question", "mechanism", "shots", "mute_test"],
+      "additionalProperties": false,
+      "properties": {
+        "beat_index": { "type": "integer", "minimum": 0 },
+        "sentence": { "type": "string", "minLength": 1, "description": "the narration sentence, verbatim" },
+        "t_start": { "type": "number", "minimum": 0 },
+        "t_end": { "type": "number", "minimum": 0 },
+        "semantic": {
+          "type": "object",
+          "description": "What the sentence MEANS, before any visual is considered. Each field is a short plain-language phrase grounded in the sentence; null when the sentence genuinely has none.",
+          "required": ["subject", "state", "action", "relationship", "change", "consequence", "environment"],
+          "additionalProperties": false,
+          "properties": {
+            "subject": { "type": "string", "minLength": 1 },
+            "state": { "type": ["string", "null"] },
+            "action": { "type": ["string", "null"] },
+            "relationship": { "type": ["string", "null"] },
+            "change": { "type": ["string", "null"] },
+            "consequence": { "type": ["string", "null"] },
+            "environment": { "type": ["string", "null"] }
+          }
+        },
+        "visual_question": { "type": "string", "minLength": 10, "description": "the question an excellent motion designer asks of THIS sentence, e.g. 'how do you show a fragment physically cut out of a 70-metre cloth?'" },
+        "mechanism": {
+          "type": "object",
+          "required": ["family", "construction", "why"],
+          "additionalProperties": false,
+          "properties": {
+            "family": {
+              "enum": ["reveal", "separation", "assembly", "disassembly", "flow", "blockage", "leak", "transfer", "erosion", "substitution", "transformation", "constraint", "cause-effect", "feedback", "accumulation", "depletion", "scale-reveal", "context-reveal", "temporal-transformation", "comparative-transformation", "statement"],
+              "description": "the verb of the scene. 'statement' = typography carries the beat; capped (docs/VISUAL-DIRECTOR.md)."
+            },
+            "construction": { "type": "string", "minLength": 20, "description": "the one-off scene this sentence needs, described concretely: which real things, what happens to them, in what space" },
+            "why": { "type": "string", "minLength": 10, "description": "why this mechanism communicates this sentence's relationship/change, tied to the semantic fields" }
+          }
+        },
+        "shots": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "$ref": "#/definitions/shot" } },
+        "mute_test": { "type": "string", "minLength": 10, "description": "what a viewer with the sound OFF understands from this scene alone" },
+        "evidence": {
+          "type": "array",
+          "description": "source URLs (from the script's sources_used) that ground the fact this scene shows",
+          "items": { "type": "string" }
+        },
+        "reference_cues": {
+          "type": "array",
+          "description": "reference observations this scene borrows technique from, cited as '<stem>#fNNN'. Technique only, never content.",
+          "items": { "type": "string" }
+        },
+        "status": { "enum": ["directed", "rebuilt", "deleted"], "default": "directed" },
+        "critic_history": { "type": "array", "items": { "type": "object" } }
+      }
+    },
+    "shot": {
+      "type": "object",
+      "required": ["id", "duration_s", "camera", "materials", "action"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^b[0-9]+s[0-9]+$" },
+        "duration_s": { "type": "number", "exclusiveMinimum": 0 },
+        "camera": {
+          "type": "object",
+          "required": ["move", "from", "to", "motivation"],
+          "additionalProperties": false,
+          "properties": {
+            "move": { "enum": ["hold", "push-in", "pull-out", "pan", "tilt", "track", "reframe", "rack", "match-cut"] },
+            "from": { "type": "string", "description": "framing at shot start, e.g. 'extreme close on the cut edge of the cloth'" },
+            "to": { "type": "string", "description": "framing at shot end" },
+            "motivation": { "type": "string", "minLength": 8, "description": "why the camera moves this way FOR THIS mechanism (reveal -> close then pull out; scale -> detail then wide)" }
+          }
+        },
+        "materials": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/material" }
+        },
+        "action": { "type": "string", "minLength": 10, "description": "what physically happens to the materials during the shot (the mechanism in motion)" },
+        "text": {
+          "type": ["object", "null"],
+          "description": "typography SUPPORTS the image; it never substitutes for it",
+          "additionalProperties": false,
+          "properties": {
+            "words": { "type": "string", "maxLength": 60 },
+            "role": { "enum": ["key-word", "figure", "date", "name", "quote"] },
+            "placement": { "type": "string" },
+            "sync_word": { "type": ["string", "null"], "description": "the narration word the text lands on" }
+          },
+          "required": ["words", "role"]
+        },
+        "transition_out": { "enum": ["cut", "match-cut", "whip", "push-through", "hold"], "default": "cut" },
+        "sfx": { "type": ["string", "null"], "description": "a sound tied to a visual event in this shot, or null" }
+      }
+    },
+    "material": {
+      "type": "object",
+      "required": ["id", "kind", "must_show", "why", "search"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["archival-photo", "photo", "artwork-scan", "document-scan", "map", "footage-still", "logo", "object-cutout", "data"] },
+        "must_show": { "type": "string", "minLength": 6, "description": "what the picture must literally depict for this scene to work, e.g. 'the Bayeux Tapestry panel with Halley's comet'" },
+        "why": { "type": "string", "minLength": 6 },
+        "search": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string" }, "description": "search queries for licensed sources (Wikimedia Commons first)" },
+        "treatment": { "enum": ["full-bleed", "cutout", "inset-detail", "split", "mask"], "default": "full-bleed" },
+        "data": { "type": ["object", "null"], "description": "only for kind=data: the sourced values a genuine quantity comparison needs" },
+        "resolved": {
+          "type": ["object", "null"],
+          "description": "written by the material resolver, never by the director",
+          "additionalProperties": false,
+          "properties": {
+            "status": { "enum": ["verified", "unverified", "missing"] },
+            "file": { "type": ["string", "null"] },
+            "source_url": { "type": ["string", "null"] },
+            "license": { "type": ["string", "null"] },
+            "credit": { "type": ["string", "null"] },
+            "verdict": { "type": ["string", "null"], "description": "the vision verifier's one-line answer to must_show" }
+          },
+          "required": ["status"]
+        }
+      }
+    }
+  }
+}
