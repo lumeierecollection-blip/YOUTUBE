@@ -92,6 +92,18 @@ export function comparisonMarkdown(report, outDir) {
       `  - critic: ${neu?.answer?.visibly_happening || neu?.reason || "-"}`, ``);
   }
   if (!any) L.push(`_none_`);
+  const last = report.rounds.filter((r) => r.critic).slice(-1)[0];
+  if (last) {
+    L.push(``, `## Critic detail, round ${last.round}`, ``, `| beat | verdict | muted | template | material | camera | seen | change / delete reason |`, `|---|---|---|---|---|---|---|---|`);
+    const c = (x) => String(x ?? "").replace(/\|/g, "/").replace(/\n/g, " ").slice(0, 220);
+    for (const s of last.critic.scenes || []) {
+      const a = s.answer || {};
+      L.push(`| b${s.beat_index} | ${s.effective_verdict || s.status}${s.escalated ? " (escalated)" : ""} | ${a.understood_muted || "-"} | ${a.template_or_decorative?.answer || "-"} | ${a.material_believable_and_correct?.answer || "-"}: ${c(a.material_believable_and_correct?.why)} | ${a.camera_contributes?.answer || "-"} | ${c(a.visibly_happening || s.reason)} | ${c(a.delete_reason || a.what_to_change)} |`);
+    }
+    const w = last.critic.whole_video;
+    L.push(``, w?.answer ? `Whole video: template alternation **${w.answer.template_alternation}** (${c(w.answer.template_alternation_why)}); mute test **${w.answer.whole_mute_test}** (${c(w.answer.whole_mute_test_why)}); worst beats ${JSON.stringify(w.answer.worst_beats)}` : `Whole video: ${w?.status || "absent"} ${w?.reason || ""}`);
+    if (last.critic.usage_total) L.push(``, `Critic tokens (round ${last.round}): ${last.critic.usage_total.total_tokens} in ${last.critic.usage_total.calls} calls, model ${last.critic.model}`);
+  }
   return L.join("\n") + "\n";
 }
 
@@ -111,7 +123,12 @@ export const realSteps = {
   direct: ({ script, research, tts, channel, out, critique, beats, log }) =>
     node(`${VD}/direct.mjs`, ["--script", script, "--research", research, "--tts", tts, "--channel", channel, "--out", out,
       ...(critique ? ["--critique", critique, "--beats", beats.join(",")] : [])], log),
-  gate: ({ direction, script, tts, log, report }) => node(`${VD}/gate.mjs`, ["--direction", direction, "--script", script, "--tts", tts, "--report", report], log),
+  // gate.mjs (feat/vd-director) prints its failures and exits 1; the loop keeps that output as the gate report.
+  gate: ({ direction, script, research, tts, log, report }) => {
+    const r = node(`${VD}/gate.mjs`, ["--direction", direction, "--script", script, ...(research ? ["--research", research] : []), "--tts", tts], log);
+    writeFileSync(report, JSON.stringify({ ok: r.ok, exit: r.status, output: (r.stdout + r.stderr).slice(-8000) }, null, 2));
+    return r;
+  },
   resolve: ({ direction, out, assetsDir, report, log }) => node(`${VD}/materials/resolve.mjs`, ["--direction", direction, "--out", out, "--assets-dir", assetsDir, "--report", report], log),
   render: ({ direction, out, tts, channel, assetsDir, log }) => node(`${VD}/render-direction.mjs`, ["--direction", direction, "--out", out, "--tts", tts, "--channel", channel, "--assets-dir", assetsDir], log),
   frames: async ({ video, direction, outDir }) => (await import("./frames.mjs")).extractFrames({ video, direction, outDir }),
@@ -158,7 +175,7 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     writeJson(dirPath, direction);
 
     // 2) gate
-    const g = await steps.gate({ direction: dirPath, script, tts, log, report: join(rd, "gate.json") });
+    const g = await steps.gate({ direction: dirPath, script, research, tts, log, report: join(rd, "gate.json") });
     rec.gate = g.ok ? "pass" : `fail: ${String(g.stdout + g.stderr).slice(-600)}`;
     if (!g.ok) {
       if (round === 0) { report.stop_reason = "round-0 direction failed the gate"; break; }
@@ -183,7 +200,7 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
         const s2 = spliceBeats(readJson(resolved), readJson(raw2), ids, { round, critique: mc });
         const dir2 = join(rd, "direction.materials-redirect.json");
         writeJson(dir2, s2.direction);
-        const g2 = await steps.gate({ direction: dir2, script, tts, log, report: join(rd, "gate.materials-redirect.json") });
+        const g2 = await steps.gate({ direction: dir2, script, research, tts, log, report: join(rd, "gate.materials-redirect.json") });
         if (g2.ok) {
           const res2 = join(rd, "direction.resolved.2.json"), rep2 = join(rd, "materials-report.2.json");
           const m2 = await steps.resolve({ direction: dir2, out: res2, assetsDir, report: rep2, log });
