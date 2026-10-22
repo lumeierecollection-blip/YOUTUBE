@@ -1,0 +1,13 @@
+{
+  "duration_s": 23.058,
+  "fps": 30,
+  "width": 736,
+  "height": 414,
+  "aspect": 1.7778,
+  "orientation": "landscape",
+  "codec": "h264",
+  "has_audio": true,
+  "audio_sample_rate": 44100,
+  "audio_channels": 2,
+  "audio_codec": "aac"
+}

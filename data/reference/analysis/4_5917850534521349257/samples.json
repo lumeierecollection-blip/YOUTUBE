@@ -1,0 +1,226 @@
+{
+  "mode": "standard",
+  "dense_windows": [],
+  "planned": 36,
+  "kept": 34,
+  "dropped_duplicates": [
+    {
+      "id": "f002",
+      "t": 2,
+      "duplicate_of": "f001",
+      "distance": 0.01
+    },
+    {
+      "id": "f036",
+      "t": 58,
+      "duplicate_of": "f035",
+      "distance": 0.09
+    }
+  ],
+  "frames": [
+    {
+      "id": "f001",
+      "t": 0,
+      "reason": "uniform",
+      "file": "frames/f001.jpg"
+    },
+    {
+      "id": "f003",
+      "t": 4,
+      "reason": "uniform",
+      "file": "frames/f003.jpg"
+    },
+    {
+      "id": "f004",
+      "t": 6,
+      "reason": "uniform",
+      "file": "frames/f004.jpg"
+    },
+    {
+      "id": "f005",
+      "t": 8,
+      "reason": "uniform",
+      "file": "frames/f005.jpg"
+    },
+    {
+      "id": "f006",
+      "t": 10,
+      "reason": "uniform",
+      "file": "frames/f006.jpg"
+    },
+    {
+      "id": "f007",
+      "t": 12,
+      "reason": "uniform",
+      "file": "frames/f007.jpg"
+    },
+    {
+      "id": "f008",
+      "t": 14,
+      "reason": "uniform",
+      "file": "frames/f008.jpg"
+    },
+    {
+      "id": "f009",
+      "t": 16,
+      "reason": "uniform",
+      "file": "frames/f009.jpg"
+    },
+    {
+      "id": "f010",
+      "t": 18,
+      "reason": "uniform",
+      "file": "frames/f010.jpg"
+    },
+    {
+      "id": "f011",
+      "t": 20,
+      "reason": "uniform",
+      "file": "frames/f011.jpg"
+    },
+    {
+      "id": "f012",
+      "t": 22,
+      "reason": "uniform",
+      "file": "frames/f012.jpg"
+    },
+    {
+      "id": "f013",
+      "t": 24,
+      "reason": "uniform",
+      "file": "frames/f013.jpg"
+    },
+    {
+      "id": "f014",
+      "t": 26,
+      "reason": "uniform",
+      "file": "frames/f014.jpg"
+    },
+    {
+      "id": "f015",
+      "t": 28,
+      "reason": "uniform",
+      "file": "frames/f015.jpg"
+    },
+    {
+      "id": "f016",
+      "t": 28.35,
+      "reason": "cut-before",
+      "file": "frames/f016.jpg"
+    },
+    {
+      "id": "f017",
+      "t": 28.64,
+      "reason": "cut-after",
+      "file": "frames/f017.jpg"
+    },
+    {
+      "id": "f018",
+      "t": 30,
+      "reason": "uniform",
+      "file": "frames/f018.jpg"
+    },
+    {
+      "id": "f019",
+      "t": 32,
+      "reason": "uniform",
+      "file": "frames/f019.jpg"
+    },
+    {
+      "id": "f020",
+      "t": 34,
+      "reason": "uniform",
+      "file": "frames/f020.jpg"
+    },
+    {
+      "id": "f021",
+      "t": 36,
+      "reason": "uniform",
+      "file": "frames/f021.jpg"
+    },
+    {
+      "id": "f022",
+      "t": 38,
+      "reason": "uniform",
+      "file": "frames/f022.jpg"
+    },
+    {
+      "id": "f023",
+      "t": 40,
+      "reason": "uniform",
+      "file": "frames/f023.jpg"
+    },
+    {
+      "id": "f024",
+      "t": 41.36,
+      "reason": "cut-before",
+      "file": "frames/f024.jpg"
+    },
+    {
+      "id": "f025",
+      "t": 41.66,
+      "reason": "cut-after",
+      "file": "frames/f025.jpg"
+    },
+    {
+      "id": "f026",
+      "t": 42,
+      "reason": "uniform",
+      "file": "frames/f026.jpg"
+    },
+    {
+      "id": "f027",
+      "t": 44,
+      "reason": "uniform",
+      "file": "frames/f027.jpg"
+    },
+    {
+      "id": "f028",
+      "t": 46,
+      "reason": "uniform",
+      "file": "frames/f028.jpg"
+    },
+    {
+      "id": "f029",
+      "t": 48,
+      "reason": "uniform",
+      "file": "frames/f029.jpg"
+    },
+    {
+      "id": "f030",
+      "t": 50,
+      "reason": "uniform",
+      "file": "frames/f030.jpg"
+    },
+    {
+      "id": "f031",
+      "t": 52,
+      "reason": "uniform",
+      "file": "frames/f031.jpg"
+    },
+    {
+      "id": "f032",
+      "t": 54,
+      "reason": "uniform",
+      "file": "frames/f032.jpg"
+    },
+    {
+      "id": "f033",
+      "t": 54.37,
+      "reason": "cut-before",
+      "file": "frames/f033.jpg"
+    },
+    {
+      "id": "f034",
+      "t": 54.67,
+      "reason": "cut-after",
+      "file": "frames/f034.jpg"
+    },
+    {
+      "id": "f035",
+      "t": 56,
+      "reason": "uniform",
+      "file": "frames/f035.jpg"
+    }
+  ]
+}

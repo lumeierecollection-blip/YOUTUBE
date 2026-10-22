@@ -51,18 +51,29 @@ export function extractReferenceFrames(video, dir, { n = FRAME_COUNT, prefix = "
 }
 
 /**
- * The planner's reference frames for one dispatched channel.
- *   -> { files, source, dir }        frames found (or extracted)
- *   -> { files: [], why }            none; the caller logs reference_frames_missing and plans anyway
+ * Which reference video(s) a channel is planned and judged against — the one lookup the frames
+ * (here) and the creative-direction summary (scripts/reference/channel-direction.mjs) share.
+ *   -> { row, video, shared: false }            the channel's style spec names its own reference_video
+ *   -> { row, video: null, shared: true }       no reference of its own: the SHARED_REFS set
  */
-export function referenceFramesFor(channelId, { root = ROOT, channels, extract = true } = {}) {
+export function referenceSourceFor(channelId, { root = ROOT, channels } = {}) {
   let row = null;
-  try { row = resolveChannel(channelId, channels); } catch { /* unresolved: shared set below */ }
+  try { row = resolveChannel(channelId, channels); } catch { /* unresolved: shared set */ }
   let video = null;
   if (row) {
     const specPath = join(root, ...String(row.style_spec_path || `channels/${row.channel_id}/style-spec.json`).split("/"));
     try { video = existsSync(specPath) ? JSON.parse(readFileSync(specPath, "utf8")).reference_video || null : null; } catch { video = null; }
   }
+  return { row, video, shared: !(row && video) };
+}
+
+/**
+ * The planner's reference frames for one dispatched channel.
+ *   -> { files, source, dir }        frames found (or extracted)
+ *   -> { files: [], why }            none; the caller logs reference_frames_missing and plans anyway
+ */
+export function referenceFramesFor(channelId, { root = ROOT, channels, extract = true } = {}) {
+  const { row, video } = referenceSourceFor(channelId, { root, channels });
   if (row && video) {
     const dir = join(root, "channels", row.channel_id, "reference-frames");
     let files = listJpgs(dir);

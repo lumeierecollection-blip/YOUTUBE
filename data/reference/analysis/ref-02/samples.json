@@ -1,0 +1,39 @@
+{
+  "mode": "standard",
+  "dense_windows": [],
+  "planned": 5,
+  "kept": 5,
+  "dropped_duplicates": [],
+  "frames": [
+    {
+      "id": "f001",
+      "t": 0,
+      "reason": "uniform",
+      "file": "frames/f001.jpg"
+    },
+    {
+      "id": "f002",
+      "t": 1.92,
+      "reason": "cut-before",
+      "file": "frames/f002.jpg"
+    },
+    {
+      "id": "f003",
+      "t": 2,
+      "reason": "uniform",
+      "file": "frames/f003.jpg"
+    },
+    {
+      "id": "f004",
+      "t": 2.22,
+      "reason": "cut-after",
+      "file": "frames/f004.jpg"
+    },
+    {
+      "id": "f005",
+      "t": 4,
+      "reason": "uniform",
+      "file": "frames/f005.jpg"
+    }
+  ]
+}

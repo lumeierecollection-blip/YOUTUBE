@@ -1,0 +1,34 @@
+{
+  "has_audio": true,
+  "loudness": {
+    "integrated_lufs": -9,
+    "loudness_range_lu": 5.8,
+    "true_peak_dbfs": 1.1
+  },
+  "silences": [
+    {
+      "start": 1.36,
+      "end": 2.14
+    }
+  ],
+  "candidate_cues": [
+    {
+      "t": 2.2,
+      "rms_db": -36.1,
+      "jump_db": 26.1
+    },
+    {
+      "t": 2.7,
+      "rms_db": -8.7,
+      "jump_db": 10.3
+    },
+    {
+      "t": 23.2,
+      "rms_db": -9.9,
+      "jump_db": 9.2
+    }
+  ],
+  "cue_method": "RMS per 0.1 s window; a cue is a window >= 9 dB above the previous 3 and above -40 dB. Level jumps only, sound type unknown.",
+  "transcript": null,
+  "why": "faster_whisper is not importable in this python"
+}

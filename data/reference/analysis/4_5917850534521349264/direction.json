@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file": "4_5917850534521349264.mp4",
+    "size_bytes": 2627184
+  },
+  "direction": {
+    "status": "measured-only",
+    "why": "--no-vision",
+    "model": null,
+    "provider": null
+  },
+  "measured": {
+    "metadata": {
+      "duration_s": 23.058,
+      "fps": 30,
+      "width": 736,
+      "height": 414,
+      "aspect": 1.7778,
+      "orientation": "landscape",
+      "codec": "h264",
+      "has_audio": true,
+      "audio_sample_rate": 44100,
+      "audio_channels": 2,
+      "audio_codec": "aac"
+    },
+    "cuts": [
+      2.633,
+      6.1
+    ],
+    "cadence": {
+      "events_per_10s": 9.54,
+      "cuts_per_10s": 4.34,
+      "p90_gap_s": 2.85,
+      "median_gap_s": 0.4,
+      "longest_hold": {
+        "start": 6.1,
+        "end": 23.058,
+        "length_s": 16.96
+      },
+      "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+      "novelty_cuts_at": [
+        1,
+        1.4,
+        1.8,
+        2.6,
+        6.2,
+        7.8,
+        8.4,
+        9.6,
+        19,
+        19.8
+      ]
+    },
+    "audio": {
+      "loudness": {
+        "integrated_lufs": -13.9,
+        "loudness_range_lu": 5.6,
+        "true_peak_dbfs": 1.1
+      },
+      "silences": [
+        {
+          "start": 22.18,
+          "end": 23.06
+        }
+      ],
+      "candidate_cues": [
+        {
+          "t": 0.2,
+          "rms_db": -10,
+          "jump_db": 57
+        },
+        {
+          "t": 1.2,
+          "rms_db": -6.5,
+          "jump_db": 23
+        },
+        {
+          "t": 3.3,
+          "rms_db": -9.4,
+          "jump_db": 12.4
+        },
+        {
+          "t": 6,
+          "rms_db": -11.7,
+          "jump_db": 9.1
+        },
+        {
+          "t": 13.3,
+          "rms_db": -12.5,
+          "jump_db": 9.4
+        },
+        {
+          "t": 16.8,
+          "rms_db": -11.7,
+          "jump_db": 10.5
+        }
+      ],
+      "transcript": null,
+      "transcript_why": "faster_whisper is not importable in this python"
+    }
+  },
+  "frames_sent": [],
+  "typography": [],
+  "composition": [],
+  "pacing": {
+    "measured": {
+      "duration_s": 23.058,
+      "scene_cuts": 2,
+      "events_per_10s": 9.54,
+      "cuts_per_10s": 4.34,
+      "p90_gap_s": 2.85,
+      "median_gap_s": 0.4,
+      "longest_hold": {
+        "start": 6.1,
+        "end": 23.058,
+        "length_s": 16.96
+      },
+      "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+      "novelty_cuts_at": [
+        1,
+        1.4,
+        1.8,
+        2.6,
+        6.2,
+        7.8,
+        8.4,
+        9.6,
+        19,
+        19.8
+      ]
+    },
+    "observations": []
+  },
+  "transitions": [],
+  "camera_movement": [],
+  "effects": [],
+  "color": [],
+  "sound_cues": [],
+  "narration_visual": [],
+  "storyboard": [],
+  "rejected_observations": []
+}

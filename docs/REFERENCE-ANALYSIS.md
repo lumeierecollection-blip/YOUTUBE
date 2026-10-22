@@ -45,6 +45,28 @@ Cadence "events" are edge novelty: shimmer or live-action footage reads as novel
 jumps, not identified sounds. Dedup (16x16 gray mean-abs-diff < 1.5) can merge two frames that differ only by a small
 new word. Local runs have no API keys, so vision happens in CI.
 
+## Where the analyses are used (wired 2026-10-22)
+
+Committed analyses live in `data/reference/analysis/<video stem>/` (json + `contact-NN.jpg`; `frames/` and `run-log.json`
+are not committed). `scripts/reference/channel-direction.mjs` maps a channel to its reference(s) with the same lookup the
+planner's stills use (`reference-frames.js referenceSourceFor`: the style spec's `reference_video`, else the shared
+`research/motion-graphics-ref/ref-01..03`).
+
+- **Planner** (`gemini-visual-plan.js`): a `REFERENCE DIRECTION` section in the dynamic prompt part, every provider
+  (Gemini, Groq, Ollama). Per reference: the measured pacing line (duration, cut times, cuts/changes per 10 s, p90 gap,
+  longest hold with its timestamps); then, only for a `complete` vision analysis, one medium/high observation each for
+  typography, composition, transitions and pacing, cited `f012@13.4s`. Colour never. Hard cap
+  `DIRECTION_SUMMARY_MAX_CHARS` (720); `test-plan-gates.mjs` checks the prompt with a capped section stays under 4,500
+  tokens. No analysis -> `[planner] reference_direction_missing — <why>` and nothing is added.
+- **Whole-video critic** (`gemini-frame-review.js reviewWholeVideo`): up to 2 contact sheets of the channel's analysed
+  reference, else the planner's reference stills, else `[review] reference_images_missing — <why>`. Context only; the
+  verdict still does not read `reference_match`.
+
+State on commit: all 7 committed analyses (ref-01..03, and the ch-05/06/08/10 reference videos) are **measured-only**
+(`--no-vision`, run locally with no API key). So today the planner gets measured pacing only — no typography,
+composition or transition observations exist yet. A vision run (`reference-analysis.yml`, needs the Gemini secrets)
+followed by committing its `direction.json`/`samples.json` is what would add them; nothing here fills that gap.
+
 ## CI
 
 `.github/workflows/reference-analysis.yml` (manual dispatch: video path, mode, dense ranges) runs the analyzer with
