@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "channel_id": "1",
+  "script": "scripts/__tests__/fixtures/vd/materials/bayeux-script.json",
+  "reference": null,
+  "model": null,
+  "beats": [
+    {
+      "beat_index": 0,
+      "sentence": "In 1066 a comet blazed over England, and the Bayeux Tapestry stitched it into the sky above Harold's head.",
+      "t_start": 0,
+      "t_end": 6.2,
+      "semantic": { "subject": "Halley's comet on the Bayeux Tapestry", "state": "an omen", "action": "stitched into the cloth", "relationship": "comet above the king", "change": null, "consequence": null, "environment": "England, 1066" },
+      "visual_question": "How do you show a comet that only survives as embroidery on a 70-metre cloth?",
+      "mechanism": { "family": "reveal", "construction": "Extreme close on the stitched comet, pulling out to show the men pointing at it on the cloth.", "why": "The reveal moves from the omen to the people reading it." },
+      "shots": [
+        {
+          "id": "b0s1",
+          "duration_s": 6.2,
+          "camera": { "move": "pull-out", "from": "extreme close on the stitched comet", "to": "the whole panel", "motivation": "reveal: start on the detail, pull out to the people" },
+          "materials": [
+            { "id": "tapestry-comet", "kind": "artwork-scan", "must_show": "the Bayeux Tapestry panel with Halley's comet", "why": "the scene is the comet on the cloth", "search": ["Bayeux Tapestry Halley comet", "Bayeux Tapestry scene 32"] }
+          ],
+          "action": "The cloth slides past as the camera pulls away from the comet."
+        }
+      ],
+      "mute_test": "A star-like shape stitched on old cloth, with figures pointing at it."
+    },
+    {
+      "beat_index": 1,
+      "sentence": "The cloth is 70 metres long.",
+      "t_start": 6.2,
+      "t_end": 9.0,
+      "semantic": { "subject": "the tapestry", "state": "70 metres long", "action": null, "relationship": null, "change": null, "consequence": null, "environment": null },
+      "visual_question": "How do you make 70 metres of cloth feel long?",
+      "mechanism": { "family": "scale-reveal", "construction": "The measured length laid against a bar that runs off the frame edge.", "why": "A length is a quantity; the bar carries it." },
+      "shots": [
+        {
+          "id": "b1s1",
+          "duration_s": 2.8,
+          "camera": { "move": "track", "from": "the start of the bar", "to": "the bar's far end", "motivation": "scale: travel the length" },
+          "materials": [
+            { "id": "length", "kind": "data", "must_show": "the tapestry's 70 m length", "why": "the sentence is a quantity", "search": ["research numbers"], "data": { "values": [ { "label": "length", "value": 70, "unit": "m", "source_url": "https://example.org/bayeux" } ] } }
+          ],
+          "action": "The bar extends to its full length as the camera tracks."
+        }
+      ],
+      "mute_test": "A long bar labelled 70 m."
+    }
+  ]
+}
