@@ -1,0 +1,11 @@
+{
+  "topic_slug": "bayeux",
+  "strongest_angle": "The comet stitched into the tapestry was read as an omen.",
+  "key_facts": [
+    { "fact": "The Bayeux Tapestry is nearly 70 metres long and shows the comet of 1066.", "source_url": "https://example.org/bayeux", "source_name": "Example", "confidence": "high" },
+    { "fact": "The cloth is embroidered in wool yarn on linen.", "source_url": "https://example.org/bayeux-wool", "source_name": "Example", "confidence": "high" },
+    { "fact": "It was probably made in England in the 1070s.", "source_url": "https://example.org/bayeux-made", "source_name": "Example", "confidence": "medium" }
+  ],
+  "numbers": [ { "label": "length", "value": 70, "unit": "m", "source_url": "https://example.org/bayeux" } ],
+  "named_entities": [ { "name": "Bayeux Tapestry", "kind": "object" } ]
+}
