@@ -85,6 +85,10 @@ on:
         description: "Ask Ollama Cloud FIRST in every model chain (planner, props, image checks, frame review); Gemini becomes the fallback. Needs the OLLAMA_API_KEY secret."
         type: boolean
         default: false
+      no_push:
+        description: "Feature-branch exercise: nothing is pushed to any branch (topic reservation, script, SFX verdicts, job records, queues) and nothing is uploaded. Off by default; the cron has no inputs, so production is unchanged."
+        type: boolean
+        default: false
 
 concurrency:
   group: daily-pipeline-${{ github.ref }}
@@ -173,7 +177,7 @@ jobs:
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
         run: node scripts/sfx-cc0.mjs judge
       - name: Commit SFX verdicts to the branch
-        if: github.event.inputs.dry_run != 'true'
+        if: github.event.inputs.dry_run != 'true' && github.event.inputs.no_push != 'true'
         continue-on-error: true
         run: |
           git config user.name "lumeierecollection-blip"
@@ -371,32 +375,20 @@ jobs:
           
         # A channel with no OAuth secrets is SKIPPED with a warning, not fatal: exiting on the first one stopped the whole upload, so the 2026-10-16
         # cron (run 38890511624) uploaded nothing for 1/2/9/26/44, which have secrets, because ch-49 (6th in the list) has none.
+        # Each channel goes through scripts/jobs/publish-gate.mjs materialize (the render job uses the same):
+        # only its OWN secrets into its OWN config/creds file; missing secrets -> data/publish-status with the
+        # exact missing secret names (the digest reports it); a row pointing at another channel is refused.
         run: |
-          mkdir -p config/creds
-          # Same resolution as the render job: the key is the upload slot, resolved through
-          # channel-lookup, never by config id. A row pointing at another channel's credentials
-          # file is skipped with a warning, as is a row with no secrets.
-          node -e "
-            const fs = require('fs');
-            const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
-            const ok = [];
-            for (const id of process.env.REQUESTED.split(',').map(s => s.trim().replace(/^ch-?/i, '')).filter(Boolean)) {
-              const n = String(Number(id));
-              let ch;
-              try { ch = resolveChannel(n); } catch (e) { console.log('::warning::' + e.message + ' - skipped'); continue; }
-              const own = 'config/creds/' + ch.channel_id + '.json';
-              const declared = ch.youtube_credentials_path || own;
-              if (declared !== own) { console.log('::warning::channel ' + n + ' declares ' + declared + ', not its own ' + own + ' - skipped'); continue; }
-              const p = String(ch.channel_id).replace(/^ch-0*/, '').padStart(2, '0');
-              const c = { client_id: process.env['CH' + p + '_CLIENT_ID'], client_secret: process.env['CH' + p + '_CLIENT_SECRET'], refresh_token: process.env['CH' + p + '_REFRESH_TOKEN'] };
-              if (!(c.client_id && c.client_secret && c.refresh_token)) { console.log('::warning::No credentials configured for ' + ch.channel_id + ' (dispatch key ' + n + ') - its video stays in the review queue, not uploaded'); continue; }
-              fs.writeFileSync(own, JSON.stringify(c, null, 2));
-              console.log('Credentials materialized for ' + ch.channel_id + ' (dispatch key ' + n + ')');
-              ok.push(n);
-            }
-            if (!ok.length) console.log('::warning::no requested channel has credentials - nothing can be uploaded');
-            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'channels=' + ok.join(',') + '\\n');
-          "
+          OK=""
+          for CH in $(echo "$REQUESTED" | tr ',' ' '); do
+            N=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
+            : > "$RUNNER_TEMP/gate-$N"
+            if GITHUB_OUTPUT="$RUNNER_TEMP/gate-$N" node scripts/jobs/publish-gate.mjs materialize --channel "$N" && grep -q '^creds=ok$' "$RUNNER_TEMP/gate-$N"; then
+              OK="${OK:+$OK,}$N"
+            fi
+          done
+          [ -n "$OK" ] || echo "::warning::no requested channel has credentials - nothing can be uploaded"
+          echo "channels=$OK" >> "$GITHUB_OUTPUT"
 
       # run.js --review: approved-review/ only, marker must match the channel, refuses any
       # channel outside config/priority-channels.json, uploads privacyStatus "private", and
@@ -410,12 +402,22 @@ jobs:
           # that is the publish-queue it pushes, and when that push failed (run 39031532519 ch-1: "cannot rebase") this job uploaded the same
           # render a second time. approved/ belongs to the render job here; this job takes approved-review/ only. A dispatch keeps both queues.
           if [ "${{ github.event_name }}" = "schedule" ]; then rm -rf data/renders/approved; echo "schedule: approved/ was the render job's to upload ΓÇö approved-review/ only"; fi
-          ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
+          if [ ! -d data/renders/approved-review ] || [ -z "$(ls -A data/renders/approved-review 2>/dev/null)" ]; then
+            # Nothing passed QA as approved-review in this run: on the SCHEDULE that is a result, not an error
+            # (main run 39790127811). Each channel gets a log line so the digest says why. A dispatch names a
+            # run on purpose, so an empty or expired run is still an error there.
+            for CH in $(echo "$REQUESTED" | tr ',' ' '); do CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//'); echo "No approved-review/ renders for this channel in run ${{ steps.target.outputs.run_id }}" > "/tmp/publish-out-$CH.log"; done
+            if [ "${{ github.event_name }}" = "schedule" ]; then echo "::notice::run ${{ steps.target.outputs.run_id }} has no approved-review videos - nothing to upload"; exit 0; fi
+            echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1
+          fi
+          ls -la data/renders/approved-review/
           FAIL=0
           for CH in $(echo "$REQUESTED" | tr ',' ' '); do
             CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
             # each channel's own outcome, for the digest (it reported a rejected OAuth secret as "no credentials" ΓÇö run 39031532519 ch-9/26/44)
-            node src/skills/youtube-publish/run.js "$CH" --review > "/tmp/publish-out-$CH.log" 2>&1 || FAIL=1
+            # exit 78 = skipped (Google rejected this channel's OAuth credentials; reason in data/publish-status), not a failure
+            RC=0; node src/skills/youtube-publish/run.js "$CH" --review > "/tmp/publish-out-$CH.log" 2>&1 || RC=$?
+            if [ "$RC" -ne 0 ] && [ "$RC" -ne 78 ]; then FAIL=1; fi
             cat "/tmp/publish-out-$CH.log"
           done
           exit $FAIL
@@ -431,72 +433,10 @@ jobs:
         env:
           REVIEW_RUN: ${{ steps.target.outputs.run_id }}
           REQUESTED: ${{ steps.target.outputs.channels }}
-        run: |
-          export TODAY=$(date -u +%F)
-          node -e '
-            const fs = require("fs"), path = require("path");
-            const TODAY = process.env.TODAY.slice(0, 10);
-            const RUN = process.env.REVIEW_RUN;
-            const dir = "data/publish-queue";
-            const uploads = [];
-            // The queues live in PER-CHANNEL folders (data/publish-queue/<ch>/publish-queue.json). The digest read only top-level files, found none, and
-            // reported "Nothing was uploaded" and "no OAuth secrets" for a channel whose video had just gone up (run 38724865619, ch-2, zttQB2Wxeqc).
-            const queueFiles = [];
-            if (fs.existsSync(dir)) {
-              for (const f of fs.readdirSync(dir)) {
-                const full = path.join(dir, f);
-                if (fs.statSync(full).isDirectory()) { for (const g of fs.readdirSync(full)) if (g.endsWith(".json")) queueFiles.push(path.join(full, g)); }
-                else if (f.endsWith(".json")) queueFiles.push(full);
-              }
-            }
-            {
-              for (const full of queueFiles) {
-                let rows = []; try { rows = JSON.parse(fs.readFileSync(full, "utf8")); } catch { continue; }
-                if (!Array.isArray(rows)) continue;
-                for (const e of rows) {
-                  if (RUN && e.source_run && String(e.source_run) !== String(RUN)) continue;
-                  if (!e.uploaded_at || String(e.uploaded_at).slice(0, 10) !== TODAY) continue;
-                  uploads.push({
-                    channel: e.channel_id, title: e.title, video_id: e.video_id,
-                    privacy_status: e.privacy_status || "private",
-                    source_queue: e.source_queue || "approved",
-                    studio_link: "https://studio.youtube.com/video/" + e.video_id + "/edit",
-                  });
-                }
-              }
-            }
-            uploads.sort((a, b) => String(a.channel).localeCompare(String(b.channel)));
-            const requested = String(process.env.REQUESTED || "").split(",").map(s => s.trim()).filter(Boolean);
-            const uploaded = (c) => uploads.some(u => String(u.channel).replace(/^0+/, "") === c.replace(/^0+/, ""));
-            // What the publish step said for each channel it tried (no log = it had no credentials, so it was never tried).
-            const outcome = {};
-            for (const c of requested) {
-              const n = c.replace(/^0+/, "");
-              let log = null; try { log = fs.readFileSync("/tmp/publish-out-" + n + ".log", "utf8"); } catch {}
-              if (uploaded(c)) continue;
-              const err = log && (log.match(/ERROR: ([^\n]+)/) || [])[1];
-              outcome[n] = !log ? "no OAuth credentials configured"
-                : err ? "upload FAILED: " + err.slice(0, 160)
-                : /No approved-review\/ or approved\/ renders found|No approved-review/.test(log) ? "no video passed QA this run"
-                : /already uploaded as/.test(log) ? "already uploaded (" + ((log.match(/already uploaded as (\S+)/) || [])[1] || "") + ")"
-                : "not uploaded (see the review-publish log)";
-            }
-            const noCreds = Object.keys(outcome).filter((c) => outcome[c] === "no OAuth credentials configured");
-            const digest = {
-              date: TODAY,
-              review_run_id: RUN || null,
-              generated_at: new Date().toISOString(),
-              uploads,
-              not_uploaded: outcome,
-              no_credentials: noCreds,
-              note: uploads.length
-                ? "Everything above is PRIVATE. Open each Studio link and click Publish to make it public."
-                : "Nothing was uploaded today ΓÇö see not_uploaded for each channel's reason.",
-            };
-            fs.mkdirSync("data/uploaded", { recursive: true });
-            fs.writeFileSync("data/uploaded/" + TODAY + ".json", JSON.stringify(digest, null, 2) + "\n");
-            console.log("digest: data/uploaded/" + TODAY + ".json ΓÇö " + uploads.length + " uploaded");
-          '
+        # scripts/jobs/digest.mjs (was an inline node -e '...' whose text held an apostrophe: bash "unexpected
+        # EOF", exit 2, no digest at all - main run 39790127811). Reasons come from the publish logs and
+        # data/publish-status (missing/rejected OAuth, exact secret names).
+        run: TODAY=$(date -u +%F) node scripts/jobs/digest.mjs
 
       - name: Commit the daily upload digest
         if: always()
