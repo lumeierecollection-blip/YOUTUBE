@@ -100,6 +100,19 @@ export function normalizeShapes(modelOut) {
   for (const [sec, fields] of Object.entries(STRING_FIELDS)) for (const o of Array.isArray(out[sec]) ? out[sec] : []) for (const f of fields) if (o && o[f] != null) o[f] = str(o[f]);
   for (const [sec, fields] of Object.entries(ARRAY_FIELDS)) for (const o of Array.isArray(out[sec]) ? out[sec] : []) for (const f of fields) if (o && o[f] != null && !Array.isArray(o[f])) o[f] = [String(o[f])];
   for (const o of Array.isArray(out.transitions) ? out.transitions : []) if (o && typeof o.duration_s === "string") { const n = parseFloat(o.duration_s); o.duration_s = Number.isFinite(n) ? n : null; }
+  // Clock-style times ("00:04.50", as the contact-sheet labels print them) ->
+  // seconds (qa-proof run 39710233072: every storyboard row was dropped as
+  // "incomplete" for this alone). Unparseable stays as-is and is rejected.
+  const secs = (v) => {
+    if (typeof v !== "string") return v;
+    const m = /^\s*(?:(\d+):)?(\d+):(\d+(?:\.\d+)?)\s*$/.exec(v);
+    if (m) return (Number(m[1] || 0) * 3600) + Number(m[2]) * 60 + Number(m[3]);
+    const n = Number(v.replace(/s$/i, ""));
+    return Number.isFinite(n) ? n : v;
+  };
+  for (const o of Array.isArray(out.storyboard) ? out.storyboard : []) if (o) { o.start = secs(o.start); o.end = secs(o.end); }
+  for (const o of Array.isArray(out.sound_cues) ? out.sound_cues : []) if (o) o.t = secs(o.t);
+  for (const o of Array.isArray(out.transitions) ? out.transitions : []) if (o && Array.isArray(o.at_cuts)) o.at_cuts = o.at_cuts.map(secs);
   return out;
 }
 

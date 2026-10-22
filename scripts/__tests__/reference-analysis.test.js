@@ -151,6 +151,16 @@ describe("filterEvidence + schema", () => {
     assert.equal(r.log.schema_dropped, 1);
     assert.deepEqual(validateDirection(r.doc).errors, []);
   });
+  // qa-proof run 39710233072: Gemini wrote storyboard times as "00:04.50".
+  it("direct(): clock-style storyboard times become seconds; frame evidence is still required", async () => {
+    const base = { file: "x.mp4", size_bytes: 1, metadata: meta, scenes, audio, frames: [{ id: "f001", t: 0, reason: "cut-after", file: fileURLToPath(import.meta.url) }], sheets: [] };
+    const row = (frames, evidence) => ({ scene_id: "s1", start: "00:00.00", end: "00:01.50", frames, description: "title card", technique: "hard cut", evidence, confidence: "medium" });
+    const r = await direct({ ...base, mock: async () => ({ value: { storyboard: [row(["f001"], ["f001"]), row(["f077"], ["f001"])] }, provider: "mock" }) });
+    assert.equal(r.doc.storyboard.length, 1);
+    assert.equal(r.doc.storyboard[0].start, 0);
+    assert.equal(r.doc.storyboard[0].end, 1.5);
+    assert.ok(r.doc.rejected_observations.some((x) => x.section === "storyboard" && x.cited.includes("f077")));
+  });
 });
 
 describe("integration: synthetic 6 s fixture, --no-vision", () => {
