@@ -451,6 +451,19 @@ async function samePlace(name, sentence, script, r) {
   return samePlaceMemo.get(k);
 }
 
+/**
+ * Does a Wikidata description say the item IS a geographic place? It must LEAD
+ * with a place noun ("independent city in…", "U.S. state", "town in…"), and a
+ * body that merely sits in a place ("state agency", "city council", "school
+ * district") is never one.
+ */
+function isPlaceDescription(desc) {
+  const d = String(desc || "").trim();
+  if (!d) return false;
+  if (/\b(agency|department|government|ministry|university|college|school|police|bank|newspaper|library|company|corporation|court|museum|hospital|council|office|party|prison|cemetery|team|club|church|airport|station|park)\b/i.test(d)) return false;
+  return /^(?:[\w.'-]+\s+){0,3}(city|town|village|capital|county|municipality|borough|province|country|state|region|island|commune|neighbou?rhood|unincorporated community|census-designated place|metropolitan area)\b/i.test(d);
+}
+
 /** Resolve one named entity of a beat. Memoized per run (the same entity in two beats is fetched and verified once). */
 async function resolveSceneEntity(args) {
   const r = await resolveSceneEntityRaw(args);
@@ -527,7 +540,23 @@ async function resolveSceneEntityRaw({ channel, beatIndex, entity, context = "",
     console.log(`[resolve] ${tag}\n    → same person as the sentence? ${same.verdict}${same.provider ? ` (${same.provider})` : ""}: ${same.why}${same.about ? ` [${same.about}]` : ""}${same.verdict === "SAME" ? "" : " — portrait dropped, rendering as name card"}`);
     return same.verdict === "SAME" ? r : { ok: false, kind: "person", why: `namesake: ${same.why}` };
   }
-  const job = type === "company" || type === "institution" ? resolveOrgScene(tag, type, name, context, channel, beatIndex, scene)
+  const job = type === "company" || type === "institution"
+    ? (async () => {
+        // A PLACE TYPED AS AN ORGANISATION (run 39611317543 ch-1 beat 1): the
+        // planner typed "Richmond" as a company; the org path found Wikidata's
+        // "independent city in and capital of the U.S. state" and drew its SEAL,
+        // which entity-coverage rightly refuses as the place. When the entity's
+        // OWN Wikidata description says it is a place, resolve it as one (map /
+        // verified photo, with the same-place check in resolveSceneEntity).
+        try {
+          const wd = await Wikidata.find(name, { type: "organization", getJson: E.getJson });
+          if (wd && isPlaceDescription(wd.description)) {
+            console.log(`[resolve] ${tag}\n    → wikidata ${wd.id} describes "${name}" as a place ("${String(wd.description).slice(0, 70)}") — resolved as a place, not a logo`);
+            return resolvePlaceScene(tag, "place", name, context);
+          }
+        } catch (e) { console.log(`[resolve] ${tag}\n    → wikidata place check unavailable (${e.message}) — resolving as ${type}`); }
+        return resolveOrgScene(tag, type, name, context, channel, beatIndex, scene);
+      })()
     : resolvePlaceScene(tag, type, name, context);
   runMemo.set(key, job);
   return job;
@@ -599,7 +628,7 @@ async function sceneEntities({ beat, sentence, entityNamedInSentence, log = cons
   return list;
 }
 
-module.exports = { wikiSummary, resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
+module.exports = { wikiSummary, resolveSceneEntity, isPlaceDescription, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
 
 if (require.main === module) {
   require("dotenv/config");
