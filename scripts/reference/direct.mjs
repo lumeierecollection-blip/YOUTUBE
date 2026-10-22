@@ -85,6 +85,43 @@ export function filterEvidence(base, modelOut, sentIds) {
   return doc;
 }
 
+/**
+ * Pure. Coerce purely DESCRIPTIVE fields to the schema's types (a list of sizes
+ * becomes "48px, 96px"; a lone family becomes ["Serif"]). Never touches
+ * evidence, confidence, times or text, so it cannot make an unsupported
+ * observation pass.
+ */
+const STRING_FIELDS = { typography: ["case", "sizes", "role", "entrance"], composition: ["grid", "safe_zones", "density"], transitions: ["type"] };
+const ARRAY_FIELDS = { typography: ["families", "weights"] };
+export function normalizeShapes(modelOut) {
+  if (!modelOut || typeof modelOut !== "object") return modelOut;
+  const out = structuredClone(modelOut);
+  const str = (v) => (Array.isArray(v) ? v.map(String).join(", ") : typeof v === "number" || typeof v === "boolean" ? String(v) : v && typeof v === "object" ? JSON.stringify(v) : v);
+  for (const [sec, fields] of Object.entries(STRING_FIELDS)) for (const o of Array.isArray(out[sec]) ? out[sec] : []) for (const f of fields) if (o && o[f] != null) o[f] = str(o[f]);
+  for (const [sec, fields] of Object.entries(ARRAY_FIELDS)) for (const o of Array.isArray(out[sec]) ? out[sec] : []) for (const f of fields) if (o && o[f] != null && !Array.isArray(o[f])) o[f] = [String(o[f])];
+  for (const o of Array.isArray(out.transitions) ? out.transitions : []) if (o && typeof o.duration_s === "string") { const n = parseFloat(o.duration_s); o.duration_s = Number.isFinite(n) ? n : null; }
+  return out;
+}
+
+/** Pure, mutates doc. Move every observation the schema refuses into rejected_observations; returns how many. */
+export function dropInvalidObservations(doc, maxPasses = 50) {
+  let dropped = 0;
+  for (let pass = 0; pass < maxPasses; pass++) {
+    const v = validateDirection(doc);
+    if (v.valid) break;
+    const e = validate.errors.find((x) => /^\/(\w+)\/(\d+)|^\/pacing\/observations\/(\d+)/.test(x.instancePath));
+    if (!e) break;
+    const m = /^\/pacing\/observations\/(\d+)/.exec(e.instancePath) || null;
+    const [sec, idx] = m ? ["pacing", Number(m[1])] : (() => { const k = /^\/(\w+)\/(\d+)/.exec(e.instancePath); return [k[1], Number(k[2])]; })();
+    const arr = sec === "pacing" ? doc.pacing.observations : doc[sec];
+    if (!Array.isArray(arr) || !arr[idx]) break;
+    const [o] = arr.splice(idx, 1);
+    doc.rejected_observations.push({ section: sec, reason: `schema: ${e.instancePath} ${e.message}`, observation: o, cited: (o?.evidence || []).map(String) });
+    dropped++;
+  }
+  return dropped;
+}
+
 export function buildPrompt({ metadata, scenes, audio, sheets, singles }) {
   const sheetLines = sheets.map((s, i) => `Image ${i + 1}: contact sheet ${s.name}, ${s.cols}x${s.rows} grid, row-major, tiles labelled "<frame id> mm:ss.ss": ${s.frames.join(", ")}`);
   const singleLines = singles.map((f, i) => `Image ${sheets.length + i + 1}: single frame ${f.id} at ${f.t.toFixed(2)}s (${f.reason})`);
@@ -144,10 +181,16 @@ export async function direct({ file, size_bytes, metadata, scenes, audio, frames
   const log = { vision: true, frames_sent: framesSent, images: content.length - 1, provider: r.provider ?? null, chain: r.chain ?? null };
   if (r.error || !value || value.error) return { doc: mk({ framesSent, why: `vision call failed: ${r.error || value?.error} ${String(value?.detail || "").slice(0, 160)}`.trim() }), log };
   const base = mk({ framesSent, status: "complete", model: value.model || r.model || null, provider: r.provider ?? null });
-  const doc = filterEvidence(base, value, framesSent);
+  const doc = filterEvidence(base, normalizeShapes(value), framesSent);
+  // One mistyped field used to void the whole document (qa-proof run
+  // 39708765811: "/typography/0/sizes must be string" discarded 45 frames of
+  // evidenced observations). Drop only the observations the schema refuses,
+  // into rejected_observations with the reason; fail whole only if the
+  // document itself is malformed.
+  const schema_dropped = dropInvalidObservations(doc);
   const v = validateDirection(doc);
   if (!v.valid) return { doc: mk({ framesSent, why: `model output failed schema: ${v.errors.join("; ")}` }), log: { ...log, schema_errors: v.errors } };
-  return { doc, log };
+  return { doc, log: { ...log, schema_dropped } };
 }
 
 const row = (cells) => `| ${cells.map((c) => String(c ?? "").replace(/\|/g, "/").replace(/\n/g, " ")).join(" | ")} |`;

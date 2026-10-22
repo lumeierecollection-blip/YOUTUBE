@@ -129,6 +129,28 @@ describe("filterEvidence + schema", () => {
     assert.equal(none.doc.direction.status, "measured-only");
     assert.equal(none.doc.typography.length, 0);
   });
+  // qa-proof run 39708765811: Gemini returned typography.sizes as a list and the
+  // whole document was voided. Shapes are normalised; an observation the schema
+  // still refuses is dropped ALONE, with its reason, and the rest survive.
+  it("direct(): a list-valued descriptive field is normalised; a still-invalid observation is dropped alone", async () => {
+    const base = { file: "x.mp4", size_bytes: 1, metadata: meta, scenes, audio, frames: [{ id: "f001", t: 0, reason: "cut-after", file: fileURLToPath(import.meta.url) }], sheets: [] };
+    const ev = { evidence: ["f001"], confidence: "medium" };
+    const answer = {
+      typography: [{ text: "condensed serif headline", ...ev, families: "Serif", weights: ["700"], case: "mixed", sizes: ["48px", "96px"], role: "headline", entrance: "word by word" }],
+      composition: [{ text: "centred column", ...ev, grid: "single column", safe_zones: "top 10%", density: "low" }],
+      transitions: [{ text: "hard cut", ...ev, type: "cut", duration_s: true, at_cuts: [2] }],
+    };
+    const r = await direct({ ...base, mock: async () => ({ value: answer, provider: "mock" }) });
+    assert.equal(r.doc.direction.status, "complete", r.doc.direction.why);
+    assert.equal(r.doc.typography.length, 1);
+    assert.equal(r.doc.typography[0].sizes, "48px, 96px");
+    assert.deepEqual(r.doc.typography[0].families, ["Serif"]);
+    assert.equal(r.doc.composition.length, 1);
+    assert.equal(r.doc.transitions.length, 0);
+    assert.ok(r.doc.rejected_observations.some((x) => x.section === "transitions" && /^schema:/.test(x.reason)));
+    assert.equal(r.log.schema_dropped, 1);
+    assert.deepEqual(validateDirection(r.doc).errors, []);
+  });
 });
 
 describe("integration: synthetic 6 s fixture, --no-vision", () => {
