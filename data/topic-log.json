@@ -1187,11 +1187,6 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
-        },
-        {
-          "topic": "Inception's Mercury 3 vs GPT-6 Luna and Claude Haiku 5.5 Benchmark",
-          "slug": "mercury-3-vs-gpt-6-luna-claude-haiku-benchmark",
-          "reserved_at": "2026-10-22T14:10:04.834Z"
         }
       ],
       "last_generated": "2026-10-22T14:10:04.835Z"
