@@ -122,7 +122,7 @@ describe("branch structure is untouched", () => {
     assert.match(src, /if \(fr\.pass \|\| !qa\.gatePass\) \{/);
   });
   it("the loop runs after the canvas checks are measured and BEFORE their early-return", () => {
-    const iFit = src.indexOf("canvasFailure = { code: fit.code, failedIds };");
+    const iFit = src.indexOf("canvasFailure = canvasFailureOf(canvasRun);");
     const iLoop = src.indexOf("await recordEvalLoop({");
     const iReturn = src.indexOf("if (canvasFailure) {");
     assert.ok(iFit > -1 && iLoop > iFit && iReturn > iLoop, "order must be canvas checks -> eval loop -> Layer 1 early-return");
