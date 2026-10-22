@@ -203,7 +203,7 @@ jobs:
         if: always()
         run: |
           cat out-exit.txt >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
-          for f in data/renders/*/*-qa-loop-defects.md; do [ -f "$f" ] && { echo "### $f"; cat "$f"; } >> "$GITHUB_STEP_SUMMARY"; done
+          for f in data/renders/*/*-qa-loop-defects.md; do [ -f "$f" ] && { echo "### $f"; cat "$f"; } >> "$GITHUB_STEP_SUMMARY"; done; true
       - name: Upload the video + QA loop evidence
         if: always()
         uses: actions/upload-artifact@v4
