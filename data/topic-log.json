@@ -560,9 +560,14 @@
           "topic": "The Library of Virginia's 5-Year Digitization of 99 Free Negro Registers",
           "slug": "library-of-virginia-free-negro-registers",
           "reserved_at": "2026-10-22T13:57:55.869Z"
+        },
+        {
+          "topic": "Ancient Egypt’s First Female King Revealed by Long-Lost Royal Seals",
+          "slug": "ancient-egypts-first-female-king-royal-seals",
+          "reserved_at": "2026-10-23T13:34:03.799Z"
         }
       ],
-      "last_generated": "2026-10-22T13:57:55.869Z"
+      "last_generated": "2026-10-23T13:34:03.799Z"
     },
     "2": {
       "channel_name": "AI Tested",
