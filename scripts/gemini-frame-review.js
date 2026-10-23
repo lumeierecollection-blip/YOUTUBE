@@ -16,7 +16,7 @@
  */
 import "dotenv/config";
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
-import { join, dirname, basename } from "node:path";
+import { join, dirname, basename, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 // Every model call goes through src/lib/llm.js: Gemini first, local Ollama
@@ -104,19 +104,13 @@ function getVideoDuration(video) {
 
 function computeBeatTimes(srtCues, duration) {
   const times = [];
-  // SAMPLING (not what is judged): one frame per beat, taken 65% of the way
-  // through it — when its page is built. This sampled a uniform grid plus
-  // every cue's start + 0.1 s: the first frames of each beat, while the page
-  // fades in, the headline has not typed, a counter is still near 0 and the
-  // caption shows its first word. Reviews then reported exactly that as the
-  // video: "incomplete text fragments ('Two Alexandria', 'We'll')", "nearly
-  // blank white pages", "counting up to 1938 via random numbers like 1009"
-  // (runs 36405739332 ch-2, 36419295509 ch-2 / ch-48). Every beat is still
-  // reviewed, against the same rubric. Without cues: the uniform grid.
+  // SAMPLING (not what is judged): one frame per beat, taken 85% of the way
+  // through it — after page build, typewriter entrance, and counter animations
+  // have fully settled, avoiding transient mid-animation states. Without cues: uniform grid.
   if (srtCues.length) {
     srtCues.forEach((cue, i) => {
       const end = srtCues[i + 1] ? srtCues[i + 1].start : Math.max(cue.end, duration);
-      const t = cue.start + 0.65 * Math.max(0, end - cue.start);
+      const t = cue.start + 0.85 * Math.max(0, end - cue.start);
       if (t < duration - 0.3) times.push(t);
     });
   } else {
@@ -131,6 +125,8 @@ function computeBeatTimes(srtCues, duration) {
   }
   return unique.slice(0, 20);
 }
+
+export { computeBeatTimes };
 
 function buildScenePrompt(bible, frameIndex, totalFrames, time, voiceover) {
   return bible.prompts.scene_review
@@ -1016,7 +1012,9 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}
