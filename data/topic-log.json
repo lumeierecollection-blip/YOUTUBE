@@ -3972,9 +3972,14 @@
           "topic": "State Farm and MIT AgeLab Launch Drivefulness Research on Driver Distraction",
           "slug": "state-farm-mit-agelab-drivefulness-research",
           "reserved_at": "2026-10-20T16:11:05.935Z"
+        },
+        {
+          "topic": "Michigan Engineering Haptic Steering Wheel Communicates for Semi-Autonomous Driving",
+          "slug": "michigan-engineering-haptic-steering-wheel-driving",
+          "reserved_at": "2026-10-23T13:53:02.904Z"
         }
       ],
-      "last_generated": "2026-10-22T13:56:31.264Z"
+      "last_generated": "2026-10-23T13:53:02.904Z"
     },
     "49": {
       "channel_name": "Picture House",
