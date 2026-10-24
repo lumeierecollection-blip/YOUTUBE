@@ -49,11 +49,14 @@ export function buildFixture(images = IMAGES) {
   return { images: meta, beats };
 }
 
-// The same beats with the two drawn text overlays (headline, source credit) removed. Rendered beside the real one, the
-// difference inside a text box is what the text added (see the overlay checks in check-multi-png-render.mjs).
+// The same beats with the drawn text overlays removed: headline, source credit, and the photo's entity name, which the layout
+// draws as the headline when there is no headline (canvas-layout.js: `photo.entity || headline`). Run 40081807406 showed the
+// baseline still carrying the headline until the entity was dropped too. Rendered beside the real one, the difference inside a
+// text box is what the text added (see the overlay checks in check-multi-png-render.mjs).
 export function plainBeats(beats) {
   return beats.map(({ text, c }) => {
     const { headline, source_credit, ...rest } = c;
+    if (rest.photo) { const { entity, ...photo } = rest.photo; rest.photo = photo; }
     return { text, c: rest };
   });
 }

@@ -24,7 +24,8 @@ test("token-budget workflow: manual dispatch and pushes to the recovery branch o
 
 test("token-budget workflow: no secret, token, model key, push or publish; both checkouts drop credentials", () => {
   assert.doesNotMatch(code, /secrets\.|GITHUB_TOKEN|github\.token/);
-  assert.doesNotMatch(code, /GEMINI|OPENROUTER|GROQ|CEREBRAS|OLLAMA|YOUTUBE_|API_KEY|CLIENT_SECRET|REFRESH_TOKEN/i);
+  // Case-sensitive, secret-style names only: the workflow legitimately names the file scripts/gemini-visual-plan.js (--module).
+  assert.doesNotMatch(code, /(GEMINI|GOOGLE_GENERATIVE_AI|OPENROUTER|GROQ|CEREBRAS|OLLAMA|YOUTUBE)_|API_KEY|CLIENT_SECRET|REFRESH_TOKEN/);
   assert.doesNotMatch(code, /git\s+(push|commit|tag|add)\b|\bgh\s+|publish|youtube|queue|ledger|daily-pipeline|curl|wget/i);
   const checkouts = [...code.matchAll(/uses:\s*actions\/checkout@/g)].length;
   const dropped = [...code.matchAll(/persist-credentials:\s*false/g)].length;
@@ -56,7 +57,9 @@ test("the counter can never pass the 4,500 budget: unmeasured is 3, over is 1, w
 });
 
 test("the counter states that its number is text only, and the prompt writer touches no network or credential", () => {
-  assert.match(py, /reference frames[\s\S]*NOT included|NOT include/i);
+  assert.match(py, /reference frames/i);
+  assert.match(py, /text only|TEXT only/);
+  assert.match(py, /COMPLETE request/);
   assert.doesNotMatch(measure, /fetch\(|https?:\/\/|process\.env|child_process|spawn|exec/);
   assert.doesNotMatch(py, /os\.environ|api_key|API_KEY|requests|urllib/);
 });

@@ -75,7 +75,7 @@ test("no fixture signature colour is near the magenta hidden under alpha, so mag
 });
 
 // ── fixture overlays ───────────────────────────────────────────────────────────
-test("fixture: three beats carry a source credit, every beat a headline, and plainBeats strips exactly those two fields", () => {
+test("fixture: three beats carry a source credit, every beat a headline, and plainBeats strips the headline, the credit and the photo entity name", () => {
   const { beats } = buildFixture();
   assert.equal(beats.filter((b) => b.c.source_credit === SOURCE_CREDIT).length, 3);
   assert.ok(beats.every((b) => b.fixture.headline && b.fixture.headline === b.c.headline));
@@ -87,9 +87,15 @@ test("fixture: three beats carry a source credit, every beat a headline, and pla
     assert.equal(p.c.headline, undefined);
     assert.equal(p.c.source_credit, undefined);
     const { headline, source_credit, ...rest } = beats[i].c;
+    if (rest.photo) {
+      assert.equal(p.c.photo.entity, undefined, "the entity name is drawn as the headline, so the baseline drops it");
+      const { entity, ...photo } = rest.photo;
+      rest.photo = photo;
+    }
     assert.deepEqual(p.c, rest);
   });
   assert.ok(beats.every((b) => b.c.headline), "plainBeats did not mutate its input");
+  assert.ok(beats.filter((b) => b.c.photo).every((b) => b.c.photo.entity), "plainBeats did not mutate the photo");
 });
 
 // ── geometry and manifest text ─────────────────────────────────────────────────
