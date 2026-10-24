@@ -1192,9 +1192,14 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "OpenAI Dots vs Meta Muse Personal AI Agents Head-to-Head Test",
+          "slug": "openai-dots-vs-meta-muse-ai-agents-test",
+          "reserved_at": "2026-10-24T12:47:02.197Z"
         }
       ],
-      "last_generated": "2026-10-23T13:32:54.196Z"
+      "last_generated": "2026-10-24T12:47:02.197Z"
     },
     "3": {
       "channel_name": "AI Tested",
