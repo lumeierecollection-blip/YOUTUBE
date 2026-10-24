@@ -26,6 +26,7 @@ const __dirname = new URL(".", import.meta.url).pathname;
 const ROOT = join(__dirname, "..");
 const require = createRequire(import.meta.url);
 const { scoreTopic, subjectIllustrated } = require("./lib/imagery-score.mjs");
+import { collectSourceDomains } from "./lib/source-domains.mjs";
 
 const UA = "youtube-automation/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE)";
 const getJson = async (url) => {
@@ -98,15 +99,19 @@ function countFigures(text) {
   return count;
 }
 
-async function searchAndCountFigures(query) {
+async function searchAndCountFigures(query, get = getJson) {
   const url = `${WEBSEARCH_URL}?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
-  const data = await getJson(url);
-  if (!data) return 0;
+  const data = await get(url);
+  if (!data) return { answered: false, figures: 0 };
   const text = [data.Abstract, data.AbstractText, data.RelatedTopics?.map(t => t.Text || t).join(" ")].join(" ");
-  return countFigures(text);
+  return { answered: true, figures: countFigures(text) };
 }
 
-async function checkFigureDensity(topic) {
+// status: "ok" (>=8 figures), "insufficient" (lookups answered, too few figures) or "lookup_failed" (no lookup
+// answered, so a count of 0 says nothing about the topic). The >=8 threshold is unchanged. Known limit: the
+// DuckDuckGo instant-answer API often answers a long video-style query with an empty body, so "insufficient"
+// can still be a thin-API result rather than a thin topic; the real figure check is research (SCR-05).
+export async function checkFigureDensity(topic, get = getJson) {
   const query = `${topic.topic} ${topic.angle || ""}`.trim();
   const searchQueries = [
     query,
@@ -119,44 +124,22 @@ async function checkFigureDensity(topic) {
     `${query} results`,
   ];
 
-  let totalFigures = 0;
+  let totalFigures = 0, lookups = 0, answered = 0;
   for (const q of searchQueries) {
-    const count = await searchAndCountFigures(q);
-    totalFigures += count;
+    const r = await searchAndCountFigures(q, get);
+    lookups++;
+    if (r.answered) answered++;
+    totalFigures += r.figures;
     if (totalFigures >= 8) break; // need at least 8 distinct figures for a shorts script (6-8 beats)
   }
 
-  return totalFigures >= 8 ? { pass: true, figures: totalFigures } : { pass: false, figures: totalFigures };
+  const status = totalFigures >= 8 ? "ok" : answered === 0 ? "lookup_failed" : "insufficient";
+  return { pass: status === "ok", status, figures: totalFigures, lookups, answered };
 }
 
-async function quickSearchDomains(query) {
-  const url = `${WEBSEARCH_URL}?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
-  const data = await getJson(url);
-  if (!data?.Abstract || !data?.AbstractURL) return [];
-  try {
-    const host = new URL(data.AbstractURL).hostname.replace(/^www\./, "");
-    return [host];
-  } catch { return []; }
-}
-
-async function checkTwoDomains(topic) {
-  const query = `${topic.topic} ${topic.angle || ""}`.trim();
-  const domains = new Set();
-
-  const searchQueries = [
-    query,
-    `${query} study`,
-    `${query} report`,
-    `${query} data`,
-  ];
-
-  for (const q of searchQueries) {
-    if (domains.size >= 2) break;
-    const d = await quickSearchDomains(q);
-    for (const d of d) domains.add(d);
-  }
-
-  return domains.size >= 2 ? { pass: true, domains: [...domains] } : { pass: false, domains: [...domains] };
+// Pre-research triage only; SCR-02 in gate-research.js is the real two-domain gate (see lib/source-domains.mjs).
+export async function checkTwoDomains(topic, get = getJson) {
+  return collectSourceDomains(topic, get, { need: 2 });
 }
 
 async function checkVisualCoverage(topic) {
@@ -211,15 +194,21 @@ async function main() {
 
     const domainCheck = await checkTwoDomains(topic);
     if (!domainCheck.pass) {
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${domainCheck.domains.length} domain(s) (${domainCheck.domains.join(", ")}), need 2`);
-      rejected.push({ ...topic, reject_reason: `only ${domainCheck.domains.length} domain(s): ${domainCheck.domains.join(", ")}` });
+      const why = domainCheck.status === "lookup_failed"
+        ? `source lookup failed (${domainCheck.answered}/${domainCheck.lookups} lookups answered), so independent sources could not be established`
+        : `only ${domainCheck.domains.length} independent domain(s): ${domainCheck.domains.join(", ")}`;
+      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${why}, need 2`);
+      rejected.push({ ...topic, reject_reason: why });
       continue;
     }
 
     const figureCheck = await checkFigureDensity(topic);
     if (!figureCheck.pass) {
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — only ${figureCheck.figures} measurable figures in search results (need ≥8)`);
-      rejected.push({ ...topic, reject_reason: `only ${figureCheck.figures} measurable figures (need ≥8)` });
+      const why = figureCheck.status === "lookup_failed"
+        ? `figure lookup failed (${figureCheck.answered}/${figureCheck.lookups} lookups answered), so measurable figures could not be established`
+        : `only ${figureCheck.figures} measurable figures in search results (need >=8)`;
+      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${why}`);
+      rejected.push({ ...topic, reject_reason: why });
       continue;
     }
 
@@ -248,4 +237,6 @@ async function main() {
   process.exit(0);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (process.argv[1] && /validate-discovery\.js$/.test(process.argv[1].replace(/\\/g, "/"))) {
+  main().catch((e) => { console.error(e); process.exit(1); });
+}

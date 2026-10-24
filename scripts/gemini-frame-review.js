@@ -15,9 +15,9 @@
  * Requires: GEMINI_API_KEY or GOOGLE_GENERATIVE_AI_API_KEY or VISION_API_KEY
  */
 import "dotenv/config";
-import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
-import { isFail, settleNaming } from "./lib/naming-looks.mjs";
-import { join, dirname, basename } from "node:path";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync, realpathSync } from "node:fs";
+import { isFail, settleNaming, creditLinesOf, setAsideCreditLines } from "./lib/naming-looks.mjs";
+import { join, dirname, basename, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 // Every model call goes through src/lib/llm.js: Gemini first, local Ollama
@@ -106,19 +106,13 @@ function getVideoDuration(video) {
 
 function computeBeatTimes(srtCues, duration) {
   const times = [];
-  // SAMPLING (not what is judged): one frame per beat, taken 65% of the way
-  // through it — when its page is built. This sampled a uniform grid plus
-  // every cue's start + 0.1 s: the first frames of each beat, while the page
-  // fades in, the headline has not typed, a counter is still near 0 and the
-  // caption shows its first word. Reviews then reported exactly that as the
-  // video: "incomplete text fragments ('Two Alexandria', 'We'll')", "nearly
-  // blank white pages", "counting up to 1938 via random numbers like 1009"
-  // (runs 36405739332 ch-2, 36419295509 ch-2 / ch-48). Every beat is still
-  // reviewed, against the same rubric. Without cues: the uniform grid.
+  // SAMPLING (not what is judged): one frame per beat, taken 85% of the way
+  // through it — after page build, typewriter entrance, and counter animations
+  // have fully settled, avoiding transient mid-animation states. Without cues: uniform grid.
   if (srtCues.length) {
     srtCues.forEach((cue, i) => {
       const end = srtCues[i + 1] ? srtCues[i + 1].start : Math.max(cue.end, duration);
-      const t = cue.start + 0.65 * Math.max(0, end - cue.start);
+      const t = cue.start + 0.85 * Math.max(0, end - cue.start);
       if (t < duration - 0.3) times.push(t);
     });
   } else {
@@ -133,6 +127,8 @@ function computeBeatTimes(srtCues, duration) {
   }
   return unique.slice(0, 20);
 }
+
+export { computeBeatTimes };
 
 function buildScenePrompt(bible, frameIndex, totalFrames, time, voiceover) {
   return bible.prompts.scene_review
@@ -960,9 +956,13 @@ For each one judge it against the sentence:
 - identity: the same place / person / organisation the sentence names — not a broader region (a "Europe" label for "France"), not a different place with the same name, not a different company.
 - figures: the number and its unit as the sentence states them ("$86 million", not "$86" or "86 billion").
 Lettering that is part of a real object's own artwork — an organisation's emblem or seal, a coin, a banknote — is judged for IDENTITY only: it must be the organisation / place the sentence names (a court seal reading "District of Columbia" on a beat about a Florida court is wrong). Its own abbreviation ("T.P.L.F" on the Tigray People's Liberation Front's emblem), its own script, and dates or numbers minted or printed on it (the year on a coin) are part of that artwork, not a misspelling or an extra figure.
+An image-credit or source line (small type such as "Photo: <author> / Wikimedia Commons, Public domain" or "Source: commons.wikimedia.org") names who made or hosts the picture, never an entity the sentence is about: do not list it in names (the author of a painting or photograph is not the person it shows).
 A frame that shows no name, date or figure passes.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on screen>","expected":"<as the sentence has it>","ok":true|false,"problem":"<empty or what is wrong>"}],"verdict":"PASS"|"FAIL"}]} — one entry per beat listed, by beat_index.` }];
   const header = content[0];
+  // The credit / source line(s) the renderer drew on each beat (manifest canvas record): known text, set aside deterministically from the reader's names
+  // (scripts/lib/naming-looks.mjs; run 39961381904 ch-1 failed a correct Petrie portrait on its "Photo: George Frederic Watts" credit line).
+  const creditsByIdx = new Map(jobs.map(({ b, i }) => [i, creditLinesOf(b.canvas)]));
   // One model call for a set of beats, each read from its own frame at `frac` of the beat. -> Map(beat_index -> verdict), or null when the answer was unusable.
   const askFor = async (list, frac) => {
     const c = [header];
@@ -988,8 +988,9 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on sc
     const first = await askFor(jobs, 0.85);
     if (first.error) { console.error(`::error::naming check unavailable: ${first.error}`); process.exit(3); }
     if (!jobs.every(({ i }) => first.byIdx.has(i))) { console.error(`::error::naming check returned ${first.byIdx.size} verdict(s) for ${jobs.length} beats`); process.exit(3); }
+    for (const [i, v] of first.byIdx) first.byIdx.set(i, setAsideCreditLines([v], creditsByIdx)[0]);
     let verdicts = jobs.map(({ i }) => first.byIdx.get(i));
-    for (const v of verdicts) say(v);
+    for (const v of verdicts) say(v, v.credit_line_set_aside ? " (credit line set aside)" : "");
     // A SECOND LOOK at the beats that failed, on a different frame of the same beat (board 38047691386 ch 26: "95 million euros" read once as
     // "curos"). A real misspelling is on the screen at both times and fails again; a one-off misread of small type is not. A beat fails only
     // if it fails both looks; nothing about what counts as a failure changes, and an unusable second answer keeps the first verdict.
@@ -998,6 +999,7 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on sc
       console.log(`[naming-check] second look at ${retry.length} failing beat(s) on a different frame`);
       const second = await askFor(retry, 0.6);
       if (!second.error && retry.every(({ i }) => second.byIdx.has(i))) {
+        for (const [i, v] of second.byIdx) second.byIdx.set(i, setAsideCreditLines([v], creditsByIdx)[0]);
         for (const { i } of retry) say(second.byIdx.get(i), " (second look)");
         verdicts = settleNaming(verdicts, second.byIdx);
       } else console.log(`[naming-check] second look unusable (${second.error || "incomplete answer"}) — the first verdict stands`);
@@ -1373,7 +1375,17 @@ async function main() {
   }
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+// Run main() only when executed directly. realpath both sides: Node realpaths import.meta.url but leaves
+// process.argv[1] as typed, so a symlinked path (or a different drive-letter case on Windows) would make a plain
+// string compare false and the CLI would silently do nothing (exit 0).
+export function isMainModule(argv1 = process.argv[1], metaUrl = import.meta.url) {
+  if (!argv1) return false;
+  const real = (p) => { try { return realpathSync(p); } catch { return resolve(p); } };
+  return real(fileURLToPath(metaUrl)) === real(resolve(argv1));
+}
+if (isMainModule()) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}

@@ -17,6 +17,8 @@
  */
 import "dotenv/config";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
+import { namingRetryDecision } from "./lib/naming-looks.mjs";
+import { enforcedPlanPathFor, revisedPlanPathFor, correctionsPathFor, outputPathFor } from "./lib/attempt-naming.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, appendFileSync, statSync } from "node:fs";
 import { cloneGroundVerdict, rgbOf } from "./lib/clone-ground.mjs";
@@ -65,7 +67,6 @@ const REMOTION_ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "Root.j
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
-const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
@@ -275,9 +276,7 @@ function audioPathFor(channelId, scriptPath) {
 }
 
 function expectedOutputPath(channelId, scriptPath, format) {
-  const slug = basename(scriptPath, extname(scriptPath)).replace(/-script$/, "");
-  const timestamp = new Date().toISOString().slice(0, 10);
-  return join(ROOT, "data", "renders", channelId, `${slug}-${format}-${timestamp}.mp4`);
+  return outputPathFor(ROOT, channelId, scriptPath, format);
 }
 
 function runChild(cmd, args, { label, env }) {
@@ -678,19 +677,18 @@ async function qaOne(runId, rendered, planPath) {
     await runChild("node", [LOCAL_AUDITOR_JS, ...laArgs], { label: `qa/local-audit ${basename(outputPath)}` });
     localAudit = readJsonSafe(outputPath.replace(/\.mp4$/, "-local-audit.json"));
   }
-  // geminiNeeded (risk not LOW, or uncertain beats, or no local report) now
-  // decides only the advisory vision QA below. The FRAME REVIEW runs on every
-  // video (frameReviewRuns): it is the gate, and a LOW-risk local verdict
-  // skipping it is how an unreviewed template-monoculture video could ship.
+  // The FRAME REVIEW runs on every video (frameReviewRuns): it is the gate, and a
+  // LOW-risk local verdict skipping it is how an unreviewed template-monoculture video
+  // could ship.
+  //
+  // scripts/gate-visual-qa.js (section 7) is NOT spawned from here. It reads the text
+  // plan of the template-scene engine (qa-scripts/render-plan.mjs); this pipeline's plan
+  // is the JSON visual plan, which has no transition or asset-source fields for 7.5/7.6.
+  // It used to be spawned with no --plan, so it rejected every render for "no plan
+  // supplied" and nothing read its exit code. A gate nobody consumes is not a gate;
+  // this pipeline's consumed gates are frame-audit, the local auditor's blockers and the
+  // frame review. Test: scripts/__tests__/visual-qa-wiring.test.js.
   const geminiNeeded = !localAudit || localAudit.gemini_required !== false;
-
-  let visionQaPromise;
-  if (audit.code === 0 && geminiNeeded && (process.env.VISION_API_KEY || process.env.OLLAMA_URL)) {
-    const chId = `ch-${String(channelId).padStart(2, "0")}`;
-    visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
-      label: `qa/vision ${basename(outputPath)}`,
-    });
-  }
 
   let geminiReviewPromise;
   // The frame review runs with Gemini OR the local Ollama vision model.
@@ -730,7 +728,7 @@ async function qaOne(runId, rendered, planPath) {
   }
   const gatePass = audit.code === 0 && blockers.length === 0;
 
-  return { outputPath, gatePass, stage: "frame-audit", reviewDir, slopCheckPromise, visionQaPromise, geminiReviewPromise, localAudit, geminiNeeded, blockers };
+  return { outputPath, gatePass, stage: "frame-audit", reviewDir, slopCheckPromise, geminiReviewPromise, localAudit, geminiNeeded, blockers };
 }
 
 /* ── Enforcement: the system makes the changes ───────────────────── */
@@ -804,7 +802,7 @@ function enforceAdjustments(planPath, localAudit, geminiReportPath, attempt) {
 
   // Write the edited plan next to the original so the attempt that renders
   // it is inspectable afterwards, then point the plan at it.
-  const out = planPath.replace(/\.json$/, `-enforced-attempt${attempt}.json`);
+  const out = enforcedPlanPathFor(planPath, attempt);
   writeFileSync(out, JSON.stringify(next, null, 2) + "\n");
   console.log(`[enforce] edited plan -> ${basename(out)}`);
   return { planPath: out, appliedCount: applied.length, failures };
@@ -840,7 +838,7 @@ function writeMergedCorrections(runId, channelId, scriptPath, geminiReportPath, 
 
   const dir = join(ROOT, "data", "audit", "corrections", String(runId));
   mkdirSync(dir, { recursive: true });
-  const out = join(dir, `${basename(scriptPath, extname(scriptPath))}-attempt${attempt}.json`);
+  const out = correctionsPathFor(ROOT, runId, scriptPath, attempt);
   writeFileSync(out, JSON.stringify({
     generatedAt: new Date().toISOString(),
     channel: channelId,
@@ -3141,7 +3139,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       judgeSpec: judgeRow ? { bg_mode: judgeRow.bg_mode ?? null, colors: judgeRow.colors ?? null } : null,
       callModel: async (prompt) => callGeminiForRevise([{ role: "user", content: prompt }], { maxTokens: 4000, temperature: 0, noCache: true, tag: "revise" }),
       rerender: async (patched, { attempt: a }) => {
-        const p = planPath.replace(/\.json$/, `-revised-a${attempt}-${a}.json`);
+        const p = revisedPlanPathFor(planPath, attempt, a);
         writeFileSync(p, JSON.stringify(patched, null, 2) + "\n");
         const r = await renderOne(channelId, scriptPath, format, p);
         if (!r.ok) throw new Error(`re-render of the patched plan failed (${basename(p)})`);
@@ -3249,6 +3247,23 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         const why = nc.code === 1 ? "FAILED — an entity on screen is misnamed" : "could not run";
         console.error(`::error::naming check ${why} for ${basename(result.outputPath)}`);
         const nr = readJsonSafe(result.outputPath.replace(/.mp4$/, "-naming.json"));
+        // A real misnaming gets a re-plan with the failing names as corrections while an attempt and the time budget allow (naming-looks.mjs
+        // namingRetryDecision); it used to hold the video outright. The re-rendered video goes through this same check again.
+        const retryNext = namingRetryDecision({ code: nc.code, report: nr, attempt, maxAttempts: MAX_CORRECTION_LOOPS, elapsedMs: Date.now() - PROCESS_T0,
+          nextAttemptMs: (Date.now() - planReadyAt) + (planReadyAt - attemptStartedAt), budgetMs: RENDER_QA_BUDGET_MS });
+        if (retryNext.retry) {
+          const dir = join(ROOT, "data", "audit", "corrections", String(runId));
+          mkdirSync(dir, { recursive: true });
+          const out = correctionsPathFor(ROOT, runId, scriptPath, attempt, "naming");
+          writeFileSync(out, JSON.stringify({ generatedAt: new Date().toISOString(), channel: channelId, attempt, sources: { naming: retryNext.corrections.length }, corrections: retryNext.corrections }, null, 2) + "\n");
+          console.log(`[naming-check] attempt ${attempt}: ${retryNext.corrections.length} beat(s) misnamed — ${retryNext.why} (attempt ${attempt + 1}/${MAX_CORRECTION_LOOPS})`);
+          for (const c of retryNext.corrections) console.log(`   ${c.beat}: ${c.problem}`.slice(0, 220));
+          enforcedPlanPath = null;
+          correctionsPath = out;
+          try { rmSync(result.outputPath); console.log(`[queue] ch-${channelId}: attempt ${attempt} superseded by attempt ${attempt + 1} (same output path) — removed, not queued`); } catch {}
+          continue;
+        }
+        if (nc.code === 1) console.log(`[naming-check] not retried: ${retryNext.why}`);
         return backupAudit({ ...backupArgs, stage: "naming-check", reason: nr?.failing?.length ? `${why}: beats ${nr.failing.join(", ")}` : why });
       }
     }
@@ -3288,7 +3303,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const qa = await qaOne(runId, result, planPath);
 
     // Wait for all background QA tasks to finish before checking Gemini verdict
-    await Promise.all([qa.slopCheckPromise, qa.visionQaPromise, qa.geminiReviewPromise].filter(Boolean));
+    await Promise.all([qa.slopCheckPromise, qa.geminiReviewPromise].filter(Boolean));
 
     // Step 4: verdict. FRAME REVIEW IS THE GATE (owner, 2026-10-09). A local auditor that rated
     // the video LOW risk used to skip the review and ship it ("approved without Gemini") — so a

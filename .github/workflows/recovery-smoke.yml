@@ -1,0 +1,143 @@
+name: recovery-smoke
+
+# Read-only render smoke for the recovery branch. It renders a SYNTHETIC multi-PNG video through the real
+# renderer (scripts/qa-canvas-render.mjs -> Remotion -> full-canvas.jsx) and judges the plan, the stills and the
+# mp4 (scripts/check-multi-png-render.mjs). It renders the same beats twice (stills AND video, so determinism is
+# compared on decoded frames, not on bytes) and a third time without the headline and credit overlays (so the drawn
+# text is measured against the same beat drawn without it). Thresholds and their status are in
+# scripts/lib/render-checks.mjs; the first run reports every measured value beside its limit.
+#
+# What it cannot do, stated plainly:
+#   - It makes no model call, so it does not exercise the planner, the script writer or any gate that needs a model.
+#     Those are covered by tests.yml (unit tests with injected model replies), not by this job.
+#   - It does not measure the planner prompt in real tokens; that needs a tokenizer API key, and this job has no secrets.
+#     scripts/test-plan-gates.mjs (tests.yml) bounds the prompt with the repo's own 3.6 chars/token estimate.
+#
+# Side effects: none beyond the runner. contents: read; no secrets are referenced; nothing is pushed, uploaded to
+# YouTube or written to a ledger; the only outputs are the artifacts below, all built from generated PNGs.
+#
+# Triggers: a push to the recovery branch ONLY (a workflow that exists only on a non-default branch cannot be
+# dispatched, so the push is how it runs there), and manual dispatch. The branch filter makes the push trigger inert on
+# main and every other branch; there is no schedule.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - recovery/production-readiness
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recovery-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  multi-png:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Generate the synthetic multi-PNG fixture
+        run: node scripts/make-multi-png-fixture.mjs --beats-out out/multi-beats.json --meta-out out/multi-meta.json --plain-beats-out out/multi-beats-plain.json
+
+      - name: Render 1 (stills at 5/50/85/95 percent of each beat, plus the mp4)
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/qa-canvas-render.mjs --out out/run1 --only-extra --extra-beats out/multi-beats.json --moments 0.05,0.5,0.85,0.95 --video --accent "#C2410C"
+
+      - name: Render 2 (same inputs again, stills and mp4, for the determinism comparison)
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/qa-canvas-render.mjs --out out/run2 --only-extra --extra-beats out/multi-beats.json --moments 0.05,0.5,0.85,0.95 --video --accent "#C2410C"
+
+      - name: Render 3 (same beats without headline and source credit, stills only)
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/qa-canvas-render.mjs --out out/run3 --only-extra --extra-beats out/multi-beats-plain.json --moments 0.05,0.5,0.85,0.95 --accent "#C2410C"
+
+      - name: Judge the render (sequence, every PNG drawn, alpha edges, overlays, frames, determinism of stills and decoded video)
+        run: node scripts/check-multi-png-render.mjs --dir out/run1 --meta out/multi-meta.json --moments 0.05,0.5,0.85,0.95 --compare out/run2 --plain out/run3 --video
+
+      - name: Contact sheet (every beat at 85 percent)
+        if: always()
+        run: |
+          ls out/run1/beat-*-85.png | sort -V > /tmp/list.txt
+          n=$(wc -l < /tmp/list.txt)
+          args=""; for f in $(cat /tmp/list.txt); do args="$args -i $f"; done
+          ffmpeg -loglevel error -y $args -filter_complex "hstack=inputs=$n,scale=iw/3:-1" out/run1/contact-sheet.png
+
+      # The pipeline's own Layer 1 on the pixels of this video. ADVISORY here: the fixture is synthetic by design, so a
+      # finding is recorded, not treated as a regression. --fixture also switches off its one network check.
+      - name: Layer 1 on the rendered pixels (advisory)
+        if: always()
+        continue-on-error: true
+        run: node scripts/local-audit.cjs --canvas-only --video out/run1/canvas-test.mp4 --manifest out/run1/canvas-test-manifest.json --fixture
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### recovery-smoke / multi-png"
+            echo
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo
+            if [ -f out/run1/multi-png-report.json ]; then
+              echo '```json'
+              jq 'del(.thresholds, .per_beat)' out/run1/multi-png-report.json | head -c 8000
+              echo
+              echo '```'
+            else
+              echo "No report was written: the render or the checker failed before it."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recovery-smoke-${{ github.run_id }}
+          path: |
+            out/run1/*.png
+            out/run1/canvas-test.mp4
+            out/run1/canvas-test-manifest.json
+            out/run1/plan.json
+            out/run1/multi-png-report.json
+            out/run2/canvas-test.mp4
+            out/run3/beat-*-85.png
+            out/multi-meta.json
+          if-no-files-found: ignore
+          retention-days: 14

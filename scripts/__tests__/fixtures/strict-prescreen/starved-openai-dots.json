@@ -1,0 +1,24 @@
+{
+  "_source": "run 39961381904 prep artifact: a2/research/2/openai-dots-vs-meta-muse-workflow-agents-test.json",
+  "key_facts": [
+    {
+      "fact": "Ina Fried tested OpenAI's Dots and Meta's Muse using the WNBA Finals as a testing ground for personal AI agents."
+    },
+    {
+      "fact": "Mary Randolph gave Meta's Muse and OpenAI's Dots her passwords for a week to manage grocery lists, e-mails, and errands."
+    },
+    {
+      "fact": "Reece Rogers reported that OpenAI's Dots is available only for subscribers of OpenAI's service at launch."
+    },
+    {
+      "fact": "Ruben Circelli tested ChatGPT's Dots, Gemini's Spark, and Meta's Muse across daily chores in PCMag."
+    }
+  ],
+  "numbers": [
+    {
+      "label": "journalist age",
+      "value": 22,
+      "unit": "years"
+    }
+  ]
+}

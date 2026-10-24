@@ -1,0 +1,15 @@
+{
+  "_source": "run 39961381904 prep artifact: a48/research/48/mit-x-hinges-software-3d-printed-devices.json",
+  "key_facts": [
+    {
+      "fact": "Researchers at MIT CSAIL and Tianjin University developed X-Hinges, a software and fabrication method for 3D printing self-sensing compliant mechanisms."
+    },
+    {
+      "fact": "X-Hinges uses multi-material FDM 3D printing to automatically embed resistive sensing elements directly during fabrication without requiring post-assembly."
+    },
+    {
+      "fact": "The software enables the creation of everyday interactive items like lamps and gloves that perceive and adaptively respond to human contact."
+    }
+  ],
+  "numbers": []
+}

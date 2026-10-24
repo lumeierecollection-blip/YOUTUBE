@@ -1,0 +1,39 @@
+{
+  "_source": "data/research/48/state-farm-mit-agelab-drivefulness-research.json",
+  "key_facts": [
+    {
+      "fact": "In October 2026, State Farm and MIT AgeLab collaborated to study driver distraction through a research initiative titled Drivefulness."
+    },
+    {
+      "fact": "State Farm and MIT AgeLab announced their Drivefulness research in Bloomington, Illinois in October 2026 to explore the human side of roadway risks."
+    },
+    {
+      "fact": "State Farm statistics indicate that distracted driving leads to over 10,000 deaths and 1.3 million injuries each year."
+    },
+    {
+      "fact": "State Farm data reports that 68% of drivers admit to engaging in distracted behaviors while driving."
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Roadway risk cost",
+      "value": 100,
+      "unit": "billion dollars"
+    },
+    {
+      "label": "Annual deaths from distracted driving",
+      "value": 10000,
+      "unit": "deaths"
+    },
+    {
+      "label": "Annual injuries from distracted driving",
+      "value": 1.3,
+      "unit": "million injuries"
+    },
+    {
+      "label": "Percentage of drivers admitting distraction",
+      "value": 68,
+      "unit": "percent"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "_source": "run 39961381904 prep artifact: ch-2 recursive-flint",
+  "key_facts": [
+    {
+      "fact": "The startup Recursive released an open-weight AI coding model named Flint, which was built largely by artificial intelligence using recursive self-improvement."
+    },
+    {
+      "fact": "Recursive developed the Flint model with a small team of people and agents from scratch in under four months."
+    },
+    {
+      "fact": "Flint is a mixture-of-experts model containing 40 billion total parameters while activating just 2.5 billion parameters per token."
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total parameters",
+      "value": 40,
+      "unit": "billion"
+    },
+    {
+      "label": "Active parameters per token",
+      "value": 2.5,
+      "unit": "billion"
+    },
+    {
+      "label": "Development time in months",
+      "value": 4,
+      "unit": "months"
+    }
+  ]
+}

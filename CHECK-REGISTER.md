@@ -82,6 +82,7 @@ never `L7` or `Â§3.1`.
 | `L2` | style advisory — CLIP similarity to the shared motion-graphics reference family. ADVISORY ONLY, non-gating: reports a number, never escalates or retries, because CLIP-SIM cannot separate a blank frame from this family (a blank frame scores 0.68-0.81 against a 0.4570 floor) | `scripts/eval-layer2-style.js` (per render — advisory input to `L3`) |
 | `L3` | Gemini full-video judge — whole-video upload, four axis scores, locally-computed weighted aggregate, weak beats with timestamps. Scores; the retry loop decides | `scripts/eval-layer3-judge.js` + `src/lib/gemini-files.js` (per render) |
 | `CLN` | the clone family - the reference videos' measured laws (cadence: how often something new appears, the longest wait), staged by clone-plan.js and drawn by CloneVideo.jsx, with its own legality | `scripts/lib/novelty.mjs` + `config/clone-grammar.json` + `scripts/local-audit.cjs --canvas-only` (clone branch) + `scripts/gate-clone-cadence.mjs` (per render - see 3.20) |
+| `RGR` | recovery regression - the synthetic multi-PNG render, its numbering and the editing-rule enforcement pins (2026-10-24). Tests and a read-only smoke workflow; nothing here gates the daily pipeline | `.github/workflows/recovery-smoke.yml`, `scripts/check-multi-png-render.mjs`, `scripts/__tests__/multi-png-render-sequence.test.js` (see section 3.21) |
 
 ---
 
@@ -2550,6 +2551,18 @@ marked as rejected and a human must be notified. Do not automatically retry",
 so the gate exits non-zero, writes a rejection record under
 `data/audit/visual-qa/`, and never re-renders or adjusts anything.
 
+**Scope, as of the recovery branch (UNVERIFIED on GitHub until the branch is pushed
+and `tests` runs).** VQA covers renders of the template-scene engine
+(`qa-scripts/render-plan.mjs`) and needs that engine's section-5 TEXT plan. It exits 2
+(no verdict) on a missing plan or a JSON plan. The daily pipeline's plan is the JSON
+visual plan, which has no transition or asset-source fields, so `render-and-qa.js` no
+longer spawns this gate: it had been spawned with no `--plan` and its exit code was never
+read. The pipeline's consumed gates are `frame-audit`, the local auditor's `blockers`
+and the frame review. KNOWN GAP: VQA-7.1 (palette) and 7.2 (fonts) have no like-for-like
+replacement for the daily pipeline; the frame review judges palette, and
+`wait-for-fonts.js` guards font loading at render time. Test:
+`scripts/__tests__/visual-qa-wiring.test.js`.
+
 | ID | Check | How | Sev |
 |---|---|---|---|
 | VQA-7.1 | Dominant colours are within ±5% HSV of `primary_palette` | **MEASURED** from the video's pixels | BLOCKER |
@@ -3117,6 +3130,23 @@ Where this stops: the metric sees edges that appear, not meaning. A flickering v
 reads as none. It is a CADENCE check; whether a picture is the right one is still the entity gates' and the frame review's job. The clone family deliberately brings
 back what the canvas engine's owner rules excluded (a ground that is not white, type beside objects, solid shapes) because the references do; it keeps pop-only entrances,
 no zoom, real sourced pictures only, and colour from `channels.json`.
+
+## 3.21 `RGR` - recovery regression: multi-PNG render, numbering, editing-rule enforcement (2026-10-24)
+
+Written on the recovery branch. NOT yet run on GitHub: every row below is source-only until a `tests.yml` / `recovery-smoke.yml` run is inspected. Thresholds are untuned.
+
+| ID | Check | Evidence | Where |
+|---|---|---|---|
+| `RGR-01` | >= 6 distinct synthetic PNGs (>= 5 aspect ratios, 2 with alpha, awkward file names) are all drawn; each beat shows its own picture (signature colour present in a sampled still) | rendered stills | `check-multi-png-render.mjs` |
+| `RGR-02` | Beat ids t0..tN, unique and contiguous; exactly one still per beat and moment; no path collision after case/Unicode folding | plan.json, directory listing | `lib/render-sequence.mjs` |
+| `RGR-03` | No black still; no flat blank still at >= 50% of a beat; mp4 sampled at 10 fps has no black frame, no blank run > 1 s, no one-sample luminance spike, expected duration | stills, mp4 | `check-multi-png-render.mjs --video` |
+| `RGR-04` | Two renders of identical input give pixel-identical stills and an identical plan | stills, plan.json | `check-multi-png-render.mjs --compare` |
+| `RGR-05` | Editing-rule enforcement is pinned: SCR-17 soft is a MAJOR, SCR-17 STRICT a BLOCKER (strict_visual only); hook word count, close-echoes-hook and first-setup-proof are PROMPT-ONLY (KNOWN LIMIT tests) | unit tests | `scripts/__tests__/script-editing-rules-enforcement.test.js` |
+| `RGR-06` | Discovery figure/domain lookups report `lookup_failed` separately from `insufficient`; the >= 8 figures threshold is unchanged | unit tests | `scripts/__tests__/validate-discovery-figures.test.js`, `validate-discovery-domains.test.js` |
+
+Known limits: attempt/resume file naming inside `render-and-qa.js` is not exported and is not directly tested; the real planner-prompt token count needs a tokenizer key and is bounded only by the repo's 3.6 chars/token estimate; `checkFigureDensity` counts one hit per pattern kind, not distinct numbers.
+
+---
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

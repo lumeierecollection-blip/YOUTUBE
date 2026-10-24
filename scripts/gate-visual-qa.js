@@ -400,7 +400,19 @@ function main() {
   const planPath = arg("plan");
   const noVision = process.argv.includes("--no-vision");
   if (!cid || !video) {
-    console.error("usage: gate-visual-qa.js --channel ch-01 --video <path> [--plan <path>] [--no-vision]");
+    console.error("usage: gate-visual-qa.js --channel ch-01 --video <path> --plan <path> [--no-vision]");
+    process.exit(2);
+  }
+  // 7.5/7.6 read the text plan of the template-scene engine. No plan, or the pipeline's
+  // JSON visual plan, would parse to empty sections and "pass" vacuously: refuse both.
+  if (!planPath) {
+    console.error("gate-visual-qa: --plan is required (the section-5 text plan). Refusing to run 7.5/7.6 on nothing.");
+    process.exit(2);
+  }
+  const planAbs = existsSync(planPath) ? planPath : join(ROOT, planPath);
+  if (!existsSync(planAbs)) { console.error(`gate-visual-qa: no plan at ${planPath}`); process.exit(2); }
+  if (/^\s*[{[]/.test(readFileSync(planAbs, "utf-8").slice(0, 64)) || /\.json$/i.test(planPath)) {
+    console.error("gate-visual-qa: --plan must be the section-5 text plan, not a JSON visual plan (the text parser would read it as empty).");
     process.exit(2);
   }
 
@@ -467,8 +479,11 @@ function main() {
     }
 
     // ── 7.5 transition compliance + 7.6 asset authenticity ────────────────
-    if (planPath) {
-      const plan = parsePlan(readFileSync(join(ROOT, planPath), "utf-8"));
+    {
+      const plan = parsePlan(readFileSync(planAbs, "utf-8"));
+      if (!plan.template && !plan.transitions.length && !plan.assets.length) {
+        findings.push("7.5 / 7.6: the plan has none of the section-5 headings (TEMPLATE SELECTED / ASSET REFERENCES / TRANSITION SCHEDULE), so nothing could be checked.");
+      }
       const allowed = new Set(spec.transition_language);
       const used = plan.transitions
         .map((l) => (/->\s*\S+:\s*([a-z-]+)/.exec(l) || [])[1])
@@ -486,10 +501,6 @@ function main() {
       if (!assetLines.length) {
         results["7.6"].note = "no external assets in this plan, so 7.6 has nothing to verify — a pass here is vacuous, not strong";
       }
-    } else {
-      results["7.5"] = { skipped: "no --plan given" };
-      results["7.6"] = { skipped: "no --plan given" };
-      findings.push("7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.");
     }
 
     // ── 7.3 environment + 7.4 objects ─────────────────────────────────────
