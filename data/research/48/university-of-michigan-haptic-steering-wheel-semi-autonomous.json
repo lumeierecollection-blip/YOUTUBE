@@ -1,0 +1,61 @@
+{
+  "topic_slug": "university-of-michigan-haptic-steering-wheel-semi-autonomous",
+  "strongest_angle": "Explores how the University of Michigan's haptic steering wheel design with zones at 10 o'clock and 2 o'clock improves semi-autonomous driving performance and teamwork.",
+  "key_facts": [
+    {
+      "fact": "Researchers at the University of Michigan unveiled a specialized haptic steering wheel that enables negotiation between drivers and autonomous systems.",
+      "source_url": "https://news.engin.umich.edu/2026/10/steering-wheel-communicates-for-better-semi-autonomous-driving",
+      "source_name": "Michigan Engineering News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The haptic steering wheel technology developed at the University of Michigan is covered by U.S. patent US12227190B2.",
+      "source_url": "https://e3.eurekalert.org/news-releases/1146211",
+      "source_name": "EurekAlert!",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The design by the University of Michigan adds two haptic zones to the wheel, positioned at 10 o'clock and 2 o'clock.",
+      "source_url": "https://www.autoconnectedcar.com/2026/10/touchy-feely-steering-wheel-offers-haptic-ways-to-communicate-with-autonomous-driver",
+      "source_name": "auto connected car news",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Haptic zone position left",
+      "value": 10,
+      "unit": "o'clock",
+      "source_url": "https://www.autoconnectedcar.com/2026/10/touchy-feely-steering-wheel-offers-haptic-ways-to-communicate-with-autonomous-driver"
+    },
+    {
+      "label": "Haptic zone position right",
+      "value": 2,
+      "unit": "o'clock",
+      "source_url": "https://www.autoconnectedcar.com/2026/10/touchy-feely-steering-wheel-offers-haptic-ways-to-communicate-with-autonomous-driver"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "University of Michigan",
+      "kind": "organization"
+    },
+    {
+      "name": "Kate McAlpine",
+      "kind": "person"
+    },
+    {
+      "name": "Dan Newman",
+      "kind": "person"
+    },
+    {
+      "name": "Lynn Walford",
+      "kind": "person"
+    },
+    {
+      "name": "Automotive Research Center",
+      "kind": "organization"
+    }
+  ]
+}
