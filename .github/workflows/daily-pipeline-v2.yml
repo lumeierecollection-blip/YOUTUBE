@@ -1837,7 +1837,7 @@ jobs:
               no_credentials: noCreds,
               note: uploads.length
                 ? "Everything above is PRIVATE. Open each Studio link and click Publish to make it public."
-                : "Nothing was uploaded today ΓÇö see not_uploaded for each channel's reason.",
+                : "Nothing was uploaded today ΓÇö see not_uploaded for each channel reason.",
             };
             fs.mkdirSync("data/uploaded", { recursive: true });
             fs.writeFileSync("data/uploaded/" + TODAY + ".json", JSON.stringify(digest, null, 2) + "\n");
