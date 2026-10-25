@@ -1,0 +1,66 @@
+{
+  "channel_id": "8",
+  "topic_slug": "homeplus-bankruptcy-crisis-october-2026",
+  "format": "shorts",
+  "hook": "Homeplus hit a bankruptcy crisis when daily sales plunged to 3 billion won.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Homeplus hit a bankruptcy crisis when daily sales plunged to 3 billion won.",
+      "b_roll": [
+        "Store facade of Homeplus in South Korea"
+      ],
+      "text_overlay": {
+        "text": "3 Billion Won Daily Sales"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Reopening day brought 10.6 billion won in sales on August 13, 2026. Where did the remaining 70 percent go?",
+      "b_roll": [
+        "Chart showing 10.6 billion won drop",
+        "Empty aisles at a Homeplus hypermarket"
+      ],
+      "text_overlay": {
+        "text": "Sales Dropped to 30 Percent"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, plunging daily sales during the early-October holiday period now threaten those 200 billion won DIP funds.",
+      "b_roll": [
+        "Financial document showing DIP funds"
+      ],
+      "text_overlay": {
+        "text": "200 Billion Won DIP Funds Threatened"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Management plans to sell 19 of 37 company-owned stores by February 2028. New collateralized loans total 592 billion won.",
+      "b_roll": [
+        "Store sale announcement documents",
+        "Spreadsheet showing 592 billion won loans"
+      ],
+      "text_overlay": {
+        "text": "19 of 37 Stores for Sale"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Additional financing seeks 1.5 trillion won before February 2028.",
+      "b_roll": [
+        "Ledger showing 1.5 trillion won target"
+      ],
+      "text_overlay": {
+        "text": "1.5 Trillion Won Needed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.mt.co.kr/en/living/2026/10/11/2026101113292156248",
+    "https://biz.chosun.com/en/en-retail/2026/10/11/JGKQZX72QBHNDHYFSKJ4SHCZXU",
+    "https://www.g-enews.com/article/Distribution/2026/10/2026101113532392322aa6f4cdad_1",
+    "https://www.koreatimes.co.kr/business/companies/20260820/homeplus-faces-fresh-funding-needs-on-road-to-recovery"
+  ]
+}

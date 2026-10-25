@@ -1,0 +1,73 @@
+{
+  "topic_slug": "ethiopia-eritrea-un-border-accusations-horn-of-africa",
+  "strongest_angle": "Analyze the military escalation and diplomatic stalemate between Ethiopia and Eritrea at the border town of Adigrat as reported to the United Nations Security Council.",
+  "key_facts": [
+    {
+      "fact": "Ethiopian military vehicles and troops entered Adigrat near the Eritrean border on Saturday as residents celebrated.",
+      "source_url": "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ethiopia submitted a letter to the United Nations Security Council accusing Eritrea of launching an all-out invasion.",
+      "source_url": "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war",
+      "source_name": "Al Jazeera",
+      "confidence": "high"
+    },
+    {
+      "fact": "Eritrea requested the United Nations to take deterrent measures against Addis Ababa amid rising border tensions.",
+      "source_url": "https://www.aljazeera.com/news/2026/10/10/eritrea-urges-un-to-intervene-in-standoff-with",
+      "source_name": "Al Jazeera",
+      "confidence": "medium"
+    },
+    {
+      "fact": "United States Secretary of State Marco Rubio urged peace talks to de-escalate tensions in the Horn of Africa.",
+      "source_url": "https://apnews.com/article/ethiopia-tigray-eritrea-rubio-6d136d4280931d2d213d7d6cafd670ab",
+      "source_name": "AP News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "quotes": [
+    {
+      "text": "The all-out invasion of parts of northern Ethiopia by Eritrea is a matter of public record",
+      "speaker": "Ethiopia’s Minister of Foreign Affairs",
+      "source_name": "Al Jazeera",
+      "source_url": "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    },
+    {
+      "name": "United Nations",
+      "kind": "organization"
+    },
+    {
+      "name": "United Nations Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Marco Rubio",
+      "kind": "person"
+    },
+    {
+      "name": "Addis Ababa",
+      "kind": "place"
+    },
+    {
+      "name": "Horn of Africa",
+      "kind": "place"
+    }
+  ]
+}

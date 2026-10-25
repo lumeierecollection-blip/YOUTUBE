@@ -1,0 +1,83 @@
+{
+  "topic_slug": "street-fighter-box-office-october-2026-debut",
+  "strongest_angle": "Analyze how Paramount, Legendary, and Capcom's Street Fighter claimed the No. 1 spot at the October box office with a strong $31 million opening weekend, outpacing competitors like Whalefall.",
+  "key_facts": [
+    {
+      "fact": "Paramount, Legendary, and Capcom released Street Fighter, which achieved a strong $31 million opening weekend at the box office.",
+      "source_url": "https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The action movie Street Fighter earned $13 million from 3,575 North American theaters on Friday alone.",
+      "source_url": "https://www.hollywoodoutbreak.com/2026/10/17/street-fighter-dominates-box-office-with-big-31m-debut",
+      "source_name": "Hollywood Outbreak",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Twentieth Century Studio's movie Whalefall experienced a disappointing opening with only $7.5 million against a $60 million budget.",
+      "source_url": "https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320",
+      "source_name": "Deadline",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Street Fighter Opening Box Office",
+      "value": 31,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320"
+    },
+    {
+      "label": "Street Fighter Friday Box Office",
+      "value": 13,
+      "unit": "million dollars",
+      "source_url": "https://www.hollywoodoutbreak.com/2026/10/17/street-fighter-dominates-box-office-with-big-31m-debut"
+    },
+    {
+      "label": "North American Theaters",
+      "value": 3575,
+      "unit": "theaters",
+      "source_url": "https://www.hollywoodoutbreak.com/2026/10/17/street-fighter-dominates-box-office-with-big-31m-debut"
+    },
+    {
+      "label": "Whalefall Opening Box Office",
+      "value": 7.5,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320"
+    },
+    {
+      "label": "Whalefall Production Budget",
+      "value": 60,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Street Fighter",
+      "kind": "object"
+    },
+    {
+      "name": "Paramount",
+      "kind": "organization"
+    },
+    {
+      "name": "Legendary",
+      "kind": "organization"
+    },
+    {
+      "name": "Capcom",
+      "kind": "organization"
+    },
+    {
+      "name": "Whalefall",
+      "kind": "object"
+    },
+    {
+      "name": "Twentieth Century Studio",
+      "kind": "organization"
+    }
+  ]
+}

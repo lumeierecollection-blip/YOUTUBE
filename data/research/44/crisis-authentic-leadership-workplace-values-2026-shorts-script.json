@@ -1,0 +1,64 @@
+{
+  "channel_id": "44",
+  "topic_slug": "crisis-authentic-leadership-workplace-values-2026",
+  "format": "shorts",
+  "hook": "Target faces an authenticity crisis after rolling back diversity initiatives in 2025.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Target faces an authenticity crisis after rolling back diversity initiatives in 2025.",
+      "b_roll": [
+        "A modern office building exterior"
+      ],
+      "text_overlay": {
+        "text": "The Leadership Crisis"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Target announced a major rollback of diversity strategies in 2025. Political pressure forced the retail giant to shift its stance. Where did authentic leadership models actually start?",
+      "b_roll": [
+        "Target storefront sign",
+        "Corporate boardroom meeting"
+      ],
+      "text_overlay": {
+        "text": "Target's 2025 Shift"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Google Scholar features over five million articles on authentic leadership today.",
+      "b_roll": [
+        "Stack of academic research papers"
+      ],
+      "text_overlay": {
+        "text": "5 Million Articles"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Authentic leadership emerged in the early 2000s to counter transactional leadership models. Executive decisions now face intense scrutiny under modern political pressures.",
+      "b_roll": [
+        "Historic stock market ticker",
+        "Executive speaking at podium"
+      ],
+      "text_overlay": {
+        "text": "Transactional Leadership"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Five million scholarly articles track workplace authenticity.",
+      "b_roll": [
+        "Digital database search screen"
+      ],
+      "text_overlay": {
+        "text": "Authenticity in Leadership"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader",
+    "https://ioledge.com/insights/authenticity-in-leadership"
+  ]
+}

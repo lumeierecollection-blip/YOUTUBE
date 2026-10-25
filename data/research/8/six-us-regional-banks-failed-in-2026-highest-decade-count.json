@@ -1,0 +1,153 @@
+{
+  "topic_slug": "six-us-regional-banks-failed-in-2026-highest-decade-count",
+  "strongest_angle": "Analyzing the six U.S. regional bank failures of 2026, which mark the highest annual count of the decade, contrasting their relatively minor total dollar value of approximately $1.4 billion with prior systemic crises.",
+  "key_facts": [
+    {
+      "fact": "Six regional U.S. banks have failed in 2026, marking the highest count of any year this decade and three times the two failures recorded in each of 2024 and 2025 according to Disruption Banking.",
+      "source_url": "https://www.disruptionbanking.com/2026/10/01/six-us-banks-failed-in-2026-the-most-in-a-decade-what-that-says-about-the-economy",
+      "source_name": "Disruption Banking",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The six failed banks in 2026 held roughly $1.4 billion in total value, with the most recent failure being Nano Banc on September 25th as reported by Disruption Banking.",
+      "source_url": "https://www.disruptionbanking.com/2026/10/01/six-us-banks-failed-in-2026-the-most-in-a-decade-what-that-says-about-the-economy",
+      "source_name": "Disruption Banking",
+      "confidence": "medium"
+    },
+    {
+      "fact": "On January 30th, the Illinois Department of Financial and Professional Regulation ordered Metropolitan Capital Bank and Trust to cease operations due to unsafe financial conditions.",
+      "source_url": "https://www.forbes.com/advisor/banking/list-of-failed-banks",
+      "source_name": "Forbes Advisor",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Tioga-Franklin Savings Bank in Philadelphia became the fifth U.S. bank to fail in 2026, with its $68 million-asset failure expected to cost the DIF about $5.5 million.",
+      "source_url": "https://www.americanbanker.com/news/fifth-bank-fails-in-2026-as-drip-of-small-bank-closures-continues",
+      "source_name": "American Banker",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "2026 Metropolitan Capital Bank and Trust assets",
+      "value": 261.1,
+      "unit": "million dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "2026 Community Bank and Trust - West Georgia assets",
+      "value": 288,
+      "unit": "million dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "2026 Kentland Federal Savings and Loan Association assets",
+      "value": 3.7,
+      "unit": "million dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "2026 Small Business Bank assets",
+      "value": 73,
+      "unit": "million dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "2026 Tioga-Franklin Savings Bank assets",
+      "value": 68,
+      "unit": "million dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "2026 Nano Banc assets",
+      "value": 736,
+      "unit": "million dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "Total bank failures from 2001 through 2026",
+      "value": 576,
+      "unit": "bank failures",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "Total held by six failed banks in 2026",
+      "value": 1.4,
+      "unit": "billion dollars",
+      "source_url": "https://www.disruptionbanking.com/2026/10/01/six-us-banks-failed-in-2026-the-most-in-a-decade-what-that-says-about-the-economy"
+    },
+    {
+      "label": "Estimated FDIC loss from SVB and Signature Bank failure",
+      "value": 16.7,
+      "unit": "billion dollars",
+      "source_url": "https://www.congress.gov/crs-product/IF12378"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Metropolitan Capital Bank & Trust",
+      "kind": "organization"
+    },
+    {
+      "name": "Community Bank and Trust - West Georgia",
+      "kind": "organization"
+    },
+    {
+      "name": "Kentland Federal Savings and Loan Association",
+      "kind": "organization"
+    },
+    {
+      "name": "Small Business Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Tioga-Franklin Savings Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Nano Banc",
+      "kind": "organization"
+    },
+    {
+      "name": "First Independence Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Illinois Department of Financial and Professional Regulation",
+      "kind": "organization"
+    },
+    {
+      "name": "Federal Deposit Insurance Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Disruption Banking",
+      "kind": "organization"
+    },
+    {
+      "name": "Forbes Advisor",
+      "kind": "organization"
+    },
+    {
+      "name": "American Banker",
+      "kind": "organization"
+    },
+    {
+      "name": "Tim Tolka",
+      "kind": "person"
+    },
+    {
+      "name": "Elizabeth Aldrich",
+      "kind": "person"
+    },
+    {
+      "name": "Philadelphia",
+      "kind": "place"
+    },
+    {
+      "name": "Detroit",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "topic_slug": "philadelphia-olney-house-horrors-luminol-dna",
+  "strongest_angle": "Investigate how forensic investigators utilized luminol to uncover hidden human DNA at an Olney property on West Chew Avenue, advancing the ongoing missing persons and homicide inquiry.",
+  "key_facts": [
+    {
+      "fact": "Investigators sprayed luminol and discovered human DNA inside a house on West Chew Avenue in Philadelphia's Olney neighborhood.",
+      "source_url": "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol",
+      "source_name": "CBS Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Philadelphia police and the FBI excavated large portions of the property at 417 W. Chew Ave. as part of a search tied to missing women.",
+      "source_url": "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367",
+      "source_name": "NBC10 Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigators previously seized lab equipment and chemicals from the basement of the Philadelphia house during their ongoing inquiry.",
+      "source_url": "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367",
+      "source_name": "NBC10 Philadelphia",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Federal and local teams utilized luminol inside the Olney home while working into the evening on Monday.",
+      "source_url": "https://6abc.com/post/investigators-use-luminol-inside-olney-home-search-evidence-linked-missing-women-continues/19933797",
+      "source_name": "6abc Philadelphia",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Property street number on Chew Avenue",
+      "value": 417,
+      "unit": "address number",
+      "source_url": "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "West Chew Avenue",
+      "kind": "place"
+    },
+    {
+      "name": "Olney",
+      "kind": "place"
+    },
+    {
+      "name": "Philadelphia Police",
+      "kind": "organization"
+    },
+    {
+      "name": "FBI",
+      "kind": "organization"
+    },
+    {
+      "name": "417 W. Chew Ave.",
+      "kind": "place"
+    }
+  ]
+}

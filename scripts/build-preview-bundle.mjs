@@ -76,6 +76,7 @@ function collect() {
       const countsPath = files.find((f) => basename(f) === "qa-counts.json");
       const slot = add(ch);
       slot.qaCounts = countsPath ? readJson(countsPath) : null;
+      slot.manifest = readJson(files.find((f) => f.endsWith("-manifest.json")) || "");
       for (const f of files.filter((f) => f.endsWith(".mp4"))) {
         const approved = slot.qaCounts?.approved;
         const status = approved == null ? "unverified (no qa-counts.json)"
@@ -107,7 +108,7 @@ function hasAudio(mp4) {
 }
 const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
 
-function buildChannel(ch, src) {
+function buildChannel(ch, src, manifest = null) {
   const duration = probeDuration(src.path);
   const audio = hasAudio(src.path);
 
@@ -123,8 +124,13 @@ function buildChannel(ch, src) {
   const framesDir = join(OUT, `ch-${ch}-frames`);
   rmSync(framesDir, { recursive: true, force: true });
   mkdirSync(framesDir, { recursive: true });
-  for (let i = 0; i < FRAME_COUNT; i++) {
-    const t = ((i + 0.5) * duration / FRAME_COUNT).toFixed(3);
+  // One frame PER BEAT, 60% of the way through it (the beat's words have all popped in; a frame at
+  // an arbitrary eighth of the video caught beats mid-entrance — ch-8's last beat read as a dim
+  // "French" with the rest of its headline missing, run 37901614633). Without a manifest, eighths.
+  const beats = (manifest?.beats || []).filter((b) => Number.isFinite(b.start_sec) && Number.isFinite(b.duration_sec));
+  const times = beats.length ? beats.map((b) => Math.min(duration - 0.05, b.start_sec + Math.max(0.5, b.duration_sec * 0.6))) : Array.from({ length: FRAME_COUNT }, (_, i) => (i + 0.5) * duration / FRAME_COUNT);
+  for (let i = 0; i < times.length; i++) {
+    const t = times[i].toFixed(3);
     run("ffmpeg", ["-y", "-v", "error", "-ss", t, "-i", src.path, "-frames:v", "1",
       "-vf", "scale=540:960:force_original_aspect_ratio=decrease,pad=540:960:(ow-iw)/2:(oh-ih)/2:color=black",
       join(framesDir, `frame-${String(i + 1).padStart(2, "0")}.png`)]);
@@ -135,7 +141,7 @@ function buildChannel(ch, src) {
   // An explicit font file: ImageMagick's default font lookup returned (null)
   // on the runner (run 36915319430). No font file -> sheet without a title.
   const title = existsSync(FONT) ? ["-font", FONT, "-title", `ch-${ch}  ${src.status}`, "-fill", "#dddddd", "-pointsize", "28"] : [];
-  run("montage", [...frames, "-tile", "4x2", "-geometry", "+6+6", "-background", "#1a1a1a", ...title, contact]);
+  run("montage", [...frames, "-tile", frames.length > 8 ? `5x${Math.ceil(frames.length / 5)}` : "4x2", "-geometry", "+6+6", "-background", "#1a1a1a", ...title, contact]);
 
   log(`ch-${ch}: clip built (${clipSeconds.toFixed(1)}s), frames extracted (${frames.length}), contact sheet built`);
   return { duration, audio, size: statSync(src.path).size, clipSeconds, frames: frames.length };
@@ -161,7 +167,7 @@ function main() {
     }
     const src = cands[0];
     try {
-      const r = buildChannel(ch, src);
+      const r = buildChannel(ch, src, slot?.manifest);
       contacts.push(join(OUT, `ch-${ch}-contact.png`));
       const others = cands.length > 1 ? ` (+${cands.length - 1} other MP4: ${cands.slice(1).map((c) => `${basename(c.path)} → ${c.status}`).join("; ")})` : "";
       rows.push(`| ${ch} | ${basename(src.path)} | ${r.duration.toFixed(1)}s | ${mb(r.size)} | ${r.audio ? "yes" : "no"} | ${src.status}${others} |`);

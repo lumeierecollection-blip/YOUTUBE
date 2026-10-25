@@ -1,0 +1,77 @@
+{
+  "topic_slug": "russell-brand-sexual-assault-trial-southwark-crown-court",
+  "strongest_angle": "Examine the opening of the criminal trial at Southwark Crown Court where UK prosecutors labeled 51-year-old Russell Brand a ruthless and calculated sexual predator facing multiple charges including rape.",
+  "key_facts": [
+    {
+      "fact": "Russell Brand went on trial at Southwark Crown Court facing three counts of rape, three counts of sexual assault, and one count of indecent assault.",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "UK prosecutor Riel Karmy-Jones KC described the 51-year-old comedian and actor as a ruthless sexual predator during the opening of the case.",
+      "source_url": "https://www.bbc.co.uk/news/live/c52e9xd9mvk2t",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Russell Brand arrived at Southwark Crown Court pleading not guilty to the multiple charges of rape and sexual assault brought against him.",
+      "source_url": "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Russell Brand's age",
+      "value": 51,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/live/c52e9xd9mvk2t"
+    },
+    {
+      "label": "Counts of rape",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Counts of sexual assault",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Count of indecent assault",
+      "value": 1,
+      "unit": "count",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Russell Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Southwark Crown Court",
+      "kind": "place"
+    },
+    {
+      "name": "Riel Karmy-Jones KC",
+      "kind": "person"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    }
+  ]
+}

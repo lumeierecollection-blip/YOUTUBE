@@ -1,0 +1,63 @@
+{
+  "channel_id": "49",
+  "topic_slug": "variety-2026-horror-impact-report",
+  "format": "shorts",
+  "hook": "Variety released its 2nd annual Horror Impact Report on October 7, 2026, crowning top directors and actors shaping modern horror.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Variety released its 2nd annual Horror Impact Report on October 7, 2026, crowning top directors and actors shaping modern horror.",
+      "b_roll": [
+        "Variety magazine cover graphic"
+      ],
+      "text_overlay": {
+        "text": "2nd Annual Horror Impact Report"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Director James Wan was recognized in Variety's October 2026 Horror Impact Report as a key talent defining the genre. Director Na Hong-jin, known for the film Hope, was selected for the report alongside Sam Raimi. Who else made the list?",
+      "b_roll": [
+        "James Wan portrait",
+        "Na Hong-jin film graphic"
+      ],
+      "text_overlay": {
+        "text": "Who else made the list?"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Curry Barker and Naomi Ackie also grabbed spots on Variety's list.",
+      "b_roll": [
+        "Curry Barker and Naomi Ackie photos"
+      ],
+      "text_overlay": {
+        "text": "Curry Barker & Naomi Ackie"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 2026 report defines the genre.",
+      "b_roll": [
+        "Sam Raimi film poster"
+      ],
+      "text_overlay": {
+        "text": "Sam Raimi & James Wan"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Variety published the 2nd annual Horror Impact Report.",
+      "b_roll": [
+        "Variety logo"
+      ],
+      "text_overlay": {
+        "text": "Horror Impact Report 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://variety.com/lists/horror-list-best-directors-actors-2026",
+    "https://soz6.com/news/horror-impact-report-from-james-wan-to-curry-barker-to-naomi-ackie-variety-crowns-the-talent-defining-the-genre"
+  ]
+}

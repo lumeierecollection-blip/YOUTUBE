@@ -1,0 +1,64 @@
+{
+  "channel_id": "6",
+  "topic_slug": "crew-cut-killer-victim-identified-genealogy",
+  "format": "shorts",
+  "hook": "Fifty-seven years in the dark finally ended at the St. Louis Hotel.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Fifty-seven years in the dark finally ended at the St. Louis Hotel.",
+      "b_roll": [
+        "Archival photo of St. Louis Hotel in Oakland"
+      ],
+      "text_overlay": {
+        "text": "57 Years Later"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Authorities discovered 16-year-old Joanne Yvonne Burdick strangled at the St. Louis Hotel on October 2, 1969. Why did the FBI join the case in 2020?",
+      "b_roll": [
+        "Police report excerpt from 1969",
+        "Oakland Police Department seal"
+      ],
+      "text_overlay": {
+        "text": "Oakland, 1969"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the FBI San Francisco office utilized advanced genetic genealogy in 2020.",
+      "b_roll": [
+        "DNA sequencing graphic overlay"
+      ],
+      "text_overlay": {
+        "text": "The Breakthrough"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Taylor Morris Teaford emerged as the named suspect behind the murder. Investigators matched the genetic profile after five decades of mystery. The Oakland Police Department finally solved the cold case for Joanne Yvonne Burdick.",
+      "b_roll": [
+        "Suspect file photo of Taylor Morris Teaford",
+        "FBI logo stamp"
+      ],
+      "text_overlay": {
+        "text": "Identified"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Remember Joanne Yvonne Burdick and the St. Louis Hotel.",
+      "b_roll": [
+        "Victim memorial portrait"
+      ],
+      "text_overlay": {
+        "text": "Joanne Yvonne Burdick"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.ktvu.com/news/oakland-police-fbi-announce-breakthrough-1969-cold-case",
+    "https://www.forensicmag.com/3594-All-News/628584-Genealogy-Identifies-Crew-Cut-Killer-s-Victim-after-57-Years"
+  ]
+}

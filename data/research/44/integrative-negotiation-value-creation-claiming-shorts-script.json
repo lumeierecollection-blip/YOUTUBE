@@ -1,0 +1,67 @@
+{
+  "channel_id": "44",
+  "topic_slug": "integrative-negotiation-value-creation-claiming",
+  "format": "shorts",
+  "hook": "Top negotiators use 10 integrative bargaining methods to claim value without destroying deals.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Top negotiators use 10 integrative bargaining methods to claim value without destroying deals.",
+      "b_roll": [
+        "A business meeting room with executives negotiating across a wooden table."
+      ],
+      "text_overlay": {
+        "text": "10 Negotiation Skills"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Harvard Law School researchers mapped integrative bargaining strategies. Author Charles B. Where does chapter 3 place value creation?",
+      "b_roll": [
+        "Harvard Law School campus exterior showing historic brick buildings.",
+        "An open academic journal page highlighting volume 12.",
+        "A textbook open to chapter 3 on a desk."
+      ],
+      "text_overlay": {
+        "text": "Harvard Bargaining Framework"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Chapter 3 proves value creation precedes value claiming, but the fourth step involves claiming value.",
+      "b_roll": [
+        "Close-up of a hand pointing to a textbook chapter heading."
+      ],
+      "text_overlay": {
+        "text": "The Four Steps"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Katie Shonk reported that negotiators must collaborate and compete simultaneously. Harvard Law School experts balance creating value and claiming value. King Saud University faculty repository stores this exact strategy.",
+      "b_roll": [
+        "Two business professionals shaking hands while holding negotiation notes.",
+        "A digital tablet displaying negotiation metrics and value charts."
+      ],
+      "text_overlay": {
+        "text": "Collaborate and Compete"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Chapter 3 defines the exact negotiation balance.",
+      "b_roll": [
+        "A university library study desk with open research papers."
+      ],
+      "text_overlay": {
+        "text": "Chapter 3 Framework"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-skills-expanding-the-pie-integrative-bargaining-versus-distributive-bargaining",
+    "https://larc.cardozo.yu.edu/cjcr/vol12/iss1/3",
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills",
+    "https://faculty.ksu.edu.sa/sites/default/files/im_chapter_03_7e_lewicki_eon_2.pdf"
+  ]
+}

@@ -1,0 +1,49 @@
+# Read a finished board as frames and as counts: the entity coverage (before / after the tightened extractor) from each channel's RESOLVED plan, and a
+# contact sheet of one frame per beat of each channel's video, pushed to the `board-frames` branch so it can be opened and looked at.
+# Reports only; changes nothing in the pipeline. See scripts/board-report.mjs.
+name: board-report
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "The board's run id (artifacts rendered-<ch>-<run> and qa-queues-<ch>-<run>)"
+        type: string
+        required: true
+permissions:
+  contents: write
+  actions: read
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fetch the board's artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: "*-${{ github.event.inputs.run_id }}"
+          path: board
+          run-id: ${{ github.event.inputs.run_id }}
+          github-token: ${{ github.token }}
+      - name: Report
+        run: |
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg; fi
+          node scripts/board-report.mjs --board board --out out/board
+      - name: Publish the frames to the board-frames branch
+        run: |
+          git config user.name "lumeierecollection-blip"; git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          RUN="${{ github.event.inputs.run_id }}"
+          git fetch origin board-frames:board-frames 2>/dev/null || git branch board-frames "$(git commit-tree "$(git hash-object -t tree /dev/null)" -m 'board-frames')"
+          git worktree add ../bf board-frames
+          mkdir -p "../bf/$RUN"
+          cp out/board/frames/*.jpg "../bf/$RUN/" 2>/dev/null || true
+          cp out/board/board-report.md out/board/board-report.json "../bf/$RUN/"
+          cd ../bf && git add -A && git commit -qm "board $RUN frames and entity report" && git push origin board-frames
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: board-report-${{ github.run_id }}
+          path: out/board/

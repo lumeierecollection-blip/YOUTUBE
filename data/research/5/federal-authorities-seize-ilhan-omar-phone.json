@@ -1,0 +1,58 @@
+{
+  "topic_slug": "federal-authorities-seize-ilhan-omar-phone",
+  "strongest_angle": "Examining the unfolding criminal investigation, federal search warrants, and grand jury subpoenas targeting Democratic Representative Ilhan Omar and her family members regarding immigration status paperwork.",
+  "key_facts": [
+    {
+      "fact": "Federal authorities seized the mobile phone of Democratic Representative Ilhan Omar as part of an ongoing criminal investigation.",
+      "source_url": "https://apnews.com/article/ilhan-omar-search-f968cfe403d61ad61812422f1252fd2c",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Multiple relatives of Representative Ilhan Omar received grand jury subpoenas concerning immigration history and paperwork.",
+      "source_url": "https://www.cbsnews.com/news/ilhan-omar-subpoenas-relatives-investigation-homeland-security",
+      "source_name": "CBS News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Homeland Security Investigations agents executed a search warrant approved by a court at the home of Representative Ilhan Omar in Washington DC on October 12.",
+      "source_url": "https://www.bbc.com/news/articles/cq98zpk30pd5o",
+      "source_name": "BBC News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Date of search at Washington DC home",
+      "value": 12,
+      "unit": "October",
+      "source_url": "https://www.bbc.com/news/articles/cq98zpk30pd5o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ilhan Omar",
+      "kind": "person"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    },
+    {
+      "name": "CBS News",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Homeland Security Investigations",
+      "kind": "organization"
+    },
+    {
+      "name": "Washington DC",
+      "kind": "place"
+    }
+  ]
+}

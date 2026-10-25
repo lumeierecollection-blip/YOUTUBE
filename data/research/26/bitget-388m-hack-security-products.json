@@ -1,0 +1,94 @@
+{
+  "topic_slug": "bitget-388m-hack-security-products",
+  "strongest_angle": "Investigating how attackers breached third-party security infrastructure over 25 days to drain $388 million from Bitget in September 2026.",
+  "key_facts": [
+    {
+      "fact": "Cryptocurrency exchange Bitget suffered a cyberattack resulting in the theft of approximately $388 million after an attacker exploited a vulnerability in a third-party security product.",
+      "source_url": "https://thehackernews.com/2026/09/bitget-says-attacker-exploited-third.html",
+      "source_name": "The Hacker News",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to a Slowmist investigation, hackers ran code inside a compromised server on August 31, remaining inside Bitget-linked systems for 25 days before the theft.",
+      "source_url": "https://news.bitcoin.com/security/bitget-hack-slowmist-25-days-chainflip-cow-protocol",
+      "source_name": "Bitcoin.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "CEO Gracy Chen stated that Bitget has frozen approximately $1.1 million of the stolen funds and replenished its Protection Fund back up to $300 million.",
+      "source_url": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html",
+      "source_name": "CNBC",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The unauthorized transfers from hot and warm wallets began at 18:31 UTC on September 24, 2026, before automated risk controls blocked withdrawals.",
+      "source_url": "https://www.bitget.com/campaigns/bitget-security-incident-2026",
+      "source_name": "Bitget",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Stolen amount",
+      "value": 388,
+      "unit": "million dollars",
+      "source_url": "https://thehackernews.com/2026/09/bitget-says-attacker-exploited-third.html"
+    },
+    {
+      "label": "Dwell time",
+      "value": 25,
+      "unit": "days",
+      "source_url": "https://news.bitcoin.com/security/bitget-hack-slowmist-25-days-chainflip-cow-protocol"
+    },
+    {
+      "label": "Frozen funds",
+      "value": 1.1,
+      "unit": "million dollars",
+      "source_url": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html"
+    },
+    {
+      "label": "Protection Fund",
+      "value": 300,
+      "unit": "million dollars",
+      "source_url": "https://www.cnbc.com/2026/10/02/bitget-crypto-stolen-hack-recovery.html"
+    },
+    {
+      "label": "Hour of attack start",
+      "value": 18.31,
+      "unit": "UTC",
+      "source_url": "https://www.bitget.com/campaigns/bitget-security-incident-2026"
+    },
+    {
+      "label": "Date of attack",
+      "value": 24,
+      "unit": "September",
+      "source_url": "https://www.bitget.com/campaigns/bitget-security-incident-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Bitget",
+      "kind": "organization"
+    },
+    {
+      "name": "Slowmist",
+      "kind": "organization"
+    },
+    {
+      "name": "Gracy Chen",
+      "kind": "person"
+    },
+    {
+      "name": "The Hacker News",
+      "kind": "organization"
+    },
+    {
+      "name": "Bitcoin.com",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    }
+  ]
+}

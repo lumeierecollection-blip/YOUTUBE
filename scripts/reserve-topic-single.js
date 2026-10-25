@@ -12,6 +12,7 @@
  */
 
 import { readFileSync } from "fs";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { createRequire } from "module";
@@ -35,7 +36,7 @@ if (topicLog.isDuplicate(channelId, topic)) {
 
 const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
 const channels = data.channels || data;
-const channel = channels.find((c) => String(c.id) === String(channelId));
+const channel = resolveChannel(channelId, channels);
 
 topicLog.reserveTopic(channelId, topic, {
   channel_name: channel?.channel_name,

@@ -3,7 +3,9 @@ import { readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { conceptsInSentence, validateConcepts, visualsFor } from "../src/skills/remotion-render/visual/concept-visuals.js";
-import { canvasLayout, zoneReport, contentBounds } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { TEXT_GRID, canvasLayout, zoneReport, contentBounds } from "../src/skills/remotion-render/visual/canvas-layout.js";
+// The hero / cutout geometry asserted below is the pre-grid placement (tilted, y 980-1060); production draws on the one text grid (text-grid.test.js).
+TEXT_GRID.on = false;
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const specs = JSON.parse(readFileSync(join(ROOT, "scripts", "cutout-specs.json"), "utf8")).specs;

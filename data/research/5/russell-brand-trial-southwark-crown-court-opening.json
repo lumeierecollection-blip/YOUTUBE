@@ -1,0 +1,95 @@
+{
+  "topic_slug": "russell-brand-trial-southwark-crown-court-opening",
+  "strongest_angle": "Examine the opening arguments at Southwark Crown Court where UK prosecutors detailed multiple charges against Russell Brand.",
+  "key_facts": [
+    {
+      "fact": "Russell Brand is on trial at Southwark Crown Court facing three counts of rape, three counts of sexual assault, and one count of indecent assault.",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prosecutor Riel Karmy-Jones KC stated at Southwark Crown Court that Russell Brand was ruthless and acted as a sexual predator.",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Allegations against Russell Brand involve six different women and span the years between 1999 and 2009.",
+      "source_url": "https://www.independent.co.uk/news/uk/crime/russell-brand-trial-allegations-in-full-b3066704.html",
+      "source_name": "The Independent",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Counts of rape",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Counts of sexual assault",
+      "value": 3,
+      "unit": "counts",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Count of indecent assault",
+      "value": 1,
+      "unit": "count",
+      "source_url": "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+    },
+    {
+      "label": "Number of women making allegations",
+      "value": 6,
+      "unit": "women",
+      "source_url": "https://www.independent.co.uk/news/uk/crime/russell-brand-trial-allegations-in-full-b3066704.html"
+    },
+    {
+      "label": "Start year of alleged incidents",
+      "value": 1999,
+      "unit": "year",
+      "source_url": "https://www.independent.co.uk/news/uk/crime/russell-brand-trial-allegations-in-full-b3066704.html"
+    },
+    {
+      "label": "End year of alleged incidents",
+      "value": 2009,
+      "unit": "year",
+      "source_url": "https://www.independent.co.uk/news/uk/crime/russell-brand-trial-allegations-in-full-b3066704.html"
+    },
+    {
+      "label": "Age of Russell Brand",
+      "value": 51,
+      "unit": "years old",
+      "source_url": "https://www.bbc.com/news/live/c52e9xd9mvk2t"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Russell Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Southwark Crown Court",
+      "kind": "place"
+    },
+    {
+      "name": "Riel Karmy-Jones KC",
+      "kind": "person"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "The Independent",
+      "kind": "organization"
+    }
+  ]
+}

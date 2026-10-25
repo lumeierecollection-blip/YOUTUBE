@@ -43,6 +43,9 @@
 const { mkdirSync, renameSync, rmSync } = require("node:fs");
 const { join } = require("node:path");
 const E = require("./entity-assets.cjs");
+const Wikidata = require("./lib/wikidata.cjs");
+const FairUse = require("./lib/fair-use-logo.cjs");
+const { FAIR_USE_MAX_SIDE } = FairUse;
 const { verifyPlaceImage } = require("./verify-place-image.cjs");
 const { verifyImage } = require("./verify-image.cjs");
 
@@ -74,6 +77,12 @@ const FALLBACK_ASSETS = Object.freeze({
 
 /** The bundled stand-in for `kind`, or null when there is none (stack). */
 async function fallbackAsset(kind, channel, beatIndex) {
+  // OFF (owner, 2026-10-10: "a sample photo presented as the real thing fails"): the bundled generic silhouette / document is a sample, not a
+  // fetched image of the thing the sentence names. A failed fetch now falls to an honest typographic treatment (the name in type, a
+  // plate) — never to a stand-in picture. scripts/local-audit.cjs `image-sources` refuses any of these files on screen.
+  console.log(`[resolve] ch-${channel} beat ${beatIndex}: no verified source image for "${kind}" — no stand-in; the beat is set in type`);
+  return null;
+  // eslint-disable-next-line no-unreachable
   const rel = FALLBACK_ASSETS[String(kind || "").toLowerCase()];
   if (!rel) return null;
   const abs = join(E.PUBLIC, rel);
@@ -119,7 +128,7 @@ async function resolvePersonScene(tag, name, context) {
   const { w, h } = await sizeOf(join(E.PUBLIC, r.asset));
   lines.push(`${r.source || "wikipedia"}${r.cached ? " (cached, re-verified)" : ""}, image found (${r.file_title || r.asset})`, `verified MATCH${r.verified_by ? ` (${r.verified_by})` : ""}`, `rendering as portrait, middle zone`);
   say(tag, lines);
-  return { ok: true, kind: "person", photo: { asset: r.asset, entity: name, kind: "person", view: "person", w, h, credit: r.credit, source: r.source || "wikipedia", source_url: r.source_url, license: r.license } };
+  return { ok: true, kind: "person", photo: { asset: r.asset, entity: name, kind: "person", view: "person", w, h, credit: r.credit, source: r.source || "wikipedia", source_url: r.source_url, license: r.license, verified_as: r.page_title ? `${r.page_title}${r.description ? ` (${r.description})` : ""}` : null } };
 }
 
 // ── place / building / organization ───────────────────────────────────
@@ -146,7 +155,7 @@ async function resolvePlaceScene(tag, type, name, context) {
     renameSync(tmp, join(E.PUBLIC, rel));
     lines.push(`rendering as ${type === "place" ? "SCENE-FULL" : "ARCHITECTURE"}, full-bleed`);
     say(tag, lines);
-    return sizeOf(join(E.PUBLIC, rel)).then(({ w, h }) => ({ ok: true, kind: type, photo: { asset: rel, entity: name, kind: type, view, w, h, source: src, seen: v.seen, ...extra } }));
+    return sizeOf(join(E.PUBLIC, rel)).then(({ w, h }) => ({ ok: true, kind: type, photo: { asset: rel, entity: name, kind: type, view, w, h, source: src, seen: v.seen, verified_as: vq, ...extra } }));
   };
   // 1-3: Wikipedia summary, Wikipedia search / page photos, Wikimedia Commons.
   const { candidates, tried } = await E.entityCandidates(type, q, context);
@@ -218,7 +227,7 @@ async function wikiSummary(name) {
   } catch { return null; }
 }
 // A Commons file -> a transparent PNG at public/cutouts-live/<channel>/<beat>-<slug>-logo.png.
-async function logoPng(info, channel, beatIndex, name) {
+async function logoPng(info, channel, beatIndex, name, maxSide = 1024) {
   const dir = join(E.PUBLIC, "cutouts-live", String(channel));
   mkdirSync(dir, { recursive: true });
   const file = `${beatIndex}-${E.slug(name)}-logo.png`;
@@ -230,7 +239,7 @@ async function logoPng(info, channel, beatIndex, name) {
   const sharp = require("sharp");
   // SVG: rasterised at a density that gives >= 1024 px across, transparent background kept.
   const img = svg ? sharp(buf, { density: 300 }) : sharp(buf);
-  await img.resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: !svg }).ensureAlpha().png().toFile(abs);
+  await img.resize({ width: maxSide, height: maxSide, fit: "inside", withoutEnlargement: !svg || maxSide < 1024 }).ensureAlpha().png().toFile(abs);
   const m = await sharp(abs).metadata();
   return { asset: `cutouts-live/${channel}/${file}`, abs, w: m.width, h: m.height, svg };
 }
@@ -272,8 +281,19 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
     }
     if (!logos.length) lines.push(`wikipedia "${s.title}", no logo in the infobox`);
   } else lines.push(`wikipedia, no article for "${q}"`);
+  // 1b. Wikidata: the item's own logo / seal (P154, P8972, P158, P94), matched exactly on label or alias (scripts/lib/wikidata.cjs). A Commons
+  // file like every other candidate: the licence check, conversion and verifier below judge it.
+  try {
+    const wd = await Wikidata.find(q, { type: "organization", getJson: E.getJson }) || (q !== name ? await Wikidata.find(name, { type: "organization", getJson: E.getJson }) : null);
+    if (wd) { for (const f of wd.logos) addLogo(f, `wikidata ${wd.id}`); lines.push(`wikidata ${wd.id} "${wd.label}" (${wd.matched}${wd.description ? `: ${wd.description.slice(0, 50)}` : ""}): ${wd.logos.length} logo file(s)`); }
+    else lines.push(`wikidata: no exact item with a logo for "${q}"`);
+  } catch (e) { lines.push(`wikidata unavailable (${e.message})`); }
   // 2. Commons: "<name> logo" (a standards body's seal / mark too).
-  for (const suffix of type === "institution" ? [" logo", " seal"] : [" logo"]) {
+  // An open Commons search for a logo only for a name that names one organisation (entity-assets openLogoSearchAllowed): "Treasury" or
+  // "Police" would return some other body's mark, and the verifier judged the wordmark a match for the bare name (board 38054686824 ch 9).
+  const openSearch = E.openLogoSearchAllowed(q);
+  if (!openSearch) lines.push(`no open logo search for "${q}" (a generic or one-word name: only its Wikipedia / Wikidata logo may be used)`);
+  for (const suffix of !openSearch ? [] : type === "institution" ? [" logo", " seal"] : [" logo"]) {
     const cj = await E.getJson(`https://commons.wikimedia.org/w/api.php?action=query&format=json&list=search&srnamespace=6&srlimit=10&srsearch=${encodeURIComponent(`"${q}"${suffix}`)}`);
     for (const h of cj?.query?.search || []) {
       const ft = E.tokens(h.title.replace(/^File:/, "").replace(/\.[a-z]+$/i, ""));
@@ -281,12 +301,10 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
     }
   }
   if (logos.length) lines.push(`${logos.length} logo candidate(s): ${logos.map((l) => l.source).join(", ")}`);
-  for (const [i, l] of logos.slice(0, 8).entries()) {
-    const info = await E.fileInfo(l.title);
-    if (!info) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: not on Wikimedia Commons (a non-free logo is not used)`); continue; }
-    if (/non-?free|fair use/i.test(info.license || "") || !info.license) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: licence "${info.license || "none"}" is not free`); continue; }
+  // One candidate -> a verified logo or null. `fair` is the fair-use record when the file is a non-free logo (second pass below), else null.
+  const attempt = async (info, l, i, fair) => {
     let png;
-    try { png = await logoPng(info, channel, beatIndex, q); } catch (e) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: ${e.message}`); continue; }
+    try { png = await logoPng(info, channel, beatIndex, q, fair ? FAIR_USE_MAX_SIDE : 1024); } catch (e) { lines.push(`logo ${i + 1} (${l.source}) REJECTED: ${e.message}`); return null; }
     // Task 6.1 — every fetched image passes through rembg so the render never
     // shows a white box behind the logo. A failed quality gate rejects the
     // candidate and tries the next.
@@ -296,7 +314,7 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
       const rb = await removeBackground(png.abs, rembgOut);
       if (!rb.ok) {
         lines.push(`logo ${i + 1} (${l.source}) REJECTED: rembg ${rb.reason}`);
-        rmSync(png.abs, { force: true }); rmSync(rembgOut, { force: true }); continue;
+        rmSync(png.abs, { force: true }); rmSync(rembgOut, { force: true }); return null;
       }
       try { require("node:fs").renameSync(rembgOut, png.abs); } catch { png.abs = rembgOut; }
     }
@@ -305,12 +323,32 @@ async function resolveOrgScene(tag, type, name, context, channel, beatIndex, sce
       lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) REJECTED (${v.reason}, saw "${v.seen}")`);
       console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} rejected (${v.reason}, saw "${v.seen}")`);
       rmSync(png.abs, { force: true });
+      return null;
+    }
+    lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) verified (${v.reason})${fair ? " — FAIR USE, identification only" : ""}`, `rendering as cutout, middle zone`);
+    console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} accepted (${v.reason}, saw "${v.seen}")${fair ? ` — fair use of ${info.descurl}` : ""}`);
+    say(tag, lines);
+    return { ok: true, kind: type, logo: { name: q, asset: png.asset, abs: png.abs, w: png.w, h: png.h, source: l.source, source_url: info.descurl || info.url, license: info.license, seen: v.seen, ...(fair ? { fair_use: { ...fair, entity: q } } : {}) } };
+  };
+  // Pass 1: a FREE logo (Commons, licence checked). A candidate that is not on Commons, or is non-free, and came from Wikipedia is held for pass 2.
+  const fairPool = [];
+  for (const [i, l] of logos.slice(0, 8).entries()) {
+    const info = await E.fileInfo(l.title);
+    const nonFree = !info || /non-?free|fair use/i.test(info.license || "") || !info.license;
+    if (nonFree) {
+      lines.push(`logo ${i + 1} (${l.source}) not free: ${!info ? "not on Wikimedia Commons" : `licence "${info.license || "none"}"`}${/^wikipedia/.test(l.source) ? " — held for fair use (identification only)" : ""}`);
+      if (/^wikipedia/.test(l.source)) fairPool.push({ l, i });
       continue;
     }
-    lines.push(`logo ${i + 1} (${l.source}: ${info.title}${png.svg ? ", SVG -> PNG" : ""}) verified (${v.reason})`, `rendering as cutout, middle zone`);
-    console.log(`[logo] ch-${channel} beat ${beatIndex} "${q}": candidate ${i + 1} accepted (${v.reason}, saw "${v.seen}")`);
-    say(tag, lines);
-    return { ok: true, kind: type, logo: { name: q, asset: png.asset, abs: png.abs, w: png.w, h: png.h, source: l.source, source_url: info.descurl || info.url, license: info.license, seen: v.seen } };
+    const got = await attempt(info, l, i, null);
+    if (got) return got;
+  }
+  // Pass 2: FAIR USE, identification only (scripts/lib/fair-use-logo.cjs) — the organisation's own real mark where no free one exists.
+  for (const { l, i } of fairPool) {
+    const fu = await FairUse.fairUseInfo(l.title, E.getJson);
+    if (fu.refuse) { lines.push(`logo ${i + 1} (${l.source}) fair use REFUSED: ${fu.refuse}`); continue; }
+    const got = await attempt(fu.info, l, i, fu.fair_use);
+    if (got) return got;
   }
   // 3. A photo of its headquarters (a trade show: its hall / floor), as for a building.
   const r = await resolvePlaceScene(`${tag} (photo)`, "organization", name, context);
@@ -383,8 +421,49 @@ async function samePerson(name, sentence, r) {
   return sameMemo.get(k);
 }
 
+// ── is the photographed place the place the SCRIPT talks about? ───────
+// The place verifier checks the image against the Wikipedia article it was found under; nothing
+// checked that article against the script. CI run 37766249863 ch-26 beat 5 drew Alexandria,
+// EGYPT for Alexandria, Virginia (Layer 3 and the reviser saw it; every gate passed it). Same
+// shape as samePerson: the sentence AND the script's other place words vs what Wikipedia says
+// the page is. Only SAME keeps the photo; DIFFERENT / UNSURE / no answer -> no photo (the beat
+// falls down the ladder). The verdict rides on the photo (place_check) for the pre-ship gate.
+function samePlacePrompt(name, sentence, script, about) {
+  return `Sentence from a news script: "${sentence}"\n` +
+    `The whole script, for where it is set: "${String(script || "").slice(0, 1500)}"\n` +
+    `Wikipedia article "${about.title}": ${about.description || "(no description)"}. ${String(about.extract || "").slice(0, 500)}\n` +
+    `Is "${name}" in the sentence the same real-world place (same city / region / country the script is about) as the Wikipedia article — not a namesake somewhere else? ` +
+    `Answer SAME, DIFFERENT, or UNSURE. Reply as JSON: {"verdict":"SAME|DIFFERENT|UNSURE","why":"<one short clause>"}`;
+}
+const samePlaceMemo = new Map();
+async function samePlace(name, sentence, script, r) {
+  const k = `${name}\u0000${sentence}\u0000${String(script || "").slice(0, 300)}`;
+  if (!samePlaceMemo.has(k)) samePlaceMemo.set(k, (async () => {
+    const title = String(r.photo?.verified_as || "").replace(/\s*\(.*\)\s*$/, "") || name;
+    const s = await wikiSummary(title);
+    if (!s) return { verdict: "UNSURE", why: "no Wikipedia summary to compare against" };
+    const about = { title: s.title, description: s.description || "", extract: s.extract || "" };
+    const { askProviders } = require("./verify-cutout-image.cjs");
+    const a = await askProviders([{ role: "user", content: samePlacePrompt(name, sentence, script, about) }], normalizeSame);
+    return a.v ? { ...a.v, provider: a.provider, about: `${about.title}: ${about.description}` }
+      : { verdict: "UNSURE", why: `no provider answered (${a.tried.join("; ").slice(0, 160)})` };
+  })());
+  return samePlaceMemo.get(k);
+}
+
 /** Resolve one named entity of a beat. Memoized per run (the same entity in two beats is fetched and verified once). */
-async function resolveSceneEntity({ channel, beatIndex, entity, context = "", scene = null, sentence = "" }) {
+async function resolveSceneEntity(args) {
+  const r = await resolveSceneEntityRaw(args);
+  // Every PHOTO of a place / building / organisation's building is checked against the script
+  // (a logo is the organisation's own mark, not a place; a person has samePerson).
+  if (!r?.ok || !r.photo || r.logo || String(args.entity?.type || "").toLowerCase() === "person") return r;
+  const name = String(args.entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
+  const same = await samePlace(name, args.sentence || "", args.script || "", r);
+  console.log(`[resolve] ch-${args.channel} beat ${args.beatIndex}: same place as the script? ${same.verdict}${same.provider ? ` (${same.provider})` : ""}: ${same.why}${same.about ? ` [${same.about}]` : ""}${same.verdict === "SAME" ? "" : " — photo dropped, the beat falls down the ladder"}`);
+  if (same.verdict !== "SAME") return { ok: false, kind: r.kind, why: `not confirmed as the script's place: ${same.verdict} — ${same.why}` };
+  return { ...r, photo: { ...r.photo, place_check: { verdict: same.verdict, why: same.why, about: same.about || null } } };
+}
+async function resolveSceneEntityRaw({ channel, beatIndex, entity, context = "", scene = null, sentence = "" }) {
   // "Ontario Landlord and Tenant Board (LTB)": a bracketed acronym is not part of the name
   // any source files it under (CI run 37067332714 ch-2: every lookup missed).
   const type = String(entity?.type || "").toLowerCase(), name = String(entity?.name || "").replace(/\s*\([^)]*\)/g, "").trim();
@@ -407,6 +486,13 @@ async function resolveSceneEntity({ channel, beatIndex, entity, context = "", sc
     return fb || { ok: false, kind, why: `no bundled fallback for ${kind}` };
   }
   if (!name || !["person", "place", "building", "organization", "company", "institution"].includes(type)) return { ok: false, kind: type, why: "not a real-world entity type" };
+  // A BARE AMBIGUOUS PLACE NAME is not looked up: "Federal authorities in Washington" (the US federal government, D.C.) resolved to the seal of Washington STATE
+  // (Wikidata Q1223) and the beat check called it a different entity (board 38889577784 ch-26). Only "Washington State" / "State of Georgia"-style names,
+  // or a sentence that says so, are resolved; the bare word stays a name in type.
+  if (/^(washington|georgia)$/i.test(name) && !new RegExp(`\\b(state of ${name}|${name} state)\\b`, "i").test(sentence)) {
+    console.log(`[resolve] ${tag}\n    → "${name}" is ambiguous (a US state, a city, a country or a government) and the sentence does not say which — not looked up`);
+    return { ok: false, kind: type, why: "ambiguous place name", refused: true };
+  }
   // A real-world entity is a PROPER name: "field office" (typed as a building by the planner)
   // was resolved to a Taiwanese "MJIB Penghu County Field Office" and verified MATCH as "a
   // field office" (CI run 37110620556 ch-2 beat 2) — a generic photo for a common noun.
@@ -513,7 +599,7 @@ async function sceneEntities({ beat, sentence, entityNamedInSentence, log = cons
   return list;
 }
 
-module.exports = { resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
+module.exports = { wikiSummary, resolveSceneEntity, sceneEntities, properNames, kindOf, introducedByName, samePersonPrompt, normalizeSame, fallbackAsset, stackToBarChart, FALLBACK_ASSETS, _resetRunMemo: () => { runMemo.clear(); sameMemo.clear(); } };
 
 if (require.main === module) {
   require("dotenv/config");

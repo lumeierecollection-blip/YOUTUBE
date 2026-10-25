@@ -1,0 +1,62 @@
+{
+  "topic_slug": "italy-spain-maritime-border-dispute-meloni-sanchez",
+  "strongest_angle": "The diplomatic tension between Italy and Spain, triggered by migration issues following the Ceuta incident, is moving toward resolution through high-level talks between Prime Minister Giorgia Meloni and Prime Minister Pedro Sánchez.",
+  "key_facts": [
+    {
+      "fact": "Italian Prime Minister Giorgia Meloni and Spanish Prime Minister Pedro Sánchez held talks to resolve a diplomatic dispute involving border checks.",
+      "source_url": "https://www.euronews.com/2026/10/16/italy-and-spain-move-to-end-border-dispute-after-meloni-sanchez-talks",
+      "source_name": "Euronews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The diplomatic showdown between Italy and Spain began in the summer of 2026 following a migration crisis at the Spanish territory of Ceuta.",
+      "source_url": "https://www.thelocal.es/20261016/italy-and-spain-agree-to-remove-border-checks",
+      "source_name": "The Local Spain",
+      "confidence": "high"
+    },
+    {
+      "fact": "Interior ministers from Italy and Spain are scheduled to meet next week to finalize an agreement to lift the suspension of Schengen rules.",
+      "source_url": "https://www.ansa.it/english/news/politics/2026/10/16/italy-and-spain-set-to-drop-suspension-of-schengen-rules_9d7ace19-74ee-41a9-ada3-b6573beb4a14.html",
+      "source_name": "ANSA",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Duration of tensions in months",
+      "value": 2,
+      "unit": "months",
+      "source_url": "https://www.yahoo.com/news/world/articles/italy-spain-hammer-solution-border-141828198.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Giorgia Meloni",
+      "kind": "person"
+    },
+    {
+      "name": "Pedro Sánchez",
+      "kind": "person"
+    },
+    {
+      "name": "Italy",
+      "kind": "place"
+    },
+    {
+      "name": "Spain",
+      "kind": "place"
+    },
+    {
+      "name": "Ceuta",
+      "kind": "place"
+    },
+    {
+      "name": "Schengen Agreement",
+      "kind": "object"
+    },
+    {
+      "name": "Morocco",
+      "kind": "place"
+    }
+  ]
+}

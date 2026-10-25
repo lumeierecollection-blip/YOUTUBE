@@ -1,0 +1,41 @@
+{
+  "channel_id": "9",
+  "topic_slug": "supreme-court-india-sri-lanka-katchatheevu-challenge",
+  "format": "shorts",
+  "hook": "What if India tried to reclaim an island ceded fifty years ago?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if India tried to reclaim an island ceded fifty years ago?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Supreme Court of India is currently reviewing a legal challenge over Katchatheevu. Could this historic border deal finally be overturned?",
+      "text_overlay": {
+        "text": "Katchatheevu Island Dispute"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Indian government has explicitly ruled out reopening these 1976 pacts.",
+      "text_overlay": {
+        "text": "Government Stance: Settled"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "In 2024, Narendra Modi criticized the Congress party for ceding Katchatheevu using RTI documents from K. Annamalai. The Supreme Court of India allowed T.R. Baalu to replace M. Karunanidhi as the petitioner in this case.",
+      "text_overlay": {
+        "text": "Modi Criticizes 1974 Cession"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Supreme Court of India now weighs whether Tamil Nadu fishermen need sensitization regarding 1974 and 1976 agreements."
+    }
+  ],
+  "sources_used": [
+    "https://www.thehindu.com/news/national/tamil-nadu/sc-to-hear-katchatheevu-case-on-september-15/article69372116.ece",
+    "https://www.tamilguardian.com/content/indian-supreme-court-urges-tamil-nadu-fishermen-avoid-sri-lankan-waters"
+  ]
+}

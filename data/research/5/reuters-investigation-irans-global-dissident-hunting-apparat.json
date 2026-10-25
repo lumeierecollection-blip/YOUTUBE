@@ -1,0 +1,51 @@
+{
+  "topic_slug": "reuters-investigation-irans-global-dissident-hunting-apparat",
+  "strongest_angle": "Examine the October 2026 Reuters investigative report detailing how Iran's repressive security apparatus, judiciary, and state broadcaster coordinated a campaign to hunt down dissidents both at home and abroad.",
+  "key_facts": [
+    {
+      "fact": "A Reuters investigative report published in October 2026 revealed that Iran's security apparatus, judiciary, and state broadcaster launched a coordinated campaign to hunt down anti-government dissidents at home and abroad.",
+      "source_url": "https://www.reuters.com/investigates/special-report/iran-crisis-repression",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "Iran International reported that the Reuters investigation found the regime utilized executions, mass prosecutions, family pressure, and restrictions on Iranians abroad during the wartime crackdown.",
+      "source_url": "https://www.iranintl.com/en/202610080184",
+      "source_name": "Iran International",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the Reuters report published by BDNews24, the Islamic Republic's repressive security and judicial apparatus pursued dissident Iranians internationally despite months of military attacks by the United States and Israel.",
+      "source_url": "https://bdnews24.com/world/86y4kk622t",
+      "source_name": "BDNews24",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Reuters",
+      "kind": "organization"
+    },
+    {
+      "name": "Iran",
+      "kind": "place"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Israel",
+      "kind": "place"
+    },
+    {
+      "name": "Iran International",
+      "kind": "organization"
+    },
+    {
+      "name": "BDNews24",
+      "kind": "organization"
+    }
+  ]
+}

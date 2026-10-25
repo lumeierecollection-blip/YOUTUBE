@@ -1,0 +1,58 @@
+{
+  "topic_slug": "alex-murdaugh-retrial-dna-weapons-evidence",
+  "strongest_angle": "The pre-trial legal proceedings for Alex Murdaugh's retrial have centered on a contentious battle over forensic DNA evidence and the status of missing murder weapons.",
+  "key_facts": [
+    {
+      "fact": "Judge Debra McCaslin ruled that Alex Murdaugh's defense team is permitted to conduct independent testing on unknown DNA found under the fingernails of Maggie Murdaugh.",
+      "source_url": "https://www.wisn.com/article/evidence-alex-murdaugh-retrial-dna-missing-murder-weapons/74160726",
+      "source_name": "WISN",
+      "confidence": "high"
+    },
+    {
+      "fact": "The defense team for Alex Murdaugh suffered a setback in the Lexington, South Carolina courtroom after the judge denied their request regarding ballistics evidence.",
+      "source_url": "https://www.foxnews.com/us/alex-murdaughs-wild-goose-chase-missing-murder-guns-targets-police-chief-expert",
+      "source_name": "Fox News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Alex Murdaugh is currently awaiting a retrial on charges related to the 2021 murders of his wife, Maggie Murdaugh, and his son, Paul Murdaugh, at their family estate.",
+      "source_url": "https://www.thestate.com/news/local/crime/article317639302.html",
+      "source_name": "The State",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the murders",
+      "value": 2021,
+      "unit": "year",
+      "source_url": "https://www.thestate.com/news/local/crime/article317639302.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Alex Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Maggie Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Paul Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Debra McCaslin",
+      "kind": "person"
+    },
+    {
+      "name": "Lexington",
+      "kind": "place"
+    },
+    {
+      "name": "South Carolina",
+      "kind": "place"
+    }
+  ]
+}

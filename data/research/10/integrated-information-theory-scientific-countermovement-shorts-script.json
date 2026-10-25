@@ -1,0 +1,66 @@
+{
+  "channel_id": "10",
+  "topic_slug": "integrated-information-theory-scientific-countermovement",
+  "format": "shorts",
+  "hook": "124 scholars signed a public letter labeling Integrated Information Theory as pseudoscience.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "124 scholars signed a public letter labeling Integrated Information Theory as pseudoscience.",
+      "b_roll": [
+        "A digital document showing academic signatures",
+        "A stark library desk with research papers"
+      ],
+      "text_overlay": {
+        "text": "124 Scholars Label Theory Pseudoscience"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "September 2023 saw the online posting of an open letter targeting the framework. Where does legitimate scientific testing draw the line?",
+      "b_roll": [
+        "Nature journal archive open on a screen",
+        "A neuroscience laboratory with glowing monitors"
+      ],
+      "text_overlay": {
+        "text": "Nature Magazine September 2023"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, David Barbera-Tomas analyzed the fierce backlash in a 2026 sociological study.",
+      "b_roll": [
+        "OSF Preprints website displaying academic data",
+        "A network graph of scientific citations"
+      ],
+      "text_overlay": {
+        "text": "OSF Preprints 2026 Analysis"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nature Neuroscience published articles addressing why the theory faces accusations of being unscientific. Those 124 signatories sparked an ongoing methodological crisis for consciousness science.",
+      "b_roll": [
+        "Nature Neuroscience journal cover",
+        "Scholars reviewing publication drafts"
+      ],
+      "text_overlay": {
+        "text": "124 Signatories Spark Crisis"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "124 scholars documented the entire dispute.",
+      "b_roll": [
+        "A closing shot of the academic archives"
+      ],
+      "text_overlay": {
+        "text": "124 Scholars"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/d41586-023-02971-1",
+    "https://doi.org/10.31235/osf.io/tewnh_v1"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "channel_id": "44",
+  "topic_slug": "crisis-authentic-leader-fast-company-2026",
+  "format": "shorts",
+  "hook": "Target faced intense pressure in 2025 when traditional authenticity failed leaders.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Target faced intense pressure in 2025 when traditional authenticity failed leaders.",
+      "b_roll": [
+        "Corporate office building exterior under heavy lighting",
+        "Executive looking out a glass window"
+      ],
+      "text_overlay": {
+        "text": "The Authentic Leadership Crisis"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2025, Target rolled back major diversity strategies due to intense backlash. Profit was once the sole corporate measure, as Gordon Gekko famously declared in the 1980s. Where did modern expectations shift?",
+      "b_roll": [
+        "Target retail store front facade",
+        "Classic film clip projection of Wall Street",
+        "Data charts showing shifting corporate metrics"
+      ],
+      "text_overlay": {
+        "text": "Target 2025 Shift"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except true executive self-awareness faces immense socio-political obstacles today.",
+      "b_roll": [
+        "Executive board meeting room table",
+        "Close up of corporate press release document"
+      ],
+      "text_overlay": {
+        "text": "Socio-Political Pressures"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Authentic leadership theories published in 2026 emphasize relational transparency and balanced processing. Gordon Gekko never faced Fast Company insights on relational transparency.",
+      "b_roll": [
+        "Forbes publication cover graphic",
+        "Business professionals reviewing strategy documents"
+      ],
+      "text_overlay": {
+        "text": "2026 Leadership Insights"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Rigid self-expression fails under intense 2026 political pressure.",
+      "b_roll": [
+        "Modern glass skyscraper reflecting sunlight"
+      ],
+      "text_overlay": {
+        "text": "Authentic Leadership"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader",
+    "https://www.fastcompany.com/91464111/why-2026-demands-authentic-ceos",
+    "https://www.forbes.com/sites/tomaspremuzic/2025/11/09/there-is-nothing-authentic-about-authentic-leadership"
+  ]
+}

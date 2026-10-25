@@ -10,6 +10,7 @@
  *   node scripts/opencode-visual-intent.js --script <path> --srt <path> --channel <id> --out <intent.json>
  */
 import "dotenv/config";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { readFileSync, writeFileSync, existsSync, mkdtempSync, rmSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -233,7 +234,7 @@ async function main() {
   if (channelId) {
     try {
       const config = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-      channelConfig = config.channels.find(c => String(c.id) === String(channelId));
+      channelConfig = resolveChannel(channelId, config.channels);
     } catch {}
   }
 

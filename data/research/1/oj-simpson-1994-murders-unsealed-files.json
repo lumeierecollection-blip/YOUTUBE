@@ -1,0 +1,73 @@
+{
+  "topic_slug": "oj-simpson-1994-murders-unsealed-files",
+  "strongest_angle": "Newly unsealed court documents and investigative reports from October 2026 reveal that a convicted drug smuggler and mob informant who died in 2006 may have assisted O.J. Simpson in covering up the 1994 murders of Nicole Brown Simpson and Ron Goldman.",
+  "key_facts": [
+    {
+      "fact": "Newly unsealed records and a report detailed in October 2026 suggest O.J. Simpson may have received help from a mob informant and drug smuggler who died in 2006 regarding the 1994 murders.",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene",
+      "source_name": "MyNewsLA.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The New York Times investigation published in October 2026 revealed that a deceased drug smuggler with mob ties gave federal authorities information about the 1994 killings of Nicole Brown Simpson and Ronald Goldman.",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene",
+      "source_name": "MyNewsLA.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "In O.J. Simpson's book 'If I Did It', he described a version of the 1994 murders where he had help from a friend who disposed of the murder weapon and his bloody clothes.",
+      "source_url": "https://dnyuz.com/2026/10/18/o-j-simpson-a-secret-informant-and-a-decades-old-mystery",
+      "source_name": "DNYUZ",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fox News reported in October 2026 on sealed records alleging that O.J. Simpson received assistance in covering up the double murder.",
+      "source_url": "https://www.foxnews.com/us/brother-possible-oj-simpson-accomplice-claims-returned-bloody-hands-night-murders-report",
+      "source_name": "Fox News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of murders",
+      "value": 1994,
+      "unit": "year",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene"
+    },
+    {
+      "label": "Year of informant death",
+      "value": 2006,
+      "unit": "year",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene"
+    },
+    {
+      "label": "Month of report",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "O.J. Simpson",
+      "kind": "person"
+    },
+    {
+      "name": "Nicole Brown Simpson",
+      "kind": "person"
+    },
+    {
+      "name": "Ron Goldman",
+      "kind": "person"
+    },
+    {
+      "name": "The New York Times",
+      "kind": "organization"
+    },
+    {
+      "name": "Fox News",
+      "kind": "organization"
+    }
+  ]
+}

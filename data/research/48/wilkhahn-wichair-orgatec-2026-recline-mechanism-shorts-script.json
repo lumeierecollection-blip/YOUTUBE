@@ -1,0 +1,67 @@
+{
+  "channel_id": "48",
+  "topic_slug": "wilkhahn-wichair-orgatec-2026-recline-mechanism",
+  "format": "shorts",
+  "hook": "Traditional office chairs hide heavy metal boxes beneath the seat, but one new design throws them out entirely.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Traditional office chairs hide heavy metal boxes beneath the seat, but one new design throws them out entirely.",
+      "b_roll": [
+        "Close-up of a standard mechanical chair mechanism underneath the seat",
+        "Cut to the minimalist profile of the new chair"
+      ],
+      "text_overlay": {
+        "text": "No mechanical box"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At ORGATEC in Cologne, German brand Wilkhahn revealed the WiChair task chair. Designed by Alina Schnizler, the frame swaps levers for spring-loaded steel and plywood. Where is the heavy mechanism?",
+      "b_roll": [
+        "Exhibition hall floor at ORGATEC in Cologne showing Wilkhahn displays",
+        "Designer Alina Schnizler sketching proportions",
+        "Spring-loaded steel swing arm flexing under pressure"
+      ],
+      "text_overlay": {
+        "text": "ORGATEC 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Wilkhahn's dynamic sitting legacy began with the 1980 FS-Line release.",
+      "b_roll": [
+        "Archival product photograph of the FS-Line office chair from 1980"
+      ],
+      "text_overlay": {
+        "text": "Since 1980"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Following the Picto model in 1992 and the ON chair in 2009, this latest release eliminates mechanical clutter. A single springy steel swing arm creates movement.",
+      "b_roll": [
+        "Picto chair profile from 1992",
+        "ON chair model from 2009",
+        "WiChair swing arm bending smoothly during a recline test"
+      ],
+      "text_overlay": {
+        "text": "Springy steel swing arm"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Alina Schnizler's minimalist WiChair design ditches traditional mechanical boxes.",
+      "b_roll": [
+        "Wide shot of WiChair in a modern workspace"
+      ],
+      "text_overlay": {
+        "text": "WiChair"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.dezeen.com/2026/05/26/wichair-alina-schnizler-wilkhahn-dezeen-showroom",
+    "https://www.wilkhahn.com/fileadmin/products/WiChair/docs/Wilkhahn-Digital-brochure-DB-WiChair-02-en.pdf"
+  ]
+}

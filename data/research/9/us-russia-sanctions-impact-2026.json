@@ -1,0 +1,78 @@
+{
+  "topic_slug": "us-russia-sanctions-impact-2026",
+  "strongest_angle": "The 2026 US-Russia diesel agreement represents a tactical shift in sanctions policy, though analysts suggest the deal will have minimal impact on global fuel prices.",
+  "key_facts": [
+    {
+      "fact": "U.S. President Donald Trump and Russian President Vladimir Putin reached an agreement to increase Russian diesel exports in exchange for suspending sanctions through April 1, 2027.",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2026/10/russia-usa-diesel-agreement",
+      "source_name": "Carnegie Endowment for International Peace",
+      "confidence": "high"
+    },
+    {
+      "fact": "Analysts at The Guardian report that the deal is unlikely to affect U.S. fuel prices because the quantity of diesel is too small and shipping times are too long.",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/11/trump-russia-diesel-deal-putin-little-impact-prices",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The KSE Institute found that while U.S. sanctions on the Russian shadow fleet have been disruptive, their overall effectiveness is limited by broader global energy flow disruptions.",
+      "source_url": "https://institute.kse.ua/wp-content/uploads/2026/05/kse_institute_vessel-designation_impact_assessment_eng_may_2026.pdf",
+      "source_name": "KSE Institute",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Sanction suspension deadline",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2026/10/russia-usa-diesel-agreement"
+    },
+    {
+      "label": "Sanction suspension month",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2026/10/russia-usa-diesel-agreement"
+    },
+    {
+      "label": "Sanction suspension day",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://carnegieendowment.org/russia-eurasia/politika/2026/10/russia-usa-diesel-agreement"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Donald Trump’s deal with Vladimir Putin to temporarily lift sanctions on US imports of Russian diesel will have little “meaningful” effect on motorists and businesses in the US and overseas,",
+      "speaker": "Simon Goodley",
+      "source_name": "The Guardian",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/11/trump-russia-diesel-deal-putin-little-impact-prices"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    },
+    {
+      "name": "Vladimir Putin",
+      "kind": "person"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Russia",
+      "kind": "place"
+    },
+    {
+      "name": "KSE Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Carnegie Endowment for International Peace",
+      "kind": "organization"
+    }
+  ]
+}

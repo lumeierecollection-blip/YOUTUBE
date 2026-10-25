@@ -1,0 +1,84 @@
+{
+  "topic_slug": "navigating-low-hire-low-fire-job-market-2026",
+  "strongest_angle": "Analyze the Stanford Graduate School of Business and Fast Company insights on breaking through the October 2026 low-hire, low-fire economic environment by ditching spray-and-pray applications for targeted human connections.",
+  "key_facts": [
+    {
+      "fact": "On October 6, 2026, Fast Company published an article by Josie Cox explaining how job seekers can break through the low-hire, low-fire market by ditching spray-and-pray applications for targeted human connections.",
+      "source_url": "https://www.fastcompany.com/91618330/how-to-get-a-job-in-this-low-hire-low-fire-market",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 5, 2026, Stanford Graduate School of Business alumni career coaches Shibani Joshi and Cindy Greig shared career advice at the Career Management Center on standing out in the most challenging job market in a decade.",
+      "source_url": "https://www.gsb.stanford.edu/insights/career-advice-how-break-through-tough-job-market",
+      "source_name": "Stanford Graduate School of Business",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 6, 2026, Federal Reserve Bank of Atlanta research economist Paul Mohnen and assistant adviser David Lee published a policy hub macroblog on rising labor market anxiety and declining quits.",
+      "source_url": "https://www.atlantafed.org/research-and-data/publications/policy-hub-macroblog/2026/10/06/rising-labor-market-anxiety-and-declining-quits",
+      "source_name": "Federal Reserve Bank of Atlanta",
+      "confidence": "high"
+    },
+    {
+      "fact": "On September 22, 2026, Richmond Fed macro analysts Claudia Macaluso and John O'Trakoun published a macro minute visualizing the unusual low-hire, low-fire labor market combination of slow job creation and low layoffs.",
+      "source_url": "https://www.richmondfed.org/research/national_economy/macro_minute/2026/visualizing_low-hire_low-fire_labor_market",
+      "source_name": "Richmond Fed",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Decade challenge ranking",
+      "value": 10,
+      "unit": "years",
+      "source_url": "https://www.gsb.stanford.edu/insights/career-advice-how-break-through-tough-job-market"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Josie Cox",
+      "kind": "person"
+    },
+    {
+      "name": "Shibani Joshi",
+      "kind": "person"
+    },
+    {
+      "name": "Cindy Greig",
+      "kind": "person"
+    },
+    {
+      "name": "Paul Mohnen",
+      "kind": "person"
+    },
+    {
+      "name": "David Lee",
+      "kind": "person"
+    },
+    {
+      "name": "Claudia Macaluso",
+      "kind": "person"
+    },
+    {
+      "name": "John O'Trakoun",
+      "kind": "person"
+    },
+    {
+      "name": "Stanford Graduate School of Business",
+      "kind": "organization"
+    },
+    {
+      "name": "Fast Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Federal Reserve Bank of Atlanta",
+      "kind": "organization"
+    },
+    {
+      "name": "Richmond Fed",
+      "kind": "organization"
+    }
+  ]
+}

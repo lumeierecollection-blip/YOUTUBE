@@ -16,7 +16,8 @@
  */
 import "dotenv/config";
 import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "node:fs";
-import { join, dirname, basename, resolve } from "node:path";
+import { isFail, settleNaming } from "./lib/naming-looks.mjs";
+import { join, dirname, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 // Every model call goes through src/lib/llm.js: Gemini first, local Ollama
@@ -53,7 +54,8 @@ function arg(name, fallback = null) {
 }
 
 function getApiKey() {
-  return process.env.GEMINI_API_KEY
+  return process.env.GEMINI_API_KEY_4
+    || process.env.GEMINI_API_KEY
     || process.env.GOOGLE_GENERATIVE_AI_API_KEY
     || process.env.VISION_API_KEY
     || null;
@@ -323,7 +325,9 @@ function neutralizeGroundClauses(text) {
  * evidence the video is bad. Veto-only would have meant letting it reject on fabricated
  * grounds, which is the failure mode, not a mitigation of it.
  */
-const VERDICT_PROVIDERS = new Set(["gemini", "groq"]);
+// ollama-cloud: gemma4:31b on ollama.com (owner, 2026-10-17: Ollama as a provider) — a larger vision model than the accepted Groq one. Local Ollama
+// (a 3B vision model on a CPU runner) stays excluded.
+const VERDICT_PROVIDERS = new Set(["gemini", "groq", "ollama-cloud"]);
 
 /** 0/1/2/3 were already in use (0 ok, 1 verdict blocks, 2 usage, 3 beat-check could not run). */
 const EXIT_PROVIDER_UNAVAILABLE = 4;
@@ -340,8 +344,16 @@ function paperRubric(prompt) {
 // What each full-canvas beat IS, for the frame label (the reviewer read a
 // big number or a gauge as "headline-dominated" — run 36504143080 ch-1 75%).
 function compositionLabel(b) {
+  const c = b?.canvas;
+  const label = compositionLabelBase(b);
+  // The ground the plan declared for this beat (absent = the house white).
+  return label && c?.ground_color ? `${label} | ground: ${c.ground_color}${c.dark ? " (dark ground, light ink)" : ""}` : label;
+}
+function compositionLabelBase(b) {
   const c = b?.canvas, vt = String(b?.visual_type || "").toUpperCase();
   if (!c) return "";
+  // A CLONE render (src/skills/remotion-render/clone/) records what its shots drew; say that, not the canvas plan's "TYPE" for the same beat.
+  if (c.clone && c.clone_label) return ` | beat: ${c.clone_label}`;
   const what = { COUNTER: "one big number (the sentence's figure — a data beat)", BAR: "bar chart", PIE: "donut chart", LINE: "line chart", GAUGE: "gauge", MAP: "map filling the frame",
     PROCESS: "process diagram", PHOTO: `photograph of ${c.photo?.entity || "a named entity"}`, CUTOUT: "photographed object", TYPE: "typography",
     LIST: "an enumeration built item by item", TIMELINE: "a timeline of dated events", COMPARE: "two figures on a diagonal split", DOCUMENT: `scan of ${c.photo?.entity || "a document"}`,
@@ -350,13 +362,39 @@ function compositionLabel(b) {
   // the reviewer counted a 640 px drawn symbol beat as headline-led (CI run 37129265971 ch-48,
   // TEMPLATE_MONOCULTURE 60%). The label says what the frame actually draws; the reviewer
   // still judges the frame itself. A name card stays typography (it is the entity's name).
+  //
+  // The label must describe the manifest's OWN record. Two ways it lied (run 39315927175
+  // ch-48, 66% headline-dominated with the reviewer's own notes "repetitive centered
+  // typography" while frames drew plates, logos and a figure): a hero visual with no asset
+  // is a PLATE — the entity's name set in type, never "a photographed X"; and a TYPE beat
+  // carrying an art row (entity-ladder's plates: person, organisation logo, figure) was
+  // labelled "typography" while the frame drew the row. Both labels are accurate now.
+  const visDesc = (v) => v.logo ? `the logo of ${v.name || "a named organization"}`
+    : v.money ? "a photographed banknote / coin"
+    : v.class === "symbol" ? `a large drawn ${String(v.name || "symbol").replace(/-/g, " ")} symbol`
+    : v.class === "figure" ? `the figure ${v.name}`
+    : v.asset ? `a photographed ${v.name || "object"}`
+    : `the name of ${v.name || "a named entity"} set in type`;
+  const artNames = vt === "TYPE" && Array.isArray(c.art?.names) && c.art.names.length ? c.art.names : null;
+  if (artNames) {
+    const items = Array.isArray(c.art.items) ? c.art.items : [];
+    const parts = artNames.slice(0, 3).map((n, i) => {
+      const k = (c.art.kinds || [])[i];
+      const it = items[i];
+      if (k === "figure") return `the figure ${n}`;
+      if (it && it.asset) return `the logo of ${n}`;
+      return `the name of ${n} set in type`;
+    });
+    return ` | beat: ${c.composition} — a row of plates, not a typography beat: ${parts.join(", ")}`
+      + (artNames.length > parts.length ? `, +${artNames.length - parts.length} more` : "");
+  }
   const hero = (c.concept_visuals || [])[0];
   if (vt === "TYPE" && hero) {
-    const heroWhat = hero.logo ? `the logo of ${hero.name || "a named organization"} as the hero visual`
-      : hero.money ? "a photographed banknote / coin as the hero visual"
-      : hero.class === "symbol" ? `a large drawn ${String(hero.name || "symbol").replace(/-/g, " ")} symbol as the hero visual`
-      : `a photographed ${hero.name || "object"} as the hero visual`;
-    return ` | beat: ${c.composition} with a hero object — ${heroWhat} (a visual beat)`;
+    // The composition NAME is left out: "TYPE-FULL with a hero object" was counted as a TYPE-FULL
+    // beat ("Excessive use of TYPE-FULL beats (4/9 frames)", CI run 37837731824 ch-49, where two of
+    // the four were verified Universal Pictures / Blumhouse logos). The reviewer still sees the frame.
+    const rest = (c.concept_visuals || []).slice(1, 2).map(visDesc);
+    return ` | beat: a visual beat — ${visDesc(hero)} as the hero visual${rest.length ? `, beside ${rest.join(" and ")}` : ""}`;
   }
   if (vt === "TYPE" && c.name_card) return ` | beat: ${c.composition} — typography: the name of ${c.name_card.name}`;
   return ` | beat: ${c.composition} — ${what}`;
@@ -389,7 +427,12 @@ async function reviewWholeVideo(framePaths, beatTimes, srtCues, duration, apiKey
   // removed is a way of reinstalling it. (An earlier attempt did exactly that — the comment
   // landed INSIDE the template literal and was being sent to the model as prompt text. The
   // prompt now states only the boundary; the history lives here, in code.)
-  content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics with an editorial serif/sans type system (Financial Times x high-end documentary x contemporary magazine). Every beat is composed for the WHOLE 1080x1920 frame. The house ground is uniform white, which is the intended look — but it is NOT an exemption: a ground that reads flat, tinted or inconsistent with the rest of the beat is a finding, report it like any other. Ground compliance is also enforced deterministically downstream (local-audit.cjs canvas-ground, luma >= 245 on every non-full-bleed beat, no dark beats), so you are not the only check on it and you gain nothing by overlooking it. All text pops into place (a quick scale-up and settle); a word mid-pop may be slightly small or translucent in a sampled frame. There is NO paper, NO card, NO container. Each beat is ONE of: TYPE-FULL / TYPE-SPLIT (a serif statement, sentence case, anchored to one side or split across opposite corners), NUMBER-FULL (ONE oversized serif numeral 260-420 px with a small uppercase sans label), DATA-FULL (bars / donut / line / gauge as the composition), SCENE-FULL / ARCHITECTURE / DOCUMENT / MONEY (a real photograph or scan edge to edge, type over it), MAP-CENTERED (the map fills the frame, labelled at the region), PROCESS-FULL (2-3 nodes, thick arrows), TIMELINE (dated events on a vertical line), COMPARISON-SPLIT (the frame cut on a diagonal, value A / value B), LIST-BUILD (items appearing one by one). Type has three roles: a serif headline (never all-caps), an oversized serif numeral, a small uppercase sans data label. LAYOUTS ARE ASYMMETRIC ON A GRID AND NEGATIVE SPACE IS INTENTIONAL: judge whether the composition spans the frame (elements anchored to opposite regions) and whether the type roles and the picture support the line. ASYMMETRY IS NOT EMPTINESS. 'Intentional negative space' means the space AROUND a composed element, never the absence of one. A beat that carries no element for its sentence, however clean and intentional it looks, is a fallback frame: report it as one under HEADLINE TEST and headline_test. The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. A small section folio ('03 / 08') and a hairline rule are page furniture, not defects. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization is a CRITICAL defect (a MONEY beat's picture of currency and a DOCUMENT beat's scan illustrate the literal object the sentence names, not a named entity). A card, a paper page or a framed panel is a HIGH defect; so is a composition shrunk into a small area with no element reaching the frame's regions. Two beats of the same composition kind in a row is a defect. In the headline test, a TYPE-FULL / TYPE-SPLIT typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process, timeline, list, comparison, photograph, document or money is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
+  // A CLONE render is judged against the clone grammar it IS, not the canvas spec below (owner's clone family, 2026-10-15/16). Run 39012850944 ch-26: the canvas
+  // block ("the word-by-word caption near the bottom is REQUIRED", "NO card", NUMBER-FULL serif numerals) described a different video, and Gemini called 8/8 frames
+  // headline-dominated though 21 of 32 shots had a cut-out picture. The headline test's bar is unchanged: most frames typography with no picture / figure / date.
+  const isClone = (manifestBeats || []).some((b) => b && b.canvas && b.canvas.clone);
+  if (isClone) content.push({ type: "text", text: "\n=== THE STYLE — the CLONE family: fast-cut editorial shorts built on the measured laws of reference videos (a hard cut to a new shot every 1-2 s, something new on screen at least every ~0.8 s). The channel's ground colour fills every frame (declared in the frame label). Each shot is ONE of: a CUT-OUT PHOTO (a real photographed object, person or logo cut out of its background, standing on the ground, often large or running off an edge) with a short key phrase, a name or a figure in type beside it; a FIGURE (an oversized number with its unit on the line under it and a small label); a DATE PLATE (the month over the day); NAME TYPE (an entity the pipeline has no verified picture of, its name set large in type — icons are never used); a NARRATION LINE (the words being spoken appearing one by one in a small italic line, with one key phrase large). PROPS are generic real objects that literally illustrate what the sentence says (cash for money, a calculator for a calculation, a gavel for a court ruling) or, when marked EXPLAINS, show the point the sentence makes (unpaid bills for debt eating a raise) — explainer videos visualise ideas, not only people and places; a prop never stands in for a named person, place or organization. There is no word-by-word caption at the bottom, no card, no frame or border around a picture. Judge each frame's CONTENT against its voiceover line: a picture that is not literally about what its sentence says is a defect, a generic stock image standing in for a named person, place or organization is a CRITICAL defect, and type too small to read on a phone or a frame that is mostly empty ground is a finding. A cut-out picture must be VISIBLE and make SENSE (owner, 2026-10-19): one too small to recognise on a phone, mostly outside the frame, hidden behind type, or that a viewer could not connect to the words on screen is a finding; a frame that is only pictures with no words at all is a finding (the references always set the spoken key word big beside their pictures). In the headline test, a frame showing a cut-out photo, a figure or a date plate is a VISUAL frame, not a headline frame; name type and narration lines are typography. The video is headline-dominated only when most sampled frames are typography with no picture, figure or date. Score overall_score on how well each frame matches its line and how well the video realises this style. ===" });
+  else content.push({ type: "text", text: "\n=== THE STYLE — full-canvas editorial motion graphics with an editorial serif/sans type system (Financial Times x high-end documentary x contemporary magazine). Every beat is composed for the WHOLE 1080x1920 frame. The house ground is white. The plan chooses each beat's ground, and a beat that chose another one says so in its frame label (| ground: #RRGGBB): a beat on white, on a dark colour or on a tint is as the plan intended. Judge whether the beat reads well on the ground it has — type, charts and photos legible against it — and whether the grounds across the video hang together; a ground that reads flat or empty for what the beat is doing is a finding, report it like any other. That the render drew the ground the plan declared is checked deterministically (local-audit.cjs canvas-ground). All text pops into place (a quick scale-up and settle); a word mid-pop may be slightly small or translucent in a sampled frame. There is NO paper, NO card, NO container. Each beat is ONE of: TYPE-FULL / TYPE-SPLIT (a serif statement, sentence case, anchored to one side or split across opposite corners), NUMBER-FULL (ONE oversized serif numeral 260-420 px with a small uppercase sans label), DATA-FULL (bars / donut / line / gauge as the composition), SCENE-FULL / ARCHITECTURE / DOCUMENT / MONEY (a real photograph or scan edge to edge, type over it), MAP-CENTERED (the map fills the frame, labelled at the region), PROCESS-FULL (2-3 nodes, thick arrows), TIMELINE (dated events on a vertical line), COMPARISON-SPLIT (the frame cut on a diagonal, value A / value B), LIST-BUILD (items appearing one by one). Type has three roles: a serif headline (never all-caps), an oversized serif numeral, a small uppercase sans data label. LAYOUTS ARE ASYMMETRIC ON A GRID AND NEGATIVE SPACE IS INTENTIONAL: judge whether the composition spans the frame (elements anchored to opposite regions) and whether the type roles and the picture support the line. ASYMMETRY IS NOT EMPTINESS. 'Intentional negative space' means the space AROUND a composed element, never the absence of one. A beat that carries no element for its sentence, however clean and intentional it looks, is a fallback frame: report it as one under HEADLINE TEST and headline_test. The channel's accent colour marks only the primary value / the arrow / the number that matters. Beats transform into each other (slides, match cuts, a persisted element). The word-by-word caption of the narration near the bottom is REQUIRED on every beat by the channel owner: do not count it as caption duplication, subtitles, redundancy or slop, and do not lower any score for it. A small section folio ('03 / 08') and a hairline rule are page furniture, not defects. Judge each frame's CONTENT against its voiceover line. Reject a frame if a photo shown is not literally about what its sentence names: a generic stock image standing in for a named person, place or organization is a CRITICAL defect (a MONEY beat's picture of currency and a DOCUMENT beat's scan illustrate the literal object the sentence names, not a named entity). A card, a paper page or a framed panel is a HIGH defect; so is a composition shrunk into a small area with no element reaching the frame's regions. Two beats of the same composition kind in a row is a defect. In the headline test, a TYPE-FULL / TYPE-SPLIT typography beat is headline-led by design; a beat labelled as a big number, chart, gauge, map, process, timeline, list, comparison, photograph, document or money is a VISUAL beat, not a headline beat; the video is headline-dominated only when most beats are typography with no chart, number, photo, object or process. Score overall_score on how well the video realises this style AND how well each frame matches its line. ===" });
   content.push({ type: "text", text: "\n=== FRAMES UNDER REVIEW ===" });
   // A1b: strip the ground mandate from the assembled rubric before `head` is taken, so
   // the Groq batch split carries the neutralized text too. No-ops now that production
@@ -545,7 +588,8 @@ Answer NO when the frame is only a line of text restating or labelling the sente
 EXCEPTION: a beat marked "[TYPOGRAPHY]" below is a kinetic-text hook or CTA beat BY DESIGN — it is supposed to be text only, with no accompanying drawing. For those beats only, judge whether the on-screen text itself captures the sentence's point; do not answer NO merely because there is no separate visual.
 EXCEPTION: a beat marked "[DATA: COUNTER|BAR|PIE|LINE|GAUGE]" below shows the sentence's own figure as a drawn number, chart or gauge BY DESIGN — the drawn figure IS the visual. Answer YES when the figure shown is the sentence's figure and its label fits the sentence; answer NO when the figure is wrong, missing, or unrelated. A beat marked "[MAP]" shows the place the sentence names; answer NO if the place is wrong or unreadable.
 EXCEPTION: a beat marked "[PROCESS]" is a designed flow diagram BY DESIGN (labelled nodes joined by arrows): answer YES when its nodes and arrows show the cause -> effect or sequence the sentence states; answer NO when the sentence states no such flow or the nodes are not the sentence's steps. A beat marked "[PHOTO: <name>]" shows a real photograph of that named person, place or organization: answer NO if the photo is not of THAT entity (e.g. another country's court or building), or if the entity is not what the sentence is about.
-WRONG PERSON: if the frame shows a person, and the sentence names a specific person, check whether the face plausibly matches the named person. If the face is clearly a different person, or if the person is a child, or if the image is a scene where the person is not the subject, answer NO with reason "wrong-person" (those exact words first in the reason). A beat marked "[PHOTO OF PERSON: <name>]" is meant to show that person's portrait.
+EXCEPTION: a beat marked "[PROPS: ...]" is a cut-out-collage beat BY DESIGN (owner's rule, 2026-10-16): besides any photo, logo or name of what the sentence names, its shots show generic photographed objects that are the plain physical form of what the sentence says (gold bars for "gold bars", a gavel or a courthouse for a guilty plea, a patrol car for a sheriff's department, dollar bills for a dollar figure). The listed props are what the beat MAY show, not a requirement: a frame showing a real photo or logo of a person, organisation or place the sentence names is YES even with no prop in it, and when the sentence names two or more people or organisations a frame showing one of them is YES (the beat's other shots show the others). A listed prop in the frame is YES, not "a topic-level stock object". A prop marked (EXPLAINS "...") is an EXPLANATORY picture BY DESIGN (owner's rule, 2026-10-18: the video visualises what is being said, not only the people and places it names): it shows the quoted claim — unpaid bills for "debt payments now eat most of the raise", an empty wallet for "nothing is left after rent", falling banknotes for "the money slips away" — and is YES when it does show that claim, even though the sentence does not name the object. A prop marked (GENERIC PERSON, CAPTIONED) is a stock photo of an anonymous person BY DESIGN (owner's rule, 2026-10-18), used only on beats that name no person, and the frame carries the caption "Illustrative photo" saying it is not the person in the story: do not read that person as anyone named in the video, and judge them like any other prop. Answer NO when the object is a stock symbol (a compass for "outcomes", an hourglass for "ten years", a lightbulb for "an idea"), is unrelated or merely on the topic, contradicts the sentence, or the frame is only text or blank.
+WRONG PERSON: do NOT decide who a face is. Whether a portrait shows the named person is established BEFORE the render, from the portrait's own source file (its Wikidata / Wikipedia item, its uploader, the article it sits in: scripts/identity-audit.mjs), and a model that names a face from memory is wrong (board 38054686824 ch 49: a portrait whose source file is Inde Navarrette's was called "Chase Sui Wonders" by this check). Answer NO with reason "wrong-person" (those exact words first in the reason) ONLY when the picture plainly shows a child, or a scene or group in which the named person is not the subject. A beat marked "[PHOTO OF PERSON: <name>]" is meant to show that person's portrait; do not judge the identity of the face itself.
 A word-by-word caption of the narration near the bottom of the frame is present on every beat BY DESIGN; ignore it when judging, and judge the rest of the frame.
 Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_is_shown":"<what the frame actually contains>","reason":"<one sentence>"}]} — exactly one entry per beat, beat_index 0..${beats.length - 1}.`,
   }];
@@ -568,6 +612,7 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
       const vt = String(b.visual_type || "").toUpperCase();
       const personName = b.canvas?.photo?.kind === "person" ? String(b.canvas.photo.entity || b.data?.entity || "").slice(0, 60) : "";
       const tag = personName ? ` [PHOTO OF PERSON: ${personName}]`
+        : Array.isArray(b.canvas?.clone_props) && b.canvas.clone_props.length ? ` [PROPS: ${b.canvas.clone_props.slice(0, 3).map((n) => { const x = (b.canvas.clone_props_explain || []).find((e) => e.name === n); const who = (b.canvas.clone_props_people || []).includes(n) ? " (GENERIC PERSON, CAPTIONED)" : ""; return x ? `${n}${who} (EXPLAINS "${String(x.explains).slice(0, 80)}")` : n + who; }).join(", ")}]`
         : b.mechanism === "TYPOGRAPHY" || vt === "TYPE" ? " [TYPOGRAPHY]"
         : ["COUNTER", "BAR", "PIE", "LINE", "GAUGE"].includes(vt) ? ` [DATA: ${vt}]`
         : vt === "MAP" ? " [MAP]"
@@ -598,7 +643,10 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
     // fallback replaces the old Gemini transport retry. Both failing is
     // "could not run" (exit 3). A NO verdict is never retried: that is the
     // check working, not an outage.
-    let result = await callLLM([{ role: "user", content }], { maxTokens: 2048, temperature: 0, noCache: true, groqBatch }, "beat-check");
+    // maxTokens 6144, not 2048: gemini-3.5-flash (a sibling the client falls to on a 503)
+    // spends reasoning tokens from the same budget, and CI run 37803694366 ch-26 used exactly
+    // 2048 completion tokens and returned the 9-beat verdict cut off mid-JSON ("could not run").
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true, groqBatch }, "beat-check");
     if (isProviderError(result)) {
       console.error(`::error::beat check unavailable: ${result.source} ${result.error}${result.detail ? ` (${String(result.detail).slice(0, 160)})` : ""}`);
       process.exit(3);
@@ -655,8 +703,317 @@ Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"matches":"YES"|"NO","what_i
   }
 }
 
+/* ── Fake-pan check ──────────────────────────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --camera-check --video <mp4> --manifest <render-manifest.json> [--out <json>]
+ *
+ * Owner, 2026-10-09: a photo or a graph MOVES by 8% or more across its beat (canvas-layout.js CAMERA).
+ * The manifest DECLARES the move (Layer 1 camera-moves); this looks at the pixels. For every beat that
+ * declares one, two frames of that beat (20% and 85% of the way through) go to Gemini, which answers
+ * whether the PICTURE itself was magnified or shifted between them — ignoring text, captions and anything
+ * that only popped in. A picture that is identical, or a chart whose bars merely grew, is NO.
+ *
+ * Gemini's eye alone was wrong on CI run 37919459134 ch-2: a photo that measures 1.09x between the two
+ * frames was called "unchanged", and so was a chart whose axis widened 1.09x. So each beat is ALSO measured on
+ * the pixels (scripts/lib/frame-motion.mjs: the best scale+shift taking frame A to B for a photo; the
+ * widening of the chart's own axis for a graph). A beat has a real camera move when the pixels measure it OR
+ * Gemini sees it; it is a fake pan only when neither does.
+ *
+ * Exit 0 = at most max(1, 25%) of the camera beats are fake pans. Exit 1 = more (listed). Exit 3 = could not run.
+ */
+async function cameraCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --camera-check --video <mp4> --manifest <manifest.json> [--out <json>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::camera check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const cam = (manifest.beats || []).map((b, i) => ({ b, i })).filter(({ b }) => b.canvas?.camera);
+  if (!cam.length) { console.log("[camera-check] no photo or graph beat — nothing to check"); if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const work = join(tmpdir(), `camera-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{ type: "text", text: `You are checking the CAMERA of a finished vertical video. For each beat below you get two frames, A then B, taken from the SAME beat about a second and a half apart. The beat shows a photograph or a chart; a real camera move means the PICTURE ITSELF is larger (pushed in) or shifted sideways, up or down in B compared with A, by roughly 8% or more.
+IGNORE all text: headlines, labels, numbers, captions and anything that merely appeared or changed its value between the frames. Judge only the photograph, or (for a chart) the chart as a whole — its baseline, its axis, the spacing of its labels: are they larger or displaced in B?
+Method: pick ONE fixed landmark in the picture (a building edge, a lamp post, the horizon; for a chart its baseline) and compare its size and position in A and in B. A push-in makes every landmark larger and moves the ones away from the centre outward.
+Answer NO when the picture is the same size and in the same place in both frames (only text popped in), or when a chart only had its bars grow taller with the chart itself unchanged in size and position.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"moved":"YES"|"NO","change":"<what moved: e.g. photo zoomed in about 9%, chart larger and its baseline lower, nothing>"}]} — exactly one entry per beat listed, with the beat_index given.` }];
+  const pairs = new Map();
+  try {
+    for (const { b, i } of cam) {
+      const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0;
+      // Early (after the 6-frame pop-in) and late (before the next beat's pop-out): the move is eased over the first 90%.
+      const from = (b.canvas.camera.from_frame || 0) / 30;   // the picture appears (its spoken word); the move runs from there
+      const tb = t0 + Math.max(from + 0.5, Math.min(d - 0.3, d * 0.92));
+      const ta = t0 + Math.min(Math.max(0.35, d * 0.1, from + 0.3), tb - t0 - 0.4);
+      const fa = join(work, `b${i}-a.png`), fb = join(work, `b${i}-b.png`);
+      extractFrameAtTime(videoPath, ta, fa); extractFrameAtTime(videoPath, tb, fb);
+      content.push({ type: "text", text: `Beat ${i} (${b.canvas.camera.subject}): frame A at ${ta.toFixed(2)}s, then frame B at ${tb.toFixed(2)}s` });
+      pairs.set(i, { fa, fb, subject: b.canvas.camera.subject });
+      for (const f of [fa, fb]) content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(f).toString("base64")}` } });
+    }
+    console.log(`[camera-check] ${cam.length} beat(s) with a declared camera move — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true }, "camera-check");
+    if (isProviderError(result)) { console.error(`::error::camera check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    if (!verdicts || verdicts.length !== cam.length) { console.error(`::error::camera check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${cam.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
+    // The pixels.
+    const { estimateMotion, axisWidth } = await import("./lib/frame-motion.mjs");
+    const measured = new Map();
+    for (const [i, p] of pairs) {
+      try {
+        if (p.subject === "graph") {
+          const [wa, wb] = [await axisWidth(p.fa), await axisWidth(p.fb)];
+          if (wa && wb) { measured.set(i, { moved: wb / wa >= 1.05 || wa / wb >= 1.05, what: `axis ${wa}px -> ${wb}px (x${(wb / wa).toFixed(3)})` }); continue; }
+        }
+        const m = await estimateMotion(p.fa, p.fb);
+        measured.set(i, { moved: m.moved, what: `scale ${m.scale}, shift ${m.shift.join(",")}, error ${m.identity_mse} -> ${m.best_mse}` });
+      } catch (e) { measured.set(i, { moved: false, what: `not measured (${e.message})` }); }
+    }
+    for (const v of verdicts) {
+      const px = measured.get(Number(v.beat_index));
+      v.pixels = px || null;
+      v.real = String(v.moved).toUpperCase() === "YES" || !!px?.moved;
+      console.log(`[camera-check] beat ${v.beat_index}: gemini ${v.moved} (${v.change}); pixels ${px ? (px.moved ? "MOVED" : "still") + " — " + px.what : "n/a"} -> ${v.real ? "REAL" : "FAKE"}`);
+    }
+    const failing = verdicts.filter((v) => !v.real);
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    const allowed = Math.max(1, Math.floor(cam.length * 0.25));
+    if (failing.length > allowed) { console.error(`::error::camera check failed: ${failing.length}/${cam.length} photo/graph beats show no real camera move (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[camera-check] PASS: ${cam.length - failing.length}/${cam.length} beats show a real camera move`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
+/* ── Entity check on the rendered frames ─────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --entity-check --video <mp4> --manifest <render-manifest.json> [--out <json>]
+ *
+ * Owner, 2026-10-09: "Never report a manifest check as proof while the contact sheet shows otherwise." scripts/entity-coverage.js
+ * answers from the manifest (what the beat says it drew); this asks Gemini of the PIXELS: one frame per beat that names an
+ * entity (after its picture pops), the entities listed, and the question "is it shown — its flag, its map with it highlighted, its
+ * portrait or logo, a plate with its name, its date card, its time scale, its figure — or only written?". A flag of the wrong
+ * country, a generic map, a name in type alone are NO.
+ *
+ * Exit 0 = at most max(1, 20%) of those beats are NO. Exit 1 = more (listed). Exit 3 = could not run.
+ */
+async function entityCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --entity-check --video <mp4> --manifest <manifest.json> [--out <json>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::entity check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const { entitiesOf, primaryOf } = await import("./entity-coverage.js");
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const jobs = (manifest.beats || []).map((b, i) => {
+    const c = b.canvas || {};
+    const ents = entitiesOf({ sentence: c.sentence || "", named_entities: c.entities || [] });
+    return ents.length ? { b, i, ents, primary: primaryOf(ents, c.photo?.entity || c.data?.entity || null), sentence: c.sentence || "" } : null;
+  }).filter(Boolean);
+  if (!jobs.length) { console.log("[entity-check] no beat names an entity — nothing to check"); if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const work = join(tmpdir(), `entity-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{ type: "text", text: `You are checking a finished vertical video, beat by beat. For each beat you get its narration sentence, the ENTITIES the sentence names, and ONE frame from the beat.
+Question for every beat: is an entity the sentence names SHOWN in the frame — drawn, not just written? Shown means: a flag of THAT country; a map with THAT place highlighted; a photograph or portrait of THAT person or place; THAT organisation's logo, building or a plate that carries its name over a drawn symbol; a calendar page or date card with THAT date; a time scale for THAT span; a chart or number card that draws THAT figure.
+Answer NO when a generic stock icon (a building, document, file or box glyph) stands in for the entity — the entity's real mark, or its name set in type, is YES; when the entity is only written as words in the headline, when the picture is of a different entity (another country's flag, a generic Europe map for France, a stock photo that is not it), or when the frame is words alone. The owner's rule for an organisation with no free, verified logo, a person with no verified portrait, or a place with no map: its NAME set large in the serif as the frame's centrepiece (between a hairline and an accent rule) IS its visual. Where a beat below says "name plate allowed for X", that type card carrying THAT name answers YES for X. A name in the headline or the caption is still NO.
+The word caption at the bottom is on every beat by design: ignore it, and ignore the headline when judging whether the picture shows the entity.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"entity_shown":"YES"|"NO","shown":"<what picture the frame has>","missing":"<the entity that is not shown, or empty>"}]} — exactly one entry per beat listed, with the beat_index given.` }];
+  try {
+    for (const { b, i, ents, primary, sentence } of jobs) {
+      const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0;
+      const popSec = Number.isFinite(b.canvas?.entity_pop?.frame) ? b.canvas.entity_pop.frame / 30 + 0.4 : 0;
+      const t = t0 + Math.min(Math.max(d * 0.62, popSec), Math.max(0, d - 0.1));
+      const fp = join(work, `b${i}.png`);
+      extractFrameAtTime(videoPath, t, fp);
+      const art = b.canvas?.art || null;
+      const plated = art && (String(art.kind).startsWith("plate-") || art.kind === "plates") ? (art.kind === "plates" ? art.names || [] : [art.name]).filter((nm, k) => nm && !(art.items && art.items[k] && art.items[k].asset)) : [];
+      content.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}". Entities named: ${ents.map((e) => `${e.type} "${e.name}"`).join("; ")}. The sentence is mainly about: ${primary ? `${primary.type} "${primary.name}"` : "(unclear)"}.${plated.length ? ` Name plate allowed for: ${plated.map((n) => `"${n}"`).join(", ")} (no free verified logo / portrait / map exists).` : ""}` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+    }
+    console.log(`[entity-check] ${jobs.length} beat(s) name an entity — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true }, "entity-check");
+    if (isProviderError(result)) { console.error(`::error::entity check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    const verdicts = Array.isArray(result?.beats) ? result.beats : null;
+    if (!verdicts || verdicts.length !== jobs.length) { console.error(`::error::entity check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${jobs.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
+    for (const v of verdicts) console.log(`[entity-check] beat ${v.beat_index}: ${v.entity_shown} — shows: ${v.shown}${v.missing ? ` — missing: ${v.missing}` : ""}`);
+    const failing = verdicts.filter((v) => String(v.entity_shown).toUpperCase() !== "YES");
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    const allowed = Math.max(1, Math.floor(jobs.length * 0.2));
+    if (failing.length > allowed) { console.error(`::error::entity check failed: ${failing.length}/${jobs.length} beats name an entity their frame does not show (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[entity-check] PASS: ${jobs.length - failing.length}/${jobs.length} beats show an entity they name`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
+/* ── Look check on the rendered frames ───────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --look-check --video <mp4> --manifest <render-manifest.json> [--channel <id>] [--out <json>] [--sheet-dir <dir>]
+ *
+ * Owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic." The pixel measures (scripts/lib/flat-look.cjs, Layer 1
+ * `flat-look`) judge palette, corners and shadows; this asks Gemini the whole-picture question the measures cannot: do the drawn components
+ * (chart, date card, time scale, plate, diagram) belong to the REFERENCE's visual family — flat, thin-ruled, typographic — or do they read
+ * as a chart library's playful defaults (rounded, thick, saturated, shadowed, bouncy-looking)? The reference frames are the channel's own
+ * (scripts/reference-frames.js). For each judged beat a side-by-side PNG (reference frame | rendered beat) is written to --sheet-dir.
+ *
+ * Exit 0 = at most max(1, 20%) of the judged beats are PLAYFUL / not the same family. Exit 1 = more (listed). Exit 3 = could not run.
+ */
+async function lookCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out"), sheetDir = arg("sheet-dir"), channelId = arg("channel");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --look-check --video <mp4> --manifest <manifest.json> [--channel <id>] [--out <json>] [--sheet-dir <dir>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::look check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const COMPS = new Set(["ENTITY-ART", "DATA-FULL", "TIMELINE", "PROCESS-FULL"]);
+  const jobs = (manifest.beats || []).map((b, i) => ({ b, i })).filter(({ b }) => COMPS.has(b.canvas?.composition) && !(b.canvas?.composition === "ENTITY-ART" && b.canvas?.art?.kind === "flag"));
+  if (!jobs.length) { console.log("[look-check] no chart / date / scale / plate / diagram beat — nothing to check"); if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const { referenceFramesFor, imageParts } = await import("./reference-frames.js");
+  const ref = referenceFramesFor(channelId || "");
+  if (!ref.files.length) { console.error(`::error::look check cannot run: no reference frames (${ref.why})`); process.exit(3); }
+  const work = join(tmpdir(), `look-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  if (sheetDir) mkdirSync(sheetDir, { recursive: true });
+  const content = [{ type: "text", text: `You are checking the DRAWN COMPONENTS of a finished vertical video against its REFERENCE. The first ${ref.files.length} images are frames of the reference: the look every component must belong to — flat, sharp-cornered or barely rounded, thin even rules and strokes, a restrained palette (ink, neutrals and ONE accent), no shadows, typographic dates and scales, nothing springy.
+Then, for each beat listed, you get ONE rendered frame containing a chart, graph, timeline, date card, time scale, diagram or plate. For each, answer:
+- family: YES if it could sit in the reference's visual language; NO if it reads as a different family.
+- playful: YES if ANY of these is true — a generic stock icon (building / document / file / box glyph) standing in for a named entity, the same icon repeated on several boxes, rounded corners or pill shapes, thick heavy strokes or rings, saturated or candy colours (more than the one accent), drop shadows or glow, cartoon / filled icons, a wall-calendar grid, chart-library default styling; otherwise NO.
+The word caption at the bottom and the headline type are on every beat by design: judge the drawn component, not those.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"family":"YES"|"NO","playful":"YES"|"NO","issues":"<what is off, or empty>"}]} — exactly one entry per beat listed, with the beat_index given.` }, ...imageParts(ref.files)];
+  try {
+    const sheets = [];
+    for (const { b, i } of jobs) {
+      const d = b.duration_sec ?? 0, t0 = b.start_sec ?? 0, c = b.canvas || {};
+      const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / 30 + 0.4 : 0.9;
+      const t = t0 + Math.min(Math.max(d * 0.62, popSec), Math.max(0, d - 0.1));
+      const fp = join(work, `b${i}.png`);
+      extractFrameAtTime(videoPath, t, fp);
+      content.push({ type: "text", text: `Beat ${i}: ${c.composition}${c.art ? ` (${c.art.kind})` : ""}${c.visual_type ? ` ${c.visual_type}` : ""}.` });
+      content.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+      if (sheetDir) {
+        const sp = join(sheetDir, `look-beat-${i}.png`);
+        try {
+          execFileSync(FFMPEG, ["-hide_banner", "-loglevel", "error", "-y", "-i", ref.files[i % ref.files.length], "-i", fp, "-filter_complex", "[0:v]scale=-2:960[a];[1:v]scale=-2:960[b];[a][b]hstack", "-frames:v", "1", sp]);
+          sheets.push(sp);
+        } catch (e) { console.error(`[look-check] side-by-side for beat ${i} failed: ${String(e.message).slice(0, 120)}`); }
+      }
+    }
+    console.log(`[look-check] ${jobs.length} component beat(s) against ${ref.files.length} reference frame(s) from ${ref.source} — asking the model`);
+    let result = await callLLM([{ role: "user", content }], { maxTokens: 6144, temperature: 0, noCache: true }, "look-check");
+    if (isProviderError(result)) { console.error(`::error::look check unavailable: ${result.source} ${result.error}`); process.exit(3); }
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    // Matched by beat_index: an extra or reordered entry is ignored; a missing one is a check that could not run.
+    const byIdx = new Map((Array.isArray(result?.beats) ? result.beats : []).map((v) => [Number(v.beat_index), v]));
+    const verdicts = jobs.every(({ i }) => byIdx.has(i)) ? jobs.map(({ i }) => byIdx.get(i)) : null;
+    if (!verdicts || verdicts.length !== jobs.length) { console.error(`::error::look check returned ${verdicts ? verdicts.length : "no"} verdict(s) for ${jobs.length} beats: ${JSON.stringify(result).slice(0, 300)}`); process.exit(3); }
+    for (const v of verdicts) console.log(`[look-check] beat ${v.beat_index}: family ${v.family}, playful ${v.playful}${v.issues ? ` — ${v.issues}` : ""}`);
+    const failing = verdicts.filter((v) => String(v.family).toUpperCase() !== "YES" || String(v.playful).toUpperCase() === "YES");
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, reference: ref.source, beats: verdicts, failing: failing.map((v) => v.beat_index), sheets }, null, 2) + "\n");
+    const allowed = Math.max(1, Math.floor(jobs.length * 0.2));
+    if (failing.length > allowed) { console.error(`::error::look check failed: ${failing.length}/${jobs.length} component beats are not the reference's family or look playful (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[look-check] PASS: ${jobs.length - failing.length}/${jobs.length} component beats match the reference's look${failing.length ? ` (flagged: ${failing.map((v) => v.beat_index).join(", ")})` : ""}`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
+/* ── Naming check on the rendered frames ─────────────────────────────
+ *
+ *   node scripts/gemini-frame-review.js --naming-check --video <mp4> --manifest <render-manifest.json> [--out <json>]
+ *
+ * Owner, 2026-10-10: "Every entity on screen must be named correctly and consistently ... a misspelling, a wrong place, or an unnamed
+ * entity fails the beat" — and "every check must read the RENDERED FRAME". One frame per beat (after its words have landed) goes to Gemini
+ * with the beat's sentence: it reads every person, place, organisation and figure the FRAME shows (the bottom word caption excluded) and
+ * judges each against the sentence: spelled exactly as the sentence spells it; the same place / person / organisation (not a broader region,
+ * not a namesake); a figure with the number and unit the sentence states. ANY failing beat fails the video (no tolerance).
+ *
+ * Exit 0 = every beat names correctly. Exit 1 = a beat misnames (listed). Exit 3 = could not run.
+ */
+async function namingCheck() {
+  const videoPath = arg("video"), manifestPath = arg("manifest"), outPath = arg("out");
+  if (!videoPath || !manifestPath) { console.error("Usage: gemini-frame-review.js --naming-check --video <mp4> --manifest <manifest.json> [--out <json>]"); process.exit(2); }
+  if (!llmConfigured()) { console.error("::error::naming check cannot run: no Gemini key and no Ollama server configured"); process.exit(3); }
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
+  const jobs = (manifest.beats || []).map((b, i) => ({ b, i, sentence: b.canvas?.sentence || "" })).filter((j) => j.sentence);
+  if (!jobs.length) { if (outPath) writeFileSync(outPath, JSON.stringify({ beats: [], failing: [] }) + "\n"); process.exit(0); }
+  const work = join(tmpdir(), `naming-check-${Date.now()}`);
+  mkdirSync(work, { recursive: true });
+  const content = [{ type: "text", text: `You are proof-reading a finished vertical video, beat by beat. For each beat you get its narration sentence and ONE frame.
+Read every proper name (person, place, organisation, product), every date and every figure that the FRAME shows — in the headline, labels, plates, logos, maps or charts. IGNORE the word-by-word caption strip at the very bottom of the frame.
+For each one judge it against the sentence:
+- spelling: exactly as the sentence spells it (case aside). "Gemany" for "Germany", "Elon Musc" for "Elon Musk" are wrong.
+- identity: the same place / person / organisation the sentence names — not a broader region (a "Europe" label for "France"), not a different place with the same name, not a different company.
+- figures: the number and its unit as the sentence states them ("$86 million", not "$86" or "86 billion").
+Lettering that is part of a real object's own artwork — an organisation's emblem or seal, a coin, a banknote — is judged for IDENTITY only: it must be the organisation / place the sentence names (a court seal reading "District of Columbia" on a beat about a Florida court is wrong). Its own abbreviation ("T.P.L.F" on the Tigray People's Liberation Front's emblem), its own script, and dates or numbers minted or printed on it (the year on a coin) are part of that artwork, not a misspelling or an extra figure.
+A frame that shows no name, date or figure passes.
+Respond ONLY with JSON: {"beats":[{"beat_index":<n>,"names":[{"shown":"<as on screen>","expected":"<as the sentence has it>","ok":true|false,"problem":"<empty or what is wrong>"}],"verdict":"PASS"|"FAIL"}]} — one entry per beat listed, by beat_index.` }];
+  const header = content[0];
+  // One model call for a set of beats, each read from its own frame at `frac` of the beat. -> Map(beat_index -> verdict), or null when the answer was unusable.
+  const askFor = async (list, frac) => {
+    const c = [header];
+    for (const { b, i, sentence } of list) {
+      const t = (b.start_sec ?? 0) + Math.max(0.1, (b.duration_sec ?? 0) * frac);
+      const fp = join(work, `b${i}-${Math.round(frac * 100)}.png`);
+      extractFrameAtTime(videoPath, t, fp);
+      c.push({ type: "text", text: `Beat ${i}. Sentence: "${sentence}".` });
+      c.push({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(fp).toString("base64")}` } });
+    }
+    let result = await callLLM([{ role: "user", content: c }], { maxTokens: 8192, temperature: 0, noCache: true }, "naming-check");
+    if (isProviderError(result)) return { error: `${result.source} ${result.error}` };
+    if (result && !Array.isArray(result.beats) && typeof result.content === "string") {
+      const text = result.content.replace(/^\s*```(?:json)?\s*/i, "").replace(/\s*```\s*$/, "");
+      const a = text.indexOf("{"), z = text.lastIndexOf("}");
+      try { if (a >= 0 && z > a) result = JSON.parse(text.slice(a, z + 1)); } catch {}
+    }
+    return { byIdx: new Map((Array.isArray(result?.beats) ? result.beats : []).map((v) => [Number(v.beat_index), v])) };
+  };
+  const say = (v, tag = "") => console.log(`[naming-check] beat ${v.beat_index}: ${v.verdict}${(v.names || []).filter((n) => n.ok === false).map((n) => ` — "${n.shown}" should be "${n.expected}" (${n.problem})`).join("")}${tag}`);
+  try {
+    console.log(`[naming-check] ${jobs.length} beat(s) — asking the model`);
+    const first = await askFor(jobs, 0.85);
+    if (first.error) { console.error(`::error::naming check unavailable: ${first.error}`); process.exit(3); }
+    if (!jobs.every(({ i }) => first.byIdx.has(i))) { console.error(`::error::naming check returned ${first.byIdx.size} verdict(s) for ${jobs.length} beats`); process.exit(3); }
+    let verdicts = jobs.map(({ i }) => first.byIdx.get(i));
+    for (const v of verdicts) say(v);
+    // A SECOND LOOK at the beats that failed, on a different frame of the same beat (board 38047691386 ch 26: "95 million euros" read once as
+    // "curos"). A real misspelling is on the screen at both times and fails again; a one-off misread of small type is not. A beat fails only
+    // if it fails both looks; nothing about what counts as a failure changes, and an unusable second answer keeps the first verdict.
+    const retry = jobs.filter(({ i }) => isFail(first.byIdx.get(i)));
+    if (retry.length) {
+      console.log(`[naming-check] second look at ${retry.length} failing beat(s) on a different frame`);
+      const second = await askFor(retry, 0.6);
+      if (!second.error && retry.every(({ i }) => second.byIdx.has(i))) {
+        for (const { i } of retry) say(second.byIdx.get(i), " (second look)");
+        verdicts = settleNaming(verdicts, second.byIdx);
+      } else console.log(`[naming-check] second look unusable (${second.error || "incomplete answer"}) — the first verdict stands`);
+    }
+    const failing = verdicts.filter(isFail);
+    if (outPath) writeFileSync(outPath, JSON.stringify({ checkedAt: new Date().toISOString(), video: videoPath, beats: verdicts, failing: failing.map((v) => v.beat_index) }, null, 2) + "\n");
+    if (failing.length) { console.error(`::error::naming check failed: ${failing.length}/${jobs.length} beats misname an entity (beats ${failing.map((v) => v.beat_index).join(", ")})`); process.exit(1); }
+    console.log(`[naming-check] PASS: every name, place, organisation and figure on screen matches the narration`);
+    process.exit(0);
+  } finally {
+    rmSync(work, { recursive: true, force: true });
+  }
+}
+
 async function main() {
   if (process.argv.includes("--beat-check")) return beatCheck();
+  if (process.argv.includes("--camera-check")) return cameraCheck();
+  if (process.argv.includes("--entity-check")) return entityCheck();
+  if (process.argv.includes("--look-check")) return lookCheck();
+  if (process.argv.includes("--naming-check")) return namingCheck();
   const videoPath = arg("video");
   const scriptPath = arg("script");
   const srtPath = arg("srt");

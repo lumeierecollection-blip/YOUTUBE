@@ -1,0 +1,92 @@
+{
+  "topic_slug": "purdue-university-amelia-earhart-pacific-expedition",
+  "strongest_angle": "Examine how a 17-member research team from Purdue University and the Archaeological Legacy Institute traveled 830 nautical miles to Nikumaroro Island to investigate a satellite imagery anomaly linked to Amelia Earhart's 1937 disappearance.",
+  "key_facts": [
+    {
+      "fact": "A 17-person Taraia Object expedition team accompanied by a 17-person boat crew arrived on October 12 at Nikumaroro to investigate a visual anomaly spotted in satellite imagery.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "The expedition team completed a five-day, 830-nautical-mile voyage across the South Pacific aboard the Marin Mainiku vessel operated by the Kiribati National Shipping Line.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "The joint expedition involves Purdue University, Purdue's Archaeological Legacy Institute led by executive director Rick Pettigrew, and university general counsel Steve Schultz.",
+      "source_url": "https://www.usatoday.com/story/news/nation/2026/10/05/new-amelia-earhart-expedition-begins/92055309007",
+      "source_name": "USA Today",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Expedition team members",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Boat crew members",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Voyage distance",
+      "value": 830,
+      "unit": "nautical miles",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Voyage duration",
+      "value": 5,
+      "unit": "days",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Archaeological Legacy Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Nikumaroro",
+      "kind": "place"
+    },
+    {
+      "name": "Amelia Earhart",
+      "kind": "person"
+    },
+    {
+      "name": "Fred Noonan",
+      "kind": "person"
+    },
+    {
+      "name": "Marin Mainiku",
+      "kind": "object"
+    },
+    {
+      "name": "Kiribati National Shipping Line",
+      "kind": "organization"
+    },
+    {
+      "name": "Steve Schultz",
+      "kind": "person"
+    },
+    {
+      "name": "Rick Pettigrew",
+      "kind": "person"
+    },
+    {
+      "name": "Lockheed Electra 10E",
+      "kind": "object"
+    }
+  ]
+}

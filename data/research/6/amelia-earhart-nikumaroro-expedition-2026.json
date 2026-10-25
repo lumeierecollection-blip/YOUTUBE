@@ -1,0 +1,82 @@
+{
+  "topic_slug": "amelia-earhart-nikumaroro-expedition-2026",
+  "strongest_angle": "The 17-person Taraia Object expedition team arrived at the remote Pacific atoll of Nikumaroro after an 830-nautical-mile voyage to investigate a submerged anomaly that could belong to Amelia Earhart's 1937 aircraft.",
+  "key_facts": [
+    {
+      "fact": "A 17-person expedition team accompanied by a 17-person boat crew arrived at Nikumaroro on Monday following an 830-nautical-mile voyage across the South Pacific.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research group includes members from the US-based Archaeological Legacy Institute (ALI) and Purdue University, which part-funded Amelia Earhart's final aircraft.",
+      "source_url": "https://news.jobsforfiji.com/earhart-search-team-nears-nikumaroro-after-fiji-advance-work",
+      "source_name": "News for Fiji and Purdue University",
+      "confidence": "high"
+    },
+    {
+      "fact": "The expedition is traveling aboard the Marin Mainiku, a Kiribati National Shipping Line vessel, to inspect a submerged object in the atoll's lagoon.",
+      "source_url": "https://news.jobsforfiji.com/earhart-search-team-nears-nikumaroro-after-fiji-advance-work",
+      "source_name": "News for Fiji",
+      "confidence": "high"
+    },
+    {
+      "fact": "Famed aviator Amelia Earhart disappeared in 1937 during her historic flight attempt, leading to decades of speculation regarding her final landing site.",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/12/amelia-earhart-lost-plane-remote-pacific-atoll-expedition",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Expedition team members",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Boat crew members",
+      "value": 17,
+      "unit": "people",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Voyage distance",
+      "value": 830,
+      "unit": "nautical miles",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search"
+    },
+    {
+      "label": "Disappearance year",
+      "value": 1937,
+      "unit": "year",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/12/amelia-earhart-lost-plane-remote-pacific-atoll-expedition"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Amelia Earhart",
+      "kind": "person"
+    },
+    {
+      "name": "Nikumaroro",
+      "kind": "place"
+    },
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Archaeological Legacy Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Marin Mainiku",
+      "kind": "object"
+    },
+    {
+      "name": "Taraia Object",
+      "kind": "object"
+    }
+  ]
+}

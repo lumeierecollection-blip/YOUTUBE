@@ -1,0 +1,68 @@
+{
+  "topic_slug": "amelia-earhart-expedition-launches-pacific-atoll-search",
+  "strongest_angle": "The October 2026 expedition by the Archaeological Legacy Institute heading to Nikumaroro Island to investigate the Taraia Object and the 1937 disappearance of Amelia Earhart and Fred Noonan.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, researchers from the US-based Archaeological Legacy Institute departed Kiribati's capital aboard the Marin Mainiku vessel to investigate a suspected wreck site on Nikumaroro Island.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-at-sea-expected-to-arrive-on-nikumaroro-in-72-hours",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "World-famous pilot Amelia Earhart and her navigator Fred Noonan vanished over the Pacific Ocean during a round-the-world flight attempt in 1937.",
+      "source_url": "https://www.nationalgeographic.com/adventure/article/amelia-earhart-plane-taraia-object-expedition",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Kiribati National Shipping Line vessel Marin Mainiku transported the Taraia Object expedition team across the South Pacific toward Nikumaroro Island.",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-at-sea-expected-to-arrive-on-nikumaroro-in-72-hours",
+      "source_name": "Purdue University News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of disappearance",
+      "value": 1937,
+      "unit": "year",
+      "source_url": "https://www.nationalgeographic.com/adventure/article/amelia-earhart-plane-taraia-object-expedition"
+    },
+    {
+      "label": "Expedition year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-at-sea-expected-to-arrive-on-nikumaroro-in-72-hours"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Amelia Earhart",
+      "kind": "person"
+    },
+    {
+      "name": "Fred Noonan",
+      "kind": "person"
+    },
+    {
+      "name": "Nikumaroro Island",
+      "kind": "place"
+    },
+    {
+      "name": "Kiribati",
+      "kind": "place"
+    },
+    {
+      "name": "Archaeological Legacy Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Marin Mainiku",
+      "kind": "object"
+    },
+    {
+      "name": "Lockheed Electra",
+      "kind": "object"
+    }
+  ]
+}

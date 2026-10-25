@@ -1,0 +1,102 @@
+{
+  "topic_slug": "ai-investigative-journalism-2026",
+  "strongest_angle": "The growth of AI in investigative journalism is transforming the field, with significant advancements and challenges.",
+  "key_facts": [
+    {
+      "fact": "Investigative journalists have pioneered the use of AI technologies in investigative journalism, winning awards for their applications.",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505",
+      "source_name": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "confidence": "high"
+    },
+    {
+      "fact": "AI tools are enhancing investigative journalism, making investigations more efficient and scalable.",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505",
+      "source_name": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers are studying the adoption of Large Language Models (LLMs) in newsrooms, expanding the scope of AI applications in investigative journalism.",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505",
+      "source_name": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "confidence": "high"
+    },
+    {
+      "fact": "AI applications in investigative journalism are being explored and adopted by researchers, with the potential to revolutionize the field.",
+      "source_url": "https://onlinejournalismblog.com/2024/06/06/ai-in-investigative-journalism-mapping-the-field",
+      "source_name": "Paul Bradshaw",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "award-winning applications",
+      "value": 1,
+      "unit": "times",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505"
+    },
+    {
+      "label": "efficiency gains",
+      "value": 1,
+      "unit": "times",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Rubén Rivas-de-Roca",
+      "kind": "person"
+    },
+    {
+      "name": "Lucia Mesquita",
+      "kind": "person"
+    },
+    {
+      "name": "Allen Munoriyarwa",
+      "kind": "person"
+    },
+    {
+      "name": "Mathias‐Felipe de‐Lima‐Santos",
+      "kind": "person"
+    },
+    {
+      "name": "Adeola Abdulateef Elega",
+      "kind": "person"
+    },
+    {
+      "name": "Paul Bradshaw",
+      "kind": "person"
+    },
+    {
+      "name": "Besjon Cifliku",
+      "kind": "person"
+    },
+    {
+      "name": "Hendrik Heuer",
+      "kind": "person"
+    },
+    {
+      "name": "Jay Barchas-Lichtenstein",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Investigative journalists have pioneered the use of AI technologies in investigative journalism, winning awards for their applications.",
+      "speaker": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "source_name": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505"
+    },
+    {
+      "text": "AI tools are enhancing investigative journalism, making investigations more efficient and scalable.",
+      "speaker": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "source_name": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505"
+    },
+    {
+      "text": "Researchers are studying the adoption of Large Language Models (LLMs) in newsrooms, expanding the scope of AI applications in investigative journalism.",
+      "speaker": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "source_name": "Rubén Rivas-de-Roca, Lucia Mesquita, Allen Munoriyarwa, Mathias‐Felipe de‐Lima‐Santos, Adeola Abdulateef Elega",
+      "source_url": "https://doi.org/10.1080/17512786.2026.2734505"
+    }
+  ]
+}

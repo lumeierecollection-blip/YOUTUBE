@@ -1,0 +1,66 @@
+{
+  "topic_slug": "crisis-authentic-leadership-2026",
+  "strongest_angle": "Examines how corporate giants like Target rolled back DEI strategies in 2025 under political pressure, exposing the deep credibility crisis facing authentic leadership today.",
+  "key_facts": [
+    {
+      "fact": "In 2025, Target rolled back major elements of its diversity, equity, and inclusion strategy following intense political pressure and backlash over earlier initiatives.",
+      "source_url": "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google Scholar returns more than five million academic articles on the subject of authenticity, highlighting the immense hype and vagueness surrounding the concept.",
+      "source_url": "https://ioledge.com/insights/authenticity-in-leadership",
+      "source_name": "IoL EDGE",
+      "confidence": "high"
+    },
+    {
+      "fact": "New research published in October 2026 explores when being authentic undermines leadership, contrasting revealing a painful setback with signaling agency.",
+      "source_url": "https://hbr.org/2026/10/research-when-being-authentic-undermines-your-leadership",
+      "source_name": "Harvard Business Review",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Target DEI rollbacks",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader"
+    },
+    {
+      "label": "Academic articles on authenticity on Google Scholar",
+      "value": 5000000,
+      "unit": "articles",
+      "source_url": "https://ioledge.com/insights/authenticity-in-leadership"
+    },
+    {
+      "label": "Publication year of leadership research",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://hbr.org/2026/10/research-when-being-authentic-undermines-your-leadership"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Target",
+      "kind": "organization"
+    },
+    {
+      "name": "Christopher O.H. Williams",
+      "kind": "person"
+    },
+    {
+      "name": "Google Scholar",
+      "kind": "organization"
+    },
+    {
+      "name": "Fast Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Harvard Business Review",
+      "kind": "organization"
+    }
+  ]
+}

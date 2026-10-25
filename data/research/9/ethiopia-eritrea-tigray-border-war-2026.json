@@ -1,0 +1,70 @@
+{
+  "topic_slug": "ethiopia-eritrea-tigray-border-war-2026",
+  "strongest_angle": "An analytical breakdown of the escalating military build-up, troop incursions, and mutual accusations between Ethiopia and Eritrea along the Tigray border following the September 23 armed rebellion by the TPLF.",
+  "key_facts": [
+    {
+      "fact": "Eritrean troops have deployed in Ethiopia's northern Tigray region as multiple sources confirmed on Wednesday, threatening an escalation into regional war.",
+      "source_url": "https://www.afp.com/en/eritrean-troops-deploy-ethiopias-tigray-region",
+      "source_name": "AFP",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ethiopia accused Eritrea of an all-out invasion of its northern Tigray region in a letter sent to the United Nations Security Council.",
+      "source_url": "https://www.bbc.com/news/articles/c65ynvw250y1o",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Tigray People's Liberation Front launched an armed rebellion on 23 September, according to the International Crisis Group report.",
+      "source_url": "https://www.crisisgroup.org/alr/africa/ethiopia-eritrea/pulling-ethiopia-and-eritrea-back-war",
+      "source_name": "International Crisis Group",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TPLF rebellion launch day",
+      "value": 23,
+      "unit": "day of September",
+      "source_url": "https://www.crisisgroup.org/alr/africa/ethiopia-eritrea/pulling-ethiopia-and-eritrea-back-war"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Ethiopia has accused Eritrea of an \"all-out invasion\" of its northern Tigray region and warned it will defend itself, days after residents told the BBC Eritrean troops had crossed into the country.",
+      "speaker": "Hafsa Khalil",
+      "source_name": "BBC",
+      "source_url": "https://www.bbc.com/news/articles/c65ynvw250y1o"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    },
+    {
+      "name": "Mekelle",
+      "kind": "place"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray People's Liberation Front",
+      "kind": "organization"
+    },
+    {
+      "name": "UN Security Council",
+      "kind": "organization"
+    }
+  ]
+}

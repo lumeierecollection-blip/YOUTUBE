@@ -1,0 +1,61 @@
+{
+  "topic_slug": "fisher-phillips-paycom-october-2026-compliance",
+  "strongest_angle": "In October 2026, labor and employment law updates take effect across more than 10 states and Washington DC, introducing major changes in pay transparency, paid family and medical leave tax treatment, and artificial intelligence governance as detailed by Fisher Phillips and Paycom.",
+  "key_facts": [
+    {
+      "fact": "According to Fisher Phillips, new workplace legislation and regulatory changes take effect in October 2026 across more than 10 states and Washington DC.",
+      "source_url": "https://www.fisherphillips.com/en/insights/insights/employer-checklist-for-october-2026",
+      "source_name": "Fisher Phillips LLP",
+      "confidence": "high"
+    },
+    {
+      "fact": "Paycom highlighted key HR compliance updates in October 2026 concerning dependent care benefit reporting, paid family and medical leave tax treatment, and pay transparency.",
+      "source_url": "https://www.paycom.com/resources/blog/state-of-compliance-october-2026-federal-and-state-compliance-updates",
+      "source_name": "Paycom",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Connecticut Business and Industry Association reported that new workplace laws effective October 1, 2026, govern pay transparency, lactation breaks, and the use of artificial intelligence in employment decisions.",
+      "source_url": "https://www.cbia.com/news/hr-safety/workplace-laws-effective-oct",
+      "source_name": "CBIA",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "States and Washington DC impacted in October 2026",
+      "value": 10,
+      "unit": "states and Washington DC",
+      "source_url": "https://www.fisherphillips.com/en/insights/insights/employer-checklist-for-october-2026"
+    },
+    {
+      "label": "Top workplace compliance items for October 2026",
+      "value": 10,
+      "unit": "items",
+      "source_url": "https://www.fisherphillips.com/en/insights/insights/employer-checklist-for-october-2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Fisher Phillips",
+      "kind": "organization"
+    },
+    {
+      "name": "Paycom",
+      "kind": "organization"
+    },
+    {
+      "name": "Washington DC",
+      "kind": "place"
+    },
+    {
+      "name": "Connecticut Business and Industry Association",
+      "kind": "organization"
+    },
+    {
+      "name": "Connecticut",
+      "kind": "place"
+    }
+  ]
+}

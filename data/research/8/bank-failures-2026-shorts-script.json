@@ -1,0 +1,47 @@
+{
+  "channel_id": "8",
+  "topic_slug": "bank-failures-2026",
+  "format": "shorts",
+  "hook": "Six American banks collapsed in 2026, leaving regulators to manage closures.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six American banks collapsed in 2026, leaving regulators to manage closures.",
+      "text_overlay": {
+        "text": "6 Bank Failures in 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Lenexa, Kansas, Small Business Bank failed on July 17 with 73 million dollars in assets. What specific institutions were involved in these six total bank failures during 2026?",
+      "text_overlay": {
+        "text": "$73M in Assets"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the Federal Deposit Insurance Corporation, the government agency protecting deposits, managed every single closure.",
+      "text_overlay": {
+        "text": "FDIC Oversight"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nano Banc in Irvine, California, was one of these six, closing on September 25, 2026. These events confirmed the total of six bank failures recorded throughout the year 2026.",
+      "text_overlay": {
+        "text": "6 Failures Total"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Six banks vanished from the market throughout 2026.",
+      "text_overlay": {
+        "text": "6 Banks Closed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/2026",
+    "https://banks.data.fdic.gov/bankfind-suite/failures"
+  ]
+}

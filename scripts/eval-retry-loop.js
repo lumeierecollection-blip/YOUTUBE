@@ -79,12 +79,13 @@ export function loopEnabled(env = process.env) {
  * In dry mode `would_rerender` is populated and `rendered` stays empty — the
  * difference between the two is the whole point of the mode.
  */
-export function writeLoopAudit({ channel, runId, mode, decision, weak_beats = [], retries_spent = 0, would_rerender = [], rendered = [], duration_ms, why = null, unresolved = [] }, { root = ROOT } = {}) {
+export function writeLoopAudit({ channel, runId, mode, decision, weak_beats = [], retries_spent = 0, would_rerender = [], rendered = [], duration_ms, why = null, unresolved = [], layer1_result = null, layer2 = null, layer3 = null, shipped = null, revise = null }, { root = ROOT } = {}) {
   const dir = join(root, "data", "audit", "eval-loop", String(channel));
   mkdirSync(dir, { recursive: true });
   const path = join(dir, `${runId}.jsonl`);
   appendFileSync(path, JSON.stringify({
     ts: new Date().toISOString(), mode, decision, channel: String(channel), run_id: runId,
+    layer1_result, layer2, layer3, shipped, revise,
     retries_spent, would_rerender, rendered, weak_beats, unresolved, why, duration_ms,
   }) + "\n");
   return path;
@@ -235,6 +236,10 @@ export async function runEvalLoop({
   layer1, layer2, layer3, revise, renderBeats,
   acceptThreshold = ACCEPT_THRESHOLD, retryCap = RETRY_CAP,
   onEvent = () => {},
+  recordOnLayer1Fail = false,
+  // The reviser (scripts/eval-revise.js) decides what is revisable from the beat's facts, so with this
+  // set a weak beat that has a beat_index reaches revise() even when no plan field matched its words.
+  reviseWeakBeats = false,
 } = {}) {
   const counter = { retries: 0 };
   const unresolved = [];
@@ -250,6 +255,36 @@ export async function runEvalLoop({
     if (!l1.pass) {
       const failed = l1.failures || [];
       emit("layer1-fail", { attempt, failures: failed.length });
+      if (recordOnLayer1Fail) {
+        // Record-only: Layer 1 has already decided (the caller rejects the video). Layers 2 and 3
+        // still run ONCE so the judgement is on record, and nothing is retried or re-rendered.
+        // Neither layer can fail this path — a layer that throws is recorded as not having run.
+        const layer1_result = { pass: false, failures: failed };
+        let l2 = {};
+        try { l2 = (await layer2({ plan: current, attempt })) || {}; } catch (e) { l2 = { advisory_score: null, note: `layer 2 could not run: ${e.message}` }; }
+        emit("layer2-advisory", { attempt, advisory_score: l2.advisory_score ?? null });
+        let judged = null, l3Error = null;
+        try { judged = await layer3({ plan: current, layer2Advisory: l2, attempt }); } catch (e) { l3Error = e.message; }
+        const agg = Number(judged?.aggregate_local);
+        if (Number.isFinite(agg)) {
+          provenance.push(writeProvenance(runId, attempt, {
+            ts: new Date().toISOString(), channel, attempt, aggregate_local: agg,
+            axes: judged.axes || null, weak_beats: judged.weak_beats || [],
+            layer2_advisory: l2.advisory_score ?? null, layer1_result,
+          }));
+          emit("layer3-recorded", { attempt, aggregate_local: agg });
+        } else {
+          emit("layer3-not-recorded", { attempt, why: l3Error || "no usable aggregate_local" });
+        }
+        const ids = failed.map((f) => f.check).filter(Boolean).join(", ") || "see the canvas-checks log";
+        return {
+          accepted: false, humanReview: true, layer1Failed: true, retries: 0,
+          why: `layer 1 failed (${ids}); layers 2 and 3 recorded, not acted on`,
+          layer1_result, layer2: l2, layer3: Number.isFinite(agg) ? { aggregate_local: agg, axes: judged.axes || null } : { error: l3Error || "no usable aggregate_local" },
+          aggregate_local: Number.isFinite(agg) ? agg : undefined, axes: judged?.axes,
+          events, unresolved, provenance, plan: current, layer2_advisory: l2,
+        };
+      }
       const indices = [...new Set(failed.map((f) => f.beat).filter((b) => Number.isInteger(b)))];
       await renderBeats(indices, { reason: "layer1", attempt });
       if (++counter.retries > retryCap) {
@@ -263,16 +298,19 @@ export async function runEvalLoop({
 
     const judged = await layer3({ plan: current, layer2Advisory, attempt });
     const aggregate = Number(judged?.aggregate_local);
+    // What the judge said, carried on every return below so the audit record has the axes and
+    // the beats it named (the nothing-revisable return used to drop the axes: CI run 37703727115).
+    const l3 = { aggregate_local: aggregate, axes: judged?.axes || null, weak_beats: judged?.weak_beats || [] };
     if (!Number.isFinite(aggregate)) throw new Error(`layer3 returned no usable aggregate_local: ${JSON.stringify(judged).slice(0, 200)}`);
     provenance.push(writeProvenance(runId, attempt, {
       ts: new Date().toISOString(), channel, attempt, aggregate_local: aggregate,
       axes: judged.axes || null, weak_beats: judged.weak_beats || [],
-      layer2_advisory: layer2Advisory.advisory_score ?? null,
+      layer2_advisory: layer2Advisory.advisory_score ?? null, layer1_result: { pass: true, failures: [] },
     }));
 
     if (aggregate >= acceptThreshold) {
       emit("accept", { attempt, aggregate_local: aggregate });
-      return { accepted: true, humanReview: false, retries: counter.retries, aggregate_local: aggregate, axes: judged.axes, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: true, humanReview: false, retries: counter.retries, aggregate_local: aggregate, axes: judged.axes, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
 
     const { revisions, unresolved: unres } = resolveRevisions(judged.weak_beats, current.beats);
@@ -280,25 +318,35 @@ export async function runEvalLoop({
     emit("layer3-fail", { attempt, aggregate_local: aggregate, revisions: revisions.length, unresolved: unres.length });
 
     // Unresolved elements attempted nothing, so they must not spend a retry.
-    if (!revisions.length) {
+    const indexed = (judged.weak_beats || []).some((w) => Number.isInteger(w?.beat_index) && !w.unresolved);
+    if (!revisions.length && !(reviseWeakBeats && indexed)) {
       emit("nothing-revisable", { attempt });
-      return { accepted: false, humanReview: true, why: `aggregate ${aggregate.toFixed(2)} below ${acceptThreshold} but no weak beat named a revisable element`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: false, humanReview: true, why: `aggregate ${aggregate.toFixed(2)} below ${acceptThreshold} but no weak beat named a revisable element`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
     if (counter.retries + 1 > retryCap) {
-      return { accepted: false, humanReview: true, why: `retry cap ${retryCap} reached at aggregate ${aggregate.toFixed(2)}`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      return { accepted: false, humanReview: true, why: `retry cap ${retryCap} reached at aggregate ${aggregate.toFixed(2)}`, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
 
     // The planner returns a PARTIAL patch: the full plan with only the named
     // fields changed. It is applied as-is; the loop never re-plans a beat it
     // was not asked about.
-    const patch = await revise(revisions, { plan: current, attempt });
+    const patch = await revise(revisions, { plan: current, attempt, judged });
     if (!patch?.planPatch) {
-      return { accepted: false, humanReview: true, why: "planner returned no partial plan patch; a full re-render is not permitted", retries: counter.retries, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory };
+      // An empty patch from the reviser is an answer, not a failure: no flagged beat has a visible
+      // defect a legal layout change fixes, so the video ships as rendered.
+      if (patch?.record) {
+        emit("empty-patch", { attempt, reason: patch.record.reason });
+        return { accepted: false, humanReview: false, shipsAsRendered: true, why: `empty patch: ${patch.record.reason}`, revise: patch.record, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
+      }
+      return { accepted: false, humanReview: true, why: "planner returned no partial plan patch; a full re-render is not permitted", retries: counter.retries, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     }
     current = patch.planPatch;
     const changedBeats = [...new Set((patch.changedBeats || revisions.map((r) => r.beat_index)))];
+    if (patch.record) emit("revised", { attempt, beats: changedBeats, accepted: patch.record.accepted, rejected: patch.record.rejected });
     emit("partial-rerender", { attempt, beats: changedBeats });
-    await renderBeats(changedBeats, { reason: "layer3", attempt });
+    const rendered = await renderBeats(changedBeats, { reason: "layer3", attempt, planPatch: current });
+    // Dry: the patch is decided and recorded; nothing is rendered, so there is nothing new to judge.
+    if (rendered === "halt") return { accepted: false, humanReview: false, wouldRerender: changedBeats, why: `dry: would re-render beat(s) ${changedBeats.join(", ")}`, revise: patch.record ?? null, retries: counter.retries, aggregate_local: aggregate, events, unresolved, provenance, plan: current, layer2_advisory: layer2Advisory, layer3: l3 };
     counter.retries++;
   }
 }

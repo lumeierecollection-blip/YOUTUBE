@@ -1,0 +1,69 @@
+{
+  "topic_slug": "iea-diesel-squeeze-2027-iran-war",
+  "strongest_angle": "Analyze how the ongoing war with Iran and Persian Gulf disruptions have constrained global diesel supplies, with the International Energy Agency projecting that tight markets and high prices will persist into 2027.",
+  "key_facts": [
+    {
+      "fact": "The International Energy Agency reported that global diesel supplies are expected to remain constrained well into 2027 due to conflicts in the Middle East.",
+      "source_url": "https://news.bloomberglaw.com/international-trade/diesel-supplies-to-remain-constrained-well-into-2027-iea-warns",
+      "source_name": "Bloomberg Law",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The International Energy Agency stated that replenishing lost diesel inventories may not begin before the second half of 2027.",
+      "source_url": "https://www.cnbc.com/2026/10/14/diesel-deal-oil-price-iea-report.html",
+      "source_name": "CNBC",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The International Energy Agency reported that global diesel exports fell by 700,000 barrels as Middle East fuel exports struggled to recover.",
+      "source_url": "https://www.cnbc.com/2026/10/14/diesel-deal-oil-price-iea-report.html",
+      "source_name": "CNBC",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year diesel squeeze extends to",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.cnbc.com/2026/10/14/diesel-deal-oil-price-iea-report.html"
+    },
+    {
+      "label": "Decline in diesel exports",
+      "value": 700000,
+      "unit": "barrels",
+      "source_url": "https://www.cnbc.com/2026/10/14/diesel-deal-oil-price-iea-report.html"
+    },
+    {
+      "label": "World oil demand forecast decline in 2026",
+      "value": 2.5,
+      "unit": "mb/d",
+      "source_url": "https://www.iea.org/reports/oil-market-report-september-2026"
+    },
+    {
+      "label": "World oil demand projected recovery in 2027",
+      "value": 2.6,
+      "unit": "mb/d",
+      "source_url": "https://www.iea.org/reports/oil-market-report-september-2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "International Energy Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "Iran",
+      "kind": "place"
+    },
+    {
+      "name": "Middle East",
+      "kind": "place"
+    },
+    {
+      "name": "Europe",
+      "kind": "place"
+    }
+  ]
+}

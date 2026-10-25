@@ -1,0 +1,74 @@
+{
+  "topic_slug": "doj-probes-tv-networks-trump-press-pool-coverage",
+  "strongest_angle": "Examine the unprecedented antitrust investigation launched by the U.S. Department of Justice against five major television networks following their joint suspension of White House press pool coverage.",
+  "key_facts": [
+    {
+      "fact": "The U.S. Department of Justice launched an antitrust investigation involving five major television networks—Fox News, CNN, ABC, CBS, and NBC—following their joint suspension of White House press pool coverage.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/doj-investigating-five-tv-networks-over-white-house-pool-coverage",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "The networks paused pooled video coverage after the White House barred CNN, MS NOW, and Politico from access.",
+      "source_url": "https://www.cnbc.com/2026/10/11/trump-doj-white-house-tv-press-pool-antitrust.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Major television networks that rotate coverage of the White House learned of the Department of Justice investigation on Friday.",
+      "source_url": "https://www.wsj.com/business/media/justice-department-probes-tv-networks-over-suspension-of-trump-press-pool-coverage-a8bc65ce",
+      "source_name": "The Wall Street Journal",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of TV networks investigated by the DOJ",
+      "value": 5,
+      "unit": "networks",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/doj-investigating-five-tv-networks-over-white-house-pool-coverage"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Department of Justice",
+      "kind": "organization"
+    },
+    {
+      "name": "Fox News",
+      "kind": "organization"
+    },
+    {
+      "name": "CNN",
+      "kind": "organization"
+    },
+    {
+      "name": "ABC",
+      "kind": "organization"
+    },
+    {
+      "name": "CBS",
+      "kind": "organization"
+    },
+    {
+      "name": "NBC",
+      "kind": "organization"
+    },
+    {
+      "name": "White House",
+      "kind": "place"
+    },
+    {
+      "name": "MS NOW",
+      "kind": "organization"
+    },
+    {
+      "name": "Politico",
+      "kind": "organization"
+    },
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    }
+  ]
+}

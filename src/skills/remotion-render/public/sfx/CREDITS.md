@@ -1,5 +1,11 @@
 # SFX palette — credits
 
+**Full-canvas videos (2026-10-09) do not play these files.** They play five CC0 recordings from
+Remotion's SFX library, fetched on the runner into `sfx/cc0/` by `scripts/sfx-cc0.mjs` (source,
+author and licence per file in `SFX_SOURCES` there and in `sfx/cc0/CREDITS.json`), each judged by
+Gemini as a real recording before it may play. The files below still serve the older DirectedShorts
+semantic table only.
+
 The DirectedShorts palette: the four files at the top of this directory,
 fired only by the trigger table in `visual/sound-design.js`
 (`semanticSfxEvents`). All CC0. Built 2026-09-27; the only edits are an

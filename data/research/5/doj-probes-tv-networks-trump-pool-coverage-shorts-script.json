@@ -1,0 +1,66 @@
+{
+  "channel_id": "5",
+  "topic_slug": "doj-probes-tv-networks-trump-pool-coverage",
+  "format": "shorts",
+  "hook": "Did you know the Justice Department launched an antitrust probe against ABC, CBS, CNN, NBC, and Fox News?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know the Justice Department launched an antitrust probe against ABC, CBS, CNN, NBC, and Fox News?",
+      "b_roll": [
+        "Department of Justice exterior sign",
+        "Television broadcast tower"
+      ],
+      "text_overlay": {
+        "text": "DOJ Antitrust Probe"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal investigators notified ABC, CBS, CNN, NBC, and Fox News on Friday about the inquiry. Did thin legal grounds prompt this sudden investigation?",
+      "b_roll": [
+        "Letter from the Justice Department",
+        "White House press briefing room"
+      ],
+      "text_overlay": {
+        "text": "Networks Notified"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Legal experts say the Justice Department antitrust probe rests on thin legal grounds.",
+      "b_roll": [
+        "Legal documents on a desk"
+      ],
+      "text_overlay": {
+        "text": "Thin Legal Grounds"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Investigators at the Justice Department keep examining ABC, CBS, CNN, NBC, and Fox News.",
+      "b_roll": [
+        "Television control room monitors",
+        "Reporters gathered at podium"
+      ],
+      "text_overlay": {
+        "text": "Federal Scrutiny"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Contact the Justice Department to track this antitrust probe against television networks.",
+      "b_roll": [
+        "Television network logos"
+      ],
+      "text_overlay": {
+        "text": "Major Networks Targeted"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nytimes.com/2026/10/10/business/media/trump-justice-department-tv-networks.html",
+    "https://www.cnbc.com/2026/10/11/trump-doj-white-house-tv-press-pool-antitrust.html",
+    "https://www.washingtonpost.com/business/2026/10/11/justice-probe-into-tv-networks-rests-thin-legal-grounds-lawyers-say"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "topic_slug": "harvard-negotiation-integrative-bargaining-tactics",
+  "strongest_angle": "Examines how the Program on Negotiation at Harvard Law School teaches integrative bargaining strategies, such as using multiple equivalent simultaneous offers, to successfully create and claim value simultaneously.",
+  "key_facts": [
+    {
+      "fact": "The Program on Negotiation at Harvard Law School publishes daily insights on integrative negotiation strategies that focus on uncovering shared and differing interests to expand the pool of value rather than simply dividing a fixed pie.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-skills-expanding-the-pie-integrative-bargaining-versus-distributive-bargaining",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Research published in the Journal of Behavioral Decision Making by M. H. Bazerman addresses multi-issue negotiation agendas where parties have different priorities among these issues.",
+      "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/bdm.524",
+      "source_name": "Journal of Behavioral Decision Making",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the Program on Negotiation at Harvard Law School, multiple equivalent simultaneous offers help negotiators manage the negotiator's dilemma by creating and claiming value at the bargaining table.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/managing-the-negotiators-dilemma-nb",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Volume of Journal of Behavioral Decision Making",
+      "value": 21,
+      "unit": "volume",
+      "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/bdm.524"
+    },
+    {
+      "label": "Issue of Journal of Behavioral Decision Making",
+      "value": 4,
+      "unit": "issue",
+      "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/bdm.524"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Program on Negotiation at Harvard Law School",
+      "kind": "organization"
+    },
+    {
+      "name": "Harvard University",
+      "kind": "organization"
+    },
+    {
+      "name": "M. H. Bazerman",
+      "kind": "person"
+    },
+    {
+      "name": "Journal of Behavioral Decision Making",
+      "kind": "organization"
+    }
+  ]
+}

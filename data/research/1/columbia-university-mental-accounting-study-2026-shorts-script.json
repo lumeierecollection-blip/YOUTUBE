@@ -1,0 +1,65 @@
+{
+  "channel_id": "1",
+  "topic_slug": "columbia-university-mental-accounting-study-2026",
+  "format": "shorts",
+  "hook": "Your brain uses mental accounting to mentally organize, evaluate, and track financial activities across 21 countries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your brain uses mental accounting to mentally organize, evaluate, and track financial activities across 21 countries.",
+      "b_roll": [
+        "Close-up of a brain scan graphic with glowing currency symbols"
+      ],
+      "text_overlay": {
+        "text": "The 21-Country Study"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at Columbia University's Mailman School of Public Health published findings on July 10, 2026. How do researchers know how your mind tracks cash?",
+      "b_roll": [
+        "University campus exterior shot",
+        "Global map graphic lighting up"
+      ],
+      "text_overlay": {
+        "text": "July 10, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except mental accounting emerged four decades ago to explain how people evaluate financial activities.",
+      "b_roll": [
+        "Vintage calculator clicking numbers"
+      ],
+      "text_overlay": {
+        "text": "4 Decades of Research"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The international study tested 21 countries to validate how people organize and track finances.",
+      "b_roll": [
+        "Journal pages turning digitally",
+        "Global currency exchange symbols"
+      ],
+      "text_overlay": {
+        "text": "Oxford Academic Study"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Journal of Consumer Research confirms these mental accounting effects across 21 different countries.",
+      "b_roll": [
+        "World map connecting glowing lines"
+      ],
+      "text_overlay": {
+        "text": "21 Countries Tested"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.eurekalert.org/news-releases/1146760",
+    "https://doi.org/10.1093/jcr/ucag022",
+    "https://academic.oup.com/jcr/advance-article/doi/10.1093/jcr/ucag022/8732294"
+  ]
+}

@@ -16,26 +16,39 @@
  *   node scripts/render-and-qa.js --dry-run [--channel <id>] [--script <path>]
  */
 import "dotenv/config";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, copyFileSync, writeFileSync, appendFileSync, statSync } from "node:fs";
+import { cloneGroundVerdict, rgbOf } from "./lib/clone-ground.mjs";
 import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS, SHOTS, CONTENT_SHOTS, HERO_SHOTS, shotName, TEXT_GRID } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { assignCanvasAnimations } from "./anim-plan.js";
-import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor } from "./composition-variety.js";
+import { isTypeCanvas, varietyReport, beatsToConvert, fallbacksFor, symbolFor } from "./composition-variety.js";
 import { quantitiesOf } from "./canvas-grounding.js";
 import { checkVisual, figureKey, entityNamedInSentence, comparisonNumbers } from "./gemini-visual-plan.js";
+import { strictVisualEnabled, strictVisualAudit, canvasHasRealVisual } from "./strict-visual.mjs";
 import { splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { classOf } from "../src/skills/remotion-render/visual/concept-classes.js";
+import { cutoutPolicy, namesShowableEntity } from "../src/skills/remotion-render/visual/cutout-policy.js";
 import { inkOf } from "./cutout-ink.mjs";
-const { resolveDocument, resolveMoney, qualifyEntity } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
+import { placeGate } from "./place-gate.js";
+import { enforceChrome, templateCheck, labelCount, devicesOf } from "./template-check.js";
+import { callLLM, isProviderError } from "../src/lib/llm.js";
+const { resolveDocument, resolveMoney, qualifyEntity, qualifyEntityWith } = createRequireEntity(import.meta.url)("./entity-assets.cjs");
 const { fetchCutoutForBeat, qualifyConcept } = createRequireEntity(import.meta.url)("./fetch-cutout-once.cjs");
-const { resolveSceneEntity, sceneEntities } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+const { resolveSceneEntity, sceneEntities, fallbackAsset, wikiSummary } = createRequireEntity(import.meta.url)("./resolve-scene.cjs");
+import { dropContainedEntities } from "./lib/contained-entities.mjs";
+import { sameName } from "./entity-coverage.js";
+const { askProviders: askVisualProviders } = createRequireEntity(import.meta.url)("./verify-cutout-image.cjs");
+import { chooseBeatVisual } from "./beat-visual.js";
+import { createUsedImages, imageKeys, isMark } from "./lib/used-images.js";
 const { verifyPlaceImage } = createRequireEntity(import.meta.url)("./verify-place-image.cjs");
 import { resolveRegion as resolveRegionName } from "../src/skills/remotion-render/visual/geo-regions.js";
 import { bundle } from "@remotion/bundler";
@@ -57,8 +70,12 @@ const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
 const GEMINI_PLAN_JS = join(__dirname, "gemini-visual-plan.js");
 const CHALLENGER_JS = join(__dirname, "gemini-visual-challenger.js");
 const ELEMENT_REMEDIATION_JS = join(__dirname, "beat-element-remediation.js");
-const { runEvalLoop, loopEnabled, evalLoopMode, writeLoopAudit } = await import("./eval-retry-loop.js");
+const { recordEvalLoop } = await import("./eval-loop-callsite.js");
+const { callGemini: callGeminiForRevise } = await import("../src/lib/gemini-client.js");
+const { loadStyleReference } = await import("./channel-style-reference.js");
+const { carryPlannerLayouts } = await import("./planner-decisions.js");
 const { judge } = await import("./eval-layer3-judge.js");
+const { layer2Advisory } = await import("./eval-layer2-wire.js");
 
 async function challengePlan(channelId, planPath, srtPath, tag) {
   const out = planPath.replace(/\.json$/, `-challenge${tag}.json`);
@@ -112,6 +129,73 @@ function readJsonSafe(p) {
   try { return existsSync(p) ? JSON.parse(readFileSync(p, "utf-8")) : null; } catch { return null; }
 }
 
+// The challenger pairs plan beat i with SRT cue i. The deterministic
+// auto-correct below needs that same sentence text as the string it can put on
+// screen — a sentence cannot contradict itself.
+function srtSentenceList(p) {
+  try {
+    return readFileSync(p, "utf-8").replace(/\r/g, "").split(/\n\n+/)
+      .map((block) => block.trim().split("\n")).filter((lines) => lines.length >= 3)
+      .map((lines) => lines.slice(2).join(" "));
+  } catch { return []; }
+}
+
+// The figures a sentence states WITH A UNIT. A COUNTER built from a model
+// version ("Claude Opus 5.5") or from a count the sentence mentions in passing
+// ("four prompts") is grounded by the old rule but contradicts the sentence's
+// measured result ("31.7 minutes"); run 39308784564 ch-2 failed the challenger
+// on exactly that. Only a unique unit-bearing figure is safe to auto-correct
+// to; with zero or several, the caller falls back to a text card instead.
+const UNIT_FIGURE = /(\$?\d[\d,]*(?:\.\d+)?)\s*(%|percent\b|million\b|billion\b|thousand\b|dollars?\b|minutes?\b|seconds?\b|hours?\b|days?\b|years?\b|months?\b|weeks?\b|people\b|countries\b|states\b|points?\b|degrees?\b)/gi;
+function measuredFigures(sentence) {
+  const out = [];
+  const seen = new Set();
+  for (const m of String(sentence || "").matchAll(UNIT_FIGURE)) {
+    const key = `${m[1]}|${m[2].toLowerCase()}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push({ value: m[1], unit: m[2] });
+  }
+  return out;
+}
+
+// A blocked beat whose picture cannot be repaired (a logo that does not show
+// the action, a number that is not the measured figure) becomes the one thing
+// that cannot contradict its sentence: a text card. The headline is kept when
+// it was not the thing the challenger rejected (a MISMATCH is about the
+// picture); otherwise the sentence itself is the card.
+function forceTypeCard(beat, sentence, keepHeadline) {
+  beat.kind = "TYPE";
+  beat.visual_type = "TYPE";
+  beat.canvas_composition = "TYPE-FULL";
+  beat.shot = "STATEMENT";
+  beat.scene_description = sentence;
+  beat.headline = keepHeadline && typeof beat.headline === "string" && beat.headline.trim()
+    ? beat.headline
+    : sentence;
+  beat.lead_in = null;
+  beat.data = null;
+  beat.named_entities = [];
+  beat.concepts = [];
+  beat.emphasis_word = null;
+  beat.emphasis_words = [];
+  beat.entity_anchor_word = null;
+  beat.camera_focus = null;
+  beat.hero_cutout = null;
+  beat.fallback_symbol = null;
+  beat.concept_visuals = [];
+  beat.art = null;
+  beat.name_card = null;
+  beat.type_layout = null;
+  beat.pull_phrase = null;
+  beat.label = null;
+  beat.visual_events = [];
+  beat.objects = {};
+  beat.ground = "white";
+  beat.ground_source = "default";
+  if (beat.typography_direction) beat.typography_direction.phrase = beat.headline;
+}
+
 function parseArgs(argv) {
   const flag = (name) => {
     const i = argv.indexOf(name);
@@ -131,6 +215,15 @@ function loadChannelIds(override) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
   const channels = data.channels || data;
   return channels.map((c) => String(c.id));
+}
+
+// Does this channel render through the clone family (channels.json clone.profile; CLONE_ENGINE=off is the kill switch)?
+function isCloneChannel(channelId) {
+  if (process.env.CLONE_ENGINE === "off") return false;
+  try {
+    const ch = resolveChannel(channelId);
+    return !!(ch && ch.clone && ch.clone.profile);
+  } catch { return false; }
 }
 
 function findScripts(channelId) {
@@ -344,10 +437,10 @@ async function probeDuration(path, streamSelector) {
   return { ok: true, value: Number.isFinite(v) ? v : 0, raw: r.stdout.trim() };
 }
 
-async function silenceSpans(path, endAt) {
+async function silenceSpans(path, endAt, minPause = 0.5) {
   const r = await runChild("ffmpeg", [
     "-hide_banner", "-nostats", "-i", path,
-    "-af", "silencedetect=noise=-40dB:d=0.5",
+    "-af", `silencedetect=noise=-40dB:d=${minPause}`,
     "-f", "null", "-",
   ], { label: "silence/detect" });
   if (r.code !== 0) return { ok: false, error: `ffmpeg silencedetect exited ${r.code} on ${path}` };
@@ -385,24 +478,15 @@ async function detectSilence(videoPath, audioPath) {
   // boundary — run 35817394030 rejected both renders on exactly those.
   const vid = await silenceSpans(videoPath, audioDuration);
   if (!vid.ok) return { ok: false, gaps: [], reason: vid.error };
-  const src = await silenceSpans(audioPath, audioDuration);
+  // The voiceover is scanned for pauses down to 0.2 s: its quiet lead-in is under 0.5 s and was never listed (scripts/lib/silence-match.mjs).
+  const src = await silenceSpans(audioPath, audioDuration, 0.2);
   if (!src.ok) return { ok: false, gaps: [], reason: src.error };
 
-  const START_TOL = 0.4;   // s — mux/encode offset between the two
-  const EXTRA_TOL = 0.3;   // s — how much longer than the source pause is still the same pause
-  // A video silence is legitimate when it lies INSIDE a voiceover pause.
-  // The old test also required it to START within 0.4 s of the pause, which
-  // assumed nothing plays during pauses; with the kalimba bed, the bed can
-  // cover the start of a pause and then decay, so the video's silence begins
-  // later — run 36369197918 ch-1: VO pause 29.19-30.28, video silence
-  // 29.65-30.32, flagged "unmatched". Containment keeps the rule's purpose:
-  // silence while the narration is SPEAKING (a dropout) lies inside no
-  // pause and still fails.
-  const gaps = vid.spans.filter((g) => {
-    if (g.start >= audioDuration - 0.1 || g.duration <= 0.5) return false;
-    const match = src.spans.find((s) => g.start >= s.start - START_TOL && g.end <= s.end + EXTRA_TOL);
-    return !match;
-  });
+  // The matching (and why the video's spans are first put on the voiceover's clock) lives in scripts/lib/silence-match.mjs, where it is unit-tested.
+  const { unmatchedSilences, clockOffset } = await import("./lib/silence-match.mjs");
+  const offset = clockOffset(vid.spans, src.spans);
+  if (Math.abs(offset) > 0.01) console.log(`[silence] the video's clock runs ${offset.toFixed(3)} s from the voiceover's; its pauses are matched on the voiceover's clock`);
+  const gaps = unmatchedSilences(vid.spans, src.spans, audioDuration);
   console.log(`[silence] voiceover pauses ${src.spans.length}, video pauses ${vid.spans.length}, unmatched ${gaps.length}`);
 
   if (gaps.length > 0) {
@@ -476,17 +560,58 @@ async function verifyRender(videoPath, audioPath, channelId) {
 // (visual/backgrounds.js GROUND) within 4 per RGB channel (h264 rounding),
 // and must match each other within 2 — any tint, gradient, vignette or
 // shadow fails. Where this stops: one frame, three corners.
+function measureCloneGround(videoPath, man) {
+  const ground = man.clone?.ground;
+  if (typeof ground !== "string") return ["a clone render's manifest names no ground to measure"];
+  const N = 10, dur = Number(man.durationSec) || 0;
+  if (!(dur > 0)) return ["a clone render's manifest has no duration to sample"];
+  const frames = [];
+  try {
+    for (let k = 0; k < N; k++) {
+      const at = dur * (0.03 + (0.94 * k) / (N - 1));
+      const framePath = videoPath.replace(/\.mp4$/, `-ground-${k}.png`);
+      execFileSync("ffmpeg", ["-v", "error", "-y", "-ss", at.toFixed(3), "-i", videoPath, "-frames:v", "1", framePath]);
+      const patch = (x, y) => {
+        const raw = execFileSync("ffmpeg", ["-v", "error", "-i", framePath, "-vf", `crop=iw*80/1080:ih*80/1920:${x}:${y}`, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]);
+        const s = [0, 0, 0];
+        for (let i = 0; i < raw.length; i += 3) { s[0] += raw[i]; s[1] += raw[i + 1]; s[2] += raw[i + 2]; }
+        return s.map((v) => v / (raw.length / 3));
+      };
+      frames.push([patch("0", "0"), patch("iw-iw*80/1080", "0"), patch("iw-iw*80/1080", "ih-ih*80/1920")]);
+      try { rmSync(framePath, { force: true }); } catch { /* a scratch frame */ }
+    }
+  } catch (e) {
+    return [`could not measure the clone ground: ${e.message}`];
+  }
+  const v = cloneGroundVerdict(frames, rgbOf(ground));
+  console.log(`[verify] clone ground (${man.clone?.profile || "?"}): ${v.detail}`);
+  return v.ok ? [] : [`clone ground: ${v.detail}`];
+}
+
 function measureGround(videoPath) {
   const manifestPath = videoPath.replace(/\.mp4$/, "-manifest.json");
   let man = null;
   try { man = JSON.parse(readFileSync(manifestPath, "utf-8")); } catch { return []; }
   if (typeof man?.ground !== "string") return [];                // not a canvas render
+  // THE CLONE FAMILY has its own ground (its profile's paper / mist, channels.json clone.ground), and a shot often puts a picture or a stripe in a corner,
+  // so one frame's three corners are the wrong probe (board 38752797116 rejected every clone render on exactly that). It is asked of the whole video
+  // (scripts/lib/clone-ground.mjs). The canvas engine's single-frame uniform-white check below is unchanged.
+  if (man.engine === "clone") return measureCloneGround(videoPath, man);
   // Not a beat whose layout draws a full-frame shape: COMPARISON-SPLIT's diagonal
   // covers the top-right corner by design (CI run 37067332714 ch-2: beat 0 was one,
   // and its corner read #0E0E0E as "the ground").
   // (nor one carrying a source credit: "Source: ..." sits in the bottom-right patch — part C)
-  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.source_credit && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape"));
-  if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo — the white ground not measured"); return []; }
+  // (nor one drawn with the background variation — canvas-layout.js backgroundOf: every 5th beat a
+  // soft gradient, every 3rd the paper texture. That white is textured by design; measuring it as
+  // "the uniform ground" failed CI run 37702067252 ch-5 beat 4: bottom-right #F8F6F3, the gradient.)
+  // (nor one whose drawn boxes cover a sampled corner: a shot that bleeds off the frame's top — a
+  // PHOTO-BAND's photo, a MAP-BAND's map — tinted the corner it covers by design and was read as an
+  // uneven ground, board 37898353222 ch-9 beat 0 "top-left #FBFBFB". The ground is measured on a beat
+  // where it shows at all three corners; the uniformity standard itself is unchanged.)
+  const CORNERS = [[0, 0, 80, 80], [1000, 0, 1080, 80], [1000, 1840, 1080, 1920]];
+  const coversCorner = (bt) => Object.values(bt.canvas?.boxes || {}).some((v) => v && typeof v.x === "number" && v.w > 0 && v.h > 0 && CORNERS.some(([x0, y0, x1, y1]) => v.x < x1 && v.x + v.w > x0 && v.y < y1 && v.y + v.h > y0));
+  const beat = (man.beats || []).find((b) => b.canvas?.ground === "white" && !b.canvas?.ground_color && !b.canvas?.source_credit && !b.canvas?.background?.gradient && !b.canvas?.background?.paper && b.canvas?.composition !== "COMPARISON-SPLIT" && !Object.values(b.canvas?.boxes || {}).some((v) => v?.role === "shape") && !coversCorner(b));
+  if (!beat) { console.log("[verify] ground: every beat is a full-bleed photo or declares its own ground — the default white ground not measured (local-audit canvas-ground checks declared grounds)"); return []; }
   const at = beat.start_sec + beat.duration_sec * 0.6;
   const framePath = videoPath.replace(/\.mp4$/, "-ground.png");
   try {
@@ -553,10 +678,10 @@ async function qaOne(runId, rendered, planPath) {
     await runChild("node", [LOCAL_AUDITOR_JS, ...laArgs], { label: `qa/local-audit ${basename(outputPath)}` });
     localAudit = readJsonSafe(outputPath.replace(/\.mp4$/, "-local-audit.json"));
   }
-  // Gemini runs ONLY when the local auditor cannot clear the video on its own
-  // (risk not LOW, or specific uncertain beats). If the local report is
-  // missing (auditor errored), fall back to running Gemini so we never ship a
-  // video that nothing semantically reviewed.
+  // geminiNeeded (risk not LOW, or uncertain beats, or no local report) now
+  // decides only the advisory vision QA below. The FRAME REVIEW runs on every
+  // video (frameReviewRuns): it is the gate, and a LOW-risk local verdict
+  // skipping it is how an unreviewed template-monoculture video could ship.
   const geminiNeeded = !localAudit || localAudit.gemini_required !== false;
 
   let visionQaPromise;
@@ -570,7 +695,7 @@ async function qaOne(runId, rendered, planPath) {
   let geminiReviewPromise;
   // The frame review runs with Gemini OR the local Ollama vision model.
   const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.VISION_API_KEY;
-  if (audit.code === 0 && geminiNeeded && (geminiKey || process.env.OLLAMA_URL)) {
+  if (frameReviewRuns({ auditOk: audit.code === 0, provider: !!(geminiKey || process.env.OLLAMA_URL) })) {
     const srtPath = join(dirname(audio), basename(audio, extname(audio)) + ".srt");
     const srtArg = existsSync(srtPath) ? srtPath : "";
     const reviewArgs = ["--video", outputPath, "--script", scriptPath, "--channel", String(channelId), "--fix"];
@@ -581,8 +706,6 @@ async function qaOne(runId, rendered, planPath) {
     geminiReviewPromise = runChild("node", [GEMINI_REVIEW_JS, ...reviewArgs], {
       label: `qa/gemini-review ${basename(outputPath)}`,
     });
-  } else if (audit.code === 0 && !geminiNeeded) {
-    console.log(`[qa] local auditor cleared ${basename(outputPath)} (risk ${localAudit.risk?.level}) — skipping Gemini review`);
   }
 
   const slopCheckPromise = runChild("node", [SLOP_CHECK_JS, outputPath, channelId, scriptPath, audio], {
@@ -779,6 +902,21 @@ const QUEUE_DIRS = { approved: APPROVED_DIR, "approved-review": APPROVED_REVIEW_
  */
 async function queueVideo({ verdict, videoPath, channelId, stage = null, check = null, reason = "", extra = {} }) {
   if (!videoPath || !existsSync(videoPath)) return null;
+  // PRE-SHIP PLACE GATE (scripts/place-gate.js). Every route into approved/ or approved-review/
+  // (both can be uploaded) passes through here: a depicted place not confirmed against the
+  // script — or a render with no manifest to confirm it from — goes to rejected/, whatever any
+  // model gate said. CI run 37810883817 ch-9 reached approved/ with a Washington STATE map.
+  if (verdict === "approved" || verdict === "approved-review") {
+    const mp = videoPath.replace(/\.mp4$/, "-manifest.json");
+    const pg = existsSync(mp) ? placeGate(readJsonSafe(mp) || {}) : { pass: false, failures: [{ beat: null, rule: "M0", why: "no render manifest to confirm places against" }], checked: 0 };
+    console.log(`[place-gate] ch-${channelId}: ${pg.pass ? "PASS" : "FAIL"} — ${pg.checked} place beat(s) checked${pg.failures.length ? `; ${pg.failures.map((f) => `beat ${f.beat} ${f.rule}: ${f.why}`).join("; ")}` : ""}`);
+    if (!pg.pass) {
+      console.error(`::error::place gate FAILED for ${basename(videoPath)} — ${pg.failures.map((f) => `beat ${f.beat}: ${f.why}`).join("; ")}`);
+      extra = { ...extra, place_gate: pg, would_have_been: verdict };
+      reason = `place gate: ${pg.failures.map((f) => `beat ${f.beat} ${f.rule} ${f.why}`).join("; ")}`;
+      verdict = "rejected"; stage = "place-gate"; check = pg.failures.map((f) => f.rule).join(",");
+    }
+  }
   const dest = QUEUE_DIRS[verdict];
   const stem = basename(videoPath, ".mp4");
   const pd = await probeDuration(videoPath).catch(() => null);
@@ -837,11 +975,27 @@ async function backupAudit({ stage, reason, videoPath, planPath, srtPath, audio,
 // substituted looser thresholds (no CRITICAL, no monoculture, HIGH <= 30%,
 // whole-video not FAIL at CRITICAL/HIGH) for the model's own call.
 // A report with no pipelineVerdict is NOT evidence of a pass.
-function frameReviewVerdict(geminiReport) {
+//
+// FRAME REVIEW IS THE GATE (owner, 2026-10-09). frameReviewHold: a TEMPLATE_MONOCULTURE verdict
+// is a hold — backupAudit's forceReject, the same lever a wrong-person photo uses — so the local
+// audit cannot overrule it into approved-review/. The manifest template-window check (Layer 1,
+// scripts/template-check.js) is a SECONDARY signal: its PASS is not proof the template is gone.
+export function frameReviewHold(fr) {
+  return fr?.monoculture ? { forceReject: true, check: "TEMPLATE_MONOCULTURE" } : {};
+}
+// frameReviewRuns: the review runs on every video that passed the pixel audit and has a provider.
+// It used to also need the local auditor's gemini_required — a LOW-risk local verdict skipped it.
+export function frameReviewRuns({ auditOk, provider }) {
+  return !!(auditOk && provider);
+}
+export function frameReviewVerdict(geminiReport) {
   const report = geminiReport ? readJsonSafe(geminiReport) : null;
   if (!report) return { pass: false, error: true, reason: "Gemini frame review produced no report" };
   if (report.pipelineVerdict) {
-    return { pass: report.pipelineVerdict === "APPROVED", reason: `${report.pipelineVerdict} — ${report.pipelineReason || ""}` };
+    // monoculture only on the review's own REJECTED: a PROVIDER_UNAVAILABLE report may still carry
+    // an untrusted provider's headline_test (Ollama fabricated 100% monoculture — gemini-frame-review.js).
+    const monoculture = report.pipelineVerdict === "REJECTED" && !!report.wholeVideoResult?.headline_test?.monoculture;
+    return { pass: report.pipelineVerdict === "APPROVED", reason: `${report.pipelineVerdict} — ${report.pipelineReason || ""}`, ...(monoculture ? { monoculture } : {}) };
   }
   // A whole-video review that did not produce a result (status ERROR or
   // missing) is a review that did not run — NOT a pass. Run 36370967090
@@ -863,7 +1017,7 @@ function frameReviewVerdict(geminiReport) {
   // monoculture headline test applies again, as it did before the paper.
   // CRITICAL frames, HIGH-issue share and a failing whole-video severity
   // reject exactly as before.
-  if (whole.headline_test?.monoculture) return { pass: false, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
+  if (whole.headline_test?.monoculture) return { pass: false, monoculture: true, reason: `REJECTED — TEMPLATE_MONOCULTURE ${whole.headline_test.percent ?? "?"}% headline-dominated` };
   if (high > Math.floor(frames * 0.3)) return { pass: false, reason: `NEEDS_IMPROVEMENT — ${high} HIGH issues across ${frames} frames` };
   if (whole.status === "FAIL" && (whole.severity === "CRITICAL" || whole.severity === "HIGH")) {
     return { pass: false, reason: `NEEDS_IMPROVEMENT — whole-video FAIL (${whole.severity})${score}` };
@@ -904,7 +1058,7 @@ function layersFor(b, base) {
 function channelTopic(channelId) {
   try {
     const cfg = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-    const ch = (cfg.channels || cfg).find((c) => String(c.id ?? c.channel_id).replace(/^ch-?0*/i, "") === String(channelId).replace(/^ch-?0*/i, ""));
+    const ch = resolveChannel(channelId, cfg.channels || cfg);
     return ch?.niche || null;
   } catch { return null; }
 }
@@ -941,12 +1095,642 @@ export function sourceCredit(url) {
   return h;
 }
 
+/**
+ * THE SHOT (docs/REFERENCE-SHOT-GRAMMAR.md): the planner's frame division for this beat, drawn when
+ * the content is something it frames (canvas-layout.js shotComposition). Legality only: a shot whose
+ * layout would break a Layer 1 rule the content's own composition keeps is not drawn — the content's
+ * composition is, and the log says which rule. Code never picks a different shot. Run again once a
+ * concept cutout is attached (attachConceptVisuals): only then is a HERO shot's object known.
+ */
+const FIGURE_COMPS = ["NUMBER-FULL", "DATA-FULL", "PROCESS-FULL", "MAP-CENTERED", "LIST-BUILD", "TIMELINE", "COMPARISON-SPLIT"];
+export function applyShot(c, b, log = console.log) {
+  if (!b?.shot) return { drawn: false, why: "no shot" };
+  if (String(b.shot).toUpperCase() === "FLAG") {
+    // FLAG: a country's or state's flag, centred, in place of its map (the beat names the region; the flag is of THAT region).
+    const f = c.flag_option;
+    if (c.composition !== "MAP-CENTERED" || !f?.asset) { c.shot_drawn = false; log(`[shot] beat ${b.index ?? "?"}: FLAG NOT drawn — no flag asset for this beat`); return { drawn: false, why: "no flag asset" }; }
+    c.composition = "ENTITY-ART"; c.art = { kind: "flag", name: f.name, region: f.region, asset: f.asset, aspect: f.aspect, credit: f.credit, source_url: f.source_url, license: f.license };
+    c.photo = null; c.shot = "FLAG"; c.shot_drawn = true; log(`[shot] beat ${b.index ?? "?"}: FLAG drawn`);
+    return { drawn: true, why: null };
+  }
+  if (c.art) { c.shot_drawn = false; return { drawn: false, why: "this beat draws its entity's art" }; }
+  const want = shotName(b.shot) || String(b.shot);
+  const tag = `[shot] beat ${b.index ?? "?"}: ${want}`;
+  const vt = String(c.visual_type || "TYPE").toUpperCase();
+  const plainType = vt === "TYPE" && !(c.concept_visuals || []).length && !c.name_card?.name && !c.photo;
+  const no = (why) => { c.shot_drawn = false; log(`${tag} NOT drawn — ${why}`); return { drawn: false, why }; };
+  const yes = (extra = "") => { c.shot = want; c.shot_drawn = true; log(`${tag} drawn${extra}`); return { drawn: true, why: null }; };
+  // Content variants (render time, the content known): a plain statement drawn whole, low, or in two
+  // halves; a number with its headline above it, or under it. The planner's emphasis / split / zone
+  // choices are these shots now — a variant it did not choose is turned off, never added by code.
+  if (want === "STATEMENT") {
+    if (!plainType) return no("STATEMENT frames words only; this beat shows a picture or a figure");
+    c.emphasis_beat = false; c.vertical = false; delete c.type_layout; c.composition = "TYPE-FULL"; return yes();
+  }
+  if (want === "FIGURE" && !FIGURE_COMPS.includes(c.composition)) return no(`FIGURE frames a chart, number, map, process, list, timeline or comparison; this beat draws ${c.composition}`);
+  if (want === "STATEMENT-SPLIT") {
+    if (!plainType || !splitHeadline(c.headline)) return no(plainType ? "the headline does not split in two" : "it splits a plain statement");
+    c.emphasis_beat = false; c.vertical = false; c.type_layout = "split"; c.composition = "TYPE-SPLIT"; return yes();
+  }
+  // FIGURE-LOW on a chart: the chart across the top band, its headline low (canvas-layout.js DATA-FULL chartTop).
+  if (c.composition === "DATA-FULL" && ["BAR", "LINE", "TREND"].includes(vt) && (want === "FIGURE-LOW" || want === "FIGURE")) {
+    if (want === "FIGURE-LOW" && !c.headline) return no("the chart has no headline to put under it");
+    c.headline_zone = want === "FIGURE-LOW" ? "middle" : "top"; c.chart_zone = want === "FIGURE-LOW" ? "top" : "middle";
+    return yes();
+  }
+  if (want === "FIGURE-LOW" || (want === "FIGURE" && vt === "COUNTER")) {
+    if (vt !== "COUNTER" || c.composition !== "NUMBER-FULL") return want === "FIGURE" ? yes() : no("it frames a number");
+    if (want === "FIGURE-LOW" && !c.headline) return no("the number has no headline to put under it");
+    c.headline_zone = want === "FIGURE-LOW" ? "middle" : "top"; c.chart_zone = want === "FIGURE-LOW" ? "top" : "middle"; c.number_label_off = want === "FIGURE-LOW";
+    return yes();
+  }
+  // MAP-BAND: the map across the top band, its headline low (canvas-layout.js MAP-CENTERED map_band).
+  if (want === "MAP-BAND" || (want === "FIGURE" && c.composition === "MAP-CENTERED")) {
+    if (c.composition !== "MAP-CENTERED") return no("it frames a map");
+    if (want === "MAP-BAND" && !c.headline) return no("the map has no headline to put under it");
+    c.map_band = want === "MAP-BAND";
+    return yes();
+  }
+  const base = compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view, split: !(c.concept_visuals || []).length && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  const own = SHOT_COMPOSITIONS.includes(c.composition) || c.composition === "SCENE-FULL" || c.composition === "PORTRAIT" ? base : c.composition;
+  const sc = shotComposition(own, want, c);
+  if (!sc.used) { c.composition = own; c.shot = want; return no(sc.why); }
+  if (sc.composition === own) { c.composition = own; return yes(); }
+  const norm = (x) => normalizeForLayout({ ...c, composition: x, layout: null }, b.index ?? 0);
+  const had = new Set(layoutViolations(layoutOfCanvas(norm(own))).map((v) => v.rule));
+  const added = layoutViolations(layoutOfCanvas(norm(sc.composition))).filter((v) => !had.has(v.rule));
+  if (added.length) { c.composition = own; c.shot = want; return no(`${added.map((v) => `${v.rule}: ${v.detail}`).join("; ")}; ${own} instead`); }
+  c.composition = sc.composition;
+  return yes(` (${own} content)`);
+}
+
+/**
+ * The shots a RESOLVED beat can draw: every shot applied to a copy of its canvas and measured the way
+ * Layer 1 will measure the render — its composition key (canvas-type: no repeat), and its template
+ * devices (template-window: words in the top band, a pull phrase, a words-only beat). Shots that draw
+ * the same frame are listed once.
+ */
+export function shotMenu(canvas, b, ctx = {}) {
+  const out = [], seen = new Set();
+  const add = (base, s, extra = {}) => {
+    const c2 = JSON.parse(JSON.stringify(base));
+    if (!applyShot(c2, { index: b.index, shot: s }, () => {}).drawn) return;
+    const o = { ...measuredShot(c2, b, extra.id || s), plain: s, ...extra };
+    if (seen.has(o.sig)) return;
+    seen.add(o.sig);
+    out.push(o);
+  };
+  for (const s of [...SHOTS, ...CONTENT_SHOTS]) add(canvas, s);
+  // The beat's own frame as it resolved (a name card, an emphasis statement...) is always an option —
+  // under its shot's name when one draws the same frame, else as AS-RESOLVED.
+  { const o = { ...measuredShot(JSON.parse(JSON.stringify(canvas)), b, "AS-RESOLVED"), plain: canvas.shot || null, asIs: true }; if (!seen.has(o.sig)) { seen.add(o.sig); out.push(o); } }
+  // A words-only beat may show the drawn symbol for what its sentence STATES (composition-variety.js
+  // symbolFor — the owner's grounded fallback: "risk" -> a warning triangle); offered as an object
+  // shot, the planner's to take or leave. Nothing the sentence does not state is offered.
+  const plainType = String(canvas.visual_type || "TYPE").toUpperCase() === "TYPE" && !(canvas.concept_visuals || []).length && !canvas.name_card?.name && !canvas.photo;
+  const sym = plainType && !namesShowableEntity(b.named_entities) ? symbolFor(b.narration || canvas.sentence || "") : null;
+  if (sym) {
+    const withSym = { ...JSON.parse(JSON.stringify(canvas)), concept_visuals: [{ name: sym, class: "symbol", w: 1, h: 1, fallback: true }], composition: "TYPE-FULL", emphasis_beat: false };
+    for (const s of HERO_SHOTS) add(withSym, s, { id: `${s}:${sym}`, symbol: sym });
+  }
+  // A number beat whose sentence names an object (alt_visuals, fetched and verified in the concept
+  // step): offered as an object shot — the number and its label as the words, the object as the hero.
+  if (canvas.composition === "NUMBER-FULL" && Array.isArray(b.alt_visuals) && b.alt_visuals.length) {
+    const words = [canvas.data?.value, canvas.data?.label].filter(Boolean).join(" ") || canvas.headline;
+    const withObj = { ...JSON.parse(JSON.stringify(canvas)), visual_type: "TYPE", data: null, composition: "TYPE-FULL", headline: words, concept_visuals: b.alt_visuals, emphasis_beat: false, headline_zone: "top", chart_zone: "middle" };
+    for (const s of HERO_SHOTS) add(withObj, s, { id: `${s}:${b.alt_visuals[0].name}`, object: { visual: b.alt_visuals[0], headline: words } });
+  }
+  // A words-only beat may also be drawn as the figure its OWN sentence states — a flow, a trend, a
+  // stated number, a list, a timeline, a comparison — through the same gates the visual-first pass
+  // uses (candidatesFor + checkVisual; a figure another beat already draws is not offered). A map
+  // only for a place the sentence names as an entity (CI run 37795613343: "Are" read as the UAE).
+  // Offered to Gemini as "FIGURE:<TYPE>"; it may keep the statement.
+  if (plainType && ctx.plan) {
+    const narr = b.narration || canvas.sentence || "";
+    const offered = new Set();
+    for (const alt of candidatesFor({ sentence: narr, headline: canvas.headline || "" })) {
+      if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
+      const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr);
+      if (v.why || v.type !== alt.visual_type || offered.has(v.type)) continue;
+      if (v.type === "MAP" && !(b.named_entities || []).some((e) => e?.type === "place" && String(e.name).toLowerCase() === String(v.data?.place || "").toLowerCase())) continue;
+      const fk = figureKey(v);
+      if (fk && ctx.plan.beats.some((x) => x !== b && figureKey(checkVisual(x, x.narration || "")) === fk)) continue;
+      offered.add(v.type);
+      const c3 = canvasContentFor({ ...b, visual_type: v.type, data: v.data, shot: null, layout: null, type_layout: undefined, name_card: undefined, hero_cutout: undefined, fallback_symbol: undefined }, {});
+      for (const s of ["FIGURE", "FIGURE-LOW", "MAP-BAND"]) add(c3, s, { id: `${s}:${v.type}`, figure: { visual_type: v.type, data: v.data } });
+    }
+  }
+  // The planner's label and pull phrase are chrome the code may REMOVE (never add): board 37919459134 ch-26 beat 5, a
+  // photo whose every shot read "words in the top band" only because its planner label sat top-right, so no
+  // sequence existed. Each option whose devices change without the chrome gets a twin without it; the twin is
+  // not offered to Gemini and is used only when a legal sequence needs it (legalSequences).
+  const twins = [];
+  for (const o of out) {
+    const cc = o.canvas;
+    if (!cc.label && !cc.pull_phrase) continue;
+    const c2 = JSON.parse(JSON.stringify(cc)); c2.label = null; c2.pull_phrase = null;
+    const t = { ...measuredShot(c2, b, o.shot), plain: o.plain, symbol: o.symbol, object: o.object, figure: o.figure, asIs: o.asIs, nochrome: true };
+    if (t.words !== o.words || t.phrase !== o.phrase) { t.sig = `${o.sig}|nochrome`; twins.push(t); }
+  }
+  return [...out, ...twins];
+}
+function measuredShot(c, b, shot) {
+  const m = canvasManifest(c, b.index ?? 0);
+  const d = devicesOf({ canvas: m });
+  const key = m.composition + (m.boxes?.cutout0 ? `+HERO:${(m.concept_visuals || [])[0]?.name || ""}` : "") + (m.boxes?.lead_phrase ? "+NAME" : "") + (m.art ? `:${m.art.kind}${m.art.style ? `/${m.art.style}` : ""}` : "");
+  const words = d.label ? "top" : "low";
+  // The frame's identity: two options with the same signature draw the same frame.
+  const sig = `${key}|${words}|${c.headline_zone || ""}|${c.map_band ? "band" : ""}|${c.emphasis_beat ? "emph" : ""}`;
+  // `centred`: the headline/statement sits on the frame's axis (TYPE-FULL, the three type cards) — Layer 1
+  // canvas-type refuses two centred headlines in a row, so the sequence must not offer them.
+  return { shot, composition: m.composition, key, words, phrase: !!d.phrase, typeLed: !!d.typeLed, centred: m.headline_align === "center", sig, canvas: c };
+}
+/** The sequence's problems, as Layer 1 judges them (template-window; canvas-type's no-repeat). */
+export function shotSequenceProblems(choice, indices = choice.map((_, i) => i)) {
+  const out = [];
+  const name = { label: "words in the top band", phrase: "a pull phrase", typeLed: "a words-only beat" };
+  for (const w of templateCheck(choice.map((o) => ({ label: o.words === "top", phrase: o.phrase, typeLed: o.typeLed }))).windows) {
+    const span = `beats ${indices[w.start]}-${indices[w.start + 2]}`;
+    out.push({ i: w.start + 2, why: w.run.length ? `${w.run.map((d) => name[d]).join(" + ")} on three beats in a row (${span})` : `${w.repeating.map((d) => name[d]).join(" and ")} both repeat inside ${span}` });
+  }
+  choice.forEach((o, i) => { if (i > 0 && o.key === choice[i - 1].key) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} are the same composition (${o.key})` }); });
+  // No two consecutive beats share an alignment: the others alternate left/right by beat index, so the
+  // only way to repeat one is a centred headline on two beats in a row (canvas-type, part C.2).
+  // Not under the text grid (owner, 2026-10-10: every beat's words are centred on the one axis): the audit's canvas-type skips this rule then
+  // (local-audit.cjs `!TEXT_GRID_ON`), and enforcing it here made EVERY sequence illegal — board 38044082797 ch 49: "no legal sequence exists",
+  // so the solver gave up and left a photo card twice and a statement twice in a row, which canvas-type then failed.
+  if (!TEXT_GRID.on) choice.forEach((o, i) => { if (i > 0 && o.centred && choice[i - 1].centred && indices[i] - indices[i - 1] === 1) out.push({ i, why: `beats ${indices[i - 1]} and ${indices[i]} both centre their words` }); });
+  // No image on two beats (Layer 1 no-photo-repeat; keyed by asset AND source — scripts/lib/used-images.js).
+  const seenImg = new Map();
+  choice.forEach((o, i) => {
+    const c = o.canvas || {};
+    for (const k of new Set([c.photo, ...(c.concept_visuals || []).filter((v) => v?.class === "cutout")].filter((v) => v && !isMark(v)).flatMap((v) => imageKeys(v)))) {   // a logo (mark) may repeat: used-images.js
+      if (seenImg.has(k) && seenImg.get(k) !== i) out.push({ i, why: `beats ${indices[seenImg.get(k)]} and ${indices[i]} show the same image` }); else seenImg.set(k, i);
+    }
+  });
+  return out;
+}
+/**
+ * Up to `max` complete shot sequences that pass shotSequenceProblems, each beat's shot taken from its
+ * own menu, searched nearest-first to `near` (the planner's picks): depth-first, options in the order
+ * "the pick, then the rest", pruning a prefix as soon as a window ending in it breaks a rule.
+ */
+export function legalSequences(menus, indices, near = [], max = 8, budget = 40000) {
+  const out = [], acc = [];
+  let nodes = 0;
+  const go = (i) => {
+    if (out.length >= max || nodes > budget) return;
+    if (i === menus.length) { out.push(acc.slice()); return; }
+    const opts = [...menus[i]].sort((a, b) => (b.sig === near[i]?.sig) - (a.sig === near[i]?.sig));
+    for (const o of opts) {
+      nodes++;
+      acc.push(o);
+      if (!shotSequenceProblems(acc, indices).some((p) => p.i === i)) go(i + 1);
+      acc.pop();
+      if (out.length >= max || nodes > budget) return;
+    }
+  };
+  go(0);
+  return out;
+}
+/**
+ * When NO legal sequence exists, the fewest-problems arrangement available.
+ *
+ * The same search as legalSequences() — same menus, same nearest-first option
+ * order, same pruning — but scoring every arrangement by how many rules it breaks
+ * instead of discarding any that breaks one. It is deliberately not a new rule
+ * and not a new mechanism: it is the existing solver's fallback, and it exists so
+ * a rule the content genuinely cannot satisfy is reported rather than silently
+ * returned (see the caller).
+ */
+export function bestEffortSequence(menus, indices, near = [], budget = 20000) {
+  let best = null, bestScore = Infinity, nodes = 0;
+  const acc = [];
+  const score = (seq) => shotSequenceProblems(seq, indices).length;
+  const go = (i) => {
+    if (nodes > budget || bestScore === 0) return;
+    if (i === menus.length) { const s = score(acc); if (s < bestScore) { bestScore = s; best = acc.slice(); } return; }
+    const opts = [...menus[i]].sort((a, b) => (b.sig === near[i]?.sig) - (a.sig === near[i]?.sig));
+    for (const o of opts) {
+      nodes++;
+      acc.push(o);
+      go(i + 1);
+      acc.pop();
+      if (bestScore === 0 || nodes > budget) return;
+    }
+  };
+  go(0);
+  return best;
+}
+
+const describeBeat = (c) => {
+  const h = (c.concept_visuals || [])[0];
+  if (c.photo) return `a photo of ${c.photo.entity || "the named subject"}`;
+  if (h) return h.class === "symbol" ? `a drawn ${String(h.name).replace(/-/g, " ")} symbol` : `${h.logo ? "the logo of" : h.money ? "money:" : "an object:"} ${h.name}`;
+  if (c.name_card?.name) return `the name ${c.name_card.name}`;
+  return { "NUMBER-FULL": "a number", "DATA-FULL": "a chart", "PROCESS-FULL": "a process", "MAP-CENTERED": "a map", "LIST-BUILD": "a list", "TIMELINE": "a timeline", "COMPARISON-SPLIT": "a comparison" }[c.composition] || "words only";
+};
+/**
+ * THE SHOTS, CHOSEN ON THE RESOLVED CONTENT (render time). The planner chose each beat's shot before
+ * the content existed; resolution then changes it (a photo that does not verify, a country drawn as
+ * its map, a figure already drawn elsewhere) and a planned shot stops fitting. Board 37859862716:
+ * ch-1, 2, 5, 9 all lost to template-window with the plan's sequence "legal" — the beats had changed
+ * under it. So Gemini chooses again here, from each beat's menu of what it CAN draw, measured as
+ * Layer 1 measures it; its answer is checked against the same rules and goes back once with the
+ * problems. Code chooses nothing: no answer -> the beats stay as they are and the gates judge them.
+ */
+export async function chooseShots(plan, channelId, ask = (prompt) => callLLM([{ role: "user", content: prompt }], { maxTokens: 1200, temperature: 0 }, "shots-final")) {
+  const idx = plan.beats.map((b) => b.index);
+  const menus = plan.beats.map((b) => shotMenu(b.canvas, b, { plan }));
+  // Each beat as it resolved, named the way its menu names that same frame (board 37862697531: the
+  // planned-but-undrawn shot's name was shown as "now", Gemini repeated it, it matched no option,
+  // and every beat stayed as it was).
+  const current = plan.beats.map((b, i) => { const o = measuredShot(b.canvas, b, "AS-RESOLVED"); return { ...o, shot: menus[i].find((m) => m.sig === o.sig)?.shot || "AS-RESOLVED" }; });
+  const undrawn = plan.beats.filter((b) => b.canvas.shot && b.canvas.shot_drawn === false).map((b) => b.index);
+  const show = (ch) => ch.map((o) => `${o.shot}[${o.words}]${o.nochrome ? "(label dropped)" : ""}`).join(" ");
+  let problems = shotSequenceProblems(current, idx);
+  console.log(`[shots-final] ch-${channelId}: as resolved ${show(current)}${problems.length ? ` — ${problems.map((p) => p.why).join("; ")}` : " — legal"}${undrawn.length ? `; planned shot not drawable on beat(s) ${undrawn.join(", ")}` : ""}`);
+  if (!problems.length && !undrawn.length) return { choice: current, problems, asked: 0 };
+  const lines = plan.beats.map((b, i) => `[${b.index}] "${String(b.narration || "").slice(0, 140)}" — shows ${describeBeat(b.canvas)}; now: ${current[i].shot}[${current[i].words}]; options: ${menus[i].filter((o) => !o.nochrome).map((o) => `${o.shot} [${o.words}${o.typeLed ? ", words-only" : ""}]`).join(", ")}`).join("\n");
+  const promptFor = (choice, probs) => `You are the visual director of a vertical video. Its look is the channel's reference: an editorial collage that changes its shot every beat. The content of every beat is now fixed; choose each beat's SHOT from ITS options (each is drawable and legal on its own; [top] = its words sit in the top band, [low] = under a picture or low).
+Shots: SCENE-FULL photo fills the frame; SCENE-LOW photo fills it, words low; PHOTO-BAND a photo band across the centre, words under it; PHOTO-EDGE photo cropped by the far edge; PHOTO-CARD photo in a heavy dark frame; PHOTO-INSET small rounded card; PHOTO-STRIP photo through a torn strip; PORTRAIT photo standing; HERO-STACK object centred under the words; HERO-LOW object large and low; HERO-SCATTER objects at angles; HERO-OVER the object centred, its words under it; FIGURE a chart/number/map in its own frame; FIGURE-LOW the number alone (its small label left out) or a bar / line / trend chart centred, its headline under it; MAP-BAND the map as a band across the centre, its headline under it; FLAG a country's or state's flag centred, in place of its map; STATEMENT words alone, low; STATEMENT-SPLIT words in two halves, top and low; TITLE the words very large and heavy over an accent bar; CHAPTER one small line in an empty frame; DEFINITION the words over a double rule, the sentence set as text; STAT a stated number alone, filling the frame over its label. An option "SHOT:symbol" is that object shot with the drawn symbol for what the sentence states; "FIGURE:TYPE" draws a words-only beat as that figure (a process, a trend, a number...), which its own sentence states.
+Rules, checked on the render: never the same composition on two beats in a row; never [top] on three beats in a row; never a words-only beat on three in a row, nor [top] twice AND words-only twice inside any three beats. Prefer the shot that shows the beat's content best.
+
+${lines}
+${probs.length ? `\nYour current choice ${show(choice)} breaks: ${probs.map((p) => p.why).join("; ")}. Fix those beats; keep the rest.\n` : ""}
+Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<one of that beat's options>"}]} — one entry per beat.`;
+  let choice = current, asked = 0;
+  // Round 1: Gemini picks per beat.
+  const ans = await ask(promptFor(choice, problems));
+  asked++;
+  if (isProviderError(ans) || !Array.isArray(ans?.beats)) {
+    console.log(`[shots-final] ch-${channelId}: no answer (${isProviderError(ans) ? ans.error : "no beats in the answer"}) — the beats stay as resolved`);
+  } else {
+    const id = (v) => String(v || "").trim().toUpperCase().replace(/[\s_]+/g, "-");
+    choice = plan.beats.map((b, i) => { const a = id(ans.beats.find((x) => Number(x?.index) === b.index)?.shot); return menus[i].find((o) => id(o.shot) === a) || choice[i]; });
+    problems = shotSequenceProblems(choice, idx);
+    console.log(`[shots-final] ch-${channelId}: Gemini chose ${show(choice)}${problems.length ? ` — still: ${problems.map((p) => p.why).join("; ")}` : " — legal"}`);
+    // Round 2, only when its picks still break a rule: the per-beat picks are a constraint puzzle the
+    // model kept missing (board 37866941228: ch-26, ch-44 had legal sequences it never found). Code
+    // lists the complete sequences that ARE legal — built only from each beat's own drawable options,
+    // closest to Gemini's picks first — and Gemini chooses one. None legal: the content cannot be
+    // arranged (logged); the beats stay as Gemini picked and the gates judge the render.
+    if (problems.length) {
+      const seqs = legalSequences(menus, idx, choice);
+      // NO LEGAL SEQUENCE: PICK THE LEAST-BAD, AND SAY SO. Both give-up paths
+      // here used to fall through with `choice` UNCHANGED - the very pick whose
+      // `problems` built the prompt above - so the beat stayed illegal and the
+      // audit failed it. The comment at :1159 records this happening:
+      // "no legal sequence exists ... so the solver gave up and left a photo card
+      // twice and a statement twice in a row, which canvas-type then failed"
+      // (board 38044082797 ch 49; ch-44 beat 3 and ch-2 beat 5 since).
+      //
+      // A rule the content genuinely cannot satisfy is a fact about this video,
+      // not a reason to stop searching. So take the fewest-problems arrangement
+      // available and REPORT the residue, rather than returning an illegal
+      // sequence in silence as if it had been chosen.
+      if (!seqs.length) {
+        const best = bestEffortSequence(menus, idx, choice);
+        const left = best ? shotSequenceProblems(best, idx) : [];
+        console.log(`[shots-final] ch-${channelId}: NO LEGAL SEQUENCE exists in these beats' options (the content cannot be arranged). Using the LEAST-BAD arrangement instead of the illegal one: ${best ? show(best) : "(none available)"}`);
+        if (left.length) console.log(`[shots-final] ch-${channelId}: ${left.length} rule(s) still broken and the audit will fail them: ${left.map((p) => `beat ${p.i}: ${p.why}`).join("; ")}`);
+        if (best) choice = best;
+      }
+      else {
+        const list = seqs.map((s, k) => `${k + 1}) ${s.map((o, i) => `[${idx[i]}] ${o.shot}${o.nochrome ? " (its label left out)" : ""}`).join(", ")}`).join("\n");
+        const pick = await ask(`You are the visual director of a vertical video (the channel's reference look: an editorial collage that changes its shot every beat). Your shot choice ${show(choice)} breaks: ${problems.map((p) => p.why).join("; ")}.
+Each sequence below is LEGAL (checked) and uses only shots each beat can draw. Choose the one that shows the beats best.
+
+${lines}
+
+${list}
+
+Respond ONLY with JSON: {"sequence": <number>}`);
+        asked++;
+        const n = Number(pick?.sequence);
+        if (!isProviderError(pick) && Number.isInteger(n) && seqs[n - 1]) {
+          choice = seqs[n - 1];
+          problems = shotSequenceProblems(choice, idx);
+          console.log(`[shots-final] ch-${channelId}: Gemini chose legal sequence ${n}/${seqs.length}: ${show(choice)}`);
+        } else if (seqs.length) console.log(`[shots-final] ch-${channelId}: no valid sequence number (${isProviderError(pick) ? pick.error : JSON.stringify(pick).slice(0, 80)}) — keeping the plan's own sequence`);
+        else console.log(`[shots-final] ch-${channelId}: no valid sequence number and no legal sequence existed — keeping the least-bad arrangement chosen above`);
+      }
+    }
+  }
+  // A beat the ENTITY LADDER gave a visual keeps it. chooseShots runs AFTER the
+  // ladder (render-and-qa.js:2199 then :2235) and rewrites b.data from its own
+  // figure choice, which undid the ladder's coverage fix: board 38285053635
+  // ch-1 beat 6 logged "states 50 percent -> a stat card" and the frame still
+  // showed $6.99, so entity-coverage read the sentence's other number as the
+  // only one on screen. A shot choice is about VARIETY; it must not decide that
+  // a named entity goes back on nothing.
+  //
+  // `b.ladder_visual` is set by the ladder on every beat it replaced, so a
+  // shot choice can keep the ladder's visual_type/data and take only the
+  // shot's other devices (its symbol, its headline).
+  plan.beats.forEach((b, i) => {
+    if (choice[i] === current[i]) return;
+    b.canvas = choice[i].canvas;
+    if (choice[i].asIs) return;
+    b.shot = choice[i].plain || choice[i].shot;
+    // A symbol taken: recorded where canvasContentFor rebuilds a TYPE beat's hero from (fallback_symbol).
+    if (choice[i].symbol) b.fallback_symbol = choice[i].symbol;
+    // An object taken (a number beat shown with its object): the beat is the object and its words now.
+    if (choice[i].object && !b.ladder_visual) { b.visual_type = "TYPE"; b.data = null; b.hero_cutout = choice[i].object.visual; b.headline = choice[i].object.headline; delete b.type_layout; }
+    // A figure taken: the beat's content is that figure now (it was gated as the visual-first pass gates).
+    //
+    // NOT on a beat the entity ladder already gave a visual to. Board
+    // 38285053635 ch-1 beat 6: the ladder replaced the figure so the sentence's
+    // "50 percent" was on screen, and this line put "$6.99" back, so
+    // entity-coverage read the other number as the only one there. Shot
+    // variety is not a licence to un-draw a named entity — the ladder's visual
+    // stands and the shot's own devices (symbol, headline) still apply.
+    if (choice[i].figure) {
+      if (b.ladder_visual) console.log(`[shots] ch-${channelId} beat ${b.index}: keeping the entity the ladder drew (${b.ladder_visual.data?.value || b.ladder_visual.visual_type}) over the shot's own figure`);
+      else { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
+    }
+  });
+  plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
+  return { choice, problems, asked };
+}
+
+/**
+ * THE ENTITY LADDER (owner, 2026-10-09: "nothing spoken goes unrepresented"; scripts/entity-ladder.js). A beat that names an
+ * entity and draws none of it — words, a name card, a symbol alone — gets the visual that answers it: a map with the
+ * region highlighted, a plate (person / organisation / place), a date card, a span of time, a stat card. A beat that
+ * already draws something of substance is left to the gate. Then a flag is OFFERED beside every country / state map
+ * (the FLAG shot — Gemini picks it in chooseShots). Code fills the gap; it does not replace what the planner drew.
+ */
+export async function entityLadder(plan, channelId, log = console.log) {
+  // The script's named countries (the same set resolveCanvas qualifies a generic institution with).
+  const countries = plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e.type === "place").map((e) => e.name)).filter((n) => resolveRegionName(n));
+  const { ladderFor, ladderAll } = await import("./entity-ladder.js");
+  const { sameName } = await import("./entity-coverage.js");
+  const { fetchFlag } = await import("./fetch-flag.mjs");
+  const { flagCodeOf } = await import("../src/skills/remotion-render/visual/flags.js");
+  const done = { map: 0, art: 0, figure: 0, flags: 0 };
+  // No repeats (owner): a mark already on screen in this video (the planner's logo hero, or an earlier plate) is not drawn again —
+  // the later beat shows the name in type (board 38010438091 ch-44: the Glassdoor logo on three beats).
+  const usedMarks = new Map();
+  for (const pb of plan.beats) for (const v of pb.canvas?.concept_visuals || []) if (v?.logo && v.name) usedMarks.set(String(v.name).toLowerCase(), pb.index);
+  const reset = (b, replaces = false) => { for (const k of ["type_layout", "name_card", "hero_cutout", "fallback_symbol", "art"]) delete b[k]; if (replaces) { b.visual_type = "TYPE"; b.data = null; b.concept_visuals = []; } };
+  for (const b of plan.beats) {
+    const dirs = ladderAll(b, plan);
+    if (!dirs.length) continue;
+    // THE TWO-VISUAL RULE. ladderAll returns one directive per UNCOVERED
+    // entity, not just the primary: a sentence that names two things gets both
+    // on screen. They are applied to the SAME beat (never split into two beats)
+    // so the renderer sequences the second visual in behind the first. A beat
+    // that already draws substance keeps it — its directives carry
+    // `alongside` and are added as concept_visuals, which the layout draws as
+    // cutout0/cutout1 (canvas-layout.js:1169).
+    for (const d of dirs) {
+    const keep = { visual_type: b.visual_type, data: b.data, art: b.art, name_card: b.name_card, hero_cutout: b.hero_cutout, fallback_symbol: b.fallback_symbol, type_layout: b.type_layout, canvas: b.canvas };
+    // An organisation's plate carries its REAL mark when a free, verified one exists (resolve-scene.cjs: Wikipedia infobox / Commons, licence
+    // checked, vision-verified); otherwise its NAME set in type. Never a stock icon (owner, 2026-10-09). This runs for EVERY rung,
+    // alongside ones included — a second visual added beside an existing one is held to the same rule as one that replaces it,
+    // and it has to run before the alongside branch reads d.art.items.
+    if (d.art && (d.art.kind === "plate-organization" || d.art.kind === "plates")) {
+      const names = d.art.kind === "plates" ? d.art.names : [d.art.name];
+      d.art.items = [];
+      for (const nm of names) {
+        let it = null;
+        try {
+          // An agency / institution (NASA, the FBI) is looked up as one — its seal or insignia is searched too; a company / outlet as a company.
+          const t0 = String((b.named_entities || []).find((e) => e && sameName(e.name, nm))?.type || "");
+          const rtype = /institution|agency|government|court|department|bureau/i.test(t0) ? "institution" : "company";
+          // The same qualification the photo path applies (qualifyEntityWith): a generic name ("Treasury") is resolved as the script's one
+          // country's body, or refused. Before this, the plate looked up the BARE name and took whatever mark a search returned for it.
+          const qn = await qualifyEntityWith({ type: rtype, name: nm }, countries, wikiSummary);
+          if (!qn.ent?.name) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" — ${qn.note || "not qualified"} — its name in type`); throw new Error("generic name not qualified"); }
+          if (qn.note) log(`[ladder] ch-${channelId} beat ${b.index}: ${qn.note}`);
+          const r = await resolveSceneEntity({ channel: String(channelId), beatIndex: String(b.index), entity: { type: rtype, name: qn.ent.name }, context: b.narration || "" });
+          if (r?.ok && r.logo?.asset) {
+            // A wide wordmark is the brand's NAME drawn in its face, not a mark.
+            // Drawn into a square plate slot its letters are a few pixels tall
+            // and the naming check reads them as a misspelling (board
+            // 39332364472 ch-2 beat 0: an 8:1 "Google DeepMind" wordmark read
+            // "Goog'e DeepMind" at 810x1440). The name set in type is the same
+            // name and it is legible; the plate still carries the entity, so
+            // coverage is unchanged (entity-coverage.js counts the plate item).
+            const lw = Number(r.logo.w) || 0, lh = Number(r.logo.h) || 0;
+            if (lw > 0 && lh > 0 && lw / lh >= 3) {
+              log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is a ${(lw / lh).toFixed(1)}:1 wordmark — its name in type (not a plate-sized mark)`);
+            } else {
+              it = { name: nm, asset: r.logo.asset, w: lw || null, h: lh || null, source_url: r.logo.source_url || null, license: r.logo.license || null, ...(r.logo.fair_use ? { fair_use: r.logo.fair_use } : {}) };
+            }
+          }
+          const seenAt = usedMarks.get(String(nm).toLowerCase());
+          if (it && seenAt !== undefined && seenAt !== b.index) { log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}"'s mark is already shown (beat ${seenAt}) — its name in type here`); it = null; }
+          if (it) usedMarks.set(String(nm).toLowerCase(), b.index);
+        } catch (e) { log(`[ladder] ch-${channelId} beat ${b.index}: mark for "${nm}" failed (${String(e.message).slice(0, 80)}) — its name in type`); }
+        d.art.items.push(it);
+        log(`[ladder] ch-${channelId} beat ${b.index}: "${nm}" -> ${it ? `its logo (${it.license || "free"})` : "its name in type"}`);
+      }
+    }
+    if (d.figures) {
+      // Two figures on one beat (entity-ladder.js): the sentence states both,
+      // and neither can be reached by replacing the other — see the ladder's
+      // note. They go in as concept visuals, which is the path canvas-layout
+      // lays out on the NUMBER and TYPE compositions (cutout0/cutout1); an `art`
+      // plate row gets no box there at all.
+      const existing = Array.isArray(b.concept_visuals) ? b.concept_visuals : [];
+      const room = 2 - existing.length;
+      if (room <= 0) { log(`[ladder] ch-${channelId} beat ${b.index}: already carries two visuals; the second figure is in the headline`); continue; }
+      const shown = d.figures.slice(0, room).map((n) => ({ name: n, class: "figure", logo: false, asset: null }));
+      b.concept_visuals = existing.concat(shown);
+      b.ladder_visual = { figures: shown.map((s) => s.name) };
+      b.canvas = canvasContentFor(b, {});
+      done.figure++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: states ${shown.map((s) => s.name).join(" and ")} -> both figures on the beat`);
+      continue;
+    }
+    if (d.alongside) {
+      // WHERE THE SECOND VISUAL CAN PHYSICALLY GO. Only the TYPE and NUMBER
+      // compositions lay out a cutout box for a second object; DATA-FULL,
+      // MAP-CENTERED, ENTITY-ART, PROCESS-FULL, LIST-BUILD, TIMELINE,
+      // COMPARISON-SPLIT, DOCUMENT and SCENE-FULL lay out none. Adding a
+      // concept_visual to one of those produced a beat the manifest claimed
+      // had a second visual and the frame did not draw — board 38247946148
+      // ch-1 beat 3 logged "a second visual beside the DATA-FULL it already
+      // shows" and the audit read "draws chart, none of it the entity".
+      //
+      // So: a composition that can hold the object gets it as a concept visual;
+      // any other composition keeps its own visual (the chart, the map is the
+      // answer to the sentence) and the named entity is stated in the headline
+      // it is already drawn on. Nothing is faked into a slot that is not there.
+      const COMPOSITION_TAKES_SECOND = new Set(["TYPE-FULL", "TYPE-SPLIT", "NUMBER-FULL", "NUMBER-STAT", "HERO-OVER"]);
+      const comp = b.canvas?.composition || (String(b.visual_type || "TYPE").toUpperCase() === "TYPE" ? "TYPE-FULL" : null);
+      // A MAP THAT COVERS THE PLACE NAMES IT. MAP-CENTERED keeps its own visual
+      // and there is no slot for a second object — but the map is drawn of a
+      // region that CONTAINS the place the sentence names, so the place can be
+      // drawn on the map as a key rather than left to the headline alone.
+      //
+      // Board 38321106622 ch-9 beat 4: "Pakistan declared a state of emergency
+      // in Khyber Pakhtunkhwa", a map of the parent region labelled "Pakistan",
+      // and no verified asset of Khyber Pakhtunkhwa existed at all ("not found
+      // in any source, rendering as TYPE with name only"). The frame showed
+      // nothing of the spoken place and entity-check was right to fail it. The
+      // ladder was not wrong that there is no slot — it was wrong to conclude
+      // the headline was enough.
+      const mapName = d.art ? d.art.name : d.map;
+      if (String(comp || "").toUpperCase() === "MAP-CENTERED" && mapName && b.canvas?.data?.place) {
+        const labels = Array.isArray(b.canvas.data.labels) ? b.canvas.data.labels : [];
+        const have = new Set(labels.map((x) => String(x).toLowerCase().trim()));
+        if (!have.has(String(mapName).toLowerCase().trim()) && String(mapName).toLowerCase().trim() !== String(b.canvas.data.place).toLowerCase().trim()) {
+          labels.push(mapName);
+          b.canvas.data.labels = labels;
+          b.canvas = canvasContentFor(b, {});
+          log(`[ladder] ch-${channelId} beat ${b.index}: names "${mapName}" -> a key on the ${b.canvas.data.place} map that covers it (not a pin: no verified outline or coordinates)`);
+          done.flags++;
+          continue;
+        }
+      }
+      if (!COMPOSITION_TAKES_SECOND.has(String(comp || "").toUpperCase())) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art ? d.art.name : d.map}; ${comp} keeps its own visual and has no room for a second — the name is in the headline`);
+        continue;
+      }
+      // Add beside what the beat already draws. The entity becomes a named
+      // concept visual so the layout can pair it with the existing hero; the
+      // real-mark lookup below is shared with the replacing path, so it is a
+      // real mark when one exists and an honest non-identifying plate when not.
+      const name = d.art ? d.art.name : d.map;
+      const existing = Array.isArray(b.concept_visuals) ? b.concept_visuals : [];
+      if (existing.length >= 2) { log(`[ladder] ch-${channelId} beat ${b.index}: already carries two visuals; "${name}" is named in the headline instead`); continue; }
+      // A `plates` row names several entities at once; as a second visual it
+      // contributes ONE of them (the layout draws cutout0/cutout1), so pick the
+      // one whose real mark resolved — that is the most informative object on
+      // the frame — and the rest stay named in the headline.
+      const rowNames = d.art && Array.isArray(d.art.names) ? d.art.names : [name];
+      const rowItems = (d.art && Array.isArray(d.art.items)) ? d.art.items : [];
+      const pickIdx = Math.max(0, rowItems.findIndex((x) => x && x.asset));
+      const one = rowNames[pickIdx] || rowNames[0];
+      // A second visual that draws the SAME thing the beat already draws is not
+      // a second visual: the retry plan already carried a date plate, the ladder
+      // added another, and the pair filled both slots (board 39344506422 ch-2
+      // beat 1). Keep the ladder's first entry, never a duplicate.
+      if (existing.some((v) => v && sameName(v.name, one)) || (b.hero_cutout && sameName(b.hero_cutout.name, one))) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: "${one}" is already on the beat — no duplicate second visual`);
+        continue;
+      }
+      // The class must be one coverageOf() RECOGNISES. It was "plate", which
+      // drawnOf() reported but no branch of coverageOf() matched, so the beat
+      // still read as words-only and ch-26/ch-1 were rejected with the visual
+      // visibly on screen — the check was reading a kind the vocabulary does
+      // not have (board 38238545250). d.art.kind is already the real rung
+      // ("plate-organization" / "plate-person" / "plate-place"), which
+      // coverageOf() matches by name.
+      const entityType = String((b.named_entities || []).find((e) => e && sameName(e.name, one))?.type || "");
+      const item = rowItems[pickIdx] || null;
+      const hasAsset = !!(item && item.asset);
+      // A REAL mark beside the beat's own visual is a CUTOUT, sized by the
+      // ink the file actually shows. It was passed as plate-organization with
+      // no w/h/ink, so placeHero defaulted the box to 1:1: a 1:1 canvas whose
+      // ink is a wide wordmark (the Fox News logo) sat in a 440x440 square at
+      // 2.4% ink and the beat read as visual-less (board 39332364472 ch-1
+      // beat 4). A plate with no asset keeps its honest non-identifying class.
+      let ink = null;
+      if (hasAsset) { try { ink = await inkOf(join(PUBLIC_DIR, item.asset)); } catch { ink = null; } }
+      const cls = hasAsset
+        ? "cutout"
+        : (d.art && d.art.kind === "plates"
+          ? (entityType === "person" ? "plate-person" : entityType === "place" ? "plate-place" : "plate-organization")
+          : (d.art ? d.art.kind : "plate-place"));
+      b.concept_visuals = existing.concat([{ name: one, class: cls, logo: cls === "cutout" || cls === "plate-organization", asset: hasAsset ? item.asset : null, w: hasAsset ? (item.w || null) : null, h: hasAsset ? (item.h || null) : null, ...(ink ? { ink } : {}), source_url: (item && item.source_url) || null, license: (item && item.license) || null }]);
+      b.ladder_visual = { art: { kind: cls, name: one } };
+      b.canvas = canvasContentFor(b, {});
+      done.art++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${one} -> a second visual (${cls}) beside the ${(b.canvas?.composition) || "existing"} it already shows${rowNames.length > 1 ? `; ${rowNames.filter((x) => x !== one).join(", ")} named in the headline` : ""}`);
+      continue;
+    }
+    if (d.map) {
+      const v = checkVisual({ visual_type: "MAP", data: { place: d.map }, named_entities: b.named_entities }, b.narration || "");
+      if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map}; a map is refused (${v.why}) — a plate instead`); reset(b); b.art = { kind: "plate-place", name: d.map }; b.canvas = canvasContentFor(b, {}); done.art++; continue; }
+      // A map on a beat whose neighbour is already a map is the same frame twice.
+      // Board 38252482509 ch-9: beat 4 was MAP-CENTERED and the ladder turned
+      // beat 5 into one too, so canvas-type failed the video on "MAP-CENTERED
+      // twice in a row" — a defect this ladder introduced while fixing a
+      // different one. The place still needs a visual, so it takes the plate
+      // rung instead, which is a different shot of the same subject.
+      const neighbours = plan.beats.filter((x) => Math.abs(x.index - b.index) === 1);
+      if (neighbours.some((x) => String(x.canvas?.composition || "").toUpperCase() === "MAP-CENTERED")) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map}; the neighbouring beat is already a map — a plate instead of two maps in a row`);
+        reset(b); b.art = { kind: "plate-place", name: d.map };
+        b.canvas = canvasContentFor(b, {}); done.art++; continue;
+      }
+      reset(b); b.visual_type = "MAP"; b.data = { place: d.map };
+      b.ladder_visual = { visual_type: "MAP", data: b.data, map: d.map };
+      b.canvas = canvasContentFor(b, {}); done.map++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.map} -> a map with it highlighted`);
+    } else if (d.figure) {
+      // A second pass must not swap away a visual the first pass already put
+      // on screen for ANOTHER entity the sentence named. The ladder runs again
+      // after the asset pass, and on that pass $3.49 (already drawn) looked
+      // fine while the plate for "Quicken Simplifi" was the thing missing — so
+      // the figure branch replaced the plate with a stat card and both the
+      // organisation and the number went off screen: board 38289136245 ch-1
+      // beat 4, "draws figure, none of it the entity".
+      //
+      // So: if this beat already carries a ladder visual and the only thing
+      // missing is a FIGURE, that figure is the one drawn — the entity the
+      // ladder chose is not traded away for it. Two entities, two beats, or a
+      // row: the coverage is in the row.
+      if (b.ladder_visual && d.art) {
+        log(`[ladder] ch-${channelId} beat ${b.index}: keeps the ${b.ladder_visual.art?.kind || "visual"} for the entity it drew; ${d.figure.value} is already on screen`);
+        continue;
+      }
+      const v = checkVisual({ visual_type: "COUNTER", data: { value: d.figure.value, label: d.figure.label }, named_entities: b.named_entities }, b.narration || "");
+      if (v.why) { log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value}; a stat card is refused (${v.why})`); continue; }
+      reset(b); b.visual_type = v.type || "COUNTER"; b.data = v.data || { value: d.figure.value, label: d.figure.label };
+      // Recorded so chooseShots (which runs later) does not swap this figure
+      // back for its own and put the sentence's other number on nothing.
+      b.ladder_visual = { visual_type: b.visual_type, data: b.data };
+      b.canvas = canvasContentFor(b, {}); done.figure++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: states ${d.figure.value} -> a stat card`);
+    } else if (d.art) {
+      // The same plate twice in a row is a repeat the canvas-type gate refuses: the second is drawn as a monogram (initials), the third as the icon again.
+      const prev = plan.beats.find((x) => x.index === b.index - 1)?.art || plan.beats.find((x) => x.index === b.index - 1)?.canvas?.art;
+      if (prev && prev.kind === d.art.kind) {
+        if (["plate-organization", "plate-person", "plate-place"].includes(d.art.kind)) d.art.style = prev.style === "mono" ? "icon" : "mono";
+        else if (d.art.kind === "date" || d.art.kind === "span") d.art.style = prev.style === "alt" ? "base" : "alt";
+      }
+      reset(b, d.replaces); b.art = d.art;
+      // Recorded like the figure branch: a second ladder pass, or chooseShots,
+      // must not trade this entity's visual away for something the sentence
+      // also names.
+      b.ladder_visual = { art: d.art };
+      b.canvas = canvasContentFor(b, {}); done.art++;
+      log(`[ladder] ch-${channelId} beat ${b.index}: names ${d.art.kind.replace("plate-", "")} "${d.art.name}" -> ${d.art.kind}${d.replaces ? " (replaces a visual that carried none of it)" : ""}`);
+    }
+    if (!b.canvas) Object.assign(b, keep);
+    }
+  }
+  for (const b of plan.beats) {
+    const c = b.canvas;
+    if (!c || c.composition !== "MAP-CENTERED" || !c.data?.place) continue;
+    const region = resolveRegionName(c.data.place);
+    const code = flagCodeOf(region);
+    if (!code) continue;
+    const f = await fetchFlag(code);
+    if (!f.ok) { log(`[ladder] ch-${channelId} beat ${b.index}: no flag for ${c.data.place} (${f.why})`); continue; }
+    let aspect = 1.5;
+    try { const png = readFileSync(join(PUBLIC_DIR, f.asset)); aspect = png.readUInt32BE(16) / Math.max(1, png.readUInt32BE(20)); } catch {}
+    b.flag_option = { asset: f.asset, region, name: c.data.place, aspect, source_url: f.source_url, license: f.license, credit: f.credit };
+    c.flag_option = b.flag_option; done.flags++;
+  }
+  log(`[ladder] ch-${channelId}: ${done.map} map(s), ${done.art} art frame(s), ${done.figure} stat card(s) added for entities the sentences name; ${done.flags} flag(s) offered`);
+  return done;
+}
+
 function canvasContentFor(b, { photo = null } = {}) {
   let vt = String(b.visual_type || "TYPE").toUpperCase();
   if (((vt === "PHOTO" || vt === "DOCUMENT" || vt === "MONEY") && !photo)) vt = "TYPE";
   const c = {
     visual_type: vt,
     data: vt === "TYPE" ? null : b.data || null,
+    // The beat's spoken sentence travels with the canvas into the render manifest: the
+    // pre-ship place gate (scripts/place-gate.js) confirms every depicted place against it.
+    sentence: b.narration || "",
     lead_in: b.lead_in || null,
     // An empty headline left a TYPE-FULL beat blank (run 36504143080 ch-44
     // beat 6, 1% of the frame): the planner's own on-screen phrase fills it.
@@ -959,6 +1743,13 @@ function canvasContentFor(b, { photo = null } = {}) {
     persists_from: Number.isInteger(b.persists_from) ? b.persists_from : null,
     match_cut_prev: !!b.match_cut_prev,
     named_entities: Array.isArray(b.named_entities) ? b.named_entities : [],
+    // The beat's own resolved hero (a logo / money object). It is appended to
+    // concept_visuals below for the renderer, but it also travels as its own
+    // field so coverageOf() can see it BEFORE that append: the ladder ran on a
+    // canvas whose concept_visuals were full of a secondary date, concluded the
+    // primary organisation was uncovered, and added a second date — the retry
+    // then drew date + date and lost the OVHcloud logo (board 39344506422 ch-2).
+    hero_cutout: b.hero_cutout || null,
     // The planner's text entrance for the statement (a POP name or null);
     // scripts/anim-plan.js checks it against the video (POP_HARD on the hook /
     // CTA only, POP_LETTER once, POP_WORD_STACK only where it fits).
@@ -968,17 +1759,51 @@ function canvasContentFor(b, { photo = null } = {}) {
     headline_zone: b.headline_zone === "middle" && b.chart_zone === "top" && vt === "COUNTER" ? "middle" : "top",
     chart_zone: b.headline_zone === "middle" && b.chart_zone === "top" && vt === "COUNTER" ? "top" : "middle",
     caption_zone: "bottom",
+    // The beat's own ground, as the planner chose it (backgrounds.js resolveGround): a hex, or
+    // null for the default white — a beat that said nothing is drawn exactly as before.
+    ground_color: resolveGround(b.ground).hex,
   };
   if (b.type_layout === "split") c.type_layout = "split";
   // A named entity with no verified photo (resolve-scene.cjs): its name, large (canvas-layout.js).
   if (vt === "TYPE" && b.name_card?.name) c.name_card = b.name_card;
   // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
-  if (vt === "TYPE" && b.hero_cutout) c.concept_visuals = [b.hero_cutout];
+  // A logo or a money object fetched for this beat: the hero cutout (canvas-layout.js TYPE-FULL).
+  //
+  // A concept_visual the ENTITY LADDER added (entityLadder's `alongside` branch)
+  // is already on the beat, and this function rebuilt the list from scratch —
+  // so the ladder's second visual was computed, logged, and then thrown away
+  // before the render. Board 38241611172 ch-26 beat 1 logged "names Deloitte
+  // Cyprus -> a second visual (plate-organization)" and the manifest's
+  // concept_visuals came out [], so entity-coverage reported the beat as
+  // words-only while the ladder believed it had drawn something. The ladder's
+  // entry is kept first: it is a resolved entity the beat would otherwise not
+  // have, and the hero_cutout / symbol paths below fill in only when there is
+  // room for a second object (canvas-layout.js draws cutout0/cutout1).
+  const ladderVisuals = Array.isArray(b.concept_visuals) ? b.concept_visuals.filter(Boolean) : [];
+  if (ladderVisuals.length) c.concept_visuals = ladderVisuals.slice(0, 2);
+  if (vt === "TYPE" && b.hero_cutout) {
+    // The hero is the beat's primary entity's real visual, so it takes the first
+    // slot; a same-name plate beside it is the same thing drawn worse and is
+    // dropped, and a secondary visual keeps the second slot if there is one.
+    // It used to append only when fewer than two concept visuals existed, so a
+    // pair of date plates displaced the OVHcloud logo entirely (board
+    // 39344506422 ch-2 beat 1: "draws date + date, none of it the entity").
+    const rest = (c.concept_visuals || []).filter((v) => v && !sameName(v.name, b.hero_cutout.name));
+    c.concept_visuals = [b.hero_cutout, ...rest].slice(0, 2);
+  }
   // Composition variety's drawn-symbol fallback (scripts/composition-variety.js): the symbol for
   // what the sentence states ("risk" -> warning triangle) is the beat's hero. A name card keeps its name.
-  else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name) c.concept_visuals = [{ name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }];
+  else if (vt === "TYPE" && b.fallback_symbol && !b.name_card?.name && (c.concept_visuals || []).length < 2) {
+    c.concept_visuals = [...(c.concept_visuals || []), { name: b.fallback_symbol, class: "symbol", w: 1, h: 1, fallback: true }].slice(0, 2);
+  }
   // Entrance style (part C.4, assigned by the planner): together | staggered | visual-first.
   if (b.entrance_style) c.entrance_style = b.entrance_style;
+  // The planner's own layout (canvas-layout.js applyPlanLayout): where each element of this beat
+  // goes, on a grid the planner chose. Passed through as written — the layout code reads it.
+  if (b.layout && typeof b.layout === "object" && Array.isArray(b.layout.slots) && b.layout.slots.length) {
+    c.layout = { cols: b.layout.cols ?? null, rows: b.layout.rows ?? null, slots: b.layout.slots.slice(0, 16) };
+    console.log(`[layout] beat ${b.index ?? "?"}: plan layout ${c.layout.cols ?? "-"}x${c.layout.rows ?? "-"} — ${c.layout.slots.map((sl) => sl.id).join(", ")}`);
+  }
   // Source credit (part C): the domain of the beat's fetched image.
   const credit = sourceCredit(photo?.source_url || b.hero_cutout?.source_url);
   if (credit) c.source_credit = credit;
@@ -990,6 +1815,27 @@ function canvasContentFor(b, { photo = null } = {}) {
   const hasHero = (c.concept_visuals || []).length > 0;
   if (hasHero) delete c.type_layout;
   c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  // A flag is offered beside a country / state map (FLAG shot, chooseShots): the asset and its region travel with the canvas.
+  if (b.flag_option) c.flag_option = b.flag_option;
+  applyShot(c, b);
+  // The art of a named entity the beat had no picture of (scripts/entity-ladder.js): a date, a span, a plate, a flag.
+  if (b.art) { c.art = b.art; c.composition = "ENTITY-ART"; c.photo = null; c.concept_visuals = []; delete c.type_layout; delete c.name_card; }
+  // A clone channel's further verified pictures of this beat's entities (see [clone-extra]); only the clone family reads them.
+  if (Array.isArray(b.clone_extra) && b.clone_extra.length) c.clone_extra = b.clone_extra;
+  // ... and its props (attachCloneProps): generic photographed objects / places Gemini chose for the sentence
+  if (Array.isArray(b.clone_props) && b.clone_props.length) c.clone_props = b.clone_props;
+  // What became of the planner's layout for this beat (canvas-layout.js canvasLayout): used, or not
+  // used because it breaks a Layer 1 rule the default arrangement keeps.
+  if (c.layout) {
+    try {
+      const L = layoutOfCanvas(normalizeForLayout(c, b.index ?? 0));
+      // One line per beat, machine-countable: SOURCE plan | plan-x | plan-y | plan-noop | table.
+      const lo = L.layout || {};
+      const src = !lo.used ? "table" : !lo.moved?.length ? "plan-noop" : lo.axes === "xy" ? (lo.y_blend ? `plan(vertical ${Math.round(lo.y_blend * 100)}%)` : "plan") : `plan-${lo.axes}`;
+      const extra = [lo.moved?.length ? `moved ${lo.moved.join(",")}` : "", lo.adjusted?.length ? `adjusted ${lo.adjusted.join("; ")}` : "", lo.unknown?.length ? `unknown ids ${lo.unknown.join(",")}` : "", lo.rejected?.length ? `rejected ${lo.rejected.join("; ")}` : ""].filter(Boolean).join(" | ");
+      console.log(`[layout] beat ${b.index ?? "?"}: SOURCE ${src}${extra ? ` — ${extra}` : ""}`);
+    } catch (e) { console.log(`[layout] beat ${b.index ?? "?"}: could not evaluate the plan layout (${e.message})`); }
+  }
   return c;
 }
 
@@ -1082,6 +1928,141 @@ function bankCutout(name, concept) {
   return null;
 }
 
+/**
+ * Concept visuals, step 3 of resolveCanvas: each wanted beat gets the resolved visuals of its
+ * concept names, in beat order — minus every image an earlier beat already shows. `used` is
+ * resolveCanvas's one usedImages (scripts/lib/used-images.js), already holding the photos, logos,
+ * money and document images the earlier paths attached; each cutout kept here is added to it.
+ * It used to be a separate set keyed by asset path only, seeded after the fact, so a live cutout
+ * (cutouts-live/<ch>/<beat>-<concept>.png: a new path per beat) of one picture passed on every beat.
+ */
+export function attachConceptVisuals({ wanted, results, used, stats, channelId }) {
+  for (const w of wanted) {
+    // No image twice in one video (owner, 2026-10-08): a cutout an earlier beat shows is dropped here.
+    const visuals = used.keep(w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean), `beat ${w.b.index} cutout`);
+    for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
+    if (!visuals.length) { stats.none++; continue; }
+    // Two cutout beats in a row both render (owner's spec 2026-10-03, C.3 — the earlier
+    // "never a hero next to a hero" guard is removed); canvas-type keys a hero beat by its
+    // object, so only the SAME object twice in a row is a repeat.
+    const c = w.b.canvas;
+    if (c.composition === "TYPE-SPLIT") {
+      // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
+      // not "TYPE-FULL twice" (local-audit canvas-type keys it as +HERO).
+      c.composition = "TYPE-FULL"; delete c.type_layout;
+      console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
+    }
+    c.concept_visuals = visuals;
+    // The object is known now: the planner's HERO shot can be drawn (applyShot).
+    applyShot(c, w.b);
+    // Source credit (part C): the fetched cutout's page domain.
+    { const cr = sourceCredit(visuals.find((v) => v.class === "cutout")?.source_url); if (cr) c.source_credit = cr; }
+    console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
+    // Every rendered cutout: where it came from and what the verifier saw (owner's audit trail).
+    for (const v of visuals.filter((x) => x.class === "cutout")) {
+      console.log(`[cutout] ch-${channelId} beat ${w.b.index}: "${v.name}" from ${v.source === "live" ? "pixabay" : v.source}, verdict=${v.verdict}, seen="${v.seen}"`);
+      console.log(`[cutout] ch-${channelId} beat ${w.b.index}: source=${v.source_url || "?"}`);
+    }
+  }
+}
+
+/**
+ * PROPS FOR EVERY BEAT of a clone channel (owner, 2026-10-16: "a PNG cutout in every frame ... make that Gemini's task ... a PNG photo of a court, of a
+ * house ... never icons"). Gemini proposes generic, photographable props per beat (scripts/lib/plan-props.mjs, which also refuses people, text, marks,
+ * drawings, abstractions and specific named things); each is fetched as a Pixabay PHOTO, isolated and verified LITERAL by fetch-cutout-once.cjs, best
+ * proposal first, until the beat has PROPS_PER_BEAT. No picture is shown twice in a video (usedImages). Gemini silent -> nothing invented, logged.
+ */
+// 3, not 2 (board 38976972038 ch-8): a beat that verified one of its two props showed that ONE picture on every shot for 13 s. A beat of ~6 shots needs
+// three pictures to rotate; the extra fetches are bounded by CLONE_PROPS_BUDGET_MS.
+// What a fetched object is judged against: the beat's SENTENCE when there is one (a bare word let a blank old book pass as "document"; board 38976972038), else the
+// planner's scene description. Used by every cutout path: props, concept cutouts, png-bank files and money.
+const sceneFor = (b, concept) => (b && b.narration ? `a photo of ${concept} for the sentence: "${String(b.narration).slice(0, 300)}"` : (b && b.scene_description) || null);
+const PROPS_PER_BEAT = Number(process.env.CLONE_PROPS_PER_BEAT || 3);
+// vision looks per prop: 3 on Gemini (every look is quota: board 38889577784 ran all four keys dry); 5 when Ollama Cloud answers first (free tier, OLLAMA_FIRST)
+const PROP_LOOKS = Number(process.env.CLONE_PROP_LOOKS || (/^(1|true|on|yes)$/i.test(String(process.env.OLLAMA_FIRST || "")) && process.env.OLLAMA_API_KEY ? 5 : 3));
+// ACROSS RENDER ATTEMPTS (one process renders a channel's attempts 1..3): what Gemini proposed for a sentence and the props that passed verification for it.
+// Each attempt used to plan its props from scratch — a fresh Gemini proposal, a fresh fetch — so ch-1's one verified prop of attempt 1 ("bank note") was gone
+// from attempts 2 and 3, which rendered with none (run 39128017438; attempt 1 had been rejected for "monotonous centered typography", i.e. too few pictures).
+// A remembered prop is put through this attempt's no-repeat ledger again like any other picture.
+const PROPOSALS_BY_SENTENCE = new Map();   // `${channel}|${sentence}` -> planProps entry { kept, dropped }
+const PROPS_BY_SENTENCE = new Map();       // `${channel}|${sentence}` -> [vis] verified on an earlier attempt
+async function attachCloneProps({ plan, channelId, used }) {
+  const { planProps } = await import("./lib/plan-props.mjs");
+  const { callGemini } = await import("../src/lib/gemini-client.js");
+  const beats = plan.beats.map((b) => ({ index: b.index, sentence: b.narration || "", named_entities: [...(b.named_entities || []), ...(b.canvas?.named_entities || [])] }));
+  const ask = async (prompt) => {
+    try { return await callGemini([{ role: "user", content: prompt }], { model: "gemini-3.5-flash-lite", maxTokens: 3000, temperature: 0.2, noCache: true, tag: `props ch-${channelId}` }); }
+    catch (e) { return { error: e.message }; }
+  };
+  const memoKey = (b) => `${channelId}|${b.narration || b.sentence || ""}`;
+  // Gemini is asked only about sentences it has not answered for this channel yet (a retry re-asks nothing: same proposals, no quota spent)
+  const fresh = beats.filter((b) => !PROPOSALS_BY_SENTENCE.has(memoKey(b)));
+  if (fresh.length) {
+    const got = await planProps({ topic: channelTopic(channelId) || "", beats: fresh, ask });
+    for (const b of fresh) if (got.has(b.index) && got.get(b.index).kept.length) PROPOSALS_BY_SENTENCE.set(memoKey(b), got.get(b.index));
+    // A beat left with NO usable proposal says why: run 39165054721 ch-49 had props planned for 1 of 8 beats and the log never said whether the model proposed
+    // nothing or every proposal was refused here (only kept beats reached the per-beat log below).
+    for (const b of fresh) {
+      const v = got.get(b.index);
+      if (v && v.kept.length) continue;
+      console.log(`::warning::[props] ch-${channelId} beat ${b.index}: no usable proposal — ${v && v.dropped.length ? `refused: ${v.dropped.join("; ")}` : "the model proposed nothing"}`);
+    }
+  }
+  const plans = new Map(beats.map((b) => [b.index, PROPOSALS_BY_SENTENCE.get(memoKey(b))]).filter(([, v]) => v));
+  if (![...plans.values()].some((v) => v.kept.length)) { console.log(`::warning::[props] ch-${channelId}: Gemini proposed no usable props — beats keep only their entity pictures`); return; }
+  const T0 = Date.now(), BUDGET = Number(process.env.CLONE_PROPS_BUDGET_MS || 16 * 60000);
+  const shown = new Set();
+  // A GENERIC PERSON prop (plan-props.mjs, owner 2026-10-18: "it should be mentioned that this is not them") is captioned on every frame that shows it.
+  // The caption names nobody: a name in it would be read by the naming checks as a claim about the frame.
+  const namedPeople = new Set(plan.beats.flatMap((x) => (x.named_entities || []).filter((e) => e && e.type === "person").map((e) => String(e.name || "").toLowerCase())).filter(Boolean));
+  const personNote = namedPeople.size === 1 ? "Illustrative photo — not the person in this story"
+    : namedPeople.size > 1 ? "Illustrative photo — not anyone named in this story" : "Illustrative photo";
+  const queue = [...plan.beats];
+  let got = 0, beatsWith = 0;
+  const worker = async () => {
+    while (queue.length) {
+      const b = queue.shift();
+      const v = plans.get(b.index);
+      if (!v) continue;
+      for (const d of v.dropped) console.log(`[props] ch-${channelId} beat ${b.index}: "${d}" refused`);
+      const mine = [];
+      for (const vis of PROPS_BY_SENTENCE.get(memoKey(b)) || []) {
+        if (mine.length >= PROPS_PER_BEAT || shown.has(vis.name) || !used.keep([vis], `beat ${b.index} prop (kept from an earlier attempt)`).length) continue;
+        shown.add(vis.name);
+        mine.push(vis);
+        console.log(`[props] ch-${channelId} beat ${b.index}: "${vis.name}" -> ${vis.asset} (verified on an earlier attempt)`);
+      }
+      for (const p of v.kept) {
+        if (mine.length >= PROPS_PER_BEAT) break;
+        if (Date.now() - T0 > BUDGET) { console.log(`[props] ch-${channelId} beat ${b.index}: props budget spent (${BUDGET / 1000}s), "${p.object}" not fetched`); break; }
+        if (shown.has(p.object)) continue;
+        // the verifier judges the picture against the SENTENCE ("What the beat needs"), not the bare word: with scene null a blank old book passed as
+        // "document" twice (board 38976972038 ch-8 "ordered ... to cease operations", ch-9 "are these contracts actually signed?")
+        // an EXPLAINING prop (plan-props.mjs) is judged on the claim it explains as well: the check refuses a photo that is only decorative
+        const explains = p.role === "explains" ? p.explains : null;
+        const scene = explains ? `a photo of ${p.object}, shown to explain "${explains}" (${p.shows}) in the sentence: "${String(b.narration || "").slice(0, 300)}"` : sceneFor(b, p.object);
+        const r = await fetchCutoutForBeat({ concept: p.object, name: p.object, channel: channelId, beat_index: b.index, spec: { grounded: p.building, max_candidates: PROP_LOOKS }, scene, explains });
+        if (!r) continue;
+        const vis = { name: p.object, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, license: r.license, verdict: r.verdict, seen: r.seen, prop: true, grounded: !!p.building, role: p.role || "named", ...(explains ? { explains, shows: p.shows } : {}), ...(p.person ? { person: true, note: personNote } : {}) };
+        // the same file under another name ("bank note" and "dollar bills" both fetch Wikipedia's $100 scan): refused, and SAID, so the warning below is not
+        // read as "nothing verified" (run 39128017438 ch-1 beat 4)
+        if (!used.keep([vis], `beat ${b.index} prop`).length) { console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" verified but not used — that picture is already shown in this video`); continue; }
+        shown.add(p.object);
+        mine.push(vis);
+        console.log(`[props] ch-${channelId} beat ${b.index}: "${p.object}" -> ${r.png_path} (${r.source}, saw "${r.seen}")`);
+      }
+      if (mine.length) {
+        PROPS_BY_SENTENCE.set(memoKey(b), mine);
+        b.clone_props = mine;
+        if (b.canvas) b.canvas.clone_props = mine;
+        got += mine.length; beatsWith++;
+      } else console.log(`::warning::[props] ch-${channelId} beat ${b.index}: no prop verified (${v.kept.map((p) => p.object).join(", ") || "none proposed"})`);
+    }
+  };
+  await Promise.all([worker(), worker(), worker(), worker()]);
+  console.log(`[props] ch-${channelId}: ${got} prop(s) on ${beatsWith}/${plan.beats.length} beats in ${((Date.now() - T0) / 1000).toFixed(0)}s`);
+}
+
 async function resolveCanvas(channelId, planPath, plan) {
   let fetchedNew = 0;
   const counts = { by_comp: {}, photos: 0, entity_fallbacks: 0 };
@@ -1106,6 +2087,15 @@ async function resolveCanvas(channelId, planPath, plan) {
   };
   // Every channel resolves every beat the same way (no channel-specific skip exists).
   console.log(`[resolve] starting PNG fetch for ch-${channelId}, ${plan.beats.length} beats to resolve`);
+  // NO PHOTO REPEATS WITHIN A VIDEO (owner, 2026-10-08; CI run 37810883817 ch-5 drew the same
+  // courthouse on beats 6 and 8). An image a previous beat shows is not a candidate again: the
+  // beat falls down the ladder. Layer 1 no-photo-repeat checks the rendered manifest.
+  // ONE set for every path that attaches a visual — entity photo, logo, money cutout, document
+  // scan, the bundled fallback, concept cutouts (bank and live) — keyed by asset AND source
+  // (scripts/lib/used-images.js: a live cutout's path is beat-numbered, so the same picture on
+  // three beats was three different paths and passed a path-only filter three times).
+  const usedImages = createUsedImages((m) => console.log(m.replace("[no-repeat] ", `[no-repeat] ch-${channelId}: `)));
+  const reused = (v, what) => usedImages.reused(v, what);
   for (const [bi, b] of plan.beats.entries()) {
     let photo = null;
     const vt = String(b.visual_type || "").toUpperCase();
@@ -1115,10 +2105,14 @@ async function resolveCanvas(channelId, planPath, plan) {
       // denomination, a stack of bills, a coin, a piggy bank...) as a clean, verified cutout —
       // a bill or coin from Wikipedia / Wikimedia first and checked FLAT (fetch-cutout-once.cjs),
       // shown whole as the hero; not a full-bleed photo that crops it.
-      const obj = String(b.data?.object || "dollar bill").toLowerCase();
+      // No object named by the planner: a bill only when the SENTENCE says bills / notes / cash — "$4.2 billion in fines" names no bill, and a stock dollar
+      // bill there is a symbol, which the cutout rule refuses (an object is shown only when its own words are in the sentence). Otherwise no cutout.
+      const obj = String(b.data?.object || (/\b(bills?|banknotes?|bank notes?|cash)\b/i.test(b.narration || "") ? "dollar bill" : "")).toLowerCase();
       const value = b.data?.value || null;
       const spec = CUTOUT_SPECS.find((x) => x.name === obj.replace(/\s+/g, "-")) || {};
-      const r = await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: b.scene_description || null });
+      if (!obj) console.log(`[cutout] ch-${channelId} beat ${b.index}: money beat names no object and its sentence no bill or cash — no cutout`);
+      let r = !obj ? null : await fetchCutoutForBeat({ concept: obj, name: obj, channel: channelId, beat_index: b.index, spec, scene: sceneFor(b, obj) });
+      if (r && reused({ asset: r.png_path, source_url: r.source_url }, `beat ${b.index} money cutout`)) r = null;
       b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
       if (r) {
         b.hero_cutout = { name: obj, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: r.source, source_url: r.source_url, money: true, ink: await inkOf(r.abs_path) };
@@ -1136,6 +2130,7 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Every fetched photo is verified before use (owner's spec 2026-10-02, task 2.4). The
       // document lookup matched "HOME Act" to a photo of people announcing a DIFFERENT act
       // (CI run 37031119023 ch-2 beat 4); a file name is not what the image shows.
+      if (r.ok && reused({ asset: r.asset, source_url: r.source_url }, `beat ${b.index} document`)) { r.ok = false; r.why = "already shown on an earlier beat"; r.attempts = []; }
       if (r.ok) {
         const what = vt === "DOCUMENT" ? `the document "${b.data?.name}" (a scan or photograph of its pages)` : `${b.data?.object} (a photograph of it)`;
         const v = await verifyPlaceImage(join(PUBLIC_DIR, r.asset), what);
@@ -1160,9 +2155,12 @@ async function resolveCanvas(channelId, planPath, plan) {
       // Every beat that names something gets its picture — the hook and the CTA too (owner's
       // spec 2026-10-03, "PNGs on every beat"; this replaces "the hook stays typography").
       const ents = await sceneEntities({ beat: b, sentence: b.narration || "", entityNamedInSentence });
-      const real = ents.filter((e) => REAL.includes(e.type))
+      const real = dropContainedEntities(ents.filter((e) => REAL.includes(e.type)), b.narration || "")
         .sort((x, y) => (y.name === b.data?.entity) - (x.name === b.data?.entity) || REAL.indexOf(x.type) - REAL.indexOf(y.type));
       const named = [];   // real, resolvable names that found no verified photo: the name card's subject
+      // Every verified candidate this beat's entities produce; the beat's ONE visual is then chosen
+      // from them against the line (beat-visual.js) — not the first one a verifier passed.
+      const found = [];
       for (const e0 of real) {
         // A country or US state is drawn as its MAP (below), not a photo: verified photos of
         // "California" (a beach) and "North Korea" (a skyline) matched the place and nothing in
@@ -1172,28 +2170,65 @@ async function resolveCanvas(channelId, planPath, plan) {
         // A generic institution name ("Supreme Court", "the central bank") names a
         // different building in every country (run 36504143080 ch-2): qualified with
         // the script's one country, or refused.
-        const q = ["organization", "institution", "building"].includes(e0.type) ? qualifyEntity(e0, countries) : { ent: e0 };
+        const q = ["organization", "institution", "building"].includes(e0.type) ? await qualifyEntityWith(e0, countries, wikiSummary) : { ent: e0 };
         if (q.note) console.log(`[entity] ${q.note}`);
         if (!q.ent?.name) { entities.fell_back.push(`${e0.type} "${e0.name}": ${q.note}`); named.push(e0); continue; }
-        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "" });
-        if (r.ok && r.logo) {
-          // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
-          b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
-          b.hero_cutout = { name: e0.name, class: "cutout", asset: r.logo.asset, w: r.logo.w, h: r.logo.h, logo: true, source: r.logo.source, source_url: r.logo.source_url, ink: await inkOf(r.logo.abs) };
-          fetchedNew++;
-          entities.resolved.push(`beat ${b.index}: ${e0.type} "${e0.name}" -> logo ${r.logo.asset} (${r.logo.source}, ${r.logo.license})`);
-          break;
-        }
-        if (r.ok) {
-          photo = { ...r.photo, entity: e0.name };
-          fetchedNew++;   // a new file under public/: the bundle is rebuilt (run 36498049819)
-          entities.resolved.push(`beat ${b.index}: ${e0.type} "${e0.name}" -> ${photo.asset} (${photo.source}, ${photo.license || "?"})`);
-          b.visual_type = "PHOTO"; b.data = { entity: e0.name, entity_type: e0.type };
-          break;
-        }
+        const r = await resolveSceneEntity({ channel: channelId, beatIndex: b.index, entity: q.ent, context: channelTopic(channelId) || "", scene: b.scene_description || null, sentence: b.narration || "", script: plan.beats.map((x) => x.narration || "").join(" ") });
+        if (r.ok && (r.logo || r.photo)) { found.push({ id: r.logo ? r.logo.asset : r.photo.asset, e0, r }); continue; }
         entities.fell_back.push(`beat ${b.index}: ${e0.type} "${e0.name}": ${r.why}`);
         // A refused acronym ("AI", "ED") is not a name: no name card is made of it.
         if (!r.refused) named.push(e0);
+      }
+      for (let k = found.length - 1; k >= 0; k--) if (reused({ asset: found[k].id, source_url: (found[k].r.logo || found[k].r.photo).source_url, mark: !!found[k].r.logo || found[k].e0.type === "person" }, `beat ${b.index} ${found[k].e0.type} "${found[k].e0.name}"`)) { entities.fell_back.push(`beat ${b.index}: ${found[k].e0.name}: image already shown on an earlier beat`); named.push(found[k].e0); found.splice(k, 1); }
+      if (found.length) {
+        const regionAvail = real.find((e) => e.type === "place" && resolveRegionName(e.name));
+        const assets = found.map(({ id, e0, r }) => {
+          const a = r.logo || r.photo;
+          return { id, entity: e0.name, entity_type: e0.type, kind: r.logo ? "logo" : (r.photo.kind || e0.type), caption: r.logo ? `logo / mark of "${r.logo.name}"` : (r.photo.verified_as || e0.name), seen_in_image: a.seen || null, source: a.source || null, source_url: a.source_url || null };
+        });
+        const choice = await chooseBeatVisual({
+          line: b.narration || "", entities: real.map((e) => ({ type: e.type, name: e.name })), assets,
+          styleSpec: (() => { try { return loadStyleReference(channelId).ref || null; } catch { return null; } })(), slot: b.layout || null, mapAvailable: !!regionAvail,
+          ask: async (prompt) => { const a = await askVisualProviders([{ role: "user", content: prompt }], (x) => (x && typeof x === "object" && "visual" in x ? x : null)); return a.v || { error: `no provider answered (${(a.tried || []).join("; ").slice(0, 160)})` }; },
+        });
+        console.log(`[visual-choice] ch-${channelId} beat ${b.index}: ${choice.source} ${choice.visual}${choice.valid ? "" : " (fallback)"} — ${choice.reason}${choice.skipped.length ? ` | skipped: ${choice.skipped.map((s) => `${s.asset} (${s.why})`).join("; ")}` : ""}${choice.missing ? ` | missing: ${choice.missing}` : ""}`);
+        for (const s of choice.skipped) entities.fell_back.push(`beat ${b.index}: ${s.asset} skipped — ${s.why}`);
+        const pick = choice.asset ? found.find((f) => f.id === String(choice.asset.id)) : null;
+        // THE OTHER VERIFIED PICTURES of this beat's entities, kept for a clone channel (board 38870271640 ch-49 beat 1: NPR's logo was fetched and verified MATCH,
+        // then dropped because the canvas engine draws ONE visual per beat). The clone family shows a beat's pictures one per shot, so they are its other shots.
+        // Same assets the verifiers passed, of entities this sentence names; nothing new is sourced.
+        if (isCloneChannel(channelId)) {
+          b.clone_extra = found.filter((f) => f !== pick).map(({ e0, r }) => r.logo
+            ? { kind: "logo", name: e0.name, asset: r.logo.asset, w: r.logo.w || null, h: r.logo.h || null, source_url: r.logo.source_url || null }
+            : { kind: e0.type === "person" ? "person" : "photo", name: e0.name, asset: r.photo.asset, w: r.photo.w || null, h: r.photo.h || null, view: r.photo.view || (e0.type === "person" ? "person" : null), source_url: r.photo.source_url || null, credit: r.photo.credit || null });
+          if (b.clone_extra.length) console.log(`[clone-extra] ch-${channelId} beat ${b.index}: also shows ${b.clone_extra.map((x) => `${x.kind} ${x.name}`).join(", ")}`);
+        }
+        if (pick && pick.r.logo) {
+          // A company / institution logo (part B): the hero cutout of a TYPE-FULL beat.
+          b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
+          b.hero_cutout = { name: pick.e0.name, class: "cutout", asset: pick.r.logo.asset, w: pick.r.logo.w, h: pick.r.logo.h, logo: true, source: pick.r.logo.source, source_url: pick.r.logo.source_url, license: pick.r.logo.license || null, ...(pick.r.logo.fair_use ? { fair_use: pick.r.logo.fair_use } : {}), ink: await inkOf(pick.r.logo.abs) };
+          fetchedNew++;
+          entities.resolved.push(`beat ${b.index}: ${pick.e0.type} "${pick.e0.name}" -> logo ${pick.r.logo.asset} (${choice.source})`);
+        } else if (pick) {
+          photo = { ...pick.r.photo, entity: pick.e0.name };
+          fetchedNew++;   // a new file under public/: the bundle is rebuilt (run 36498049819)
+          entities.resolved.push(`beat ${b.index}: ${pick.e0.type} "${pick.e0.name}" -> ${photo.asset} (${choice.source}, ${photo.source}, ${photo.license || "?"})`);
+          b.visual_type = "PHOTO"; b.data = { entity: pick.e0.name, entity_type: pick.e0.type };
+        } else if (choice.visual === "silhouette" || choice.visual === "document") {
+          // The bundled non-identifying treatment / document surface (resolve-scene.cjs FALLBACK_ASSETS).
+          let fb = await fallbackAsset(choice.visual, channelId, b.index);
+          // The bundled surface is one file: on a second beat it is the same image again.
+          if (fb?.ok && reused(fb.photo, `beat ${b.index} ${choice.visual} fallback`)) fb = null;
+          if (fb?.ok) { photo = { ...fb.photo, entity: found[0].e0.name }; b.visual_type = "PHOTO"; b.data = { entity: found[0].e0.name, entity_type: found[0].e0.type }; }
+          else named.push(...found.map((f) => f.e0));
+        } else if (choice.visual.startsWith("symbol:") && !namesShowableEntity(b.named_entities)) {
+          // (A beat that names an entity never takes a drawn symbol: it falls to the name card below — cutout-policy.js.)
+          b.visual_type = "TYPE"; b.data = null; delete b.type_layout; b.fallback_symbol = choice.visual.slice(7);
+        } else if (choice.visual !== "map") {
+          // type_card (or an answer that could not be validated): the found entities become the name
+          // card's subject — the honest typographic placeholder, never the unverified photo.
+          named.push(...found.map((f) => f.e0));
+        }
       }
       // A country / US state with no verified photo is still shown as ITSELF: the drawn
       // map (MAP-CENTERED, the region's real outline) — not a name card, never a stand-in.
@@ -1216,6 +2251,8 @@ async function resolveCanvas(channelId, planPath, plan) {
       }
     }
     b.canvas = canvasContentFor(b, { photo });
+    usedImages.add(photo);
+    usedImages.add(b.hero_cutout);
     if (photo) b.asset = { id: photo.asset, source: photo.source || "wikimedia", source_url: photo.source_url, license: photo.license, attribution: photo.credit };
   }
   // NO REPEAT, again, on what actually resolved (a real photo of a building is
@@ -1227,6 +2264,9 @@ async function resolveCanvas(channelId, planPath, plan) {
     const narr = (b) => b.narration || "";
     const imageBeats = () => plan.beats.filter((b) => b.canvas.photo).length;
     const rot = enforceRotation(plan.beats.length, {
+      // NOT locked on planner_chose_type: this pass is the legality backstop for Layer 1's
+      // canvas-type (no composition twice in a row). Locking it (315e009) left ch-5 MAP-CENTERED
+      // and ch-49 NUMBER-FULL twice in a row and both failed Layer 1 (CI run 37803694366).
       // A name card is its own composition exactly as local-audit canvas-type keys it: by the
       // lead_phrase box, which the layout draws only when the card has a sub-phrase. A bare-name
       // card next to a TYPE-FULL statement is "TYPE-FULL twice" to the audit (CI run
@@ -1269,6 +2309,10 @@ async function resolveCanvas(channelId, planPath, plan) {
       const b = plan.beats[i];
       // A name card stays a name card (owner's spec 2026-10-02, task 4.3: the entity's name and figure, not a chart).
       if (!isType(b) || b.canvas.name_card) continue;
+      // Gemini decides: a TYPE beat the planner chose (and the grounding gate passed) is not
+      // rewritten here. CI run 37795613343 ch-1 beat 3: the planner chose TYPE, this pass
+      // converted it to a MAP of the UAE off the word "Are", and beat-check failed the video.
+      if (b.planner_chose_type) continue;
       for (const alt of candidatesFor({ sentence: narr(b), headline: b.canvas.headline || "" })) {
         if (["TYPE-FULL", "TYPE-SPLIT"].includes(alt.composition)) continue;
         const v = checkVisual({ visual_type: alt.visual_type, data: alt.data || {}, named_entities: b.named_entities }, narr(b));
@@ -1314,12 +2358,20 @@ async function resolveCanvas(channelId, planPath, plan) {
     const stats = { bank: 0, live: 0, symbol: 0, none: 0, rejected: [] };
     // 1. Which beats, which concepts.
     const wanted = [];
+    // OBJECTS ON EVERY BEAT for a clone channel (owner, 2026-10-16: the references put a real cut-out in nearly every shot; board 38831133468 gave ch-1 5 pictures
+    // in 29 shots, ch-44 and ch-5 none). The clone family stages every beat the same way whatever the canvas composition says, so a DATA / COUNTER / emphasis beat
+    // whose sentence names an object gets that object too. The grounding is unchanged: the sentence must name it, and the fetched PNG is verified LITERAL.
+    const cloneObjects = isCloneChannel(channelId);
     for (const [bi, b] of plan.beats.entries()) {
       const c = b.canvas;
       // TYPE-SPLIT beats are text-only too (TEMPLATE_MONOCULTURE, CI run
       // 36953236514); converted in step 3 only if a visual resolves.
       // (a logo or a money object already holds the hero cutout: part B / G)
-      if (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE") continue;
+      // A NUMBER beat whose sentence names a physical object ("$500 in cash"): its object is fetched
+      // too, but only OFFERED — to Gemini at render time as an object shot (chooseShots), the
+      // reference's number-with-its-object (ref-02 "1 MILLION dollar" among the money). Not attached.
+      const altOnly = !cloneObjects && c.composition === "NUMBER-FULL" && String(c.visual_type).toUpperCase() === "COUNTER" && !!c.data?.value;
+      if (cloneObjects ? (c.photo || (c.concept_visuals || []).length || c.art) : (!altOnly && (!["TYPE-FULL", "TYPE-SPLIT"].includes(c.composition) || c.emphasis_beat || c.vertical || c.name_card || (c.concept_visuals || []).length || String(c.visual_type).toUpperCase() !== "TYPE"))) continue;
       // The hook and the CTA get their object too (owner's spec 2026-10-03, "PNGs on every
       // beat" — this replaces "the hook and the CTA stay TYPE").
       const vc = validateConcepts(b.concepts, b.narration || "", CUTOUT_SPECS);
@@ -1331,8 +2383,12 @@ async function resolveCanvas(channelId, planPath, plan) {
       const PEOPLE_WORDS = /\b(man|men|woman|women|person|people|officer|official|ceo|leader|worker|workers|scientist|doctor|judge|lawyer|founder|president|minister)\b/;
       const isPeople = (n) => PEOPLE.has(n) || PEOPLE_WORDS.test(n);
       if (namesPerson && vc.concepts.some(isPeople)) console.log(`[concepts] ch-${channelId} beat ${b.index}: names a person — generic people cutouts dropped (${vc.concepts.filter(isPeople).join(", ")})`);
-      const names = (namesPerson ? vc.concepts.filter((n) => !isPeople(n)) : vc.concepts).slice(0, 3);
-      if (names.length) wanted.push({ bi, b, names, from: vc.from });
+      // The cutout policy (visual/cutout-policy.js): only an object the sentence names — never a role ("businessman", "worker"), never a
+      // generic people cutout, never a drawn symbol on a beat that names an entity (its own mark / portrait / map, else its name in type).
+      const pol = cutoutPolicy(vc.concepts.filter((n) => !PEOPLE.has(n)), b.named_entities);
+      for (const d of pol.dropped) console.log(`[concepts] ch-${channelId} beat ${b.index}: "${d.name}" dropped — ${d.why}`);
+      const names = pol.keep.filter((n) => !(namesPerson && isPeople(n))).slice(0, 3);
+      if (names.length) wanted.push({ bi, b, names, from: vc.from, altOnly });
     }
     // 2. Resolve: symbol drawn; cutout bank (verified) -> live (verified) -> none; scene none.
     // Three questions (verify-image.cjs, owner's spec 2026-10-03 part E): shows YES, LITERAL, CLEAN.
@@ -1358,13 +2414,13 @@ async function resolveCanvas(channelId, planPath, plan) {
         let v = bankCutout(name, concept);
         if (v) {
           // A person supplied it, but it is verified like any fetched PNG.
-          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: w.b.scene_description || null, money: FLAT_MONEY(concept) });
+          const vr = await verifyImage(join(PUBLIC_DIR, v.asset), { entity: concept, type: "object", scene: sceneFor(w.b, concept), money: FLAT_MONEY(concept), alone: true });
           if (vr.accept) { Object.assign(v, { verdict: vr.kind, seen: vr.seen, source_url: `png-bank/${v.file}` }); console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} ACCEPTED (${vr.reason}, saw "${vr.seen}")`); results.set(`${w.bi}:${name}`, v); continue; }
           console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": bank file ${v.file} REJECTED (${vr.reason}, saw "${vr.seen}")`);
           v = null;
         } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": not in bank, fetching live`);
         if (Date.now() - T0 < BUDGET_MS) {
-          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec, scene: w.b.scene_description || null });
+          const r = await fetchCutoutForBeat({ concept, name, channel: channelId, beat_index: w.b.index, spec, scene: sceneFor(w.b, concept) });
           if (r) { v = { name, class: "cutout", asset: r.png_path, w: r.width || 1, h: r.height || 1, source: "live", source_url: r.source_url, verdict: r.literal, seen: r.seen }; }
         } else console.log(`[cutout] ch-${channelId} beat ${w.b.index} "${concept}": ${(BUDGET_MS / 60000).toFixed(0)}-minute budget spent, not fetched — beat renders without a cutout`);
         results.set(`${w.bi}:${name}`, v);
@@ -1378,30 +2434,15 @@ async function resolveCanvas(channelId, planPath, plan) {
     }
     const resolved =[...results.values()].filter((v) => v && v.class === "cutout").length;
     if (Date.now() - T0 >= BUDGET_MS) console.log(`[cutout-live] ch-${channelId}: ${(BUDGET_MS / 60000).toFixed(0)}-minute budget reached, using ${resolved}/${tasks.length} resolved cutouts`);
-    // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours).
-    for (const w of wanted) {
-      const visuals = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter(Boolean);
-      for (const v of visuals) stats[v.class === "symbol" ? "symbol" : v.source]++;
-      if (!visuals.length) { stats.none++; continue; }
-      // Two cutout beats in a row both render (owner's spec 2026-10-03, C.3 — the earlier
-      // "never a hero next to a hero" guard is removed); canvas-type keys a hero beat by its
-      // object, so only the SAME object twice in a row is a repeat.
-      const c = w.b.canvas;
-      if (c.composition === "TYPE-SPLIT") {
-        // A hero-cutout beat is not a plain statement: next to a TYPE-FULL it is
-        // not "TYPE-FULL twice" (local-audit canvas-type keys it as +HERO).
-        c.composition = "TYPE-FULL"; delete c.type_layout;
-        console.log(`[concepts] ch-${channelId} beat ${w.b.index}: TYPE-SPLIT -> TYPE-FULL concept beat`);
-      }
-      c.concept_visuals = visuals;
-      // Source credit (part C): the fetched cutout's page domain.
-      { const cr = sourceCredit(visuals.find((v) => v.class === "cutout")?.source_url); if (cr) c.source_credit = cr; }
-      console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${visuals.map((v) => `${v.name} (${v.class === "symbol" ? "symbol" : v.source})`).join(", ")} — from the ${w.from}`);
-      // Every rendered cutout: where it came from and what the verifier saw (owner's audit trail).
-      for (const v of visuals.filter((x) => x.class === "cutout")) {
-        console.log(`[cutout] ch-${channelId} beat ${w.b.index}: "${v.name}" from ${v.source === "live" ? "pixabay" : v.source}, verdict=${v.verdict}, seen="${v.seen}"`);
-        console.log(`[cutout] ch-${channelId} beat ${w.b.index}: source=${v.source_url || "?"}`);
-      }
+    // 3. Attach, in beat order (the TYPE-SPLIT conversion sees its final neighbours), against the
+    // SAME usedImages every other path fills (attachConceptVisuals).
+    attachConceptVisuals({ wanted: wanted.filter((w) => !w.altOnly), results, used: usedImages, stats, channelId });
+    if (cloneObjects) await attachCloneProps({ plan, channelId, used: usedImages });
+    // The number beats' objects: kept on the beat as alternatives (alt_visuals) for chooseShots — only
+    // verified cutouts, and only ones no beat already shows (checked, not recorded: an offer is not a use).
+    for (const w of wanted.filter((x) => x.altOnly)) {
+      const alts = w.names.map((n) => results.get(`${w.bi}:${n}`)).filter((v) => v && v.class === "cutout" && v.asset && !imageKeys(v).some((k) => usedImages.has(k)));
+      if (alts.length) { w.b.alt_visuals = alts.slice(0, 1); console.log(`[concepts] ch-${channelId} beat ${w.b.index}: ${alts[0].name} offered beside its number (not attached)`); }
     }
     console.log(`[cutout-live] ch-${channelId}: ${stats.bank} from the bank, ${stats.live} live, ${stats.symbol} symbol(s), ${stats.none} concept beat(s) with no visual; ${((Date.now() - T0) / 1000).toFixed(0)} s`);
     // Final visual-first ratio (owner spec 2026-10-02): a TYPE beat that shows a
@@ -1441,6 +2482,7 @@ async function resolveCanvas(channelId, planPath, plan) {
         for (const cand of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
           const nb = [plan.beats[i - 1], plan.beats[i + 1]].filter(Boolean).map((x) => keyOf(x.canvas));
           if (cand.kind === "symbol") {
+            if (namesShowableEntity(b.named_entities)) continue;   // cutout-policy.js: a symbol never stands where a named entity belongs
             if (nb.includes(`TYPE-FULL+HERO:${cand.symbol}`) || b.canvas.name_card) continue;
             b.fallback_symbol = cand.symbol; b.visual_type = "TYPE"; b.data = null; delete b.type_layout;
             b.canvas = canvasContentFor(b, {});
@@ -1557,6 +2599,81 @@ async function resolveCanvas(channelId, planPath, plan) {
     plan.visual_summary = { beats: plan.beats.length, pngs, no_concept: none };
     console.log(`[visual] ch-${channelId}: ${pngs}/${plan.beats.length} beats show a fetched PNG; ${none} beat(s) with no concept`);
   }
+  // Every entity a sentence names is drawn (entityLadder): before the chrome pass, which reads what each beat draws.
+  await entityLadder(plan, channelId);
+  // STRICT FRAME RULE (owner, 2026-10-20) — the channels the frame review kept
+  // rejecting as TEMPLATE_MONOCULTURE only (config strict_visual: ch-02,
+  // ch-48). "Every frame must have a visual asset. No pure text cards."
+  // A beat whose final canvas is typography or name plates is upgraded to a
+  // figure its sentence itself grounds (chart / number / timeline / map /
+  // process / comparison / list / document / money); a beat whose sentence
+  // grounds NONE of those fails the render here, before rendering — no
+  // invented figures, no decorative icons (the fallback-5 rule in
+  // composition-variety.js). Running before chrome / legaliseGrounds /
+  // chooseShots / assignCanvasAnimations so everything below sees these
+  // finals. The frame-review gate itself is NOT loosened.
+  if (strictVisualEnabled(channelId)) {
+    const audit = strictVisualAudit(plan.beats, { log: (m) => console.log(`ch-${channelId} ${m}`) });
+    for (const u of audit.upgrades) {
+      const b = u.target;
+      delete b.hero_cutout; delete b.art; delete b.name_card; delete b.fallback_symbol; delete b.type_layout;
+      b.concept_visuals = [];
+      b.visual_type = u.to;
+      b.data = u.data;
+      b.canvas = canvasContentFor(b, {});
+      if (!canvasHasRealVisual(b.canvas)) {
+        // The rebuilt canvas must still be a real visual (a candidate that
+        // needs a fetched asset degrades to TYPE without one — never let an
+        // upgrade pass the audit and render as text).
+        audit.failures.push({ beat: u.beat, sentence: b.narration || "", reason: `the ${u.to} candidate rebuilt as ${b.canvas.composition} with no asset` });
+        continue;
+      }
+      console.log(`[strict-visual] ch-${channelId} beat ${u.beat}: ${u.from} -> ${b.canvas.composition} (${u.why})`);
+    }
+    if (audit.failures.length) {
+      console.error(`::error::[strict-visual] ch-${channelId}: ${audit.failures.length} beat(s) have no grounded visual — refusing to render a text-only video`);
+      for (const f of audit.failures) console.error(`::error::[strict-visual] ch-${channelId} beat ${f.beat}: "${f.sentence}" — ${f.reason}`);
+      return { ok: false, reason: `strict-visual: ${audit.failures.length} beat(s) with no grounded visual (${audit.failures.map((f) => `beat ${f.beat}`).join(", ")}); rewrite the script to state figures/places, or pick another topic` };
+    }
+    if (audit.upgrades.length) console.log(`[strict-visual] ch-${channelId}: ${audit.upgrades.length} text beat(s) upgraded to grounded figures; every beat now draws a visual`);
+  }
+  // CHROME (owner, 2026-10-08 "kill the template"): the planner's label / pull phrase, grounded,
+  // then the three-beat window rule (scripts/template-check.js) enforced by REMOVAL only.
+  {
+    const words = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter(Boolean);
+    const scriptWords = new Set(plan.beats.flatMap((b) => words(b.narration)));
+    const flat = (s) => words(s).join(" ");
+    const items = plan.beats.map((b, i) => {
+      let label = b.label && typeof b.label === "object" && String(b.label.text || "").trim() ? b.label : null;
+      if (label && !words(label.text).every((w) => scriptWords.has(w))) { console.log(`[chrome] beat ${b.index}: label "${label.text}" is not from the script — dropped`); label = null; }
+      let pull = b.pull_phrase && typeof b.pull_phrase === "object" && String(b.pull_phrase.text || "").trim() ? b.pull_phrase : null;
+      if (pull && !(` ${flat(b.narration)} `).includes(` ${flat(pull.text)} `)) { console.log(`[chrome] beat ${b.index}: pull phrase "${pull.text}" is not verbatim from its sentence — dropped`); pull = null; }
+      const L = layoutOfCanvas(normalizeForLayout({ ...b.canvas, label: null, pull_phrase: null }, i));
+      const typeLed = ["TYPE-FULL", "TYPE-SPLIT"].includes(L.composition) && !b.canvas.photo && !(b.canvas.concept_visuals || []).length && !b.canvas.hero_cutout;
+      return { label, pull, typeLed };
+    });
+    const enf = enforceChrome(items.map((x) => ({ label: !!x.label, phrase: !!x.pull, typeLed: x.typeLed })));
+    plan.beats.forEach((b, i) => {
+      b.canvas.label = enf.keep[i].label ? items[i].label : null;
+      b.canvas.pull_phrase = enf.keep[i].phrase ? items[i].pull : null;
+    });
+    for (const d of enf.dropped) console.log(`[chrome] beat ${plan.beats[d.beat].index}: ${d.device} removed — it would break the window rule (a second device repeating, or one device on three beats in a row)`);
+    for (const u of enf.unfixable) console.log(`[chrome] ch-${channelId}: beats ${u.start}-${u.start + 2} are type-led three in a row — removing chrome cannot fix it; Layer 1 template-window will fail this render`);
+    // "labels" = beats that DRAW text at the top of the frame (template-check.js labelsDrawn on the
+    // same record render.js writes into the manifest), not the planner's label: counting only the
+    // planner's label reported "0-4 labels" on videos with a top-left headline on nearly every beat.
+    const drawnLabels = labelCount({ beats: plan.beats.map((b, i) => ({ canvas: canvasManifest(b.canvas, i) })) });
+    console.log(`[chrome] ch-${channelId}: labels drawn ${drawnLabels} (planner labels ${plan.beats.filter((b) => b.canvas.label).length}), pull phrases ${plan.beats.filter((b) => b.canvas.pull_phrase).length}, type-led ${items.filter((x) => x.typeLed).length} of ${plan.beats.length}; ${enf.dropped.length} removed by the window rule`);
+    // The label is a kicker the animation pass above never saw: entrances are assigned again so
+    // every drawn kicker pops (Layer 1 kinetic-rules, CI run 37832958615: "kicker has 4 words but 0 entrances").
+    assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
+  }
+  // A hero object (logo, cut-out) must be legible on the ground the planner gave its beat: ch-2's dark
+  // green Flock logo was drawn on #101010 (board 37901614633). Code enforces legality, Gemini chose the rest.
+  try { const { legaliseGrounds } = await import("./ground-legal.mjs"); await legaliseGrounds(plan.beats, PUBLIC_DIR, { join, existsSync }, (m) => console.log(`ch-${channelId} ${m}`)); } catch (e) { console.log(`[ground] ch-${channelId}: legibility check could not run — ${e.message}`); }
+  // The shots, chosen by Gemini on the content as it resolved (chooseShots).
+  await chooseShots(plan, channelId);
+  assignCanvasAnimations(plan.beats, { seed: channelId, log: () => {} });
   for (const b of plan.beats) {
     const k = b.canvas.composition;
     counts.by_comp[k] = (counts.by_comp[k] || 0) + 1;
@@ -1593,20 +2710,51 @@ async function guardPlanAssets(channelId, planPath) {
     ...plan.beats.map((b, i) => ({ b, i, asset: b.canvas?.photo?.asset })).filter((r) => r.asset),
     // concept cutouts (concept_visuals): a missing PNG drops that visual only
     ...plan.beats.flatMap((b, i) => (b.canvas?.concept_visuals || []).filter((v) => v.asset).map((v) => ({ b, i, asset: v.asset, concept: v.name }))),
+    // a clone channel's further verified pictures ([clone-extra]): one that is not in the bundle is dropped, never drawn broken
+    ...plan.beats.flatMap((b, i) => (b.canvas?.clone_extra || []).filter((v) => v && v.asset).map((v) => ({ b, i, asset: v.asset, extra: v.name }))),
+    ...plan.beats.flatMap((b, i) => (b.canvas?.clone_props || []).filter((v) => v && v.asset).map((v) => ({ b, i, asset: v.asset, prop: v.name }))),
+    // entity art (scripts/entity-ladder.js): a flag, or an organisation's real mark — fetched AFTER the pre-bundle, so it is checked here too
+    // (board 38010438091 ch-9: the ladder's IEA logo was not in the bundle and the render died "the source image cannot be decoded").
+    ...plan.beats.flatMap((b, i) => [
+      ...(b.canvas?.art?.asset ? [{ b, i, asset: b.canvas.art.asset, art: "asset" }] : []),
+      ...(Array.isArray(b.canvas?.art?.items) ? b.canvas.art.items.map((it, k) => (it?.asset ? { b, i, asset: it.asset, art: k } : null)).filter(Boolean) : []),
+    ]),
   ];
   if (!refs.length) return planPath;
   // render.js bundles per call when REMOTION_SERVE_URL is unset; that bundle
   // copies public/ as it is then, so public/ is what counts.
   const inBundle = (a) => existsSync(join(process.env.REMOTION_SERVE_URL || publicDir, process.env.REMOTION_SERVE_URL ? "public" : "", a));
-  let missing = refs.filter((r) => !inBundle(r.asset));
+  // A file that is there but does not decode (a truncated download, an HTML error page saved as .png) crashes the render the same way.
+  let sharpLib = null;
+  try { sharpLib = (await import("sharp")).default; } catch {}
+  const bad = new Set();
+  if (sharpLib) for (const r of refs) { const f = join(publicDir, r.asset); if (existsSync(f)) { try { const md = await sharpLib(f).metadata(); if (!(md.width > 0)) bad.add(r.asset); } catch { bad.add(r.asset); } } }
+  let missing = refs.filter((r) => bad.has(r.asset) || !inBundle(r.asset));
   if (missing.length && process.env.REMOTION_SERVE_URL && missing.some((r) => existsSync(join(publicDir, r.asset)))) {
     const t0 = Date.now();
     process.env.REMOTION_SERVE_URL = await bundle({ entryPoint: REMOTION_ROOT_JSX, publicDir, onProgress: () => {} });
     console.log(`[assets] ch-${channelId}: ${missing.length} plan asset(s) not in the bundle (${missing.map((r) => r.asset).join(", ")}) — re-bundled: ${((Date.now() - t0) / 1000).toFixed(1)}s`);
-    missing = refs.filter((r) => !inBundle(r.asset));
+    missing = refs.filter((r) => bad.has(r.asset) || !inBundle(r.asset));
   }
   if (!missing.length) return planPath;
-  for (const { b, i, asset, concept } of missing) {
+  for (const { b, i, asset, concept, art, extra, prop } of missing) {
+    if (prop !== undefined) {
+      console.warn(`::warning::[assets] ch-${channelId} beat ${i}: prop ${asset} is not in the render bundle — "${prop}" dropped`);
+      b.canvas.clone_props = (b.canvas.clone_props || []).filter((v) => v.asset !== asset);
+      continue;
+    }
+    if (extra !== undefined) {
+      console.warn(`::warning::[assets] ch-${channelId} beat ${i}: extra picture ${asset} is not in the render bundle — "${extra}" dropped`);
+      b.canvas.clone_extra = (b.canvas.clone_extra || []).filter((v) => v.asset !== asset);
+      continue;
+    }
+    if (art !== undefined) {
+      // The entity stays shown: a mark that cannot be drawn becomes the name in type; a flag that cannot be drawn, a plate with the place's name.
+      const a = b.canvas.art;
+      if (art === "asset") { console.warn(`::warning::[assets] ch-${channelId} beat ${i}: ${asset} cannot be drawn — the ${a.kind} becomes a plate with "${a.name}"`); b.canvas.art = { kind: a.kind === "flag" ? "plate-place" : a.kind, name: a.name }; }
+      else { console.warn(`::warning::[assets] ch-${channelId} beat ${i}: the mark ${asset} cannot be drawn — "${a.items[art]?.name}" in type`); a.items[art] = null; }
+      continue;
+    }
     if (concept) {
       console.warn(`::warning::[assets] ch-${channelId} beat ${i}: concept cutout ${asset} is not in the render bundle — "${concept}" dropped`);
       b.canvas.concept_visuals = (b.canvas.concept_visuals || []).filter((v) => v.asset !== asset);
@@ -1740,8 +2888,9 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Step 1b: CHALLENGER — a second AI checks the plan against the script's
     // sentences before anything renders. A rejection (MISMATCH or
     // CONTRADICTION) gets ONE re-plan with the rejected beats as
-    // corrections; a second rejection fails the video. A challenger that
-    // can't run fails the video too — it is never skipped.
+    // corrections, then a deterministic on-screen-text auto-correct and one
+    // more challenge; only then does a rejection fail the video. A challenger
+    // that can't run fails the video too — it is never skipped.
     const srtPath = join(dirname(audioPathFor(channelId, scriptPath)), basename(audioPathFor(channelId, scriptPath), ".mp3") + ".srt");
     let challenge = await challengePlan(channelId, planPath, srtPath, "");
     if (challenge.code === 1) {
@@ -1772,6 +2921,12 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
         console.error(`::error::re-plan after challenger rejection produced no plan`);
         return { skipped: false, ok: false };
       }
+      // The planner's own layouts for the beats the challenger did not block (planner-decisions.js).
+      const carried = carryPlannerLayouts(firstPlan, replanned, blocking.map((x) => x.beat_index));
+      if (carried.length) {
+        writeFileSync(planPath, JSON.stringify(replanned, null, 2) + "\n");
+        console.log(`[layout] re-plan dropped the planner's layout on unblocked beat(s) ${carried.join(", ")} — the planner's first-plan layout carried over`);
+      }
       challenge = await challengePlan(channelId, planPath, srtPath, "-2");
       // A second rejection is usually a DIFFERENT beat: the re-plan fixed the
       // rejected beats but rewrote beats that had passed (run 36416582506:
@@ -1794,6 +2949,59 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
           const third = await challengePlan(channelId, mergedPath, srtPath, "-3");
           if (third.code === 0) { planPath = mergedPath; challenge = third; }
           else console.log(`[challenger] the merged plan was rejected too (exit ${third.code})`);
+        }
+      }
+      // Still blocked after the re-plan (and the merge, when it applied): repair
+      // the beat deterministically instead of failing the video (owner,
+      // 2026-10-19). A beat blocked twice got a generic instruction and stayed
+      // wrong (run 39128017438 ch-10: "no element-level correction could be
+      // derived" → re-plan rejected again → backup audit → no video). Two
+      // repairs, both grounded in the sentence itself:
+      //   - a COUNTER showing a model version or a passing count -> the one
+      //     measured figure with a unit the sentence states (ch-2's "4" / "5.5"
+      //     against "69.5 minutes" / "31.7 minutes", run 39308784564);
+      //   - a picture no repair can make truthful -> a TYPE card. A MISMATCH
+      //     keeps the headline (the picture was the problem); a contradiction
+      //     that is not a countable figure becomes the sentence.
+      // The corrected plan still goes to the challenger, and only a pass proceeds.
+      if (challenge.code === 1) {
+        const blockedNow = (challenge.review?.beats || []).filter(isBlock);
+        const stillBlocked = blockedNow.map((v) => v.beat_index);
+        const verdicts = new Map(blockedNow.map((v) => [v.beat_index, v.verdict]));
+        const corrected = readJsonSafe(planPath);
+        const sentences = srtSentenceList(srtPath);
+        const repairs = [];
+        if (corrected?.beats?.length && stillBlocked.length) {
+          for (const i of stillBlocked) {
+            const beat = corrected.beats[i];
+            const sentence = sentences[i];
+            if (!beat || !sentence) continue;
+            const verdict = verdicts.get(i);
+            let repair = null;
+            if (verdict === "CONTRADICTION" && beat.data && typeof beat.data === "object" && beat.data.value !== undefined) {
+              const figures = measuredFigures(sentence);
+              if (figures.length === 1) {
+                const f = figures[0];
+                beat.data = { ...beat.data, value: f.value, label: f.unit };
+                if (typeof beat.headline === "string" && !beat.headline.includes(f.value)) beat.headline = sentence;
+                repair = `number -> ${f.value} ${f.unit}`;
+              }
+            }
+            if (!repair) {
+              const keep = verdict === "MISMATCH" && typeof beat.headline === "string" && beat.headline.trim();
+              forceTypeCard(beat, sentence, keep);
+              repair = keep ? "photo -> TYPE card (headline kept)" : "-> TYPE card with its sentence";
+            }
+            repairs.push(`beat ${i}: ${repair}`);
+          }
+        }
+        if (repairs.length) {
+          const correctedPath = planPath.replace(/\.json$/, "-autocorrected.json");
+          writeFileSync(correctedPath, JSON.stringify(corrected, null, 2) + "\n");
+          console.log(`[challenger] deterministic repair: ${repairs.join("; ")} — challenging the corrected plan`);
+          const finalChallenge = await challengePlan(channelId, correctedPath, srtPath, "-autocorrect");
+          if (finalChallenge.code === 0) { planPath = correctedPath; challenge = finalChallenge; }
+          else console.log(`[challenger] the auto-corrected plan was rejected too (exit ${finalChallenge.code})`);
         }
       }
     }
@@ -1826,6 +3034,31 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Step 1d: every image the plan references must be in the bundle
     // (guardPlanAssets: re-bundle, else photo -> TYPE) — a 404 cancels the render.
     planPath = await guardPlanAssets(channelId, planPath);
+    // The photo fetch rate (owner, 2026-10-10: "Log the fetch success rate per channel"): beats that name a person, place or organisation,
+    // how many show a REAL fetched image of it (a photo, a logo / mark, a flag, each with its source URL), how many fell to an honest
+    // typographic treatment (the name in type / a map / a plate). No sample image is a fallback (resolve-scene.cjs fallbackAsset is off).
+    try {
+      const fp = readJsonSafe(planPath);
+      const need = [], realB = [], typeB = [];
+      for (const [i, b] of (fp?.beats || []).entries()) {
+        const named = (b.named_entities || []).filter((e) => /person|place|organization|company|institution|building|outlet|agency/i.test(String(e?.type || "")));
+        if (!named.length) continue;
+        need.push(i);
+        const c = b.canvas || {};
+        const real = (c.photo?.asset && c.photo?.source_url) || (c.concept_visuals || []).some((v) => v.asset && v.source_url && v.class !== "symbol") || (c.art?.asset && c.art?.source_url) || (c.art?.items || []).some((it) => it?.asset && it?.source_url);
+        (real ? realB : typeB).push(`${i}${c.art ? `:${c.art.kind}` : c.composition ? `:${c.composition}` : ""}`);
+      }
+      console.log(`[images] ch-${channelId}: ${need.length} beat(s) name a person / place / organisation; ${realB.length} show a real fetched image (${realB.join(", ") || "none"}); ${typeB.length} fell to a typographic or drawn treatment (${typeB.join(", ") || "none"}); 0 samples`);
+    } catch (e) { console.log(`[images] ch-${channelId}: fetch rate not computed (${e.message})`); }
+    // The same question per ENTITY, not per beat (the topic-ranking board): every named entity, what it got to show, and the fraction that is real.
+    try {
+      const { entityVisuals, summarise } = await import("./lib/entity-visuals.mjs");
+      const rows = entityVisuals(readJsonSafe(planPath));
+      const sm = summarise(rows);
+      console.log(`[entity-visuals] ch-${channelId}: ${sm.named} named entit${sm.named === 1 ? "y" : "ies"}; ${sm.real} with a real visual (${sm.fraction === null ? "n/a" : Math.round(sm.fraction * 100) + "%"}: ${Object.entries(sm.by).filter(([k]) => k !== "typed").map(([k, n]) => `${n} ${k}`).join(", ") || "none"}); ${sm.typed} fell to the name in type`);
+      for (const r of rows) console.log(`[entity-visuals] ch-${channelId} beat ${r.beat}: ${r.type} "${r.name}" -> ${r.visual}${r.source_url ? ` (${r.source_url})` : ""}`);
+      if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `\n**ch-${channelId} entities:** ${sm.named} named, ${sm.real} real visual, ${sm.typed} typed — ${rows.map((r) => `${r.name} (${r.visual})`).join(", ")}\n`);
+    } catch (e) { console.log(`[entity-visuals] ch-${channelId}: not computed (${e.message})`); }
 
     // Step 2: Render (uses pre-built bundle via REMOTION_SERVE_URL) — the
     // resolved plan, passed explicitly (VISUAL_PLAN_PATH).
@@ -1870,15 +3103,61 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Deterministic. A failing check fails the render; the video goes to the
     // backup audit, which runs the same checks and rejects it.
     const manifestPath = result.outputPath.replace(/\.mp4$/, "-manifest.json");
+    let canvasFailure = null;
+    // Each beat's rendered ink span, as canvas-coverage measured it ("[audit] ch-N beat i coverage: x").
+    const inkSpansOf = (out) => Object.fromEntries([...String(out || "").matchAll(/\[audit\] ch-\S+ beat (\d+) coverage: ([0-9.]+)/g)].map((m) => [Number(m[1]), Number(m[2])]));
+    let canvasInk = null;
     if ((readJsonSafe(manifestPath)?.beats || []).some((b) => b.canvas)) {
       const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", result.outputPath, "--manifest", manifestPath],
         { label: `canvas-checks ${channelId}/${basename(scriptPath)}` });
+      canvasInk = inkSpansOf(fit.stdout);
       if (fit.code !== 0) {
-        console.error(`::error::canvas checks ${fit.code === 1 ? "FAILED" : "could not run"} for ${basename(result.outputPath)}`);
         const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
-        return backupAudit({ ...backupArgs, stage: "canvas-checks", check: failedIds.join(",") || null,
-          reason: fit.code === 1 ? `failed: ${failedIds.join(", ") || "see the canvas-checks log"}` : "canvas checks could not run" });
+        canvasFailure = { code: fit.code, failedIds };
       }
+    }
+
+    // ── Three-layer eval loop (EVAL_LOOP_MODE, default off) ────────────────
+    // Runs HERE — after Layer 1 (the canvas checks) has been measured and BEFORE its
+    // early-return below — so Layers 2 and 3 are recorded on every render, pass or fail.
+    // It used to sit after the frame review, which a Layer 1 failure never reached, so
+    // no channel ever produced a Layer 2/3 number in CI.
+    //
+    // off is the default and skips everything. dry records what it would do; live acts.
+    // Layer 1 still gates (the return below is unchanged); the loop's decision is in
+    // data/audit/eval-loop/. In LIVE mode only, a Layer-1-passing video judged below the band may be
+    // revised in place (see below and eval-loop-callsite.js); otherwise nothing it decides ships,
+    // blocks or deletes anything.
+    // Live: a Layer-1-passing video judged below the band may get a layout patch for at most two
+    // flagged beats (eval-revise.js), re-rendered from the patched plan and re-checked; it replaces
+    // the original only if it passes Layer 1 and is not judged lower. Same output path either way.
+    const judgeRow = (() => { try { return resolveChannel(channelId); } catch { return null; } })();
+    await recordEvalLoop({
+      plan: readJsonSafe(planPath) || plan, scriptPath, attempt, channelId, outputPath: result.outputPath,
+      layer1Failures: canvasFailure ? (canvasFailure.failedIds.length ? canvasFailure.failedIds : ["canvas-checks"]) : null,
+      layer2Advisory, judge,
+      inkSpans: canvasInk,
+      styleSpec: loadStyleReference(channelId).ref || null,
+      judgeSpec: judgeRow ? { bg_mode: judgeRow.bg_mode ?? null, colors: judgeRow.colors ?? null } : null,
+      callModel: async (prompt) => callGeminiForRevise([{ role: "user", content: prompt }], { maxTokens: 4000, temperature: 0, noCache: true, tag: "revise" }),
+      rerender: async (patched, { attempt: a }) => {
+        const p = planPath.replace(/\.json$/, `-revised-a${attempt}-${a}.json`);
+        writeFileSync(p, JSON.stringify(patched, null, 2) + "\n");
+        const r = await renderOne(channelId, scriptPath, format, p);
+        if (!r.ok) throw new Error(`re-render of the patched plan failed (${basename(p)})`);
+        return { outputPath: r.outputPath, planPath: p };
+      },
+      canvasCheck: async (mp4) => {
+        const fit = await runChild("node", [LOCAL_AUDIT_CJS, "--canvas-only", "--video", mp4, "--manifest", mp4.replace(/\.mp4$/, "-manifest.json")], { label: `canvas-checks (revised) ${channelId}/${basename(scriptPath)}` });
+        const failedIds = [...String(fit.stdout || "").matchAll(/\[canvas\] FAIL (\S+)/g)].map((m) => m[1]);
+        return { failures: fit.code === 0 ? [] : (failedIds.length ? failedIds : ["canvas-checks"]), inkSpans: inkSpansOf(fit.stdout) };
+      },
+    });
+
+    if (canvasFailure) {
+      console.error(`::error::canvas checks ${canvasFailure.code === 1 ? "FAILED" : "could not run"} for ${basename(result.outputPath)}`);
+      return backupAudit({ ...backupArgs, stage: "canvas-checks", check: canvasFailure.failedIds.join(",") || null,
+        reason: canvasFailure.code === 1 ? `failed: ${canvasFailure.failedIds.join(", ") || "see the canvas-checks log"}` : "canvas checks could not run" });
     }
 
     if (challengerFailure) {
@@ -1910,6 +3189,95 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       return backupAudit({ ...backupArgs, stage: "beat-check", reason: bc?.failing ? `${why}: beats ${bc.failing.join(", ")}` : why });
     }
 
+    // Step 2b''': FAKE-PAN CHECK (owner, 2026-10-09). Every photo and graph beat declares a camera move of
+    // 8% or more; Gemini compares two frames of the same beat and says whether the PICTURE moved.
+    // More than max(1, 25%) of those beats without a real move holds the video; a check that cannot
+    // run does too (nothing defaults to a pass).
+    const cameraCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--camera-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/\.mp4$/, "-manifest.json"),
+      "--out", result.outputPath.replace(/\.mp4$/, "-camera-check.json"),
+    ], { label: `camera-check ${channelId}/${basename(scriptPath)}` });
+    if (cameraCheck.code !== 0) {
+      const why = cameraCheck.code === 1 ? "FAILED — photos/graphs show no real camera move" : "could not run";
+      console.error(`::error::camera check ${why} for ${basename(result.outputPath)}`);
+      const cc = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-camera-check.json"));
+      return backupAudit({ ...backupArgs, stage: "camera-check", reason: cc?.failing?.length ? `${why}: beats ${cc.failing.join(", ")}` : why });
+    }
+
+    // Step 2b'''': ENTITY CHECK on the rendered frames (owner, 2026-10-09: "nothing spoken goes unrepresented"; the manifest check is
+    // Layer 1 entity-coverage). More than max(1, 20%) of the beats that name an entity whose frame does not show it holds the video; a
+    // check that cannot run does too.
+    const entityCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--entity-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/\.mp4$/, "-manifest.json"),
+      "--out", result.outputPath.replace(/\.mp4$/, "-entity-check.json"),
+    ], { label: `entity-check ${channelId}/${basename(scriptPath)}` });
+    if (entityCheck.code !== 0) {
+      const why = entityCheck.code === 1 ? "FAILED — a beat names an entity its frame does not show" : "could not run";
+      console.error(`::error::entity check ${why} for ${basename(result.outputPath)}`);
+      const ec = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-entity-check.json"));
+      return backupAudit({ ...backupArgs, stage: "entity-check", reason: ec?.failing?.length ? `${why}: beats ${ec.failing.join(", ")}` : why });
+    }
+
+    // Step 2b''''': LOOK CHECK on the rendered frames (owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic"). The
+    // pixel measures are Layer 1 flat-look; this asks whether each drawn component (chart, date card, scale, plate, diagram) belongs to the
+    // channel's reference. More than max(1, 20%) playful / off-family component beats holds the video; a check that cannot run does too.
+    // A side-by-side (reference frame | rendered beat) PNG per beat is written next to the video.
+    const lookCheck = await runChild("node", [
+      GEMINI_REVIEW_JS, "--look-check",
+      "--video", result.outputPath,
+      "--manifest", result.outputPath.replace(/.mp4$/, "-manifest.json"),
+      "--channel", String(channelId),
+      "--out", result.outputPath.replace(/.mp4$/, "-look-check.json"),
+      "--sheet-dir", result.outputPath.replace(/.mp4$/, "-look"),
+    ], { label: `look-check ${channelId}/${basename(scriptPath)}` });
+    if (lookCheck.code !== 0) {
+      const why = lookCheck.code === 1 ? "FAILED — a drawn component looks playful / is not the reference's family" : "could not run";
+      console.error(`::error::look check ${why} for ${basename(result.outputPath)}`);
+      const lc = readJsonSafe(result.outputPath.replace(/.mp4$/, "-look-check.json"));
+      return backupAudit({ ...backupArgs, stage: "look-check", reason: lc?.failing?.length ? `${why}: beats ${lc.failing.join(", ")}` : why });
+    }
+
+    // Step 2b''''''': NAMING on the rendered frames (owner, 2026-10-10: every entity named correctly; a misspelling, a wrong place or a
+    // wrong figure fails the beat). Any failing beat holds the video; a check that cannot run does too.
+    {
+      const nc = await runChild("node", [GEMINI_REVIEW_JS, "--naming-check", "--video", result.outputPath, "--manifest", result.outputPath.replace(/.mp4$/, "-manifest.json"), "--out", result.outputPath.replace(/.mp4$/, "-naming.json")], { label: `naming-check ${channelId}/${basename(scriptPath)}` });
+      if (nc.code !== 0) {
+        const why = nc.code === 1 ? "FAILED — an entity on screen is misnamed" : "could not run";
+        console.error(`::error::naming check ${why} for ${basename(result.outputPath)}`);
+        const nr = readJsonSafe(result.outputPath.replace(/.mp4$/, "-naming.json"));
+        return backupAudit({ ...backupArgs, stage: "naming-check", reason: nr?.failing?.length ? `${why}: beats ${nr.failing.join(", ")}` : why });
+      }
+    }
+
+    // Step 2b: NARRATION — two things, and only one of them can block (owner, 2026-10-10 after three boards: the Gemini listener flips on
+    // the same audio, 20–40% of readings of good audio come back as a uniform 5; a model verdict cannot hold a video).
+    //   1. THE FLOOR (blocking): deterministic checks on the file itself — it decodes, it runs to its last caption, no silence longer than the
+    //      limit inside the speech, the captions match the audio, no clipping, and the video agrees with the audio (scripts/narration-floor.mjs).
+    //   2. THE LISTENER (advisory): Gemini's verdict is logged beside the acoustic numbers (scripts/acoustic/narration-acoustics.py) so the data
+    //      accumulates. It never blocks. Its verdict is recorded in <video>-narration.json with "advisory": true.
+    if (result.audio && srtPath && existsSync(result.audio) && existsSync(srtPath)) {
+      const wordsJson = result.audio.replace(/\.mp3$/, "-words.json");
+      const fl = await runChild("node", [join(__dirname, "narration-floor.mjs"), "--audio", result.audio, "--srt", srtPath, ...(existsSync(wordsJson) ? ["--words", wordsJson] : []), "--video", result.outputPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration-floor.json")], { label: `narration floor ${channelId}/${basename(scriptPath)}` });
+      if (fl.code !== 0) {
+        const fr = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration-floor.json"));
+        const why = fl.code === 1 ? `FAILED the floor: ${(fr?.failures || []).join("; ") || "see the log"}` : "could not run";
+        console.error(`::error::narration ${why} for ${basename(result.outputPath)}`);
+        return backupAudit({ ...backupArgs, stage: "narration-floor", reason: why });
+      }
+      // The listener and the acoustic numbers, beside each other. Neither blocks.
+      // ONE reading (advisory): nine readings were 81 calls per video of which the verdict was still a coin flip, and nothing is blocked by it.
+      const lj = await runChild("node", [join(__dirname, "narration-judge.mjs"), "--audio", result.audio, "--srt", srtPath, "--out", result.outputPath.replace(/\.mp4$/, "-narration.json")], { label: `narration listener ${channelId}/${basename(scriptPath)}`, env: { NARRATION_JUDGE_RUNS: "1" } });
+      const lv = readJsonSafe(result.outputPath.replace(/\.mp4$/, "-narration.json"));
+      const verdict = lj.code === 0 ? "pass" : lj.code === 1 ? `synthetic/flat on ${(lv?.failing || []).length} sentence(s)` : "could not run";
+      const ac = await runChild("python3", [join(__dirname, "acoustic", "narration-acoustics.py"), result.audio, srtPath, "--json", result.outputPath.replace(/\.mp4$/, "-acoustics.json")], { label: `acoustics ${channelId}` }).catch(() => ({ code: 1 }));
+      console.log(`[narration] ch-${channelId} ${basename(scriptPath)}: floor PASS; listener (advisory, not blocking): ${verdict}; acoustics: ${ac.code === 0 ? "recorded" : "not recorded"}`);
+      if (lj.code !== 0) console.warn(`::warning::narration listener (advisory) ${verdict} for ${basename(result.outputPath)} — the video is not held`);
+    }
+
     // Step 2c: Skip QA when --skip-qa is set (local dev without ffmpeg)
     if (skipQA) {
       console.log(`--skip-qa: skipping QA for ${basename(result.outputPath)}`);
@@ -1922,14 +3290,10 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // Wait for all background QA tasks to finish before checking Gemini verdict
     await Promise.all([qa.slopCheckPromise, qa.visionQaPromise, qa.geminiReviewPromise].filter(Boolean));
 
-    // Step 4: verdict. If the local auditor cleared the video (LOW risk, no
-    // uncertain beats), Gemini was not run — that IS the approval; ship it
-    // without spending a correction attempt.
-    if (qa.geminiNeeded === false && qa.gatePass) {
-      const lvl = qa.localAudit?.risk?.level || "LOW";
-      console.log(`Local auditor cleared (risk ${lvl}) — approved without Gemini.`);
-      return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict: `LOCAL_AUDIT_${lvl}`, qaGatePass: qa.gatePass };
-    }
+    // Step 4: verdict. FRAME REVIEW IS THE GATE (owner, 2026-10-09). A local auditor that rated
+    // the video LOW risk used to skip the review and ship it ("approved without Gemini") — so a
+    // template-monoculture video the reviewer would have rejected shipped unreviewed. It ships
+    // only on the frame review's own APPROVED now (frameReviewRuns: the review is never skipped).
 
     const geminiReport = findGeminiReviewReport(channelId, scriptPath);
     let pipelineVerdict = "UNKNOWN";
@@ -1977,73 +3341,19 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     // unchanged: returned with qaGatePass false and removed by main().
     const fr = frameReviewVerdict(geminiReport);
     console.log(`[frame-review] attempt ${attempt}: ${fr.pass ? "PASS" : fr.error ? "ERROR" : "FAIL"} — ${fr.reason}`);
-
-    // ── Three-layer eval loop (EVAL_LOOP_MODE, default off) ────────────────
-    // Runs after the frame review and BEFORE its accept/reject branch, so it
-    // sees a video that already passed the objective pixel gate.
-    //
-    // off is the default and skips everything: below this block nothing changes.
-    // dry reaches a decision and records what it would do, touching no pixels.
-    // live acts.
-    //
-    // It does NOT route. Its decision is logged to data/audit/eval-loop/ and
-    // nothing here branches on it. The challenger-rejection path and the
-    // backup-audit routing below are deliberately untouched: making this loop
-    // able to hold a video back is a separate decision, and a loop that can
-    // re-render AND withhold in its first production push is two new risks at
-    // once. Nothing it decides can ship, block, or delete anything yet.
-    let evalLoopResult = null;
-    if (loopEnabled()) {
-      const mode = evalLoopMode();
-      const t0 = Date.now();
-      const wouldRerender = [];
-      try {
-        evalLoopResult = await runEvalLoop({
-          plan: plan,
-          runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
-          channel: channelId,
-          layer1: async () => ({ pass: qa.gatePass, failures: [] }),
-          layer2: async () => ({ advisory_score: null, note: "advisory not wired at this call site yet" }),
-          layer3: async ({ layer2Advisory }) => judge(result.outputPath, { channelId, layer2Advisory: layer2Advisory?.advisory_score ?? null }),
-          revise: async () => ({ planPatch: null }),
-          renderBeats: async (indices, meta) => {
-            if (mode === "dry") { wouldRerender.push(...indices); return; }
-            throw new Error(`partial re-render of beats ${indices.join(",")} (${meta.reason}) is not expressible at this call site — a full re-render is not permitted`);
-          },
-          onEvent: (type, d) => console.log(`[eval-loop:${mode}] ${type} ${JSON.stringify(d)}`),
-        });
-      } catch (e) {
-        // The loop is an addition; it must never be able to fail a render that
-        // already passed the pixel gate.
-        console.error(`[eval-loop:${mode}] could not run: ${e.message}`);
-        evalLoopResult = { accepted: false, humanReview: true, error: e.message };
-      }
-      const decision = evalLoopResult?.accepted ? "accept" : evalLoopResult?.humanReview ? "human_review" : "retry";
-      const auditPath = writeLoopAudit({
-        channel: channelId,
-        runId: `${basename(scriptPath, extname(scriptPath))}-a${attempt}`,
-        mode,
-        decision,
-        retries_spent: evalLoopResult?.retries ?? 0,
-        weak_beats: evalLoopResult?.events?.filter((e) => e.type === "layer3-fail") ?? [],
-        would_rerender: wouldRerender,
-        rendered: [],
-        unresolved: evalLoopResult?.unresolved ?? [],
-        why: evalLoopResult?.why ?? evalLoopResult?.error ?? null,
-        duration_ms: Date.now() - t0,
-      });
-      console.log(`[eval-loop:${mode}] ${decision} — retries=${evalLoopResult?.retries ?? 0} audit=${auditPath}`);
-    }
+    // TEMPLATE_MONOCULTURE holds the video: it goes to rejected/, never approved-review/, whatever
+    // the local audit (and its manifest template-window check) says — see frameReviewHold.
+    const hold = frameReviewHold(fr);
 
     if (fr.pass || !qa.gatePass) {
       if (fr.pass || attempt === MAX_CORRECTION_LOOPS || fr.error) {
         // A failed pixel gate (or a failed / unrun review) used to return
         // qaGatePass false and be DELETED by main(); it is queued now.
-        if (!(qa.gatePass && fr.pass)) return backupAudit({ ...backupArgs, stage: qa.gatePass ? "frame-review" : "frame-audit", reason: qa.gatePass ? fr.reason : "the frame audit (pixel gate) failed" });
+        if (!(qa.gatePass && fr.pass)) return backupAudit({ ...backupArgs, ...hold, stage: qa.gatePass ? "frame-review" : "frame-audit", reason: qa.gatePass ? fr.reason : "the frame audit (pixel gate) failed" });
         return { skipped: false, ok: true, outputPath: result.outputPath, attempt, geminiVerdict, qaGatePass: true };
       }
     } else if (fr.error || attempt === MAX_CORRECTION_LOOPS) {
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: fr.reason });
+      return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: fr.reason });
     }
 
     // Not approved — feed corrections back and re-render.
@@ -2093,7 +3403,7 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
       console.log(`Frame review ${fr.reason} but produced no actionable corrections — not spending another attempt.`);
       // Used to ship as ok:true. The review did not pass, so it is a
       // frame-review failure like any other: backup audit + human queue.
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (no actionable corrections)` });
+      return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: `${fr.reason} (no actionable corrections)` });
     }
 
     // TIME BUDGET. The render job has an 18-minute timeout; run 36397373831
@@ -2109,8 +3419,8 @@ async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, ou
     const postPlanMs = Date.now() - planReadyAt;
     const nextMs = postPlanMs + (enforced.appliedCount ? 0 : planReadyAt - attemptStartedAt);
     if (Date.now() - PROCESS_T0 + nextMs > RENDER_QA_BUDGET_MS) {
-      console.log(`[budget] attempt ${attempt + 1} would take ~${(nextMs / 60000).toFixed(1)} min at ${((Date.now() - PROCESS_T0) / 60000).toFixed(1)} min in; that passes the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
-      return backupAudit({ ...backupArgs, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
+      console.log(`[budget] attempt ${attempt + 1} would take ~${(nextMs / 60000).toFixed(1)} min at ${((Date.now() - PROCESS_T0) / 60000).toFixed(1)} min in; that OVERRUNS the ${(RENDER_QA_BUDGET_MS / 60000).toFixed(0)}-min budget — no further attempt`);
+      return backupAudit({ ...backupArgs, ...hold, stage: "frame-review", reason: `${fr.reason} (time budget: no further attempt)` });
     }
     // When directives were enforced, the NEXT attempt renders the edited
     // plan directly instead of asking Gemini for a fresh one — the changes
@@ -2163,8 +3473,17 @@ async function main() {
   const results = [];
   const queued = { "approved-review": 0, rejected: 0 };
 
+  const minFaceDefault = process.env.PERSON_MIN_FACE_FRACTION;
   for (const { channelId, scriptPath } of work) {
     const format = formatFromScriptPath(scriptPath);
+    // FULL-LENGTH PEOPLE on a clone channel (board 38864901359 ch-49: six photos of Rosalind Eleazar verified MATCH, PORTRAIT, were all refused because her face
+    // covered 8% of a full-length frame — the canvas engine crops a portrait, so it needs a big face). The clone family cuts the person out and stands them on the
+    // paper, the way the references draw people, so a full-length photo is what it wants. Identity MATCH, PORTRAIT framing, a visible face and NO text overlay are
+    // all still required; only the face-size floor drops, to 5%, and only for a clone channel. (verify-person-image.cjs reads the env at call time.)
+    if (minFaceDefault === undefined) {
+      if (isCloneChannel(channelId)) process.env.PERSON_MIN_FACE_FRACTION = process.env.CLONE_PERSON_MIN_FACE || "0.05";
+      else delete process.env.PERSON_MIN_FACE_FRACTION;
+    }
     let result;
     try {
       result = await renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA);
@@ -2228,7 +3547,7 @@ async function main() {
 }
 
 // Only as the CLI: importing the module (scripts/test-resolver-canvas.mjs) runs nothing.
-export { resolveAssets, canvasContentFor, guardPlanAssets, queueVideo };
+export { resolveAssets, canvasContentFor, guardPlanAssets, queueVideo, measuredFigures, forceTypeCard };
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   main().catch((e) => {
     console.error(e);

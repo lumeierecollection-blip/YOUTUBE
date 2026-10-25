@@ -1,0 +1,101 @@
+{
+  "topic_slug": "state-farm-mit-agelab-driver-distraction",
+  "strongest_angle": "Examine how State Farm and the MIT AgeLab are collaborating on Drivefulness research to address nearly $100 billion in roadway risks and growing driver distractions in connected vehicles.",
+  "key_facts": [
+    {
+      "fact": "State Farm and the MIT AgeLab collaborated to launch Drivefulness research exploring the human side of a nearly $100 billion roadway risk.",
+      "source_url": "https://newsroom.statefarm.com/state-farm-and-mit-agelab-collaborate-on-distracted-driving-research",
+      "source_name": "State Farm Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "State Farm data states that distracted driving leads to over 10,000 deaths and 1.3 million injuries each year.",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving",
+      "source_name": "State Farm Corporate Responsibility",
+      "confidence": "medium"
+    },
+    {
+      "fact": "State Farm reports indicate that 68 percent of drivers admit to engaging in distracted behaviors while driving.",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving",
+      "source_name": "State Farm Corporate Responsibility",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Advanced Vehicle Technology Consortium at MIT was launched in 2015 as a global academic-industry collaboration.",
+      "source_url": "https://avt.mit.edu",
+      "source_name": "MIT Advanced Vehicle Technology",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Roadway risk cost",
+      "value": 100,
+      "unit": "billion dollars",
+      "source_url": "https://newsroom.statefarm.com/state-farm-and-mit-agelab-collaborate-on-distracted-driving-research"
+    },
+    {
+      "label": "Annual distracted driving deaths",
+      "value": 10000,
+      "unit": "deaths",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+    },
+    {
+      "label": "Annual distracted driving injuries",
+      "value": 1.3,
+      "unit": "million injuries",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+    },
+    {
+      "label": "Drivers admitting distraction",
+      "value": 68,
+      "unit": "percent",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+    },
+    {
+      "label": "Drivers admitting near-crashes",
+      "value": 44,
+      "unit": "percent",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+    },
+    {
+      "label": "Drivers believing 2+ second glances are safe",
+      "value": 62,
+      "unit": "percent",
+      "source_url": "https://www.statefarm.com/about-us/corporate-responsibility/safer-communities/distracted_driving"
+    },
+    {
+      "label": "AVT Consortium launch year",
+      "value": 2015,
+      "unit": "year",
+      "source_url": "https://avt.mit.edu"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "State Farm",
+      "kind": "organization"
+    },
+    {
+      "name": "MIT AgeLab",
+      "kind": "organization"
+    },
+    {
+      "name": "Bloomington",
+      "kind": "place"
+    },
+    {
+      "name": "Advanced Vehicle Technology Consortium",
+      "kind": "organization"
+    },
+    {
+      "name": "Evelyn Schneider",
+      "kind": "person"
+    },
+    {
+      "name": "Adam Felts",
+      "kind": "person"
+    }
+  ]
+}

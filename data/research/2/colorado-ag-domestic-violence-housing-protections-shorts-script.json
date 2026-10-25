@@ -1,0 +1,67 @@
+{
+  "channel_id": "2",
+  "topic_slug": "colorado-ag-domestic-violence-housing-protections",
+  "format": "shorts",
+  "hook": "Landlords breaking Colorado housing laws face state action under House Bill 251168.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Landlords breaking Colorado housing laws face state action under House Bill 251168.",
+      "b_roll": [
+        "State capitol building exterior",
+        "Colorado state seal graphic"
+      ],
+      "text_overlay": {
+        "text": "Colorado Housing Protections"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Phil Weiser issued an advisory on October 6, 2026, targeting rental violations. Representatives Mandy Lindsay and Cecelia Espenoza sponsored the statute. Which tenants gain protection under this law?",
+      "b_roll": [
+        "Attorney General office press briefing",
+        "Document pages scrolling"
+      ],
+      "text_overlay": {
+        "text": "October 6, 2026 Advisory"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "House Bill 25-1168 expanded protections to victims of unlawful sexual behavior and stalking.",
+      "b_roll": [
+        "Legal statute text close up",
+        "Courthouse steps"
+      ],
+      "text_overlay": {
+        "text": "House Bill 251168"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Colorado protects 3 specific groups against unlawful detention and eviction now. Mike Weissman helped pass House Bill 25-1168 on May 22, 2025.",
+      "b_roll": [
+        "Apartment complex exterior",
+        "Scale of justice symbol"
+      ],
+      "text_overlay": {
+        "text": "Expanded Protections Enforced"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "House Bill 251168 protects Colorado survivors now.",
+      "b_roll": [
+        "Colorado state flag waving"
+      ],
+      "text_overlay": {
+        "text": "House Bill 251168"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://coag.gov/press-releases/weiser-reminds-colorado-landlords-of-expanded-housing-protections-for-domestic-violence-survivors",
+    "https://leg.colorado.gov/bills/hb25-1168",
+    "https://dre.colorado.gov/hb25-1168-summary"
+  ]
+}

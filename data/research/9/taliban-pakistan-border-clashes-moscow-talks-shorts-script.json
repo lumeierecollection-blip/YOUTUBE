@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "taliban-pakistan-border-clashes-moscow-talks",
+  "format": "shorts",
+  "hook": "Peace talks collapsed in Moscow when Pakistan and the Taliban clashed over border security.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Peace talks collapsed in Moscow when Pakistan and the Taliban clashed over border security.",
+      "b_roll": [
+        "Map of Moscow featuring conference hall"
+      ],
+      "text_overlay": {
+        "text": "Moscow Talks Collapse"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Minister Amir Khan Muttaqi walked out of the eighth Moscow Format Consultations. Fighting erupted immediately across southeastern Paktia province and Khyber Pakhtunkhwa. Where did 1,100 civilian casualties come from?",
+      "b_roll": [
+        "Portrait of Amir Khan Muttaqi",
+        "Map highlighting Paktia province",
+        "Map highlighting Khyber Pakhtunkhwa"
+      ],
+      "text_overlay": {
+        "text": "1,100 Casualties Documented"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Pakistan declared a state of emergency in Khyber Pakhtunkhwa as security tensions escalated.",
+      "b_roll": [
+        "Emergency seal over Khyber Pakhtunkhwa"
+      ],
+      "text_overlay": {
+        "text": "State of Emergency Declared"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Artillery duels destroyed regional checkpoints.",
+      "b_roll": [
+        "United Nations emblem",
+        "Pakistani army troop movement graphic",
+        "Border checkpoint map marker"
+      ],
+      "text_overlay": {
+        "text": "UNAMA Documents Violence"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Border clashes between Pakistan and the Taliban led to the declaration of a state of emergency.",
+      "b_roll": [
+        "Wide regional map showing Pakistan and Afghanistan border"
+      ],
+      "text_overlay": {
+        "text": "Regional Stability Threatened"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.buildbetterpakistan.com/news/moscow-format-afghanistan-talks-collapse-pakistan-taliban-october-2026",
+    "https://apnews.com/article/pakistan-afghanistan-taliban-dar-border-attacks-26f3ca516464048d883401acbec8d8e2"
+  ]
+}

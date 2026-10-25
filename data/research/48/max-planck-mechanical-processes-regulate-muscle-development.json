@@ -1,0 +1,67 @@
+{
+  "topic_slug": "max-planck-mechanical-processes-regulate-muscle-development",
+  "strongest_angle": "Break down the newly published findings from the Max Planck Institute on how mechanical forces, matrix alignment, and physical processes directly govern muscle development and strength formation.",
+  "key_facts": [
+    {
+      "fact": "The Max Planck Institute published research on October 16, 2026, detailing how mechanical processes regulate muscle development and structural strength.",
+      "source_url": "https://phys.org/news/2026-10-strength-mechanical-muscle.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "Research published via idw-online on October 16, 2026, from the Max Planck Institute explores the force behind human strength and mechanical regulation of muscle.",
+      "source_url": "https://idw-online.de/en/news879247",
+      "source_name": "idw-online.de",
+      "confidence": "high"
+    },
+    {
+      "fact": "Max Planck scientists including M. Weitkunat, A. Kaya-Çopur, S.W. Grill, and F. Schnorrer discovered on March 14, 2014, that tension triggers muscle building through sarcomere formation.",
+      "source_url": "https://www.mpg.de/8017746/muscle-building",
+      "source_name": "Max Planck Society",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Max Planck Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Max Planck Institute for the Science of Light",
+      "kind": "organization"
+    },
+    {
+      "name": "Sadie Harley",
+      "kind": "person"
+    },
+    {
+      "name": "Robert Egan",
+      "kind": "person"
+    },
+    {
+      "name": "M. Weitkunat",
+      "kind": "person"
+    },
+    {
+      "name": "A. Kaya-Çopur",
+      "kind": "person"
+    },
+    {
+      "name": "S.W. Grill",
+      "kind": "person"
+    },
+    {
+      "name": "F. Schnorrer",
+      "kind": "person"
+    },
+    {
+      "name": "Vibha Singh",
+      "kind": "person"
+    },
+    {
+      "name": "Prasanna Padmanaban",
+      "kind": "person"
+    }
+  ]
+}

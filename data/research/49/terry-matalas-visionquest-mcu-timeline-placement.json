@@ -1,0 +1,66 @@
+{
+  "topic_slug": "terry-matalas-visionquest-mcu-timeline-placement",
+  "strongest_angle": "Showrunner Terry Matalas has officially confirmed that VisionQuest takes place years after WandaVision, putting it roughly concurrent with Spider-Man: Brand New Day.",
+  "key_facts": [
+    {
+      "fact": "Showrunner Terry Matalas revealed in a Polygon interview that years have passed since WandaVision, placing VisionQuest roughly current with Spider-Man: Brand New Day.",
+      "source_url": "https://screenrant.com/visionquest-mcu-timeline-comparison-confirmed-terry-matalas",
+      "source_name": "ScreenRant",
+      "confidence": "high"
+    },
+    {
+      "fact": "Paul Bettany portrays the super-powered robot Vision, who was first introduced in the 2015 Marvel Cinematic Universe film Avengers: Age of Ultron.",
+      "source_url": "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
+      "source_name": "Polygon",
+      "confidence": "high"
+    },
+    {
+      "fact": "GamesRadar reported that VisionQuest features the grieving synthezoid retreating into his own head and contacting his teenage son, Tommy Shepherd.",
+      "source_url": "https://www.gamesradar.com/entertainment/marvel-tv-shows/visionquest-showrunner-confirms-when-the-upcoming-tv-show-takes-place-on-the-marvel-timeline",
+      "source_name": "GamesRadar+",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Introduction Year",
+      "value": 2015,
+      "unit": "year",
+      "source_url": "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Terry Matalas",
+      "kind": "person"
+    },
+    {
+      "name": "Paul Bettany",
+      "kind": "person"
+    },
+    {
+      "name": "Tommy Shepherd",
+      "kind": "person"
+    },
+    {
+      "name": "WandaVision",
+      "kind": "object"
+    },
+    {
+      "name": "VisionQuest",
+      "kind": "object"
+    },
+    {
+      "name": "Spider-Man: Brand New Day",
+      "kind": "object"
+    },
+    {
+      "name": "Avengers: Age of Ultron",
+      "kind": "object"
+    },
+    {
+      "name": "Polygon",
+      "kind": "organization"
+    }
+  ]
+}

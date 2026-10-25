@@ -1,0 +1,89 @@
+{
+  "topic_slug": "fsb-bank-resolution-backstop-compliance-2026",
+  "strongest_angle": "Examining the Financial Stability Board's October 2026 peer review report, which reveals that only 4 of 19 major economies fully meet emergency backstop rules for failing banks.",
+  "key_facts": [
+    {
+      "fact": "The Financial Stability Board published a peer review report on October 9, 2026, finding that only 4 of 19 economies fully meet public sector backstop funding rules.",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant",
+      "source_name": "Trend and Ticker",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Financial Stability Board rated the United States, United Kingdom, Japan, and Hong Kong as compliant with its bank resolution backstop rules.",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant",
+      "source_name": "Trend and Ticker",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Financial Stability Board placed the European Union Banking Union and Switzerland among eight materially non-compliant members in its 2026 review.",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant",
+      "source_name": "Trend and Ticker",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Financial Stability Board adopted the Key Attributes of Effective Resolution Regimes for Financial Institutions in 2011.",
+      "source_url": "https://www.fsb.org/2026/10/thematic-review-on-public-sector-backstop-funding-mechanisms-peer-review-report",
+      "source_name": "Financial Stability Board",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Compliant economies count",
+      "value": 4,
+      "unit": "economies",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant"
+    },
+    {
+      "label": "Total reviewed economies count",
+      "value": 19,
+      "unit": "economies",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant"
+    },
+    {
+      "label": "FSB adoption year",
+      "value": 2011,
+      "unit": "year",
+      "source_url": "https://www.fsb.org/2026/10/thematic-review-on-public-sector-backstop-funding-mechanisms-peer-review-report"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Financial Stability Board",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    },
+    {
+      "name": "Japan",
+      "kind": "place"
+    },
+    {
+      "name": "Hong Kong",
+      "kind": "place"
+    },
+    {
+      "name": "European Union Banking Union",
+      "kind": "organization"
+    },
+    {
+      "name": "Switzerland",
+      "kind": "place"
+    },
+    {
+      "name": "India",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    }
+  ]
+}

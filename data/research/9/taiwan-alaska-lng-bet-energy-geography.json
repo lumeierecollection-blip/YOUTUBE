@@ -1,0 +1,86 @@
+{
+  "topic_slug": "taiwan-alaska-lng-bet-energy-geography",
+  "strongest_angle": "Analyzing President Donald Trump's announcement that Taiwan's state-backed CPC Corporation plans to invest $4.4 billion and buy 30% of Alaska's proposed LNG project output, contrasted against Taipei's cautious stance that binding commitments are not yet finalized.",
+  "key_facts": [
+    {
+      "fact": "U.S. President Donald Trump announced that Taiwan agreed to buy 30 percent of the output from a proposed liquefied natural gas project in Alaska over a 20-year period.",
+      "source_url": "https://www.voanews.com/a/8211677.html",
+      "source_name": "VOA Mandarin",
+      "confidence": "high"
+    },
+    {
+      "fact": "Taiwan's Economic Affairs Ministry stated that Taiwan plans to buy 6 million metric tons of liquefied natural gas annually from the U.S. project and could invest up to $4.4 billion.",
+      "source_url": "https://apnews.com/article/taiwan-us-gas-alaska-35e41251ac55327ae2f83fbbf73d101d",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Taiwan's government reported that state-owned CPC Corporation made major progress toward investing billions of dollars in the planned Alaska LNG export project.",
+      "source_url": "https://www.energyintel.com/000001a1-3b1b-d6d9-a5eb-bf9bb91c0000",
+      "source_name": "Energy Intelligence",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "LNG output share",
+      "value": 30,
+      "unit": "percent",
+      "source_url": "https://www.voanews.com/a/8211677.html"
+    },
+    {
+      "label": "Supply duration",
+      "value": 20,
+      "unit": "years",
+      "source_url": "https://www.voanews.com/a/8211677.html"
+    },
+    {
+      "label": "Investment amount",
+      "value": 4.4,
+      "unit": "billion dollars",
+      "source_url": "https://www.voanews.com/a/8211677.html"
+    },
+    {
+      "label": "Annual LNG volume metric tons",
+      "value": 6,
+      "unit": "million metric tons",
+      "source_url": "https://apnews.com/article/taiwan-us-gas-alaska-35e41251ac55327ae2f83fbbf73d101d"
+    },
+    {
+      "label": "Annual LNG volume US tons",
+      "value": 6.6,
+      "unit": "million U.S. tons",
+      "source_url": "https://apnews.com/article/taiwan-us-gas-alaska-35e41251ac55327ae2f83fbbf73d101d"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "President Donald Trump said Taiwan had agreed to buy 30% of the liquefied natural gas from a planned project in Alaska for 20 years, even as Taipei indicated that no binding commitments have been finalized.",
+      "speaker": "Jennifer A Dlouhy and Stephen Stapczynski",
+      "source_name": "Bloomberg",
+      "source_url": "https://www.bloomberg.com/news/articles/2026-10-14/trump-says-taiwan-to-buy-gas-from-alaska-lng-pipeline-project"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Taiwan",
+      "kind": "place"
+    },
+    {
+      "name": "Alaska",
+      "kind": "place"
+    },
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    },
+    {
+      "name": "CPC Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Economic Affairs Ministry",
+      "kind": "organization"
+    }
+  ]
+}

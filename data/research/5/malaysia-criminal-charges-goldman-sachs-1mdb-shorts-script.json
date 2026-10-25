@@ -1,0 +1,65 @@
+{
+  "channel_id": "5",
+  "topic_slug": "malaysia-criminal-charges-goldman-sachs-1mdb",
+  "format": "shorts",
+  "hook": "Three Goldman Sachs subsidiaries faced criminal charges over 6.5 billion dollars in hidden bond deals.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Three Goldman Sachs subsidiaries faced criminal charges over 6.5 billion dollars in hidden bond deals.",
+      "b_roll": [
+        "Goldman Sachs office building exterior",
+        "Kuala Lumpur skyline"
+      ],
+      "text_overlay": {
+        "text": "$6.5 Billion Bond Scandal"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Attorney-General Tommy Thomas announced the action in Kuala Lumpur. Malaysia filed the criminal charges regarding the state investment fund 1MDB. Where did the missing money go?",
+      "b_roll": [
+        "Malaysian government building",
+        "Document pages with financial data"
+      ],
+      "text_overlay": {
+        "text": "1MDB Fund Investigation"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Goldman Sachs made untrue statements in offering circulars for the 1MDB bond sales.",
+      "b_roll": [
+        "Close-up of financial offering documents"
+      ],
+      "text_overlay": {
+        "text": "False Statements Filed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Goldman Sachs omitted key facts during the bond sales. The firm handled 6.5 billion dollars for the 1MDB fund. Malaysia charged two employees alongside the three subsidiaries.",
+      "b_roll": [
+        "Courtroom exterior in Kuala Lumpur",
+        "Stack of financial reports"
+      ],
+      "text_overlay": {
+        "text": "$6.5B Total Bond Value"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "6.5 billion dollars linked three subsidiaries to criminal charges.",
+      "b_roll": [
+        "Financial district street view"
+      ],
+      "text_overlay": {
+        "text": "Goldman Sachs Charged"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/0a6ed2ccc8544f52955cde9e2c58801f",
+    "https://theedgemalaysia.com/article/malaysia-files-criminal-charges-against-goldman-over-1mdb"
+  ]
+}

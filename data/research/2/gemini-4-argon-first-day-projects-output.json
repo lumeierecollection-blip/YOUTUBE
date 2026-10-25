@@ -1,0 +1,107 @@
+{
+  "topic_slug": "gemini-4-argon-first-day-projects-output",
+  "strongest_angle": "Examining real-world outputs and autonomous tasks achieved with Google's Gemini 4 Argon during its opening week, including multi-agent Minecraft wins and large codebase optimizations.",
+  "key_facts": [
+    {
+      "fact": "Four Gemini 4 Argon agents built 2,783 programs and beat Minecraft in 27 hours with no human help, according to Google DeepMind researchers.",
+      "source_url": "https://thenextweb.com/news/gemini-4-argon-agents-beat-minecraft-27-hours",
+      "source_name": "The Next Web",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google opened Gemini 4 Argon to paying users through the API, AI Studio and the Gemini app on October 13, following a September 30 release to cyber defenders in the Fairwind program.",
+      "source_url": "https://thejarrus.com/en/news/gemini-argon-projects",
+      "source_name": "JARRUS",
+      "confidence": "high"
+    },
+    {
+      "fact": "Apptronik’s Apollo robot sank 7 shots in a row after being corrected using its own throws during tests featuring Gemini 4 Argon.",
+      "source_url": "https://thejarrus.com/en/news/gemini-argon-projects",
+      "source_name": "JARRUS",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Google Cloud software engineers George Weale, Bo Yang, and Andrew Biernat detailed optimizing a 200,000-line Python codebase overnight using Gemini 4 Argon.",
+      "source_url": "https://developers.googleblog.com/optimizing-a-200000-line-python-codebase-overnight-with-gemini-4-argon",
+      "source_name": "Google Developers Blog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Minecraft programs written",
+      "value": 2783,
+      "unit": "programs",
+      "source_url": "https://thenextweb.com/news/gemini-4-argon-agents-beat-minecraft-27-hours"
+    },
+    {
+      "label": "Minecraft win time",
+      "value": 27,
+      "unit": "hours",
+      "source_url": "https://thenextweb.com/news/gemini-4-argon-agents-beat-minecraft-27-hours"
+    },
+    {
+      "label": "Agent deaths in Minecraft",
+      "value": 605,
+      "unit": "deaths",
+      "source_url": "https://thenextweb.com/news/gemini-4-argon-agents-beat-minecraft-27-hours"
+    },
+    {
+      "label": "Total cost up to Minecraft win",
+      "value": 520,
+      "unit": "USD",
+      "source_url": "https://thenextweb.com/news/gemini-4-argon-agents-beat-minecraft-27-hours"
+    },
+    {
+      "label": "Shots sunk in a row",
+      "value": 7,
+      "unit": "shots",
+      "source_url": "https://thejarrus.com/en/news/gemini-argon-projects"
+    },
+    {
+      "label": "Python codebase size",
+      "value": 200000,
+      "unit": "lines",
+      "source_url": "https://developers.googleblog.com/optimizing-a-200000-line-python-codebase-overnight-with-gemini-4-argon"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "Google DeepMind",
+      "kind": "organization"
+    },
+    {
+      "name": "Apptronik",
+      "kind": "organization"
+    },
+    {
+      "name": "Apollo",
+      "kind": "object"
+    },
+    {
+      "name": "George Weale",
+      "kind": "person"
+    },
+    {
+      "name": "Bo Yang",
+      "kind": "person"
+    },
+    {
+      "name": "Andrew Biernat",
+      "kind": "person"
+    },
+    {
+      "name": "Google Cloud",
+      "kind": "organization"
+    },
+    {
+      "name": "Fairwind",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "topic_slug": "chicago-police-dna-links-former-detective-cold-case",
+  "strongest_angle": "Examine how advanced DNA and fingerprint technology allowed Chicago police to solve the 1960 cold case murder of 8-year-old Gloria Kowalewicz, linking the crime to former homicide detective Thomas F. McInerney Jr.",
+  "key_facts": [
+    {
+      "fact": "Chicago police announced that DNA and fingerprint evidence links former homicide detective Thomas F. McInerney Jr. to the 1960 murder of 8-year-old Gloria Kowalewicz.",
+      "source_url": "https://www.nbcnews.com/news/us-news/chicago-police-find-killer-65-year-old-cold-case-murder-little-girl-on-rcna602947",
+      "source_name": "NBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Gloria Kowalewicz was 8 years old when she was abducted and found shot dead in a ditch in 1960 while walking to church in Chicago.",
+      "source_url": "https://www.independent.co.uk/news/world/americas/crime/gloria-kowalewicz-dna-murder-homicide-detective-b3066250.html",
+      "source_name": "The Independent",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigators used advanced DNA technology that did not exist at the time of the 1960 killing to finally crack the decades-old cold case.",
+      "source_url": "https://www.nbcnews.com/news/us-news/chicago-police-find-killer-65-year-old-cold-case-murder-little-girl-on-rcna602947",
+      "source_name": "NBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Victim age",
+      "value": 8,
+      "unit": "years",
+      "source_url": "https://www.nbcnews.com/news/us-news/chicago-police-find-killer-65-year-old-cold-case-murder-little-girl-on-rcna602947"
+    },
+    {
+      "label": "Years unsolved",
+      "value": 65,
+      "unit": "years",
+      "source_url": "https://www.nbcnews.com/news/us-news/chicago-police-find-killer-65-year-old-cold-case-murder-little-girl-on-rcna602947"
+    },
+    {
+      "label": "Year of murder",
+      "value": 1960,
+      "unit": "year",
+      "source_url": "https://www.nbcnews.com/news/us-news/chicago-police-find-killer-65-year-old-cold-case-murder-little-girl-on-rcna602947"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Gloria Kowalewicz",
+      "kind": "person"
+    },
+    {
+      "name": "Thomas F. McInerney Jr.",
+      "kind": "person"
+    },
+    {
+      "name": "Chicago Police Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Chicago",
+      "kind": "place"
+    }
+  ]
+}

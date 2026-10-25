@@ -24,6 +24,8 @@
  */
 
 import os from "os";
+import { resolveChannel } from "../../../scripts/lib/channel-lookup.mjs";
+import { creditEntries } from "./credits.js";
 import { readFileSync, mkdirSync, existsSync, copyFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname, basename, extname, isAbsolute } from "path";
 import { fileURLToPath } from "url";
@@ -32,6 +34,7 @@ import { createRequire } from "module";
 import { bundle } from "@remotion/bundler";
 import { selectComposition, renderMedia } from "@remotion/renderer";
 import { findChrome } from "./find-chrome.js";
+import { coverAudio } from "./cover-audio.js";
 import { resolveImageAssets } from "./image-assets.js";
 import { buildMgPackage } from "./compositions/mg-package.js";
 import { formatVisualReport } from "./visual/diagnostics.js";
@@ -46,9 +49,16 @@ import { sceneTextInventory } from "./visual/scene-text.js";
 import { pickKalimbaTrack } from "./visual/kalimba-pool.js";
 import { semanticSfxEvents, SEMANTIC_SFX_DIR } from "./visual/sound-design.js";
 import { canvasSfxEvents } from "./visual/canvas-sfx.js";
+import { toneOf } from "../../utils/video-tone.js";
+import { paletteFor } from "./clone/clone-palette.js";
+import { planClone, cloneCanvasFor } from "./clone/clone-plan.js";
+import { attachCutoutsChecked } from "./clone/clone-cutouts.js";
+import { verifiedQuotesFor } from "../../../scripts/lib/quote-verify.mjs";
+import { recordedFiles, peakFrames, creditFor } from "../../../scripts/sfx-cc0.mjs";
 import { motionsFor, motionLine, layoutFacts } from "./visual/motion-plan.js";
 import { canvasLayout, canvasManifest, normalizeCanvas } from "./visual/canvas-layout.js";
 import { scheduleEntityPop } from "./visual/entity-sync.js";
+import { holdForDuration } from "./visual/canvas-layout.js";
 import { GROUND } from "./visual/backgrounds.js";
 
 
@@ -110,8 +120,7 @@ function loadChannel(channelId) {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const numId = parseInt(channelId, 10);
-  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, channels);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }
@@ -247,9 +256,24 @@ function getCompositionForStyle(style, format) {
   //
   // Legacy path (USE_LEGACY_3D=true): the original Three.js compositions
   // that require chromiumOptions: { gl: "swangle" } for GPU-less CI.
-  if (style === "motion-graphics" && !USE_LEGACY_3D) {
+  //
+  // EVERY short-form render goes through DirectedShorts, whatever the
+  // channel's style. The pipeline's checks — the render manifest, the
+  // per-beat frame check, the camera check, the entity check and the
+  // pre-ship place gate — read the manifest only this composition writes.
+  // MinimalShorts and CinematicDocumentaryShorts write none, so every render
+  // through them fails the first manifest-dependent check (run 39315927175:
+  // ch-2 beat-check ENOENT on a 1224-frame MinimalShorts render; ch-1 hits
+  // the same checks after its CinematicDocumentary render). The minimal and
+  // cinematic object vocabularies are still outstanding (OPENCODE-BRIEF.md:
+  // "every template and object so far is motion-graphics"), so until they
+  // exist their plans draw with the same 2D canvas engine.
+  //
+  // Longform stays on the legacy compositions, and USE_LEGACY_3D=true
+  // restores the original Three.js short path.
+  if (!USE_LEGACY_3D) {
     if (format === "shorts") return "DirectedShorts";
-    console.warn("MG 2D: longform not yet supported by DirectedShorts — falling back to legacy MotionGraphicsLongform.");
+    console.warn("2D engine: longform is not supported by DirectedShorts yet — falling back to the legacy longform composition.");
   }
   const compositions = {
     "cinematic-documentary": { shorts: "CinematicDocumentaryShorts", longform: "CinematicDocumentaryLongform" },
@@ -432,6 +456,10 @@ async function main() {
   const channel = loadChannel(channelId);
   const script = loadScript(scriptPath);
   const sections = toContentSections(script);
+  // THE VIDEO'S TONE (src/utils/video-tone.js): the same decision the voice was read under. A grave or serious story plays no kalimba
+  // bed and a restrained (or no) SFX set — owner, 2026-10-15: "the sound is too playful".
+  const videoTone = toneOf({ text: (script.sections || []).map((s) => s.voiceover || "").join(" "), channelTone: channel.tone });
+  console.log(`[tone] ${videoTone.gravity} — ${videoTone.emotion}; music bed ${videoTone.music ? "on" : "OFF"}; SFX max ${Number.isFinite(videoTone.sfx.max) ? videoTone.sfx.max : "unlimited"}`);
 
   if (sections.length === 0) {
     console.error("Script has no voiceover sections — nothing to render.");
@@ -474,6 +502,7 @@ async function main() {
   // alternating TYPE → VISUAL. See visual-engine/director/.
   let sentencePlan = null;
   let mg = null;
+  let canvasPlan = null;   // the resolved visual plan the canvas path drew (credits read the marks and photos off it)
   let frames;
 
   if (componentId === "DirectedShorts") {
@@ -511,6 +540,7 @@ async function main() {
     if (existsSync(planPath)) {
       try {
         visualPlan = JSON.parse(readFileSync(planPath, "utf-8"));
+        canvasPlan = visualPlan;
         console.log(`Visual plan loaded: ${planPath} (${visualPlan.totalBeats} beats, iteration: ${visualPlan.iteration})`);
       } catch (e) {
         console.warn(`Failed to load visual plan ${planPath}: ${e.message}`);
@@ -518,6 +548,12 @@ async function main() {
     }
 
     const { beats, warnings, distribution } = direct(cues, { visualPlan });
+    // Hold the last beat to the end of the voiceover FILE (cover-audio.js): the cues end at the last word, the file runs on.
+    {
+      const audioSec = getAudioDurationSeconds(ttsAudioPath);
+      const added = audioSec ? coverAudio(beats, Math.round(audioSec * FPS)) : 0;
+      if (added) console.log(`[audio] the last beat is held ${(added / FPS).toFixed(2)} s to cover the voiceover file (${audioSec.toFixed(2)} s; its last word ends ${(audioSec - added / FPS).toFixed(2)} s in)`);
+    }
 
     // Paper style: word-level captions from the voiceover's REAL word
     // timings (tts.js -> <base>-vo-words.json, Edge WordBoundary, same
@@ -552,6 +588,8 @@ async function main() {
       beats.forEach((b, i) => {
         const c = b.scene?.canvas;
         if (!c) return;
+        const held = holdForDuration(c, i, (b.duration_frames || 0) / FPS);
+        if (held) console.log(`[pace] ch-${channelId} beat ${i}: ${held}`);
         const sync = scheduleEntityPop({ ...c, composition: canvasLayout(normalizeCanvas(c, i)).composition }, b.spoken, b.duration_frames);
         if (!sync) return;
         if (sync.missing) { console.log(`[sync] ch-${channelId} beat ${i}: anchor "${sync.missing}" not found in the spoken words, popping at beat start (spoken: ${b.spoken.map((w) => w.text).join(" ").slice(0, 160)})`); delete c.entity_pop; return; }
@@ -585,7 +623,7 @@ async function main() {
     // deterministically from channel + script filename (kalimba-pool.js).
     // DirectedShorts played the voiceover only until this — no bed at all.
     const kal = pickKalimbaTrack(channel.channel_id ?? channelId, basename(scriptPath));
-    sentencePlan.kalimba = kal.file;
+    sentencePlan.kalimba = videoTone.music ? kal.file : null;
     // Full-canvas style (visual/full-canvas.jsx) when the resolved plan
     // carries canvas content. The accent colour lives in channels.json
     // (colors.canvas_accent — CLAUDE.md: colour never in a script); a channel
@@ -600,6 +638,33 @@ async function main() {
       // Uniform white on every beat of every channel (visual/backgrounds.js).
       sentencePlan.ground = GROUND;
       console.log(`[canvas] ground: uniform ${GROUND}`);
+      // THE CLONE FAMILY (src/skills/remotion-render/clone/, config/clone-grammar.json): a channel with `clone.profile` is staged by the reference videos'
+      // measured laws instead of the canvas engine's layouts. Same resolved beats, same sourced assets; CLONE_ENGINE=off is the kill switch.
+      if (channel.clone && channel.clone.profile && process.env.CLONE_ENGINE !== "off") {
+        const G = JSON.parse(readFileSync(join(ROOT, "config", "clone-grammar.json"), "utf-8"));
+        const profile = G.profiles[channel.clone.profile];
+        if (!profile) { console.error(`::error::[clone] ch-${channel.id ?? channelId}: no clone profile "${channel.clone.profile}" in config/clone-grammar.json`); process.exit(1); }
+        sentencePlan.clone = { id: channel.clone.profile, profile, laws: G.laws, palette: paletteFor(profile, channel), bw: channel.asset_treatment === "bw" };
+        // FRAMELESS PICTURES (owner, 2026-10-16): each beat's own verified photo is cut out of its background (clone-cutouts.js -> scripts/cutout_lib.py, rembg);
+        // one that cannot be is shown soft-edged. Never boxed.
+        // ... and each cut-out is LOOKED AT (attachCutoutsChecked): a broken one (a sliced head, background left on) is shown as the photo itself instead
+        const cut = await attachCutoutsChecked(beats, channel.id ?? channelId, (m) => console.log(m));
+        console.log(`[clone] pictures: ${cut.cut} cut out, ${cut.soft} soft-edged`);
+        // A PRE-BUILT bundle (REMOTION_SERVE_URL, as CI renders) copied public/ BEFORE these cut-outs existed, so the page served a 404 for them ("The source image cannot be decoded", board 38864901359
+        // ch-26). Each new file is copied into the bundle's own public/ too.
+        const serveDir = process.env.REMOTION_SERVE_URL;
+        if (cut.cut && serveDir && !/^https?:/.test(serveDir) && existsSync(serveDir)) {
+          const rels = beats.flatMap((b) => [b?.scene?.canvas?.photo?.cutout, ...((b?.scene?.canvas?.clone_extra || []).map((x) => x && x.cutout))]).filter(Boolean);
+          for (const rel of rels) {
+            const dst = join(serveDir, "public", ...rel.split("/"));
+            try { mkdirSync(dirname(dst), { recursive: true }); copyFileSync(join(__dirname, "public", ...rel.split("/")), dst); } catch (e) { console.log(`[clone] could not copy ${rel} into the bundle: ${e.message}`); }
+          }
+        }
+        // QUOTED STATEMENTS: the research artifact's quotes that were confirmed word for word against the raw search text (scripts/lib/quote-verify.mjs).
+        sentencePlan.clone.quotes = verifiedQuotesFor(scriptPath, ROOT);
+        console.log(`[clone] quoted statements available: ${sentencePlan.clone.quotes.length}`);
+        console.log(`[clone] ch-${channel.id ?? channelId}: profile ${channel.clone.profile} (cloned from ${profile.from}); ground ${sentencePlan.clone.palette.ground}, accent ${sentencePlan.clone.palette.accent}`);
+      }
       const comps = {};
       beats.forEach((b, bi) => { const k = canvasLayout(normalizeCanvas(b.scene.canvas, bi)).composition; comps[k] = (comps[k] || 0) + 1; });
       console.log(`[canvas] full-canvas style, accent ${sentencePlan.accent || "(none — ink)"}; ${Object.entries(comps).map(([k, v]) => `${k} ${v}`).join(", ")}`);
@@ -623,7 +688,14 @@ async function main() {
     // six roles, <= 6 per video, visible events only, charts silent). Other plans: the older
     // semantic table (sound-design.js). A file that is missing is logged and that SFX
     // skipped — the render never fails over a sound (owner's spec 2026-10-03, D.4).
-    const sfx = sentencePlan.canvas ? (() => { const r = canvasSfxEvents(beats); return { events: r.events, warnings: r.dropped.map((d) => `[sfx] dropped: ${d}`) }; })() : semanticSfxEvents(beats);
+    // A full-canvas plan plays only the CC0 recordings Gemini judged "recorded" (scripts/sfx-cc0.mjs
+    // fetch + judge run before this step on CI), each landed by its measured peak.
+    const sfx = sentencePlan.clone ? { events: [], warnings: ["[sfx] clone engine: no canvas-layout SFX (their timing keys on the canvas engine's groups)"] } : sentencePlan.canvas ? (() => {
+      const recorded = recordedFiles();
+      if (!recorded.size) console.warn("::warning::[sfx] no judged-recorded SFX (sfx/cc0/verdicts.json missing or empty) — this video plays no SFX");
+      const r = canvasSfxEvents(beats, { peaks: peakFrames(30), recorded, tone: videoTone });
+      return { events: r.events, warnings: r.dropped.map((d) => `[sfx] dropped: ${d}`) };
+    })() : semanticSfxEvents(beats);
     const playable = [];
     for (const e of sfx.events) {
       const onDisk = join(__dirname, "public", SEMANTIC_SFX_DIR, e.file);
@@ -631,11 +703,11 @@ async function main() {
         console.warn(`::warning::[sfx] ${e.file} (${e.trigger}, beat ${e.beat}) not found at ${onDisk} — skipped`);
         continue;
       }
-      console.log(`[sfx] ${e.trigger} ${e.file} ${e.db} dB at beat ${e.beat} frame ${e.atFrame} (${e.reason})`);
+      console.log(`[sfx] ${e.trigger} ${e.file} ${e.db} dB at beat ${e.beat} frame ${e.atFrame}${e.eventFrame !== undefined ? ` (peak +${e.peakFrames}f on event frame ${e.eventFrame})` : ""} (${e.reason})`);
       playable.push(e);
     }
     for (const w of sfx.warnings) console.log(w);
-    console.log(`[sfx] ${playable.length} fired (max 6)`);
+    console.log(`[sfx] ${playable.length} fired (max 6), ${beats.length - new Set(playable.map((e) => e.beat)).size}/${beats.length} beats silent`);
     sentencePlan.sfx = playable;
 
     frames = beats.length ? beats[beats.length - 1].start_frame + beats[beats.length - 1].duration_frames : 300;
@@ -769,6 +841,13 @@ async function main() {
       if (asset.credit) creditSet.add(asset.credit);
     }
   }
+  // The canvas path's credits (credits.js): attribution-bearing images, and every fair-use mark PER USE in a structured manifest of its own.
+  // Always written, empty or not — an absent file is ambiguous ("did this check run?").
+  const canvasCredits = creditEntries(canvasPlan);
+  for (const line of canvasCredits.lines) creditSet.add(line);
+  const fairUsePath = join(outputDir, `${slug}-${format}-fair-use-credits.json`);
+  writeFileSync(fairUsePath, JSON.stringify(canvasCredits.fair_use, null, 2) + "\n");
+  console.log(`Fair-use marks: ${canvasCredits.fair_use.length} use(s) -> ${fairUsePath}${canvasCredits.fair_use.length ? ` (${canvasCredits.fair_use.map((u) => `${u.entity} @ beat ${u.beat}`).join("; ")})` : ""}`);
   const creditsPath = join(outputDir, `${slug}-${format}-image-credits.json`);
   writeFileSync(creditsPath, JSON.stringify([...creditSet], null, 2) + "\n");
   console.log(`Image credits: ${creditSet.size} attribution(s) -> ${creditsPath}`);
@@ -780,7 +859,7 @@ async function main() {
   // fail the render. hasUnderscore just tells the composition whether to
   // render the <Audio> bed at all; the actual staticFile() resolution
   // happens in motion-graphics.jsx, at render time, inside the bundle.
-  const hasUnderscore = existsSync(join(__dirname, "public", "music", "underscore.mp3"));
+  const hasUnderscore = videoTone.music && existsSync(join(__dirname, "public", "music", "underscore.mp3"));
 
   // DirectedShorts expects { plan } as input prop.
   // All other compositions expect the legacy prop bag.
@@ -847,6 +926,8 @@ async function main() {
       "STRUCTURAL_BREAKDOWN", "EVIDENCE_FIGURE", "ACTION_CONSEQUENCE",
       "VISIBLE_CONSUMPTION", "STATE_CHANGE",
     ]);
+    const cloneShots = sentencePlan.clone ? planClone(sentencePlan.beats, { laws: sentencePlan.clone.laws, profile: sentencePlan.clone.profile, fps, quotes: sentencePlan.clone.quotes || [] }).shots : null;
+    if (cloneShots) console.log(`[clone] ${cloneShots.length} shots, ${cloneShots.filter((x) => x.hero).length} with a picture, ${cloneShots.filter((x) => !x.hero).length} type-led`);
     const manifest = {
       video: basename(outputPath),
       format,
@@ -857,8 +938,11 @@ async function main() {
       // Full-canvas: the channel accent the renderer drew with (local-audit canvas-accent).
       accent: sentencePlan.accent || null,
       ground: sentencePlan.ground || null,
+      // Which engine drew the frames: render-and-qa.js judges a clone render by the clone family's own checks (cadence, legality), not the canvas layout's.
+      engine: sentencePlan.clone ? "clone" : "canvas",
+      ...(sentencePlan.clone ? { clone: { profile: sentencePlan.clone.id, ground: sentencePlan.clone.palette.ground } } : {}),
       // Part D: every SFX that plays — role, file, level, frame, beat, why.
-      sfx: (sentencePlan.sfx || []).map((e) => ({ role: e.trigger || e.role, file: e.file, db: e.db, at_frame: e.atFrame, beat: e.beat, reason: e.reason })),
+      sfx: (sentencePlan.sfx || []).map((e) => ({ role: e.trigger || e.role, file: e.file, db: e.db, at_frame: e.atFrame, event_frame: e.eventFrame, peak_frames: e.peakFrames, beat: e.beat, reason: e.reason, credit: creditFor(e.file) })),
       totalFrames: frames,
       durationSec: +(frames / fps).toFixed(2),
       generatedAt: new Date().toISOString(),
@@ -867,7 +951,12 @@ async function main() {
         const objectLabels = (scene.objects || [])
           .map((o) => o.label).filter((l) => l && String(l).trim());
         const camera = (scene.shots || []).map((s) => s.camera).filter(Boolean);
-        const mechanism = b.treatment || scene.mechanism || null;
+        // The plan's mechanism says what the planner INTENDED for the beat. local-audit's typography-count ("at most 2 TYPOGRAPHY beats") reads it from this manifest, so for a CLONE
+        // render a beat the planner called TYPOGRAPHY but whose shots draw a picture, an entity glyph or a figure / date plate is recorded as what it drew (EVIDENCE_FIGURE): counting
+        // it as typography is reading the plan, not the frames (board 38805009555 ch-1: rejected typography-count). A beat that is only excerpt cards stays TYPOGRAPHY.
+        const planned = b.treatment || scene.mechanism || null;
+        const cloneBeatShots = cloneShots ? cloneShots.filter((x) => x.beat === i) : null;
+        const mechanism = planned === "TYPOGRAPHY" && cloneBeatShots && cloneBeatShots.some((x) => x.hero || x.subject) ? "EVIDENCE_FIGURE" : planned;
         // `renders_typography` means "this beat routes to TypographyScene and
         // is subject to the full one-line narrative contract". It does NOT
         // mean "this beat is the only kind that draws text".
@@ -888,7 +977,15 @@ async function main() {
         // figures and are exempt from the word budget, "banned" strings are
         // engine vocabulary that must never have reached the screen.
         const rendersTypography = mechanism === "TYPOGRAPHY" || !OBJECT_FIRST_MECHANISMS.has(mechanism);
-        const onScreenText = sceneTextInventory(mechanism, scene, b.text);
+        // The canvas manifest is the renderer's own record of what it drew
+        // (boxes, roles, lines). sceneTextInventory reads the text boxes out
+        // of it, so a beat that paints a headline is reported as drawing one
+        // whatever its mechanism is called — see scene-text.js for the run
+        // that proved the mechanism table was the wrong instrument.
+        // A clone render records what its SHOTS drew (clone/clone-plan.js cloneCanvasFor), not the canvas engine's layout of the same beat: the entity gates read
+        // this record, and a record of a map or a photo the clone frame does not show would let them pass what the pixels fail.
+        const canvasRec = b.scene?.canvas ? (cloneShots ? cloneCanvasFor(b.scene.canvas, cloneShots.filter((x) => x.beat === i), sentencePlan.clone.palette) : canvasManifest(b.scene.canvas, i)) : null;
+        const onScreenText = sceneTextInventory(mechanism, scene, b.text, canvasRec);
         return {
           index: i,
           beat_id: b.beat_id,
@@ -902,8 +999,8 @@ async function main() {
           // every element box from canvasLayout() — the renderer's own numbers,
           // which the audit (local-audit.cjs canvas-fit / canvas-coverage)
           // checks against the 1080x1920 frame.
-          visual_type: b.scene?.canvas?.visual_type || null,
-          canvas: b.scene?.canvas ? canvasManifest(b.scene.canvas, i) : null,
+          visual_type: (cloneShots ? cloneCanvasFor(b.scene?.canvas, cloneShots.filter((x) => x.beat === i), sentencePlan.clone.palette).visual_type : b.scene?.canvas?.visual_type) || null,
+          canvas: canvasRec,
           renders_typography: rendersTypography,
           text: rendersTypography ? [b.text].filter((t) => t && String(t).trim()) : [],
           on_screen_text: onScreenText,

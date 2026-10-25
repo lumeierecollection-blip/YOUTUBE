@@ -33,6 +33,7 @@
  * looking at the PNGs is still the acceptance test.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { resolveChannel } from "../../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
@@ -58,9 +59,7 @@ if (!scriptPath || !srtPath || !channelId || !outDirArg) {
 }
 
 const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-const channel = (channels.channels || channels).find(
-  (c) => String(c.id) === String(channelId) || c.channel_id === channelId
-);
+const channel = resolveChannel(channelId, channels.channels || channels);
 if (!channel) throw new Error(`channel ${channelId} not found`);
 
 const script = JSON.parse(readFileSync(scriptPath, "utf-8"));

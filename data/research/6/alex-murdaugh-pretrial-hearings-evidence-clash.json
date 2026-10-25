@@ -1,0 +1,93 @@
+{
+  "topic_slug": "alex-murdaugh-pretrial-hearings-evidence-clash",
+  "strongest_angle": "Break down the intense evidentiary disputes and upcoming court proceedings as Alex Murdaugh faces a 2027 murder retrial in South Carolina.",
+  "key_facts": [
+    {
+      "fact": "Alex Murdaugh, 58, is scheduled to stand trial again in South Carolina amid escalating disputes over evidence for his retrial.",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Judge Debra McCaslin is expected to hear arguments involving DNA testing, cellphone evidence, ballistics data, and crime-scene scans.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e",
+      "source_name": "WLTX",
+      "confidence": "medium"
+    },
+    {
+      "fact": "A judge ruled Alex Murdaugh's 2027 murder retrial must leave Colleton County and will allow independent testing of DNA from Maggie Murdaugh's nails.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e",
+      "source_name": "WLTX",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The double murder retrial for Alex Murdaugh is scheduled to begin on April 5, 2027, according to filings before Judge Debra McCaslin.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7",
+      "source_name": "WLTX",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Alex Murdaugh's age",
+      "value": 58,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d"
+    },
+    {
+      "label": "Retrial year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e"
+    },
+    {
+      "label": "Retrial month",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+    },
+    {
+      "label": "Retrial day",
+      "value": 5,
+      "unit": "day",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+    },
+    {
+      "label": "Retrial year 2",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Alex Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "South Carolina",
+      "kind": "place"
+    },
+    {
+      "name": "Debra McCaslin",
+      "kind": "person"
+    },
+    {
+      "name": "Maggie Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Colleton County",
+      "kind": "place"
+    },
+    {
+      "name": "Associated Press",
+      "kind": "organization"
+    },
+    {
+      "name": "WLTX",
+      "kind": "organization"
+    }
+  ]
+}

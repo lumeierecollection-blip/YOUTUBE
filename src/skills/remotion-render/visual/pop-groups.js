@@ -8,8 +8,7 @@
  * (visual/entity-sync.js, scheduled in render.js) the group holding the entity visual pops
  * on its word instead.
  */
-import { flattenBoxes, ZONES, CAPTION } from "./canvas-layout.js";
-import { enterKind } from "./transitions.js";
+import { flattenBoxes, ZONES, CAPTION, FULL_PHOTO_COMPS } from "./canvas-layout.js";
 
 // START 0: a beat's first group is on screen on the cut frame itself (the boundary is a hard
 // cut, transitions.js — nothing of the outgoing beat is left to cover frame 0).
@@ -31,7 +30,9 @@ function arrival(order, style) {
   const step = style === "staggered" ? ENTRANCE.STAGGERED : POP.STAGGER;
   return order.map((g, i) => ({ ...g, at: i * step }));
 }
-export const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY"];
+// The full-bleed photo compositions: the photo is the ground and pops as its own group. A shot's
+// framed photo (PHOTO-BAND / -EDGE / -CARD / -INSET / -STRIP) is an element of the band it sits in.
+export const PHOTO_COMPS = FULL_PHOTO_COMPS;
 // The bands the groups are clipped to (zones; the middle runs to the caption
 // row so a descender within ZONE_TOL is not cut).
 const BANDS = { top: [0, ZONES.top[1]], middle: [ZONES.middle[0], CAPTION.y - 10] };
@@ -41,7 +42,7 @@ export function popGroups(c, L) {
   const groups = [];
   if (photo) groups.push({ key: "photo", show: "body", clip: null, cx: 540, cy: 960, enter: "photo" });
   for (const [band, [y0, y1]] of Object.entries(BANDS)) {
-    const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && k !== "photo" && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
+    const kb = flattenBoxes(L.boxes).filter(([k, b]) => b && b.w > 0 && b.h > 0 && (k !== "photo" || !photo) && b.role !== "shape" && b.y + b.h / 2 >= y0 && b.y + b.h / 2 < y1);
     if (!kb.length) continue;
     const bs = kb.map(([, b]) => b);
     const x0 = Math.min(...bs.map((b) => b.x)), x1 = Math.max(...bs.map((b) => b.x + b.w));
@@ -60,21 +61,42 @@ export function popGroups(c, L) {
   // number — pops at the frame its word is spoken; the others keep their order from the
   // beat's start (headline first). Not when nothing else would be on screen meanwhile
   // (the pop-transitions rule: no empty frame).
+  // A LIST-BUILD / TIMELINE body adds its items as the narrator reaches them, so at the beat's first frames its band
+  // draws NOTHING: "visual-first" (the band first, the headline 14 frames later) left the frame empty across the
+  // boundary — pop-transitions, ch-44 board 37919459134 frames 7-10. Their headline lands first.
+  const style = ["LIST-BUILD", "TIMELINE"].includes(L.composition) && c.entrance_style === "visual-first" ? null : c.entrance_style;
   const ek = entityGroupKey(c, L, groups);
   if (ek && c.entity_pop && Number.isFinite(c.entity_pop.frame) && order.some((g) => g.key !== ek && g.major)) {
-    const rest = arrival(order.filter((g) => g.key !== ek), c.entrance_style);
-    return [...rest, { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true }];
+    const rest = arrival(order.filter((g) => g.key !== ek), style);
+    const entity = { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true };
+    // PopGroups paints in array order, so ARRIVAL order must not become PAINT order for the full-bleed photo: appended last it was drawn over
+    // the headline and every other group, and the words vanished the moment the photo popped (board 38044082797 ch 1 beat 7: "no words found").
+    // The photo stays the bottom layer; the other bands are clipped to separate zones, so their order does not matter.
+    return ek === "photo" ? [entity, ...rest] : [...rest, entity];
   }
-  return arrival(order, c.entrance_style);
+  return arrival(order, style);
 }
 // The group that holds the beat's entity visual, or null.
 export function entityGroupKey(c, L, groups) {
   const kind = c.entity_pop?.kind;
   if (!kind) return null;
-  if (kind === "photo") return groups.some((g) => g.key === "photo") ? "photo" : null;
-  const box = kind === "portrait" ? L.boxes.portrait : kind === "cutout" ? L.boxes.cutout0 : kind === "number" ? L.boxes.number : null;
+  if (kind === "photo" && groups.some((g) => g.key === "photo")) return "photo";
+  const box = kind === "photo" ? L.boxes.photo : kind === "portrait" ? L.boxes.portrait : kind === "cutout" ? L.boxes.cutout0 : kind === "number" ? L.boxes.number : null;
   if (!box) return null;
   const cy = box.y + box.h / 2;
   const band = Object.entries(BANDS).find(([, [y0, y1]]) => cy >= y0 && cy < y1)?.[0];
   return band && groups.some((g) => g.key === band) ? band : null;
+}
+
+const clamp01p = (v) => Math.max(0, Math.min(1, Number.isFinite(v) ? v : 1));
+const easeOutP = (x) => 1 - Math.pow(1 - clamp01p(x), 3);   // monotone, never past 1
+export function popInState(f) {
+  if (f < 0) return { o: 0, s: POP.S0 };
+  const o = clamp01p(f / 5);
+  const s = POP.S0 + (1 - POP.S0) * easeOutP(clamp01p(f / POP.IN));   // arrives and stops: no pass beyond 1 (was 0.94 -> 1.04 -> 1)
+  return { o, s: f >= POP.IN ? 1 : s };
+}
+export function popOutState(f) {
+  if (f <= 0) return { o: 1, s: 1 };
+  return { o: 1 - clamp01p(f / 6.5), s: 1 - (1 - POP.S0) * clamp01p(f / POP.OUT) };
 }

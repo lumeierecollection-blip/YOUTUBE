@@ -1,0 +1,63 @@
+# Reads the OFFICIAL Gemini API pricing and rate-limit pages (owner, 2026-10-10: do not guess the rates).
+# Pages are rendered in a real browser because the first curl-based run lost the table row labels and
+# the rate-limit numbers (they are not in the static HTML). Read-only: prints text, changes nothing.
+name: pricing-check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pricing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Render official pricing and rate-limit pages
+        run: |
+          python3 -m pip install --quiet playwright==1.47.0
+          python3 -m playwright install --with-deps chromium
+          cat > render.py <<'PY'
+          from playwright.sync_api import sync_playwright
+          urls = {
+              "pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+              "limits": "https://ai.google.dev/gemini-api/docs/rate-limits",
+          }
+          with sync_playwright() as p:
+              b = p.chromium.launch()
+              for name, url in urls.items():
+                  pg = b.new_page()
+                  pg.goto(url, wait_until="networkidle", timeout=90000)
+                  text = pg.inner_text("body")
+                  open(f"{name}.txt", "w", encoding="utf-8").write(text)
+                  print(f"{name}: {url} -> {len(text)} chars, final url {pg.url}")
+              b.close()
+          PY
+          python3 render.py
+      - name: Print sections for the listener model and free-tier limits
+        run: |
+          cat > sections.py <<'PY'
+          import re
+          def blocks(path, pattern, before=2, after=40, max_blocks=6):
+              lines = open(path, encoding="utf-8").read().split("\n")
+              hits = [i for i, l in enumerate(lines) if re.search(pattern, l)]
+              print(f"--- {path} /{pattern}/ hits: {len(hits)}")
+              last_end = -1
+              shown = 0
+              for i in hits:
+                  if i <= last_end:
+                      continue
+                  lo, hi = max(0, i - before), min(len(lines), i + after)
+                  print(f"[lines {lo + 1}-{hi}]")
+                  for l in lines[lo:hi]:
+                      if l.strip():
+                          print("  " + l.strip()[:240])
+                  last_end = hi
+                  shown += 1
+                  if shown >= max_blocks:
+                      break
+          blocks("pricing.txt", r"Gemini 3\.5 Flash-Lite", before=0, after=30, max_blocks=2)
+          blocks("pricing.txt", r"Gemini 3\.1 Flash-Lite", before=0, after=20, max_blocks=1)
+          blocks("limits.txt", r"Gemini 3\.5 Flash-Lite", before=3, after=25, max_blocks=3)
+          blocks("limits.txt", r"Free tier|Free\b", before=0, after=12, max_blocks=3)
+          blocks("limits.txt", r"[Aa]udio", before=0, after=6, max_blocks=4)
+          PY
+          python3 sections.py

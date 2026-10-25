@@ -1,0 +1,65 @@
+{
+  "channel_id": "48",
+  "topic_slug": "consumer-wearable-sensors-running-injury-forces",
+  "format": "shorts",
+  "hook": "Your consumer wearable tracks running speed from 3.09 meters per second up to 4.02 meters per second.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your consumer wearable tracks running speed from 3.09 meters per second up to 4.02 meters per second.",
+      "b_roll": [
+        "A consumer wearable device on a runner's wrist displaying speed metrics"
+      ],
+      "text_overlay": {
+        "text": "Wearable sensor metrics"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 16, 2026, Medicine & Science in Sports & Exercise published research by John J. Where do those destructive running forces strike?",
+      "b_roll": [
+        "Journal publication page showing the October 16 study date",
+        "An anatomical diagram highlighting musculoskeletal load-bearing tissues"
+      ],
+      "text_overlay": {
+        "text": "Internal forces and running injuries"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except consumer sensors do more than track pace.",
+      "b_roll": [
+        "Close-up of a consumer sensor tracking movement data"
+      ],
+      "text_overlay": {
+        "text": "Beyond simple pace tracking"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researcher John J. Davis IV investigated tracking these loads. Davis IV linked wearable data directly to Achilles tendon forces. Runners keep speeds from 3.09 meters per second up to 4.02 meters per second.",
+      "b_roll": [
+        "A runner's knee and Achilles tendon under physical stress",
+        "A speed chart showing the tested meters per second range"
+      ],
+      "text_overlay": {
+        "text": "Predicting joint and tendon forces"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Consumer wearables measure forces up to 4.02 meters per second.",
+      "b_roll": [
+        "A consumer wearable displaying speed data on screen"
+      ],
+      "text_overlay": {
+        "text": "Up to 4.02 meters per second"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1249/mss.0000000000004191",
+    "https://doi.org/10.1249/01.mss.0000882084.77582.32",
+    "https://www.sciencedirect.com/science/article/abs/pii/S0021929026001764"
+  ]
+}

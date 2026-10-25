@@ -1,0 +1,64 @@
+{
+  "channel_id": "48",
+  "topic_slug": "trunk-posture-feedback-distribution-center-study",
+  "format": "shorts",
+  "hook": "Workers tested a wearable trunk posture feedback system for six weeks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Workers tested a wearable trunk posture feedback system for six weeks.",
+      "b_roll": [
+        "Close up shot of a wearable posture sensor device in a distribution center."
+      ],
+      "text_overlay": {
+        "text": "6 Weeks of Posture Feedback"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers like Maury A. Nussbaum evaluated the technology. Investigator Jiwon Choi tracked the workers during the test. Applied Ergonomics published the field study in its pages. How effective and usable was this trunk posture feedback system over six weeks?",
+      "b_roll": [
+        "Academic journal page showing the title and authors.",
+        "Volume 136 cover of Applied Ergonomics."
+      ],
+      "text_overlay": {
+        "text": "Applied Ergonomics Volume 136"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Sunwook Kim joined the longitudinal study team as well.",
+      "b_roll": [
+        "Research team list of authors on a screen."
+      ],
+      "text_overlay": {
+        "text": "Longitudinal Field Study"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Virginia Tech researchers examined the system. Volume 136 holds the final publication.",
+      "b_roll": [
+        "University campus buildings at Virginia Tech.",
+        "Repository files hosted on VTechWorks."
+      ],
+      "text_overlay": {
+        "text": "Virginia Tech Research"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the research paper hosted on VTechWorks today.",
+      "b_roll": [
+        "Digital article page on ScienceDirect."
+      ],
+      "text_overlay": {
+        "text": "ScienceDirect Publication"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1016/j.apergo.2026.104796",
+    "https://www.sciencedirect.com/science/article/abs/pii/S0003687026000748"
+  ]
+}

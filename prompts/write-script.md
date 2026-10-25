@@ -27,26 +27,26 @@ values).
 
 ## Length — a hard gate
 
-**Voiceover word count: 92-107 words in total. This is a BLOCKER gate, not a
+**Voiceover word count: 80-98 words in total. This is a BLOCKER gate, not a
 guideline.** The gate converts words to seconds at the narrator's real pace and
-rejects anything outside 36-52 seconds; under 92 fails exactly like over 107.
-Aim for about 100 words.
+rejects anything outside 36-52 seconds; under 80 fails exactly like over 98.
+Aim for about 90 words (the narrator speaks 105 to 125 words a minute).
 
 **The target per beat — count as you write:**
 
-    HOOK:     10–14 words
-    SETUP:    30–40 words
-    RE-HOOK:  10–18 words
-    PAYOFF:   30–42 words
-    CLOSE:     8–14 words
-    Total:    92–107 words
+    HOOK:     9–12 words
+    SETUP:    26–34 words
+    RE-HOOK:  9–14 words
+    PAYOFF:   26–35 words
+    CLOSE:     7–11 words
+    Total:    80–98 words
 
 These are ranges to land inside, not ceilings to stay under. That is 9-10
 sentences in all, each carrying ONE fact.
 
-Count the words before returning. If your script is under 92
+Count the words before returning. If your script is under 80
 words, expand the setup and payoff with specific facts. If it
-is over 107, cut the least essential sentence. The word count
+is over 98, cut the least essential sentence. The word count
 is a hard requirement.
 
 ## STRUCTURE — five beats, in this order, as five sections
@@ -55,7 +55,7 @@ Write `sections` as exactly five objects with these ids, in this order:
 `hook`, `setup`, `rehook`, `payoff`, `close`. `hook` (the top-level field) is
 the HOOK sentence, word for word.
 
-1. **HOOK** (section `hook`, ONE sentence, 10–14 words). A promise, a shock, a
+1. **HOOK** (section `hook`, ONE sentence, 9–12 words). A promise, a shock, a
    contradiction, or stakes — never a setup, never a fact without a stake. The
    first sentence IS the punch. One of:
    - Contradiction: "Banks said the money was safe. It disappeared in 48 hours."
@@ -65,26 +65,145 @@ the HOOK sentence, word for word.
    - Specific shock: "One line in your mortgage contract costs $200 a month."
    Never: "Here's what happened", "Let me tell you", "Have you ever wondered",
    a person's name first, "According to", "The report".
-2. **SETUP** (section `setup`, 3 sentences, 30–40 words). Just enough context for
-   the payoff to land. Each sentence adds one specific fact — a number, a name,
+2. **SETUP** (section `setup`, 3 sentences, 26–34 words). Just enough context for
+   the payoff to land. **The FIRST setup sentence says WHAT HAPPENED** — the
+   event itself, as the research's `strongest_angle` and `key_facts` state it:
+   who did what, to or with whom, where and when (shape: "On [date], [who] [did what]
+   to or with [whom] at [where].", filled ONLY with what the research states). A
+   charge, a statute, a sentence or a number is a CONSEQUENCE of the event, not
+   the event: a viewer who has heard only the charges and never the incident has
+   been told nothing ("raising intense legal questions" is filler, not context —
+   never write it). Only facts the research states; if it does not state the
+   event, say what it does state and name the gap rather than inventing one.
+   Each sentence adds one specific fact — a number, a name,
    a place, an action — and starts with a DIFFERENT kind of subject. The LAST
    setup sentence ends on a question the viewer now has (a literal question,
-   or a line that withholds the answer).
-3. **RE-HOOK** (section `rehook`, 1-2 sentences, 10–18 words). The second hook,
+   or a line that withholds the answer) — and the question NAMES its figure,
+   place, person or object ("Where did the $91 million go?", never "Where did it
+   all go?"): a nameless question is a words-only card, and the re-hook right
+   after it would be a second one in a row.
+3. **RE-HOOK** (section `rehook`, 1-2 sentences, 9–14 words). Its flip or raised
+   stake is a FACT THE RESEARCH STATES (a limit, an exception, a larger number, a
+   contradiction between sources) — "Except generating charts is only half the
+   release" was an invented flip and the claims gate skipped the channel. If the
+   research states no flip, raise the stakes with the next-biggest fact it does
+   state. The second hook,
    right where the viewer might leave. It FLIPS the setup ("Except the bank
    made one mistake.") or RAISES the stakes ("And the person who signed it
    worked for the buyer."). It still names something specific. Never "But
    wait, there's more", "Here's the thing", "What happened next".
-4. **PAYOFF** (section `payoff`, 3 sentences, 30–42 words). Deliver the hook's
+4. **PAYOFF** (section `payoff`, 3 sentences, 26–35 words). Deliver the hook's
    promise: (1) the reveal, (2) the consequence, (3) the specific number or
    action. It names a person, place or organization AND a specific number.
    No hedging: never "may", "could", "might", "possibly" — state the fact the
    video was built to deliver.
-5. **CLOSE** (section `close`, ONE sentence, 8–14 words). What the viewer does
-   with what they now know — a specific action, or the payoff's most concrete
-   detail. Never "stay informed", "follow for more", "thanks for watching",
-   "the future is uncertain". A close that states a fact still needs that fact
-   from the research.
+5. **CLOSE** (section `close`, ONE sentence, 7–11 words). The payoff's most
+   concrete detail, or the hook's own key noun or number. **A close is a FACT or
+   an ECHO — never an instruction to the viewer.** Never "stay informed", "follow
+   for more", "thanks for watching", "the future is uncertain" — and never
+   "Apply these strategies", "Start by doing X", "Keep a buffer", or any other
+   imperative telling the viewer what to do next.
+   *This rule used to be the opposite: this section told the writer the close was
+   "what the viewer does with what they now know — a specific action", and the
+   writer obeyed. Board runs lost whole channels to it — "Apply these Harvard
+   strategies to your next deal" (ch-8, ch-26) is an instruction the research
+   never states, so the claims gate correctly called it INVENTED and skipped the
+   channel. An imperative addressed to the viewer is almost never in a research
+   artifact, because research reports what happened, not what the viewer should
+   do about it.* If you want a call to action, it must be one the RESEARCH
+   itself states — e.g. the research reports the body advising the public, then
+   you may report that advice, attributing it. Otherwise close on the fact.
+
+## ATTRIBUTION — the rule that was missing
+
+Every named person, body, court, agency, team or publication in a sentence must
+be **doing or saying what your sentence says they did or said**, and the research
+must state it of *them*, not of someone else.
+
+- "the Gerald Financial Research Team **suggests paying off debt**" — the
+  research said they noted repayment plans **fail**. Board 38393719519 ch-1: the
+  claims gate rejected it and the channel shipped nothing. Attributing a
+  recommendation to a source that recorded the opposite is the single most common
+  way this pipeline loses a channel.
+- Allowed: a verb the research actually uses of that source — states, found,
+  reported, charged, ruled, published, **noted that repayment plans fail**.
+- Banned unless the research says it of that exact source: suggests, recommends,
+  advises, warns, tells viewers to, urges, calls for.
+- "According to X" and "X says" may appear **only** with the verb and substance
+  the research carries.
+- Never invent a team, desk, unit or body by naming a plausible one ("the
+  Research Team at X"). Use only bodies the research names.
+
+### SCOPE — keep the source's own population and actor
+
+A number or finding belongs to the EXACT population, place, time, actor and
+comparison the research states. Never widen it ("19% of Wikipedia biographies
+about women" is not "19% of digital archive platforms"), never transfer it to
+another actor ("announced in partnership" is not "Cambridge built it"), and
+never add a purpose the research does not state ("to fix historical bias").
+If the research's claim is narrower than the sentence you want, write the
+narrower claim — or cut the sentence.
+
+### Spelling — a hard gate (SCR-18)
+
+**Copy every proper noun character-for-character from the research.** A person,
+organisation, place, programme or publication is spelled the way the research
+artifact spells it — never retyped from memory, never "corrected", never
+inferred. A single wrong letter ("Pest" for "Post") is a BLOCKER at the script
+gate, and if it survives into a visual plan the video is held. If you cannot
+find the exact string in the research, do not use the name.
+
+If you cannot find the verb, rewrite the sentence as the fact itself, unattributed:
+"Repayment plans fail, the research team noted" — never "…suggests paying off
+debt."
+
+## SHOW IT — every sentence is one picture (short-video-scripter rules, carried in)
+
+The renderer draws one picture per sentence from what the sentence NAMES. A
+sentence that names nothing drawable becomes a words-only card; the renderer
+allows at most one words-only card in any three sentences, so a script of
+abstractions cannot be arranged at all. Write so each sentence has a thing to
+show:
+
+- **What the renderer can draw from a sentence** — name these where the research
+  gives them, in the sentence that needs the picture:
+  a figure with its unit ("$352 million", "34%") → a number or chart (two figures
+  → bars); a stated rise or fall with its subject ("fell", "doubled", "tumbled")
+  → a trend line; a place by name → its map; a named person, company, court or
+  building → a real photo or logo; a physical object (banknotes, a tanker, a gold
+  bar) → the object; a cause and its effect in one sentence → a flow diagram; a
+  risk, threat, crime, approval or tracking word → a drawn symbol; dated events →
+  a timeline; three or more things in a comma list → a list. A sentence that
+  names none of these is a words-only card.
+- **One idea per sentence, one drawable thing per idea** — a person, a place,
+  an object, a figure with its unit, a dated event. Never two ideas to save
+  words; never an idea with nothing to point at.
+- **The hook survives muted autoplay.** Its first words are what is on screen
+  in the first two seconds, so it names the concrete thing (the number, the
+  place, the object) — not a feeling about it.
+- **Confirm the hook before anything else (the 2-5 s beat most drafts skip).**
+  The FIRST setup sentence is proof the hook's promise is real: the document,
+  the amount, the place, the date — the thing that can be shown. Not
+  background.
+- **Escalate: each sentence is bigger or closer than the last** — a larger
+  figure, a nearer place, a more specific person, a worse or better
+  consequence. If a sentence could swap places with the one before it, it is
+  not escalating; cut or reorder it. Escalate with the research's facts only.
+- **Pay off in steps, one idea per step** (reveal, consequence, number), each
+  step a different drawable thing.
+- **Close on the loop or the act.** Either the CLOSE echoes the HOOK's own key
+  noun or number (the last frame can feed the first for a rewatch), or it names
+  the one specific action. Both must still come from the research.
+- **Drama is made of the research's own facts, never added to them.** Board run
+  37919459134 ch-9 lost the video to the claims gate for "vanished from global
+  radar" and "Washington pulled the plug" — vivid verbs the research never
+  states. Where the research says "17 vessels were sanctioned", the sentence says
+  that, with its number; a sharper-sounding verb the research does not contain is
+  an invented claim and the channel is skipped. Escalate by choosing the
+  biggest, nearest fact the research DOES state, in the order that builds.
+- A sentence that is only a judgement ("That changes everything", "It matters")
+  is words-only. Allowed at most once in three sentences, and only when the
+  research gives no object for it — never invent an object to avoid it.
 
 ## RULES
 
@@ -114,6 +233,28 @@ the HOOK sentence, word for word.
   with their dates, a list with commas. This changes wording, never which facts
   there are.
 
+## PUNCTUATION IS THE DELIVERY (the narrator reads exactly what you write)
+
+- A comma where a speaker would take a breath; an em-dash (—) for a turn or an aside; a full stop where the thought lands.
+- Never a run-on of more than ~14 words without a comma or a dash: the voice has nowhere to breathe and reads flat.
+- One word per sentence carries the weight — put it at the end of a clause, where the voice naturally lands on it.
+- No ellipses, no exclamation marks, no ALL CAPS: they make the voice sing-song or shout.
+
+## CLARITY — a viewer who knows nothing must follow it (owner, 2026-10-16)
+
+The script is checked by a reader who has never heard of this story (scripts/validate-script-clarity.cjs).
+
+- **Open, then close.** The setup opens ONE question; the payoff ANSWERS it in plain words,
+  with the fact from the research. Never leave it hanging, hinted at, or answered "sort of".
+- **Context first.** By the end of the setup the viewer knows WHAT happened, WHO did it,
+  WHERE and WHEN — the research's own facts.
+- **Name before pronoun.** Never "he", "she", "her", "his" before that person's full name
+  has been said. "This", "that" and "it" must point at something the previous sentence named.
+- **No comment-only sentences.** "That's a shocking reality.", "That's the specific action
+  you can take.", "This changes everything." say nothing — every sentence carries a fact.
+- **No undefined terms.** A term the viewer may not know (a law, a programme, a ratio) is
+  explained in a few words the first time.
+
 ## BANNED
 
 Banned OPENINGS (no sentence starts with): a person's full name, "According
@@ -132,13 +273,32 @@ day", "Here's what nobody tells you", "Not gonna lie", "Let me be honest".
 - The last SETUP sentence ends on a question the viewer now has.
 - The RE-HOOK flips the setup or raises the stakes.
 - The PAYOFF names a specific number and outcome, with no "may / could / might".
-- The CLOSE is one specific, actionable sentence.
+- The CLOSE is one specific, actionable sentence, or echoes the hook's own
+  key noun or number.
+- The first SETUP sentence proves the hook with something that can be shown.
+- No two sentences swap places without loss (each is bigger or closer than the
+  one before); at most one sentence in three names nothing drawable.
 - 0 banned openings, 0 banned phrases, 0 sentences over 25 words, at most 1
   sentence starting with a person's name, no two consecutive sentences
   starting with the same word.
 - Every sentence names a person, place, organization, number, date or object
   from the research about this subject.
-- 92-107 words in all.
+- **ATTRIBUTION SWEEP — do this before you return.** Go through every sentence
+  that names a body, team, court, agency or publication, and for each one ask: is
+  the VERB you used one the research uses of that source? "Suggest",
+  "recommend", "advise", "warn", "urge" and "call for" are the ones that get
+  scripts skipped. Rewrite as the fact, unattributed, if the verb is not there.
+- **NAME SWEEP.** Compare every proper noun in your script with the research
+  artifact, letter by letter. Every name is one the research names, spelled
+  identically — a near-miss is a BLOCKER, not a typo to shrug at.
+- **SCOPE SWEEP.** For every number and every actor, check the research states
+  it of the SAME population and the SAME actor. No widening the population, no
+  transferring the action, no invented purpose.
+- **IMPERATIVE SWEEP.** Does any sentence tell the VIEWER to do something
+  ("apply", "start", "keep", "avoid", "remember", "make sure")? The close must not
+  be an instruction. Move it to a fact, or to an echo of the hook's key noun or
+  number.
+- 80-98 words in all.
 - `sources_used` has 2 or more URLs that appear in the research's
   `key_facts` / `numbers`, and every one is used by something you wrote.
 - If you were given the motion-graphics beat schema: each `anchor_token` is

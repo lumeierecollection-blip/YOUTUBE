@@ -1,0 +1,76 @@
+{
+  "topic_slug": "michelle-singletary-october-2026-debt-money-strategy",
+  "strongest_angle": "In October 2026, veteran Washington Post columnist Michelle Singletary launched her new video podcast Dollars & Sense, tackling heavy financial burdens like $100,000 in student loan debt and highlighting reports that debt payments are growing eight times faster than take-home pay.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, personal finance columnist Michelle Singletary launched her new video podcast Dollars & Sense with The Washington Post.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/06/michelle-singletary-financial-advice-vodcast-is-coming-soon",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "Michelle Singletary's October 2026 podcast launch featured a family tackling $100,000 in student loan debt and nearly $92,000 in Parent PLUS loans.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/13/here-how-handle-parent-plus-loans",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "An October 2026 report highlighted by Michelle Singletary in The Washington Post showed that debt payments are growing eight times faster than take-home pay.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "In October 2026, CNBC published an interview with Michelle Singletary detailing her debt and money advice.",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/16/michelle-singletary-debt-money-advice.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Student loan debt amount",
+      "value": 100000,
+      "unit": "dollars",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/13/here-how-handle-parent-plus-loans"
+    },
+    {
+      "label": "Parent PLUS loans amount",
+      "value": 92000,
+      "unit": "dollars",
+      "source_url": "https://www.washingtonpost.com/podcasts/dollars-and-sense"
+    },
+    {
+      "label": "Debt payment growth rate multiplier",
+      "value": 8,
+      "unit": "times",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Longtime money columnist on the advice everyone needs to hear: 'If debt was a person I would slap it'",
+      "speaker": "Michelle Singletary",
+      "source_name": "CNBC",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/16/michelle-singletary-debt-money-advice.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Michelle Singletary",
+      "kind": "person"
+    },
+    {
+      "name": "The Washington Post",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Dollars & Sense with Michelle Singletary",
+      "kind": "object"
+    }
+  ]
+}

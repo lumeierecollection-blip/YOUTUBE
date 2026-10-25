@@ -1,0 +1,66 @@
+{
+  "topic_slug": "hex-founder-richard-heart-arrested-istanbul-2026",
+  "strongest_angle": "Examine the arrest of Hex cryptocurrency founder Richard Heart in Istanbul via a Finnish Interpol Red Notice, including the seizure of 64 luxury watches and millions in cash.",
+  "key_facts": [
+    {
+      "fact": "Richard James Schueler, also known as Richard Heart, was detained in Istanbul by Turkish police following a Finnish Interpol Red Notice.",
+      "source_url": "https://www.dailysabah.com/business/tech/turkiye-nabs-interpol-wanted-crypto-fugitive-in-istanbul-operation",
+      "source_name": "Daily Sabah",
+      "confidence": "high"
+    },
+    {
+      "fact": "Turkish authorities seized $4 million in cash and 64 luxury watches during the police operation involving Richard Heart.",
+      "source_url": "https://www.theblock.co/news/regulation/2026-10-14-hex-pulsechain-founder-richard-heart-detained-istanbul-turkish-media-reports-418574",
+      "source_name": "The Block",
+      "confidence": "high"
+    },
+    {
+      "fact": "Finnish authorities are seeking Richard James Schueler in connection with alleged tax fraud involving 280 million euros.",
+      "source_url": "https://www.hs.fi/maailma/art-2000012343240.html",
+      "source_name": "Helsingin Sanomat",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Seized cash in USD",
+      "value": 4,
+      "unit": "million dollars",
+      "source_url": "https://www.theblock.co/news/regulation/2026-10-14-hex-pulsechain-founder-richard-heart-detained-istanbul-turkish-media-reports-418574"
+    },
+    {
+      "label": "Seized luxury watches",
+      "value": 64,
+      "unit": "watches",
+      "source_url": "https://www.theblock.co/news/regulation/2026-10-14-hex-pulsechain-founder-richard-heart-detained-istanbul-turkish-media-reports-418574"
+    },
+    {
+      "label": "Alleged tax fraud amount in Euros",
+      "value": 280,
+      "unit": "million euros",
+      "source_url": "https://www.hs.fi/maailma/art-2000012343240.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Richard Heart",
+      "kind": "person"
+    },
+    {
+      "name": "Richard James Schueler",
+      "kind": "person"
+    },
+    {
+      "name": "Istanbul",
+      "kind": "place"
+    },
+    {
+      "name": "Finland",
+      "kind": "place"
+    },
+    {
+      "name": "Interpol",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "channel_id": "6",
+  "topic_slug": "prefectura-naval-argentina-gold-ingots-caleta-olivia",
+  "format": "shorts",
+  "hook": "Four gold ingots were hidden inside a toilet tank during a raid in Caleta Olivia.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Four gold ingots were hidden inside a toilet tank during a raid in Caleta Olivia.",
+      "b_roll": [
+        "Close-up of a porcelain toilet tank in a dim room",
+        "Dramatized overhead view of coastal town Caleta Olivia"
+      ],
+      "text_overlay": {
+        "text": "Gold Hidden in a Toilet Tank"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Prefectura Naval Argentina searched the property on October 9, 2026. Investigators sought clues after a man vanished on December 7, 2025. Where did the 4 gold ingots come from?",
+      "b_roll": [
+        "Officers inspecting documents in Santa Cruz",
+        "Calendar page showing December 7, 2025",
+        "Evidence bags on a steel table"
+      ],
+      "text_overlay": {
+        "text": "The December 2025 Disappearance"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Weighing over 2.5 kilos, the metal turned up after Prefectura Naval Argentina raided Caleta Olivia.",
+      "b_roll": [
+        "Digital scales displaying weight measurements",
+        "Seized electronics on a workbench"
+      ],
+      "text_overlay": {
+        "text": "2.5 Kilos of Gold"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Officers seized the hidden treasure during two targeted operations in Santa Cruz. Prefectura Naval Argentina also seized an automobile, a DVR recording system, and two cell phones.",
+      "b_roll": [
+        "Prefectura officers opening a secure vault",
+        "Forensic specialists dusting a seized car door for fingerprints"
+      ],
+      "text_overlay": {
+        "text": "Two Raids in Santa Cruz"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Prefectura Naval Argentina continues investigating the Santa Cruz disappearance.",
+      "b_roll": [
+        "Case files closing on a wooden desk"
+      ],
+      "text_overlay": {
+        "text": "Unsolved Mystery"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.argentina.gob.ar/noticias/prefectura-secuestro-mas-de-1200-millones-de-pesos-en-lingotes-de-oro-en-caleta-olivia",
+    "https://tn.com.ar/policiales/2026/10/11/santa-cruz-buscaban-a-un-hombre-desaparecido-y-encontraron-cuatro-lingotes-de-oro-escondidos-en-el-tanque-de-un-inodoro"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "topic_slug": "crisis-authentic-leader-fast-company-2026",
+  "strongest_angle": "Analyze how modern leaders at companies like Target face an impossible terrain where traditional notions of authenticity and rigid self-expression fail under intense socio-political pressure.",
+  "key_facts": [
+    {
+      "fact": "In 2025, Target announced it would roll back major elements of its diversity, equity, and inclusion strategy due to intense political pressure and backlash.",
+      "source_url": "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the 1980s film Wall Street, the character Gordon Gekko famously declared that greed is good, capturing an era where profit was the sole measure of corporate success.",
+      "source_url": "https://www.fastcompany.com/91464111/why-2026-demands-authentic-ceos",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Fast Company Executive Board insights published in 2026, authentic leadership theories emphasize self-awareness, internalized moral perspectives, balanced processing, and relational transparency.",
+      "source_url": "https://www.forbes.com/sites/tomaspremuzic/2025/11/09/there-is-nothing-authentic-about-authentic-leadership",
+      "source_name": "Forbes",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Target decision",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader"
+    },
+    {
+      "label": "Decade of Gordon Gekko declaration",
+      "value": 1980,
+      "unit": "1980s",
+      "source_url": "https://www.fastcompany.com/91464111/why-2026-demands-authentic-ceos"
+    },
+    {
+      "label": "Year of executive board insights",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.forbes.com/sites/tomaspremuzic/2025/11/09/there-is-nothing-authentic-about-authentic-leadership"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Target",
+      "kind": "organization"
+    },
+    {
+      "name": "Gordon Gekko",
+      "kind": "person"
+    },
+    {
+      "name": "Wall Street",
+      "kind": "place"
+    },
+    {
+      "name": "Fast Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Christopher O.H. Williams",
+      "kind": "person"
+    },
+    {
+      "name": "Beth Jannery",
+      "kind": "person"
+    },
+    {
+      "name": "Tomas Chamorro-Premuzic",
+      "kind": "person"
+    },
+    {
+      "name": "Forbes",
+      "kind": "organization"
+    }
+  ]
+}

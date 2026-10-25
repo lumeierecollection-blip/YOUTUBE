@@ -1,0 +1,68 @@
+{
+  "channel_id": "6",
+  "topic_slug": "fbi-philadelphia-police-excavate-olney-home-shorts",
+  "format": "shorts",
+  "hook": "Seven missing women vanished before investigators dug up 417 West Chew Avenue.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Seven missing women vanished before investigators dug up 417 West Chew Avenue.",
+      "b_roll": [
+        "Aerial view of Olney neighborhood streets",
+        "Police tape blocking residential property"
+      ],
+      "text_overlay": {
+        "text": "7 Missing Women"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 2026, the FBI and Philadelphia Police raided Raymond RC Horsch's property. The FBI brought heavy machinery and excavators to dig up the backyard. What did luminol reveal inside the house?",
+      "b_roll": [
+        "FBI agents operating heavy machinery",
+        "Investigators working in residential backyard"
+      ],
+      "text_overlay": {
+        "text": "FBI Excavation"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Human DNA surfaced, but luminol found it inside the West Chew Avenue home.",
+      "b_roll": [
+        "Forensic investigators examining interior walls",
+        "Close up of luminol spray equipment"
+      ],
+      "text_overlay": {
+        "text": "Human DNA Found"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Investigators tied Eugene and his late pornographer father Raymond to grim evidence. Officers unearthed dark secrets tied to 7 missing women beneath the Olney dirt.",
+      "b_roll": [
+        "Forensic tents set up on residential lawn",
+        "Police officers inspecting soil samples"
+      ],
+      "text_overlay": {
+        "text": "Dark Secrets Buried"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Philadelphia Police and the FBI excavated 417 West Chew Avenue.",
+      "b_roll": [
+        "Slow pan across residential street sign",
+        "Police vehicle lights flashing at dusk"
+      ],
+      "text_overlay": {
+        "text": "417 West Chew Avenue"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fox29.com/news/horsch-house-investigators-will-use-heavy-machinery-excavate-more-olney-property",
+    "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol",
+    "https://www.foxnews.com/us/fbi-philly-police-dig-up-horsch-backyard-home-tied-7-missing-women-possible-serial-killer-probe"
+  ]
+}

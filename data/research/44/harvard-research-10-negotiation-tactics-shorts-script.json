@@ -1,0 +1,48 @@
+{
+  "channel_id": "44",
+  "topic_slug": "harvard-research-10-negotiation-tactics",
+  "format": "shorts",
+  "hook": "Harvard research found that ten specific negotiation tactics win better outcomes.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Harvard research found that ten specific negotiation tactics win better outcomes.",
+      "text_overlay": {
+        "text": "10 Harvard Tactics"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 6, 2026, Katie Shonk detailed integrative bargaining skills for the Program on Negotiation. What strategies do Harvard experts recommend for workplace negotiations?",
+      "text_overlay": {
+        "text": "Katie Shonk & Harvard"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Luis Reyes warned that hard-bargaining tactics often fail during professional negotiations.",
+      "text_overlay": {
+        "text": "The Hardball Trap"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Katie Shonk explains that integrative bargaining replaces aggressive posturing with collaborative problem-solving. Luis Reyes shows how professionals mastering these 10 tactics improve their office results. Harvard's Program on Negotiation creates lasting agreements instead of temporary wins.",
+      "text_overlay": {
+        "text": "10 Collaborative Tactics"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Harvard identifies 10 tactics for achieving better professional outcomes.",
+      "text_overlay": {
+        "text": "10 Tactics"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://qz.com/negotiation-tactics-backed-by-harvard-research",
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills",
+    "https://www.pon.harvard.edu/daily/batna/10-hardball-tactics-in-negotiation"
+  ]
+}

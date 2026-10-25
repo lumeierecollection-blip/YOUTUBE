@@ -1,0 +1,89 @@
+{
+  "channel_id": "1",
+  "topic_slug": "elizabeth-van-lew-union-espionage-network",
+  "format": "shorts",
+  "hook": "Did you know 1818 brought the birth of a daring spy operating right out of Richmond, Virginia?",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Did you know 1818 brought the birth of a daring spy operating right out of Richmond, Virginia?",
+      "visual_cue": "Historical portrait photograph of Elizabeth Van Lew against a textured backdrop.",
+      "sfx_cue": "Subtle low frequency riser building tension.",
+      "b_roll": [
+        "Historical portrait photograph of Elizabeth Van Lew"
+      ],
+      "animation_cue": "Fade in from black with a slow cinematic zoom.",
+      "transition_out": "Hard cut to archival archive shot.",
+      "text_overlay": {
+        "text": "The Union Spy in Richmond"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Van Lew entered the world on October 12, 1818, in Richmond, and died there in 1900.",
+      "visual_cue": "Archival map of Richmond showing Libby Prison and Shockhoe Cemetery.",
+      "sfx_cue": "Muffled prison door slam sound effect.",
+      "b_roll": [
+        "Archival map of Richmond",
+        "Libby Prison historical illustration"
+      ],
+      "animation_cue": "Pan across the historic map from left to right.",
+      "transition_out": "Quick cross dissolve to document view.",
+      "text_overlay": {
+        "text": "Libby Prison Aid Network"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Except Van Lew didn't stop there, aiding Union officers imprisoned in Libby Prison during the war's first two years.",
+      "visual_cue": "Close up shot of handwritten 19th-century correspondence documents.",
+      "sfx_cue": "Paper rustling and scratching quill pen sound.",
+      "b_roll": [
+        "Handwritten 19th-century correspondence documents"
+      ],
+      "animation_cue": "Slight push-in on the handwritten text.",
+      "transition_out": "Fast wipe to Washington archives.",
+      "text_overlay": {
+        "text": "Classified Intelligence"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Starting in 1861, Elizabeth Van Lew sent warning letters to the Union War Department. She transmitted vital intelligence straight from Richmond to the Union War Department.",
+      "visual_cue": "Historic photograph of the Union War Department building in Washington.",
+      "sfx_cue": "Telegraph machine ticking out a coded message.",
+      "b_roll": [
+        "Union War Department historical building photograph"
+      ],
+      "animation_cue": "Slow zoom in toward the center of the historic building image.",
+      "transition_out": "Fade to cemetery memorial shot.",
+      "text_overlay": {
+        "text": "Union War Department"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Visit Shockhoe Cemetery in Richmond to see her grave.",
+      "visual_cue": "Cinematic shot of the gravestone marker at Shockhoe Cemetery.",
+      "sfx_cue": "Soft wind chime and ambient church bells.",
+      "b_roll": [
+        "Shockhoe Cemetery gravestone marker"
+      ],
+      "animation_cue": "Slow pan upward along the weathered stone marker.",
+      "transition_out": "Fade out to black.",
+      "text_overlay": {
+        "text": "Shockhoe Cemetery"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://nps.gov/people/elizabeth-van-lew.htm",
+    "https://www.lva.virginia.gov/collections/dvb/bio/van-lew-elizabeth",
+    "https://womenshistory.si.edu/blog/discover-story-elizabeth-van-lew-mastermind-behind-critical-union-espionage-network-during"
+  ]
+}

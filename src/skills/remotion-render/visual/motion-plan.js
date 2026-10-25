@@ -9,7 +9,7 @@
  */
 import { canvasLayout, normalizeCanvas, backgroundOf } from "./canvas-layout.js";
 
-const MICRO = "1px drift + 0.3% breath";
+const MICRO = "sway ±30px x / ±12px y, 6 s cycle (full-canvas sway())";
 
 export function motionsFor(raw, idx = 0) {
   const c = normalizeCanvas(raw, idx);
@@ -54,6 +54,34 @@ export function motionsFor(raw, idx = 0) {
     case "MONEY":
       primary = "photo pushes in 2%";
       secondary = "headline words pop";
+      break;
+    case "SCENE-LOW":
+      primary = "photo pushes in 2%";
+      secondary = "headline words pop low over a darkened foot";
+      break;
+    case "PHOTO-BAND":
+    case "PHOTO-EDGE":
+    case "PHOTO-CARD":
+    case "PHOTO-INSET":
+    case "PHOTO-STRIP":
+      primary = "framed photo pops in place, then pushes in 2%";
+      secondary = "headline words pop";
+      break;
+    case "TYPE-TITLE":
+    case "TYPE-CHAPTER":
+    case "TYPE-DEFINITION":
+      primary = "words pop in one at a time";
+      secondary = "the accent bar / double rule draws in; body text pops soft";
+      break;
+    case "NUMBER-STAT":
+      primary = "number counts up";
+      secondary = "label pops after";
+      break;
+    case "HERO-LOW":
+    case "HERO-SCATTER":
+    case "HERO-OVER":
+      primary = "object pops in from its floor";
+      secondary = "words pop in one at a time";
       break;
     case "PORTRAIT":
       primary = "portrait pushes in 2%";

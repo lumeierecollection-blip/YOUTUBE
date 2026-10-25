@@ -1,0 +1,68 @@
+{
+  "channel_id": "5",
+  "topic_slug": "deloitte-cyprus-falsified-documents-roman-abramovich-wealth",
+  "format": "shorts",
+  "hook": "One thousand falsified papers hid superyachts and mansions from global authorities.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One thousand falsified papers hid superyachts and mansions from global authorities.",
+      "b_roll": [
+        "Stack of corporate documents with official stamps",
+        "Aerial view of a superyacht on the ocean"
+      ],
+      "text_overlay": {
+        "text": "1,000 Falsified Papers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Deloitte Cyprus rewrote historical records using fake timestamps for offshore firms. Where did the $672 million go?",
+      "b_roll": [
+        "Office building in Cyprus with corporate logo",
+        "Close-up of a digital timestamp altering archive records",
+        "Private jet parked on a runway"
+      ],
+      "text_overlay": {
+        "text": "Where did the $672 million go?"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Meritservus and Deloitte Cyprus helped Roman Abramovich shift superyachts, mansions and private jets out of reach.",
+      "b_roll": [
+        "Financial ledger pages turning rapidly",
+        "Mansion estate exterior behind iron gates"
+      ],
+      "text_overlay": {
+        "text": "Assets Vanished"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Meritservus backdated corporate records to protect $672 million in assets. Meritservus falsified 1,000 corporate papers across the British Virgin Islands.",
+      "b_roll": [
+        "Map showing the British Virgin Islands jurisdiction",
+        "Documents marked with official red confidential stamps",
+        "Digital financial network diagram collapsing"
+      ],
+      "text_overlay": {
+        "text": "$672M Hidden"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Investigators track every forged document left behind.",
+      "b_roll": [
+        "Detective examining highlighted financial records"
+      ],
+      "text_overlay": {
+        "text": "The Investigation Continues"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+    "https://www.bbc.com/news/articles/c64g1l5389kvo"
+  ]
+}

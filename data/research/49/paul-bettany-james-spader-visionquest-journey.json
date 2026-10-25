@@ -1,0 +1,74 @@
+{
+  "topic_slug": "paul-bettany-james-spader-visionquest-journey",
+  "strongest_angle": "Examining how Marvel Television's new series VisionQuest concludes a trilogy with the return of Paul Bettany and James Spader.",
+  "key_facts": [
+    {
+      "fact": "Marvel Television's VisionQuest premiered on Tuesday, October 13, with two episodes on Disney+.",
+      "source_url": "https://thewaltdisneycompany.com/news/marvel-television-visionquest-disney-plus",
+      "source_name": "The Walt Disney Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "VisionQuest concludes the epic trilogy that began with WandaVision in 2021 and continued with Agatha All Along in 2024.",
+      "source_url": "https://thewaltdisneycompany.com/news/marvel-television-visionquest-disney-plus",
+      "source_name": "The Walt Disney Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "Paul Bettany reprises his role as Marvel's synthezoid hero in VisionQuest.",
+      "source_url": "https://www.tvguide.com/news/visionquest-marvel-paul-bettany-and-james-spader-vision-and-ultron",
+      "source_name": "TV Guide",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Release day episodes",
+      "value": 2,
+      "unit": "episodes",
+      "source_url": "https://thewaltdisneycompany.com/news/marvel-television-visionquest-disney-plus"
+    },
+    {
+      "label": "WandaVision release year",
+      "value": 2021,
+      "unit": "year",
+      "source_url": "https://thewaltdisneycompany.com/news/marvel-television-visionquest-disney-plus"
+    },
+    {
+      "label": "Agatha All Along release year",
+      "value": 2024,
+      "unit": "year",
+      "source_url": "https://thewaltdisneycompany.com/news/marvel-television-visionquest-disney-plus"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Paul Bettany",
+      "kind": "person"
+    },
+    {
+      "name": "James Spader",
+      "kind": "person"
+    },
+    {
+      "name": "VisionQuest",
+      "kind": "object"
+    },
+    {
+      "name": "Disney+",
+      "kind": "organization"
+    },
+    {
+      "name": "Marvel Television",
+      "kind": "organization"
+    },
+    {
+      "name": "WandaVision",
+      "kind": "object"
+    },
+    {
+      "name": "Agatha All Along",
+      "kind": "object"
+    }
+  ]
+}

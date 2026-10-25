@@ -1,0 +1,64 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-eritrea-tigray-border-invasion-un",
+  "format": "shorts",
+  "hook": "Did you know Ethiopia accused Eritrea of an all-out invasion into Tigray?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Ethiopia accused Eritrea of an all-out invasion into Tigray?",
+      "b_roll": [
+        "Satellite map showing the border between Ethiopia and Eritrea."
+      ],
+      "text_overlay": {
+        "text": "Invasion Accusation"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Eritrean soldiers crossed into northern Ethiopia towards Adigrat. National army troops clashed with regional forces in Adigrat. Where did the border standoff lead?",
+      "b_roll": [
+        "Map zooming into Adigrat near the Eritrean border.",
+        "Footage of military vehicles entering the town."
+      ],
+      "text_overlay": {
+        "text": "Adigrat Clashes"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Eritrea urged the United Nations to take deterrent measures, but characterized the confrontation as a declaration of war.",
+      "b_roll": [
+        "Exterior shot of the United Nations headquarters."
+      ],
+      "text_overlay": {
+        "text": "UN Appeal"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ethiopia sent 1 formal letter to the United Nations Security Council. Ethiopian military vehicles entered Adigrat near the Eritrean border. Ethiopia stated it was acting in self-defense.",
+      "b_roll": [
+        "Document view of the letter sent to the Security Council.",
+        "Residents celebrating in the streets of Adigrat."
+      ],
+      "text_overlay": {
+        "text": "Security Council Letter"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Eritrea urged the United Nations to take deterrent measures against Ethiopia.",
+      "b_roll": [
+        "Wide shot of the Tigray regional border landscape."
+      ],
+      "text_overlay": {
+        "text": "Declaration of War"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war",
+    "https://www.bbc.com/news/articles/ckvgd63rj92lo"
+  ]
+}

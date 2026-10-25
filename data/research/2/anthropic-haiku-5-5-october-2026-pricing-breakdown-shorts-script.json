@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "anthropic-haiku-5-5-october-2026-pricing-breakdown",
+  "format": "shorts",
+  "hook": "Claude Haiku 5.5 just slashed token prices by 90% for everyday requests.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Claude Haiku 5.5 just slashed token prices by 90% for everyday requests.",
+      "visual_cue": "Close up of Anthropic pricing interface displaying the 90% drop.",
+      "sfx_cue": "whoosh impact",
+      "b_roll": [
+        "Anthropic pricing interface screenshot"
+      ],
+      "animation_cue": "zoom in on 90 percent figure",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "90% Price Cut"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:15",
+      "voiceover": "Anthropic dropped Claude Haiku 5.5 on October 7, 2026, so how cheap is it? He also stated that the previous model charged $5 per million output tokens.",
+      "visual_cue": "Split screen comparison showing price change from $1 to $0.10.",
+      "sfx_cue": "data tick",
+      "b_roll": [
+        "Simon Willison blog post snippet on Claude Haiku 4.5 pricing"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Previous: $1 Input"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:21",
+      "voiceover": "Except this drop only applies to requests under 100,000 tokens.",
+      "visual_cue": "Highlighted text showing the 100,000 token request threshold.",
+      "sfx_cue": "click",
+      "b_roll": [
+        "Anthropic documentation showing token threshold limits"
+      ],
+      "animation_cue": "pulse",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Under 100k Tokens"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:21-0:35",
+      "voiceover": "Anthropic dropped input costs to $0.10 per million tokens. Carl Franzen reported the release at VentureBeat. Output costs now sit at $0.50 per million tokens to match competitor pricing.",
+      "visual_cue": "Terminal display showing input cost of $0.10 and output cost of $0.50.",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "VentureBeat article by Carl Franzen"
+      ],
+      "animation_cue": "counter roll",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "$0.10 Input Cost"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:35-0:40",
+      "voiceover": "Claude Haiku 5.5 carries a 1 million token context window.",
+      "visual_cue": "Full overview screen displaying the 1 million token context window.",
+      "sfx_cue": "soft hum",
+      "b_roll": [
+        "platform.claude.com documentation overview"
+      ],
+      "animation_cue": "hold",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "1 Million Token Context"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+    "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5",
+    "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+  ]
+}

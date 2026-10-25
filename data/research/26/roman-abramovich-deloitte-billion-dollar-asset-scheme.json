@@ -1,0 +1,56 @@
+{
+  "topic_slug": "roman-abramovich-deloitte-billion-dollar-asset-scheme",
+  "strongest_angle": "Investigating how Deloitte Cyprus and Meritservus helped Roman Abramovich backdate and falsify over 1,000 corporate papers to conceal billions in assets and evade taxes.",
+  "key_facts": [
+    {
+      "fact": "Deloitte Cyprus and its spin-off Meritservus falsified at least 1,000 corporate papers on behalf of Russian billionaire Roman Abramovich.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalism",
+      "confidence": "high"
+    },
+    {
+      "fact": "Accounts signed off by Deloitte in Cyprus meant assets such as superyachts, mansions and private jets worth $672m vanished from company accounts.",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Deloitte Cyprus helped firms beneficially owned by Roman Abramovich attempt to skirt tax and disclosure obligations by retroactively transferring assets.",
+      "source_url": "https://www.occrp.org/en/project/cyprus-confidential/deloittes-office-in-cyprus-helped-abramovich-firms-relocate-billions-of-dollars-in-assets-in-apparent-bid-to-sidestep-tax-and-transparency",
+      "source_name": "OCCRP",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Falsified corporate papers",
+      "value": 1000,
+      "unit": "papers",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    },
+    {
+      "label": "Vanished assets value",
+      "value": 672,
+      "unit": "million dollars",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Roman Abramovich",
+      "kind": "person"
+    },
+    {
+      "name": "Deloitte",
+      "kind": "organization"
+    },
+    {
+      "name": "Cyprus",
+      "kind": "place"
+    },
+    {
+      "name": "Meritservus",
+      "kind": "organization"
+    }
+  ]
+}

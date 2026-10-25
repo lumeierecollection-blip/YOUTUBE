@@ -29,16 +29,16 @@ yes("every entrance is a pop", ENTRANCES.every((n) => n.startsWith("POP_")) && E
 
 const e = (n, f) => wordEntrance(n, f);
 const peak = (n, frames) => Math.max(...Array.from({ length: frames * 4 + 1 }, (_, k) => e(n, k / 4).s));
-yes("POP_STANDARD: 0.92 -> 1.0, y 8 -> 0, settled at frame 6 (slight overshoot)", Math.abs(popState("POP_STANDARD", 0.001).s - 0.92) < 0.01 && e("POP_STANDARD", 6).s === 1 && e("POP_STANDARD", 6).dy === 0 && peak("POP_STANDARD", 6) > 1 && peak("POP_STANDARD", 6) < 1.01);
-yes("POP_EMPHASIS: 0.75 -> 1.08 -> 1.0 over 10 frames", Math.abs(popState("POP_EMPHASIS", 0.001).s - 0.75) < 0.01 && Math.abs(peak("POP_EMPHASIS", 10) - 1.08) < 0.005 && e("POP_EMPHASIS", 10).s === 1);
+yes("POP_STANDARD: 0.92 -> 1.0, y 8 -> 0, landed at frame 6, never past 1 (no overshoot)", Math.abs(popState("POP_STANDARD", 0.001).s - 0.92) < 0.01 && e("POP_STANDARD", 6).s === 1 && e("POP_STANDARD", 6).dy === 0 && peak("POP_STANDARD", 6) <= 1);
+yes("POP_EMPHASIS: 0.75 -> 1.0 over 10 frames, never past 1", Math.abs(popState("POP_EMPHASIS", 0.001).s - 0.75) < 0.01 && peak("POP_EMPHASIS", 10) <= 1 && e("POP_EMPHASIS", 10).s === 1);
 yes("POP_SOFT: 0.95 -> 1.0 in 4 frames", Math.abs(popState("POP_SOFT", 0.001).s - 0.95) < 0.01 && e("POP_SOFT", 4).s === 1);
-yes("POP_HARD: 0.6 -> 1.15 -> 1.0 over 12 frames", Math.abs(popState("POP_HARD", 0.001).s - 0.6) < 0.01 && Math.abs(peak("POP_HARD", 12) - 1.15) < 0.005 && e("POP_HARD", 12).s === 1);
+yes("POP_HARD: 0.6 -> 1.0 over 12 frames, never past 1", Math.abs(popState("POP_HARD", 0.001).s - 0.6) < 0.01 && peak("POP_HARD", 12) <= 1 && e("POP_HARD", 12).s === 1);
 yes("POP_LETTER: letters 30 ms apart", wordEntrance("POP_LETTER", 2, { letter: 0 }).o > 0 && wordEntrance("POP_LETTER", 2, { letter: 5 }).o === 0);
 yes("no entrance slides, rotates, blurs or wipes", ENTRANCES.every((n) => Array.from({ length: 13 }, (_, f) => e(n, f)).every((s) => s.dx === 0 && s.rot === 0 && s.blur === 0 && s.reveal === 1)));
 yes("a pop is not a slow fade: full opacity by 45% of the pop", e("POP_STANDARD", 2.8).o === 1 && e("POP_HARD", 5.5).o === 1);
 yes("nothing is visible before its pop starts", ENTRANCES.every((n) => e(n, 0).o === 0));
 yes("word stack settles after the last word lands and holds", stackSettle(12, 12 + 6 + 8) === 0 && stackSettle(12, 12 + 6 + 8 + 12) === 1);
-yes("micro-motion: 0.5% scale, <= 1 px drift", (() => { let s = 0, d = 0; for (let f = 0; f < 200; f++) { const m = microMotion(f, 2); s = Math.max(s, Math.abs(m.s - 1)); d = Math.max(d, Math.abs(m.dy)); } return s <= 0.0051 && d <= 1.01 && s > 0.002; })());
+yes("micro-motion: none — a landed word stays put", (() => { for (let f = 0; f < 200; f++) { const m = microMotion(f, 2); if (m.s !== 1 || m.dx !== 0 || m.dy !== 0) return false; } return true; })());
 
 for (const [n, dur] of [[3, 90], [5, 120], [7, 150], [4, 60]]) {
   const s = wordSchedule(n, dur);
@@ -51,7 +51,7 @@ yes("exit is a mask, not a fade", wordExit(4).clip > 0 && wordExit(4).dy < 0 && 
 yes("a year pops, never rolls", numberMode("2019") === "pop");
 yes("an article / section number pops, never rolls", numberMode("Section 12") === "pop" && numberMode("357-A") === "pop");
 yes("a quantity pops then rolls", numberMode("$105M") === "pop_roll" && numberMode("34%") === "pop_roll");
-yes("number pop: 1.3 -> 1.0 over 8 frames with a slight settle", Math.abs(numberPop(0.001).s - 1.3) < 0.01 && numberPop(8).s === 1 && Math.min(...Array.from({ length: 33 }, (_, k) => numberPop(k / 4).s)) < 1);
+yes("number pop: 1.3 -> 1.0 over 8 frames, never under 1 (no settle)", Math.abs(numberPop(0.001).s - 1.3) < 0.01 && numberPop(8).s === 1 && Math.min(...Array.from({ length: 33 }, (_, k) => numberPop(k / 4).s)) >= 1);
 yes("roll: nothing until the pop settles, done 20 frames later", numberRoll(8) === 0 && numberRoll(28) === 1 && numberRoll(18) > 0 && numberRoll(18) < 1);
 yes("digit slots roll from 0 to their digit", digitRoll(0, 0, 7) === 0 && digitRoll(1, 0, 7) === 7 && digitRoll(1, 3, 5) === 5 && digitRoll(0.5, 3, 5) < digitRoll(0.5, 0, 5));
 

@@ -1,0 +1,74 @@
+{
+  "topic_slug": "integrated-information-theory-scientific-countermovement",
+  "strongest_angle": "Explore how Tononi's Integrated Information Theory evolved from a niche hypothesis into a major scientific movement, and examine the fierce countermovement and public disputes surrounding consciousness science in October 2026.",
+  "key_facts": [
+    {
+      "fact": "A public letter signed by 124 scholars was posted online in September 2023, arguing that the Integrated Information Theory (IIT) should be labelled as pseudoscience.",
+      "source_url": "https://www.nature.com/articles/d41586-023-02971-1",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "David Barbera-Tomas, Camilo Miguel Signorelli, and Adrián A. Díaz‐Faes authored a 2026 sociological study analyzing the controversy surrounding Integrated Information Theory (IIT).",
+      "source_url": "https://doi.org/10.31235/osf.io/tewnh_v1",
+      "source_name": "OSF Preprints",
+      "confidence": "high"
+    },
+    {
+      "fact": "Michał Klincewicz, Tony Cheng, Michael Schmitz, Miguel Ángel Sebastián, and Joel S. Snyder published a 2025 article in Nature Neuroscience discussing why Integrated Information Theory has been labeled as unscientific.",
+      "source_url": "https://www.nature.com/articles/s41593-025-01881-x",
+      "source_name": "Nature Neuroscience",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of scholars signing the pseudoscience letter",
+      "value": 124,
+      "unit": "scholars",
+      "source_url": "https://www.nature.com/articles/d41586-023-02971-1"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "David Barbera-Tomas",
+      "kind": "person"
+    },
+    {
+      "name": "Camilo Miguel Signorelli",
+      "kind": "person"
+    },
+    {
+      "name": "Adrián A. Díaz‐Faes",
+      "kind": "person"
+    },
+    {
+      "name": "Michał Klincewicz",
+      "kind": "person"
+    },
+    {
+      "name": "Tony Cheng",
+      "kind": "person"
+    },
+    {
+      "name": "Michael Schmitz",
+      "kind": "person"
+    },
+    {
+      "name": "Miguel Ángel Sebastián",
+      "kind": "person"
+    },
+    {
+      "name": "Joel S. Snyder",
+      "kind": "person"
+    },
+    {
+      "name": "Nature Neuroscience",
+      "kind": "organization"
+    },
+    {
+      "name": "PsyArXiv",
+      "kind": "organization"
+    }
+  ]
+}

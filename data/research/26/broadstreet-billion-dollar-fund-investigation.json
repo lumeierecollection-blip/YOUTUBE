@@ -1,0 +1,89 @@
+{
+  "topic_slug": "broadstreet-billion-dollar-fund-investigation",
+  "strongest_angle": "Examine the SEC and investor lawsuits accusing Broadstreet executives David J. Feingold, Joseph B. Baldassarra, and Steven S. Baldassarra of raising over $1 billion through deceptive practices and multi-faceted fraud.",
+  "key_facts": [
+    {
+      "fact": "Private equity firm Broadstreet Inc. and top executives David J. Feingold, Joseph B. Baldassarra, and Steven S. Baldassarra raised more than $1 billion from over 1,000 investors using deceptive tactics and false statements, according to the U.S. Securities and Exchange Commission.",
+      "source_url": "https://news.bloomberglaw.com/securities-law/broadstreet-top-brass-raised-1-billion-in-pe-fraud-sec-says",
+      "source_name": "Bloomberg Law",
+      "confidence": "medium"
+    },
+    {
+      "fact": "On April 21, 2025, the U.S. District Court for the Southern District of Florida appointed an agreed-upon monitor in the Securities and Exchange Commission's ongoing litigation against Broad Street Inc., Broad Street Global Management, LLC, David J. Feingold, Steven S. Baldassarra, and Joseph B. Baldassarra.",
+      "source_url": "https://www.sec.gov/enforcement-litigation/litigation-releases/lr-26289",
+      "source_name": "U.S. Securities and Exchange Commission",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investors Steven and Darby filed a lawsuit in the U.S. District Court for the Southern District of Florida stating Defendants are trying to steal over half a billion dollars from their own investors, including approximate investments of $1,415,373.18 in the Broad Street Global Fund, LLC.",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.flsd.722866/gov.uscourts.flsd.722866.1.0_4.pdf",
+      "source_name": "CourtListener",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Plaintiff Kentan Kumar Patel filed a case numbered 1:2026cv27155 in the U.S. District Court for the Southern District of Florida on October 13, 2026, against defendants David Feingold, Steven Baldassarra, Joseph Baldassarra, Broad Street Global Management, LLC and Broadstreet, Inc.",
+      "source_url": "https://dockets.justia.com/docket/florida/flsdce/1:2026cv27155/725802",
+      "source_name": "Justia Dockets",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Amount Raised by Broadstreet Inc",
+      "value": 1,
+      "unit": "billion dollars",
+      "source_url": "https://news.bloomberglaw.com/securities-law/broadstreet-top-brass-raised-1-billion-in-pe-fraud-sec-says"
+    },
+    {
+      "label": "Number of Investors in Broadstreet Fund",
+      "value": 1000,
+      "unit": "investors",
+      "source_url": "https://news.bloomberglaw.com/securities-law/broadstreet-top-brass-raised-1-billion-in-pe-fraud-sec-says"
+    },
+    {
+      "label": "Darbys Investment Amount",
+      "value": 1415373.18,
+      "unit": "dollars",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.flsd.722866/gov.uscourts.flsd.722866.1.0_4.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "David J. Feingold",
+      "kind": "person"
+    },
+    {
+      "name": "Joseph B. Baldassarra",
+      "kind": "person"
+    },
+    {
+      "name": "Steven S. Baldassarra",
+      "kind": "person"
+    },
+    {
+      "name": "Broad Street Global Management, LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Broad Street Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. Securities and Exchange Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. District Court for the Southern District of Florida",
+      "kind": "place"
+    },
+    {
+      "name": "Steven Darby",
+      "kind": "person"
+    },
+    {
+      "name": "Kentan Kumar Patel",
+      "kind": "person"
+    }
+  ]
+}

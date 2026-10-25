@@ -1,0 +1,47 @@
+{
+  "channel_id": "5",
+  "topic_slug": "russell-brand-sexual-assault-trial-explained",
+  "format": "shorts",
+  "hook": "Six women independently accused 51-year-old Russell Brand of being a calculated sexual predator.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six women independently accused 51-year-old Russell Brand of being a calculated sexual predator.",
+      "text_overlay": {
+        "text": "6 Women. 1 Accusation."
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At Southwark Crown Court, prosecutor Riel Karmy-Jones KC opened the case against the comedian. How did these six women, who never met, connect their individual stories of abuse?",
+      "text_overlay": {
+        "text": "Southwark Crown Court"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the prosecution claims these six women never met before coming forward to report abuse.",
+      "text_overlay": {
+        "text": "No prior connection"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Karmy-Jones KC revealed a pattern of behavior spanning ten years. The trial in London examines seven sexual offense charges brought against the 51-year-old defendant.",
+      "text_overlay": {
+        "text": "7 Charges"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Jurors at Southwark Crown Court are now weighing the testimony of these six women.",
+      "text_overlay": {
+        "text": "6 Women"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+    "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54"
+  ]
+}

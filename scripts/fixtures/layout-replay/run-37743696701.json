@@ -1,0 +1,1869 @@
+{
+ "source": "CI run 37743696701 attempt 1 (live), data/visual-plans/5/*-resolved.json; pixel canvas-coverage failed beat 1 at 58.9%",
+ "canvases": [
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Federal agents found",
+   "headline": "600 pounds of gold",
+   "emphasis_word": "gold",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": [
+    {
+     "at_percent": 0.1,
+     "target": "headline"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "institution",
+     "name": "CIA"
+    },
+    {
+     "type": "number",
+     "name": "600"
+    }
+   ],
+   "text_entrance": "POP_SOFT",
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "concept_visuals": [
+    {
+     "name": "CIA",
+     "class": "cutout",
+     "asset": "cutouts-live/5/0-central-intelligence-agency-logo.png",
+     "w": 1024,
+     "h": 819,
+     "logo": true,
+     "source": "wikimedia commons",
+     "source_url": "https://commons.wikimedia.org/wiki/File:%E2%80%9CStudio_Six_Productions%E2%80%9D_Logo_Items_-_Flickr_-_The_Central_Intelligence_Agency.jpg",
+     "ink": {
+      "pts": [
+       [
+        0.083,
+        0.919
+       ],
+       [
+        0.105,
+        0.595
+       ],
+       [
+        0.167,
+        0.371
+       ],
+       [
+        0.208,
+        0.329
+       ],
+       [
+        0.249,
+        0.291
+       ],
+       [
+        0.292,
+        0.129
+       ],
+       [
+        0.333,
+        0.109
+       ],
+       [
+        0.374,
+        0.087
+       ],
+       [
+        0.416,
+        0.065
+       ],
+       [
+        0.457,
+        0.043
+       ],
+       [
+        0.498,
+        0.021
+       ],
+       [
+        0.537,
+        0.001
+       ],
+       [
+        0.542,
+        0.001
+       ],
+       [
+        0.584,
+        0.001
+       ],
+       [
+        0.625,
+        0.001
+       ],
+       [
+        0.667,
+        0.001
+       ],
+       [
+        0.709,
+        0.001
+       ],
+       [
+        0.75,
+        0.001
+       ],
+       [
+        0.792,
+        0.001
+       ],
+       [
+        0.834,
+        0.001
+       ],
+       [
+        0.875,
+        0.001
+       ],
+       [
+        0.917,
+        0.001
+       ],
+       [
+        0.959,
+        0.001
+       ],
+       [
+        0.078,
+        0.999
+       ],
+       [
+        0.084,
+        0.999
+       ],
+       [
+        0.125,
+        0.999
+       ],
+       [
+        0.167,
+        0.999
+       ],
+       [
+        0.209,
+        0.999
+       ],
+       [
+        0.25,
+        0.999
+       ],
+       [
+        0.292,
+        0.999
+       ],
+       [
+        0.334,
+        0.999
+       ],
+       [
+        0.375,
+        0.999
+       ],
+       [
+        0.417,
+        0.999
+       ],
+       [
+        0.459,
+        0.999
+       ],
+       [
+        0.5,
+        0.999
+       ],
+       [
+        0.542,
+        0.999
+       ],
+       [
+        0.584,
+        0.999
+       ],
+       [
+        0.625,
+        0.999
+       ],
+       [
+        0.667,
+        0.999
+       ],
+       [
+        0.709,
+        0.999
+       ],
+       [
+        0.75,
+        0.999
+       ],
+       [
+        0.792,
+        0.999
+       ],
+       [
+        0.834,
+        0.999
+       ],
+       [
+        0.875,
+        0.999
+       ],
+       [
+        0.917,
+        0.999
+       ],
+       [
+        0.959,
+        0.999
+       ],
+       [
+        0.459,
+        0.042
+       ],
+       [
+        0.38,
+        0.084
+       ],
+       [
+        0.3,
+        0.125
+       ],
+       [
+        0.27,
+        0.137
+       ],
+       [
+        0.282,
+        0.168
+       ],
+       [
+        0.294,
+        0.25
+       ],
+       [
+        0.205,
+        0.333
+       ],
+       [
+        0.161,
+        0.375
+       ],
+       [
+        0.137,
+        0.396
+       ],
+       [
+        0.149,
+        0.418
+       ],
+       [
+        0.177,
+        0.46
+       ],
+       [
+        0.205,
+        0.501
+       ],
+       [
+        0.232,
+        0.543
+       ],
+       [
+        0.102,
+        0.614
+       ],
+       [
+        0.099,
+        0.661
+       ],
+       [
+        0.097,
+        0.693
+       ],
+       [
+        0.094,
+        0.745
+       ],
+       [
+        0.092,
+        0.776
+       ],
+       [
+        0.089,
+        0.824
+       ],
+       [
+        0.086,
+        0.872
+       ],
+       [
+        0.084,
+        0.903
+       ],
+       [
+        0.082,
+        0.947
+       ],
+       [
+        1,
+        0.001
+       ],
+       [
+        1,
+        0.043
+       ],
+       [
+        1,
+        0.085
+       ],
+       [
+        1,
+        0.126
+       ],
+       [
+        1,
+        0.168
+       ],
+       [
+        1,
+        0.209
+       ],
+       [
+        1,
+        0.251
+       ],
+       [
+        1,
+        0.292
+       ],
+       [
+        1,
+        0.334
+       ],
+       [
+        1,
+        0.377
+       ],
+       [
+        1,
+        0.418
+       ],
+       [
+        1,
+        0.46
+       ],
+       [
+        1,
+        0.501
+       ],
+       [
+        1,
+        0.543
+       ],
+       [
+        1,
+        0.584
+       ],
+       [
+        1,
+        0.626
+       ],
+       [
+        1,
+        0.667
+       ],
+       [
+        1,
+        0.71
+       ],
+       [
+        1,
+        0.752
+       ],
+       [
+        1,
+        0.793
+       ],
+       [
+        1,
+        0.835
+       ],
+       [
+        1,
+        0.876
+       ],
+       [
+        1,
+        0.918
+       ],
+       [
+        1,
+        0.959
+       ]
+      ]
+     }
+    }
+   ],
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 3,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "source_credit": "commons.wikimedia.org",
+   "anchor_word": "600",
+   "composition": "TYPE-FULL",
+   "beat_index": 0,
+   "beat_total": 9,
+   "variant": 0,
+   "hero_headline": true,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": true,
+    "style": "POP_SOFT",
+    "entrances": {
+     "statement": [
+      "POP_SOFT",
+      "POP_EMPHASIS",
+      "POP_SOFT",
+      "POP_SOFT"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "He fabricated",
+   "headline": "Secret government programs",
+   "emphasis_word": "secret",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": [
+    {
+     "at_percent": 0.2,
+     "target": "headline"
+    }
+   ],
+   "persists_from": 0,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 2,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "v_align": "center"
+     }
+    ]
+   },
+   "composition": "TYPE-FULL",
+   "beat_index": 1,
+   "beat_total": 9,
+   "variant": 1,
+   "hero_headline": false,
+   "emphasis_beat": true,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "MAP",
+   "data": {
+    "place": "Florida"
+   },
+   "lead_in": "Florida real estate",
+   "headline": "Florida real estate",
+   "emphasis_word": "estate",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "place",
+     "name": "Florida"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Florida",
+   "composition": "MAP-CENTERED",
+   "beat_index": 2,
+   "beat_total": 9,
+   "variant": 2,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "49",
+    "label": "year-old official pull"
+   },
+   "lead_in": "How did a",
+   "headline": "49-year-old official",
+   "emphasis_word": "official",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": [
+    {
+     "at_percent": 0.5,
+     "target": "number"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "49"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "center"
+     }
+    ]
+   },
+   "anchor_word": "49",
+   "composition": "NUMBER-FULL",
+   "beat_index": 3,
+   "beat_total": 9,
+   "variant": 3,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": false,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Investigators uncovered",
+   "headline": "200 million dollar fraud",
+   "emphasis_word": "fraud",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": [
+    {
+     "at_percent": 0.5,
+     "target": "number"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "200 million"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "concept_visuals": [
+    {
+     "name": "united states dollar banknotes",
+     "class": "cutout",
+     "asset": "cutouts-live/5/4-united-states-dollar-banknotes.png",
+     "w": 1024,
+     "h": 438,
+     "source": "wikipedia",
+     "source_url": "https://en.wikipedia.org/wiki/United_States_one-hundred-dollar_bill",
+     "money": true,
+     "ink": {
+      "pts": [
+       [
+        0,
+        0.001
+       ],
+       [
+        0.042,
+        0.001
+       ],
+       [
+        0.084,
+        0.001
+       ],
+       [
+        0.125,
+        0.001
+       ],
+       [
+        0.167,
+        0.001
+       ],
+       [
+        0.209,
+        0.001
+       ],
+       [
+        0.25,
+        0.001
+       ],
+       [
+        0.292,
+        0.001
+       ],
+       [
+        0.334,
+        0.001
+       ],
+       [
+        0.375,
+        0.001
+       ],
+       [
+        0.417,
+        0.001
+       ],
+       [
+        0.459,
+        0.001
+       ],
+       [
+        0.5,
+        0.001
+       ],
+       [
+        0.542,
+        0.001
+       ],
+       [
+        0.584,
+        0.001
+       ],
+       [
+        0.625,
+        0.001
+       ],
+       [
+        0.667,
+        0.001
+       ],
+       [
+        0.709,
+        0.001
+       ],
+       [
+        0.75,
+        0.001
+       ],
+       [
+        0.792,
+        0.001
+       ],
+       [
+        0.834,
+        0.001
+       ],
+       [
+        0.875,
+        0.001
+       ],
+       [
+        0.917,
+        0.001
+       ],
+       [
+        0.959,
+        0.001
+       ],
+       [
+        0,
+        0.999
+       ],
+       [
+        0.042,
+        0.999
+       ],
+       [
+        0.084,
+        0.999
+       ],
+       [
+        0.125,
+        0.999
+       ],
+       [
+        0.167,
+        0.999
+       ],
+       [
+        0.209,
+        0.999
+       ],
+       [
+        0.25,
+        0.999
+       ],
+       [
+        0.292,
+        0.999
+       ],
+       [
+        0.334,
+        0.999
+       ],
+       [
+        0.375,
+        0.999
+       ],
+       [
+        0.417,
+        0.999
+       ],
+       [
+        0.459,
+        0.999
+       ],
+       [
+        0.5,
+        0.999
+       ],
+       [
+        0.542,
+        0.999
+       ],
+       [
+        0.584,
+        0.999
+       ],
+       [
+        0.625,
+        0.999
+       ],
+       [
+        0.667,
+        0.999
+       ],
+       [
+        0.709,
+        0.999
+       ],
+       [
+        0.75,
+        0.999
+       ],
+       [
+        0.792,
+        0.999
+       ],
+       [
+        0.834,
+        0.999
+       ],
+       [
+        0.875,
+        0.999
+       ],
+       [
+        0.917,
+        0.999
+       ],
+       [
+        0.959,
+        0.999
+       ],
+       [
+        0,
+        0.045
+       ],
+       [
+        0,
+        0.086
+       ],
+       [
+        0,
+        0.127
+       ],
+       [
+        0,
+        0.168
+       ],
+       [
+        0,
+        0.211
+       ],
+       [
+        0,
+        0.252
+       ],
+       [
+        0,
+        0.293
+       ],
+       [
+        0,
+        0.334
+       ],
+       [
+        0,
+        0.378
+       ],
+       [
+        0,
+        0.419
+       ],
+       [
+        0,
+        0.46
+       ],
+       [
+        0,
+        0.501
+       ],
+       [
+        0,
+        0.545
+       ],
+       [
+        0,
+        0.586
+       ],
+       [
+        0,
+        0.627
+       ],
+       [
+        0,
+        0.668
+       ],
+       [
+        0,
+        0.711
+       ],
+       [
+        0,
+        0.752
+       ],
+       [
+        0,
+        0.793
+       ],
+       [
+        0,
+        0.834
+       ],
+       [
+        0,
+        0.878
+       ],
+       [
+        0,
+        0.919
+       ],
+       [
+        0,
+        0.96
+       ],
+       [
+        1,
+        0.001
+       ],
+       [
+        1,
+        0.045
+       ],
+       [
+        1,
+        0.086
+       ],
+       [
+        1,
+        0.127
+       ],
+       [
+        1,
+        0.168
+       ],
+       [
+        1,
+        0.211
+       ],
+       [
+        1,
+        0.252
+       ],
+       [
+        1,
+        0.293
+       ],
+       [
+        1,
+        0.334
+       ],
+       [
+        1,
+        0.378
+       ],
+       [
+        1,
+        0.419
+       ],
+       [
+        1,
+        0.46
+       ],
+       [
+        1,
+        0.501
+       ],
+       [
+        1,
+        0.545
+       ],
+       [
+        1,
+        0.586
+       ],
+       [
+        1,
+        0.627
+       ],
+       [
+        1,
+        0.668
+       ],
+       [
+        1,
+        0.711
+       ],
+       [
+        1,
+        0.752
+       ],
+       [
+        1,
+        0.793
+       ],
+       [
+        1,
+        0.834
+       ],
+       [
+        1,
+        0.878
+       ],
+       [
+        1,
+        0.919
+       ],
+       [
+        1,
+        0.96
+       ]
+      ]
+     }
+    }
+   ],
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "source_credit": "wikipedia.org",
+   "anchor_word": "200",
+   "composition": "TYPE-FULL",
+   "beat_index": 4,
+   "beat_total": 9,
+   "variant": 4,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Rush pleaded",
+   "headline": "Guilty in federal court",
+   "emphasis_word": "guilty",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "person",
+     "name": "Rush"
+    },
+    {
+     "type": "institution",
+     "name": "federal court"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "name_card": {
+    "name": "Rush",
+    "sub": "Guilty in federal court"
+   },
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "portrait",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "anchor_word": "Rush",
+   "composition": "TYPE-FULL",
+   "beat_index": 5,
+   "beat_total": 9,
+   "variant": 5,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Agents seized",
+   "headline": "40 million in gold",
+   "emphasis_word": "gold",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": [
+    {
+     "at_percent": 0.5,
+     "target": "number"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "40 million"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "concept_visuals": [
+    {
+     "name": "united states dollar banknotes",
+     "class": "cutout",
+     "asset": "cutouts-live/5/4-united-states-dollar-banknotes.png",
+     "w": 1024,
+     "h": 438,
+     "source": "wikipedia",
+     "source_url": "https://en.wikipedia.org/wiki/United_States_one-hundred-dollar_bill",
+     "money": true,
+     "ink": {
+      "pts": [
+       [
+        0,
+        0.001
+       ],
+       [
+        0.042,
+        0.001
+       ],
+       [
+        0.084,
+        0.001
+       ],
+       [
+        0.125,
+        0.001
+       ],
+       [
+        0.167,
+        0.001
+       ],
+       [
+        0.209,
+        0.001
+       ],
+       [
+        0.25,
+        0.001
+       ],
+       [
+        0.292,
+        0.001
+       ],
+       [
+        0.334,
+        0.001
+       ],
+       [
+        0.375,
+        0.001
+       ],
+       [
+        0.417,
+        0.001
+       ],
+       [
+        0.459,
+        0.001
+       ],
+       [
+        0.5,
+        0.001
+       ],
+       [
+        0.542,
+        0.001
+       ],
+       [
+        0.584,
+        0.001
+       ],
+       [
+        0.625,
+        0.001
+       ],
+       [
+        0.667,
+        0.001
+       ],
+       [
+        0.709,
+        0.001
+       ],
+       [
+        0.75,
+        0.001
+       ],
+       [
+        0.792,
+        0.001
+       ],
+       [
+        0.834,
+        0.001
+       ],
+       [
+        0.875,
+        0.001
+       ],
+       [
+        0.917,
+        0.001
+       ],
+       [
+        0.959,
+        0.001
+       ],
+       [
+        0,
+        0.999
+       ],
+       [
+        0.042,
+        0.999
+       ],
+       [
+        0.084,
+        0.999
+       ],
+       [
+        0.125,
+        0.999
+       ],
+       [
+        0.167,
+        0.999
+       ],
+       [
+        0.209,
+        0.999
+       ],
+       [
+        0.25,
+        0.999
+       ],
+       [
+        0.292,
+        0.999
+       ],
+       [
+        0.334,
+        0.999
+       ],
+       [
+        0.375,
+        0.999
+       ],
+       [
+        0.417,
+        0.999
+       ],
+       [
+        0.459,
+        0.999
+       ],
+       [
+        0.5,
+        0.999
+       ],
+       [
+        0.542,
+        0.999
+       ],
+       [
+        0.584,
+        0.999
+       ],
+       [
+        0.625,
+        0.999
+       ],
+       [
+        0.667,
+        0.999
+       ],
+       [
+        0.709,
+        0.999
+       ],
+       [
+        0.75,
+        0.999
+       ],
+       [
+        0.792,
+        0.999
+       ],
+       [
+        0.834,
+        0.999
+       ],
+       [
+        0.875,
+        0.999
+       ],
+       [
+        0.917,
+        0.999
+       ],
+       [
+        0.959,
+        0.999
+       ],
+       [
+        0,
+        0.045
+       ],
+       [
+        0,
+        0.086
+       ],
+       [
+        0,
+        0.127
+       ],
+       [
+        0,
+        0.168
+       ],
+       [
+        0,
+        0.211
+       ],
+       [
+        0,
+        0.252
+       ],
+       [
+        0,
+        0.293
+       ],
+       [
+        0,
+        0.334
+       ],
+       [
+        0,
+        0.378
+       ],
+       [
+        0,
+        0.419
+       ],
+       [
+        0,
+        0.46
+       ],
+       [
+        0,
+        0.501
+       ],
+       [
+        0,
+        0.545
+       ],
+       [
+        0,
+        0.586
+       ],
+       [
+        0,
+        0.627
+       ],
+       [
+        0,
+        0.668
+       ],
+       [
+        0,
+        0.711
+       ],
+       [
+        0,
+        0.752
+       ],
+       [
+        0,
+        0.793
+       ],
+       [
+        0,
+        0.834
+       ],
+       [
+        0,
+        0.878
+       ],
+       [
+        0,
+        0.919
+       ],
+       [
+        0,
+        0.96
+       ],
+       [
+        1,
+        0.001
+       ],
+       [
+        1,
+        0.045
+       ],
+       [
+        1,
+        0.086
+       ],
+       [
+        1,
+        0.127
+       ],
+       [
+        1,
+        0.168
+       ],
+       [
+        1,
+        0.211
+       ],
+       [
+        1,
+        0.252
+       ],
+       [
+        1,
+        0.293
+       ],
+       [
+        1,
+        0.334
+       ],
+       [
+        1,
+        0.378
+       ],
+       [
+        1,
+        0.419
+       ],
+       [
+        1,
+        0.46
+       ],
+       [
+        1,
+        0.501
+       ],
+       [
+        1,
+        0.545
+       ],
+       [
+        1,
+        0.586
+       ],
+       [
+        1,
+        0.627
+       ],
+       [
+        1,
+        0.668
+       ],
+       [
+        1,
+        0.711
+       ],
+       [
+        1,
+        0.752
+       ],
+       [
+        1,
+        0.793
+       ],
+       [
+        1,
+        0.834
+       ],
+       [
+        1,
+        0.878
+       ],
+       [
+        1,
+        0.919
+       ],
+       [
+        1,
+        0.96
+       ]
+      ]
+     }
+    }
+   ],
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "source_credit": "wikipedia.org",
+   "anchor_word": "40",
+   "composition": "TYPE-FULL",
+   "beat_index": 6,
+   "beat_total": 9,
+   "variant": 6,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "194 million",
+    "label": "dollars"
+   },
+   "lead_in": "The disgraced officer",
+   "headline": "Forfeit 194 million",
+   "emphasis_word": "forfeit",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": [
+    {
+     "at_percent": 0.5,
+     "target": "number"
+    }
+   ],
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "194 million"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "source_credit": "wikipedia.org",
+   "anchor_word": "194",
+   "composition": "NUMBER-FULL",
+   "beat_index": 7,
+   "beat_total": 9,
+   "variant": 7,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": true,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "5",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   }
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "lead_in": "Federal agents seized",
+   "headline": "Every single bar of gold",
+   "emphasis_word": "every",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "v_align": "bottom"
+     }
+    ]
+   },
+   "composition": "TYPE-FULL",
+   "beat_index": 8,
+   "beat_total": 9,
+   "variant": 8,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "5",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "statement": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ],
+     "kicker": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": null
+   }
+  }
+ ]
+}

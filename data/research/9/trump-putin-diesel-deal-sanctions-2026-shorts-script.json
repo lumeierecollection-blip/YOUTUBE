@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "trump-putin-diesel-deal-sanctions-2026",
+  "format": "shorts",
+  "hook": "On October 9, 2026, President Donald Trump shocked markets when Russia agreed to supply the United States.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "On October 9, 2026, President Donald Trump shocked markets when Russia agreed to supply the United States.",
+      "b_roll": [
+        "White House exterior shot in Washington",
+        "Map showing the United States and Russia"
+      ],
+      "text_overlay": {
+        "text": "Trump Announces Russia Diesel Deal"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Where will the Treasury Department issue the temporary license?",
+      "b_roll": [
+        "Kremlin building in Moscow",
+        "Cargo ship loaded with fuel containers",
+        "U.S. Treasury Department facade"
+      ],
+      "text_overlay": {
+        "text": "300,000 Tons Immediate Supply"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet more than 4 million tons in multiple deliveries will follow, though the Treasury Department issued a temporary license.",
+      "b_roll": [
+        "Industrial fuel terminal with storage tanks"
+      ],
+      "text_overlay": {
+        "text": "Over 4 Million Tons Total"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The United States Treasury Department issued a temporary license for 300000 tons of diesel.",
+      "b_roll": [
+        "Official government documents on a desk",
+        "Global trade shipping lanes map animation"
+      ],
+      "text_overlay": {
+        "text": "Treasury Issues Temporary License"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "More than 4 million tons arrive under the new agreement.",
+      "b_roll": [
+        "Fuel pipeline infrastructure spanning open terrain"
+      ],
+      "text_overlay": {
+        "text": "4 Million Tons Incoming"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.ttnews.com/articles/trump-putin-russia-diesel-deal",
+    "https://www.justsecurity.org/160425/fueling-russias-war-diesel-deal-international-law"
+  ]
+}

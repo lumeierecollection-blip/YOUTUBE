@@ -33,18 +33,25 @@ import {
   compactCapabilityDigest, compileScene, isMechanismBased, mechanismToCapability,
 } from "../src/skills/remotion-render/visual/capability-compiler.js";
 import { callGemini as callGeminiApi, createCachedContent } from "../src/lib/gemini-client.js";
+import { referenceFramesFor, imageParts, withReferenceImages } from "./reference-frames.js";
 import { forcedOllama, callOllamaOnly, callLLM, isProviderError } from "../src/lib/llm.js";
 import { createRequire as createRequireGroq } from "node:module";
 const { callGroq } = createRequireGroq(import.meta.url)("./groq-client.cjs");
 import { LIBRARY_NAMES } from "../src/skills/remotion-render/visual/library-names.js";
 import { validateConcepts } from "../src/skills/remotion-render/visual/concept-visuals.js";
 import { SYMBOLS as CONCEPT_SYMBOLS } from "../src/skills/remotion-render/visual/concept-classes.js";
+import { entityShape } from "./lib/entity-shape.mjs";
+import { namesShowableEntity } from "../src/skills/remotion-render/visual/cutout-policy.js";
 import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
+import { namedIn as placeNamedIn } from "./place-gate.js";
 const { resolveEntity, resolveDocument, resolveMoney, qualifyEntity } = createRequire(import.meta.url)("./entity-assets.cjs");
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
 import { previewAnimations } from "./anim-plan.js";
-import { compositionFor, splitHeadline } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, splitHeadline, shotName, TEXT_AT } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { translateScene } from "./scene-translate.js";
+import { wantedTypes, COMPOSITIONS } from "./composition-vocab.js";
+import { applyMotionTiers, normalizeGrounds, compositionsUsed } from "./planner-decisions.js";
+import { loadStyleReference, styleReferenceBlock } from "./channel-style-reference.js";
 import { trendOf, maxTypeBeats, varietyReport, beatsToConvert, isTypePlanned, fallbacksFor, assignEntranceStyles, assignAnimationFamilies } from "./composition-variety.js";
 import { flowNodes, FLOW_WORDS, listItemsOf, timelineOf, compareOf, documentNameOf, moneyObjectOf, quantitiesOf, statedPercentsOf, knownPlacesOf } from "./canvas-grounding.js";
 
@@ -183,6 +190,46 @@ const TYPE_CAPABILITY = { PHOTO: "revelation", COUNTER: "evidence", BAR: "compar
 // name (the same crude stem as the cutout / lead-in gates). An entity the
 // sentence does not name is dropped — its photo would be a claim the
 // narration never makes.
+/**
+ * Figures a headline rewords: "$7m" where the sentence says "$7 million".
+ *
+ * Board 38321106622 failed three channels on naming-check with one cause: the
+ * planner abbreviated a figure the sentence spells in full. ch-49 beat 2 drew
+ * the bars as "$7 million" and "$8 million" — correct — under a headline
+ * reading "$7m to $8m", so one frame said the same number two ways. ch-10 beat
+ * 1 drew "15" for "15th".
+ *
+ * The naming check is right and is not loosened: an abbreviation is a different
+ * figure on screen than the one spoken, and a headline is drawn FROM the
+ * sentence, never paraphrased. This is caught on the plan because by render
+ * time the abbreviation is laid out and nothing downstream compares it to the
+ * sentence.
+ *
+ * Returns a description per offending figure, or [] — so a caller can report it
+ * and a test can drive it without a model.
+ */
+export function rewordedFigures(headline, sentence) {
+  const said = new Set();
+  for (const m of String(sentence || "").toLowerCase().matchAll(/(\$?\d[\d,]*(?:\.\d+)?)\s*(%|percent|thousand|million|billion|trillion)\b/gi)) {
+    said.add(m[0].replace(/\s+/g, " ").trim());
+  }
+  const out = [];
+  for (const m of String(headline || "").matchAll(/\$?\d[\d,]*(?:\.\d+)?\s*(?:%|percent\b|thousand|million|billion|trillion\b|k\b|bn\b|mn\b|m\b|b\b|t\b)?/gi)) {
+    const digits = m[0].replace(/[^\d.]/g, "").replace(/\.$/, "");
+    if (!digits) continue;
+    const saidHere = [...said].find((s) => s.replace(/[^\d.]/g, "") === digits);
+    if (!saidHere) continue;   // a figure the sentence does not state is another rule's business
+    // The headline must SPELL the figure as the sentence does. "$7 million" is
+    // the sentence's own wording and passes; "$7m" and a bare "$7" do not.
+    // "%" and "percent" are the same unit either way, and so is "1,000"/"1000".
+    const norm = (x) => String(x).toLowerCase().replace(/,/g, "").replace(/\s*percent\b|%/g, "%").replace(/\s+/g, " ").trim();
+    if (norm(m[0]) !== norm(saidHere)) {
+      out.push({ shown: m[0].trim(), expected: saidHere });
+    }
+  }
+  return out;
+}
+
 export function entityNamedInSentence(name, sentence) {
   const sent = String(sentence || "").replace(/\$/g, " dollar ").split(/[^A-Za-z0-9']+/).filter(Boolean).map(stemWord);
   const words = String(name || "").split(/[^A-Za-z0-9']+/).map((w) => w.toLowerCase()).filter((w) => w && !LEAD_FUNCTION.has(w) && !["inc", "corp", "co", "llc", "ltd", "plc"].includes(w));
@@ -220,6 +267,9 @@ export function checkEntities(list, sentence) {
     if (!name || !ENTITY_TYPES.includes(type)) { dropped.push(`${type || "?"} "${name}": no type/name`); continue; }
     const t = type === "organization" ? "institution" : type;
     if (!entityNamedInSentence(name, sentence)) { dropped.push(`${t} "${name}": not named in the sentence`); continue; }
+    // A specific NAMED thing, not a nationality, a generic role or body, or an abstract noun (scripts/lib/entity-shape.mjs).
+    const shape = entityShape(name, t, sentence);
+    if (!shape.ok) { dropped.push(`${t} "${name}": ${shape.why}`); continue; }
     if (!kept.some((k) => k.name.toLowerCase() === name.toLowerCase())) kept.push({ type: t, name });
   }
   return { kept, dropped };
@@ -285,7 +335,7 @@ export function groundedOptions(sentence) {
 // "Article 10", "Section 357-A", "Rule 10b-5", "Resolution 2231", "No. 7",
 // "Phase 2": the number is a name. True when the value carries a letter
 // suffix ("357-A") or the sentence writes the number right after such a word.
-const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|#|part|schedule|phase|stage|level|tier|form|flight|route|highway|interstate|model|version|article\s+no\.?|paragraph|para|subsection|item|exhibit|appendix|annex|protocol)\s*$/i;
+const ID_WORDS = /\b(article|articles|section|sections|sec\.?|rule|rules|chapter|clause|title|amendment|resolution|regulation|order|act|bill|case|docket|no\.?|number|#|part|schedule|phase|stage|level|tier|form|flight|route|highway|interstate|model|article\s+no\.?|paragraph|para|subsection|item|exhibit|appendix|annex|protocol)\s*$/i;
 // TWO-NUMBER RULE (owner's spec 2026-10-03, part D): a sentence with a comparison word and
 // TWO DISTINCT comparable numbers is a DATA-FULL chart. Returns those numbers, or null —
 // a single number is a COUNTER, not this rule. Not counted: a bare year ("in 2019"), an
@@ -439,11 +489,15 @@ export function applyVarietyFallbacks(plan, sentences, channelId, stage = "plan"
     if (r.ok) break;
     if (!f[i] || (!f[i - 1] && !f[i + 1] && r.excess === 0)) continue;
     const b = beats[i], st = sentOf(b, i);
+    // The planner chose this beat's type (and the sentence grounds it): its choice stands. The TYPE
+    // cap and the no-two-TYPE rule only fill beats the planner left undecided.
+    if (b.planner_chose_type) { console.log(`[variety] ch-${channelId} beat ${b.index ?? i}: TYPE kept — the planner chose it`); continue; }
     const q = quantitiesOf(st)[0];
     let done = null;
     for (const c of fallbacksFor(st, { number: q ? { value: q.value, label: null } : null })) {
       const neighbours = [i - 1, i + 1].filter((j) => j >= 0 && j < beats.length).map(keyOf);
       if (c.kind === "symbol") {
+        if (namesShowableEntity(b.named_entities)) continue;   // cutout-policy.js: a symbol never stands where a named entity belongs
         if (neighbours.includes("TYPE-FULL+HERO")) continue;
         b.fallback_symbol = c.symbol;
         done = `drawn symbol "${c.symbol}" (what the sentence states)`;
@@ -541,7 +595,11 @@ export function checkVisual(b, sentence) {
   }
   if (t === "MAP") {
     const place = String(d.place || "").trim();
-    return place && resolveRegion(place) ? { type: t, data: { place } } : bad(`MAP place "${place}" is not a known region`);
+    if (!(place && resolveRegion(place))) return bad(`MAP place "${place}" is not a known region`);
+    // The ship-time place gate (place-gate.js M1) fails a map whose place the sentence does not name, so it is refused here, where the beat
+    // falls back to a name card, instead of after the render (board 38044082797 ch 5: a map of "Malaysia" for a sentence that never says it).
+    if (String(sentence || "").trim() && !placeNamedIn(place, sentence)) return bad(`MAP place "${place}" is not named in the sentence`);
+    return { type: t, data: { place } };
   }
   if (t === "COUNTER") {
     if (!numIn(d.value, nums)) return bad(`COUNTER value "${d.value}" is not in the sentence`);
@@ -627,52 +685,80 @@ export function checkVisual(b, sentence) {
 // fetches a person from a stock site, the verifier takes MATCH only, the
 // layout fills the middle zone). Every rule the model needs to DECIDE is kept.
 const SCENE_EXAMPLE = (() => { try { return JSON.parse(readFileSync(join(ROOT, "prompts", "scene-example.json"), "utf-8")); } catch { return null; } })();
-export function buildPlanPromptParts(sentences, corrections, channelId) {
+export function buildPlanPromptParts(sentences, corrections, channelId, styleRef = null) {
   // Same formula as plan-caps.cjs capLimits(): TYPOGRAPHY <= min(2, floor(0.4n)).
-  const typoMax = Math.min(2, Math.max(1, Math.floor(sentences.length * 0.4)));
-  const last = sentences.length - 1;
   const example = SCENE_EXAMPLE
     ? `EXAMPLE — sentence "${SCENE_EXAMPLE.sentence}" -> ${JSON.stringify(SCENE_EXAMPLE.beat)}`
     : "";
   const staticPart = `You are the VISUAL DIRECTOR of a vertical (1080x1920, ~60 s) YouTube Short. Visualize what each sentence DOES — its object, the action, what changes, what a viewer with NO audio would understand — as one continuous visual argument, not separate scenes.
 
-THE VISUAL LANGUAGE (everything you describe must fit it): editorial, minimalist, monochrome with one accent colour; full-frame compositions, no cards or panels; real photos for people, places, logos and objects when they exist, type and charts when they don't; slow, deliberate movement, nothing frantic — the style of Vox, Bloomberg and NYT explainers. A scene that would not appear in one of those videos is wrong. A serif headline in sentence case, oversized numerals, small sans labels. Transitions, captions, zones and camera are the system's.
+THE VISUAL LANGUAGE is the channel's REFERENCE VIDEO (frames attached when available; the style reference below): an editorial collage that changes its shot every beat (SHOT). Real photos for people, places, logos and objects when they exist, type and charts when they don't. A serif headline in sentence case, oversized numerals, small sans labels; the channel's ink and one accent.
 
-THE GROUND IS ALWAYS WHITE. Do not describe dark, black, charcoal, or colored backgrounds. All visuals sit on white. If a sentence suggests a dark or moody treatment, describe the visual elements themselves - not the background color. A beat that asks for a dark ground diverges from the render on every frame (plan-vs-render audit 2026-10-05: 11 of 37 beats asked for dark, 0 of 37 matched).
+GROUND. "ground": what ground does THIS beat need? Leave it out (or write "white") for the house ground, white. Otherwise answer a hex ("#0E0E10"), "transparent" (the house ground shows through; an MP4 has no alpha) or a short colour description ("deep navy", "warm cream"). Type and charts switch to light ink on a dark ground by themselves. The ground is yours to choose for every beat.
 
-THREE ELEMENTS ALWAYS RENDER ON EVERY BEAT, AND YOU MUST NOT DESCRIBE THEM:
-1. A caption band at the bottom of the frame with the sentence's key phrase
-2. A "Source: <domain>" credit in the bottom-right corner when the beat uses a fetched photo, logo, or portrait
-3. A "NN / NN" page counter in the top-right corner showing the current beat number
-Do not mention these in your scene_description. They are automatic. If you describe them, they will render twice.
+SHOT. "shot": how THIS beat's frame is divided, from the reference's grammar — yours on EVERY beat. [top] / [low] = its words sit in the top band, or low under a picture.
+PHOTO beats: "SCENE-FULL" fills the frame [top]; "SCENE-LOW" fills it, words low [low]; "PHOTO-BAND" bleeds off the top third, words below [low]; "PHOTO-EDGE" cropped by the far frame edge [top]; "PHOTO-CARD" in a heavy dark frame [top]; "PHOTO-INSET" a small rounded card, block shadow [top]; "PHOTO-STRIP" seen through a torn strip [top]; "PORTRAIT" standing, unframed [top].
+OBJECT beats (a cutout, logo, money object or symbol): "HERO-STACK" centred under the words [top]; "HERO-LOW" large and low, off to one side [top]; "HERO-SCATTER" off-centre at opposing angles [top]; "HERO-OVER" above the words [low].
+"FIGURE": a chart, number, map, process, list, timeline or comparison in its own frame [top]; "STAT": a stated number with its label, the figure alone filling the frame [low].
+WORDS-ONLY beats: "STATEMENT" low on one side [low]; "TITLE" very large and heavy over an accent bar [low]; "CHAPTER" one small line in an empty frame [low]; "DEFINITION" the words over a double rule, the sentence set as text [low]. Three words-only beats in a row break the rule whatever their shots: put a picture or a figure between them.
+Checked on the render: never the same shot on two beats in a row; never the words in the TOP band on three beats in a row; a shot that does not fit what the beat shows is not drawn.
+
+LAYOUT. "layout": how should THIS beat be laid out — where does each element sit? It is yours to decide per beat, from what the beat says; nothing is preset. Answer {"cols": <your grid's columns>, "rows": <its rows>, "slots": [{"id": <element>, "col": <0-based>, "row": <0-based>, "col_span": n, "row_span": n, "align": "left"|"right" for text (headline, statement, kicker, number), "left"|"center"|"right" for a visual, "v_align": "top"|"center"|"bottom"}]}. The grid is yours (any cols/rows) and spans the content area, x 48-1032, y 130-1340 of the 1080x1920 frame; a slot may instead give {"id", "x", "y", "w", "h"} in pixels. Element ids: "headline", "kicker", "number", "label", "chart", "map", "nodes", "items", "markers", "portrait", "cutout0", or "hero" for the beat's main visual. Give every FIGURE and STATEMENT beat a layout (without one the default arrangement is drawn); on a photo or object shot the SHOT is the arrangement and no layout is used. Place at least the headline and the beat's visual; elements you do not name keep the default. If you are unsure which visual the beat will end up drawing (a figure you planned may be drawn as a statement or a photo), name it "hero": it places whatever visual the beat draws. Elements keep the size their content needs (a headline is fitted to its words, a number to its digits): the layout says WHERE, not how big. Below y 1340 belongs to the caption, on every beat. The finished frame is audited, and a frame that fails is rejected — so know the rules: no two elements overlap; each element sits wholly in the top region (y 0-620) or the middle region (620-1340), never across y 620; the two regions never hold two kinds of element — the headline / statement / kicker are one kind, the visual (number with its label, chart, map, nodes, items, portrait, cutout) the other — so a layout that puts the headline in the same region as the visual is rejected and the beat falls back to the default arrangement; the beat's content must reach from near its top (y ~130-200) to well into the middle region (y ~1200-1340) to span 60% of the height; text (headline, statement, number) is never centred on the frame's vertical centre line, so align it "left" or "right". An element's kicker and its label travel with it. A slot is a region: give "align" / "v_align" to anchor the element in it; without them the element keeps its default spot, moved only as far as it takes to sit inside the slot — so a slot covering the whole grid with no alignment changes nothing. Decide each layout from what its sentence needs; do not repeat one arrangement across beats.
+
+ONE ELEMENT RENDERS AUTOMATICALLY AND YOU MUST NOT DESCRIBE IT: a small "Source: <domain>" credit in the bottom-right corner when the beat uses a fetched photo, logo or portrait. Nothing else is automatic — there is NO running caption, NO page counter and NO corner label unless you ask for one (CHROME, under TEXT).
 
 NAME CARD FALLBACK. If a named entity has no verified source - no Wikipedia lead image, no Wikimedia Commons photo, no logo - the beat renders a name card: the entity's name in the headline style with the sentence's key phrase beneath. When you describe a beat that names a specific entity, this is the fallback if the entity cannot be sourced. If you expect the entity to resolve, describe the visual it would use. If you suspect the entity is too niche, describe the name card as the intended visual.
 
 HOW TO DESCRIBE A BEAT. "scene_description": what a viewer should see for this sentence, in plain language, the way you would describe it to a designer — no mechanism names, no zones. Be specific about the primary element (a photo, a number, a chart, a logo, a scene) and NAME it if the sentence names it (person, place, company, object) so the system can fetch it; where it sits ("fills the frame", "upper third"); how it moves ("slow push in", "counts up", "draws left to right", "pops in"); what supports it (a small label, a reference line). A person -> their portrait and how it moves; a company -> its logo and how it enters; a number -> how it builds; an abstract sentence -> the metaphor or type treatment that makes it land. Example — "Mortgage rates hit 7.2% in October." -> "A big number, 7.2%, fills the centre of the frame, the percent sign smaller than the digits; below it in small caps, MORTGAGE RATES; behind it a thin line draws left to right, the rate's climb over the past year."
-Do NOT choose a mechanism, a chart type, a composition or a zone — the system translates your scene_description into one (scripts/scene-translate.js) and enforces variety, the two-number rule (two compared figures are drawn as a chart) and the data rules in code. Describe only what the sentence supports: a number you describe is one the sentence says, exactly as it says it; a person, place, company or object you describe is one it names. A money beat: say which object (a $100 bill, a stack of bills, coins, a wallet). A sentence with nothing to show: say what type treatment or plain metaphor makes it land.
+The beat's type and composition are yours to choose (TYPE AND COMPOSITION below); the system checks what you choose against the sentence (scripts/scene-translate.js) and enforces variety, the two-number rule (two compared figures are drawn as a chart) and the data rules in code. Describe only what the sentence supports: a number you describe is one the sentence says, exactly as it says it; a person, place, company or object you describe is one it names. A money beat: say which object. A sentence with nothing to show: say the type treatment that makes it land.
 
-ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym: [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
+MEASURED FIGURES. A COUNTER beat must be the sentence's measured figure with its unit (minutes, %, dollars), never a model version or a passing count. A PHOTO beat must show the sentence's action, or it is TYPE.
 
-ASSET KINDS - ask for one ONLY when the sentence earns it. "Request a silhouette only if the sentence names a person. Request a document only if the sentence names a document, contract, filing, ruling, or law. Request a stack only if the sentence names multiple discrete items. Never request these by default." A silhouette with no person in the sentence is an invented human; a document with no document in it is an invented filing. If the sentence supports none of them, describe the accumulation with the numbers it states instead.
+TYPE AND COMPOSITION. "visual_type" is YOUR choice for every beat, the hook and the close included: one of PHOTO, COUNTER, BAR, PIE, LINE, GAUGE, TREND, MAP, PROCESS, LIST, TIMELINE, COMPARE, DOCUMENT, MONEY, TYPE. "canvas_composition" (optional) names how it is laid out: ${COMPOSITIONS.join(", ")}; a name outside this list is accepted and mapped to the nearest one. What you choose is checked against the sentence: a number you chart, a place you map, a person or document you show must be in the sentence, exactly as it says it. Where a choice cannot be grounded the system falls back to what the sentence does ground, never to an invented figure. If you name neither, the system reads your scene_description.
 
-TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": 2-4 of the sentence's words, lowercase, or null. "emphasis_word": one headline word or null. "kind": "TYPE" only for beat 0${typoMax >= 2 ? ` and beat ${last}` : ""} (the hook${typoMax >= 2 ? " and the close" : ""}); every other beat "EDITORIAL". "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
+ENTITIES. "named_entities": everything the sentence NAMES that the scene shows, written as in the sentence, full name, no bracketed acronym. Specific named things only (not "Indian", "federal jury", "officials"): [{"type": "person"|"company"|"institution"|"place"|"building"|"object"|"number", "name"}] — company = a business ("Engel", "Bosch", "Fisher Phillips"); institution = an agency, court, standards body, trade show or international body ("SEC", "Hannover Messe", "ISO"); object = a physical thing; number = a figure it states. "entity_anchor_word": the ONE word of the sentence naming the main entity ("Powell", "courthouse", "347") — its visual pops when it is spoken; null if none. "concepts": up to 3 physical objects the sentence names, the LITERAL object never a symbol for an idea ("Equipping officers with gloves" -> ["gloves"], not "shield"); a name from CONCEPTS or a 1-3 word noun phrase of the sentence's own words that names the object unambiguously out of context ("steel plates", not "plates"); never a person, never an idea. CONCEPTS: ${CONCEPT_NAMES.join(", ")}
 
-MOTION. "motion_tier": "micro"|"medium"|"major" — EXACTLY 2-3 "major" (the hook, the pivot, the close), most "medium". "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
+ASSET KINDS - ask for one ONLY when the sentence earns it. A silhouette with no person in the sentence is an invented human; a document with no document in it is an invented filing. If the sentence supports none of them, describe the accumulation with the numbers it states instead.
+
+TEXT. "headline": 2-6 words FROM the sentence, never a full sentence, never a claim it does not make. "lead_in": null (retired: use "label"). CHROME — yours per beat, and ABSENT on most beats: "label": null, or {"text": a dateline or an attribution taken from the script ("October 8", "Reuters", "Luzerne County Court"), "position": "top-left"|"top-right"|"beside-headline"|"bottom-left"} — only when the beat needs a dateline or an attribution, never as decoration. "pull_phrase": null, or {"text": 2-6 words copied verbatim from the sentence, a phrase worth pulling out, "position": "top"|"middle"|"bottom", "case": "as-written"|"upper", "tone": "ink"|"accent"} — only when there is a phrase worth pulling; there is no running caption. THE TEMPLATE RULE (checked on the render, hard): NO device on three beats in a row — a label (ANY words in the top band count), a pull phrase, a typography-led beat — and in any three consecutive beats at most ONE of them on two. Alternate [top] and [low] shots. "emphasis_word": one headline word or null. "kind": "TYPE" where the beat is typography, "EDITORIAL" otherwise, your choice for every beat. "typography_direction" only where text IS the beat (the hook, the close, a real turn): {"phrase": one line, 2-7 words, never the narration or a near-restatement, never a topic label like "The Problem", "moment": "hook"|"re_hook"|"key_fact"|"contradiction"|"question"|"statement"}; otherwise null. Typography is selective: at most ~1 in 3 beats text-forward.
+
+MOTION. "entrance_style": "together"|"staggered"|"visual-first" — how this beat's elements arrive (all at once; one after another; the visual first, then the text), yours per beat; omit it and the system picks. "animation_family": "pop-in"|"slide-in"|"draw-in"|"count-up", yours per beat; omit it and the system picks. "motion_tier": "micro"|"medium"|"major" — yours to set on every beat; mark as many beats "major" as the narration earns. "camera_focus": null or 1-2 [{"at_percent": 0.05-0.9, "target": number|chart|headline|photo|left|right|top|bottom|node0|node1|node2|full}]. "persists_from": the previous beat's index when this beat carries its element on, else null; "match_cut_prev": true when it shares that element. "text_entrance": omit, or POP_SOFT (a quiet beat) | POP_HARD (beat 0 or the last only) | POP_LETTER (at most one beat) | POP_WORD_STACK (a 2-5 word TYPE statement). "visual_events": [{"type": growth|depletion|comparison|revelation|structure_break|accumulation|population|evidence|contrast|causation, "label", "magnitude"}] — at least 5 distinct types across the video, never the same event 3 times in a row; "capabilities": the event types used (+ "typographic_emphasis" on a TYPE beat); "objects": {"label_a","label_b"} for contrast, {"figure"} for evidence, {"cause","effect"} for causation, else {}.
 
 ${example}
 
 Respond ONLY with JSON (no markdown): {"beats":[ one object per sentence, in order, shaped like the example ]}`;
-  let dynamicPart = `SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
+  let dynamicPart = `${styleReferenceBlock(styleRef)}SCRIPT SENTENCES:\n${sentences.map((s, i) => `[${i}] (${s.start.toFixed(1)}s-${s.end.toFixed(1)}s) "${s.text}"`).join("\n")}`;
+  // STRICT VISUAL (owner's frame rule, 2026-10-20 — channels with
+  // config strict_visual, currently ch-02 and ch-48): every beat must draw a
+  // real visual. The renderer refuses to render a text-only beat on these
+  // channels (scripts/strict-visual.mjs), so tell the planner up front.
+  if (strictPlanChannel(channelId)) {
+    dynamicPart += `\n\nSTRICT VISUAL (this channel, the owner's frame rule): EVERY beat must draw a real visual — a photo, logo, map, chart, number, process, timeline, comparison, list, document or money object. A typography-only beat (TYPE) without one of those is rejected and fails the video. For each sentence, translate the figure it states: a number -> NUMBER/COUNTER, two numbers -> a chart, dates -> TIMELINE, a place -> MAP, a cause or sequence -> PROCESS, an enumeration -> LIST, a comparison -> COMPARE, a legal instrument -> DOCUMENT, money -> MONEY, a stated rise/fall -> TREND; a sentence that states none of those must show the named entity's real logo or photo. There is no "nothing to show" fallback on this channel.`;
+  }
   if (corrections?.length) {
-    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix:\n` +
+    // A re-plan answered the corrections and dropped the optional fields it was not asked about
+    // (CI runs 37705693390 and 37713312537: the plan carried 9/9 and 10/10 layouts, the re-plan 0).
+    dynamicPart += `\n\nPREVIOUS REVIEW CORRECTIONS — apply every fix, and return every beat complete, with every field the format above asks for (its shot, layout, ground and entrance_style included), not only the fields a correction names:\n` +
       corrections.map((c) => `  ${c.scene || c.beat}: ${c.problem} → Fix: ${c.fix || c.action}`).join("\n");
   }
-  void channelId;
   return { staticPart, dynamicPart };
 }
 
-function buildPlanPrompt(sentences, corrections, channelId) {
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId);
+/** Channels carrying the owner's strict frame rule (config channels.json strict_visual). */
+let STRICT_PLAN_CHANNELS = null;
+function strictPlanChannel(channelId) {
+  if (STRICT_PLAN_CHANNELS === null) {
+    try {
+      const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
+      const channels = data.channels || data;
+      STRICT_PLAN_CHANNELS = new Set(channels.filter((c) => c && c.strict_visual).map((c) => String(c.id)));
+    } catch { STRICT_PLAN_CHANNELS = new Set(); }
+  }
+  return STRICT_PLAN_CHANNELS.has(String(channelId));
+}
+
+function buildPlanPrompt(sentences, corrections, channelId, styleRef = null) {
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, styleRef);
   return `${staticPart}\n\n${dynamicPart}`;
 }
 
@@ -717,10 +803,22 @@ async function main() {
   }
 
   console.log(`Requesting visual plan for ${sentences.length} beats (${forcedOllama() ? "ollama only: FORCE_PLANNER=ollama" : "gemini, ollama if gemini cannot answer"})...`);
-  const prompt = buildPlanPrompt(sentences, corrections, channelId);
+  // The channel's style spec goes in as REFERENCE (planner-decisions.js). A channel without one is not an
+  // error: it is logged and the planner works from the sentences alone.
+  const style = loadStyleReference(channelId);
+  if (style.ref) console.log(`[planner] ch-${channelId}: style spec ${style.path} loaded as reference (${style.fields} field(s))`);
+  else console.log(`[planner] ch-${channelId}: style_spec_missing — ${style.why}; continuing without it`);
+  // The channel's reference frames go to Gemini as images with the prompt (scripts/reference-frames.js):
+  // the planner sees what the reference looks like, not only the spec's words about it. Context, not
+  // a gate — Layer 2 still scores the render (and its clone check) afterwards.
+  const refFrames = referenceFramesFor(channelId);
+  const refParts = refFrames.files.length ? imageParts(refFrames.files) : [];
+  if (refParts.length) console.log(`[planner] ch-${channelId}: reference frames attached to the planner call: ${refParts.length} from ${refFrames.source} (${refFrames.files.map((f) => f.split(/[\\/]/).slice(-3).join("/")).join(", ")})`);
+  else console.log(`[planner] ch-${channelId}: reference_frames_missing — ${refFrames.why}; planning without them`);
+  const prompt = buildPlanPrompt(sentences, corrections, channelId, style.ref);
   // Context caching (owner's token spec 2026-10-03, A.1): the static part is uploaded once
   // and referenced; each Gemini call then sends only this video's sentences.
-  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId);
+  const { staticPart, dynamicPart } = buildPlanPromptParts(sentences, corrections, channelId, style.ref);
   const estTok = (t) => Math.ceil(String(t || "").length / 3.6);
   let geminiCache = null;
   if (!forcedOllama()) {
@@ -737,7 +835,7 @@ async function main() {
     const out = u?.completion_tokens ?? (r && !r.error ? estTok(JSON.stringify(r)) : 0);
     console.log(`[planner] ch-${channelId}: ${provider} prompt ${Number(pt).toLocaleString("en-US")} tokens${u ? "" : " (est.)"} (cached: ${Number(cached).toLocaleString("en-US")}), response ${Number(out).toLocaleString("en-US")} tokens`);
   };
-  const cacheFor = (extra = "") => (geminiCache ? { name: geminiCache.name, keyIndex: geminiCache.keyIndex, messages: [{ role: "user", content: dynamicPart + extra }] } : undefined);
+  const cacheFor = (extra = "") => (geminiCache ? { name: geminiCache.name, keyIndex: geminiCache.keyIndex, messages: [{ role: "user", content: withReferenceImages(dynamicPart + extra, refParts) }] } : undefined);
   // Token budget scales with beat count so the JSON never truncates
   // mid-object (a 51-beat script once came back as "Unexpected end of JSON
   // input"). Each beat now carries the full director "direction" block
@@ -770,7 +868,7 @@ async function main() {
   if (forced) {
     console.error("[planner] ollama (FORCE_PLANNER=ollama — Gemini not called)");
   } else {
-    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: prompt }], { maxTokens, temperature: 0.2, tag: "planner", cache: cacheFor() }));
+    geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: withReferenceImages(prompt, refParts) }], { maxTokens, temperature: 0.2, tag: "planner", cache: cacheFor() }));
     logTokens(geminiResult, "gemini", prompt);
     if (geminiResult?.source === "gemini" && geminiResult.error) {
       geminiFailure = geminiResult.error;
@@ -779,7 +877,7 @@ async function main() {
       // "beats" key, or with a beat count that shifts every beat onto the
       // wrong line (run 36362576442 ch-26). One strict, uncached retry.
       console.error(`Gemini plan attempt 1 ${geminiResult?.beats ? `has ${geminiResult.beats.length} beats for ${sentences.length} sentences` : `had no 'beats' — got: ${describeShape(geminiResult)}`}. Retrying once uncached.`);
-      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: strictPrompt }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner", cache: cacheFor(strictSuffix) }));
+      geminiResult = normalizePlanResponse(await callGeminiApi([{ role: "user", content: withReferenceImages(strictPrompt, refParts) }], { maxTokens, temperature: 0.2, noCache: true, tag: "planner", cache: cacheFor(strictSuffix) }));
       logTokens(geminiResult, "gemini (strict retry)", strictPrompt);
       if (geminiResult?.source === "gemini" && geminiResult.error) geminiFailure = geminiResult.error;
       else if (!okBeats(geminiResult)) geminiFailure = geminiResult?.beats ? `beat count ${geminiResult.beats.length} != ${sentences.length}` : "no_beats";
@@ -829,24 +927,47 @@ async function main() {
   // first; the first that passes checkVisual is the beat's. Anything untranslatable is TYPE —
   // the safety valve, logged. A visual_type the model wrote anyway is ignored (and logged).
   const SCENE_TRANSLATE = true;
+  const compositionMappings = [];
+  const decided = { declared: 0, kept: 0, ungrounded: 0, defaultedType: 0 };
   if (okBeats(geminiResult)) {
     let typeFallbacks = 0;
+    const lastBeat = geminiResult.beats.length - 1;
     for (const [i, b] of geminiResult.beats.entries()) {
       const st = sentences[b.index ?? i]?.text || "";
       const ents = Array.isArray(b.named_entities) ? b.named_entities : [];
-      const cands = translateScene({ sentence: st, scene: b.scene_description || "", entities: ents, headline: b.headline || "" });
-      let pick = null;
+      // What the planner NAMED for this beat (visual_type / canvas_composition), read before this loop
+      // writes the checked type back over b.visual_type.
+      const want = wantedTypes({ visual_type: b.visual_type, canvas_composition: b.canvas_composition });
+      for (const u of want.unknown) {
+        compositionMappings.push({ beat: b.index ?? i, ...u });
+        console.log(`[plan] beat ${b.index ?? i}: composition_unknown — the planner wrote ${u.field} ${JSON.stringify(u.wrote)}; ${u.mappedTo ? `using the nearest, ${u.mappedTo}` : "nothing near, ignored"}`);
+      }
+      // The hook and the close have no type forced on them. Only when the planner named nothing for
+      // one of them is TYPE the default (it was the old behaviour for those two beats).
+      let prefer = want.types;
+      if (!want.declared && (i === 0 || i === lastBeat)) { prefer = ["TYPE"]; decided.defaultedType++; }
+      if (want.declared) decided.declared++;
+      const cands = translateScene({ sentence: st, scene: b.scene_description || "", entities: ents, headline: b.headline || "", preferTypes: prefer });
+      let pick = null, declaredWhy = null;
       for (const c of cands) {
         const v = checkVisual({ visual_type: c.visual_type, data: c.data || {}, named_entities: ents }, st);
-        if (!v.why && v.type === c.visual_type) { pick = { ...c, data: v.data }; break; }
+        const ok = !v.why && v.type === c.visual_type;
+        if (!ok && want.declared && !declaredWhy && prefer.includes(c.visual_type)) declaredWhy = v.why || `gate changed it to ${v.type}`;
+        if (ok) { pick = { ...c, data: v.data }; break; }
+      }
+      if (want.declared) {
+        // The planner's own, grounded choice: the variety and rotation passes below do not override it.
+        if (pick && prefer.includes(pick.visual_type)) { decided.kept++; b.planner_chose_type = true; }
+        else { decided.ungrounded++; console.log(`[plan] beat ${b.index ?? i}: the planner chose ${prefer.join("/")} — ${declaredWhy || "the sentence grounds none of it"}; using ${pick ? pick.visual_type : "TYPE"}`); }
       }
       if (!pick || pick.visual_type === "TYPE") typeFallbacks++;
       pick = pick || { visual_type: "TYPE", data: null, why: "nothing translatable" };
       const was = b.visual_type ? String(b.visual_type).toUpperCase() : null;
       b.visual_type = pick.visual_type; b.data = pick.data;
-      console.log(`[translate] beat ${b.index ?? i}: "${String(b.scene_description || "").slice(0, 90)}" -> ${pick.visual_type}${pick.data ? ` ${JSON.stringify(pick.data).slice(0, 80)}` : ""} (${pick.why})${was && was !== pick.visual_type ? ` [the model wrote ${was}: ignored]` : ""}`);
+      if (pick.visual_type === "TYPE" && want.split) b.type_layout = "split";
+      console.log(`[translate] beat ${b.index ?? i}: "${String(b.scene_description || "").slice(0, 90)}" -> ${pick.visual_type}${pick.data ? ` ${JSON.stringify(pick.data).slice(0, 80)}` : ""} (${pick.why})${want.declared ? " [planner chose]" : ""}${was && was !== pick.visual_type && !want.declared ? ` [the model wrote ${was}: ignored]` : ""}`);
     }
-    console.log(`[translate] ${geminiResult.beats.length} scene(s) translated, ${typeFallbacks} to TYPE (the hook / close, an abstract line, or nothing the description named was in the sentence)`);
+    console.log(`[translate] ${geminiResult.beats.length} scene(s) translated, ${typeFallbacks} to TYPE; the planner named a type on ${decided.declared}/${geminiResult.beats.length} beats (kept ${decided.kept}, not grounded ${decided.ungrounded}, TYPE by default on ${decided.defaultedType} hook/close beat(s))`);
   }
 
   // ── VISUAL-FIRST RATIO (owner's spec 2026-10-02) ──────────────────────
@@ -940,6 +1061,15 @@ async function main() {
         b.visual_events = converted.visual_events;
         b.capabilities = converted.capabilities;
       }
+    }
+    // A beat that named its capabilities but returned no visual_events (board 37859862716: ch-8 and
+    // ch-44 beat 1, "Beat 1 has no mechanism" in the renderer's director — the whole video lost). The
+    // events are the planner's own declared types, one each; nothing is added that it did not name.
+    if ((!Array.isArray(b.visual_events) || !b.visual_events.length) && Array.isArray(b.capabilities) && b.capabilities.length) {
+      b.visual_events = b.capabilities.filter((t) => typeof t === "string" && t !== "typographic_emphasis").map((type) => ({ type, label: String(b.headline || b.visual_headline || "").slice(0, 60), magnitude: "medium" }));
+      // Typography only: an empty list — compileScene builds the beat from its capabilities, as it
+      // did at plan time (the director needs the field present, not events in it).
+      console.warn(`::warning::[plan] beat ${b.index}: no visual_events — taken from its own capabilities (${b.visual_events.map((e) => e.type).join(", ") || "typography only: none"})`);
     }
 
     // Compile the directive into a validated scene
@@ -1190,6 +1320,9 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     const figureOthers = (i) => plan.beats.map((_, j) => (j === i ? null : figureKey(effective(j))));
     const rot = enforceRotation(plan.beats.length, {
       compositionOf: compOf,
+      // A beat whose type the planner chose is not rotated away from it; a repeat of two such
+      // beats is the planner's decision and is kept (logged).
+      locked: (i) => !!plan.beats[i]?.planner_chose_type,
       candidates: (i) => candidatesFor({ sentence: sentOf(plan.beats[i], i), headline: plan.beats[i].headline || "" }),
       accept: (i, alt) => {
         const b = plan.beats[i];
@@ -1209,14 +1342,15 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   }
   // The rotation can break a repeat with TYPE-SPLIT / TYPE-FULL: the variety rule is checked again.
   applyVarietyFallbacks(plan, sentences, channelId, "plan, after rotation");
-  // Entrance style (part C.4): together | staggered | visual-first, never the same twice in a row.
+  // Entrance style (part C.4): together | staggered | visual-first. The planner's choice stands;
+  // a beat it left open gets one that differs from its neighbour.
   {
     const es = assignEntranceStyles(plan.beats.map((b) => b.entrance_style));
     plan.beats.forEach((b, i) => { b.entrance_style = es[i]; });
     console.log(`[plan] entrance styles: ${es.join(", ")}`);
   }
-  // Animation families (Task 5.4): pop-in / slide-in / draw-in / count-up, never
-  // the same family on two consecutive beats.
+  // Animation families (Task 5.4): pop-in / slide-in / draw-in / count-up. The planner's choice
+  // stands; a beat it left open gets one that differs from its neighbour.
   {
     const af = assignAnimationFamilies(plan.beats);
     plan.beats.forEach((b, i) => { b.animation_family = af[i]; });
@@ -1334,9 +1468,19 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       planRuleIssues.push({ beat: b.index, problem: `concept names a drawing/primitive (${named.slice(0, 3).join(", ")}), not something a camera could photograph`,
         fix: "rewrite \"concept\" and \"asset_query\" as a real photograph of where this happens; keep drawings only in \"fallback_drawing\"" });
     }
-    if (b.fallback_drawing && !LIBRARY_NAMES.includes(String(b.fallback_drawing).trim())) {
+if (b.fallback_drawing && !LIBRARY_NAMES.includes(String(b.fallback_drawing).trim())) {
       planRuleIssues.push({ beat: b.index, problem: `fallback_drawing "${b.fallback_drawing}" is not a LIBRARY drawing`,
-        fix: "set \"fallback_drawing\" to an exact LIBRARY name that depicts the same subject" });
+        fix: `set "fallback_drawing" to an exact LIBRARY name that depicts the same subject` });
+    }
+// A HEADLINE MAY NOT REWORD A FIGURE — rewordedFigures() carries the rule
+    // and its evidence.
+    {
+      const hl = String(b.headline || b.visual_headline || "");
+      const bad = rewordedFigures(hl, b.narration || "");
+      if (bad.length) {
+        planRuleIssues.push({ beat: b.index, problem: `headline "${hl.trim()}" rewords a figure the sentence states: ${bad.slice(0, 2).map((x) => `"${x.shown}" should be "${x.expected}"`).join("; ")}`,
+          fix: `copy the figure exactly as the sentence writes it ("${bad[0].expected}"), never abbreviated; the naming check reads the frame against the sentence` });
+      }
     }
   }
 
@@ -1401,7 +1545,10 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
   }
   let capped;
   try {
-    capped = enforceCaps(effective);
+    // The planner chooses every beat's type, the hook's included, and a video may have no typography beat:
+    // the hook is no longer forced to TYPOGRAPHY and zero TYPOGRAPHY beats is allowed. The ceiling of 2
+    // TYPOGRAPHY beats and the 40% share per mechanism are unchanged.
+    capped = enforceCaps(effective, { hookTypography: false, minTypography: 0 });
   } catch (e) {
     console.error(`Plan rejected: ${e.message}`);
     process.exit(1);
@@ -1534,6 +1681,12 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       const te = String(b.text_entrance || "").toUpperCase().trim();
       b.text_entrance = ["POP_STANDARD", "POP_SOFT", "POP_EMPHASIS", "POP_HARD", "POP_LETTER", "POP_WORD_STACK"].includes(te) ? te : null;
       checkZones(b);
+      // The shot (SHOT in the prompt): a name from the reference's grammar, or none.
+      if (b.shot != null) {
+        const sn = shotName(b.shot);
+        if (!sn) console.warn(`::warning::[plan] beat ${b.index}: shot "${b.shot}" is not a shot — none recorded`);
+        b.shot = sn;
+      } else b.shot = null;
       // Concepts (visual/concept-visuals.js): only names the sentence names;
       // an ungrounded proposal is dropped, an empty list falls back to the
       // sentence's own concept words.
@@ -1541,25 +1694,66 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
       for (const why of vc.dropped) console.warn(`::warning::[plan] beat ${b.index}: concept ${why} — dropped`);
       b.concepts = vc.concepts;
     }
-    const lo = n >= 4 ? 2 : 1;
-    let majors = plan.beats.map((b, i) => (b.motion_tier === "major" ? i : -1)).filter((i) => i >= 0);
-    const keep = new Set([0, n - 1]);
-    while (majors.length > 3) {
-      const drop = [...majors].reverse().find((i) => !keep.has(i)) ?? majors[majors.length - 1];
-      plan.beats[drop].motion_tier = "medium";
-      console.log(`[plan] beat ${drop}: motion_tier major -> medium (at most 3 major beats)`);
-      majors = majors.filter((i) => i !== drop);
-    }
-    for (const i of [0, n - 1, Math.floor(n / 2)]) {
-      if (majors.length >= lo) break;
-      if (i >= 0 && i < n && plan.beats[i].motion_tier !== "major") {
-        plan.beats[i].motion_tier = "major"; majors.push(i);
-        console.log(`[plan] beat ${i}: motion_tier -> major (a video has ${lo}-3 major beats)`);
-      }
-    }
-    console.log(`[plan] motion tiers: ${plan.beats.map((b) => ({ micro: "·", medium: "m", major: "M" })[b.motion_tier]).join("")} (${majors.length} major); entities: ${plan.beats.reduce((a, b) => a + b.named_entities.length, 0)}; camera focus on ${plan.beats.filter((b) => b.camera_focus).length} beat(s)`);
+    const tiers = applyMotionTiers(plan.beats, (m) => console.log(m));
+    const majors = tiers.majors;
+    console.log(`[plan] motion tiers: ${plan.beats.map((b) => ({ micro: "·", medium: "m", major: "M" })[b.motion_tier]).join("")} (${majors.length} major${tiers.defaulted ? ", defaulted: the planner marked none" : ", the planner's own"}); entities: ${plan.beats.reduce((a, b) => a + b.named_entities.length, 0)}; camera focus on ${plan.beats.filter((b) => b.camera_focus).length} beat(s)`);
   }
 
+  // ── SHOTS: the sequence's legality, sent back ONCE (docs/REFERENCE-SHOT-GRAMMAR.md) ──────────
+  // The planner chooses every beat's shot. Code only checks the two rules the render enforces on the
+  // sequence — never the same shot twice in a row; never the words in the top band three beats in a
+  // row (template-window, scripts/template-check.js) — and a beat with no shot. A plan that breaks one
+  // goes back to the model with the exact problems; its answer is checked the same way. Nothing is
+  // reassigned by code: a problem the answer leaves is logged and the render's gates judge the frames.
+  {
+    const textAt = (b) => (b.shot === "STATEMENT" ? "low" : !b.shot || b.shot === "FIGURE" ? "top" : TEXT_AT[b.shot] || "top");
+    const problems = () => {
+      const out = [];
+      plan.beats.forEach((b, i) => {
+        if (!b.shot) out.push({ i, why: "no shot" });
+        else if (i > 0 && b.shot === plan.beats[i - 1].shot && !["FIGURE", "STATEMENT"].includes(b.shot)) out.push({ i, why: `${b.shot} twice in a row (beat ${plan.beats[i - 1].index})` });
+        if (i >= 2 && [0, 1, 2].every((k) => textAt(plan.beats[i - k]) === "top")) out.push({ i, why: `words in the top band three beats in a row (beats ${plan.beats[i - 2].index}-${b.index})` });
+      });
+      return out;
+    };
+    const before = problems();
+    console.log(`[shots] ${plan.beats.map((b) => b.shot || "-").join(" ")}${before.length ? ` — ${before.length} problem(s): ${before.map((p) => `beat ${plan.beats[p.i].index} ${p.why}`).join("; ")}` : " — legal"}`);
+    if (before.length && planSource !== "ollama" && !forcedOllama()) {
+      const lines = plan.beats.map((b, i) => `[${b.index}] "${(sentences[b.index]?.text || sentences[i]?.text || "").slice(0, 160)}" — shows: ${String(b.visual_type || "TYPE").toUpperCase()}; your shot: ${b.shot || "none"}${before.filter((p) => p.i === i).map((p) => ` — PROBLEM: ${p.why}`).join("")}`).join("\n");
+      const ask = `You chose a SHOT for each beat of a vertical video. A code check found problems with the sequence. Return a shot for EVERY beat, keeping the ones that are fine.
+
+Shots — PHOTO beats: SCENE-FULL [top], SCENE-LOW [low], PHOTO-BAND [low], PHOTO-EDGE [top], PHOTO-CARD [top], PHOTO-INSET [top], PHOTO-STRIP [top], PORTRAIT [top]. OBJECT beats (a cutout, logo, money object or symbol): HERO-STACK [top], HERO-LOW [top], HERO-SCATTER [top], HERO-OVER [low]. Charts / numbers / maps / processes / lists / timelines / comparisons: FIGURE [top]. Words only: STATEMENT [low].
+Rules: never the same shot on two beats in a row; never [top] on three beats in a row; the shot fits what the beat shows.
+
+${lines}
+
+Respond ONLY with JSON: {"beats":[{"index":<n>,"shot":"<name>"}]} — one entry per beat.`;
+      const ans = await callLLM([{ role: "user", content: ask }], { maxTokens: 1200, temperature: 0 }, "plan-shots");
+      const got = isProviderError(ans) ? [] : (Array.isArray(ans?.beats) ? ans.beats : []);
+      let changed = 0;
+      for (const a of got) {
+        const b = plan.beats.find((x) => x.index === Number(a?.index));
+        const sn = shotName(a?.shot);
+        if (b && sn && sn !== b.shot) { b.shot = sn; changed++; }
+      }
+      const after = problems();
+      console.log(`[shots] re-asked: ${changed} shot(s) changed by the planner${isProviderError(ans) ? ` (model: ${ans.error})` : ""} -> ${plan.beats.map((b) => b.shot || "-").join(" ")}${after.length ? ` — ${after.length} problem(s) left: ${after.map((p) => `beat ${plan.beats[p.i].index} ${p.why}`).join("; ")}` : " — legal"}`);
+    }
+  }
+
+  const groundCounts = normalizeGrounds(plan.beats, (m) => console.log(m));
+  // The planner's own layouts (canvas-layout.js applyPlanLayout): how many beats came with one.
+  const withLayout = plan.beats.filter((b) => b.layout && Array.isArray(b.layout.slots) && b.layout.slots.length);
+  // Report only (like compositions_used): one grid on most beats is a templating signal — e.g. CI run
+  // 37714244283, the example's 2x3 on 10/10 beats. Not enforced: the layout is the planner's.
+  const gridKeys = withLayout.map((b) => `${b.layout.cols ?? "-"}x${b.layout.rows ?? "-"}`);
+  const topGrid = gridKeys.length ? Object.entries(gridKeys.reduce((m, k) => ((m[k] = (m[k] || 0) + 1), m), {})).sort((a, b) => b[1] - a[1])[0] : null;
+  if (topGrid && plan.beats.length >= 4 && topGrid[1] / plan.beats.length > 0.6) console.log(`[plan] layouts templating_signal: ${topGrid[0]} on ${topGrid[1]}/${plan.beats.length} beats (report only)`);
+  console.log(`[plan] layouts: ${withLayout.length}/${plan.beats.length} beat(s) carry the planner's own layout${withLayout.length ? ` (${withLayout.map((b) => `${b.index ?? "?"}:${b.layout.cols ?? "-"}x${b.layout.rows ?? "-"}`).join(", ")})` : " — every beat uses the composition default"}`);
+  console.log(`[plan] grounds: ${Object.entries(groundCounts).map(([k, v]) => `${k} x${v}`).join(", ")}`);
+  const typeOf = (b) => String(b.visual_type || "TYPE").toUpperCase();
+  const compUsed = compositionsUsed(plan.beats.map((b) => (b.canvas_composition ? (wantedTypes({ canvas_composition: b.canvas_composition }).composition || typeOf(b)) : typeOf(b))));
+  console.log(`[plan] compositions_used (planned types) ${JSON.stringify(compUsed.counts)}${compUsed.templated ? ` templating_signal: ${compUsed.top} fills ${Math.round(compUsed.topShare * 100)}% of the beats (report only, nothing corrected)` : ""}`);
   const result = {
     generatedAt: new Date().toISOString(),
     channel: channelId,
@@ -1574,7 +1768,13 @@ Respond ONLY with JSON: {"beats":[{"index":<n>,"visual_type":"<one allowed type>
     capabilityDistribution: {},
     mechanismDistribution: describeMechanisms(capped.mechanisms),
     compositionsDropped: dropped,
+    // What the planner decided, for the audit: its grounds, its type choices and how they fared, the
+    // composition names it wrote that the renderer does not draw (and what they were mapped to), and
+    // how the planned types are spread (a share over 60% in one is a templating signal, only reported).
+    plannerDecisions: { grounds: groundCounts, types: decided, compositionMappings, compositions_used: compUsed },
   };
+  // Which style spec (if any) the planner was given as reference.
+  result.plannerDecisions.styleSpec = style.ref ? style.path : null;
 
   // Track capability usage instead of mechanism distribution
   for (const b of plan.beats) {

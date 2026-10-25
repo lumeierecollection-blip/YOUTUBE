@@ -1,0 +1,74 @@
+{
+  "topic_slug": "james-mcavoy-directorial-debut-california-schemin-interview",
+  "strongest_angle": "James McAvoy reflects on his long-held ambition to direct, detailing the creative challenges and personal motivations behind his debut feature film, California Schemin'.",
+  "key_facts": [
+    {
+      "fact": "James McAvoy, aged 47, makes his directorial debut with the feature film California Schemin', which opens in theaters in October 2026.",
+      "source_url": "https://www.upi.com/Entertainment_News/Movies/2026/10/08/James-McAvoy-California-Schemin-interview/9661791400426",
+      "source_name": "UPI",
+      "confidence": "high"
+    },
+    {
+      "fact": "The film California Schemin' is based on the true story of the Scottish rap duo Silibil N' Brains, who adopted fake American personas to find success.",
+      "source_url": "https://www.screendaily.com/features/james-mcavoy-on-california-schemin-at-tiff-i-wanted-my-debut-to-be-scottish-because-were-underrepresented/5208626.article",
+      "source_name": "Screen Daily",
+      "confidence": "high"
+    },
+    {
+      "fact": "James McAvoy described the process of directing his first feature film as one of the most stressful experiences of his professional career.",
+      "source_url": "https://variety.com/2025/film/uncategorized/james-mcavoy-directorial-debut-california-schemin-1236508207",
+      "source_name": "Variety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "James McAvoy's age",
+      "value": 47,
+      "unit": "years",
+      "source_url": "https://www.upi.com/Entertainment_News/Movies/2026/10/08/James-McAvoy-California-Schemin-interview/9661791400426"
+    },
+    {
+      "label": "Age when McAvoy first considered directing",
+      "value": 16,
+      "unit": "years",
+      "source_url": "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I've been thinking about directing since I was 16. I should have done it sooner.",
+      "speaker": "James McAvoy",
+      "source_name": "Moviefone",
+      "source_url": "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+    },
+    {
+      "text": "I wanted my debut to be Scottish, because we’re underrepresented",
+      "speaker": "James McAvoy",
+      "source_name": "Screen Daily",
+      "source_url": "https://www.screendaily.com/features/james-mcavoy-on-california-schemin-at-tiff-i-wanted-my-debut-to-be-scottish-because-were-underrepresented/5208626.article"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "James McAvoy",
+      "kind": "person"
+    },
+    {
+      "name": "California Schemin'",
+      "kind": "object"
+    },
+    {
+      "name": "Silibil N' Brains",
+      "kind": "person"
+    },
+    {
+      "name": "Dundee",
+      "kind": "place"
+    },
+    {
+      "name": "Universal Pictures",
+      "kind": "organization"
+    }
+  ]
+}

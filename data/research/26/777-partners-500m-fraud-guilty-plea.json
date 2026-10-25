@@ -1,0 +1,60 @@
+{
+  "topic_slug": "777-partners-500m-fraud-guilty-plea",
+  "strongest_angle": "The collapse of 777 Partners followed a massive $500 million fraud scheme orchestrated by co-founder Josh Wander, who misled lenders and investors before pleading guilty in a Manhattan federal court.",
+  "key_facts": [
+    {
+      "fact": "Josh Wander, the 45-year-old co-founder of Miami-based investment firm 777 Partners, pleaded guilty to wire fraud and securities fraud in a Manhattan federal court.",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Federal prosecutors in the Southern District of New York stated that the scheme to bilk lenders and investors out of at least $500 million led to the collapse of 777 Partners.",
+      "source_url": "https://news.bloomberglaw.com/bankruptcy-law/777-partners-co-founder-wander-pleads-guilty-to-fraud",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "As part of the plea agreement, Josh Wander has agreed to pay back $500 million in losses caused by the financial deception scheme.",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total fraud amount in USD",
+      "value": 500000000,
+      "unit": "dollars",
+      "source_url": "https://www.justice.gov/usao-sdny/pr/founder-and-former-ceo-777-partners-pleads-guilty-500-million-fraud-scheme"
+    },
+    {
+      "label": "Age of Josh Wander",
+      "value": 45,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Josh Wander",
+      "kind": "person"
+    },
+    {
+      "name": "777 Partners",
+      "kind": "organization"
+    },
+    {
+      "name": "Manhattan",
+      "kind": "place"
+    },
+    {
+      "name": "Southern District of New York",
+      "kind": "organization"
+    },
+    {
+      "name": "Miami",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "topic_slug": "university-ai-philosopher-hiring-spree-2026",
+  "strongest_angle": "Higher education institutions are actively launching tenure-track searches and cluster hiring campaigns, such as WashU's goal of employing over 30 new faculty members by 2029, to meet the exploding demand for philosophers specializing in the philosophy of artificial intelligence.",
+  "key_facts": [
+    {
+      "fact": "WashU announced a new cluster hiring campaign seeking to employ over 30 new tenure-track faculty members by 2029.",
+      "source_url": "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program",
+      "source_name": "Student Life",
+      "confidence": "high"
+    },
+    {
+      "fact": "Kathryn Palmer reported for Inside Higher Ed on October 15, 2026, that universities have gone on an AI philosopher hiring spree.",
+      "source_url": "https://www.insidehighered.com/news/faculty/2026/10/15/universities-have-gone-ai-philosopher-hiring-spree",
+      "source_name": "Inside Higher Ed",
+      "confidence": "high"
+    },
+    {
+      "fact": "University World News noted on October 17, 2026, that the job market for humanities scholars is bleak except for AI philosophy specialists.",
+      "source_url": "https://www.universityworldnews.com/post.php?story=20261017092126630",
+      "source_name": "University World News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "new tenure-track faculty members by 2029",
+      "value": 30,
+      "unit": "faculty members",
+      "source_url": "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program"
+    },
+    {
+      "label": "year 2029 for faculty hiring campaign",
+      "value": 2029,
+      "unit": "year",
+      "source_url": "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "WashU",
+      "kind": "organization"
+    },
+    {
+      "name": "Kathryn Palmer",
+      "kind": "person"
+    },
+    {
+      "name": "Inside Higher Ed",
+      "kind": "organization"
+    },
+    {
+      "name": "University World News",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Maryland College Park",
+      "kind": "place"
+    }
+  ]
+}

@@ -68,5 +68,90 @@
     "go_public_at": "2026-10-03T11:59:24.144Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "sGD1gN2no_w",
+    "channel_id": "1",
+    "title": "Michelle Singletary's October 2026 Washington Post Debt…",
+    "uploaded_at": "2026-10-17T12:56:57.138Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-17T13:56:57.138Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "michelle-singletary-october-2026-debt-money-strategy-shorts-shorts-2026-10-17.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "WUELBStaZFs",
+    "channel_id": "1",
+    "title": "Why Michelle Singletary Says Debt Consumes Your Raises in…",
+    "uploaded_at": "2026-10-18T13:17:34.289Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-18T14:17:34.289Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "michelle-singletary-debt-raises-october-2026-shorts-shorts-2026-10-18.mp4",
+    "source_queue": "approved-review"
+  },
+  {
+    "video_id": "hOYJOrB9lR4",
+    "channel_id": "1",
+    "title": "Sandi Toksvig and University of Cambridge Launch Mappa.",
+    "uploaded_at": "2026-10-20T00:23:16.835Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-20T01:23:16.835Z",
+    "privacy_status": "public",
+    "cancelled": false,
+    "source_file": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative-shorts-shorts-2026-10-20.mp4",
+    "source_queue": "approved",
+    "published_at": "2026-10-20T09:38:44.014Z"
+  },
+  {
+    "video_id": "nggEJbtG0a4",
+    "channel_id": "1",
+    "title": "The Library of Virginia's 5-Year Digitization of 99 Free…",
+    "uploaded_at": "2026-10-22T14:24:31.084Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-22T15:24:31.084Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "library-of-virginia-free-negro-registers-shorts-shorts-2026-10-22.mp4",
+    "source_queue": "approved-review"
+  },
+  {
+    "video_id": "QaucTEEsb54",
+    "channel_id": "1",
+    "title": "Ancient Egypt’s First Female King Revealed by Long-Lost…",
+    "uploaded_at": "2026-10-23T14:28:37.146Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-23T15:28:37.146Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+    "source_queue": "approved-review"
+  },
+  {
+    "video_id": "hi9ZMiXJr6Y",
+    "channel_id": "1",
+    "title": "ancient-egypts-first-female-king-royal-seals-shorts — Hidden Past",
+    "uploaded_at": "2026-10-24T11:42:23.521Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-24T12:42:23.521Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-24.mp4",
+    "source_queue": "approved-review"
+  },
+  {
+    "video_id": "3x6yu_i6Ghc",
+    "channel_id": "1",
+    "title": "60 Years After Aberfan: National Library of Wales Releases…",
+    "uploaded_at": "2026-10-24T13:06:32.022Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-24T14:06:32.022Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+    "source_queue": "approved"
   }
 ]

@@ -1,0 +1,69 @@
+{
+  "topic_slug": "ethiopia-eritrea-tigray-border-invasion-un",
+  "strongest_angle": "Ethiopia has formally accused Eritrea of launching an all-out invasion into the northern Tigray region, prompting severe regional escalation and an urgent appeal to the United Nations Security Council.",
+  "key_facts": [
+    {
+      "fact": "Ethiopia accused Eritrea of an all-out invasion in northern Tigray in a letter sent to the United Nations Security Council by Ethiopia's Minister of Foreign Affairs.",
+      "source_url": "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war",
+      "source_name": "Al Jazeera",
+      "confidence": "high"
+    },
+    {
+      "fact": "Eritrea urged the United Nations to take deterrent measures against Ethiopia, characterizing the confrontation as a declaration of war.",
+      "source_url": "https://www.aljazeera.com/news/2026/10/10/eritrea-urges-un-to-intervene-in-standoff-with",
+      "source_name": "Al Jazeera",
+      "confidence": "high"
+    },
+    {
+      "fact": "Eritrean soldiers crossed into northern Ethiopia towards Adigrat, where clashes have occurred between national army troops and regional forces according to local residents.",
+      "source_url": "https://www.bbc.com/news/articles/ckvgd63rj92lo",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ethiopian military vehicles and troops entered Adigrat near the Eritrean border as residents celebrated and the nation stated it was acting in self-defense.",
+      "source_url": "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    },
+    {
+      "name": "United Nations",
+      "kind": "organization"
+    },
+    {
+      "name": "United Nations Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    },
+    {
+      "name": "Al Jazeera",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    }
+  ]
+}

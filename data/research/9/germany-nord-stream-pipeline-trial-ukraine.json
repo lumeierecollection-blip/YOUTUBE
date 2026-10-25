@@ -1,0 +1,70 @@
+{
+  "topic_slug": "germany-nord-stream-pipeline-trial-ukraine",
+  "strongest_angle": "Examining the geopolitical fallout and energy security implications as German prosecutors officially begin trial proceedings blaming Ukrainian state authorities for the Nord Stream pipeline explosions.",
+  "key_facts": [
+    {
+      "fact": "A former Ukrainian army officer named Serhii K goes on trial in Germany accused of commanding the Nord Stream pipeline explosions in September 2022.",
+      "source_url": "https://www.bbc.com/news/articles/c317ke5ngrq7o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "German prosecutors are officially blaming Ukrainian state authorities for the sabotage that ruptured three of the four Nord Stream gas pipelines beneath the Baltic Sea.",
+      "source_url": "https://www.rferl.org/a/germany-trial-nord-stream-gas-pipeline-russia-ukraine/33873494.html",
+      "source_name": "Radio Free Europe / Radio Liberty",
+      "confidence": "high"
+    },
+    {
+      "fact": "The trial opened in Germany four years after the undersea explosions damaged the major energy infrastructure transporting gas between Russia and Germany.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/13/germany-nord-stream-pipelines-explosions-trial-ukraine-gas/21da3a5e-c6bb-11f1-aefb-abe4112d087e_story.html",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pipelines ruptured by explosions",
+      "value": 3,
+      "unit": "pipelines",
+      "source_url": "https://www.bbc.com/news/articles/c317ke5ngrq7o"
+    },
+    {
+      "label": "Total Nord Stream pipelines built",
+      "value": 4,
+      "unit": "pipelines",
+      "source_url": "https://www.bbc.com/news/articles/c317ke5ngrq7o"
+    },
+    {
+      "label": "Years between the 2022 explosions and the 2026 trial opening",
+      "value": 4,
+      "unit": "years",
+      "source_url": "https://www.rferl.org/a/germany-trial-nord-stream-gas-pipeline-russia-ukraine/33873494.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Serhii K",
+      "kind": "person"
+    },
+    {
+      "name": "Germany",
+      "kind": "place"
+    },
+    {
+      "name": "Ukraine",
+      "kind": "place"
+    },
+    {
+      "name": "Nord Stream",
+      "kind": "object"
+    },
+    {
+      "name": "Baltic Sea",
+      "kind": "place"
+    },
+    {
+      "name": "Russia",
+      "kind": "place"
+    }
+  ]
+}

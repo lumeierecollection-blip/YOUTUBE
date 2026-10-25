@@ -1,0 +1,67 @@
+{
+  "channel_id": "10",
+  "topic_slug": "idealens-ai-generated-concepts-detection",
+  "format": "shorts",
+  "hook": "A new detector called IdeaLens reveals if an AI generated your scientific paper's core concepts.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A new detector called IdeaLens reveals if an AI generated your scientific paper's core concepts.",
+      "b_roll": [
+        "Close-up of a scientific paper document on a digital tablet"
+      ],
+      "text_overlay": {
+        "text": "AI vs. Human Scientific Papers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Rishanth Rajendhran and Minjoon Choi built this tool to analyze the structure of research documents. How does IdeaLens know?",
+      "b_roll": [
+        "Portrait of researchers working on a computer",
+        "Abstract diagram of an outline structure",
+        "Close-up of the IdeaLens logo or interface"
+      ],
+      "text_overlay": {
+        "text": "IdeaLens: Concept vs. Prose"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "IdeaLens represents documents as outlines, pairing a discourse role with a brief description of ideas.",
+      "b_roll": [
+        "Animation showing a document transforming into an outline"
+      ],
+      "text_overlay": {
+        "text": "Mapping Discourse Roles"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Elizabeth Gibney reports in Nature that this method identifies AI-generated concepts rather than writing style. Jeffrey Brainard notes in Science that editors now distinguish AI-polished text from fully AI-generated papers.",
+      "b_roll": [
+        "Logo of Nature magazine",
+        "Graphic of a journal editor reviewing a paper",
+        "Logo of Science magazine"
+      ],
+      "text_overlay": {
+        "text": "Verifying Research Origins"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Science and Nature report that editors are drawing a line against fully AI-generated research papers.",
+      "b_roll": [
+        "Close-up of the IdeaLens tool interface"
+      ],
+      "text_overlay": {
+        "text": "IdeaLens Detection"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://arxiv.org/abs/2610.06778",
+    "https://www.nature.com/articles/d41586-026-03247-0",
+    "https://www.science.org/content/article/did-ai-or-human-write-paper-new-detector-decides-examining-its-ideas"
+  ]
+}

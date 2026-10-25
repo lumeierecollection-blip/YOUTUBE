@@ -15,8 +15,12 @@
  * Rule (owner's spec 2026-10-02): accepted only when the model answers
  * verdict === "LITERAL" AND recognizable === true (returned as "MATCH").
  * FIGURATIVE, DIFFERENT, LITERAL-but-not-recognizable, a malformed answer and
- * "no provider answered" (NONE) all reject. Nothing is cached: every PNG is
- * verified every time it is about to be used.
+ * "no provider answered" (NONE) all reject.
+ *
+ * CACHE (owner decision, 2026-10-10; replaces the 2026-10-02 "nothing is cached"). The original intent was that every DISTINCT image is
+ * verified, and it survives a cache keyed on the image: the key is the sha256 of the exact JPEG the model sees, plus the concept name,
+ * the verifier version and the model chain. A different image, name, verifier version or model is a new key and a fresh verification.
+ * A NONE (no provider answered) is never stored, so an outage is retried. The cache is .cache/cutout-verify (restored in CI).
  *
  * Providers: vision-providers.cjs — Ollama ($OLLAMA_VISION_MODEL) by default;
  * $VISION_PROVIDERS can add groq / gemini.
@@ -29,7 +33,9 @@
  * CLI: node scripts/verify-cutout-image.cjs --image gavel.png --name gavel
  */
 "use strict";
-const { existsSync, readFileSync } = require("node:fs");
+const { existsSync, readFileSync, writeFileSync, mkdirSync } = require("node:fs");
+const { createHash } = require("node:crypto");
+const { join } = require("node:path");
 
 // The owner's prompt, verbatim (2026-10-02, "FIX 3 — STRICT VERIFICATION").
 function promptFor(name) {
@@ -75,36 +81,132 @@ function normalize(a) {
   return { verdict, seen: seen.slice(0, 160), literal: raw, recognizable: rec };
 }
 
-async function imageDataUrl(pngPath) {
+async function imageJpegBuf(pngPath) {
   let buf = readFileSync(pngPath);
   try {
     const sharp = require("sharp");
     buf = await sharp(buf).flatten({ background: "#ffffff" }).resize({ width: 1024, height: 1024, fit: "inside", withoutEnlargement: true }).jpeg({ quality: 85 }).toBuffer();
   } catch { /* send the original bytes */ }
-  return `data:image/jpeg;base64,${buf.toString("base64")}`;
+  return buf;
+}
+async function imageDataUrl(pngPath) {
+  return `data:image/jpeg;base64,${(await imageJpegBuf(pngPath)).toString("base64")}`;
+}
+
+// The verifier's version: bump it when the prompt, the answer parser or the model changes, so every stored verdict is re-asked.
+// 2026-10-10.2: OpenRouter joined the chain (Gemini → OpenRouter → Groq → Ollama), so the models list changed and every stored verdict is re-asked.
+const CUTOUT_VERIFIER_VERSION = "2026-10-10.2";
+const CUTOUT_CACHE_DIR = join(__dirname, "..", ".cache", "cutout-verify");
+function verifierModels() {
+  return ["gemini-3.5-flash-lite", process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3.7-plus", process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b", process.env.OLLAMA_API_KEY ? (process.env.OLLAMA_CLOUD_VISION_MODEL || "gemma4:31b") : null].filter(Boolean);
+}
+/** sha256 over the exact JPEG bytes, the concept name, the verifier version and the model chain. Pure. */
+function cutoutCacheKey(jpeg, name, version = CUTOUT_VERIFIER_VERSION, models = verifierModels()) {
+  const image = createHash("sha256").update(jpeg).digest("hex");
+  return createHash("sha256").update(JSON.stringify({ image, name: String(name), version, models })).digest("hex");
 }
 
 // `norm`: the answer parser (verify-place-image.cjs passes its own). Which
 // model answers is decided in vision-providers.cjs (Ollama by default).
 async function askProviders(messages, norm = normalize) {
-  return require("./vision-providers.cjs").askVision(messages, norm, { maxTokens: 200 });
+  const tried = [];
+  const ollama = require("./ollama-client.cjs");
+  // 0. OLLAMA_FIRST (ollama-client.cjs): Ollama Cloud before Gemini.
+  const cloudFirst = ollama.ollamaFirst();
+  if (cloudFirst) {
+    try {
+      const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
+      const v = norm(o);
+      if (v) return { provider: "ollama-cloud", v, tried };
+      tried.push(`ollama-cloud: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    } catch (e) { tried.push(`ollama-cloud: ${e.message}`); }
+  }
+  // Google first (owner's 2026-10-08 brief): Gemini across every key, then every sibling
+  // model (src/lib/gemini-client.js), before any other provider. This was Groq first.
+  // 1. Gemini flash-lite (maxTokens 1024: a sibling reasoning model spends from the same budget).
+  try {
+    const { callGemini } = await import("../src/lib/gemini-client.js");
+    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 1024, temperature: 0, noCache: true, tag: "verify-cutout", _noOllamaFirst: true });
+    const v = norm(g);
+    if (v) return { provider: "gemini", v, tried };
+    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`gemini: ${e.message}`); }
+  // 2. Ollama Cloud (gemma4:31b on ollama.com), when OLLAMA_API_KEY is set (owner, 2026-10-17). Same messages, same parser.
+  try {
+    if (!cloudFirst && ollama.hasCloudKey()) {
+      const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
+      const v = norm(o);
+      if (v) return { provider: "ollama-cloud", v, tried };
+      tried.push(`ollama-cloud: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    }
+  } catch (e) { tried.push(`ollama-cloud: ${e.message}`); }
+  // 2b. OpenRouter (vision model). Same answer parser as every other step: a model's
+  // answer counts only when norm() accepts it. The same messages, one attempt.
+  try {
+    const openrouter = require("./openrouter-client.cjs");
+    const o = await openrouter.callOpenRouter(messages, { maxTokens: 200, temperature: 0 });
+    const v = norm(o);
+    if (v) return { provider: "openrouter", v, tried };
+    tried.push(`openrouter: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`openrouter: ${e.message}`); }
+  // 3. Groq (vision model). Its free tier rate-limits per minute and says how
+  // long to wait ("try again in 16.9s"): wait that out (<= 30 s, twice) rather
+  // than reject — run 36944700437 lost 72 verifications to these 429s.
+  try {
+    const groq = require("./groq-client.cjs");
+    for (let k = 0; k < 3; k++) {
+      const g = await groq.callGroq(messages, { maxTokens: 200, temperature: 0 });
+      const v = norm(g);
+      if (v) return { provider: "groq", v, tried };
+      const wait = Number((String(g?.detail || "").match(/try again in ([\d.]+)s/) || [])[1]);
+      if (g?.error === "quota_exhausted" && Number.isFinite(wait) && wait <= 30 && k < 2) { await new Promise((r) => setTimeout(r, (wait + 1) * 1000)); continue; }
+      tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+      break;
+    }
+  } catch (e) { tried.push(`groq: ${e.message}`); }
+  // 4. Ollama (local vision model).
+  try {
+    const ollama = require("./ollama-client.cjs");
+    const o = await ollama.callOllama(messages, { maxTokens: 200, temperature: 0 });
+    const v = norm(o);
+    if (v) return { provider: "ollama", v, tried };
+    tried.push(`ollama: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`ollama: ${e.message}`); }
+  return { provider: null, v: null, tried };
 }
 
-async function verifyCutoutImage(pngPath, name) {
+// useCache: false asks every time and stores nothing — the flip-rate measurement needs N independent answers.
+async function verifyCutoutImage(pngPath, name, { useCache = true } = {}) {
   if (!existsSync(pngPath)) return { verdict: "NONE", seen: `no image at ${pngPath}`, provider: null };
+  const jpeg = await imageJpegBuf(pngPath);
+  const key = cutoutCacheKey(jpeg, name);
+  const file = join(CUTOUT_CACHE_DIR, `${key}.json`);
+  if (useCache && existsSync(file)) {
+    try {
+      const hit = JSON.parse(readFileSync(file, "utf8"));
+      console.log(`[cutout] ${name}: answered from the cache (key ${key.slice(0, 12)}…, verifier ${CUTOUT_VERIFIER_VERSION})`);
+      return { ...hit.result, cached: true };
+    } catch { /* unreadable entry: ask again */ }
+  }
   const messages = [{ role: "user", content: [
     { type: "text", text: promptFor(name) },
-    { type: "image_url", image_url: { url: await imageDataUrl(pngPath) } },
+    { type: "image_url", image_url: { url: `data:image/jpeg;base64,${jpeg.toString("base64")}` } },
   ] }];
   const { provider, v, tried } = await askProviders(messages);
   if (!v) {
     console.log(`[cutout] ${name}: no vision provider answered — rejected (${tried.join(" | ")})`);
     return { verdict: "NONE", seen: "no vision provider answered", provider: null };
   }
-  return { ...v, provider };
+  const result = { ...v, provider };
+  if (!useCache) return result;
+  try {
+    mkdirSync(CUTOUT_CACHE_DIR, { recursive: true });
+    writeFileSync(file, JSON.stringify({ at: new Date().toISOString(), version: CUTOUT_VERIFIER_VERSION, result }, null, 2) + "\n");
+  } catch { /* a cache that cannot be written is a verdict that is asked again, never a wrong one */ }
+  return result;
 }
 
-module.exports = { verifyCutoutImage, normalize, promptFor, askProviders, imageDataUrl };
+module.exports = { verifyCutoutImage, normalize, promptFor, askProviders, imageDataUrl, cutoutCacheKey, CUTOUT_VERIFIER_VERSION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

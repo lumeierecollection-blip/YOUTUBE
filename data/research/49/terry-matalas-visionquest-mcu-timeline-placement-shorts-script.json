@@ -1,0 +1,68 @@
+{
+  "channel_id": "49",
+  "topic_slug": "terry-matalas-visionquest-mcu-timeline-placement",
+  "format": "shorts",
+  "hook": "VisionQuest smashes the timeline by landing years after WandaVision.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "VisionQuest smashes the timeline by landing years after WandaVision.",
+      "b_roll": [
+        "Title card showing VisionQuest logo",
+        "Cinematic glitch effect over timeline graphic"
+      ],
+      "text_overlay": {
+        "text": "Timeline Shocker"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Showrunner Terry Matalas revealed in a Polygon interview that years have passed. Paul Bettany portrays the hero introduced in the 2015 film Avengers: Age of Ultron. Where does Tommy Shepherd fit into this?",
+      "b_roll": [
+        "Terry Matalas interview footage clip",
+        "Paul Bettany in Avengers Age of Ultron",
+        "Tommy Shepherd character art"
+      ],
+      "text_overlay": {
+        "text": "Years After WandaVision"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "GamesRadar reported that the synthezoid retreats into his own head.",
+      "b_roll": [
+        "Synthezoid internal diagnostics graphic",
+        "MCU multiverse map animation"
+      ],
+      "text_overlay": {
+        "text": "Inside The Mind"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Terry Matalas confirmed the show runs concurrently with Spider-Man: Brand New Day. Tommy Shepherd receives a contact from his grieving father inside the mind.",
+      "b_roll": [
+        "Spider-Man Brand New Day title treatment",
+        "Father and son digital projection scene"
+      ],
+      "text_overlay": {
+        "text": "Brand New Day Concurrency"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "VisionQuest arrives years after WandaVision to shake up the timeline.",
+      "b_roll": [
+        "Vision silhouette fading into digital code"
+      ],
+      "text_overlay": {
+        "text": "VisionQuest"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://screenrant.com/visionquest-mcu-timeline-comparison-confirmed-terry-matalas",
+    "https://www.polygon.com/visionquest-showrunner-interview-terry-matalas",
+    "https://www.gamesradar.com/entertainment/marvel-tv-shows/visionquest-showrunner-confirms-when-the-upcoming-tv-show-takes-place-on-the-marvel-timeline"
+  ]
+}

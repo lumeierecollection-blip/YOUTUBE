@@ -1,0 +1,264 @@
+name: layout-proof
+
+# Renders ONE beat twice through the real renderer (scripts/qa-canvas-render.mjs -> Remotion ->
+# full-canvas.jsx) with two different planner layouts (scripts/fixtures/layout-proof/{a,b}.json),
+# then scripts/layout-proof.mjs fails the job unless the two renders put the elements in two
+# different arrangements. The proof that the plan, not the composition table, decides the layout —
+# made with fixed inputs so it does not depend on what Gemini chooses on a given run.
+#
+# Read-only: no secrets, no publish. The stills are uploaded as an artifact.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "src/skills/remotion-render/visual/canvas-layout.js"
+      - "src/skills/remotion-render/visual/full-canvas.jsx"
+      - "scripts/layout-proof.mjs"
+      - "scripts/fixtures/layout-proof/**"
+      - "scripts/fixtures/shot-proof/**"
+      - "scripts/sfx-sync-proof.mjs"
+      - "src/skills/remotion-render/clone/**"
+      - "scripts/fixtures/clone-proof/**"
+      - "scripts/gate-clone-cadence.mjs"
+      - "scripts/lib/novelty.mjs"
+      - "config/clone-grammar.json"
+      - "src/skills/remotion-render/visual/canvas-sfx.js"
+      - "scripts/sfx-cc0.mjs"
+      - ".github/workflows/layout-proof.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  # RETIRED 2026-10-10: this proved the planner's slot layouts move elements. The text grid (owner: "one grid, one anchor, every beat")
+  # now places every beat's words and visual, and a planned slot layout is deliberately not used (canvas-layout.js layoutCore). The grid
+  # itself is proven by render-shots (Layer 1 `grid`, measured on the frames) and scripts/__tests__/text-grid.test.js.
+  render-two-layouts:
+    if: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Render the beat with layout A and with layout B
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node scripts/qa-canvas-render.mjs --out out/a --beats 20 --moments 0.9 --accent "#2B2B2B" --extra-beats scripts/fixtures/layout-proof/a.json
+          node scripts/qa-canvas-render.mjs --out out/b --beats 20 --moments 0.9 --accent "#2B2B2B" --extra-beats scripts/fixtures/layout-proof/b.json
+          ls -la out/a out/b
+
+      - name: Compare the two renders
+        run: node scripts/layout-proof.mjs out/a/beat-20-90.png out/b/beat-20-90.png
+
+      - name: Upload the stills
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: layout-proof-${{ github.run_id }}
+          path: |
+            out/a/beat-20-90.png
+            out/b/beat-20-90.png
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # The reference shot grammar (docs/REFERENCE-SHOT-GRAMMAR.md), drawn: every shot composition in one
+  # fixture video through the real renderer, then Layer 1 (local-audit.cjs --canvas-only) on its
+  # pixels — the same gate a channel's render answers — and a contact sheet of the frames.
+  render-shots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      # The SFX the real renderer would play for these beats (CC0 recordings, scripts/sfx-cc0.mjs; judged by
+      # Gemini when the keys are available — the verdicts are read when present), mixed into the proof video so
+      # scripts/sfx-sync-proof.mjs can measure the audio against the frames.
+      - name: Cache CC0 SFX
+        uses: actions/cache@v4
+        with:
+          path: src/skills/remotion-render/public/sfx/cc0
+          key: sfx-cc0-v2
+
+      - name: Fetch the CC0 SFX
+        run: node scripts/sfx-cc0.mjs fetch
+
+      # Layer 1 sfx-rules answers only for files Gemini judged recorded; verdicts are reused for the same file.
+      - name: Judge the SFX (recorded or robotic)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: node scripts/sfx-cc0.mjs judge
+
+      - name: Render every shot
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/qa-canvas-render.mjs --out out/shots --only-extra --extra-beats scripts/fixtures/shot-proof/beats.json --moments 0.9 --video --sfx --accent "#C2410C"
+
+      - name: Contact sheet (one frame per shot, 90% into each beat — after a word-synced picture lands)
+        if: always()
+        run: |
+          ls out/shots/beat-*-90.png | sort -V > /tmp/list.txt
+          n=$(wc -l < /tmp/list.txt)
+          args=""; for f in $(cat /tmp/list.txt); do args="$args -i $f"; done
+          ffmpeg -loglevel error -y $args -filter_complex "hstack=inputs=$n,scale=iw/2:-1" out/shots/contact-sheet.png
+
+      - name: Layer 1 on the rendered pixels
+        run: node scripts/local-audit.cjs --canvas-only --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json --fixture
+
+      # "Verify SFX align to their word or beat within ±100 ms": the audio track of the rendered MP4 (no voiceover,
+      # no bed — only SFX) is decoded and the loudest sample near every event is compared with the event's frame.
+      - name: SFX land on their events (±100 ms, measured on the render's audio)
+        run: node scripts/sfx-sync-proof.mjs --video out/shots/canvas-test.mp4 --manifest out/shots/canvas-test-manifest.json
+
+      - name: Upload the frames
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shot-proof-${{ github.run_id }}
+          path: |
+            out/shots/*.png
+            out/shots/canvas-test.mp4
+            out/shots/canvas-test-manifest.json
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # THE CLONE FAMILY (src/skills/remotion-render/clone/, config/clone-grammar.json): the reference videos' LAWS, measured, then staged over the
+  # same resolved beats. Each profile renders the same six 6-second fixture beats through the real renderer; the canvas engine renders them too,
+  # as the baseline. scripts/gate-clone-cadence.mjs then measures every video with the metric the references were measured with and holds the
+  # clone renders to the derived laws. The canvas baseline is ADVISORY: it is measured against the same laws and not judged. Read-only: no secrets.
+  render-clone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [canvas-baseline, dossier-mono, cutout-collage, archive-italic]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Install rembg (frameless cut-outs)
+        run: |
+          pip install --quiet "rembg[cpu]" pillow numpy
+          python -c "from rembg import new_session; new_session('u2net'); print('u2net ready')"
+      - name: Unit tests for the clone family and the metric
+        run: node --test scripts/__tests__/novelty.test.js scripts/__tests__/clone-plan.test.js scripts/__tests__/clone-layout.test.js scripts/__tests__/quote-verify.test.js
+      - name: Render the fixture beats
+        env:
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          CLONE=""; [ "$PROFILE" != "canvas-baseline" ] && CLONE="--clone $PROFILE"
+          node scripts/qa-canvas-render.mjs --out out/clone --only-extra --extra-beats scripts/fixtures/clone-proof/beats.json --moments 0.08,0.3,0.55,0.8 --video $CLONE --quotes scripts/fixtures/clone-proof/quotes.json --accent "#8B1E1E"
+      - name: Contact sheet (4 moments of every beat)
+        if: always()
+        run: |
+          ls out/clone/beat-*.png | sort -V > /tmp/list.txt
+          args=""; for f in $(cat /tmp/list.txt); do args="$args -i $f"; done
+          n=$(wc -l < /tmp/list.txt)
+          ffmpeg -loglevel error -y $args -filter_complex "xstack=inputs=$n:layout=$(python3 -c "n=$n;print('|'.join(f'{(i%12)*270}_{(i//12)*480}' for i in range(n)))"),scale=iw/1:-1" out/clone/contact-sheet.png || true
+      - name: Cadence gate on the rendered pixels
+        env:
+          PROFILE: ${{ matrix.profile }}
+        run: |
+          ADV=""; [ "$PROFILE" = "canvas-baseline" ] && ADV="--advisory"
+          node scripts/gate-clone-cadence.mjs --video out/clone/canvas-test.mp4 --out out/clone/cadence.json $ADV
+      - name: Upload the frames and the measurement
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clone-proof-${{ matrix.profile }}-${{ github.run_id }}
+          path: |
+            out/clone/*.png
+            out/clone/canvas-test.mp4
+            out/clone/cadence.json
+          if-no-files-found: ignore
+          retention-days: 14

@@ -1,10 +1,14 @@
 /**
  * gemini-client.js — Resilient Gemini API client with key rotation + disk cache.
  *
- * Reads up to 3 API keys from environment variables:
+ * Reads up to 4 API keys from environment variables, in this order (2026-10-10: keys 3 and 4 accepted
+ * gemini-3.6-flash and gemini-3.8-flash on a CI probe; keys 1 and 2 answered 429 with the free-tier quota id
+ * GenerateRequestsPerDayPerProjectPerModel-FreeTier, so they are tried last):
+ *   GEMINI_API_KEY_4
+ *   GEMINI_API_KEY_3
  *   GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY)
  *   GEMINI_API_KEY_2
- *   GEMINI_API_KEY_3
+ * When GEMINI_API_KEY_1 is set, the plain GEMINI_API_KEY is not read at all (the fallback applies only when _1 is absent).
  *
  * FAILURE CONTRACT — Gemini is tried once per request; the CALLER then falls
  * back to local Ollama (src/lib/llm.js). Every failure returns an object
@@ -32,6 +36,7 @@
  */
 
 import { execFileSync } from "node:child_process";
+import { createRequire } from "node:module";
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -52,15 +57,16 @@ const REQUEST_TIMEOUT_S = 90;
  * Collect Gemini API keys from environment. Returns a non-empty array.
  * Never logs key values.
  */
-function collectKeys() {
+export function collectKeys() {
   const keys = [
+    process.env.GEMINI_API_KEY_4,
+    process.env.GEMINI_API_KEY_3,
     process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
     process.env.GEMINI_API_KEY_2,
-    process.env.GEMINI_API_KEY_3,
   ].filter(Boolean);
 
   if (keys.length === 0) {
-    throw new Error("No Gemini API keys found. Set GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY), GEMINI_API_KEY_2, GEMINI_API_KEY_3.");
+    throw new Error("No Gemini API keys found. Set GEMINI_API_KEY_1 (or GEMINI_API_KEY / GOOGLE_GENERATIVE_AI_API_KEY), GEMINI_API_KEY_2, GEMINI_API_KEY_3, GEMINI_API_KEY_4.");
   }
 
   return keys;
@@ -227,7 +233,16 @@ function classify(statusCode, msg) {
   if (UNAVAILABLE_RE.test(msg || "")) return "unavailable";
   return null;
 }
-const fail = (error, detail) => ({ source: "gemini", error, detail: String(detail || "").slice(0, 300) });
+// Gemini models tried, in order, when the requested one answers 503 after its
+// retry. GEMINI_SIBLING_MODELS overrides (comma-separated; empty = none). Both
+// defaults are models this account already calls (Layer 3 judge + fallback).
+// gemini-3.1-flash-lite-preview was replaced 2026-10-10: the official deprecations page lists its
+// shutdown as May 25, 2026, so the preview name answers 404; the GA model is gemini-3.1-flash-lite.
+function siblingModels(model) {
+  const raw = process.env.GEMINI_SIBLING_MODELS ?? "gemini-3.1-flash-lite,gemini-3.5-flash";
+  return raw.split(",").map((s) => s.trim()).filter((m) => m && m !== model);
+}
+const fail = (error, detail) =>({ source: "gemini", error, detail: String(detail || "").slice(0, 300) });
 
 /**
  * Make a chat completion call to Gemini via OpenAI-compatible endpoint.
@@ -285,7 +300,44 @@ function logKeyProjects() {
   }
 }
 
+/**
+ * THE SAME GEMINI MODEL THROUGH OPENROUTER when Google's own keys cannot answer (owner, 2026-10-16: "try using OpenRouter").
+ * Board 38889577784 spent all four free-tier keys; every direct callGemini site (props, the script writer, the clarity read)
+ * then fell to a 3B local model and wrote / chose badly. OpenRouter serves google/<model> (openrouter-check.yml, run 38976034607:
+ * gemini-3.5-flash-lite / 3.6-flash / 3.8-flash answered text and image), paid per token from the OPENROUTER_API_KEY credit.
+ * Same model, same messages, no JSON mode forced: only the route changes. It runs only after EVERY key and every sibling model
+ * failed with quota / unavailable / no key; FORCE_PLANNER=ollama and a hard error never reach it. GEMINI_VIA_OPENROUTER=off turns it off.
+ */
 export async function callGemini(messages, opts = {}) {
+  // OLLAMA_FIRST (scripts/ollama-client.cjs ollamaFirst): Ollama Cloud answers first, Gemini only when it cannot. Callers that record WHO answered
+  // (llm.js, the image checkers) ask Ollama Cloud themselves and pass _noOllamaFirst, so an answer is never labelled with the wrong provider.
+  // NEVER for the WRITING stages (topic discovery, research, the script): on run 39176119939 gpt-oss:120b wrote ch-1 / 9 / 49's scripts with claims
+  // the research does not hold ("Ten Experian debt-payoff tricks look like fluff") and the claim gate skipped all three channels. Gemini writes;
+  // Ollama Cloud judges (props, image checks, frame review), where it was free and answered correctly.
+  const writing = /^(discover-topics|research|script)\b/i.test(String(opts.tag || ""));
+  if (!opts._noOllamaFirst && !writing) {
+    const ollama = createRequire(import.meta.url)("../../scripts/ollama-client.cjs");
+    if (ollama.ollamaFirst()) {
+      const o = await ollama.callOllamaCloud(messages, opts);
+      if (o && !o.error) { console.error(`[${opts.tag || "gemini"}] answered by ollama-cloud (OLLAMA_FIRST)`); return o; }
+      console.error(`[${opts.tag || "gemini"}] ollama-cloud: ${o?.error} (OLLAMA_FIRST) — asking Gemini`);
+    }
+  }
+  const r = await callGeminiDirect(messages, opts);
+  if (opts._noModelFallback || !(r && r.source === "gemini" && ["quota_exhausted", "unavailable", "no_key"].includes(r.error))) return r;
+  if (!process.env.OPENROUTER_API_KEY || String(process.env.GEMINI_VIA_OPENROUTER || "").toLowerCase() === "off") return r;
+  const model = opts.model || "gemini-3.5-flash-lite";
+  const { callOpenRouter } = createRequire(import.meta.url)("../../scripts/openrouter-client.cjs");
+  const o = await callOpenRouter(messages, { ...opts, openrouterModel: `google/${model}`, openrouterJson: false });
+  if (o && o.source === "openrouter" && o.error) {
+    console.error(`[${opts.tag || "gemini"}] google/${model} via openrouter: ${o.error} (${String(o.detail || "").slice(0, 140)}) — keeping the Gemini failure`);
+    return r;
+  }
+  console.error(`[${opts.tag || "gemini"}] Gemini ${r.error} on every key — answered by google/${model} via openrouter`);
+  return o;
+}
+
+async function callGeminiDirect(messages, opts = {}) {
   const {
     maxTokens = 1200,
     temperature = 0,
@@ -410,14 +462,44 @@ export async function callGemini(messages, opts = {}) {
         keyIndex = next;
         continue;
       }
-      console.error(`[gemini] all keys exhausted, falling to ollama`);
-      return fail(kind, detail);
+      // Free-tier quota is per MODEL: every key spent on this model is not every key spent on the
+      // siblings (CI run 37832958615 ch-44 research fell to Ollama 3b with three models untried).
+      // Google first: the sibling models below run before any non-Google provider.
+      if (opts._noModelFallback) return fail(kind, detail);
+      console.error(`[gemini] all keys exhausted on ${model} — trying the sibling Gemini models`);
     }
     if (kind === "unavailable" && !unavailableRetried) {
       unavailableRetried = true;
       console.error(`[gemini-client] key ${keyIndex + 1} unavailable (${detail.slice(0, 160)}) — one retry in 5 s`);
       await sleep(5000);
       continue;
+    }
+    // A 503 "high demand" is per MODEL, not per key: run 37776924101 ch-5 lost
+    // its plan to it (retry also 503 -> Groq JSON error -> Ollama 7b timed out
+    // on 4 CPUs), so the planner never ran on Gemini at all. Before leaving
+    // Gemini, try the sibling Gemini models (each gets its own one retry) —
+    // the decision stays Gemini's; the non-Gemini chain is only reached when
+    // every Gemini model is down.
+    // A timeout / 503 on one key's project is not every project's: try each key not yet
+    // tried (one attempt each) before the sibling models. CI run 37803694366 ch-1 beat-check:
+    // key 1 was spent (429), key 2 timed out (90 s, 0 bytes) on every model, and key 3 — a
+    // separate project, the one that had answered all day — was never tried.
+    if (kind === "unavailable") {
+      const next = keys.findIndex((_, i) => !tried.has(i));
+      if (next >= 0) {
+        console.error(`[gemini-client] key ${keyIndex + 1} unavailable — trying key ${next + 1}`);
+        keyIndex = next;
+        continue;
+      }
+    }
+    if ((kind === "unavailable" || kind === "quota_exhausted") && !opts._noModelFallback) {
+      for (const next of siblingModels(model)) {
+        console.error(`[gemini-client] ${model} ${kind} on every key — trying ${next}`);
+        const r = await callGemini(messages, { ...opts, cache: undefined, model: next, _noModelFallback: true });
+        if (!(r && r.source === "gemini" && (r.error === "unavailable" || r.error === "quota_exhausted"))) return r;
+        detail = r.detail; kind = r.error;
+      }
+      console.error(`[gemini] every Gemini model on every key: ${kind} — leaving Google`);
     }
     console.error(`[gemini-client] key ${keyIndex + 1} ${kind}: ${detail.slice(0, 200)}`);
     return fail(kind, detail);

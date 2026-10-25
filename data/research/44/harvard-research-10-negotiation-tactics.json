@@ -1,0 +1,51 @@
+{
+  "topic_slug": "harvard-research-10-negotiation-tactics",
+  "strongest_angle": "Examining Harvard's Program on Negotiation research released in October 2026, focusing on integrative negotiation tactics that balance value creation and value claiming instead of relying purely on a contest of wills.",
+  "key_facts": [
+    {
+      "fact": "Harvard's Program on Negotiation published research outlining 10 negotiation tactics to help professionals win better outcomes at work.",
+      "source_url": "https://qz.com/negotiation-tactics-backed-by-harvard-research",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Katie Shonk authored an article for Harvard's Program on Negotiation on October 6, 2026, detailing top negotiation skills centered on integrative bargaining.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/top-10-negotiation-skills",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Luis Reyes published research analysis on October 15, 2026, regarding hard-bargaining tactics and negotiation skills through the Program on Negotiation.",
+      "source_url": "https://www.pon.harvard.edu/daily/batna/10-hardball-tactics-in-negotiation",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Negotiation tactics count",
+      "value": 10,
+      "unit": "tactics",
+      "source_url": "https://qz.com/negotiation-tactics-backed-by-harvard-research"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Harvard",
+      "kind": "organization"
+    },
+    {
+      "name": "Program on Negotiation",
+      "kind": "organization"
+    },
+    {
+      "name": "Katie Shonk",
+      "kind": "person"
+    },
+    {
+      "name": "Luis Reyes",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

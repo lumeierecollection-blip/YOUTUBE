@@ -1,0 +1,65 @@
+{
+  "channel_id": "26",
+  "topic_slug": "vanguard-jv-cash-program-sec-judgment-91m-ponzi",
+  "format": "shorts",
+  "hook": "One fake investment scheme stole $91 million before federal judges stepped in.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One fake investment scheme stole $91 million before federal judges stepped in.",
+      "b_roll": [
+        "Financial district aerial view",
+        "Courtroom gavel slamming down"
+      ],
+      "text_overlay": {
+        "text": "$91M Ponzi Scheme Exposed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Dallas-Fort Worth residents Kenneth Alexander and Robert Welsh ran the Vanguard JV Cash Program. Over 200 investors poured their life savings into the trap. Where did all that money vanish?",
+      "b_roll": [
+        "Dallas skyline map zoom",
+        "Victims reviewing documents"
+      ],
+      "text_overlay": {
+        "text": "200 Investors Defrauded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Securities and Exchange Commission charged them over the Vanguard JV Cash Program.",
+      "b_roll": [
+        "U.S. District Court exterior"
+      ],
+      "text_overlay": {
+        "text": "Federal Court Action"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Texas judges entered final consent judgments against the perpetrators. Defendant Caedrynn Conner now faces an $8,575,250 disgorgement order.",
+      "b_roll": [
+        "Legal paperwork close up",
+        "Financial penalty ledger"
+      ],
+      "text_overlay": {
+        "text": "$8,575,250 Disgorgement"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The U.S. District Court for the Eastern District of Texas entered final consent judgments.",
+      "b_roll": [
+        "SEC seal logo"
+      ],
+      "text_overlay": {
+        "text": "Verify SEC Filings"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sec.gov/newsroom/press-releases/2025-71",
+    "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must"
+  ]
+}

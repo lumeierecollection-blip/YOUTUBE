@@ -1,0 +1,64 @@
+{
+  "channel_id": "10",
+  "topic_slug": "martha-nussbaum-2026-kluge-prize",
+  "format": "shorts",
+  "hook": "You won't believe how the Library of Congress honored Martha C. Nussbaum.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You won't believe how the Library of Congress honored Martha C. Nussbaum.",
+      "b_roll": [
+        "Library of Congress building exterior shot"
+      ],
+      "text_overlay": {
+        "text": "The 2026 Kluge Prize"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Professor Martha Nussbaum earned the 2026 John W. Kluge Prize on September 22. Harvard University trained her philosophy background. Where did her doctorate lead her?",
+      "b_roll": [
+        "Harvard University campus yard",
+        "University of Chicago sign"
+      ],
+      "text_overlay": {
+        "text": "Ph.D. from Harvard"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Library of Congress awards the John W. Kluge Prize every other year.",
+      "b_roll": [
+        "Gold medal icon"
+      ],
+      "text_overlay": {
+        "text": "Awarded Every Other Year"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The University of Chicago philosopher claimed the 2026 prize on September 22. Kluge Prize highlights decades exploring the human experience.",
+      "b_roll": [
+        "University of Chicago press room",
+        "New York University library"
+      ],
+      "text_overlay": {
+        "text": "Study of Humanity"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Martha Nussbaum officially claimed the prestigious 2026 prize for achievement in the study of humanity.",
+      "b_roll": [
+        "Library of Congress seal"
+      ],
+      "text_overlay": {
+        "text": "2026 Kluge Prize"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+    "https://www.law.uchicago.edu/faculty/nussbaum"
+  ]
+}

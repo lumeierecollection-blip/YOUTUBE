@@ -86,6 +86,17 @@ function main() {
         ...(focus ? { focus_pillar: focus } : {}),
         tone: c.tone || "",
         style: c.style || "",
+        // STRICT VISUAL (config strict_visual: ch-02, ch-48; CHECK-REGISTER
+        // SCR-19). The renderer refuses a beat whose sentence states no
+        // drawable figure and no resolvable asset, so the TOPIC has to carry
+        // drawable facts. Run 39408046186 chose an ergonomics paper whose
+        // every fact was "Researcher X tracked Y" and an API connector note;
+        // both were refused at render after prep had already succeeded. The
+        // rule is stated to discovery here, before anything is researched.
+        strict_visual: !!c.strict_visual,
+        ...(c.strict_visual ? {
+          topic_visual_rule: "This channel draws EVERY beat and refuses text cards. Choose a topic whose researched facts will state dated events, places, measured figures, physical objects or step-by-step processes - an accident, a launch, a study WITH numbers, a device, a place. AVOID topics whose facts are only authorship or method ('researcher X analysed Y'), an API/product release note, or an abstract with no measurements: those produce sentences no frame can draw without inventing, and the video is refused. List in `subjects` the pictureable subjects too - the place, the object, the company, the agency - not only the authors.",
+        } : {}),
         recent_topics: recent.map((u) => ({ topic: u.topic, slug: u.slug })),
         ...(trending.length ? { trending_this_week: trending } : {}),
       };

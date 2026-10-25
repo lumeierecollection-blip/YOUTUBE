@@ -1,0 +1,90 @@
+{
+  "topic_slug": "bank-failures-2026",
+  "strongest_angle": "The United States experienced six bank failures in 2026, with the FDIC managing the resolution of institutions like Nano Banc and Small Business Bank.",
+  "key_facts": [
+    {
+      "fact": "The Federal Deposit Insurance Corporation recorded 6 bank failures in the United States throughout the year 2026.",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/2026",
+      "source_name": "FDIC.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nano Banc, located in Irvine, California, was closed by regulators on September 25, 2026, and acquired by Sunwest Bank.",
+      "source_url": "https://www.fdic.gov/bank-failures/download-data.csv",
+      "source_name": "FDIC.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "Small Business Bank, based in Lenexa, Kansas, failed on July 17, 2026, with approximately 73 million dollars in assets.",
+      "source_url": "https://banks.data.fdic.gov/bankfind-suite/failures",
+      "source_name": "FDIC BankFind Suite",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Kentland Federal Savings and Loan Association in Kentland, Indiana, was closed on July 10, 2026, and acquired by Kentland Bank.",
+      "source_url": "https://www.fdic.gov/bank-failures/download-data.csv",
+      "source_name": "FDIC.gov",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total bank failures in 2026",
+      "value": 6,
+      "unit": "banks",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/2026"
+    },
+    {
+      "label": "Assets of Small Business Bank",
+      "value": 73,
+      "unit": "millions of dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/2026"
+    },
+    {
+      "label": "Assets of Metropolitan Capital Bank & Trust",
+      "value": 261.1,
+      "unit": "millions of dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    },
+    {
+      "label": "Assets of Community Bank and Trust - West Georgia",
+      "value": 288,
+      "unit": "millions of dollars",
+      "source_url": "https://www.fdic.gov/resources/resolutions/bank-failures/in-brief/index"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Federal Deposit Insurance Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Nano Banc",
+      "kind": "organization"
+    },
+    {
+      "name": "Sunwest Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Small Business Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Lenexa",
+      "kind": "place"
+    },
+    {
+      "name": "Irvine",
+      "kind": "place"
+    },
+    {
+      "name": "Kentland Federal Savings and Loan Association",
+      "kind": "organization"
+    },
+    {
+      "name": "Kentland Bank",
+      "kind": "organization"
+    }
+  ]
+}

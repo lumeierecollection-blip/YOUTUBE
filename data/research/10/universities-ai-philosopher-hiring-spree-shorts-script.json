@@ -1,0 +1,32 @@
+{
+  "channel_id": "10",
+  "topic_slug": "universities-ai-philosopher-hiring-spree",
+  "format": "shorts",
+  "hook": "Washington University is launching a hiring spree for AI philosophers.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Washington University is launching a hiring spree for AI philosophers."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Washington University in St. This follows a 2013 report where only 1% of job roles on the academic platform PhilJobs were focused on AI philosophy."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "While WashU's initiative is part of a growing trend, Inside Higher Ed reports universities are experiencing an even more significant demand for AI philosophy professors."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This hiring spree underscores the growing importance of AI ethics and knowledge in academia."
+    },
+    {
+      "id": "close",
+      "voiceover": "Washington University is part of this trend, hiring for the future of AI and philosophy."
+    }
+  ],
+  "sources_used": [
+    "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program",
+    "https://www.insidehighered.com/news/faculty/2026/10/15/universities-have-gone-ai-philosopher-hiring-spree"
+  ]
+}

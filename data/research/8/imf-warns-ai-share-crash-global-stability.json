@@ -1,0 +1,73 @@
+{
+  "topic_slug": "imf-warns-ai-share-crash-global-stability",
+  "strongest_angle": "Analyzing the October 2026 International Monetary Fund Global Financial Stability Report warning regarding potential artificial intelligence market corrections, rising bond yields, and cyberattacks.",
+  "key_facts": [
+    {
+      "fact": "The International Monetary Fund published the Global Financial Stability Report on October 13, 2026, warning that weaker artificial intelligence investment could trigger a market correction.",
+      "source_url": "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026",
+      "source_name": "International Monetary Fund",
+      "confidence": "high"
+    },
+    {
+      "fact": "Authors Athanasios Vamvakidis and Jason Wu detailed on October 12, 2026, that artificial intelligence-driven market corrections are one of three key escalating risks.",
+      "source_url": "https://www.imf.org/en/blogs/articles/2026/10/12/global-financial-markets-face-rising-risks-from-ai-bond-yields-and-cyberattacks",
+      "source_name": "International Monetary Fund Blogs",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Guardian reported on October 13, 2026, that the International Monetary Fund warned that an artificial intelligence share crash puts world financial stability at risk.",
+      "source_url": "https://www.theguardian.com/business/2026/oct/13/ai-share-crash-risk-global-imf-debt-corrowing-cyber-attacks",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Reuters noted on October 13, 2026, that the International Monetary Fund cautioned against complacency in global financial markets facing artificial intelligence selloffs.",
+      "source_url": "https://www.investing.com/news/economy-news/imf-cites-ai-slowdown-spiking-yields-as-looming-global-market-risks-4945345",
+      "source_name": "Investing.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Report publication day",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026"
+    },
+    {
+      "label": "Report publication month",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026"
+    },
+    {
+      "label": "Report publication year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.imf.org/en/publications/gfsr/issues/2026/10/13/global-financial-stability-report-october-2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "International Monetary Fund",
+      "kind": "organization"
+    },
+    {
+      "name": "Athanasios Vamvakidis",
+      "kind": "person"
+    },
+    {
+      "name": "Jason Wu",
+      "kind": "person"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "Reuters",
+      "kind": "organization"
+    }
+  ]
+}

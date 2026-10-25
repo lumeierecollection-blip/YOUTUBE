@@ -40,6 +40,8 @@ export const SERIF = `${SERIF_FAMILY}, Georgia, serif`;
 export const SANS_STACK = `${SANS_FAMILY}, Helvetica, Arial, sans-serif`;
 
 export const HEADLINE_FLOOR = 88;
+/** Below this size type stops being legible, so fitting stops rather than shrinking forever. */
+export const MIN_FIT_FLOOR = 10;
 export const EMPHASIS_FLOOR = 240;
 export const EMPHASIS_MAX_CHARS = 7;
 const MARGIN = 1.03;
@@ -117,7 +119,16 @@ export function fitHeadline(text, width, { maxLines = 4, maxHeight = Infinity, r
     const lines = wrapWords(words, s, width, o);
     if (lines.length <= maxLines && lines.length * s * role.lineHeight <= maxHeight) return { size: s, lines, inBand: s >= role.sizeBand[0] };
   }
-  return { size: min, lines: wrapWords(words, min, width, o), inBand: min >= role.sizeBand[0] };
+  // THE BOX DOES NOT GROW. The floor is a band preference, not a licence to
+  // clip: the old return handed back a fit taller than maxLines and the frame
+  // cut the tail off the headline. Keep stepping below the floor until the text
+  // fits, and only give up when it genuinely cannot (see MIN_FIT_FLOOR).
+  for (let s = min - 4; s >= MIN_FIT_FLOOR; s -= 4) {
+    if (words.some((w) => measure(w, s, o) > width)) continue;
+    const lines = wrapWords(words, s, width, o);
+    if (lines.length <= maxLines && lines.length * s * role.lineHeight <= maxHeight) return { size: s, lines, inBand: false };
+  }
+  return { size: min, lines: wrapWords(words, min, width, o), inBand: false };
 }
 
 // ── sentence case ─────────────────────────────────────────────────────

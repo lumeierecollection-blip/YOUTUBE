@@ -1,0 +1,69 @@
+{
+  "channel_id": "44",
+  "topic_slug": "harvard-program-negotiation-strategic-concessions",
+  "format": "shorts",
+  "hook": "Harvard Business School professor Deepak Malhotra knows concessions in negotiation often go unreciprocated.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Harvard Business School professor Deepak Malhotra knows concessions in negotiation often go unreciprocated.",
+      "b_roll": [
+        "A Harvard campus building facade",
+        "A close-up of a contract document"
+      ],
+      "text_overlay": {
+        "text": "Unreciprocated concessions"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Deepak Malhotra published four strategic guidelines on October 14th, 2026. Katie Shonk highlighted key business skills for Harvard Law School back on September 27th, 2021. Which strategy protects your deal value?",
+      "b_roll": [
+        "A calendar page showing October 14th",
+        "A professor reviewing research notes",
+        "A negotiation table with two professionals"
+      ],
+      "text_overlay": {
+        "text": "Four Strategic Guidelines"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Harvard Business School professor Deepak Malhotra warns that unmanaged concessions destroy deal value.",
+      "b_roll": [
+        "A handshake across a desk",
+        "A red pen marking a contract line"
+      ],
+      "text_overlay": {
+        "text": "Protect Your Value"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Malhotra outlines exact methods from the Program on Negotiation at Harvard Law School to trade concessions effectively. Harvard Business School professor Deepak Malhotra replaces random giveaways with exact methods.",
+      "b_roll": [
+        "The Harvard Law School entrance sign",
+        "A structured diagram of negotiation steps",
+        "A signed agreement document"
+      ],
+      "text_overlay": {
+        "text": "Strategic Concessions"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Malhotra published four guidelines in 2026.",
+      "b_roll": [
+        "A published research paper on a desk"
+      ],
+      "text_overlay": {
+        "text": "Harvard Guidelines"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.pon.harvard.edu/daily/negotiation-skills-daily/four-strategies-for-making-concessions",
+    "https://hbswk.hbs.edu/archive/four-strategies-for-making-concessions",
+    "https://www.pon.harvard.edu/daily/business-negotiations/business-skills-make-concessions-strategically-in-negotiation"
+  ]
+}

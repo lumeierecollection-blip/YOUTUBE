@@ -1,0 +1,41 @@
+{
+  "channel_id": "49",
+  "topic_slug": "social-reckoning-box-office-flop-sorkin",
+  "format": "shorts",
+  "hook": "Sony's The Social Reckoning just flopped, earning only 5.5 million dollars in its opening weekend.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sony's The Social Reckoning just flopped, earning only 5.5 million dollars in its opening weekend."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Sony released The Social Reckoning in October 2026 with stars like Jeremy Strong and Mikey Madison. Why did The Social Reckoning struggle to compete against Universal's horror hit Other Mommy?",
+      "text_overlay": {
+        "text": "The Social Reckoning"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except director David Fincher was notably missing from this production.",
+      "text_overlay": {
+        "text": "David Fincher absent"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The film opened to a disappointing 5.5 million dollars at the box office. Moviegoers clearly preferred the 27.5 million dollar opening of Other Mommy over this Sony drama.",
+      "text_overlay": {
+        "text": "5.5M vs 27.5M"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the box office numbers before booking your next ticket."
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+    "https://www.usatoday.com/story/entertainment/movies/2026/10/11/the-social-reckoning-movie-box-office-aaron-sorkin/92204841007"
+  ]
+}

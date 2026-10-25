@@ -23,7 +23,7 @@
  *   library-names     every library_shape name in the plan is in the
  *                     object library registry
  *   beat-sentence-mechanism  every beat has an SRT sentence and a mechanism
- *   typography-count  TYPOGRAPHY beats: 1 or 2
+ *   typography-count  TYPOGRAPHY beats: at most 2 (zero is allowed: the planner chooses every beat's type)
  *   mechanism-share   no effective mechanism over 40% of beats (effective =
  *                     TYPOGRAPHY, or CAPABILITY:<first capability> — the same
  *                     key the planner's mechanismDistribution uses)
@@ -60,7 +60,7 @@
  *                     90% of the beat, the larger counted
  *   canvas-accent     the channel accent (manifest.accent) covers >= 0.2% of
  *                     the frame in at least one beat (RGB distance < 40)
- *   motion-tiers      every beat has a tier; 2-3 beats are "major" (1-3 when
+ *   motion-tiers      every beat has a tier; how many are "major" is the planner's call (was 2-3, 1-3 when
  *                     the video has fewer than 4 beats)
  *   canvas-type       the typography rebuild's rules on the manifest boxes:
  *                     nothing centred, sentence-case headlines, two type roles
@@ -331,6 +331,45 @@ function rgbFrame(video, t, w, h) {
     "-frames:v", "1", "-vf", `scale=${w}:${h},format=rgb24`, "-f", "rawvideo", "-"], { maxBuffer: 1 << 27 });
   return r.status === 0 && r.stdout && r.stdout.length === w * h * 3 ? r.stdout : null;
 }
+/**
+ * What is "ink" on THIS frame's ground.
+ *
+ * zones-no-overlap, pop-transitions and middle-zone-filled all said ink = luma < 235: the house
+ * white ground, which every beat had until the planner could declare its own (a dark #0E0E10
+ * beat reads as ink in every pixel, so every column "crossed" a zone edge and an EMPTY dark frame
+ * counted as full). The ground is read from the frame's own empty bottom-left corner, below the
+ * caption band — the same patch canvas-coverage reads — so a transition frame (the held outgoing
+ * beat on one ground, the incoming on another) is judged against the ground it is actually drawn
+ * on, not the beat's.
+ *
+ * Where the ground reads as paper (luma >= 235) the original rule is returned UNCHANGED, so every
+ * white-ground and near-white (#F0F0F0) result is byte-identical. Only a ground the old rule would
+ * itself have called ink (dark, mid) gets the relative rule: ink is what differs from the ground
+ * by more than `delta` luma (and, for the colour part, by more than 30 chroma).
+ */
+const PAPER_LUMA = 235;
+function frameGround(buf, W, H) {
+  const x0 = Math.max(1, Math.floor(W * 0.01)), x1 = Math.max(x0 + 2, Math.floor(W * 0.025));
+  const y0 = Math.min(H - 3, Math.floor(H * 0.985)), y1 = Math.max(y0 + 2, Math.floor(H * 0.996));
+  let l = 0, c = 0, n = 0;
+  for (let y = y0; y < y1 && y < H; y++) for (let x = x0; x < x1 && x < W; x++) {
+    const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], b = buf[o + 2];
+    l += 0.299 * r + 0.587 * g + 0.114 * b; c += Math.max(r, g, b) - Math.min(r, g, b); n++;
+  }
+  return n ? { l: l / n, c: c / n } : { l: 255, c: 0 };
+}
+/** (r,g,b) -> boolean, luma AND chroma (zones-no-overlap). */
+function inkFnColour(buf, W, H) {
+  const g = frameGround(buf, W, H);
+  if (g.l >= PAPER_LUMA) return (r, gg, b) => 0.299 * r + 0.587 * gg + 0.114 * b < 235 || Math.max(r, gg, b) - Math.min(r, gg, b) > 30;
+  return (r, gg, b) => Math.abs(0.299 * r + 0.587 * gg + 0.114 * b - g.l) > 20 || Math.abs(Math.max(r, gg, b) - Math.min(r, gg, b) - g.c) > 30;
+}
+/** luma -> boolean (pop-transitions, middle-zone-filled); `paperMax` is the old absolute threshold, `delta` the relative one. */
+function inkFnLuma(buf, W, H, paperMax = 235, delta = 20) {
+  const g = frameGround(buf, W, H);
+  if (g.l >= PAPER_LUMA) return (l) => l < paperMax;
+  return (l) => Math.abs(l - g.l) > delta;
+}
 function canvasFit(beats) {
   const bad = [];
   const inter = (a, b) => a.x < b.x + b.w - 2 && b.x < a.x + a.w - 2 && a.y < b.y + b.h - 2 && b.y < a.y + a.h - 2;
@@ -346,7 +385,11 @@ function canvasFit(beats) {
       if (v.x < SAFE_INSET - 0.5 || v.y < SAFE_INSET - 0.5 || v.x + v.w > 1080 - SAFE_INSET + 0.5 + (v.bleed || 0) || v.y + v.h > 1920 - SAFE_INSET + 0.5) {
         bad.push(`beat ${i}: ${k} box (${v.x},${v.y},${v.x + v.w},${v.y + v.h}) leaves the frame's safe area`);
       }
-      if (v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
+      // The band belongs to the caption-class line: since 2026-10-08 that is the planner's pull
+      // phrase placed "bottom" (the live caption is gone). It still answers the safe area above and
+      // the text-overlap rule below; everything else stays out of the band.
+      const bandOwner = k === "pull" && b.canvas?.chrome?.pull_phrase?.position === "bottom";
+      if (!bandOwner && v.y + v.h > CAPTION_Y0 + 0.5 && v.y < CAPTION_Y1) bad.push(`beat ${i}: ${k} box (y ${v.y}-${v.y + v.h}) enters the caption band`);
     }
     // Text overlap, by type role (so a list item, a timeline label or a split
     // value counts as well as the classic headline / number boxes).
@@ -427,9 +470,10 @@ function motionTiers(beats) {
   const bad = [];
   const tiers = beats.map((b) => b.canvas?.motion_tier);
   tiers.forEach((t, i) => { if (!["micro", "medium", "major"].includes(t)) bad.push(`beat ${i}: no motion tier`); });
+  // How many beats are "major" is the planner's decision (zero through all); the old 2-3 rule is
+  // applied at plan time only when the planner marked none (gemini-visual-plan.js), so what is
+  // checked here is that every beat HAS a tier.
   const major = tiers.filter((t) => t === "major").length;
-  const lo = beats.length >= 4 ? 2 : 1;
-  if (major < lo || major > 3) bad.push(`${major} major-motion beat(s) (need ${lo}-3)`);
   return { bad, major, medium: tiers.filter((t) => t === "medium").length };
 }
 // ── typography rebuild checks ─────────────────────────────────────────
@@ -445,6 +489,54 @@ const ROLE_OF = (k) => k.replace(/\d+$/, "");
  *   - no composition type twice in a row,
  *   - (dark beats are retired)
  */
+// THE TEXT GRID (owner, 2026-10-10): every beat's words centred and standing on one line (canvas-layout.js TEXT_GRID).
+const TEXT_GRID_ON = true, GRID_BASE = 1328, GRID_TOL = 40;
+/**
+ * grid — measured on the RENDERED frame (owner, 2026-10-10: "every check must read the rendered frame, not the manifest"). For each beat
+ * with words, the ink inside the words' box (the box the layout says, widened 60 px each side) is found on a frame after the words have
+ * landed: the ink's horizontal centre must be within GRID_TOL of the frame's axis, and the bottom of its ink (the last line's baseline
+ * region) within GRID_TOL of the grid line. Every beat's measured position is reported. Where it stops: a full-bleed photo under the words
+ * makes "ink" the photo too — those beats are measured on the words' own colour (the darkest / lightest band), and are reported as such.
+ */
+async function textGrid(video, beats, fps = 30) {
+  const rows = [], bad = [];
+  const W = 540, H = 960, sc = H / 1920;
+  // THE UNIVERSAL SWAY IS PART OF WHERE THE WORDS ARE (visual/sway.js: every beat drifts +-30 px across, +-12 px down). The ink is measured on a rendered
+  // frame, so it is measured WHERE THE SWAY HAS PUT IT; comparing that to the unswayed axis read a legitimate +21 px drift as a misplaced card (CI proof
+  // 38736254353: TYPE-CHAPTER "centred at x 582", the same defect as ch-44 beat 6 at x 585). The tolerance is unchanged: the sway is taken out, not forgiven.
+  const { swayOffset } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "sway.js")).href);
+  for (let i = 0; i < beats.length; i++) {
+    const b = beats[i], c = b.canvas || {};
+    const t = c.boxes?.statement || c.boxes?.headline;
+    if (!t || !(t.w > 0)) { rows.push({ beat: i, words: null }); continue; }
+    const at = (b.start_sec ?? 0) + Math.max(0.1, (b.duration_sec ?? 0) * 0.85);
+    const buf = rgbFrame(video, at, W, H);
+    if (!buf) continue;
+    const g = frameGround(buf, W, H);
+    // The window is the words' own box plus what the sway can move them (+-30 px across, +-12 down) and a margin: wider than that reaches the
+    // NEIGHBOURS. It used to reach 60 px sideways and 40 up and down, so on a diagram or a photo the ink of a process node or a bright patch of the
+    // picture read as "the words" (CI 38742395747: PROCESS-FULL "centred at x 590", SCENE-LOW "centred at x 593, ending at y 1367" when every
+    // other beat ended at 1312-1331).
+    const PAD_X = 36, PAD_Y = 20;
+    const x0 = Math.max(0, Math.floor((t.x - PAD_X) * sc)), x1 = Math.min(W - 1, Math.ceil((t.x + t.w + PAD_X) * sc));
+    const y0 = Math.max(0, Math.floor((t.y - PAD_Y) * sc)), y1 = Math.min(H - 1, Math.ceil((t.y + t.h + (t.desc || 0) + PAD_Y) * sc));
+    let minX = Infinity, maxX = -Infinity, maxY = -Infinity, n = 0;
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+      const o = (y * W + x) * 3, l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2];
+      if (Math.abs(l - g.l) > 60) { n++; if (x < minX) minX = x; if (x > maxX) maxX = x; if (y > maxY) maxY = y; }
+    }
+    if (!n) { rows.push({ beat: i, words: "no ink found" }); bad.push(`beat ${i}: no words found where the layout puts them`); continue; }
+    const sw = swayOffset(at - (b.start_sec ?? 0));
+    const cx = Math.round(((minX + maxX) / 2) / sc - sw.x), bottom = Math.round(maxY / sc - sw.y);
+    rows.push({ beat: i, composition: c.composition, centre_x: cx, bottom_y: bottom });
+    if (Math.abs(cx - 540) > GRID_TOL) bad.push(`beat ${i} (${c.composition}): the words are centred at x ${cx}, not on the frame's axis (540 ± ${GRID_TOL})`);
+    if (Math.abs(bottom - GRID_BASE) > GRID_TOL + 20) bad.push(`beat ${i} (${c.composition}): the words end at y ${bottom}, not on the grid line (${GRID_BASE} ± ${GRID_TOL})`);
+  }
+  const ys = rows.filter((r) => Number.isFinite(r.bottom_y)).map((r) => r.bottom_y);
+  if (ys.length > 1 && Math.max(...ys) - Math.min(...ys) > 2 * GRID_TOL + 20) bad.push(`the words' baseline wanders ${Math.min(...ys)}-${Math.max(...ys)} across the video (one grid line)`);
+  return { rows, bad };
+}
+
 function canvasType(beats) {
   const bad = [];
   const roleSets = [];
@@ -459,7 +551,10 @@ function canvasType(beats) {
       if (TYPE_TEXT.includes(ROLE_OF(k))) {
         // Part C.1 (owner's spec 2026-10-03): a TYPE-FULL statement is centred on the frame's
         // axis by design; two centred beats in a row are refused below (part C.2).
-        if (v.align === "center" && c.composition === "TYPE-FULL" && k === "statement") continue;
+        // The words-only cards (TYPE-TITLE / -CHAPTER / -DEFINITION) are centred too (owner, 2026-10-09:
+        // "Extend C.1 to the cards"); the same C.2 below refuses two centred beats in a row.
+        if (TEXT_GRID_ON) { if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`); continue; }
+        if (v.align === "center" && k === "statement" && ["TYPE-FULL", "TYPE-TITLE", "TYPE-CHAPTER", "TYPE-DEFINITION"].includes(c.composition)) continue;
         if (v.align === "center") bad.push(`beat ${i}: ${k} is centred`);
         else if (!v.align && !v.rotate) bad.push(`beat ${i}: ${k} has no alignment`);
         if (!v.rotate && Math.abs(v.x + v.w / 2 - 540) < 24 && v.w < 700) bad.push(`beat ${i}: ${k} sits on the frame's centre line`);
@@ -477,36 +572,54 @@ function canvasType(beats) {
     // A hero cutout and a name card (an entity's name over its figure) are their own compositions.
     // A hero beat is keyed by its OBJECT (owner's spec 2026-10-03, C.3: two cutout beats in a
     // row both render) — only the same object twice in a row is a repeat.
-    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? `+HERO:${x?.concept_visuals?.[0]?.name || ""}` : "") + (x?.boxes?.lead_phrase ? "+NAME" : "");
+    const compKey = (x) => (x?.composition || "") + (x?.boxes?.cutout0 ? `+HERO:${x?.concept_visuals?.[0]?.name || ""}` : "") + (x?.boxes?.lead_phrase ? "+NAME" : "") + (x?.art ? `:${x.art.kind}${x.art.style ? `/${x.art.style}` : ""}` : "");
     if (i > 0 && beats[i - 1].canvas && compKey(beats[i - 1].canvas) === compKey(c)) bad.push(`beat ${i}: ${compKey(c)} twice in a row`);
     // Part C.2: never two centred headlines in a row.
     const centred = (x) => Object.values(x?.boxes || {}).some((v) => v && v.align === "center" && v.role === "headline");
-    if (i > 0 && centred(c) && centred(beats[i - 1].canvas)) bad.push(`beat ${i}: a centred headline two beats in a row`);
+    if (!TEXT_GRID_ON && i > 0 && centred(c) && centred(beats[i - 1].canvas)) bad.push(`beat ${i}: a centred headline two beats in a row`);
+    // Owner, 2026-10-09: no two consecutive beats share an alignment (left / right / centre of the headline).
+    const al = c.headline_align, pal = i > 0 ? beats[i - 1].canvas?.headline_align : null;
+    if (!TEXT_GRID_ON && al && pal && al === pal) bad.push(`beat ${i}: its words are ${al}-aligned like beat ${i - 1}'s`);
     // Headline motion: one per beat, never the same two beats in a row, never a fade.
     const hm = c.headline_motion, pm = i > 0 ? beats[i - 1].canvas?.headline_motion : null;
     if (hm === "fade") bad.push(`beat ${i}: the headline fades (headlines never fade)`);
     if (hm && pm && hm === pm) bad.push(`beat ${i}: headline motion "${hm}" twice in a row`);
   });
+  // RETIRED 2026-10-08 (owner, "kill the template"): "at least two type roles on >= 60% of beats"
+  // was met by drawing a kicker beside the headline on most beats — it REQUIRED the label +
+  // headline chassis the owner ordered removed ("some beats headline-only ... variation is
+  // required"). CI run 37832958615 ch-9 failed it at 4/9 with no chrome at all. The same axis is
+  // now gated the other way by template-window (no two devices repeating in any three beats).
+  // The count is still reported.
   const two = roleSets.filter((n) => n >= 2).length;
-  if (roleSets.length && two / roleSets.length < 0.6) bad.push(`only ${two}/${roleSets.length} beats show two type roles (need 60%)`);
   return { bad, two, n: roleSets.length };
 }
-// canvas-ground: the ground is uniform white (visual/backgrounds.js) on every beat that is not a
-// full-bleed photo: a bottom-left patch below the caption band, where nothing but the ground lives,
-// reads luma >= 245. No beat may be dark.
+// canvas-ground: every beat that is not a full-bleed photo is drawn on the ground it declared.
+// A beat that declared none (manifest canvas.ground_color null) has the house white
+// (visual/backgrounds.js GROUND): a bottom-left patch below the caption band, where nothing but the
+// ground lives, reads luma >= 245. A beat that declared a ground (the planner's `ground`, a hex in
+// canvas.ground_color) must read that colour there, within 14 per RGB channel (h264 rounding). The
+// check no longer decides WHICH ground a beat should have — the plan does — only that the render
+// drew the one it declared.
 function canvasGround(video, beats) {
   const bad = [];
   const W = 540, H = 960;
-  beats.forEach((b, i) => { if (b.canvas?.dark) bad.push(`beat ${i}: dark ground (the ground is uniform white)`); });
   beats.forEach((b, i) => {
     if (fullBleed(b.canvas)) return;
     const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * 0.7;
     const buf = rgbFrame(video, t, W, H);
     if (!buf) return;
-    let sum = 0, n = 0;
-    for (let y = H - 70; y < H - 30; y++) for (let x = 24; x < 64; x++) { const o = (y * W + x) * 3; sum += 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; n++; }
-    const mean = sum / n;
-    if (mean < 245) bad.push(`beat ${i}: the white ground reads luma ${mean.toFixed(0)} (< 245)`);
+    let r = 0, g = 0, bl = 0, n = 0;
+    for (let y = H - 70; y < H - 30; y++) for (let x = 24; x < 64; x++) { const o = (y * W + x) * 3; r += buf[o]; g += buf[o + 1]; bl += buf[o + 2]; n++; }
+    const mean = [r / n, g / n, bl / n];
+    const declared = b.canvas?.ground_color;
+    if (!declared) {
+      const luma = 0.299 * mean[0] + 0.587 * mean[1] + 0.114 * mean[2];
+      if (luma < 245) bad.push(`beat ${i}: the white ground reads luma ${luma.toFixed(0)} (< 245)`);
+      return;
+    }
+    const want = [1, 3, 5].map((k) => parseInt(declared.slice(k, k + 2), 16));
+    if (mean.some((v, k) => Math.abs(v - want[k]) > 14)) bad.push(`beat ${i}: the declared ground ${declared} reads rgb(${mean.map((v) => Math.round(v)).join(",")})`);
   });
   return { bad };
 }
@@ -570,7 +683,8 @@ async function kineticRules(beats) {
  *   1. the renderer's own boxes (manifest beats[].canvas.boxes) through the
  *      same zoneReport() the layout tests use;
  *   2. the RENDERED frames, at 30 / 62 / 90% of each non-photo beat: no ink
- *      (luma < 235 or chroma > 30 on the white ground) runs continuously
+ *      (luma < 235 or chroma > 30 on a paper-white ground; on a dark / mid ground, a luma
+ *      or chroma difference from the frame's own ground — see inkFnColour) runs continuously
  *      across a zone edge further than ZONE_TOL (8 px) on either side — what
  *      the camera or an animation carries across the line, which the boxes
  *      cannot show. A run in >= 3 columns fails.
@@ -595,7 +709,8 @@ async function zonesNoOverlap(video, beats) {
       const t = (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share;
       const buf = rgbFrame(video, t, W, H);
       if (!buf) continue;
-      const ink = (x, y) => { const o = (y * W + x) * 3, r = buf[o], g = buf[o + 1], bl = buf[o + 2]; return 0.299 * r + 0.587 * g + 0.114 * bl < 235 || Math.max(r, g, bl) - Math.min(r, g, bl) > 30; };
+      const isInk = inkFnColour(buf, W, H);
+      const ink = (x, y) => { const o = (y * W + x) * 3; return isInk(buf[o], buf[o + 1], buf[o + 2]); };
       for (const e of edges) {
         const y0 = Math.floor((e - ZONE_TOL - 1) * sc), y1 = Math.ceil((e + ZONE_TOL + 1) * sc);
         let cols = 0;
@@ -613,13 +728,236 @@ async function zonesNoOverlap(video, beats) {
 }
 
 /**
- * pop-transitions (owner's spec 2026-10-02; the boundary is a hard cut since
- * 2026-10-18, visual/transitions.js, measured from the reference videos): no
- * frame of the 10-frame window after a cut may be empty. Every frame from the
- * boundary to +10 must hold content above the caption row (>= 12 ink rows at
- * 1/4 scale). Where it stops: it measures presence, not motion — a cutout band
- * rising in from below counts as soon as it is inside the frame, and nothing
- * here checks that the rise looks right (that is the rendered-frame review).
+ * visual-centred (owner, 2026-10-09: "the visual is the hero of the beat ... near the frame's vertical center, not in
+ * the top third"): on the RENDERED frame at 62% of every beat, the mass of the visual — the pixels of its box that differ
+ * from the ground, text boxes masked out — has its centroid between y 640 and y 1500 (not in the top third), and the
+ * visual is actually there (>= 3% of its box is not ground). A beat whose visual is in the top third with empty space
+ * below fails. Full-bleed photos are the whole frame and are not judged.
+ */
+async function visualCentred(video, beats, m_fps = 30) {
+  const bad = [], rows = [];
+  const W = 540, H = 960, sc = H / 1920;
+  const VISUALS = ["portrait", "cutout0", "chart", "map", "number", "photo"];
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c?.boxes || fullBleed(c)) return;
+    const key = VISUALS.find((k) => c.boxes[k] && c.boxes[k].w > 0 && c.boxes[k].h > 0 && !(k === "number" && c.composition === "NUMBER-STAT" && false));
+    if (!key) return;
+    const vb = c.boxes[key];
+    // 62% of the beat — or 0.4 s after its picture pops on the word that names it (canvas.entity_pop), if later.
+    const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / (m_fps || 30) + 0.4 : 0;
+    const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    const g = frameGround(buf, W, H);
+    const lumaAt =(x, y) => { const o = (y * W + x) * 3; return 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; };
+    const textBoxes = Object.entries(c.boxes).filter(([k, v]) => v && v.w > 0 && /^(headline|statement|kicker|label|emphasis|lead|pull)/.test(k) && k !== key).map(([, v]) => v);
+    const masked = (x, y) => textBoxes.some((v) => x >= v.x * sc - 2 && x <= (v.x + v.w) * sc + 2 && y >= v.y * sc - 2 && y <= (v.y + v.h + (v.desc || 0)) * sc + 2);
+    const x0 = Math.max(0, Math.floor(vb.x * sc)), x1 = Math.min(W - 1, Math.ceil((vb.x + vb.w) * sc)), y0 = Math.max(0, Math.floor(vb.y * sc)), y1 = Math.min(H - 1, Math.ceil((vb.y + vb.h) * sc));
+    let n = 0, sy = 0, sx = 0, area = 0;
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+      if (masked(x, y)) continue;
+      area++;
+      if (Math.abs(lumaAt(x, y) - g.l) > 22) { n++; sy += y; sx += x; }
+    }
+    if (!area) return;
+    const cy = n ? sy / n / sc : null, cx = n ? sx / n / sc : null, share = n / area;
+    rows.push(`beat ${i} (${c.composition}) ${key}: centroid (${cx ? Math.round(cx) : "-"}, ${cy ? Math.round(cy) : "-"}), ${(share * 100).toFixed(0)}% of its box inked`);
+    if (share < 0.03) bad.push(`beat ${i} (${c.composition}): the ${key} is not on the frame (${(share * 100).toFixed(1)}% of its box differs from the ground)`);
+    else if (cy < 640) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — in the top third, not near the centre (y 960)`);
+    // Left- or right-PINNED by accident: a visual whose mass sits in the outer fifth of the frame, where no composition
+    // chose an offset (an edge-cropped photo, an inset card and a scatter are offset on purpose; a hero NUMBER is typography\n    // anchored left / right by the alternating-alignment rule — its vertical centre is still judged).
+    else if (cx && (cx < 216 || cx > 864) && key !== "number" && !["PHOTO-EDGE", "PHOTO-INSET", "HERO-SCATTER", "PHOTO-STRIP"].includes(c.composition)) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at x ${Math.round(cx)} — pinned to a side of the frame (centre x 540)`);
+    else if (cy > 1500) bad.push(`beat ${i} (${c.composition}): the ${key}'s mass sits at y ${Math.round(cy)} — below the middle of the frame`);
+  });
+  return { bad, rows };
+}
+
+/**
+ * Where a flag's box is at time t. A flag grows by `art_push` over its beat about the bottom edge of its box (canvas-layout.js FLAG_PUSH,
+ * drawn by full-canvas.jsx EntityArt), so its border and corners are where the renderer drew them then, not where the layout first put
+ * the box. Pure: box in any px unit, u = progress through the beat (0..1).
+ */
+function grownBox(box, push, u) {
+  if (!box || !(push > 0)) return box;
+  const s = 1 + push * Math.min(1, Math.max(0, u));
+  return { x: box.x + box.w / 2 - (box.w * s) / 2, y: box.y + box.h - box.h * s, w: box.w * s, h: box.h * s };
+}
+
+/**
+ * visual-contrast (owner, 2026-10-09: "no large element of the visual may share the ground's luminance, so it disappears.
+ * A flag with a white field on a white ground fails — the white stripe vanishes and the flag reads as loose bars"), on the
+ * RENDERED frame (after the picture pops): a rectangular visual — a flag, a framed photo card — must be BOUNDED all the way
+ * round: at least 92% of the ring of pixels just inside its box differ from the ground (by luma > 25 or chroma > 30). A flag
+ * drawn with its ink border passes however white its fields are; one drawn without fails. A cut-out or logo that vanishes
+ * is caught by visual-centred (its box is not inked) and, before render, by scripts/ground-legal.mjs.
+ */
+async function visualContrast(video, beats, fps = 30) {
+  const bad = [], rows = [];
+  const W = 540, H = 960, sc = H / 1920;
+  // The renderer sways every beat (src/skills/remotion-render/visual/sway.js). The framed visual is drawn where the sway
+  // has put it at the sampled time, so the ring is measured there, not at the spec box. The ring rule itself is unchanged.
+  const { swayOffset } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "sway.js")).href);
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    let box = c?.composition === "ENTITY-ART" && c.art?.kind === "flag" ? c.boxes?.art : ["PHOTO-CARD"].includes(c?.composition) ? c.boxes?.photo : null;
+    if (!box || !(box.w > 0)) return;
+    const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
+    const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    box = grownBox(box, c.art_push, (t - (b.start_sec ?? 0)) / Math.max(1e-6, b.duration_sec ?? 0));
+    const sw = swayOffset(t - (b.start_sec ?? 0));
+    box = { ...box, x: box.x + sw.x, y: box.y + sw.y };
+    const g = frameGround(buf, W, H);
+    const px = (x, y) => { const o = (y * W + x) * 3; return [buf[o], buf[o + 1], buf[o + 2]]; };
+    const differs = (x, y) => { const [r, gg, bl] = px(x, y); const l = 0.299 * r + 0.587 * gg + 0.114 * bl; return Math.abs(l - g.l) > 25 || Math.max(r, gg, bl) - Math.min(r, gg, bl) > 30; };
+    // 1 px inside the box: a flag's 6 px ink border (3 px at this scale) is what bounds it.
+    const x0 = Math.max(0, Math.round(box.x * sc) + 1), x1 = Math.min(W - 1, Math.round((box.x + box.w) * sc) - 2), y0 = Math.max(0, Math.round(box.y * sc) + 1), y1 = Math.min(H - 1, Math.round((box.y + box.h) * sc) - 2);
+    let n = 0, d = 0;
+    const ring = (x, y) => { n++; if (differs(x, y)) d++; };
+    for (let x = x0; x <= x1; x++) { ring(x, y0); ring(x, y1); }
+    for (let y = y0; y <= y1; y++) { ring(x0, y); ring(x1, y); }
+    const share = n ? d / n : 1;
+    rows.push(`beat ${i} (${c.composition}${c.art ? ` ${c.art.kind}` : ""}): ${(share * 100).toFixed(0)}% of its outline differs from the ground`);
+    if (share < 0.92) bad.push(`beat ${i} (${c.composition}${c.art ? ` ${c.art.kind} "${c.art.name}"` : ""}): only ${(share * 100).toFixed(0)}% of its outline is distinguishable from the ground — part of it vanishes into it`);
+  });
+  return { bad, rows };
+}
+
+/**
+ * entity-marks (owner, 2026-10-09: "an organisation is its ACTUAL logo, or its name set in type; never a stock document / box icon"): every
+ * ENTITY-ART beat for an organisation, person or place draws, per named entity, its real mark (an asset with its licence recorded) or its
+ * name set in type (the plate draws the name itself); no icon, no repeated mark within the beat, and the caption never repeats the name the
+ * plate carries. Manifest-level: the frames are judged by gemini-frame-review.js --look-check / --entity-check.
+ */
+function entityMarks(beats) {
+  const bad = [], rows = [];
+  beats.forEach((b, i) => {
+    const c = b.canvas, a = c?.art;
+    if (!a || !(String(a.kind).startsWith("plate-") || a.kind === "plates")) return;
+    const names = a.kind === "plates" ? a.names || [] : [a.name];
+    const label = `beat ${i} (${a.kind} ${names.join(", ")})`;
+    const marks = names.map((n, k) => (a.items?.[k]?.asset ? `logo ${a.items[k].asset}` : "name in type"));
+    rows.push(`${label}: ${marks.join(" | ")}`);
+    if (a.icon || a.glyph) bad.push(`${label}: draws an icon (${a.icon || a.glyph}) for a named entity`);
+    const assets = (a.items || []).filter((it) => it?.asset).map((it) => it.asset);
+    if (new Set(assets).size < assets.length) bad.push(`${label}: the same mark is drawn twice in the beat`);
+    a.items?.forEach((it, k) => { if (it?.asset && !it.license) bad.push(`${label}: the mark for "${names[k]}" has no recorded licence`); });
+    const cap = String(c.boxes?.statement?.text || (c.words?.statement || []).map((w) => w.t).join(" ") || "");
+    const nz = (x) => ` ${String(x || "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim()} `;
+    for (const n of names) if (n && nz(cap).includes(nz(n))) bad.push(`${label}: the caption "${cap}" repeats the name the plate already carries`);
+  });
+  return { bad, rows };
+}
+
+/**
+ * image-sources (owner, 2026-10-10: "REAL PHOTOS, NOT SAMPLES ... every image on screen must be traceable to a source URL"). Every image a
+ * beat draws — a photo, a cutout or logo, a flag, an organisation's mark — must carry its source URL (fetched, licence-checked, vision-verified
+ * at fetch time), that URL must answer, and the file must not be one of the repo's sample images (by path or by content). Drawn icons /
+ * symbols are not images (Lucide, in-repo) and are not judged here. Where it stops: "the image matches the entity" is judged on the frame by
+ * gemini-frame-review.js --entity-check / --naming-check, not here.
+ */
+const SAMPLE_DIRS = ["b-roll/", "asset-library/", "_probe-fixtures/", "silhouettes/", "documents/generic"];
+async function imageSources(beats) {
+  const bad = [], rows = [];
+  const pub = join(__dirname, "..", "src", "skills", "remotion-render", "public");
+  const crypto = require("node:crypto");
+  const hashOf = (f) => { try { return crypto.createHash("sha1").update(readFileSync(f)).digest("hex"); } catch { return null; } };
+  const sampleHashes = new Set();
+  const walk = (d) => { try { for (const e of require("node:fs").readdirSync(d, { withFileTypes: true })) { const f = join(d, e.name); if (e.isDirectory()) walk(f); else if (/\.(png|jpe?g|webp)$/i.test(e.name)) { const h = hashOf(f); if (h) sampleHashes.add(h); } } } catch {} };
+  for (const d of ["b-roll", "asset-library", "_probe-fixtures", "silhouettes", "documents"]) walk(join(pub, d));
+  const reach = new Map();
+  const reachable = async (url) => {
+    if (reach.has(url)) return reach.get(url);
+    let ok = false, why = "";
+    for (let k = 0; k < 2 && !ok; k++) {
+      try { const r = await fetch(url, { method: "GET", headers: { "user-agent": "YOUTUBE-pipeline image-source check", range: "bytes=0-0" }, redirect: "follow", signal: AbortSignal.timeout(12000) }); ok = r.status < 400 || [401, 403, 429].includes(r.status); why = `HTTP ${r.status}${r.status === 403 ? " (the site refuses scripts; the page exists)" : ""}`; }
+      catch (e) { why = e.message; }
+    }
+    reach.set(url, { ok, why });
+    return { ok, why };
+  };
+  let needed = 0, real = 0;
+  for (let i = 0; i < beats.length; i++) {
+    const c = beats[i].canvas || {};
+    const imgs = [];
+    if (c.photo?.asset) imgs.push({ what: "photo", asset: c.photo.asset, url: c.photo.source_url });
+    for (const v of c.concept_visuals || []) if (v.asset && v.class !== "symbol") imgs.push({ what: v.logo ? "logo" : "cutout", asset: v.asset, url: v.source_url });
+    if (c.art?.asset) imgs.push({ what: c.art.kind, asset: c.art.asset, url: c.art.source_url });
+    (c.art?.items || []).forEach((it) => { if (it?.asset) imgs.push({ what: "mark", asset: it.asset, url: it.source_url }); });
+    for (const im of imgs) {
+      needed++;
+      const label = `beat ${i} ${im.what} ${im.asset}`;
+      if (SAMPLE_DIRS.some((d) => String(im.asset).startsWith(d))) { bad.push(`${label}: a repo sample image is on screen`); continue; }
+      const h = hashOf(join(pub, im.asset));
+      if (h && sampleHashes.has(h)) { bad.push(`${label}: the file is a copy of a repo sample image`); continue; }
+      if (!im.url) { bad.push(`${label}: no source URL recorded — it does not ship`); continue; }
+      const r = await reachable(im.url);
+      if (!r.ok) { bad.push(`${label}: its source ${im.url} does not answer (${r.why})`); continue; }
+      real++;
+      rows.push(`${label} <- ${im.url}`);
+    }
+  }
+  return { bad, rows, needed, real };
+}
+
+/**
+ * flat-look (owner, 2026-10-09: "they shouldn't look playful — actually that motion graphic"): on the rendered frame of every beat that
+ * draws a chart, timeline, diagram, date card, time scale, plate or flag — the reference palette only (ink, neutrals and the channel's
+ * ONE accent), sharp corners on a boxed element, no drop shadow. scripts/lib/flat-look.cjs has the measures and where they stop;
+ * motion (no spring / bounce / overshoot) is asserted by scripts/__tests__/flat-look.test.js on the animation states and the source.
+ */
+async function flatLook(video, beats, accent, fps = 30) {
+  const { offPalette, shadowShare, cornersSharp, OFF_SHARE_MAX } = require("./lib/flat-look.cjs");
+  const { growAmount } = await import(require("node:url").pathToFileURL(join(__dirname, "..", "src", "skills", "remotion-render", "visual", "canvas-layout.js")).href);
+  const COMPS = new Set(["ENTITY-ART", "DATA-FULL", "TIMELINE", "PROCESS-FULL"]);
+  const bad = [], rows = [];
+  const W = 540, H = 960, sc = H / 1920;
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c || !COMPS.has(c.composition)) return;
+    const art = c.composition === "ENTITY-ART" ? c.art : null;
+    let box = art && c.boxes?.art ? { x: c.boxes.art.x * sc, y: c.boxes.art.y * sc, w: c.boxes.art.w * sc, h: c.boxes.art.h * sc } : null;
+    // A single plate is a square inside its box (smaller when a real mark leaves room for its label); a row of plates has several corners.
+    const labelled = !!art && Array.isArray(art.items) && art.items.some((it) => it && it.asset);
+    if (box && art && String(art.kind).startsWith("plate-")) { const side = Math.min(box.w, labelled ? box.h - 35 : box.h); box.x += (box.w - side) / 2; box.w = side; box.h = side; }
+    // A plate's art grows over its beat (full-canvas.jsx EntityArt push: canvas-layout.js growAmount about the art box's centre), so a real mark
+    // that fills its square reaches past the box it was laid out in: the box this judges is the one it grows to (board 38047691386 ch 6).
+    if (box && art && String(art.kind).startsWith("plate-") && c.boxes?.art && (b.duration_sec ?? 0) > 0) {
+      const a = growAmount(b.duration_sec), ab = c.boxes.art, cx = (ab.x + ab.w / 2) * sc, cy = (ab.y + ab.h / 2) * sc, s1 = 1 + a;
+      box = { x: cx + (box.x - cx) * s1, y: cy + (box.y - cy) * s1, w: box.w * s1, h: box.h * s1 };
+    }
+    const boxed = !!box && art.kind === "flag";   // name cards are unboxed type now (the fixture look); a flag keeps its hairline frame
+    const popSec = Number.isFinite(c.entity_pop?.frame) ? c.entity_pop.frame / fps + 0.4 : 0.9;
+    const t = (b.start_sec ?? 0) + Math.min(Math.max((b.duration_sec ?? 0) * 0.62, popSec), Math.max(0, (b.duration_sec ?? 0) - 0.1));
+    if (art?.kind === "flag") box = grownBox(box, c.art_push, (t - (b.start_sec ?? 0)) / Math.max(1e-6, b.duration_sec ?? 0));
+    const buf = rgbFrame(video, t, W, H);
+    if (!buf) return;
+    const g = frameGround(buf, W, H);
+    const name = `beat ${i} (${c.composition}${art ? ` ${art.kind}` : ""})`;
+    // A flag is a real flag: its own colours are the entity's, judged by visual-contrast; everything else drawn is judged for palette.
+    const pal = offPalette(buf, W, H, accent, { y1: Math.floor((CAPTION_Y0 / 1920) * H), skip: box && (art?.kind === "flag" || (Array.isArray(art?.items) && art.items.some((it) => it && it.asset))) ? [{ x: Math.floor(box.x), y: Math.floor(box.y), w: Math.ceil(box.w) + 1, h: Math.ceil(box.h) + 1 }] : [] });
+    const sh = boxed ? shadowShare(buf, W, H, box, g.l) : 0;
+    // A plate with its mark's name set under it: the label sits where the bottom corners' diagonals start, so only the top two are judged.
+    const which = labelled && String(art?.kind).startsWith("plate-") ? [0, 1] : [0, 1, 2, 3];
+    const corners = boxed ? cornersSharp(buf, W, H, box, g.l, which) + (4 - which.length) : 4;
+    rows.push(`${name}: off-accent colour ${(pal.share * 100).toFixed(2)}%${boxed ? `, shadow strip ${(sh * 100).toFixed(0)}%, sharp corners ${corners}/4` : ""}`);
+    if (pal.share > OFF_SHARE_MAX) bad.push(`${name}: ${(pal.share * 100).toFixed(2)}% of the frame is a colour that is neither ink, neutral nor the accent ${accent} (max ${(OFF_SHARE_MAX * 100).toFixed(1)}%) — a palette the reference does not use`);
+    if (sh > 0.25) bad.push(`${name}: a soft shadow halo along its edge (${(sh * 100).toFixed(0)}% of the strip) — the reference's components are flat`);
+    if (corners < 4) bad.push(`${name}: ${4 - corners} corner(s) are rounded off — the reference's components have sharp corners`);
+  });
+  return { bad, rows };
+}
+
+/**
+ * pop-transitions (owner's spec 2026-10-02): across every beat boundary the
+ * composition replaces itself in place — no frame of the 10-frame window may
+ * be empty (the old "cut" left blank frames between beats). Every frame from
+ * the boundary to +10 must hold content above the caption row (>= 12 ink rows
+ * at 1/4 scale). Where it stops: element MOVEMENT (> 10 px) is not measured
+ * here — the compositor (full-canvas.jsx PopGroups) only scales elements in
+ * place about their own centre, with a static camera, by construction.
  */
 function popTransitions(video, m) {
   const bad = [];
@@ -630,10 +968,11 @@ function popTransitions(video, m) {
     for (let f = 0; f <= 10; f++) {
       const buf = rgbFrame(video, (b.start_sec ?? 0) + f / fps, W, H);
       if (!buf) continue;
+      const isInk = inkFnLuma(buf, W, H);
       let rows = 0;
       for (let y = 0; y < capRow; y++) {
         let n = 0;
-        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; if (0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2] < 235) n++; }
+        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; if (isInk(0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2])) n++; }
         if (n >= 3) rows++;
       }
       if (rows < 12) empty.push(f);
@@ -660,10 +999,11 @@ function middleZoneFilled(video, beats) {
     for (const share of [0.62, 0.9]) {
       const buf = rgbFrame(video, (b.start_sec ?? 0) + (b.duration_sec ?? 0) * share, W, H);
       if (!buf) continue;
+      const isInk = inkFnLuma(buf, W, H, map ? 249 : 235, map ? 6 : 20);
       let rows = 0;
       for (let y = y0; y < y1; y++) {
         let n = 0;
-        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; const l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; if (l < (map ? 249 : 235)) n++; }
+        for (let x = 0; x < W; x++) { const o = (y * W + x) * 3; const l = 0.299 * buf[o] + 0.587 * buf[o + 1] + 0.114 * buf[o + 2]; if (isInk(l)) n++; }
         if (n >= 3) rows++;
       }
       best = Math.max(best, rows / (y1 - y0));
@@ -676,6 +1016,21 @@ function middleZoneFilled(video, beats) {
 async function canvasChecks(video, m) {
   const beats = m.beats || [];
   const out = [];
+  // THE CLONE FAMILY (src/skills/remotion-render/clone/; owner, 2026-10-15) is staged by the reference videos' laws, not by the canvas engine's layouts, so the
+  // canvas-layout checks below (zones, grid, canvas-type, coverage...) describe a frame it does not have and are not run on it. What judges it is the references'
+  // own cadence law, measured on the pixels with the references' own metric (scripts/lib/novelty.mjs, config/clone-grammar.json `laws`). A video that breaks a law
+  // fails here exactly as a canvas check fails; nothing is loosened for the canvas engine, which keeps every check it had.
+  if (m.engine === "clone") {
+    const { measureVideo } = await import(require("node:url").pathToFileURL(join(ROOT, "scripts", "lib", "novelty.mjs")).href);
+    const G = JSON.parse(readFileSync(join(ROOT, "config", "clone-grammar.json"), "utf8")), L = G.laws, v = measureVideo(video);
+    const chk = (id, got, want, ok) => out.push({ id, pass: ok, detail: `${got} (law ${want})` });
+    chk("clone-cadence-events", `${v.events_per_10s} new elements per 10 s`, `>= ${L.events_per_10s_min}`, v.events_per_10s >= L.events_per_10s_min);
+    chk("clone-cadence-cuts", `${v.cuts_per_10s} cuts per 10 s`, `>= ${L.cuts_per_10s.min}`, v.cuts_per_10s >= L.cuts_per_10s.min);
+    chk("clone-cadence-wait-p90", `nine waits in ten up to ${v.gap_s.p90} s`, `<= ${L.gap_p90_max_s} s`, v.gap_s.p90 <= L.gap_p90_max_s);
+    chk("clone-cadence-wait-max", `longest wait for something new ${v.gap_s.max} s`, `<= ${L.gap_max_s} s`, v.gap_s.max <= L.gap_max_s);
+    out.push({ id: "canvas-layout", pass: true, detail: `not judged: the clone family (${(m.clone && m.clone.profile) || "?"}) has its own legality (clone/clone-layout.js)` });
+    return out;
+  }
   const fit = canvasFit(beats);
   out.push({ id: "canvas-fit", pass: !fit.length, detail: fit.length ? fit.join("; ") : `${beats.length} beat(s): every element inside the safe area, no text overlap, caption band clear` });
   const cov = canvasCoverage(video, beats);
@@ -701,12 +1056,93 @@ async function canvasChecks(video, m) {
   // frames-nonempty and pop-transitions, which stay hard.
   const mz = middleZoneFilled(video, beats);
   out.push({ id: "middle-zone-filled", pass: true, advisory: true, detail: (mz.bad.length ? mz.bad.join("; ") : "every non-photo beat fills its middle zone") + (mz.bad.length ? " [ADVISORY - not gating]" : "") });
+  // pace (owner, 2026-10-09: "a beat with no movement for more than 1.0 second is a failed beat"): sampled every 0.25 s on the
+  // rendered frames (the caption band cut off), the longest run of near-identical frames inside a beat is <= 1.0 s. HARD.
+  {
+    const { paceOf, MAX_STATIC_S } = await import(require("node:url").pathToFileURL(join(__dirname, "pace-check.mjs")).href);
+    const pace = paceOf(video, m);
+    pace.beats.forEach((b) => console.log(`[pace] beat ${b.index}: ${b.duration_s} s, longest static ${b.longest_s.toFixed(2)} s, mean change ${b.mean_change} — ${b.status}`));
+    pace.beats.filter((b) => b.status !== "ok").forEach((b) => console.log(`[pace-series] beat ${b.index} (time:changed-pixels/mean): ${b.series.join(" ")}`));
+    console.log(`[pace] longest static stretch ${pace.longest_s.toFixed(2)} s; average beat ${pace.avg_beat_s} s`);
+    out.push({ id: "pace", pass: !pace.fail.length, detail: pace.fail.length ? pace.fail.map((b) => `beat ${b.index}: ${b.longest_s.toFixed(2)} s with nothing moving (max ${MAX_STATIC_S} s)`).join("; ") : `no beat static for more than ${MAX_STATIC_S} s (longest ${pace.longest_s.toFixed(2)} s; average beat ${pace.avg_beat_s} s)` });
+  }
+  const vcon = await visualContrast(video, beats, m.fps || 30);
+  vcon.rows.forEach((r) => console.log(`[contrast] ${r}`));
+  out.push({ id: "visual-contrast", pass: !vcon.bad.length, detail: vcon.bad.length ? vcon.bad.join("; ") : vcon.rows.length ? `${vcon.rows.length} flag / card visual(s), each bounded all the way round against its ground` : "no flag or framed-photo visual to judge" });
+  const em = entityMarks(beats);
+  em.rows.forEach((r) => console.log(`[marks] ${r}`));
+  out.push({ id: "entity-marks", pass: !em.bad.length, detail: em.bad.length ? em.bad.join("; ") : em.rows.length ? `${em.rows.length} entity plate beat(s): each entity is its real mark or its name in type, none repeated` : "no entity plate to judge" });
+  // The shot-proof FIXTURE renders the repo's sample photos on purpose (it proves layouts, it never ships): --fixture says so, and the check is skipped there.
+  const isrc = process.argv.includes("--fixture") ? { bad: [], rows: ["(fixture: sample images by design — not judged)"], needed: 0, real: 0 } : await imageSources(beats);
+  isrc.rows.forEach((r) => console.log(`[images] ${r}`));
+  out.push({ id: "image-sources", pass: !isrc.bad.length, detail: isrc.bad.length ? isrc.bad.join("; ") : `${isrc.real}/${isrc.needed} image(s) on screen, each traced to a source URL that answers; no sample image` });
+  const tg = await textGrid(video, beats, m.fps || 30);
+  tg.rows.forEach((r) => console.log(`[grid] beat ${r.beat}: ${r.words === null ? "no words" : r.words || `${r.composition} words centred at x ${r.centre_x}, ending at y ${r.bottom_y}`}`));
+  out.push({ id: "grid", pass: !tg.bad.length, detail: tg.bad.length ? tg.bad.join("; ") : `every beat's words centred on x 540 and standing on y ${GRID_BASE} (± ${GRID_TOL}), measured on the frames` });
+  const fl = await flatLook(video, beats, m.accent, m.fps || 30);
+  fl.rows.forEach((r) => console.log(`[flat-look] ${r}`));
+  out.push({ id: "flat-look", pass: !fl.bad.length, detail: fl.bad.length ? fl.bad.join("; ") : fl.rows.length ? `${fl.rows.length} chart / date / scale / plate / diagram beat(s): reference palette only, no shadow, sharp corners` : "no chart, date, scale, plate or diagram beat to judge" });
+  const vc = await visualCentred(video, beats, m.fps || 30);
+  vc.rows.forEach((r) => console.log(`[centred] ${r}`));
+  out.push({ id: "visual-centred", pass: !vc.bad.length, detail: vc.bad.length ? vc.bad.join("; ") : `${vc.rows.length} visual(s) on the frame, none with its mass in the top third` });
   const pt = popTransitions(video, m);
   out.push({ id: "pop-transitions", pass: !pt.bad.length, detail: pt.bad.length ? pt.bad.slice(0, 6).join("; ") : "no empty frame across any beat boundary" });
   const mt = motionTiers(beats);
   const kr = await kineticRules(beats);
   out.push({ id: "kinetic-rules", pass: !kr.bad.length, detail: kr.bad.length ? kr.bad.slice(0, 8).join("; ") : `every word pops in place (${Object.entries(kr.used).map(([e, n]) => `${e}x${n}`).join(" ")}), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes ${kr.modes.join("/") || "none"}` });
   out.push({ id: "motion-tiers", pass: !mt.bad.length, detail: mt.bad.length ? mt.bad.join("; ") : `${mt.major} major, ${mt.medium} medium, all beats micro` });
+  // template-window (owner's definition of "no template", 2026-10-08 — scripts/template-check.js):
+  // across any three consecutive beats, at most ONE of {corner label, pull phrase, type-led
+  // layout} repeats, AND no device is on three beats in a row (2026-10-09). The label is what is
+  // DRAWN at the top of the frame (template-check.js labelsDrawn). HARD. Not loosened to pass a render.
+  // A SECONDARY signal only: frame review's TEMPLATE_MONOCULTURE holds a video whatever this says.
+  const { templateCheck, labelCount } = await import("./template-check.js");
+  const tw = templateCheck(m);
+  out.push({ id: "template-window", pass: tw.pass, detail: tw.error ? tw.error : tw.pass ? `${tw.beats} beat(s), ${labelCount(m)} draw a label: no two devices repeat inside any three-beat window, no device on three beats in a row`
+    : tw.windows.slice(0, 6).map((w) => `beats ${w.start}-${w.start + 2}: ${w.run.length ? `${w.run.join(" + ")} on three beats in a row` : `${w.repeating.join(" + ")} repeat`}`).join("; ") });
+  // no-photo-repeat (owner, 2026-10-08): one photo, at most one beat per video.
+  const seen = new Map(), rep = [];
+  beats.forEach((b, i) => {
+    // A portrait of the person a sentence names is identity, not decoration (scripts/lib/used-images.js isMark): it may appear again, as a logo may.
+    const portrait = b.canvas?.photo?.view === "person" || b.canvas?.photo?.kind === "person";
+    const imgs = [portrait ? null : b.canvas?.photo?.asset, ...(b.canvas?.concept_visuals || []).filter((v) => v.class === "cutout" && v.logo !== true).map((v) => v.asset)].filter(Boolean);
+    for (const a of new Set(imgs)) { if (seen.has(a)) rep.push(`${a} on beats ${seen.get(a)} and ${i}`); else seen.set(a, i); }
+  });
+  out.push({ id: "no-photo-repeat", pass: !rep.length, detail: rep.length ? rep.join("; ") : "no photo or cutout appears on two beats" });
+  // camera-moves (owner, 2026-10-09: "real camera moves of 8% or more", photos and graphs only): every
+  // beat that shows a photo (full-bleed or framed) or a graph (DATA-FULL) declares a move >= 8%
+  // (visual/canvas-layout.js CAMERA). DECLARED here; what the pixels did is judged by Gemini's
+  // fake-pan check (gemini-frame-review.js --camera-check), which compares two frames of one beat.
+  const camBad = [];
+  beats.forEach((b, i) => {
+    const c = b.canvas;
+    if (!c) return;
+    // (PORTRAIT is a standing cut-out of a person, not a camera subject: it keeps its small push.)
+    const PHOTO_COMPS = ["SCENE-FULL", "ARCHITECTURE", "DOCUMENT", "MONEY", "SCENE-LOW", "PHOTO-BAND", "PHOTO-EDGE", "PHOTO-CARD", "PHOTO-INSET", "PHOTO-STRIP"];
+    const subject = c.composition === "DATA-FULL" ? "graph" : c.photo?.asset && PHOTO_COMPS.includes(c.composition) ? "photo" : null;
+    if (subject && !(c.camera && c.camera.subject === subject && c.camera.move >= 0.08)) camBad.push(`beat ${i}: a ${subject} beat declares no camera move of 8% or more`);
+  });
+  out.push({ id: "camera-moves", pass: !camBad.length, detail: camBad.length ? camBad.join("; ") : `every photo and graph beat declares a camera move of 8% or more (${beats.filter((b) => b.canvas?.camera).length} beat(s))` });
+  // entity-coverage (owner, 2026-10-09: "nothing spoken goes unrepresented"; scripts/entity-coverage.js): every beat whose
+  // sentence names an entity (a place, a person, an organisation, a date, a span of time, a figure) draws something that
+  // answers one of them — its flag or map with it highlighted, a portrait or plate, a logo, a date card, a time track, the
+  // figure. A beat that names an entity and is words only FAILS, and the failing entity is logged. HARD.
+  {
+    const { checkEntityCoverage } = await import(require("node:url").pathToFileURL(join(__dirname, "entity-coverage.js")).href);
+    const ec = checkEntityCoverage(beats.map((b) => ({ index: b.index, sentence: b.canvas?.sentence || "", named_entities: b.canvas?.entities || [], canvas: b.canvas })));
+    ec.rows.forEach((r) => console.log(`[entities] beat ${r.beat}: ${r.entities.length ? `${r.entities.join(" | ")} -> ${r.covered ? `OK by ${r.by}` : "NOT COVERED"}` : r.note}`));
+    out.push({ id: "entity-coverage", pass: !ec.failures.length, detail: ec.failures.length ? ec.failures.map((f) => `beat ${f.beat}: ${f.entities.join(", ")} — ${f.why}`).slice(0, 8).join("; ") : `${ec.rows.filter((r) => r.covered).length} beat(s) draw the entity they name; ${ec.wordsOnlyBeats} words-only beat(s) name nothing` });
+  }
+  // sfx-rules (owner, 2026-10-09): every SFX that plays was judged a real recording by Gemini
+  // (scripts/sfx-cc0.mjs judge), its peak lands within 100 ms of its visible event, no sound twice in
+  // a row, no sound on three beats in a row. HARD — a robotic sound fails the video; fix the sound.
+  const sfxPlayed = m.sfx || [];
+  if (sfxPlayed.length) {
+    const { sfxRuleProblems } = await import("../src/skills/remotion-render/visual/canvas-sfx.js");
+    const { recordedFiles } = await import("./sfx-cc0.mjs");
+    const sr = sfxRuleProblems(sfxPlayed, { fps: m.fps || 30, recorded: recordedFiles() });
+    out.push({ id: "sfx-rules", pass: !sr.length, detail: sr.length ? sr.slice(0, 6).join("; ") : `${sfxPlayed.length} SFX, all judged recorded, each within 100 ms of its event, ${beats.length - new Set(sfxPlayed.map((e) => e.beat)).size}/${beats.length} beats silent` });
+  }
   return out;
 }
 
@@ -833,7 +1269,11 @@ async function main() {
     // (the last beat: to its own end) - how it READS the cue, not a looser
     // rule. The word-timed SRT (tts_words.py) ends a cue at its last word,
     // so cue.end - cue.start is shorter than the beat by the pause after it.
-    const want = (cues[i + 1] ? cues[i + 1].start : c.end) - c.start;
+    // The LAST beat is held to the end of the voiceover FILE (cover-audio.js: the file runs 0.4-2 s past its last word), so it is
+    // measured to the audio's end, not to its own cue's end - the same value the render uses. Board 38054686824 ch 2, 8, 10 failed this
+    // check on exactly that tail (4.8 s vs 4.28; 3.77 vs 2.61; 4.7 vs 2.71) after the hold was added; the tolerance is unchanged.
+    const aEnd = i === beats.length - 1 ? mediaDuration(audio) : null;
+    const want = (cues[i + 1] ? cues[i + 1].start : (aEnd && aEnd > c.end ? aEnd : c.end)) - c.start;
     if (Math.abs((b.duration_sec ?? 0) - want) > DURATION_TOL) durBad.push(`beat ${i}: ${b.duration_sec}s vs cue ${want.toFixed(2)}s`);
   });
   add("beat-durations", durBad, `every beat within ±${DURATION_TOL}s of its cue`);
@@ -858,7 +1298,7 @@ async function main() {
     return `CAPABILITY:${caps[0] || "?"}`;
   });
   const typo = effective.filter((m) => m === "TYPOGRAPHY").length;
-  add("typography-count", typo >= 1 && typo <= 2 ? [] : [`${typo} TYPOGRAPHY beats`], `${typo} TYPOGRAPHY beat(s)`);
+  add("typography-count", typo <= 2 ? [] : [`${typo} TYPOGRAPHY beats`], `${typo} TYPOGRAPHY beat(s)`);
 
   const counts = {};
   for (const m of effective) counts[m] = (counts[m] || 0) + 1;

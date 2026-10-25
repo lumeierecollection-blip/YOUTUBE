@@ -1,0 +1,68 @@
+{
+  "topic_slug": "trevor-uhl-3-8m-storage-ponzi-scheme-guilty-plea",
+  "strongest_angle": "Trevor Uhls, a 29-year-old former MML Investors Services associate from Lee's Summit, Missouri, pleaded guilty in October 2026 to orchestrating a $3.8 million Ponzi scheme that defrauded at least 60 investors.",
+  "key_facts": [
+    {
+      "fact": "Trevor Uhls, a 29-year-old resident of Lee's Summit, Missouri, pleaded guilty in federal court to wire fraud and money laundering charges.",
+      "source_url": "https://www.kmbc.com/article/lees-summit-man-admits-defrauding-investors-millions-ponzi-scheme/74149931",
+      "source_name": "KMBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prosecutors stated that the investment scheme operated by Trevor Uhls defrauded at least 60 victims out of more than $3.8 million.",
+      "source_url": "https://www.kansascity.com/news/local/article317649756.html",
+      "source_name": "Kansas City Star",
+      "confidence": "high"
+    },
+    {
+      "fact": "Trevor Uhls was a former associate with MML Investors Services who now faces a potential prison sentence of up to 20 years.",
+      "source_url": "https://www.wealthmanagement.com/ibd-news/ex-mml-advisor-pleads-guilty-to-3-8m-fraud-as-victims-prepare-arbitration-against-firm",
+      "source_name": "WealthManagement.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total amount defrauded",
+      "value": 3.8,
+      "unit": "million dollars",
+      "source_url": "https://www.kansascity.com/news/local/article317649756.html"
+    },
+    {
+      "label": "Number of victims",
+      "value": 60,
+      "unit": "people",
+      "source_url": "https://www.kansascity.com/news/local/article317649756.html"
+    },
+    {
+      "label": "Maximum prison sentence",
+      "value": 20,
+      "unit": "years",
+      "source_url": "https://www.wealthmanagement.com/ibd-news/ex-mml-advisor-pleads-guilty-to-3-8m-fraud-as-victims-prepare-arbitration-against-firm"
+    },
+    {
+      "label": "Age of Trevor Uhls",
+      "value": 29,
+      "unit": "years old",
+      "source_url": "https://www.kmbc.com/article/lees-summit-man-admits-defrauding-investors-millions-ponzi-scheme/74149931"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Trevor Uhls",
+      "kind": "person"
+    },
+    {
+      "name": "Lee's Summit",
+      "kind": "place"
+    },
+    {
+      "name": "MML Investors Services",
+      "kind": "organization"
+    },
+    {
+      "name": "Missouri",
+      "kind": "place"
+    }
+  ]
+}

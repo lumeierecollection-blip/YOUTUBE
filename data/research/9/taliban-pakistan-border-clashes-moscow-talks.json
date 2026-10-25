@@ -1,0 +1,68 @@
+{
+  "topic_slug": "taliban-pakistan-border-clashes-moscow-talks",
+  "strongest_angle": "Examine the collapse of the eighth Moscow Format Consultations and the subsequent border clashes along Paktia province and Khyber Pakhtunkhwa province.",
+  "key_facts": [
+    {
+      "fact": "The eighth round of the Moscow Format Consultations on Afghanistan collapsed without a joint statement on October 5, following a clash between Pakistan's special representative and Taliban foreign minister Amir Khan Muttaqi.",
+      "source_url": "https://www.buildbetterpakistan.com/news/moscow-format-afghanistan-talks-collapse-pakistan-taliban-october-2026",
+      "source_name": "Build Better Pakistan",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Following the failed talks in Moscow, reported fighting between the Taliban and Pakistan has involved border clashes along Afghanistan's southeastern Paktia province and Pakistan's northwestern Khyber Pakhtunkhwa province.",
+      "source_url": "https://www.longwarjournal.org/archives/2026/10/taliban-pakistan-border-clashes-continue-after-moscow-talks-end-without-agreement.php",
+      "source_name": "FDD's Long War Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "The United Nations Mission in Afghanistan stated in September that it had documented more than 1,100 civilian deaths and injuries from cross-border violence.",
+      "source_url": "https://apnews.com/article/pakistan-afghanistan-taliban-dar-border-attacks-26f3ca516464048d883401acbec8d8e2",
+      "source_name": "Associated Press",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Pakistan's federal government has declared a state of emergency in Khyber Pakhtunkhwa amid escalating security tensions along the border.",
+      "source_url": "https://kabulnow.com/2026/10/pakistan-declares-emergency-in-khyber-pakhtunkhwa-as-border-clashes-kill-12-army-says",
+      "source_name": "KabulNow",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Civilian casualties documented by UNAMA",
+      "value": 1100,
+      "unit": "deaths and injuries",
+      "source_url": "https://apnews.com/article/pakistan-afghanistan-taliban-dar-border-attacks-26f3ca516464048d883401acbec8d8e2"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Moscow",
+      "kind": "place"
+    },
+    {
+      "name": "Amir Khan Muttaqi",
+      "kind": "person"
+    },
+    {
+      "name": "Paktia province",
+      "kind": "place"
+    },
+    {
+      "name": "Khyber Pakhtunkhwa",
+      "kind": "place"
+    },
+    {
+      "name": "United Nations Mission in Afghanistan",
+      "kind": "organization"
+    },
+    {
+      "name": "Taliban",
+      "kind": "organization"
+    },
+    {
+      "name": "Pakistan",
+      "kind": "place"
+    }
+  ]
+}

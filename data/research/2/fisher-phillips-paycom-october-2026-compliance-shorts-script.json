@@ -1,0 +1,67 @@
+{
+  "channel_id": "2",
+  "topic_slug": "fisher-phillips-paycom-october-2026-compliance",
+  "format": "shorts",
+  "hook": "New workplace legislation takes effect in October 2026 across more than 10 states.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "New workplace legislation takes effect in October 2026 across more than 10 states.",
+      "b_roll": [
+        "A gavel resting on a desk beside an employment contract",
+        "A digital map highlighting 10 states and Washington DC"
+      ],
+      "text_overlay": {
+        "text": "10 States Face New Laws"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Fisher Phillips reported that major compliance updates arrive in October 2026. Paycom highlighted new rules on pay transparency and family leave tax treatment. What does the Connecticut Business and Industry Association say about artificial intelligence?",
+      "b_roll": [
+        "Fisher Phillips office building exterior and legal documents",
+        "Paycom software interface showing HR compliance dashboards",
+        "Connecticut Business and Industry Association headquarters sign"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Compliance"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Connecticut Business and Industry Association reports new rules on artificial intelligence.",
+      "b_roll": [
+        "A computer screen displaying an automated hiring algorithm"
+      ],
+      "text_overlay": {
+        "text": "AI Regulation Begins"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Employers in Washington DC and 10 states face immediate oversight. Dependent care reporting rules change today.",
+      "b_roll": [
+        "Washington DC Capitol building and federal flags",
+        "A compliance checklist being marked with red ink"
+      ],
+      "text_overlay": {
+        "text": "Severe Penalties"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "10 states enforce these workplace rules.",
+      "b_roll": [
+        "A scale of justice sitting on a polished wooden desk"
+      ],
+      "text_overlay": {
+        "text": "10 States Enforce Rules"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fisherphillips.com/en/insights/insights/employer-checklist-for-october-2026",
+    "https://www.paycom.com/resources/blog/state-of-compliance-october-2026-federal-and-state-compliance-updates",
+    "https://www.cbia.com/news/hr-safety/workplace-laws-effective-oct"
+  ]
+}

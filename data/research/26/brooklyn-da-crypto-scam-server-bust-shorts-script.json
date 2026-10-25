@@ -1,0 +1,67 @@
+{
+  "channel_id": "26",
+  "topic_slug": "brooklyn-da-crypto-scam-server-bust",
+  "format": "shorts",
+  "hook": "Law enforcement seized 241 hidden crypto scam domains targeting Russian speakers in a massive cross-border raid.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Law enforcement seized 241 hidden crypto scam domains targeting Russian speakers in a massive cross-border raid.",
+      "b_roll": [
+        "Digital server rack flashing red lights in a dark room",
+        "Close up of domain registration code scrolling on a computer screen"
+      ],
+      "text_overlay": {
+        "text": "241 Crypto Scam Domains Seized"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Investigators in Brooklyn dismantled an Eastern European fraud network stealing millions. Where were the servers hidden?",
+      "b_roll": [
+        "Exterior shot of Brooklyn courthouse under grey sky",
+        "Map highlighting Eastern Europe connected to New York servers"
+      ],
+      "text_overlay": {
+        "text": "Eastern European Fraud Network"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, investigators found 112 industrial servers powering the entire operation across Eastern Europe.",
+      "b_roll": [
+        "Server room lights powering down one by one",
+        "Data stream abruptly cutting off on a monitor"
+      ],
+      "text_overlay": {
+        "text": "112 Industrial Servers Shut Down"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Virtual Currency Unit crushed the multinational investment scam targeting Russian speakers. Americans lost tens of millions of dollars before the Brooklyn District Attorney stepped in.",
+      "b_roll": [
+        "Cryptocurrency wallet interface showing zeroed out balances",
+        "Law enforcement documents stamped with official seals"
+      ],
+      "text_overlay": {
+        "text": "Virtual Currency Unit Raid"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Brooklyn District Attorney's office permanently shut down 241 domains.",
+      "b_roll": [
+        "Power cable being unplugged from a humming server rack",
+        "Darkened server room glowing with faint emergency lights"
+      ],
+      "text_overlay": {
+        "text": "Servers Permanently Disabled"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers",
+    "https://news.bloomberglaw.com/crypto/brooklyn-da-cracks-global-crypto-scam-network-in-major-bust"
+  ]
+}

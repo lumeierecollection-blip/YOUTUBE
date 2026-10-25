@@ -1,0 +1,67 @@
+{
+  "channel_id": "8",
+  "topic_slug": "czech-national-bank-100-years-bretton-woods",
+  "format": "shorts",
+  "hook": "In 1926, the National Bank of Czechoslovakia opened its doors exactly 100 years ago.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1926, the National Bank of Czechoslovakia opened its doors exactly 100 years ago.",
+      "b_roll": [
+        "Historical bank building facade in Prague",
+        "Vintage documents from 1926"
+      ],
+      "text_overlay": {
+        "text": "100 Years of Central Banking"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Spring marked the centenary of the legal predecessor to the modern central bank. Operations began on April 1, 1926. Where did the institution build its foundation?",
+      "b_roll": [
+        "Archival vault interior",
+        "Early currency notes of the Czechoslovak koruna"
+      ],
+      "text_overlay": {
+        "text": "April 1, 1926"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Frait raised the stakes in Prague, but new challenges in central banking loomed.",
+      "b_roll": [
+        "Bank for International Settlements conference hall",
+        "Speaker podium in Prague"
+      ],
+      "text_overlay": {
+        "text": "Prague Conference"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Jan Frait delivered opening remarks on October 6, 2026. The institution celebrated its milestone alongside post-Bretton Woods system milestones.",
+      "b_roll": [
+        "Delegates seated at the central banking conference",
+        "Modern Prague skyline"
+      ],
+      "text_overlay": {
+        "text": "October 6, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Czech National Bank officially reached the year 2026 after a century of evolution.",
+      "b_roll": [
+        "Czech National Bank headquarters",
+        "Anniversary emblem"
+      ],
+      "text_overlay": {
+        "text": "2026 Milestone"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnb.cz/cnb/100letnbc_en/index.html",
+    "https://www.bis.org/speeches/20261007-czech-koruna-50-years-after-beginning-post-bretton-woods-system-and-czech-national-bank-100-years-after-establishment"
+  ]
+}

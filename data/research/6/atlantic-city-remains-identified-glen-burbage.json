@@ -1,0 +1,81 @@
+{
+  "topic_slug": "atlantic-city-remains-identified-glen-burbage",
+  "strongest_angle": "Trace the decades-long identification journey of human remains discovered off the Atlantic City coast 45 years ago, now officially identified as retired Coast Guard officer Glen Burbage through Ramapo College's genealogical center and New Jersey State Police.",
+  "key_facts": [
+    {
+      "fact": "Glen Napoleon Burbage, a retired U.S. Coast Guard officer, was identified 45 years after his remains were found off the coast of Atlantic City by the Ramapo College of New Jersey Investigative Genetic Genealogy Center and New Jersey State Police.",
+      "source_url": "https://www.ramapo.edu/news/press-releases/a-name-after-45-years-ramapo-college-helps-identify-atlantic-city-john-doe",
+      "source_name": "Ramapo College News & Media",
+      "confidence": "high"
+    },
+    {
+      "fact": "Recreational boaters discovered the body of Glen Napoleon Burbage floating in the Atlantic Ocean a mile off the Atlantic City shoreline near Raleigh Avenue on May 22, 1981.",
+      "source_url": "https://www.nj.com/atlantic/2026/10/genetic-investigation-identifies-man-found-dead-in-the-ocean-45-years-ago.html",
+      "source_name": "NJ.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Glen Burbage had flown from South Carolina to Atlantic City and was last seen in March 1981 before his body was recovered from the ocean.",
+      "source_url": "https://www.inquirer.com/news/new-jersey/human-remains-atlantic-city-identified-glen-burbage-20261002.html",
+      "source_name": "The Philadelphia Inquirer",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years since remains were found",
+      "value": 45,
+      "unit": "years",
+      "source_url": "https://www.ramapo.edu/news/press-releases/a-name-after-45-years-ramapo-college-helps-identify-atlantic-city-john-doe"
+    },
+    {
+      "label": "Distance offshore where body was found",
+      "value": 1,
+      "unit": "mile",
+      "source_url": "https://www.nj.com/atlantic/2026/10/genetic-investigation-identifies-man-found-dead-in-the-ocean-45-years-ago.html"
+    },
+    {
+      "label": "Day of the month in May 1981 when remains were found",
+      "value": 22,
+      "unit": "day",
+      "source_url": "https://www.nj.com/atlantic/2026/10/genetic-investigation-identifies-man-found-dead-in-the-ocean-45-years-ago.html"
+    },
+    {
+      "label": "Year the remains were discovered",
+      "value": 1981,
+      "unit": "year",
+      "source_url": "https://www.nj.com/atlantic/2026/10/genetic-investigation-identifies-man-found-dead-in-the-ocean-45-years-ago.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Glen Napoleon Burbage",
+      "kind": "person"
+    },
+    {
+      "name": "Ramapo College of New Jersey Investigative Genetic Genealogy Center",
+      "kind": "organization"
+    },
+    {
+      "name": "New Jersey State Police",
+      "kind": "organization"
+    },
+    {
+      "name": "Atlantic City",
+      "kind": "place"
+    },
+    {
+      "name": "South Carolina",
+      "kind": "place"
+    },
+    {
+      "name": "Raleigh Avenue",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Coast Guard",
+      "kind": "organization"
+    }
+  ]
+}

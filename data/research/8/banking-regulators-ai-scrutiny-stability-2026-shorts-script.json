@@ -1,0 +1,69 @@
+{
+  "channel_id": "8",
+  "topic_slug": "banking-regulators-ai-scrutiny-stability-2026",
+  "format": "shorts",
+  "hook": "You didn't know banking regulators in New York and London are escalating AI scrutiny.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You didn't know banking regulators in New York and London are escalating AI scrutiny.",
+      "b_roll": [
+        "Financial district skyline in London",
+        "Bank office in New York"
+      ],
+      "text_overlay": {
+        "text": "Emergency AI Crackdown"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Reuters reported that 6 sources confirmed rising fears over lending models. European Central Bank officials noted systemic risks on October 1, 2026. Where did the June 25 warning lead?",
+      "b_roll": [
+        "Reuters newsroom terminal",
+        "European Central Bank headquarters",
+        "Document on systemic risks"
+      ],
+      "text_overlay": {
+        "text": "6 Sources Confirm Risks"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The European Systemic Risk Board issued a stark cyber warning.",
+      "b_roll": [
+        "European Systemic Risk Board seal"
+      ],
+      "text_overlay": {
+        "text": "Systemic Cyber Threat"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Reuters reported 6 sources confirming mounting fears over lending models.",
+      "b_roll": [
+        "Bank inspectors examining data",
+        "Frankfurt financial center",
+        "Data access vulnerability chart"
+      ],
+      "text_overlay": {
+        "text": "Vulnerabilities Exposed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Financial stability faces new artificial intelligence tests in London and New York.",
+      "b_roll": [
+        "London and New York split screen"
+      ],
+      "text_overlay": {
+        "text": "Financial Stability Tested"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://live.euronext.com/en/financial-news/exclusive-banking-watchdogs-ramp-ai-scrutiny-stability-fears-mount-sources-say",
+    "https://www.esrb.europa.eu/pub/pdf/warnings/esrb.warning260625_on_systemic_cyber_risks_stemming_from_frontier_ai_models%7Eef424708cf.en.pdf",
+    "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261001~cf3c630379.en.html",
+    "https://www.reuters.com/business/finance/us-bank-regulators-ramp-up-scrutiny-ai-use-financial-companies-2026-06-12"
+  ]
+}

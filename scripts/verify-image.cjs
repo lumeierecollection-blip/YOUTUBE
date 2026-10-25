@@ -31,55 +31,7 @@
 const { existsSync } = require("node:fs");
 const { askProviders, imageDataUrl } = require("./verify-cutout-image.cjs");
 
-// ── second pass: a BLIND description (owner's spec 2026-10-18, "stricter selection") ──
-// The three questions above name the subject, and a small vision model leans toward
-// "YES" when it is told what to expect. After they accept, the model is asked again
-// WITHOUT the concept — "what is the main subject?" — and the answer must name the
-// concept (shared word stem, else a text-model same-object check). A "yes, it's a
-// piggy bank" that the blind pass calls "clay pot" is rejected; the caller then tries
-// its next candidate, which is how the wrong image is swapped for the right one.
-const STEM = (w) => (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? w.slice(0, -1) : w);
-const STOPW = new Set(["the", "and", "with", "for", "from", "isolated", "of", "a", "an", "photo", "image", "picture", "on", "in", "white", "background"]);
-const stems = (s) => new Set(String(s || "").toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 3 && !STOPW.has(w)).map(STEM));
-
-const blindPrompt = () => `Look at the image. What is the single main subject? Name it in 2 to 5 words.
-Describe only what is visible. Do not guess a brand or a purpose.
-
-Return JSON only:
-{
-"subject": "..."
-}`;
-const normBlind = (a) => {
-  if (!a || typeof a !== "object" || a.error) return null;
-  const subject = String(a.subject || "").trim().slice(0, 120);
-  return subject ? { subject } : null;
-};
-
-async function sameThing(subject, entity) {
-  const a = stems(subject), b = stems(entity);
-  for (const w of b) if (a.has(w)) return { same: true, how: "shared word" };
-  try {
-    const ollama = require("./ollama-client.cjs");
-    const r = await ollama.callOllama([{ role: "user", content: `Two noun phrases: A = "${subject}", B = "${entity}".
-Does A name the same kind of physical object as B (a synonym or a more specific kind of B counts; a related but different object does not)?
-Return JSON only: {"same": true | false}` }], { maxTokens: 30, temperature: 0, capKind: "challenger" });
-    if (r && typeof r.same === "boolean") return { same: r.same, how: "text model" };
-  } catch { /* fall through */ }
-  return { same: false, how: "no answer" };
-}
-
-async function blindCheck(png, entity) {
-  const messages = [{ role: "user", content: [
-    { type: "text", text: blindPrompt() },
-    { type: "image_url", image_url: { url: await imageDataUrl(png) } },
-  ] }];
-  const r = await askProviders(messages, normBlind);
-  if (!r.v) return { ok: false, subject: "", why: "blind pass: no vision provider answered" };
-  const t = await sameThing(r.v.subject, entity);
-  return { ok: t.same, subject: r.v.subject, why: t.same ? `blind pass saw "${r.v.subject}" (${t.how})` : `blind pass saw "${r.v.subject}", not "${entity}"` };
-}
-
-function promptFor({ scene, entity, type, logo = false, money = false }) {
+function promptFor({ scene, entity, type, logo = false, money = false, alone = false, explains = null }) {
   // Task 2.2 — a company/institution logo is verified with the owner's exact
   // three-answer identity prompt, not the generic image rubric.
   if (logo) {
@@ -89,14 +41,17 @@ Company: "${entity}"
 
 Look at the image. Answer:
 
-1. What company or brand does this logo represent?
-2. Is it the logo of "${entity}" specifically?
+1. Copy the words written on the logo, exactly as printed (Latin letters only; empty if it has none).
+2. What company or brand does this logo represent? Go by what it SAYS, not by the name above.
+3. Is it the logo of "${entity}" specifically?
    MATCH — this is the logo of the named company
    SIMILAR — this is the logo of a different company with a similar name
    DIFFERENT — this is not a logo, or is a different company entirely
+   A seal or emblem whose words name a different place, district, branch or body (a "District of Columbia" court seal for a Florida court) is DIFFERENT.
 
 Return JSON only:
 {
+  "text": "...",
   "recognized": "...",
   "verdict": "MATCH" | "SIMILAR" | "DIFFERENT"
 }`;
@@ -127,12 +82,25 @@ ${money ? `
    (no edges cut off)?
    FLAT — centered, flat, all edges visible
    ANGLED — perspective, folded, or partially cut off
+` : ""}${alone ? `
+${money ? 5 : 4}. Is the subject alone in the picture?
+   ALONE — only the subject. Its own parts and contents count as the subject
+     (the bills of a stack of cash, the coins in a jar, the wheels of a car)
+   OTHERS — a different, separate object shares the picture
+     (a magnifying glass beside a wallet, cash heaped on credit cards, a pen on a document)
+` : ""}${explains ? `
+${4 + (money ? 1 : 0) + (alone ? 1 : 0)}. The photo is shown while the narrator says: "${String(explains).slice(0, 200)}".
+   Does it help a viewer SEE what that means?
+   EXPLAINS — hearing those words and seeing this photo, a viewer gets the point faster (unpaid bills for
+     "debt payments are eating the raise", an empty wallet for "nothing is left after rent")
+   DECORATIVE — it is only on the same topic, or the viewer would have to work out why it is there
+     (a calculator for "debt grows faster than pay", a lightbulb for "a new idea", a compass for "direction")
 ` : ""}
 Return JSON only:
 {
   "shows": "YES" | "CLOSE" | "NO",
   "kind": "LITERAL" | "FIGURATIVE" | "META",
-  "quality": "CLEAN" | "DIRTY",${money ? `\n  "flat": "FLAT" | "ANGLED",` : ""}
+  "quality": "CLEAN" | "DIRTY",${money ? `\n  "flat": "FLAT" | "ANGLED",` : ""}${alone ? `\n  "alone": "ALONE" | "OTHERS",\n  "others": "the other objects, or empty",` : ""}${explains ? `\n  "helps": "EXPLAINS" | "DECORATIVE",` : ""}
   "seen": "short phrase describing the image"
 }`;
 }
@@ -146,26 +114,57 @@ function normalizer(money, logo = false) {
       const verdict = up(a.verdict);
       const recognized = String(a.recognized || "").trim().slice(0, 160);
       if (!["MATCH", "SIMILAR", "DIFFERENT"].includes(verdict) || !recognized) return null;
-      return { shows: "YES", kind: "LITERAL", quality: "CLEAN", seen: recognized, verdict, recognized };
+      return { shows: "YES", kind: "LITERAL", quality: "CLEAN", seen: recognized, verdict, recognized, text: String(a.text || "").trim().slice(0, 200) };
     }
     const shows = up(a.shows), kind = up(a.kind), quality = up(a.quality), flat = money ? up(a.flat) : null;
     const seen = String(a.seen || "").trim().slice(0, 160);
     if (!["YES", "CLOSE", "NO"].includes(shows) || !["LITERAL", "FIGURATIVE", "META"].includes(kind) || !["CLEAN", "DIRTY"].includes(quality) || !seen) return null;
     if (money && !["FLAT", "ANGLED"].includes(flat)) return null;
-    return { shows, kind, quality, flat, seen };
+    // "alone" is read when the model gave it; judge() refuses a missing answer only when the question was asked
+    const alone = ["ALONE", "OTHERS"].includes(up(a.alone)) ? up(a.alone) : null;
+    const helps = ["EXPLAINS", "DECORATIVE"].includes(up(a.helps)) ? up(a.helps) : null;
+    return { shows, kind, quality, flat, seen, alone, helps, others: String(a.others || "").trim().slice(0, 120) };
   };
 }
+/**
+ * Does the logo's own printed text name something else? Board 39031532519 ch-26: the Wikipedia file for the "U.S. District Court for the Southern
+ * District of Florida" was the DISTRICT OF COLUMBIA court's seal, and the model, handed the name, answered MATCH. So the words printed on the logo are
+ * checked here too: when they carry distinguishing words (not "united states district court"), at least one must be a distinguishing word of the
+ * entity, or the text must spell its initials ("T.P.L.F" for the Tigray People's Liberation Front). A logo with no Latin text is not judged here.
+ */
+const LOGO_GENERIC = new Set("united states the for and of de la del des court courts district department ministry office bureau agency national federal state government official seal emblem inc llc ltd corp corporation company group holdings international university college school institute association society council committee commission board authority republic kingdom party front foundation bank city county est established since".split(" "));
+const logoWords = (s) => String(s || "").toLowerCase().normalize("NFKD").replace(/[^a-z\s]/g, " ").split(/\s+/).filter((w) => w.length >= 3);
+function logoTextContradicts(text, entity) {
+  const said = logoWords(text).filter((w) => !LOGO_GENERIC.has(w));
+  const own = logoWords(entity).filter((w) => !LOGO_GENERIC.has(w));
+  if (!said.length || !own.length) return null;
+  const initials = String(entity || "").split(/[\s-]+/).filter((w) => /^[A-Za-z]/.test(w) && !/^(of|the|for|and|de|la)$/i.test(w)).map((w) => w[0].toUpperCase()).join("");
+  if (initials.length >= 2 && String(text).toUpperCase().replace(/[^A-Z]/g, "").includes(initials)) return null;
+  const close = (a, b) => a === b || (a.length >= 4 && b.length >= 4 && (a.startsWith(b) || b.startsWith(a)));
+  return said.some((w) => own.some((o) => close(w, o))) ? null : `the logo reads "${String(text).slice(0, 80)}", which names none of "${entity}"`;
+}
+
 /** The owner's rule (E.2, G.3): YES and LITERAL and CLEAN (and FLAT for money). */
-function judge(v, money, logo = false) {
+function judge(v, money, logo = false, askedAlone = false, askedExplain = false) {
   if (logo) {
     const accept = v.verdict === "MATCH";
     return { accept, reason: accept ? "MATCH" : `${v.verdict} (saw "${v.recognized}")` };
   }
   const why = [];
   if (v.shows !== "YES") why.push(`shows=${v.shows}`);
-  if (v.kind !== "LITERAL") why.push(`kind=${v.kind}`);
+  // An EXPLAINING prop (plan-props.mjs role "explains") may be a real photo used as a visual metaphor (META) — the explanation question below then decides;
+  // a drawing or symbol (FIGURATIVE) is refused for every prop.
+  if (v.kind !== "LITERAL" && !(askedExplain && v.kind === "META")) why.push(`kind=${v.kind}`);
   if (v.quality !== "CLEAN") why.push(`quality=${v.quality}`);
   if (money && v.flat !== "FLAT") why.push(`flat=${v.flat}`);
+  // Board 39031532519 ch-1: "a brown leather wallet with coins and a magnifying glass" and "credit cards with crumpled cash on top" passed as a wallet and a
+  // credit card. A second object in a prop photo is a still-life, and the extra thing (a magnifying glass) says something the sentence does not.
+  if (v.alone === "OTHERS") why.push(`others=${v.others || "another object"}`);
+  // ASKED and not answered (a small fallback model drops the field): unjudged is not "alone" — like "no provider answered", it refuses. A prompt that never
+  // asked (alone not requested) is still not judged on it.
+  else if (askedAlone && v.alone == null) why.push("alone=unanswered");
+  // owner, 2026-10-18: props also EXPLAIN what is said, not only name it — and an explaining photo must actually explain it (unanswered refuses too)
+  if (askedExplain && v.helps !== "EXPLAINS") why.push(`helps=${v.helps || "unanswered"}`);
   return { accept: why.length === 0, reason: why.join(", ") || "YES, LITERAL, CLEAN" + (money ? ", FLAT" : "") };
 }
 
@@ -181,21 +180,16 @@ async function verifyImage(png, opts = {}) {
   let r = await askProviders(messages, norm);
   for (let k = 0; k < 2 && !r.v; k++) { await new Promise((res) => setTimeout(res, 15000)); r = await askProviders(messages, norm); }
   if (!r.v) return { accept: false, reason: "no vision provider answered", seen: "", provider: null, unavailable: true };
-  const out = { ...r.v, ...judge(r.v, money, logo), provider: r.provider };
-  if (out.accept && !logo && process.env.VERIFY_BLIND !== "0") {
-    const b = await blindCheck(png, opts.entity);
-    out.blind = b.subject;
-    if (!b.ok) return { ...out, accept: false, reason: b.why };
-    out.reason = `${out.reason}; ${b.why}`;
-  }
-  return out;
+  const verdict = { ...r.v, ...judge(r.v, money, logo, !!opts.alone, !!opts.explains), provider: r.provider };
+  const wrongText = logo && verdict.accept ? logoTextContradicts(r.v.text, opts.entity) : null;
+  return wrongText ? { ...verdict, accept: false, reason: wrongText } : verdict;
 }
 
 /** A money object (G): bills, coins, cash — gets the flatness question. */
 const MONEY_RE = /\b(dollar|bill|bills|banknote|bank note|note|notes|cash|currency|coin|coins|euro|pound|yen|rupee|peso|money)\b/i;
 const isMoney = (name) => MONEY_RE.test(String(name || "").replace(/-/g, " ")) && !/\b(statement|card|receipt|wallet|jar|piggy)\b/i.test(String(name || ""));
 
-module.exports = { verifyImage, promptFor, normalizer, judge, isMoney, blindCheck, sameThing };
+module.exports = { verifyImage, promptFor, normalizer, judge, isMoney, logoTextContradicts };
 
 if (require.main === module) {
   require("dotenv/config");

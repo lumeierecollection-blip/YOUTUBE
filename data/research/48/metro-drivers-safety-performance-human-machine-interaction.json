@@ -1,0 +1,67 @@
+{
+  "topic_slug": "metro-drivers-safety-performance-human-machine-interaction",
+  "strongest_angle": "Recent studies from Beijing Jiaotong University and Network Rail reveal how human-machine interaction models shift metro drivers from tense operation to severe boredom and vigilance loss.",
+  "key_facts": [
+    {
+      "fact": "Yiting Wang and researchers at Beijing Jiaotong University published a study in Human Performance titled Not so Tense, but Becoming Boring! A Study on Human-Machine Interaction and Metro Drivers’ Safety Performance.",
+      "source_url": "https://doi.org/10.1080/08959285.2026.2744148",
+      "source_name": "Human Performance",
+      "confidence": "high"
+    },
+    {
+      "fact": "Aleksandrs Rjabovs from Network Rail and Roberto Palacín from Newcastle University published an eye-tracking study on metro drivers in Urban Rail Transit.",
+      "source_url": "https://doi.org/10.1007/s40864-019-00115-1",
+      "source_name": "Urban Rail Transit",
+      "confidence": "high"
+    },
+    {
+      "fact": "Peter Spring, Andrew McIntosh, Carlo Caponecchia, and Melissa T. Baysari at Macquarie University investigated the impact of train automation levels on driver vigilance using forty student participants.",
+      "source_url": "https://researchers.mq.edu.au/en/publications/level-of-automation-effects-on-train-driver-vigilance",
+      "source_name": "Macquarie University Research Output",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Student participants in Macquarie University vigilance study",
+      "value": 40,
+      "unit": "participants",
+      "source_url": "https://researchers.mq.edu.au/en/publications/level-of-automation-effects-on-train-driver-vigilance"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Yiting Wang",
+      "kind": "person"
+    },
+    {
+      "name": "Beijing Jiaotong University",
+      "kind": "organization"
+    },
+    {
+      "name": "Aleksandrs Rjabovs",
+      "kind": "person"
+    },
+    {
+      "name": "Network Rail",
+      "kind": "organization"
+    },
+    {
+      "name": "Roberto Palacín",
+      "kind": "person"
+    },
+    {
+      "name": "Newcastle University",
+      "kind": "organization"
+    },
+    {
+      "name": "Peter Spring",
+      "kind": "person"
+    },
+    {
+      "name": "Macquarie University",
+      "kind": "organization"
+    }
+  ]
+}

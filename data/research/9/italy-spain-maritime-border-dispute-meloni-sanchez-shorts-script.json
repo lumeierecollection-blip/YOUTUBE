@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "italy-spain-maritime-border-dispute-meloni-sanchez",
+  "format": "shorts",
+  "hook": "Border checks caused a two-month diplomatic dispute between Italy and Spain.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Border checks caused a two-month diplomatic dispute between Italy and Spain.",
+      "b_roll": [
+        "Map showing Italy and Spain highlighted"
+      ],
+      "text_overlay": {
+        "text": "Border Tensions: Italy & Spain"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In the summer of 2026, a migration crisis hit the Spanish territory of Ceuta. How will Italy and Spain resolve their 2-month diplomatic dispute over border checks?",
+      "b_roll": [
+        "Footage of Ceuta border crossing",
+        "Map of Europe with Schengen area highlighted",
+        "Calendar graphic showing 2 months"
+      ],
+      "text_overlay": {
+        "text": "Ceuta Migration Crisis"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Pedro Sánchez and Giorgia Meloni had to act fast, because the diplomatic rift kept growing.",
+      "b_roll": [
+        "Split screen of Meloni and Sánchez"
+      ],
+      "text_overlay": {
+        "text": "Diplomatic Talks Begin"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Interior ministers will meet next week to officially lift the border checks. This new agreement will officially lift the 2-month suspension of Schengen travel rules between both nations.",
+      "b_roll": [
+        "Footage of diplomatic meeting room",
+        "Document signing animation",
+        "Chart showing 2 month timeline dropping to 0"
+      ],
+      "text_overlay": {
+        "text": "Border Restrictions Lifting"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Schengen Agreement will finally resume across these two nations.",
+      "b_roll": [
+        "European Union flag waving"
+      ],
+      "text_overlay": {
+        "text": "Schengen Rules Resuming"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.euronews.com/2026/10/16/italy-and-spain-move-to-end-border-dispute-after-meloni-sanchez-talks",
+    "https://www.thelocal.es/20261016/italy-and-spain-agree-to-remove-border-checks"
+  ]
+}

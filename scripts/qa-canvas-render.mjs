@@ -76,18 +76,36 @@ const beatsSpec = [
   // whose concept_visuals point at a PNG fetched by scripts/fetch-cutout-once.cjs (there is no library).
   ...(arg("extra-beats") ? JSON.parse(readFileSync(arg("extra-beats"), "utf8")) : []),
 ];
+// --only-extra: the video is the --extra-beats alone (the shot proof renders only its own beats,
+// so Layer 1's rotation and template rules are judged on that sequence).
+if (process.argv.includes("--only-extra") && arg("extra-beats")) beatsSpec.splice(0, beatsSpec.length - JSON.parse(readFileSync(arg("extra-beats"), "utf8")).length);
 // Cutout ink outlines, as render-and-qa.js attaches them.
 const { inkOf } = await import("./cutout-ink.mjs");
 for (const b of beatsSpec) for (const v of b.c.concept_visuals || []) if (v.class === "cutout" && v.asset && !v.ink) v.ink = await inkOf(join(RR, "public", v.asset));
 const { compositionFor } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
+// ENTITY-ART flags: the file is fetched the way the pipeline fetches it (scripts/fetch-flag.mjs).
+{
+  const { fetchFlag } = await import("./fetch-flag.mjs");
+  for (const b of beatsSpec) if (b.c.art?.kind === "flag" && b.c.art.code && !b.c.art.asset) {
+    const f = await fetchFlag(b.c.art.code);
+    if (!f.ok) throw new Error(`flag ${b.c.art.code}: ${f.why}`);
+    const png = readFileSync(join(RR, "public", f.asset));
+    Object.assign(b.c.art, { asset: f.asset, aspect: png.readUInt32BE(16) / png.readUInt32BE(20) });
+  }
+}
+// A beat may set `seconds` (a real beat runs 5-7 s: the pace gate failed on long beats the 3 s fixture never exercised — board 37983616641).
+let cursor = 0;
 const beats = beatsSpec.map((b, i) => {
   const words = b.text.split(" ");
-  const per = (D - 20) / words.length;
+  const dur = b.seconds ? Math.round(b.seconds * FPS) : D, start = cursor;
+  cursor += dur;
+  const per = (dur - 20) / words.length;
   const c = { ...b.c };
   c.composition = c.composition || compositionFor(c.visual_type, !!c.photo, { view: c.photo?.view });
   c.beat_total = beatsSpec.length;
+  c.sentence = c.sentence || b.text;   // the manifest carries the sentence (entity-coverage reads it)
   return {
-    beat_id: `t${i}`, start_frame: i * D, duration_frames: D, text: b.text, original_text: b.text,
+    beat_id: `t${i}`, start_frame: start, duration_frames: dur, text: b.text, original_text: b.text,
     scene: { mechanism: "TYPOGRAPHY", canvas: c },
     spoken: words.map((w, k) => ({ text: w, from: Math.round(6 + k * per), to: Math.round(6 + (k + 1) * per) })),
     words: [],
@@ -97,9 +115,11 @@ const beats = beatsSpec.map((b, i) => {
 // test plan's made-up timings): the entity visual pops on the word that names it.
 {
   const { scheduleEntityPop } = await import("../src/skills/remotion-render/visual/entity-sync.js");
-  const { canvasLayout: lay, normalizeCanvas: norm } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
+  const { canvasLayout: lay, normalizeCanvas: norm, holdForDuration } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
   beats.forEach((b, i) => {
     const c = b.scene.canvas;
+    const held = holdForDuration(c, i, b.duration_frames / FPS);   // the same rule render.js applies
+    if (held) console.log(`[pace] qa beat ${i}: ${held}`);
     const s = scheduleEntityPop({ ...c, composition: lay(norm(c, i)).composition }, b.spoken, b.duration_frames);
     if (s && !s.missing) { c.entity_pop = { frame: s.frame, word: s.word, from: s.from, to: s.to, kind: s.kind }; console.log(`[sync] qa beat ${i}: "${s.word}" spoken at frame ${s.from}-${s.to}, pop at frame ${s.frame}`); }
   });
@@ -110,6 +130,32 @@ assignCanvasAnimations(beats.map((b) => ({ canvas: b.scene.canvas })), { seed: a
 // The uniform white ground (visual/backgrounds.js), as render.js sets it.
 const { GROUND } = await import("../src/skills/remotion-render/visual/backgrounds.js");
 const plan = { canvas: true, accent, ground: GROUND, beats, palette: { primary: ["#0F172A", "#1E293B", "#22C55E", "#FAFAFA"], secondary: [] }, fonts: { primary: "Inter", secondary: "Inter" } };
+// --clone <profile>: stage these beats as the CLONE family (src/skills/remotion-render/clone/, config/clone-grammar.json) instead of the canvas engine.
+if (arg("clone")) {
+  const G = JSON.parse(readFileSync(join(RR, "..", "..", "..", "config", "clone-grammar.json"), "utf8"));
+  const profile = G.profiles[arg("clone")];
+  if (!profile) throw new Error(`--clone ${arg("clone")}: no such profile (${Object.keys(G.profiles).join(", ")})`);
+  const { paletteFor } = await import("../src/skills/remotion-render/clone/clone-palette.js");
+  plan.clone = { profile, laws: G.laws, palette: paletteFor(profile, { colors: { canvas_accent: accent } }), bw: false };
+  console.log(`[clone] profile ${arg("clone")} (from ${profile.from})`);
+  // Frameless pictures, as render.js does: each beat photo cut out (rembg) or soft-edged. --quotes <file.json> is a FIXTURE of quoted statements for the layout proof only.
+  const { attachCutouts } = await import("../src/skills/remotion-render/clone/clone-cutouts.js");
+  const cut = attachCutouts(beats, "qa", (m) => console.log(m));
+  console.log(`[clone] pictures: ${cut.cut} cut out, ${cut.soft} soft-edged`);
+  if (arg("quotes")) plan.clone.quotes = JSON.parse(readFileSync(arg("quotes"), "utf8"));
+}
+// --sfx: the plan carries the SFX the real renderer would play for these beats (visual/canvas-sfx.js, each file
+// landed by its measured peak), so the mp4's audio can be measured against the frames (scripts/sfx-sync-proof.mjs).
+// Needs the CC0 files fetched first (node scripts/sfx-cc0.mjs fetch).
+if (process.argv.includes("--sfx")) {
+  const { canvasSfxEvents, SFX_PALETTE } = await import("../src/skills/remotion-render/visual/canvas-sfx.js");
+  const { peakFrames, recordedFiles } = await import("./sfx-cc0.mjs");
+  const judged = recordedFiles();
+  const recorded = judged.size ? judged : new Set(Object.values(SFX_PALETTE).map((s) => s.file));
+  const r = canvasSfxEvents(beats, { peaks: peakFrames(FPS), recorded });
+  plan.sfx = r.events;
+  console.log(`[sfx] ${r.events.length} event(s) in the test plan${judged.size ? "" : " (no verdicts on disk: every palette file allowed for this timing proof)"}`);
+}
 writeFileSync(join(out, "plan.json"), JSON.stringify(plan, null, 2));
 
 console.log("bundling...");
@@ -123,7 +169,7 @@ for (let k = 0; k < 3 && !puppeteerInstance; k++) {
 }
 if (!puppeteerInstance) throw new Error("could not launch the headless browser (3 attempts)");
 const composition = await selectComposition({ serveUrl, id: "DirectedShorts", inputProps: props, browserExecutable, puppeteerInstance });
-composition.durationInFrames = beats.length * D;
+composition.durationInFrames = cursor;
 const shots = [];
 // --beats 8,9 renders only those beats; --moments 0.05,0.1 chooses the moments (fractions of a beat).
 const only = arg("beats") ? arg("beats").split(",").map(Number) : null;
@@ -139,7 +185,8 @@ if (process.argv.includes("--video")) {
   console.log(`video: ${join(out, "canvas-test.mp4")}`);
   // The same canvas fields render.js records, so local-audit.cjs --canvas-only can run on it.
   const { canvasManifest } = await import("../src/skills/remotion-render/visual/canvas-layout.js");
-  const manifest = { video: "canvas-test.mp4", fps: FPS, width: 1080, height: 1920, accent, ground: plan.ground, beats: beats.map((b, i) => ({
+  const manifest = { video: "canvas-test.mp4", fps: FPS, width: 1080, height: 1920, accent, ground: plan.ground,
+    ...(plan.sfx ? { sfx: plan.sfx.map((e) => ({ role: e.role, file: e.file, db: e.db, at_frame: e.atFrame, event_frame: e.eventFrame, peak_frames: e.peakFrames, beat: e.beat, reason: e.reason })) } : {}), beats: beats.map((b, i) => ({
     index: i, start_sec: b.start_frame / FPS, duration_sec: b.duration_frames / FPS, visual_type: b.scene.canvas.visual_type,
     canvas: canvasManifest(b.scene.canvas, i) })) };
   writeFileSync(join(out, "canvas-test-manifest.json"), JSON.stringify(manifest, null, 2));

@@ -1,0 +1,60 @@
+{
+  "topic_slug": "seasonal-career-planning-2026-agility",
+  "strongest_angle": "The traditional 20-year career ladder is obsolete in the 2026 job market, requiring professionals to adopt a seasonal, episodic approach to career management to maintain relevance.",
+  "key_facts": [
+    {
+      "fact": "Sanjay Menon, executive VP and MD of Publicis Sapient India, notes that the traditional 30-year ascent through a recognized hierarchy is effectively dead.",
+      "source_url": "https://timesofindia.indiatimes.com/technology/times-techies/think-of-your-careers-as-many-short-loops/articleshow/131846262.cms",
+      "source_name": "The Times of India",
+      "confidence": "high"
+    },
+    {
+      "fact": "Dr. Diane Hamilton reports that rapid technological advancements, specifically AI, are rendering traditional five-year career plans obsolete for modern professionals.",
+      "source_url": "https://www.forbes.com/sites/dianehamilton/2026/08/04/what-to-do-now-that-five-year-career-plans-are-becoming-less-reliable",
+      "source_name": "Forbes",
+      "confidence": "high"
+    },
+    {
+      "fact": "Journalist Farai Chideya, in the book The Episodic Career, documents the shift toward navigating an increasingly disruptive and challenging job landscape.",
+      "source_url": "https://knowledge.wharton.upenn.edu/podcast/knowledge-at-wharton-podcast/episodic-career-navigating-todays-job-market",
+      "source_name": "Knowledge at Wharton",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Traditional career ascent duration",
+      "value": 30,
+      "unit": "years",
+      "source_url": "https://timesofindia.indiatimes.com/technology/times-techies/think-of-your-careers-as-many-short-loops/articleshow/131846262.cms"
+    },
+    {
+      "label": "Traditional career plan duration",
+      "value": 5,
+      "unit": "years",
+      "source_url": "https://www.forbes.com/sites/dianehamilton/2026/08/04/what-to-do-now-that-five-year-career-plans-are-becoming-less-reliable"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sanjay Menon",
+      "kind": "person"
+    },
+    {
+      "name": "Publicis Sapient India",
+      "kind": "organization"
+    },
+    {
+      "name": "Dr. Diane Hamilton",
+      "kind": "person"
+    },
+    {
+      "name": "Farai Chideya",
+      "kind": "person"
+    },
+    {
+      "name": "The Episodic Career",
+      "kind": "object"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "topic_slug": "sufficient-reason-panpsychism-debate",
+  "strongest_angle": "Investigating how the Principle of Sufficient Reason and Russellian monism are deployed by contemporary philosophers to argue that consciousness is a fundamental feature of reality.",
+  "key_facts": [
+    {
+      "fact": "Author Sam Kimpton-Nye explores how the principle of sufficient reason motivates panpsychism in an essay published by Aeon in October 2026.",
+      "source_url": "https://aeon.co/essays/does-the-principle-of-sufficient-reason-make-panpsychism-true",
+      "source_name": "Aeon Essays",
+      "confidence": "high"
+    },
+    {
+      "fact": "Stanford Encyclopedia of Philosophy contributors Philip Goff, William Seager, and Sean Allen-Hermanson note that hostility to metaphysics in Western philosophy has gradually receded since the 1970s, reviving interest in panpsychism.",
+      "source_url": "https://plato.stanford.edu/entries/panpsychism/index.html",
+      "source_name": "Stanford Encyclopedia of Philosophy",
+      "confidence": "high"
+    },
+    {
+      "fact": "A 2024 article published in Erkenntnis by Springer Nature examines how Russellian monist panpsychism attempts to explain mental causation compared to alternative non-physicalist theories.",
+      "source_url": "https://link.springer.com/article/10.1007/s10670-024-00816-5",
+      "source_name": "Springer Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "Benedikt Paul Göcke discusses Joanna Leidenhag's 2022 theological work Minding Creation, which argues that panpsychism is logically consistent with theism.",
+      "source_url": "https://exa.ai/library/publication/xhjz1239p7w",
+      "source_name": "Exa Library",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year for Erkenntnis Paper",
+      "value": 2024,
+      "unit": "year",
+      "source_url": "https://link.springer.com/article/10.1007/s10670-024-00816-5"
+    },
+    {
+      "label": "Publication Year for Aeon Essay",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://aeon.co/essays/does-the-principle-of-sufficient-reason-make-panpsychism-true"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sam Kimpton-Nye",
+      "kind": "person"
+    },
+    {
+      "name": "Aeon",
+      "kind": "organization"
+    },
+    {
+      "name": "Philip Goff",
+      "kind": "person"
+    },
+    {
+      "name": "William Seager",
+      "kind": "person"
+    },
+    {
+      "name": "Sean Allen-Hermanson",
+      "kind": "person"
+    },
+    {
+      "name": "Stanford Encyclopedia of Philosophy",
+      "kind": "organization"
+    },
+    {
+      "name": "Springer Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "Joanna Leidenhag",
+      "kind": "person"
+    },
+    {
+      "name": "Benedikt Paul Göcke",
+      "kind": "person"
+    }
+  ]
+}

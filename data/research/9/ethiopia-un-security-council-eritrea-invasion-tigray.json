@@ -1,0 +1,47 @@
+{
+  "topic_slug": "ethiopia-un-security-council-eritrea-invasion-tigray",
+  "strongest_angle": "Examine how Eritrean troops crossed the northern border into Ethiopia's Tigray region, prompting Ethiopia to lodge an official complaint with the UN Security Council.",
+  "key_facts": [
+    {
+      "fact": "Ethiopia accused Eritrea of an all-out invasion of its northern Tigray region in a letter sent to the United Nations Security Council.",
+      "source_url": "https://www.bbc.com/news/articles/c65ynvw250y1o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Residents in the Tigrayan town of Adigrat told the BBC that Eritrean soldiers crossed into northern Ethiopia as fighting escalated.",
+      "source_url": "https://www.bbc.co.uk/news/articles/ckvgd63rj92lo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ethiopia told the United Nations Security Council that it is taking measures in self-defense against Eritrea after troops crossed the border.",
+      "source_url": "https://www.washingtonpost.com/world/2026/10/10/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy/b7e8b8e2-c47a-11f1-8170-681419af1cc9_story.html",
+      "source_name": "Washington Post",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    },
+    {
+      "name": "UN Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    }
+  ]
+}

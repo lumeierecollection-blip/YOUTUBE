@@ -1,0 +1,67 @@
+{
+  "channel_id": "8",
+  "topic_slug": "adam-lebor-bank-for-international-settlements-history",
+  "format": "shorts",
+  "hook": "Set up in 1930, the Bank for International Settlements serves as a bank for central banks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Set up in 1930, the Bank for International Settlements serves as a bank for central banks.",
+      "b_roll": [
+        "Archive footage of Basel streets",
+        "Exterior view of bank headquarters"
+      ],
+      "text_overlay": {
+        "text": "The Central Bank of Central Banks"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Founded in 1930, the Bank for International Settlements operates quietly in Basel. Reuters calls it one of the world's most opaque institutions, but what really happens there?",
+      "b_roll": [
+        "Historic document from 1930",
+        "Map highlighting Basel, Switzerland"
+      ],
+      "text_overlay": {
+        "text": "Founded in 1930"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, historian Adam LeBor investigated the institution's hidden history in Tower of Basel.",
+      "b_roll": [
+        "Cover of Tower of Basel book",
+        "Portrait of Adam LeBor"
+      ],
+      "text_overlay": {
+        "text": "Tower of Basel"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Reuters documented the profound global influence of the Bank for International Settlements.",
+      "b_roll": [
+        "Museum interior shot",
+        "Global financial network graphic"
+      ],
+      "text_overlay": {
+        "text": "First Investigative History"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Tower of Basel reveals the institution created in 1930.",
+      "b_roll": [
+        "Bank building facade",
+        "Closing archive photo"
+      ],
+      "text_overlay": {
+        "text": "Tower of Basel"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://adamlebor.com/books/tower_of_basel",
+    "https://www.hachettebookgroup.com/titles/adam-lebor/tower-of-basel/9781541706217"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "topic_slug": "james-mcavoy-ben-affleck-director-profiles-october-2026",
+  "strongest_angle": "Exploring the October 2026 director profiles of James McAvoy with his debut feature California Schemin' and Ben Affleck with his Netflix thriller Animals.",
+  "key_facts": [
+    {
+      "fact": "Director James McAvoy released his directorial debut California Schemin' in theaters across the U.S. in October 2026 after its premiere at the Toronto Film Festival.",
+      "source_url": "https://screenrant.com/california-schemin-james-mcavoy-directing-interview",
+      "source_name": "Screen Rant",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Director Ben Affleck discussed casting, on-location rehearsals, and the Los Angeles setting of his thriller film Animals in a Netflix Tudum interview with John DiLillo.",
+      "source_url": "https://www.netflix.com/tudum/articles/ben-affleck-animals-interview",
+      "source_name": "Netflix Tudum",
+      "confidence": "medium"
+    },
+    {
+      "fact": "James McAvoy stated that directing had been on his mind for 30 years before he finally made his feature directorial debut with California Schemin'.",
+      "source_url": "https://screenrant.com/california-schemin-james-mcavoy-directing-interview",
+      "source_name": "Screen Rant",
+      "confidence": "medium"
+    },
+    {
+      "fact": "James McAvoy utilized 2,000 strangers to help execute an ambitious scene while working with a limited budget on California Schemin'.",
+      "source_url": "https://collider.com/video/james-mcavoy-on-how-2-000-strangers-helped-make-california-schemin",
+      "source_name": "Collider",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years directing has been on McAvoy's mind",
+      "value": 30,
+      "unit": "years",
+      "source_url": "https://screenrant.com/california-schemin-james-mcavoy-directing-interview"
+    },
+    {
+      "label": "Number of strangers who helped make California Schemin'",
+      "value": 2000,
+      "unit": "people",
+      "source_url": "https://collider.com/video/james-mcavoy-on-how-2-000-strangers-helped-make-california-schemin"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I've been thinking about directing since I was 16. I should have done it sooner",
+      "speaker": "James McAvoy",
+      "source_name": "Moviefone",
+      "source_url": "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "James McAvoy",
+      "kind": "person"
+    },
+    {
+      "name": "Ben Affleck",
+      "kind": "person"
+    },
+    {
+      "name": "California Schemin'",
+      "kind": "object"
+    },
+    {
+      "name": "Animals",
+      "kind": "object"
+    },
+    {
+      "name": "John DiLillo",
+      "kind": "person"
+    },
+    {
+      "name": "Toronto Film Festival",
+      "kind": "organization"
+    },
+    {
+      "name": "Netflix Tudum",
+      "kind": "organization"
+    }
+  ]
+}

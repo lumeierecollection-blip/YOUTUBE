@@ -1,0 +1,86 @@
+{
+  "topic_slug": "resource-nationalism-chokepoints-critical-minerals-2026",
+  "strongest_angle": "Global critical mineral risk is driven less by broad geopolitical blocs like BRICS versus the West and more by physical refining chokepoints where individual ports or processing facilities control entire supply chains.",
+  "key_facts": [
+    {
+      "fact": "China currently leads the refining process across 19 out of 20 strategic critical minerals, making physical processing facilities the primary global supply chokepoint.",
+      "source_url": "https://discoveryalert.com/analysis/resource-nationalism-chokepoints-critical-minerals-october-2026",
+      "source_name": "Discovery Alert",
+      "confidence": "medium"
+    },
+    {
+      "fact": "During his 1992 Southern Tour in the Inner Mongolia Baotou rare-earth basin, leader Deng Xiaoping explicitly declared that China has rare earths just as the Middle East has oil.",
+      "source_url": "https://www.cfr.org/articles/china-united-states-and-critical-chokepoint-minerals",
+      "source_name": "Council on Foreign Relations",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Center for Strategic and International Studies notes that the primary strategic objective for the United States in critical minerals policy is reducing reliance on Chinese processing capacity.",
+      "source_url": "https://www.csis.org/analysis/resource-nationalism-not-united-states-biggest-minerals-problem",
+      "source_name": "Center for Strategic and International Studies",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Strategic minerals led in refining by China",
+      "value": 19,
+      "unit": "minerals",
+      "source_url": "https://discoveryalert.com/analysis/resource-nationalism-chokepoints-critical-minerals-october-2026"
+    },
+    {
+      "label": "Total strategic minerals measured in refining concentration",
+      "value": 20,
+      "unit": "minerals",
+      "source_url": "https://discoveryalert.com/analysis/resource-nationalism-chokepoints-critical-minerals-october-2026"
+    },
+    {
+      "label": "Year of Deng Xiaoping Southern Tour visiting Baotou rare-earth basin",
+      "value": 1992,
+      "unit": "year",
+      "source_url": "https://www.cfr.org/articles/china-united-states-and-critical-chokepoint-minerals"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "During his famous 1992 Southern Tour, while visiting Inner Mongolia’s Baotou rare-earth basin, Deng Xiaoping said, “The Middle East has oil; China has rare earths.”",
+      "speaker": "Deng Xiaoping",
+      "source_name": "Council on Foreign Relations",
+      "source_url": "https://www.cfr.org/articles/china-united-states-and-critical-chokepoint-minerals"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "BRICS",
+      "kind": "organization"
+    },
+    {
+      "name": "Deng Xiaoping",
+      "kind": "person"
+    },
+    {
+      "name": "Inner Mongolia",
+      "kind": "place"
+    },
+    {
+      "name": "Baotou",
+      "kind": "place"
+    },
+    {
+      "name": "Center for Strategic and International Studies",
+      "kind": "organization"
+    },
+    {
+      "name": "Council on Foreign Relations",
+      "kind": "organization"
+    }
+  ]
+}

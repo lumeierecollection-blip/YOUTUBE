@@ -35,6 +35,7 @@ export function enforceRotation(n, o) {
   const comp = (i) => (i >= 0 && i < n ? o.compositionOf(i) : null);
   const attempt = (k, strict) => {
     if (k < 1) return null;                                     // the hook stays
+    if (o.locked?.(k)) return null;                             // the planner chose this beat's type
     for (const alt of o.candidates(k) || []) {
       const cur = comp(k);
       if (alt.composition === cur) continue;
@@ -52,7 +53,8 @@ export function enforceRotation(n, o) {
     if (!alt) { k = i - 1; alt = attempt(i - 1, true); }
     if (!alt) { k = i; alt = attempt(i, false); }
     if (!alt) {
-      log(`[plan] beat ${i} could not avoid repeating beat ${i - 1} type (${from}): nothing else in its sentence is grounded`);
+      if (o.locked?.(i) && (i - 1 < 1 || o.locked?.(i - 1))) log(`[plan] beat ${i} repeats beat ${i - 1} type (${from}) — kept: the planner chose it`);
+      else log(`[plan] beat ${i} could not avoid repeating beat ${i - 1} type (${from}): nothing else in its sentence is grounded`);
       changes.push({ beat: i, from, to: from, resolved: false });
       continue;
     }

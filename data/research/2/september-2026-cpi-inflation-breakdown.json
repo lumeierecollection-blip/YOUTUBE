@@ -1,0 +1,115 @@
+{
+  "topic_slug": "september-2026-cpi-inflation-breakdown",
+  "strongest_angle": "Analyze the September 2026 U.S. Consumer Price Index report showing a 3.7 percent annual increase driven heavily by gasoline prices.",
+  "key_facts": [
+    {
+      "fact": "The U.S. Bureau of Labor Statistics reported that the Consumer Price Index for All Urban Consumers increased 0.6 percent on a seasonally adjusted basis in September.",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm",
+      "source_name": "U.S. Bureau of Labor Statistics",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the U.S. Bureau of Labor Statistics, the all items index increased 3.7 percent over the last 12 months before seasonal adjustment.",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm",
+      "source_name": "U.S. Bureau of Labor Statistics",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC reported that the consumer price index rose 3.7 percent in September on an annual basis, up from 3.4 percent in August.",
+      "source_url": "https://www.cnbc.com/2026/10/14/cpi-inflation-breakdown-september-2026.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC reported that the Core CPI, which strips out food and energy, posted an annual reading of 2.6 percent after climbing 0.3 percent.",
+      "source_url": "https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "September monthly increase",
+      "value": 0.6,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm"
+    },
+    {
+      "label": "August monthly increase",
+      "value": 0.4,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm"
+    },
+    {
+      "label": "Annual increase",
+      "value": 3.7,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm"
+    },
+    {
+      "label": "Gasoline increase",
+      "value": 9.1,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm"
+    },
+    {
+      "label": "Energy increase",
+      "value": 5.2,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/cpi.nr0.htm"
+    },
+    {
+      "label": "Food away from home increase",
+      "value": 0.2,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/pdf/cpi.pdf"
+    },
+    {
+      "label": "Food at home decrease",
+      "value": 0.1,
+      "unit": "percent",
+      "source_url": "https://www.bls.gov/news.release/pdf/cpi.pdf"
+    },
+    {
+      "label": "August annual CPI",
+      "value": 3.4,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/2026/10/14/cpi-inflation-breakdown-september-2026.html"
+    },
+    {
+      "label": "Core CPI annual reading",
+      "value": 2.6,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html"
+    },
+    {
+      "label": "Core CPI monthly climb",
+      "value": 0.3,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Bureau of Labor Statistics",
+      "kind": "organization"
+    },
+    {
+      "name": "Consumer Price Index for All Urban Consumers",
+      "kind": "object"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Greg Iacurci",
+      "kind": "person"
+    },
+    {
+      "name": "Jeff Cox",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

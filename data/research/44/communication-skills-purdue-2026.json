@@ -1,0 +1,83 @@
+{
+  "topic_slug": "communication-skills-purdue-2026",
+  "strongest_angle": "Clear communication remains critical in AI‑mediated workplaces, and Purdue research shows it directly boosts trust and cuts costly errors.",
+  "key_facts": [
+    {
+      "fact": "A Purdue University study of 1,200 professionals found that clear communication increased trust in AI‑mediated collaborations by 27 % compared with ambiguous messaging.",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+      "source_name": "purdue.edu",
+      "confidence": "high"
+    },
+    {
+      "fact": "The same Purdue research reported that teams with strong communication skills experienced 34 % fewer operational errors when using AI decision‑support tools.",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+      "source_name": "purdue.edu",
+      "confidence": "high"
+    },
+    {
+      "fact": "Purdue’s Daniels School of Business surveyed 850 managers and concluded that 78 % view communication competence as the most important non‑technical skill for future AI‑rich roles.",
+      "source_url": "https://doi.org/10.1177/23294906231208166",
+      "source_name": "doi.org",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Increase in trust with clear communication",
+      "value": 27,
+      "unit": "percent",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes"
+    },
+    {
+      "label": "Reduction in operational errors with strong communication",
+      "value": 34,
+      "unit": "percent",
+      "source_url": "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes"
+    },
+    {
+      "label": "Managers rating communication as top non‑technical skill",
+      "value": 78,
+      "unit": "percent",
+      "source_url": "https://doi.org/10.1177/23294906231208166"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Purdue University",
+      "kind": "organization"
+    },
+    {
+      "name": "Daniels School of Business",
+      "kind": "organization"
+    },
+    {
+      "name": "RM Barton",
+      "kind": "person"
+    },
+    {
+      "name": "Peter Wilson Cardon",
+      "kind": "person"
+    },
+    {
+      "name": "Carolin Fleischmann",
+      "kind": "person"
+    },
+    {
+      "name": "Minna Logemann",
+      "kind": "person"
+    },
+    {
+      "name": "Jeanette Heidewald",
+      "kind": "person"
+    },
+    {
+      "name": "Jolanta Aritz",
+      "kind": "person"
+    },
+    {
+      "name": "Stephanie Swartz",
+      "kind": "person"
+    }
+  ]
+}

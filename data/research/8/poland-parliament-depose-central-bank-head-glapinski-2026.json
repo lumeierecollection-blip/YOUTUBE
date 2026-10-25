@@ -1,0 +1,82 @@
+{
+  "topic_slug": "poland-parliament-depose-central-bank-head-glapinski-2026",
+  "strongest_angle": "Analyze the institutional and political confrontation as Poland's parliamentary majority and the Parliamentary Committee for Constitutional Responsibility move to indict National Bank of Poland Governor Adam Glapiński before the Tribunal of State on eight specific charges.",
+  "key_facts": [
+    {
+      "fact": "Poland's Parliamentary Committee for Constitutional Responsibility voted on October 9 to recommend that National Bank of Poland head Adam Glapiński face prosecution before the Tribunal of State on eight charges.",
+      "source_url": "https://newsfire.gr/en/tusk-allies-move-to-oust-polish-central-bank-chief",
+      "source_name": "NewsFire.GR",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the committee vote regarding National Bank of Poland chief Adam Glapiński, 11 MPs voted in favour of the report, 8 voted against, and 2 abstained after holding 33 meetings.",
+      "source_url": "https://nexdailynews.com/en/article/glapinski-state-tribunal-committee-adopts-report",
+      "source_name": "NexDaily",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prime Minister Donald Tusk's ruling coalition in Poland is advancing efforts to depose National Bank of Poland governor Adam Glapiński over alleged constitutional and legal violations regarding bond purchases and currency interventions.",
+      "source_url": "https://brusselssignal.eu/2026/10/tusks-parliamentary-majority-moves-to-depose-head-of-polish-central-bank",
+      "source_name": "Brussels Signal",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Charges against Adam Glapiński",
+      "value": 8,
+      "unit": "charges",
+      "source_url": "https://newsfire.gr/en/tusk-allies-move-to-oust-polish-central-bank-chief"
+    },
+    {
+      "label": "MPs voting in favour",
+      "value": 11,
+      "unit": "MPs",
+      "source_url": "https://nexdailynews.com/en/article/glapinski-state-tribunal-committee-adopts-report"
+    },
+    {
+      "label": "MPs voting against",
+      "value": 8,
+      "unit": "MPs",
+      "source_url": "https://nexdailynews.com/en/article/glapinski-state-tribunal-committee-adopts-report"
+    },
+    {
+      "label": "MPs abstained",
+      "value": 2,
+      "unit": "MPs",
+      "source_url": "https://nexdailynews.com/en/article/glapinski-state-tribunal-committee-adopts-report"
+    },
+    {
+      "label": "Committee meetings held",
+      "value": 33,
+      "unit": "meetings",
+      "source_url": "https://nexdailynews.com/en/article/glapinski-state-tribunal-committee-adopts-report"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Adam Glapiński",
+      "kind": "person"
+    },
+    {
+      "name": "National Bank of Poland",
+      "kind": "organization"
+    },
+    {
+      "name": "Tribunal of State",
+      "kind": "organization"
+    },
+    {
+      "name": "Parliamentary Committee for Constitutional Responsibility",
+      "kind": "organization"
+    },
+    {
+      "name": "Donald Tusk",
+      "kind": "person"
+    },
+    {
+      "name": "Sejm",
+      "kind": "organization"
+    }
+  ]
+}

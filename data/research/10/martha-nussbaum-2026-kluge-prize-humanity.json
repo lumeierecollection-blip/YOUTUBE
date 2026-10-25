@@ -1,0 +1,57 @@
+{
+  "topic_slug": "martha-nussbaum-2026-kluge-prize-humanity",
+  "strongest_angle": "Break down how Martha Nussbaum won the Library of Congress's 2026 John W. Kluge Prize for her lifelong philosophical work on human capabilities and emotions.",
+  "key_facts": [
+    {
+      "fact": "The Library of Congress announced on September 22, 2026, that Professor Martha C. Nussbaum is the recipient of the John W. Kluge Prize for Achievement in the Study of Humanity.",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+      "source_name": "University of Chicago News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The John W. Kluge Prize is awarded every other year by the Library of Congress to recognize work that advances understanding of the human experience.",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum",
+      "source_name": "University of Chicago News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Martha C. Nussbaum defended a neo-Stoic account of emotions holding that they are appraisals ascribing great significance to things and persons outside the agent's control.",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Nussbaum",
+      "source_name": "Wikipedia",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the Kluge Prize award",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum"
+    },
+    {
+      "label": "Month of the Kluge Prize award",
+      "value": 22,
+      "unit": "day",
+      "source_url": "https://news.uchicago.edu/story/library-congress-awards-john-w-kluge-prize-martha-c-nussbaum"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Martha C. Nussbaum",
+      "kind": "person"
+    },
+    {
+      "name": "Library of Congress",
+      "kind": "organization"
+    },
+    {
+      "name": "John W. Kluge Prize",
+      "kind": "object"
+    },
+    {
+      "name": "University of Chicago",
+      "kind": "organization"
+    }
+  ]
+}

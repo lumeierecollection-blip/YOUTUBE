@@ -1,0 +1,67 @@
+{
+  "topic_slug": "library-of-virginia-free-negro-registers",
+  "strongest_angle": "Examine how the Library of Virginia successfully completed its five-year archival preservation effort to digitize 99 historical 'Free Negro Registers' from nearly 60 localities, revealing crucial personal narratives through Virginia Untold: The African American Narrative.",
+  "key_facts": [
+    {
+      "fact": "The Library of Virginia completed a five-year archival preservation effort to digitize 99 historical Free Negro Registers for the digital project Virginia Untold: The African American Narrative.",
+      "source_url": "https://www.lva.virginia.gov/about/news/press/release/2026-10-15",
+      "source_name": "Library of Virginia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 99 digitized volumes of historic Free Registers originate from nearly 60 Virginia localities across the state.",
+      "source_url": "https://www.linkedin.com/posts/libraryofvirginia_today-were-announcing-a-huge-milestone-in-activity-7516570358871654401-aHo7",
+      "source_name": "LinkedIn",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Lydia Neuroth traveled to Southwest Virginia to continue the work digitizing Free Negro Registers for Virginia Untold from courthouse archives.",
+      "source_url": "https://uncommonwealth.lva.virginia.gov/blog/2025/01/22/hittin-the-road-virginia-untold-style",
+      "source_name": "UncommonWealth",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Digitized Free Negro Registers",
+      "value": 99,
+      "unit": "volumes",
+      "source_url": "https://www.lva.virginia.gov/about/news/press/release/2026-10-15"
+    },
+    {
+      "label": "Virginia Localities",
+      "value": 60,
+      "unit": "localities",
+      "source_url": "https://www.linkedin.com/posts/libraryofvirginia_today-were-announcing-a-huge-milestone-in-activity-7516570358871654401-aHo7"
+    },
+    {
+      "label": "Project Duration",
+      "value": 5,
+      "unit": "years",
+      "source_url": "https://www.lva.virginia.gov/about/news/press/release/2026-10-15"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Library of Virginia",
+      "kind": "organization"
+    },
+    {
+      "name": "Virginia Untold: The African American Narrative",
+      "kind": "organization"
+    },
+    {
+      "name": "Virginia",
+      "kind": "place"
+    },
+    {
+      "name": "Lydia Neuroth",
+      "kind": "person"
+    },
+    {
+      "name": "Southwest Virginia",
+      "kind": "place"
+    }
+  ]
+}

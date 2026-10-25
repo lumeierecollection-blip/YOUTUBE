@@ -1,0 +1,65 @@
+{
+  "channel_id": "5",
+  "topic_slug": "uk-prosecutor-labels-russell-brand-sexual-predator-trial",
+  "format": "shorts",
+  "hook": "Six women walked into Southwark Crown Court as 51-year-old Russell Brand faced trial.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six women walked into Southwark Crown Court as 51-year-old Russell Brand faced trial.",
+      "b_roll": [
+        "Exterior shot of Southwark Crown Court in London"
+      ],
+      "text_overlay": {
+        "text": "Trial opens in London"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On trial in London, prosecutors accused the comedian of operating as a ruthless sexual predator over a decade. Which specific charges brought prosecutors into the courtroom against him?",
+      "b_roll": [
+        "Press outside court building",
+        "Courtroom doors opening"
+      ],
+      "text_overlay": {
+        "text": "Decade of allegations"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, three counts of rape formed only part of the indictment.",
+      "b_roll": [
+        "Legal documents close-up"
+      ],
+      "text_overlay": {
+        "text": "Three counts of rape"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "British prosecutors detailed three counts of sexual assault alongside one count of indecent assault. Associated Press reported the prosecution opening statements inside the courtroom. Six women form the core of the case.",
+      "b_roll": [
+        "Associated Press newsroom graphic",
+        "Press corps cameras flashing"
+      ],
+      "text_overlay": {
+        "text": "Seven total charges"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Southwark Crown Court hears the ongoing trial involving fifty-one-year-old Russell Brand.",
+      "b_roll": [
+        "Southwark Crown Court sign"
+      ],
+      "text_overlay": {
+        "text": "Southwark Crown Court"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/russell-brand-sexual-assault-trial-prosecution-women-a7f49e8cd37644c9d519ebe32a958a54",
+    "https://www.bbc.com/news/live/c52e9xd9mvk2t",
+    "https://www.theguardian.com/uk-news/live/2026/oct/14/russell-brand-trial-latest-news-updates"
+  ]
+}

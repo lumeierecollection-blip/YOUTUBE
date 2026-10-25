@@ -1,0 +1,63 @@
+{
+  "channel_id": "49",
+  "topic_slug": "sony-social-reckoning-box-office-disappointment",
+  "format": "shorts",
+  "hook": "Aaron Sorkin's film The Social Reckoning just bombed its box office debut.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Aaron Sorkin's film The Social Reckoning just bombed its box office debut.",
+      "b_roll": [
+        "Sony Pictures logo on screen"
+      ],
+      "text_overlay": {
+        "text": "The Social Reckoning Box Office"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Sony released The Social Reckoning to a dismal $5.5 million opening weekend. Studio projections sat at $7 million to $8 million for domestic earnings. Where did those missing millions go?",
+      "b_roll": [
+        "Chart showing opening weekend drop"
+      ],
+      "text_overlay": {
+        "text": "$5.5 Million Opening"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Universal horror movie Other Mommy crushed the weekend instead.",
+      "b_roll": [
+        "Poster for Other Mommy"
+      ],
+      "text_overlay": {
+        "text": "Universal Leads"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Jessica Chastain starred in Other Mommy to capture a massive $27.5 million debut. That massive gap left Sony far behind the competition.",
+      "b_roll": [
+        "Box office comparison graph"
+      ],
+      "text_overlay": {
+        "text": "$27.5 Million Debut"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the box office numbers before buying tickets.",
+      "b_roll": [
+        "Cinema ticket counter"
+      ],
+      "text_overlay": {
+        "text": "Watch Box Office"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+    "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161",
+    "https://techcrunch.com/2026/10/11/aaron-sorkins-social-reckoning-is-off-to-a-weak-start"
+  ]
+}

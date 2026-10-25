@@ -18,6 +18,7 @@
  * so what comes out is genuine production output, just trimmed.
  */
 import { mkdirSync, readFileSync, existsSync, readdirSync } from "node:fs";
+import { resolveChannel } from "../../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { bundle } from "@remotion/bundler";
@@ -41,9 +42,7 @@ if (!scriptPath || !srtPath || !channelId) {
 const scale = scaleArg ? parseFloat(scaleArg) : 0.5;
 
 const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-const channel = (channels.channels || channels).find(
-  (c) => String(c.id) === String(channelId) || c.channel_id === channelId
-);
+const channel = resolveChannel(channelId, channels.channels || channels);
 if (!channel) throw new Error(`channel ${channelId} not found`);
 
 const script = JSON.parse(readFileSync(scriptPath, "utf-8"));

@@ -1,0 +1,74 @@
+{
+  "topic_slug": "james-mcavoy-california-schemin-directorial-debut",
+  "strongest_angle": "Actor James McAvoy transitions to the director's chair with his feature debut California Schemin, exploring a true story of Scottish rappers who faked American identities.",
+  "key_facts": [
+    {
+      "fact": "Actor James McAvoy makes his feature directorial debut with the film California Schemin, released in theaters on October 9, 2026.",
+      "source_url": "https://www.patriotpictures.com/californiaschemin",
+      "source_name": "Patriot Pictures",
+      "confidence": "high"
+    },
+    {
+      "fact": "The film California Schemin has a runtime of 107 minutes and is rated R according to Roger Ebert reviews published in October 2026.",
+      "source_url": "https://www.rogerebert.com/reviews/california-schemin-james-mcavoy-movie-review-2026",
+      "source_name": "Roger Ebert",
+      "confidence": "high"
+    },
+    {
+      "fact": "Magenta Light Studios set the fall release date for James McAvoy's directorial debut California Schemin in April 2026.",
+      "source_url": "https://deadline.com/2026/04/james-mcavoy-california-schemin-release-date-1236868602",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "Director James McAvoy stated in an interview with Moviefone that he has been thinking about directing since he was 16 years old.",
+      "source_url": "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy",
+      "source_name": "Moviefone",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Movie runtime",
+      "value": 107,
+      "unit": "minutes",
+      "source_url": "https://www.rogerebert.com/reviews/california-schemin-james-mcavoy-movie-review-2026"
+    },
+    {
+      "label": "Age James McAvoy started thinking about directing",
+      "value": 16,
+      "unit": "years",
+      "source_url": "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I've been thinking about directing since I was 16. I should have done it sooner",
+      "speaker": "James McAvoy",
+      "source_name": "Moviefone",
+      "source_url": "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "James McAvoy",
+      "kind": "person"
+    },
+    {
+      "name": "California Schemin",
+      "kind": "object"
+    },
+    {
+      "name": "Magenta Light Studios",
+      "kind": "organization"
+    },
+    {
+      "name": "Patriot Pictures",
+      "kind": "organization"
+    },
+    {
+      "name": "Moviefone",
+      "kind": "organization"
+    }
+  ]
+}

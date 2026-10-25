@@ -1,0 +1,69 @@
+{
+  "topic_slug": "ovhcloud-public-cloud-october-2026-pricing-update",
+  "strongest_angle": "Analyze how OVHcloud unbundled local storage and public IPv4 addresses from Generation 3 public cloud instances starting October 1, 2026, causing total price increases ranging from 1.4% to 21.9%.",
+  "key_facts": [
+    {
+      "fact": "Starting October 1, 2026, OVHcloud increased public cloud instance prices by 1.4% to 21.9% depending on the size for an identical configuration according to Octave Klaba.",
+      "source_url": "https://blog.ovhcloud.com/en/posts/public-cloud-pricing-update-october-2026",
+      "source_name": "OVHcloud Blog",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 1, 2026, OVHcloud stopped including a local disk and a public IPv4 address in the price of Generation 3 instances including B3, C3, and R3 ranges.",
+      "source_url": "https://us.ovhcloud.com/resources/blog/public-cloud-our-prices-are-changing",
+      "source_name": "OVHcloud US Resources",
+      "confidence": "high"
+    },
+    {
+      "fact": "Analyst Łukasz Nowak reported via webhosting.today that OVHcloud charges €0.0001458 per gigabyte per hour for local storage and €0.0027 per hour for the public IPv4 address.",
+      "source_url": "https://webhosting.today/2026/10/05/ovhcloud-unbundled-the-ip-and-the-disk-hetzner-took-its-cheapest-line-off-sale-the-memory-bill-has-reached-the-price-list",
+      "source_name": "webhosting.today",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Minimum price increase percentage",
+      "value": 1.4,
+      "unit": "percent",
+      "source_url": "https://blog.ovhcloud.com/en/posts/public-cloud-pricing-update-october-2026"
+    },
+    {
+      "label": "Maximum price increase percentage",
+      "value": 21.9,
+      "unit": "percent",
+      "source_url": "https://blog.ovhcloud.com/en/posts/public-cloud-pricing-update-october-2026"
+    },
+    {
+      "label": "Local storage hourly cost per gigabyte",
+      "value": 0.0001458,
+      "unit": "euros per gigabyte per hour",
+      "source_url": "https://webhosting.today/2026/10/05/ovhcloud-unbundled-the-ip-and-the-disk-hetzner-took-its-cheapest-line-off-sale-the-memory-bill-has-reached-the-price-list"
+    },
+    {
+      "label": "Public IPv4 address hourly cost",
+      "value": 0.0027,
+      "unit": "euros per hour",
+      "source_url": "https://webhosting.today/2026/10/05/ovhcloud-unbundled-the-ip-and-the-disk-hetzner-took-its-cheapest-line-off-sale-the-memory-bill-has-reached-the-price-list"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "OVHcloud",
+      "kind": "organization"
+    },
+    {
+      "name": "Octave Klaba",
+      "kind": "person"
+    },
+    {
+      "name": "Łukasz Nowak",
+      "kind": "person"
+    },
+    {
+      "name": "webhosting.today",
+      "kind": "organization"
+    }
+  ]
+}

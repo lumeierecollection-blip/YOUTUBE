@@ -1,0 +1,72 @@
+{
+  "topic_slug": "deloitte-cyprus-falsified-documents-roman-abramovich-wealth",
+  "strongest_angle": "Investigative findings reveal that Deloitte Cyprus and Meritservus falsified at least 1,000 corporate papers and backdated records to help Roman Abramovich hide hundreds of millions in assets and evade taxes.",
+  "key_facts": [
+    {
+      "fact": "Deloitte Cyprus and its spin-off Meritservus falsified at least 1,000 corporate papers on behalf of Roman Abramovich.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalism",
+      "confidence": "high"
+    },
+    {
+      "fact": "Accounts signed off by Deloitte in Cyprus meant assets such as superyachts, mansions and private jets worth $672m vanished from Roman Abramovich's control.",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Deloitte staff used fake timestamps to rewrite the historical record before acting as independent auditors to sign off accounts for Roman Abramovich's firms.",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+      "source_name": "The Bureau of Investigative Journalism",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Aides of Roman Abramovich, including staff at global accountancy firm Deloitte Cyprus, falsified paperwork mapping the oligarch's offshore business empire.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/12/roman-abramovich-aides-paperwork-tax-records-suggest",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Falsified corporate papers",
+      "value": 1000,
+      "unit": "papers",
+      "source_url": "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn"
+    },
+    {
+      "label": "Value of vanished assets including superyachts, mansions and private jets",
+      "value": 672000000,
+      "unit": "USD",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    },
+    {
+      "label": "Value of vanished assets in British pounds",
+      "value": 508000000,
+      "unit": "GBP",
+      "source_url": "https://www.bbc.com/news/articles/c64g1l5389kvo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Deloitte Cyprus",
+      "kind": "organization"
+    },
+    {
+      "name": "Roman Abramovich",
+      "kind": "person"
+    },
+    {
+      "name": "Meritservus",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    },
+    {
+      "name": "British Virgin Islands",
+      "kind": "place"
+    }
+  ]
+}

@@ -42,6 +42,7 @@
  */
 "use strict";
 const { existsSync, mkdirSync, readFileSync, writeFileSync } = require("node:fs");
+const Wikidata = require("./lib/wikidata.cjs");
 const { join } = require("node:path");
 
 const ROOT = join(__dirname, "..");
@@ -274,6 +275,18 @@ async function personCandidates(name, context, max = 6) {
   const sj = await getJson(`${WIKI}/w/api.php?action=query&list=search&format=json&srlimit=5&srsearch=${encodeURIComponent(q)}`);
   const hit = (sj?.query?.search || []).find((h) => titleMatches(h.title, name) && !/\(disambiguation\)/i.test(h.title) && h.title !== r.pageTitle);
   if (hit) { r = await leadImageOf(hit.title, name); if (r.info) add(r, "wikipedia search lead image"); else tried.push(`wikipedia search: ${r.why}`); }
+  // Wikidata's own portrait (P18) for an item matched EXACTLY on this name or an alias: "Low Taek Jho" is Jho Low, whose article the title
+  // test above does not accept. A Commons file like the rest; the same file check, then the same verification of who it shows.
+  try {
+    const wd = await Wikidata.find(name, { type: "person", getJson });
+    for (const f of (wd?.images || []).slice(0, 2)) {
+      const info = await fileInfo(`File:${f}`);
+      const bad = checkFile(info);
+      if (bad) { tried.push(`wikidata ${wd.id}: ${f}: ${bad}`); continue; }
+      add({ info, page: info.descurl, pageTitle: `File:${f}`, description: wd.description || "" }, `wikidata ${wd.id} image`);
+    }
+    if (!wd) tried.push("wikidata: no exact person item with an image");
+  } catch (e) { tried.push(`wikidata unavailable (${e.message})`); }
   const nt = tokens(name);
   const commons = [];
   for (const suffix of [" portrait", " official photo", ""]) {
@@ -315,12 +328,26 @@ const ACRONYMS = {
   IMF: "International Monetary Fund", WTO: "World Trade Organization", NATO: "NATO",
   UN: "United Nations", EU: "European Union", ECB: "European Central Bank", OPEC: "OPEC",
   WHO: "World Health Organization", SEBI: "Securities and Exchange Board of India", RBI: "Reserve Bank of India",
+  ETS: "École de technologie supérieure",
 };
 function expandName(type, name) {
   const bare = String(name || "").trim().replace(/^the\s+/i, "").replace(/\./g, "");
-  if (type !== "organization" || !/^[A-Z&]{2,6}s?$/.test(bare)) return { name };
-  const full = ACRONYMS[bare.replace(/s$/, "")] || ACRONYMS[bare];
-  return full ? { name: full, note: `acronym "${bare}" -> "${full}"` } : { refuse: `"${bare}" is an acronym with no unambiguous expansion (it names different organizations in different countries)` };
+  if (type !== "organization") return { name };
+  // A short all-caps token may be an acronym and may carry a place qualifier:
+  // "ÉTS Montréal" names the school, not a Montréal branch of an unknown
+  // "ÉTS". The qualifier is dropped for the lookup only — the plan's display
+  // name is unchanged. Accents are folded for the key ("ÉTS" -> "ETS"), and a
+  // token with no expansion and a qualifier is left alone (a short
+  // capitalised word is not necessarily an acronym); a bare unknown acronym
+  // is still refused, as before.
+  const m = bare.match(/^([\p{Lu}&]{2,6}s?)\s+(.+)$/u);
+  const token = m ? m[1] : bare;
+  if (!/^[\p{Lu}&]{2,6}s?$/u.test(token)) return { name };
+  const key = token.replace(/s$/, "").normalize("NFD").replace(/\p{M}/gu, "");
+  const full = ACRONYMS[key] || ACRONYMS[token.replace(/s$/, "")] || ACRONYMS[token];
+  if (full) return { name: full, note: `${m ? `acronym "${token}" in "${bare}"` : `acronym "${token}"`} -> "${full}"` };
+  if (m) return { name };
+  return { refuse: `"${token}" is an acronym with no unambiguous expansion (it names different organizations in different countries)` };
 }
 
 // Download a candidate's 1400 px rendition and store it as JPEG at `abs`.
@@ -576,6 +603,18 @@ async function resolveMoney({ query }) {
 // recognises), else refuses it (null) so the beat is not given some other
 // country's photo.
 const GENERIC_INSTITUTION = /^(the\s+)?(supreme court|high court|constitutional court|federal court|court of appeals?|parliament|congress|senate|house of (representatives|commons|lords)|national assembly|central bank|reserve bank|treasury|ministry of [a-z ]+|department of [a-z ]+|police|army|navy|air force|government|cabinet|election commission|human rights commission|national human rights commission)$/i;
+/**
+ * May an OPEN Commons search (any file whose title holds the name) propose a LOGO for this name? Board 38054686824 ch 9: the bare
+ * generic name "Treasury" went to that search, which returned "The Treasury Discount Store Logo" (a US retail chain) and the verifier
+ * accepted it as "The Treasury". A generic institution name, or a name of one word, names no single organisation, so only Wikipedia's
+ * infobox and Wikidata's own logo claims (which name the item) may supply its mark, never an open search.
+ */
+function openLogoSearchAllowed(name) {
+  const n = String(name || "").trim().replace(/^the\s+/i, "");
+  if (!n) return false;
+  if (GENERIC_INSTITUTION.test(String(name).trim())) return false;
+  return n.split(/\s+/).filter((w) => w.length > 1).length >= 2;
+}
 function qualifyEntity(ent, countries = []) {
   if (!ent?.name || !GENERIC_INSTITUTION.test(String(ent.name).trim())) return { ent, note: null };
   const cs = [...new Set(countries)];
@@ -586,7 +625,28 @@ function qualifyEntity(ent, countries = []) {
   return { ent: null, note: `"${ent.name}" is a generic institution name and the script names ${cs.length ? `${cs.length} countries (${cs.join(", ")})` : "no country"} — not resolved (it would show some country's ${ent.name})` };
 }
 
-module.exports = { resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
+/**
+ * qualifyEntity, but asked of Wikipedia first. The script's one named country is not always the institution's country: the
+ * "Department of the Treasury" in a script about sanctions on IRAN is the United States', and forcing Iran onto it looked up
+ * "Department of the Treasury of Iran" and found nothing (board 38044082797 ch 9). When Wikipedia's own article for the PLAIN name is a
+ * specific institution (not a disambiguation page) that names a country other than the script's, the plain name's primary topic is used
+ * and no country is forced onto it. Anything else behaves as qualifyEntity did.
+ *   summaryOf(name) -> a Wikipedia REST summary or null (injected: scripts/resolve-scene.cjs wikiSummary)
+ */
+async function qualifyEntityWith(ent, countries = [], summaryOf = null) {
+  const q = qualifyEntity(ent, countries);
+  if (!q.ent || q.ent === ent || typeof summaryOf !== "function") return q;
+  let s = null;
+  try { s = await summaryOf(String(ent.name).trim().replace(/^the\s+/i, "")); } catch { s = null; }
+  if (!s || s.type === "disambiguation" || !s.title) return q;
+  const { regionsIn } = await import("./place-gate.js");
+  const { resolveRegion } = await import("../src/skills/remotion-render/visual/geo-regions.js");
+  const own = regionsIn(`${s.title} ${s.description || ""}`);
+  const scripts = new Set([...new Set(countries)].map((c) => resolveRegion(c)).filter(Boolean));
+  if (!own.size || [...own].some((r) => scripts.has(r))) return q;
+  return { ent, note: `"${ent.name}" is a generic institution name, but Wikipedia's primary article for it is "${s.title}" (not ${[...new Set(countries)].join(", ")}) — resolving that, not "${q.ent.name}"` };
+}
+module.exports = { openLogoSearchAllowed, qualifyEntityWith, resolveEntity, resolveDocument, resolveMoney, personCandidates, entityCandidates, downloadTo, slug, PUBLIC, DIR, fileInfo, tokens, getJson, fileNameOf, titleMatches, checkFile, checkDocFile, checkMoneyFile, viewOf, qualifyEntity, expandName, GENERIC_INSTITUTION };
 
 if (require.main === module) {
   const arg = (n) => { const i = process.argv.indexOf(`--${n}`); return i > -1 ? process.argv[i + 1] : null; };

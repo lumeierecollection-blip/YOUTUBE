@@ -1,0 +1,65 @@
+{
+  "channel_id": "49",
+  "topic_slug": "social-reckoning-bombs-5m-opening",
+  "format": "shorts",
+  "hook": "Sony released Aaron Sorkin's new feature, and it crashed with a brutal $5.5 million opening weekend.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sony released Aaron Sorkin's new feature, and it crashed with a brutal $5.5 million opening weekend.",
+      "b_roll": [
+        "Sony Pictures logo on screen",
+        "The Social Reckoning title card"
+      ],
+      "text_overlay": {
+        "text": "$5.5 Million Opening"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Sony backed The Social Reckoning as the director's massive Facebook follow-up. Friday brought in just $2.1 million including previews. Where did the $5.5 million total come from?",
+      "b_roll": [
+        "Aaron Sorkin portrait",
+        "The Social Network poster"
+      ],
+      "text_overlay": {
+        "text": "$2.1 Million Friday"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Universal crushed those numbers with horror instead.",
+      "b_roll": [
+        "Universal logo animation"
+      ],
+      "text_overlay": {
+        "text": "Universal Counters"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Universal released Other Mommy starring Jessica Chastain. That horror hit claimed the number one box office spot with a massive $27.5 million debut.",
+      "b_roll": [
+        "Jessica Chastain photo",
+        "Other Mommy movie poster"
+      ],
+      "text_overlay": {
+        "text": "$27.5 Million Debut"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the box office numbers before trusting studio forecasts.",
+      "b_roll": [
+        "Box office tracking chart"
+      ],
+      "text_overlay": {
+        "text": "Check the Box Office"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+    "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161"
+  ]
+}

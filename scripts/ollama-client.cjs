@@ -47,20 +47,21 @@ const IMAGE_MAX = () => Number(process.env.OLLAMA_IMAGE_MAX || 512);
 // runner takes longer than 5 minutes). The only limit here is timeoutMs.
 const http = require("node:http");
 const https = require("node:https");
-function request(path, body, timeoutMs = 120000) {
+function request(path, body, timeoutMs = 120000, { base = OLLAMA_URL, auth = null } = {}) {
   return new Promise((resolve, reject) => {
-    const url = new URL(`${OLLAMA_URL}${path}`);
+    const url = new URL(`${base}${path}`);
     const payload = body ? JSON.stringify(body) : null;
+    const headers = { ...(body ? { "content-type": "application/json", "content-length": Buffer.byteLength(payload) } : {}), ...(auth ? { authorization: `Bearer ${auth}` } : {}) };
     const req = (url.protocol === "https:" ? https : http).request(url, {
       method: body ? "POST" : "GET",
-      headers: body ? { "content-type": "application/json", "content-length": Buffer.byteLength(payload) } : undefined,
+      headers: Object.keys(headers).length ? headers : undefined,
     }, (res) => {
       const chunks = [];
       res.on("data", (c) => chunks.push(c));
       res.on("end", () => {
         clearTimeout(timer);
         const text = Buffer.concat(chunks).toString("utf8");
-        if (res.statusCode < 200 || res.statusCode >= 300) return reject(new Error(`${path} → HTTP ${res.statusCode}: ${text.slice(0, 300)}`));
+        if (res.statusCode < 200 || res.statusCode >= 300) return reject(Object.assign(new Error(`${path} → HTTP ${res.statusCode}: ${text.slice(0, 300)}`), { status: res.statusCode }));
         try { resolve(text ? JSON.parse(text) : {}); } catch (e) { reject(new Error(`${path} → unparseable answer: ${text.slice(0, 200)}`)); }
       });
       res.on("error", (e) => { clearTimeout(timer); reject(e); });
@@ -97,11 +98,11 @@ async function generate(prompt, { model = DEFAULT_MODEL, format, options, images
 
 // ── The Gemini-shaped call ─────────────────────────────────────────
 
-async function shrink(b64) {
+async function shrink(b64, max = IMAGE_MAX()) {
   try {
     const sharp = require("sharp");
     const out = await sharp(Buffer.from(b64, "base64"))
-      .resize({ width: IMAGE_MAX(), height: IMAGE_MAX(), fit: "inside", withoutEnlargement: true })
+      .resize({ width: max, height: max, fit: "inside", withoutEnlargement: true })
       .jpeg({ quality: 85 }).toBuffer();
     return out.toString("base64");
   } catch {
@@ -110,7 +111,7 @@ async function shrink(b64) {
 }
 
 // OpenAI-style messages -> one prompt + its images, in order.
-async function messagesToPrompt(messages) {
+async function messagesToPrompt(messages, max = IMAGE_MAX()) {
   const parts = [], images = [];
   for (const m of messages || []) {
     const content = typeof m.content === "string" ? [{ type: "text", text: m.content }] : (m.content || []);
@@ -118,7 +119,7 @@ async function messagesToPrompt(messages) {
       if (c && c.type === "text") parts.push(String(c.text));
       else if (c && c.type === "image_url") {
         const url = String(c.image_url?.url || "");
-        images.push(await shrink(url.replace(/^data:[^;]+;base64,/, "")));
+        images.push(await shrink(url.replace(/^data:[^;]+;base64,/, ""), max));
         parts.push(`[image ${images.length}]`);
       }
     }
@@ -199,6 +200,51 @@ async function callOllama(messages, opts = {}) {
   }
 }
 
+// ── Ollama Cloud ───────────────────────────────────────────────────
+// Owner, 2026-10-17: "using OLLAMA as well would make sense for our provider". The local server above runs 3B/7B models on a CPU runner, and boards
+// run on it are not evidence (planner / props / verifier quality collapses). Ollama's hosted API (https://ollama.com, OLLAMA_API_KEY) serves the large
+// open models — gpt-oss:120b for text, gemma4:31b for images — with the same request shape, so it is the SECOND provider (src/lib/llm.js: Gemini ->
+// Ollama Cloud -> OpenRouter -> Groq -> local Ollama). Direct-API model names carry no "-cloud" suffix. Without a key it answers { error: "no_key" } at
+// once and the chain moves on. Errors: 429 -> quota_exhausted (the free tier has hourly / weekly limits), 401/403 -> unauthorized, 404 -> model_not_found.
+const CLOUD_URL = () => (process.env.OLLAMA_CLOUD_URL || "https://ollama.com").replace(/\/$/, "");
+const CLOUD_TEXT_MODEL = () => process.env.OLLAMA_CLOUD_TEXT_MODEL || "gpt-oss:120b";
+// qwen3-vl:235b was retired on ollama.com (HTTP 410, 2026-10-19); gemma4:31b is the free-tier model that reads images (tested: "a stack of cash bills", 0.9 s)
+const CLOUD_VISION_MODEL = () => process.env.OLLAMA_CLOUD_VISION_MODEL || "gemma4:31b";
+const cloudKey = () => String(process.env.OLLAMA_API_KEY || "").trim();
+const hasCloudKey = () => !!cloudKey();
+// OLLAMA_FIRST=1 (workflow input ollama_first; owner, 2026-10-18: "use Ollama for that because it's practically free"): Ollama Cloud is asked FIRST by every
+// model chain — callGemini's direct callers, callLLM, both image checkers — and Gemini becomes its fallback. Off without a key.
+const ollamaFirst = () => /^(1|true|on|yes)$/i.test(String(process.env.OLLAMA_FIRST || "").trim()) && hasCloudKey();
+function cloudError(e) {
+  const s = e && e.status;
+  return s === 429 ? "quota_exhausted" : s === 401 || s === 403 ? "unauthorized" : s === 404 ? "model_not_found" : e && e.name === "AbortError" ? "timed_out" : s >= 500 ? "unavailable" : "failed";
+}
+
+/** Same messages and return shape as callOllama / callGemini; source "ollama-cloud" on failure. */
+async function callOllamaCloud(messages, opts = {}) {
+  if (!hasCloudKey()) return { source: "ollama-cloud", error: "no_key", detail: "OLLAMA_API_KEY is not set" };
+  const { maxTokens = 1200, temperature = 0 } = opts;
+  // a hosted vision model reads detail a CPU model could not afford: 1024 px, not 512
+  const { prompt, images } = await messagesToPrompt(messages, Number(process.env.OLLAMA_CLOUD_IMAGE_MAX || 1024));
+  const model = opts.ollamaCloudModel || (images.length ? CLOUD_VISION_MODEL() : CLOUD_TEXT_MODEL());
+  const timeoutMs = Number(opts.cloudTimeoutMs || process.env.OLLAMA_CLOUD_TIMEOUT_MS || 240000);
+  const t0 = Date.now();
+  try {
+    // /api/chat: a reasoning model (gpt-oss) answers in message.content and keeps its thinking in message.thinking. num_predict leaves room for both.
+    const r = await request("/api/chat", {
+      model, stream: false, format: "json",
+      messages: [{ role: "user", content: prompt, ...(images.length ? { images } : {}) }],
+      options: { temperature, num_predict: Math.max(maxTokens, 1024) * 4 },
+    }, timeoutMs, { base: CLOUD_URL(), auth: cloudKey() });
+    const text = String(r.message?.content || "").trim();
+    console.error(`[ollama-cloud] ${model}: ${r.prompt_eval_count ?? "?"} prompt + ${r.eval_count ?? "?"} answer tokens, ${images.length} image(s), ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+    if (!text) return { source: "ollama-cloud", error: "empty_answer", detail: `${model} returned nothing`, model };
+    return parseAnswer(text);
+  } catch (e) {
+    return { source: "ollama-cloud", error: cloudError(e), detail: String(e.cause?.code || e.message || e).slice(0, 300), model };
+  }
+}
+
 async function check(model, timeoutS) {
   const tags = await waitForServer(timeoutS);
   const names = (tags.models || []).map((m) => m.name);
@@ -210,11 +256,24 @@ async function check(model, timeoutS) {
   console.log(`Ollama ready: ${OLLAMA_URL}, model ${model}, warm-up ${((Date.now() - t0) / 1000).toFixed(1)}s → "${String(out).trim()}"`);
 }
 
-module.exports = { waitForModels, generate, waitForServer, callOllama, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL };
+module.exports = { waitForModels, generate, waitForServer, callOllama, callOllamaCloud, hasCloudKey, ollamaFirst, cloudError, messagesToPrompt, callCapMs, DEFAULT_MODEL, OLLAMA_URL, request, CLOUD_URL, cloudKey };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);
   const flag = (n, d) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : d; };
+  // --cloud-check: is the key valid, and are the configured cloud models served? (exit 0 = yes, 3 = no key, 1 = not usable)
+  if (argv.includes("--cloud-check")) {
+    (async () => {
+      if (!hasCloudKey()) { console.log("ollama-cloud: no OLLAMA_API_KEY — the chain skips it"); process.exit(3); }
+      const tags = await request("/api/tags", null, 20000, { base: CLOUD_URL(), auth: cloudKey() });
+      const names = (tags.models || []).map((m) => m.name || m.model);
+      for (const m of [CLOUD_TEXT_MODEL(), CLOUD_VISION_MODEL()]) console.log(`ollama-cloud: ${m} ${names.some((n) => n === m || n === `${m}-cloud` || n.startsWith(`${m}`)) ? "served" : `NOT in /api/tags (have: ${names.slice(0, 30).join(", ")})`}`);
+      const r = await callOllamaCloud([{ role: "user", content: 'Answer with JSON {"ok": true} and nothing else.' }], { maxTokens: 50 });
+      console.log(`ollama-cloud: answer ${JSON.stringify(r).slice(0, 200)}`);
+      process.exit(r && r.ok === true ? 0 : 1);
+    })().catch((e) => { console.error(`::error::ollama-cloud: ${e.message}`); process.exit(1); });
+    return;
+  }
   if (!argv.includes("--check")) {
     console.error("Usage: node scripts/ollama-client.cjs --check [--model <name>] [--timeout <s>]");
     process.exit(2);

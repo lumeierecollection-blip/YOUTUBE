@@ -16,6 +16,7 @@
  */
 
 const fs = require('fs');
+const { resolveChannel } = require("../../scripts/lib/channel-lookup.cjs");
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '../..');
@@ -154,7 +155,7 @@ function main() {
   }
 
   // Single channel mode
-  const ch = config.channels.find(c => String(c.id) === String(channelId));
+  const ch = resolveChannel(channelId, config.channels);
   if (!ch) {
     console.error(`Channel ${channelId} not found in config`);
     process.exit(1);

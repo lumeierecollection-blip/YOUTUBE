@@ -1,0 +1,67 @@
+{
+  "channel_id": "44",
+  "topic_slug": "crisis-authentic-leadership-2026",
+  "format": "shorts",
+  "hook": "Target rolled back DEI strategies in 2025, exposing a deep credibility crisis in corporate leadership.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Target rolled back DEI strategies in 2025, exposing a deep credibility crisis in corporate leadership.",
+      "b_roll": [
+        "Corporate headquarters building exterior",
+        "Target store front sign"
+      ],
+      "text_overlay": {
+        "text": "The 2025 Target DEI Rollback"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Google Scholar indexes 5,000,000 academic articles exploring the immense hype surrounding executive authenticity. Harvard Business Review published October 2026 research on leadership pitfalls.",
+      "b_roll": [
+        "Digital search results interface on screen",
+        "Academic library interior with books"
+      ],
+      "text_overlay": {
+        "text": "5,000,000 Academic Articles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "New October 2026 research shows revealing painful setbacks actually undermines your professional agency as a leader.",
+      "b_roll": [
+        "Close up of executive reviewing document",
+        "Modern office desk setup"
+      ],
+      "text_overlay": {
+        "text": "When Authenticity Fails"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Fast Company detailed intense political backlash forcing Target executives to reverse course in 2025.",
+      "b_roll": [
+        "Fast Company article headline on monitor",
+        "Charts showing corporate strategy shifts"
+      ],
+      "text_overlay": {
+        "text": "The 2025 Strategy Reversal"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Target faced 2025 backlash over DEI rollbacks.",
+      "b_roll": [
+        "Target corporate logo on glass wall"
+      ],
+      "text_overlay": {
+        "text": "Target 2025 Backlash"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader",
+    "https://ioledge.com/insights/authenticity-in-leadership",
+    "https://hbr.org/2026/10/research-when-being-authentic-undermines-your-leadership"
+  ]
+}

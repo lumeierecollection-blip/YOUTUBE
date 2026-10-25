@@ -9,6 +9,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { resolveChannel } from "../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { hasCredentials } from "./youtube-auth.js";
@@ -281,8 +282,7 @@ async function main() {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const numId = parseInt(channelId, 10);
-  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, channels);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);

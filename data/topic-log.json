@@ -3,8 +3,8 @@
   "description": "Tracks all topics used per channel to prevent duplicates. Updated after each script generation.",
   "channels": {
     "1": {
-      "channel_name": "Money Mind",
-      "niche": "Personal Finance (Budgeting for Beginners)",
+      "channel_name": "Hidden Past",
+      "niche": "History Untold (What Really Happened)",
       "used_topics": [
         {
           "topic": "How Often You Should Get Paid (And Why It Matters More Than You Think)",
@@ -415,13 +415,168 @@
           "topic": "Should You Use Your 401(k) to Pay Off Credit Card Debt in October 2026",
           "slug": "401k-pay-off-credit-card-debt-october-2026",
           "reserved_at": "2026-10-05T23:02:34.172Z"
+        },
+        {
+          "topic": "Mental Accounting Theory Validated: How Your Brain Splits Cash",
+          "slug": "mental-accounting-theory-validated-october-2026",
+          "reserved_at": "2026-10-07T12:20:10.739Z"
+        },
+        {
+          "topic": "The 64 Percent Fear Factor: Why Saving Won't Cure Financial Anxiety",
+          "slug": "64-percent-fear-factor-financial-anxiety",
+          "reserved_at": "2026-10-08T12:34:12.921Z"
+        },
+        {
+          "topic": "Gen Z No-Spend Challenges Surge in October 2026 as Grocery Prices Rise",
+          "slug": "gen-z-no-spend-challenges-october-2026",
+          "reserved_at": "2026-10-09T12:18:16.069Z"
+        },
+        {
+          "topic": "Emergency Fund Challenge 2026",
+          "slug": "emergency-fund-challenge-2026",
+          "reserved_at": "2026-10-09T21:45:12.427Z"
+        },
+        {
+          "topic": "SoFi's October 2026 Release of 8 Fun Money Savings Challenges",
+          "slug": "sofi-october-2026-savings-challenges",
+          "reserved_at": "2026-10-10T00:48:05.040Z"
+        },
+        {
+          "topic": "The Marketplace October 2026 Report on Why Americans Are Saving Less",
+          "slug": "marketplace-october-2026-report-on-why-americans-are-saving",
+          "reserved_at": "2026-10-10T01:19:30.447Z"
+        },
+        {
+          "topic": "8 Creative Savings Challenges to Try in October 2026",
+          "slug": "8-creative-savings-challenges-october-2026",
+          "reserved_at": "2026-10-10T01:53:29.222Z"
+        },
+        {
+          "topic": "The 2026 Fidelity Study on Short-Term Savings",
+          "slug": "fidelity-study-short-term-savings-2026",
+          "reserved_at": "2026-10-10T03:28:10.905Z"
+        },
+        {
+          "topic": "The Behavioral Science Behind Why Money Mindset Shifts Fail in October 2026",
+          "slug": "behavioral-science-money-mindset-october-2026",
+          "reserved_at": "2026-10-10T10:14:20.829Z"
+        },
+        {
+          "topic": "The Pre-Christmas Savings Challenge That Yields £863",
+          "slug": "pre-christmas-savings-challenge-yields-863",
+          "reserved_at": "2026-10-10T11:16:42.554Z"
+        },
+        {
+          "topic": "CBS News October 2026 Warning on Aggressive Debt Payoff",
+          "slug": "cbs-news-october-2026-aggressive-debt-payoff",
+          "reserved_at": "2026-10-10T13:13:45.347Z"
+        },
+        {
+          "topic": "Forbes Advisor Best Budgeting Apps of October 2026 Tested and Ranked",
+          "slug": "forbes-advisor-best-budgeting-apps-october-2026",
+          "reserved_at": "2026-10-15T11:06:04.428Z"
+        },
+        {
+          "topic": "The Penny Hoarder's 2026 State of Savings Report Findings",
+          "slug": "penny-hoarder-2026-state-of-savings",
+          "reserved_at": "2026-10-15T14:44:13.909Z"
+        },
+        {
+          "topic": "CNBC Select's October 2026 Ranking of the Best Budgeting Apps",
+          "slug": "cnbc-select-october-2026-best-budgeting-apps",
+          "reserved_at": "2026-10-15T18:08:35.080Z"
+        },
+        {
+          "topic": "Why Workplace Financial Education Beats Raw Income for Confidence",
+          "slug": "workplace-financial-education-confidence-index",
+          "reserved_at": "2026-10-16T12:24:28.830Z"
+        },
+        {
+          "topic": "Michelle Singletary's October 2026 Shift on Debt and Money Mindsets",
+          "slug": "michelle-singletary-october-2026-debt-mindset",
+          "reserved_at": "2026-10-16T22:43:17.229Z"
+        },
+        {
+          "topic": "Michelle Singletary's October 2026 Washington Post Debt and Money Strategy",
+          "slug": "michelle-singletary-october-2026-debt-money-strategy",
+          "reserved_at": "2026-10-17T12:15:56.029Z"
+        },
+        {
+          "topic": "Why Michelle Singletary Says Debt Consumes Your Raises in 2026",
+          "slug": "michelle-singletary-debt-raises-october-2026",
+          "reserved_at": "2026-10-18T12:41:07.513Z"
+        },
+        {
+          "topic": "Michelle Singletary's October 2026 Warning on Debt Consuming Raises",
+          "slug": "michelle-singletary-october-2026-debt-warning",
+          "reserved_at": "2026-10-18T20:54:04.140Z"
+        },
+        {
+          "topic": "Why 26 Percent of Americans Spend More Than They Earn in FINRA Data",
+          "slug": "finra-data-26-percent-spending-more-than-earn",
+          "reserved_at": "2026-10-18T21:46:33.678Z"
+        },
+        {
+          "topic": "The 1917 Holt-Putilov Alexander Nevsky Heavy Tank and Alternative Russian WWI History",
+          "slug": "1917-holt-putilov-alexander-nevsky-heavy-tank",
+          "reserved_at": "2026-10-19T19:15:34.606Z"
+        },
+        {
+          "topic": "GB Power Grid Inquiry Uncovers Cover-Up Claims Over Blackout Risks",
+          "slug": "gb-power-grid-cover-up-inquiry-october-2026",
+          "reserved_at": "2026-10-19T20:07:22.482Z"
+        },
+        {
+          "topic": "What Twenty-Six Steamer Trunks Revealed About Filipino American History",
+          "slug": "twenty-six-steamer-trunks-filipino-american-history",
+          "reserved_at": "2026-10-19T21:12:26.448Z"
+        },
+        {
+          "topic": "Unsealed Files Suggest OJ Simpson Had Help Covering Up 1994 Murders",
+          "slug": "oj-simpson-1994-murders-unsealed-files",
+          "reserved_at": "2026-10-19T22:11:40.724Z"
+        },
+        {
+          "topic": "Sandi Toksvig and University of Cambridge Launch Mappa Mundi Project to Fix Wikipedia Bias",
+          "slug": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative",
+          "reserved_at": "2026-10-19T23:59:19.971Z"
+        },
+        {
+          "topic": "The CIA, Havana Syndrome, and the 2026 Revelations on Russia",
+          "slug": "cia-havana-syndrome-russia-revelations-2026",
+          "reserved_at": "2026-10-20T08:39:34.015Z"
+        },
+        {
+          "topic": "British Library Acquires the Extensive Archive of A.S. Byatt",
+          "slug": "british-library-acquires-as-byatt-archive",
+          "reserved_at": "2026-10-20T09:21:26.125Z"
+        },
+        {
+          "topic": "Elizabeth Van Lew and the Mastermind Union Espionage Network",
+          "slug": "elizabeth-van-lew-union-espionage-network",
+          "reserved_at": "2026-10-21T14:02:45.502Z"
+        },
+        {
+          "topic": "The Library of Virginia's 5-Year Digitization of 99 Free Negro Registers",
+          "slug": "library-of-virginia-free-negro-registers",
+          "reserved_at": "2026-10-22T13:57:55.869Z"
+        },
+        {
+          "topic": "Ancient Egypt’s First Female King Revealed by Long-Lost Royal Seals",
+          "slug": "ancient-egypts-first-female-king-royal-seals",
+          "reserved_at": "2026-10-23T13:34:03.799Z"
+        },
+        {
+          "topic": "60 Years After Aberfan: National Library of Wales Releases New Books of Remembrance",
+          "slug": "aberfan-60-years-books-of-remembrance",
+          "reserved_at": "2026-10-24T12:51:32.628Z"
         }
       ],
-      "last_generated": "2026-10-06T12:26:11.989Z"
+      "last_generated": "2026-10-24T12:51:32.628Z"
     },
     "2": {
-      "channel_name": "Legal Brief",
-      "niche": "Legal Education (Know Your Rights)",
+      "channel_name": "AI Tested",
+      "niche": "AI Tool Reviews (Real Results Only)",
       "used_topics": [
         {
           "topic": "What to Say During a Traffic Stop to Protect Your Rights",
@@ -877,9 +1032,174 @@
           "topic": "Ohio's Stop and Identify Law Adds Traffic Stop Fines",
           "slug": "ohios-stop-and-identify-law-adds-traffic-stop-fines",
           "reserved_at": "2026-10-06T12:26:37.854Z"
+        },
+        {
+          "topic": "California Rewrites the Rules on Stay or Pay Employment Provisions",
+          "slug": "california-rewrites-stay-or-pay-employment-provisions",
+          "reserved_at": "2026-10-07T12:19:29.610Z"
+        },
+        {
+          "topic": "New Ohio Law Requires Drivers to Give Name to Police at Traffic Stops",
+          "slug": "ohio-law-requires-drivers-name-traffic-stops",
+          "reserved_at": "2026-10-08T12:34:19.324Z"
+        },
+        {
+          "topic": "Oklahoma Federal Court Finds Warrantless ALPR Search Violated the Fourth Amendment",
+          "slug": "oklahoma-federal-court-alpr-fourth-amendment-2026",
+          "reserved_at": "2026-10-09T21:40:54.201Z"
+        },
+        {
+          "topic": "Maryland's New Rental Laws: Criminal Screening and Cooling Rules",
+          "slug": "marylands-new-rental-laws-october-2026",
+          "reserved_at": "2026-10-10T00:48:49.254Z"
+        },
+        {
+          "topic": "Federal Jury Finds Bexar County Liable for Unconstitutional Traffic Stop Scheme",
+          "slug": "bexar-county-unconstitutional-traffic-stop-scheme",
+          "reserved_at": "2026-10-10T01:18:54.342Z"
+        },
+        {
+          "topic": "Can Police Use ALPR Data to Justify a Traffic Stop?",
+          "slug": "alpr-traffic-stop-fourth-amendment-ruling",
+          "reserved_at": "2026-10-10T01:53:12.173Z"
+        },
+        {
+          "topic": "ALPR-Induced Traffic Stops Violate Fourth Amendment",
+          "slug": "alpr-induced-traffic-stops-violate-fourth-amendment-2026",
+          "reserved_at": "2026-10-10T03:32:07.869Z"
+        },
+        {
+          "topic": "New ICE Guidance Bans High-Speed Car Chases and Restricts Traffic Stops",
+          "slug": "ice-traffic-stops-pursuit-guidance-2026",
+          "reserved_at": "2026-10-10T07:17:29.636Z"
+        },
+        {
+          "topic": "Connecticut Housing Advocates Push Back Against Alternative Security Deposits",
+          "slug": "connecticut-housing-advocates-alternative-security-deposits",
+          "reserved_at": "2026-10-10T07:26:36.047Z"
+        },
+        {
+          "topic": "San Francisco Supervisor Introduces New Legislation to Curb Nuisance Evictions",
+          "slug": "sf-supervisor-legislation-curb-nuisance-evictions",
+          "reserved_at": "2026-10-10T10:14:40.907Z"
+        },
+        {
+          "topic": "East Lansing Approves New Police De-Escalation and Use-of-Force Policy",
+          "slug": "east-lansing-police-deescalation-policy-2026",
+          "reserved_at": "2026-10-10T11:18:20.143Z"
+        },
+        {
+          "topic": "Driver Wins $76 After Automated License Plate Reader Led to Bogus Search",
+          "slug": "driver-wins-76-alpr-bogus-traffic-stop-search",
+          "reserved_at": "2026-10-10T13:12:56.198Z"
+        },
+        {
+          "topic": "Landlords Required Alternative Security Deposits Draw Housing Advocate Pushback",
+          "slug": "landlords-alternative-security-deposits-advocate-pushback",
+          "reserved_at": "2026-10-10T14:43:58.467Z"
+        },
+        {
+          "topic": "New California Law Restricts Undercover Police Operations Targeting Youth",
+          "slug": "california-law-restricts-undercover-police-youth",
+          "reserved_at": "2026-10-15T11:06:30.241Z"
+        },
+        {
+          "topic": "Boston Installs Bus Cameras to Fine Drivers Who Illegally Pass Stop Signs",
+          "slug": "boston-bus-cameras-stop-sign-enforcement",
+          "reserved_at": "2026-10-15T13:30:29.135Z"
+        },
+        {
+          "topic": "Colorado AG Reminds Landlords of Expanded Housing Protections",
+          "slug": "colorado-ag-domestic-violence-housing-protections",
+          "reserved_at": "2026-10-15T14:43:00.269Z"
+        },
+        {
+          "topic": "Newark Bans Rental Broker Fees Under New Ordinance Taking Effect October 2026",
+          "slug": "newark-bans-rental-broker-fees-ordinance-october-2026",
+          "reserved_at": "2026-10-15T18:05:36.627Z"
+        },
+        {
+          "topic": "Maryland's 2027 Tenants' Bill of Rights: What Changed October 2026",
+          "slug": "maryland-2027-tenants-bill-of-rights-october-2026",
+          "reserved_at": "2026-10-16T12:24:23.817Z"
+        },
+        {
+          "topic": "Supreme Court Rules on Legislative Privileges Versus Free Speech",
+          "slug": "supreme-court-legislative-privileges-free-speech",
+          "reserved_at": "2026-10-18T20:55:00.377Z"
+        },
+        {
+          "topic": "October 2026 Employment Law Updates: New Pay Transparency and Family Leave Rules",
+          "slug": "october-2026-employment-pay-transparency",
+          "reserved_at": "2026-10-18T23:23:56.564Z"
+        },
+        {
+          "topic": "Boston Adds Bus Cameras to Enforce Stop Sign Violations",
+          "slug": "boston-bus-cameras-stop-sign-enforcement-2026",
+          "reserved_at": "2026-10-19T15:48:17.580Z"
+        },
+        {
+          "topic": "Google Gemini 4 Argon vs Anthropic Claude Opus 5.5 Real-World Test",
+          "slug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+          "reserved_at": "2026-10-19T19:15:19.038Z"
+        },
+        {
+          "topic": "Anthropic Haiku 5.5 and October 2026 AI API Pricing Breakdown",
+          "slug": "anthropic-haiku-5-5-october-2026-pricing-breakdown",
+          "reserved_at": "2026-10-19T20:07:59.057Z"
+        },
+        {
+          "topic": "MiniMax M3.1 Flash vs DeepSeek and Opus 5 Benchmarks",
+          "slug": "minimax-m3-1-flash-benchmark-analysis",
+          "reserved_at": "2026-10-19T21:10:37.851Z"
+        },
+        {
+          "topic": "Gemini 4 Argon Projects: Inside the First Day of Outputs",
+          "slug": "gemini-4-argon-first-day-projects-output",
+          "reserved_at": "2026-10-19T22:10:12.011Z"
+        },
+        {
+          "topic": "OVHcloud Public Cloud October 2026 Price Increases Analyzed",
+          "slug": "ovhcloud-public-cloud-october-2026-pricing-update",
+          "reserved_at": "2026-10-20T00:00:04.334Z"
+        },
+        {
+          "topic": "Amazon MWAA Adds AI Agent Skills for Apache Airflow Workflows",
+          "slug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+          "reserved_at": "2026-10-20T00:48:29.674Z"
+        },
+        {
+          "topic": "Precisely Launches MCP Server for SAP Automation Integration",
+          "slug": "precisely-mcp-server-sap-automation-integration",
+          "reserved_at": "2026-10-20T01:15:09.737Z"
+        },
+        {
+          "topic": "MIT InstructMesh Tool Repairs and Fabricates AI 3D Models",
+          "slug": "mit-instructmesh-ai-3d-models-fabrication",
+          "reserved_at": "2026-10-20T08:38:22.452Z"
+        },
+        {
+          "topic": "WSO2 Integrator 5.1 Deepens AI-Powered Enterprise Integration",
+          "slug": "wso2-integrator-5-1-ai-workflow-release",
+          "reserved_at": "2026-10-20T11:38:56.762Z"
+        },
+        {
+          "topic": "September 2026 U.S. Consumer Price Index Inflation Breakdown",
+          "slug": "september-2026-cpi-inflation-breakdown",
+          "reserved_at": "2026-10-20T12:38:30.453Z"
+        },
+        {
+          "topic": "Interact MCP Server Brings Enterprise Intranet to AI Assistants",
+          "slug": "interact-mcp-enterprise-intranet-server",
+          "reserved_at": "2026-10-20T16:11:35.130Z"
+        },
+        {
+          "topic": "LLM API Price Changes and New Model Costs for October 2026",
+          "slug": "llm-api-price-changes-october-2026-report",
+          "reserved_at": "2026-10-20T21:54:36.490Z"
         }
       ],
-      "last_generated": "2026-10-06T12:26:37.855Z"
+      "last_generated": "2026-10-24T12:47:02.197Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -996,22 +1316,208 @@
       "last_generated": "2026-09-14T08:34:20.028Z"
     },
     "5": {
-      "channel_name": "Harmony",
-      "niche": "Music Theory & Composition",
+      "channel_name": "Broadsheet",
+      "niche": "True Crime & Investigative Journalism",
       "used_topics": [
         {
           "topic": "DOJ Fraud Division's New Corporate Enforcement Directive",
           "slug": "doj-fraud-division-corporate-enforcement-directive-2026",
           "reserved_at": "2026-10-07T00:15:49.212Z"
+        },
+        {
+          "topic": "Murdaugh Retrial Discovery Dispute Intensifies Over Cellphone Data",
+          "slug": "murdaugh-retrial-discovery-dispute-cellphone-data",
+          "reserved_at": "2026-10-07T12:22:17.739Z"
+        },
+        {
+          "topic": "Former CIA Official Pleads Guilty to Stealing $40M in Gold Bars",
+          "slug": "former-cia-official-pleads-guilty-gold-bars",
+          "reserved_at": "2026-10-08T12:37:47.640Z"
+        },
+        {
+          "topic": "Former TD Bank Employee Pleads Guilty to Laundering 4.8 Million",
+          "slug": "former-td-bank-employee-guilty-laundering-4-million",
+          "reserved_at": "2026-10-09T12:20:24.682Z"
+        },
+        {
+          "topic": "Corporate Fraud Enforcement Priorities 2026",
+          "slug": "corporate-fraud-enforcement-priorities-2026",
+          "reserved_at": "2026-10-09T21:41:10.081Z"
+        },
+        {
+          "topic": "Ukrainian-Russian Dual Citizen Pleads Guilty to Cybercrime Laundering",
+          "slug": "ukrainian-russian-dual-citizen-pleads-guilty-laundering",
+          "reserved_at": "2026-10-10T00:48:54.288Z"
+        },
+        {
+          "topic": "Missing Blood Evidence Testimony in Faith Hedgepeth Murder Trial",
+          "slug": "missing-blood-evidence-faith-hedgepeth-trial",
+          "reserved_at": "2026-10-10T01:19:43.225Z"
+        },
+        {
+          "topic": "Maui Mayor Richard Bissen Under Criminal Corruption Investigation",
+          "slug": "maui-mayor-bissen-criminal-corruption-investigation",
+          "reserved_at": "2026-10-10T07:17:42.661Z"
+        },
+        {
+          "topic": "Jho Low and Associates Charged in In Absentia 1.3 Billion Money Laundering Case",
+          "slug": "jho-low-in-absentia-money-laundering-charges-2026",
+          "reserved_at": "2026-10-10T10:17:42.706Z"
+        },
+        {
+          "topic": "Attorney General Bans Former Crypto CEO From Financial Industry",
+          "slug": "ag-bans-former-crypto-ceo-financial-industry",
+          "reserved_at": "2026-10-10T11:20:49.054Z"
+        },
+        {
+          "topic": "FTC and USDA Launch Joint Inquiry Into Agricultural Equipment Practices",
+          "slug": "ftc-usda-agricultural-equipment-inquiry",
+          "reserved_at": "2026-10-10T14:47:15.897Z"
+        },
+        {
+          "topic": "Justice Department Probes Major TV Networks Over Trump Pool Coverage Halt",
+          "slug": "doj-probes-tv-networks-trump-pool-coverage",
+          "reserved_at": "2026-10-15T11:09:10.017Z"
+        },
+        {
+          "topic": "Reuters Investigation Uncovers Iran's Global Apparatus Hunting Dissidents",
+          "slug": "reuters-investigation-irans-global-dissident-hunting-apparat",
+          "reserved_at": "2026-10-15T13:32:34.411Z"
+        },
+        {
+          "topic": "Turkish Authorities Raid Halk TV Headquarters Amid Corruption Probe",
+          "slug": "turkish-authorities-raid-halk-tv-headquarters",
+          "reserved_at": "2026-10-15T14:47:04.026Z"
+        },
+        {
+          "topic": "Federal Authorities Seize Rep. Ilhan Omar's Phone in Criminal Probe",
+          "slug": "federal-authorities-seize-ilhan-omar-phone",
+          "reserved_at": "2026-10-15T18:10:03.896Z"
+        },
+        {
+          "topic": "Russell Brand Sexual Assault Trial: Prosecution Strategy Explained",
+          "slug": "russell-brand-sexual-assault-trial-explained",
+          "reserved_at": "2026-10-16T12:28:38.131Z"
+        },
+        {
+          "topic": "Eurojust and NATO Joint Investigation Takes Down Company in EUR 1 Million Fraud",
+          "slug": "eurojust-nato-joint-investigation-fraud-takedown",
+          "reserved_at": "2026-10-17T12:18:12.621Z"
+        },
+        {
+          "topic": "DOJ Fraud Division and IRS Expose 490 Million in Tax Fraud",
+          "slug": "doj-fraud-division-irs-tax-fraud-surge",
+          "reserved_at": "2026-10-18T12:44:21.666Z"
         }
       ],
-      "last_generated": "2026-10-07T00:15:49.212Z"
+      "last_generated": "2026-10-18T12:44:21.666Z"
     },
     "6": {
-      "channel_name": "The War Room",
-      "niche": "Military History & Strategy",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Archive Room",
+      "niche": "Cold Cases & Unsolved Mysteries",
+      "used_topics": [
+        {
+          "topic": "Italian Prosecutors Reopen Garlasco Case to Probe Forensic Failures",
+          "slug": "italian-prosecutors-reopen-garlasco-case-forensics",
+          "reserved_at": "2026-10-07T12:22:04.630Z"
+        },
+        {
+          "topic": "Amelia Earhart Investigators Begin Expedition to Study Mysterious Object in Pacific",
+          "slug": "amelia-earhart-pacific-object-expedition",
+          "reserved_at": "2026-10-08T12:36:21.634Z"
+        },
+        {
+          "topic": "French Investigators Recover Two Stolen Renoir Masterpieces",
+          "slug": "french-investigators-recover-stolen-renoir-paintings",
+          "reserved_at": "2026-10-09T12:21:10.743Z"
+        },
+        {
+          "topic": "FBI Digs Beneath Michigan Barn Following Deathbed Tip in 50-Year-Old Homicide",
+          "slug": "fbi-digs-michigan-barn-50-year-old-homicide",
+          "reserved_at": "2026-10-10T00:47:58.988Z"
+        },
+        {
+          "topic": "Texas Rangers Identify Jane Doe in 1983 Hamilton County Cold Case After 42 Years",
+          "slug": "texas-rangers-identify-1983-hamilton-county-jane-doe",
+          "reserved_at": "2026-10-10T01:18:44.355Z"
+        },
+        {
+          "topic": "16th Century Papal Decree Recovered in Sevilla Home",
+          "slug": "16th-century-papal-decree-recovered-sevilla",
+          "reserved_at": "2026-10-10T01:53:17.895Z"
+        },
+        {
+          "topic": "Victoria Police Issue Fresh Appeal 40 Years After Albert Pisani Disappearance",
+          "slug": "victoria-police-appeal-40-years-albert-pisani",
+          "reserved_at": "2026-10-10T07:17:38.059Z"
+        },
+        {
+          "topic": "Coroner Approves Exhumation for Second Post-Mortem in Teoh Beng Hock Case",
+          "slug": "teoh-beng-hock-second-post-mortem-exhumation",
+          "reserved_at": "2026-10-10T07:26:24.051Z"
+        },
+        {
+          "topic": "25 Years Later, Federal Prosecutor Thomas Wales Killing Remains Unsolved",
+          "slug": "thomas-wales-killing-unsolved-25-years",
+          "reserved_at": "2026-10-10T11:21:01.180Z"
+        },
+        {
+          "topic": "French Authorities Recover Stolen Renoir Paintings Following Cagnes-sur-Mer Heist",
+          "slug": "french-authorities-recover-stolen-renoir-paintings",
+          "reserved_at": "2026-10-10T13:17:05.254Z"
+        },
+        {
+          "topic": "Church of Cyprus Secures Return of 14th-Century Byzantine Icons Stolen in 1974",
+          "slug": "church-of-cyprus-recovers-stolen-byzantine-icons",
+          "reserved_at": "2026-10-10T14:47:08.573Z"
+        },
+        {
+          "topic": "Philadelphia Investigators Use Luminol and Excavators at Olney House in Missing Search",
+          "slug": "philadelphia-luminol-excavators-olney-missing-persons",
+          "reserved_at": "2026-10-15T11:10:33.067Z"
+        },
+        {
+          "topic": "Chicago Police DNA Evidence Links Former Detective to Decades-Old Cold Case",
+          "slug": "chicago-police-dna-links-former-detective-cold-case",
+          "reserved_at": "2026-10-15T13:33:10.124Z"
+        },
+        {
+          "topic": "Human DNA Discovered at Philadelphia House of Horror Using Luminol Testing",
+          "slug": "philadelphia-olney-house-horrors-luminol-dna",
+          "reserved_at": "2026-10-15T14:47:10.340Z"
+        },
+        {
+          "topic": "Baltimore Cold Case Suspect Indicted on Murder and Rape Charges After Decades",
+          "slug": "baltimore-1986-cold-case-indictment",
+          "reserved_at": "2026-10-15T18:11:51.625Z"
+        },
+        {
+          "topic": "Human Remains Recovered at Philadelphia Horsch Home in Missing Women Investigation",
+          "slug": "philadelphia-horsch-home-bones-recovery",
+          "reserved_at": "2026-10-16T12:28:30.885Z"
+        },
+        {
+          "topic": "Alex Murdaugh Retrial Hearing Focuses on DNA and Murder Weapons Evidence",
+          "slug": "alex-murdaugh-retrial-dna-weapons-evidence",
+          "reserved_at": "2026-10-16T22:46:26.383Z"
+        },
+        {
+          "topic": "Lexington Police Use DNA Testing to Investigate 1963 Barbara Lunsford Disappearance",
+          "slug": "lexington-police-dna-barbara-lunsford-disappearance",
+          "reserved_at": "2026-10-17T12:19:15.681Z"
+        },
+        {
+          "topic": "FBI and Philadelphia Police Excavate Olney Home Tied to Missing Women",
+          "slug": "fbi-philadelphia-police-excavate-olney-home",
+          "reserved_at": "2026-10-17T13:37:16.850Z"
+        },
+        {
+          "topic": "Human Remains Found off Atlantic City 45 Years Ago Identified as Glen Burbage",
+          "slug": "atlantic-city-remains-identified-glen-burbage",
+          "reserved_at": "2026-10-18T12:44:36.531Z"
+        }
+      ],
+      "last_generated": "2026-10-18T12:44:36.531Z"
     },
     "7": {
       "channel_name": "Dead Companies",
@@ -1066,10 +1572,101 @@
       "last_generated": "2026-09-14T08:38:07.107Z"
     },
     "8": {
-      "channel_name": "Mind Decoded",
-      "niche": "Psychology (Why We Do What We Do)",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Ledger",
+      "niche": "Financial History & Institutional Collapse",
+      "used_topics": [
+        {
+          "topic": "The Collapse of Nano Banc and the 2026 U.S. Regional Banking Crisis",
+          "slug": "nano-banc-collapse-2026-regional-banking-crisis",
+          "reserved_at": "2026-10-07T12:22:11.592Z"
+        },
+        {
+          "topic": "Africa Launches Its Own Credit Rating Agency in October 2026",
+          "slug": "africa-launches-credit-rating-agency-2026",
+          "reserved_at": "2026-10-08T12:36:33.224Z"
+        },
+        {
+          "topic": "The Maastricht Question Revisited",
+          "slug": "maastricht-question-revisited",
+          "reserved_at": "2026-10-09T12:23:29.097Z"
+        },
+        {
+          "topic": "Khazanah and Sovereign Partners Form New Islamic Investment Firm in October 2026",
+          "slug": "khazanah-sovereign-partners-islamic-investment-firm-2026",
+          "reserved_at": "2026-10-10T00:48:16.257Z"
+        },
+        {
+          "topic": "France's Debt Crisis Triggers New Fears of Eurozone Contagion in October 2026",
+          "slug": "frances-debt-crisis-triggers-eurozone-contagion-2026",
+          "reserved_at": "2026-10-10T01:19:21.038Z"
+        },
+        {
+          "topic": "The 1890 Baring Crisis: Lessons from the Bank of England's Intervention",
+          "slug": "baring-crisis-1890-bank-england-intervention",
+          "reserved_at": "2026-10-10T01:53:07.005Z"
+        },
+        {
+          "topic": "New Islamic Investment Firm Launched in 2026",
+          "slug": "khazanah-islamic-investment-firm-2026",
+          "reserved_at": "2026-10-10T03:28:25.499Z"
+        },
+        {
+          "topic": "True Food Kitchen Chapter 11 Filing and Restructuring Timeline",
+          "slug": "true-food-kitchen-chapter-11-restructuring-timeline",
+          "reserved_at": "2026-10-10T07:17:10.823Z"
+        },
+        {
+          "topic": "The Collapse of Activewear Brand Stax and Its $22.8M Cash Shortfall",
+          "slug": "stax-activewear-collapse-cash-shortfall-2026",
+          "reserved_at": "2026-10-10T07:26:20.741Z"
+        },
+        {
+          "topic": "Global Financial Stability Board Warns Indonesia Unprepared for Major Bank Failures",
+          "slug": "fsb-warns-indonesia-unprepared-bank-failures-2026",
+          "reserved_at": "2026-10-10T10:18:46.065Z"
+        },
+        {
+          "topic": "University of Colorado Denver Hyderabad Degree-Granting Campus Plan",
+          "slug": "cu-denver-hyderabad-campus-plan-2026",
+          "reserved_at": "2026-10-10T13:15:55.332Z"
+        },
+        {
+          "topic": "How Turkey's $20 Billion Investment Fund Bubble Burst in October 2026",
+          "slug": "turkeys-investment-fund-bubble-burst-2026",
+          "reserved_at": "2026-10-15T11:08:57.845Z"
+        },
+        {
+          "topic": "TalkTalk Administration and Pre-Pack Sale to BT",
+          "slug": "talktalk-administration-pre-pack-sale-bt-2026",
+          "reserved_at": "2026-10-15T13:33:43.004Z"
+        },
+        {
+          "topic": "IMF Warns AI Share Crash Threatens Global Financial Stability in October 2026",
+          "slug": "imf-warns-ai-share-crash-threatens-financial-stability",
+          "reserved_at": "2026-10-15T18:10:11.457Z"
+        },
+        {
+          "topic": "Bank Failures in 2026",
+          "slug": "bank-failures-2026",
+          "reserved_at": "2026-10-16T12:33:07.388Z"
+        },
+        {
+          "topic": "Why Six US Regional Banks Failed in 2026: The Decade's Highest Count",
+          "slug": "six-us-regional-banks-failed-in-2026-highest-decade-count",
+          "reserved_at": "2026-10-16T22:46:59.945Z"
+        },
+        {
+          "topic": "Adam LeBor on the Shadowy History of the Bank for International Settlements",
+          "slug": "adam-lebor-bank-for-international-settlements-history",
+          "reserved_at": "2026-10-17T12:19:18.005Z"
+        },
+        {
+          "topic": "Deutsche Bundesbank Publishes New Historical Research on the Reichsbank",
+          "slug": "deutsche-bundesbank-historical-research-reichsbank",
+          "reserved_at": "2026-10-18T12:44:34.278Z"
+        }
+      ],
+      "last_generated": "2026-10-18T12:44:34.278Z"
     },
     "9": {
       "channel_name": "Border Lines",
@@ -1419,15 +2016,196 @@
           "topic": "China Accuses Philippines of Bajo de Masinloc Airspace Intrusion",
           "slug": "china-philippines-bajo-de-masinloc-airspace-dispute",
           "reserved_at": "2026-10-06T12:26:39.899Z"
+        },
+        {
+          "topic": "Cloud Giants Pay Premium for Land Routes Amid Red Sea Subsea Cable Crisis",
+          "slug": "cloud-giants-red-sea-land-routes-cables",
+          "reserved_at": "2026-10-07T12:20:40.560Z"
+        },
+        {
+          "topic": "Why Turkey Is Building a Spaceport in Somalia",
+          "slug": "turkey-somalia-spaceport-geographic-advantage",
+          "reserved_at": "2026-10-08T12:34:08.866Z"
+        },
+        {
+          "topic": "Ethiopia-Eritrea Border Conflict",
+          "slug": "ethiopia-eritrea-borders-2026",
+          "reserved_at": "2026-10-09T21:44:27.659Z"
+        },
+        {
+          "topic": "IEA and G7 Partner Governments Finalize Critical Minerals Reserve Framework",
+          "slug": "iea-g7-critical-minerals-reserve-framework-2026",
+          "reserved_at": "2026-10-10T00:48:23.864Z"
+        },
+        {
+          "topic": "Philippine and Chinese Maritime Incidents Spike Across Luzon Strait",
+          "slug": "philippine-chinese-incidents-spike-luzon-strait",
+          "reserved_at": "2026-10-10T01:18:48.869Z"
+        },
+        {
+          "topic": "G7 Emergency Oil Release: Curbing Global Price Spikes Amid Iran Tensions",
+          "slug": "g7-emergency-oil-release-iran-conflict",
+          "reserved_at": "2026-10-10T03:24:57.281Z"
+        },
+        {
+          "topic": "Africa's Critical Minerals Race Intensifies Amid US-China Competition",
+          "slug": "africa-critical-minerals-race-us-china-2026",
+          "reserved_at": "2026-10-10T07:17:15.784Z"
+        },
+        {
+          "topic": "The Sea Lion Project and the Renewed UK-Argentina Falklands Dispute",
+          "slug": "sea-lion-project-uk-argentina-falklands-dispute",
+          "reserved_at": "2026-10-10T07:26:29.047Z"
+        },
+        {
+          "topic": "OFAC Intensifies Iran Sanctions Under Operation Economic Outcast",
+          "slug": "ofac-intensifies-iran-sanctions-economic-outcast",
+          "reserved_at": "2026-10-10T10:15:02.367Z"
+        },
+        {
+          "topic": "Ethiopia Tells UN Security Council It Is Acting in Self-Defense Against Eritrea",
+          "slug": "ethiopia-un-security-council-self-defense-eritrea",
+          "reserved_at": "2026-10-10T11:16:55.476Z"
+        },
+        {
+          "topic": "Cambodia and Thailand Face ICG Warning Over Disputed Border Territory",
+          "slug": "cambodia-thailand-icg-border-dispute-2026",
+          "reserved_at": "2026-10-10T13:12:37.230Z"
+        },
+        {
+          "topic": "US Treasury General License 135: Reopening Russian Diesel Imports Amid Sanctions",
+          "slug": "us-treasury-license-135-russian-diesel-imports",
+          "reserved_at": "2026-10-10T14:43:00.085Z"
+        },
+        {
+          "topic": "Ethiopia Warns Eritrea of Full-Scale Invasion in Tigray Border Crisis",
+          "slug": "ethiopia-eritrea-tigray-border-invasion-un",
+          "reserved_at": "2026-10-15T11:06:21.914Z"
+        },
+        {
+          "topic": "Argentina Asks International Maritime Tribunal to Halt UK Falklands Oil Project",
+          "slug": "argentina-maritime-tribunal-falklands-oil-dispute",
+          "reserved_at": "2026-10-15T13:29:25.900Z"
+        },
+        {
+          "topic": "Trump and Putin's Diesel Deal: Suspending US Sanctions Through April 2027",
+          "slug": "trump-putin-diesel-deal-sanctions-suspension",
+          "reserved_at": "2026-10-15T14:43:17.315Z"
+        },
+        {
+          "topic": "Ethiopia Accuses Eritrea of Tigray Border Invasion at UN Security Council",
+          "slug": "ethiopia-eritrea-tigray-border-invasion-un-2026",
+          "reserved_at": "2026-10-15T18:06:40.580Z"
+        },
+        {
+          "topic": "US-Russia Sanctions Impact Analysis 2026",
+          "slug": "us-russia-sanctions-impact-2026",
+          "reserved_at": "2026-10-16T12:29:14.219Z"
+        },
+        {
+          "topic": "Taiwan's Alaska LNG Bet and the New Geography of US Energy Exports",
+          "slug": "taiwan-alaska-lng-bet-energy-geography",
+          "reserved_at": "2026-10-16T22:43:12.869Z"
+        },
+        {
+          "topic": "Ethiopia and Eritrea Deploy Troops in Tigray as Border War Looms",
+          "slug": "ethiopia-eritrea-tigray-border-war-2026",
+          "reserved_at": "2026-10-17T12:15:19.243Z"
+        },
+        {
+          "topic": "IEA Warns Global Diesel Squeeze Will Last Until 2027 Due to Iran War",
+          "slug": "iea-diesel-squeeze-2027-iran-war",
+          "reserved_at": "2026-10-18T12:41:19.986Z"
+        },
+        {
+          "topic": "Resource Nationalism and Critical Minerals: Why Chokepoints Beat BRICS vs West",
+          "slug": "resource-nationalism-chokepoints-critical-minerals-2026",
+          "reserved_at": "2026-10-18T20:54:21.293Z"
         }
       ],
-      "last_generated": "2026-10-06T12:26:39.899Z"
+      "last_generated": "2026-10-18T23:25:51.107Z"
     },
     "10": {
-      "channel_name": "Double Cross",
-      "niche": "Betrayal/Revenge Stories",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Margin Note",
+      "niche": "Concept Explainers & Intellectual History",
+      "used_topics": [
+        {
+          "topic": "Consciousness and Locke: The 1694 Origin of a Term",
+          "slug": "consciousness-locke-1694-origin",
+          "reserved_at": "2026-10-07T12:23:32.874Z"
+        },
+        {
+          "topic": "Why the Circular Economy Became Sustainability's Most Powerful Buzzword",
+          "slug": "circular-economy-sustainability-buzzword",
+          "reserved_at": "2026-10-08T12:37:51.118Z"
+        },
+        {
+          "topic": "Foucault's Unpublished 1978 Text The Hermaphrodites and the Centenary Debate",
+          "slug": "foucault-hermaphrodites-1978-centenary",
+          "reserved_at": "2026-10-09T12:23:33.115Z"
+        },
+        {
+          "topic": "How Do AI Chatbots Reason Like Humans?",
+          "slug": "how-do-ai-chatbots-reason-like-humans",
+          "reserved_at": "2026-10-09T21:50:01.464Z"
+        },
+        {
+          "topic": "Philowashing: When Silicon Valley Hires Philosophers for Corporate Legitimacy",
+          "slug": "philowashing-silicon-valley-philosophy-legitimacy",
+          "reserved_at": "2026-10-10T00:50:29.872Z"
+        },
+        {
+          "topic": "Super Intelligence: The History and Misuse of a Technical Term",
+          "slug": "super-intelligence-history-misuse",
+          "reserved_at": "2026-10-10T01:20:48.937Z"
+        },
+        {
+          "topic": "Confucian Philosophy and the New Approach to Taming AI Personalities",
+          "slug": "confucian-philosophy-taming-ai-personalities",
+          "reserved_at": "2026-10-10T07:29:52.145Z"
+        },
+        {
+          "topic": "MIT Concourse and the Revival of Humanistic Thinking in Tech",
+          "slug": "mit-concourse-humanistic-thinking-tech",
+          "reserved_at": "2026-10-10T10:18:43.467Z"
+        },
+        {
+          "topic": "Schelling, Kubrick, and the Eternal Truths of Being",
+          "slug": "schelling-kubrick-eternal-truths-being",
+          "reserved_at": "2026-10-10T13:16:09.858Z"
+        },
+        {
+          "topic": "Pope Leo XIV and the Philosophical Boundaries of AI Consciousness",
+          "slug": "pope-leo-xiv-ai-consciousness-debate",
+          "reserved_at": "2026-10-10T14:48:45.553Z"
+        },
+        {
+          "topic": "Martha Nussbaum and the 2026 Library of Congress Kluge Prize",
+          "slug": "martha-nussbaum-2026-kluge-prize",
+          "reserved_at": "2026-10-15T11:10:21.160Z"
+        },
+        {
+          "topic": "Integrated Information Theory and the Scientific Countermovement",
+          "slug": "integrated-information-theory-scientific-countermovement",
+          "reserved_at": "2026-10-15T13:33:53.256Z"
+        },
+        {
+          "topic": "Vibe Coding and Agentic AI: Merriam-Webster's October 2026 Dictionary Additions",
+          "slug": "vibe-coding-agentic-merriam-webster-october-2026",
+          "reserved_at": "2026-10-15T14:48:07.045Z"
+        },
+        {
+          "topic": "Edgar Morin and the Intellectual Legacy of Complex Thought at 104",
+          "slug": "edgar-morin-intellectual-legacy-complexity-thought",
+          "reserved_at": "2026-10-15T18:10:50.382Z"
+        },
+        {
+          "topic": "The University AI Philosopher Hiring Spree of October 2026",
+          "slug": "university-ai-philosopher-hiring-spree-2026",
+          "reserved_at": "2026-10-18T12:44:29.220Z"
+        }
+      ],
+      "last_generated": "2026-10-18T12:44:29.220Z"
     },
     "11": {
       "channel_name": "Cosmic Frontiers",
@@ -1969,9 +2747,104 @@
           "topic": "Former US Congressman David Rivera Sentenced to 10 Years for Venezuelan Lobbying",
           "slug": "david-rivera-10-year-venezuelan-lobbying-sentence",
           "reserved_at": "2026-10-06T12:26:02.402Z"
+        },
+        {
+          "topic": "Former CIA Official Pleads Guilty to Stealing $40M in Gold Bars",
+          "slug": "former-cia-official-stealing-40m-gold-bars-guilty",
+          "reserved_at": "2026-10-07T12:19:20.986Z"
+        },
+        {
+          "topic": "The SEC Alleges Cryptoaiml and TSAI Pro Used WhatsApp for $15M Fraud",
+          "slug": "cryptoaiml-tsai-pro-whatsapp-ai-fraud-sec",
+          "reserved_at": "2026-10-08T12:35:08.774Z"
+        },
+        {
+          "topic": "Kishu Inu Creator Charged in Chicago Over Alleged $9 Million Rug Pull",
+          "slug": "kishu-inu-9m-rug-pull-charges",
+          "reserved_at": "2026-10-09T12:19:37.328Z"
+        },
+        {
+          "topic": "crypto-fraud-investigations-2026",
+          "slug": "ledger-probe-87m-crypto-fraud-2026",
+          "reserved_at": "2026-10-09T21:57:00.331Z"
+        },
+        {
+          "topic": "The $8 Million Greek AI Crypto Pyramid Scheme and Arrest of 17 Suspects",
+          "slug": "greek-ai-crypto-pyramid-scheme-arrests-8m",
+          "reserved_at": "2026-10-10T00:50:44.444Z"
+        },
+        {
+          "topic": "Uranium Finance Hacker Convicted Over $53.3M Theft",
+          "slug": "uranium-finance-hacker-convicted-53m-theft",
+          "reserved_at": "2026-10-10T01:20:43.508Z"
+        },
+        {
+          "topic": "The $93M Ledger CryptoBilis Wallet Drain: Anatomy of a Supply Chain Hack",
+          "slug": "ledger-cryptobilis-93m-wallet-drain",
+          "reserved_at": "2026-10-10T01:55:32.724Z"
+        },
+        {
+          "topic": "Kishu Inu Founder Alexander Sisemore Indicted on Wire Fraud Charges",
+          "slug": "kishu-inu-founder-wire-fraud-indictment",
+          "reserved_at": "2026-10-10T10:15:11.709Z"
+        },
+        {
+          "topic": "Paolo Molesini's €95M Fideuram Impersonation Fraud Money Trail",
+          "slug": "fideuram-95m-impersonation-fraud-money-trail",
+          "reserved_at": "2026-10-10T11:16:32.228Z"
+        },
+        {
+          "topic": "CrowdStrike Ties ARTEX AI Agent to Korea Bank Hack Campaign",
+          "slug": "crowdstrike-artex-ai-agent-korea-bank-hack",
+          "reserved_at": "2026-10-10T13:12:29.408Z"
+        },
+        {
+          "topic": "1MDB Seeks to Recover RM1.0 Billion in Disbursed Funds",
+          "slug": "1mdb-recover-rm1-billion-disbursed-funds",
+          "reserved_at": "2026-10-10T14:43:04.256Z"
+        },
+        {
+          "topic": "Hex Founder Richard Heart Arrested in Istanbul on Finnish Interpol Red Notice",
+          "slug": "hex-founder-richard-heart-arrested-istanbul-2026",
+          "reserved_at": "2026-10-15T11:07:17.879Z"
+        },
+        {
+          "topic": "The Brooklyn DA Crackdown on Eastern European Crypto Scam Servers",
+          "slug": "brooklyn-da-crypto-scam-server-bust",
+          "reserved_at": "2026-10-15T13:31:01.857Z"
+        },
+        {
+          "topic": "The $8 Million Marchesi Antinori Wine Cellar Heist Investigation",
+          "slug": "marchesi-antinori-8m-wine-heist",
+          "reserved_at": "2026-10-15T14:43:44.816Z"
+        },
+        {
+          "topic": "Brooklyn DA Cracks Global Crypto Scam Network in Major Server Bust",
+          "slug": "brooklyn-da-crypto-scam-server-bust-2026",
+          "reserved_at": "2026-10-15T18:06:48.067Z"
+        },
+        {
+          "topic": "777 Partners Founder Pleads Guilty to $500 Million Fraud Scheme",
+          "slug": "777-partners-500m-fraud-guilty-plea",
+          "reserved_at": "2026-10-16T12:25:05.390Z"
+        },
+        {
+          "topic": "Brazilian Man Sentenced to 12 Years for Multi-Million Dollar Money Laundering",
+          "slug": "brazilian-man-12-year-money-laundering-sentencing",
+          "reserved_at": "2026-10-16T22:43:31.597Z"
+        },
+        {
+          "topic": "Broadstreet's Billion-Dollar Fund Alleged Scheme Investigation",
+          "slug": "broadstreet-billion-dollar-fund-investigation",
+          "reserved_at": "2026-10-17T12:16:17.659Z"
+        },
+        {
+          "topic": "Former US Congressman David Rivera's 10-Year Prison Sentence for Venezuelan Lobbying",
+          "slug": "david-rivera-10-year-sentence-venezuela-lobbying",
+          "reserved_at": "2026-10-18T12:41:41.314Z"
         }
       ],
-      "last_generated": "2026-10-06T12:26:02.403Z"
+      "last_generated": "2026-10-18T23:28:38.159Z"
     },
     "27": {
       "channel_name": "Trial Files",
@@ -2542,9 +3415,99 @@
           "topic": "TaskCanvas and Visualizing Backlog Workflows in October 2026",
           "slug": "taskcanvas-visualizing-backlog-workflows-2026",
           "reserved_at": "2026-10-06T12:26:41.837Z"
+        },
+        {
+          "topic": "Career Cushioning: Why 46% of Office Workers Are Building a Plan B in October 2026",
+          "slug": "career-cushioning-plan-b-october-2026",
+          "reserved_at": "2026-10-07T12:19:44.202Z"
+        },
+        {
+          "topic": "The Conversation Recession: Why Business Leaders Are Failing at Dialogue",
+          "slug": "conversation-recession-business-leaders-dialogue",
+          "reserved_at": "2026-10-08T12:35:14.531Z"
+        },
+        {
+          "topic": "Claude Motion and Live Dashboards: Anthropic's October 2026 Productivity Shift",
+          "slug": "claude-motion-live-dashboards-october-2026",
+          "reserved_at": "2026-10-09T12:18:00.357Z"
+        },
+        {
+          "topic": "The Push-Pull Leadership Trap 2026",
+          "slug": "push-pull-leadership-trap-inspiring-teams-2026",
+          "reserved_at": "2026-10-09T22:00:45.867Z"
+        },
+        {
+          "topic": "Glassdoor October 2026 Report: Why AI Job Applications Sound Generic",
+          "slug": "glassdoor-october-2026-ai-job-search-report",
+          "reserved_at": "2026-10-10T00:52:16.424Z"
+        },
+        {
+          "topic": "Leadership Agility: Adapting Your Style When Situations Shift",
+          "slug": "leadership-agility-adapting-style-situations-2026",
+          "reserved_at": "2026-10-10T01:20:32.438Z"
+        },
+        {
+          "topic": "Claude Motion: Animating Productivity Systems from Text Prompts",
+          "slug": "claude-motion-animating-productivity-systems",
+          "reserved_at": "2026-10-10T01:55:35.017Z"
+        },
+        {
+          "topic": "Leadership Agility: Adapting Styles for Situational Shifts in October 2026",
+          "slug": "leadership-agility-adapting-styles-october-2026",
+          "reserved_at": "2026-10-10T11:16:58.981Z"
+        },
+        {
+          "topic": "Authentic Leadership: Driving Stakeholder Impact in 2026",
+          "slug": "authentic-leadership-stakeholder-impact-2026",
+          "reserved_at": "2026-10-10T14:44:14.518Z"
+        },
+        {
+          "topic": "Navigating the Low-Hire Low-Fire Job Market in October 2026",
+          "slug": "navigating-low-hire-low-fire-job-market-2026",
+          "reserved_at": "2026-10-15T11:07:03.553Z"
+        },
+        {
+          "topic": "Anthropic Claude Motion: Animating Dashboards and Workflows",
+          "slug": "anthropic-claude-motion-animated-dashboards-workflows",
+          "reserved_at": "2026-10-15T14:43:50.023Z"
+        },
+        {
+          "topic": "Anthropic Claude Motion: Building Animated Explainers in October 2026",
+          "slug": "anthropic-claude-motion-animated-explainers",
+          "reserved_at": "2026-10-15T18:06:38.815Z"
+        },
+        {
+          "topic": "The Seasonal Career: Why You Should Stop Clinging to Your 20-Year Plan",
+          "slug": "seasonal-career-planning-2026-agility",
+          "reserved_at": "2026-10-16T12:24:18.996Z"
+        },
+        {
+          "topic": "Harvard PON Research Roundup: Online and Remote Dealmaking",
+          "slug": "harvard-pon-research-roundup-online-deals",
+          "reserved_at": "2026-10-16T22:43:21.301Z"
+        },
+        {
+          "topic": "Harvard PON Research Roundup: Four Strategies for Making Concessions in Negotiation",
+          "slug": "harvard-pon-four-strategies-making-concessions",
+          "reserved_at": "2026-10-17T12:15:40.507Z"
+        },
+        {
+          "topic": "WEF October 2026 Brief: How Authentic Leadership Drives Impact",
+          "slug": "wef-october-2026-authentic-leadership-impact",
+          "reserved_at": "2026-10-18T12:41:36.595Z"
+        },
+        {
+          "topic": "Purdue Online Study on Communication Skills in the AI Age",
+          "slug": "purdue-online-communication-skills-ai-age-2026",
+          "reserved_at": "2026-10-18T20:54:31.016Z"
+        },
+        {
+          "topic": "Why communication skills matter more than ever in the AI era, says Purdue research",
+          "slug": "communication-skills-purdue-2026",
+          "reserved_at": "2026-10-18T23:25:11.845Z"
         }
       ],
-      "last_generated": "2026-10-06T12:26:41.837Z"
+      "last_generated": "2026-10-18T23:25:11.846Z"
     },
     "45": {
       "channel_name": "Channel Decoded",
@@ -2647,8 +3610,8 @@
       "last_generated": "2026-09-14T07:31:06.480Z"
     },
     "48": {
-      "channel_name": "Factory Floor",
-      "niche": "Industrial Manufacturing Explainers",
+      "channel_name": "Chileleko",
+      "niche": "Ergonomics & Human Factors",
       "used_topics": [
         {
           "topic": "Inside a Chip Fabrication Plant: How 3nm Transistors Are Made",
@@ -2949,9 +3912,79 @@
           "topic": "Decoding the Digital Nerve Center: The ATL Terminal S Logistics Map",
           "slug": "atl-terminal-s-supply-chain-map",
           "reserved_at": "2026-10-05T09:15:22.609Z"
+        },
+        {
+          "topic": "HKS Designs New People-First Corporate Real Estate Strategy",
+          "slug": "hks-people-first-corporate-real-estate-strategy",
+          "reserved_at": "2026-10-19T18:21:40.392Z"
+        },
+        {
+          "topic": "Robin Powered Launches Claude-First AI Space Planning for Workplace Seating",
+          "slug": "robin-powered-claude-first-ai-space-planning-seating",
+          "reserved_at": "2026-10-19T19:15:31.172Z"
+        },
+        {
+          "topic": "Metro Drivers Safety Performance and Human-Machine Interaction Study",
+          "slug": "metro-drivers-safety-performance-human-machine-interaction",
+          "reserved_at": "2026-10-19T20:08:04.258Z"
+        },
+        {
+          "topic": "The 80,000-Hour Problem: Office Chair Makers Bet on Sensors and Split Backrests",
+          "slug": "office-chair-sensors-split-backrests-ergonomics",
+          "reserved_at": "2026-10-19T21:11:21.489Z"
+        },
+        {
+          "topic": "ÉTS Montréal Explores Ergonomics in Technology Development",
+          "slug": "ets-montreal-ergonomics-technology-development-october-2026",
+          "reserved_at": "2026-10-19T22:14:48.881Z"
+        },
+        {
+          "topic": "Wilkhahn Debuts WiChair at ORGATEC 2026: Why Recline Needs a Mechanism",
+          "slug": "wilkhahn-wichair-orgatec-2026-recline-mechanism",
+          "reserved_at": "2026-10-19T23:59:53.268Z"
+        },
+        {
+          "topic": "Max Planck Institute Reveals How Mechanical Processes Regulate Muscle Development",
+          "slug": "max-planck-mechanical-processes-regulate-muscle-development",
+          "reserved_at": "2026-10-20T00:48:48.895Z"
+        },
+        {
+          "topic": "Consumer Wearable Sensors Reveal Internal Forces at Common Running Injury Sites",
+          "slug": "consumer-wearable-sensors-running-injury-forces",
+          "reserved_at": "2026-10-20T08:38:01.944Z"
+        },
+        {
+          "topic": "Trunk Posture Feedback System Tested in Distribution Center Field Study",
+          "slug": "trunk-posture-feedback-distribution-center-study",
+          "reserved_at": "2026-10-20T10:32:06.856Z"
+        },
+        {
+          "topic": "Markerless Motion Capture Proves Reliable for Older Hip and Knee Patients",
+          "slug": "markerless-motion-capture-older-hip-knee-patients-gait",
+          "reserved_at": "2026-10-20T11:11:52.998Z"
+        },
+        {
+          "topic": "Maritime Human Factor Multiplier Cuts NUC Disaster Odds",
+          "slug": "maritime-human-factor-multiplier-nuc-disaster",
+          "reserved_at": "2026-10-20T11:39:57.381Z"
+        },
+        {
+          "topic": "Lower-Limb Biomechanical Alterations in Plantar Fasciitis Patients",
+          "slug": "lower-limb-biomechanical-alterations-plantar-fasciitis",
+          "reserved_at": "2026-10-20T14:04:32.433Z"
+        },
+        {
+          "topic": "State Farm and MIT AgeLab Launch Drivefulness Research on Driver Distraction",
+          "slug": "state-farm-mit-agelab-drivefulness-research",
+          "reserved_at": "2026-10-20T16:11:05.935Z"
+        },
+        {
+          "topic": "University of Michigan Unveils Haptic Steering Wheel for Semi-Autonomous Driving",
+          "slug": "university-of-michigan-haptic-steering-wheel-semi-autonomous",
+          "reserved_at": "2026-10-24T12:45:09.093Z"
         }
       ],
-      "last_generated": "2026-10-05T10:35:12.662Z"
+      "last_generated": "2026-10-24T12:45:09.093Z"
     },
     "49": {
       "channel_name": "Picture House",
@@ -3001,9 +4034,114 @@
           "topic": "Theja Rio Details Angh Oscar Journey and Global Strategy",
           "slug": "theja-rio-angh-oscar-journey-global-strategy",
           "reserved_at": "2026-10-06T12:26:21.991Z"
+        },
+        {
+          "topic": "Tom Cruise's Digger Projected to Lose $150M in Box Office Disaster",
+          "slug": "tom-cruise-digger-box-office-disaster-150m-loss",
+          "reserved_at": "2026-10-07T12:20:01.491Z"
+        },
+        {
+          "topic": "VisionQuest Showrunner Confirms MCU Timeline Placement Set Around 2028",
+          "slug": "visionquest-showrunner-confirms-mcu-timeline-placement",
+          "reserved_at": "2026-10-08T12:34:31.694Z"
+        },
+        {
+          "topic": "Other Mommy Box Office Preview",
+          "slug": "other-mommy-box-office-2026-preview",
+          "reserved_at": "2026-10-09T21:58:10.709Z"
+        },
+        {
+          "topic": "Marvel Confirms VisionQuest Release Plan and New Details at NYCC",
+          "slug": "marvel-confirms-visionquest-release-plan-nycc",
+          "reserved_at": "2026-10-10T00:50:34.782Z"
+        },
+        {
+          "topic": "James McAvoy Discusses Directorial Debut California Schemin and Finding Authenticity",
+          "slug": "james-mcavoy-directorial-debut-california-schemin",
+          "reserved_at": "2026-10-10T01:21:40.538Z"
+        },
+        {
+          "topic": "Ben Affleck Discusses Radically Reworking Animals and AI Usage",
+          "slug": "ben-affleck-animals-ai-filmmaking",
+          "reserved_at": "2026-10-10T01:55:46.070Z"
+        },
+        {
+          "topic": "Marvel Confirms VisionQuest Release Date and New Specials for Oct 2026",
+          "slug": "marvel-confirms-visionquest-release-date-and-specials",
+          "reserved_at": "2026-10-10T07:31:28.049Z"
+        },
+        {
+          "topic": "Marvel Comics Launches Midnight Universe Horror Crossover Event",
+          "slug": "marvel-midnight-universe-horror-crossover",
+          "reserved_at": "2026-10-10T10:15:07.461Z"
+        },
+        {
+          "topic": "Kate Siegel Details Carrie Series Feminine Rage and Mysterious Role",
+          "slug": "kate-siegel-carrie-feminine-rage-mysterious-role",
+          "reserved_at": "2026-10-10T11:17:30.478Z"
+        },
+        {
+          "topic": "Ben Affleck Breaks Down the Wild Political Twists of His New Thriller Animals",
+          "slug": "ben-affleck-breaks-down-animals-thriller-twists",
+          "reserved_at": "2026-10-10T13:12:47.028Z"
+        },
+        {
+          "topic": "Variety Unveils Its 10 Actors to Watch for 2026 Spotlighting Breakout Stars",
+          "slug": "variety-10-actors-to-watch-2026-breakout-stars",
+          "reserved_at": "2026-10-10T14:43:06.889Z"
+        },
+        {
+          "topic": "Terry Matalas Reveals Where VisionQuest Sits on the MCU Timeline",
+          "slug": "terry-matalas-visionquest-mcu-timeline-placement",
+          "reserved_at": "2026-10-15T11:07:27.762Z"
+        },
+        {
+          "topic": "Terry Matalas Details VisionQuest MCU Timeline Placement and WandaVision Connection",
+          "slug": "terry-matalas-visionquest-mcu-timeline-placement",
+          "reserved_at": "2026-10-15T13:30:00.845Z"
+        },
+        {
+          "topic": "Paul Bettany and James Spader Discuss Vision's Journey in Marvel's VisionQuest",
+          "slug": "paul-bettany-james-spader-visionquest-journey",
+          "reserved_at": "2026-10-15T14:43:11.555Z"
+        },
+        {
+          "topic": "Variety Crowns the Genre Defining Directors and Actors in Horror",
+          "slug": "variety-2026-horror-impact-report-directors-actors",
+          "reserved_at": "2026-10-15T18:07:35.949Z"
+        },
+        {
+          "topic": "James McAvoy Details Directorial Debut California Schemin in New Interview",
+          "slug": "james-mcavoy-directorial-debut-california-schemin-interview",
+          "reserved_at": "2026-10-16T22:43:49.497Z"
+        },
+        {
+          "topic": "James McAvoy Directorial Debut California Schemin and Ben Affleck Animals Interview",
+          "slug": "james-mcavoy-ben-affleck-director-profiles-october-2026",
+          "reserved_at": "2026-10-17T12:16:58.856Z"
+        },
+        {
+          "topic": "Street Fighter Eyes 30M Opening Weekend Box Office Debut",
+          "slug": "street-fighter-eyes-30m-opening-weekend-box-office-debut",
+          "reserved_at": "2026-10-17T13:36:57.335Z"
+        },
+        {
+          "topic": "Street Fighter Dominates October 2026 Box Office With $31M Debut",
+          "slug": "street-fighter-box-office-october-2026-debut",
+          "reserved_at": "2026-10-18T12:41:12.680Z"
+        },
+        {
+          "topic": "Marvel Studios Fixed a Major MCU Canon Problem With Adamantium in VisionQuest",
+          "slug": "marvel-adamantium-mcu-canon-visionquest",
+          "reserved_at": "2026-10-18T20:54:13.330Z"
+        },
+        {
+          "topic": "Burger King Refranchising Strategy Targets Local Operators in Turnaround",
+          "slug": "burger-king-refranchising-strategy-local-operators",
+          "reserved_at": "2026-10-18T21:46:47.963Z"
         }
       ],
-      "last_generated": "2026-10-06T12:26:21.992Z"
+      "last_generated": "2026-10-18T23:24:48.194Z"
     },
     "50": {
       "channel_name": "Gadget Kitchen",

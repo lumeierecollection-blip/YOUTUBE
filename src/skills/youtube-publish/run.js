@@ -16,13 +16,14 @@
  *   node run.js <channel-id>                      # upload latest render
  *   node run.js <channel-id> --dry-run            # validate creds + metadata only
  *   node run.js <channel-id> --review             # upload from approved-review/ (manual job; stays private)
- * Uploads only to PUBLISH_CHANNELS (1, 2, 9, 26, 44, 48); any other channel is refused.
+ * Uploads only to the channels in config/priority-channels.json; any other channel is refused.
  *   node run.js <channel-id> <video.mp4>          # upload a specific render
  *   node run.js process-queue                     # flip due entries to public
  *   node run.js cancel <channel-id> <video-id>    # cancel a queued publish
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "fs";
+import { resolveChannel, normalizeChannelId } from "../../../scripts/lib/channel-lookup.mjs";
 import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
@@ -35,17 +36,28 @@ const ROOT = join(__dirname, "..", "..", "..");
 const API = "https://www.googleapis.com/youtube/v3";
 const UPLOAD = "https://www.googleapis.com/upload/youtube/v3";
 
-// The only channels anything may upload to (owner, 2026-10-03), hardcoded here, not read from
-// config: every upload path (the daily render job, the manual review-publish job) goes
-// through this file, and a channel outside this list is refused before credentials are read.
-const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+// The only channels anything may upload to. Every upload path (the daily render job, the
+// manual review-publish job) goes through this file, and a channel outside the list is
+// refused before credentials are read.
+const PRIORITY_PATH = join(ROOT, "config", "priority-channels.json");
+// config/priority-channels.json is the one list of approved channels (the workflow's
+// setup job reads the same file). It used to be hardcoded here as [1, 2, 9, 26, 44, 48],
+// which refused ch-05/06/08/10/49 and allowed ch-48, a channel nothing dispatches.
+// Fail closed: an unreadable or empty file approves nothing, and the error says so.
+function publishChannels() {
+  let list;
+  try { list = JSON.parse(readFileSync(PRIORITY_PATH, "utf-8")).channels; }
+  catch (e) { throw new Error(`cannot read the approved-channel list ${PRIORITY_PATH}: ${e.message}`); }
+  if (!Array.isArray(list) || !list.length) throw new Error(`${PRIORITY_PATH} lists no channels — refusing every upload`);
+  return list.map((c) => normalizeChannelId(c));
+}
 
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".mkv"];
 const THUMB_EXTENSIONS = [".jpg", ".jpeg", ".png"];
 
 function loadChannel(channelId) {
   const data = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-  const channel = (data.channels || data).find((c) => String(c.id) === channelId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, data.channels || data);
   if (!channel) throw new Error(`Channel "${channelId}" not found`);
   return channel;
 }
@@ -108,23 +120,39 @@ function loadSeoMetadata(channelId, scriptSlug) {
 // --review (the manual review-publish job only): data/renders/approved-review/, whose marker
 // must say "approved-review" for this channel — a video an AI check failed, the local audit
 // passed, and a human chose to publish by dispatching that job. rejected/ is never publishable.
+// --review (the human-review policy, 2026-10-14): BOTH approved-review/ AND
+// approved/. Under this policy every video that reaches a publishable queue goes up
+// PRIVATE and the owner clicks Publish in Studio, so the two queues differ only in
+// the verdict recorded, not in how they are uploaded. Previously --review read
+// approved-review/ alone, so a video that earned the STRONGER verdict (approved/,
+// "verdict A") had no upload path at all — and ch-2, the first channel ever to reach
+// approved/, could not be published by the job built to publish.
+//
+// approved-review/ is searched FIRST: it is the queue that exists specifically
+// because a video needs a human, and a video in it should not be passed over in
+// favour of a different video from the other queue. rejected/ is never read.
+//
+// Returns { path, queue } so the caller can record which queue it came from.
 function findVideo(channelId, explicit, review = false) {
-  const verdict = review ? "approved-review" : "approved";
-  const rendersDir = join(ROOT, "data", "renders", verdict);
-  if (!existsSync(rendersDir)) return null;
-  const marker = (f) => { try { return JSON.parse(readFileSync(join(rendersDir, f.replace(/\.[^.]+$/, ".json")), "utf-8")); } catch { return null; } };
-  const candidates = readdirSync(rendersDir).filter((f) => VIDEO_EXTENSIONS.includes(extname(f).toLowerCase()))
-    .filter((f) => { const m = marker(f); return m && m.verdict === verdict && String(m.channel) === String(Number(channelId)); });
-  if (candidates.length === 0) return null;
-  if (explicit) {
-    const match = candidates.find((f) => f === explicit);
-    if (!match) throw new Error(`Video "${explicit}" not found in ${rendersDir}`);
-    return join(rendersDir, match);
+  const queues = review ? ["approved-review", "approved"] : ["approved"];
+  for (const verdict of queues) {
+    const rendersDir = join(ROOT, "data", "renders", verdict);
+    if (!existsSync(rendersDir)) continue;
+    const marker = (f) => { try { return JSON.parse(readFileSync(join(rendersDir, f.replace(/\.[^.]+$/, ".json")), "utf-8")); } catch { return null; } };
+    const candidates = readdirSync(rendersDir).filter((f) => VIDEO_EXTENSIONS.includes(extname(f).toLowerCase()))
+      .filter((f) => { const m = marker(f); return m && m.verdict === verdict && String(m.channel) === String(Number(channelId)); });
+    if (candidates.length === 0) continue;
+    if (explicit) {
+      const match = candidates.find((f) => f === explicit);
+      if (!match) throw new Error(`Video "${explicit}" not found in ${rendersDir}`);
+      return { path: join(rendersDir, match), queue: verdict };
+    }
+    const newest = candidates
+      .map((f) => ({ f, mtime: statSync(join(rendersDir, f)).mtimeMs }))
+      .sort((a, b) => b.mtime - a.mtime)[0].f;
+    return { path: join(rendersDir, newest), queue: verdict };
   }
-  const newest = candidates
-    .map((f) => ({ f, mtime: statSync(join(rendersDir, f)).mtimeMs }))
-    .sort((a, b) => b.mtime - a.mtime)[0].f;
-  return join(rendersDir, newest);
+  return null;
 }
 
 function findThumbnail(channelId, scriptSlug) {
@@ -260,10 +288,20 @@ async function setThumbnail(token, videoId, thumbPath) {
 }
 
 async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
-  if (!PUBLISH_CHANNELS.includes(Number(channelId))) {
-    throw new Error(`channel "${channelId}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+  const approved = publishChannels();
+  if (!approved.includes(normalizeChannelId(channelId))) {
+    throw new Error(`channel "${channelId}" is not a publish channel — uploads are allowed only to ${approved.join(", ")} (config/priority-channels.json)`);
   }
   const channel = loadChannel(channelId);
+
+  // A channel's own credentials live at config/creds/<channel_id>.json. config/channels.json had
+  // ch-05, ch-06, ch-08 and ch-10 pointing at config/creds/ch-44.json (copied from ch-44's row): with the
+  // approved list now read from config, that would upload their videos to ch-44's YouTube channel.
+  // Refuse before any credential is read. (This checks the PATH; it does not touch a credential.)
+  const own = `config/creds/${channel.channel_id}.json`;
+  if (channel.youtube_credentials_path && channel.youtube_credentials_path.split("\\").join("/") !== own) {
+    throw new Error(`channel "${channel.channel_id}" points at credentials ${channel.youtube_credentials_path}, which belong to another channel; its own file is ${own}. Fix youtube_credentials_path in config/channels.json — refusing to upload.`);
+  }
 
   if (!hasCredentials(channel)) {
     const credPath = channel.youtube_credentials_path || `config/creds/${channel.channel_id}.json`;
@@ -292,12 +330,13 @@ async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
   }
 
   const creds = loadCredentials(channel);
-  const videoPath = findVideo(channelId, explicitVideo, review);
-  if (!videoPath) {
+  const found = findVideo(channelId, explicitVideo, review);
+  if (!found) {
     console.log(`\n[YOUTUBE-PUBLISH] Channel: ${channelId} (${channel.channel_name})`);
-    console.log(`  No ${review ? "approved-review " : ""}renders found — skipping publish.`);
+    console.log(`  No ${review ? "approved-review/ or approved/" : "approved/"} renders found — skipping publish.`);
     return;
   }
+  const { path: videoPath, queue: sourceQueue } = found;
   const topicHint = basename(videoPath, extname(videoPath));
   // The same render is never uploaded twice (a review-publish dispatched twice for one run).
   const already = readQueue(channelId).find((e) => e.source_file === basename(videoPath));
@@ -375,7 +414,10 @@ async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
     privacy_status: "private",
     cancelled: stayPrivate,
     source_file: basename(videoPath),
-    source_queue: review ? "approved-review" : "approved",
+    // The queue it ACTUALLY came from, not what `review` implies. Under the
+    // human-review policy both approved/ and approved-review/ upload, so this is
+    // the only way to tell them apart afterwards.
+    source_queue: sourceQueue,
   };
   const queue = readQueue(channelId);
   queue.push(entry);

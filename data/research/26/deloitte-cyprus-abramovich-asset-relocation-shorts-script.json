@@ -1,0 +1,66 @@
+{
+  "channel_id": "26",
+  "topic_slug": "deloitte-cyprus-abramovich-asset-relocation",
+  "format": "shorts",
+  "hook": "Superyachts and private jets worth $672 million vanished from accounts overnight.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Superyachts and private jets worth $672 million vanished from accounts overnight.",
+      "b_roll": [
+        "luxury superyacht moored in harbor",
+        "private jet on tarmac"
+      ],
+      "text_overlay": {
+        "text": "$672M VANISHED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Leaked emails reveal Deloitte Cyprus helped Roman Abramovich hide billions. Firms secretly transferred assets to the British Virgin Islands. Where did 1,000 corporate papers go?",
+      "b_roll": [
+        "leaked emails glowing on computer screen",
+        "map highlighting British Virgin Islands"
+      ],
+      "text_overlay": {
+        "text": "1,000 PAPERS HIDDEN"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, backdated paperwork helped Roman Abramovich mask a staggering $10 billion in hidden wealth.",
+      "b_roll": [
+        "financial documents being stamped"
+      ],
+      "text_overlay": {
+        "text": "$10 BILLION HIDDEN"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Meritservus forged 1,000 corporate papers for Roman Abramovich. OCCRP exposed how Deloitte Cyprus helped hide assets. BBC Panorama tracked assets worth $672 million.",
+      "b_roll": [
+        "investigative journalists reviewing documents",
+        "news broadcast screen"
+      ],
+      "text_overlay": {
+        "text": "SANCTIONS EVADED"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "OCCRP exposed Deloitte Cyprus hiding $10 billion.",
+      "b_roll": [
+        "auditing office building facade"
+      ],
+      "text_overlay": {
+        "text": "EXPOSED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c64g1l5389kvo",
+    "https://www.thebureauinvestigates.com/stories/2026-10-12/how-deloitte-helped-abramovich-hide-10bn",
+    "https://www.occrp.org/en/project/cyprus-confidential/deloittes-office-in-cyprus-helped-abramovich-firms-relocate-billions-of-dollars-in-assets-in-apparent-bid-to-sidestep-tax-and-transparency"
+  ]
+}

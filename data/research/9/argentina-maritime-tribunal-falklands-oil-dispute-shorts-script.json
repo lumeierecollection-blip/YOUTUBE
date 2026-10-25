@@ -1,0 +1,69 @@
+{
+  "channel_id": "9",
+  "topic_slug": "argentina-maritime-tribunal-falklands-oil-dispute",
+  "format": "shorts",
+  "hook": "Javier Milei's government just launched a court battle against the United Kingdom over Falklands oil!",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Javier Milei's government just launched a court battle against the United Kingdom over Falklands oil!",
+      "b_roll": [
+        "Map showing Argentina and the Falkland Islands",
+        "Text overlay of tribunal filing"
+      ],
+      "text_overlay": {
+        "text": "Falklands Oil Dispute"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 13 October 2026, Buenos Aires submitted a request to the International Tribunal for the Law of the Sea under article 290. Where is the Sea Lion oil project heading?",
+      "b_roll": [
+        "Document showing 13 October 2026 date",
+        "Map of Malvinas Norte Basin",
+        "Offshore oil rig graphic"
+      ],
+      "text_overlay": {
+        "text": "Article 290 Request"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except this legal claim targets the Falklands' first commercial oil development directly.",
+      "b_roll": [
+        "Associated Press logo and document excerpt",
+        "Satellite view of Falkland Islands"
+      ],
+      "text_overlay": {
+        "text": "First Commercial Project"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This legal claim escalates the ongoing resource and territorial dispute between Argentina and the United Kingdom. Paragraph 5 governs this urgent UN convention request.",
+      "b_roll": [
+        "United Nations Convention document",
+        "UK and Argentine flags side by side",
+        "Tribunal courtroom exterior"
+      ],
+      "text_overlay": {
+        "text": "Paragraph 5 Measures"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 13 October filing alters the Falklands oil dispute.",
+      "b_roll": [
+        "Map highlighting Malvinas Norte Basin",
+        "Tribunal seal graphic"
+      ],
+      "text_overlay": {
+        "text": "October 13 Filing"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.itlos.org/fileadmin/itlos/documents/press_releases_english/PR_401_En.pdf",
+    "https://apnews.com/article/argentina-falkland-islands-uk-milei-tribunal-law-of-sea-sea-lion-oil-2a78578f0a9ffda403f4721c4e1d304f"
+  ]
+}

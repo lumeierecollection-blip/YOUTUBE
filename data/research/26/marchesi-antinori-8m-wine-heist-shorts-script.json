@@ -1,0 +1,68 @@
+{
+  "channel_id": "26",
+  "topic_slug": "marchesi-antinori-8m-wine-heist",
+  "format": "shorts",
+  "hook": "Thieves stole 30,000 bottles of wine worth $8 million in a single night.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Thieves stole 30,000 bottles of wine worth $8 million in a single night.",
+      "b_roll": [
+        "Exterior shot of a wine warehouse in Cortona, Tuscany",
+        "Close-up of wine bottles on storage racks"
+      ],
+      "text_overlay": {
+        "text": "30,000 Bottles Stolen"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Masked men emptied a Marchesi Antinori facility in Cortona during a 3-hour operation. Two trucks hauled away prized Tignanello and Solaia red wines from the property. Where did the 2 trucks go?",
+      "b_roll": [
+        "Security camera footage showing masked figures",
+        "Loading dock with truck parked outside",
+        "Bottles labeled Tignanello and Solaia"
+      ],
+      "text_overlay": {
+        "text": "3-Hour Operation"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But security alarms at the Marchesi Antinori facility were switched off from the inside.",
+      "b_roll": [
+        "Close-up of security control panel flashing red"
+      ],
+      "text_overlay": {
+        "text": "Alarms Disarmed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Carabinieri from the Cortona company reviewed footage from over 100 security cameras. Investigators tracked the stolen goods valued up to 5 million euros.",
+      "b_roll": [
+        "Carabinieri officers reviewing monitor screens",
+        "Map of Tuscany highlighting Cortona",
+        "Stacked wooden wine crates"
+      ],
+      "text_overlay": {
+        "text": "100 Cameras Reviewed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Guado al Tasso bottles vanished into the Tuscan night during the three-hour operation.",
+      "b_roll": [
+        "Wine bottle label reading Guado al Tasso against a dark background"
+      ],
+      "text_overlay": {
+        "text": "Guado al Tasso Heist"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles",
+    "https://corrierefiorentino.corriere.it/notizie/cronaca/26_ottobre_12/furto-di-30-mila-bottiglie-antinori-al-setaccio-le-telecamere-si-indaga-su-un-colpo-su-commissione-296f7ea0-8c4a-4600-8b30-5a90c5600xlk.shtml",
+    "https://apnews.com/article/italy-wine-antinori-bottles-theft-tuscany-winery-da00ac413ddcd06419eb4bedcad56170"
+  ]
+}

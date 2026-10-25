@@ -1,0 +1,66 @@
+{
+  "channel_id": "49",
+  "topic_slug": "verity-box-office-performance-analysis",
+  "format": "shorts",
+  "hook": "The latest Colleen Hoover adaptation failed to top her previous record.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The latest Colleen Hoover adaptation failed to top her previous record.",
+      "b_roll": [
+        "movie poster of Verity"
+      ],
+      "text_overlay": {
+        "text": "Verity vs. It Ends With Us"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Amazon MGM Studios released Verity, starring Anne Hathaway, Dakota Johnson, and Josh Hartnett. But how did it compare to the 40 million dollar production cost?",
+      "b_roll": [
+        "Anne Hathaway in a scene from Verity",
+        "chart showing 32.6 million domestic opening",
+        "graphic comparing 32.6 million to 40 million production cost"
+      ],
+      "text_overlay": {
+        "text": "Production Cost: $40M"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the film's 62.5 million dollar worldwide debut trails behind 2024's It Ends With Us.",
+      "b_roll": [
+        "global map highlighting box office performance"
+      ],
+      "text_overlay": {
+        "text": "$62.5M Global Opening"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Director Michael Showalter's thriller earned the second-best start for a Colleen Hoover adaptation at 62.5 million. This result confirms Verity as a strong commercial performer behind the 2024 hit film.",
+      "b_roll": [
+        "Michael Showalter on set",
+        "poster of It Ends With Us",
+        "box office comparison chart"
+      ],
+      "text_overlay": {
+        "text": "Second-Best Hoover Opening"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Verity secured 62.5 million dollars in its worldwide opening.",
+      "b_roll": [
+        "Verity movie title card"
+      ],
+      "text_overlay": {
+        "text": "$62.5M Total Opening"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://trevordecker.com/2026/10/04/veritys-62-5m-opening-is-second-best-ever-for-colleen-hoover",
+    "https://shownews.net/article/679257"
+  ]
+}

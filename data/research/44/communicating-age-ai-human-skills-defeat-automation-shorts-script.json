@@ -1,0 +1,64 @@
+{
+  "channel_id": "44",
+  "topic_slug": "communicating-age-ai-human-skills-defeat-automation",
+  "format": "shorts",
+  "hook": "Technology cannot replace the 1 thing saving your career right now.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Technology cannot replace the 1 thing saving your career right now.",
+      "b_roll": [
+        "studio lighting on modern office screens"
+      ],
+      "text_overlay": {
+        "text": "Human Skills vs AI"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Purdue University proved on October 9, 2026, that communication is irreplaceable. Where did 12 students test this in arXiv trials?",
+      "b_roll": [
+        "Purdue University campus archive",
+        "Harvard Business School library desk"
+      ],
+      "text_overlay": {
+        "text": "Purdue & Harvard Studies"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except arXiv trials show 12 students delegating professional communications.",
+      "b_roll": [
+        "digital network nodes connecting"
+      ],
+      "text_overlay": {
+        "text": "The AI Limitation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Singapore University of Social Sciences expert Terence Ho notes 1 critical reality. Letian Zhang found 1 critical thinking skill matters. Purdue University Online demands 1 master communication.",
+      "b_roll": [
+        "Singapore University of Social Sciences building",
+        "executives negotiating in a glass boardroom"
+      ],
+      "text_overlay": {
+        "text": "Master Soft Skills"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Review 1 Purdue University Online research report.",
+      "b_roll": [
+        "professional shaking hands"
+      ],
+      "text_overlay": {
+        "text": "Protect Your Career"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+    "https://www.library.hbs.edu/working-knowledge/why-soft-skills-still-matter-in-the-age-of-ai"
+  ]
+}

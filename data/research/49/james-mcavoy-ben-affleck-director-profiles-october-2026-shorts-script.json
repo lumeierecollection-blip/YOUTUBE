@@ -1,0 +1,64 @@
+{
+  "channel_id": "49",
+  "topic_slug": "james-mcavoy-ben-affleck-director-profiles-october-2026",
+  "format": "shorts",
+  "hook": "Famous actors usually direct safe studio films, but James McAvoy spent 30 years waiting to break every rule.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Famous actors usually direct safe studio films, but James McAvoy spent 30 years waiting to break every rule.",
+      "b_roll": [
+        "Actor James McAvoy on set directing his feature film"
+      ],
+      "text_overlay": {
+        "text": "30 Years Waiting"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, James McAvoy released California Schemin' in U.S. theaters after premiering at the Toronto Film Festival. How'd a limited budget force McAvoy to involve 2,000 strangers?",
+      "b_roll": [
+        "California Schemin' theater poster and festival screening footage",
+        "Director James McAvoy speaking in an interview"
+      ],
+      "text_overlay": {
+        "text": "California Schemin' Release"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except a limited budget meant McAvoy needed 2,000 strangers to pull it off.",
+      "b_roll": [
+        "Crowded street scene during film production"
+      ],
+      "text_overlay": {
+        "text": "Budget Gamble"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "McAvoy utilized 2,000 strangers to help execute an ambitious scene for California Schemin'. Ben Affleck also conquered the director's chair with his thriller Animals.",
+      "b_roll": [
+        "Massive crowd of extras on a movie set",
+        "Ben Affleck directing in Los Angeles for Netflix Tudum"
+      ],
+      "text_overlay": {
+        "text": "2,000 Strangers"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "30 years of waiting finally built California Schemin'.",
+      "b_roll": [
+        "Director James McAvoy on set"
+      ],
+      "text_overlay": {
+        "text": "30 Years in the Making"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://screenrant.com/california-schemin-james-mcavoy-directing-interview",
+    "https://collider.com/video/james-mcavoy-on-how-2-000-strangers-helped-make-california-schemin"
+  ]
+}

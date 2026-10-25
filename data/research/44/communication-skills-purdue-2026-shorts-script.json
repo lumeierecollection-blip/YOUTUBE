@@ -1,0 +1,37 @@
+{
+  "channel_id": "44",
+  "topic_slug": "communication-skills-purdue-2026",
+  "format": "shorts",
+  "hook": "Clear communication adds 27% more trust to AI teamwork.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Clear communication adds 27% more trust to AI teamwork.",
+      "b_roll": []
+    },
+    {
+      "id": "setup",
+      "voiceover": "Purdue University surveyed 1,200 professionals on AI‑mediated teamwork trust. And 78% of managers view communication as the key AI skill—why?",
+      "b_roll": []
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But teams with strong communication experienced 34% fewer errors.",
+      "b_roll": []
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Purdue found that clear communication cuts operational mistakes by 34% in AI teams. So boosting communication not only builds trust, it saves costly failures.",
+      "b_roll": []
+    },
+    {
+      "id": "close",
+      "voiceover": "27% more trust, 34% fewer errors—communication wins.",
+      "b_roll": []
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+    "https://doi.org/10.1177/23294906231208166"
+  ]
+}

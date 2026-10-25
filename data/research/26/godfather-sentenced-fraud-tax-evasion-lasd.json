@@ -1,0 +1,67 @@
+{
+  "topic_slug": "godfather-sentenced-fraud-tax-evasion-lasd",
+  "strongest_angle": "Adam Iza, a 26-year-old crypto businessman styling himself as the 'Godfather', was sentenced to 78 months in federal prison for orchestrating a $37 million fraud scheme against Meta, evading taxes, and corruptly using Los Angeles County Sheriff's Department deputies to harass his opponents.",
+  "key_facts": [
+    {
+      "fact": "Adam Iza, a 26-year-old cryptocurrency businessman styling himself as the 'Godfather', was sentenced to 78 months in federal prison for a $37 million fraud scheme against Meta and tax evasion.",
+      "source_url": "https://www.coindesk.com/policy/2026/10/06/self-styled-crypto-godfather-gets-more-than-6-years-in-usd37-million-meta-fraud-case",
+      "source_name": "CoinDesk",
+      "confidence": "high"
+    },
+    {
+      "fact": "Adam Iza admitted to generating tens of millions of dollars through fraud, concealing millions in income from the IRS, and utilizing Los Angeles County Sheriff's Department deputies against his rivals.",
+      "source_url": "https://www.latimes.com/california/story/2026-10-05/crypto-godfather-adam-iza-prison-sentence",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Department of Justice and the Internal Revenue Service detailed that Adam Iza was sentenced to over 6 years in prison for fraud, tax evasion, and corruptly using LASD deputies.",
+      "source_url": "https://www.irs.gov/compliance/criminal-investigation/self-proclaimed-godfather-sentenced-to-over-6-years-in-prison-for-fraud-tax-evasion-and-using-lasd-deputies-to-torment-his-opponents",
+      "source_name": "Internal Revenue Service",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Prison sentence in months",
+      "value": 78,
+      "unit": "months",
+      "source_url": "https://www.coindesk.com/policy/2026/10/06/self-styled-crypto-godfather-gets-more-than-6-years-in-usd37-million-meta-fraud-case"
+    },
+    {
+      "label": "Age of Adam Iza",
+      "value": 26,
+      "unit": "years",
+      "source_url": "https://www.latimes.com/california/story/2026-10-05/crypto-godfather-adam-iza-prison-sentence"
+    },
+    {
+      "label": "Fraud scheme amount against Meta",
+      "value": 37,
+      "unit": "million dollars",
+      "source_url": "https://www.coindesk.com/policy/2026/10/06/self-styled-crypto-godfather-gets-more-than-6-years-in-usd37-million-meta-fraud-case"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Adam Iza",
+      "kind": "person"
+    },
+    {
+      "name": "Meta",
+      "kind": "organization"
+    },
+    {
+      "name": "Los Angeles County Sheriff's Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Internal Revenue Service",
+      "kind": "organization"
+    },
+    {
+      "name": "Department of Justice",
+      "kind": "organization"
+    }
+  ]
+}

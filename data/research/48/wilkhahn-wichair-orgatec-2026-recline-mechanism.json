@@ -1,0 +1,85 @@
+{
+  "topic_slug": "wilkhahn-wichair-orgatec-2026-recline-mechanism",
+  "strongest_angle": "Wilkhahn launched the WiChair task chair at ORGATEC 2026 in Cologne, highlighting a minimalist design by Alina Schnizler that uses spring-loaded steel and plywood instead of traditional mechanical boxes under the seat.",
+  "key_facts": [
+    {
+      "fact": "German brand Wilkhahn introduced the WiChair, designed by Alina Schnizler, combining springy steel and plywood in a functional frame.",
+      "source_url": "https://www.dezeen.com/2026/05/26/wichair-alina-schnizler-wilkhahn-dezeen-showroom",
+      "source_name": "Dezeen",
+      "confidence": "high"
+    },
+    {
+      "fact": "Wilkhahn has a history of developing dynamic sitting products, starting from the FS-Line in 1980, Picto in 1992, and ON in 2009.",
+      "source_url": "https://www.wilkhahn.com/fileadmin/products/WiChair/docs/Wilkhahn-Digital-brochure-DB-WiChair-02-en.pdf",
+      "source_name": "Wilkhahn Digital Brochure",
+      "confidence": "high"
+    },
+    {
+      "fact": "The WiChair features a spring-loaded steel swing arm that enables movement, moving away from traditional boxes of levers and springs.",
+      "source_url": "https://depix.ai/blog/orgatec-2026-wilkhahn-wichair-no-mechanism",
+      "source_name": "Depix Blog",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "FS-Line release year",
+      "value": 1980,
+      "unit": "year",
+      "source_url": "https://www.wilkhahn.com/fileadmin/products/WiChair/docs/Wilkhahn-Digital-brochure-DB-WiChair-02-en.pdf"
+    },
+    {
+      "label": "Picto release year",
+      "value": 1992,
+      "unit": "year",
+      "source_url": "https://www.wilkhahn.com/fileadmin/products/WiChair/docs/Wilkhahn-Digital-brochure-DB-WiChair-02-en.pdf"
+    },
+    {
+      "label": "ON release year",
+      "value": 2009,
+      "unit": "year",
+      "source_url": "https://www.wilkhahn.com/fileadmin/products/WiChair/docs/Wilkhahn-Digital-brochure-DB-WiChair-02-en.pdf"
+    },
+    {
+      "label": "Range number",
+      "value": 228,
+      "unit": "range",
+      "source_url": "https://www.wilkhahn.com/en-us/products/task-chairs-office-chairs/wichair"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Wilkhahn",
+      "kind": "organization"
+    },
+    {
+      "name": "WiChair",
+      "kind": "object"
+    },
+    {
+      "name": "ORGATEC",
+      "kind": "place"
+    },
+    {
+      "name": "Cologne",
+      "kind": "place"
+    },
+    {
+      "name": "Alina Schnizler",
+      "kind": "person"
+    },
+    {
+      "name": "FS-Line",
+      "kind": "object"
+    },
+    {
+      "name": "Picto",
+      "kind": "object"
+    },
+    {
+      "name": "ON",
+      "kind": "object"
+    }
+  ]
+}

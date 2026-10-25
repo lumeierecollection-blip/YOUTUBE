@@ -1,0 +1,41 @@
+{
+  "channel_id": "49",
+  "topic_slug": "james-mcavoy-directorial-debut-california-schemin-interview",
+  "format": "shorts",
+  "hook": "At 47 years old, actor James McAvoy isn't just acting—he's making his feature directorial debut.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "At 47 years old, actor James McAvoy isn't just acting—he's making his feature directorial debut."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, McAvoy's feature film California Schemin' arrives in theaters for audiences everywhere. Why start now?",
+      "text_overlay": {
+        "text": "California Schemin' | Oct 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "McAvoy first considered directing at age 16, but the actual production process proved incredibly difficult.",
+      "text_overlay": {
+        "text": "Directing Ambition: Age 16"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 47-year-old actor described this directorial debut as his most stressful professional experience to date. Silibil N' Brains drive the plot, as the duo adopts fake American personas to find musical success.",
+      "text_overlay": {
+        "text": "Stressful Production"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "California Schemin' finally brings McAvoy's long-held ambition to the big screen this October 2026."
+    }
+  ],
+  "sources_used": [
+    "https://www.upi.com/Entertainment_News/Movies/2026/10/08/James-McAvoy-California-Schemin-interview/9661791400426",
+    "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+  ]
+}

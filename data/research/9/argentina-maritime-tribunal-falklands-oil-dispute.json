@@ -1,0 +1,70 @@
+{
+  "topic_slug": "argentina-maritime-tribunal-falklands-oil-dispute",
+  "strongest_angle": "Examine how Argentina's legal move at the International Tribunal for the Law of the Sea seeks to halt the Sea Lion oil development project in the Falkland Islands, escalating the territorial dispute with the United Kingdom.",
+  "key_facts": [
+    {
+      "fact": "On 13 October 2026, the Argentine Republic submitted a request to the International Tribunal for the Law of the Sea for provisional measures against the United Kingdom under article 290, paragraph 5, of the United Nations Convention on the Law of the Sea.",
+      "source_url": "https://www.itlos.org/fileadmin/itlos/documents/press_releases_english/PR_401_En.pdf",
+      "source_name": "International Tribunal for the Law of the Sea",
+      "confidence": "high"
+    },
+    {
+      "fact": "The office of Argentine President Javier Milei announced that the legal action aims to block hydrocarbon exploitation by the United Kingdom in the continental shelf of the Malvinas Norte Basin near the Falkland Islands.",
+      "source_url": "https://www.argentina.gob.ar/noticias/comunicado-oficial-numero-168",
+      "source_name": "Presidencia de la Nación",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal claim lodged by Buenos Aires at the International Tribunal for the Law of the Sea targets the Falkland Islands' first commercial oil project, escalating the ongoing resource and territorial dispute between Argentina and the UK.",
+      "source_url": "https://apnews.com/article/argentina-falkland-islands-uk-milei-tribunal-law-of-sea-sea-lion-oil-2a78578f0a9ffda403f4721c4e1d304f",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Date of Request",
+      "value": 13,
+      "unit": "day of October 2026",
+      "source_url": "https://www.itlos.org/fileadmin/itlos/documents/press_releases_english/PR_401_En.pdf"
+    },
+    {
+      "label": "UN Convention Article",
+      "value": 290,
+      "unit": "article",
+      "source_url": "https://www.itlos.org/fileadmin/itlos/documents/press_releases_english/PR_401_En.pdf"
+    },
+    {
+      "label": "UN Convention Paragraph",
+      "value": 5,
+      "unit": "paragraph",
+      "source_url": "https://www.itlos.org/fileadmin/itlos/documents/press_releases_english/PR_401_En.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    },
+    {
+      "name": "International Tribunal for the Law of the Sea",
+      "kind": "organization"
+    },
+    {
+      "name": "Falkland Islands",
+      "kind": "place"
+    },
+    {
+      "name": "Javier Milei",
+      "kind": "person"
+    },
+    {
+      "name": "Malvinas Norte Basin",
+      "kind": "place"
+    }
+  ]
+}

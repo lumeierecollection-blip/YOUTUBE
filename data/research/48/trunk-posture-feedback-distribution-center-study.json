@@ -1,0 +1,77 @@
+{
+  "topic_slug": "trunk-posture-feedback-distribution-center-study",
+  "strongest_angle": "Analyzes the effectiveness and usability of wearable trunk posture feedback systems deployed in a six-week longitudinal study at a distribution center by researchers including Jiwon Choi and Maury A. Nussbaum.",
+  "key_facts": [
+    {
+      "fact": "Researchers Jiwon Choi, Sunwook Kim, Sol Lim, Ryan Porto, and Maury A. Nussbaum published a longitudinal field study in Applied Ergonomics examining a trunk posture feedback system over a duration of up to six weeks.",
+      "source_url": "https://doi.org/10.1016/j.apergo.2026.104796",
+      "source_name": "Applied Ergonomics via DOI",
+      "confidence": "high"
+    },
+    {
+      "fact": "The study titled Effectiveness and usability of a trunk posture feedback system: A longitudinal field study for up to six weeks in a distribution center was published in Volume 136 of Applied Ergonomics.",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0003687026000748",
+      "source_name": "ScienceDirect",
+      "confidence": "high"
+    },
+    {
+      "fact": "The institutional repository VTechWorks hosts the accepted version of the research paper authored by Jiwon Choi and colleagues from Virginia Tech.",
+      "source_url": "https://vtechworks.lib.vt.edu/items/cda640dd-7149-4f12-a9cc-364b849afa53",
+      "source_name": "VTechWorks",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Study duration up to",
+      "value": 6,
+      "unit": "weeks",
+      "source_url": "https://doi.org/10.1016/j.apergo.2026.104796"
+    },
+    {
+      "label": "Volume number",
+      "value": 136,
+      "unit": "volume",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0003687026000748"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Jiwon Choi",
+      "kind": "person"
+    },
+    {
+      "name": "Sunwook Kim",
+      "kind": "person"
+    },
+    {
+      "name": "Sol Lim",
+      "kind": "person"
+    },
+    {
+      "name": "Ryan Porto",
+      "kind": "person"
+    },
+    {
+      "name": "Maury A. Nussbaum",
+      "kind": "person"
+    },
+    {
+      "name": "Virginia Tech",
+      "kind": "organization"
+    },
+    {
+      "name": "Applied Ergonomics",
+      "kind": "organization"
+    },
+    {
+      "name": "VTechWorks",
+      "kind": "organization"
+    },
+    {
+      "name": "ScienceDirect",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

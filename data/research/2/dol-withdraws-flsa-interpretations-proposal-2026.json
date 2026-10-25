@@ -1,0 +1,66 @@
+{
+  "topic_slug": "dol-withdraws-flsa-interpretations-proposal-2026",
+  "strongest_angle": "The Department of Labor has officially abandoned its 2025 proposal to remove nine sections of Fair Labor Standards Act interpretive guidance from the Code of Federal Regulations, maintaining the status quo for employers and workers.",
+  "key_facts": [
+    {
+      "fact": "On October 7, 2026, the Wage and Hour Division of the U.S. Department of Labor published a notice officially withdrawing its July 2025 proposal to remove nine parts of Fair Labor Standards Act interpretive guidance from the Code of Federal Regulations.",
+      "source_url": "https://natlawreview.com/article/dol-pulls-plug-plan-move-flsa-interpretations-out-cfr",
+      "source_name": "National Law Review",
+      "confidence": "high"
+    },
+    {
+      "fact": "The original proposal, published on July 2, 2025, in the Federal Register as 90 FR 28985, sought to strip longstanding policy statements that had not previously undergone formal notice-and-comment rulemaking.",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of",
+      "source_name": "Federal Register",
+      "confidence": "high"
+    },
+    {
+      "fact": "By withdrawing this proposal, the U.S. Department of Labor ensures that the existing interpretive rules and policy statements regarding the Fair Labor Standards Act remain in their current location within the Code of Federal Regulations.",
+      "source_url": "https://www.law360.com/articles/2534728/dol-cancels-proposal-to-nix-wage-hour-guidance",
+      "source_name": "Law360",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of parts of FLSA interpretive guidance targeted for removal",
+      "value": 9,
+      "unit": "parts",
+      "source_url": "https://natlawreview.com/article/dol-pulls-plug-plan-move-flsa-interpretations-out-cfr"
+    },
+    {
+      "label": "Federal Register volume number",
+      "value": 90,
+      "unit": "volume",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Federal Register page number",
+      "value": 28985,
+      "unit": "page",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Department of Labor",
+      "kind": "organization"
+    },
+    {
+      "name": "Wage and Hour Division",
+      "kind": "organization"
+    },
+    {
+      "name": "Fair Labor Standards Act",
+      "kind": "object"
+    },
+    {
+      "name": "Code of Federal Regulations",
+      "kind": "object"
+    },
+    {
+      "name": "Federal Register",
+      "kind": "object"
+    }
+  ]
+}

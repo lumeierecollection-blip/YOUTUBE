@@ -1,0 +1,104 @@
+{
+  "topic_slug": "marchesi-antinori-8m-wine-heist",
+  "strongest_angle": "Examine how at least seven masked thieves spent about three hours emptying a Marchesi Antinori warehouse in Cortona, Italy, stealing 30,000 bottles of wine after alarms were deactivated from the inside.",
+  "key_facts": [
+    {
+      "fact": "At least seven masked men stole approximately 30,000 bottles of wine valued at around €5 million to over $8 million from a Marchesi Antinori warehouse in Cortona, Tuscany.",
+      "source_url": "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles",
+      "source_name": "Fortune",
+      "confidence": "high"
+    },
+    {
+      "fact": "Carabinieri from the Cortona company are reviewing footage from more than one hundred security cameras to investigate the Marchesi Antinori warehouse burglary.",
+      "source_url": "https://corrierefiorentino.corriere.it/notizie/cronaca/26_ottobre_12/furto-di-30-mila-bottiglie-antinori-al-setaccio-le-telecamere-si-indaga-su-un-colpo-su-commissione-296f7ea0-8c4a-4600-8b30-5a90c5600xlk.shtml",
+      "source_name": "Corriere Fiorentino",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Security systems and alarms at the Marchesi Antinori facility were switched off from the inside before the thieves loaded two trucks during a three-hour operation on a Saturday night.",
+      "source_url": "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles",
+      "source_name": "Fortune",
+      "confidence": "high"
+    },
+    {
+      "fact": "The stolen haul included prized bottles of Tignanello, Solaia, and Guado al Tasso red wines produced by Marchesi Antinori.",
+      "source_url": "https://apnews.com/article/italy-wine-antinori-bottles-theft-tuscany-winery-da00ac413ddcd06419eb4bedcad56170",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "stolen wine bottles",
+      "value": 30000,
+      "unit": "bottles",
+      "source_url": "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles"
+    },
+    {
+      "label": "estimated value in euros",
+      "value": 5,
+      "unit": "million euros",
+      "source_url": "https://www.theguardian.com/world/2026/oct/09/thieves-make-off-with-haul-from-prestigious-italian-winery-marchesi-antinori"
+    },
+    {
+      "label": "estimated value in dollars",
+      "value": 8,
+      "unit": "million dollars",
+      "source_url": "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles"
+    },
+    {
+      "label": "duration of operation",
+      "value": 3,
+      "unit": "hours",
+      "source_url": "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles"
+    },
+    {
+      "label": "number of trucks used",
+      "value": 2,
+      "unit": "trucks",
+      "source_url": "https://apnews.com/article/italy-wine-antinori-bottles-theft-tuscany-winery-da00ac413ddcd06419eb4bedcad56170"
+    },
+    {
+      "label": "security cameras reviewed",
+      "value": 100,
+      "unit": "cameras",
+      "source_url": "https://corrierefiorentino.corriere.it/notizie/cronaca/26_ottobre_12/furto-di-30-mila-bottiglie-antinori-al-setaccio-le-telecamere-si-indaga-su-un-colpo-su-commissione-296f7ea0-8c4a-4600-8b30-5a90c5600xlk.shtml"
+    },
+    {
+      "label": "number of thieves",
+      "value": 7,
+      "unit": "men",
+      "source_url": "https://fortune.com/2026/10/09/marchesi-antinori-vino-wine-heist-masked-thieves-alarms-disarmed-9-million-30000-bottles"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Marchesi Antinori",
+      "kind": "organization"
+    },
+    {
+      "name": "Cortona",
+      "kind": "place"
+    },
+    {
+      "name": "Tuscany",
+      "kind": "place"
+    },
+    {
+      "name": "Tignanello",
+      "kind": "object"
+    },
+    {
+      "name": "Solaia",
+      "kind": "object"
+    },
+    {
+      "name": "Guado al Tasso",
+      "kind": "object"
+    },
+    {
+      "name": "Carabinieri",
+      "kind": "organization"
+    }
+  ]
+}

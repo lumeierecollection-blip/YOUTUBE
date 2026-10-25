@@ -1,0 +1,65 @@
+{
+  "channel_id": "10",
+  "topic_slug": "university-ai-philosopher-hiring-spree-2026",
+  "format": "shorts",
+  "hook": "Inside Higher Ed reported on October 15, 2026, that universities have gone on an AI hiring spree.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Inside Higher Ed reported on October 15, 2026, that universities have gone on an AI hiring spree.",
+      "b_roll": [
+        "University campus aerial shot"
+      ],
+      "text_overlay": {
+        "text": "AI PHILOSOPHER HIRING SPREE"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why is WashU launching a campaign seeking over 30 new tenure-track faculty members by 2029?",
+      "b_roll": [
+        "Inside Higher Ed article screenshot",
+        "WashU campus building"
+      ],
+      "text_overlay": {
+        "text": "30 NEW FACULTY BY 2029"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "University World News noted on October 17, 2026, that the job market for humanities scholars is bleak except for AI philosophy specialists.",
+      "b_roll": [
+        "University World News headline"
+      ],
+      "text_overlay": {
+        "text": "HUMANITIES JOB MARKET BLEAK"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "WashU aims to fill 30 positions by 2029 to meet exploding student demand.",
+      "b_roll": [
+        "Students walking on campus",
+        "Library interior with philosophy books"
+      ],
+      "text_overlay": {
+        "text": "THE SOLE EXCEPTION"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "WashU targets 30 new AI philosophy faculty members by 2029.",
+      "b_roll": [
+        "University gates closing shot"
+      ],
+      "text_overlay": {
+        "text": "30 BY 2029"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.studlife.com/news/2026/10/14/washu-kickstarts-new-ai-faculty-cluster-hiring-program",
+    "https://www.insidehighered.com/news/faculty/2026/10/15/universities-have-gone-ai-philosopher-hiring-spree",
+    "https://www.universityworldnews.com/post.php?story=20261017092126630"
+  ]
+}

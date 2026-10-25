@@ -1,0 +1,65 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-eritrea-tigray-border-invasion-un-2026",
+  "format": "shorts",
+  "hook": "Eritrea's all-out invasion of the Tigray region has shocked Ethiopia into filing an emergency UN complaint.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Eritrea's all-out invasion of the Tigray region has shocked Ethiopia into filing an emergency UN complaint.",
+      "b_roll": [
+        "Map showing the border between Eritrea and Ethiopia"
+      ],
+      "text_overlay": {
+        "text": "Border Invasion"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 9, Foreign Minister Gedion Timothewos sent an official letter to the United Nations Security Council. Ethiopian military vehicles and troops entered Adigrat near the border. Where will this conflict lead?",
+      "b_roll": [
+        "UN headquarters building",
+        "Military vehicles in Adigrat"
+      ],
+      "text_overlay": {
+        "text": "UN Security Council Appeal"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Foreign Minister Gedion Timothewos called the military incursion a blatant act of aggression.",
+      "b_roll": [
+        "Border outpost sign"
+      ],
+      "text_overlay": {
+        "text": "Act of Aggression"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Troops secured the northern territory.",
+      "b_roll": [
+        "Tigray region landscape",
+        "Troops deployed in the north"
+      ],
+      "text_overlay": {
+        "text": "Right to Self-Defense"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Ethiopia filed the official letter regarding Tigray at the United Nations.",
+      "b_roll": [
+        "Official UN document"
+      ],
+      "text_overlay": {
+        "text": "Official UN Letter"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c65ynvw250y1o",
+    "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war",
+    "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b"
+  ]
+}

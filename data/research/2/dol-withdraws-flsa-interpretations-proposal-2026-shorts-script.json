@@ -1,0 +1,65 @@
+{
+  "channel_id": "2",
+  "topic_slug": "dol-withdraws-flsa-interpretations-proposal-2026",
+  "format": "shorts",
+  "hook": "Your workplace rights under the Fair Labor Standards Act were almost stripped.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your workplace rights under the Fair Labor Standards Act were almost stripped.",
+      "b_roll": [
+        "U.S. Department of Labor logo",
+        "Fair Labor Standards Act document icon"
+      ],
+      "text_overlay": {
+        "text": "FLSA Rights Under Threat"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In July 2025, the Wage and Hour Division proposed removing nine specific parts of interpretive guidance from the Code of Federal Regulations. Did you know your labor protections were targeted?",
+      "b_roll": [
+        "Federal Register page",
+        "Code of Federal Regulations book"
+      ],
+      "text_overlay": {
+        "text": "9 Sections Targeted"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Department of Labor has now officially pulled the plug.",
+      "b_roll": [
+        "Department of Labor building exterior"
+      ],
+      "text_overlay": {
+        "text": "Proposal Withdrawn"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "On October 7, 2026, the agency published a formal notice of withdrawal. These critical policy statements remain safely inside the Code of Federal Regulations today. Employers and workers keep their existing legal standards.",
+      "b_roll": [
+        "Calendar showing October 7, 2026",
+        "Document storage icon"
+      ],
+      "text_overlay": {
+        "text": "Status Quo Maintained"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Review the Federal Register to read the withdrawal notice.",
+      "b_roll": [
+        "Worker rights symbol"
+      ],
+      "text_overlay": {
+        "text": "Rights Protected"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://natlawreview.com/article/dol-pulls-plug-plan-move-flsa-interpretations-out-cfr",
+    "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "topic_slug": "hks-people-first-corporate-real-estate-strategy",
+  "strongest_angle": "Architecture firm HKS implemented a people-first workplace optimization model for their new Washington, D.C. office and studio, incorporating direct employee feedback and spatial design.",
+  "key_facts": [
+    {
+      "fact": "Architecture firm HKS operates a global design company with more than two dozen offices worldwide.",
+      "source_url": "https://www.hksinc.com/how-we-think/reports/an-inside-look-at-a-people-first-real-estate-model",
+      "source_name": "HKS",
+      "confidence": "high"
+    },
+    {
+      "fact": "HKS designers partnered with consulting firm McKinley Advisors to reimagine their Washington, D.C. office space following COVID-19 closures.",
+      "source_url": "https://www.hksinc.com/what-we-do/projects/a-future-thinking-office-refresh-embraces-a-digital-forward-strategy",
+      "source_name": "HKS Architects",
+      "confidence": "high"
+    },
+    {
+      "fact": "Architecture firm HKS designed a sustainable, tech-forward hub for client Gen in Mountain View, California, completed in December 2023.",
+      "source_url": "https://www.workdesign.com/2025/08/hks-designs-gens-sustainable-tech-forward-hub-in-silicon-valley",
+      "source_name": "Work Design Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Offices",
+      "value": 2,
+      "unit": "dozen offices",
+      "source_url": "https://www.hksinc.com/how-we-think/reports/an-inside-look-at-a-people-first-real-estate-model"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "HKS",
+      "kind": "organization"
+    },
+    {
+      "name": "Washington, D.C.",
+      "kind": "place"
+    },
+    {
+      "name": "McKinley Advisors",
+      "kind": "organization"
+    },
+    {
+      "name": "Gen",
+      "kind": "organization"
+    },
+    {
+      "name": "Mountain View",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

@@ -1,0 +1,68 @@
+{
+  "topic_slug": "spider-man-5-mcu-release-strategy",
+  "strongest_angle": "Breaking down the confirmed scheduling bottleneck where six major MCU films must precede the next Tom Holland Spider-Man installment, shifting expectations for the franchise timeline.",
+  "key_facts": [
+    {
+      "fact": "Sony Pictures chairman and CEO Ravi Ahuja addressed the Spider-Man 5 release timeline in an interview with Variety, stating that they do not have a release date for it yet.",
+      "source_url": "https://screenrant.com/spider-man-5-release-timeline-update-ravi-ahuja",
+      "source_name": "ScreenRant",
+      "confidence": "high"
+    },
+    {
+      "fact": "Marvel Studios and Sony Pictures have six major new movies expected to be released before Spider-Man 5.",
+      "source_url": "https://thedirect.com/article/spider-man-5-release-mcu-movies-marvel-upcoming",
+      "source_name": "The Direct",
+      "confidence": "high"
+    },
+    {
+      "fact": "Spider-Man: Brand New Day premiered on July 31, marking Tom Holland's fourth Marvel Cinematic Universe Spider-Man film.",
+      "source_url": "https://www.polygon.com/spider-man-5-plot-release-date-plot-teaser-story-tom-holland",
+      "source_name": "Polygon",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of major MCU movies before Spider-Man 5",
+      "value": 6,
+      "unit": "movies",
+      "source_url": "https://thedirect.com/article/spider-man-5-release-mcu-movies-marvel-upcoming"
+    },
+    {
+      "label": "Tom Holland's MCU Spider-Man film count for Brand New Day",
+      "value": 4,
+      "unit": "film",
+      "source_url": "https://www.polygon.com/spider-man-5-plot-release-date-plot-teaser-story-tom-holland"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ravi Ahuja",
+      "kind": "person"
+    },
+    {
+      "name": "Tom Holland",
+      "kind": "person"
+    },
+    {
+      "name": "Sony Pictures",
+      "kind": "organization"
+    },
+    {
+      "name": "Marvel Studios",
+      "kind": "organization"
+    },
+    {
+      "name": "Variety",
+      "kind": "organization"
+    },
+    {
+      "name": "Spider-Man: Brand New Day",
+      "kind": "object"
+    },
+    {
+      "name": "Spider-Man 5",
+      "kind": "object"
+    }
+  ]
+}

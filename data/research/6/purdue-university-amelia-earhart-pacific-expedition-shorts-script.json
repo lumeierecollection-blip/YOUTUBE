@@ -1,0 +1,66 @@
+{
+  "channel_id": "6",
+  "topic_slug": "purdue-university-amelia-earhart-pacific-expedition",
+  "format": "shorts",
+  "hook": "Seventeen researchers sailed 830 nautical miles to solve a 1937 disappearance.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Seventeen researchers sailed 830 nautical miles to solve a 1937 disappearance.",
+      "b_roll": [
+        "Map showing the South Pacific voyage to Nikumaroro Island"
+      ],
+      "text_overlay": {
+        "text": "830 Nautical Miles"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Purdue University launched the expedition on October 12 aboard the Marin Mainiku vessel. Rick Pettigrew led the team across the ocean. What anomaly waited at Nikumaroro?",
+      "b_roll": [
+        "Ship navigating ocean waves",
+        "Portrait of expedition leaders",
+        "Satellite image showing island anomaly"
+      ],
+      "text_overlay": {
+        "text": "October 12 Arrival"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except a 17-person boat crew also joined the dangerous Pacific search.",
+      "b_roll": [
+        "Crew members aboard the vessel"
+      ],
+      "text_overlay": {
+        "text": "17 Boat Crew Members"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Satellite imagery revealed a mysterious target on the remote island shore. Steve Schultz coordinated the university investigation.",
+      "b_roll": [
+        "Satellite scan of target area",
+        "University legal and research documents",
+        "Underwater divers near coral reefs"
+      ],
+      "text_overlay": {
+        "text": "Nikumaroro Island Anomaly"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Seventeen researchers reached the Nikumaroro anomaly after 5 days.",
+      "b_roll": [
+        "Expedition team arriving at island"
+      ],
+      "text_overlay": {
+        "text": "Nikumaroro Expedition"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+    "https://www.usatoday.com/story/news/nation/2026/10/05/new-amelia-earhart-expedition-begins/92055309007"
+  ]
+}

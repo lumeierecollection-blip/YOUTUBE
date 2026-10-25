@@ -1,0 +1,69 @@
+{
+  "topic_slug": "harvard-pon-research-roundup-online-deals",
+  "strongest_angle": "Analyzing the October 2026 research roundup from Harvard's Program on Negotiation focusing on digital negotiation tools, helping professionals project power and make strong opening offers across screens.",
+  "key_facts": [
+    {
+      "fact": "Katie Shonk published the negotiation tools and techniques research roundup for the Program on Negotiation at Harvard Law School on October 14, 2026.",
+      "source_url": "https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-tools-and-techniques-research-roundup",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Xerox CEO John Visentin announced on March 13 that the company was putting its hostile takeover of HP on hold.",
+      "source_url": "https://www.apppostgradtraining.com/wp-content/uploads/2025/07/HLS_PON_OnlineNegSpecReport_2023b.pdf",
+      "source_name": "App Postgrad Training",
+      "confidence": "high"
+    },
+    {
+      "fact": "Katie Shonk authored the pros and cons of email communication research report published by the Program on Negotiation at Harvard Law School on October 6, 2026.",
+      "source_url": "https://www.pon.harvard.edu/daily/conflict-resolution/pros-and-cons-of-email-communication",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    },
+    {
+      "fact": "Professor Janice Nadler of Northwestern University conducted research highlighting the pitfalls of communicating via email during negotiations.",
+      "source_url": "https://www.pon.harvard.edu/daily/improve-your-online-negotiation-results",
+      "source_name": "Program on Negotiation at Harvard Law School",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "March Date",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://www.apppostgradtraining.com/wp-content/uploads/2025/07/HLS_PON_OnlineNegSpecReport_2023b.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Katie Shonk",
+      "kind": "person"
+    },
+    {
+      "name": "Program on Negotiation at Harvard Law School",
+      "kind": "organization"
+    },
+    {
+      "name": "John Visentin",
+      "kind": "person"
+    },
+    {
+      "name": "Xerox",
+      "kind": "organization"
+    },
+    {
+      "name": "HP",
+      "kind": "organization"
+    },
+    {
+      "name": "Janice Nadler",
+      "kind": "person"
+    },
+    {
+      "name": "Northwestern University",
+      "kind": "organization"
+    }
+  ]
+}

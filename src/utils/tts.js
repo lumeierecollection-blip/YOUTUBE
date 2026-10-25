@@ -18,15 +18,17 @@
  * cues keep it: the planner's gates read digits from those cues.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, unlinkSync, copyFileSync } from "fs";
+import { resolveChannel } from "../../scripts/lib/channel-lookup.mjs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { execSync } from "child_process";
+import { execSync, spawnSync } from "child_process";
 import { narrationSections } from "./script-narration.js";
 import { speakable } from "./tts-normalize.js";
 import { synthesize as synthesizeElevenLabs } from "./tts-elevenlabs.js";
 import { synthesize as synthesizeMai } from "./tts-mai.js";
 import { verifyTts } from "./tts-verify.js";
+import { chooseTake } from "./tts-takes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -101,6 +103,10 @@ function parseScriptForTTS(scriptContent, isJson = false) {
  * Uses natural rate/pitch so the delivery is not robotic, and writes an SRT
  * subtitle file for caption sync.
  */
+import { geminiVoiceFor } from "./gemini-voice.js";
+import { toneOf } from "./video-tone.js";
+export { geminiVoiceFor };
+
 async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const fullText = segments.map((s) => s.text).join("\n\n");
 
@@ -113,8 +119,11 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   const srtPath = join(outputDir, `${topic}-vo.srt`);
   const wordsPath = join(outputDir, `${topic}-vo-words.json`);
 
-  const rate = settings.rate || "+0%";
-  const pitch = settings.pitch || "+0Hz";
+  // THE VIDEO'S TONE (video-tone.js): what the story is about decides how it is read. A channel's own tts_rate / tts_pitch still win.
+  const tone = toneOf({ text: fullText, channelTone: settings.tone });
+  console.log(`[tone] ${tone.gravity} — ${tone.emotion}${tone.hits.length ? ` (read from: ${tone.hits.slice(0, 6).join(", ")})` : ""}`);
+  const rate = settings.rate || tone.edge.rate || "+0%";
+  const pitch = settings.pitch || tone.edge.pitch || "+0Hz";
 
   // Write text to a temp file to avoid shell escaping issues with special
   // characters (Unicode, quotes, etc.) in the inline --text argument.
@@ -125,6 +134,62 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   writeFileSync(tmpTextPath, spokenText);
   writeFileSync(displayPath, fullText);
   writeFileSync(join(outputDir, `${topic}-vo-spoken.txt`), spokenText);
+
+  // Gemini's own TTS first (owner, 2026-10-10: "THE VOICE IS ROBOTIC"). In a blind Gemini listening test edge-tts scored
+  // SYNTHETIC 4/10 and gemini-3.1-flash-tts-preview HUMAN 9/10 on the same sentence. src/utils/tts_gemini.py writes the mp3, the
+  // sentence SRT and per-word timings (faster-whisper alignment) in tts_words.py's exact shape; any failure falls through to the chain below.
+  if (process.env.TTS_PROVIDER !== "edge" && ["GEMINI_API_KEY_4", "GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3"].some((k) => process.env[k])) {
+    const g = geminiVoiceFor(voice, settings.gemini_voice, tone.gravity);
+    const helper = join(ROOT, "src", "utils", "tts_gemini.py");
+    const args = `--voice "${g.voice}" --style "${g.style.replace(/"/g, "'")}" --file "${tmpTextPath}" --display-file "${displayPath}" --mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
+    const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
+    // TAKES (board 38044082797, ch 26): see tts-takes.js. Up to TTS_GEMINI_TAKES takes (default 3), each heard by the render's own narration
+    // judge at its own threshold; the first that passes is kept, else the best-scoring one. A judge that cannot run keeps the take given.
+    // ONE take by default (owner, 2026-10-10: the listener is advisory). Choosing among takes used the listener's verdict as a SELECTOR:
+    // 9 readings x 3 takes = 27 model calls per channel to pick the take a noisy listener liked best. The floor (narration-floor.mjs) still
+    // holds the video. Restore the retakes with TTS_GEMINI_TAKES=3.
+    const takes = process.env.TTS_NARRATION_RETAKE === "0" ? 1 : Math.max(1, Number(process.env.TTS_GEMINI_TAKES) || 1);
+    const judge = join(ROOT, "scripts", "narration-judge.mjs");
+    const kept = [audioPath, srtPath, wordsPath];
+    const cleanup = () => { for (const f of [tmpTextPath, displayPath, ...kept.map((k) => `${k}.besttake`)]) { try { unlinkSync(f); } catch {} } };
+    const r = chooseTake({
+      takes,
+      log: (m) => console.log(`[tts] ${m}`),
+      record: (take) => {
+        for (const py of pythons) {
+          try {
+            const out = execSync(`${py} "${helper}" ${args}`, { stdio: "pipe", timeout: 600000 }).toString().trim();
+            console.log(out);
+            console.log(`Delivery: gemini voice=${g.voice} (channel voice ${voice})${takes > 1 ? `, take ${take}/${takes}` : ""}`);
+            verifyTts({ mp3Path: audioPath, srtPath, wordsPath, spokenText, channel: settings.channel || "?", topic });
+            return true;
+          } catch (err) {
+            console.error(`::warning::Gemini TTS failed (${py}): ${String(err.stderr || err.message).trim().split("\n").slice(-3).join(" | ").slice(0, 400)} — falling back`);
+          }
+        }
+        return false;
+      },
+      judge: (take) => {
+        if (takes === 1) return { status: "unavailable" };   // one take: nothing to choose between, no extra Gemini call
+        const jsonPath = join(outputDir, `${topic}-take${take}-narration.json`);
+        const jr = spawnSync("node", [judge, "--audio", audioPath, "--srt", srtPath, "--out", jsonPath], { stdio: "pipe", timeout: 300000, env: process.env });
+        for (const l of String(jr.stdout || "").split("\n").filter(Boolean)) console.log(`[take ${take}] ${l}`);
+        if (jr.status === 0) return { status: "pass" };
+        if (jr.status !== 1) return { status: "unavailable" };
+        let mean = 0;
+        try { const rows = JSON.parse(readFileSync(jsonPath, "utf8")).sentences || []; mean = rows.reduce((n, x) => n + Number(x.score || 0), 0) / Math.max(1, rows.length); } catch {}
+        return { status: "fail", mean };
+      },
+      save: () => { for (const f of kept) if (existsSync(f)) copyFileSync(f, `${f}.besttake`); },
+      restore: () => { for (const f of kept) if (existsSync(`${f}.besttake`)) copyFileSync(`${f}.besttake`, f); },
+    });
+    if (r.outcome !== "none") { cleanup(); return audioPath; }
+    // NO take: every Gemini attempt failed and the fallback below is EdgeTTS,
+    // which READS the text files written above. Cleaning up here deleted them
+    // before it ran (run 39300736182 ch-2: every fallback died FileNotFoundError
+    // on -tts-input.txt, then prep failed). Keep them; the EdgeTTS success and
+    // error paths below delete them.
+  }
 
   // Task 4.1 — natural voiceover provider chain: ElevenLabs → MAI-Voice →
   // edge-tts. A provider that is not configured (no API key) returns null and
@@ -252,8 +317,7 @@ async function main() {
   const channelsPath = join(ROOT, "config", "channels.json");
   const data = JSON.parse(readFileSync(channelsPath, "utf-8"));
   const channels = data.channels || data;
-  const numId = parseInt(channelId, 10);
-  const channel = channels.find((c) => c.id === numId || c.channel_id === channelId);
+  const channel = resolveChannel(channelId, channels);
   if (!channel) {
     console.error(`Channel "${channelId}" not found`);
     process.exit(1);
@@ -277,6 +341,8 @@ async function main() {
         rate: channel.tts_rate,
         pitch: channel.tts_pitch,
         python: channel.tts_python,
+        gemini_voice: channel.gemini_voice,
+        tone: channel.tone,
         channel: channelId,
       });
     } catch (err) {

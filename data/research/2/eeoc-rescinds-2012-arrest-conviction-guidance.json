@@ -1,0 +1,92 @@
+{
+  "topic_slug": "eeoc-rescinds-2012-arrest-conviction-guidance",
+  "strongest_angle": "Examine the Equal Employment Opportunity Commission's October 2026 proposal sent to the Office of Management and Budget to rescind its 2012 criminal background check guidance following Executive Order 14281.",
+  "key_facts": [
+    {
+      "fact": "On October 6, 2026, the U.S. Office of Management and Budget's Office of Information and Regulatory Affairs received a draft final rule from the U.S. Equal Employment Opportunity Commission to rescind its 2012 criminal background check guidance.",
+      "source_url": "https://natlawreview.com/article/eeoc-moves-revoke-long-standing-guidance-criminal-background-checks",
+      "source_name": "National Law Review",
+      "confidence": "high"
+    },
+    {
+      "fact": "On April 23, 2025, President Trump signed Executive Order 14281, titled Restoring Equality of Opportunity and Meritocracy, which declares a policy of eliminating disparate impact liability to the maximum degree possible.",
+      "source_url": "https://www.quarles.com/newsroom/publications/eeoc-moves-to-rescind-arrest-and-conviction-records-guidance-what-employers-need-to-know",
+      "source_name": "Quarles Law Firm",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Equal Employment Opportunity Commission submitted the draft final rule seeking to rescind its enforcement guidance on using arrest and conviction records in hiring decisions under Title VII.",
+      "source_url": "https://biglawreporter.com/eeoc-submits-draft-rule-to-rescind-guidance-on-arrest-and-conviction-records",
+      "source_name": "Big Law Reporter",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Executive Order Number",
+      "value": 14281,
+      "unit": "order",
+      "source_url": "https://www.quarles.com/newsroom/publications/eeoc-moves-to-rescind-arrest-and-conviction-records-guidance-what-employers-need-to-know"
+    },
+    {
+      "label": "Year of Guidance",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://natlawreview.com/article/eeoc-moves-revoke-long-standing-guidance-criminal-background-checks"
+    },
+    {
+      "label": "Month of Action",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://natlawreview.com/article/eeoc-moves-revoke-long-standing-guidance-criminal-background-checks"
+    },
+    {
+      "label": "Day of Action",
+      "value": 6,
+      "unit": "day",
+      "source_url": "https://natlawreview.com/article/eeoc-moves-revoke-long-standing-guidance-criminal-background-checks"
+    },
+    {
+      "label": "Year of Action",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://natlawreview.com/article/eeoc-moves-revoke-long-standing-guidance-criminal-background-checks"
+    },
+    {
+      "label": "Month of Executive Order",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://www.quarles.com/newsroom/publications/eeoc-moves-to-rescind-arrest-and-conviction-records-guidance-what-employers-need-to-know"
+    },
+    {
+      "label": "Day of Executive Order",
+      "value": 23,
+      "unit": "day",
+      "source_url": "https://www.quarles.com/newsroom/publications/eeoc-moves-to-rescind-arrest-and-conviction-records-guidance-what-employers-need-to-know"
+    },
+    {
+      "label": "Year of Executive Order",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.quarles.com/newsroom/publications/eeoc-moves-to-rescind-arrest-and-conviction-records-guidance-what-employers-need-to-know"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Equal Employment Opportunity Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "Office of Management and Budget",
+      "kind": "organization"
+    },
+    {
+      "name": "Office of Information and Regulatory Affairs",
+      "kind": "organization"
+    },
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    }
+  ]
+}

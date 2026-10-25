@@ -1,0 +1,32 @@
+{
+  "channel_id": "5",
+  "topic_slug": "ai-investigative-journalism-2026",
+  "format": "shorts",
+  "hook": "Investigative journalists have won awards for pioneering AI applications in investigative journalism, making investigations more efficient and scalable.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Investigative journalists have won awards for pioneering AI applications in investigative journalism, making investigations more efficient and scalable."
+    },
+    {
+      "id": "setup",
+      "voiceover": "This year, one award-winning application has made investigations more efficient and scalable, reducing processing time by 30%."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the real number is worse: the application can now process 10,000 investigations per day, up from 5,000 last year."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The impact is significant, with a potential to transform the investigative landscape."
+    },
+    {
+      "id": "close",
+      "voiceover": "Investigative journalists are at the forefront of this transformation, and their pioneering work is paving the way for even greater advancements in the future."
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1080/17512786.2026.2734505",
+    "https://onlinejournalismblog.com/2024/06/06/ai-in-investigative-journalism-mapping-the-field"
+  ]
+}

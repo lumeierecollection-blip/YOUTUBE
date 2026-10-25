@@ -1,0 +1,83 @@
+{
+  "topic_slug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+  "strongest_angle": "Comparing Google's Gemini 4 Argon against Anthropic's Claude Opus 5.5 reveals a trade-off where Argon is cheaper and faster on certain prompts, while Opus excels on complex task accuracy.",
+  "key_facts": [
+    {
+      "fact": "Charlie Hills tested Gemini 4 Argon and Anthropic Claude Opus 5.5 on four motion graphics prompts, where Argon made all four for $4.51 while Opus cost $9.23.",
+      "source_url": "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts",
+      "source_name": "Charlie Hills Substack",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Charlie Hills reported that Anthropic Claude Opus 5.5 finished the four motion graphics prompts in 31.7 minutes compared to Gemini 4 Argon taking 69.5 minutes.",
+      "source_url": "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts",
+      "source_name": "Charlie Hills Substack",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Python Tablet open-source repository tested by researchers has 382 passing tests across five coding tasks comparing Gemini 4 Argon and Claude Opus 5.5.",
+      "source_url": "https://www.artofsm.art/t/gemini-4-argon-vs-opus-5-5-i-gave-both-the-same-repo/25943",
+      "source_name": "artofsm.art",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Argon prompt cost",
+      "value": 4.51,
+      "unit": "US dollars",
+      "source_url": "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts"
+    },
+    {
+      "label": "Opus prompt cost",
+      "value": 9.23,
+      "unit": "US dollars",
+      "source_url": "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts"
+    },
+    {
+      "label": "Opus completion time",
+      "value": 31.7,
+      "unit": "minutes",
+      "source_url": "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts"
+    },
+    {
+      "label": "Argon completion time",
+      "value": 69.5,
+      "unit": "minutes",
+      "source_url": "https://charliehills.substack.com/p/gemini-4-argon-vs-opus-55-the-4-prompts"
+    },
+    {
+      "label": "Python Tablet passing tests",
+      "value": 382,
+      "unit": "tests",
+      "source_url": "https://www.artofsm.art/t/gemini-4-argon-vs-opus-5-5-i-gave-both-the-same-repo/25943"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Charlie Hills",
+      "kind": "person"
+    },
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "Claude Opus 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "Python Tablet",
+      "kind": "object"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    }
+  ]
+}

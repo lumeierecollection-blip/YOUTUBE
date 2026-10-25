@@ -1,0 +1,47 @@
+{
+  "channel_id": "44",
+  "topic_slug": "starbucks-brian-niccol-leadership-principle",
+  "format": "shorts",
+  "hook": "Starbucks cycled through four different CEOs before finding a new path.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Starbucks cycled through four different CEOs before finding a new path.",
+      "text_overlay": {
+        "text": "4 CEOs in 2 Years"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Leadership turnover created strategic drift across the entire global coffee chain. Brian Niccol arrived in August 2024 to initiate a massive operational turnaround. How did he stabilize this organization?",
+      "text_overlay": {
+        "text": "August 2024: New Leadership"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Niccol demanded immediate, decisive speed on every single internal decision.",
+      "text_overlay": {
+        "text": "Decision Speed: Yes or No"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Niccol is now prioritizing human connection to restore the core mission of Starbucks for customers. Brian Niccol replaced the chaos by demanding quick yes or no decisions from his Starbucks executives.",
+      "text_overlay": {
+        "text": "Stock Price: +25%"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Starbucks stock price jumped 25 percent after Niccol started his turnaround strategy in August 2024.",
+      "text_overlay": {
+        "text": "Simplicity Wins"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.semafor.com/article/09/26/2025/how-brian-niccol-brewed-his-back-to-starbucks-strategy",
+    "https://fortune.com/2024/10/31/starbucks-ceo-brian-niccol-clarity-strategy"
+  ]
+}

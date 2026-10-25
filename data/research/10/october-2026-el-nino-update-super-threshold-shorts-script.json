@@ -1,0 +1,64 @@
+{
+  "channel_id": "10",
+  "topic_slug": "october-2026-el-nino-update-super-threshold",
+  "format": "shorts",
+  "hook": "The eastern equatorial Pacific just hit 4 degrees Celsius.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The eastern equatorial Pacific just hit 4 degrees Celsius.",
+      "b_roll": [
+        "satellite temperature anomaly map"
+      ],
+      "text_overlay": {
+        "text": "4°C Anomaly"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, the Niño 3.4 region averaged 2.3 degrees Celsius above normal. Action News 5 reported the reading. Where did 0.3 degrees Celsius come from?",
+      "b_roll": [
+        "ocean surface chart",
+        "news room display"
+      ],
+      "text_overlay": {
+        "text": "2.3°C Above Normal"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the National Climate Centre of the China Meteorological Administration stated a super strong event formed.",
+      "b_roll": [
+        "meteorological agency logo"
+      ],
+      "text_overlay": {
+        "text": "Super El Niño Formed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Climate Prediction Center reported anomalies exceeded plus 4.0 degrees Celsius in portions of the eastern equatorial Pacific.",
+      "b_roll": [
+        "probability graph",
+        "Pacific ocean currents"
+      ],
+      "text_overlay": {
+        "text": "83% Likelihood"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 83 percent probability remains active across the Pacific basin through early 2027.",
+      "b_roll": [
+        "forecast timeline"
+      ],
+      "text_overlay": {
+        "text": "83 Percent Probability"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.actionnews5.com/2026/10/12/breakdown-october-2026-el-nio-update",
+    "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_disc_oct2026/ensodisc.pdf"
+  ]
+}

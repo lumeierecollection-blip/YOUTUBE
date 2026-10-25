@@ -156,9 +156,22 @@ export const GEO_REGIONS = ${JSON.stringify(regions)};
 
 export const GEO_ALIASES = ${JSON.stringify(aliases)};
 
-/** Region id for a place name, or null. Exact alias match, case-insensitive. */
+/**
+ * Region id for a place name, or null. Exact alias match, case-insensitive —
+ * except a code of 3 letters or fewer, which must be written in capitals
+ * (USA, UK, DRC). The aliases carry every ISO-3 code, so case-insensitively
+ * "Are" was the UAE, "Can" Canada, "Per" Peru: CI run 37795613343 ch-1 drew a
+ * UAE map for "Are you leaving zero emergency cash behind?".
+ */
+const AMBIGUOUS_PLACES = new Set(["washington", "georgia"]);
 export function resolveRegion(name) {
-  const k = String(name || "").toLowerCase().replace(/^the\\s+/, "").replace(/[.]/g, "").replace(/\\s+/g, " ").trim();
+  const raw = String(name || "").replace(/^the\\s+/i, "").replace(/[.]/g, "").replace(/\\s+/g, " ").trim();
+  if (raw.length <= 3 && raw !== raw.toUpperCase()) return null;
+  const k = raw.toLowerCase();
+  // A bare name that is two different places resolves to neither ("Washington state",
+  // "Georgia state" still do). CI run 37810883817 ch-9 beat 7 drew Washington STATE for
+  // "Moscow and Washington are planning a return of energy trade" — a wrong place.
+  if (AMBIGUOUS_PLACES.has(k)) return null;
   return GEO_ALIASES[k] || null;
 }
 

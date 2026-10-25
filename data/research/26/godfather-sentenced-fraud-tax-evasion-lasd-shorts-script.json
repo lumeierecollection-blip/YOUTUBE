@@ -1,0 +1,68 @@
+{
+  "channel_id": "26",
+  "topic_slug": "godfather-sentenced-fraud-tax-evasion-lasd",
+  "format": "shorts",
+  "hook": "One 26-year-old crypto boss just got 78 months in prison for a $37 million fraud.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One 26-year-old crypto boss just got 78 months in prison for a $37 million fraud.",
+      "b_roll": [
+        "courtroom federal building exterior",
+        "mugshot style arrest graphics"
+      ],
+      "text_overlay": {
+        "text": "$37 Million Crypto Fraud"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Adam Iza ran a $37 million scheme against Meta while styling himself as the Godfather. Where did Los Angeles County Sheriff's Department deputies fit into his crimes?",
+      "b_roll": [
+        "Meta corporate headquarters building",
+        "IRS tax document visual representation",
+        "Los Angeles police badge graphic"
+      ],
+      "text_overlay": {
+        "text": "The Godfather Scheme"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Los Angeles County Sheriff's Department deputies were corruptly used against his rivals.",
+      "b_roll": [
+        "patrol car lights flashing at night",
+        "suburban street surveillance shot"
+      ],
+      "text_overlay": {
+        "text": "Corrupt Deputies"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Adam Iza admitted to generating tens of millions through fraud and tax evasion. The Department of Justice handed down a 78-month prison sentence. Internal Revenue Service officials detailed his full corruption.",
+      "b_roll": [
+        "Department of Justice seal graphic",
+        "federal prison gates closing",
+        "court documents stacking up"
+      ],
+      "text_overlay": {
+        "text": "78 Months in Prison"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Adam Iza entered federal prison to serve 78 months.",
+      "b_roll": [
+        "prison cell bars cinematic shot"
+      ],
+      "text_overlay": {
+        "text": "Sentence Delivered"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.coindesk.com/policy/2026/10/06/self-styled-crypto-godfather-gets-more-than-6-years-in-usd37-million-meta-fraud-case",
+    "https://www.latimes.com/california/story/2026-10-05/crypto-godfather-adam-iza-prison-sentence"
+  ]
+}

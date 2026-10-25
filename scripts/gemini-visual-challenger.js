@@ -13,6 +13,7 @@
  *   node scripts/gemini-visual-challenger.js --intent <path> --script <path> --channel <id> --out <review.json>
  */
 import "dotenv/config";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -160,7 +161,7 @@ async function planMode() {
   let niche = "general";
   try {
     const cfg = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-    niche = (cfg.channels || cfg).find((c) => String(c.id) === String(channelId))?.niche || niche;
+    niche = resolveChannel(channelId, cfg.channels || cfg)?.niche || niche;
   } catch {}
 
   const lines = beats.map((b, i) => `[${i}] SENTENCE: "${sentences[i] ?? "(no sentence)"}"\n    PLAN: ${describeBeat(b)}`).join("\n");
@@ -173,6 +174,8 @@ Verdicts per beat:
 - "WEAK": related to the sentence but generic — it would fit many sentences.
 - "MISMATCH": the visual is about something the sentence does not say, or conveys nothing of it.
 - "CONTRADICTION": the subject, change or on-screen text states or implies something that contradicts the sentence's factual claim (e.g. text says "recovered" when the sentence says "stolen"; a number that differs from the sentence's number).
+
+On-screen text is part of the claim. Any on-screen text that names a person, organisation, place, product or publication must be spelled EXACTLY as the sentence spells it, and any number or date in on-screen text must be the sentence's own. A near-miss ("Washington Pest" for "Washington Post", "90 million" for "95 million") is a CONTRADICTION: the frame would show something the narration does not say. Lettering inside a real object's own artwork (a seal, a coin, a sign in a photograph) is judged for identity only, not spelling.
 
 You judge the PLAN against the SENTENCE — never the sentence against the world. Treat every sentence as true as written. Do not use your own knowledge to say a sentence is factually wrong: the narration is checked against its sources elsewhere, and a re-plan cannot change it. A CONTRADICTION is only ever the plan disagreeing with its own sentence.
 
@@ -265,7 +268,7 @@ async function main() {
   if (channelId) {
     try {
       const config = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf-8"));
-      channelConfig = config.channels.find(c => String(c.id) === String(channelId));
+      channelConfig = resolveChannel(channelId, config.channels);
     } catch {}
   }
 

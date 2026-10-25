@@ -1,0 +1,65 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ethiopia-eritrea-tigray-border-war-2026",
+  "format": "shorts",
+  "hook": "Did you know Eritrean troops deployed in Tigray as multiple sources confirmed on Wednesday?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Eritrean troops deployed in Tigray as multiple sources confirmed on Wednesday?",
+      "b_roll": [
+        "Map highlighting the Eritrea-Ethiopia border and Tigray region"
+      ],
+      "text_overlay": {
+        "text": "Eritrean troops deployed in Tigray"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did the Tigray People's Liberation Front launch an armed rebellion on 23 September?",
+      "b_roll": [
+        "Document view of the UN Security Council letter",
+        "Map zoom on northern Tigray"
+      ],
+      "text_overlay": {
+        "text": "TPLF rebellion on 23 September"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Sources confirmed troops crossed into Tigray, threatening an escalation into regional war.",
+      "b_roll": [
+        "Ground view of northern Tigray border area"
+      ],
+      "text_overlay": {
+        "text": "Residents confirm border crossing"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ethiopia accused Eritrea of an all-out invasion on 23 September. Ethiopia accused Eritrea at the UN Security Council. Tigray faces escalating conflict as Eritrean troops deploy.",
+      "b_roll": [
+        "Emblem of the United Nations Security Council",
+        "Geopolitical map showing troop movements"
+      ],
+      "text_overlay": {
+        "text": "All-out invasion accused"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Ethiopia sent a letter to the UN Security Council.",
+      "b_roll": [
+        "Wide map of the Horn of Africa"
+      ],
+      "text_overlay": {
+        "text": "Regional stability threatened"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.afp.com/en/eritrean-troops-deploy-ethiopias-tigray-region",
+    "https://www.bbc.com/news/articles/c65ynvw250y1o",
+    "https://www.crisisgroup.org/alr/africa/ethiopia-eritrea/pulling-ethiopia-and-eritrea-back-war"
+  ]
+}

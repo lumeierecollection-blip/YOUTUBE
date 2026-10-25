@@ -15,6 +15,14 @@ import {
   deriveThreshold, scoreCandidate, scoreStyle, embedImage, formatTimestamp,
   MIN_FRAMES, PERCENTILE, ESCALATION_RATIO,
 } from "../eval-layer2-style.js";
+import { extractFrames } from "../eval-layer2-style.js";
+
+// channels/_shared/ref-frames/ is gitignored runner state (HANDOFF §10): on a fresh checkout — CI —
+// the ref-01 frames these tests embed did not exist and six tests failed for a missing file, not a
+// defect. They are rebuilt here from the COMMITTED reference video, exactly as
+// eval-layer2-style.js main() builds them (extractFrames, same video, same directory).
+const REF01 = "research/motion-graphics-ref/ref-01.mp4", REF01_DIR = "channels/_shared/ref-frames/ref-01";
+if (!existsSync(`${REF01_DIR}/frame-0001.png`) && existsSync(REF01)) extractFrames(REF01, REF01_DIR);
 
 const THRESHOLD_DOC = "channels/_shared/style-threshold.json";
 const doc = existsSync(THRESHOLD_DOC) ? JSON.parse(readFileSync(THRESHOLD_DOC, "utf8")) : null;

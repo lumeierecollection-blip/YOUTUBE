@@ -1,0 +1,81 @@
+{
+  "topic_slug": "gb-power-grid-cover-up-inquiry-october-2026",
+  "strongest_angle": "An independent investigation concluded that allegations against the National Energy System Operator regarding a cover-up of blackout risks during the June heatwave were unsubstantiated, though the inquiry uncovered concerning issues with operational records and high staff stress.",
+  "key_facts": [
+    {
+      "fact": "An independent investigation by Eversheds Sutherland published on October 19, 2026, concluded that whistleblower allegations against the National Energy System Operator were unsubstantiated.",
+      "source_url": "https://www.neso.energy/independent-investigation-concludes-allegations-against-neso-were-unsubstantiated",
+      "source_name": "National Energy System Operator",
+      "confidence": "high"
+    },
+    {
+      "fact": "Engineers running Britain's electricity grid accused their bosses of misrepresenting the risk of blackouts during a record-breaking heatwave in June, according to an independent report covered by The Daily Telegraph.",
+      "source_url": "https://www.telegraph.co.uk/business/2026/10/19/grid-operators-warn-net-zero-making-it-harder-to-keep-the-l",
+      "source_name": "The Daily Telegraph",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Eversheds Sutherland was instructed on July 9, 2026, to investigate four allegations arising from whistleblower contact regarding operational records at the National Energy System Operator.",
+      "source_url": "https://www.neso.energy/document/388821/download",
+      "source_name": "National Energy System Operator Document",
+      "confidence": "high"
+    },
+    {
+      "fact": "Staff at the National Energy System Operator experienced high levels of stress and felt their concerns were ignored, as reported by The Times on October 19, 2026.",
+      "source_url": "https://www.thetimes.com/uk/environment/article/neso-engineers-review-national-grid-blackout-risks-6lqpq03sp",
+      "source_name": "The Times",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Investigation Start Date Day",
+      "value": 9,
+      "unit": "day",
+      "source_url": "https://www.neso.energy/document/388821/download"
+    },
+    {
+      "label": "Investigation Start Date Month",
+      "value": 7,
+      "unit": "month",
+      "source_url": "https://www.neso.energy/document/388821/download"
+    },
+    {
+      "label": "Investigation Start Date Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.neso.energy/document/388821/download"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "National Energy System Operator",
+      "kind": "organization"
+    },
+    {
+      "name": "Neso",
+      "kind": "organization"
+    },
+    {
+      "name": "Eversheds Sutherland",
+      "kind": "organization"
+    },
+    {
+      "name": "The Daily Telegraph",
+      "kind": "organization"
+    },
+    {
+      "name": "The Times",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "Britain",
+      "kind": "place"
+    }
+  ]
+}

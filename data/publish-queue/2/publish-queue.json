@@ -118,5 +118,29 @@
     "go_public_at": "2026-10-03T12:01:19.264Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "zttQB2Wxeqc",
+    "channel_id": "2",
+    "title": "ice-agent-gregory-morgan-assault-twin-cities-shorts — Legal Brief",
+    "uploaded_at": "2026-10-15T11:45:11.031Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-15T12:45:11.030Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "ice-agent-gregory-morgan-assault-twin-cities-shorts-shorts-2026-10-14.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "6k7dxL9RT28",
+    "channel_id": "2",
+    "title": "Boston Adds Bus Cameras to Enforce Stop Sign Violations",
+    "uploaded_at": "2026-10-19T16:18:39.139Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-19T17:18:39.139Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "boston-bus-cameras-stop-sign-enforcement-2026-shorts-shorts-2026-10-19.mp4",
+    "source_queue": "approved-review"
   }
 ]

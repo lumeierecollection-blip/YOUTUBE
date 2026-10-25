@@ -107,6 +107,42 @@ const SAFE = { top: 288, bottom: 1248, left: 48, right: 888, W: 1080, H: 1920 };
 const TEXT_FORWARD = new Set(["TYPOGRAPHY", "EVIDENCE_FIGURE"]);
 const GRAPH_MECHANISMS = new Set(["EVIDENCE_FIGURE", "DATA_CHART"]);
 
+/**
+ * The per-beat key the monoculture check counts and runs on: what a viewer
+ * would call "the same beat twice".
+ *
+ * Deliberately NOT the mechanism name. A mechanism is a vocabulary label —
+ * every CAPABILITY beat carries the same one while being drawn as a map, a
+ * photo band, a name card or an entity plate (run 38102260955 ch-9: five
+ * distinct compositions, all labelled CAPABILITY). Counting that key made
+ * two visually different videos read as monocultures and made a varied one
+ * read as "2 distinct mechanisms".
+ *
+ * The key is, in order of what the viewer sees first:
+ *   1. the composition the renderer actually chose (manifest canvas),
+ *   2. the capability, for beats whose mechanism is the umbrella CAPABILITY,
+ *   3. the mechanism, for everything else.
+ *
+ * A beat with no recorded composition falls back to its mechanism rather
+ * than to a constant, so a manifest that omits canvas data cannot silently
+ * make every beat look identical.
+ */
+function varietyKeys(mBeats, pBeats = []) {
+  const capOf = (i) => {
+    const fromRender = mBeats[i]?.capabilities;
+    if (Array.isArray(fromRender) && fromRender.length) return fromRender;
+    const fromPlan = pBeats[i]?.capabilities;
+    return Array.isArray(fromPlan) ? fromPlan : [];
+  };
+  return mBeats.map((b, i) => {
+    const mech = b?.mechanism || "NONE";
+    const comp = b?.canvas?.composition || null;
+    const caps = capOf(i);
+    if (comp) return caps.length ? `${mech}:${comp}:${[...caps].sort().join("+")}` : `${mech}:${comp}`;
+    return caps.length ? `${mech}:${[...caps].sort().join("+")}` : mech;
+  });
+}
+
 function arg(name, fallback = null) {
   const i = process.argv.indexOf(`--${name}`);
   if (i > -1 && process.argv[i + 1]) return process.argv[i + 1];
@@ -219,7 +255,7 @@ function auditVisual(frames) {
 
 function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]/g, ""); }
 
-function auditPlanCompliance(plan, manifest) {
+export function auditPlanCompliance(plan, manifest) {
   if (!manifest) return { ok: false, note: "no render manifest" };
   const mBeats = manifest.beats || [];
   const pBeats = plan?.beats || [];
@@ -251,15 +287,57 @@ function auditPlanCompliance(plan, manifest) {
   }
 
   // MONOCULTURE — deterministic, from manifest mechanisms/capabilities
+  //
+  // "distinct" must count what actually VARIES ON SCREEN, not how many
+  // times a vocabulary word was repeated. Run 38102260955 (ch-9) declared
+  // every beat CAPABILITY, so `new Set(mechs).size` was 2 across 7 beats and
+  // the review read "2 distinct mechanisms" for a video whose seven frames
+  // were drawn as MAP-CENTERED, HERO-OVER, TYPE-TITLE, ENTITY-ART, PHOTO-BAND
+  // — five distinct compositions. The count that describes the monoculture is
+  // the composition the renderer picked, plus the capability that varies
+  // inside a CAPABILITY beat. Mechanism stays in the report for continuity
+  // (it is what a human reads), but it is no longer the sole key.
   const mechs = mBeats.map((b) => b.mechanism).filter(Boolean);
   const caps = mBeats.map((b) => b.capabilities || []).flat().filter(Boolean);
   const total = mechs.length || 1;
-  const textForward = mechs.filter((m) => TEXT_FORWARD.has(m)).length;
-  const distinct = new Set(mechs).size;
+  // TEXT-FORWARD IS A PROPERTY OF THE FRAME, NOT OF THE MECHANISM NAME.
+  //
+  // This was the last place in this file still counting the vocabulary label,
+  // after `distinct` and `maxRun` moved to varietyKeys above. Board
+  // 38226641642 shows what it cost, on two channels measured in the same run:
+  //
+  //   ch-2  textFwd=22%   typography: 9/9 text beats (100%)
+  //   ch-6  textFwd=22%   typography: 7/9 text beats (78%)
+  //
+  // Two numbers, same video, same question, 78 points apart — because
+  // TEXT_FORWARD only holds TYPOGRAPHY and EVIDENCE_FIGURE, and this render
+  // path declares almost every beat CAPABILITY while painting a headline on it.
+  // So the monoculture gate below ran on 22% and never fired, while the
+  // typography audit measured the same frames at 100% and kept reporting
+  // "% of beats carry on-screen text (max 40%)". Two checks, one question,
+  // opposite answers, and the one that fed `monoculture` was the wrong one.
+  //
+  // The real source is the beat's own on_screen_text: a beat is text-forward
+  // when it draws a narrative string. render.js builds that from the canvas
+  // boxes (see scene-text.js), so it is the render's record of its own ink.
+  // The mechanism name stays the fallback for a manifest that carries no text
+  // inventory at all, so an old or missing manifest degrades to the old
+  // measure rather than to "nothing is text-forward".
+  const drawnText = (b) => Array.isArray(b?.on_screen_text) ? b.on_screen_text.length > 0 : null;
+  const hasTextData = mBeats.some((b) => drawnText(b) !== null);
+  const textForward = hasTextData
+    ? mBeats.filter((b) => drawnText(b)).length
+    : mechs.filter((m) => TEXT_FORWARD.has(m)).length;
+  const distinct = new Set(varietyKeys(mBeats, pBeats)).size;
   const distinctCaps = new Set(caps).size;
+  // Longest run of BEATS THAT LOOK THE SAME — keyed the same way. Under the
+  // mechanism-only key this was the run of CAPABILITY labels, which counts a
+  // map and a photo as the same beat; under the composition key it is the run
+  // a viewer would actually call a repeat.
   let maxRun = 0, run = 1;
-  for (let i = 1; i < mechs.length; i++) { if (mechs[i] === mechs[i - 1]) { run++; maxRun = Math.max(maxRun, run); } else run = 1; }
-  maxRun = Math.max(maxRun, mechs.length ? 1 : 0);
+  const keys = varietyKeys(mBeats, pBeats);
+  for (let i = 1; i < keys.length; i++) { if (keys[i] === keys[i - 1]) { run++; maxRun = Math.max(maxRun, run); } else run = 1; }
+  maxRun = Math.max(maxRun, keys.length ? 1 : 0);
   const textForwardPct = Math.round((textForward / total) * 100);
   const monoculture = textForwardPct > 45 || distinct < 4 || maxRun > 3;
   if (monoculture) {
@@ -269,7 +347,12 @@ function auditPlanCompliance(plan, manifest) {
   return {
     ok: true,
     beatCountPlan: pBeats.length, beatCountRender: mBeats.length,
-    textForwardPct, distinctMechanisms: distinct, distinctCapabilities: distinctCaps, longestMechanismRun: maxRun, monoculture,
+    textForwardPct,
+    // Which source produced textForwardPct, so a run log is never ambiguous
+    // about which measure it is reading: "drawn" is on_screen_text, "mechanism"
+    // is the pre-2026-10-12 fallback for a manifest with no text inventory.
+    textForwardSource: hasTextData ? "drawn" : "mechanism",
+    distinctMechanisms: distinct, distinctCapabilities: distinctCaps, longestMechanismRun: maxRun, monoculture,
     mechanismDistribution: mechs.reduce((o, m) => (o[m] = (o[m] || 0) + 1, o), {}),
     capabilityDistribution: caps.reduce((o, c) => (o[c] = (o[c] || 0) + 1, o), {}),
     issues,
@@ -621,7 +704,7 @@ async function main() {
   console.log("\n═══ LOCAL VISUAL AUDITOR ═══");
   console.log(`  Video: ${report.video}  ${technical.width}x${technical.height} @ ${technical.fps}fps  ${technical.durationSec}s  audio:${technical.hasAudio}`);
   if (visual.ok) console.log(`  Visual: meanLuma=${visual.meanLuma} motion=${visual.meanMotion} black=${visual.blackFrameCount} staticRun=${visual.maxStaticRunSec}s changes=${visual.sceneChanges} dupPairs=${visual.nearDuplicatePairs}`);
-  if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}% distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
+  if (planComp.ok) console.log(`  Plan: beats ${planComp.beatCountRender}/${planComp.beatCountPlan} textFwd=${planComp.textForwardPct}%(${planComp.textForwardSource}) distinct=${planComp.distinctMechanisms} run=${planComp.longestMechanismRun} mono=${planComp.monoculture} issues=${planComp.issues.length}`);
   if (typo.ok) console.log(`  Typography: ${typo.textBeats}/${typo.totalBeats} text beats (${Math.round(typo.textBeatShare * 100)}%) run=${typo.longestTextRun} multiline=${typo.multiLineBeats} headline=${typo.headlineLikeBeats} transcript=${typo.transcriptLikeBeats} tooLong=${typo.wouldWrapBeats} repeated=${typo.repeatedPhrases.length} issues=${typo.issues.length}`);
   if (audio.hasAudio) console.log(`  Audio: LUFS=${audio.integratedLufs ?? "?"} peak=${audio.truePeakDb ?? "?"}dB clip=${!!audio.clipping} silence=${audio.maxSilenceSec ?? 0}s`);
   for (const b of report.blockers) console.log(`  BLOCKER: ${b}`);

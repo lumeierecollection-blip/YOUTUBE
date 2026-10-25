@@ -1,0 +1,61 @@
+{
+  "topic_slug": "alex-murdaugh-pretrial-evidence-disputes-2026",
+  "strongest_angle": "Alex Murdaugh returned to court in South Carolina as prosecutors and defense attorneys clashed over contested forensic reports, DNA testing, and cellphone evidence ahead of his 2027 retrial.",
+  "key_facts": [
+    {
+      "fact": "Alex Murdaugh, aged 58, was scheduled to appear in court in South Carolina for pretrial hearings regarding evidence for his upcoming retrial.",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Judge Debra McCaslin scheduled a key hearing for October 16 as attorneys prepared for Murdaugh's double murder retrial set to begin on April 5, 2027.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7",
+      "source_name": "WLTX",
+      "confidence": "high"
+    },
+    {
+      "fact": "Judge Debra McCaslin oversaw arguments involving DNA testing, cellphone evidence, ballistics data, and crime-scene scans.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e",
+      "source_name": "WLTX",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Alex Murdaugh's age",
+      "value": 58,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d"
+    },
+    {
+      "label": "Retrial start year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Alex Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "South Carolina",
+      "kind": "place"
+    },
+    {
+      "name": "Debra McCaslin",
+      "kind": "person"
+    },
+    {
+      "name": "Maggie Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Colleton County",
+      "kind": "place"
+    }
+  ]
+}

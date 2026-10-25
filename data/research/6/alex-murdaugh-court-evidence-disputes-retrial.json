@@ -1,0 +1,77 @@
+{
+  "topic_slug": "alex-murdaugh-court-evidence-disputes-retrial",
+  "strongest_angle": "Explore the escalating legal and forensic disputes between defense attorneys and prosecutors as they prepare for Alex Murdaugh's high-profile retrial scheduled for 2027.",
+  "key_facts": [
+    {
+      "fact": "Alex Murdaugh, age 58, and prosecutors are returning to a South Carolina courtroom for a pretrial hearing regarding evidence disputes for his upcoming retrial.",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Judge Debra McCaslin is presiding over the pretrial hearings concerning DNA testing, cellphone evidence, ballistics data, and crime-scene scans at the Lexington County courthouse.",
+      "source_url": "https://www.fitsnews.com/2026/10/15/murdaugh-evidence-fights-court",
+      "source_name": "FITSNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Alex Murdaugh's double murder retrial has been scheduled to begin on April 5, 2027, after a judge ruled it must leave Colleton County.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7",
+      "source_name": "WLTX",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Alex Murdaugh's age",
+      "value": 58,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d"
+    },
+    {
+      "label": "Retrial start date year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d"
+    },
+    {
+      "label": "Retrial start date day",
+      "value": 5,
+      "unit": "day",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+    },
+    {
+      "label": "Retrial start date month",
+      "value": 4,
+      "unit": "month",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/state-responds-murdaugh-evidence-disputes-oct16-hearing/101-e7a3133f-207b-41cd-94dc-3a74bf89c4a7"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Alex Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Debra McCaslin",
+      "kind": "person"
+    },
+    {
+      "name": "South Carolina",
+      "kind": "place"
+    },
+    {
+      "name": "Colleton County",
+      "kind": "place"
+    },
+    {
+      "name": "Lexington County courthouse",
+      "kind": "place"
+    },
+    {
+      "name": "Maggie Murdaugh",
+      "kind": "person"
+    }
+  ]
+}

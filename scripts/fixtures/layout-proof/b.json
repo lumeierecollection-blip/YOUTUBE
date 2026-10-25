@@ -1,0 +1,4 @@
+[
+  { "text": "Seven men stand trial in Durban.", "c": { "visual_type": "COUNTER", "composition": "NUMBER-FULL", "data": { "value": "7", "label": "defendants" }, "headline": "Seven men stand trial", "lead_in": "in Durban", "motion_tier": "medium", "entrance_style": "together",
+    "layout": { "cols": 4, "rows": 3, "slots": [{ "id": "headline", "col": 0, "col_span": 2, "row": 0, "align": "left" }, { "id": "number", "col": 3, "row": 1, "row_span": 2, "align": "right", "v_align": "bottom" }] } } }
+]

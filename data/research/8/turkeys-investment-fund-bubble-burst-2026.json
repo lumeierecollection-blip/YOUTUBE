@@ -1,0 +1,94 @@
+{
+  "topic_slug": "turkeys-investment-fund-bubble-burst-2026",
+  "strongest_angle": "A chronological breakdown of how regulators ordered the liquidation of 131 mutual funds across seven asset managers after they failed to meet redemption payments, threatening half a million investors.",
+  "key_facts": [
+    {
+      "fact": "Turkish regulators ordered the liquidation of 131 funds managed by seven asset managers after warnings that they could not meet redemption payments.",
+      "source_url": "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "The funds had reached more than $20 billion in assets over a three-year buildup period involving nearly half a million investors.",
+      "source_url": "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "Affected investors face up to a six-month wait as independent banks oversee the asset liquidations following the September market disruption.",
+      "source_url": "https://www.al-monitor.com/originals/2026/10/turkeys-20b-fund-crisis-who-profited-and-who-will-pay",
+      "source_name": "Al-Monitor",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Companies Pusula Portfoy and Tera were among the affected providers, with two Tera funds alone holding assets totaling around €6.5 billion.",
+      "source_url": "https://www.dw.com/en/turkeys-stock-market-scandal-affects-nearly-half-a-million-investors-police-have-made-several-arrests-and-an-akp-politician-has-resigned/a-79494710",
+      "source_name": "Deutsche Welle",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Liquidated funds",
+      "value": 131,
+      "unit": "funds",
+      "source_url": "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02"
+    },
+    {
+      "label": "Asset managers",
+      "value": 7,
+      "unit": "managers",
+      "source_url": "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02"
+    },
+    {
+      "label": "Total fund assets",
+      "value": 20,
+      "unit": "billion dollars",
+      "source_url": "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02"
+    },
+    {
+      "label": "Time period buildup",
+      "value": 3,
+      "unit": "years",
+      "source_url": "https://www.reuters.com/world/middle-east/how-turkeys-investment-fund-bubble-burst-2026-10-02"
+    },
+    {
+      "label": "Tera funds assets in Euros",
+      "value": 6.5,
+      "unit": "billion euros",
+      "source_url": "https://www.dw.com/en/turkeys-stock-market-scandal-affects-nearly-half-a-million-investors-police-have-made-several-arrests-and-an-akp-politician-has-resigned/a-79494710"
+    },
+    {
+      "label": "Tera funds assets in Dollars",
+      "value": 6.37,
+      "unit": "billion dollars",
+      "source_url": "https://www.dw.com/en/turkeys-stock-market-scandal-affects-nearly-half-a-million-investors-police-have-made-several-arrests-and-an-akp-politician-has-resigned/a-79494710"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Turkey",
+      "kind": "place"
+    },
+    {
+      "name": "Borsa Istanbul",
+      "kind": "organization"
+    },
+    {
+      "name": "Pusula Portfoy",
+      "kind": "organization"
+    },
+    {
+      "name": "Tera",
+      "kind": "organization"
+    },
+    {
+      "name": "Reuters",
+      "kind": "organization"
+    },
+    {
+      "name": "Al-Monitor",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "channel_id": "1",
+  "topic_slug": "voya-financial-confidence-index-2026",
+  "format": "shorts",
+  "hook": "Did you know workplace education beats raw income for your financial confidence?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know workplace education beats raw income for your financial confidence?",
+      "b_roll": [
+        "Office workers looking at retirement charts"
+      ],
+      "text_overlay": {
+        "text": "Education Beats Income"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Voya Financial released America's Financial Confidence Index on October 14, 2026. Where does worker confidence stand today?",
+      "b_roll": [
+        "Voya logo on financial documents"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Index"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Employee Benefit News reported a confidence gap on October 14, 2026.",
+      "b_roll": [
+        "Retirement planning documents"
+      ],
+      "text_overlay": {
+        "text": "The Confidence Gap"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Employee Benefit News reported that 21 points separate worker confidence from retirement expectations. Voya Financial released America's Financial Confidence Index on October 14, 2026.",
+      "b_roll": [
+        "Graph showing 21 point gap"
+      ],
+      "text_overlay": {
+        "text": "21 Points Separate Confidence"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read America's Financial Confidence Index to see how workplace education drives financial confidence.",
+      "b_roll": [
+        "Employees leaving corporate office"
+      ],
+      "text_overlay": {
+        "text": "Financial Confidence Index"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.voya.com/news/2026/10/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive",
+    "https://www.benefitnews.com/news/Workplace-Financial-Education-Boosts-Employee-Financial-Habits",
+    "https://techrseries.com/employee-engagement/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money"
+  ]
+}

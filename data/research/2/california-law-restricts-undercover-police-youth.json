@@ -1,0 +1,82 @@
+{
+  "topic_slug": "california-law-restricts-undercover-police-youth",
+  "strongest_angle": "Examine Assembly Bill 1905 signed by Governor Gavin Newsom, which restricts deceptive undercover Perkins operations targeting youth and minors in California.",
+  "key_facts": [
+    {
+      "fact": "Governor Gavin Newsom signed Assembly Bill 1905 to limit deceptive undercover police operations, known as Perkins operations, targeting young people facing criminal allegations.",
+      "source_url": "https://calmatters.org/justice/2026/10/undercover-police-new-law",
+      "source_name": "CalMatters",
+      "confidence": "high"
+    },
+    {
+      "fact": "Assembly Bill 1905 was authored by Democratic Assemblymember Nick Schultz of Burbank and chaptered as Chapter 559 of the 2026 Statutes.",
+      "source_url": "https://www.sanjoseinside.com/news/new-california-law-restricts-undercover-police-operations-that-target-youth",
+      "source_name": "San Jose Inside",
+      "confidence": "high"
+    },
+    {
+      "fact": "Perkins operations involve undercover law enforcement agents posing as incarcerated individuals to elicit information from suspects.",
+      "source_url": "https://newsroom.courts.ca.gov/news/california-may-restrict-undercover-police-operations-targeting-youth-0",
+      "source_name": "California Courts Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "Existing law and Assembly Bill 1905 address protections during custodial interrogations and operations involving individuals age 17 or younger or certain people under age 26.",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1905",
+      "source_name": "California Legislative Information",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Assembly Bill Number",
+      "value": 1905,
+      "unit": "bill",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1905"
+    },
+    {
+      "label": "Age threshold for minors under custodial interrogation protections",
+      "value": 17,
+      "unit": "years old",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1905"
+    },
+    {
+      "label": "Age threshold discussed in Perkins operations context",
+      "value": 26,
+      "unit": "years old",
+      "source_url": "https://newsroom.courts.ca.gov/news/california-may-restrict-undercover-police-operations-targeting-youth-0"
+    },
+    {
+      "label": "Statute Chapter Number",
+      "value": 559,
+      "unit": "chapter",
+      "source_url": "https://legiscan.com/CA/text/AB1905/2025"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Gavin Newsom",
+      "kind": "person"
+    },
+    {
+      "name": "Nick Schultz",
+      "kind": "person"
+    },
+    {
+      "name": "California",
+      "kind": "place"
+    },
+    {
+      "name": "Burbank",
+      "kind": "place"
+    },
+    {
+      "name": "California Supreme Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Assembly Bill 1905",
+      "kind": "object"
+    }
+  ]
+}

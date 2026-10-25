@@ -1,0 +1,68 @@
+{
+  "channel_id": "8",
+  "topic_slug": "six-us-regional-banks-failed-in-2026-highest-decade-count",
+  "format": "shorts",
+  "hook": "Six regional U.S. banks failed in 2026, marking the highest count of any year this decade.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six regional U.S. banks failed in 2026, marking the highest count of any year this decade.",
+      "b_roll": [
+        "bank exterior",
+        "chart showing rising failures"
+      ],
+      "text_overlay": {
+        "text": "6 Bank Failures in 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January 30th, the Illinois Department of Financial and Professional Regulation ordered Metropolitan Capital Bank and Trust to cease operations due to unsafe financial conditions.",
+      "b_roll": [
+        "official document",
+        "bank vault door"
+      ],
+      "text_overlay": {
+        "text": "Metropolitan Capital Bank Closed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These six failed banks held roughly 1.4 billion dollars in total value.",
+      "b_roll": [
+        "Philadelphia street view",
+        "financial ledger"
+      ],
+      "text_overlay": {
+        "text": "Fifth Bank Fails in Philadelphia"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Financial news outlet Disruption Banking confirms these six banks held just 1.4 billion dollars total. Nano Banc became the sixth U.S. bank to fail in 2026 on September 25th.",
+      "b_roll": [
+        "banking graph",
+        "federal building"
+      ],
+      "text_overlay": {
+        "text": "1.4 Billion Dollars Held"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Nano Banc holds 736 million dollars in assets.",
+      "b_roll": [
+        "bank logo",
+        "closing graphic"
+      ],
+      "text_overlay": {
+        "text": "Nano Banc Assets"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.disruptionbanking.com/2026/10/01/six-us-banks-failed-in-2026-the-most-in-a-decade-what-that-says-about-the-economy",
+    "https://www.forbes.com/advisor/banking/list-of-failed-banks",
+    "https://www.americanbanker.com/news/fifth-bank-fails-in-2026-as-drip-of-small-bank-closures-continues"
+  ]
+}

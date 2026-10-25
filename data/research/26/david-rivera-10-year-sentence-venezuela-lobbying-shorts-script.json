@@ -1,0 +1,67 @@
+{
+  "channel_id": "26",
+  "topic_slug": "david-rivera-10-year-sentence-venezuela-lobbying",
+  "format": "shorts",
+  "hook": "Former congressman David Rivera got 10 years in federal prison for a secret foreign lobbying scheme.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Former congressman David Rivera got 10 years in federal prison for a secret foreign lobbying scheme.",
+      "b_roll": [
+        "Federal courthouse exterior",
+        "News headlines on screen"
+      ],
+      "text_overlay": {
+        "text": "10 Years in Prison"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal prosecutors charged the 61-year-old Republican who represented Florida from 2011 to 2013 with money laundering. Which foreign regime paid him 50 million dollars?",
+      "b_roll": [
+        "United States Capitol building",
+        "Courtroom trial sketch"
+      ],
+      "text_overlay": {
+        "text": "$50 Million Contract"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Venezuelan state-run oil money flowed into his firm, but the federal 7-week trial exposed it.",
+      "b_roll": [
+        "Oil refinery silhouette",
+        "Document stamps"
+      ],
+      "text_overlay": {
+        "text": "Secret Agent"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nicolás Maduro's regime secured his consulting services to lobby Washington in secret. The massive lobbying operation collapsed in federal court.",
+      "b_roll": [
+        "Government flags",
+        "Gavel striking desk"
+      ],
+      "text_overlay": {
+        "text": "10-Year Sentence"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "David Rivera sits in federal prison for the 50 million dollar deal.",
+      "b_roll": [
+        "Prison gates",
+        "Case file closing"
+      ],
+      "text_overlay": {
+        "text": "Case Closed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/crz98wnx4n1wo",
+    "https://www.washingtonpost.com/national-security/2026/10/02/ex-congressman-rubio-ally-gets-10-years-secret-venezuela-lobbying"
+  ]
+}

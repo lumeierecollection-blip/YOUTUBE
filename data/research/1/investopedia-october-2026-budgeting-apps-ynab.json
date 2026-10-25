@@ -1,0 +1,72 @@
+{
+  "topic_slug": "investopedia-october-2026-budgeting-apps-ynab",
+  "strongest_angle": "Analyze Investopedia's October 2026 evaluation of You Need a Budget (YNAB) and CNBC Select's pricing review, showing how zero-based budgeting methods simplify income allocation.",
+  "key_facts": [
+    {
+      "fact": "Investopedia found You Need a Budget (YNAB) to be the best budgeting app overall in their October 2026 rankings.",
+      "source_url": "https://www.investopedia.com/the-best-budgeting-apps-11725751",
+      "source_name": "Investopedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investopedia rated You Need a Budget (YNAB) 3.7 out of 5 stars in their debt payoff planner evaluations.",
+      "source_url": "https://www.investopedia.com/best-debt-payoff-planners-11762916",
+      "source_name": "Investopedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC Select reported that You Need a Budget (YNAB) costs $14.99 per month or $9.08 per month billed annually at $109 per year.",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps",
+      "source_name": "CNBC Select",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Investopedia Rating",
+      "value": 3.7,
+      "unit": "out of 5 stars",
+      "source_url": "https://www.investopedia.com/best-debt-payoff-planners-11762916"
+    },
+    {
+      "label": "Monthly Cost",
+      "value": 14.99,
+      "unit": "USD per month",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Annual Billing Monthly Equivalent",
+      "value": 9.08,
+      "unit": "USD per month",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Annual Cost",
+      "value": 109,
+      "unit": "USD per year",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Investopedia",
+      "kind": "organization"
+    },
+    {
+      "name": "You Need a Budget",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC Select",
+      "kind": "organization"
+    },
+    {
+      "name": "Brendan Harkness",
+      "kind": "person"
+    },
+    {
+      "name": "Elizabeth Gravier",
+      "kind": "person"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "topic_slug": "doj-fraud-division-irs-tax-fraud-surge",
+  "strongest_angle": "Break down the mechanics of the DOJ Fraud Division, IRS, and IRS-CI national tax enforcement surge that prosecuted 76 defendants and uncovered over 490 million dollars in fraudulent tax schemes.",
+  "key_facts": [
+    {
+      "fact": "The United States Department of Justice prosecuted 76 people linked to more than $490 million in federal revenue losses as part of a national tax enforcement surge with the Internal Revenue Service.",
+      "source_url": "https://www.law360.com/tax-authority/federal/articles/2537924/doj-irs-say-enforcement-surge-exposed-490m-in-tax-fraud",
+      "source_name": "Law360 Tax Authority",
+      "confidence": "high"
+    },
+    {
+      "fact": "The United States Department of Justice Fraud Division, IRS, and IRS-CI conducted their first-ever National Tax Enforcement Surge bringing together 35 U.S. attorneys' offices and IRS criminal investigators.",
+      "source_url": "https://noticias.foxnews.com/us/doj-unveils-nationwide-tax-fraud-crackdown-involving-76-defendants-nearly-500m-alleged-losses",
+      "source_name": "Fox News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Federal prosecutors across the country facilitated fraud enforcement actions spanning 76 criminal defendants, including 31 newly charged defendants, reaching approximately $490 million in intended losses.",
+      "source_url": "https://www.justice.gov/usao-wdmi/pr/WDMI_2026_Tax_Surge_PR",
+      "source_name": "United States Department of Justice",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Department of Justice prosecutors returned 23 actions with new charges against 31 defendants with an estimated intended loss exceeding approximately $350 million.",
+      "source_url": "https://www.irs.gov/compliance/criminal-investigation/dojs-fraud-division-irs-and-irs-ci-expose-more-than-490m-in-tax-fraud-in-national-tax-enforcement-surge",
+      "source_name": "Internal Revenue Service",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total exposed tax fraud",
+      "value": 490000000,
+      "unit": "dollars",
+      "source_url": "https://www.justice.gov/opa/pr/dojs-fraud-division-irs-and-irs-ci-expose-more-490m-tax-fraud-national-tax-enforcement-surge"
+    },
+    {
+      "label": "Total prosecuted individuals",
+      "value": 76,
+      "unit": "defendants",
+      "source_url": "https://www.law360.com/tax-authority/federal/articles/2537924/doj-irs-say-enforcement-surge-exposed-490m-in-tax-fraud"
+    },
+    {
+      "label": "Newly charged defendants",
+      "value": 31,
+      "unit": "defendants",
+      "source_url": "https://www.justice.gov/usao-wdmi/pr/WDMI_2026_Tax_Surge_PR"
+    },
+    {
+      "label": "Participating U.S. attorneys offices",
+      "value": 35,
+      "unit": "offices",
+      "source_url": "https://noticias.foxnews.com/us/doj-unveils-nationwide-tax-fraud-crackdown-involving-76-defendants-nearly-500m-alleged-losses"
+    },
+    {
+      "label": "New charges estimated intended loss",
+      "value": 350000000,
+      "unit": "dollars",
+      "source_url": "https://www.irs.gov/compliance/criminal-investigation/dojs-fraud-division-irs-and-irs-ci-expose-more-than-490m-in-tax-fraud-in-national-tax-enforcement-surge"
+    },
+    {
+      "label": "Sentencings estimated intended losses",
+      "value": 140000000,
+      "unit": "dollars",
+      "source_url": "https://noticias.foxnews.com/us/doj-unveils-nationwide-tax-fraud-crackdown-involving-76-defendants-nearly-500m-alleged-losses"
+    },
+    {
+      "label": "Legal actions returned with new charges",
+      "value": 23,
+      "unit": "actions",
+      "source_url": "https://www.irs.gov/compliance/criminal-investigation/dojs-fraud-division-irs-and-irs-ci-expose-more-than-490m-in-tax-fraud-in-national-tax-enforcement-surge"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "United States Department of Justice",
+      "kind": "organization"
+    },
+    {
+      "name": "Internal Revenue Service",
+      "kind": "organization"
+    },
+    {
+      "name": "IRS-CI",
+      "kind": "organization"
+    },
+    {
+      "name": "Fraud Division",
+      "kind": "organization"
+    },
+    {
+      "name": "Kat Lucero",
+      "kind": "person"
+    },
+    {
+      "name": "Brittany Miller",
+      "kind": "person"
+    },
+    {
+      "name": "Jory Heckman",
+      "kind": "person"
+    }
+  ]
+}

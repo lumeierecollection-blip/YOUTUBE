@@ -1,0 +1,43 @@
+{
+  "topic_slug": "ets-montreal-ergonomics-technology-development-october-2026",
+  "strongest_angle": "An examination of Sylvie Nadeau's October 2026 findings at ÉTS Montréal regarding how ergonomics must be validated in simulated environments, alongside academic repository records from Romuald Valdesse Eko’ola.",
+  "key_facts": [
+    {
+      "fact": "Sylvie Nadeau published findings at ÉTS Montréal on October 19, 2026, stating that after a technology proof of concept is completed, it must be validated in a simulated environment and in the laboratory.",
+      "source_url": "https://www.etsmtl.ca/en/news/ergonomics-as-key-component-technology-development-process",
+      "source_name": "ÉTS Montréal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sylvie Nadeau published findings at ÉTS Montréal on October 13, 2026, highlighting that humans have limits and it is essential to pay special attention to the design of systems to prevent human error.",
+      "source_url": "https://www.etsmtl.ca/en/news/designing-systems-that-prevent-human-error",
+      "source_name": "ÉTS Montréal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Romuald Valdesse Eko’ola authored a 2025 research work hosted at Espace ETS regarding the implementation of a design approach for mechanical-digital equipment in complex assembly workspaces.",
+      "source_url": "https://espace.etsmtl.ca/id/eprint/3772",
+      "source_name": "Espace ETS",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Sylvie Nadeau",
+      "kind": "person"
+    },
+    {
+      "name": "ÉTS Montréal",
+      "kind": "organization"
+    },
+    {
+      "name": "Romuald Valdesse Eko’ola",
+      "kind": "person"
+    },
+    {
+      "name": "Espace ETS",
+      "kind": "organization"
+    }
+  ]
+}

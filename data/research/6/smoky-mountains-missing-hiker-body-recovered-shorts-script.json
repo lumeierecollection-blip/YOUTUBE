@@ -1,0 +1,63 @@
+{
+  "channel_id": "6",
+  "topic_slug": "smoky-mountains-missing-hiker-body-recovered",
+  "format": "shorts",
+  "hook": "Dive teams at Abrams Falls recovered the body of 24-year-old Sahil Jilani after a days-long search.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Dive teams at Abrams Falls recovered the body of 24-year-old Sahil Jilani after a days-long search.",
+      "b_roll": [
+        "Underwater view of Abrams Falls"
+      ],
+      "text_overlay": {
+        "text": "Abrams Falls Recovery"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Texas traveler Sahil Jilani was last seen at Riverstone Campground in Townsend at 8 p.m. on October 5. Park officials discovered his vehicle near the hiking trail. Where was the missing hiker found?",
+      "b_roll": [
+        "Map of Townsend and Riverstone Campground",
+        "Park vehicle near trail"
+      ],
+      "text_overlay": {
+        "text": "October 5 Search"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Divers searched Blount County waters for days, but the tragic discovery at Abrams Falls changed everything.",
+      "b_roll": [
+        "Dive team equipment near water"
+      ],
+      "text_overlay": {
+        "text": "Blount County Search"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Recovery operations ended on October 8, 2026. Park officials confirmed his death in the Tennessee wilderness. Divers pulled him from Abrams Falls.",
+      "b_roll": [
+        "Great Smoky Mountains landscape"
+      ],
+      "text_overlay": {
+        "text": "October 8 Recovery"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Park authorities recovered Sahil Jilani's body from Abrams Falls.",
+      "b_roll": [
+        "Park entrance sign"
+      ],
+      "text_overlay": {
+        "text": "Case Closed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://kindnesssociety.com.au/sahil-jilani-abrams-falls-recovery",
+    "https://www.wvlt.tv/2026/10/11/man-missing-great-smoky-mountains-national-park-found-dead-after-days-long-search-family-confirms"
+  ]
+}

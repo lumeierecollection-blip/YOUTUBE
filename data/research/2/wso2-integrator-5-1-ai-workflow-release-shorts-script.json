@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "wso2-integrator-5-1-ai-workflow-release",
+  "format": "shorts",
+  "hook": "WSO2 launched Integrator 5.1 on October 19, 2026, putting AI at the core.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "WSO2 launched Integrator 5.1 on October 19, 2026, putting AI at the core.",
+      "visual_cue": "Display title text showing WSO2 Integrator 5.1 release date October 19 2026.",
+      "sfx_cue": "subtle tech rise",
+      "b_roll": [
+        "WSO2 software interface display"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "slide left",
+      "text_overlay": {
+        "text": "WSO2 5.1"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Director Anupama Pathirage published the release details on October 19, 2026. Version 5.1 builds on the version 5.0 foundation to expand support for enterprise agents. How are integration workflows constructed across version 5.1?",
+      "visual_cue": "Show document layout featuring release notes and version numbers 5.1 and 5.0.",
+      "sfx_cue": "page turn",
+      "b_roll": [
+        "Anupama Pathirage release publication document"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "dissolve",
+      "text_overlay": {
+        "text": "Version 5.1"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Viththagan Roy Nesarajah shared a look at version 5.1.0 on October 1, 2026.",
+      "visual_cue": "Display LinkedIn post reference card showing October 1, 2026 date.",
+      "sfx_cue": "notification chime",
+      "b_roll": [
+        "LinkedIn post screenshot interface"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "October 1, 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Developers now connect integration workflows using artificial intelligence across version 5.1. The updated platform expands support for building enterprise agents on October 19, 2026.",
+      "visual_cue": "Show software code blocks updating to version 5.1 with integration workflows.",
+      "sfx_cue": "data lock",
+      "b_roll": [
+        "WSO2 integration platform code interface"
+      ],
+      "animation_cue": "slide left",
+      "transition_out": "wipe",
+      "text_overlay": {
+        "text": "Version 5.1 Release"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "WSO2 released Integrator 5.1 on October 19, 2026.",
+      "visual_cue": "Display final release version number 5.1 on screen.",
+      "sfx_cue": "soft click",
+      "b_roll": [
+        "WSO2 brand logo screen"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade to black",
+      "text_overlay": {
+        "text": "WSO2 5.1"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://wso2.com/library/blogs/whats-new-in-wso2-integrator-5.1",
+    "https://wso2.com/integration-platform/docs/integrator/reference/release-notes",
+    "https://www.linkedin.com/posts/viththagan-roy-nesarajah_wso2-wso2integrator-ai-activity-7511283233725026306-qlZ_"
+  ]
+}

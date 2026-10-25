@@ -1,0 +1,42 @@
+{
+  "channel_id": "2",
+  "topic_slug": "supreme-court-october-2026-constitutional-docket",
+  "format": "shorts",
+  "hook": "Your rights are on the line as the Supreme Court returns.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your rights are on the line as the Supreme Court returns."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Thirty cases are scheduled for arguments through December 2026 in the nation's highest court. Which fundamental freedoms will change?",
+      "text_overlay": {
+        "text": "30 Cases Scheduled"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Supreme Court also rejected appeals regarding felons' Second Amendment rights and COVID-19 vaccine mandates.",
+      "text_overlay": {
+        "text": "Felon Rights Denied"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "SCOTUSblog confirms the justices ignored requests to review those specific firearm restrictions this term. The Supreme Court docket lists 30 cases for arguments through December 2026 for the justices.",
+      "text_overlay": {
+        "text": "SCOTUS Docket 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Track these thirty cases to understand your evolving constitutional rights."
+    }
+  ],
+  "sources_used": [
+    "https://constitutioncenter.org/blog/new-supreme-court-term-features-first-amendment-other-challenges",
+    "https://www.scotusblog.com/2026/10/the-october-sitting-so-far",
+    "https://www.supremecourt.gov/orders/26grantednotedlist.pdf"
+  ]
+}

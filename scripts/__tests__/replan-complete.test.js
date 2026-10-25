@@ -1,0 +1,35 @@
+/**
+ * A re-plan (the corrections pass) asks for every beat complete, layout included.
+ * CI runs 37705693390 and 37713312537: the first plan carried 9/9 and 10/10 planner layouts, the
+ * re-plan after the challenger 0 — the corrections prompt only asked for fixes.
+ * MUTATION (run): reverting the corrections header turns this red. Restored byte-identical.
+ */
+import { it } from "node:test";
+import assert from "node:assert/strict";
+import { buildPlanPromptParts } from "../gemini-visual-plan.js";
+
+const sentences = [{ start: 0, end: 3, text: "A former officer pleaded guilty." }, { start: 3, end: 6, text: "Prosecutors said 298 gold bars were found." }];
+it("the corrections pass asks for complete beats, shot and layout included", () => {
+  const { dynamicPart } = buildPlanPromptParts(sentences, [{ beat: 1, problem: "MISMATCH", fix: "show the bars" }], "5");
+  assert.match(dynamicPart, /return every beat complete, with every field the format above asks for \(its shot, layout, ground and entrance_style included\)/);
+});
+it("a first plan has no corrections block", () => {
+  assert.doesNotMatch(buildPlanPromptParts(sentences, null, "5").dynamicPart, /PREVIOUS REVIEW CORRECTIONS/);
+});
+it("the LAYOUT section states Layer 1's zone rule the way the audit applies it (header kind vs visual kind)", () => {
+  const { staticPart } = buildPlanPromptParts(sentences, null, "5");
+  assert.match(staticPart, /the two regions never hold two kinds of element/);
+  assert.match(staticPart, /falls back to the default arrangement/);
+});
+// 2026-10-09: every beat names a SHOT (docs/REFERENCE-SHOT-GRAMMAR.md); on a photo or object shot the
+// shot is the arrangement, so a layout is asked for on every FIGURE and STATEMENT beat.
+it("the LAYOUT section asks for a layout on every beat the shot does not arrange (40% of beats had none: CI runs 37718157561 and 37722686373)", () => {
+  const { staticPart } = buildPlanPromptParts(sentences, null, "5");
+  assert.match(staticPart, /Give every FIGURE and STATEMENT beat a layout/);
+  assert.match(staticPart, /yours on EVERY beat/);
+  assert.doesNotMatch(staticPart, /leaving "layout" out keeps the default arrangement for the whole beat/);
+});
+it("the slot format offers 'center' only for a visual, not for text (run 37746025773: 6/9 beats centred text)", () => {
+  const { staticPart } = buildPlanPromptParts(sentences, null, "5");
+  assert.match(staticPart, /"align": "left"\|"right" for text/);
+});

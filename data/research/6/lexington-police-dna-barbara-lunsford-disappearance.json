@@ -1,0 +1,79 @@
+{
+  "topic_slug": "lexington-police-dna-barbara-lunsford-disappearance",
+  "strongest_angle": "Examine how the Lexington Police Department is utilizing modern DNA testing and expanded resources in the unsolved 1963 disappearance of 23-year-old Barbara Lunsford.",
+  "key_facts": [
+    {
+      "fact": "Lexington Police are using DNA testing in an effort to solve the 1963 disappearance of 23-year-old Barbara Lunsford.",
+      "source_url": "https://www.wkyt.com/2026/10/08/wkyt-investigates-lexington-police-working-solve-63-year-old-missing-persons-case",
+      "source_name": "WKYT",
+      "confidence": "high"
+    },
+    {
+      "fact": "Barbara disappeared on October 12, 1963, after leaving her Lexington home for a doctor's appointment.",
+      "source_url": "https://www.facebook.com/WKYTTV/posts/lexington-police-are-using-dna-testing-in-an-effort-to-solve-the-1963-disappeara/1399460989066163",
+      "source_name": "Facebook",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Lexington Police Department's unsolved case unit now features two detectives and two retired officers serving as clerks.",
+      "source_url": "https://www.wkyt.com/2026/10/09/lexington-police-use-expanded-resources-work-unsolved-cases",
+      "source_name": "WKYT",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of Barbara Lunsford",
+      "value": 23,
+      "unit": "years old",
+      "source_url": "https://www.wkyt.com/2026/10/08/wkyt-investigates-lexington-police-working-solve-63-year-old-missing-persons-case"
+    },
+    {
+      "label": "Year of disappearance",
+      "value": 1963,
+      "unit": "year",
+      "source_url": "https://www.wkyt.com/2026/10/08/wkyt-investigates-lexington-police-working-solve-63-year-old-missing-persons-case"
+    },
+    {
+      "label": "Years since disappearance",
+      "value": 63,
+      "unit": "years",
+      "source_url": "https://www.wkyt.com/2026/10/08/wkyt-investigates-lexington-police-working-solve-63-year-old-missing-persons-case"
+    },
+    {
+      "label": "Number of detectives in unit",
+      "value": 2,
+      "unit": "detectives",
+      "source_url": "https://www.wkyt.com/2026/10/09/lexington-police-use-expanded-resources-work-unsolved-cases"
+    },
+    {
+      "label": "Number of retired officers serving as clerks",
+      "value": 2,
+      "unit": "officers",
+      "source_url": "https://www.wkyt.com/2026/10/09/lexington-police-use-expanded-resources-work-unsolved-cases"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Lexington Police",
+      "kind": "organization"
+    },
+    {
+      "name": "Barbara Lunsford",
+      "kind": "person"
+    },
+    {
+      "name": "Lexington",
+      "kind": "place"
+    },
+    {
+      "name": "WKYT",
+      "kind": "organization"
+    },
+    {
+      "name": "Facebook",
+      "kind": "organization"
+    }
+  ]
+}

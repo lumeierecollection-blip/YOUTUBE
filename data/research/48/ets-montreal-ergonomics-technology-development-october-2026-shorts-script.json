@@ -1,0 +1,68 @@
+{
+  "channel_id": "48",
+  "topic_slug": "ets-montreal-ergonomics-technology-development-october-2026",
+  "format": "shorts",
+  "hook": "Sylvie Nadeau proved technology proofs need simulation at ÉTS Montréal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sylvie Nadeau proved technology proofs need simulation at ÉTS Montréal.",
+      "b_roll": [
+        "ÉTS Montréal campus building exterior view",
+        "Researcher analyzing display screens in an office"
+      ],
+      "text_overlay": {
+        "text": "Simulation Proofs Required"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Systems demand careful design to prevent human error. Which lab tests failed at ÉTS Montréal?",
+      "b_roll": [
+        "Laboratory workstation with testing equipment",
+        "Close-up of engineering blueprints on a desk",
+        "ÉTS Montréal research center sign"
+      ],
+      "text_overlay": {
+        "text": "October 19, 2026 Findings"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Espace ETS archives show Romuald Valdesse Eko’ola tested mechanical digital equipment differently.",
+      "b_roll": [
+        "Digital archive repository interface on a screen",
+        "Assembly workspace with mechanical tools"
+      ],
+      "text_overlay": {
+        "text": "The Espace ETS Archive"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Romuald Valdesse Eko’ola published work at Espace ETS regarding complex assembly workspaces. Sylvie Nadeau confirmed testing happens inside simulated laboratory environments. Both studies target human error limits directly.",
+      "b_roll": [
+        "Assembly worker assembling mechanical parts",
+        "Laboratory simulation room interior",
+        "Research documents stacked on a table"
+      ],
+      "text_overlay": {
+        "text": "Complex Assembly Workspaces"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Sylvie Nadeau published findings at ÉTS Montréal.",
+      "b_roll": [
+        "ÉTS Montréal main entrance sign"
+      ],
+      "text_overlay": {
+        "text": "ÉTS Montréal"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.etsmtl.ca/en/news/ergonomics-as-key-component-technology-development-process",
+    "https://espace.etsmtl.ca/id/eprint/3772"
+  ]
+}

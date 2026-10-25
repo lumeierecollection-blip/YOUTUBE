@@ -1,0 +1,75 @@
+{
+  "topic_slug": "gandhi-never-said-be-the-change-origin",
+  "strongest_angle": "Examining how educator Arleen Lorrance created the popular phrase often attributed to Mahatma Gandhi, exploring the 1974 book chapter where it first appeared and how attribution shifted over time.",
+  "key_facts": [
+    {
+      "fact": "Mahatma Gandhi never said or wrote the quote 'be the change,' despite extensive digitization of his thousands of pages of material.",
+      "source_url": "https://slate.com/transcripts/TnkvVmlONG45SWJiUm00L2JWRU41Ui9EVVVuMVFrZjFQU25wd1FNUlRlUT0=",
+      "source_name": "Slate",
+      "confidence": "high"
+    },
+    {
+      "fact": "Educator Arleen Lorrance is credited by contemporary researchers and Quote Investigator with originating the phrase in a 1974 book chapter after working at a high school in Brooklyn, New York.",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change",
+      "source_name": "Quote Investigator",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mahatma Gandhi died in the year 1948, which is many years before the earliest close match of the quote appeared in print.",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change",
+      "source_name": "Quote Investigator",
+      "confidence": "high"
+    },
+    {
+      "fact": "Author Benoit Denizet-Lewis met Arleen Lorrance, described as an octogenarian, to research the misattributed origins of the popular slogan for Literary Hub.",
+      "source_url": "https://lithub.com/be-the-change-on-the-misattributed-origins-of-a-popular-slogan",
+      "source_name": "Literary Hub",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year Gandhi died",
+      "value": 1948,
+      "unit": "year",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change"
+    },
+    {
+      "label": "Year of the book chapter by Arleen Lorrance",
+      "value": 1974,
+      "unit": "year",
+      "source_url": "https://quoteinvestigator.com/2017/10/23/be-change"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Mahatma Gandhi",
+      "kind": "person"
+    },
+    {
+      "name": "Arleen Lorrance",
+      "kind": "person"
+    },
+    {
+      "name": "Brooklyn, New York",
+      "kind": "place"
+    },
+    {
+      "name": "Quote Investigator",
+      "kind": "organization"
+    },
+    {
+      "name": "Literary Hub",
+      "kind": "organization"
+    },
+    {
+      "name": "Benoit Denizet-Lewis",
+      "kind": "person"
+    },
+    {
+      "name": "Slate",
+      "kind": "organization"
+    }
+  ]
+}

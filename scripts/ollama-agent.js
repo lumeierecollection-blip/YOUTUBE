@@ -30,7 +30,7 @@
  * fed back and retried up to --max-retries. Nothing is padded or defaulted.
  */
 
-import { readFileSync, appendFileSync, mkdirSync } from "node:fs";
+import { readFileSync, appendFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
@@ -42,6 +42,9 @@ const topicLog = createRequire(import.meta.url)("../src/utils/topic-log.cjs");
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const OLLAMA_URL = (process.env.OLLAMA_URL || "http://127.0.0.1:11434").replace(/\/$/, "");
+// "ollama-cloud/<model>" in --model runs that model on Ollama's hosted API (ollama.com, OLLAMA_API_KEY): gpt-oss:120b writes a script the CPU runner's
+// qwen2.5:3b cannot. Without a key the spec is skipped and the next one (the local model) answers.
+const OLLAMA_CLOUD_URL = (process.env.OLLAMA_CLOUD_URL || "https://ollama.com").replace(/\/$/, "");
 const EXA_URL = process.env.EXA_MCP_URL || "https://mcp.exa.ai/mcp";
 const CALL_TIMEOUT_S = Number(process.env.PREP_CALL_TIMEOUT_S || process.env.OPENCODE_CALL_TIMEOUT_S) || 300;
 const NUM_CTX = Number(process.env.OLLAMA_CONTEXT_LENGTH) || 16384;
@@ -114,11 +117,12 @@ async function fetchWithTimeout(url, init, timeoutS) {
 
 async function chat(model, messages, format, label, temperature = 0.2, seed = undefined) {
   const t0 = Date.now();
-  const res = await fetchWithTimeout(`${OLLAMA_URL}/api/chat`, {
+  const cloud = model.startsWith("cloud:");
+  const res = await fetchWithTimeout(`${cloud ? OLLAMA_CLOUD_URL : OLLAMA_URL}/api/chat`, {
     method: "POST",
-    headers: { "content-type": "application/json" },
+    headers: { "content-type": "application/json", ...(cloud ? { authorization: `Bearer ${String(process.env.OLLAMA_API_KEY || "").trim()}` } : {}) },
     body: JSON.stringify({
-      model, messages, format, stream: false,
+      model: cloud ? model.slice("cloud:".length) : model, messages, format, stream: false,
       options: { temperature, num_ctx: NUM_CTX, ...(seed !== undefined ? { seed } : {}) },
     }),
   }, CALL_TIMEOUT_S);
@@ -410,7 +414,7 @@ async function main() {
     log("Usage: node scripts/ollama-agent.js --prompt-file <p> --schema-file <s> --model ollama/<name> [--agent pipeline-research|pipeline-script] [--search-budget N] [--append-system-prompt-file <p>] [--max-retries N]");
     process.exit(2);
   }
-  const nonOllama = models.filter((m) => !m.startsWith("ollama/"));
+  const nonOllama = models.filter((m) => !m.startsWith("ollama/") && !m.startsWith("ollama-cloud/"));
   if (nonOllama.length) {
     log(`ollama-agent only drives ollama/* models; got ${nonOllama.join(", ")}`);
     process.exit(2);
@@ -461,7 +465,9 @@ async function main() {
   let searchGemini = SEARCH_AGENTS.has(agent) && hasGeminiKey();
   if (SEARCH_AGENTS.has(agent)) log(`[${taskLabel}] ch-${args["channel-id"] ?? "?"}: answer model ${searchGemini ? `gemini (${GEMINI_SCRIPT_MODEL}), ollama fallback` : `ollama (${models.join(", ")}) — no Gemini key`}`);
   for (const spec of models) {
-    const model = spec.slice("ollama/".length);
+    const cloudSpec = spec.startsWith("ollama-cloud/");
+    if (cloudSpec && !String(process.env.OLLAMA_API_KEY || "").trim()) { log(`[${taskLabel}] ${spec}: no OLLAMA_API_KEY, skipped`); continue; }
+    const model = cloudSpec ? `cloud:${spec.slice("ollama-cloud/".length)}` : spec.slice("ollama/".length);
     const messages = [];
     if (system) messages.push({ role: "system", content: system });
     messages.push({ role: "user", content: userPrompt });
@@ -504,6 +510,14 @@ async function main() {
         lastError = `[${spec}] every web search failed — cannot ground this stage`;
         log(lastError);
         continue;
+      }
+      // --search-out: the RAW search text, kept beside the research artifact so a quotation the model reports can be confirmed word for word against what the
+      // search actually returned (scripts/lib/quote-verify.mjs). Nothing in it is model-written.
+      if (typeof args["search-out"] === "string") {
+        try {
+          mkdirSync(dirname(args["search-out"]), { recursive: true });
+          writeFileSync(args["search-out"], JSON.stringify({ searches: searches.map((x) => ({ query: x.query, text: String(x.text || "").slice(0, 40000) })) }));
+        } catch (e) { log(`[search-out] not written: ${e.message}`); }
       }
       // Discovery: a result whose title is a topic this channel already
       // covered is removed before the model reads it. qwen2.5:3b picked the

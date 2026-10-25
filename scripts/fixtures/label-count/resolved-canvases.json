@@ -1,0 +1,675 @@
+{
+ "source": "CI run 37837731824 (board), ch-26 resolved visual plan — each beat's canvas exactly as render.js received it",
+ "canvases": [
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "A crypto founder just got indicted for stealing 10 million dollars from investors.",
+   "lead_in": null,
+   "headline": "Crypto founder indicted for theft",
+   "emphasis_word": "indicted",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "10 million dollars"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 2,
+      "row_span": 2,
+      "align": "center"
+     }
+    ]
+   },
+   "anchor_word": "indicted",
+   "composition": "TYPE-FULL",
+   "beat_index": 0,
+   "beat_total": 9,
+   "variant": 0,
+   "hero_headline": true,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "concept_visuals": [
+    {
+     "name": "dollar-sign",
+     "class": "symbol",
+     "w": 1,
+     "h": 1
+    }
+   ],
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "statement": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "He marketed the Kishu Inu token as a fair launch project to unsuspecting crypto investors.",
+   "lead_in": null,
+   "headline": "Marketing the Kishu Inu token",
+   "emphasis_word": "Kishu Inu",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "company",
+     "name": "Kishu Inu"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "name_card": {
+    "name": "Kishu Inu",
+    "sub": "Marketing the Kishu Inu token"
+   },
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 3,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 2,
+      "align": "center"
+     }
+    ]
+   },
+   "anchor_word": "Kishu",
+   "composition": "TYPE-FULL",
+   "beat_index": 1,
+   "beat_total": 9,
+   "variant": 1,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "PIE",
+   "data": {
+    "percent": 6,
+    "label": "total supply"
+   },
+   "sentence": "Federal prosecutors in Chicago claim this 28-year-old resident of Fayetteville secretly controlled 6 percent of the total supply.",
+   "lead_in": null,
+   "headline": "Secret control of token supply",
+   "emphasis_word": "control",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "place",
+     "name": "Chicago"
+    },
+    {
+     "type": "place",
+     "name": "Fayetteville"
+    },
+    {
+     "type": "number",
+     "name": "6 percent"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "map",
+      "col": 0,
+      "row": 1,
+      "row_span": 3,
+      "align": "center"
+     }
+    ]
+   },
+   "anchor_word": "Chicago",
+   "composition": "DATA-FULL",
+   "beat_index": 2,
+   "beat_total": 9,
+   "variant": 2,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {
+    "number": "ROLL_DIGIT",
+    "chart": "PIE_POP"
+   },
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "How did he hide such a massive stash?",
+   "lead_in": null,
+   "headline": "How did he hide it?",
+   "emphasis_word": "hide",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "micro",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 1,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "composition": "TYPE-FULL",
+   "beat_index": 3,
+   "beat_total": 9,
+   "variant": 3,
+   "hero_headline": false,
+   "emphasis_beat": true,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "Except the founder was dumping tokens he claimed were never allocated to him.",
+   "lead_in": null,
+   "headline": "Dumping unallocated tokens",
+   "emphasis_word": "dumping",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "type_layout": "split",
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 3,
+      "align": "center"
+     }
+    ]
+   },
+   "composition": "TYPE-SPLIT",
+   "beat_index": 4,
+   "beat_total": 9,
+   "variant": 4,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS"
+     ],
+     "statement": [
+      "POP_EMPHASIS",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "COUNTER",
+   "data": {
+    "value": "10 million",
+    "label": "dollars illicit profit"
+   },
+   "sentence": "Sisemore walked away with nearly 10 million dollars in illicit profit from the scheme.",
+   "lead_in": null,
+   "headline": "Illicit profit from the scheme",
+   "emphasis_word": "profit",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "10 million dollars"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "number",
+      "col": 0,
+      "row": 2,
+      "row_span": 2,
+      "align": "center"
+     }
+    ]
+   },
+   "anchor_word": "10",
+   "composition": "NUMBER-FULL",
+   "beat_index": 5,
+   "beat_total": 9,
+   "variant": 5,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "number_accent": true,
+   "anim": {
+    "number": "ROLL_DIGIT"
+   },
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "headline": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ],
+     "label": [
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT",
+      "POP_SOFT"
+     ]
+    },
+    "number": "pop_roll"
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "Now, a grand jury has charged him with 3 separate counts of wire fraud.",
+   "lead_in": null,
+   "headline": "Charged with wire fraud",
+   "emphasis_word": "fraud",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "number",
+     "name": "3"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "concept_visuals": [
+    {
+     "name": "warning-triangle",
+     "class": "symbol",
+     "w": 1,
+     "h": 1,
+     "fallback": true
+    }
+   ],
+   "entrance_style": "visual-first",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "hero",
+      "col": 0,
+      "row": 1,
+      "row_span": 3,
+      "align": "center"
+     }
+    ]
+   },
+   "anchor_word": "fraud",
+   "composition": "TYPE-FULL",
+   "beat_index": 6,
+   "beat_total": 9,
+   "variant": 6,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "TYPE",
+   "data": null,
+   "sentence": "His deception left thousands of investors holding worthless digital assets.",
+   "lead_in": null,
+   "headline": "Investors left with worthless assets",
+   "emphasis_word": "worthless",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "medium",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": null,
+   "entrance_style": "staggered",
+   "layout": {
+    "cols": 1,
+    "rows": 4,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left"
+     },
+     {
+      "id": "items",
+      "col": 0,
+      "row": 1,
+      "row_span": 3,
+      "align": "left"
+     }
+    ]
+   },
+   "composition": "TYPE-FULL",
+   "beat_index": 7,
+   "beat_total": 9,
+   "variant": 7,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": false,
+    "style": "POP_STANDARD",
+    "entrances": {
+     "statement": [
+      "POP_EMPHASIS",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD",
+      "POP_STANDARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  },
+  {
+   "visual_type": "PROCESS",
+   "data": {
+    "nodes": [
+     "Inu token supply",
+     "trusting founders"
+    ]
+   },
+   "sentence": "Check the Kishu Inu token supply before trusting founders like Sisemore with your own money.",
+   "lead_in": null,
+   "headline": "Check Kishu Inu supply",
+   "emphasis_word": "Check",
+   "emphasis_words": [],
+   "photo": null,
+   "motion_tier": "major",
+   "camera_focus": null,
+   "persists_from": null,
+   "match_cut_prev": false,
+   "named_entities": [
+    {
+     "type": "company",
+     "name": "Kishu Inu"
+    }
+   ],
+   "text_entrance": null,
+   "headline_zone": "top",
+   "chart_zone": "middle",
+   "caption_zone": "bottom",
+   "ground_color": "#0E0E10",
+   "entrance_style": "together",
+   "layout": {
+    "cols": 1,
+    "rows": 1,
+    "slots": [
+     {
+      "id": "headline",
+      "col": 0,
+      "row": 0,
+      "align": "left",
+      "v_align": "center"
+     }
+    ]
+   },
+   "anchor_word": "Kishu",
+   "composition": "PROCESS-FULL",
+   "beat_index": 8,
+   "beat_total": 9,
+   "variant": 8,
+   "hero_headline": false,
+   "emphasis_beat": false,
+   "vertical": false,
+   "dark": false,
+   "anim": {},
+   "kinetic": {
+    "seed": "26",
+    "edge": true,
+    "style": "POP_HARD",
+    "entrances": {
+     "headline": [
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD",
+      "POP_HARD"
+     ]
+    },
+    "number": null
+   },
+   "label": null,
+   "pull_phrase": null
+  }
+ ]
+}

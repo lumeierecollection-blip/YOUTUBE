@@ -1,0 +1,68 @@
+{
+  "topic_slug": "brooklyn-da-crypto-scam-server-bust",
+  "strongest_angle": "The Brooklyn District Attorney's office and the Virtual Currency Unit dismantled an industrial multinational crypto fraud network by shutting down 112 servers and 241 scam domains targeting Russian speakers.",
+  "key_facts": [
+    {
+      "fact": "The Brooklyn District Attorney's Office Virtual Currency Unit dismantled infrastructure of a multinational crypto investment scam that targeted Russian speakers by shutting down 112 servers and 241 scam domains.",
+      "source_url": "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers",
+      "source_name": "The Brooklyn District Attorney's Office",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Brooklyn District Attorney's office disrupted a multinational cryptocurrency-scam network centered in Eastern Europe, shutting down 241 websites linked to crypto fraud that stole tens of millions of dollars from Americans.",
+      "source_url": "https://news.bloomberglaw.com/crypto/brooklyn-da-cracks-global-crypto-scam-network-in-major-bust",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Brooklyn District Attorney's Office announced the takedown of hundreds of servers and domains used to defraud Russian speakers in the United States, dealing a significant blow to the international crypto scam operation.",
+      "source_url": "https://www.law360.com/articles/2538006/brooklyn-da-busts-crypto-scam-targeting-russian-speakers",
+      "source_name": "Law360",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Servers disrupted by the Brooklyn District Attorney",
+      "value": 112,
+      "unit": "servers",
+      "source_url": "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers"
+    },
+    {
+      "label": "Scam domains disrupted by the Brooklyn District Attorney",
+      "value": 241,
+      "unit": "domains",
+      "source_url": "https://www.brooklynda.org/2026/10/14/brooklyn-das-virtual-currency-unit-dismantles-infrastructure-of-multinational-crypto-investment-scam-that-targeted-russian-speakers"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Brooklyn District Attorney's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "Virtual Currency Unit",
+      "kind": "organization"
+    },
+    {
+      "name": "Eastern Europe",
+      "kind": "place"
+    },
+    {
+      "name": "U.S.",
+      "kind": "place"
+    },
+    {
+      "name": "Edwin Pineda",
+      "kind": "person"
+    },
+    {
+      "name": "Scott Patterson",
+      "kind": "person"
+    },
+    {
+      "name": "Aislinn Keely",
+      "kind": "person"
+    }
+  ]
+}

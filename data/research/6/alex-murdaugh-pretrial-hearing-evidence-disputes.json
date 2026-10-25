@@ -1,0 +1,83 @@
+{
+  "topic_slug": "alex-murdaugh-pretrial-hearing-evidence-disputes",
+  "strongest_angle": "Analyze the legal battles and evidence disputes over DNA testing, ballistics, and cell phone data between defense attorneys and prosecutors during the October pretrial hearings in South Carolina.",
+  "key_facts": [
+    {
+      "fact": "Alex Murdaugh, aged 58, is scheduled to stand trial again in South Carolina after a judge ruled his 2027 murder retrial must leave Colleton County.",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "South Carolina circuit court judge Debra McCaslin scheduled an in-person hearing for 10 a.m. at the Lexington County Courthouse to address urgent disputes over access to evidence.",
+      "source_url": "https://www.fitsnews.com/2026/10/15/murdaugh-evidence-fights-court",
+      "source_name": "FITSNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Judge Debra McCaslin is expected to hear arguments involving DNA testing on Maggie Murdaugh's nails, cellphone evidence, ballistics data, and crime-scene scans.",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/how-to-watch-alex-murdaughs-october-16-hearing/101-323d7f37-cefc-46d2-9272-66e1a218fb0e",
+      "source_name": "WLTX News19",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Alex Murdaugh age",
+      "value": 58,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/alex-murdaugh-killings-pretrial-hearing-8543a045e48ee026a25dbd74ade3af3d"
+    },
+    {
+      "label": "Scheduled retrial year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/alex-murdaugh-hearing-october-16-preview/101-ffe8a9fb-6c57-429a-8a32-c09c241e9eaf"
+    },
+    {
+      "label": "Hearing time hour",
+      "value": 10,
+      "unit": "am",
+      "source_url": "https://www.wltx.com/article/news/special-reports/alex-murdaugh/alex-murdaugh-hearing-october-16-preview/101-ffe8a9fb-6c57-429a-8a32-c09c241e9eaf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Alex Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "Debra McCaslin",
+      "kind": "person"
+    },
+    {
+      "name": "Maggie Murdaugh",
+      "kind": "person"
+    },
+    {
+      "name": "South Carolina",
+      "kind": "place"
+    },
+    {
+      "name": "Lexington County Courthouse",
+      "kind": "place"
+    },
+    {
+      "name": "Colleton County",
+      "kind": "place"
+    },
+    {
+      "name": "Associated Press",
+      "kind": "organization"
+    },
+    {
+      "name": "FITSNews",
+      "kind": "organization"
+    },
+    {
+      "name": "WLTX News19",
+      "kind": "organization"
+    }
+  ]
+}

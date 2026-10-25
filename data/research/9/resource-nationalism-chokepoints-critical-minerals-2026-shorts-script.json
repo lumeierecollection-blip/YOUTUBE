@@ -1,0 +1,63 @@
+{
+  "channel_id": "9",
+  "topic_slug": "resource-nationalism-chokepoints-critical-minerals-2026",
+  "format": "shorts",
+  "hook": "What if one country controls nineteen of the twenty minerals powering the entire modern world?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if one country controls nineteen of the twenty minerals powering the entire modern world?",
+      "b_roll": [
+        "Animated map highlighting global trade routes and critical mineral supply chains"
+      ],
+      "text_overlay": {
+        "text": "19 of 20 Minerals"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "China currently leads the refining process across 19 out of 20 strategic critical minerals. Processing facilities create global supply chokepoints. Where is the Baotou basin located?",
+      "b_roll": [
+        "Satellite zoom over Inner Mongolia and industrial processing plants"
+      ],
+      "text_overlay": {
+        "text": "Refining Chokepoints"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Deng Xiaoping declared during his 1992 Southern Tour that China has rare earths just as the Middle East has oil.",
+      "b_roll": [
+        "Archival photo from the 1992 Southern Tour in Inner Mongolia"
+      ],
+      "text_overlay": {
+        "text": "1992 Southern Tour"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Center for Strategic and International Studies reported that reducing reliance on Chinese processing capacity is the primary strategic objective for the United States.",
+      "b_roll": [
+        "Document pages from the Center for Strategic and International Studies report"
+      ],
+      "text_overlay": {
+        "text": "US Strategic Objective"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Baotou holds the key to global critical mineral supply chains.",
+      "b_roll": [
+        "Wide shot of Baotou rare-earth basin facilities"
+      ],
+      "text_overlay": {
+        "text": "Baotou Basin"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://discoveryalert.com/analysis/resource-nationalism-chokepoints-critical-minerals-october-2026",
+    "https://www.cfr.org/articles/china-united-states-and-critical-chokepoint-minerals",
+    "https://www.csis.org/analysis/resource-nationalism-not-united-states-biggest-minerals-problem"
+  ]
+}

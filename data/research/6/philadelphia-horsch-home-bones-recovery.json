@@ -1,0 +1,72 @@
+{
+  "topic_slug": "philadelphia-horsch-home-bones-recovery",
+  "strongest_angle": "Forensic breakthrough: Bones found at Philadelphia Horsch home linked to missing women investigation",
+  "key_facts": [
+    {
+      "fact": "Investigators recovered bones at the former home of the late pornographer Raymond 'R.C.' Horsch and his son Eugene, which are linked to at least seven missing women.",
+      "source_url": "https://6abc.com/post/bones-recovered-philadelphia-horsch-home-center-missing-women-case-sources/19941546",
+      "source_name": "6abc Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Medical Examiner's Office was called to the Chew Avenue home to recover the bones, which are not yet known in terms of condition or origin.",
+      "source_url": "https://www.europesays.com/us/1122713",
+      "source_name": "United States",
+      "confidence": "high"
+    },
+    {
+      "fact": "Philadelphia police and FBI agents searched the backyard of 417 West Chew Avenue, seeking human remains linked to at least seven missing women.",
+      "source_url": "https://www.fox29.com/news/horsch-investigation-final-phase-search-west-chew-avenue-home-continues",
+      "source_name": "FOX 29 Philadelphia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of missing women",
+      "value": 7,
+      "unit": "women",
+      "source_url": "https://6abc.com/post/bones-recovered-philadelphia-horsch-home-center-missing-women-case-sources/19941546"
+    },
+    {
+      "label": "Number of bones found",
+      "value": 1,
+      "unit": "bone",
+      "source_url": "https://6abc.com/post/bones-recovered-philadelphia-horsch-home-center-missing-women-case-sources/19941546"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Raymond 'R.C.' Horsch",
+      "kind": "person"
+    },
+    {
+      "name": "Eugene Horsch",
+      "kind": "person"
+    },
+    {
+      "name": "Philadelphia police",
+      "kind": "organization"
+    },
+    {
+      "name": "Office of the Medical Examiner",
+      "kind": "organization"
+    },
+    {
+      "name": "417 West Chew Avenue",
+      "kind": "place"
+    },
+    {
+      "name": "Olney neighborhood",
+      "kind": "place"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Investigators are excavating the backyard at 417 West Chew Avenue, searching for remains linked to at least seven missing women.",
+      "speaker": "Kelly Rule, FOX 29 Philadelphia",
+      "source_name": "FOX 29 Philadelphia",
+      "source_url": "https://www.fox29.com/news/horsch-investigation-final-phase-search-west-chew-avenue-home-continues"
+    }
+  ]
+}

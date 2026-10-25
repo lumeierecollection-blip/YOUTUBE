@@ -1,0 +1,62 @@
+{
+  "channel_id": "2",
+  "topic_slug": "thomson-reuters-2026-labor-employment-tracker",
+  "format": "shorts",
+  "hook": "Every new labor rule in 2026 hides inside the Thomson Reuters tracker.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Every new labor rule in 2026 hides inside the Thomson Reuters tracker.",
+      "b_roll": [
+        "Thomson Reuters document archive"
+      ],
+      "text_overlay": {
+        "text": "2026 Labor Rules Tracker"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Thomson Reuters published the 2026 Labor and Employment Law Developments Tracker as a Practice Note. Federal and state court decisions drive this administrative guidance. Where does traditional labor law go?",
+      "b_roll": [
+        "Practical Law documents"
+      ],
+      "text_overlay": {
+        "text": "Practice Note Tracker"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Traditional labor law and immigration law are tracked in separate resources.",
+      "b_roll": [
+        "Thomson Reuters portal"
+      ],
+      "text_overlay": {
+        "text": "Separate Resources"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Thomson Reuters released the Guide to Employment Law and Regulation in September 2026. This second edition covers civil rights immunity issues. Section 1983 actions define the updated scope.",
+      "b_roll": [
+        "Employment law guide book"
+      ],
+      "text_overlay": {
+        "text": "Civil Rights Immunity"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 2026 tracker logs every official regulatory development.",
+      "b_roll": [
+        "Regulatory update screen"
+      ],
+      "text_overlay": {
+        "text": "2026 Regulatory Log"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://content.next.westlaw.com/practical-law/document/I4c182700c77f11ef989cc1f7e8600ddb/2026-Labor-Employment-Law-Developments-Tracker?contextData=%28sc.Default%29&transitionType=Default&viewType=FullText",
+    "https://thomsonreuters.scene7.com/is/content/thomsonreuterscloudprod/277878_WN"
+  ]
+}

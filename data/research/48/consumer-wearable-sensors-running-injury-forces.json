@@ -1,0 +1,77 @@
+{
+  "topic_slug": "consumer-wearable-sensors-running-injury-forces",
+  "strongest_angle": "Examine how new October 2026 research published in Medicine & Science in Sports & Exercise links affordable consumer wearable sensor metrics directly to internal biomechanical forces at common running injury locations.",
+  "key_facts": [
+    {
+      "fact": "Published on October 16, 2026, research in Medicine & Science in Sports & Exercise by John J. Davis IV and colleagues links consumer-grade wearable sensor metrics to internal forces at common running injury locations.",
+      "source_url": "https://doi.org/10.1249/mss.0000000000004191",
+      "source_name": "Medicine & Science in Sports & Exercise",
+      "confidence": "high"
+    },
+    {
+      "fact": "Published on April 23, 2026, in the Journal of Biomechanics, researcher John J. Davis and co-authors investigated predicting Achilles tendon and patellofemoral joint forces during running using consumer-grade wearable sensor data.",
+      "source_url": "https://doi.org/10.1016/j.jbiomech.2026.113321",
+      "source_name": "Journal of Biomechanics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Published on June 1, 2026, ScienceDirect outlined how overuse injuries in runners arise from damage accumulation to load-bearing musculoskeletal tissues occurring from repetitive sub-failure loading cycles.",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0021929026001764",
+      "source_name": "ScienceDirect",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Preferred speed range lower bound",
+      "value": 3.09,
+      "unit": "meters per second",
+      "source_url": "https://doi.org/10.1249/01.mss.0000882084.77582.32"
+    },
+    {
+      "label": "Preferred speed range upper bound",
+      "value": 4.02,
+      "unit": "meters per second",
+      "source_url": "https://doi.org/10.1249/01.mss.0000882084.77582.32"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "John J. Davis IV",
+      "kind": "person"
+    },
+    {
+      "name": "Stacey A. Meardon",
+      "kind": "person"
+    },
+    {
+      "name": "John S. Raglin",
+      "kind": "person"
+    },
+    {
+      "name": "Andrew William Brown",
+      "kind": "person"
+    },
+    {
+      "name": "Jaroslaw Harezlak",
+      "kind": "person"
+    },
+    {
+      "name": "Allison H. Gruber",
+      "kind": "person"
+    },
+    {
+      "name": "Medicine & Science in Sports & Exercise",
+      "kind": "organization"
+    },
+    {
+      "name": "Journal of Biomechanics",
+      "kind": "organization"
+    },
+    {
+      "name": "ScienceDirect",
+      "kind": "organization"
+    }
+  ]
+}

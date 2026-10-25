@@ -39,7 +39,7 @@
  * why the base stays an environment variable rather than a constant.
  *
  * Set for Gemini:  VISION_API_BASE=https://generativelanguage.googleapis.com/v1beta/openai
- *                  VISION_MODEL=gemini-2.5-flash   (any vision-capable Gemini)
+ *                  VISION_MODEL=gemini-3.8-flash   (any vision-capable Gemini)
  * Set for OpenCode: VISION_API_BASE=https://opencode.ai/zen/v1
  *
  * NEITHER 7.3 NOR 7.4 HAS EVER RETURNED A REAL VERDICT. No key reaches this
@@ -241,6 +241,39 @@ function ollamaVision(framePaths, prompt) {
 // like the rest of this script, at most GROQ_MAX_IMAGES images (default 3,
 // qwen/qwen3.8-27b's limit) — the first frames; the rest are not seen. Any Groq failure falls
 // to the local Ollama vision model.
+// OpenRouter first (OpenRouter → Groq → Ollama; this gate has no Gemini step), the same
+// messages and the same parser contract as the Groq call below: a model's answer counts
+// only when it parses to a JSON object with the rules' fields; anything else falls on.
+function openrouterThenGroq(framePaths, prompt) {
+  const key = process.env.OPENROUTER_API_KEY;
+  const model = process.env.OPENROUTER_VISION_MODEL || "qwen/qwen3.7-plus";
+  const cap = Math.max(1, Number(process.env.OPENROUTER_MAX_IMAGES || 8));
+  let why = "no_key";
+  if (key) {
+    const body = JSON.stringify({ model, temperature: 0, max_tokens: 400, response_format: { type: "json_object" },
+      messages: [{ role: "user", content: [{ type: "text", text: prompt },
+        ...framePaths.slice(0, cap).map((p) => ({ type: "image_url", image_url: { url: `data:image/png;base64,${readFileSync(p).toString("base64")}` } }))] }] });
+    try {
+      const res = execFileSync("curl", ["-sS", "--max-time", "120", "-H", "Content-Type: application/json",
+        "-H", `Authorization: Bearer ${key}`, "-d", "@-", "https://openrouter.ai/api/v1/chat/completions"],
+        { input: body, encoding: "utf-8", maxBuffer: 1 << 26 });
+      const pj = JSON.parse(res);
+      if (pj.error) {
+        const code = Number(pj.error.code) || 0;
+        why = /rate.?limit|quota|tokens per/i.test(pj.error.message || "") || code === 429 ? "quota_exhausted" : code >= 500 ? "unavailable" : "hard_error";
+      } else {
+        const raw = String(pj.choices?.[0]?.message?.content || "").trim().replace(/^```json/, "").replace(/^```/, "").replace(/```$/, "").trim();
+        console.error(`[openrouter] ${model}: vision-qa, ${Math.min(cap, framePaths.length)} image(s)`);
+        return { ran: true, ...JSON.parse(raw) };
+      }
+    } catch (e) {
+      why = "unavailable";
+    }
+  }
+  console.error(`[vision-qa] openrouter: ${why} → groq`);
+  return groqThenOllama(framePaths, prompt);
+}
+
 function groqThenOllama(framePaths, prompt) {
   const key = process.env.GROQ_API_KEY;
   const model = process.env.GROQ_VISION_MODEL || "qwen/qwen3.8-27b";
@@ -274,8 +307,9 @@ function groqThenOllama(framePaths, prompt) {
 function visionCheck(frames, spec) {
   const base = process.env.VISION_API_BASE || "https://generativelanguage.googleapis.com/v1beta/openai";
   const key = process.env.VISION_API_KEY;
-  // Downgraded to Flash-Lite per token audit — simple structured output doesn't need Pro/Flash
-  const model = process.env.VISION_MODEL || "gemini-2.5-flash-lite";
+  // The old 2.5 Flash-Lite default ("downgraded to Flash-Lite per token audit") answers 404 for new users
+  // today, so the default is gemini-3.8-flash (no shutdown date announced on the official deprecations page).
+  const model = process.env.VISION_MODEL || "gemini-3.8-flash";
   const forced = String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
   if (!key && !process.env.GROQ_API_KEY && !process.env.OLLAMA_URL) {
     return {
@@ -305,7 +339,7 @@ function visionCheck(frames, spec) {
   }
   if (!key) {
     console.error("[vision-qa] gemini: no_key → groq");
-    return groqThenOllama(framePaths, prompt);
+    return openrouterThenGroq(framePaths, prompt);
   }
   const imageContent = framePaths.slice(0, 6).map((p) => ({
     type: "image_url",
@@ -331,7 +365,7 @@ function visionCheck(frames, spec) {
       { input: body, encoding: "utf-8" });
   } catch (e) {
     console.error(`[vision-qa] gemini: unavailable → groq (${String(e.stderr || e.message).trim().slice(0, 120)})`);
-    return groqThenOllama(framePaths, prompt);
+    return openrouterThenGroq(framePaths, prompt);
   }
   // Gemini answered with an error (429 quota / 503 overload, sometimes
   // wrapped in an array): no Gemini retry — the local model answers.
@@ -343,7 +377,7 @@ function visionCheck(frames, spec) {
       const kind = code === 429 || /quota|RESOURCE_EXHAUSTED|rate.?limit/i.test(pj.error.message || "") ? "quota_exhausted"
         : code >= 500 ? "unavailable" : "hard_error";
       console.error(`[vision-qa] gemini: ${kind} → groq (${String(pj.error.message || "").slice(0, 120)})`);
-      return groqThenOllama(framePaths, prompt);
+      return openrouterThenGroq(framePaths, prompt);
     }
   } catch {}
   let raw;

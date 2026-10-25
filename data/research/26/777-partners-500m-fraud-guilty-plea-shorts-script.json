@@ -1,0 +1,47 @@
+{
+  "channel_id": "26",
+  "topic_slug": "777-partners-500m-fraud-guilty-plea",
+  "format": "shorts",
+  "hook": "A Miami investment firm just collapsed after a $500 million fraud.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A Miami investment firm just collapsed after a $500 million fraud.",
+      "text_overlay": {
+        "text": "$500 Million Fraud"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The co-founder of 777 Partners, Josh Wander, orchestrated this massive scheme to deceive his investors. How did he mislead lenders and investors to secure that $500 million?",
+      "text_overlay": {
+        "text": "777 Partners Collapse"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Federal prosecutors in the Southern District of New York uncovered his scheme to bilk investors.",
+      "text_overlay": {
+        "text": "Investors Bilked"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Wander pleaded guilty to these charges in a Manhattan federal court. This $500 million fraud scheme directly triggered the total collapse of the Miami investment firm.",
+      "text_overlay": {
+        "text": "Guilty Plea"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "He must now pay back $500 million in losses as part of his plea agreement.",
+      "text_overlay": {
+        "text": "$500 Million Owed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/soccer-777-wander-plea-4c379173faf770c816d51561afdc662e",
+    "https://news.bloomberglaw.com/bankruptcy-law/777-partners-co-founder-wander-pleads-guilty-to-fraud"
+  ]
+}

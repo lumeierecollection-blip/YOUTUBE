@@ -1,0 +1,84 @@
+{
+  "topic_slug": "michelle-singletary-october-2026-debt-warning",
+  "strongest_angle": "Financial columnist Michelle Singletary and CNBC reporter Sharon Epperson highlight how surging debt payments are outpacing standard household pay raises, leaving consumers feeling broke despite income gains in October 2026.",
+  "key_facts": [
+    {
+      "fact": "Financial columnist Michelle Singletary published a report in The Washington Post on October 10, 2026, examining why pay raises leave consumers feeling broke.",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC reporter Sharon Epperson discussed research on October 16, 2026, showing how debt payments are rising faster than income.",
+      "source_url": "https://www.cnbc.com/2026/10/16/debt-payments-rise-more-than-income.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Money columnist Michelle Singletary shared personal debt commentary and advice featured by CNBC on October 16, 2026.",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/16/michelle-singletary-debt-money-advice.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Spokesman-Review published Michelle Singletary's column on October 18, 2026, detailing why standard pay raises fail to outpace rising debt.",
+      "source_url": "https://www.spokesman.com/stories/2026/oct/18/heres-why-your-pay-raise-still-leaves-you-feeling-",
+      "source_name": "The Spokesman-Review",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Report publication date day in October 2026",
+      "value": 10,
+      "unit": "day",
+      "source_url": "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke"
+    },
+    {
+      "label": "Report publication date day in October 2026",
+      "value": 16,
+      "unit": "day",
+      "source_url": "https://www.cnbc.com/2026/10/16/debt-payments-rise-more-than-income.html"
+    },
+    {
+      "label": "Column publication date day in October 2026",
+      "value": 18,
+      "unit": "day",
+      "source_url": "https://www.spokesman.com/stories/2026/oct/18/heres-why-your-pay-raise-still-leaves-you-feeling-"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Longtime money columnist on the advice everyone needs to hear: 'If debt was a person I would slap it'",
+      "speaker": "Michelle Singletary",
+      "source_name": "CNBC",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/16/michelle-singletary-debt-money-advice.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Michelle Singletary",
+      "kind": "person"
+    },
+    {
+      "name": "Sharon Epperson",
+      "kind": "person"
+    },
+    {
+      "name": "Kamaron McNair",
+      "kind": "person"
+    },
+    {
+      "name": "The Washington Post",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    },
+    {
+      "name": "The Spokesman-Review",
+      "kind": "organization"
+    }
+  ]
+}

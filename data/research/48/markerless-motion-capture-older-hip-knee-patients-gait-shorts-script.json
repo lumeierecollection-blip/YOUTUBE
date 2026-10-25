@@ -1,0 +1,65 @@
+{
+  "channel_id": "48",
+  "topic_slug": "markerless-motion-capture-older-hip-knee-patients-gait",
+  "format": "shorts",
+  "hook": "Can 41 older patients with hip and knee pathology undergo camera-based walking tests?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Can 41 older patients with hip and knee pathology undergo camera-based walking tests?",
+      "b_roll": [
+        "Multi-camera motion capture setup in a clinical research lab"
+      ],
+      "text_overlay": {
+        "text": "41 patients tracked by cameras"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Leonhard Stein evaluated multi-camera markerless motion capture during walking. How did inter-system reliability score across all 36 parameters?",
+      "b_roll": [
+        "Researchers reviewing patient walking data on monitors",
+        "Chart showing evaluation parameters"
+      ],
+      "text_overlay": {
+        "text": "36 metrics evaluated"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Frontiers in Medical Technology published the study, but only eighteen parameters proved excellent.",
+      "b_roll": [
+        "Frontiers in Medical Technology journal publication interface"
+      ],
+      "text_overlay": {
+        "text": "Published reliability data"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers found that inter-system reliability reached high levels. Markerless motion capture proves reliable for older hip and knee patients during walking assessments.",
+      "b_roll": [
+        "Detailed reliability graph showing 18 excellent parameters",
+        "Patient walking assessment in clinic"
+      ],
+      "text_overlay": {
+        "text": "18 of 36 parameters excellent"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read Denise Maddox's coverage detailing these findings on Scienmag.",
+      "b_roll": [
+        "Scienmag editorial coverage on screen"
+      ],
+      "text_overlay": {
+        "text": "Scienmag coverage"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.frontiersin.org/journals/medical-technology/articles/10.3389/fmedt.2026.1940851/full",
+    "https://doi.org/10.3389/fmedt.2026.1940851",
+    "https://scienmag.com/markerless-motion-capture-proves-reliable-for-older-hip-and-knee-patients-during-walking"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "topic_slug": "verity-box-office-performance-analysis",
+  "strongest_angle": "Analyzing the theatrical performance of Amazon MGM Studios' adaptation of Verity starring Anne Hathaway and its commercial standing compared to previous Colleen Hoover cinematic releases.",
+  "key_facts": [
+    {
+      "fact": "The Amazon MGM Studios thriller Verity earned $32.6 million domestically during its opening weekend against a production cost of $40 million.",
+      "source_url": "https://trevordecker.com/2026/10/04/veritys-62-5m-opening-is-second-best-ever-for-colleen-hoover",
+      "source_name": "Trevor Decker News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Verity bowed to $62.5 million worldwide, marking the second-best start for a Colleen Hoover film adaptation behind 2024's It Ends With Us.",
+      "source_url": "https://shownews.net/article/679257",
+      "source_name": "Show News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The film Verity stars Anne Hathaway, Dakota Johnson, and Josh Hartnett, and was directed by Michael Showalter.",
+      "source_url": "https://boxofficewatch.com/movies/verity",
+      "source_name": "Box Office Watch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Domestic Opening Weekend Gross",
+      "value": 32.6,
+      "unit": "million dollars",
+      "source_url": "https://trevordecker.com/2026/10/04/veritys-62-5m-opening-is-second-best-ever-for-colleen-hoover"
+    },
+    {
+      "label": "Production Cost",
+      "value": 40,
+      "unit": "million dollars",
+      "source_url": "https://trevordecker.com/2026/10/04/veritys-62-5m-opening-is-second-best-ever-for-colleen-hoover"
+    },
+    {
+      "label": "Worldwide Opening Gross",
+      "value": 62.5,
+      "unit": "million dollars",
+      "source_url": "https://shownews.net/article/679257"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Verity",
+      "kind": "object"
+    },
+    {
+      "name": "Amazon MGM Studios",
+      "kind": "organization"
+    },
+    {
+      "name": "Anne Hathaway",
+      "kind": "person"
+    },
+    {
+      "name": "Dakota Johnson",
+      "kind": "person"
+    },
+    {
+      "name": "Josh Hartnett",
+      "kind": "person"
+    },
+    {
+      "name": "Michael Showalter",
+      "kind": "person"
+    },
+    {
+      "name": "Colleen Hoover",
+      "kind": "person"
+    },
+    {
+      "name": "It Ends With Us",
+      "kind": "object"
+    }
+  ]
+}

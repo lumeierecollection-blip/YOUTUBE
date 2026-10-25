@@ -1,0 +1,69 @@
+{
+  "channel_id": "8",
+  "topic_slug": "talktalk-administration-pre-pack-sale-bt-2026",
+  "format": "shorts",
+  "hook": "BT Group acquired TalkTalk Telecommunications Limited and PlatformX Communications Limited out of administration.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "BT Group acquired TalkTalk Telecommunications Limited and PlatformX Communications Limited out of administration.",
+      "b_roll": [
+        "Company logo transition",
+        "Stock ticker numbers flashing"
+      ],
+      "text_overlay": {
+        "text": "BT buys TalkTalk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 5, 2026, TalkTalk entered administration and was sold to BT. BT acquired the consumer units to protect 2.5 million customers. Where did lenders send their complaints?",
+      "b_roll": [
+        "Calendar date stamp October 5 2026",
+        "Network cable connections",
+        "Customer service center interior"
+      ],
+      "text_overlay": {
+        "text": "October 5, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the largest lender fired off bitter complaints straight to ministers and the CMA.",
+      "b_roll": [
+        "Official government document stack",
+        "Red stamp on legal paper"
+      ],
+      "text_overlay": {
+        "text": "Lender complaints"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Competition and Markets Authority launched a merger inquiry regarding BT's completed acquisition. BT paid $530 million for the deal. Regulators served statutory orders.",
+      "b_roll": [
+        "Courthouse exterior building shot",
+        "Scale of justice symbol",
+        "Financial audit spreadsheet"
+      ],
+      "text_overlay": {
+        "text": "$530 million deal"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "BT secured the £400 million purchase instantly.",
+      "b_roll": [
+        "Bank vault door closing",
+        "Final contract signature"
+      ],
+      "text_overlay": {
+        "text": "£400 million purchase"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://newsroom.bt.com/bt-group-has-acquired-talktalk-and-platformx-ensuring-continuity-of-service-for-millions-of-customers",
+    "https://www.reuters.com/business/uks-bt-group-acquires-talktalk-out-administration-2026-10-05"
+  ]
+}

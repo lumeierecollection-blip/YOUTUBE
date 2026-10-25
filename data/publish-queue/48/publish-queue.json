@@ -84,5 +84,17 @@
     "go_public_at": "2026-10-03T17:04:53.835Z",
     "privacy_status": "private",
     "cancelled": true
+  },
+  {
+    "video_id": "rY5Ufan8uLs",
+    "channel_id": "48",
+    "title": "University of Michigan Unveils Haptic Steering Wheel for…",
+    "uploaded_at": "2026-10-24T13:07:16.138Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-24T14:07:16.138Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "university-of-michigan-haptic-steering-wheel-semi-autonomous-shorts-shorts-2026-10-24.mp4",
+    "source_queue": "approved-review"
   }
 ]

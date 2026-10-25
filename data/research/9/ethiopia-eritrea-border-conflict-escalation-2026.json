@@ -1,0 +1,63 @@
+{
+  "topic_slug": "ethiopia-eritrea-border-conflict-escalation-2026",
+  "strongest_angle": "Break down the resurgent interstate tensions and troop incursions between Ethiopia and Eritrea along the Tigray border, analyzing the looming threat of conflict in the Horn of Africa.",
+  "key_facts": [
+    {
+      "fact": "Ethiopia informed the United Nations Security Council that it is taking measures in self-defense against Eritrea after accusing Asmara of sending troops across the border to occupy parts of northern Ethiopia.",
+      "source_url": "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Residents in the Tigrayan town of Adigrat told the BBC that Eritrean soldiers have crossed into northern Ethiopia and moved deep into the region toward ongoing clashes between national army troops and regional forces.",
+      "source_url": "https://www.bbc.co.uk/news/articles/ckvgd63rj92lo?at_medium=RSS&at_campaign=rss",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The International Crisis Group reported that Addis Ababa and Asmara are edging closer to a direct conflict, threatening further mayhem in the Horn of Africa and the Red Sea basin.",
+      "source_url": "https://www.crisisgroup.org/alr/africa/ethiopia-eritrea/pulling-ethiopia-and-eritrea-back-war",
+      "source_name": "International Crisis Group",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    },
+    {
+      "name": "United Nations Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Asmara",
+      "kind": "place"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    },
+    {
+      "name": "Addis Ababa",
+      "kind": "place"
+    },
+    {
+      "name": "Horn of Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Red Sea basin",
+      "kind": "place"
+    }
+  ]
+}

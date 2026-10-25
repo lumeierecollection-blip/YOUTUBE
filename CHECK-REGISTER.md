@@ -81,6 +81,7 @@ never `L7` or `Â§3.1`.
 | `SLOP` | anti-slop gate â€” frame density, scene variety, static regression guards | `render-and-qa.js` (not a CROSSCHECK lane â€” see Â§3.11, `ANTI-SLOP.md`) |
 | `L2` | style advisory — CLIP similarity to the shared motion-graphics reference family. ADVISORY ONLY, non-gating: reports a number, never escalates or retries, because CLIP-SIM cannot separate a blank frame from this family (a blank frame scores 0.68-0.81 against a 0.4570 floor) | `scripts/eval-layer2-style.js` (per render — advisory input to `L3`) |
 | `L3` | Gemini full-video judge — whole-video upload, four axis scores, locally-computed weighted aggregate, weak beats with timestamps. Scores; the retry loop decides | `scripts/eval-layer3-judge.js` + `src/lib/gemini-files.js` (per render) |
+| `CLN` | the clone family - the reference videos' measured laws (cadence: how often something new appears, the longest wait), staged by clone-plan.js and drawn by CloneVideo.jsx, with its own legality | `scripts/lib/novelty.mjs` + `config/clone-grammar.json` + `scripts/local-audit.cjs --canvas-only` (clone branch) + `scripts/gate-clone-cadence.mjs` (per render - see 3.20) |
 
 ---
 
@@ -3088,6 +3089,34 @@ counts any dark or saturated pixel as content, so it cannot tell a
 composition from stray ink — it proves the frame is used, not that it is
 used well; that judgement stays with the whole-video review, whose rubric
 now states the full-canvas grammar instead of sending the paper reference.
+
+## 3.20 `CLN` - the clone family (the reference videos' laws, 2026-10-15)
+
+Owner, 2026-10-15: clone "the concepts behind" the reference videos, "the laws that govern it ... how quickly every X seconds there is a change". The laws are
+MEASURED from nine reference videos by `scripts/derive-clone-grammar.mjs` (decoded pixels, `scripts/lib/novelty.mjs`) into `config/clone-grammar.json`; they are
+never typed by hand. A channel with `clone.profile` in `channels.json` is staged by them (`CLONE_ENGINE=off` is the kill switch). The canvas engine keeps every
+check it had; the canvas-layout checks (`LAY`/`CNV` geometry) do not describe a clone frame and are not run on it. What judges it:
+
+| ID | Check | Evidence | Where |
+|---|---|---|---|
+| `CLN-01` | New elements per 10 s >= `laws.events_per_10s_min` (13) | the rendered pixels, edge-novelty metric | `local-audit.cjs` `clone-cadence-events`; `gate-clone-cadence.mjs` |
+| `CLN-02` | Whole-frame cuts per 10 s >= `laws.cuts_per_10s.min` (4.9) | the rendered pixels | `clone-cadence-cuts` |
+| `CLN-03` | 90th-percentile wait for something new <= `laws.gap_p90_max_s` (1.7 s) | the rendered pixels | `clone-cadence-wait-p90` |
+| `CLN-04` | Longest wait for something new <= `laws.gap_max_s` (4 s) | the rendered pixels | `clone-cadence-wait-max` |
+| `CLN-05` | Plan meets the same laws before rendering; >= 65% of shots carry a picture; display text <= 3 words; no same frame twice | the plan (pure function) | `clone/clone-plan.js` `lawProblems`, `scripts/__tests__/clone-plan.test.js` |
+| `CLN-06` | Layout legality CLONE-1..4: boxes inside the 40 px margin; display type on a picture only on a solid plate; text and picture regions do not overlap; display region >= 150 px | geometry (pure) | `clone/clone-layout.js` `layoutProblems`, `scripts/__tests__/clone-layout.test.js` |
+| `CLN-07` | The grammar still matches what the references measure (no drift) | re-measure the references | `node scripts/derive-clone-grammar.mjs --check` |
+| `CLN-08` | A cut-out PICTURE in every shot (owner, 2026-10-16): Gemini proposes generic props per beat (`scripts/lib/plan-props.mjs` refuses people, text, marks, icons, drawings, abstractions and specific named things, and keeps a prop only when it is LITERALLY what the sentence says: a thing it names, or the plain physical form of what it says from the fixed DEPICTS table, never a symbol such as a compass, padlock or hourglass: `isLiteral`); each is a Pixabay PHOTO, isolated and verified LITERAL (`fetch-cutout-once.cjs`); no picture twice in a video | the plan + the fetch log `[props]` | `render-and-qa.js` `attachCloneProps`; `scripts/__tests__/plan-props.test.js`, `clone-plan.test.js` |
+| `CLN-09` | No icons: an entity with no picture is its name in type, never a glyph | the renderer | `clone/CloneVideo.jsx` `SubjectCell` |
+| `CLN-10` | Hard cuts: the picture is on the cut's first frame, nothing of the previous shot lingers, no element fades (snap: opaque, 92% -> 100% in 4 frames) | the renderer | `clone/CloneVideo.jsx` `snapState` |
+| `SCR-16` | Script CLARITY: no comment-only sentence, no "he/she" before a person is named (word tests); a viewer's read (Gemini) finds the event stated, the opened question answered, and no sentence a viewer cannot follow. Failures join the one narrative re-ask | the script | `scripts/validate-script-clarity.cjs`, `scripts/check-script-clarity.mjs`; `scripts/__tests__/script-clarity.test.js` |
+| `SCR-18` | Script NAME FIDELITY: every proper noun is copied from the research artifact exactly. A near-miss of a research name (same word count, same first letter, one edit — "Pest" for "Post") is a BLOCKER naming the correct spelling; a multi-word capitalised name absent from the research is a MAJOR warning. The visual-plan half is enforced by the challenger's spelling criterion and the deterministic on-screen-text auto-correct in `render-and-qa.js` | the script + the research | `scripts/gate-script.js` `nameFidelityProblems`; `scripts/__tests__/script-name-fidelity.test.js` |
+| `SCR-19` | STRICT FRAME RULE (owner, 2026-10-20, config `strict_visual` channels only: ch-02, ch-48 — the channels the frame review kept rejecting as TEMPLATE_MONOCULTURE: ch-2 run 39351979163 57%, ch-48 run 39349415234 100%/75%): "every frame must have a visual asset. No pure text cards." Discovery half: strict channels are steered to topics whose facts are drawable — dated events, places, measured figures, objects/processes — not paper-method or API-release topics (run 39408046186 spent a full prep on exactly those and the render refused 7/9 beats). Script half: every sentence MUST ground a figure / date / place / list / comparison / document / money object / cause-sequence; an entity-only sentence is NOT a warning - it is a BLOCKER (run 39454114003 ch-2: seven beats named entities with no figures, passed the two-tier gate and the render refused the whole video). The plan stage is told to attach real logos/photos; the render audit refuses plates. Plan half: a resolved canvas that is typography or asset-less plates is upgraded to a figure its own sentence grounds (same extractors + `checkVisual` gate as the planner); if it still grounds nothing — or the candidate needs a fetched asset (MONEY/DOCUMENT) — the render is REFUSED (no invented figures, no decorative icons). The frame-review gate itself is not loosened; ch-01 and every other channel keep the old behaviour | the discovered topic + the script + the resolved plan | `scripts/strict-visual.mjs`, `scripts/gate-script.js` (SCR-17 strict), `scripts/render-and-qa.js` `resolveCanvas`; `scripts/__tests__/strict-visual.test.js` |
+
+Where this stops: the metric sees edges that appear, not meaning. A flickering video background would read as constant novelty, and a flat colour change with no edge
+reads as none. It is a CADENCE check; whether a picture is the right one is still the entity gates' and the frame review's job. The clone family deliberately brings
+back what the canvas engine's owner rules excluded (a ground that is not white, type beside objects, solid shapes) because the references do; it keeps pop-only entrances,
+no zoom, real sourced pictures only, and colour from `channels.json`.
 
 # PART 4 â€” THE ABSENCE REGISTER (`DEL`)
 

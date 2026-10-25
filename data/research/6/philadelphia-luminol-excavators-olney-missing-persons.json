@@ -1,0 +1,64 @@
+{
+  "topic_slug": "philadelphia-luminol-excavators-olney-missing-persons",
+  "strongest_angle": "Examining the forensic search in Philadelphia's Olney neighborhood where law enforcement utilized luminol and heavy equipment at a Chew Avenue property.",
+  "key_facts": [
+    {
+      "fact": "Philadelphia police and the FBI excavated large portions of the property located at 417 W. Chew Ave. in the Olney neighborhood.",
+      "source_url": "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367",
+      "source_name": "NBC10 Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Human DNA was discovered at the Olney property after investigators sprayed luminol to search the home.",
+      "source_url": "https://www.cbsnews.com/philadelphia/news/philadelphia-house-of-horrors-olney-luminol",
+      "source_name": "CBS Philadelphia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigators and crews worked into the evening using luminol and heavy excavation equipment at the home linked to missing women.",
+      "source_url": "https://6abc.com/post/investigators-use-luminol-inside-olney-home-search-evidence-linked-missing-women-continues/19933797",
+      "source_name": "6abc Philadelphia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Street number for the property on Chew Avenue",
+      "value": 417,
+      "unit": "address",
+      "source_url": "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367"
+    },
+    {
+      "label": "Number of missing women linked to the investigation",
+      "value": 7,
+      "unit": "women",
+      "source_url": "https://www.nbcphiladelphia.com/news/local/excavation-continues-at-philadelphia-home-linked-to-missing-women-chew-avenue-olney/4479367"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Philadelphia",
+      "kind": "place"
+    },
+    {
+      "name": "Olney",
+      "kind": "place"
+    },
+    {
+      "name": "FBI",
+      "kind": "organization"
+    },
+    {
+      "name": "417 W. Chew Ave.",
+      "kind": "place"
+    },
+    {
+      "name": "Philadelphia Police",
+      "kind": "organization"
+    },
+    {
+      "name": "Luminol",
+      "kind": "object"
+    }
+  ]
+}

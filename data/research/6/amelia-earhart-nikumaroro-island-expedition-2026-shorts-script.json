@@ -1,0 +1,68 @@
+{
+  "channel_id": "6",
+  "topic_slug": "amelia-earhart-nikumaroro-island-expedition-2026",
+  "format": "shorts",
+  "hook": "1937 took Amelia Earhart, and now 17 researchers are hunting her wreckage.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "1937 took Amelia Earhart, and now 17 researchers are hunting her wreckage.",
+      "b_roll": [
+        "Archival photo of Amelia Earhart",
+        "Map of the South Pacific"
+      ],
+      "text_overlay": {
+        "text": "The Amelia Earhart Mystery"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Purdue University launched an 830-nautical-mile voyage across the Pacific. What lies beneath the waters of Kiribati?",
+      "b_roll": [
+        "Purdue University campus logo",
+        "Research vessel on open water",
+        "Aerial view of Nikumaroro Island"
+      ],
+      "text_overlay": {
+        "text": "830 Nautical Miles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Only five days of inspection remain for the entire team.",
+      "b_roll": [
+        "Divers preparing equipment",
+        "Expedition team on deck"
+      ],
+      "text_overlay": {
+        "text": "5 Days to Search"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers from Purdue University and the Archaeological Legacy Institute inspect a submerged object. This expedition finally confronts the lost Lockheed Electra.",
+      "b_roll": [
+        "Underwater sonar scan of submerged object",
+        "Archival photo of Fred Noonan",
+        "Lockheed Electra aircraft in flight"
+      ],
+      "text_overlay": {
+        "text": "The Submerged Object"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Researchers from Purdue University and the Archaeological Legacy Institute investigate Nikumaroro Island.",
+      "b_roll": [
+        "Waves crashing on Nikumaroro Island shore"
+      ],
+      "text_overlay": {
+        "text": "Nikumaroro Island"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wbiw.com/2026/10/12/earhart-expedition-update-crew-arrives-at-nikumaroro-launches-critical-phase-of-amelia-earhart-plane-search",
+    "https://www.bbc.com/news/articles/c6pvgryp8yv0o"
+  ]
+}

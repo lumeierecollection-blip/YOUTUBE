@@ -1,0 +1,84 @@
+{
+  "topic_slug": "sony-social-reckoning-box-office-disappointment",
+  "strongest_angle": "Aaron Sorkin's Facebook follow-up film The Social Reckoning opened far below expectations with just $5.5 million at the box office, failing to match studio projections or the legacy of The Social Network.",
+  "key_facts": [
+    {
+      "fact": "Sony Pictures released Aaron Sorkin's film The Social Reckoning, which grossed a disappointing $5.5 million during its opening weekend.",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "Universal horror movie Other Mommy starring Jessica Chastain led the box office with a $27.5 million debut, far outpacing The Social Reckoning.",
+      "source_url": "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Social Reckoning performed below the studio's already underwhelming projections of $7 million to $8 million at the domestic box office.",
+      "source_url": "https://techcrunch.com/2026/10/11/aaron-sorkins-social-reckoning-is-off-to-a-weak-start",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "The Social Reckoning Opening Weekend Box Office",
+      "value": 5.5,
+      "unit": "million dollars",
+      "source_url": "https://deadline.com/2026/10/box-office-other-mommy-social-reckoning-1237151001"
+    },
+    {
+      "label": "Other Mommy Opening Weekend Box Office",
+      "value": 27.5,
+      "unit": "million dollars",
+      "source_url": "https://variety.com/2026/film/box-office/social-reckoning-flops-other-mommy-leads-box-office-1236908161"
+    },
+    {
+      "label": "Studio Low Projection",
+      "value": 7,
+      "unit": "million dollars",
+      "source_url": "https://techcrunch.com/2026/10/11/aaron-sorkins-social-reckoning-is-off-to-a-weak-start"
+    },
+    {
+      "label": "Studio High Projection",
+      "value": 8,
+      "unit": "million dollars",
+      "source_url": "https://techcrunch.com/2026/10/11/aaron-sorkins-social-reckoning-is-off-to-a-weak-start"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Aaron Sorkin",
+      "kind": "person"
+    },
+    {
+      "name": "Sony",
+      "kind": "organization"
+    },
+    {
+      "name": "The Social Reckoning",
+      "kind": "object"
+    },
+    {
+      "name": "Other Mommy",
+      "kind": "object"
+    },
+    {
+      "name": "Jessica Chastain",
+      "kind": "person"
+    },
+    {
+      "name": "Universal",
+      "kind": "organization"
+    },
+    {
+      "name": "The Social Network",
+      "kind": "object"
+    },
+    {
+      "name": "David Fincher",
+      "kind": "person"
+    }
+  ]
+}

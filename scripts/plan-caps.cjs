@@ -5,6 +5,9 @@
  *
  *   1. TYPOGRAPHY appears on 1 or 2 beats — never 0, never more than 2.
  *      The hook (beat 0) is always one of them.
+ *      (The full-canvas planner relaxes both halves, see enforceCaps' options: it lets the
+ *      planner choose the hook's type and allows a video with no typography beat; the
+ *      ceiling of 2 stays.)
  *   2. No mechanism (TYPOGRAPHY included) covers more than 40% of beats.
  *
  * These used to be enforced only in plan-adjustments.js, which runs inside
@@ -66,7 +69,7 @@ function pickReplacement(mechs, i, exclude, maxPer) {
  * Returns { mechanisms, changes } — changes lists every beat that moved.
  * Throws if the plan is too short to satisfy the 40% rule at all.
  */
-function enforceCaps(mechanisms) {
+function enforceCaps(mechanisms, { hookTypography = true, minTypography = 1 } = {}) {
   const n = mechanisms.length;
   if (n < 3) {
     throw new Error(`plan has ${n} beat(s) — the 40% mechanism cap needs at least 3`);
@@ -88,13 +91,13 @@ function enforceCaps(mechanisms) {
     }
   }
 
-  // Rule 1a: the hook is TYPOGRAPHY.
-  set(0, TYPOGRAPHY, "hook is always TYPOGRAPHY");
+  // Rule 1a: the hook is TYPOGRAPHY (unless the caller lets the planner choose it).
+  if (hookTypography) set(0, TYPOGRAPHY, "hook is always TYPOGRAPHY");
 
   // Rule 1b: at most typoMax TYPOGRAPHY beats. Keep the hook, and prefer to
   // keep the last beat (the CTA); strip the rest from the middle outwards.
   let typo = out.map((m, i) => (m === TYPOGRAPHY ? i : -1)).filter((i) => i >= 0);
-  const keep = new Set([0]);
+  const keep = new Set(hookTypography ? [0] : []);
   if (typoMax >= 2 && typo.includes(n - 1)) keep.add(n - 1);
   for (const i of typo) {
     if (keep.size >= typoMax) break;
@@ -125,18 +128,18 @@ function enforceCaps(mechanisms) {
     if (!moved) throw new Error(`cannot bring ${over} under the 40% cap`);
   }
 
-  assertCaps(out);
+  assertCaps(out, { minTypography });
   return { mechanisms: out, changes };
 }
 
 /** Throws if the mechanism list breaks either rule. */
-function assertCaps(mechanisms) {
+function assertCaps(mechanisms, { minTypography = 1 } = {}) {
   const n = mechanisms.length;
   const { maxPer } = capLimits(n);
   const counts = countOf(mechanisms);
   const typo = counts[TYPOGRAPHY] || 0;
-  if (typo < 1 || typo > 2) {
-    throw new Error(`TYPOGRAPHY count ${typo} violates the 1–2 rule (${n} beats)`);
+  if (typo < minTypography || typo > 2) {
+    throw new Error(`TYPOGRAPHY count ${typo} violates the ${minTypography}–2 rule (${n} beats)`);
   }
   for (const [m, c] of Object.entries(counts)) {
     if (c > maxPer) {

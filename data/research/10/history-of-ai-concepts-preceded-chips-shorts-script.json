@@ -1,0 +1,69 @@
+{
+  "channel_id": "10",
+  "topic_slug": "history-of-ai-concepts-preceded-chips",
+  "format": "shorts",
+  "hook": "Did you know artificial intelligence existed long before the hardware to run it?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know artificial intelligence existed long before the hardware to run it?",
+      "b_roll": [
+        "Historical parchment documents",
+        "Early vacuum tube computers"
+      ],
+      "text_overlay": {
+        "text": "AI before chips"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1943, Warren S. McCulloch and Walter Pitts published artificial neurons in the Bulletin of Mathematical Biophysics. How much more compute does GPT-6 Astra use than the 1957 Perceptron?",
+      "b_roll": [
+        "Academic journal pages",
+        "Dartmouth workshop photo",
+        "Neural network diagram"
+      ],
+      "text_overlay": {
+        "text": "1943 Neurons"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except John McCarthy founded the field at the 1956 Dartmouth workshop first.",
+      "b_roll": [
+        "Server racks scaling up",
+        "Data graph rising"
+      ],
+      "text_overlay": {
+        "text": "Exponential compute"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "GPT-6 Astra used 1e+21 times as much compute as the 1957 Perceptron.",
+      "b_roll": [
+        "Modern GPU clusters",
+        "AI processing visualization"
+      ],
+      "text_overlay": {
+        "text": "1e+21 multiplier"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read Warren S. McCulloch and Walter Pitts' 1943 paper in the Bulletin of Mathematical Biophysics.",
+      "b_roll": [
+        "Silicon wafer close-up",
+        "Historical timeline"
+      ],
+      "text_overlay": {
+        "text": "Silicon vs Concept"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.ibm.com/think/topics/history-of-artificial-intelligence",
+    "https://ai100.stanford.edu/2016-report/appendix-i-short-history-ai",
+    "https://www.techupsider.com/articles/history-of-ai-1943-2026"
+  ]
+}

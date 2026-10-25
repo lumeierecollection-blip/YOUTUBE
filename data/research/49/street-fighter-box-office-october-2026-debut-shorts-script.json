@@ -1,0 +1,65 @@
+{
+  "channel_id": "49",
+  "topic_slug": "street-fighter-box-office-october-2026-debut",
+  "format": "shorts",
+  "hook": "Paramount, Legendary, and Capcom's Street Fighter claimed the No. 1 spot at the October box office.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Paramount, Legendary, and Capcom's Street Fighter claimed the No. 1 spot at the October box office.",
+      "b_roll": [
+        "Cinematic title display of Street Fighter"
+      ],
+      "text_overlay": {
+        "text": "Street Fighter Dominates Box Office"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Paramount, Legendary, and Capcom released Street Fighter to 3,575 North American theaters. Friday ticket sales alone reached $13 million. Where did the total opening gross land?",
+      "b_roll": [
+        "Movie poster graphic",
+        "Theater seating charts",
+        "Box office ticker"
+      ],
+      "text_overlay": {
+        "text": "$13 Million Friday Opening"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Twentieth Century Studio's Whalefall couldn't keep up, but worse, it tanked hard.",
+      "b_roll": [
+        "Comparison chart showing competing films"
+      ],
+      "text_overlay": {
+        "text": "Outpacing Competitors"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Street Fighter achieved a massive $31 million opening weekend.",
+      "b_roll": [
+        "Bar chart comparing box office figures",
+        "Whalefall poster graphic"
+      ],
+      "text_overlay": {
+        "text": "$31 Million Debut"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Twentieth Century Studio's Whalefall pulled in just $7.5 million against a $60 million budget.",
+      "b_roll": [
+        "Final box office summary graphic"
+      ],
+      "text_overlay": {
+        "text": "$60 Million Budget"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/box-office-street-fighter-you-can-see-everything-1237159320",
+    "https://www.hollywoodoutbreak.com/2026/10/17/street-fighter-dominates-box-office-with-big-31m-debut"
+  ]
+}

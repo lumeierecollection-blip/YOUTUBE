@@ -1,0 +1,70 @@
+{
+  "channel_id": "6",
+  "topic_slug": "atlantic-city-remains-identified-glen-burbage",
+  "format": "shorts",
+  "hook": "A body surfaced off Atlantic City in 1981, waiting 45 years for a name.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A body surfaced off Atlantic City in 1981, waiting 45 years for a name.",
+      "b_roll": [
+        "Archival photo of Atlantic City coastline in 1981",
+        "Vintage map of New Jersey coastline"
+      ],
+      "text_overlay": {
+        "text": "45 Years Unidentified"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Recreational boaters spotted the remains 1 mile offshore near Raleigh Avenue on May 22. Where did retired Coast Guard officer Glen Burbage vanish?",
+      "b_roll": [
+        "Historical photograph of Atlantic Ocean water",
+        "Archival map pointing to Raleigh Avenue in Atlantic City",
+        "Vintage photograph of a commercial flight"
+      ],
+      "text_overlay": {
+        "text": "May 22, 1981"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Ramapo College of New Jersey Investigative Genetic Genealogy Center joined New Jersey State Police on the case.",
+      "b_roll": [
+        "Close-up shot of an old police case file",
+        "Archival footage of waves crashing"
+      ],
+      "text_overlay": {
+        "text": "Zero Answers"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ramapo College and New Jersey State Police finally matched the profile. Genetic genealogy identified the floating remains as Glen Napoleon Burbage. Advanced DNA testing ended 45 years of silence.",
+      "b_roll": [
+        "Exterior shot of Ramapo College campus",
+        "Seal of the New Jersey State Police",
+        "Laboratory workstation with DNA sequencing equipment"
+      ],
+      "text_overlay": {
+        "text": "Identity Restored"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "New Jersey State Police returned Glen Napoleon Burbage his identity after forty-five years.",
+      "b_roll": [
+        "Portrait photograph of a U.S. Coast Guard officer",
+        "Peaceful ocean horizon view"
+      ],
+      "text_overlay": {
+        "text": "Glen Napoleon Burbage"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.ramapo.edu/news/press-releases/a-name-after-45-years-ramapo-college-helps-identify-atlantic-city-john-doe",
+    "https://www.nj.com/atlantic/2026/10/genetic-investigation-identifies-man-found-dead-in-the-ocean-45-years-ago.html",
+    "https://www.inquirer.com/news/new-jersey/human-remains-atlantic-city-identified-glen-burbage-20261002.html"
+  ]
+}

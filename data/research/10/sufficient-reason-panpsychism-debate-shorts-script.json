@@ -1,0 +1,65 @@
+{
+  "channel_id": "10",
+  "topic_slug": "sufficient-reason-panpsychism-debate",
+  "format": "shorts",
+  "hook": "Sam Kimpton-Nye says consciousness is built into reality.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sam Kimpton-Nye says consciousness is built into reality.",
+      "b_roll": [
+        "Abstract neural network visualization fading into particles"
+      ],
+      "text_overlay": {
+        "text": "Consciousness is fundamental"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Author Sam Kimpton-Nye explored this idea in Aeon in 2026. Stanford Encyclopedia contributors Philip Goff and William Seager trace this revival back through decades. Where does the principle of sufficient reason lead?",
+      "b_roll": [
+        "Aeon essay interface on screen",
+        "Stanford Encyclopedia of Philosophy text display",
+        "Question mark symbol morphing into a philosophical diagram"
+      ],
+      "text_overlay": {
+        "text": "The 2026 Aeon Essay"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Springer Nature published a 2024 article examining how Russellian monist panpsychism explains mental causation.",
+      "b_roll": [
+        "Springer Nature logo on academic paper"
+      ],
+      "text_overlay": {
+        "text": "2024 Erkenntnis Study"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Benedikt Paul Göcke linked this directly to Joanna Leidenhag's 2022 book Minding Creation. Joanna Leidenhag authored the 2022 theological work Minding Creation.",
+      "b_roll": [
+        "Book cover graphic of Minding Creation",
+        "Network of glowing nodes connecting physical matter"
+      ],
+      "text_overlay": {
+        "text": "Minds as Fundamental"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Explore the complete arguments presented in the 2026 Aeon essay today.",
+      "b_roll": [
+        "Aeon web address on screen"
+      ],
+      "text_overlay": {
+        "text": "Read the 2026 Essay"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://aeon.co/essays/does-the-principle-of-sufficient-reason-make-panpsychism-true",
+    "https://link.springer.com/article/10.1007/s10670-024-00816-5"
+  ]
+}

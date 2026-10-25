@@ -149,8 +149,17 @@ export function fallbacksFor(sentence, { number = null } = {}) {
   if (number) out.push({ kind: "counter", visual_type: "COUNTER", data: number });
   const sym = symbolFor(s);
   if (sym) out.push({ kind: "symbol", symbol: sym });
-  const kn = keyNouns(s);
-  if (kn) out.push({ kind: "keynouns", visual_type: "PROCESS", data: { nodes: kn, keynouns: true } });
+  // Fallback 5 (two key nouns joined by an arrow) is OFF. Every one beat-check looked at on
+  // CI runs 37803694366 / 37810883817 failed it ("PART -> FULLY", "DEPARTMENT -> OCTOBER",
+  // "EXACTLY -> CONTROL", "INVESTOR -> VANISH" ...: 12 beats on ch-2/8/26), and those beats
+  // were what held ch-8's Layer-3-accepted (8.8) renders. An arrow the sentence does not
+  // state is a wrong visual authored by code; a TYPE beat is the honest fallback (owner's
+  // 2026-10-08 run brief: "never let a fallback quietly become the author", "never wrong").
+  // keyNouns() stays exported; set COMPOSITION_KEYNOUNS=on to restore the fallback.
+  if (process.env.COMPOSITION_KEYNOUNS === "on") {
+    const kn = keyNouns(s);
+    if (kn) out.push({ kind: "keynouns", visual_type: "PROCESS", data: { nodes: kn, keynouns: true } });
+  }
   return out;
 }
 
@@ -163,7 +172,10 @@ const STYLES = ["together", "staggered", "visual-first"];
 export function assignEntranceStyles(planned = []) {
   const out = [];
   planned.forEach((p, i) => {
-    let s = STYLES.includes(p) ? p : STYLES[i % 3];
+    // The planner's own style stands as written, repeat or not; only a beat it left open is filled,
+    // with one that differs from its neighbour.
+    if (STYLES.includes(p)) { out.push(p); return; }
+    let s = STYLES[i % 3];
     if (i > 0 && s === out[i - 1]) s = STYLES[(STYLES.indexOf(s) + 1) % 3];
     out.push(s);
   });
@@ -181,6 +193,8 @@ const ANIM_FAMILIES = ["pop-in", "slide-in", "draw-in", "count-up"];
 export function assignAnimationFamilies(beats = []) {
   const out = [];
   beats.forEach((b, i) => {
+    // The planner's own family stands; only a beat it left open gets the default below.
+    if (ANIM_FAMILIES.includes(b?.animation_family)) { out.push(b.animation_family); return; }
     const vt = String(b?.visual_type || "TYPE").toUpperCase();
     let fam;
     if (vt === "COUNTER" || vt === "GAUGE" || vt === "PIE") fam = "count-up";

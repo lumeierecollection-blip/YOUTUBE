@@ -1,0 +1,64 @@
+{
+  "channel_id": "8",
+  "topic_slug": "weitzman-museum-smithsonian-bid-2026",
+  "format": "shorts",
+  "hook": "Philadelphia's Weitzman National Museum of American Jewish History is advancing its bid to join the Smithsonian Institution network.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Philadelphia's Weitzman National Museum of American Jewish History is advancing its bid to join the Smithsonian Institution network.",
+      "b_roll": [
+        "Exterior shot of the Weitzman National Museum in Philadelphia"
+      ],
+      "text_overlay": {
+        "text": "Smithsonian Bid"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Members of a new congressional commission were sworn in on Tuesday according to the Jewish Telegraphic Agency. Where will the Weitzman National Museum lead this political process?",
+      "b_roll": [
+        "Congressional hearing room in Washington",
+        "Documents detailing the Smithsonian network"
+      ],
+      "text_overlay": {
+        "text": "Congressional Commission"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Political tensions complicate the Smithsonian Institution bid during a period of significant upheaval.",
+      "b_roll": [
+        "Newspaper headlines covering museum politics"
+      ],
+      "text_overlay": {
+        "text": "Political Tensions"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Jewish Telegraphic Agency reported on the Smithsonian Institution network. Discussions advance Philadelphia closer to the Smithsonian Institution network. Officials examine the Weitzman National Museum integration of American Jewish history.",
+      "b_roll": [
+        "Artifacts inside the Weitzman National Museum",
+        "The Smithsonian Institution building"
+      ],
+      "text_overlay": {
+        "text": "Museum Integration"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Weitzman National Museum pursues the Smithsonian Institution network.",
+      "b_roll": [
+        "The Smithsonian Institution logo"
+      ],
+      "text_overlay": {
+        "text": "Weitzman Museum"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jpost.com/diaspora/article-911626",
+    "https://jweekly.com/2026/10/13/a-jewish-museum-hopes-to-join-the-smithsonian-at-a-difficult-moment-for-the-institution"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "channel_id": "10",
+  "topic_slug": "gandhi-never-said-be-the-change",
+  "format": "shorts",
+  "hook": "That famous phrase about being the change you wish to see never came from Mahatma Gandhi.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "That famous phrase about being the change you wish to see never came from Mahatma Gandhi.",
+      "b_roll": [
+        "Archival photo of Mahatma Gandhi in India",
+        "Close up of historical quote text on parchment"
+      ],
+      "text_overlay": {
+        "text": "Gandhi Never Said It"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "India gained independence under his leadership before he died in 1948. Quote Investigator searched 13,826 works to find the truth. Where did the popular slogan actually originate?",
+      "b_roll": [
+        "Historical map of India during the independence movement",
+        "Stack of historical books and archives in a library"
+      ],
+      "text_overlay": {
+        "text": "The 1948 Gap"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet educator Arleen Lorrance wrote the earliest close match in 1974.",
+      "b_roll": [
+        "Vintage book cover from 1974",
+        "Author writing at a desk"
+      ],
+      "text_overlay": {
+        "text": "1974 Arleen Lorrance"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Literary Hub contributor Benoit Denizet-Lewis credits Arleen Lorrance with the quote. BBC Bitesize confirms zero historical records link Mahatma Gandhi to those words.",
+      "b_roll": [
+        "Literary Hub article on screen",
+        "BBC archives research document"
+      ],
+      "text_overlay": {
+        "text": "Misattributed Origins"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Arleen Lorrance published the phrase in 1974.",
+      "b_roll": [
+        "Open book showing publication year 1974"
+      ],
+      "text_overlay": {
+        "text": "1974 Origin"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://quoteinvestigator.com/2017/10/23/be-change",
+    "https://www.bbc.co.uk/bitesize/articles/zmvwwnb",
+    "https://lithub.com/be-the-change-on-the-misattributed-origins-of-a-popular-slogan"
+  ]
+}

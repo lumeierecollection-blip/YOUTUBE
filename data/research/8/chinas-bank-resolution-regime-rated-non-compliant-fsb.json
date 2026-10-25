@@ -1,0 +1,68 @@
+{
+  "topic_slug": "chinas-bank-resolution-regime-rated-non-compliant-fsb",
+  "strongest_angle": "Analyzing the Financial Stability Board's assessment rating China's bank resolution regime as materially non-compliant alongside other global economies.",
+  "key_facts": [
+    {
+      "fact": "The Financial Stability Board rated China's bank resolution regime as materially non-compliant in its peer review published in October 2026.",
+      "source_url": "https://www.caixinglobal.com/2026-10-12/chinas-bank-resolution-regime-rated-materially-non-compliant-by-global-watchdog-102492484.html",
+      "source_name": "Caixin Global",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Financial Stability Board peer review assessed 19 jurisdictions, finding that only 4 economies fully comply with international standards for funding systemic banks.",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant",
+      "source_name": "Trend & Ticker",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the Financial Stability Board's evaluation of bank resolution regimes, Argentina and India were rated non-compliant while China, Australia, Switzerland, and the European Banking Union were rated materially non-compliant.",
+      "source_url": "https://manhattanprivatecredit.com/bank-resolution-liquidity-fsb-review",
+      "source_name": "Manhattan Private Network",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Assessed jurisdictions",
+      "value": 19,
+      "unit": "jurisdictions",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant"
+    },
+    {
+      "label": "Fully compliant jurisdictions",
+      "value": 4,
+      "unit": "jurisdictions",
+      "source_url": "https://trendandticker.com/markets/capital-markets/fsb-bank-failure-backstop-review-4-of-19-compliant"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Financial Stability Board",
+      "kind": "organization"
+    },
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "India",
+      "kind": "place"
+    },
+    {
+      "name": "Australia",
+      "kind": "place"
+    },
+    {
+      "name": "Switzerland",
+      "kind": "place"
+    },
+    {
+      "name": "European Banking Union",
+      "kind": "organization"
+    }
+  ]
+}

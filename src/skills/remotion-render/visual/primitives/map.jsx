@@ -19,6 +19,7 @@
 import React from "react";
 import { ObjectShape } from "../../compositions/objects/index.jsx";
 import { INK, clamp01 } from "./viz-common.js";
+import { measure, SANS_FAMILY } from "../typography.js";
 import { popState } from "../kinetic.js";
 
 const FEATHER = 0.06;
@@ -95,7 +96,11 @@ export function PaperMap({ data, bounds, local, dur, font, accent = INK, ground 
  * checked against the region data at plan time (checkVisual); a place with no
  * border in the data never reaches here (regionOrThrow).
  */
-export function CenteredMap({ data, bounds, local, dur, font, accent = INK, ground = "#F6F4F0", ink = INK }) {
+// The key's safe span: the frame's own safe edges (canvas-layout L_EDGE /
+// R_EDGE), repeated here so this primitive does not import the layout module.
+const KEY_SAFE_L = 48;
+const KEY_SAFE_R = 1032;
+export function CenteredMap({ data, bounds, local, dur, font, accent = INK, ground = "#F6F4F0", ink = INK, growScale = 1 }) {
   if (!data?.place) return null;
   const colors = { ground, onGround: ink, accent, paper: "#E7E8EA", ink };
   const p = clamp01(local / Math.max(1, dur * 0.6));
@@ -126,6 +131,63 @@ export function CenteredMap({ data, bounds, local, dur, font, accent = INK, grou
             params={{ label: String(data.label || place), font, labelOutside: false, labelAtRegion: true, pad: 0.16, labelSize: 84, ctxStroke: 0.62, ctxWidth: 3, fillAlpha: 0.55, pFrames: Math.max(1, dur * 0.6) }} />
         </g>
       </g>
+      {/* PLACES THE SENTENCE NAMES THAT THE MAP COVERS BUT CANNOT PIN.
+          The region label above names the region this map is actually drawn of.
+          When the spoken sentence names a place INSIDE it that has no verified
+          asset of its own, the frame showed nothing of it and the entity check
+          was right to fail the beat: board 38321106622 ch-9 beat 4 — "Pakistan
+          declared a state of emergency in Khyber Pakhtunkhwa", a map of the
+          parent region labelled "Pakistan", and "Khyber Pakhtunkhwa" reachable
+          only through the headline.
+
+          Named as a KEY, not as a pin. We do not have a verified outline or
+          coordinates for the place, so claiming where it sits on the map would
+          be a claim we cannot source; saying the map covers it is true by
+          construction — the map was drawn of the region that contains it. */}
+      {(Array.isArray(data.labels) ? data.labels : []).filter((t) => String(t || "").trim()).map((t, i) => {
+        // MEASURED, NOT GUESSED. The first version of this key sized its plate
+        // with `16 + name.length * 15` and set the type at a fixed 20 px. That
+        // guess is wrong for any name whose real width is not ~15 px/char, so
+        // the text ran past its own plate and the frame clipped it: board
+        // 38330253047 ch-26 beat 6 — "Australia" reached the naming check as
+        // "stralia" and, on a second look, ".ustralia". A word is never cut
+        // mid-string, so the key now measures the name and steps the size down
+        // until it fits the space it has, exactly as the headline fitter does.
+        const name = String(t).trim();
+        const MAXW = Math.max(60, bounds.w - 56);
+        let size = 20;
+        let tw = measure(name, size, { family: SANS_FAMILY, weight: 700, tracking: 1 });
+        while (tw > MAXW && size > 11) {
+          size -= 1;
+          tw = measure(name, size, { family: SANS_FAMILY, weight: 700, tracking: 1 });
+        }
+        const padX = 10;
+        const boxW = Math.min(MAXW, tw + padX * 2);
+        const boxH = Math.round(size * 1.5);
+        // THE MAP GROWS, AND THE KEY GROWS WITH IT. MapCentered wraps this whole
+        // svg in a scale up to 1.08 about the map's CENTRE (full-canvas.jsx),
+        // so a point x lands at cx + (x - cx) * s. A plate at the frame's left
+        // edge therefore walks OFF it: with cx 540 and s 1.08, x 32 lands at -8.6.
+        // Board 38369941305 ch-26 beat 0 rendered exactly that — the key read
+        // "s federal court, $91 million" with "Texa" cut off.
+        //
+        // The frame edge is what matters, not bounds.x: bounds.x is 0 here and
+        // was never the problem. So the safe span is solved for the position
+        // that lands INSIDE the frame AFTER the scale.
+        const cx = bounds.x + bounds.w / 2;
+        const s = growScale > 1 ? growScale : 1;
+        const leftLimit = cx + (KEY_SAFE_L - cx) / s;
+        const rightLimit = cx + (KEY_SAFE_R - cx) / s;
+        const bx = Math.max(leftLimit, Math.min(bounds.x + 22, rightLimit - boxW));
+        const by = bounds.y + bounds.h - 40 - i * (boxH + 8) - boxH;
+        return (
+          <g key={`${id}-k${i}`} opacity={clamp01((local - Math.round(0.35 * dur)) / Math.max(1, dur * 0.25))}>
+            <rect x={bx} y={by} width={boxW} height={boxH} fill={ground} stroke={ink} strokeWidth={1.5} rx={2} />
+            <text x={bx + padX} y={by + boxH / 2 + size * 0.36} fontFamily={SANS_FAMILY} fontSize={size} fontWeight={700}
+              letterSpacing={1} fill={ink}>{name}</text>
+          </g>
+        );
+      })}
     </svg>
   );
 }

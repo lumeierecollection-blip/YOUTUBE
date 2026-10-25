@@ -1,0 +1,47 @@
+{
+  "channel_id": "26",
+  "topic_slug": "cash-fx-group-950m-forex-ponzi-charges",
+  "format": "shorts",
+  "hook": "Cash FX Group promised 15% weekly returns, but the money vanished.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Cash FX Group promised 15% weekly returns, but the money vanished.",
+      "text_overlay": {
+        "text": "15% Weekly Returns"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Regulators at the Commodity Futures Trading Commission filed a massive complaint. They claim Huascar Jose Lopez Castillo collected $950 million from unsuspecting investors. Where did that massive mountain of cash go?",
+      "text_overlay": {
+        "text": "$950 Million Collected"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Cash FX Group actually directed less than one percent of funds toward real forex trading.",
+      "text_overlay": {
+        "text": "Less than 1% Traded"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This elaborate multilevel marketing scheme left investors holding the bag. Authorities in the United Kingdom, Ireland, and Australia had issued warnings years ago.",
+      "text_overlay": {
+        "text": "$406 Million Lost"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check official regulator warnings before you hand over your hard-earned money.",
+      "text_overlay": {
+        "text": "Verify Before Investing"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.investmentnews.com/regulation-legal-compliance/never-a-losing-day-cftc-alleges-950-million-forex-ponzi-scheme/268363",
+    "https://www.financemagnates.com/forex/cftc-sues-cash-fx-over-alleged-950-million-forex-ponzi-scheme"
+  ]
+}

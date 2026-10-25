@@ -29,70 +29,47 @@ const ROOT = join(__dirname, "..");
 const OUT = join(ROOT, "data", "trending");
 const CACHE_MS = 12 * 3600 * 1000;
 const WEEK_MS = 7 * 24 * 3600 * 1000;
-// Bare channel id (the form daily-pipeline-v2.yml:116 produces by stripping
-// "ch-" and leading zeros) -> YouTube video category. Owner's mapping.
-//   5  ch-05 Broadsheet   "True Crime & Investigative Journalism"  -> 25 News & Politics
-//   6  ch-06 Archive Room "Cold Cases & Unsolved Mysteries"        -> 24 Entertainment
-//   8  ch-08 Ledger       "Financial History & Institutional Collapse" -> 27 Education
-//   10 ch-10 Margin Note  "Concept Explainers & Intellectual History"   -> 27 Education
-// 6 moved 27 -> 24 and 8 moved 25 -> 27 when the niches widened on
-// 2026-10-07. Cold cases are a documentary/entertainment genre, not schooling;
-// Ledger's pillars are timeline and formation ("institutional timeline
-// breakdowns", "corporate formation stories"), which is history, even though
-// "institutional collapse" reads current-affairs.
-// 48 is NOT dead: channels.json has no row with id=48, but it does have
-// channel_id "ch-48" (Cold Case DNA), and this map is keyed by bare id.
-const CATEGORY = { 1: 27, 2: 25, 5: 25, 6: 24, 8: 27, 9: 25, 10: 27, 26: 25, 44: 27, 48: 28 };
+// Bare channel id (the form daily-pipeline-v2.yml's setup job produces by stripping
+// "ch-" and leading zeros) -> YouTube video category for chart=mostPopular.
+//
+// Category 27 (Education) is NOT a chart YouTube serves: every call answered
+// HTTP 404 notFound (ch-01, 08, 10, 44 in runs 37540546857 and 37619905834), so those
+// four channels ran unseeded. Categories 24 and 25 answer (ch-06; ch-02, 05, 09, 26).
+// The substitutes below were chosen by niche; the probe results are recorded in
+// HANDOFF.md section 6.
+//   1  ch-01 Money Mind      Personal Finance (Budgeting for Beginners)  -> 26 Howto & Style
+//   2  ch-02 Legal Brief     Legal Education (Know Your Rights)          -> 25 News & Politics
+//   5  ch-05 Broadsheet      True Crime & Investigative Journalism       -> 25 News & Politics
+//   6  ch-06 Archive Room    Cold Cases & Unsolved Mysteries             -> 24 Entertainment
+//   8  ch-08 Ledger          Financial History & Institutional Collapse  -> 25 News & Politics
+//   9  ch-09 Border Lines    Geopolitical Explainers                     -> 25 News & Politics
+//  10  ch-10 Margin Note     Concept Explainers & Intellectual History   -> 28 Science & Technology
+//  26  ch-26 Fraud Files     Financial Crimes & Heists                   -> 25 News & Politics
+//  44  ch-44 Skill Stack     Professional Skill Development              -> 26 Howto & Style
+//  49  ch-49 Picture House   Movies, Cinematic Universes, Box Office     ->  1 Film & Animation
+// 48 (ch-48 Fit) has no row whose id and channel_id agree, so resolveChannel rejects it
+// and it is skipped; it is not dispatched.
+const CATEGORY = { 1: 26, 2: 25, 5: 25, 6: 24, 8: 25, 9: 25, 10: 28, 26: 25, 44: 26, 48: 28, 49: 1 };
 const STOP = new Set("the a an and or but of to in on for with at by from is are was were be been this that these those it its as into about how why what when who your you my our we they he she his her their not no new vs after over more most just all can will has have had do does did i me".split(" "));
 
 const log = (m) => console.log(`[trending] ${m}`);
 
-const bareId = (channelId) => String(channelId).replace(/^ch-0*/, "");
+const { resolveChannel, normalizeChannelId } = require("./lib/channel-lookup.cjs");
+const bareId = normalizeChannelId;
 
 function loadChannels(cfgPath = join(ROOT, "config", "channels.json")) {
   try { return JSON.parse(readFileSync(cfgPath, "utf-8")).channels || []; }
   catch { return []; }
 }
 
-// CATEGORY is keyed by the bare id the workflow passes (daily-pipeline-v2.yml:116
-// strips "ch-" and leading zeros). That transform is only injective if no two
-// rows share a channel_id -- and today nine bare ids do collide (bare 26, 30,
-// 31, 35, 39, 44, 46, 47, 49 all name two different channels each). Those are
-// PRE-EXISTING and include live built channels, so a bare collision cannot
-// hard-fail the run. What must fail loud is the case this map depends on: a
-// CATEGORY key that two channels both claim. That one is a silent
-// wrong-category-by-accident waiting to happen, so it exits non-zero.
-// Bare ids where channels.json genuinely has two rows with the SAME channel_id.
-// Nine of these exist today and three name live built channels (26, 44, 49).
-// They are a pre-existing data defect, not something this map introduced, and
-// every run so far has resolved them by first-match. Hard-failing on them would
-// break daily production for channels that are currently shipping, so they are
-// baselined and warned. Any NEW collision exits non-zero: that is the case
-// where a wrong category would be handed out silently from here on.
-const KNOWN_COLLISIONS = new Set(["26", "30", "31", "35", "39", "44", "46", "47", "49"]);
-
-function assertNoKeyCollision(channels, keys = Object.keys(CATEGORY), known = KNOWN_COLLISIONS) {
-  const owners = new Map();
-  for (const r of channels) {
-    const b = bareId(r.channel_id);
-    if (!keys.includes(b)) continue;
-    if (owners.has(b)) {
-      const a = owners.get(b);
-      if (known.has(b)) {
-        console.warn(`[trending] WARNING: CATEGORY key ${b} is claimed by two channels (${a.channel_id} "${a.channel_name}", ${r.channel_id} "${r.channel_name}"). Pre-existing duplicate channel_id in channels.json; resolving by first match as every prior run has. Fix the data to clear this.`);
-        continue;
-      }
-      console.error(`[trending] FATAL: CATEGORY key ${b} is claimed by two channels: ${a.channel_id} (${a.channel_name}) and ${r.channel_id} (${r.channel_name}). Refusing to guess which category it meant.`);
-      process.exit(3);
-    }
-    owners.set(b, r);
-  }
-}
-
-// Which channel row does this bare id name? Independent of CATEGORY, so the
-// niche filter still works for a channel that is mapped nowhere.
+// Channel resolution is scripts/lib/channel-lookup.cjs -- the one implementation. A
+// dispatch key names a row only when BOTH id namespaces in channels.json agree with
+// it; a key with no such row (ch-48, ch-50) is ambiguous and is skipped here, never
+// guessed. This file used to carry its own KNOWN_COLLISIONS copy of that guard and a
+// first-match findChannel, which resolved key 26 to Harmony and key 44 to Photosyn.
 function findChannel(bare, channels) {
-  return channels.find((r) => bareId(r.channel_id) === String(bare)) || null;
+  try { return resolveChannel(bare, channels); }
+  catch (e) { log(`ch-${bare}: ${e.message}`); return null; }
 }
 
 // Reject candidates with no lexical overlap with the channel's own niche terms.
@@ -144,7 +121,6 @@ async function main() {
   const force = process.argv.includes("--force");
   if (!ch) { console.error("Usage: node scripts/fetch-trending.cjs <channel-id> [--force]"); process.exit(2); }
   const channels = loadChannels();
-  assertNoKeyCollision(channels);
   const chCfg = findChannel(ch, channels);
   const category = CATEGORY[Number(ch)];
   if (!category) { log(`ch-${ch}: no category mapping, skipped (unseeded discovery)`); return; }
@@ -195,5 +171,5 @@ async function main() {
   await require("./trending-entities.cjs").writeEntities(ch);
 }
 
-module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, assertNoKeyCollision, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter, main };
+module.exports = { keywords, CATEGORY, bareId, loadChannels, findChannel, nicheTerms, nicheMatch, applyNicheFilter, rankAndFilter, main };
 if (require.main === module) main().catch((e) => { log(`unexpected error (${e.message}), falling back to unseeded research`); process.exit(0); });

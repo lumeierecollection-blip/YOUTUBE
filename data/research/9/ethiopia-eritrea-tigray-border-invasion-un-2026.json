@@ -1,0 +1,51 @@
+{
+  "topic_slug": "ethiopia-eritrea-tigray-border-invasion-un-2026",
+  "strongest_angle": "Examining the formal letter sent by Ethiopian Foreign Minister Gedion Timothewos to the United Nations Security Council accusing Eritrea of an all-out invasion in Tigray.",
+  "key_facts": [
+    {
+      "fact": "Ethiopia accused Eritrea of an all-out invasion of its northern Tigray region in an official letter to the United Nations Security Council.",
+      "source_url": "https://www.bbc.com/news/articles/c65ynvw250y1o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Foreign Minister Gedion Timothewos stated that the military incursion by Eritrea is a blatant act of aggression engaging Ethiopia's right to self-defense.",
+      "source_url": "https://www.aljazeera.com/news/2026/10/9/ethiopia-and-eritrea-accuse-one-another-of-launching-war",
+      "source_name": "Al Jazeera",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ethiopian military vehicles and troops entered Adigrat near the Eritrean border as residents celebrated the deployment.",
+      "source_url": "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    },
+    {
+      "name": "United Nations Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Gedion Timothewos",
+      "kind": "person"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    }
+  ]
+}

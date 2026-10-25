@@ -1,0 +1,70 @@
+{
+  "channel_id": "5",
+  "topic_slug": "reuters-investigation-irans-global-dissident-hunting-apparat",
+  "format": "shorts",
+  "hook": "Even during strikes by the United States and Israel, Iran hunted dissidents abroad.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Even during strikes by the United States and Israel, Iran hunted dissidents abroad.",
+      "b_roll": [
+        "Map of Iran",
+        "News headline graphic"
+      ],
+      "text_overlay": {
+        "text": "Iran hunted dissidents abroad"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Reuters published an October 2026 report detailing coordinated repression. Security forces, judges, and state broadcasters targeted anti-government critics everywhere. Where did the state direct its wartime crackdown?",
+      "b_roll": [
+        "Reuters logo",
+        "Courtroom footage",
+        "Broadcasting studio"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Reuters report"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Iran International reported that mass prosecutions and executions intensified during the wartime crackdown.",
+      "b_roll": [
+        "Protest footage",
+        "Press conference"
+      ],
+      "text_overlay": {
+        "text": "Mass prosecutions"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Iran International confirmed investigators uncovered international operations. Officials pursued dissidents across borders despite foreign military strikes. BDNews24 published the findings worldwide.",
+      "b_roll": [
+        "International border sign",
+        "Newspaper print",
+        "Global map graphic"
+      ],
+      "text_overlay": {
+        "text": "International operations confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Reuters exposed Iran operating across international borders during the October 2026 crisis.",
+      "b_roll": [
+        "Document stack",
+        "Reuters emblem"
+      ],
+      "text_overlay": {
+        "text": "Reuters investigation"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.reuters.com/investigates/special-report/iran-crisis-repression",
+    "https://www.iranintl.com/en/202610080184",
+    "https://bdnews24.com/world/86y4kk622t"
+  ]
+}

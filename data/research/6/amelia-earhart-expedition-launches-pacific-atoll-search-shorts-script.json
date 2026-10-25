@@ -1,0 +1,69 @@
+{
+  "channel_id": "6",
+  "topic_slug": "amelia-earhart-expedition-launches-pacific-atoll-search",
+  "format": "shorts",
+  "hook": "A fresh search in 2026 targets the exact Pacific atoll where Amelia Earhart vanished in 1937.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A fresh search in 2026 targets the exact Pacific atoll where Amelia Earhart vanished in 1937.",
+      "b_roll": [
+        "Archival photo of Amelia Earhart",
+        "Map showing the Pacific Ocean and Kiribati"
+      ],
+      "text_overlay": {
+        "text": "The 1937 Mystery"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers from the Archaeological Legacy Institute boarded the Marin Mainiku vessel in Kiribati. Teams crossed the South Pacific toward Nikumaroro Island. What lies buried beneath the waters of Nikumaroro?",
+      "b_roll": [
+        "The Marin Mainiku vessel at sea",
+        "Nikumaroro Island coastline aerial view",
+        "Ocean waves near the atoll"
+      ],
+      "text_overlay": {
+        "text": "Nikumaroro Island Expedition"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This October expedition investigates the Taraia Object, but Fred Noonan's fate remains unknown.",
+      "b_roll": [
+        "Researchers reviewing charts on the ship",
+        "Historical navigation equipment"
+      ],
+      "text_overlay": {
+        "text": "The Taraia Object"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Teams documented physical debris matching the Lockheed Electra. Investigators hope to finally solve the 1937 disappearance.",
+      "b_roll": [
+        "Underwater dive team near a reef",
+        "Metal wreckage artifact on the seabed",
+        "Researchers examining recovered metal"
+      ],
+      "text_overlay": {
+        "text": "Wreckage Found"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "History awaits the 2026 data from Nikumaroro.",
+      "b_roll": [
+        "Ship steering wheel looking out to sea",
+        "Sunset over the Pacific"
+      ],
+      "text_overlay": {
+        "text": "2026 Discovery"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/newsroom/2026/Q4/earhart-expedition-update-crew-at-sea-expected-to-arrive-on-nikumaroro-in-72-hours",
+    "https://www.nationalgeographic.com/adventure/article/amelia-earhart-plane-taraia-object-expedition"
+  ]
+}

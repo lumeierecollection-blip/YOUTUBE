@@ -1,0 +1,43 @@
+{
+  "channel_id": "49",
+  "topic_slug": "james-mcavoy-california-schemin-directorial-debut",
+  "format": "shorts",
+  "hook": "California Schemin brings fake American personas to the big screen.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "California Schemin brings fake American personas to the big screen."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 9, 2026, the film California Schemin hit theaters nationwide. Magenta Light Studios greenlit the production earlier that April. How long has McAvoy planned this directorial shift?",
+      "text_overlay": {
+        "text": "California Schemin Release: Oct 9, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Magenta Light Studios set this release after McAvoy pondered directing since age 16.",
+      "text_overlay": {
+        "text": "Directing ambition: 16 years old"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Now, McAvoy delivers his feature debut through Patriot Pictures. This R-rated project spans a 107-minute runtime. It explores the true story of Scottish rappers faking American personas.",
+      "text_overlay": {
+        "text": "Runtime: 107 minutes"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Catch California Schemin in theaters now."
+    }
+  ],
+  "sources_used": [
+    "https://www.patriotpictures.com/californiaschemin",
+    "https://www.rogerebert.com/reviews/california-schemin-james-mcavoy-movie-review-2026",
+    "https://deadline.com/2026/04/james-mcavoy-california-schemin-release-date-1236868602",
+    "https://www.moviefone.com/news/california-schemin-interview-director-james-mcavoy"
+  ]
+}

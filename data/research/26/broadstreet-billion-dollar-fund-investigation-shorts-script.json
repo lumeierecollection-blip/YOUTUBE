@@ -1,0 +1,68 @@
+{
+  "channel_id": "26",
+  "topic_slug": "broadstreet-billion-dollar-fund-investigation",
+  "format": "shorts",
+  "hook": "Broadstreet Inc. executives raised over $1 billion from investors using deceptive practices.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Broadstreet Inc. executives raised over $1 billion from investors using deceptive practices.",
+      "b_roll": [
+        "Financial district skyline shot",
+        "Close up of corporate office doors"
+      ],
+      "text_overlay": {
+        "text": "$1 BILLION FRAUD"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On April 21, 2025, the U.S. District Court for the Southern District of Florida appointed a monitor. Did over 1,000 investors lose their money in Broadstreet funds?",
+      "b_roll": [
+        "Federal courthouse exterior",
+        "Legal document scanning graphic"
+      ],
+      "text_overlay": {
+        "text": "COURT APPOINTS MONITOR"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Investor Steven Darby filed a lawsuit in the U.S. District Court for the Southern District of Florida.",
+      "b_roll": [
+        "Swiping through digital court records",
+        "Redacted financial ledger close up"
+      ],
+      "text_overlay": {
+        "text": "HALF A BILLION STOLEN"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Plaintiff Steven Darby lost $1,415,373.18 in the Broad Street Global Fund, LLC. Federal court documents detailed the massive fraud.",
+      "b_roll": [
+        "Wire transfer confirmation screen",
+        "SEC investigation seal graphic"
+      ],
+      "text_overlay": {
+        "text": "$1,415,373.18 LOST"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Plaintiff Kentan Kumar Patel filed a case numbered 1:2026cv27155 in the U.S. District Court.",
+      "b_roll": [
+        "Gavel striking a wooden block",
+        "Securities enforcement seal close up"
+      ],
+      "text_overlay": {
+        "text": "SEC INVESTIGATION"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.bloomberglaw.com/securities-law/broadstreet-top-brass-raised-1-billion-in-pe-fraud-sec-says",
+    "https://www.sec.gov/enforcement-litigation/litigation-releases/lr-26289",
+    "https://storage.courtlistener.com/recap/gov.uscourts.flsd.722866/gov.uscourts.flsd.722866.1.0_4.pdf"
+  ]
+}

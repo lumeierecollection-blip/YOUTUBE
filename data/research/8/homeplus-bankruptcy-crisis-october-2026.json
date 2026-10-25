@@ -1,0 +1,104 @@
+{
+  "topic_slug": "homeplus-bankruptcy-crisis-october-2026",
+  "strongest_angle": "Examine the unfolding bankruptcy crisis at Homeplus in October 2026, analyzing its depleted 200 billion won DIP funds and plunging daily sales after its recent reopening.",
+  "key_facts": [
+    {
+      "fact": "Homeplus faces a new bankruptcy crisis as daily sales plummeted to the 3 billion won range during the early-October holiday period, threatening its 200 billion won DIP funds.",
+      "source_url": "https://www.mt.co.kr/en/living/2026/10/11/2026101113292156248",
+      "source_name": "MoneyToday",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sales at South Korean hypermarket chain Homeplus dropped to approximately 30 percent of the company's target during October 2026 while undergoing corporate rehabilitation.",
+      "source_url": "https://biz.chosun.com/en/en-retail/2026/10/11/JGKQZX72QBHNDHYFSKJ4SHCZXU",
+      "source_name": "CHOSUNBIZ",
+      "confidence": "high"
+    },
+    {
+      "fact": "On August 13, 2026, Homeplus recorded an initial reopening day daily sales figure of 10.6 billion 280 million won before sales collapsed by roughly 70 percent.",
+      "source_url": "https://www.g-enews.com/article/Distribution/2026/10/2026101113532392322aa6f4cdad_1",
+      "source_name": "Global Economic",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Homeplus plans to sell 19 of 37 company-owned stores by February 2028, utilize 592 billion won in new collateralized loans, and seek about 1.5 trillion won in additional financing.",
+      "source_url": "https://www.koreatimes.co.kr/business/companies/20260820/homeplus-faces-fresh-funding-needs-on-road-to-recovery",
+      "source_name": "The Korea Times",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Daily sales range in October 2026",
+      "value": 3,
+      "unit": "billion won",
+      "source_url": "https://www.mt.co.kr/en/living/2026/10/11/2026101113292156248"
+    },
+    {
+      "label": "DIP emergency funds",
+      "value": 200,
+      "unit": "billion won",
+      "source_url": "https://www.mt.co.kr/en/living/2026/10/11/2026101113292156248"
+    },
+    {
+      "label": "Sales percentage of target",
+      "value": 30,
+      "unit": "percent",
+      "source_url": "https://biz.chosun.com/en/en-retail/2026/10/11/JGKQZX72QBHNDHYFSKJ4SHCZXU"
+    },
+    {
+      "label": "Reopening day daily sales",
+      "value": 10.628,
+      "unit": "billion won",
+      "source_url": "https://www.g-enews.com/article/Distribution/2026/10/2026101113532392322aa6f4cdad_1"
+    },
+    {
+      "label": "Percentage drop from reopening day",
+      "value": 70,
+      "unit": "percent",
+      "source_url": "https://www.g-enews.com/article/Distribution/2026/10/2026101113532392322aa6f4cdad_1"
+    },
+    {
+      "label": "Stores planned for sale by February 2028",
+      "value": 19,
+      "unit": "stores",
+      "source_url": "https://www.koreatimes.co.kr/business/companies/20260820/homeplus-faces-fresh-funding-needs-on-road-to-recovery"
+    },
+    {
+      "label": "Total company-owned stores targeted",
+      "value": 37,
+      "unit": "stores",
+      "source_url": "https://www.koreatimes.co.kr/business/companies/20260820/homeplus-faces-fresh-funding-needs-on-road-to-recovery"
+    },
+    {
+      "label": "New collateralized loans",
+      "value": 592,
+      "unit": "billion won",
+      "source_url": "https://www.koreatimes.co.kr/business/companies/20260820/homeplus-faces-fresh-funding-needs-on-road-to-recovery"
+    },
+    {
+      "label": "Additional financing sought",
+      "value": 1.5,
+      "unit": "trillion won",
+      "source_url": "https://www.koreatimes.co.kr/business/companies/20260820/homeplus-faces-fresh-funding-needs-on-road-to-recovery"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Homeplus",
+      "kind": "organization"
+    },
+    {
+      "name": "South Korea",
+      "kind": "place"
+    },
+    {
+      "name": "Seoul Bankruptcy Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Chuseok",
+      "kind": "object"
+    }
+  ]
+}

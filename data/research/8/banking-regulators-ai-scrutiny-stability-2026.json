@@ -1,0 +1,66 @@
+{
+  "topic_slug": "banking-regulators-ai-scrutiny-stability-2026",
+  "strongest_angle": "Global banking regulators in New York, London, and Frankfurt are rapidly escalating their scrutiny of artificial intelligence, driven by warnings from authorities like the European Systemic Risk Board regarding potential cyber vulnerabilities, rogue agents, and systemic threats to financial stability.",
+  "key_facts": [
+    {
+      "fact": "Banking regulators in New York and London are stepping up efforts to contain growing artificial intelligence risks, as reported by six people familiar with the matter at Reuters.",
+      "source_url": "https://live.euronext.com/en/financial-news/exclusive-banking-watchdogs-ramp-ai-scrutiny-stability-fears-mount-sources-say",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "The European Systemic Risk Board issued a warning on June 25, 2026, addressing systemic cyber risks stemming from frontier artificial intelligence models.",
+      "source_url": "https://www.esrb.europa.eu/pub/pdf/warnings/esrb.warning260625_on_systemic_cyber_risks_stemming_from_frontier_ai_models%7Eef424708cf.en.pdf",
+      "source_name": "European Systemic Risk Board",
+      "confidence": "high"
+    },
+    {
+      "fact": "European Central Bank officials noted on October 1, 2026, that the rising importance of artificial intelligence is putting the financial system's wide view to the test.",
+      "source_url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261001~cf3c630379.en.html",
+      "source_name": "European Central Bank",
+      "confidence": "high"
+    },
+    {
+      "fact": "U.S. bank regulators in New York are increasing their scrutiny of artificial intelligence use in lending, data access, and third-party vendors, according to Reuters reporting from June 12, 2026.",
+      "source_url": "https://www.reuters.com/business/finance/us-bank-regulators-ramp-up-scrutiny-ai-use-financial-companies-2026-06-12",
+      "source_name": "Reuters",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "People familiar with the matter",
+      "value": 6,
+      "unit": "people",
+      "source_url": "https://live.euronext.com/en/financial-news/exclusive-banking-watchdogs-ramp-ai-scrutiny-stability-fears-mount-sources-say"
+    },
+    {
+      "label": "Years of central bank and supervisor collaboration in Europe",
+      "value": 15,
+      "unit": "years",
+      "source_url": "https://www.ecb.europa.eu/press/key/date/2026/html/ecb.sp261001~cf3c630379.en.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Reuters",
+      "kind": "organization"
+    },
+    {
+      "name": "European Systemic Risk Board",
+      "kind": "organization"
+    },
+    {
+      "name": "European Central Bank",
+      "kind": "organization"
+    }
+  ]
+}

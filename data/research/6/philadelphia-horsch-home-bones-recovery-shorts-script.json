@@ -1,0 +1,47 @@
+{
+  "channel_id": "6",
+  "topic_slug": "philadelphia-horsch-home-bones-recovery",
+  "format": "shorts",
+  "hook": "Investigators unearthed bones at a Philadelphia home linked to seven missing women.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Investigators unearthed bones at a Philadelphia home linked to seven missing women.",
+      "text_overlay": {
+        "text": "7 Missing Women Linked to Philly Home"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Philadelphia police and FBI agents excavated the backyard at 417 West Chew Avenue. Could these remains finally provide answers regarding the seven missing women?",
+      "text_overlay": {
+        "text": "417 West Chew Avenue"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Medical Examiner's Office hasn't confirmed the origin or condition of the single bone.",
+      "text_overlay": {
+        "text": "Bones Recovered"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Office of the Medical Examiner recovered one bone from the Olney neighborhood property backyard. Investigators link the discovery at 417 West Chew Avenue to at least seven missing women.",
+      "text_overlay": {
+        "text": "Medical Examiner Investigation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Philadelphia police are investigating the home once owned by Raymond 'R.C.' Horsch and Eugene Horsch.",
+      "text_overlay": {
+        "text": "7 Missing Women"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://6abc.com/post/bones-recovered-philadelphia-horsch-home-center-missing-women-case-sources/19941546",
+    "https://www.fox29.com/news/horsch-investigation-final-phase-search-west-chew-avenue-home-continues"
+  ]
+}

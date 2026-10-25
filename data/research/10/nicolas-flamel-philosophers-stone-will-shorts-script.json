@@ -1,0 +1,55 @@
+{
+  "channel_id": "10",
+  "topic_slug": "nicolas-flamel-philosophers-stone-will",
+  "format": "shorts",
+  "hook": "Recent analysis at the Musée de Cluny proves Nicolas Flamel was just a wealthy Parisian man.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Recent analysis at the Musée de Cluny proves Nicolas Flamel was just a wealthy Parisian man."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Musée de Cluny in Paris is finally revealing the historical truth about him. Where did this myth originate?",
+      "b_roll": [
+        "Musée de Cluny building",
+        "Ms. Codex 1706 manuscript page",
+        "1414 date on parchment"
+      ],
+      "text_overlay": {
+        "text": "1414: The Testament"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except scholars now believe that testament was composed much later, in the 18th century.",
+      "b_roll": [
+        "18th century quill and ink"
+      ],
+      "text_overlay": {
+        "text": "18th Century Fabrication"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Writers have maintained 600 years of fascination with the myth of Nicolas and Pernelle Flamel. The real man left behind records at the Musée de Cluny, not magical gold.",
+      "b_roll": [
+        "600 years timeline",
+        "Medieval Paris street scene",
+        "Stacks of medieval paper documents"
+      ],
+      "text_overlay": {
+        "text": "600 Years of Myth"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Visit the new exhibition in Paris starting October 13, 2026."
+    }
+  ],
+  "sources_used": [
+    "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559",
+    "https://openn.library.upenn.edu/Data/0002/html/mscodex1706.html",
+    "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone"
+  ]
+}

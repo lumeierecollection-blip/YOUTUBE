@@ -1,17 +1,20 @@
 /**
- * llm.js — one call, three providers: Gemini → Groq → local Ollama.
- * Groq (scripts/groq-client.cjs) answers when Gemini cannot; Ollama is the
- * last resort when both are down (slow on a CPU runner, rarely used). Used by every model call site (the planner, the
- * challenger, the frame reviews, the beat check, the section-7 vision QA).
+ * llm.js — one call, five providers: Gemini → Ollama Cloud → OpenRouter → Groq → local Ollama.
+ * Ollama Cloud (scripts/ollama-client.cjs callOllamaCloud: gpt-oss:120b / gemma4:31b on ollama.com, OLLAMA_API_KEY) is the
+ * second provider (owner, 2026-10-17); without a key it is skipped at once.
+ * OpenRouter (scripts/openrouter-client.cjs) answers when Gemini cannot; Groq
+ * (scripts/groq-client.cjs) when OpenRouter cannot; Ollama is the last resort
+ * when all three are down (slow on a CPU runner, rarely used). Used by every model
+ * call site (the planner, the challenger, the frame reviews, the beat check, the section-7 vision QA).
  *
  *   callLLM(messages, opts, tag)
  *     - FORCE_PLANNER=ollama: Ollama only; Gemini is never called.
  *     - otherwise Gemini (src/lib/gemini-client.js). On any Gemini failure
  *       — { source: "gemini", error: quota_exhausted | unavailable |
  *       hard_error | bad_response | budget_exhausted | no_key } — the SAME
- *       messages go to Ollama at once (scripts/ollama-client.cjs), so the
- *       answer has the same schema whichever provider produced it.
- *     - every transition is logged:  [planner] gemini: quota_exhausted → ollama
+ *       messages go to OpenRouter, then Groq, then Ollama, so the answer has
+ *       the same schema whichever provider produced it. Each step is logged:
+ *       [planner] gemini: quota_exhausted → openrouter
  *
  * The return value is the provider's parsed JSON (or { content }), or an
  * error object { source: "ollama", error, detail } when Ollama fails too.
@@ -22,6 +25,7 @@ import { callGemini } from "./gemini-client.js";
 const require = createRequire(import.meta.url);
 const ollama = require("../../scripts/ollama-client.cjs");
 const groq = require("../../scripts/groq-client.cjs");
+const openrouter = require("../../scripts/openrouter-client.cjs");
 
 export function forcedOllama() {
   return String(process.env.FORCE_PLANNER || "").toLowerCase() === "ollama";
@@ -43,17 +47,17 @@ export function forcedOllama() {
  */
 export function forcedProvider() {
   const p = String(process.env.FORCE_PROVIDER || "").toLowerCase();
-  return ["gemini", "groq", "ollama"].includes(p) ? p : null;
+  return ["gemini", "ollama-cloud", "openrouter", "groq", "ollama"].includes(p) ? p : null;
 }
 
 // A model can answer: a Gemini key, or a configured local Ollama server.
 export function llmConfigured() {
   const gemini = !!(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
-  return (gemini && !forcedOllama()) || (!!process.env.GROQ_API_KEY && !forcedOllama()) || !!process.env.OLLAMA_URL;
+  return (gemini && !forcedOllama()) || (!!process.env.OPENROUTER_API_KEY && !forcedOllama()) || (!!process.env.GROQ_API_KEY && !forcedOllama()) || (!!process.env.OLLAMA_API_KEY && !forcedOllama()) || !!process.env.OLLAMA_URL;
 }
 
 export function isProviderError(r) {
-  return !!(r && (r.source === "gemini" || r.source === "groq" || r.source === "ollama") && r.error);
+  return !!(r && (r.source === "gemini" || r.source === "ollama-cloud" || r.source === "openrouter" || r.source === "groq" || r.source === "ollama") && r.error);
 }
 
 export async function callOllamaOnly(messages, opts = {}, tag = "llm") {
@@ -95,22 +99,41 @@ async function callGroqBatched(opts, tag) {
 }
 
 export async function callGroqThenOllama(messages, opts = {}, tag = "llm") {
-  return (await groqThenOllamaWithProvenance(messages, opts, tag)).value;
+  return (await fallbackWithProvenance(messages, opts, tag)).value;
 }
 
-// Same chain, but it reports WHICH provider answered. On success the clients
-// return the bare parsed JSON — `source` is set only on FAILURE
-// (gemini-client.js:230, groq-client.cjs:41) — so before this, nothing
-// downstream could tell a Gemini answer from a Groq one. That is how a Groq
-// verdict was logged as "Gemini verdict" (run 37323030454:
+// OpenRouter, then Groq, then Ollama. Same chain, but it reports WHICH provider
+// answered. On success the clients return the bare parsed JSON — `source` is set
+// only on FAILURE (gemini-client.js:230, openrouter-client.cjs, groq-client.cjs:41)
+// — so before this, nothing downstream could tell a Gemini answer from a Groq one.
+// That is how a Groq verdict was logged as "Gemini verdict" (run 37323030454:
 // gemini: quota_exhausted → groq), and it means a persisted model judgement
 // could carry another model's name.
-async function groqThenOllamaWithProvenance(messages, opts, tag) {
+//
+// OpenRouter gets the ORIGINAL messages as one call: its vision models take the
+// whole set of frames, so the Groq-only batch split (opts.groqBatch) does not apply.
+// Groq still gets the split request when it is reached.
+async function fallbackWithProvenance(messages, opts, tag) {
+  const tried = [];
+  // Ollama Cloud first: the large hosted models (gpt-oss:120b text, gemma4:31b vision) take every frame in one call, like Gemini.
+  if (ollama.hasCloudKey()) {
+    const oc = await ollama.callOllamaCloud(messages, opts);
+    if (!isProviderError(oc)) return { value: oc, provider: "ollama-cloud", tried: ["ollama-cloud"] };
+    tried.push("ollama-cloud");
+    console.error(`[${tag}] ollama-cloud: ${oc.error} → openrouter${oc.detail ? ` (${String(oc.detail).slice(0, 120)})` : ""}`);
+  }
+  const or = await openrouter.callOpenRouter(messages, opts);
+  if (!isProviderError(or)) return { value: or, provider: "openrouter", tried: ["openrouter"] };
+  tried.push("openrouter");
+  console.error(`[${tag}] openrouter: ${or.error} → groq${or.detail ? ` (${String(or.detail).slice(0, 120)})` : ""}`);
   const g = opts.groqBatch ? await callGroqBatched(opts, tag) : await groq.callGroq(messages, opts);
-  if (!isProviderError(g)) return { value: g, provider: "groq" };
+  if (!isProviderError(g)) return { value: g, provider: "groq", tried: [...tried, "groq"] };
+  tried.push("groq");
   console.error(`[${tag}] groq: ${g.error} → ollama${g.detail ? ` (${String(g.detail).slice(0, 120)})` : ""}`);
-  return { value: await callOllamaOnly(messages, opts, tag), provider: "ollama" };
+  return { value: await callOllamaOnly(messages, opts, tag), provider: "ollama", tried: [...tried, "ollama"] };
 }
+
+const nextAfterGemini = () => (ollama.hasCloudKey() ? "ollama-cloud" : "openrouter");
 
 export async function callLLM(messages, opts = {}, tag = "llm") {
   if (forcedOllama()) {
@@ -119,7 +142,7 @@ export async function callLLM(messages, opts = {}, tag = "llm") {
   }
   const r = await callGemini(messages, { ...opts, tag });
   if (!(r && r.source === "gemini" && r.error)) return r;
-  console.error(`[${tag}] gemini: ${r.error} → groq${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
+  console.error(`[${tag}] gemini: ${r.error} → ${nextAfterGemini()}${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
   return callGroqThenOllama(messages, opts, tag);
 }
 
@@ -140,6 +163,16 @@ export async function callLLMWithProvenance(messages, opts = {}, tag = "llm") {
     const value = await callOllamaOnly(messages, opts, tag);
     return { value, provider: "ollama", error: isProviderError(value) ? value.error : null, chain: ["ollama"], pinned: true };
   }
+  if (pin === "ollama-cloud") {
+    console.error(`[${tag}] ollama-cloud (FORCE_PROVIDER=ollama-cloud — pinned, no failover)`);
+    const o = await ollama.callOllamaCloud(messages, opts);
+    return { value: o, provider: "ollama-cloud", error: isProviderError(o) ? o.error : null, chain: ["ollama-cloud"], pinned: true };
+  }
+  if (pin === "openrouter") {
+    console.error(`[${tag}] openrouter (FORCE_PROVIDER=openrouter — pinned, no failover)`);
+    const o = await openrouter.callOpenRouter(messages, opts);
+    return { value: o, provider: "openrouter", error: isProviderError(o) ? o.error : null, chain: ["openrouter"], pinned: true };
+  }
   if (pin === "groq") {
     console.error(`[${tag}] groq (FORCE_PROVIDER=groq — pinned, no failover)`);
     const g = opts.groqBatch ? await callGroqBatched(opts, tag) : await groq.callGroq(messages, opts);
@@ -155,11 +188,19 @@ export async function callLLMWithProvenance(messages, opts = {}, tag = "llm") {
     const value = await callOllamaOnly(messages, opts, tag);
     return { value, provider: "ollama", error: isProviderError(value) ? value.error : null, chain: ["ollama"] };
   }
-  const r = await callGemini(messages, { ...opts, tag });
-  if (!(r && r.source === "gemini" && r.error)) {
-    return { value: r, provider: "gemini", error: null, chain: ["gemini"] };
+  // OLLAMA_FIRST: Ollama Cloud is asked here, by name, so the answer carries its real provider; Gemini is then told not to ask it again.
+  const pre = [];
+  if (ollama.ollamaFirst()) {
+    const o = await ollama.callOllamaCloud(messages, opts);
+    if (!isProviderError(o)) return { value: o, provider: "ollama-cloud", error: null, chain: ["ollama-cloud"] };
+    console.error(`[${tag}] ollama-cloud: ${o.error} (OLLAMA_FIRST) → gemini`);
+    pre.push("ollama-cloud");
   }
-  console.error(`[${tag}] gemini: ${r.error} → groq${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
-  const { value, provider } = await groqThenOllamaWithProvenance(messages, opts, tag);
-  return { value, provider, error: isProviderError(value) ? value.error : null, chain: ["gemini", provider] };
+  const r = await callGemini(messages, { ...opts, tag, _noOllamaFirst: true });
+  if (!(r && r.source === "gemini" && r.error)) {
+    return { value: r, provider: "gemini", error: null, chain: [...pre, "gemini"] };
+  }
+  console.error(`[${tag}] gemini: ${r.error} → ${nextAfterGemini()}${r.detail ? ` (${String(r.detail).slice(0, 120)})` : ""}`);
+  const { value, provider, tried } = await fallbackWithProvenance(messages, opts, tag);
+  return { value, provider, error: isProviderError(value) ? value.error : null, chain: [...pre, "gemini", ...tried] };
 }

@@ -1,0 +1,65 @@
+{
+  "channel_id": "26",
+  "topic_slug": "brazilian-man-12-year-money-laundering-sentencing",
+  "format": "shorts",
+  "hook": "Thirty million dollars laundered through an international ring landed a 35-year-old in federal prison.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Thirty million dollars laundered through an international ring landed a 35-year-old in federal prison.",
+      "b_roll": [
+        "courtroom federal building exterior",
+        "stacks of illicit cash proceeds"
+      ],
+      "text_overlay": {
+        "text": "$30 Million Laundered"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Saviolli supervised the international money laundering conspiracy while operating out of Brazil. How did federal investigators track the thirty million dollars in illicit cash proceeds across borders?",
+      "b_roll": [
+        "map of Brazil and United States",
+        "Department of Justice seal"
+      ],
+      "text_overlay": {
+        "text": "The International Ring"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The United States Department of Justice Office of Public Affairs exposed his managerial role in the scheme.",
+      "b_roll": [
+        "federal courthouse press conference podium"
+      ],
+      "text_overlay": {
+        "text": "Managerial Role"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "A federal judge sentenced the Brazilian national to prison for his leadership in the organization. Ygor Fokin Saviolli received 12 years behind bars. Federal prosecutors dismantled the 30 million dollar organization.",
+      "b_roll": [
+        "prison cell block gate locking",
+        "court documents stamped"
+      ],
+      "text_overlay": {
+        "text": "12 Years in Federal Prison"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Thirty million dollars ended with 12 years inside.",
+      "b_roll": [
+        "federal prison courtyard aerial shot"
+      ],
+      "text_overlay": {
+        "text": "30 Million to 12 Years"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.vaquill.com/item/1dab6a96-e99a-4149-a5bc-ba16485a858f",
+    "https://www.justice.gov/opa/pr/brazilian-man-sentenced-12-years-prison-managerial-role-conspiracy-launder-tens-millions"
+  ]
+}

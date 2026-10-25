@@ -60,9 +60,11 @@ describe("resolveChannel - the bug this module exists for", () => {
   });
 
   it("resolves the other built channels too", () => {
-    assert.equal(resolve("1").channel_name, "Money Mind");
-    assert.equal(resolve("2").channel_name, "Legal Brief");
+    assert.equal(resolve("1").channel_name, "Hidden Past");
+    assert.equal(resolve("2").channel_name, "AI Tested");
     assert.equal(resolve("9").channel_name, "Border Lines");
+    assert.equal(resolve("48").channel_name, "Chileleko");
+    assert.equal(resolve("48").channel_id, "ch-48");
   });
 
   it("accepts the ch- form as well as the bare form", () => {

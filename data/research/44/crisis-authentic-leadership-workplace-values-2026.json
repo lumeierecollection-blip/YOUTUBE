@@ -1,0 +1,56 @@
+{
+  "topic_slug": "crisis-authentic-leadership-workplace-values-2026",
+  "strongest_angle": "Analyzing how corporate reversals on initiatives like Target's 2025 DEI rollback create an authenticity crisis for modern leaders navigating political pressures.",
+  "key_facts": [
+    {
+      "fact": "In 2025, Target announced it would roll back major elements of its diversity, equity, and inclusion strategy amid intense political pressure.",
+      "source_url": "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader",
+      "source_name": "Fast Company",
+      "confidence": "high"
+    },
+    {
+      "fact": "Authentic leadership emerged in the early 2000s as a theoretical counterpoint to transactional leadership models following corporate scandals.",
+      "source_url": "https://scholars.hkbu.edu.hk/en/publications/the-perils-and-paradoxes-of-authentic-leadership-implications-for",
+      "source_name": "Hong Kong Baptist University Scholars",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google Scholar returns more than five million academic articles discussing the subject of authenticity in leadership.",
+      "source_url": "https://ioledge.com/insights/authenticity-in-leadership",
+      "source_name": "IoL EDGE",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Target DEI roll back decision",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.fastcompany.com/91621885/the-crisis-of-the-authentic-leader"
+    },
+    {
+      "label": "Number of academic articles on authenticity on Google Scholar",
+      "value": 5000000,
+      "unit": "articles",
+      "source_url": "https://ioledge.com/insights/authenticity-in-leadership"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Target",
+      "kind": "organization"
+    },
+    {
+      "name": "Google Scholar",
+      "kind": "organization"
+    },
+    {
+      "name": "Fast Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Hong Kong Baptist University",
+      "kind": "organization"
+    }
+  ]
+}

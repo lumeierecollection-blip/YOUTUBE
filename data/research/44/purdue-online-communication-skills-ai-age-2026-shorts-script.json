@@ -1,0 +1,70 @@
+{
+  "channel_id": "44",
+  "topic_slug": "purdue-online-communication-skills-ai-age-2026",
+  "format": "shorts",
+  "hook": "Artificial intelligence automates 50 percent of work hours, yet employers rank it 14th in priority.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Artificial intelligence automates 50 percent of work hours, yet employers rank it 14th in priority.",
+      "b_roll": [
+        "Digital graphs showing work hour automation percentages",
+        "A corporate ranking list highlighting AI in fourteenth place"
+      ],
+      "text_overlay": {
+        "text": "AI automates half of all work hours"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Purdue University published findings on October 9, 2026, revealing what hiring managers actually want. McKinsey research shows tech handles half of U.S. work hours. Which skill beats algorithms for business school graduates?",
+      "b_roll": [
+        "Purdue University campus buildings and digital research archives",
+        "McKinsey global workplace reports on automated tasks",
+        "Business school graduates reviewing corporate recruitment surveys"
+      ],
+      "text_overlay": {
+        "text": "What skill beats algorithms?"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet McKinsey's data shows AI tool usage ranks a distant fourteenth in recruiter priority.",
+      "b_roll": [
+        "GMAC corporate recruiter survey documents open on a desk",
+        "Global employers reviewing hiring metrics"
+      ],
+      "text_overlay": {
+        "text": "600 global employers surveyed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Sixty-four percent named communication as their top demand. Problem-solving followed closely at 62 percent. Adaptability secured 60 percent among corporate recruiters.",
+      "b_roll": [
+        "Data charts displaying communication at 64 percent",
+        "Bar graphs comparing problem-solving and adaptability metrics",
+        "Recruiters analyzing top candidate skills"
+      ],
+      "text_overlay": {
+        "text": "64% name communication top demand"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Communication outranks using AI tools, which employers ranked 14th in priority.",
+      "b_roll": [
+        "Executive boardrooms discussing human skills in 2026",
+        "Purdue University research reports on communication"
+      ],
+      "text_overlay": {
+        "text": "Human skills outrank AI"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.purdue.edu/online/are-communication-skills-still-important-in-the-age-of-ai-research-says-yes",
+    "https://www.purdueglobal.edu/blog/careers/human-skills-age-of-ai",
+    "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/human-skills-ai-recruiters"
+  ]
+}

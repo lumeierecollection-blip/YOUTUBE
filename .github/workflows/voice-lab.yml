@@ -1,0 +1,118 @@
+# The voice lab: the same production-style script, asked of Gemini TTS several ways (voice, whole script vs per sentence, direction), each scored by
+# the production narration judge (scripts/narration-judge.mjs). Reports only; changes nothing. See scripts/voice-lab.mjs.
+name: voice-lab
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Comma-separated variant names to run (empty = all)"
+        type: string
+        default: ""
+      set:
+        description: "lab (production-style script x voice x direction) | lab2 (the missing controls + per-sentence + the real board texts) | corpus (the real board texts only) | stability (same audio judged 3x; same request synthesised 4x) | probe (why does the judge's first model never answer?) | judge (the same mp3 judged three times: do the verdicts agree?) | readings (raw judge readings, with and without a seed) | timeline (one reading every 15 s for 5 min: cold vs warm) | calibrate (the acoustic narration measure against the labelled lab voices)"
+        type: string
+        default: "lab2"
+      corpus_run:
+        description: "Board run whose prep artifacts hold the real spoken texts and production mp3s (prep artifacts expire after a day)"
+        type: string
+        default: "38047691386"
+permissions:
+  contents: read
+  actions: read
+jobs:
+  lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install faster-whisper + ffmpeg + numpy
+        run: |
+          pip install --quiet faster-whisper numpy
+          if ! command -v ffmpeg >/dev/null; then sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg; fi
+      - name: Fetch the real board texts (prep artifacts of the corpus run)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          pattern: prep-*-${{ github.event.inputs.corpus_run }}
+          path: corpus
+          run-id: ${{ github.event.inputs.corpus_run }}
+          github-token: ${{ github.token }}
+      - name: Judge probe (every model x key, with and without audio)
+        if: github.event.inputs.set == 'probe'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          MP3=$(find corpus -name '*-vo.mp3' | sort | head -1)
+          echo "probe audio: $MP3"
+          node scripts/judge-probe.mjs --audio "$MP3"
+      - name: Raw judge readings (seed or not)
+        if: github.event.inputs.set == 'readings'
+        env:
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          for CH in 2 9 49 10; do
+            MP3=$(find corpus -name '*-vo.mp3' -path "*/tts/$CH/*" | head -1); SRT="${MP3%.mp3}.srt"
+            echo "##### ch$CH $MP3"
+            node scripts/judge-readings.mjs --audio "$MP3" --srt "$SRT" --n 8
+          done
+      - name: Judge timeline (cold vs warm)
+        if: github.event.inputs.set == 'timeline'
+        env:
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          for CH in 26 49 9; do
+            MP3=$(find corpus -name '*-vo.mp3' -path "*/tts/$CH/*" | head -1); SRT="${MP3%.mp3}.srt"
+            node scripts/judge-timeline.mjs --audio "$MP3" --srt "$SRT" --n 20 --every 15000 > "timeline-$CH.txt" 2>&1 &
+          done
+          wait
+          cat timeline-*.txt
+      - name: Calibrate the acoustic measure (labelled lab voices)
+        if: github.event.inputs.set == 'calibrate'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          node scripts/voice-lab.mjs --set calibrate --out out/calibrate --corpus corpus
+          python3 scripts/acoustic/calibrate.py out/calibrate/labscript
+      - name: Publish the calibration audio to board-frames (analysed offline)
+        if: github.event.inputs.set == 'calibrate'
+        run: |
+          git config user.name "lumeierecollection-blip"; git config user.email "lumeierecollection-blip@users.noreply.github.com"
+          git fetch origin board-frames:board-frames 2>/dev/null || true
+          git worktree add -B board-frames ../bf-cal origin/board-frames
+          mkdir -p ../bf-cal/calibrate/${{ github.run_id }}
+          for d in out/calibrate/labscript/*/; do n=$(basename "$d"); [ -f "$d/vo.mp3" ] && cp "$d/vo.mp3" "../bf-cal/calibrate/${{ github.run_id }}/$n.mp3" && cp "$d/vo.srt" "../bf-cal/calibrate/${{ github.run_id }}/$n.srt" || echo "no audio for $n (TTS refused)"; done
+          cd ../bf-cal && git add -A && (git commit -qm "calibration audio ${{ github.run_id }}" || true) && git push -q origin HEAD:board-frames
+      - name: Run the lab
+        if: github.event.inputs.set != 'probe' && github.event.inputs.set != 'readings' && github.event.inputs.set != 'timeline' && github.event.inputs.set != 'calibrate'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node scripts/voice-lab.mjs --set "${{ github.event.inputs.set }}" --corpus corpus --out out/lab --only "${{ github.event.inputs.only }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-lab-${{ github.run_id }}
+          path: out/lab/

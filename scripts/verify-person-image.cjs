@@ -128,7 +128,62 @@ async function imageDataUrl(imagePath) {
 }
 
 async function askProviders(messages) {
-  return require("./vision-providers.cjs").askVision(messages, normalize, { maxTokens: 300 });
+  const tried = [];
+  const ollama = require("./ollama-client.cjs");
+  // 0. OLLAMA_FIRST (ollama-client.cjs): Ollama Cloud before Gemini.
+  const cloudFirst = ollama.ollamaFirst();
+  if (cloudFirst) {
+    try {
+      const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
+      const v = normalize(o);
+      if (v) return { provider: "ollama-cloud", v, tried };
+      tried.push(`ollama-cloud: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    } catch (e) { tried.push(`ollama-cloud: ${e.message}`); }
+  }
+  // Google first (owner's 2026-10-08 brief): Gemini across every key, then every sibling
+  // model (src/lib/gemini-client.js), before any other provider. This was Groq first.
+  // 1. Gemini flash-lite (maxTokens 1024: a sibling reasoning model spends from the same budget).
+  try {
+    const { callGemini } = await import("../src/lib/gemini-client.js");
+    const g = await callGemini(messages, { model: "gemini-3.5-flash-lite", maxTokens: 1024, temperature: 0, noCache: true, tag: "verify", _noOllamaFirst: true });
+    const v = normalize(g);
+    if (v) return { provider: "gemini", v, tried };
+    tried.push(`gemini: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`gemini: ${e.message}`); }
+  // 2. Ollama Cloud (gemma4:31b on ollama.com), when OLLAMA_API_KEY is set (owner, 2026-10-17). Same messages, same parser.
+  try {
+    if (!cloudFirst && ollama.hasCloudKey()) {
+      const o = await ollama.callOllamaCloud(messages, { maxTokens: 300, temperature: 0 });
+      const v = normalize(o);
+      if (v) return { provider: "ollama-cloud", v, tried };
+      tried.push(`ollama-cloud: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+    }
+  } catch (e) { tried.push(`ollama-cloud: ${e.message}`); }
+  // 2b. OpenRouter (vision model), same messages, one attempt.
+  try {
+    const openrouter = require("./openrouter-client.cjs");
+    const o = await openrouter.callOpenRouter(messages, { maxTokens: 300, temperature: 0 });
+    const v = normalize(o);
+    if (v) return { provider: "openrouter", v, tried };
+    tried.push(`openrouter: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`openrouter: ${e.message}`); }
+  // 3. Groq (vision model).
+  try {
+    const groq = require("./groq-client.cjs");
+    const g = await groq.callGroq(messages, { maxTokens: 300, temperature: 0 });
+    const v = normalize(g);
+    if (v) return { provider: "groq", v, tried };
+    tried.push(`groq: ${g?.error ? `${g.error} ${String(g.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`groq: ${e.message}`); }
+  // 4. Ollama (local vision model).
+  try {
+    const ollama = require("./ollama-client.cjs");
+    const o = await ollama.callOllama(messages, { maxTokens: 300, temperature: 0 });
+    const v = normalize(o);
+    if (v) return { provider: "ollama", v, tried };
+    tried.push(`ollama: ${o?.error ? `${o.error} ${String(o.detail || "").slice(0, 100)}` : "malformed answer"}`);
+  } catch (e) { tried.push(`ollama: ${e.message}`); }
+  return { provider: null, v: null, tried };
 }
 
 async function verifyPersonImage(imagePath, personName, { sourceUrl = null, useCache = true } = {}) {

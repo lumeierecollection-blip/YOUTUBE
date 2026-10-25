@@ -1,0 +1,68 @@
+{
+  "channel_id": "44",
+  "topic_slug": "navigating-low-hire-low-fire-job-market-2026",
+  "format": "shorts",
+  "hook": "Landing a job in the toughest market in 10 years requires ditching outdated spray-and-pray applications entirely.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Landing a job in the toughest market in 10 years requires ditching outdated spray-and-pray applications entirely.",
+      "b_roll": [
+        "Digital job board scrolling rapidly on screen",
+        "Red rejection notifications stacking up"
+      ],
+      "text_overlay": {
+        "text": "10-Year Job Market Record"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Stanford coaches Shibani Joshi and Cindy Greig outlined career hurdles at the Career Management Center. Where did traditional applications go wrong?",
+      "b_roll": [
+        "Stanford campus exterior and career center building",
+        "Fast Company digital article headline display",
+        "Resume stack sitting on a corporate desk"
+      ],
+      "text_overlay": {
+        "text": "Stanford Career Guidance"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Federal Reserve Bank of Atlanta economist Paul Mohnen shows the catch: declining quits lock workers in place.",
+      "b_roll": [
+        "Federal Reserve Bank building facade",
+        "Economic chart showing declining quit rates"
+      ],
+      "text_overlay": {
+        "text": "Declining Quits Rate"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Stanford Graduate School of Business coaches Shibani Joshi and Cindy Greig prove direct networking secures interviews.",
+      "b_roll": [
+        "Professional handshake in a modern office",
+        "Richmond Fed macro chart visualization on monitor",
+        "Interview calendar invite notification flashing"
+      ],
+      "text_overlay": {
+        "text": "Targeted Human Connections"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Targeted human connections define the 10-year market.",
+      "b_roll": [
+        "Professional network map expanding on screen"
+      ],
+      "text_overlay": {
+        "text": "Human Connections Win"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.fastcompany.com/91618330/how-to-get-a-job-in-this-low-hire-low-fire-market",
+    "https://www.gsb.stanford.edu/insights/career-advice-how-break-through-tough-job-market"
+  ]
+}

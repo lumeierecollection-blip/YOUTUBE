@@ -1,0 +1,58 @@
+{
+  "topic_slug": "ethiopia-eritrea-border-tensions-2026",
+  "strongest_angle": "The rapid deterioration of diplomatic relations between Ethiopia and Eritrea has led to confirmed reports of troop incursions, threatening the stability of the Pretoria Agreement and the broader Horn of Africa region.",
+  "key_facts": [
+    {
+      "fact": "Ethiopia officially notified the United Nations Security Council on October 10, 2026, that it is taking self-defense measures against Eritrea following alleged troop incursions.",
+      "source_url": "https://apnews.com/article/ethiopia-eritrea-tigray-conflict-mekelle-un-abiy-9386a16a06e537a29ffe2de273267c8b",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Witnesses in the northern Ethiopian town of Adigrat reported seeing Eritrean soldiers driving through the area on October 7, 2026, marking a significant escalation in regional tensions.",
+      "source_url": "https://wifc.com/2026/10/07/eritrean-troops-drive-through-northern-ethiopian-town-witnesses-say",
+      "source_name": "95.5 WIFC",
+      "confidence": "high"
+    },
+    {
+      "fact": "The current crisis threatens to undo the peace efforts that earned Ethiopian Prime Minister Abiy Ahmed the Nobel Peace Prize in 2019.",
+      "source_url": "https://www.theeastafrican.co.ke/tea/news/eastern-africa/ethiopia-eritrea-draw-battle-lines-as-crisis-deepens-5626558",
+      "source_name": "The EastAfrican",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Nobel Peace Prize award",
+      "value": 2019,
+      "unit": "year",
+      "source_url": "https://www.theeastafrican.co.ke/tea/news/eastern-africa/ethiopia-eritrea-draw-battle-lines-as-crisis-deepens-5626558"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Eritrea",
+      "kind": "place"
+    },
+    {
+      "name": "United Nations Security Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Abiy Ahmed",
+      "kind": "person"
+    },
+    {
+      "name": "Adigrat",
+      "kind": "place"
+    },
+    {
+      "name": "Tigray",
+      "kind": "place"
+    }
+  ]
+}

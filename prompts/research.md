@@ -46,6 +46,16 @@ text highlights.
 - Populate `numbers[]` whenever the sources state concrete figures; a
   motion-graphics script downstream can only chart values that appear here.
 
+## Quotations (optional, up to 3)
+
+If a search result contains a sentence that a NAMED person said (or that a named
+source states about itself), put it in `quotes[]` with `text` copied WORD FOR
+WORD from the search result (6 to 40 words, no paraphrase, no "...", no joining
+of two sentences), the `speaker`, the `source_name` and the `source_url`. The
+text is checked character for character against the raw search results and
+dropped if it does not appear there. If no result holds a real statement, leave
+`quotes` empty. Never write one from memory.
+
 ## Rules
 
 - Every `key_facts[].fact` needs a real `source_url` that actually appeared

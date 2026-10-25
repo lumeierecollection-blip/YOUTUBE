@@ -1,0 +1,361 @@
+/**
+ * entity-coverage — NOTHING SPOKEN GOES UNREPRESENTED (owner, 2026-10-09).
+ *
+ * "Every beat that names something gets a visual of that thing. A words-only beat is only allowed when the sentence
+ * names no entity at all." The map, enforced here rather than left to taste:
+ *
+ *   country / region        its flag, or a map with THAT region highlighted
+ *   city / place            a map with a pin, or a verified photo of it
+ *   person                  a verified portrait, or a non-identifying person plate (never a name in type alone)
+ *   year / date             a date card (a stated figure drawn alone), or a point on a timeline
+ *   span of time            a time-scale graphic (a track with its ends)
+ *   number / amount         a stat card or a chart that draws THAT figure
+ *   organisation / outlet   its logo, a verified photo of it, or an organisation plate
+ *   object                  its cutout or its drawn icon
+ *
+ * `entitiesOf` reads a beat's sentence (+ the planner's named entities); `coverageOf` reads what the beat DREW
+ * (the manifest canvas); `checkEntityCoverage` fails every beat that names an entity and shows none of them.
+ * A near-match does not count: "France" is not satisfied by a generic Europe map, only by France highlighted.
+ * Where it stops: this is the MANIFEST's answer. scripts/gemini-frame-review.js --entity-check asks Gemini the same
+ * question of the rendered frame, and the contact sheet is the last word.
+ */
+import { entityShape } from "./lib/entity-shape.mjs";
+import { quantitiesOf, knownPlacesOf } from "./canvas-grounding.js";
+import { resolveRegion } from "../src/skills/remotion-render/visual/geo-regions.js";
+
+const MONTH = "(?:January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sept?|Oct|Nov|Dec)";
+const DATE_RE = new RegExp(`\\b(?:${MONTH}\\.?\\s+(?:\\d{1,2}(?:st|nd|rd|th)?,?\\s+)?(?:1[89]|20)\\d{2}|${MONTH}\\.?\\s+\\d{1,2}(?:st|nd|rd|th)?\\b|(?:1[89]|20)\\d{2})\\b`, "g");
+const SPELLED = "one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|fifteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|a few|several|many";
+const SPAN_RE = new RegExp(`\\b(\\d[\\d,]*(?:\\.\\d+)?|${SPELLED})[-\\s]+(years?|months?|weeks?|days?|hours?|minutes?|decades?|centuries)\\b(?![-\\s]+old\\b)`, "gi");
+const FROM_TO_RE = new RegExp(`\\b(?:from|between)\\s+((?:1[89]|20)\\d{2})\\s+(?:to|and|until|through|[-\\u2013])\\s+((?:1[89]|20)\\d{2})\\b`, "i");
+
+// A nationality named as a place ("Greek", "Saudi", "Qatari") is its country: its flag or its map, not the word in a box
+// (board 38010438091 ch-26: "Greek" was set in type and Gemini's frame check said the entity was not shown).
+export const DEMONYM = Object.freeze({ greek: "Greece", french: "France", german: "Germany", chinese: "China", russian: "Russia", iranian: "Iran", israeli: "Israel", saudi: "Saudi Arabia", qatari: "Qatar", american: "United States", british: "United Kingdom", japanese: "Japan", indian: "India", italian: "Italy", spanish: "Spain", mexican: "Mexico", canadian: "Canada", ukrainian: "Ukraine", turkish: "Turkey", egyptian: "Egypt", brazilian: "Brazil", "south korean": "South Korea", korean: "South Korea", australian: "Australia", dutch: "Netherlands", swiss: "Switzerland", swedish: "Sweden", polish: "Poland", belgian: "Belgium", irish: "Ireland", pakistani: "Pakistan", emirati: "United Arab Emirates", malaysian: "Malaysia", nigerian: "Nigeria", "south african": "South Africa", argentine: "Argentina", venezuelan: "Venezuela", syrian: "Syria", iraqi: "Iraq", afghan: "Afghanistan", cuban: "Cuba", greek_cypriot: "Cyprus", norwegian: "Norway", danish: "Denmark", finnish: "Finland", portuguese: "Portugal", austrian: "Austria", hungarian: "Hungary", czech: "Czechia", romanian: "Romania", vietnamese: "Vietnam", thai: "Thailand", filipino: "Philippines", indonesian: "Indonesia", taiwanese: "Taiwan", lebanese: "Lebanon", jordanian: "Jordan", yemeni: "Yemen", kenyan: "Kenya", ethiopian: "Ethiopia", colombian: "Colombia", chilean: "Chile", peruvian: "Peru" });
+const placeName = (n) => DEMONYM[String(n || "").trim().toLowerCase()] || String(n || "").trim();
+const ORG = new Set(["organization", "company", "institution", "building", "outlet", "agency"]);
+export const typeOf = (t) => { const x = String(t || "").toLowerCase(); return ORG.has(x) ? "organization" : x === "person" || x === "place" ? x : x; };
+export const norm = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\b(the|of|a|an|and)\b/g, " ").replace(/\s+/g, " ").trim();
+/** Two names for one entity: equal, or one holds all the other's words ("Texas Rangers" ~ "the Texas Rangers"). */
+export function sameName(a, b) {
+  const x = norm(a), y = norm(b);
+  if (!x || !y) return false;
+  if (x === y) return true;
+  const tx = x.split(" "), ty = y.split(" ");
+  const [small, big] = tx.length <= ty.length ? [tx, ty] : [ty, tx];
+  return small.length >= 1 && small.every((w) => big.includes(w)) && small.join("").length >= 4;
+}
+
+/**
+ * Is this organisation cited as the sentence's SOURCE rather than its subject?
+ * "CNBC reported that prices climbed" / "according to CNBC" / "data from CNBC
+ * showed" — the frame is about the claim, and a chart answers it. Matched only
+ * in those attribution shapes, so "CNBC reported record profits" (the outlet
+ * is the subject) still requires the outlet's visual.
+ */
+const ATTRIB_AFTER = /\b(?:reported|reports|said|says|told|noted|notes|found|wrote|writes|cited|confirmed|estimates|estimated|projects|projected|predicts|predicted|announced|announces|showed|shows)\s+(?:that\b|,|:)/i;
+const ATTRIB_BEFORE = /\b(according to|as reported by|reported by|cited by|data from|figures from|numbers from|analysis by)\s*$/i;
+export function isAttributionSource(name, sentence) {
+  const s = String(sentence || "");
+  const n = String(name || "").trim();
+  if (!s || !n) return false;
+  const words = n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  const re = new RegExp(`(?:^|[^\\p{L}\\p{N}])${words}(?![\\p{L}\\p{N}])`, "giu");
+  for (const m of s.matchAll(re)) {
+    const after = s.slice(m.index + m[0].length);
+    if (ATTRIB_AFTER.test(after.match(/^\s*([^,;.!?]{0,40})/)?.[1] || "")) return true;
+    if (ATTRIB_BEFORE.test(s.slice(Math.max(0, m.index - 40), m.index))) return true;
+  }
+  return false;
+}
+
+/** The entities a beat's sentence names: [{ type, name, region? }] (person / organization / place / date / span / number). */
+export function entitiesOf({ sentence = "", named_entities = [], dropSources = false } = {}) {
+  const out = [];
+  const push = (e) => { if (e.name && !out.some((o) => o.type === e.type && sameName(o.name, e.name))) out.push(e); };
+  for (const e of Array.isArray(named_entities) ? named_entities : []) {
+    const type = typeOf(e?.type);
+    if (!["person", "place", "organization"].includes(type)) continue;
+    if (!entityShape(e.name, type === "organization" ? "institution" : type, sentence).ok) continue;   // scripts/lib/entity-shape.mjs: a specific named thing only
+    // A cited outlet is the SOURCE of the sentence, not what it is about
+    // (owner's "show the one the sentence is about", 2026-10-09). Run
+    // 39422270500 ch-2 beat 2 said "CNBC reported that gasoline prices
+    // climbed" and drew the gasoline-price chart: the coverage gate failed it
+    // because the organisation outranked the figure, even though the sentence
+    // is about the prices. The same words with the outlet as the SUBJECT
+    // ("The FBI joined the case") are still required.
+    if (dropSources && type === "organization" && isAttributionSource(e.name, sentence)) continue;
+    const nm = type === "place" ? placeName(e.name) : String(e.name).trim();
+    push({ type, name: nm, ...(type === "place" && resolveRegion(nm) ? { region: resolveRegion(nm) } : {}) });
+  }
+  for (const p of knownPlacesOf(sentence)) { const region = resolveRegion(p); if (region) push({ type: "place", name: p, region }); }
+  const text = String(sentence || "");
+  const spans = [...text.matchAll(SPAN_RE)].map((m) => ({ name: m[0].trim(), at: m.index, end: m.index + m[0].length }));
+  const ft = text.match(FROM_TO_RE);
+  if (ft) push({ type: "span", name: `${ft[1]}-${ft[2]}`, ends: [ft[1], ft[2]] });
+  for (const s of spans) push({ type: "span", name: s.name });
+  const inSpan = (i) => spans.some((s) => i >= s.at && i < s.end) || (ft && i >= ft.index && i < ft.index + ft[0].length);
+  for (const m of text.matchAll(DATE_RE)) if (!inSpan(m.index)) push({ type: "date", name: m[0] });
+  const dateAt = [...text.matchAll(DATE_RE)].map((m) => [m.index, m.index + m[0].length]);
+  for (const q of quantitiesOf(text)) {
+    const i = text.indexOf(q.value);
+    if (i < 0 || inSpan(i) || dateAt.some(([a, b]) => i >= a && i < b)) continue;
+    const v = q.value.trim();
+    // A figure the sentence STATES, not a count word or an identifier: "J-1 visa", "1 powerful program", "Directive 26-12".
+    if (/[A-Za-z]-$/.test(text.slice(Math.max(0, i - 2), i)) || /^\d{1,2}-\d/.test(text.slice(i))) continue;
+    if (/^[\d,.]+[-\s]*(?:year|month|week|day|hour|minute)s?\b/i.test(text.slice(i))) continue;   // an age or a duration modifier is a span, not a figure
+    if (!/[$€£%]|percent|thousand|million|billion|trillion|\b[kKmMbB]\b/i.test(v) && Number(v.replace(/[^\d.]/g, "")) < 10) continue;
+    push({ type: "number", name: v });
+  }
+  return out;
+}
+
+/** The entity the sentence is ABOUT, when it names several: person > organization > place > span > date > number. */
+// A stated figure outranks the span or date around it ("$53 million in six days" is about the money).
+const RANK = ["person", "organization", "place", "number", "span", "date"];
+export const primaryOf = (ents, hint = null) => (hint && ents.find((e) => sameName(e.name, hint))) || [...ents].sort((a, b) => RANK.indexOf(a.type) - RANK.indexOf(b.type))[0] || null;
+
+const digits = (s) => String(s || "").replace(/[^\d.]/g, "");
+const flatData = (d) => JSON.stringify(d || {}).toLowerCase();
+
+/** What the beat drew, from its manifest canvas: { kind, names[], regions[] } entries. */
+export function drawnOf(c) {
+  const out = [];
+  if (!c) return out;
+  if (c.photo) out.push({ kind: c.photo.kind === "person" || c.photo.view === "person" ? "portrait" : "photo", name: c.photo.entity, region: c.photo.region || null });
+  // The beat's resolved hero is a draw even before canvasContentFor() appends it
+  // to concept_visuals. The ladder read a beat with a logo hero and a date concept
+  // as "primary organisation uncovered", added a second date, and the retry drew
+  // date + date instead of the logo (board 39344506422 ch-2 beat 1).
+  if (c.hero_cutout?.name) out.push({ kind: c.hero_cutout.logo ? "logo" : c.hero_cutout.class === "cutout" ? "cutout" : c.hero_cutout.class || "visual", name: c.hero_cutout.name });
+  for (const v of c.concept_visuals || []) out.push({ kind: v.logo ? "logo" : v.class === "symbol" ? "symbol" : v.class === "cutout" ? "cutout" : v.class || "visual", name: v.name });
+  // A plates row carries SEVERAL named things, each with its own kind. It used to
+  // report every one of them as "plate-organization", which made a person or a
+  // place in the row unmatchable — board 38265869072 ch-5 beat 2 named two
+  // people, the ladder drew them as a plates row, and this read "draws
+  // plate-organization + plate-organization, none of it the entity". The kind
+  // says what a plate depicts, so it is recorded per entry and read back per
+  // entry. An entry with no recorded kind falls back to plate-organization,
+  // which is what the row meant before the kinds existed.
+  if (c.art?.kind === "plates" && Array.isArray(c.art.names)) {
+    c.art.names.forEach((nm, i) => out.push({ kind: c.art.items?.[i]?.asset ? "logo" : (c.art.kinds?.[i] || "plate-organization"), name: nm }));
+  } else if (c.art) {
+    const k = c.art.kind === "plate-organization" && c.art.items?.[0]?.asset ? "logo" : c.art.kind;
+    out.push({ kind: k === "flag" ? "flag" : k === "span" ? "span" : k === "date" ? "figure" : k, name: c.art.name, region: c.art.region || null, ends: c.art.ends || null, text: c.art.text || c.art.name });
+  }
+  if (c.composition === "MAP-CENTERED" && c.data?.place) out.push({ kind: "map", name: c.data.place, region: resolveRegion(c.data.place) });
+  if (["NUMBER-FULL", "NUMBER-STAT"].includes(c.composition) && c.data?.value) out.push({ kind: "figure", name: String(c.data.value), text: `${c.data.value} ${c.data.label || ""}` });
+  if (c.composition === "DATA-FULL" || c.composition === "COMPARISON-SPLIT" || c.composition === "TIMELINE" || c.composition === "LIST-BUILD" || c.composition === "PROCESS-FULL") out.push({ kind: "chart", name: c.visual_type, data: flatData(c.data) });
+  return out;
+}
+
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+
+/**
+ * Is `name` (a date the sentence states) actually on `shown`?
+ *
+ * With a year the year must be there. Without one — "November 12", "June 25" —
+ * the year cannot be required, because the sentence never gave one, so the MONTH
+ * and the DAY must both be present instead. Requiring both keeps this a real
+ * check: the day alone would match any figure that happens to carry that number.
+ */
+function dateShown(name, shown) {
+  const n = String(name || "").toLowerCase();
+  const s = String(shown || "").toLowerCase();
+  const y = (n.match(/(?:1[89]|20)\d{2}/) || [])[0];
+  if (y) return s.includes(y);
+  const month = MONTHS.find((m) => n.includes(m));
+  const day = (n.match(/\b(\d{1,2})\b/) || [])[1];
+  if (!month || !day) return false;
+  const dayN = String(Number(day));
+  const monthOk = s.includes(month) || s.includes(month.slice(0, 3));
+  const dayOk = new RegExp(`\\b0?${dayN}\\b`).test(s);
+  return monthOk && dayOk;
+}
+
+/** Is `e` shown by what the beat drew? { covered, by } — `by` names the visual that answers it. */
+export function coverageOf(c, e) {
+  const drawn = drawnOf(c);
+  const hit = (d, why) => ({ covered: true, by: `${d.kind}${d.name ? ` "${d.name}"` : ""}${why ? ` (${why})` : ""}` });
+  for (const d of drawn) {
+    if (e.type === "place") {
+      if (d.kind === "flag" && e.region && d.region === e.region) return hit(d, "flag");
+      if (d.kind === "map" && e.region && d.region === e.region) return hit(d, "highlighted");
+      if ((d.kind === "map" || d.kind === "photo" || d.kind === "plate-place") && !e.region && sameName(d.name, e.name)) return hit(d);
+      if (d.kind === "plate-place" && e.region && sameName(d.name, e.name)) return hit(d, "its name in type");
+      if (d.kind === "photo" && e.region && sameName(d.name, e.name)) return hit(d);
+    } else if (e.type === "person") {
+      if ((d.kind === "portrait" || d.kind === "photo" || d.kind === "plate-person") && sameName(d.name, e.name)) return hit(d);
+    } else if (e.type === "organization") {
+      if (["logo", "photo", "plate-organization", "cutout"].includes(d.kind) && sameName(d.name, e.name)) return hit(d);
+    } else if (e.type === "number") {
+      const want = digits(e.name);
+      // A figure's own text is the figure. A `figure` drawn as a row ENTRY
+      // carries its number in `name` instead (a plates row has no per-entry
+      // text), so the entry's name is matched too — without it a number in a
+      // row read as uncovered: board 38276419111 ch-26 beat 0 drew $672 million
+      // and 1,000 and reported "none of it the entity".
+      const text = d.text != null ? String(d.text) : d.kind === "figure" ? String(d.name || "") : "";
+      if (want && (digits(text).includes(want) || (d.data && d.data.includes(want)))) return hit(d, "the figure");
+    } else if (e.type === "date") {
+      // A DATE CARRIES A YEAR ONLY SOMETIMES. The year was required, so a date
+      // like "November 12" or "June 25" could never be matched at all — y was
+      // undefined, both guards failed, and a date that was plainly drawn was
+      // reported as not drawn. Board 38411644598:
+      //   ch-10 beat 2: date "November 12" - draws figure, none of it the entity
+      //   ch-8  beat 3: date "June 25"     - draws figure, none of it the entity
+      //
+      // WITH a year the year is still required, unchanged. WITHOUT one, the
+      // month and the day together are what identify the date, so BOTH must be
+      // present on the frame — the day alone would match any figure that happens
+      // to contain that number, which is exactly the mistake this check exists
+      // to catch. Month is matched by name or its first three letters, so "Jun"
+      // and "June" both count.
+      const y = (e.name.match(/(?:1[89]|20)\d{2}/) || [])[0];
+      if (d.kind === "figure" && d.text != null && dateShown(e.name, String(d.text))) return hit(d, y ? "date card" : "the date itself");
+      if (d.kind === "chart" && d.data && dateShown(e.name, String(d.data))) return hit(d, "timeline");
+    } else if (e.type === "span") {
+      if (d.kind === "span" && (sameName(d.name, e.name) || (e.ends && d.ends && e.ends.every((x) => d.ends.includes(x))))) return hit(d, "time scale");
+      if (d.kind === "chart" && e.ends && e.ends.every((x) => d.data && d.data.includes(x))) return hit(d, "timeline");
+    }
+  }
+  // An object the sentence names: any cutout / icon whose name shares a word with the entity.
+  return { covered: false, by: null };
+}
+
+/** Is the beat words only: typography with no picture, figure, photo, map, logo, plate or icon? */
+export function wordsOnly(c) {
+  if (!c) return true;
+  if (drawnOf(c).length) return false;
+  return true;
+}
+
+/**
+ * The gate. `beats`: [{ index, sentence, named_entities, canvas }] (a render manifest's beats, or a resolved plan's).
+ * Returns { failures: [{ beat, sentence, entities, why }], rows, wordsOnlyBeats }.
+ */
+/**
+ * A figure the beat itself asserts AS A TOTAL, over the figures the sentence
+ * states as parts of it.
+ *
+ * Board 38325399088 ch-6 beat 3: the challenger rejected the plan twice —
+ * "The visual displays the number 17, but the sentence specifies a total of 34
+ * people (17 researchers plus 17 crew members)". The frame was a NUMBER-FULL
+ * showing 17.
+ *
+ * The deterministic gate passed it — "beat 3: number:17 -> OK by figure '17'" —
+ * and that was right on its own terms: 17 IS on the frame, and 17 IS in the
+ * sentence. The gap was that the beat ASSERTS a total the frame never shows:
+ * its own overlay reads "34 Total Personnel". Nothing was checking that, because
+ * entitiesOf() reads the SENTENCE, and 34 does not appear in the sentence — it
+ * appears in the beat's stated figure. The check was reading the sentence and
+ * missing the claim.
+ *
+ * So this reads the real artifact: the canvas's own stated figure. A total is
+ * either named as one ("34 Total Personnel", "a total of 34") or is exactly the
+ * sum of two figures the sentence states as parts of it (17 + 17 = 34).
+ *
+ * Returns { total, parts } or null. Nothing here loosens a check: it ADDS a
+ * requirement, and only where the beat makes a claim the frame does not honour.
+ */
+export function statedTotalOf(c, sentence = "") {
+  const num = (s) => String(s == null ? "" : s).replace(/[^\d.]/g, "");
+  // The beat's own stated figure: what the frame asserts, not what it draws.
+  const claim = [c.headline, c.data?.value, c.data?.total, c.headline_text, c.text]
+    .map((x) => (x == null ? "" : typeof x === "object" ? JSON.stringify(x) : String(x)))
+    .join(" | ");
+  const said = [...quantitiesOf(sentence)].map((q) => q.value);
+  // With duplicates, because "17 researchers AND 17 crew" is two parts of 34 —
+  // deduping here is what made 17 + 17 read as one part and left 34 unsatisfiable.
+  const saidAll = said.map(num).filter((d) => d && Number.isFinite(Number(d)));
+  const saidDigits = [...new Set(saidAll)];
+  // The parts that actually sum to `total`, keeping duplicates: 17 + 17 is two
+  // parts of 34, and a deduped [17] could never satisfy "every part appears".
+  const claimDigits = [...claim.matchAll(/(\$?\d[\d,]*(?:\.\d+)?)/g)].map((m) => num(m[0]));
+  const partsFor = (total) => {
+    for (let x = 0; x < saidAll.length; x++) {
+      for (let y = x + 1; y < saidAll.length; y++) {
+        if ((Number(saidAll[x]) + Number(saidAll[y])).toString() === total) return [saidAll[x], saidAll[y]];
+      }
+    }
+    return null;
+  };
+  for (const m of claim.matchAll(/(\$?\d[\d,]*(?:\.\d+)?)/g)) {
+    const d = num(m[0]);
+    if (!d) continue;
+    const around = claim.slice(Math.max(0, m.index - 24), m.index + m[0].length + 24);
+    if (/\b(total|altogether|combined|in all|overall|sum)\b/i.test(around)) return { total: d, parts: partsFor(d) || saidDigits };
+  }
+  // A figure equal to the sum of two the sentence states is a total too, even
+  // when nothing calls it one: "17 researchers and 17 crew members" is 34 people
+  // whether or not the overlay bothers to say so.
+  for (const d of claimDigits) {
+    const parts = partsFor(d);
+    if (parts) return { total: d, parts };
+  }
+  return null;
+}
+
+/** The figures the frame actually shows, as digit strings. */
+function drawnFigures(c) {
+  const out = [];
+  for (const d of drawnOf(c)) {
+    const t = d.text != null ? String(d.text) : d.kind === "figure" || d.kind === "chart" ? String(d.data ?? d.name ?? "") : "";
+    for (const m of String(t).matchAll(/\d[\d,]*(?:\.\d+)?/g)) out.push(m[0].replace(/[^\d.]/g, ""));
+  }
+  // NOT deduped: the total rule counts occurrences, so a frame showing 17 once
+  // must not read as showing 17 twice.
+  return out.filter(Boolean);
+}
+
+export function checkEntityCoverage(beats) {
+  const failures = [], rows = [];
+  beats.forEach((b, i) => {
+    const c = b.canvas || {};
+    const sentence = String(b.sentence ?? c.sentence ?? b.narration ?? "");
+    const ents = entitiesOf({ sentence, named_entities: b.named_entities ?? c.named_entities ?? c.entities ?? [], dropSources: true });
+    const hint = c.photo?.entity || c.data?.entity || null;
+    const primary = primaryOf(ents, hint);
+    if (!ents.length) { rows.push({ beat: i, entities: [], covered: null, note: wordsOnly(c) ? "words only — names nothing" : "names nothing" }); return; }
+    const results = ents.map((e) => ({ e, ...coverageOf(c, e) }));
+    // THE HERO FIGURE MUST HONOUR A TOTAL THE BEAT ASSERTS. A component drawn
+    // alone does not answer "a total of 34": either the total is on the frame,
+    // or every part of it is (the two-ends rule, applied to arithmetic). Board
+    // 38325399088 ch-6 beat 3 — a NUMBER-FULL showing 17 against a beat whose
+    // own overlay reads "34 Total Personnel".
+    const tot = statedTotalOf(c, sentence);
+    let why = null;
+    if (tot) {
+      const shown = drawnFigures(c);
+      const totalShown = shown.includes(tot.total);
+      // Parts are a MULTISET: "17 researchers and 17 crew" needs two 17s on the
+      // frame, so one 17 must not satisfy both. Counting is what makes that true.
+      const countShown = (d) => shown.filter((x) => x === d).length;
+      const countWant = (d) => tot.parts.filter((x) => x === d).length;
+      const partsShown = tot.parts.length > 1 && tot.parts.every((p) => countShown(p) >= countWant(p));
+      if (!totalShown && !(tot.parts.length > 1 && partsShown)) {
+        why = `the beat asserts a total of ${tot.total} but the frame shows ${shown.length ? shown.join(" and ") : "no figure"} — the hero must be the total, or every part (${tot.parts.join(" + ")})`;
+      }
+    }
+    // The entity the sentence is ABOUT must be the one shown (owner, 2026-10-09: "if several entities, show the one the sentence is about"):
+    // a figure on screen does not answer a sentence about Experian (board 38010438091 ch-1, Gemini's frame check agreed).
+    const pr = primary ? results.find((r) => r.e === primary) : null;
+    // ...unless the beat DRAWS another entity it names (Texas highlighted for "the Texas Department of Public Safety"; a map, flag, photo,
+    // portrait, logo, cutout or plate): a figure or a chart alone does not stand in for the entity the sentence is about.
+    const ok = (pr ? pr.covered || results.some((r) => r.covered && /^(map|flag|photo|portrait|logo|cutout|plate-)/.test(String(r.by || ""))) : results.some((r) => r.covered)) && !why;
+    rows.push({ beat: i, entities: ents.map((e) => `${e.type}:${e.name}`), primary: primary ? `${primary.type}:${primary.name}` : null, covered: ok, by: results.find((r) => r.covered)?.by || null });
+    if (!ok) failures.push({ beat: i, sentence: sentence.slice(0, 120), entities: ents.map((e) => `${e.type} "${e.name}"`), why: why || (wordsOnly(c) ? "words only, but the sentence names an entity" : `draws ${drawnOf(c).map((d) => d.kind).join(" + ")}, none of it the entity`) });
+  });
+  return { failures, rows, wordsOnlyBeats: rows.filter((r) => r.note?.startsWith("words only")).length };
+}
+
+// node scripts/entity-coverage.js <resolved-plan.json | render-manifest.json>
+if (process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/\\/g, "/").split("/").pop())) {
+  const { readFileSync } = await import("node:fs");
+  const j = JSON.parse(readFileSync(process.argv[2], "utf8"));
+  const r = checkEntityCoverage(j.beats || []);
+  for (const row of r.rows) console.log(`beat ${row.beat}: ${row.entities.length ? `${row.entities.join(" | ")} -> ${row.covered ? `OK by ${row.by}` : "NOT COVERED"}` : row.note}`);
+  console.log(`${r.failures.length} beat(s) name an entity and show none of it${r.failures.length ? ":" : ""}`);
+  for (const f of r.failures) console.log(`  beat ${f.beat}: ${f.entities.join(", ")} — ${f.why} — "${f.sentence}"`);
+  process.exit(r.failures.length ? 1 : 0);
+}

@@ -1,0 +1,65 @@
+{
+  "channel_id": "10",
+  "topic_slug": "nicolas-flamel-philosophers-stone-will-history",
+  "format": "shorts",
+  "hook": "An exhibition opening at the Musée de Cluny reveals how Nicolas Flamel built his legendary wealth.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "An exhibition opening at the Musée de Cluny reveals how Nicolas Flamel built his legendary wealth.",
+      "b_roll": [
+        "Exterior shot of the Musée de Cluny in Paris"
+      ],
+      "text_overlay": {
+        "text": "The Real Nicolas Flamel"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Parisian records reveal ordinary medieval wealth instead of alchemical gold. Writers spent 600 years transforming him into a legend. Where did the manuscripts stored in the Science Museum come from?",
+      "b_roll": [
+        "Historical parchment documents in Paris archives",
+        "Archives of the Science Museum"
+      ],
+      "text_overlay": {
+        "text": "600 Years of Myth"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "New research into the will of Nicolas Flamel reveals the origins of his legend.",
+      "b_roll": [
+        "Close up of medieval handwriting on vellum"
+      ],
+      "text_overlay": {
+        "text": "The Lost Will"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Pernelle Flamel shared property records detailing actual investments. Le Trésor des Trésors preserved those notebooks around 1700. Opening day arrives on 13 October 2026.",
+      "b_roll": [
+        "Le Trésor des Trésors manuscript opened to an alchemical illustration",
+        "Exhibition gallery banner with date 13 October 2026"
+      ],
+      "text_overlay": {
+        "text": "October 13, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Visit the Paris exhibition opening on 13 October 2026 to see the documents yourself.",
+      "b_roll": [
+        "Interior view of exhibition display cases"
+      ],
+      "text_overlay": {
+        "text": "Musée de Cluny"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.medievalists.net/2026/10/nicolas-flamel-medieval-exhibition-paris",
+    "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone",
+    "https://artsandculture.google.com/story/nicolas-flamel-alchemy-and-the-legend-of-the-philosopher%E2%80%99s-stone-science-museum/jwXhqPSro7CIJQ?hl=en"
+  ]
+}

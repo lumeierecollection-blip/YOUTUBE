@@ -1,0 +1,751 @@
+{
+ "source": "CI run 37837731824 (board), ch-26 kishu-inu-founder-10m-crypto-rug-pull, rendered manifest — canvas fields the label counter reads; frames beat<i>-top.png are the top 620 px of each beat at frame start_frame+duration/2, scaled from the 810x1440 render (renderScale 0.75) to the 1080x1920 layout space, then quartered (270x155 = layout y 0-620)",
+ "fps": 30,
+ "beats": [
+  {
+   "index": 0,
+   "start_frame": 3,
+   "duration_frames": 156,
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "boxes": {
+     "rule": {
+      "x": 48,
+      "y": 141,
+      "w": 96,
+      "h": 6,
+      "role": "rule",
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "statement": {
+      "x": 48,
+      "y": 167,
+      "w": 898,
+      "h": 266,
+      "role": "headline",
+      "align": "left",
+      "rotate": null,
+      "size": 140,
+      "bleed": 0
+     },
+     "cutout0": {
+      "x": 220,
+      "y": 690,
+      "w": 640,
+      "h": 640,
+      "role": "concept",
+      "align": "center",
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "statement": [
+      {
+       "t": "Crypto",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "founder",
+       "weight": 700,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "indicted",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "for",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "theft",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": false
+    }
+   }
+  },
+  {
+   "index": 1,
+   "start_frame": 159,
+   "duration_frames": 177,
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "boxes": {
+     "rule": {
+      "x": 48,
+      "y": 130,
+      "w": 96,
+      "h": 6,
+      "role": "rule",
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "statement": {
+      "x": 48,
+      "y": 1040,
+      "w": 941,
+      "h": 228,
+      "role": "headline",
+      "align": "right",
+      "rotate": null,
+      "size": 240,
+      "bleed": 0
+     },
+     "lead_phrase": {
+      "x": 268,
+      "y": 1296,
+      "w": 721,
+      "h": 44,
+      "role": "data",
+      "align": "right",
+      "rotate": null,
+      "size": 40,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "statement": [
+      {
+       "t": "Kishu",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "Inu",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ],
+     "lead_phrase": [
+      {
+       "t": "MARKETING"
+      },
+      {
+       "t": "THE"
+      },
+      {
+       "t": "KISHU"
+      },
+      {
+       "t": "INU"
+      },
+      {
+       "t": "TOKEN"
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": true
+    }
+   }
+  },
+  {
+   "index": 2,
+   "start_frame": 336,
+   "duration_frames": 234,
+   "canvas": {
+    "composition": "DATA-FULL",
+    "boxes": {
+     "headline": {
+      "x": 48,
+      "y": 130,
+      "w": 692,
+      "h": 198,
+      "role": "headline",
+      "align": "left",
+      "rotate": null,
+      "size": 104,
+      "bleed": 0
+     },
+     "chart": {
+      "x": 240,
+      "y": 730,
+      "w": 600,
+      "h": 600,
+      "role": null,
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "number": {
+      "x": 48,
+      "y": 640,
+      "w": 320,
+      "h": 270,
+      "role": "number",
+      "align": "left",
+      "rotate": null,
+      "size": 300,
+      "bleed": 0,
+      "parts": {
+       "isQuantity": true,
+       "text": "6%"
+      }
+     },
+     "label": {
+      "x": 48,
+      "y": 934,
+      "w": 283,
+      "h": 40,
+      "role": "data",
+      "align": "left",
+      "rotate": null,
+      "size": 36,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "headline": [
+      {
+       "t": "Secret",
+       "weight": 700,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "control",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "of",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "token",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "supply",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ],
+     "label": [
+      {
+       "t": "TOTAL"
+      },
+      {
+       "t": "SUPPLY"
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": false
+    }
+   }
+  },
+  {
+   "index": 3,
+   "start_frame": 570,
+   "duration_frames": 87,
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "boxes": {
+     "rule": {
+      "x": 48,
+      "y": 130,
+      "w": 96,
+      "h": 6,
+      "role": "rule",
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "headline": {
+      "x": 48,
+      "y": 170,
+      "w": 649,
+      "h": 84,
+      "role": "headline",
+      "align": "right",
+      "rotate": null,
+      "size": 88,
+      "bleed": 0
+     },
+     "emphasis": {
+      "x": 48,
+      "y": 890,
+      "w": 980,
+      "h": 450,
+      "role": "emphasis",
+      "align": "left",
+      "rotate": null,
+      "size": 500,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "headline": [
+      {
+       "t": "How",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "did",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "he",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "hide",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "it?",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": true
+    }
+   }
+  },
+  {
+   "index": 4,
+   "start_frame": 657,
+   "duration_frames": 140,
+   "canvas": {
+    "composition": "TYPE-SPLIT",
+    "boxes": {
+     "headline": {
+      "x": 48,
+      "y": 130,
+      "w": 436,
+      "h": 105,
+      "role": "headline",
+      "align": "left",
+      "rotate": null,
+      "size": 110,
+      "bleed": 0
+     },
+     "statement": {
+      "x": 506,
+      "y": 1131,
+      "w": 526,
+      "h": 209,
+      "role": "headline",
+      "align": "right",
+      "rotate": null,
+      "size": 110,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "headline": [
+      {
+       "t": "Dumping",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      }
+     ],
+     "statement": [
+      {
+       "t": "unallocated",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "tokens",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": true
+    }
+   }
+  },
+  {
+   "index": 5,
+   "start_frame": 797,
+   "duration_frames": 157,
+   "canvas": {
+    "composition": "NUMBER-FULL",
+    "boxes": {
+     "headline": {
+      "x": 269,
+      "y": 130,
+      "w": 763,
+      "h": 182,
+      "role": "headline",
+      "align": "right",
+      "rotate": null,
+      "size": 96,
+      "bleed": 0
+     },
+     "label": {
+      "x": 509,
+      "y": 1252,
+      "w": 523,
+      "h": 88,
+      "role": "data",
+      "align": "right",
+      "rotate": null,
+      "size": 40,
+      "bleed": 0
+     },
+     "number": {
+      "x": 541,
+      "y": 737,
+      "w": 491,
+      "h": 487,
+      "role": "number",
+      "align": "right",
+      "rotate": null,
+      "size": 518,
+      "bleed": 0,
+      "parts": {
+       "isQuantity": true,
+       "text": "10 million"
+      }
+     }
+    },
+    "words": {
+     "headline": [
+      {
+       "t": "Illicit",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "profit",
+       "weight": 700,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "from",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "the",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "scheme",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ],
+     "label": [
+      {
+       "t": "MILLION"
+      },
+      {
+       "t": "DOLLARS"
+      },
+      {
+       "t": "ILLICIT"
+      },
+      {
+       "t": "PROFIT"
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": false
+    }
+   }
+  },
+  {
+   "index": 6,
+   "start_frame": 954,
+   "duration_frames": 141,
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "boxes": {
+     "rule": {
+      "x": 48,
+      "y": 142,
+      "w": 96,
+      "h": 6,
+      "role": "rule",
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "statement": {
+      "x": 48,
+      "y": 168,
+      "w": 750,
+      "h": 198,
+      "role": "headline",
+      "align": "left",
+      "rotate": null,
+      "size": 104,
+      "bleed": 0
+     },
+     "cutout0": {
+      "x": 220,
+      "y": 690,
+      "w": 640,
+      "h": 640,
+      "role": "concept",
+      "align": "center",
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "statement": [
+      {
+       "t": "Charged",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "with",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "wire",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "fraud",
+       "weight": 700,
+       "accent": false,
+       "emph": false
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": false
+    }
+   }
+  },
+  {
+   "index": 7,
+   "start_frame": 1095,
+   "duration_frames": 146,
+   "canvas": {
+    "composition": "TYPE-FULL",
+    "boxes": {
+     "rule": {
+      "x": 48,
+      "y": 130,
+      "w": 96,
+      "h": 6,
+      "role": "rule",
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "statement": {
+      "x": 48,
+      "y": 1147,
+      "w": 616,
+      "h": 167,
+      "role": "headline",
+      "align": "center",
+      "rotate": null,
+      "size": 88,
+      "bleed": 0
+     },
+     "underline": {
+      "x": 176,
+      "y": 1328,
+      "w": 360,
+      "h": 4,
+      "role": "rule",
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "statement": [
+      {
+       "t": "Investors",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      },
+      {
+       "t": "left",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "with",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "worthless",
+       "weight": 700,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "assets",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": true
+    }
+   }
+  },
+  {
+   "index": 8,
+   "start_frame": 1241,
+   "duration_frames": 138,
+   "canvas": {
+    "composition": "PROCESS-FULL",
+    "boxes": {
+     "headline": {
+      "x": 48,
+      "y": 130,
+      "w": 717,
+      "h": 209,
+      "role": "headline",
+      "align": "left",
+      "rotate": null,
+      "size": 110,
+      "bleed": 0
+     },
+     "nodes0": {
+      "x": 48,
+      "y": 640,
+      "w": 380,
+      "h": 380,
+      "role": null,
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     },
+     "nodes1": {
+      "x": 652,
+      "y": 960,
+      "w": 380,
+      "h": 380,
+      "role": null,
+      "align": null,
+      "rotate": null,
+      "size": null,
+      "bleed": 0
+     }
+    },
+    "words": {
+     "headline": [
+      {
+       "t": "Check",
+       "weight": 700,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "Kishu",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "Inu",
+       "weight": 500,
+       "accent": false,
+       "emph": false
+      },
+      {
+       "t": "supply",
+       "weight": 700,
+       "accent": true,
+       "emph": true
+      }
+     ]
+    },
+    "chrome": {
+     "label": null,
+     "pull_phrase": null,
+     "type_led": false
+    }
+   }
+  }
+ ]
+}

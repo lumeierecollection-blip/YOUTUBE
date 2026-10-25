@@ -42,7 +42,7 @@ const MODELS = [
   "opencode/mimo-v2.5-free",
   "mistral/ministral-3b-latest",
   "groq/llama-3.1-8b-instant",
-  "google/gemini-2.5-flash-lite",
+  "google/gemini-3.5-flash-lite",
   "cerebras/gpt-oss-120b",
 ];
 const MAX_RETRIES = 2;

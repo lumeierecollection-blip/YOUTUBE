@@ -1,0 +1,68 @@
+{
+  "channel_id": "6",
+  "topic_slug": "baltimore-1986-cold-case-indictment",
+  "format": "shorts",
+  "hook": "Murder charges arrived nearly forty years after a Baltimore park killing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Murder charges arrived nearly forty years after a Baltimore park killing.",
+      "b_roll": [
+        "Archival photograph of Druid Hill Park in the 1980s",
+        "Close-up of historical police report documents"
+      ],
+      "text_overlay": {
+        "text": "1986 Cold Case Indictment"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 1986, 23-year-old Teresa Ann Houck died inside Druid Hill Park. State prosecutors announced murder and rape indictments for the crime. Where was the suspect hiding?",
+      "b_roll": [
+        "Map view of Druid Hill Park in Baltimore",
+        "Portrait photograph of victim Teresa Ann Houck"
+      ],
+      "text_overlay": {
+        "text": "Druid Hill Park, 1986"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except 67-year-old David Alexander Williams was already an incarcerated man in Maryland.",
+      "b_roll": [
+        "Exterior shot of a Maryland correctional facility",
+        "Document showing inmate records"
+      ],
+      "text_overlay": {
+        "text": "Already Incarcerated"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Baltimore City State's Attorney Ivan J. Bates connected the inmate. Handgun charges followed the 1986 murder indictment.",
+      "b_roll": [
+        "Press conference podium of Baltimore State's Attorney Ivan J. Bates",
+        "Forensic evidence files on a desk"
+      ],
+      "text_overlay": {
+        "text": "New Indictment Filed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Sixty-seven-year-old David Alexander Williams faces trial for the 1986 murder.",
+      "b_roll": [
+        "Courtroom exterior in Baltimore City",
+        "Archival newspaper clipping of the 1986 investigation"
+      ],
+      "text_overlay": {
+        "text": "Trial Pending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cbsnews.com/baltimore/news/1986-baltimore-cold-case-suspect-indicted-murder-rape-handgun",
+    "https://www.stattorney.org/news-media/press-releases/charges-announced-1986-cold-case-homicide",
+    "https://foxbaltimore.com/news/local/man-in-prison-murder-indicted-baltimore-dancer-1986-killing-rape"
+  ]
+}

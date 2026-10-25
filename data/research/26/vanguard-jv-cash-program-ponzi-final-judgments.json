@@ -1,0 +1,92 @@
+{
+  "topic_slug": "vanguard-jv-cash-program-ponzi-final-judgments",
+  "strongest_angle": "An in-depth breakdown of how the SEC secured final judgments against Robert Welsh and Caedrynn Conner for orchestrating the $91 million Vanguard JV Cash Program Ponzi scheme.",
+  "key_facts": [
+    {
+      "fact": "The Securities and Exchange Commission announced on October 7, 2026, that final consent judgments were entered against Robert D. Welsh and Caedrynn E. Conner for an alleged $91 million Ponzi scheme.",
+      "source_url": "https://financialist.com/news/sec-final-judgments-vanguard-jv-cash-program-ponzi-welsh-conner-october-2026",
+      "source_name": "Financialist News",
+      "confidence": "high"
+    },
+    {
+      "fact": "A federal judge in Texas ordered Caedrynn E. Conner to pay over $8 million in disgorgement regarding his involvement in the Vanguard JV Cash Program.",
+      "source_url": "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must",
+      "source_name": "The Financial Wire",
+      "confidence": "high"
+    },
+    {
+      "fact": "The SEC charged Kenneth W. Alexander II, Robert D. Welsh, and Caedrynn E. Conner with defrauding over 200 investors through a fake international bond trading business.",
+      "source_url": "https://fraudslapper.com/case/US-SEC-LR-26668",
+      "source_name": "Fraud Slapper",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. District Court for the Eastern District of Texas entered final consent judgments on September 28, 2026, against Dallas Fort Worth residents Robert D. Welsh and Caedrynn E. Conner.",
+      "source_url": "https://news.edgaranalyst.com/story/sec-secures-final-judgments-in-alleged-91-million-ponzi-scheme",
+      "source_name": "Financial News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total scheme amount",
+      "value": 91000000,
+      "unit": "dollars",
+      "source_url": "https://financialist.com/news/sec-final-judgments-vanguard-jv-cash-program-ponzi-welsh-conner-october-2026"
+    },
+    {
+      "label": "Number of investors",
+      "value": 200,
+      "unit": "investors",
+      "source_url": "https://financialist.com/news/sec-final-judgments-vanguard-jv-cash-program-ponzi-welsh-conner-october-2026"
+    },
+    {
+      "label": "Caedrynn Conner disgorgement",
+      "value": 8575250,
+      "unit": "dollars",
+      "source_url": "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must"
+    },
+    {
+      "label": "Caedrynn Conner total penalty approx",
+      "value": 10400000,
+      "unit": "dollars",
+      "source_url": "https://financialist.com/news/sec-final-judgments-vanguard-jv-cash-program-ponzi-welsh-conner-october-2026"
+    },
+    {
+      "label": "Robert Welsh total penalty approx",
+      "value": 1700000,
+      "unit": "dollars",
+      "source_url": "https://financialist.com/news/sec-final-judgments-vanguard-jv-cash-program-ponzi-welsh-conner-october-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Robert D. Welsh",
+      "kind": "person"
+    },
+    {
+      "name": "Caedrynn E. Conner",
+      "kind": "person"
+    },
+    {
+      "name": "Kenneth W. Alexander II",
+      "kind": "person"
+    },
+    {
+      "name": "Securities and Exchange Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "Vanguard JV Cash Program",
+      "kind": "object"
+    },
+    {
+      "name": "U.S. District Court for the Eastern District of Texas",
+      "kind": "place"
+    },
+    {
+      "name": "Dallas Fort Worth",
+      "kind": "place"
+    }
+  ]
+}

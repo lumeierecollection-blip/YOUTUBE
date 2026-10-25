@@ -1,7 +1,10 @@
 // node scripts/test-entity-sync.mjs — word-level sync for entity visuals (src/skills/remotion-render/visual/entity-sync.js).
-import { entityAnchor, scheduleEntityPop, normWord, digitsOf, POP_IN } from "../src/skills/remotion-render/visual/entity-sync.js";
+import { entityAnchor, scheduleEntityPop, normWord, digitsOf, POP_IN, MAX_POP_FRAME } from "../src/skills/remotion-render/visual/entity-sync.js";
 import { popGroups } from "../src/skills/remotion-render/visual/pop-groups.js";
-import { canvasLayout } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { canvasLayout, TEXT_GRID } from "../src/skills/remotion-render/visual/canvas-layout.js";
+// The band order below (header in the top band, the entity visual in the middle) is the PRE-GRID arrangement; under the text grid
+// (owner, 2026-10-10) the words stand with the visual in the middle band and pop with it. Tested with the grid off.
+TEXT_GRID.on = false;
 
 let bad = 0;
 const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.stringify(want); if (!ok) bad++; console.log(`${ok ? "ok  " : "FAIL"} ${name} -> ${JSON.stringify(got)}${ok ? "" : ` (want ${JSON.stringify(want)})`}`); };
@@ -27,7 +30,7 @@ eq("an anchor at frame 0 pops at frame 0 (never negative)", scheduleEntityPop(mi
 
 // A word at the very end of the beat pops 8 frames earlier, and never past dur - 15.
 const late = scheduleEntityPop(miami, [{ text: "Then", from: 0, to: 80 }, { text: "Miami.", from: 110, to: 119 }], 120);
-eq("a word in the last 0.5 s pops 8 frames earlier, within the beat", [late.frame, late.frame <= 120 - 15], [Math.min(110 - POP_IN - 8, 105), true]);
+eq("a word in the last 0.5 s pops 8 frames earlier, within the beat, and never later than MAX_POP_FRAME (the screen is never static)", [late.frame, late.frame <= 120 - 15], [Math.min(110 - POP_IN - 8, 105, MAX_POP_FRAME), true]);
 
 // Not found: reported, never a failure.
 eq("anchor not spoken -> missing (the renderer pops at the beat start)", scheduleEntityPop(aliyev, words("The president spoke today"), 120).missing, "aliyev");
@@ -50,7 +53,9 @@ eq("a plain statement has no entity", scheduleEntityPop({ composition: "TYPE-FUL
   const g = popGroups(c, canvasLayout(c));
   eq("portrait beat: headline group at 0, portrait group at its word", g.map((x) => `${x.key}@${x.at}`), ["top@0", "middle@29"]);
   const s = { visual_type: "PHOTO", composition: "SCENE-FULL", headline: "The city held its vote", photo: { asset: "x.jpg", entity: "Miami", view: "scene" }, entity_pop: { frame: 45, kind: "photo" } };
-  eq("full-bleed beat: header at 0, the photo on its word", popGroups(s, canvasLayout(s)).map((x) => `${x.key}@${x.at}`), ["top@0", "photo@44"]);
+  // The photo ARRIVES on its word (44) but is the BOTTOM paint layer: PopGroups paints in array order, and a photo appended last was drawn over
+  // the headline, so the words vanished when it popped (board 38044082797 ch 1 beat 7).
+  eq("full-bleed beat: the photo is the first (bottom) layer and pops on its word; the header keeps frame 0", popGroups(s, canvasLayout(s)).map((x) => `${x.key}@${x.at}`), ["photo@44", "top@0"]);
   const n = { ...c, entity_pop: undefined };
   eq("no entity_pop: the old order (beat-level)", popGroups(n, canvasLayout(n)).map((x) => `${x.key}@${x.at}`), ["top@0", "middle@8"]);
 }

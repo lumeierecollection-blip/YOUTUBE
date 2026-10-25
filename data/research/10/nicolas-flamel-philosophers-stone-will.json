@@ -1,0 +1,72 @@
+{
+  "topic_slug": "nicolas-flamel-philosophers-stone-will",
+  "strongest_angle": "Recent historical analysis of Nicolas Flamel's will at the Musée de Cluny reveals that his legendary status as an alchemist was a later fabrication, contrasting with his actual life as a wealthy medieval Parisian.",
+  "key_facts": [
+    {
+      "fact": "The Musée de Cluny in Paris is hosting an exhibition from 13 October 2026 to 24 January 2027 that examines the historical reality of Nicolas Flamel.",
+      "source_url": "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559",
+      "source_name": "Musée de Cluny - musée national du Moyen Âge",
+      "confidence": "high"
+    },
+    {
+      "fact": "A manuscript purported to be the last will and testament of Nicolas Flamel was originally dated to 1414, though scholars believe it was likely composed in the 18th century.",
+      "source_url": "https://openn.library.upenn.edu/Data/0002/html/mscodex1706.html",
+      "source_name": "OPenn: University of Pennsylvania Libraries",
+      "confidence": "high"
+    },
+    {
+      "fact": "Writers and scientists have been fascinated by the myth of Nicolas and Pernelle Flamel for 600 years, according to reporting by the BBC.",
+      "source_url": "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone",
+      "source_name": "BBC Future",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year the testament was purportedly written",
+      "value": 1414,
+      "unit": "year",
+      "source_url": "https://openn.library.upenn.edu/Data/0002/html/mscodex1706.html"
+    },
+    {
+      "label": "Centuries of fascination with the Flamel myth",
+      "value": 600,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/future/article/20261008-the-true-story-of-alchemist-nicholas-flamel-and-the-philosophers-stone"
+    },
+    {
+      "label": "Exhibition start day",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559"
+    },
+    {
+      "label": "Exhibition start year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://s3.fr-par.scw.cloud/cluny-p0-bucket/public/2026-07/PR-Nicolas%20Flamel%2C%20alchemist%20of%20paper-DEF.pdf?VersionId=1784292730590559"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Nicolas Flamel",
+      "kind": "person"
+    },
+    {
+      "name": "Pernelle Flamel",
+      "kind": "person"
+    },
+    {
+      "name": "Musée de Cluny",
+      "kind": "organization"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    },
+    {
+      "name": "Ms. Codex 1706",
+      "kind": "object"
+    }
+  ]
+}

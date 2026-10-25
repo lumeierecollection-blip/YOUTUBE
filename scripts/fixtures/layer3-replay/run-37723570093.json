@@ -1,0 +1,16 @@
+{
+  "source": "CI run 37723570093 (ch-05): the render manifest's beat timings (rendered-5-37723570093) and Layer 3's weak_beats from both attempts (eval-audit-5-37723570093, layer3/5/*.jsonl), verbatim",
+  "manifest": { "beats": [
+    { "index": 0, "start_sec": 0.1, "duration_sec": 4.23 }, { "index": 1, "start_sec": 4.33, "duration_sec": 7.23 },
+    { "index": 2, "start_sec": 11.57, "duration_sec": 5.53 }, { "index": 3, "start_sec": 17.1, "duration_sec": 5.27 },
+    { "index": 4, "start_sec": 22.37, "duration_sec": 2.77 }, { "index": 5, "start_sec": 25.13, "duration_sec": 5.77 },
+    { "index": 6, "start_sec": 30.9, "duration_sec": 4.53 }, { "index": 7, "start_sec": 35.43, "duration_sec": 4.93 },
+    { "index": 8, "start_sec": 40.37, "duration_sec": 6.2 }, { "index": 9, "start_sec": 46.57, "duration_sec": 4 }
+  ] },
+  "weak_beats": [
+    { "timestamp": "00:17", "axis": "style_coherence", "element": "ground", "finding": "Inconsistent background tone", "reason": "Sudden transition from dark theme to stark white background breaks the visual flow." },
+    { "timestamp": "00:25", "axis": "composition", "element": "composition", "finding": "Abrupt visual contrast", "reason": "Frequent switching between dark and light backgrounds causes jarring visual jumps." },
+    { "timestamp": "00:00", "axis": "style_coherence", "element": "ground", "finding": "Dark background color does not match the channel's light canvas specification." },
+    { "timestamp": "00:25", "axis": "composition", "element": "composition", "finding": "Asymmetric and unbalanced text layout creates awkward negative space." }
+  ]
+}

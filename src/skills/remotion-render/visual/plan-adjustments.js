@@ -150,6 +150,13 @@ function setBeatMechanism(b, mechanism) {
 
 /** Does this beat carry an on-screen narrative phrase? */
 export function beatHasPhrase(b) {
+  // canvas.headline FIRST, for the same reason clearBeatPhrase clears it: that
+  // is the field the renderer draws. Reading only the plan's typography
+  // fields made REDUCE_TEXT_BEATS believe it had removed a phrase that was
+  // still on screen, so it kept ranking beats by a count the frame never
+  // agreed with (board 38177554641 ch-1, 4 directives applied, nothing moved).
+  const canvasText = b.canvas && (b.canvas.headline || b.canvas.hero_headline);
+  if (String(canvasText || "").trim()) return true;
   const td = b.typography_direction;
   const phrase = (td && td.phrase) || b.visual_headline || "";
   return String(phrase).trim().length > 0;
@@ -166,11 +173,45 @@ export function beatHasPhrase(b) {
  * the auditor measured an identical text-beat share every time (67% ch2,
  * 100% ch9, 60% ch26). Figures and units are left alone — those are data,
  * not a phrase.
+ *
+ * And clearing the PLAN's fields was not enough either, which is why the
+ * board was still red after the text inventory started reading the canvas.
+ * Board 38177554641 ch-1: attempt 1 applied "at most 3 beats carry text" plus
+ * "beat 0/1/7 draw no on-screen phrase", and the headline-dominated share went
+ * 50% -> 75%. render-and-qa.js's own guard said why — "the 4 applied
+ * directive(s) change nothing a beat renders from". This function emptied
+ * typography_direction, visual_headline and objects.*, but a beat's headline
+ * is built from `canvas.headline`, and every composition in canvas-layout.js
+ * reads that (c.headline, ~30 call sites). Clearing a field the renderer never
+ * looks at is the same proxy/artifact error as everything the text inventory
+ * had: the directive was verified against the plan, the frames came from the
+ * canvas. Verified "no narrative line remains" against the plan too, which
+ * agreed with the plan and disagreed with the video.
+ *
+ * So the canvas is cleared too. This is the field the renderer draws, and the
+ * only reason to keep the plan-level clears is that some compositions still
+ * fall back to visual_headline when the canvas is absent.
  */
 function clearBeatPhrase(b) {
   b.typography_direction = null;
   b.visual_headline = "";
   if (b.scene && b.scene.typography) b.scene.typography = null;
+  // THE CANVAS IS WHAT RENDERS. canvas-layout.js builds every composition's
+  // headline box from `c.headline` — `String(c.headline || "")` at each of its
+  // ~30 composition branches — so a plan-level clear leaves the frame exactly
+  // as it was. `hero_headline` is the same string promoted to the opening
+  // beat; `lead_in` and `label`/`pull_phrase` are the other narrative chrome
+  // a beat can carry, and REMOVE_TYPOGRAPHY means "this beat has no phrase",
+  // not "this beat keeps its sub-line".
+  if (b.canvas && typeof b.canvas === "object") {
+    b.canvas.headline = "";
+    b.canvas.hero_headline = "";
+    b.canvas.lead_in = null;
+    b.canvas.label = null;
+    b.canvas.pull_phrase = null;
+    b.canvas.emphasis_word = null;
+    b.canvas.emphasis_words = null;
+  }
   if (b.objects) {
     for (const key of NARRATIVE_OBJECT_KEYS) {
       if (b.objects[key]) b.objects[key] = "";

@@ -43,7 +43,7 @@ export const SYMBOL_WORDS = Object.freeze({
 });
 export const MAX_CONCEPTS = 3;
 // Not objects: a free-form concept containing one of these is dropped (a camera cannot photograph "economy").
-const ABSTRACT = new Set(["economy", "growth", "policy", "market", "markets", "impact", "strategy", "strategies", "plan", "law", "laws", "rights", "right", "risk", "crisis", "future", "change", "changes", "rule", "rules", "system", "process", "issue", "problem", "idea", "value", "trend", "trends", "debate", "conflict", "tension", "tensions", "security", "inflation", "demand", "supply", "cost", "costs", "price", "prices", "rate", "rates", "trust", "fraud", "scheme", "case", "decision", "ruling", "study", "report", "data", "research"]);    // one primary + up to two secondary
+export const ABSTRACT = new Set(["economy", "growth", "policy", "market", "markets", "impact", "strategy", "strategies", "plan", "law", "laws", "rights", "right", "risk", "crisis", "future", "change", "changes", "rule", "rules", "system", "process", "issue", "problem", "idea", "value", "trend", "trends", "debate", "conflict", "tension", "tensions", "security", "inflation", "demand", "supply", "cost", "costs", "price", "prices", "rate", "rates", "trust", "fraud", "scheme", "case", "decision", "ruling", "study", "report", "data", "research"]);    // one primary + up to two secondary
 
 const words = (s) => new Set(String(s || "").toLowerCase().replace(/[$]/g, " dollar ").split(/[^a-z0-9]+/).filter(Boolean)
   .flatMap((w) => (w.length > 3 && w.endsWith("s") && !w.endsWith("ss") ? [w, w.slice(0, -1)] : [w])));

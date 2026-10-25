@@ -1,0 +1,64 @@
+{
+  "channel_id": "10",
+  "topic_slug": "ideaanchor-llm-research-ideas",
+  "format": "shorts",
+  "hook": "Can you believe IdeaAnchor reads multiple papers to generate novel research?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Can you believe IdeaAnchor reads multiple papers to generate novel research?",
+      "b_roll": [
+        "A digital interface displaying academic papers."
+      ],
+      "text_overlay": {
+        "text": "New AI Research Tool"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, researchers like Ziyu Chen introduced IdeaAnchor. IdeaAnchor fixes how prompting lacks structured supervision for synthesis. How does IdeaAnchor build new ideas from multiple papers?",
+      "b_roll": [
+        "Portrait of researchers working in a university lab.",
+        "A complex network diagram connecting multiple research documents."
+      ],
+      "text_overlay": {
+        "text": "October 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Standard models rely on basic feedback, but IdeaAnchor utilizes structured specifications.",
+      "b_roll": [
+        "Code scrolling on a dark monitor screen."
+      ],
+      "text_overlay": {
+        "text": "Structured Specifications"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ziyu Chen mined published papers to supervise large language models. IdeaAnchor successfully builds novel ideation out of input research documents.",
+      "b_roll": [
+        "A glowing neural network processing text files.",
+        "A split screen showing papers transforming into structured data."
+      ],
+      "text_overlay": {
+        "text": "Automated Ideation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the arXiv paper to explore IdeaAnchor today.",
+      "b_roll": [
+        "An open browser window displaying an academic preprint."
+      ],
+      "text_overlay": {
+        "text": "Read the Paper"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://arxiv.science/abs/2610.08781",
+    "https://arxiv.org/html/2610.08781"
+  ]
+}

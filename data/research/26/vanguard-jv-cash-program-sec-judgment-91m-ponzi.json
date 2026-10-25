@@ -1,0 +1,74 @@
+{
+  "topic_slug": "vanguard-jv-cash-program-sec-judgment-91m-ponzi",
+  "strongest_angle": "Examine how the $91 million Vanguard JV Cash Program defrauded over 200 investors, resulting in substantial final judgments against key perpetrators.",
+  "key_facts": [
+    {
+      "fact": "The Securities and Exchange Commission charged Dallas-Fort Worth residents Kenneth W. Alexander II, Robert D. Welsh, and Caedrynn E. Conner for operating a Ponzi scheme that raised at least $91 million from more than 200 investors.",
+      "source_url": "https://www.sec.gov/newsroom/press-releases/2025-71",
+      "source_name": "U.S. Securities and Exchange Commission",
+      "confidence": "high"
+    },
+    {
+      "fact": "A federal judge in Texas ordered Caedrynn E. Conner to pay $8,575,250 in disgorgement over his part in a Ponzi scheme pitched as the Vanguard JV Cash Program.",
+      "source_url": "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must",
+      "source_name": "The Financial Wire",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The U.S. District Court for the Eastern District of Texas entered final consent judgments on September 28, 2026, against Dallas-Fort Worth residents Robert D. Welsh and Caedrynn E. Conner.",
+      "source_url": "https://news.edgaranalyst.com/story/sec-secures-final-judgments-in-alleged-91-million-ponzi-scheme",
+      "source_name": "Financial News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total raised in scheme",
+      "value": 91000000,
+      "unit": "dollars",
+      "source_url": "https://www.sec.gov/newsroom/press-releases/2025-71"
+    },
+    {
+      "label": "Number of investors defrauded",
+      "value": 200,
+      "unit": "investors",
+      "source_url": "https://www.sec.gov/newsroom/press-releases/2025-71"
+    },
+    {
+      "label": "Caedrynn Conner disgorgement amount",
+      "value": 8575250,
+      "unit": "dollars",
+      "source_url": "https://thefinancialwire.com/one-defendant-in-a-91-million-ponzi-scheme-pitched-as-the-vanguard-jv-cash-program-must"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Kenneth W. Alexander II",
+      "kind": "person"
+    },
+    {
+      "name": "Robert D. Welsh",
+      "kind": "person"
+    },
+    {
+      "name": "Caedrynn E. Conner",
+      "kind": "person"
+    },
+    {
+      "name": "Securities and Exchange Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "Dallas-Fort Worth",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. District Court for the Eastern District of Texas",
+      "kind": "organization"
+    },
+    {
+      "name": "Vanguard JV Cash Program",
+      "kind": "object"
+    }
+  ]
+}

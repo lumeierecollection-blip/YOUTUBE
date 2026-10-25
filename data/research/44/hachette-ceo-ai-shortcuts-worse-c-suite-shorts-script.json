@@ -1,0 +1,66 @@
+{
+  "channel_id": "44",
+  "topic_slug": "hachette-ceo-ai-shortcuts-worse-c-suite",
+  "format": "shorts",
+  "hook": "Did you know 68 percent of leaders in the U.S. use AI?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know 68 percent of leaders in the U.S. use AI?",
+      "b_roll": [
+        "Corporate office desk with glowing computer screen showing artificial intelligence summary tools"
+      ],
+      "text_overlay": {
+        "text": "Worse C-Suite?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Hachette CEO David Shelley writes every single email himself to avoid shortcut traps? What happens when 68 percent of leaders in the U.S. and U.K. use AI?",
+      "b_roll": [
+        "Executive typing on a laptop keyboard in a modern glass office",
+        "Data visualization chart showing rising percentage statistics on a monitor",
+        "Close-up of a corporate executive staring thoughtfully at a computer screen"
+      ],
+      "text_overlay": {
+        "text": "68% Summarize Documents"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "David Shelley warns that reliance on AI summaries creates a worse C-suite.",
+      "b_roll": [
+        "Office worker deleting text on a glowing digital display"
+      ],
+      "text_overlay": {
+        "text": "Critical Thinking"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "58 percent of leaders let artificial intelligence draft emails instead of doing it. David Shelley shows that real leadership requires doing the work yourself.",
+      "b_roll": [
+        "Publisher CEO reviewing printed manuscript pages at a large wooden desk",
+        "Digital workflow diagram highlighting decision-making nodes crashing",
+        "Executive closing a laptop in a quiet boardroom"
+      ],
+      "text_overlay": {
+        "text": "The Real Cost of AI"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Write every email yourself like David Shelley at Hachette.",
+      "b_roll": [
+        "Fountain pen writing on white paper inside a corporate office"
+      ],
+      "text_overlay": {
+        "text": "Write Every Email"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://fortune.com/2026/10/13/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite",
+    "https://jbiznews.com/hachettes-ceo-writes-every-email-himself-he-says-ai-shortcuts-are-creating-a-worse-c-suite"
+  ]
+}

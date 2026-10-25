@@ -27,17 +27,30 @@ eq("approval -> checkmark", V.symbolFor("The board approved the merger."), "chec
 eq("no stated meaning -> null", V.symbolFor("The meeting is on Tuesday."), null);
 eq("key nouns: first and last noun-like content words", V.keyNouns("Leadership now means listening to customers."), ["Leadership", "customers"]);
 {
+  // The key-nouns last resort is off by default (CI runs 37803694366 / 37810883817: every
+  // one beat-check looked at failed); COMPOSITION_KEYNOUNS=on restores it.
   const f = V.fallbacksFor("Higher rates lead to fewer home sales, a risk for builders.");
-  eq("fallback order: process, trend, symbol, keynouns", f.map((x) => x.kind), ["process", "trend", "symbol", "keynouns"]);
+  eq("fallback order: process, trend, symbol (key nouns off)", f.map((x) => x.kind), ["process", "trend", "symbol"]);
+  eq("a pure abstraction gets no fallback by default (stays TYPE)", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), []);
+  process.env.COMPOSITION_KEYNOUNS = "on";
+  eq("fallback order with key nouns on: process, trend, symbol, keynouns", V.fallbacksFor("Higher rates lead to fewer home sales, a risk for builders.").map((x) => x.kind), ["process", "trend", "symbol", "keynouns"]);
+  eq("key nouns on: a pure abstraction gets only the last resort", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), ["keynouns"]);
+  delete process.env.COMPOSITION_KEYNOUNS;
 }
-eq("a pure abstraction gets only the last resort", V.fallbacksFor("Strong leadership changes company culture.").map((x) => x.kind), ["keynouns"]);
 eq("one noun-like word: no fallback at all (the beat stays TYPE, logged)", V.fallbacksFor("This changes everything about leadership.").map((x) => x.kind), []);
 
-// C.4: entrance styles never repeat on consecutive beats.
+// C.4: the planner's entrance styles stand as written; only a beat it left open is filled, and a
+// filled beat differs from its neighbour. (Before: the planner's "together, together" was rewritten.)
 {
   const s = V.assignEntranceStyles(["together", "together", "bogus", "staggered", "staggered"]);
-  eq("entrance styles", s, ["together", "staggered", "visual-first", "staggered", "visual-first"]);
-  eq("no two consecutive the same", s.every((x, i) => i === 0 || x !== s[i - 1]), true);
+  eq("entrance styles: the planner's kept, the open one filled", s, ["together", "together", "visual-first", "staggered", "staggered"]);
+  const f = V.assignEntranceStyles([null, null, null, null]);
+  eq("left open: none repeats its neighbour", f.every((x, i) => i === 0 || x !== f[i - 1]), true);
+}
+// Task 5.4: the planner's animation family stands; an open beat is filled.
+{
+  const a = V.assignAnimationFamilies([{ visual_type: "TYPE", animation_family: "slide-in" }, { visual_type: "TYPE", animation_family: "slide-in" }, { visual_type: "COUNTER" }]);
+  eq("animation families: the planner's kept", a, ["slide-in", "slide-in", "count-up"]);
 }
 
 console.log(bad ? `${bad} FAILED` : "all pass");
