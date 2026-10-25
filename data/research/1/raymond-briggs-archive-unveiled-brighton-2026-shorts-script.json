@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "raymond-briggs-archive-unveiled-brighton-2026",
+  "format": "shorts",
+  "hook": "Project archivist Chris Olver spent nine months cataloguing personal illustrations in Brighton.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Project archivist Chris Olver spent nine months cataloguing personal illustrations in Brighton.",
+      "visual_cue": "Close up shot of archival sketches resting on a wooden table in Brighton.",
+      "sfx_cue": "Subtle paper rustling sound effect.",
+      "b_roll": [
+        "Archival sketchbooks on a wooden table"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "The Secret Archives of Raymond Briggs"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:15",
+      "voiceover": "Funding from The National Archives Archives Revealed grant made the project possible.",
+      "visual_cue": "Medium shot of Chris Olver working inside The Keep facility in Brighton.",
+      "sfx_cue": "Quiet ambient room tone.",
+      "b_roll": [
+        "The Keep building exterior in Brighton",
+        "Archivist sorting documents"
+      ],
+      "animation_cue": "Subtle push in",
+      "transition_out": "Wipe",
+      "text_overlay": {
+        "text": "The Keep, Brighton"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:22",
+      "voiceover": "October 2026 brought the unveiling of Raymond Briggs' personal archive at The Keep in Brighton.",
+      "visual_cue": "Archival archive boxes stacked on metal shelving units.",
+      "sfx_cue": "Low atmospheric drone.",
+      "b_roll": [
+        "Archive storage room shelves"
+      ],
+      "animation_cue": "Pan right",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Unveiled October 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:22-0:35",
+      "voiceover": "Fungus the Bogeyman joined The Snowman and Father Christmas in the October 2026 unveiling. Chris Olver spent 9 months cataloguing Raymond Briggs' early illustrations at The Keep in Brighton.",
+      "visual_cue": "Detailed shot of opened illustrated pages showing Fungus the Bogeyman characters.",
+      "sfx_cue": "Page turning sound effect.",
+      "b_roll": [
+        "Fungus the Bogeyman original illustrations"
+      ],
+      "animation_cue": "Zoom into illustration detail",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Fungus the Bogeyman"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:35-0:42",
+      "voiceover": "Chris Olver catalogued Raymond Briggs' personal archive over 9 months in Brighton.",
+      "visual_cue": "Wide shot of archival book display case inside The Keep.",
+      "sfx_cue": "Soft chime sound effect.",
+      "b_roll": [
+        "Archival exhibition display"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "The Snowman"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thekeep.info/raymond-briggs-cataloguing-project",
+    "https://www.bbc.co.uk/news/articles/cmy835y313qpo"
+  ]
+}
