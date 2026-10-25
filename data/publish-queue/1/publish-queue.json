@@ -153,5 +153,17 @@
     "cancelled": true,
     "source_file": "aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "tfw1dRMCxbI",
+    "channel_id": "1",
+    "title": "The Newly Unveiled Archive of The Snowman Creator Raymond…",
+    "uploaded_at": "2026-10-25T13:34:07.061Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-25T14:34:07.061Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "raymond-briggs-archive-unveiled-brighton-2026-shorts-shorts-2026-10-25.mp4",
+    "source_queue": "approved-review"
   }
 ]
