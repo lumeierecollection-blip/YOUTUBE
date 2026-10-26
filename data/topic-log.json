@@ -3992,9 +3992,14 @@
           "topic": "University of Michigan Unveils Haptic Steering Wheel for Semi-Autonomous Driving",
           "slug": "university-of-michigan-haptic-steering-wheel-semi-autonomous",
           "reserved_at": "2026-10-24T12:45:09.093Z"
+        },
+        {
+          "topic": "Amplified Trunk-Head Contribution to Whole-Body Angular Momentum",
+          "slug": "trunk-head-angular-momentum-perturbed-conditions",
+          "reserved_at": "2026-10-26T15:23:59.476Z"
         }
       ],
-      "last_generated": "2026-10-25T13:16:49.326Z"
+      "last_generated": "2026-10-26T15:23:59.477Z"
     },
     "49": {
       "channel_name": "Picture House",
