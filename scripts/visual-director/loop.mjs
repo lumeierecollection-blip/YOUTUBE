@@ -47,16 +47,114 @@ export function essentialMissing(report) {
 }
 
 /** A critique document (critic.json shape) from material failures, so the director reads one format. */
-export function materialsCritique(missing, round) {
-  return { schema_version: 1, round, source: "materials", status: "complete",
+export function materialsCritique(missing, round, verified = [], gateFailures = []) {
+  return { schema_version: 1, round, source: "materials", status: "complete", verified_materials: verified, gate_failures: gateFailures,
     scenes: missing.map((m) => ({ beat_index: m.beat_index, status: "answered", verdict: "REBUILD", effective_verdict: "REBUILD",
       answer: { beat_index: m.beat_index, verdict: "REBUILD", delete_reason: null,
-        what_to_change: `These essential materials could not be found or verified: ${m.missing.map((x) => typeof x === "string" ? x : (x.must_show ? `"${x.must_show}"${x.why ? ` (${x.why})` : ""}` : (x.id || JSON.stringify(x)))).join("; ")}. Rebuild the scene around what CAN be shown with real, verified material; never a look-alike.` } })) };
+        what_to_change: `These essential materials could not be found or verified: ${m.missing.map((x) => typeof x === "string" ? x : (x.must_show ? `"${x.must_show}"${x.why ? ` (${x.why})` : ""}` : (x.id || JSON.stringify(x)))).join("; ")}. Rebuild the scene around what CAN be shown with real, verified material; never a look-alike. ${verified.length ? `Reuse one of the ${verified.length} material(s) already verified in this video (listed above) by copying its exact id, must_show and search; do not ask for a generic "collection of ...".` : "Name a specific person, object or place an archive can actually hold."}` } })) };
 }
 
 /** Beats to re-direct after a critic pass. Pure; tested. */
 export function beatsToRebuild(critic) {
   return (critic?.scenes || []).filter((s) => s.effective_verdict === "REBUILD" || s.effective_verdict === "DELETE").map((s) => s.beat_index);
+}
+
+/** Every material already verified in a resolved direction, with where it sits. Pure; tested. */
+export function verifiedMaterials(direction) {
+  const out = [];
+  for (const b of direction?.beats || []) for (const s of b.shots || []) for (const m of s.materials || []) {
+    if (m?.resolved?.status !== "verified") continue;
+    out.push({ beat_index: b.beat_index, shot_id: s.id, material_id: m.id, kind: m.kind, must_show: m.must_show,
+      search: m.search || [], data: m.data ?? null, source_url: m.resolved.source_url || null,
+      file: m.resolved.file || null, license: m.resolved.license || null, credit: m.resolved.credit || null });
+  }
+  return out;
+}
+
+const normShow = (s) => String(s || "").toLowerCase().replace(/\s+/g, " ").trim();
+
+/**
+ * A materials redirect must not throw away pictures that were already verified. For every
+ * material in the rebuilt beats that reuses a verified material's id (or its exact must_show),
+ * copy the verified kind/search/data/resolved across so the resolver does not have to find it
+ * again. This is what stops a repair from replacing a verified data material with a second
+ * unfindable "collection of ..." photo (run 40395669599, ch-1 b4). Pure; tested.
+ */
+export function reuseVerifiedMaterials(direction, previous, targets = null) {
+  const pool = verifiedMaterials(previous);
+  const byId = new Map(pool.map((m) => [m.material_id, m]));
+  const byShow = new Map(pool.map((m) => [normShow(m.must_show), m]));
+  const reused = [];
+  const beats = (direction.beats || []).map((b) => {
+    if (targets && !targets.includes(b.beat_index)) return b;
+    const shots = (b.shots || []).map((s) => ({ ...s, materials: (s.materials || []).map((m) => {
+      if (m?.resolved?.status === "verified") return m;
+      const v = byId.get(m.id) || byShow.get(normShow(m.must_show));
+      if (!v) return m;
+      reused.push({ beat_index: b.beat_index, shot_id: s.id, material_id: m.id, reused_from: v.material_id, must_show: v.must_show });
+      return { ...m, kind: v.kind, must_show: v.must_show, search: v.search, ...(v.data ? { data: v.data } : {}),
+        resolved: { status: "verified", file: v.file, source_url: v.source_url, license: v.license, credit: v.credit,
+          verdict: `reused verified material ${v.material_id}` } };
+    }) }));
+    return { ...b, shots };
+  });
+  return { direction: { ...direction, beats }, reused };
+}
+
+/**
+ * Last-resort corrective edit: when a beat still has an unfindable shot but at least one shot
+ * whose materials are all verified, drop the unfindable shots and re-time the real ones to the
+ * beat's full duration. A beat with no verified shot is left untouched so the renderer refuses
+ * it loudly instead of the loop inventing a picture. Pure; tested.
+ */
+export function pruneUnverifiedShots(direction) {
+  const pruned = [];
+  const beats = (direction.beats || []).map((b) => {
+    const shots = b.shots || [];
+    const keep = [], drop = [];
+    for (const s of shots) {
+      const ok = (s.materials || []).length > 0 && (s.materials || []).every((m) => m?.resolved?.status === "verified");
+      (ok ? keep : drop).push(s);
+    }
+    if (!drop.length || !keep.length) return b;
+    const span = Math.max(0.01, (Number(b.t_end) || 0) - (Number(b.t_start) || 0));
+    const total = keep.reduce((a, s) => a + (Number(s.duration_s) || 0), 0);
+    let acc = 0;
+    const rescaled = keep.map((s, i) => {
+      const d = i === keep.length - 1 ? +(span - acc).toFixed(3)
+        : +(total > 0 ? (Number(s.duration_s) || 0) / total * span : span / keep.length).toFixed(3);
+      acc += d;
+      return { ...s, duration_s: d };
+    });
+    pruned.push({ beat_index: b.beat_index,
+      dropped: drop.map((s) => ({ shot_id: s.id, materials: (s.materials || []).map((m) => ({ id: m.id, must_show: m.must_show, status: m.resolved?.status || "missing" })) })),
+      kept: keep.map((s) => s.id), duration_s: span });
+    return { ...b, shots: rescaled };
+  });
+  return { direction: { ...direction, beats }, pruned };
+}
+
+/** A materials report that matches a pruned direction, keeping the surviving materials' evidence. */
+export function reportForPruned(direction, previous, pruned = []) {
+  const old = new Map((previous?.materials || []).map((m) => [`${m.beat_index}/${m.shot_id}/${m.material_id}`, m]));
+  const materials = [], beats = [];
+  for (const b of direction.beats || []) {
+    const missing = [];
+    for (const s of b.shots || []) for (const m of s.materials || []) {
+      const r = m.resolved || { status: "missing", verdict: "not resolved" };
+      const key = `${b.beat_index}/${s.id}/${m.id}`;
+      materials.push({ ...(old.get(key) || {}), beat_index: b.beat_index, shot_id: s.id, material_id: m.id, kind: m.kind,
+        must_show: m.must_show, status: r.status, why_missing: r.status === "verified" ? null : (r.verdict || null),
+        chosen: r.status === "verified" ? { file: r.file, url: old.get(key)?.chosen?.url || null, source_url: r.source_url,
+          license: r.license, credit: r.credit, verdict: r.verdict } : null });
+      if (r.status !== "verified") missing.push({ shot_id: s.id, material_id: m.id, must_show: m.must_show, status: r.status, why: r.verdict });
+    }
+    beats.push({ beat_index: b.beat_index, sentence: b.sentence, ok: !missing.length, essential_missing: missing });
+  }
+  const count = (s) => materials.filter((m) => m.status === s).length;
+  return { ...previous, schema_version: 1, summary: { materials: materials.length, verified: count("verified"),
+    missing: count("missing"), unverified: count("unverified"), beats_with_essential_missing: beats.filter((b) => !b.ok).map((b) => b.beat_index) },
+    beats, materials, pruned_shots: pruned };
 }
 
 /** Take only `targets` from `next`; everything else stays byte-identical to `prev`. Pure; tested. */
@@ -240,45 +338,82 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
       rec.rebuilt = []; report.stop_reason = `round ${round} rebuild failed the gate`; break;
     }
 
-    // 3) materials; beats with essential material missing go back to the director once, before render
+    // 3) materials; beats with essential material missing go back to the director before render.
+    // A redirect replaces only the beats that still miss material, and a rebuilt beat keeps every
+    // material that was already verified (reuseVerifiedMaterials). Up to VD_MATERIAL_REDIRECTS
+    // repairs (default 2) are tried. If a beat still has an unfindable shot but also a real verified
+    // shot, the unfindable shot is pruned and the real one is held for the beat's full duration. A
+    // beat with no real shot is left for the renderer to refuse loudly; the loop never invents one.
     let resolved = join(rd, "direction.resolved.json"), matReport = join(rd, "materials-report.json");
     const m = await steps.resolve({ direction: dirPath, out: resolved, assetsDir, report: matReport, research, log });
     if (!m.ok || !existsSync(resolved)) { rec.error = `materials resolve failed (exit ${m.status})`; report.stop_reason = rec.error; break; }
-    const missing = existsSync(matReport) ? essentialMissing(readJson(matReport)) : [];
+    let missing = existsSync(matReport) ? essentialMissing(readJson(matReport)) : [];
     rec.materials_missing = missing;
-    if (missing.length) {
-      const mc = materialsCritique(missing, round);
-      const mcPath = join(rd, "materials-critique.json");
+    rec.materials_redirects = [];
+    const maxRedirects = +(process.env.VD_MATERIAL_REDIRECTS || 2);
+    for (let attempt = 1; missing.length && attempt <= maxRedirects; attempt++) {
+      if (clock() - t0 > maxMs) { rec.materials_redirect_stop = `VD_MAX_MS ${maxMs} reached before redirect ${attempt}`; break; }
+      const sfx = attempt === 1 ? "" : `.${attempt}`;
+      const ids = [...new Set(missing.map((x) => x.beat_index))];
+      const verified = verifiedMaterials(readJson(resolved));
+      const mc = materialsCritique(missing, round, verified, rec.gate_failures || []);
+      const mcPath = join(rd, `materials-critique${sfx}.json`);
       writeJson(mcPath, mc);
-      const raw2 = join(rd, "direction.materials-redirect.raw.json");
-      const ids = missing.map((x) => x.beat_index);
+      const raw2 = join(rd, `direction.materials-redirect${sfx}.raw.json`);
       copyFileSync(resolved, raw2);
+      const a = { attempt, beats: ids, missing_before: missing.length, verified: verified.length };
       const d2 = await steps.direct({ script, research, tts, channel, out: raw2, critique: mcPath, beats: ids, log });
-      if (d2.ok && existsSync(raw2)) {
-        const s2 = spliceBeats(readJson(resolved), readJson(raw2), ids, { round, critique: mc });
-        const dir2 = join(rd, "direction.materials-redirect.json");
-        writeJson(dir2, s2.direction);
-        const g2 = await steps.gate({ direction: dir2, script, research, tts, log, report: join(rd, "gate.materials-redirect.json") });
-        rec.materials_redirect_gate = g2.ok ? "pass" : "fail";
-        // Record mode renders a gate-failing round on purpose (the critic and the MP4 are the
-        // evidence). A material redirect must follow the same rule: its whole point is to replace
-        // pictures that do not exist, and a gate failure elsewhere must not throw that away. The
-        // redirect's own failures become the round's, so APPROVED still requires a clean gate.
-        if (g2.ok || gateMode === "record") {
-          const res2 = join(rd, "direction.resolved.2.json"), rep2 = join(rd, "materials-report.2.json");
-          const m2 = await steps.resolve({ direction: dir2, out: res2, assetsDir, report: rep2, research, log });
-          if (m2.ok && existsSync(res2)) {
-            resolved = res2; matReport = rep2;
-            rec.materials_redirected = ids;
-            rec.materials_missing_after_redirect = existsSync(rep2) ? essentialMissing(readJson(rep2)) : [];
-            if (!g2.ok) {
-              rec.gate_ok = false;
-              rec.gate_recorded_only = true;
-              rec.gate_failures = parseGateFailures(g2.stdout + "\n" + g2.stderr);
-            }
-          }
+      if (!d2.ok || !existsSync(raw2)) { a.error = `direct exit ${d2.status}`; rec.materials_redirects.push(a); rec.materials_redirect_error = a.error; break; }
+      const s2 = spliceBeats(readJson(resolved), readJson(raw2), ids, { round, critique: mc });
+      const reuse = reuseVerifiedMaterials(s2.direction, readJson(resolved), ids);
+      const dir2 = join(rd, `direction.materials-redirect${sfx}.json`);
+      writeJson(dir2, reuse.direction);
+      a.reused = reuse.reused;
+      const g2 = await steps.gate({ direction: dir2, script, research, tts, log, report: join(rd, `gate.materials-redirect${sfx}.json`) });
+      a.gate = g2.ok ? "pass" : "fail";
+      rec.materials_redirect_gate = a.gate;
+      // Record mode renders a gate-failing round on purpose (the critic and the MP4 are the
+      // evidence). A material redirect must follow the same rule: its whole point is to replace
+      // pictures that do not exist, and a gate failure elsewhere must not throw that away. The
+      // redirect's own failures become the round's, so APPROVED still requires a clean gate.
+      if (!g2.ok && gateMode !== "record") { a.error = "redirect failed the gate"; rec.materials_redirects.push(a); rec.materials_redirect_error = a.error; break; }
+      const res2 = join(rd, `direction.resolved.${attempt + 1}.json`), rep2 = join(rd, `materials-report.${attempt + 1}.json`);
+      const m2 = await steps.resolve({ direction: dir2, out: res2, assetsDir, report: rep2, research, log });
+      if (!m2.ok || !existsSync(res2)) { a.error = `materials resolve failed (exit ${m2.status})`; rec.materials_redirects.push(a); rec.materials_redirect_error = a.error; break; }
+      resolved = res2; matReport = rep2;
+      missing = existsSync(rep2) ? essentialMissing(readJson(rep2)) : [];
+      a.missing_after = missing.length;
+      rec.materials_redirects.push(a);
+      rec.materials_redirected = [...new Set([...(rec.materials_redirected || []), ...ids])];
+      rec.materials_missing_after_redirect = missing;
+      if (!g2.ok) {
+        rec.gate_ok = false;
+        rec.gate_recorded_only = true;
+        rec.gate_failures = parseGateFailures(g2.stdout + "\n" + g2.stderr);
+      }
+    }
+    // Last-resort corrective edit: drop a shot whose material does not exist when the beat still
+    // has a verified shot; hold the real shot for the beat's full duration. The pruned timeline
+    // and its own materials report are the evidence, and QA inspects the resulting frames.
+    if (missing.length) {
+      const pr = pruneUnverifiedShots(readJson(resolved));
+      rec.materials_prune_candidates = pr.pruned;
+      if (pr.pruned.length) {
+        const prunedDir = join(rd, "direction.pruned.json"), prunedReport = join(rd, "materials-report.final.json");
+        writeJson(prunedDir, pr.direction);
+        writeJson(prunedReport, reportForPruned(pr.direction, existsSync(matReport) ? readJson(matReport) : {}, pr.pruned));
+        const gp = await steps.gate({ direction: prunedDir, script, research, tts, log, report: join(rd, "gate.pruned.json") });
+        rec.materials_pruned = pr.pruned;
+        rec.materials_prune_gate = gp.ok ? "pass" : "fail";
+        if (!gp.ok) {
+          rec.gate_ok = false;
+          rec.gate_recorded_only = true;
+          rec.gate_failures = parseGateFailures(gp.stdout + "\n" + gp.stderr);
         }
-      } else rec.materials_redirect_error = `direct exit ${d2.status}`;
+        resolved = prunedDir; matReport = prunedReport;
+        missing = essentialMissing(readJson(prunedReport));
+        rec.materials_missing_after_prune = missing;
+      }
     }
     rec.direction = resolved; rec.materials_report = matReport;
     current = readJson(resolved);

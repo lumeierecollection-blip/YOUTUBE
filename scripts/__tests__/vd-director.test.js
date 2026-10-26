@@ -145,11 +145,20 @@ test("material-unfindable: a screenshot / webpage / docs page is not a picture a
     "the company homepage",
     "Claude Platform Docs pricing table",
     "a VentureBeat article by Carl Franzen about Claude Haiku 5.5",
+    // Run 40395669599: the redirect replaced docs with props that exist only in the direction.
+    "a carved wooden badge representing Anthropic",
+    "a sculpted ceramic model representing Claude Haiku 5.5",
+    "a paired ceramic artifact symbolizing GPT-6 Luna",
   ]) {
     const d = good(); d.beats[2].shots[0].materials[0].must_show = must;
     const f = failsOn(d, "material-unfindable");
     assert.equal(f.length, 1, must); assert.equal(f[0].beat_index, 2, must);
   }
+  // kind:data is a sourced number, not a downloaded picture: its must_show may name documentation.
+  const data = good(); const dm = data.beats[2].shots[0].materials[0];
+  dm.kind = "data"; dm.must_show = "Anthropic platform documentation pricing table";
+  dm.data = { values: [{ label: "price", value: 0.1, unit: "dollars", source_url: "https://example.org/x" }] };
+  assert.deepEqual(failsOn(data, "material-unfindable"), []);
   // A query is judged too: a real must_show with a dead search still resolves to nothing.
   const d = good(); d.beats[2].shots[0].materials[0].search = ["Anthropic pricing webpage screenshot"];
   assert.match(failsOn(d, "material-unfindable")[0].detail, /webpage|screenshot/i);
@@ -304,6 +313,26 @@ test("re-direct: only the critiqued beats change; every other beat is byte-ident
   assert.equal(direction.beats[2].critic_history.length, 1);
   assert.equal(direction.beats[2].critic_history[0].verdict.verdict, "DELETE");
   assert.match(direction.beats[2].mechanism.construction, /^Two engravings/);
+});
+
+test("materials repair prompt names verified materials and the gate failures that killed the last answer", async () => {
+  const previous = good();
+  const critique = {
+    source: "materials",
+    verified_materials: [{ material_id: "m4s1", kind: "data", must_show: "Hittite royal archive with 184 total tablets", beat_index: 4, source_url: "https://example.org/archive" }],
+    gate_failures: [{ beat_index: 2, rule: "material-unfindable", detail: "\"documentation\" is a screen or document, not a picture an archive holds" }],
+    scenes: [{ beat_index: 2, status: "answered", effective_verdict: "REBUILD", verdict: "REBUILD",
+      answer: { verdict: "REBUILD", what_to_change: "These essential materials could not be found or verified: \"a docs page\". Rebuild the scene around real material." } }],
+  };
+  const m = mockModel();
+  await direct({ scriptPath: SCRIPT, researchPath: RESEARCH, ttsDir: TTS, channelId: "1", previous, critique, beats: [2], callModel: m, log: quiet, model: "fixture" });
+  const p = m.calls[0];
+  assert.match(p, /MATERIALS REPAIR FOR THESE BEATS/);
+  assert.match(p, /VERIFIED MATERIALS ALREADY IN THIS VIDEO/);
+  assert.match(p, /Hittite royal archive with 184 total tablets/);
+  assert.match(p, /YOUR PREVIOUS ANSWER FAILED THESE CHECKS/);
+  assert.match(p, /documentation/);
+  assert.doesNotMatch(p, /Do NOT patch it/, "a materials repair is not a critic rejection");
 });
 
 test("re-direct refuses beats outside the narration and a missing previous direction", async () => {

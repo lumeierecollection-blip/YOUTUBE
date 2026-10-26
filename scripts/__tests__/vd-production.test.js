@@ -99,6 +99,7 @@ test("buildManifest records run, commit, generation, timeline version+sha and th
     qa: { ...qaPass(), probe: { ok: true, duration: 4 }, black: [], freeze: [], volume: { mean_db: -20 } },
     terminal: "APPROVED", qaReport: join(d, "qa.json"), contactSheet: join(d, "sheet.jpg"), comparison: join(d, "comparison.md"),
     timelineSha256: "abc123", gateFailures: [],
+    prunedShots: [{ beat_index: 0, dropped: [{ shot_id: "b0s2" }], kept: ["b0s1"] }],
   });
   assert.equal(m.terminal_state, "APPROVED");
   assert.equal(m.run_id, "123");
@@ -114,6 +115,8 @@ test("buildManifest records run, commit, generation, timeline version+sha and th
   assert.equal(m.qa.deterministic_pass, true);
   assert.equal(m.qa.probe.duration, 4);
   assert.deepEqual(m.qa.gate_failures, []);
+  assert.deepEqual(m.timeline.pruned_shots, [{ beat_index: 0, dropped: [{ shot_id: "b0s2" }], kept: ["b0s1"] }]);
+  assert.equal(m.qa.pruned_shots.length, 1);
 });
 
 test("imageCredits: only verified materials, deduped, credit or license+url", () => {

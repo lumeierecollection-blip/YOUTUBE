@@ -174,7 +174,7 @@ export function imageCredits(materials) {
 }
 
 /** Build the manifest that travels with the MP4 and into the QA report. */
-export function buildManifest({ runId, source, generation, channel, script, research, video, direction, shotsDoc, sfxDoc, materials, materialsPath, critic, loopReport, qa, terminal, qaReport, contactSheet, comparison, timelineSha256 = null, gateFailures = [] }) {
+export function buildManifest({ runId, source, generation, channel, script, research, video, direction, shotsDoc, sfxDoc, materials, materialsPath, critic, loopReport, qa, terminal, qaReport, contactSheet, comparison, timelineSha256 = null, gateFailures = [], prunedShots = [] }) {
   const beats = direction?.beats || [];
   const shots = shotsDoc?.shots || [];
   return {
@@ -202,6 +202,7 @@ export function buildManifest({ runId, source, generation, channel, script, rese
       camera_moves: [...new Set(shots.map((s) => s.move).filter(Boolean))],
       transitions: [...new Set(shots.map((s) => s.transition_out || "cut"))],
       beat_windows: beats.map((b) => ({ beat_index: b.beat_index, t_start: b.t_start, t_end: b.t_end, family: b.mechanism?.family, shots: (b.shots || []).length })),
+      pruned_shots: prunedShots,
     },
     effects: {
       shots: shots.length,
@@ -228,6 +229,7 @@ export function buildManifest({ runId, source, generation, channel, script, rese
       scenes: (critic?.scenes || []).map((s) => ({ beat_index: s.beat_index, status: s.status, verdict: s.verdict, effective_verdict: s.effective_verdict, escalated: s.escalated || null })),
       whole_video: critic?.whole_video || null,
       gate_failures: gateFailures,
+      pruned_shots: prunedShots,
       report: qaReport ? rel(qaReport) : null,
     },
     contact_sheet: contactSheet ? rel(contactSheet) : null,
@@ -301,6 +303,7 @@ export async function runProduction({ channel, scriptOverride = null, runId = pr
   const direction = readJson(directionPath);
   const materialsPath = last.materials_report;
   const materials = exists(materialsPath) ? readJson(materialsPath) : null;
+  const prunedShots = materials?.pruned_shots || last.materials_pruned || [];
   const critic = last.critic;
   const roundDir = join(outDir, `round-${last.round}`);
   const framesPath = join(roundDir, "frames", "frames-index.json");
@@ -328,7 +331,7 @@ export async function runProduction({ channel, scriptOverride = null, runId = pr
     runId, source, generation, channel, script, research, video: last.video, direction, shotsDoc, sfxDoc,
     materials, materialsPath, critic, loopReport, qa, terminal, qaReport: qaPath,
     contactSheet: last.contact_sheet, comparison: join(outDir, "comparison.md"),
-    timelineSha256, gateFailures,
+    timelineSha256, gateFailures, prunedShots,
   });
   const manifestPath = join(outDir, `${slug}-manifest.json`);
   writeJson(manifestPath, manifest);
@@ -340,6 +343,7 @@ export async function runProduction({ channel, scriptOverride = null, runId = pr
     failed_stage: failure.stage, failed_check: failure.check,
     deterministic: qa.checks, critic: { status: critic?.status || "absent", approved: criticApproved(critic), scenes: manifest.qa.scenes, whole_video: manifest.qa.whole_video },
     gate_failures: gateFailures,
+    pruned_shots: prunedShots,
     asset_coverage: materials?.summary || null,
     rounds: loopReport.rounds.map((r) => ({ round: r.round, rebuilt: r.rebuilt, verdicts: (r.critic?.scenes || []).map((s) => ({ beat_index: s.beat_index, effective_verdict: s.effective_verdict })) })),
   };
@@ -367,7 +371,7 @@ export async function runProduction({ channel, scriptOverride = null, runId = pr
     ...base, terminal_state: terminal, failed_stage: failure.stage, failed_check: failure.check,
     generation_id: generation, video: rel(q.dest), manifest: rel(manifestPath), qa_report: rel(qaReportPath),
     contact_sheet: manifest.contact_sheet, comparison: manifest.comparison, rounds_used: loopReport.rounds.length,
-    asset_coverage: materials?.summary || null,
+    asset_coverage: materials?.summary || null, pruned_shots: prunedShots,
     qa_pass: !!qa.pass, critic_approved: criticApproved(critic),
   };
   writeJson(join(outDir, "production-report.json"), summary);

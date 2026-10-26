@@ -4,7 +4,8 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { runLoop, spliceBeats, beatsToRebuild, essentialMissing, finalStatus, parseGateFailures } from "../visual-director/loop.mjs";
+import { runLoop, spliceBeats, beatsToRebuild, essentialMissing, finalStatus, parseGateFailures,
+  materialsCritique, verifiedMaterials, reuseVerifiedMaterials, pruneUnverifiedShots, reportForPruned } from "../visual-director/loop.mjs";
 
 const mkBeat = (i, tag) => ({ beat_index: i, sentence: `S${i}.`, t_start: i * 2, t_end: i * 2 + 2, mute_test: "something visible here",
   semantic: { subject: "x", state: null, action: null, relationship: null, change: null, consequence: null, environment: null },
@@ -180,4 +181,119 @@ test("enforce mode still refuses to resolve a redirect whose gate failed", async
   steps.gate = async (args) => (++gates === 2 ? { ok: false, status: 1, stdout: "", stderr: "" } : ok(args));
   await runLoop({ ...base(), maxRounds: 0, steps });
   assert.equal(calls.resolve, 1);
+});
+
+test("materials critique names the verified materials a repair may reuse", () => {
+  const v = [{ material_id: "m4s1", kind: "data", must_show: "Hittite royal archive with 184 total tablets", beat_index: 4, source_url: "https://x" }];
+  const mc = materialsCritique([{ beat_index: 4, missing: [{ must_show: "collection of ancient cuneiform tablets", why: "not found" }] }], 0, v);
+  assert.equal(mc.source, "materials");
+  assert.deepEqual(mc.verified_materials, v);
+  assert.match(mc.scenes[0].answer.what_to_change, /Reuse one of the 1 material/);
+  assert.match(mc.scenes[0].answer.what_to_change, /collection of/);
+});
+
+test("reuseVerifiedMaterials copies a verified material by id or exact must_show; unrelated ones stay unresolved", () => {
+  const verified = { status: "verified", file: "/a/m4.jpg", source_url: "https://x/m4", license: "CC0", credit: "c", verdict: "YES" };
+  const prev = { beats: [{ beat_index: 4, shots: [{ id: "b4s1", materials: [
+    { id: "m4s1", kind: "data", must_show: "Hittite royal archive with 184 total tablets", search: ["q"], data: { values: [{ value: 184 }] }, resolved: verified }] }] }] };
+  const next = { beats: [{ beat_index: 4, shots: [{ id: "b4s1", materials: [
+    { id: "m4s1", kind: "photo", must_show: "something else", search: ["new"], why: "reuse me" },
+    { id: "new", kind: "photo", must_show: "Hittite royal archive with 184 total tablets", search: ["q"] },
+    { id: "other", kind: "photo", must_show: "unrelated", search: ["u"] }] }] }] };
+  const r = reuseVerifiedMaterials(next, prev, [4]);
+  const ms = r.direction.beats[0].shots[0].materials;
+  assert.equal(ms[0].resolved.status, "verified");
+  assert.equal(ms[0].must_show, "Hittite royal archive with 184 total tablets");
+  assert.equal(ms[0].kind, "data");
+  assert.equal(ms[1].resolved.status, "verified");
+  assert.equal(ms[2].resolved, undefined);
+  assert.equal(r.reused.length, 2);
+});
+
+test("pruneUnverifiedShots drops an unfindable shot only when a verified shot remains, and re-times the real one", () => {
+  const beat = (shots) => ({ beat_index: 0, t_start: 0, t_end: 10, shots });
+  const shot = (id, d, status) => ({ id, duration_s: d, materials: [{ id: `m-${id}`, must_show: id, resolved: { status } }] });
+  const p = pruneUnverifiedShots({ beats: [beat([shot("b0s0", 4, "verified"), shot("b0s1", 6, "missing")])] });
+  assert.deepEqual(p.direction.beats[0].shots.map((s) => [s.id, s.duration_s]), [["b0s0", 10]]);
+  assert.deepEqual(p.pruned[0].dropped.map((d) => d.shot_id), ["b0s1"]);
+  assert.deepEqual(p.pruned[0].kept, ["b0s0"]);
+  const none = pruneUnverifiedShots({ beats: [beat([shot("b0s0", 10, "missing")])] });
+  assert.equal(none.pruned.length, 0);
+  assert.equal(none.direction.beats[0].shots.length, 1);
+});
+
+test("reportForPruned matches the pruned timeline: no missing material, pruned shots recorded", () => {
+  const prev = { schema_version: 1, summary: { materials: 2, verified: 1, missing: 1 }, materials: [
+    { beat_index: 0, shot_id: "b0s0", material_id: "m0", kind: "photo", must_show: "real", status: "verified", candidates: [{ url: "u" }] }] };
+  const d = { beats: [{ beat_index: 0, sentence: "S0.", t_start: 0, t_end: 10, shots: [
+    { id: "b0s0", duration_s: 10, materials: [{ id: "m0", kind: "photo", must_show: "real", resolved: { status: "verified", file: "/a.jpg", source_url: "u", license: "CC0", credit: "c", verdict: "YES" } }] }] }] };
+  const r = reportForPruned(d, prev, [{ beat_index: 0, dropped: [{ shot_id: "b0s1" }], kept: ["b0s0"] }]);
+  assert.equal(r.summary.materials, 1);
+  assert.equal(r.summary.missing, 0);
+  assert.equal(r.summary.verified, 1);
+  assert.equal(r.pruned_shots.length, 1);
+  assert.equal(r.materials[0].candidates[0].url, "u", "surviving material evidence is kept");
+});
+
+test("a material repair retries only still-missing beats, reuses verified materials, then prunes an unfindable shot", async () => {
+  const beat = (i, shots, span) => ({ ...mkBeat(i, "base"), t_start: 0, t_end: span, shots });
+  const mat = (id) => ({ id, kind: "photo", must_show: `real thing ${id}`, why: "needed", search: [`q ${id}`] });
+  const shot = (id, material) => ({ id, duration_s: 2, camera: { move: "hold", from: "a", to: "b", motivation: "motivation" }, action: "a real thing is shown here", materials: [material] });
+  const initial = { schema_version: 1, channel_id: "4", script: "s.json", beats: [
+    beat(0, [shot("b0s0", mat("m0")), shot("b0s1", mat("m1"))], 4),
+    beat(1, [shot("b1s0", mat("m9"))], 2),
+  ] };
+  const calls = { direct: [], resolve: 0, render: 0 };
+  let resolveCall = 0;
+  const steps = {
+    direct: async ({ out, critique, beats }) => {
+      calls.direct.push({ critique: !!critique, beats: beats ? [...beats] : null });
+      if (!critique) { writeFileSync(out, JSON.stringify(initial)); return { ok: true, status: 0 }; }
+      // Every repair invents one new unfindable material on b0s1 but keeps the verified m0.
+      const m = mat(resolveCall === 1 ? "m2" : "m3");
+      writeFileSync(out, JSON.stringify({ ...initial, beats: [
+        { ...initial.beats[0], shots: [initial.beats[0].shots[0], { ...initial.beats[0].shots[1], materials: [m] }] },
+        initial.beats[1] ] }));
+      return { ok: true, status: 0 };
+    },
+    gate: async () => ({ ok: true, status: 0, stdout: "", stderr: "" }),
+    resolve: async ({ direction, out, report }) => {
+      calls.resolve++; resolveCall++;
+      const d = JSON.parse(readFileSync(direction));
+      const beats = d.beats.map((b) => {
+        const missing = [];
+        for (const s of b.shots) for (const m of s.materials) {
+          if (["m1", "m2", "m3"].includes(m.id)) { m.resolved = { status: "missing", file: null, source_url: null, license: null, credit: null, verdict: "not found" }; missing.push({ shot_id: s.id, material_id: m.id, must_show: m.must_show, status: "missing", why: "not found" }); }
+          else if (!m.resolved) m.resolved = { status: "verified", file: `/a/${m.id}.jpg`, source_url: `https://x/${m.id}`, license: "CC0", credit: "c", verdict: "YES" };
+        }
+        return { beat_index: b.beat_index, sentence: b.sentence, ok: !missing.length, essential_missing: missing };
+      });
+      writeFileSync(out, JSON.stringify(d));
+      writeFileSync(report, JSON.stringify({ summary: {}, beats, materials: [] }));
+      return { ok: true, status: 0 };
+    },
+    render: async ({ out }) => { calls.render++; writeFileSync(out, "mp4"); return { ok: true, status: 0 }; },
+    frames: async ({ outDir, direction }) => ({ sheet: join(outDir, "contact-sheet.jpg"), strips: Object.fromEntries(direction.beats.map((b) => [b.beat_index, join(outDir, `strips/beat-${b.beat_index}.jpg`)])), frames: [] }),
+    critic: async ({ direction, round }) => ({ round, status: "complete", scenes: direction.beats.map((b) => ({ beat_index: b.beat_index, status: "answered", effective_verdict: "KEEP", answer: { verdict: "KEEP", visibly_happening: "stuff" } })), whole_video: { status: "answered", answer: { template_alternation: "yes", whole_mute_test: "yes" } } }),
+  };
+  const o = base();
+  const rep = await runLoop({ ...o, maxRounds: 0, steps });
+  assert.deepEqual(calls.direct.map((c) => c.beats), [null, [0], [0]]);
+  assert.equal(calls.resolve, 3);
+  assert.equal(calls.render, 1);
+  assert.equal(rep.rounds[0].materials_redirects.length, 2);
+  assert.equal(rep.rounds[0].materials_redirects[1].missing_before, 1);
+  assert.deepEqual(rep.rounds[0].materials_missing_after_prune, []);
+  assert.deepEqual(rep.rounds[0].materials_pruned.map((p) => p.beat_index), [0]);
+  const first = JSON.parse(readFileSync(join(o.outDir, "round-0", "direction.materials-redirect.json")));
+  assert.equal(first.beats[0].shots[0].materials[0].resolved.status, "verified", "the verified shot survives the repair");
+  const mc2 = JSON.parse(readFileSync(join(o.outDir, "round-0", "materials-critique.2.json")));
+  assert.ok(mc2.verified_materials.some((m) => m.material_id === "m0"));
+  const pruned = JSON.parse(readFileSync(join(o.outDir, "round-0", "direction.pruned.json")));
+  assert.deepEqual(pruned.beats[0].shots.map((s) => s.id), ["b0s0"]);
+  assert.equal(pruned.beats[0].shots[0].duration_s, 4);
+  const finalReport = JSON.parse(readFileSync(join(o.outDir, "round-0", "materials-report.final.json")));
+  assert.equal(finalReport.summary.missing, 0);
+  assert.equal(finalReport.summary.verified, 2);
+  assert.equal(finalReport.pruned_shots.length, 1);
 });

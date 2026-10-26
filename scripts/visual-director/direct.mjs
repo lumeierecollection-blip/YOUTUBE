@@ -190,7 +190,7 @@ const GATE_RULES = [
   "- `evidence` URLs only from SOURCES USED",
 ].join("\n");
 
-export function buildPrompt({ channel, channelId, sentences, targets, digest, sourcesUsed, reference, context = [], critiques = null, failures = null }) {
+export function buildPrompt({ channel, channelId, sentences, targets, digest, sourcesUsed, reference, context = [], critiques = null, failures = null, materialRepair = false, verifiedMaterials = [] }) {
   const tpl = readFileSync(PROMPT_PATH, "utf8");
   const ch = channel || {};
   const channelBlock = [`id: ${channelId}`, ch.channel_name && `name: ${ch.channel_name}`, ch.niche && `niche: ${ch.niche}`, ch.style && `visual style: ${ch.style}`,
@@ -201,8 +201,24 @@ export function buildPrompt({ channel, channelId, sentences, targets, digest, so
   const ctx = context.length ? `## OTHER BEATS ALREADY DIRECTED (vary against these: family / camera)\n\n${context.map((b) => `[${b.beat_index}] ${b.mechanism?.family} | camera ${(b.shots || []).map((s) => s.camera?.move).join(">")} | ${norm(b.mechanism?.construction).slice(0, 120)}`).join("\n")}\n\n` : "";
   let crit = "";
   if (critiques && Object.keys(critiques).length) {
-    crit += "## CRITIC VERDICTS ON YOUR PREVIOUS SCENES FOR THESE BEATS\n\nThe previous scene for each beat below was judged on rendered frames. Do NOT patch it (no added labels, glow, particles, captions). Delete it and construct a fresh scene from the sentence: a different construction and different materials; change the mechanism family unless the critic says the family was right. The previous construction is shown only so you do not repeat it.\n\n";
-    for (const [bi, c] of Object.entries(critiques)) crit += `[${bi}] previous: ${c.previous ? `${c.previous.mechanism?.family} — ${norm(c.previous.mechanism?.construction).slice(0, 300)}` : "(none)"}\ncritic: ${JSON.stringify(c.verdict).slice(0, 1500)}\n\n`;
+    if (materialRepair) {
+      crit += "## MATERIALS REPAIR FOR THESE BEATS\n\nThese beats were already directed, but an essential material could not be found and verified. Rebuild ONLY the shots that need a different material; keep the construction and camera sequence where they still work. Reuse a material already verified in this video wherever it fits: copy its exact id, must_show and search. Do not ask for a generic \"collection of ...\", a look-alike, a stock photo, a webpage, a docs page, an article, a screenshot or a press release: the resolver cannot verify those. If no real photo of the named thing exists, show the real person, object or place the sentence is about, chosen from the verified list, never an invented one.\n\n";
+      if (verifiedMaterials.length) {
+        crit += "VERIFIED MATERIALS ALREADY IN THIS VIDEO (real, licensed, reusable):\n";
+        for (const v of verifiedMaterials) crit += `- ${v.material_id} (${v.kind}) "${v.must_show}" from beat ${v.beat_index}${v.source_url ? ` — ${v.source_url}` : ""}\n`;
+        crit += "\n";
+      }
+    } else {
+      crit += "## CRITIC VERDICTS ON YOUR PREVIOUS SCENES FOR THESE BEATS\n\nThe previous scene for each beat below was judged on rendered frames. Do NOT patch it (no added labels, glow, particles, captions). Delete it and construct a fresh scene from the sentence: a different construction and different materials; change the mechanism family unless the critic says the family was right. The previous construction is shown only so you do not repeat it.\n\n";
+    }
+    for (const [bi, c] of Object.entries(critiques)) {
+      if (materialRepair) {
+        const prev = c.previous;
+        crit += `[${bi}] previous: ${prev ? `${prev.mechanism?.family} — ${norm(prev.mechanism?.construction).slice(0, 300)}` : "(none)"}\n`;
+        for (const s of prev?.shots || []) crit += `  shot ${s.id}: ${norm(s.action).slice(0, 180)} | materials: ${(s.materials || []).map((m) => `${m.id} ${m.resolved?.status || "unresolved"} "${m.must_show}"`).join("; ")}\n`;
+        crit += `materials repair: ${c.verdict?.answer?.what_to_change || JSON.stringify(c.verdict).slice(0, 1500)}\n\n`;
+      } else crit += `[${bi}] previous: ${c.previous ? `${c.previous.mechanism?.family} — ${norm(c.previous.mechanism?.construction).slice(0, 300)}` : "(none)"}\ncritic: ${JSON.stringify(c.verdict).slice(0, 1500)}\n\n`;
+    }
   }
   if (failures && failures.length) {
     crit += "## YOUR PREVIOUS ANSWER FAILED THESE CHECKS — fix every one (reconstruct the scene where the failure is about meaning)\n\n" + failures.map((f) => `- beat ${f.beat_index ?? "*"} ${f.rule}: ${f.detail}`).join("\n") + "\n\n";
@@ -526,7 +542,12 @@ export async function direct({ scriptPath, researchPath = null, ttsDir = null, c
 
   const crit = redirect ? critiqueEntries(critique) : {};
   const critiques = redirect ? Object.fromEntries(targets.map((i) => [i, { previous: previous.beats[i], verdict: crit[i] || { note: "no critic entry for this beat; rebuild requested" } }])) : null;
-  const base = { channel: channelFor(channelId), channelId, sentences: ctx.sentences, digest: ctx.digest, sourcesUsed: ctx.sourcesUsed, reference, critiques };
+  // A materials redirect is not a critic rejection: the scene may be right, only its picture is
+  // unfindable. It gets its own prompt (reuse verified materials, never a generic collection).
+  const materialRepair = redirect && critique?.source === "materials";
+  const repairFailures = materialRepair ? (critique.gate_failures || []) : null;
+  const base = { channel: channelFor(channelId), channelId, sentences: ctx.sentences, digest: ctx.digest, sourcesUsed: ctx.sourcesUsed, reference, critiques,
+    materialRepair, verifiedMaterials: materialRepair ? (critique.verified_materials || []) : [] };
   const statusOf = (i) => (redirect ? "rebuilt" : "directed");
   const historyOf = (i) => (redirect ? [...(previous.beats[i].critic_history || []), { round: (previous.beats[i].critic_history || []).length + 1, verdict: crit[i] || null, previous: { mechanism: previous.beats[i].mechanism, shots: (previous.beats[i].shots || []).map((s) => s.id) } }] : undefined);
 
@@ -536,7 +557,7 @@ export async function direct({ scriptPath, researchPath = null, ttsDir = null, c
 
   // round 1
   const droppedKeys = (keys) => log(`[vd-direct] dropped schema-unknown key(s): ${keys.slice(0, 12).join(", ")}${keys.length > 12 ? ` (+${keys.length - 12})` : ""}`);
-  const got = await askBeats({ callModel: callM, log, base, targets, per, contextOf, rawDir });
+  const got = await askBeats({ callModel: callM, log, base, targets, per, contextOf, rawDir, failures: repairFailures });
   for (const i of targets) current[i] = normaliseBeat(got.get(i), i, ctx.sentences[i], statusOf(i), historyOf(i), droppedKeys);
   let doc = make(current.slice());
   let failures = gateDirection(doc, ctx.gate);

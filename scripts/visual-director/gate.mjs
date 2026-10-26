@@ -31,8 +31,9 @@
  *                      with no kind:data material on the beat
  *   evidence-unsourced an evidence URL that is not in sources_used
  *   entity-unshown     a named person / place / organisation / artefact in the sentence that no material's must_show names
- *   material-unfindable a material whose must_show / search asks for a screenshot, webpage, docs page or press release:
- *                      no licensed archive holds those, so the resolver can only fail; name the picture itself instead
+ *   material-unfindable a material whose must_show / search asks for a screenshot, webpage, docs page, press release
+ *                      or an invented prop "representing" an idea: no licensed archive holds those, so the resolver
+ *                      can only fail; name the actual logo, person, object or place instead (kind:data is exempt)
  *   camera-motivation  reveal / context-reveal / scale-reveal without a close-to-wide move; comparative-transformation
  *                      with one unmoving framing; a 'hold' whose motivation gives no reason
  *   action-unanchored  a shot action that names none of the shot's materials (text standing in for a picture)
@@ -156,6 +157,11 @@ const UNFINDABLE = /\b(?:screenshots?|screen shots?|screen grabs?|screen capture
 // "a VentureBeat article by Carl Franzen" is a citation of a webpage; "a newspaper article from 1666"
 // is a scan an archive can hold. Only the byline form is a dead end, and it needs real capitals.
 const UNFINDABLE_BYLINE = /\b(?:articles?|posts?|stories) (?:by|from) [A-Z][a-z]/;
+// Run 40395669599: ch-2's redirect replaced docs pages with invented props ("a carved wooden badge
+// representing Anthropic", "a sculpted ceramic model representing Claude Haiku 5.5"). No archive
+// holds a prop that only exists in the director's imagination; make it name the real logo/person/
+// object instead. A data material is a sourced number, not a picture, so it is exempt.
+const INVENTED_PROP = /\b(?:representing|symboli[sz]ing|stands? in for|metaphor(?: for)?)\b/i;
 const REJECT = [
   [/\bgradients?\b/i, "gradient"], [/\bglow(?:s|ing)?\b/i, "glow"], [/\bparticles?\b/i, "particles"], [/\blens flares?\b/i, "lens flare"],
   [/\bicons?\b/i, "icon"], [/\b(?:ui|hud) (?:panel|element|card)s?\b|\bpanels? of (?:text|ui)\b/i, "UI panel"],
@@ -228,9 +234,14 @@ export function gateDirection(direction, ctx = {}) {
 
     // a picture that no licensed archive can hold is not a material, it is a dead end
     for (const m of mats) {
+      // kind:data is a sourced number drawn by the renderer, not a downloaded picture; its
+      // must_show may legitimately name the documentation the number came from.
+      if (m?.kind === "data") continue;
       const asked = `${m?.must_show || ""} ${(Array.isArray(m?.search) ? m.search : []).join(" ")}`;
+      const prop = INVENTED_PROP.exec(asked);
       const hit = UNFINDABLE.exec(asked) || UNFINDABLE_BYLINE.exec(asked);
-      if (hit) add(bi, "material-unfindable", `material ${m?.id ?? "?"}: "${hit[0]}" is a screen or document, not a picture an archive holds; name the person, object or place itself`);
+      if (prop) add(bi, "material-unfindable", `material ${m?.id ?? "?"}: "${prop[0]}" makes this a symbol, not a picture an archive holds; name the actual logo, person, object or place`);
+      else if (hit) add(bi, "material-unfindable", `material ${m?.id ?? "?"}: "${hit[0]}" is a screen or document, not a picture an archive holds; name the person, object or place itself`);
     }
 
     // camera motivated by the mechanism
