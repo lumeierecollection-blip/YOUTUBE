@@ -6,7 +6,7 @@ import { mkdtempSync, readFileSync, writeFileSync, existsSync, mkdirSync } from 
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { resolveDirection, cacheKey, researchPathFor, MAX_CANDIDATES } from "../visual-director/materials/resolve.mjs";
+import { resolveDirection, cacheKey, researchPathFor, MAX_CANDIDATES, queryVariants } from "../visual-director/materials/resolve.mjs";
 import { validateData, numericLeaves } from "../visual-director/materials/data.mjs";
 import { normalizeAnswer, verifyPrompt } from "../visual-director/materials/verify.mjs";
 import { sourceOrder } from "../visual-director/materials/sources.mjs";
@@ -215,4 +215,20 @@ test("CLI: the exact flags write the resolved direction and the report (data-onl
   assert.equal(out.beats[0].shots[0].materials[0].resolved.status, "verified");
   assert.equal(rep.output_schema_valid, true);
   assert.deepEqual(rep.summary.beats_with_essential_missing, []);
+});
+
+test("queryVariants shortens sentence-shaped queries the way Commons search needs", () => {
+  // Run 40377931670: "Hittite cuneiform clay tablet artifact" matched one PDF, while
+  // "Hittite cuneiform clay tablet" matched ten photographs. The resolver must try both.
+  const v = queryVariants(["Hittite cuneiform clay tablet artifact", "Kayalipinar excavation"]);
+  assert.equal(v[0], "Hittite cuneiform clay tablet artifact");
+  assert.equal(v[1], "Kayalipinar excavation");
+  assert.ok(v.includes("Hittite cuneiform clay tablet")); // last qualifier dropped
+  assert.ok(v.includes("Hittite cuneiform clay"));        // first three keywords
+  assert.ok(v.length <= 6);
+  assert.deepEqual(queryVariants([]), []);
+  assert.deepEqual(queryVariants(["cuneiform tablet"]), ["cuneiform tablet"]);
+  // No duplicate work when the short form is already a query.
+  const dup = queryVariants(["Hittite cuneiform tablet", "Hittite cuneiform tablet artifact"]);
+  assert.equal(dup.filter((q) => q === "Hittite cuneiform tablet").length, 1);
 });

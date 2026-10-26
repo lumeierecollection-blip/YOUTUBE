@@ -57,6 +57,7 @@ function fromSkill(c) {
     source_url: c.sourceUrl || null,
     // Commons renders TIFF/SVG/PDF scans to a raster thumbnail; prefer it (the renderer needs a raster)
     download_url: c.thumbUrl || c.downloadUrl,
+    mime: c.mime || null,
     license: c.license || null,
     credit: c.attribution || null,
     description: (c.sourceText && (c.sourceText.description || c.sourceText.title || c.sourceText.tags)) || "",
@@ -95,8 +96,13 @@ export async function searchSource(source, query, { count = 6 } = {}) {
   // Commons: a standard thumbnail step (1280) — a non-standard width is generated on demand and 429s (wikimedia.js)
   const opts = source === "wikimedia" ? { count, thumbWidth: 1280 } : { count };
   const out = await mod.search(query, opts);
-  // licence allowlist re-applied on the way out, whatever the source module did
-  return (out || []).filter(Boolean).map(fromSkill).map((c) => ({ ...c, license: m.licenses.normalizeLicense(c.license) }));
+  // licence allowlist re-applied on the way out, whatever the source module did.
+  // A PDF / DjVu / audio / video hit is a document or a recording, never a picture: Commons
+  // answers long queries with book scans (run 40377931670: 6 of 9 materials were "missing"
+  // because every candidate under the budget was a PDF page). Only image/* may become a frame.
+  return (out || []).filter(Boolean).map(fromSkill)
+    .filter((c) => !c.mime || /^image\//i.test(c.mime))
+    .map((c) => ({ ...c, license: m.licenses.normalizeLicense(c.license) }));
 }
 
 /** download(url, dest) -> { bytes } (http.js downloadFile). */

@@ -259,15 +259,25 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
         const dir2 = join(rd, "direction.materials-redirect.json");
         writeJson(dir2, s2.direction);
         const g2 = await steps.gate({ direction: dir2, script, research, tts, log, report: join(rd, "gate.materials-redirect.json") });
-        if (g2.ok) {
+        rec.materials_redirect_gate = g2.ok ? "pass" : "fail";
+        // Record mode renders a gate-failing round on purpose (the critic and the MP4 are the
+        // evidence). A material redirect must follow the same rule: its whole point is to replace
+        // pictures that do not exist, and a gate failure elsewhere must not throw that away. The
+        // redirect's own failures become the round's, so APPROVED still requires a clean gate.
+        if (g2.ok || gateMode === "record") {
           const res2 = join(rd, "direction.resolved.2.json"), rep2 = join(rd, "materials-report.2.json");
           const m2 = await steps.resolve({ direction: dir2, out: res2, assetsDir, report: rep2, research, log });
           if (m2.ok && existsSync(res2)) {
             resolved = res2; matReport = rep2;
             rec.materials_redirected = ids;
             rec.materials_missing_after_redirect = existsSync(rep2) ? essentialMissing(readJson(rep2)) : [];
+            if (!g2.ok) {
+              rec.gate_ok = false;
+              rec.gate_recorded_only = true;
+              rec.gate_failures = parseGateFailures(g2.stdout + "\n" + g2.stderr);
+            }
           }
-        } else rec.materials_redirect_gate = "fail";
+        }
       } else rec.materials_redirect_error = `direct exit ${d2.status}`;
     }
     rec.direction = resolved; rec.materials_report = matReport;

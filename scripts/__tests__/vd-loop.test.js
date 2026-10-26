@@ -152,3 +152,32 @@ test("helpers: splice reports beats the director failed to return; essentialMiss
   assert.equal(s.direction.beats[1], prev.beats[1]);
   assert.deepEqual(essentialMissing([{ beat_index: 3, essential_missing: ["x"] }, { beat_index: 4 }]), [{ beat_index: 3, missing: ["x"] }]);
 });
+
+test("record mode: a material redirect renders even when its own gate fails, and its failures become the round's", async () => {
+  // Run 40377931670: the redirect loosened must_show but its gate failed, so the loop threw the
+  // redirect away and rendered the original direction, whose materials did not exist -> no video.
+  const { steps, calls } = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]], missing: [1] });
+  let gates = 0;
+  const ok = steps.gate;
+  steps.gate = async (args) => {
+    gates++;
+    if (gates === 2) return { ok: false, status: 1, stdout: "[vd-gate] beat 1 camera-motivation: redirect broke the pull-out\n[vd-gate] 1 failure(s)\n", stderr: "" };
+    return ok(args);
+  };
+  const rep = await runLoop({ ...base(), maxRounds: 0, steps, gateMode: "record" });
+  assert.equal(calls.resolve, 2); // the round's own resolve + the redirect's
+  assert.equal(calls.render, 1);
+  assert.deepEqual(rep.rounds[0].materials_redirected, [1]);
+  assert.equal(rep.rounds[0].gate_ok, false);
+  assert.equal(rep.rounds[0].gate_recorded_only, true);
+  assert.deepEqual(rep.rounds[0].gate_failures, [{ beat_index: 1, rule: "camera-motivation", detail: "redirect broke the pull-out" }]);
+});
+
+test("enforce mode still refuses to resolve a redirect whose gate failed", async () => {
+  const { steps, calls } = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]], missing: [1] });
+  let gates = 0;
+  const ok = steps.gate;
+  steps.gate = async (args) => (++gates === 2 ? { ok: false, status: 1, stdout: "", stderr: "" } : ok(args));
+  await runLoop({ ...base(), maxRounds: 0, steps });
+  assert.equal(calls.resolve, 1);
+});

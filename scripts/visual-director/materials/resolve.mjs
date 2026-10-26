@@ -49,6 +49,28 @@ export function cacheKey(query, mustShow) {
   return sha1(`${String(query).trim().toLowerCase()}|${String(mustShow).trim().toLowerCase()}`);
 }
 
+/**
+ * Commons search is AND over the query's words, so a sentence-shaped query finds almost nothing
+ * (run 40377931670: "Hittite cuneiform clay tablet artifact" matched one PDF; "Hittite cuneiform
+ * tablet" matched ten photographs). Every long query also contributes its last qualifier dropped
+ * and its first three keywords. Originals first, deduped, at most `maxExtra` additions. Pure.
+ */
+export function queryVariants(queries, { maxExtra = 4 } = {}) {
+  const out = [...queries];
+  const seen = new Set(out.map((q) => q.toLowerCase()));
+  for (const q of queries) {
+    const words = q.split(/\s+/).filter(Boolean);
+    if (words.length <= 3) continue;
+    for (const v of [words.slice(0, -1).join(" "), words.slice(0, 3).join(" ")]) {
+      const k = v.toLowerCase();
+      if (seen.has(k) || v.split(" ").length < 2) continue;
+      seen.add(k); out.push(v);
+      if (out.length >= queries.length + maxExtra) return out;
+    }
+  }
+  return out;
+}
+
 /** research JSON path for a script path, or null. Pure. */
 export function researchPathFor(scriptPath) {
   if (!scriptPath) return null;
@@ -92,7 +114,7 @@ function saveCache(dir, key, c) {
 async function resolveImage(material, ctx) {
   const { deps, assetsDir } = ctx;
   const cacheDir = join(assetsDir, ".cache");
-  const queries = (material.search || []).map((q) => String(q).trim()).filter(Boolean);
+  const queries = queryVariants((material.search || []).map((q) => String(q).trim()).filter(Boolean));
   const caches = queries.map((q) => {
     const key = cacheKey(q, material.must_show);
     const c = loadCache(cacheDir, key);

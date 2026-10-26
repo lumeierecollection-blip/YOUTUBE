@@ -31,6 +31,8 @@
  *                      with no kind:data material on the beat
  *   evidence-unsourced an evidence URL that is not in sources_used
  *   entity-unshown     a named person / place / organisation / artefact in the sentence that no material's must_show names
+ *   material-unfindable a material whose must_show / search asks for a screenshot, webpage, docs page or press release:
+ *                      no licensed archive holds those, so the resolver can only fail; name the picture itself instead
  *   camera-motivation  reveal / context-reveal / scale-reveal without a close-to-wide move; comparative-transformation
  *                      with one unmoving framing; a 'hold' whose motivation gives no reason
  *   action-unanchored  a shot action that names none of the shot's materials (text standing in for a picture)
@@ -146,6 +148,14 @@ export function isQuantityComparison(sentence) {
 }
 
 const CHART_WORDS = /\b(?:bar chart|bar graph|pie chart|line chart|line graph|chart|graph|histogram|timeline|counter|ticker|tally|odometer|infographic|giant (?:number|figure|numeral)s?|big (?:number|figure|numeral)s?|floating (?:number|figure|numeral)s?)\b/i;
+// Run 40377931670: the director asked for screenshots of Anthropic's pricing/docs pages. Commons and
+// every other licensed archive hold photographs, artworks and scans of physical things — never a
+// live webpage — so those materials can only resolve to "missing". Reject the request at gate time
+// and let the director's corrective retry re-plan to the person / object / place itself.
+const UNFINDABLE = /\b(?:screenshots?|screen shots?|screen grabs?|screen captures?|web ?pages?|websites?|home ?pages?|landing pages?|product pages?|pricing pages?|docs|documentation|docs? (?:pages?|sites?)|documentation (?:pages?|sites?)|help cent(?:er|re)|support pages?|press releases?|news (?:pages?|sites?|stor(?:y|ies)|articles?)|article pages?|blog posts?|tweets?|social media posts?|app (?:interface|screen)|user interfaces?|browser (?:window|tab)s?)\b/i;
+// "a VentureBeat article by Carl Franzen" is a citation of a webpage; "a newspaper article from 1666"
+// is a scan an archive can hold. Only the byline form is a dead end, and it needs real capitals.
+const UNFINDABLE_BYLINE = /\b(?:articles?|posts?|stories) (?:by|from) [A-Z][a-z]/;
 const REJECT = [
   [/\bgradients?\b/i, "gradient"], [/\bglow(?:s|ing)?\b/i, "glow"], [/\bparticles?\b/i, "particles"], [/\blens flares?\b/i, "lens flare"],
   [/\bicons?\b/i, "icon"], [/\b(?:ui|hud) (?:panel|element|card)s?\b|\bpanels? of (?:text|ui)\b/i, "UI panel"],
@@ -214,6 +224,13 @@ export function gateDirection(direction, ctx = {}) {
     const mustShow = mats.map((m) => m?.must_show || "").join(" | ");
     if (fam !== "statement") for (const name of namedEntitiesIn(b.sentence, ctx.namedEntities)) {
       if (!mentions(mustShow, name)) add(bi, "entity-unshown", `"${name}" is named in the sentence but no material's must_show names it`);
+    }
+
+    // a picture that no licensed archive can hold is not a material, it is a dead end
+    for (const m of mats) {
+      const asked = `${m?.must_show || ""} ${(Array.isArray(m?.search) ? m.search : []).join(" ")}`;
+      const hit = UNFINDABLE.exec(asked) || UNFINDABLE_BYLINE.exec(asked);
+      if (hit) add(bi, "material-unfindable", `material ${m?.id ?? "?"}: "${hit[0]}" is a screen or document, not a picture an archive holds; name the person, object or place itself`);
     }
 
     // camera motivated by the mechanism

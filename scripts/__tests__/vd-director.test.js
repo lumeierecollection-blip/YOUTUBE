@@ -135,6 +135,31 @@ test("entity-unshown: a named person the sentence turns on must be in a must_sho
   assert.equal(f.length, 1); assert.match(f[0].detail, /Samuel Pepys/);
 });
 
+test("material-unfindable: a screenshot / webpage / docs page is not a picture an archive holds", () => {
+  // Run 40377931670: ch-2's director asked for Anthropic's pricing and docs pages. The resolver
+  // could only report them missing, so the gate must send the beat back for re-planning instead.
+  for (const must of [
+    "a screenshot of the Anthropic pricing page",
+    "the Claude documentation page listing API prices",
+    "Anthropic's press release announcing Claude Haiku 5.5",
+    "the company homepage",
+    "Claude Platform Docs pricing table",
+    "a VentureBeat article by Carl Franzen about Claude Haiku 5.5",
+  ]) {
+    const d = good(); d.beats[2].shots[0].materials[0].must_show = must;
+    const f = failsOn(d, "material-unfindable");
+    assert.equal(f.length, 1, must); assert.equal(f[0].beat_index, 2, must);
+  }
+  // A query is judged too: a real must_show with a dead search still resolves to nothing.
+  const d = good(); d.beats[2].shots[0].materials[0].search = ["Anthropic pricing webpage screenshot"];
+  assert.match(failsOn(d, "material-unfindable")[0].detail, /webpage|screenshot/i);
+  // Real things — including a scanned historical document — stay legal.
+  const ok = good();
+  ok.beats[3].shots[1].materials[0].must_show = "a scanned page of Samuel Pepys's handwritten diary";
+  ok.beats[2].shots[0].materials[0].must_show = "a newspaper article from 1666 reporting the fire";
+  assert.deepEqual(failsOn(ok, "material-unfindable"), []);
+});
+
 test("namedEntitiesIn / isQuantityComparison on real sentences", () => {
   assert.deepEqual(namedEntitiesIn("The Great Fire of London started on September 2, 1666 in Thomas Farriner's bakery on Pudding Lane"), ["Great Fire of London", "Thomas Farriner", "Pudding Lane"]);
   assert.deepEqual(namedEntitiesIn("From Samuel Pepys burying his cheese to the Lord Mayor's catastrophic decision-making."), ["Samuel Pepys", "Lord Mayor"]);
