@@ -142,5 +142,17 @@
     "cancelled": true,
     "source_file": "boston-bus-cameras-stop-sign-enforcement-2026-shorts-shorts-2026-10-19.mp4",
     "source_queue": "approved-review"
+  },
+  {
+    "video_id": "piUf3nQbYmg",
+    "channel_id": "2",
+    "title": "Anthropic Claude Haiku 5.5 Pricing and Performance Breakdown",
+    "uploaded_at": "2026-10-26T15:59:17.301Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-26T16:59:17.300Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "anthropic-claude-haiku-5-5-pricing-breakdown-shorts-shorts-2026-10-26.mp4",
+    "source_queue": "approved-review"
   }
 ]

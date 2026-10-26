@@ -165,5 +165,17 @@
     "cancelled": true,
     "source_file": "raymond-briggs-archive-unveiled-brighton-2026-shorts-shorts-2026-10-25.mp4",
     "source_queue": "approved-review"
+  },
+  {
+    "video_id": "7qGMvi8vizM",
+    "channel_id": "1",
+    "title": "A New Discovery of Cuneiform Tablets Offers a Glimpse Into…",
+    "uploaded_at": "2026-10-26T15:59:15.630Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-10-26T16:59:15.630Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "hittite-cuneiform-tablets-discovery-2026-shorts-shorts-2026-10-26.mp4",
+    "source_queue": "approved-review"
   }
 ]
