@@ -1033,7 +1033,16 @@ jobs:
           elif [ "${{ steps.script.outputs.skip }}" = "true" ]; then
             echo '{"skipped": true, "reason": "${{ steps.script.outputs.skip_reason || 'script-validation' }}"}' > "data/prep-status/$CH.json"
           else
-            echo "{\"skipped\": false, \"prep\": \"${{ job.status }}\"}" > "data/prep-status/$CH.json"
+            # Name the script prep chose, so the render leg renders TODAY'S script
+            # instead of guessing among the channel's committed backlog.
+            SLUG=$(jq -r '.slug // empty' /tmp/channel-topic.json 2>/dev/null || true)
+            S=""
+            if [ -n "$SLUG" ]; then
+              for CAND in "data/research/$CH/${SLUG}-shorts-script.json" "data/research/$CH/${SLUG}-script.json"; do
+                if [ -f "$CAND" ]; then S="$CAND"; break; fi
+              done
+            fi
+            echo "{\"skipped\": false, \"prep\": \"${{ job.status }}\", \"script\": \"$S\"}" > "data/prep-status/$CH.json"
           fi
           cat "data/prep-status/$CH.json"
 
@@ -1166,6 +1175,7 @@ jobs:
 
       - uses: browser-actions/setup-chrome@v1
         if: steps.status.outputs.skip != 'true'
+        id: chrome
         with:
           chrome-version: stable
 
@@ -1293,10 +1303,21 @@ jobs:
             echo "::warning::no SFX verdicts from setup ΓÇö no SFX will play this board"
           fi
 
-      - name: Render + QA
+      - name: Render + QA (visual director)
         if: steps.status.outputs.skip != 'true'
         env:
           RENDER_PROGRESS_MS: 10000
+          # The visual-director loop (docs/VISUAL-DIRECTOR.md) replaces render-and-qa.js:
+          # direct -> gate -> materials -> render -> frames -> critic -> corrective rounds ->
+          # deterministic QA. Production mode: an unverified material is refused, never drawn
+          # as a marked placeholder. A recorded gate failure keeps rendering (so the critic
+          # and the MP4 are evidence) but can never reach APPROVED.
+          VD_PROOF: "0"
+          VD_MAX_ROUNDS: "5"
+          VD_GATE: record
+          VD_MAX_MS: "3000000"
+          VD_CRITIC_MODEL: gemini-3.8-flash
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
           # Local fallback (scripts/ollama-client.cjs). force_planner=ollama
           # routes EVERY model call to Ollama; Gemini is never called.
           OLLAMA_TEXT_MODEL: qwen2.5:7b
@@ -1344,16 +1365,15 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-        # QA is ON. --skip-qa was on every CI run until docs/AI-DECISION-AUDIT.md
-        # showed 0 of 31 Gemini beats reached the screen while every gate
-        # passed. The challenger (plan vs script) and the per-beat frame check
-        # (frame vs sentence) now run on every video; so does the Gemini
-        # review/correction loop.
-        run: node scripts/render-and-qa.js --channel "${{ matrix.channel_id }}"
+        # QA is ON and it is deterministic: qa-video.mjs reads the MP4 itself (portrait,
+        # duration vs timeline, audio, black/freeze, per-beat frame coverage, placeholder
+        # refusal), the critic judges every scene, and APPROVED needs both plus a clean gate.
+        # production.mjs exits 1 when nothing reached APPROVED - a red job with a real MP4
+        # in rejected/ is honest, and the QA steps below run on always().
+        run: node scripts/visual-director/production.mjs --channel "${{ matrix.channel_id }}"
 
-      # Backup QA (scripts/local-audit.cjs): a video an AI stage failed is
-      # queued for a human, never uploaded. The queues live on the runner, so
-      # they are uploaded as an artifact or they would vanish with the job.
+      # QA counts: what production.mjs queued (approved-review/ or rejected/). The queues
+      # live on the runner, so they are uploaded as an artifact or they would vanish with the job.
       - name: QA counts
         if: always() && steps.status.outputs.skip != 'true'
         run: |
@@ -1407,8 +1427,11 @@ jobs:
           name: rendered-${{ matrix.channel_id }}-${{ github.run_id }}
           path: |
             data/renders/${{ matrix.channel_id }}/
-            data/visual-plans/${{ matrix.channel_id }}/
             data/renders/qa-counts.json
+            data/renders/production-summary.json
+            data/renders/production-summary.md
+            data/visual-director/${{ matrix.channel_id }}/
+            data/visual-plans/${{ matrix.channel_id }}/
             src/skills/remotion-render/public/asset-library/manifest.json
           retention-days: 7
 

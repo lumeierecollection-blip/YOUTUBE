@@ -23,6 +23,22 @@ const now = () => Date.now();
 const readJson = (p) => JSON.parse(readFileSync(p, "utf8"));
 const writeJson = (p, x) => writeFileSync(p, JSON.stringify(x, null, 2));
 
+/**
+ * gate.mjs prints `[vd-gate] beat <n> <rule>: <detail>` per failure and a
+ * `[vd-gate] N failure(s)` summary. The loop keeps the structured list so the
+ * production terminal state can say WHICH rule failed, not just "gate failed".
+ * Pure; tested.
+ */
+export function parseGateFailures(text) {
+  const out = [];
+  for (const line of String(text || "").split(/\r?\n/)) {
+    const m = /^\[vd-gate\]\s+beat\s+(\d+|\*)\s+([a-z0-9-]+):\s*(.*)$/i.exec(line.trim());
+    if (!m) continue;
+    out.push({ beat_index: m[1] === "*" ? null : Number(m[1]), rule: m[2], detail: m[3] });
+  }
+  return out;
+}
+
 /** Beats the materials report says cannot be shown as directed. Tolerates {beats:[...]} or [...]. */
 export function essentialMissing(report) {
   const list = Array.isArray(report) ? report : report?.beats || [];
@@ -202,13 +218,18 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     // 2) gate
     const g = await steps.gate({ direction: dirPath, script, research, tts, log, report: join(rd, "gate.json") });
     rec.gate = g.ok ? "pass" : `fail: ${String(g.stdout + g.stderr).slice(-600)}`;
+    rec.gate_ok = g.ok;
+    rec.gate_failures = g.ok ? [] : parseGateFailures(g.stdout + "\n" + g.stderr);
     // VD_GATE=record (proof runs): a gate failure is recorded and the round still renders, so the
     // critic sees what the failing direction looks like. Default (enforce): a failing direction never renders.
     if (!g.ok && gateMode === "record") rec.gate_recorded_only = true;
     else if (!g.ok) {
+      // Keep the round in loop-report.json: a gate that stopped the pipeline is evidence,
+      // and production.mjs reads its structured failures for the terminal state.
+      rec.error = round === 0 ? "round-0 direction failed the gate" : "rebuild direction failed the gate";
       if (round === 0) { report.stop_reason = "round-0 direction failed the gate"; break; }
       // A failed rebuild keeps the previous round's scenes; they stay unresolved.
-      rec.rebuilt = []; rec.error = `rebuild direction failed the gate`; report.stop_reason = `round ${round} rebuild failed the gate`; break;
+      rec.rebuilt = []; report.stop_reason = `round ${round} rebuild failed the gate`; break;
     }
 
     // 3) materials; beats with essential material missing go back to the director once, before render

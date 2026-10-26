@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { runLoop, spliceBeats, beatsToRebuild, essentialMissing, finalStatus } from "../visual-director/loop.mjs";
+import { runLoop, spliceBeats, beatsToRebuild, essentialMissing, finalStatus, parseGateFailures } from "../visual-director/loop.mjs";
 
 const mkBeat = (i, tag) => ({ beat_index: i, sentence: `S${i}.`, t_start: i * 2, t_end: i * 2 + 2, mute_test: "something visible here",
   semantic: { subject: "x", state: null, action: null, relationship: null, change: null, consequence: null, environment: null },
@@ -124,15 +124,25 @@ test("re-direct gets the previous direction at --out (direct.mjs re-directs in p
   assert.deepEqual(seen, [4]);
 });
 
-test("gate: enforce stops before render; record renders and marks the round", async () => {
+test("gate: enforce stops before render; record renders, marks the round and keeps the failures", async () => {
+  const gateOut = "[vd-gate] beat 3 camera-motivation: \"push in\" is not motivated by the sentence\n[vd-gate] beat * family-share: 1 family for 4 beats\n[vd-gate] 2 failure(s)\n";
   const a = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]] });
-  a.steps.gate = async () => ({ ok: false, status: 1, stdout: "statement cap", stderr: "" });
+  a.steps.gate = async () => ({ ok: false, status: 1, stdout: gateOut, stderr: "" });
   const rep = await runLoop({ ...base(), steps: a.steps });
   assert.equal(a.calls.render, 0); assert.match(rep.stop_reason, /gate/);
+  assert.deepEqual(rep.rounds[0].gate_failures.map((f) => `${f.beat_index}:${f.rule}`), ["3:camera-motivation", "null:family-share"]);
   const b = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]] });
   b.steps.gate = a.steps.gate;
   const rep2 = await runLoop({ ...base(), steps: b.steps, gateMode: "record" });
   assert.equal(b.calls.render, 1); assert.equal(rep2.rounds[0].gate_recorded_only, true);
+  // A recorded gate failure must reach the production terminal state, not vanish.
+  assert.equal(rep2.rounds[0].gate_failures.length, 2);
+});
+
+test("parseGateFailures ignores the summary line and keeps beat/rule/detail", () => {
+  const out = parseGateFailures("[vd-gate] beat 0 schema: /beats/0 must have required property 'shots'\n[vd-gate] 1 failure(s)");
+  assert.deepEqual(out, [{ beat_index: 0, rule: "schema", detail: "/beats/0 must have required property 'shots'" }]);
+  assert.deepEqual(parseGateFailures("nothing"), []);
 });
 
 test("helpers: splice reports beats the director failed to return; essentialMissing tolerates shapes", () => {
