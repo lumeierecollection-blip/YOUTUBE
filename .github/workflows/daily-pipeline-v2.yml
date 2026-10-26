@@ -1317,6 +1317,9 @@ jobs:
           VD_GATE: record
           VD_MAX_MS: "3000000"
           VD_CRITIC_MODEL: gemini-3.8-flash
+          # The VD critic sees a strip + up to 4 key frames per scene per round; the legacy
+          # 50k session budget cut most scenes off as budget_exhausted (proof 40384441048).
+          MAX_TOKENS_PER_VIDEO: "1000000"
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
           # Local fallback (scripts/ollama-client.cjs). force_planner=ollama
           # routes EVERY model call to Ollama; Gemini is never called.

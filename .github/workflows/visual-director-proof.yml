@@ -125,6 +125,11 @@ jobs:
           VD_GATE: record
           VD_MAX_MS: "2700000"
           VD_CRITIC_MODEL: gemini-3.8-flash
+          # The legacy 50k session budget is sized for one planner call. The VD critic sends
+          # a strip + up to 4 key frames for every scene, every round: run 40384441048 spent
+          # ~45k per full pass and lost scenes 1-7 of round 0 to budget_exhausted. 1M covers
+          # five corrective rounds plus the whole-video contact sheet.
+          MAX_TOKENS_PER_VIDEO: "1000000"
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
           RENDER_PROGRESS_MS: 15000
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
