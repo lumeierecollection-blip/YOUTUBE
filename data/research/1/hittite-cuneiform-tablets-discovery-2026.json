@@ -1,0 +1,77 @@
+{
+  "topic_slug": "hittite-cuneiform-tablets-discovery-2026",
+  "strongest_angle": "The discovery of 131 cuneiform tablets at Kayalıpınar in central Turkey provides a direct glimpse into the Hittite Empire under King Tudhaliya II, detailing epidemics, royal family tragedies, and military affairs.",
+  "key_facts": [
+    {
+      "fact": "Archaeologists working at Kayalıpınar in central Turkey discovered 131 cuneiform tablets written in Hittite and Hurrian, dating to the reign of King Tudhaliya II circa 1400 BC, as announced by Turkey's Minister of Culture and Tourism Mehmet Nuri Ersoy.",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "Combining the 131 tablets found in the 2026 season with 53 pieces recovered in 2025 at the ancient Hittite city of Šamuḥa yields a grand total of 184 archive pieces.",
+      "source_url": "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive",
+      "source_name": "Ancient Cyprus",
+      "confidence": "high"
+    },
+    {
+      "fact": "One of the newly discovered tablets from the royal court in exile under Tudhaliya II details a deadly epidemic that decimated infants and young children, including a nursing princess.",
+      "source_url": "https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha",
+      "source_name": "CNRS Le journal",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Newly discovered cuneiform tablets in 2026",
+      "value": 131,
+      "unit": "tablets",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery"
+    },
+    {
+      "label": "Cuneiform pieces recovered in 2025",
+      "value": 53,
+      "unit": "pieces",
+      "source_url": "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive"
+    },
+    {
+      "label": "Total royal archive pieces unearthed",
+      "value": 184,
+      "unit": "tablets",
+      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
+    },
+    {
+      "label": "Approximate age of the unearthed royal archive",
+      "value": 3400,
+      "unit": "years",
+      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Turkey",
+      "kind": "place"
+    },
+    {
+      "name": "Tudhaliya II",
+      "kind": "person"
+    },
+    {
+      "name": "Mehmet Nuri Ersoy",
+      "kind": "person"
+    },
+    {
+      "name": "Šamuḥa",
+      "kind": "place"
+    },
+    {
+      "name": "Sivas",
+      "kind": "place"
+    }
+  ]
+}
