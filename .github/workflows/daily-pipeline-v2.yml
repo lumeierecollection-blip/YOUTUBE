@@ -253,11 +253,7 @@ jobs:
 
       # Gemini TTS returns raw PCM; src/utils/tts_gemini.py writes the mp3 with ffmpeg (board 38033771445: missing here, every channel fell back to edge-tts).
       - name: Ensure ffmpeg (Gemini TTS)
-        run: |
-          if ! command -v ffmpeg >/dev/null; then
-            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
-          fi
-          ffmpeg -version | head -1
+        run: bash scripts/ci/ensure-ffmpeg.sh
 
       # —— Ollama —————————————————————————————————————————————————————————
       # .github/actions/ollama: one server per job, the only place one is
@@ -1166,11 +1162,7 @@ jobs:
 
       - name: Ensure ffmpeg/ffprobe
         if: steps.status.outputs.skip != 'true'
-        run: |
-          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
-            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
-          fi
-          ffmpeg -version | head -1
+        run: bash scripts/ci/ensure-ffmpeg.sh
 
       - uses: browser-actions/setup-chrome@v1
         if: steps.status.outputs.skip != 'true'
@@ -1900,7 +1892,7 @@ jobs:
       - name: Install ffmpeg and ImageMagick
         # fonts-dejavu-core: without recommends no font is installed and
         # montage's sheet title failed "unable to read font (null)" (run 36915319430).
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg imagemagick fonts-dejavu-core
+        run: timeout 600 sudo apt-get update -qq && timeout 600 sudo apt-get install -y -qq --no-install-recommends ffmpeg imagemagick fonts-dejavu-core
 
       - name: Download rendered MP4s
         uses: actions/download-artifact@v4
