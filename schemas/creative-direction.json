@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "creative-direction",
+  "description": "Creative-direction doc for ONE reference video (scripts/reference/direct.mjs). Numbers (metadata, cuts, cadence, audio) come from measurement. Every qualitative observation cites the frame ids the vision model actually received; observations citing anything else are removed into rejected_observations. direction.status is measured-only when no vision model answered: qualitative arrays are then empty, never filled in.",
+  "type": "object",
+  "required": ["schema_version", "source", "direction", "measured", "frames_sent", "typography", "composition", "pacing", "transitions", "camera_movement", "effects", "color", "sound_cues", "narration_visual", "storyboard", "rejected_observations"],
+  "definitions": {
+    "evidence": { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^f[0-9]{3,}$" } },
+    "confidence": { "enum": ["low", "medium", "high"] },
+    "observation": {
+      "type": "object",
+      "required": ["text", "evidence", "confidence"],
+      "properties": {
+        "text": { "type": "string", "minLength": 3 },
+        "evidence": { "$ref": "#/definitions/evidence" },
+        "confidence": { "$ref": "#/definitions/confidence" }
+      }
+    },
+    "typography": {
+      "allOf": [{ "$ref": "#/definitions/observation" }],
+      "properties": {
+        "families": { "type": "array", "items": { "type": "string" } },
+        "weights": { "type": "array", "items": { "type": "string" } },
+        "case": { "type": "string" },
+        "sizes": { "type": "string" },
+        "role": { "type": "string" },
+        "entrance": { "type": "string" }
+      }
+    },
+    "composition": {
+      "allOf": [{ "$ref": "#/definitions/observation" }],
+      "properties": { "grid": { "type": "string" }, "safe_zones": { "type": "string" }, "density": { "type": "string" } }
+    },
+    "transition": {
+      "allOf": [{ "$ref": "#/definitions/observation" }],
+      "properties": { "type": { "type": "string" }, "duration_s": { "type": ["number", "null"] }, "at_cuts": { "type": "array", "items": { "type": "number" } } }
+    },
+    "sound_cue": {
+      "allOf": [{ "$ref": "#/definitions/observation" }],
+      "required": ["t"],
+      "properties": { "t": { "type": "number" } }
+    }
+  },
+  "properties": {
+    "schema_version": { "const": 1 },
+    "source": { "type": "object", "required": ["file"], "properties": { "file": { "type": "string" }, "size_bytes": { "type": "number" } } },
+    "direction": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["complete", "measured-only"] },
+        "why": { "type": ["string", "null"] },
+        "model": { "type": ["string", "null"] },
+        "provider": { "type": ["string", "null"] }
+      }
+    },
+    "measured": {
+      "type": "object",
+      "required": ["metadata", "cuts", "cadence"],
+      "properties": {
+        "metadata": { "type": "object" },
+        "cuts": { "type": "array", "items": { "type": "number" } },
+        "cadence": { "type": "object" },
+        "audio": { "type": ["object", "null"] }
+      }
+    },
+    "frames_sent": { "type": "array", "items": { "type": "string", "pattern": "^f[0-9]{3,}$" } },
+    "typography": { "type": "array", "items": { "$ref": "#/definitions/typography" } },
+    "composition": { "type": "array", "items": { "$ref": "#/definitions/composition" } },
+    "pacing": {
+      "type": "object",
+      "required": ["measured", "observations"],
+      "properties": { "measured": { "type": "object" }, "observations": { "type": "array", "items": { "$ref": "#/definitions/observation" } } }
+    },
+    "transitions": { "type": "array", "items": { "$ref": "#/definitions/transition" } },
+    "camera_movement": { "type": "array", "items": { "$ref": "#/definitions/observation" } },
+    "effects": { "type": "array", "items": { "$ref": "#/definitions/observation" } },
+    "color": { "type": "array", "items": { "$ref": "#/definitions/observation" }, "description": "Observation only. Colour lives in config/channels.json, never copied from here." },
+    "sound_cues": { "type": "array", "items": { "$ref": "#/definitions/sound_cue" } },
+    "narration_visual": { "type": "array", "items": { "$ref": "#/definitions/observation" } },
+    "storyboard": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scene_id", "start", "end", "frames", "description", "technique", "evidence", "confidence"],
+        "properties": {
+          "scene_id": { "type": "string" },
+          "start": { "type": "number" },
+          "end": { "type": "number" },
+          "frames": { "$ref": "#/definitions/evidence" },
+          "description": { "type": "string" },
+          "technique": { "type": "string" },
+          "evidence": { "$ref": "#/definitions/evidence" },
+          "confidence": { "$ref": "#/definitions/confidence" }
+        }
+      }
+    },
+    "rejected_observations": {
+      "type": "array",
+      "items": { "type": "object", "required": ["section", "reason"], "properties": { "section": { "type": "string" }, "reason": { "type": "string" }, "observation": {}, "cited": { "type": "array", "items": { "type": "string" } } } }
+    }
+  }
+}
