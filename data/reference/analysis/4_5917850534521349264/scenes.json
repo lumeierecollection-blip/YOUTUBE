@@ -1,0 +1,162 @@
+{
+  "threshold": 0.3,
+  "duration_s": 23.058,
+  "cuts": [
+    2.633,
+    6.1
+  ],
+  "scene_cuts": 2,
+  "shots": [
+    {
+      "index": 0,
+      "start": 0,
+      "end": 2.633
+    },
+    {
+      "index": 1,
+      "start": 2.633,
+      "end": 6.1
+    },
+    {
+      "index": 2,
+      "start": 6.1,
+      "end": 23.058
+    }
+  ],
+  "cadence": {
+    "events_per_10s": 9.54,
+    "cuts_per_10s": 4.34,
+    "p90_gap_s": 2.85,
+    "median_gap_s": 0.4,
+    "longest_hold": {
+      "start": 6.1,
+      "end": 23.058,
+      "length_s": 16.96
+    },
+    "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+    "novelty_cuts_at": [
+      1,
+      1.4,
+      1.8,
+      2.6,
+      6.2,
+      7.8,
+      8.4,
+      9.6,
+      19,
+      19.8
+    ]
+  },
+  "novelty_events": [
+    {
+      "t": 0.2,
+      "novelty": 0.156,
+      "cut": false
+    },
+    {
+      "t": 0.6,
+      "novelty": 0.036,
+      "cut": false
+    },
+    {
+      "t": 1,
+      "novelty": 0.89,
+      "cut": true
+    },
+    {
+      "t": 1.4,
+      "novelty": 0.887,
+      "cut": true
+    },
+    {
+      "t": 1.8,
+      "novelty": 0.423,
+      "cut": true
+    },
+    {
+      "t": 2.2,
+      "novelty": 0.106,
+      "cut": false
+    },
+    {
+      "t": 2.6,
+      "novelty": 0.854,
+      "cut": true
+    },
+    {
+      "t": 6.2,
+      "novelty": 0.691,
+      "cut": true
+    },
+    {
+      "t": 7.4,
+      "novelty": 0.146,
+      "cut": false
+    },
+    {
+      "t": 7.8,
+      "novelty": 0.631,
+      "cut": true
+    },
+    {
+      "t": 8.4,
+      "novelty": 0.799,
+      "cut": true
+    },
+    {
+      "t": 9.6,
+      "novelty": 1.438,
+      "cut": true
+    },
+    {
+      "t": 10,
+      "novelty": 0.113,
+      "cut": false
+    },
+    {
+      "t": 10.6,
+      "novelty": 0.127,
+      "cut": false
+    },
+    {
+      "t": 11,
+      "novelty": 0.049,
+      "cut": false
+    },
+    {
+      "t": 11.8,
+      "novelty": 0.027,
+      "cut": false
+    },
+    {
+      "t": 13,
+      "novelty": 0.065,
+      "cut": false
+    },
+    {
+      "t": 13.4,
+      "novelty": 0.066,
+      "cut": false
+    },
+    {
+      "t": 13.8,
+      "novelty": 0.052,
+      "cut": false
+    },
+    {
+      "t": 19,
+      "novelty": 0.833,
+      "cut": true
+    },
+    {
+      "t": 19.4,
+      "novelty": 0.141,
+      "cut": false
+    },
+    {
+      "t": 19.8,
+      "novelty": 0.269,
+      "cut": true
+    }
+  ]
+}

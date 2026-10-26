@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file": "ref-02.mp4",
+    "size_bytes": 459033
+  },
+  "direction": {
+    "status": "measured-only",
+    "why": "--no-vision",
+    "model": null,
+    "provider": null
+  },
+  "measured": {
+    "metadata": {
+      "duration_s": 5,
+      "fps": 30,
+      "width": 720,
+      "height": 1280,
+      "aspect": 0.5625,
+      "orientation": "vertical",
+      "codec": "h264",
+      "has_audio": true,
+      "audio_sample_rate": 44100,
+      "audio_channels": 2,
+      "audio_codec": "aac"
+    },
+    "cuts": [
+      2.067
+    ],
+    "cadence": {
+      "events_per_10s": 8,
+      "cuts_per_10s": 4,
+      "p90_gap_s": 1.76,
+      "median_gap_s": 1,
+      "longest_hold": {
+        "start": 2.067,
+        "end": 5,
+        "length_s": 2.93
+      },
+      "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+      "novelty_cuts_at": [
+        0.2,
+        2
+      ]
+    },
+    "audio": {
+      "loudness": {
+        "integrated_lufs": -70,
+        "loudness_range_lu": 0,
+        "true_peak_dbfs": -101.6
+      },
+      "silences": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "candidate_cues": [],
+      "transcript": null,
+      "transcript_why": "faster_whisper is not importable in this python"
+    }
+  },
+  "frames_sent": [],
+  "typography": [],
+  "composition": [],
+  "pacing": {
+    "measured": {
+      "duration_s": 5,
+      "scene_cuts": 1,
+      "events_per_10s": 8,
+      "cuts_per_10s": 4,
+      "p90_gap_s": 1.76,
+      "median_gap_s": 1,
+      "longest_hold": {
+        "start": 2.067,
+        "end": 5,
+        "length_s": 2.93
+      },
+      "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+      "novelty_cuts_at": [
+        0.2,
+        2
+      ]
+    },
+    "observations": []
+  },
+  "transitions": [],
+  "camera_movement": [],
+  "effects": [],
+  "color": [],
+  "sound_cues": [],
+  "narration_visual": [],
+  "storyboard": [],
+  "rejected_observations": []
+}

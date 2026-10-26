@@ -131,8 +131,8 @@ let cacheMisses = 0;
  * Generate cache key from model + messages + options.
  * Key = SHA256 of the canonical request string.
  */
-function cacheKey(model, messages, maxTokens, temperature) {
-  const canonical = JSON.stringify({ model, messages, maxTokens, temperature });
+function cacheKey(model, messages, maxTokens, temperature, json = false) {
+  const canonical = JSON.stringify({ model, messages, maxTokens, temperature, json });
   return createHash("sha256").update(canonical).digest("hex");
 }
 
@@ -328,7 +328,7 @@ export async function callGemini(messages, opts = {}) {
   if (!process.env.OPENROUTER_API_KEY || String(process.env.GEMINI_VIA_OPENROUTER || "").toLowerCase() === "off") return r;
   const model = opts.model || "gemini-3.5-flash-lite";
   const { callOpenRouter } = createRequire(import.meta.url)("../../scripts/openrouter-client.cjs");
-  const o = await callOpenRouter(messages, { ...opts, openrouterModel: `google/${model}`, openrouterJson: false });
+  const o = await callOpenRouter(messages, { ...opts, openrouterModel: `google/${model}`, openrouterJson: opts.json === true });
   if (o && o.source === "openrouter" && o.error) {
     console.error(`[${opts.tag || "gemini"}] google/${model} via openrouter: ${o.error} (${String(o.detail || "").slice(0, 140)}) — keeping the Gemini failure`);
     return r;
@@ -357,7 +357,7 @@ async function callGeminiDirect(messages, opts = {}) {
   logKeyProjects();
 
   // Check disk cache first (skip if noCache is set)
-  const ck = noCache ? null : cacheKey(model, messages, maxTokens, temperature);
+  const ck = noCache ? null : cacheKey(model, messages, maxTokens, temperature, !!opts.json);
   if (ck) {
     const cached = cacheGet(ck);
     if (cached) return cached;
@@ -369,11 +369,15 @@ async function callGeminiDirect(messages, opts = {}) {
   // that key only the dynamic messages are sent and the cache is referenced; any other key,
   // or a cache the API refuses, gets the full messages.
   let cacheOff = false;
+  // Opt-in JSON mode (callers that need one JSON object, e.g. the visual director). The OpenAI-compatible
+  // Gemini endpoint accepts response_format exactly as OpenAI does; callers that do not set opts.json keep
+  // the previous request byte-for-byte.
+  const responseFormat = opts.json ? { response_format: { type: "json_object" } } : {};
   const bodyFor = () => {
     const useCache = !cacheOff && opts.cache?.name && opts.cache.keyIndex === keyIndex;
     return { useCache, body: JSON.stringify(useCache
-      ? { model, max_tokens: maxTokens, temperature, messages: opts.cache.messages, extra_body: { google: { cached_content: opts.cache.name } } }
-      : { model, max_tokens: maxTokens, temperature, messages }) };
+      ? { model, max_tokens: maxTokens, temperature, messages: opts.cache.messages, extra_body: { google: { cached_content: opts.cache.name } }, ...responseFormat }
+      : { model, max_tokens: maxTokens, temperature, messages, ...responseFormat }) };
   };
 
   // 429 / quota rotates through every configured key (each key has its own

@@ -1,0 +1,446 @@
+{
+  "threshold": 0.3,
+  "duration_s": 65.062,
+  "cuts": [
+    2.603,
+    14.448,
+    19.72,
+    21.255,
+    26.827,
+    44.478
+  ],
+  "scene_cuts": 6,
+  "shots": [
+    {
+      "index": 0,
+      "start": 0,
+      "end": 2.603
+    },
+    {
+      "index": 1,
+      "start": 2.603,
+      "end": 14.448
+    },
+    {
+      "index": 2,
+      "start": 14.448,
+      "end": 19.72
+    },
+    {
+      "index": 3,
+      "start": 19.72,
+      "end": 21.255
+    },
+    {
+      "index": 4,
+      "start": 21.255,
+      "end": 26.827
+    },
+    {
+      "index": 5,
+      "start": 26.827,
+      "end": 44.478
+    },
+    {
+      "index": 6,
+      "start": 44.478,
+      "end": 65.062
+    }
+  ],
+  "cadence": {
+    "events_per_10s": 10.61,
+    "cuts_per_10s": 5.38,
+    "p90_gap_s": 3,
+    "median_gap_s": 0.4,
+    "longest_hold": {
+      "start": 44.478,
+      "end": 65.062,
+      "length_s": 20.58
+    },
+    "source": "scripts/lib/novelty.mjs (edge novelty at 5 fps); cuts from ffmpeg scene score",
+    "novelty_cuts_at": [
+      2.2,
+      2.8,
+      3.2,
+      3.6,
+      4.4,
+      6.8,
+      7.2,
+      7.6,
+      14.6,
+      15,
+      15.4,
+      18.8,
+      20,
+      21.2,
+      21.8,
+      23.2,
+      23.6,
+      26.8,
+      27.2,
+      31.8,
+      32.2,
+      36.2,
+      36.6,
+      37,
+      37.4,
+      40.2,
+      44.4,
+      44.8,
+      48,
+      48.4,
+      53,
+      57,
+      57.4,
+      57.8,
+      61.6
+    ]
+  },
+  "novelty_events": [
+    {
+      "t": 2.2,
+      "novelty": 0.625,
+      "cut": true
+    },
+    {
+      "t": 2.8,
+      "novelty": 0.55,
+      "cut": true
+    },
+    {
+      "t": 3.2,
+      "novelty": 0.769,
+      "cut": true
+    },
+    {
+      "t": 3.6,
+      "novelty": 0.339,
+      "cut": true
+    },
+    {
+      "t": 4,
+      "novelty": 0.138,
+      "cut": false
+    },
+    {
+      "t": 4.4,
+      "novelty": 0.245,
+      "cut": true
+    },
+    {
+      "t": 6.8,
+      "novelty": 0.552,
+      "cut": true
+    },
+    {
+      "t": 7.2,
+      "novelty": 0.892,
+      "cut": true
+    },
+    {
+      "t": 7.6,
+      "novelty": 0.278,
+      "cut": true
+    },
+    {
+      "t": 8,
+      "novelty": 0.116,
+      "cut": false
+    },
+    {
+      "t": 9.8,
+      "novelty": 0.028,
+      "cut": false
+    },
+    {
+      "t": 10.2,
+      "novelty": 0.111,
+      "cut": false
+    },
+    {
+      "t": 10.6,
+      "novelty": 0.102,
+      "cut": false
+    },
+    {
+      "t": 11.2,
+      "novelty": 0.037,
+      "cut": false
+    },
+    {
+      "t": 14.2,
+      "novelty": 0.023,
+      "cut": false
+    },
+    {
+      "t": 14.6,
+      "novelty": 1,
+      "cut": true
+    },
+    {
+      "t": 15,
+      "novelty": 0.3,
+      "cut": true
+    },
+    {
+      "t": 15.4,
+      "novelty": 0.253,
+      "cut": true
+    },
+    {
+      "t": 15.8,
+      "novelty": 0.025,
+      "cut": false
+    },
+    {
+      "t": 18.8,
+      "novelty": 0.247,
+      "cut": true
+    },
+    {
+      "t": 19.2,
+      "novelty": 0.081,
+      "cut": false
+    },
+    {
+      "t": 19.6,
+      "novelty": 0.062,
+      "cut": false
+    },
+    {
+      "t": 20,
+      "novelty": 0.324,
+      "cut": true
+    },
+    {
+      "t": 21.2,
+      "novelty": 0.267,
+      "cut": true
+    },
+    {
+      "t": 21.8,
+      "novelty": 0.183,
+      "cut": true
+    },
+    {
+      "t": 22.8,
+      "novelty": 0.044,
+      "cut": false
+    },
+    {
+      "t": 23.2,
+      "novelty": 0.646,
+      "cut": true
+    },
+    {
+      "t": 23.6,
+      "novelty": 0.762,
+      "cut": true
+    },
+    {
+      "t": 24,
+      "novelty": 0.179,
+      "cut": false
+    },
+    {
+      "t": 24.6,
+      "novelty": 0.101,
+      "cut": false
+    },
+    {
+      "t": 26.8,
+      "novelty": 0.984,
+      "cut": true
+    },
+    {
+      "t": 27.2,
+      "novelty": 0.52,
+      "cut": true
+    },
+    {
+      "t": 27.6,
+      "novelty": 0.062,
+      "cut": false
+    },
+    {
+      "t": 28,
+      "novelty": 0.053,
+      "cut": false
+    },
+    {
+      "t": 28.4,
+      "novelty": 0.025,
+      "cut": false
+    },
+    {
+      "t": 31.8,
+      "novelty": 0.51,
+      "cut": true
+    },
+    {
+      "t": 32.2,
+      "novelty": 0.286,
+      "cut": true
+    },
+    {
+      "t": 32.6,
+      "novelty": 0.038,
+      "cut": false
+    },
+    {
+      "t": 33.2,
+      "novelty": 0.046,
+      "cut": false
+    },
+    {
+      "t": 36.2,
+      "novelty": 0.982,
+      "cut": true
+    },
+    {
+      "t": 36.6,
+      "novelty": 0.2,
+      "cut": true
+    },
+    {
+      "t": 37,
+      "novelty": 0.786,
+      "cut": true
+    },
+    {
+      "t": 37.4,
+      "novelty": 0.22,
+      "cut": true
+    },
+    {
+      "t": 37.8,
+      "novelty": 0.128,
+      "cut": false
+    },
+    {
+      "t": 38.2,
+      "novelty": 0.071,
+      "cut": false
+    },
+    {
+      "t": 38.6,
+      "novelty": 0.039,
+      "cut": false
+    },
+    {
+      "t": 39,
+      "novelty": 0.13,
+      "cut": false
+    },
+    {
+      "t": 40.2,
+      "novelty": 0.677,
+      "cut": true
+    },
+    {
+      "t": 40.6,
+      "novelty": 0.054,
+      "cut": false
+    },
+    {
+      "t": 44.4,
+      "novelty": 1,
+      "cut": true
+    },
+    {
+      "t": 44.8,
+      "novelty": 0.842,
+      "cut": true
+    },
+    {
+      "t": 45.2,
+      "novelty": 0.152,
+      "cut": false
+    },
+    {
+      "t": 45.6,
+      "novelty": 0.122,
+      "cut": false
+    },
+    {
+      "t": 46.2,
+      "novelty": 0.116,
+      "cut": false
+    },
+    {
+      "t": 46.6,
+      "novelty": 0.034,
+      "cut": false
+    },
+    {
+      "t": 47,
+      "novelty": 0.057,
+      "cut": false
+    },
+    {
+      "t": 47.4,
+      "novelty": 0.089,
+      "cut": false
+    },
+    {
+      "t": 48,
+      "novelty": 0.228,
+      "cut": true
+    },
+    {
+      "t": 48.4,
+      "novelty": 0.615,
+      "cut": true
+    },
+    {
+      "t": 48.8,
+      "novelty": 0.078,
+      "cut": false
+    },
+    {
+      "t": 53,
+      "novelty": 0.366,
+      "cut": true
+    },
+    {
+      "t": 53.6,
+      "novelty": 0.134,
+      "cut": false
+    },
+    {
+      "t": 56.6,
+      "novelty": 0.026,
+      "cut": false
+    },
+    {
+      "t": 57,
+      "novelty": 0.364,
+      "cut": true
+    },
+    {
+      "t": 57.4,
+      "novelty": 0.365,
+      "cut": true
+    },
+    {
+      "t": 57.8,
+      "novelty": 0.279,
+      "cut": true
+    },
+    {
+      "t": 58.2,
+      "novelty": 0.137,
+      "cut": false
+    },
+    {
+      "t": 58.6,
+      "novelty": 0.022,
+      "cut": false
+    },
+    {
+      "t": 61.6,
+      "novelty": 0.435,
+      "cut": true
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "mode": "standard",
+  "dense_windows": [],
+  "planned": 19,
+  "kept": 16,
+  "dropped_duplicates": [
+    {
+      "id": "f011",
+      "t": 6.42,
+      "duplicate_of": "f010",
+      "distance": 0.34
+    },
+    {
+      "id": "f018",
+      "t": 14.05,
+      "duplicate_of": "f017",
+      "distance": 0
+    },
+    {
+      "id": "f019",
+      "t": 16,
+      "duplicate_of": "f017",
+      "distance": 0.56
+    }
+  ],
+  "frames": [
+    {
+      "id": "f001",
+      "t": 0,
+      "reason": "uniform",
+      "file": "frames/f001.jpg"
+    },
+    {
+      "id": "f002",
+      "t": 0.85,
+      "reason": "cut-before",
+      "file": "frames/f002.jpg"
+    },
+    {
+      "id": "f003",
+      "t": 1.15,
+      "reason": "cut-after",
+      "file": "frames/f003.jpg"
+    },
+    {
+      "id": "f004",
+      "t": 2,
+      "reason": "uniform",
+      "file": "frames/f004.jpg"
+    },
+    {
+      "id": "f005",
+      "t": 2.15,
+      "reason": "cut-before",
+      "file": "frames/f005.jpg"
+    },
+    {
+      "id": "f006",
+      "t": 2.45,
+      "reason": "cut-after",
+      "file": "frames/f006.jpg"
+    },
+    {
+      "id": "f007",
+      "t": 4.02,
+      "reason": "cut-before",
+      "file": "frames/f007.jpg"
+    },
+    {
+      "id": "f008",
+      "t": 4.28,
+      "reason": "cut-before",
+      "file": "frames/f008.jpg"
+    },
+    {
+      "id": "f009",
+      "t": 4.58,
+      "reason": "cut-after",
+      "file": "frames/f009.jpg"
+    },
+    {
+      "id": "f010",
+      "t": 6,
+      "reason": "uniform",
+      "file": "frames/f010.jpg"
+    },
+    {
+      "id": "f012",
+      "t": 6.72,
+      "reason": "cut-after",
+      "file": "frames/f012.jpg"
+    },
+    {
+      "id": "f013",
+      "t": 8,
+      "reason": "uniform",
+      "file": "frames/f013.jpg"
+    },
+    {
+      "id": "f014",
+      "t": 10,
+      "reason": "uniform",
+      "file": "frames/f014.jpg"
+    },
+    {
+      "id": "f015",
+      "t": 12,
+      "reason": "uniform",
+      "file": "frames/f015.jpg"
+    },
+    {
+      "id": "f016",
+      "t": 13.75,
+      "reason": "cut-before",
+      "file": "frames/f016.jpg"
+    },
+    {
+      "id": "f017",
+      "t": 14,
+      "reason": "uniform",
+      "file": "frames/f017.jpg"
+    }
+  ]
+}

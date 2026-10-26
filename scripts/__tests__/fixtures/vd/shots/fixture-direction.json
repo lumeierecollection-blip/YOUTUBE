@@ -1,0 +1,636 @@
+{
+ "schema_version": 1,
+ "channel_id": "ch-34",
+ "script": "scripts/__tests__/fixtures/vd/shots/fixture-direction.json (renderer fixture, no script)",
+ "reference": null,
+ "model": null,
+ "beats": [
+  {
+   "beat_index": 0,
+   "sentence": "The entrance looks like any other hole in the rock.",
+   "t_start": 0,
+   "t_end": 4.5,
+   "semantic": {
+    "subject": "entrance",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you show that something ordinary hides something?",
+   "mechanism": {
+    "family": "reveal",
+    "construction": "renderer fixture construction: how do you show that something ordinary hides something?",
+    "why": "exercises the reveal mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b0s1",
+     "duration_s": 4.5,
+     "camera": {
+      "move": "pull-out",
+      "from": "extreme close on the dark mouth of the entrance",
+      "to": "very wide, the whole entrance as a print on the ground",
+      "motivation": "reveal: start inside the darkness, pull out to show it is just a hole in a hillside"
+     },
+     "materials": [
+      {
+       "id": "entrance",
+       "kind": "photo",
+       "must_show": "the rocky entrance of a cave",
+       "why": "renderer fixture: Cave entrance in darkness (Lava River Cave, Arizona) - hook 'cave entrance revea",
+       "search": [
+        "File:Lava River Cave Entrance.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/cave-entrance.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Lava_River_Cave_Entrance.jpg",
+        "license": "Public domain (US Forest Service)",
+        "credit": "Brady Smith / US Forest Service, Coconino National Forest — File:Lava River Cave Entrance.jpg, Public domain (US Forest Service)",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "the window on the dark mouth opens outward until the whole entrance photograph is visible",
+     "text": {
+      "words": "Just a hole",
+      "role": "key-word",
+      "placement": "clear of the mouth",
+      "sync_word": "hole"
+     },
+     "transition_out": "whip",
+     "sfx": "reveal swell"
+    }
+   ],
+   "mute_test": "a dark hole that turns out to be an ordinary cave entrance",
+   "status": "directed"
+  },
+  {
+   "beat_index": 1,
+   "sentence": "Inside, the passage runs on through the dark, past formations of stone.",
+   "t_start": 4.5,
+   "t_end": 10,
+   "semantic": {
+    "subject": "the",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you make a passage feel long and continuous?",
+   "mechanism": {
+    "family": "context-reveal",
+    "construction": "renderer fixture construction: how do you make a passage feel long and continuous?",
+    "why": "exercises the context-reveal mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b1s1",
+     "duration_s": 3,
+     "camera": {
+      "move": "track",
+      "from": "close on the left of the tunnel",
+      "to": "close on the right of the tunnel",
+      "motivation": "track: the camera travels the passage as a caver would"
+     },
+     "materials": [
+      {
+       "id": "tunnel",
+       "kind": "photo",
+       "must_show": "a vertical cave shaft",
+       "why": "renderer fixture: Vertical cave shaft - section_2 'vertical shaft descent'",
+       "search": [
+        "File:Vertical Shaft of Wine Cave - panoramio.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/vertical-shaft.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Vertical_Shaft_of_Wine_Cave_-_panoramio.jpg",
+        "license": "CC BY 3.0",
+        "credit": "Wikimedia Commons contributor — File:Vertical Shaft of Wine Cave - panoramio.jpg, CC BY 3.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "the camera travels along the tunnel wall while the window on it widens",
+     "text": null,
+     "transition_out": "cut",
+     "sfx": null
+    },
+    {
+     "id": "b1s2",
+     "duration_s": 2.5,
+     "camera": {
+      "move": "tilt",
+      "from": "close on the bottom of the formations",
+      "to": "close on the top of the formations",
+      "motivation": "tilt: up from the floor to the hanging stone"
+     },
+     "materials": [
+      {
+       "id": "formations",
+       "kind": "photo",
+       "must_show": "stalactite formations in a cave",
+       "why": "renderer fixture: Calcium carbonate stalactite/stalagmite formations - hook 'close-up on calcium f",
+       "search": [
+        "File:Stalactite Formation in Avshalom Cave.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/calcium-formations.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Stalactite_Formation_in_Avshalom_Cave.jpg",
+        "license": "CC BY-SA 3.0",
+        "credit": "Wikimedia Commons contributor — File:Stalactite Formation in Avshalom Cave.jpg, CC BY-SA 3.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "the frame climbs the stalactites as the masked window opens",
+     "text": {
+      "words": "Formations",
+      "role": "key-word",
+      "placement": "clear of the stone",
+      "sync_word": "formations"
+     },
+     "transition_out": "push-through",
+     "sfx": null
+    }
+   ],
+   "mute_test": "a long tunnel travelled, then stone formations climbed",
+   "status": "directed"
+  },
+  {
+   "beat_index": 2,
+   "sentence": "Its animals are blind, like this spider and this water scorpion.",
+   "t_start": 10,
+   "t_end": 16,
+   "semantic": {
+    "subject": "animals",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you show two different animals sharing one trait?",
+   "mechanism": {
+    "family": "comparative-transformation",
+    "construction": "renderer fixture construction: how do you show two different animals sharing one trait?",
+    "why": "exercises the comparative-transformation mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b2s1",
+     "duration_s": 3,
+     "camera": {
+      "move": "reframe",
+      "from": "close on the left one",
+      "to": "both side by side",
+      "motivation": "comparison: establish A, reframe to both"
+     },
+     "materials": [
+      {
+       "id": "spider",
+       "kind": "photo",
+       "must_show": "a blind cave spider",
+       "why": "renderer fixture: Stalita taenaria, a blind cave spider - section_1 'blind spiders' (caveat: real ",
+       "search": [
+        "File:Stalita taenaria1.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/cave-spider.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Stalita_taenaria1.jpg",
+        "license": "CC BY-SA 4.0",
+        "credit": "Wikimedia Commons contributor — File:Stalita taenaria1.jpg, CC BY-SA 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      },
+      {
+       "id": "scorpion",
+       "kind": "photo",
+       "must_show": "a blind water scorpion",
+       "why": "renderer fixture: Nepa anophthalma, blind troglofaunal water scorpion FROM Movile Cave - section_1",
+       "search": [
+        "File:Image of the troglofaunal water scorpion, Nepa anophthalma.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/water-scorpion.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Image_of_the_troglofaunal_water_scorpion,_Nepa_anophthalma.jpg",
+        "license": "CC BY-SA 4.0",
+        "credit": "Wikimedia Commons contributor — File:Image of the troglofaunal water scorpion, Nepa anophthalma.jpg, CC BY-SA 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "two prints lie side by side; the frame moves from the spider to both",
+     "text": {
+      "words": "Stalita taenaria",
+      "role": "name",
+      "placement": "away from the spider",
+      "sync_word": "spider"
+     },
+     "transition_out": "cut",
+     "sfx": "click"
+    },
+    {
+     "id": "b2s2",
+     "duration_s": 3,
+     "camera": {
+      "move": "rack",
+      "from": "close on the spider",
+      "to": "close on the scorpion",
+      "motivation": "rack: attention passes from one blind animal to the other"
+     },
+     "materials": [
+      {
+       "id": "spider",
+       "kind": "photo",
+       "must_show": "a blind cave spider",
+       "why": "renderer fixture: Stalita taenaria, a blind cave spider - section_1 'blind spiders' (caveat: real ",
+       "search": [
+        "File:Stalita taenaria1.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/cave-spider.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Stalita_taenaria1.jpg",
+        "license": "CC BY-SA 4.0",
+        "credit": "Wikimedia Commons contributor — File:Stalita taenaria1.jpg, CC BY-SA 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      },
+      {
+       "id": "scorpion",
+       "kind": "photo",
+       "must_show": "a blind water scorpion",
+       "why": "renderer fixture: Nepa anophthalma, blind troglofaunal water scorpion FROM Movile Cave - section_1",
+       "search": [
+        "File:Image of the troglofaunal water scorpion, Nepa anophthalma.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/water-scorpion.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Image_of_the_troglofaunal_water_scorpion,_Nepa_anophthalma.jpg",
+        "license": "CC BY-SA 4.0",
+        "credit": "Wikimedia Commons contributor — File:Image of the troglofaunal water scorpion, Nepa anophthalma.jpg, CC BY-SA 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "focus pulls from the spider to the water scorpion as the frame reframes onto it",
+     "text": {
+      "words": "Water scorpion",
+      "role": "name",
+      "placement": "clear of the animal",
+      "sync_word": "scorpion"
+     },
+     "transition_out": "cut",
+     "sfx": null
+    }
+   ],
+   "mute_test": "two eyeless animals compared",
+   "status": "directed"
+  },
+  {
+   "beat_index": 3,
+   "sentence": "Down here, there is no sunlight, and microbial mats take its place.",
+   "t_start": 16,
+   "t_end": 21,
+   "semantic": {
+    "subject": "here,",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you show one food source replacing another?",
+   "mechanism": {
+    "family": "substitution",
+    "construction": "renderer fixture construction: how do you show one food source replacing another?",
+    "why": "exercises the substitution mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b3s1",
+     "duration_s": 5,
+     "camera": {
+      "move": "push-in",
+      "from": "wide on the whole tunnel",
+      "to": "close on the mats",
+      "motivation": "substitution in place, the camera pushing toward what replaces the light"
+     },
+     "materials": [
+      {
+       "id": "dark",
+       "kind": "photo",
+       "must_show": "a dark tunnel",
+       "why": "renderer fixture: Dark cave tunnel interior (30s exposure, lava tube) - hook 'flashlight beam cutt",
+       "search": [
+        "File:Lava River Cave - 20578435368.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/flashlight-beam.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Lava_River_Cave_-_20578435368.jpg",
+        "license": "Public domain (US Forest Service)",
+        "credit": "Brady Smith / US Forest Service, Coconino National Forest — File:Lava River Cave - 20578435368.jpg, Public domain (US Forest Service)",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      },
+      {
+       "id": "mats",
+       "kind": "photo",
+       "must_show": "microbial mats",
+       "why": "renderer fixture: Chemosynthetic microbial mats at a hydrothermal vent (NOAA) - section_3 'bacteri",
+       "search": [
+        "File:Chemosynthetic Microbial Mats.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/microbial-mats.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Chemosynthetic_Microbial_Mats.jpg",
+        "license": "Public domain (NOAA)",
+        "credit": "NOAA Submarine Ring of Fire 2004 Exploration, NOAA Vents Program — File:Chemosynthetic Microbial Mats.jpg, Public domain (NOAA)",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "a hard edge sweeps across the dark tunnel and leaves the microbial mats in its exact place",
+     "text": {
+      "words": "No sunlight",
+      "role": "key-word",
+      "placement": "top",
+      "sync_word": "sunlight"
+     },
+     "transition_out": "match-cut",
+     "sfx": "paper slide"
+    }
+   ],
+   "mute_test": "darkness replaced by living mats",
+   "status": "directed"
+  },
+  {
+   "beat_index": 4,
+   "sentence": "A centipede species was described from this one cave.",
+   "t_start": 21,
+   "t_end": 26,
+   "semantic": {
+    "subject": "centipede",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you show something found in only one place?",
+   "mechanism": {
+    "family": "scale-reveal",
+    "construction": "renderer fixture construction: how do you show something found in only one place?",
+    "why": "exercises the scale-reveal mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b4s1",
+     "duration_s": 2.5,
+     "camera": {
+      "move": "push-in",
+      "from": "wide on the whole centipede",
+      "to": "extreme close on the head",
+      "motivation": "match: lands on the detail the next shot starts from"
+     },
+     "materials": [
+      {
+       "id": "centipede",
+       "kind": "photo",
+       "must_show": "the Cryptops speleorex centipede",
+       "why": "renderer fixture: Cryptops speleorex, the centipede species described from Movile Cave - section_1",
+       "search": [
+        "File:Cryptops speleorex (holotype).jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/movile-centipede.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Cryptops_speleorex_(holotype).jpg",
+        "license": "CC BY 4.0",
+        "credit": "Wikimedia Commons contributor — File:Cryptops speleorex (holotype).jpg, CC BY 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "the camera pushes into the centipede's head",
+     "text": null,
+     "transition_out": "match-cut",
+     "sfx": null
+    },
+    {
+     "id": "b4s2",
+     "duration_s": 2.5,
+     "camera": {
+      "move": "pull-out",
+      "from": "extreme close on the centre",
+      "to": "very wide, on the ground",
+      "motivation": "scale: detail then the whole animal as an object"
+     },
+     "materials": [
+      {
+       "id": "centipede2",
+       "kind": "photo",
+       "must_show": "the Cryptops speleorex centipede",
+       "why": "renderer fixture: Cryptops speleorex, the centipede species described from Movile Cave - section_1",
+       "search": [
+        "File:Cryptops speleorex (holotype).jpg"
+       ],
+       "treatment": "cutout",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/movile-centipede.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Cryptops_speleorex_(holotype).jpg",
+        "license": "CC BY 4.0",
+        "credit": "Wikimedia Commons contributor — File:Cryptops speleorex (holotype).jpg, CC BY 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "the photograph shrinks to a print lying on the ground",
+     "text": {
+      "words": "One cave",
+      "role": "key-word",
+      "placement": "clear of the animal",
+      "sync_word": "cave"
+     },
+     "transition_out": "cut",
+     "sfx": "thud"
+    }
+   ],
+   "mute_test": "one animal, then seen as a single specimen",
+   "status": "directed"
+  },
+  {
+   "beat_index": 5,
+   "sentence": "Each survey adds more animals to the list.",
+   "t_start": 26,
+   "t_end": 30,
+   "semantic": {
+    "subject": "survey",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you show a count growing without a chart?",
+   "mechanism": {
+    "family": "accumulation",
+    "construction": "renderer fixture construction: how do you show a count growing without a chart?",
+    "why": "exercises the accumulation mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b5s1",
+     "duration_s": 4,
+     "camera": {
+      "move": "pull-out",
+      "from": "medium on the springtail",
+      "to": "very wide, on the ground",
+      "motivation": "accumulation: pull out as the stack grows"
+     },
+     "materials": [
+      {
+       "id": "springtail",
+       "kind": "photo",
+       "must_show": "a springtail",
+       "why": "renderer fixture: Springtail (Collembola) macro - section_2 'microscopy of the springtail' (generi",
+       "search": [
+        "File:Collembola sp. (1).jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/springtail-macro.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Collembola_sp._(1).jpg",
+        "license": "CC BY 4.0",
+        "credit": "Wikimedia Commons contributor — File:Collembola sp. (1).jpg, CC BY 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "prints of the springtail drop one after another and stack up",
+     "text": {
+      "words": "More every survey",
+      "role": "key-word",
+      "placement": "clear of the stack",
+      "sync_word": "survey"
+     },
+     "transition_out": "cut",
+     "sfx": "drop"
+    }
+   ],
+   "mute_test": "a stack of prints that keeps growing",
+   "status": "directed"
+  },
+  {
+   "beat_index": 6,
+   "sentence": "Its rocks and vents are shaped by sulfur.",
+   "t_start": 30,
+   "t_end": 34,
+   "semantic": {
+    "subject": "rocks",
+    "state": null,
+    "action": null,
+    "relationship": null,
+    "change": null,
+    "consequence": null,
+    "environment": "a cave"
+   },
+   "visual_question": "how do you show a material shaping a place?",
+   "mechanism": {
+    "family": "transformation",
+    "construction": "renderer fixture construction: how do you show a material shaping a place?",
+    "why": "exercises the transformation mechanism in the shot renderer"
+   },
+   "shots": [
+    {
+     "id": "b6s1",
+     "duration_s": 4,
+     "camera": {
+      "move": "push-in",
+      "from": "wide on the vent",
+      "to": "close on the centre",
+      "motivation": "transformation from the vent to what it makes"
+     },
+     "materials": [
+      {
+       "id": "smoker",
+       "kind": "photo",
+       "must_show": "a black smoker vent",
+       "why": "renderer fixture: Black smoker hydrothermal vent - section_3 'deep-sea vent comparison'",
+       "search": [
+        "File:MARUM Schwarzer Raucher.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "verified",
+        "file": "b-roll/ch-fixture/black-smoker.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:MARUM_Schwarzer_Raucher.jpg",
+        "license": "CC BY 4.0",
+        "credit": "Wikimedia Commons contributor — File:MARUM Schwarzer Raucher.jpg, CC BY 4.0",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      },
+      {
+       "id": "sulfur",
+       "kind": "photo",
+       "must_show": "sulfur crystals",
+       "why": "renderer fixture: Sulfur crystals - section_3 'rock and mineral macro' / 'bacteria turning mineral",
+       "search": [
+        "File:Large Sulfur Crystal.jpg"
+       ],
+       "treatment": "full-bleed",
+       "resolved": {
+        "status": "unverified",
+        "file": "b-roll/ch-fixture/sulfur-crystal.jpg",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Large_Sulfur_Crystal.jpg",
+        "license": "CC BY-SA 2.5",
+        "credit": "Wikimedia Commons contributor — File:Large Sulfur Crystal.jpg, CC BY-SA 2.5",
+        "verdict": "fixture: committed Commons file, content per b-roll-manifest-ch-fixture.json"
+       }
+      }
+     ],
+     "action": "sulfur crystals open out of the vent in a growing circle",
+     "text": {
+      "words": "Sulfur",
+      "role": "key-word",
+      "placement": "top",
+      "sync_word": "sulfur"
+     },
+     "transition_out": "cut",
+     "sfx": null
+    }
+   ],
+   "mute_test": "vent becomes crystal (PROOF: sulfur deliberately unverified -> placeholder)",
+   "status": "directed"
+  }
+ ]
+}
