@@ -34,6 +34,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, "..", "..");
 
+// edge-tts occasionally answers a valid request with NoAudioReceived (run
+// 40363121751, ch-2) while the same voice works minutes later. Retry the
+// synthesis, then fall back to another voice of the same language/gender so
+// one flaky service response cannot kill the video. The voice actually used
+// is written into the words JSON by tts_words.py.
+const EDGE_FALLBACK_VOICES = {
+  "en-US-TonyNeural": ["en-US-GuyNeural", "en-US-AriaNeural"],
+  "en-GB-RyanNeural": ["en-GB-ThomasNeural", "en-GB-SoniaNeural"],
+};
+function edgeVoiceCandidates(voice) {
+  const extra = (process.env.TTS_FALLBACK_VOICES || "").split(",").map((s) => s.trim()).filter(Boolean);
+  return [...new Set([voice, ...(EDGE_FALLBACK_VOICES[voice] || []), ...extra])];
+}
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 /**
  * Parse script into segments for TTS.
  * Handles both JSON scripts (from script-writer) and plain text/markdown.
@@ -214,27 +229,42 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     // captions need the real time each word is spoken.
     // Rate/pitch use --flag=value: argparse treats "-8%" as an option otherwise.
     const helper = join(ROOT, "src", "utils", "tts_words.py");
-    const args =
-      `--voice "${voice}" ` +
-      `--rate="${rate}" --pitch="${pitch}" ` +
-      `--file "${tmpTextPath}" --display-file "${displayPath}" ` +
-      `--mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
     // A real interpreter can be pinned per channel via channel.tts_python.
     const pythons = [...new Set([settings.python, process.platform === "win32" ? "python" : "python3", "python"].filter(Boolean))];
-    const cmds = pythons.map((py) => `${py} "${helper}" ${args}`);
-    let lastErr = null;
-    for (const cmd of cmds) {
-      try {
-        execSync(cmd, { stdio: "pipe", timeout: 180000 });
-        lastErr = null;
-        break;
-      } catch (err) {
-        // Capture stderr for diagnostics — execSync puts it in err.stderr
-        const stderr = err.stderr ? err.stderr.toString().trim() : "(no stderr)";
-        console.error(`TTS command failed: ${cmd}
+    const attempts = Math.max(1, Number(process.env.TTS_EDGE_ATTEMPTS) || 3);
+    let lastErr = null, usedVoice = voice, sawNoAudio = false;
+    outer: for (const candidate of edgeVoiceCandidates(voice)) {
+      if (candidate !== voice) console.warn(`::warning::TTS: ${voice} returned no audio; trying fallback voice ${candidate}`);
+      const args =
+        `--voice "${candidate}" ` +
+        `--rate="${rate}" --pitch="${pitch}" ` +
+        `--file "${tmpTextPath}" --display-file "${displayPath}" ` +
+        `--mp3 "${audioPath}" --srt "${srtPath}" --words "${wordsPath}"`;
+      for (const py of pythons) {
+        for (let attempt = 1; attempt <= attempts; attempt++) {
+          try {
+            execSync(`${py} "${helper}" ${args}`, { stdio: "pipe", timeout: 180000 });
+            lastErr = null; usedVoice = candidate;
+            break outer;
+          } catch (err) {
+            // Capture stderr for diagnostics — execSync puts it in err.stderr
+            const stderr = err.stderr ? err.stderr.toString().trim() : "(no stderr)";
+            if (/NoAudioReceived|no audio was received/i.test(stderr)) sawNoAudio = true;
+            console.error(`TTS command failed (voice=${candidate}, attempt ${attempt}/${attempts}, ${py}): ${py} "${helper}" ${args}
 stderr: ${stderr}`);
-        lastErr = err;
+            lastErr = err;
+            // tts_words.py opens the mp3 before the stream; never let a
+            // failed attempt leave a partial file behind for the next one.
+            for (const partial of [audioPath, srtPath, wordsPath]) {
+              if (existsSync(partial)) { try { unlinkSync(partial); } catch {} }
+            }
+            if (attempt < attempts) await sleep(1500 * attempt);
+          }
+        }
       }
+      // A missing interpreter or a network error is not voice-specific;
+      // retrying a different voice would only waste the time budget.
+      if (candidate === voice && !sawNoAudio) break;
     }
     // Clean up temp files
     try { unlinkSync(tmpTextPath); } catch {}
@@ -243,7 +273,7 @@ stderr: ${stderr}`);
     console.log(`TTS audio saved: ${audioPath}`);
     console.log(`TTS subtitles saved: ${srtPath}`);
     console.log(`TTS word timings saved: ${wordsPath}`);
-    console.log(`Delivery: voice=${voice} rate=${rate} pitch=${pitch}`);
+    console.log(`Delivery: voice=${usedVoice} rate=${rate} pitch=${pitch}${usedVoice !== voice ? ` (configured ${voice}; fallback used)` : ""}`);
     // Task 4.3 — prosody/timing verification even on the edge-tts path.
     verifyTts({ mp3Path: audioPath, srtPath, wordsPath, spokenText, channel: settings.channel || "?", topic });
     return audioPath;

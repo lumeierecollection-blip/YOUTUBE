@@ -214,6 +214,19 @@ test("direct(): a clean answer becomes the good direction (timings, ids, duratio
   assert.doesNotMatch(m.calls[0], /\{\{\w+\}\}/, "every template slot is filled");
 });
 
+test("direct(): a model key in the wrong place is dropped, not fatal (run 40363121751)", async () => {
+  // The director wrote beat-level mute_test INSIDE a shot; the closed schema
+  // rejected the whole direction and both corrective answers repeated it.
+  const m = mockModel([(b) => { b.shots[0].mute_test = "a beat field inside a shot"; b.shots[0].camera.zoom = 2; }]);
+  const logs = [];
+  const { direction, failures } = await direct({ scriptPath: SCRIPT, researchPath: RESEARCH, ttsDir: TTS, channelId: "1", callModel: m, log: (x) => logs.push(x), model: "fixture" });
+  assert.deepEqual(failures, []);
+  assert.deepEqual(schemaFailures(direction), []);
+  assert.equal(direction.beats[0].shots[0].mute_test, undefined);
+  assert.equal(direction.beats[0].shots[0].camera.zoom, undefined);
+  assert.ok(logs.some((l) => /dropped schema-unknown key/.test(l) && /mute_test/.test(l)), logs.join("\n"));
+});
+
 test("direct(): gate failures get ONE corrective retry naming them; a fix is kept", async () => {
   const m = mockModel([(b, i) => { if (i === 2) b.shots[0].action = "particles drift over the painting"; }]);
   const { direction, failures } = await direct({ scriptPath: SCRIPT, researchPath: RESEARCH, ttsDir: TTS, channelId: "1", callModel: m, log: quiet, model: "fixture" });

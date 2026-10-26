@@ -404,23 +404,56 @@ export function parseAnswer(r) {
 }
 
 /** Deterministic normalisation of one model beat onto narration beat i. */
-export function normaliseBeat(raw, i, sent, status = "directed", history = undefined) {
-  const b = { ...(raw || {}) };
+// The schema is closed (additionalProperties: false), so a model-invented key
+// would otherwise kill a run even when the scene itself is sound. Keep the
+// contract strict for the gate, but strip unknown keys here and report them:
+// a field in the wrong place (run 40363121751: beat-level mute_test inside a
+// shot) is dropped, while a missing or mistyped required field still fails.
+const BEAT_KEYS = ["beat_index", "sentence", "t_start", "t_end", "semantic", "visual_question", "mechanism", "shots", "mute_test", "evidence", "reference_cues", "status", "critic_history"];
+const SEMANTIC_KEYS = ["subject", "state", "action", "relationship", "change", "consequence", "environment"];
+const MECHANISM_KEYS = ["family", "construction", "why"];
+const SHOT_KEYS = ["id", "duration_s", "camera", "materials", "action", "text", "transition_out", "sfx"];
+const CAMERA_KEYS = ["move", "from", "to", "motivation"];
+const MATERIAL_KEYS = ["id", "kind", "must_show", "why", "search", "treatment", "data", "resolved"];
+const TEXT_KEYS = ["words", "role", "placement", "sync_word"];
+
+function pickKeys(obj, allowed, where, dropped) {
+  if (!obj || typeof obj !== "object" || Array.isArray(obj)) return obj;
+  const out = {};
+  for (const [k, v] of Object.entries(obj)) {
+    if (allowed.includes(k)) out[k] = v;
+    else dropped.push(`${where}.${k}`);
+  }
+  return out;
+}
+
+export function normaliseBeat(raw, i, sent, status = "directed", history = undefined, onDrop = null) {
+  const dropped = [];
+  const b = pickKeys({ ...(raw || {}) }, BEAT_KEYS, `beat ${i}`, dropped);
   delete b.status; delete b.critic_history;
   b.beat_index = i; b.sentence = sent.text; b.t_start = sent.start; b.t_end = sent.end;
   const dur = sent.end - sent.start;
+  if (b.semantic) b.semantic = pickKeys(b.semantic, SEMANTIC_KEYS, `beat ${i}.semantic`, dropped);
+  if (b.mechanism) b.mechanism = pickKeys(b.mechanism, MECHANISM_KEYS, `beat ${i}.mechanism`, dropped);
   if (Array.isArray(b.shots)) {
     const sum = b.shots.reduce((a, s) => a + (+s?.duration_s > 0 ? +s.duration_s : 0), 0);
     b.shots = b.shots.map((s, k) => {
-      const o = { ...s, id: `b${i}s${k}` };
+      const where = `beat ${i} shot ${k}`;
+      const o = { ...pickKeys(s, SHOT_KEYS, where, dropped), id: `b${i}s${k}` };
+      if (o.camera) o.camera = pickKeys(o.camera, CAMERA_KEYS, `${where}.camera`, dropped);
+      if (o.text) o.text = pickKeys(o.text, TEXT_KEYS, `${where}.text`, dropped);
+      if (Array.isArray(o.materials)) o.materials = o.materials.map((m, j) => {
+        const c = pickKeys(m, MATERIAL_KEYS, `${where} material ${j}`, dropped);
+        if (c && typeof c === "object") delete c.resolved;
+        return c;
+      });
       if (dur > 0) o.duration_s = +(sum > 0 && +s?.duration_s > 0 ? (+s.duration_s / sum) * dur : dur / b.shots.length).toFixed(3);
-      if (Array.isArray(o.materials)) o.materials = o.materials.map((m) => { const c = { ...m }; delete c.resolved; return c; });
       return o;
     });
   }
+  if (dropped.length && onDrop) onDrop(dropped);
   const ordered = {};
   for (const k of ["beat_index", "sentence", "t_start", "t_end", "semantic", "visual_question", "mechanism", "shots", "mute_test", "evidence", "reference_cues"]) if (k in b) ordered[k] = b[k];
-  for (const k of Object.keys(b)) if (!(k in ordered)) ordered[k] = b[k];
   ordered.status = status;
   if (history) ordered.critic_history = history;
   return ordered;
@@ -502,8 +535,9 @@ export async function direct({ scriptPath, researchPath = null, ttsDir = null, c
   const make = (beatsArr) => ({ schema_version: 1, channel_id: String(channelId), script: relative(ROOT, resolve(scriptPath)).replace(/\\/g, "/"), reference: reference.stem, model, beats: beatsArr });
 
   // round 1
+  const droppedKeys = (keys) => log(`[vd-direct] dropped schema-unknown key(s): ${keys.slice(0, 12).join(", ")}${keys.length > 12 ? ` (+${keys.length - 12})` : ""}`);
   const got = await askBeats({ callModel: callM, log, base, targets, per, contextOf, rawDir });
-  for (const i of targets) current[i] = normaliseBeat(got.get(i), i, ctx.sentences[i], statusOf(i), historyOf(i));
+  for (const i of targets) current[i] = normaliseBeat(got.get(i), i, ctx.sentences[i], statusOf(i), historyOf(i), droppedKeys);
   let doc = make(current.slice());
   let failures = gateDirection(doc, ctx.gate);
   const failsOf = (fs, i) => fs.filter((f) => f.beat_index === i);
@@ -514,9 +548,9 @@ export async function direct({ scriptPath, researchPath = null, ttsDir = null, c
   if (retry.length) {
     log(`[vd-direct] corrective retry on beats ${retry.join(",")}`);
     const fixes = await askBeats({ callModel: callM, log, base, targets: retry, per, contextOf, failures, rawDir });
-    const score = (fs) => (fs.some((f) => f.rule === "schema") ? 1e6 : 0) + fs.length;
+    const score = (fs) => fs.filter((f) => f.rule === "schema").length * 1e6 + fs.length;
     for (const i of retry) {
-      const cand = current.slice(); cand[i] = normaliseBeat(fixes.get(i), i, ctx.sentences[i], statusOf(i), historyOf(i));
+      const cand = current.slice(); cand[i] = normaliseBeat(fixes.get(i), i, ctx.sentences[i], statusOf(i), historyOf(i), droppedKeys);
       const before = score(failsOf(failures, i)), after = score(failsOf(gateDirection(make(cand), ctx.gate), i));
       if (after <= before) current[i] = cand[i];
       else log(`[vd-direct] beat ${i}: corrected version scored worse (${after} vs ${before}); kept the first`);
