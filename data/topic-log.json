@@ -1202,9 +1202,14 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "Anthropic Claude Haiku 5.5 Pricing and Performance Breakdown",
+          "slug": "anthropic-claude-haiku-5-5-pricing-breakdown",
+          "reserved_at": "2026-10-26T15:23:55.112Z"
         }
       ],
-      "last_generated": "2026-10-25T13:17:04.702Z"
+      "last_generated": "2026-10-26T15:23:55.112Z"
     },
     "3": {
       "channel_name": "AI Tested",
