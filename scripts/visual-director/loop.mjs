@@ -126,28 +126,36 @@ export function comparisonMarkdown(report, outDir) {
 }
 
 // ---------------------------------------------------------------- real steps (CLIs)
-function run(cmd, args, log) {
+function run(cmd, args, log, timeoutMs = 0) {
   const t0 = now();
-  const r = spawnSync(cmd, args, { encoding: "utf8", env: process.env, maxBuffer: 64 * 1024 * 1024 });
-  const out = `$ ${cmd} ${args.join(" ")}\nexit ${r.status} in ${((now() - t0) / 1000).toFixed(1)}s\n--- stdout\n${r.stdout || ""}\n--- stderr\n${r.stderr || ""}\n`;
+  const r = spawnSync(cmd, args, {
+    encoding: "utf8", env: process.env, maxBuffer: 64 * 1024 * 1024,
+    // A step that never returns must fail its round, not wedge the job until the
+    // runner kills it with no evidence (run 40364703475 sat in apt for 12 min).
+    ...(timeoutMs ? { timeout: timeoutMs, killSignal: "SIGTERM" } : {}),
+  });
+  const secs = ((now() - t0) / 1000).toFixed(1);
+  const why = r.error?.code === "ETIMEDOUT" || r.signal ? ` (killed after ${secs}s: ${r.signal || r.error?.code})` : "";
+  const out = `$ ${cmd} ${args.join(" ")}\nexit ${r.status} in ${secs}s${why}\n--- stdout\n${r.stdout || ""}\n--- stderr\n${r.stderr || ""}\n`;
   if (log) writeFileSync(log, out, { flag: "a" });
-  process.stderr.write(`[vd-loop] ${cmd} ${args.slice(0, 2).join(" ")} -> exit ${r.status}\n`);
-  return { ok: r.status === 0, status: r.status, stdout: r.stdout || "", stderr: (r.stderr || "").slice(-2000) };
+  process.stderr.write(`[vd-loop] ${cmd} ${args.slice(0, 2).join(" ")} -> exit ${r.status} in ${secs}s${why}\n`);
+  return { ok: r.status === 0, status: r.status, stdout: r.stdout || "", stderr: (r.stderr || "").slice(-2000), error: why || null };
 }
-const node = (script, args, log) => run(process.execPath, [script, ...args], log);
+const node = (script, args, log, timeoutMs) => run(process.execPath, [script, ...args], log, timeoutMs);
 const VD = "scripts/visual-director";
+const MIN = 60 * 1000;
 
 export const realSteps = {
   direct: ({ script, research, tts, channel, out, critique, beats, log }) =>
     node(`${VD}/direct.mjs`, ["--script", script, "--research", research, "--tts", tts, "--channel", channel, "--out", out,
-      ...(critique ? ["--critique", critique, "--beats", beats.join(",")] : [])], log),
+      ...(critique ? ["--critique", critique, "--beats", beats.join(",")] : [])], log, 12 * MIN),
   // gate.mjs (feat/vd-director) prints its failures and exits 1; the loop keeps that output as the gate report.
   gate: ({ direction, script, research, tts, log, report }) => {
-    const r = node(`${VD}/gate.mjs`, ["--direction", direction, "--script", script, ...(research ? ["--research", research] : []), "--tts", tts], log);
+    const r = node(`${VD}/gate.mjs`, ["--direction", direction, "--script", script, ...(research ? ["--research", research] : []), "--tts", tts], log, 3 * MIN);
     writeFileSync(report, JSON.stringify({ ok: r.ok, exit: r.status, output: (r.stdout + r.stderr).slice(-8000) }, null, 2));
     return r;
   },
-  resolve: ({ direction, out, assetsDir, report, research, log }) => node(`${VD}/materials/resolve.mjs`, ["--direction", direction, "--out", out, "--assets-dir", assetsDir, "--report", report, ...(research ? ["--research", research] : [])], log),
+  resolve: ({ direction, out, assetsDir, report, research, log }) => node(`${VD}/materials/resolve.mjs`, ["--direction", direction, "--out", out, "--assets-dir", assetsDir, "--report", report, ...(research ? ["--research", research] : [])], log, 20 * MIN),
   // render-direction.mjs (feat/vd-shots) takes --audio + --words [{word,start,end}]; edge-tts writes
   // {words:[{text,start,end}]} in <tts>/<script stem>-vo-words.json, so the loop converts it here.
   // --proof: an unverified material renders as a MARKED placeholder (production refuses such a direction);
@@ -163,7 +171,7 @@ export const realSteps = {
       const w = readJson(wj); const arr = (Array.isArray(w) ? w : w.words || []).map((x) => ({ word: x.word ?? x.text, start: x.start, end: x.end }));
       const wp = out.replace(/\.mp4$/i, ".words.json"); writeJson(wp, arr); args.push("--words", wp);
     }
-    return node(`${VD}/render-direction.mjs`, args, log);
+    return node(`${VD}/render-direction.mjs`, args, log, 20 * MIN);
   },
   // the renderer's <out>.shots.json has the real shot frame windows; frames.mjs labels from it when present.
   frames: async ({ video, direction, outDir }) => {

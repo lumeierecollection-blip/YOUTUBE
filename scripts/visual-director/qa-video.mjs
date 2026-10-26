@@ -30,8 +30,8 @@ export function parseBlackdetect(text) {
   return out;
 }
 
-/** Parse ffmpeg's freezedetect log lines. */
-export function parseFreezedetect(text) {
+/** Parse ffmpeg's freezedetect log lines. A freeze that runs to EOF only logs freeze_start, so the video duration closes it. */
+export function parseFreezedetect(text, duration = null) {
   const out = [];
   const lines = String(text || "").split(/\r?\n/);
   let cur = null;
@@ -43,7 +43,13 @@ export function parseFreezedetect(text) {
     const d = /freeze_duration:\s*([\d.]+)/.exec(line);
     if (d && cur) { cur.duration = +d[1]; }
   }
-  if (cur && cur.end == null) { cur.end = cur.start + (cur.duration || 0); out.push(cur); }
+  if (cur && cur.end == null) {
+    // Still frozen when the file ended: ffmpeg never prints freeze_end.
+    const end = duration != null && duration > cur.start ? duration : cur.start + (cur.duration || 0);
+    cur.end = end;
+    cur.duration = round(end - cur.start, 3);
+    out.push(cur);
+  }
   return out;
 }
 
@@ -83,9 +89,9 @@ export function scanBlack(video) {
   return parseBlackdetect(r.stderr);
 }
 
-export function scanFreeze(video) {
+export function scanFreeze(video, duration = null) {
   const r = run("ffmpeg", ["-nostdin", "-v", "info", "-i", video, "-vf", "freezedetect=n=0.003:d=3", "-an", "-f", "null", "-"]);
-  return parseFreezedetect(r.stderr);
+  return parseFreezedetect(r.stderr, duration);
 }
 
 export function scanVolume(video) {
@@ -168,7 +174,7 @@ export function qaVideo({ video, direction, framesIndex, shotsDoc, sfxDoc, mater
   if (!v.exists) return { pass: false, checks: [{ id: "video.exists", pass: false, detail: "no MP4" }], video: v };
   const probe = probeVideo(video);
   const black = scanBlack(video);
-  const freeze = scanFreeze(video);
+  const freeze = scanFreeze(video, probe?.duration ?? null);
   const volume = scanVolume(video);
   const report = evaluateVisualQa({ video: v, direction, framesIndex, shotsDoc, sfxDoc, materialsReport, probe, black, freeze, volume, expected });
   return { ...report, video: v, probe, black, freeze, volume };

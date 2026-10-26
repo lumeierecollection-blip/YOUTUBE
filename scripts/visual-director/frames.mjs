@@ -74,7 +74,7 @@ export function planFrameTimes(direction, { cadence = 0.5, edge = 0.06, duration
 }
 
 export function probeDuration(video) {
-  const r = spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", video], { encoding: "utf8" });
+  const r = spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", video], { encoding: "utf8", timeout: 60 * 1000 });
   const d = parseFloat(r.stdout);
   return Number.isFinite(d) ? d : null;
 }
@@ -82,8 +82,10 @@ export function probeDuration(video) {
 const label = (f) => `b${f.beat_index} ${f.shot_id} ${f.t.toFixed(2)}s ${f.kind}`.replace(/[:'\\%]/g, " ");
 
 function ff(args) {
-  const r = spawnSync("ffmpeg", ["-nostdin", "-v", "error", "-y", ...args], { encoding: "utf8" });
-  if (r.status !== 0) throw new Error(`ffmpeg failed: ${(r.stderr || "").slice(0, 400)}`);
+  // Each call decodes one frame (or tiles one strip); a call that hangs would otherwise
+  // block the loop until the runner kills the whole job with no evidence.
+  const r = spawnSync("ffmpeg", ["-nostdin", "-v", "error", "-y", ...args], { encoding: "utf8", timeout: 120 * 1000 });
+  if (r.status !== 0) throw new Error(`ffmpeg failed${r.signal ? ` (${r.signal})` : ""}: ${(r.stderr || "").slice(0, 400)}`);
 }
 
 /** Tile a list of jpgs (same size) into one image, `cols` across. */

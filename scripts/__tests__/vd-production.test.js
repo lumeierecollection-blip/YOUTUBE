@@ -134,6 +134,9 @@ test("parseBlackdetect/parseFreezedetect/parseVolumedetect read ffmpeg's log lin
   const fz = parseFreezedetect("freeze_start: 2\nfreeze_duration: 4.5\nfreeze_end: 6.5");
   assert.equal(fz.length, 1);
   assert.equal(fz[0].duration, 4.5);
+  // A freeze that reaches EOF never gets freeze_end (run 40364703475's black fixture):
+  // the video duration closes it, or a still frame would read as no freeze at all.
+  assert.deepEqual(parseFreezedetect("lavfi.freezedetect.freeze_start: 0", 4), [{ start: 0, end: 4, duration: 4 }]);
   assert.deepEqual(parseVolumedetect("mean_volume: -18.4 dB\nmax_volume: -1.2 dB"), { mean_db: -18.4, max_db: -1.2 });
   assert.deepEqual(parseVolumedetect("nothing"), { mean_db: null, max_db: null });
 });
