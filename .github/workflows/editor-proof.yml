@@ -1,0 +1,105 @@
+name: Editor Timeline Proof
+
+# Manual, read-only proof run for the persisted-timeline editor. It renders the
+# requested scripts on a GitHub-hosted runner, runs the same final-MP4 QA as the
+# production render job, and uploads the MP4/contact/QA evidence. It never
+# publishes and never needs repository write access.
+on:
+  workflow_dispatch:
+    inputs:
+      scripts:
+        description: "Comma-separated script paths"
+        required: true
+        default: "data/research/1/aberfan-60-years-books-of-remembrance-shorts-script.json,data/research/1/ancient-egypts-first-female-king-royal-seals-shorts-script.json"
+      scale:
+        description: "Render scale (0.5 is the proof default)"
+        required: true
+        default: "0.5"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editor-proof-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      RENDER_SCALE: ${{ inputs.scale }}
+      RENDER_CONCURRENCY: "4"
+      EDITOR_ENGINE: "1"
+      EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Cache Remotion Chrome
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/remotion
+          key: remotion-chrome-${{ runner.os }}
+
+      - name: Render editor timelines and run final-MP4 QA
+        run: |
+          set -uo pipefail
+          status=0
+          IFS=',' read -ra SCRIPTS <<< "${{ inputs.scripts }}"
+          for raw in "${SCRIPTS[@]}"; do
+            script="$(echo "$raw" | xargs)"
+            [ -n "$script" ] || continue
+            echo "::group::editor proof: $script"
+            if ! node scripts/render-and-qa.js --channel 1 --script "$script"; then
+              status=1
+            fi
+            echo "::endgroup::"
+          done
+          exit "$status"
+
+      - name: Upload editor proof artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: editor-proof-${{ github.run_id }}
+          path: |
+            data/renders/approved/
+            data/renders/approved-review/
+            data/renders/rejected/
+            data/renders/1/
+            data/renders/qa-counts.json
+          if-no-files-found: warn
+          retention-days: 14
