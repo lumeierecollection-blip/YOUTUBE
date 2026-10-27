@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/lumeierecollection-blip/YOUTUBE/schemas/editor-timeline.json",
+  "title": "Editor timeline",
+  "description": "A persisted, renderable timeline for src/skills/remotion-render/editor/EditorTimeline.jsx. The timeline is the single source of truth: what is in it is drawn, what is not in it is not.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "id", "width", "height", "fps", "durationInFrames", "palette", "fonts", "assets", "layers", "captions"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "width": { "type": "integer", "const": 1080 },
+    "height": { "type": "integer", "const": 1920 },
+    "fps": { "type": "integer", "const": 30 },
+    "durationInFrames": { "type": "integer", "minimum": 1 },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bg", "text", "accent"],
+      "properties": {
+        "bg": { "type": "string", "minLength": 1 },
+        "text": { "type": "string", "minLength": 1 },
+        "muted": { "type": "string" },
+        "accent": { "type": "string", "minLength": 1 },
+        "accent2": { "type": "string" }
+      }
+    },
+    "fonts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary"],
+      "properties": {
+        "primary": { "type": "string", "minLength": 1 },
+        "sans": { "type": "string" }
+      }
+    },
+    "caption_style": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" },
+        "size": { "type": "number" }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["file", "width", "height"],
+        "properties": {
+          "file": { "type": "string", "minLength": 1 },
+          "path": { "type": "string" },
+          "width": { "type": "integer", "minimum": 1 },
+          "height": { "type": "integer", "minimum": 1 },
+          "credit": { "type": "string" },
+          "source_url": { "type": "string" },
+          "license": { "type": "string" }
+        }
+      }
+    },
+    "layers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/layer" }
+    },
+    "captions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["start_f", "end_f", "words"],
+        "properties": {
+          "start_f": { "type": "integer", "minimum": 0 },
+          "end_f": { "type": "integer", "minimum": 1 },
+          "text": { "type": "string" },
+          "words": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["text", "start_f"],
+              "properties": {
+                "text": { "type": "string" },
+                "start_f": { "type": "integer", "minimum": 0 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "metadata": { "type": "object" }
+  },
+  "definitions": {
+    "rect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number", "minimum": 1 },
+        "h": { "type": "number", "minimum": 1 }
+      }
+    },
+    "keyframe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["f", "v"],
+      "properties": {
+        "f": { "type": "number", "minimum": 0 },
+        "v": { "type": "number" },
+        "e": { "type": "string" }
+      }
+    },
+    "layer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "rect", "in", "out", "z"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "type": { "enum": ["image", "text", "svg", "solid"] },
+        "rect": { "$ref": "#/definitions/rect" },
+        "in": { "type": "integer", "minimum": 0 },
+        "out": { "type": "integer", "minimum": 1 },
+        "z": { "type": "number" },
+        "asset_id": { "type": "string" },
+        "fit": { "enum": ["cover", "contain"] },
+        "radius": { "type": "number" },
+        "blend": { "type": "string" },
+        "text": { "type": "string" },
+        "style": { "type": "object" },
+        "props": { "type": "object" },
+        "keyframes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/keyframe" }
+          }
+        },
+        "viewBox": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "type": "number" }
+        },
+        "paths": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["d"],
+            "properties": {
+              "d": { "type": "string" },
+              "fill": { "type": "string" },
+              "stroke": { "type": "string" },
+              "strokeWidth": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

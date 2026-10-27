@@ -122,3 +122,7 @@ data/trending/
 src/skills/remotion-render/public/sfx/cc0/
 # National / state flags fetched at run time by scripts/fetch-flag.mjs (flagcdn.com), never committed.
 src/skills/remotion-render/public/flags/
+# Editor render staging and local QA outputs; regenerate from plans/assets.
+src/skills/remotion-render/public/editor/
+data/editor/renders/
+data/editor/qa/

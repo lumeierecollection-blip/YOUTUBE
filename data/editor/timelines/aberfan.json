@@ -1,0 +1,4327 @@
+{
+  "version": 1,
+  "id": "aberfan-60-years-books-of-remembrance",
+  "title": "Aberfan: 144 Names Preserved",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 1414,
+  "palette": {
+    "bg": "#08090B",
+    "text": "#F5EFE6",
+    "muted": "#B9B0A4",
+    "accent": "#D4A574",
+    "accent2": "#7FA6A0"
+  },
+  "fonts": {
+    "primary": "Cormorant Garamond",
+    "sans": "Inter"
+  },
+  "caption_style": {
+    "x": 80,
+    "y": 1540,
+    "w": 920,
+    "h": 210,
+    "size": 38
+  },
+  "assets": {
+    "nlw": {
+      "file": "data/editor/assets/raw/National_Library_of_Wales.jpg",
+      "width": 800,
+      "height": 530,
+      "credit": "National Library of Wales, Aberystwyth — Ian Capper / Geograph, CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "pre": {
+      "file": "data/editor/assets/raw/Aberfan_spoil_heaps_pre_disaster.jpg",
+      "width": 1920,
+      "height": 1189,
+      "credit": "Aberfan spoil heaps before the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_spoil_heaps_pre_disaster.jpg",
+      "license": "Public domain"
+    },
+    "post": {
+      "file": "data/editor/assets/raw/Aberfan_spoil_heaps_post_disaster.jpg",
+      "width": 1920,
+      "height": 1172,
+      "credit": "Aberfan spoil heaps after the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_spoil_heaps_post_disaster.tif",
+      "license": "Public domain"
+    },
+    "map": {
+      "file": "data/editor/assets/raw/Aberfan_disaster_map_-_extent_of_the_spoil_slip.jpg",
+      "width": 890,
+      "height": 1479,
+      "credit": "Extent of the spoil slip — Ordnance Survey map from the 1967 Tribunal report, public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_disaster_map_-_extent_of_the_spoil_slip.jpg",
+      "license": "Public domain"
+    },
+    "slide": {
+      "file": "data/editor/assets/diagrams/aberfan-slide.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Diagram: TradeApp editor, based on the 1967 Tribunal report",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/assets/diagrams/aberfan-slide.svg",
+      "license": "Original diagram"
+    },
+    "children": {
+      "file": "data/editor/assets/raw/Children_s_graves_at_Aberfan_-_geograph.org.uk_-_8247868.jpg",
+      "width": 1920,
+      "height": 1884,
+      "credit": "Children's graves at Aberfan — Marathon / Geograph, CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Children%27s_graves_at_Aberfan_-_geograph.org.uk_-_8247868.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "memorial": {
+      "file": "data/editor/assets/raw/Aberfan_disaster_burial_site__Aberfan_Cemetery_.jpg",
+      "width": 1920,
+      "height": 2560,
+      "credit": "Aberfan disaster burial site, Aberfan Cemetery — USW15 / Wikimedia Commons, CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_disaster_burial_site_(Aberfan_Cemetery).jpg",
+      "license": "CC0"
+    },
+    "victims": {
+      "file": "data/editor/assets/raw/Aberfan_disaster_victims__burial_plot.jpg",
+      "width": 1920,
+      "height": 2560,
+      "credit": "Aberfan disaster victims' burial plot — USW15 / Wikimedia Commons, CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_disaster_victims%27_burial_plot.jpg",
+      "license": "CC0"
+    },
+    "cemetery": {
+      "file": "data/editor/assets/raw/Aberfan_Cemetery_-_geograph.org.uk_-_5295231.jpg",
+      "width": 1920,
+      "height": 1267,
+      "credit": "Aberfan Cemetery — Mel Hartshorn / Geograph, CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_Cemetery_-_geograph.org.uk_-_5295231.jpg",
+      "license": "CC BY-SA 2.0"
+    }
+  },
+  "layers": [
+    {
+      "id": "scene-0-image",
+      "type": "image",
+      "asset_id": "nlw",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 0,
+      "out": 186,
+      "z": 10,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.18,
+        "saturate": 0.78,
+        "brightness": 0.9,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 186,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 186,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 0,
+      "out": 186,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-0-kicker",
+      "type": "text",
+      "text": "ABERFAN · 1966",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 0,
+      "out": 186,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 176,
+            "v": 1
+          },
+          {
+            "f": 186,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-headline",
+      "type": "text",
+      "text": "144 NAMES\nPRESERVED",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 0,
+      "out": 186,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 176,
+            "v": 1
+          },
+          {
+            "f": 186,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-sub",
+      "type": "text",
+      "text": "New books for a village that lost its future in seconds.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 0,
+      "out": 186,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 176,
+            "v": 1
+          },
+          {
+            "f": 186,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-credit",
+      "type": "text",
+      "text": "National Library of Wales, Aberystwyth — Ian Capper / Geograph, CC BY-SA 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 0,
+      "out": 186,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 176,
+            "v": 0.72
+          },
+          {
+            "f": 186,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-image",
+      "type": "image",
+      "asset_id": "pre",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 186,
+      "out": 386,
+      "z": 11,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.12,
+        "saturate": 0.35,
+        "brightness": 0.9,
+        "blur": 0,
+        "x": 0.025
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 200,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.1,
+            "e": "inOutSine"
+          },
+          {
+            "f": 200,
+            "v": 1.15
+          }
+        ],
+        "x": [
+          {
+            "f": 0,
+            "v": 0.025,
+            "e": "inOutSine"
+          },
+          {
+            "f": 200,
+            "v": -0.025
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 186,
+      "out": 386,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-1-kicker",
+      "type": "text",
+      "text": "BEFORE",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 186,
+      "out": 386,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 190,
+            "v": 1
+          },
+          {
+            "f": 200,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-headline",
+      "type": "text",
+      "text": "A VILLAGE\nBELOW THE TIPS",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 186,
+      "out": 386,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 190,
+            "v": 1
+          },
+          {
+            "f": 200,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-sub",
+      "type": "text",
+      "text": "Coal waste rose above Aberfan for generations.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 186,
+      "out": 386,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 190,
+            "v": 1
+          },
+          {
+            "f": 200,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-credit",
+      "type": "text",
+      "text": "Aberfan spoil heaps before the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 186,
+      "out": 386,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 190,
+            "v": 0.72
+          },
+          {
+            "f": 200,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-image",
+      "type": "image",
+      "asset_id": "post",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 386,
+      "out": 465,
+      "z": 12,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.12,
+        "saturate": 0.3,
+        "brightness": 0.88,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 79,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 79,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 386,
+      "out": 465,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-2-kicker",
+      "type": "text",
+      "text": "21 OCTOBER 1966",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 386,
+      "out": 465,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 69,
+            "v": 1
+          },
+          {
+            "f": 79,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-headline",
+      "type": "text",
+      "text": "THE SLIDE",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 386,
+      "out": 465,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 69,
+            "v": 1
+          },
+          {
+            "f": 79,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-sub",
+      "type": "text",
+      "text": "116 children · 28 adults lost their lives.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 386,
+      "out": 465,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 69,
+            "v": 1
+          },
+          {
+            "f": 79,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-stat",
+      "type": "text",
+      "text": "144",
+      "rect": {
+        "x": 90,
+        "y": 700,
+        "w": 900,
+        "h": 280
+      },
+      "in": 386,
+      "out": 465,
+      "z": 230,
+      "style": {
+        "size": 190,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 0.95,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 69,
+            "v": 1
+          },
+          {
+            "f": 79,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-credit",
+      "type": "text",
+      "text": "Aberfan spoil heaps after the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 386,
+      "out": 465,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 69,
+            "v": 0.72
+          },
+          {
+            "f": 79,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-image",
+      "type": "image",
+      "asset_id": "slide",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 465,
+      "out": 543,
+      "z": 13,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.05,
+        "saturate": 0.8,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 78,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 78,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 465,
+      "out": 543,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-3-kicker",
+      "type": "text",
+      "text": "HOW IT HAPPENED",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 465,
+      "out": 543,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 68,
+            "v": 1
+          },
+          {
+            "f": 78,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-headline",
+      "type": "text",
+      "text": "A TIP\nABOVE THE VILLAGE",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 465,
+      "out": 543,
+      "z": 210,
+      "style": {
+        "size": 78,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 68,
+            "v": 1
+          },
+          {
+            "f": 78,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-sub",
+      "type": "text",
+      "text": "The waste slid down the hillside into Aberfan.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 465,
+      "out": 543,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 68,
+            "v": 1
+          },
+          {
+            "f": 78,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-credit",
+      "type": "text",
+      "text": "Diagram: TradeApp editor, based on the 1967 Tribunal report",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 465,
+      "out": 543,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 68,
+            "v": 0.72
+          },
+          {
+            "f": 78,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-image",
+      "type": "image",
+      "asset_id": "map",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 543,
+      "out": 615,
+      "z": 14,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.2,
+        "saturate": 0.6,
+        "brightness": 0.9,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 72,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 72,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 543,
+      "out": 615,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-4-kicker",
+      "type": "text",
+      "text": "THE SPOIL SLIP",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 543,
+      "out": 615,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 62,
+            "v": 1
+          },
+          {
+            "f": 72,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-headline",
+      "type": "text",
+      "text": "THE PATH\nOF THE SLIDE",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 543,
+      "out": 615,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 62,
+            "v": 1
+          },
+          {
+            "f": 72,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-sub",
+      "type": "text",
+      "text": "The tribunal map shows how far the waste travelled.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 543,
+      "out": 615,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 62,
+            "v": 1
+          },
+          {
+            "f": 72,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-credit",
+      "type": "text",
+      "text": "Extent of the spoil slip — Ordnance Survey map from the 1967 Tribunal report, public domain",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 543,
+      "out": 615,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 62,
+            "v": 0.72
+          },
+          {
+            "f": 72,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-image",
+      "type": "image",
+      "asset_id": "nlw",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 615,
+      "out": 691,
+      "z": 15,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.12,
+        "saturate": 0.78,
+        "brightness": 0.9,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 76,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 76,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 615,
+      "out": 691,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-5-kicker",
+      "type": "text",
+      "text": "THE QUESTION",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 615,
+      "out": 691,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 66,
+            "v": 1
+          },
+          {
+            "f": 76,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-headline",
+      "type": "text",
+      "text": "WILL THE LIBRARY\nPROTECT THE PAGES?",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 615,
+      "out": 691,
+      "z": 210,
+      "style": {
+        "size": 78,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 66,
+            "v": 1
+          },
+          {
+            "f": 76,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-sub",
+      "type": "text",
+      "text": "The National Library of Wales holds the memory.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 615,
+      "out": 691,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 66,
+            "v": 1
+          },
+          {
+            "f": 76,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-credit",
+      "type": "text",
+      "text": "National Library of Wales, Aberystwyth — Ian Capper / Geograph, CC BY-SA 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 615,
+      "out": 691,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 66,
+            "v": 0.72
+          },
+          {
+            "f": 76,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-image",
+      "type": "image",
+      "asset_id": "children",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 691,
+      "out": 830,
+      "z": 16,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.28,
+        "saturate": 0.45,
+        "brightness": 0.86,
+        "blur": 0,
+        "x": -0.025
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 139,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.15,
+            "e": "inOutSine"
+          },
+          {
+            "f": 139,
+            "v": 1.1
+          }
+        ],
+        "x": [
+          {
+            "f": 0,
+            "v": -0.025,
+            "e": "inOutSine"
+          },
+          {
+            "f": 139,
+            "v": 0.025
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 691,
+      "out": 830,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-6-kicker",
+      "type": "text",
+      "text": "FADING INK",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 691,
+      "out": 830,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 129,
+            "v": 1
+          },
+          {
+            "f": 139,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-headline",
+      "type": "text",
+      "text": "TIME WEARS\nDOWN THE BOOK",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 691,
+      "out": 830,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 129,
+            "v": 1
+          },
+          {
+            "f": 139,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-sub",
+      "type": "text",
+      "text": "The original Book of Remembrance is fragile.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 691,
+      "out": 830,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 129,
+            "v": 1
+          },
+          {
+            "f": 139,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-credit",
+      "type": "text",
+      "text": "Children's graves at Aberfan — Marathon / Geograph, CC BY-SA 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 691,
+      "out": 830,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 129,
+            "v": 0.72
+          },
+          {
+            "f": 139,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-image",
+      "type": "image",
+      "asset_id": "nlw",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 830,
+      "out": 987,
+      "z": 17,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.1,
+        "saturate": 0.8,
+        "brightness": 0.92,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 157,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 830,
+      "out": 987,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-7-kicker",
+      "type": "text",
+      "text": "NEW COPIES",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 830,
+      "out": 987,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 147,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-headline",
+      "type": "text",
+      "text": "THE NATIONAL\nLIBRARY OF WALES",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 830,
+      "out": 987,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 147,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-sub",
+      "type": "text",
+      "text": "Fresh copies were finished ahead of July 2026.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 830,
+      "out": 987,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 147,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-credit",
+      "type": "text",
+      "text": "National Library of Wales, Aberystwyth — Ian Capper / Geograph, CC BY-SA 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 830,
+      "out": 987,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 147,
+            "v": 0.72
+          },
+          {
+            "f": 157,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-image",
+      "type": "image",
+      "asset_id": "memorial",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 987,
+      "out": 1135,
+      "z": 18,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.22,
+        "saturate": 0.55,
+        "brightness": 0.88,
+        "blur": 0,
+        "x": 0.025
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 148,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.1,
+            "e": "inOutSine"
+          },
+          {
+            "f": 148,
+            "v": 1.15
+          }
+        ],
+        "x": [
+          {
+            "f": 0,
+            "v": 0.025,
+            "e": "inOutSine"
+          },
+          {
+            "f": 148,
+            "v": -0.025
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 987,
+      "out": 1135,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-8-kicker",
+      "type": "text",
+      "text": "THE KEEPER",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 987,
+      "out": 1135,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 138,
+            "v": 1
+          },
+          {
+            "f": 148,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-headline",
+      "type": "text",
+      "text": "A COMMUNITY'S\nHISTORY",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 987,
+      "out": 1135,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 138,
+            "v": 1
+          },
+          {
+            "f": 148,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-sub",
+      "type": "text",
+      "text": "Aberfan Memorial Charity chair Davies guards it now.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 987,
+      "out": 1135,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 138,
+            "v": 1
+          },
+          {
+            "f": 148,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-credit",
+      "type": "text",
+      "text": "Aberfan disaster burial site, Aberfan Cemetery — USW15 / Wikimedia Commons, CC0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 987,
+      "out": 1135,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 138,
+            "v": 0.72
+          },
+          {
+            "f": 148,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-image",
+      "type": "image",
+      "asset_id": "cemetery",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 1135,
+      "out": 1307,
+      "z": 19,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.24,
+        "saturate": 0.45,
+        "brightness": 0.86,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 172,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 172,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1135,
+      "out": 1307,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-9-kicker",
+      "type": "text",
+      "text": "68 YEARS OLD",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 1135,
+      "out": 1307,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 162,
+            "v": 1
+          },
+          {
+            "f": 172,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-headline",
+      "type": "text",
+      "text": "A VILLAGE'S\nMEMORY",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 1135,
+      "out": 1307,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 162,
+            "v": 1
+          },
+          {
+            "f": 172,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-sub",
+      "type": "text",
+      "text": "Davies protects the village's memory.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 1135,
+      "out": 1307,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 162,
+            "v": 1
+          },
+          {
+            "f": 172,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-credit",
+      "type": "text",
+      "text": "Aberfan Cemetery — Mel Hartshorn / Geograph, CC BY-SA 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 1135,
+      "out": 1307,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 162,
+            "v": 0.72
+          },
+          {
+            "f": 172,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10-image",
+      "type": "image",
+      "asset_id": "victims",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 1307,
+      "out": 1414,
+      "z": 20,
+      "props": {
+        "opacity": 1,
+        "scale": 1.1,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.26,
+        "saturate": 0.42,
+        "brightness": 0.84,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 107,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.1,
+            "e": "inOutSine"
+          },
+          {
+            "f": 107,
+            "v": 1.02
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1307,
+      "out": 1414,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-10-kicker",
+      "type": "text",
+      "text": "THE BOOK OF REMEMBRANCE",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 1307,
+      "out": 1414,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 97,
+            "v": 1
+          },
+          {
+            "f": 107,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10-headline",
+      "type": "text",
+      "text": "144 NAMES",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 1307,
+      "out": 1414,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 97,
+            "v": 1
+          },
+          {
+            "f": 107,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10-sub",
+      "type": "text",
+      "text": "Protected in fresh leather and ink.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 1307,
+      "out": 1414,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 97,
+            "v": 1
+          },
+          {
+            "f": 107,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10-credit",
+      "type": "text",
+      "text": "Aberfan disaster victims' burial plot — USW15 / Wikimedia Commons, CC0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 1307,
+      "out": 1414,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 97,
+            "v": 0.72
+          },
+          {
+            "f": 107,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "progress",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 6
+      },
+      "in": 0,
+      "out": 1414,
+      "z": 8000,
+      "style": {
+        "background": "#D4A574"
+      },
+      "props": {
+        "opacity": 0.9,
+        "clipR": 100
+      },
+      "keyframes": {
+        "clipR": [
+          {
+            "f": 0,
+            "v": 100,
+            "e": "linear"
+          },
+          {
+            "f": 1414,
+            "v": 0,
+            "e": "linear"
+          }
+        ]
+      }
+    }
+  ],
+  "captions": [
+    {
+      "start_f": 0,
+      "end_f": 186,
+      "text": "New books preserve 144 names after a village lost its future in seconds.",
+      "words": [
+        {
+          "text": "New",
+          "start_f": 0
+        },
+        {
+          "text": "books",
+          "start_f": 16
+        },
+        {
+          "text": "preserve",
+          "start_f": 28
+        },
+        {
+          "text": "144",
+          "start_f": 43
+        },
+        {
+          "text": "names",
+          "start_f": 77
+        },
+        {
+          "text": "after",
+          "start_f": 98
+        },
+        {
+          "text": "a",
+          "start_f": 118
+        },
+        {
+          "text": "village",
+          "start_f": 122
+        },
+        {
+          "text": "lost",
+          "start_f": 130
+        },
+        {
+          "text": "its",
+          "start_f": 144
+        },
+        {
+          "text": "future",
+          "start_f": 151
+        },
+        {
+          "text": "in",
+          "start_f": 166
+        },
+        {
+          "text": "seconds.",
+          "start_f": 176
+        }
+      ]
+    },
+    {
+      "start_f": 215,
+      "end_f": 386,
+      "text": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan.",
+      "words": [
+        {
+          "text": "On",
+          "start_f": 215
+        },
+        {
+          "text": "21",
+          "start_f": 217
+        },
+        {
+          "text": "October",
+          "start_f": 229
+        },
+        {
+          "text": "1966,",
+          "start_f": 247
+        },
+        {
+          "text": "a",
+          "start_f": 291
+        },
+        {
+          "text": "massive",
+          "start_f": 296
+        },
+        {
+          "text": "coal",
+          "start_f": 307
+        },
+        {
+          "text": "waste",
+          "start_f": 316
+        },
+        {
+          "text": "tip",
+          "start_f": 328
+        },
+        {
+          "text": "collapsed",
+          "start_f": 341
+        },
+        {
+          "text": "onto",
+          "start_f": 354
+        },
+        {
+          "text": "Aberfan.",
+          "start_f": 371
+        }
+      ]
+    },
+    {
+      "start_f": 407,
+      "end_f": 543,
+      "text": "116 children and 28 adults lost their lives in the disaster.",
+      "words": [
+        {
+          "text": "116",
+          "start_f": 407
+        },
+        {
+          "text": "children",
+          "start_f": 415
+        },
+        {
+          "text": "and",
+          "start_f": 452
+        },
+        {
+          "text": "28",
+          "start_f": 461
+        },
+        {
+          "text": "adults",
+          "start_f": 472
+        },
+        {
+          "text": "lost",
+          "start_f": 490
+        },
+        {
+          "text": "their",
+          "start_f": 506
+        },
+        {
+          "text": "lives",
+          "start_f": 514
+        },
+        {
+          "text": "in",
+          "start_f": 524
+        },
+        {
+          "text": "the",
+          "start_f": 531
+        },
+        {
+          "text": "disaster.",
+          "start_f": 534
+        }
+      ]
+    },
+    {
+      "start_f": 578,
+      "end_f": 662,
+      "text": "Will the National Library of Wales protect these pages?",
+      "words": [
+        {
+          "text": "Will",
+          "start_f": 578
+        },
+        {
+          "text": "the",
+          "start_f": 581
+        },
+        {
+          "text": "National",
+          "start_f": 587
+        },
+        {
+          "text": "Library",
+          "start_f": 595
+        },
+        {
+          "text": "of",
+          "start_f": 608
+        },
+        {
+          "text": "Wales",
+          "start_f": 616
+        },
+        {
+          "text": "protect",
+          "start_f": 623
+        },
+        {
+          "text": "these",
+          "start_f": 640
+        },
+        {
+          "text": "pages?",
+          "start_f": 655
+        }
+      ]
+    },
+    {
+      "start_f": 691,
+      "end_f": 830,
+      "text": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed.",
+      "words": [
+        {
+          "text": "Time",
+          "start_f": 691
+        },
+        {
+          "text": "wears",
+          "start_f": 701
+        },
+        {
+          "text": "down",
+          "start_f": 710
+        },
+        {
+          "text": "the",
+          "start_f": 721
+        },
+        {
+          "text": "original",
+          "start_f": 729
+        },
+        {
+          "text": "Aberfan",
+          "start_f": 734
+        },
+        {
+          "text": "Book",
+          "start_f": 756
+        },
+        {
+          "text": "of",
+          "start_f": 762
+        },
+        {
+          "text": "Remembrance,",
+          "start_f": 766
+        },
+        {
+          "text": "but",
+          "start_f": 788
+        },
+        {
+          "text": "fresh",
+          "start_f": 794
+        },
+        {
+          "text": "copies",
+          "start_f": 802
+        },
+        {
+          "text": "are",
+          "start_f": 812
+        },
+        {
+          "text": "needed.",
+          "start_f": 824
+        }
+      ]
+    },
+    {
+      "start_f": 830,
+      "end_f": 987,
+      "text": "The National Library of Wales finished new copies ahead of July 2026.",
+      "words": [
+        {
+          "text": "The",
+          "start_f": 830
+        },
+        {
+          "text": "National",
+          "start_f": 841
+        },
+        {
+          "text": "Library",
+          "start_f": 869
+        },
+        {
+          "text": "of",
+          "start_f": 880
+        },
+        {
+          "text": "Wales",
+          "start_f": 886
+        },
+        {
+          "text": "finished",
+          "start_f": 892
+        },
+        {
+          "text": "new",
+          "start_f": 905
+        },
+        {
+          "text": "copies",
+          "start_f": 917
+        },
+        {
+          "text": "ahead",
+          "start_f": 926
+        },
+        {
+          "text": "of",
+          "start_f": 943
+        },
+        {
+          "text": "July",
+          "start_f": 948
+        },
+        {
+          "text": "2026.",
+          "start_f": 953
+        }
+      ]
+    },
+    {
+      "start_f": 1014,
+      "end_f": 1135,
+      "text": "Aberfan Memorial Charity chair Davies guards the community's history now.",
+      "words": [
+        {
+          "text": "Aberfan",
+          "start_f": 1014
+        },
+        {
+          "text": "Memorial",
+          "start_f": 1022
+        },
+        {
+          "text": "Charity",
+          "start_f": 1032
+        },
+        {
+          "text": "chair",
+          "start_f": 1046
+        },
+        {
+          "text": "Davies",
+          "start_f": 1061
+        },
+        {
+          "text": "guards",
+          "start_f": 1068
+        },
+        {
+          "text": "the",
+          "start_f": 1090
+        },
+        {
+          "text": "community's",
+          "start_f": 1100
+        },
+        {
+          "text": "history",
+          "start_f": 1117
+        },
+        {
+          "text": "now.",
+          "start_f": 1126
+        }
+      ]
+    },
+    {
+      "start_f": 1155,
+      "end_f": 1252,
+      "text": "At 68 years old, Davies protects the village's memory.",
+      "words": [
+        {
+          "text": "At",
+          "start_f": 1155
+        },
+        {
+          "text": "68",
+          "start_f": 1159
+        },
+        {
+          "text": "years",
+          "start_f": 1169
+        },
+        {
+          "text": "old,",
+          "start_f": 1184
+        },
+        {
+          "text": "Davies",
+          "start_f": 1204
+        },
+        {
+          "text": "protects",
+          "start_f": 1208
+        },
+        {
+          "text": "the",
+          "start_f": 1224
+        },
+        {
+          "text": "village's",
+          "start_f": 1235
+        },
+        {
+          "text": "memory.",
+          "start_f": 1245
+        }
+      ]
+    },
+    {
+      "start_f": 1307,
+      "end_f": 1398,
+      "text": "144 names remain protected in fresh leather and ink.",
+      "words": [
+        {
+          "text": "144",
+          "start_f": 1307
+        },
+        {
+          "text": "names",
+          "start_f": 1307
+        },
+        {
+          "text": "remain",
+          "start_f": 1323
+        },
+        {
+          "text": "protected",
+          "start_f": 1336
+        },
+        {
+          "text": "in",
+          "start_f": 1351
+        },
+        {
+          "text": "fresh",
+          "start_f": 1363
+        },
+        {
+          "text": "leather",
+          "start_f": 1372
+        },
+        {
+          "text": "and",
+          "start_f": 1383
+        },
+        {
+          "text": "ink.",
+          "start_f": 1393
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-10-27T07:25:34.735Z",
+    "source_script": "data/research/1/aberfan-60-years-books-of-remembrance-shorts-script.json",
+    "source_audio": "data/editor/audio/aberfan.mp3",
+    "source_transcript": "data/editor/audio/aberfan.json",
+    "scene_count": 11,
+    "image_scene_count": 11,
+    "unique_assets": [
+      "nlw",
+      "pre",
+      "post",
+      "slide",
+      "map",
+      "children",
+      "memorial",
+      "cemetery",
+      "victims"
+    ],
+    "credits": [
+      "National Library of Wales, Aberystwyth — Ian Capper / Geograph, CC BY-SA 2.0",
+      "Aberfan spoil heaps before the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "Aberfan spoil heaps after the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "Diagram: TradeApp editor, based on the 1967 Tribunal report",
+      "Extent of the spoil slip — Ordnance Survey map from the 1967 Tribunal report, public domain",
+      "Children's graves at Aberfan — Marathon / Geograph, CC BY-SA 2.0",
+      "Aberfan disaster burial site, Aberfan Cemetery — USW15 / Wikimedia Commons, CC0",
+      "Aberfan Cemetery — Mel Hartshorn / Geograph, CC BY-SA 2.0",
+      "Aberfan disaster victims' burial plot — USW15 / Wikimedia Commons, CC0"
+    ],
+    "plan": "C:\\Users\\user\\yt-wt\\editor\\scripts\\editor\\plans\\aberfan.json",
+    "audio_duration_sec": 47.146667
+  }
+}
