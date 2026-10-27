@@ -183,6 +183,7 @@ const GATE_RULES = [
   "- no mechanism family on more than 40% of beats; adjacent beats never share family AND camera-move sequence",
   "- a chart / number / timeline only as `kind: data` with data.values whose source_url is in SOURCES USED, and only on a sentence that compares quantities",
   "- every named person / place / organisation / artefact in the sentence appears in some material's must_show",
+  "- every shot has at least one real picture (kind other than data); a kind:data card is support, never the only material, and is never reused on another sentence",
   "- reveal / context-reveal / scale-reveal start close and end wide; comparisons establish A then B; `hold` states its reason",
   "- every shot's `action` is something physical happening to that shot's materials (name them); text never stands in for a picture",
   "- no gradients, glows, particles, lens flares, icons, UI panels, cards, floating labels, decorative lines, infographics",
@@ -202,10 +203,10 @@ export function buildPrompt({ channel, channelId, sentences, targets, digest, so
   let crit = "";
   if (critiques && Object.keys(critiques).length) {
     if (materialRepair) {
-      crit += "## MATERIALS REPAIR FOR THESE BEATS\n\nThese beats were already directed, but an essential material could not be found and verified. Rebuild ONLY the shots that need a different material; keep the construction and camera sequence where they still work. Reuse a material already verified in this video wherever it fits: copy its exact id, must_show and search. Do not ask for a generic \"collection of ...\", a look-alike, a stock photo, a webpage, a docs page, an article, a screenshot or a press release: the resolver cannot verify those. If no real photo of the named thing exists, show the real person, object or place the sentence is about, chosen from the verified list, never an invented one.\n\n";
+      crit += "## MATERIALS REPAIR FOR THESE BEATS\n\nThese beats were already directed, but an essential material could not be found and verified. Rebuild ONLY the shots that need a different material; keep the construction and camera sequence where they still work. Every shot must still show at least one real picture (photo, logo, document scan, artwork or object); a kind:data card supports a shot but is never its only material. Reuse a verified picture already in this video wherever it fits: copy its exact id, must_show and search. Never reuse a kind:data card on a different sentence: its values belong to the sentence that states them. Do not ask for a generic \"collection of ...\", a look-alike, a stock photo, a webpage, a docs page, an article, a screenshot or a press release: the resolver cannot verify those. For a company, product or price story name findable subjects: the company logo, the named founder/CEO portrait, a named public visit or office photo, a real product photo or a real place; never an invented product box, an unphotographed headquarters exterior, a pricing sheet or a generic prop. If no real photo of the named thing exists, show the real person, object or place the sentence is about, chosen from the verified list, never an invented one.\n\n";
       if (verifiedMaterials.length) {
-        crit += "VERIFIED MATERIALS ALREADY IN THIS VIDEO (real, licensed, reusable):\n";
-        for (const v of verifiedMaterials) crit += `- ${v.material_id} (${v.kind}) "${v.must_show}" from beat ${v.beat_index}${v.source_url ? ` — ${v.source_url}` : ""}\n`;
+        crit += "VERIFIED MATERIALS ALREADY IN THIS VIDEO (real, licensed):\n";
+        for (const v of verifiedMaterials) crit += `- ${v.material_id} (${v.kind}) "${v.must_show}" from beat ${v.beat_index}${v.kind === "data" ? " — data: keep only on this sentence, never reuse on another beat" : " — reusable picture"}${v.source_url ? ` - ${v.source_url}` : ""}\n`;
         crit += "\n";
       }
     } else {

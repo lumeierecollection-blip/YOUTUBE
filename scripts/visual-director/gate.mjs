@@ -224,6 +224,16 @@ export function gateDirection(direction, ctx = {}) {
     const cm = CHART_WORDS.exec(chartText);
     if (cm && !dataMats.length) add(bi, "chart-outside-data", `"${cm[0]}" with no kind:data material (a chart / number / timeline is legal only as sourced data)`);
 
+    // A shot whose only material is a sourced number renders as a text card on the
+    // ground: no picture, and blackdetect rejects it. Data supports a scene; it never
+    // is the scene. Every shot needs at least one downloadable picture.
+    for (const s of shots) {
+      const ms = Array.isArray(s?.materials) ? s.materials : [];
+      if (ms.length && ms.every((m) => m?.kind === "data")) {
+        add(bi, "data-only-shot", `${s.id}: every material is kind:data; a shot needs at least one real picture (photo, logo, document scan or object), with data as support only`);
+      }
+    }
+
     for (const u of b.evidence || []) if (!sources.has(String(u).trim())) add(bi, "evidence-unsourced", `evidence ${u} is not in the script's sources_used`);
 
     // named entities must be shown

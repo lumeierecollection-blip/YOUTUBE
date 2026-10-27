@@ -5,7 +5,8 @@ import { mkdtempSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { runLoop, spliceBeats, beatsToRebuild, essentialMissing, finalStatus, parseGateFailures,
-  materialsCritique, verifiedMaterials, reuseVerifiedMaterials, pruneUnverifiedShots, reportForPruned } from "../visual-director/loop.mjs";
+  materialsCritique, verifiedMaterials, reuseVerifiedMaterials, pruneUnverifiedShots, reportForPruned,
+  qaImplicatedBeats, qaCorrectiveCritique } from "../visual-director/loop.mjs";
 
 const mkBeat = (i, tag) => ({ beat_index: i, sentence: `S${i}.`, t_start: i * 2, t_end: i * 2 + 2, mute_test: "something visible here",
   semantic: { subject: "x", state: null, action: null, relationship: null, change: null, consequence: null, environment: null },
@@ -13,8 +14,8 @@ const mkBeat = (i, tag) => ({ beat_index: i, sentence: `S${i}.`, t_start: i * 2,
   shots: [{ id: `b${i}s1`, duration_s: 2, camera: { move: "pull-out", from: "close", to: "wide", motivation: "reveal" }, action: "the thing is revealed",
     materials: [{ id: "m", kind: "photo", must_show: "the real thing", why: "needed", search: ["q"] }] }] });
 
-/** Fake steps. `verdicts[round][beat]` scripts the critic; `missing` scripts the materials report for round 0's first resolve. */
-function fakes({ verdicts, missing = [], n = 4 }) {
+/** Fake steps. `verdicts[round][beat]` scripts the critic; `missing` scripts the materials report for round 0's first resolve; `qa` scripts deterministic QA per render. */
+function fakes({ verdicts, missing = [], n = 4, qa = null }) {
   const calls = { direct: [], render: 0, critic: [], resolve: 0 };
   let directCount = 0;
   const steps = {
@@ -34,6 +35,7 @@ function fakes({ verdicts, missing = [], n = 4 }) {
     },
     render: async ({ out }) => { calls.render++; writeFileSync(out, "mp4"); return { ok: true, status: 0 }; },
     frames: async ({ outDir, direction }) => ({ sheet: join(outDir, "contact-sheet.jpg"), strips: Object.fromEntries(direction.beats.map((b) => [b.beat_index, join(outDir, `strips/beat-${b.beat_index}.jpg`)])), frames: [] }),
+    ...(qa ? { qa: async () => qa[Math.min(calls.render - 1, qa.length - 1)] } : {}),
     critic: async ({ direction, round }) => {
       calls.critic.push(round);
       const v = verdicts[Math.min(round, verdicts.length - 1)];
@@ -183,13 +185,18 @@ test("enforce mode still refuses to resolve a redirect whose gate failed", async
   assert.equal(calls.resolve, 1);
 });
 
-test("materials critique names the verified materials a repair may reuse", () => {
-  const v = [{ material_id: "m4s1", kind: "data", must_show: "Hittite royal archive with 184 total tablets", beat_index: 4, source_url: "https://x" }];
+test("materials critique names reusable pictures and refuses to reuse data on another sentence", () => {
+  const v = [
+    { material_id: "m1_photo", kind: "photo", must_show: "Dario Amodei at TechCrunch Disrupt", beat_index: 1, source_url: "https://x/p" },
+    { material_id: "m4s1", kind: "data", must_show: "Hittite royal archive with 184 total tablets", beat_index: 4, source_url: "https://x" },
+  ];
   const mc = materialsCritique([{ beat_index: 4, missing: [{ must_show: "collection of ancient cuneiform tablets", why: "not found" }] }], 0, v);
   assert.equal(mc.source, "materials");
   assert.deepEqual(mc.verified_materials, v);
-  assert.match(mc.scenes[0].answer.what_to_change, /Reuse one of the 1 material/);
+  assert.match(mc.scenes[0].answer.what_to_change, /Reuse one of the 1 picture/);
   assert.match(mc.scenes[0].answer.what_to_change, /collection of/);
+  assert.match(mc.scenes[0].answer.what_to_change, /data card is not a picture/);
+  assert.match(mc.scenes[0].answer.what_to_change, /Every shot still needs at least one real picture/);
 });
 
 test("reuseVerifiedMaterials copies a verified material by id or exact must_show; unrelated ones stay unresolved", () => {
@@ -208,6 +215,58 @@ test("reuseVerifiedMaterials copies a verified material by id or exact must_show
   assert.equal(ms[1].resolved.status, "verified");
   assert.equal(ms[2].resolved, undefined);
   assert.equal(r.reused.length, 2);
+});
+
+test("reuseVerifiedMaterials never carries a data card to another sentence", () => {
+  const verified = { status: "verified", file: "/a/m.jpg", source_url: "https://x", license: "CC0", credit: "c", verdict: "YES" };
+  const prev = { beats: [
+    { beat_index: 0, shots: [{ id: "b0s0", materials: [{ id: "m0_doc", kind: "data", must_show: "Claude Haiku 5.5 input price: $0.10 per million tokens", search: ["q"], data: { values: [{ label: "price", value: 0.1, unit: "dollars", source_url: "https://x" }] }, resolved: verified }] }] },
+    { beat_index: 2, shots: [{ id: "b2s0", materials: [{ id: "photo", kind: "photo", must_show: "Dario Amodei in 2023", search: ["Dario Amodei"], resolved: verified }] }] },
+  ] };
+  const next = { beats: [{ beat_index: 2, shots: [{ id: "b2s0", materials: [
+    { id: "m0_doc", kind: "data", must_show: "Claude Haiku 5.5 input price: $0.10 per million tokens", search: ["q"] },
+    { id: "photo", kind: "photo", must_show: "Dario Amodei in 2023", search: ["Dario Amodei"] },
+  ] }] }] };
+  const r = reuseVerifiedMaterials(next, prev, [2]);
+  const ms = r.direction.beats[0].shots[0].materials;
+  assert.equal(ms[0].resolved, undefined, "data from beat 0 is not copied to beat 2");
+  assert.equal(ms[1].resolved.status, "verified", "the verified picture is reused");
+  assert.deepEqual(r.reused.map((x) => x.material_id), ["photo"]);
+});
+
+test("qaImplicatedBeats maps black/freeze segments to beats and whole-video failures to all", () => {
+  const d = { beats: [0, 1, 2, 3].map((i) => ({ beat_index: i, t_start: i * 2, t_end: i * 2 + 2 })) };
+  const black = { pass: false, checks: [{ id: "video.no_empty_black", pass: false }], black: [{ start: 4.5, end: 5.5, duration: 1 }], freeze: [] };
+  assert.deepEqual(qaImplicatedBeats(black, d), [2]);
+  const freeze = { pass: false, checks: [{ id: "video.not_a_slideshow", pass: false }], black: [], freeze: [{ start: 0, end: 4, duration: 4 }] };
+  assert.deepEqual(qaImplicatedBeats(freeze, d), [0, 1]);
+  const all = { pass: false, checks: [{ id: "timeline.not_one_template", pass: false }], black: [], freeze: [] };
+  assert.deepEqual(qaImplicatedBeats(all, d), [0, 1, 2, 3]);
+  assert.deepEqual(qaImplicatedBeats({ pass: true }, d), []);
+});
+
+test("qaCorrectiveCritique turns a KEEP scene into REBUILD with the QA reason", () => {
+  const critic = { status: "complete", scenes: [{ beat_index: 0, status: "answered", verdict: "KEEP", effective_verdict: "KEEP", answer: { visibly_happening: "x" } }], whole_video: null };
+  const qa = { pass: false, checks: [{ id: "video.no_empty_black", pass: false, detail: "0-2s" }], black: [{ start: 0, end: 2, duration: 2 }], freeze: [] };
+  const d = { beats: [{ beat_index: 0, t_start: 0, t_end: 2 }] };
+  const c = qaCorrectiveCritique(critic, qa, d);
+  assert.equal(c.scenes[0].effective_verdict, "REBUILD");
+  assert.equal(c.scenes[0].escalated, "deterministic-qa");
+  assert.match(c.scenes[0].answer.what_to_change, /no_empty_black/);
+});
+
+test("deterministic QA failure forces a corrective round even when the critic says KEEP", async () => {
+  const { steps, calls } = fakes({ verdicts: [["KEEP", "KEEP", "KEEP", "KEEP"]], qa: [
+    { pass: false, checks: [{ id: "video.no_empty_black", pass: false, detail: "0-2s" }], black: [{ start: 0, end: 2, duration: 2 }], freeze: [] },
+    { pass: true, checks: [{ id: "video.no_empty_black", pass: true }], black: [], freeze: [] },
+  ] });
+  const o = base();
+  const rep = await runLoop({ ...o, maxRounds: 2, steps });
+  assert.equal(calls.render, 2);
+  assert.deepEqual(calls.direct.map((c) => c.beats), [null, [0]]);
+  assert.equal(rep.rounds[0].qa.pass, false);
+  assert.equal(rep.rounds[1].qa.pass, true);
+  assert.match(rep.stop_reason, /no scene needs rebuilding/);
 });
 
 test("pruneUnverifiedShots drops an unfindable shot only when a verified shot remains, and re-times the real one", () => {

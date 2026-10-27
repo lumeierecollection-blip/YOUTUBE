@@ -154,7 +154,11 @@ export function evaluateVisualQa({ video, direction, framesIndex, shotsDoc, sfxD
     `${moving} camera moves, ${mappedSfx} mapped SFX cues, ${(sfxDoc?.cues || []).length} total cues`);
 
   const mat = materialsReport?.summary || null;
-  const mats = (materialsReport?.beats || []).flatMap((b) => b.materials || []);
+  // The resolver writes every material row at the top level. Reading only beats[].materials
+  // made this check vacuous: an all-unverified report still reported "every material verified".
+  const mats = Array.isArray(materialsReport?.materials)
+    ? materialsReport.materials
+    : (materialsReport?.beats || []).flatMap((b) => b.materials || []);
   const unverified = mats.filter((m) => m.status !== "verified");
   add("materials.coverage", !!mat && mat.missing === 0 && mat.unverified === 0 && mat.verified === mat.materials,
     mat ? `${mat.verified}/${mat.materials} verified, ${mat.missing} missing, ${mat.unverified} unverified` : "no materials report");

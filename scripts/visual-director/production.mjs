@@ -155,11 +155,25 @@ function lastRendered(report) {
 }
 
 function materialRows(report) {
-  return (report?.beats || []).flatMap((b) => (b.materials || []).map((m) => ({
-    beat_index: b.beat_index, shot_id: m.shot_id, id: m.material_id, kind: m.kind,
-    must_show: m.must_show, status: m.status, why_missing: m.why_missing || null,
-    source_url: m.chosen?.source_url || null, credit: m.chosen?.credit || null, license: m.chosen?.license || null,
-  })));
+  // The materials resolver writes its rows at the top level (`report.materials`); older
+  // reports nested them under beats. Read the top level first, or the asset manifest and
+  // image credits silently come out empty even when every material is verified.
+  const rows = Array.isArray(report?.materials)
+    ? report.materials
+    : (report?.beats || []).flatMap((b) => (b.materials || []).map((m) => ({ ...m, beat_index: b.beat_index })));
+  return rows.map((m) => ({
+    beat_index: m.beat_index ?? null,
+    shot_id: m.shot_id ?? null,
+    id: m.material_id ?? m.id ?? null,
+    kind: m.kind ?? null,
+    must_show: m.must_show ?? null,
+    status: m.status ?? null,
+    why_missing: m.why_missing ?? null,
+    source_url: m.chosen?.source_url || m.source_url || null,
+    credit: m.chosen?.credit || m.credit || null,
+    license: m.chosen?.license || m.license || null,
+    file: m.chosen?.file || m.file || null,
+  }));
 }
 
 /** CC-BY/Wikimedia attribution the publisher appends to the description. Pure; tested. */
@@ -167,6 +181,9 @@ export function imageCredits(materials) {
   const out = new Set();
   for (const m of materialRows(materials)) {
     if (m.status !== "verified") continue;
+    // kind:data is a sourced number drawn by the renderer, not an image: its source is a
+    // documentation URL, never a photo credit.
+    if (m.kind === "data") continue;
     if (m.credit) out.add(m.credit);
     else if (m.source_url) out.add(`${m.license || "source"}: ${m.source_url}`);
   }

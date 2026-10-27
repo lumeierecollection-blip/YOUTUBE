@@ -122,6 +122,22 @@ test("data-unsourced / data-not-quantity / chart-outside-data", () => {
   assert.equal(failsOn(d, "chart-outside-data")[0].beat_index, 3);
 });
 
+test("data-only-shot: a shot of numbers is a text card, not a scene", () => {
+  const d = good();
+  const data = JSON.parse(JSON.stringify(d.beats[1].shots[0].materials[1]));
+  d.beats[2].shots[0].materials = [data];
+  const f = failsOn(d, "data-only-shot");
+  assert.equal(f.length, 1);
+  assert.equal(f[0].beat_index, 2);
+  // data beside a real picture is legal
+  assert.deepEqual(failsOn(good(), "data-only-shot"), []);
+  // statement typography still needs a picture behind it
+  const st = good();
+  st.beats[4].mechanism.family = "statement";
+  st.beats[4].shots[0].materials = [data];
+  assert.equal(failsOn(st, "data-only-shot")[0].beat_index, 4);
+});
+
 test("evidence-unsourced", () => {
   const d = good(); d.beats[0].evidence = ["https://en.wikipedia.org/wiki/Great_Fire_of_London"];
   assert.equal(failsOn(d, "evidence-unsourced")[0].beat_index, 0);

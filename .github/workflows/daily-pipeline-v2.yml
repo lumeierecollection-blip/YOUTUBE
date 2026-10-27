@@ -1315,7 +1315,7 @@ jobs:
           VD_PROOF: "0"
           VD_MAX_ROUNDS: "5"
           VD_GATE: record
-          VD_MAX_MS: "3000000"
+          VD_MAX_MS: "4200000"
           VD_CRITIC_MODEL: gemini-3.8-flash
           # The VD critic sees a strip + up to 4 key frames per scene per round; the legacy
           # 50k session budget cut most scenes off as budget_exhausted (proof 40384441048).

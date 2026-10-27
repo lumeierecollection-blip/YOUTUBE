@@ -48,10 +48,12 @@ export function essentialMissing(report) {
 
 /** A critique document (critic.json shape) from material failures, so the director reads one format. */
 export function materialsCritique(missing, round, verified = [], gateFailures = []) {
+  const reusable = verified.filter((v) => v?.kind !== "data");
+  const data = verified.filter((v) => v?.kind === "data");
   return { schema_version: 1, round, source: "materials", status: "complete", verified_materials: verified, gate_failures: gateFailures,
     scenes: missing.map((m) => ({ beat_index: m.beat_index, status: "answered", verdict: "REBUILD", effective_verdict: "REBUILD",
       answer: { beat_index: m.beat_index, verdict: "REBUILD", delete_reason: null,
-        what_to_change: `These essential materials could not be found or verified: ${m.missing.map((x) => typeof x === "string" ? x : (x.must_show ? `"${x.must_show}"${x.why ? ` (${x.why})` : ""}` : (x.id || JSON.stringify(x)))).join("; ")}. Rebuild the scene around what CAN be shown with real, verified material; never a look-alike. ${verified.length ? `Reuse one of the ${verified.length} material(s) already verified in this video (listed above) by copying its exact id, must_show and search; do not ask for a generic "collection of ...".` : "Name a specific person, object or place an archive can actually hold."}` } })) };
+        what_to_change: `These essential materials could not be found or verified: ${m.missing.map((x) => typeof x === "string" ? x : (x.must_show ? `"${x.must_show}"${x.why ? ` (${x.why})` : ""}` : (x.id || JSON.stringify(x)))).join("; ")}. Rebuild the scene around what CAN be shown with real, verified material; never a look-alike. ${reusable.length ? `Reuse one of the ${reusable.length} picture(s) already verified in this video (listed above) by copying its exact id, must_show and search; do not ask for a generic "collection of ...".` : "Name a specific person, object or place an archive can actually hold."} ${data.length ? "A kind:data card is not a picture and is not reusable on another sentence: keep it only on the beat whose numbers it states." : ""} Every shot still needs at least one real picture; a data card is support, never the whole shot.` } })) };
 }
 
 /** Beats to re-direct after a critic pass. Pure; tested. */
@@ -72,13 +74,20 @@ export function verifiedMaterials(direction) {
 }
 
 const normShow = (s) => String(s || "").toLowerCase().replace(/\s+/g, " ").trim();
+const sameData = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
 
 /**
  * A materials redirect must not throw away pictures that were already verified. For every
  * material in the rebuilt beats that reuses a verified material's id (or its exact must_show),
  * copy the verified kind/search/data/resolved across so the resolver does not have to find it
  * again. This is what stops a repair from replacing a verified data material with a second
- * unfindable "collection of ..." photo (run 40395669599, ch-1 b4). Pure; tested.
+ * unfindable "collection of ..." photo (run 40395669599, ch-1 b4).
+ *
+ * kind:data is NOT reusable across beats: its values are the numbers of one narration sentence.
+ * Run 40402564556 reused a $0.10 data card on five unrelated sentences, which rendered a
+ * 100,000-token text card over every beat and turned the video into a slideshow. A data card may
+ * only be carried within its own beat, and only when the rebuilt material keeps the same values.
+ * Pure; tested.
  */
 export function reuseVerifiedMaterials(direction, previous, targets = null) {
   const pool = verifiedMaterials(previous);
@@ -91,6 +100,11 @@ export function reuseVerifiedMaterials(direction, previous, targets = null) {
       if (m?.resolved?.status === "verified") return m;
       const v = byId.get(m.id) || byShow.get(normShow(m.must_show));
       if (!v) return m;
+      if (v.kind === "data") {
+        // Numbers belong to the sentence that states them. Only keep a data card on its
+        // own beat, and only when the rebuilt material did not change the values.
+        if (v.beat_index !== b.beat_index || (m.data && !sameData(v.data, m.data))) return m;
+      }
       reused.push({ beat_index: b.beat_index, shot_id: s.id, material_id: m.id, reused_from: v.material_id, must_show: v.must_show });
       return { ...m, kind: v.kind, must_show: v.must_show, search: v.search, ...(v.data ? { data: v.data } : {}),
         resolved: { status: "verified", file: v.file, source_url: v.source_url, license: v.license, credit: v.credit,
@@ -189,10 +203,58 @@ export function finalStatus(rounds, beatIndexes) {
   });
 }
 
+/**
+ * Beats a deterministic-QA failure implicates, so the next corrective round rebuilds them.
+ * Black and freeze segments map by time to the beats they overlap; any other failed check
+ * (missing materials, one template, no motion, no audio) is whole-video and implicates every
+ * beat. Pure; tested.
+ */
+export function qaImplicatedBeats(qa, direction) {
+  if (!qa || qa.pass) return [];
+  const beats = Array.isArray(direction?.beats) ? direction.beats : [];
+  const all = beats.map((b) => b.beat_index);
+  const hit = new Set();
+  const addSpan = (start, end) => {
+    for (const b of beats) if (Number(b.t_end) > start && Number(b.t_start) < end) hit.add(b.beat_index);
+  };
+  for (const c of qa.checks || []) {
+    if (c.pass) continue;
+    if (c.id === "video.no_empty_black") {
+      for (const s of (qa.black || []).filter((x) => Number(x.duration) >= 1.0)) addSpan(Number(s.start), Number(s.end));
+    } else if (c.id === "video.not_a_slideshow") {
+      for (const s of (qa.freeze || []).filter((x) => Number(x.duration ?? (x.end - x.start)) >= 3.0)) addSpan(Number(s.start), Number(s.end));
+    } else {
+      all.forEach((i) => hit.add(i));
+    }
+  }
+  return (hit.size ? [...hit] : all).sort((a, b) => a - b);
+}
+
+/**
+ * A critic document the director can act on when deterministic QA, not the critic, rejected
+ * the render. KEEP scenes that QA implicates become REBUILD with the failed check as the
+ * reason, so the next round changes the scene instead of re-rendering it unchanged.
+ * Pure; tested.
+ */
+export function qaCorrectiveCritique(critic, qa, direction, targets = null) {
+  const want = targets || qaImplicatedBeats(qa, direction);
+  if (!qa || qa.pass || !want.length) return critic;
+  const failed = (qa.checks || []).filter((c) => !c.pass).map((c) => `${c.id}: ${c.detail}`).join("; ");
+  const by = new Map((critic?.scenes || []).map((s) => [s.beat_index, s]));
+  for (const i of want) {
+    const s = by.get(i) || { beat_index: i, status: "answered", verdict: "REBUILD", effective_verdict: "REBUILD" };
+    by.set(i, { ...s, status: s.status || "answered", verdict: "REBUILD", effective_verdict: "REBUILD",
+      escalated: s.escalated || "deterministic-qa",
+      answer: { ...(s.answer || {}), verdict: "REBUILD", delete_reason: `deterministic QA failed: ${failed}`,
+        what_to_change: `Deterministic QA on the rendered MP4 failed: ${failed}. Rebuild this scene so a real picture is visible for the whole shot and the camera actually moves; a text card on the ground is not a scene.` } });
+  }
+  return { ...(critic || { status: "complete", whole_video: null }), scenes: [...by.values()].sort((a, b) => a.beat_index - b.beat_index) };
+}
+
 export function comparisonMarkdown(report, outDir) {
   const rel = (p) => (p ? relative(outDir, p).replace(/\\/g, "/") : "-");
   const L = [`# Visual director: round comparison`, ``, `Script: \`${report.script}\`  `, `Rounds: ${report.rounds.length}; stopped: ${report.stop_reason}`, ``, `## Contact sheets`, ``];
-  for (const r of report.rounds) L.push(`- round ${r.round}: \`${rel(r.contact_sheet)}\` (video \`${rel(r.video)}\`; critic ${r.critic?.status || "absent"}${r.critic?.whole_video?.answer ? `; template alternation: ${r.critic.whole_video.answer.template_alternation}, whole mute test: ${r.critic.whole_video.answer.whole_mute_test}` : ""})`);
+  for (const r of report.rounds) L.push(`- round ${r.round}: \`${rel(r.contact_sheet)}\` (video \`${rel(r.video)}\`; critic ${r.critic?.status || "absent"}${r.critic?.whole_video?.answer ? `; template alternation: ${r.critic.whole_video.answer.template_alternation}, whole mute test: ${r.critic.whole_video.answer.whole_mute_test}` : ""}${r.qa ? `; deterministic QA ${r.qa.pass ? "pass" : `FAIL: ${(r.qa.checks || []).filter((c) => !c.pass).map((c) => c.id).join(", ")}`}` : ""})`);
   L.push(``, `## Verdict per scene per round`, ``, `| beat | ${report.rounds.map((r) => `r${r.round}`).join(" | ")} | final |`, `|---|${report.rounds.map(() => "---").join("|")}|---|`);
   for (const f of report.final) L.push(`| b${f.beat_index} | ${f.verdicts.map((v, k) => `${v || "n/a"}${(report.rounds[k].rebuilt || []).includes(f.beat_index) ? " (rebuilt)" : ""}`).join(" | ")} | ${f.status}${f.reason ? ` (${f.reason})` : ""} |`);
   L.push(``, `## Rebuilt scenes: old vs new`, ``);
@@ -278,6 +340,15 @@ export const realSteps = {
     if (existsSync(sp)) { const s = readJson(sp); manifest = { shots: (s.shots || []).map((x) => ({ id: x.id, t_start: x.from / s.fps, t_end: x.to / s.fps })) }; }
     return (await import("./frames.mjs")).extractFrames({ video, direction, outDir, manifest });
   },
+  // Deterministic QA runs on every round, not only on the final MP4: a black or frozen
+  // beat must trigger a corrective rebuild while there is still time, and its report is
+  // the evidence that drove that round.
+  qa: async ({ video, direction, index, materialsReport }) => {
+    const read = (p) => (existsSync(p) ? readJson(p) : null);
+    const { qaVideo } = await import("./qa-video.mjs");
+    return qaVideo({ video, direction, framesIndex: index, shotsDoc: read(video.replace(/\.mp4$/i, ".shots.json")),
+      sfxDoc: read(video.replace(/\.mp4$/i, ".sfx.json")), materialsReport });
+  },
   critic: async ({ direction, index, round }) => (await import("./critic.mjs")).runCritic({ direction, index, round }),
 };
 
@@ -297,8 +368,13 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     const log = join(rd, "steps.log");
     const rec = { round, rebuilt: [], started_ms: clock() - t0 };
     report.rounds.push(rec);
-    const prevCritic = round > 0 ? report.rounds[round - 1].critic : null;
-    const targets = round > 0 ? beatsToRebuild(prevCritic) : null;
+    const prevRec = round > 0 ? report.rounds[round - 1] : null;
+    const prevCritic = prevRec?.critic || null;
+    const prevCritique = prevRec?.critic_for_next && existsSync(prevRec.critic_for_next) ? readJson(prevRec.critic_for_next) : prevCritic;
+    // A round is rebuilt when the critic rejects a scene OR deterministic QA failed on the
+    // rendered MP4. QA targets are stored on the previous round, so black/freeze failures
+    // survive into the next corrective round even when the critic said KEEP.
+    const targets = round > 0 ? (prevRec.next_targets || beatsToRebuild(prevCritic)) : null;
     if (round > 0) {
       if (!targets.length) { report.rounds.pop(); report.stop_reason = "no scene needs rebuilding"; break; }
       if (clock() - t0 > maxMs) { report.rounds.pop(); report.stop_reason = `VD_MAX_MS ${maxMs} reached before round ${round}`; break; }
@@ -308,12 +384,12 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     const raw = join(rd, "direction.raw.json");
     let critiquePath = null;
     // direct.mjs re-directs IN PLACE: with --critique it reads the previous direction from --out.
-    if (round > 0) { critiquePath = join(outDir, `round-${round - 1}`, "critic.json"); writeJson(raw, current); }
+    if (round > 0) { critiquePath = prevRec?.critic_for_next || join(outDir, `round-${round - 1}`, "critic.json"); writeJson(raw, current); }
     const d = await steps.direct({ script, research, tts, channel, out: raw, critique: critiquePath, beats: targets, log });
     if (!d.ok || !existsSync(raw)) { rec.error = `direct failed (exit ${d.status}): ${String(d.stderr).slice(-400)}`; report.stop_reason = rec.error; break; }
     let direction = readJson(raw);
     if (round > 0) {
-      const s = spliceBeats(current, direction, targets, { round: round - 1, critique: prevCritic });
+      const s = spliceBeats(current, direction, targets, { round: round - 1, critique: prevCritique });
       direction = s.direction;
       rec.rebuilt = targets.filter((i) => !s.missing.includes(i));
       if (s.missing.length) rec.director_missing_beats = s.missing;
@@ -424,15 +500,41 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
     if (!r.ok || !existsSync(video)) { rec.error = `render failed (exit ${r.status}): ${String(r.stderr).slice(-400)}`; report.stop_reason = rec.error; break; }
     rec.video = video;
 
-    // 5) frames + 6) critic
+    // 5) frames, deterministic QA, 6) critic. QA runs before the critic so a black or
+    // frozen render is a fact the next round must answer, not an opinion the critic may miss.
     const index = await steps.frames({ video, direction: current, outDir: join(rd, "frames") });
     rec.contact_sheet = index.sheet; rec.strips = index.strips;
+    let qa = null;
+    if (steps.qa) {
+      try {
+        qa = await steps.qa({ video, direction: current, index, materialsReport: existsSync(matReport) ? readJson(matReport) : null });
+      } catch (e) {
+        qa = { pass: false, checks: [{ id: "qa.error", pass: false, detail: String(e?.message || e).slice(0, 500) }], black: [], freeze: [] };
+      }
+      rec.qa = { pass: !!qa.pass, checks: qa.checks || [], black: qa.black || [], freeze: qa.freeze || [], probe: qa.probe || null };
+      writeJson(join(rd, "qa-deterministic.json"), qa);
+      if ((qa.checks || []).some((c) => c.id === "qa.error")) {
+        rec.error = `deterministic QA could not run: ${qa.checks.find((c) => c.id === "qa.error").detail}`;
+        report.stop_reason = rec.error;
+        rec.elapsed_ms = clock() - t0;
+        save();
+        break;
+      }
+    }
     const critic = await steps.critic({ direction: current, index, round });
     writeJson(join(rd, "critic.json"), critic);
     rec.critic = critic;
+    const qaTargets = qa && !qa.pass ? qaImplicatedBeats(qa, current) : [];
+    const nextTargets = [...new Set([...beatsToRebuild(critic), ...qaTargets])].sort((a, b) => a - b);
+    rec.next_targets = nextTargets;
+    if (qa && !qa.pass) {
+      const cp = join(rd, "critic.qa.json");
+      writeJson(cp, qaCorrectiveCritique(critic, qa, current, qaTargets));
+      rec.critic_for_next = cp;
+    }
     rec.elapsed_ms = clock() - t0;
     save();
-    if (round === maxRounds) { report.stop_reason = beatsToRebuild(critic).length ? `VD_MAX_ROUNDS ${maxRounds} reached with scenes still failing` : "no scene needs rebuilding"; }
+    if (round === maxRounds) { report.stop_reason = nextTargets.length ? `VD_MAX_ROUNDS ${maxRounds} reached with scenes still failing` : "no scene needs rebuilding"; }
   }
   const idx = (current?.beats || []).map((b) => b.beat_index);
   report.final = finalStatus(report.rounds.filter((r) => r.critic), idx);

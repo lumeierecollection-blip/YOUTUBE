@@ -129,6 +129,29 @@ test("imageCredits: only verified materials, deduped, credit or license+url", ()
   assert.deepEqual(imageCredits(report), ["Photo: A, CC BY 4.0", "CC BY-SA 4.0: https://x/y.jpg"]);
 });
 
+test("imageCredits and the asset manifest read the resolver's top-level materials array", () => {
+  const report = { summary: { materials: 2, verified: 2, missing: 0, unverified: 0 }, materials: [
+    { beat_index: 0, shot_id: "b0s0", material_id: "p", kind: "photo", status: "verified",
+      chosen: { credit: "Photo: A, CC BY 4.0", source_url: "https://x/a.jpg", license: "CC BY 4.0", file: "/tmp/a.jpg" } },
+    { beat_index: 0, shot_id: "b0s0", material_id: "d", kind: "data", status: "verified",
+      chosen: { source_url: "https://docs.example/x" } },
+  ] };
+  // A data card's documentation URL is not an image credit.
+  assert.deepEqual(imageCredits(report), ["Photo: A, CC BY 4.0"]);
+  const m = buildManifest({
+    runId: "1", source: "s", generation: "g", channel: 1, script: "x", research: null, video: join(tmp(), "v.mp4"),
+    direction: { beats: [] }, shotsDoc: { shots: [] }, sfxDoc: { cues: [] }, materials: report, materialsPath: null,
+    critic: null, loopReport: { rounds: [], max_rounds: 0, stop_reason: null },
+    qa: { checks: [], pass: false, probe: null, black: [], freeze: [], volume: null },
+    terminal: "FAILED_QA", qaReport: null, contactSheet: null, comparison: null,
+  });
+  assert.equal(m.asset_manifest.materials.length, 2);
+  assert.equal(m.asset_manifest.materials[0].id, "p");
+  assert.equal(m.asset_manifest.materials[0].credit, "Photo: A, CC BY 4.0");
+  assert.equal(m.asset_manifest.materials[1].id, "d");
+  assert.equal(m.asset_manifest.materials[1].kind, "data");
+});
+
 // ---------------------------------------------------------------- deterministic QA parsers
 
 test("parseBlackdetect/parseFreezedetect/parseVolumedetect read ffmpeg's log lines", () => {
@@ -201,4 +224,18 @@ test("evaluateVisualQa: every failure names the check that failed", () => {
   const unverified = qaInputs();
   unverified.materialsReport = { summary: { materials: 2, verified: 1, missing: 0, unverified: 1 }, beats: [{ beat_index: 0, materials: [{ material_id: "m1", status: "verified" }] }, { beat_index: 1, materials: [{ material_id: "m2", status: "unverified" }] }] };
   assert.deepEqual(ids(evaluateVisualQa(unverified)), ["materials.coverage", "materials.all_verified"]);
+});
+
+test("evaluateVisualQa: materials.all_verified reads the resolver's top-level materials array", () => {
+  const report = qaInputs();
+  report.materialsReport = {
+    summary: { materials: 2, verified: 1, missing: 1, unverified: 0 },
+    materials: [{ beat_index: 0, shot_id: "b0s1", material_id: "m1", status: "verified" },
+      { beat_index: 1, shot_id: "b1s1", material_id: "m2", status: "missing" }],
+  };
+  const r = evaluateVisualQa(report);
+  const check = r.checks.find((c) => c.id === "materials.all_verified");
+  assert.equal(check.pass, false);
+  assert.match(check.detail, /m2/);
+  assert.deepEqual(ids(r), ["materials.coverage", "materials.all_verified"]);
 });
