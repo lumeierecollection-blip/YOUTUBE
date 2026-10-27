@@ -5,6 +5,11 @@ name: Editor Timeline Proof
 # production render job, and uploads the MP4/contact/QA evidence. It never
 # publishes and never needs repository write access.
 on:
+  # The push trigger exists because GitHub only exposes workflow_dispatch for
+  # workflows already on the default branch. It is limited to this proof branch.
+  push:
+    branches:
+      - editor/persisted-timeline
   workflow_dispatch:
     inputs:
       scripts:
@@ -28,7 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
-      RENDER_SCALE: ${{ inputs.scale }}
+      EDITOR_PROOF_SCRIPTS: ${{ inputs.scripts || 'data/research/1/aberfan-60-years-books-of-remembrance-shorts-script.json,data/research/1/ancient-egypts-first-female-king-royal-seals-shorts-script.json' }}
+      RENDER_SCALE: ${{ inputs.scale || '0.5' }}
       RENDER_CONCURRENCY: "4"
       EDITOR_ENGINE: "1"
       EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
@@ -78,7 +84,7 @@ jobs:
         run: |
           set -uo pipefail
           status=0
-          IFS=',' read -ra SCRIPTS <<< "${{ inputs.scripts }}"
+          IFS=',' read -ra SCRIPTS <<< "$EDITOR_PROOF_SCRIPTS"
           for raw in "${SCRIPTS[@]}"; do
             script="$(echo "$raw" | xargs)"
             [ -n "$script" ] || continue
