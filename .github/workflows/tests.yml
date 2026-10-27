@@ -43,11 +43,10 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Ensure ffmpeg/ffprobe
-        run: |
-          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
-            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
-          fi
-          ffmpeg -version | head -1
+        # No apt: a wedged apt mirror held two CI jobs for 12+ minutes (run 40364703475).
+        # scripts/ci/ensure-ffmpeg.sh uses the runner's binaries when present and a
+        # bounded static BtbN build when they are missing. Same helper as the pipeline.
+        run: bash scripts/ci/ensure-ffmpeg.sh
 
       # Layer 2's CLIP weights (Xenova/clip-vit-base-patch32), ~350 MB.
       - name: Cache HuggingFace models
