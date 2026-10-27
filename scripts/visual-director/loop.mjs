@@ -513,8 +513,8 @@ export async function runLoop({ script, research, tts, channel, outDir, maxRound
       }
       rec.qa = { pass: !!qa.pass, checks: qa.checks || [], black: qa.black || [], freeze: qa.freeze || [], probe: qa.probe || null };
       writeJson(join(rd, "qa-deterministic.json"), qa);
-      if ((qa.checks || []).some((c) => c.id === "qa.error")) {
-        rec.error = `deterministic QA could not run: ${qa.checks.find((c) => c.id === "qa.error").detail}`;
+      if ((qa.checks || []).some((check) => check.id === "qa.error")) {
+        rec.error = `deterministic QA could not run: ${qa.checks.find((check) => check.id === "qa.error").detail}`;
         report.stop_reason = rec.error;
         rec.elapsed_ms = clock() - t0;
         save();
