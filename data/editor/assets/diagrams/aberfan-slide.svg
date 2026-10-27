@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#14181D"/>
+      <stop offset="1" stop-color="#08090B"/>
+    </linearGradient>
+    <linearGradient id="tip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A4035"/>
+      <stop offset="1" stop-color="#1B1815"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#D4A574" stroke-opacity="0.055" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#sky)"/>
+  <rect width="1080" height="1920" fill="url(#grid)"/>
+  <text x="90" y="190" fill="#D4A574" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="7">ABERFAN &#183; CROSS-SECTION</text>
+  <line x1="90" y1="230" x2="990" y2="230" stroke="#D4A574" stroke-opacity="0.5" stroke-width="2"/>
+  <path d="M80 1180 L250 980 L430 900 L610 870 L760 930 L990 1180 Z" fill="#12161B" stroke="#D4A574" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M470 900 L610 760 L740 700 L860 740 L930 900 L760 930 Z" fill="url(#tip)" stroke="#D4A574" stroke-opacity="0.55" stroke-width="2"/>
+  <path d="M560 930 C620 1010 520 1080 430 1120 C360 1150 320 1200 300 1250" fill="none" stroke="#D4A574" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 22"/>
+  <path d="M300 1250 l-18 -46 l54 18 z" fill="#D4A574"/>
+  <g fill="#0B0D10" stroke="#D4A574" stroke-opacity="0.5" stroke-width="2">
+    <rect x="210" y="1120" width="90" height="60"/>
+    <rect x="330" y="1140" width="80" height="55"/>
+    <rect x="170" y="1190" width="70" height="50"/>
+    <rect x="260" y="1205" width="95" height="55"/>
+  </g>
+  <g fill="#D4A574" font-family="Arial, sans-serif" font-size="22" letter-spacing="3">
+    <text x="640" y="660">COAL WASTE TIP</text>
+    <text x="760" y="735" fill="#B9B0A4" font-size="18" letter-spacing="2">ABOVE THE VILLAGE</text>
+  </g>
+  <g stroke="#D4A574" stroke-opacity="0.6" stroke-width="2">
+    <line x1="620" y1="700" x2="600" y2="800"/>
+  </g>
+</svg>

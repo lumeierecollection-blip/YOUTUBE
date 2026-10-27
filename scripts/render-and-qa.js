@@ -63,6 +63,7 @@ const ROOT = join(__dirname, "..");
 const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
 const REMOTION_ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "Root.jsx");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
+const EDITOR_QA_JS = join(__dirname, "editor", "video-qa.js");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const VISUAL_QA_JS = join(__dirname, "gate-visual-qa.js");
@@ -278,6 +279,21 @@ function expectedOutputPath(channelId, scriptPath, format) {
   const slug = basename(scriptPath, extname(scriptPath)).replace(/-script$/, "");
   const timestamp = new Date().toISOString().slice(0, 10);
   return join(ROOT, "data", "renders", channelId, `${slug}-${format}-${timestamp}.mp4`);
+}
+
+// Editor timelines are opt-in per script: EDITOR_ENGINE=1 plus a map from the
+// script stem to a persisted timeline. Scripts without an entry keep the
+// existing Gemini-plan pipeline, so enabling this cannot change another
+// channel's video.
+function editorTimelineFor(scriptPath) {
+  if (!/^(1|true|yes)$/i.test(String(process.env.EDITOR_ENGINE || ""))) return null;
+  const mapPath = resolve(ROOT, process.env.EDITOR_TIMELINE_MAP || "scripts/editor/timelines.json");
+  if (!existsSync(mapPath)) return null;
+  const map = readJsonSafe(mapPath);
+  const entry = map && map[basename(scriptPath, ".json")];
+  if (!entry) return null;
+  const timelinePath = resolve(ROOT, entry);
+  return existsSync(timelinePath) ? { timelinePath, mapPath } : null;
 }
 
 function runChild(cmd, args, { label, env }) {
@@ -907,14 +923,23 @@ async function queueVideo({ verdict, videoPath, channelId, stage = null, check =
   // script — or a render with no manifest to confirm it from — goes to rejected/, whatever any
   // model gate said. CI run 37810883817 ch-9 reached approved/ with a Washington STATE map.
   if (verdict === "approved" || verdict === "approved-review") {
-    const mp = videoPath.replace(/\.mp4$/, "-manifest.json");
-    const pg = existsSync(mp) ? placeGate(readJsonSafe(mp) || {}) : { pass: false, failures: [{ beat: null, rule: "M0", why: "no render manifest to confirm places against" }], checked: 0 };
-    console.log(`[place-gate] ch-${channelId}: ${pg.pass ? "PASS" : "FAIL"} — ${pg.checked} place beat(s) checked${pg.failures.length ? `; ${pg.failures.map((f) => `beat ${f.beat} ${f.rule}: ${f.why}`).join("; ")}` : ""}`);
-    if (!pg.pass) {
-      console.error(`::error::place gate FAILED for ${basename(videoPath)} — ${pg.failures.map((f) => `beat ${f.beat}: ${f.why}`).join("; ")}`);
-      extra = { ...extra, place_gate: pg, would_have_been: verdict };
-      reason = `place gate: ${pg.failures.map((f) => `beat ${f.beat} ${f.rule} ${f.why}`).join("; ")}`;
-      verdict = "rejected"; stage = "place-gate"; check = pg.failures.map((f) => f.rule).join(",");
+    // Editor timelines are not built from the old beat manifest: their gate is
+    // the final-MP4 QA written next to the video. Only a report that names the
+    // editor pipeline AND passed can stand in for the manifest gate; every
+    // other render still needs its manifest.
+    const editorQa = readJsonSafe(videoPath.replace(/\.mp4$/, "-editor-qa.json"));
+    if (editorQa?.editor_timeline === true && editorQa.pass === true) {
+      console.log(`[place-gate] ch-${channelId}: editor timeline QA passed (${basename(editorQa.timeline)}); manifest place gate not applicable`);
+    } else {
+      const mp = videoPath.replace(/\.mp4$/, "-manifest.json");
+      const pg = existsSync(mp) ? placeGate(readJsonSafe(mp) || {}) : { pass: false, failures: [{ beat: null, rule: "M0", why: "no render manifest to confirm places against" }], checked: 0 };
+      console.log(`[place-gate] ch-${channelId}: ${pg.pass ? "PASS" : "FAIL"} — ${pg.checked} place beat(s) checked${pg.failures.length ? `; ${pg.failures.map((f) => `beat ${f.beat} ${f.rule}: ${f.why}`).join("; ")}` : ""}`);
+      if (!pg.pass) {
+        console.error(`::error::place gate FAILED for ${basename(videoPath)} — ${pg.failures.map((f) => `beat ${f.beat}: ${f.why}`).join("; ")}`);
+        extra = { ...extra, place_gate: pg, would_have_been: verdict };
+        reason = `place gate: ${pg.failures.map((f) => `beat ${f.beat} ${f.rule} ${f.why}`).join("; ")}`;
+        verdict = "rejected"; stage = "place-gate"; check = pg.failures.map((f) => f.rule).join(",");
+      }
     }
   }
   const dest = QUEUE_DIRS[verdict];
@@ -2776,7 +2801,90 @@ async function guardPlanAssets(channelId, planPath) {
 
 /* ── Correction loop ─────────────────────────────────────────────── */
 
+async function renderEditorTimeline(channelId, scriptPath, format, timelineInfo, outputOverride) {
+  const timeline = readJsonSafe(timelineInfo.timelinePath);
+  if (!timeline) {
+    console.error(`::error::editor timeline is unreadable: ${timelineInfo.timelinePath}`);
+    return { skipped: false, ok: false };
+  }
+  const audio = timeline.metadata?.source_audio
+    ? resolve(ROOT, timeline.metadata.source_audio)
+    : audioPathFor(channelId, scriptPath);
+  if (!existsSync(audio)) {
+    console.error(`::error::editor timeline ${basename(timelineInfo.timelinePath)} has no voiceover at ${audio}`);
+    return { skipped: false, ok: false };
+  }
+  const outputPath = outputOverride ? resolve(ROOT, outputOverride) : expectedOutputPath(channelId, scriptPath, format);
+  mkdirSync(dirname(outputPath), { recursive: true });
+  const label = `editor ${channelId}/${basename(scriptPath)}`;
+  const args = [RENDER_JS, format, channelId, relative(ROOT, scriptPath), relative(ROOT, audio)];
+  const env = {
+    EDITOR_TIMELINE_PATH: relative(ROOT, timelineInfo.timelinePath),
+    EDITOR_OUTPUT_PATH: relative(ROOT, outputPath),
+  };
+  let rendered = await runChild("node", args, { label, env });
+  if (rendered.code !== 0 && /trying to connect to the browser/i.test(`${rendered.stderr}\n${rendered.stdout}`)) {
+    console.warn(`::warning::${label}: browser failed to launch — retrying the editor render once`);
+    rendered = await runChild("node", args, { label: `${label} (retry)`, env });
+  }
+  if (rendered.code !== 0) {
+    const tail = `${rendered.stderr || ""}\n${rendered.stdout || ""}`.trim().split("\n").filter(Boolean).slice(-1)[0] || "";
+    const q = existsSync(outputPath)
+      ? await queueVideo({ verdict: "rejected", videoPath: outputPath, channelId, stage: "editor-render", check: "crash", reason: `editor render exited ${rendered.code}: ${tail.slice(0, 300)}` })
+      : null;
+    return { skipped: false, ok: false, queued: q || undefined };
+  }
+  if (!existsSync(outputPath)) {
+    console.error(`::error::editor render exited 0 but expected output not found: ${outputPath}`);
+    return { skipped: false, ok: false };
+  }
+
+  const qaOut = outputPath.replace(/\.mp4$/, "-editor-qa.json");
+  const qaContact = outputPath.replace(/\.mp4$/, "-editor-contact.jpg");
+  const qaFrames = outputPath.replace(/\.mp4$/, "-editor-frames");
+  const qa = await runChild("node", [
+    EDITOR_QA_JS,
+    "--video", relative(ROOT, outputPath),
+    "--timeline", relative(ROOT, timelineInfo.timelinePath),
+    "--out", relative(ROOT, qaOut),
+    "--contact", relative(ROOT, qaContact),
+    "--frames", relative(ROOT, qaFrames),
+  ], { label: `${label} qa` });
+  if (qa.code !== 0) {
+    const tail = `${qa.stderr || ""}\n${qa.stdout || ""}`.trim().split("\n").filter(Boolean).slice(-1)[0] || "";
+    const q = await queueVideo({
+      verdict: "rejected",
+      videoPath: outputPath,
+      channelId,
+      stage: "editor-qa",
+      check: "editor-qa",
+      reason: `editor QA failed: ${tail.slice(0, 300)}`,
+      extra: { editor_timeline: relative(ROOT, timelineInfo.timelinePath), editor_qa: relative(ROOT, qaOut) },
+    });
+    return { skipped: false, ok: false, queued: q || undefined };
+  }
+  console.log(`[editor] ${basename(scriptPath)} passed final-MP4 QA; report ${relative(ROOT, qaOut)}`);
+  return {
+    skipped: false,
+    ok: true,
+    outputPath,
+    channelId,
+    scriptPath,
+    audio,
+    attempt: 1,
+    geminiVerdict: "EDITOR_QA_PASS",
+    qaGatePass: true,
+    editor: true,
+    editorTimeline: timelineInfo.timelinePath,
+  };
+}
+
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA) {
+  const editorTimeline = editorTimelineFor(scriptPath);
+  if (editorTimeline) {
+    console.log(`=== EDITOR: ${basename(scriptPath)} -> ${basename(editorTimeline.timelinePath)} ===`);
+    return renderEditorTimeline(channelId, scriptPath, format, editorTimeline, outputOverride);
+  }
   let correctionsPath = null;
   // When directives were enforced on the previous attempt, this holds the
   // EDITED plan. The next attempt renders it directly rather than asking
@@ -3514,7 +3622,7 @@ async function main() {
   }
   // approved/: passed every check. publish (youtube-publish/run.js) reads this queue.
   for (const r of results.filter((x) => x.qaGatePass)) {
-    const ch = (r.outputPath || "").match(/renders[\\/](\d+)[\\/]/)?.[1];
+    const ch = r.channelId ?? (r.outputPath || "").match(/renders[\\/](\d+)[\\/]/)?.[1];
     const q = await queueVideo({ verdict: "approved", videoPath: r.outputPath, channelId: ch, reason: `verdict ${r.geminiVerdict}`, extra: { attempts: r.attempt } });
     if (q) r.outputPath = join(APPROVED_DIR, basename(r.outputPath));
   }

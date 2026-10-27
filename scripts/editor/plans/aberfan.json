@@ -1,0 +1,242 @@
+{
+  "id": "aberfan-60-years-books-of-remembrance",
+  "title": "Aberfan: 144 Names Preserved",
+  "audio": "data/editor/audio/aberfan.mp3",
+  "transcript": "data/editor/audio/aberfan.json",
+  "script": "data/research/1/aberfan-60-years-books-of-remembrance-shorts-script.json",
+  "fps": 30,
+  "palette": {
+    "bg": "#08090B",
+    "text": "#F5EFE6",
+    "muted": "#B9B0A4",
+    "accent": "#D4A574",
+    "accent2": "#7FA6A0"
+  },
+  "fonts": {
+    "primary": "Cormorant Garamond",
+    "sans": "Inter"
+  },
+  "caption_style": { "x": 80, "y": 1540, "w": 920, "h": 210, "size": 38 },
+  "assets": {
+    "nlw": {
+      "file": "data/editor/assets/raw/National_Library_of_Wales.jpg",
+      "width": 800,
+      "height": 530,
+      "credit": "National Library of Wales, Aberystwyth — Ian Capper / Geograph, CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "pre": {
+      "file": "data/editor/assets/raw/Aberfan_spoil_heaps_pre_disaster.jpg",
+      "width": 1920,
+      "height": 1189,
+      "credit": "Aberfan spoil heaps before the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_spoil_heaps_pre_disaster.jpg",
+      "license": "Public domain"
+    },
+    "post": {
+      "file": "data/editor/assets/raw/Aberfan_spoil_heaps_post_disaster.jpg",
+      "width": 1920,
+      "height": 1172,
+      "credit": "Aberfan spoil heaps after the disaster — unknown government photographer, public domain (1967 Tribunal report plates)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_spoil_heaps_post_disaster.tif",
+      "license": "Public domain"
+    },
+    "map": {
+      "file": "data/editor/assets/raw/Aberfan_disaster_map_-_extent_of_the_spoil_slip.jpg",
+      "width": 890,
+      "height": 1479,
+      "credit": "Extent of the spoil slip — Ordnance Survey map from the 1967 Tribunal report, public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_disaster_map_-_extent_of_the_spoil_slip.jpg",
+      "license": "Public domain"
+    },
+    "slide": {
+      "file": "data/editor/assets/diagrams/aberfan-slide.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Diagram: TradeApp editor, based on the 1967 Tribunal report",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/assets/diagrams/aberfan-slide.svg",
+      "license": "Original diagram"
+    },
+    "children": {
+      "file": "data/editor/assets/raw/Children_s_graves_at_Aberfan_-_geograph.org.uk_-_8247868.jpg",
+      "width": 1920,
+      "height": 1884,
+      "credit": "Children's graves at Aberfan — Marathon / Geograph, CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Children%27s_graves_at_Aberfan_-_geograph.org.uk_-_8247868.jpg",
+      "license": "CC BY-SA 2.0"
+    },
+    "memorial": {
+      "file": "data/editor/assets/raw/Aberfan_disaster_burial_site__Aberfan_Cemetery_.jpg",
+      "width": 1920,
+      "height": 2560,
+      "credit": "Aberfan disaster burial site, Aberfan Cemetery — USW15 / Wikimedia Commons, CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_disaster_burial_site_(Aberfan_Cemetery).jpg",
+      "license": "CC0"
+    },
+    "victims": {
+      "file": "data/editor/assets/raw/Aberfan_disaster_victims__burial_plot.jpg",
+      "width": 1920,
+      "height": 2560,
+      "credit": "Aberfan disaster victims' burial plot — USW15 / Wikimedia Commons, CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_disaster_victims%27_burial_plot.jpg",
+      "license": "CC0"
+    },
+    "cemetery": {
+      "file": "data/editor/assets/raw/Aberfan_Cemetery_-_geograph.org.uk_-_5295231.jpg",
+      "width": 1920,
+      "height": 1267,
+      "credit": "Aberfan Cemetery — Mel Hartshorn / Geograph, CC BY-SA 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Aberfan_Cemetery_-_geograph.org.uk_-_5295231.jpg",
+      "license": "CC BY-SA 2.0"
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0.0,
+      "end": 6.2,
+      "asset": "nlw",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.18, "saturate": 0.78, "brightness": 0.9 },
+      "layout": "lower",
+      "kicker": "ABERFAN · 1966",
+      "headline": "144 NAMES\nPRESERVED",
+      "sub": "New books for a village that lost its future in seconds."
+    },
+    {
+      "id": "before",
+      "start": 6.2,
+      "end": 12.88,
+      "asset": "pre",
+      "fit": "cover",
+      "motion": "pan-left",
+      "filter": { "sepia": 0.12, "saturate": 0.35, "brightness": 0.9 },
+      "layout": "lower",
+      "kicker": "BEFORE",
+      "headline": "A VILLAGE\nBELOW THE TIPS",
+      "sub": "Coal waste rose above Aberfan for generations."
+    },
+    {
+      "id": "slide-photo",
+      "start": 12.88,
+      "end": 15.5,
+      "asset": "post",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.12, "saturate": 0.3, "brightness": 0.88 },
+      "layout": "lower",
+      "kicker": "21 OCTOBER 1966",
+      "headline": "THE SLIDE",
+      "stat": "144",
+      "stat_y": 700,
+      "stat_size": 190,
+      "sub": "116 children · 28 adults lost their lives."
+    },
+    {
+      "id": "slide-diagram",
+      "start": 15.5,
+      "end": 18.1,
+      "asset": "slide",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.05, "saturate": 0.8, "brightness": 1.0 },
+      "layout": "lower",
+      "kicker": "HOW IT HAPPENED",
+      "headline": "A TIP\nABOVE THE VILLAGE",
+      "sub": "The waste slid down the hillside into Aberfan."
+    },
+    {
+      "id": "map",
+      "start": 18.1,
+      "end": 20.5,
+      "asset": "map",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.2, "saturate": 0.6, "brightness": 0.9 },
+      "layout": "lower",
+      "kicker": "THE SPOIL SLIP",
+      "headline": "THE PATH\nOF THE SLIDE",
+      "sub": "The tribunal map shows how far the waste travelled."
+    },
+    {
+      "id": "question",
+      "start": 20.5,
+      "end": 23.04,
+      "asset": "nlw",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.12, "saturate": 0.78, "brightness": 0.9 },
+      "layout": "lower",
+      "kicker": "THE QUESTION",
+      "headline": "WILL THE LIBRARY\nPROTECT THE PAGES?",
+      "sub": "The National Library of Wales holds the memory."
+    },
+    {
+      "id": "fading",
+      "start": 23.04,
+      "end": 27.68,
+      "asset": "children",
+      "fit": "cover",
+      "motion": "pan-right",
+      "filter": { "sepia": 0.28, "saturate": 0.45, "brightness": 0.86 },
+      "layout": "lower",
+      "kicker": "FADING INK",
+      "headline": "TIME WEARS\nDOWN THE BOOK",
+      "sub": "The original Book of Remembrance is fragile."
+    },
+    {
+      "id": "copies",
+      "start": 27.68,
+      "end": 32.9,
+      "asset": "nlw",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.1, "saturate": 0.8, "brightness": 0.92 },
+      "layout": "lower",
+      "kicker": "NEW COPIES",
+      "headline": "THE NATIONAL\nLIBRARY OF WALES",
+      "sub": "Fresh copies were finished ahead of July 2026."
+    },
+    {
+      "id": "keeper",
+      "start": 32.9,
+      "end": 37.84,
+      "asset": "memorial",
+      "fit": "cover",
+      "motion": "pan-left",
+      "filter": { "sepia": 0.22, "saturate": 0.55, "brightness": 0.88 },
+      "layout": "lower",
+      "kicker": "THE KEEPER",
+      "headline": "A COMMUNITY'S\nHISTORY",
+      "sub": "Aberfan Memorial Charity chair Davies guards it now."
+    },
+    {
+      "id": "memory",
+      "start": 37.84,
+      "end": 43.58,
+      "asset": "cemetery",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.24, "saturate": 0.45, "brightness": 0.86 },
+      "layout": "lower",
+      "kicker": "68 YEARS OLD",
+      "headline": "A VILLAGE'S\nMEMORY",
+      "sub": "Davies protects the village's memory."
+    },
+    {
+      "id": "close",
+      "start": 43.58,
+      "end": 47.2,
+      "asset": "victims",
+      "fit": "cover",
+      "motion": "out",
+      "filter": { "sepia": 0.26, "saturate": 0.42, "brightness": 0.84 },
+      "layout": "lower",
+      "kicker": "THE BOOK OF REMEMBRANCE",
+      "headline": "144 NAMES",
+      "sub": "Protected in fresh leather and ink."
+    }
+  ]
+}
