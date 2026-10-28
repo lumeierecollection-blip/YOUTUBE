@@ -1,0 +1,66 @@
+{
+  "channel_id": "48",
+  "topic_slug": "university-of-michigan-haptic-steering-wheel-semi-autonomous",
+  "format": "shorts",
+  "hook": "The University of Michigan patented a haptic steering wheel with zones at 10 o'clock and 2 o'clock.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The University of Michigan patented a haptic steering wheel with zones at 10 o'clock and 2 o'clock.",
+      "b_roll": [
+        "Patent document graphic",
+        "Steering wheel close-up"
+      ],
+      "text_overlay": {
+        "text": "Patent US12227190B2"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Engineers added 2 haptic zones to the wheel at 10 o'clock and 2 o'clock for autonomous driving.",
+      "b_roll": [
+        "Wheel diagram showing 10 and 2 positions",
+        "University lab overview"
+      ],
+      "text_overlay": {
+        "text": "10 o'clock and 2 o'clock"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, these 10 o'clock and 2 o'clock zones handle negotiation between drivers and autonomous systems.",
+      "b_roll": [
+        "Driver hands on wheel zones"
+      ],
+      "text_overlay": {
+        "text": "2-way negotiation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "University of Michigan researchers developed 1 specialized steering wheel for semi-autonomous cars.",
+      "b_roll": [
+        "Car testing on track",
+        "Patent filing excerpt"
+      ],
+      "text_overlay": {
+        "text": "University of Michigan"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Patent US12227190B2 secures the 10 o'clock and 2 o'clock design.",
+      "b_roll": [
+        "Final patent seal"
+      ],
+      "text_overlay": {
+        "text": "Patent US12227190B2"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.engin.umich.edu/2026/10/steering-wheel-communicates-for-better-semi-autonomous-driving",
+    "https://e3.eurekalert.org/news-releases/1146211",
+    "https://www.autoconnectedcar.com/2026/10/touchy-feely-steering-wheel-offers-haptic-ways-to-communicate-with-autonomous-driver"
+  ]
+}

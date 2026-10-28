@@ -446,6 +446,14 @@ function loadTemplateEngine(channel) {
 
 async function main() {
   const [format, channelId, scriptPath, ttsAudioPath, scaleArg] = process.argv.slice(2);
+  if (process.env.EDITOR_TIMELINE_PATH) {
+    const { renderEditor } = await import("./render-editor.js");
+    const outPath = process.env.EDITOR_OUTPUT_PATH;
+    if (!outPath) { console.error("EDITOR_TIMELINE_PATH set without EDITOR_OUTPUT_PATH"); process.exit(1); }
+    const editorScale = scaleArg ? parseFloat(scaleArg) : (process.env.RENDER_SCALE ? parseFloat(process.env.RENDER_SCALE) : 1);
+    await renderEditor({ timelinePath: process.env.EDITOR_TIMELINE_PATH, audioPath: ttsAudioPath, outputPath: outPath, scale: editorScale });
+    return;
+  }
   const scale = scaleArg ? parseFloat(scaleArg) : (process.env.RENDER_SCALE ? parseFloat(process.env.RENDER_SCALE) : 1.0);
 
   if (!format || !channelId || !scriptPath) {

@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "national-library-wales-aberfan-60th-anniversary-books",
+  "format": "shorts",
+  "hook": "New books of remembrance were finally created to accurately record every victim of the Aberfan disaster.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "New books of remembrance were finally created to accurately record every victim of the Aberfan disaster.",
+      "visual_cue": "Close up shot of archival paper pages being turned in a library setting.",
+      "sfx_cue": "Subtle paper rustle",
+      "b_roll": [
+        "National Library of Wales exterior archive building"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "The Aberfan Records"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "On 21 October 1966, catastrophe struck Aberfan. National Library of Wales staff produced new volumes. Funding came from the Welsh Government. Where are the correct names kept now?",
+      "visual_cue": "Wide shot of documents resting on a wooden archival table.",
+      "sfx_cue": "Quiet ambient room tone",
+      "b_roll": [
+        "National Library of Wales reading room"
+      ],
+      "animation_cue": "slide left",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "October 21, 1966"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "The Welsh Government funded these new volumes to properly honor everyone.",
+      "visual_cue": "Medium shot panning across bound memorial books.",
+      "sfx_cue": "Soft mechanical click",
+      "b_roll": [
+        "National Library of Wales display cases"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Corrected Records"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "The Aberfan books permanently preserve 116 children and 28 adults. An exhibition runs at the National Library of Wales from 10 October 2026 to 31 December 2026. Visitors view the solemn tribute in Wales.",
+      "visual_cue": "Close up shot focusing on handwritten ink names inside a memorial book.",
+      "sfx_cue": "Exhibition room murmur",
+      "b_roll": [
+        "National Library of Wales exhibition interior"
+      ],
+      "animation_cue": "pan right",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "116 Children, 28 Adults"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "1966 marked a tragedy remembered through corrected books.",
+      "visual_cue": "Static shot of a commemorative display plaque inside the library.",
+      "sfx_cue": "Fading room tone",
+      "b_roll": [
+        "National Library of Wales exhibition entrance"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "1966 - 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive",
+    "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976",
+    "https://www.library.wales/visit/things-to-do/exhibitions/aberfan-disaster-1966"
+  ]
+}

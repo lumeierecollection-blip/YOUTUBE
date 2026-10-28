@@ -113,6 +113,11 @@ env:
   PREP_CALL_TIMEOUT_S: "300"
   RENDER_SCALE: "0.75"
   RENDER_CONCURRENCY: "4"
+  # Persisted editor timelines (scripts/editor/timelines.json). Only scripts
+  # with an entry use the editor; every other script keeps the existing
+  # Gemini-plan pipeline unchanged.
+  EDITOR_ENGINE: "1"
+  EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
 
 jobs:
   # ============================================================

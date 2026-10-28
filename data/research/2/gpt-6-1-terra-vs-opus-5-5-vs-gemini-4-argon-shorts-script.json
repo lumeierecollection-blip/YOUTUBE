@@ -1,0 +1,83 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gpt-6-1-terra-vs-opus-5-5-vs-gemini-4-argon",
+  "format": "shorts",
+  "hook": "Google AI model Gemini 4 Argon scored 77.9% on agentic coding benchmarks.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Google AI model Gemini 4 Argon scored 77.9% on agentic coding benchmarks.",
+      "visual_cue": "Side-by-side performance bars displaying 77.9% score for Gemini 4 Argon against 18 tested benchmarks",
+      "sfx_cue": "Digital interface activation chime",
+      "b_roll": [
+        "Digital benchmark comparison chart showing 77.9% score"
+      ],
+      "transition_out": "Quick cross dissolve",
+      "text_overlay": {
+        "text": "77.9% on Deep Sweep"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "Did tech company Google prove Gemini 4 Argon beats Claude Opus 5.5?",
+      "visual_cue": "Data breakdown showing 14 out of 18 benchmarks won, alongside 66.4% versus 57% comparison bars",
+      "sfx_cue": "Data tick sound",
+      "b_roll": [
+        "Terminal interface showing comparative benchmark scores of 66.4% and 57%"
+      ],
+      "transition_out": "Fast slide left",
+      "text_overlay": {
+        "text": "14 of 18 Benchmarks Won"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:30",
+      "voiceover": "Claude Opus 5.5 scored 66.4% on Terminal Bench, but Gemini 4 Argon scored 57%.",
+      "visual_cue": "Comparative bar chart contrasting 51.3% AutomationBench score against 66.4% Terminal Bench score",
+      "sfx_cue": "Subtle digital rise",
+      "b_roll": [
+        "Analytics dashboard highlighting 51.3% AutomationBench score"
+      ],
+      "transition_out": "Snap cut",
+      "text_overlay": {
+        "text": "51.3% AutomationBench Score"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:30-0:45",
+      "voiceover": "Analysis firm MindStudio showed Gemini 4 Argon scored 77.9% on Deep Sweep. AI model Claude Opus 5.5 scored 66.4% on Terminal Bench. Both models traded blows across 18 tests.",
+      "visual_cue": "Detailed comparative ranking showing 77.9% Deep Sweep score and 66.4% Terminal Bench score side by side",
+      "sfx_cue": "Confirmation chime",
+      "b_roll": [
+        "Comparative metrics display highlighting Deep Sweep and Terminal Bench results"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "77.9% vs 66.4%"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:45-0:50",
+      "voiceover": "Gemini 4 Argon won 14 of 18 benchmarks tested.",
+      "visual_cue": "Final score counter showing 14 out of 18 benchmarks won",
+      "sfx_cue": "Final lock tone",
+      "b_roll": [
+        "Summary graphic displaying 14 out of 18 benchmarks"
+      ],
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "14 of 18 Won"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks",
+    "https://thenewstack.io/gemini-argon-claude-opus",
+    "https://docsbot.ai/models/compare/gemini-4-argon/gpt-6.1-terra"
+  ]
+}

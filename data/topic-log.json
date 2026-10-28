@@ -565,9 +565,29 @@
           "topic": "Ancient Egypt’s First Female King Revealed by Long-Lost Royal Seals",
           "slug": "ancient-egypts-first-female-king-royal-seals",
           "reserved_at": "2026-10-23T13:34:03.799Z"
+        },
+        {
+          "topic": "60 Years After Aberfan: National Library of Wales Releases New Books of Remembrance",
+          "slug": "aberfan-60-years-books-of-remembrance",
+          "reserved_at": "2026-10-24T12:51:32.628Z"
+        },
+        {
+          "topic": "The Newly Unveiled Archive of The Snowman Creator Raymond Briggs",
+          "slug": "raymond-briggs-archive-unveiled-brighton-2026",
+          "reserved_at": "2026-10-25T13:16:28.550Z"
+        },
+        {
+          "topic": "A New Discovery of Cuneiform Tablets Offers a Glimpse Into Hittite Empire Life",
+          "slug": "hittite-cuneiform-tablets-discovery-2026",
+          "reserved_at": "2026-10-26T15:24:09.212Z"
+        },
+        {
+          "topic": "National Library of Wales Releases Aberfan Books of Remembrance for 60th Anniversary",
+          "slug": "national-library-wales-aberfan-60th-anniversary-books",
+          "reserved_at": "2026-10-27T15:04:09.076Z"
         }
       ],
-      "last_generated": "2026-10-23T13:34:03.799Z"
+      "last_generated": "2026-10-27T15:04:09.077Z"
     },
     "2": {
       "channel_name": "AI Tested",
@@ -1192,9 +1212,19 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "Anthropic Claude Haiku 5.5 Pricing and Performance Breakdown",
+          "slug": "anthropic-claude-haiku-5-5-pricing-breakdown",
+          "reserved_at": "2026-10-26T15:23:55.112Z"
+        },
+        {
+          "topic": "GPT-6.1 Terra vs Claude Opus 5.5 vs Gemini 4 Argon Benchmarks",
+          "slug": "gpt-6-1-terra-vs-opus-5-5-vs-gemini-4-argon",
+          "reserved_at": "2026-10-27T15:06:35.625Z"
         }
       ],
-      "last_generated": "2026-10-23T13:32:54.196Z"
+      "last_generated": "2026-10-27T15:06:35.625Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -3972,9 +4002,14 @@
           "topic": "State Farm and MIT AgeLab Launch Drivefulness Research on Driver Distraction",
           "slug": "state-farm-mit-agelab-drivefulness-research",
           "reserved_at": "2026-10-20T16:11:05.935Z"
+        },
+        {
+          "topic": "University of Michigan Unveils Haptic Steering Wheel for Semi-Autonomous Driving",
+          "slug": "university-of-michigan-haptic-steering-wheel-semi-autonomous",
+          "reserved_at": "2026-10-24T12:45:09.093Z"
         }
       ],
-      "last_generated": "2026-10-23T13:53:02.904Z"
+      "last_generated": "2026-10-27T14:38:37.143Z"
     },
     "49": {
       "channel_name": "Picture House",

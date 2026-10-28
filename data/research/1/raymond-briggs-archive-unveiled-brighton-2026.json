@@ -1,0 +1,70 @@
+{
+  "topic_slug": "raymond-briggs-archive-unveiled-brighton-2026",
+  "strongest_angle": "Explore how project archivist Chris Olver spent nine months cataloguing personal illustrations and early sketchbooks in Brighton, offering an intimate look at the creative evolution behind Raymond Briggs' beloved children's classics.",
+  "key_facts": [
+    {
+      "fact": "Project archivist Chris Olver spent nine months cataloguing the personal archive of Raymond Briggs at The Keep in Brighton starting in January 2026.",
+      "source_url": "https://www.thekeep.info/raymond-briggs-cataloguing-project",
+      "source_name": "The Keep",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Raymond Briggs archive collection is held by the East Sussex and Brighton and Hove Record Office and was catalogued thanks to funding from The National Archives Archives Revealed grant.",
+      "source_url": "https://www.thekeep.info/the-raymond-briggs-archive",
+      "source_name": "The Keep",
+      "confidence": "high"
+    },
+    {
+      "fact": "The personal archive featuring Raymond Briggs' early illustrations and books like The Snowman, Father Christmas, and Fungus the Bogeyman was unveiled in October 2026.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cmy835y313qpo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Cataloguing duration in months",
+      "value": 9,
+      "unit": "months",
+      "source_url": "https://www.bbc.co.uk/news/articles/cmy835y313qpo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Raymond Briggs",
+      "kind": "person"
+    },
+    {
+      "name": "Chris Olver",
+      "kind": "person"
+    },
+    {
+      "name": "The Keep",
+      "kind": "place"
+    },
+    {
+      "name": "Brighton",
+      "kind": "place"
+    },
+    {
+      "name": "The Snowman",
+      "kind": "object"
+    },
+    {
+      "name": "Father Christmas",
+      "kind": "object"
+    },
+    {
+      "name": "Fungus the Bogeyman",
+      "kind": "object"
+    },
+    {
+      "name": "East Sussex and Brighton and Hove Record Office",
+      "kind": "organization"
+    },
+    {
+      "name": "The National Archives",
+      "kind": "organization"
+    }
+  ]
+}

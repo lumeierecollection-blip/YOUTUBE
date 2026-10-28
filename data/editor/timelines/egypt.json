@@ -1,0 +1,4436 @@
+{
+  "version": 1,
+  "id": "ancient-egypts-first-female-king-royal-seals",
+  "title": "Ancient Egypt's First Female Ruler",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 1540,
+  "palette": {
+    "bg": "#08090B",
+    "text": "#F5EFE6",
+    "muted": "#B9B0A4",
+    "accent": "#D4A574",
+    "accent2": "#7FA6A0"
+  },
+  "fonts": {
+    "primary": "Cormorant Garamond",
+    "sans": "Inter"
+  },
+  "caption_style": {
+    "x": 80,
+    "y": 1540,
+    "w": 920,
+    "h": 210,
+    "size": 38
+  },
+  "assets": {
+    "merneith-seal": {
+      "file": "data/editor/assets/raw/merneith-seal-gold.png",
+      "width": 595,
+      "height": 237,
+      "credit": "Seal impression of Merneith — Nephiliskos / Wikimedia Commons, CC BY-SA 4.0; gold treatment by TradeApp editor",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Merneith1.png",
+      "license": "CC BY-SA 4.0"
+    },
+    "djer-cylinder": {
+      "file": "data/editor/assets/raw/Djer_cylinder_seal.png",
+      "width": 613,
+      "height": 489,
+      "credit": "Djer cylinder seal — Percy Newberry, Scarabs (1908), public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Djer_cylinder_seal.png",
+      "license": "Public domain"
+    },
+    "petrie": {
+      "file": "data/editor/assets/raw/petrie-watts.jpg",
+      "width": 1280,
+      "height": 1473,
+      "credit": "Sir William Matthew Flinders Petrie — portrait by George Frederic Watts, public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+      "license": "Public domain"
+    },
+    "stele": {
+      "file": "data/editor/assets/raw/merneith-stele.jpg",
+      "width": 1280,
+      "height": 1789,
+      "credit": "Stele of Merneith — Juan R. Lazaro / Wikimedia Commons, CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Merneith_stele.jpg",
+      "license": "CC BY 2.0"
+    },
+    "djer-seal": {
+      "file": "data/editor/assets/raw/djer-seal.jpg",
+      "width": 1280,
+      "height": 1032,
+      "credit": "Djer seal — Udimu / Wikimedia Commons, CC BY-SA 3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Djer_seal_c.jpg",
+      "license": "CC BY-SA 3.0"
+    },
+    "ivory": {
+      "file": "data/editor/assets/raw/Ivory_label_with_Djer_name_and_Sopdet.png",
+      "width": 300,
+      "height": 425,
+      "credit": "Ivory label with Djer's name and Sopdet — 14nu5 / Wikimedia Commons, CC BY-SA 3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ivory_label_with_Djer_name_and_Sopdet.png",
+      "license": "CC BY-SA 3.0"
+    },
+    "flint": {
+      "file": "data/editor/assets/raw/flint-cutout.png",
+      "width": 1920,
+      "height": 833,
+      "credit": "Ceremonial flint knife of Djer — Keith Schengili-Roberts / Wikimedia Commons, CC BY-SA 4.0; cutout by TradeApp editor",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CeremonialFlintKnife_Djer_mod_noBG.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "map": {
+      "file": "data/editor/assets/diagrams/egypt-abydos.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Diagram: TradeApp editor, Abydos, Egypt",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/assets/diagrams/egypt-abydos.svg",
+      "license": "Original diagram"
+    }
+  },
+  "layers": [
+    {
+      "id": "scene-0-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 0,
+      "out": 165,
+      "z": 10,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-0-image",
+      "type": "image",
+      "asset_id": "merneith-seal",
+      "rect": {
+        "x": 100,
+        "y": 640,
+        "w": 880,
+        "h": 360
+      },
+      "fit": "contain",
+      "in": 0,
+      "out": 165,
+      "z": 11,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 165,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-frame",
+      "type": "svg",
+      "rect": {
+        "x": 86,
+        "y": 626,
+        "w": 908,
+        "h": 388
+      },
+      "in": 0,
+      "out": 165,
+      "z": 12,
+      "viewBox": [
+        0,
+        0,
+        908,
+        388
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H908 V388 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 153,
+            "v": 0.55
+          },
+          {
+            "f": 165,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 0,
+      "out": 165,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-0-kicker",
+      "type": "text",
+      "text": "ANCIENT EGYPT",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 0,
+      "out": 165,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-headline",
+      "type": "text",
+      "text": "THE FIRST\nFEMALE RULER",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 0,
+      "out": 165,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-sub",
+      "type": "text",
+      "text": "New evidence from royal seals.",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 0,
+      "out": 165,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-0-credit",
+      "type": "text",
+      "text": "Seal impression of Merneith — Nephiliskos / Wikimedia Commons, CC BY-SA 4.0; gold treatment by TradeApp editor",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 0,
+      "out": 165,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 155,
+            "v": 0.72
+          },
+          {
+            "f": 165,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 165,
+      "out": 356,
+      "z": 13,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-1-image",
+      "type": "image",
+      "asset_id": "djer-cylinder",
+      "rect": {
+        "x": 200,
+        "y": 560,
+        "w": 680,
+        "h": 620
+      },
+      "fit": "contain",
+      "in": 165,
+      "out": 356,
+      "z": 14,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 191,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 191,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-frame",
+      "type": "svg",
+      "rect": {
+        "x": 186,
+        "y": 546,
+        "w": 708,
+        "h": 648
+      },
+      "in": 165,
+      "out": 356,
+      "z": 15,
+      "viewBox": [
+        0,
+        0,
+        708,
+        648
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H708 V648 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 179,
+            "v": 0.55
+          },
+          {
+            "f": 191,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 165,
+      "out": 356,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-1-kicker",
+      "type": "text",
+      "text": "ROYAL SEALS",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 165,
+      "out": 331,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 156,
+            "v": 1
+          },
+          {
+            "f": 166,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-headline",
+      "type": "text",
+      "text": "5000 YEARS\nOF HISTORY",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 165,
+      "out": 331,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 156,
+            "v": 1
+          },
+          {
+            "f": 166,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-sub",
+      "type": "text",
+      "text": "A forgotten ruler, recorded in stone.",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 165,
+      "out": 331,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 156,
+            "v": 1
+          },
+          {
+            "f": 166,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-1-credit",
+      "type": "text",
+      "text": "Djer cylinder seal — Percy Newberry, Scarabs (1908), public domain",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 165,
+      "out": 331,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 156,
+            "v": 0.72
+          },
+          {
+            "f": 166,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-image",
+      "type": "image",
+      "asset_id": "petrie",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 356,
+      "out": 480,
+      "z": 16,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.28,
+        "saturate": 0.55,
+        "brightness": 0.88,
+        "blur": 0,
+        "x": 0.025
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 124,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.1,
+            "e": "inOutSine"
+          },
+          {
+            "f": 124,
+            "v": 1.15
+          }
+        ],
+        "x": [
+          {
+            "f": 0,
+            "v": 0.025,
+            "e": "inOutSine"
+          },
+          {
+            "f": 124,
+            "v": -0.025
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 356,
+      "out": 480,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-2-kicker",
+      "type": "text",
+      "text": "THE EXCAVATOR",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 356,
+      "out": 480,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 114,
+            "v": 1
+          },
+          {
+            "f": 124,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-headline",
+      "type": "text",
+      "text": "WILLIAM MATTHEW\nFLINDERS PETRIE",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 356,
+      "out": 480,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 114,
+            "v": 1
+          },
+          {
+            "f": 124,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-sub",
+      "type": "text",
+      "text": "Tomb Y at Abydos, Egypt.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 356,
+      "out": 480,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 114,
+            "v": 1
+          },
+          {
+            "f": 124,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-2-credit",
+      "type": "text",
+      "text": "Sir William Matthew Flinders Petrie — portrait by George Frederic Watts, public domain",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 356,
+      "out": 480,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 114,
+            "v": 0.72
+          },
+          {
+            "f": 124,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 480,
+      "out": 642,
+      "z": 17,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-3-image",
+      "type": "image",
+      "asset_id": "stele",
+      "rect": {
+        "x": 220,
+        "y": 430,
+        "w": 640,
+        "h": 900
+      },
+      "fit": "contain",
+      "in": 480,
+      "out": 642,
+      "z": 18,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 162,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 162,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-frame",
+      "type": "svg",
+      "rect": {
+        "x": 206,
+        "y": 416,
+        "w": 668,
+        "h": 928
+      },
+      "in": 480,
+      "out": 642,
+      "z": 19,
+      "viewBox": [
+        0,
+        0,
+        668,
+        928
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H668 V928 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 150,
+            "v": 0.55
+          },
+          {
+            "f": 162,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 480,
+      "out": 642,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-3-kicker",
+      "type": "text",
+      "text": "TOMB Y · ABYDOS",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 480,
+      "out": 623,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 133,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-headline",
+      "type": "text",
+      "text": "A NEW\nKING?",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 480,
+      "out": 623,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 133,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-sub",
+      "type": "text",
+      "text": "Petrie believed he had found a ruler named Merneith.",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 480,
+      "out": 623,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 133,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-3-credit",
+      "type": "text",
+      "text": "Stele of Merneith — Juan R. Lazaro / Wikimedia Commons, CC BY 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 480,
+      "out": 623,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 133,
+            "v": 0.72
+          },
+          {
+            "f": 143,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 642,
+      "out": 788,
+      "z": 20,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-4-image",
+      "type": "image",
+      "asset_id": "djer-seal",
+      "rect": {
+        "x": 150,
+        "y": 520,
+        "w": 780,
+        "h": 650
+      },
+      "fit": "contain",
+      "in": 642,
+      "out": 788,
+      "z": 21,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 146,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 146,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-frame",
+      "type": "svg",
+      "rect": {
+        "x": 136,
+        "y": 506,
+        "w": 808,
+        "h": 678
+      },
+      "in": 642,
+      "out": 788,
+      "z": 22,
+      "viewBox": [
+        0,
+        0,
+        808,
+        678
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H808 V678 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 134,
+            "v": 0.55
+          },
+          {
+            "f": 146,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 642,
+      "out": 788,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-4-kicker",
+      "type": "text",
+      "text": "THE THIRD KING",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 642,
+      "out": 788,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 136,
+            "v": 1
+          },
+          {
+            "f": 146,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-headline",
+      "type": "text",
+      "text": "DJER",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 642,
+      "out": 788,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 136,
+            "v": 1
+          },
+          {
+            "f": 146,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-sub",
+      "type": "text",
+      "text": "Was Merneith the daughter of Djer, third king of the First Dynasty?",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 642,
+      "out": 788,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 136,
+            "v": 1
+          },
+          {
+            "f": 146,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-4-credit",
+      "type": "text",
+      "text": "Djer seal — Udimu / Wikimedia Commons, CC BY-SA 3.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 642,
+      "out": 788,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 136,
+            "v": 0.72
+          },
+          {
+            "f": 146,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 788,
+      "out": 930,
+      "z": 23,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-5-image",
+      "type": "image",
+      "asset_id": "ivory",
+      "rect": {
+        "x": 330,
+        "y": 500,
+        "w": 420,
+        "h": 620
+      },
+      "fit": "contain",
+      "in": 788,
+      "out": 930,
+      "z": 24,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 142,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-frame",
+      "type": "svg",
+      "rect": {
+        "x": 316,
+        "y": 486,
+        "w": 448,
+        "h": 648
+      },
+      "in": 788,
+      "out": 930,
+      "z": 25,
+      "viewBox": [
+        0,
+        0,
+        448,
+        648
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H448 V648 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 130,
+            "v": 0.55
+          },
+          {
+            "f": 142,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 788,
+      "out": 930,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-5-kicker",
+      "type": "text",
+      "text": "SCIENTIFIC AMERICAN",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 788,
+      "out": 930,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 132,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-headline",
+      "type": "text",
+      "text": "DIGITAL CLUES",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 788,
+      "out": 930,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 132,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-sub",
+      "type": "text",
+      "text": "Newly analysed seals unveil Egypt's first female ruler.",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 788,
+      "out": 930,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 132,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-5-credit",
+      "type": "text",
+      "text": "Ivory label with Djer's name and Sopdet — 14nu5 / Wikimedia Commons, CC BY-SA 3.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 788,
+      "out": 930,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 132,
+            "v": 0.72
+          },
+          {
+            "f": 142,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-image",
+      "type": "image",
+      "asset_id": "stele",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 930,
+      "out": 1109,
+      "z": 26,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0.22,
+        "saturate": 0.6,
+        "brightness": 0.88,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 179,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 179,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 930,
+      "out": 1109,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-6-kicker",
+      "type": "text",
+      "text": "THE NAME IN STONE",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 930,
+      "out": 1082,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 1
+          },
+          {
+            "f": 152,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-headline",
+      "type": "text",
+      "text": "MERNEITH",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 930,
+      "out": 1082,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 1
+          },
+          {
+            "f": 152,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-sub",
+      "type": "text",
+      "text": "A ruler's name, preserved for 5000 years.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 930,
+      "out": 1082,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 142,
+            "v": 1
+          },
+          {
+            "f": 152,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-6-credit",
+      "type": "text",
+      "text": "Stele of Merneith — Juan R. Lazaro / Wikimedia Commons, CC BY 2.0",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 930,
+      "out": 1082,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 142,
+            "v": 0.72
+          },
+          {
+            "f": 152,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 27,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-7-image",
+      "type": "image",
+      "asset_id": "flint",
+      "rect": {
+        "x": 80,
+        "y": 620,
+        "w": 920,
+        "h": 400
+      },
+      "fit": "contain",
+      "in": 1109,
+      "out": 1230,
+      "z": 28,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 121,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 121,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-frame",
+      "type": "svg",
+      "rect": {
+        "x": 66,
+        "y": 606,
+        "w": 948,
+        "h": 428
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 29,
+      "viewBox": [
+        0,
+        0,
+        948,
+        428
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H948 V428 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 109,
+            "v": 0.55
+          },
+          {
+            "f": 121,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-7-kicker",
+      "type": "text",
+      "text": "FIRST DYNASTY POWER",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 111,
+            "v": 1
+          },
+          {
+            "f": 121,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-headline",
+      "type": "text",
+      "text": "5000 YEARS\nOF HISTORY",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 111,
+            "v": 1
+          },
+          {
+            "f": 121,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-sub",
+      "type": "text",
+      "text": "Petrie excavated Tomb Y at Abydos.",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 111,
+            "v": 1
+          },
+          {
+            "f": 121,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-7-credit",
+      "type": "text",
+      "text": "Ceremonial flint knife of Djer — Keith Schengili-Roberts / Wikimedia Commons, CC BY-SA 4.0; cutout by TradeApp editor",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 1109,
+      "out": 1230,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 111,
+            "v": 0.72
+          },
+          {
+            "f": 121,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-backdrop",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 30,
+      "style": {
+        "background": "radial-gradient(circle at 50% 42%, #1A1D22 0%, #08090B 72%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-8-image",
+      "type": "image",
+      "asset_id": "djer-cylinder",
+      "rect": {
+        "x": 200,
+        "y": 540,
+        "w": 680,
+        "h": 620
+      },
+      "fit": "contain",
+      "in": 1230,
+      "out": 1346,
+      "z": 31,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 116,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 116,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-frame",
+      "type": "svg",
+      "rect": {
+        "x": 186,
+        "y": 526,
+        "w": 708,
+        "h": 648
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 32,
+      "viewBox": [
+        0,
+        0,
+        708,
+        648
+      ],
+      "paths": [
+        {
+          "d": "M0 0 H708 V648 H0 Z",
+          "fill": "none",
+          "stroke": "#D4A574",
+          "strokeWidth": 2
+        }
+      ],
+      "props": {
+        "opacity": 0.55,
+        "draw": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0.55
+          },
+          {
+            "f": 104,
+            "v": 0.55
+          },
+          {
+            "f": 116,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 24,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.96) 0%, rgba(6,7,9,0.62) 30%, rgba(6,7,9,0.04) 62%, rgba(6,7,9,0.72) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-8-kicker",
+      "type": "text",
+      "text": "THE ROYAL SEALS",
+      "rect": {
+        "x": 90,
+        "y": 145,
+        "w": 900,
+        "h": 64
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 106,
+            "v": 1
+          },
+          {
+            "f": 116,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-headline",
+      "type": "text",
+      "text": "A RULER'S\nNAME",
+      "rect": {
+        "x": 90,
+        "y": 210,
+        "w": 900,
+        "h": 420
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 210,
+      "style": {
+        "size": 112,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 106,
+            "v": 1
+          },
+          {
+            "f": 116,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-sub",
+      "type": "text",
+      "text": "Repeated in stone, generation after generation.",
+      "rect": {
+        "x": 90,
+        "y": 1335,
+        "w": 900,
+        "h": 170
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 106,
+            "v": 1
+          },
+          {
+            "f": 116,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-8-credit",
+      "type": "text",
+      "text": "Djer cylinder seal — Percy Newberry, Scarabs (1908), public domain",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 1230,
+      "out": 1346,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 106,
+            "v": 0.72
+          },
+          {
+            "f": 116,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-image",
+      "type": "image",
+      "asset_id": "map",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fit": "cover",
+      "in": 1346,
+      "out": 1540,
+      "z": 33,
+      "props": {
+        "opacity": 1,
+        "scale": 1.02,
+        "fx": 0.5,
+        "fy": 0.5,
+        "sepia": 0,
+        "saturate": 1,
+        "brightness": 1,
+        "blur": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 194,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1.02,
+            "e": "inOutSine"
+          },
+          {
+            "f": 194,
+            "v": 1.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-gradient",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 1346,
+      "out": 1540,
+      "z": 100,
+      "style": {
+        "background": "linear-gradient(to top, rgba(6,7,9,0.94) 0%, rgba(6,7,9,0.70) 28%, rgba(6,7,9,0.08) 64%, rgba(6,7,9,0.60) 100%)"
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {}
+    },
+    {
+      "id": "scene-9-kicker",
+      "type": "text",
+      "text": "ABYDOS · EGYPT",
+      "rect": {
+        "x": 90,
+        "y": 945,
+        "w": 900,
+        "h": 64
+      },
+      "in": 1346,
+      "out": 1540,
+      "z": 200,
+      "style": {
+        "font": "Inter",
+        "size": 28,
+        "weight": 700,
+        "color": "#D4A574",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.12,
+        "tracking": 0.18,
+        "upper": true,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 184,
+            "v": 1
+          },
+          {
+            "f": 194,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-headline",
+      "type": "text",
+      "text": "MERNEITH\nRULED EGYPT",
+      "rect": {
+        "x": 90,
+        "y": 1010,
+        "w": 900,
+        "h": 390
+      },
+      "in": 1346,
+      "out": 1540,
+      "z": 210,
+      "style": {
+        "size": 94,
+        "weight": 700,
+        "color": "#F5EFE6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.02,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 184,
+            "v": 1
+          },
+          {
+            "f": 194,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-sub",
+      "type": "text",
+      "text": "More than 5000 years ago.",
+      "rect": {
+        "x": 90,
+        "y": 1360,
+        "w": 900,
+        "h": 170
+      },
+      "in": 1346,
+      "out": 1540,
+      "z": 220,
+      "style": {
+        "font": "Inter",
+        "size": 34,
+        "weight": 500,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "shadow": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 184,
+            "v": 1
+          },
+          {
+            "f": 194,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 16,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-9-credit",
+      "type": "text",
+      "text": "Diagram: TradeApp editor, Abydos, Egypt",
+      "rect": {
+        "x": 60,
+        "y": 76,
+        "w": 960,
+        "h": 40
+      },
+      "in": 1346,
+      "out": 1540,
+      "z": 240,
+      "style": {
+        "font": "Inter",
+        "size": 16,
+        "weight": 400,
+        "color": "#B9B0A4",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.2,
+        "tracking": 0,
+        "upper": false,
+        "shadow": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 0.72,
+        "reveal": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0.72
+          },
+          {
+            "f": 184,
+            "v": 0.72
+          },
+          {
+            "f": 194,
+            "v": 0,
+            "e": "inOutCubic"
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1,
+            "e": "outCubic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "progress",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 6
+      },
+      "in": 0,
+      "out": 1540,
+      "z": 8000,
+      "style": {
+        "background": "#D4A574"
+      },
+      "props": {
+        "opacity": 0.9,
+        "clipR": 100
+      },
+      "keyframes": {
+        "clipR": [
+          {
+            "f": 0,
+            "v": 100,
+            "e": "linear"
+          },
+          {
+            "f": 1540,
+            "v": 0,
+            "e": "linear"
+          }
+        ]
+      }
+    }
+  ],
+  "captions": [
+    {
+      "start_f": 0,
+      "end_f": 331,
+      "text": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+      "words": [
+        {
+          "text": "New",
+          "start_f": 0
+        },
+        {
+          "text": "evidence",
+          "start_f": 12
+        },
+        {
+          "text": "from",
+          "start_f": 39
+        },
+        {
+          "text": "royal",
+          "start_f": 54
+        },
+        {
+          "text": "seals",
+          "start_f": 72
+        },
+        {
+          "text": "reveals",
+          "start_f": 90
+        },
+        {
+          "text": "a",
+          "start_f": 113
+        },
+        {
+          "text": "forgotten",
+          "start_f": 119
+        },
+        {
+          "text": "female",
+          "start_f": 149
+        },
+        {
+          "text": "ruler",
+          "start_f": 170
+        },
+        {
+          "text": "who",
+          "start_f": 188
+        },
+        {
+          "text": "commanded",
+          "start_f": 200
+        },
+        {
+          "text": "ancient",
+          "start_f": 230
+        },
+        {
+          "text": "Egypt",
+          "start_f": 254
+        },
+        {
+          "text": "over",
+          "start_f": 272
+        },
+        {
+          "text": "5000",
+          "start_f": 286
+        },
+        {
+          "text": "years",
+          "start_f": 301
+        },
+        {
+          "text": "ago.",
+          "start_f": 319
+        }
+      ]
+    },
+    {
+      "start_f": 356,
+      "end_f": 623,
+      "text": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneith.",
+      "words": [
+        {
+          "text": "William",
+          "start_f": 356
+        },
+        {
+          "text": "Matthew",
+          "start_f": 365
+        },
+        {
+          "text": "Flinders",
+          "start_f": 382
+        },
+        {
+          "text": "Petrie",
+          "start_f": 401
+        },
+        {
+          "text": "excavated",
+          "start_f": 421
+        },
+        {
+          "text": "tomb",
+          "start_f": 447
+        },
+        {
+          "text": "Y",
+          "start_f": 456
+        },
+        {
+          "text": "at",
+          "start_f": 474
+        },
+        {
+          "text": "Abydos",
+          "start_f": 488
+        },
+        {
+          "text": "and",
+          "start_f": 504
+        },
+        {
+          "text": "believed",
+          "start_f": 523
+        },
+        {
+          "text": "he",
+          "start_f": 534
+        },
+        {
+          "text": "found",
+          "start_f": 545
+        },
+        {
+          "text": "a",
+          "start_f": 554
+        },
+        {
+          "text": "new",
+          "start_f": 558
+        },
+        {
+          "text": "king",
+          "start_f": 566
+        },
+        {
+          "text": "named",
+          "start_f": 578
+        },
+        {
+          "text": "Merneith.",
+          "start_f": 602
+        }
+      ]
+    },
+    {
+      "start_f": 642,
+      "end_f": 788,
+      "text": "Was she actually the daughter of Djer, the third king of the First Dynasty?",
+      "words": [
+        {
+          "text": "Was",
+          "start_f": 642
+        },
+        {
+          "text": "she",
+          "start_f": 655
+        },
+        {
+          "text": "actually",
+          "start_f": 661
+        },
+        {
+          "text": "the",
+          "start_f": 682
+        },
+        {
+          "text": "daughter",
+          "start_f": 691
+        },
+        {
+          "text": "of",
+          "start_f": 701
+        },
+        {
+          "text": "Djer,",
+          "start_f": 709
+        },
+        {
+          "text": "the",
+          "start_f": 732
+        },
+        {
+          "text": "third",
+          "start_f": 738
+        },
+        {
+          "text": "king",
+          "start_f": 751
+        },
+        {
+          "text": "of",
+          "start_f": 761
+        },
+        {
+          "text": "the",
+          "start_f": 769
+        },
+        {
+          "text": "First",
+          "start_f": 773
+        },
+        {
+          "text": "Dynasty?",
+          "start_f": 781
+        }
+      ]
+    },
+    {
+      "start_f": 788,
+      "end_f": 1082,
+      "text": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+      "words": [
+        {
+          "text": "Scientific",
+          "start_f": 788
+        },
+        {
+          "text": "American",
+          "start_f": 836
+        },
+        {
+          "text": "reported",
+          "start_f": 851
+        },
+        {
+          "text": "on",
+          "start_f": 873
+        },
+        {
+          "text": "those",
+          "start_f": 887
+        },
+        {
+          "text": "newly",
+          "start_f": 895
+        },
+        {
+          "text": "analyzed",
+          "start_f": 905
+        },
+        {
+          "text": "royal",
+          "start_f": 928
+        },
+        {
+          "text": "seals",
+          "start_f": 939
+        },
+        {
+          "text": "that",
+          "start_f": 959
+        },
+        {
+          "text": "unveil",
+          "start_f": 977
+        },
+        {
+          "text": "Ancient",
+          "start_f": 988
+        },
+        {
+          "text": "Egypt's",
+          "start_f": 1006
+        },
+        {
+          "text": "first",
+          "start_f": 1030
+        },
+        {
+          "text": "female",
+          "start_f": 1041
+        },
+        {
+          "text": "ruler.",
+          "start_f": 1064
+        }
+      ]
+    },
+    {
+      "start_f": 1109,
+      "end_f": 1346,
+      "text": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+      "words": [
+        {
+          "text": "Excavating",
+          "start_f": 1109
+        },
+        {
+          "text": "tomb",
+          "start_f": 1138
+        },
+        {
+          "text": "Y",
+          "start_f": 1151
+        },
+        {
+          "text": "at",
+          "start_f": 1156
+        },
+        {
+          "text": "Abydos,",
+          "start_f": 1163
+        },
+        {
+          "text": "William",
+          "start_f": 1181
+        },
+        {
+          "text": "Matthew",
+          "start_f": 1202
+        },
+        {
+          "text": "Flinders",
+          "start_f": 1222
+        },
+        {
+          "text": "Petrie",
+          "start_f": 1246
+        },
+        {
+          "text": "uncovered",
+          "start_f": 1264
+        },
+        {
+          "text": "5000",
+          "start_f": 1289
+        },
+        {
+          "text": "years",
+          "start_f": 1302
+        },
+        {
+          "text": "of",
+          "start_f": 1318
+        },
+        {
+          "text": "history.",
+          "start_f": 1325
+        }
+      ]
+    },
+    {
+      "start_f": 1346,
+      "end_f": 1524,
+      "text": "Merneith ruled ancient Egypt more than 5000 years ago.",
+      "words": [
+        {
+          "text": "Merneith",
+          "start_f": 1346
+        },
+        {
+          "text": "ruled",
+          "start_f": 1381
+        },
+        {
+          "text": "ancient",
+          "start_f": 1400
+        },
+        {
+          "text": "Egypt",
+          "start_f": 1425
+        },
+        {
+          "text": "more",
+          "start_f": 1444
+        },
+        {
+          "text": "than",
+          "start_f": 1460
+        },
+        {
+          "text": "5000",
+          "start_f": 1476
+        },
+        {
+          "text": "years",
+          "start_f": 1492
+        },
+        {
+          "text": "ago.",
+          "start_f": 1511
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-10-27T07:25:35.009Z",
+    "source_script": "data/research/1/ancient-egypts-first-female-king-royal-seals-shorts-script.json",
+    "source_audio": "data/editor/audio/egypt.mp3",
+    "source_transcript": "data/editor/audio/egypt.json",
+    "scene_count": 10,
+    "image_scene_count": 10,
+    "unique_assets": [
+      "merneith-seal",
+      "djer-cylinder",
+      "petrie",
+      "stele",
+      "djer-seal",
+      "ivory",
+      "flint",
+      "map"
+    ],
+    "credits": [
+      "Seal impression of Merneith — Nephiliskos / Wikimedia Commons, CC BY-SA 4.0; gold treatment by TradeApp editor",
+      "Djer cylinder seal — Percy Newberry, Scarabs (1908), public domain",
+      "Sir William Matthew Flinders Petrie — portrait by George Frederic Watts, public domain",
+      "Stele of Merneith — Juan R. Lazaro / Wikimedia Commons, CC BY 2.0",
+      "Djer seal — Udimu / Wikimedia Commons, CC BY-SA 3.0",
+      "Ivory label with Djer's name and Sopdet — 14nu5 / Wikimedia Commons, CC BY-SA 3.0",
+      "Ceremonial flint knife of Djer — Keith Schengili-Roberts / Wikimedia Commons, CC BY-SA 4.0; cutout by TradeApp editor",
+      "Diagram: TradeApp editor, Abydos, Egypt"
+    ],
+    "plan": "C:\\Users\\user\\yt-wt\\editor\\scripts\\editor\\plans\\egypt.json",
+    "audio_duration_sec": 51.328
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "id": "ancient-egypts-first-female-king-royal-seals",
+  "title": "Ancient Egypt's First Female Ruler",
+  "audio": "data/editor/audio/egypt.mp3",
+  "transcript": "data/editor/audio/egypt.json",
+  "script": "data/research/1/ancient-egypts-first-female-king-royal-seals-shorts-script.json",
+  "fps": 30,
+  "palette": {
+    "bg": "#08090B",
+    "text": "#F5EFE6",
+    "muted": "#B9B0A4",
+    "accent": "#D4A574",
+    "accent2": "#7FA6A0"
+  },
+  "fonts": {
+    "primary": "Cormorant Garamond",
+    "sans": "Inter"
+  },
+  "caption_style": { "x": 80, "y": 1540, "w": 920, "h": 210, "size": 38 },
+  "caption_replacements": { "Merneit": "Merneith", "Meretneith": "Merneith" },
+  "assets": {
+    "merneith-seal": {
+      "file": "data/editor/assets/raw/merneith-seal-gold.png",
+      "width": 595,
+      "height": 237,
+      "credit": "Seal impression of Merneith — Nephiliskos / Wikimedia Commons, CC BY-SA 4.0; gold treatment by TradeApp editor",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Merneith1.png",
+      "license": "CC BY-SA 4.0"
+    },
+    "djer-cylinder": {
+      "file": "data/editor/assets/raw/Djer_cylinder_seal.png",
+      "width": 613,
+      "height": 489,
+      "credit": "Djer cylinder seal — Percy Newberry, Scarabs (1908), public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Djer_cylinder_seal.png",
+      "license": "Public domain"
+    },
+    "petrie": {
+      "file": "data/editor/assets/raw/petrie-watts.jpg",
+      "width": 1280,
+      "height": 1473,
+      "credit": "Sir William Matthew Flinders Petrie — portrait by George Frederic Watts, public domain",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+      "license": "Public domain"
+    },
+    "stele": {
+      "file": "data/editor/assets/raw/merneith-stele.jpg",
+      "width": 1280,
+      "height": 1789,
+      "credit": "Stele of Merneith — Juan R. Lazaro / Wikimedia Commons, CC BY 2.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Merneith_stele.jpg",
+      "license": "CC BY 2.0"
+    },
+    "djer-seal": {
+      "file": "data/editor/assets/raw/djer-seal.jpg",
+      "width": 1280,
+      "height": 1032,
+      "credit": "Djer seal — Udimu / Wikimedia Commons, CC BY-SA 3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Djer_seal_c.jpg",
+      "license": "CC BY-SA 3.0"
+    },
+    "ivory": {
+      "file": "data/editor/assets/raw/Ivory_label_with_Djer_name_and_Sopdet.png",
+      "width": 300,
+      "height": 425,
+      "credit": "Ivory label with Djer's name and Sopdet — 14nu5 / Wikimedia Commons, CC BY-SA 3.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ivory_label_with_Djer_name_and_Sopdet.png",
+      "license": "CC BY-SA 3.0"
+    },
+    "flint": {
+      "file": "data/editor/assets/raw/flint-cutout.png",
+      "width": 1920,
+      "height": 833,
+      "credit": "Ceremonial flint knife of Djer — Keith Schengili-Roberts / Wikimedia Commons, CC BY-SA 4.0; cutout by TradeApp editor",
+      "source_url": "https://commons.wikimedia.org/wiki/File:CeremonialFlintKnife_Djer_mod_noBG.jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "map": {
+      "file": "data/editor/assets/diagrams/egypt-abydos.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Diagram: TradeApp editor, Abydos, Egypt",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/assets/diagrams/egypt-abydos.svg",
+      "license": "Original diagram"
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook-seal",
+      "start": 0.0,
+      "end": 5.5,
+      "asset": "merneith-seal",
+      "fit": "contain",
+      "rect": { "x": 100, "y": 640, "w": 880, "h": 360 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "ANCIENT EGYPT",
+      "headline": "THE FIRST\nFEMALE RULER",
+      "sub": "New evidence from royal seals."
+    },
+    {
+      "id": "hook-history",
+      "start": 5.5,
+      "end": 11.04,
+      "asset": "djer-cylinder",
+      "fit": "contain",
+      "rect": { "x": 200, "y": 560, "w": 680, "h": 620 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "ROYAL SEALS",
+      "headline": "5000 YEARS\nOF HISTORY",
+      "sub": "A forgotten ruler, recorded in stone."
+    },
+    {
+      "id": "petrie",
+      "start": 11.86,
+      "end": 16.0,
+      "asset": "petrie",
+      "fit": "cover",
+      "motion": "pan-left",
+      "filter": { "sepia": 0.28, "saturate": 0.55, "brightness": 0.88 },
+      "layout": "lower",
+      "kicker": "THE EXCAVATOR",
+      "headline": "WILLIAM MATTHEW\nFLINDERS PETRIE",
+      "sub": "Tomb Y at Abydos, Egypt."
+    },
+    {
+      "id": "tomb",
+      "start": 16.0,
+      "end": 20.76,
+      "asset": "stele",
+      "fit": "contain",
+      "rect": { "x": 220, "y": 430, "w": 640, "h": 900 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "TOMB Y · ABYDOS",
+      "headline": "A NEW\nKING?",
+      "sub": "Petrie believed he had found a ruler named Merneith."
+    },
+    {
+      "id": "djer",
+      "start": 21.4,
+      "end": 26.28,
+      "asset": "djer-seal",
+      "fit": "contain",
+      "rect": { "x": 150, "y": 520, "w": 780, "h": 650 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "THE THIRD KING",
+      "headline": "DJER",
+      "sub": "Was Merneith the daughter of Djer, third king of the First Dynasty?"
+    },
+    {
+      "id": "evidence",
+      "start": 26.28,
+      "end": 31.0,
+      "asset": "ivory",
+      "fit": "contain",
+      "rect": { "x": 330, "y": 500, "w": 420, "h": 620 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "SCIENTIFIC AMERICAN",
+      "headline": "DIGITAL CLUES",
+      "sub": "Newly analysed seals unveil Egypt's first female ruler."
+    },
+    {
+      "id": "name",
+      "start": 31.0,
+      "end": 36.08,
+      "asset": "stele",
+      "fit": "cover",
+      "motion": "in",
+      "filter": { "sepia": 0.22, "saturate": 0.6, "brightness": 0.88 },
+      "layout": "lower",
+      "kicker": "THE NAME IN STONE",
+      "headline": "MERNEITH",
+      "sub": "A ruler's name, preserved for 5000 years."
+    },
+    {
+      "id": "power",
+      "start": 36.98,
+      "end": 41.0,
+      "asset": "flint",
+      "fit": "contain",
+      "rect": { "x": 80, "y": 620, "w": 920, "h": 400 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "FIRST DYNASTY POWER",
+      "headline": "5000 YEARS\nOF HISTORY",
+      "sub": "Petrie excavated Tomb Y at Abydos."
+    },
+    {
+      "id": "seals",
+      "start": 41.0,
+      "end": 44.86,
+      "asset": "djer-cylinder",
+      "fit": "contain",
+      "rect": { "x": 200, "y": 540, "w": 680, "h": 620 },
+      "motion": "in",
+      "layout": "object",
+      "kicker": "THE ROYAL SEALS",
+      "headline": "A RULER'S\nNAME",
+      "sub": "Repeated in stone, generation after generation."
+    },
+    {
+      "id": "close-map",
+      "start": 44.86,
+      "end": 51.33,
+      "asset": "map",
+      "fit": "cover",
+      "motion": "in",
+      "layout": "lower",
+      "kicker": "ABYDOS · EGYPT",
+      "headline": "MERNEITH\nRULED EGYPT",
+      "sub": "More than 5000 years ago."
+    }
+  ]
+}

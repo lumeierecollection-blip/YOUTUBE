@@ -1,0 +1,89 @@
+{
+  "channel_id": "2",
+  "topic_slug": "anthropic-claude-haiku-5-5-pricing-breakdown",
+  "format": "shorts",
+  "hook": "Anthropic API billing changes when Claude Haiku 5.5 prompts cross 100,000 tokens.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Anthropic API billing changes when Claude Haiku 5.5 prompts cross 100,000 tokens.",
+      "visual_cue": "Close up on a digital pricing tier dashboard showing token count metrics.",
+      "sfx_cue": "Subtle digital click",
+      "b_roll": [
+        "API dashboard screenshot with pricing metrics"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "100,000 Token Threshold"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "On October 7, 2026, Anthropic released Claude Haiku 5.5 with a base input price of $0.10 per million tokens. Where does the cost jump?",
+      "visual_cue": "Displaying official Anthropic launch documentation and VentureBeat article text.",
+      "sfx_cue": "Paper rustle",
+      "b_roll": [
+        "Anthropic launch page screenshot",
+        "VentureBeat article snippet"
+      ],
+      "animation_cue": "Slide up",
+      "transition_out": "Slide left",
+      "text_overlay": {
+        "text": "$0.10 per million tokens"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "Claude Haiku 5.5 input pricing also matches GPT-6 Luna.",
+      "visual_cue": "Zoom into the pricing documentation details for token thresholds.",
+      "sfx_cue": "Whoosh",
+      "b_roll": [
+        "Platform documentation closeup"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "The 100k Limit"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "Claude Platform Docs show input pricing increases to $0.50 per million tokens for prompts exceeding 100,000 tokens. Output pricing jumps to $2.50 per million tokens for those larger requests.",
+      "visual_cue": "Side by side comparison of input and output pricing tiers on Claude platform docs.",
+      "sfx_cue": "Digital chime",
+      "b_roll": [
+        "Claude Platform Docs pricing table"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "$0.50 per million tokens"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Crossing 100,000 tokens triggers the higher rate.",
+      "visual_cue": "Final view of the pricing counter resting at 100,000 tokens.",
+      "sfx_cue": "Soft tone",
+      "b_roll": [
+        "Token threshold counter graphic"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "100,000 tokens"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+    "https://www.anthropic.com/claude-haiku-5-5"
+  ]
+}
