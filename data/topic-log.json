@@ -1227,11 +1227,6 @@
           "topic": "GPT-6.1 Terra vs Claude Opus 5.5 vs Gemini 4 Argon Benchmarks",
           "slug": "gpt-6-1-terra-vs-opus-5-5-vs-gemini-4-argon",
           "reserved_at": "2026-10-27T15:06:35.625Z"
-        },
-        {
-          "topic": "Gemini 4 Argon vs GPT-6 Flask Security Audit Test",
-          "slug": "gemini-4-argon-vs-gpt-6-flask-security-audit",
-          "reserved_at": "2026-10-28T15:15:21.628Z"
         }
       ],
       "last_generated": "2026-10-28T15:15:21.628Z"
