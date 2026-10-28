@@ -1,0 +1,79 @@
+{
+  "topic_slug": "stolen-portchester-castle-plaque-african-caribbean-prisoners",
+  "strongest_angle": "The October 2026 theft of a newly unveiled heritage plaque at Portchester Castle highlights the erasure of 2,500 African-Caribbean prisoners of war brought to Britain in 1796.",
+  "key_facts": [
+    {
+      "fact": "A heritage plaque commemorating 2,500 African Caribbean men, women, and children brought to Britain as prisoners of war was unveiled at Portchester Castle on Friday 9 October 2026.",
+      "source_url": "https://warwick.ac.uk/news/pressreleases/plaque-honouring-caribbean",
+      "source_name": "University of Warwick",
+      "confidence": "high"
+    },
+    {
+      "fact": "Castle staff discovered that the plaque and a gate padlock had been removed on Wednesday 14 October 2026, just five days after the unveiling ceremony.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 1796 prisoner group represents one of the largest known arrivals of African-Caribbean people in Britain before the Windrush era.",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/17/plaque-honouring-african-caribbean-prisoners-in-britain-stolen-portchester-castle",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Portchester Castle is located in Hampshire, where the memorial plaque was installed and subsequently stolen.",
+      "source_url": "https://www.portsmouth.co.uk/news/crime/historic-plaque-goes-missing-from-portchester-castle-9290872",
+      "source_name": "The Portsmouth News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "African-Caribbean prisoners commemorated",
+      "value": 2500,
+      "unit": "prisoners",
+      "source_url": "https://warwick.ac.uk/news/pressreleases/plaque-honouring-caribbean"
+    },
+    {
+      "label": "Year prisoners were brought to Britain",
+      "value": 1796,
+      "unit": "year",
+      "source_url": "https://www.portsmouth.co.uk/news/crime/historic-plaque-goes-missing-from-portchester-castle-9290872"
+    },
+    {
+      "label": "Days between unveiling and discovery of theft",
+      "value": 5,
+      "unit": "days",
+      "source_url": "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro"
+    },
+    {
+      "label": "Years since prisoners were brought to Britain",
+      "value": 230,
+      "unit": "years",
+      "source_url": "https://warwick.ac.uk/news/pressreleases/plaque-honouring-caribbean"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Portchester Castle",
+      "kind": "place"
+    },
+    {
+      "name": "Hampshire",
+      "kind": "place"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Warwick",
+      "kind": "organization"
+    }
+  ]
+}
