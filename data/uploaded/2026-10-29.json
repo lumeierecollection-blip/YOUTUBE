@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-29",
+  "review_run_id": "40899483670",
+  "generated_at": "2026-10-29T16:12:32.973Z",
+  "uploads": [],
+  "not_uploaded": {
+    "1": "no OAuth credentials configured",
+    "2": "no OAuth credentials configured",
+    "48": "no OAuth credentials configured"
+  },
+  "no_credentials": [
+    "1",
+    "2",
+    "48"
+  ],
+  "note": "Nothing was uploaded today ΓÇö see not_uploaded for each channel reason."
+}
