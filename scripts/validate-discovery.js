@@ -78,7 +78,9 @@ const MEASURABLE_KEYWORDS = [
 // Whole-word match (a plural is allowed). It was a substring test, so "Alterations" counted as containing "ratio", "Operate" as "rate",
 // "Separate" as "rate", "Bi-annual" etc. - a topic could pass the rule on a word that has nothing to do with a measurement.
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const KEYWORD_RES = MEASURABLE_KEYWORDS.map((kw) => new RegExp(`(?<![a-z0-9])${escapeRe(kw.toLowerCase())}(?:s|es)?(?![a-z0-9])`, "i"));
+// The list repeats "survey" and "poll"; each hit is counted, so a single "survey" used to satisfy the angle's ">= 2 keywords" rule.
+// De-duplicate so a hit means a distinct keyword.
+const KEYWORD_RES = [...new Set(MEASURABLE_KEYWORDS.map((kw) => kw.toLowerCase()))].map((kw) => new RegExp(`(?<![a-z0-9])${escapeRe(kw)}(?:s|es)?(?![a-z0-9])`, "i"));
 const keywordHits = (text) => KEYWORD_RES.reduce((n, re) => n + (re.test(String(text || "")) ? 1 : 0), 0);
 
 function hasMeasurableKeywords(text) {
