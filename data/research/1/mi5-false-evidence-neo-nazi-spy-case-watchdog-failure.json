@@ -1,0 +1,61 @@
+{
+  "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-watchdog-failure",
+  "strongest_angle": "The Investigatory Powers Commissioner's Office revealed that MI5 officers provided false evidence and lied to three courts while defending a violent neo-Nazi informant known as agent X.",
+  "key_facts": [
+    {
+      "fact": "Sir Brian Leveson, the Investigatory Powers Commissioner, oversaw the IPCO investigation into MI5 giving false evidence to three courts regarding agent X.",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The security service MI5 accepted that it gave evidence based on lies to three different courts while defending a violent neo-Nazi informant.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Computer Weekly reported on the UK surveillance watchdog being disappointed over government investigatory powers failings regarding MI5 and agent X.",
+      "source_url": "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings",
+      "source_name": "Computer Weekly",
+      "confidence": "medium"
+    },
+    {
+      "fact": "A secret inquiry by MI5's watchdog concluded that the security service knew the agent it defended in court was a misogynist obsessed with violence.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cj9gggjekyjo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of courts misled by MI5",
+      "value": 3,
+      "unit": "courts",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "MI5",
+      "kind": "organization"
+    },
+    {
+      "name": "Sir Brian Leveson",
+      "kind": "person"
+    },
+    {
+      "name": "Investigatory Powers Commissioner's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Computer Weekly",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

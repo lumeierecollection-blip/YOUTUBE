@@ -1,0 +1,89 @@
+{
+  "channel_id": "1",
+  "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-watchdog-failure",
+  "format": "shorts",
+  "hook": "MI5 gave false evidence to three courts while defending a violent neo-Nazi informant.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "MI5 gave false evidence to three courts while defending a violent neo-Nazi informant.",
+      "visual_cue": "Close up archival photograph of MI5 headquarters building facade in London.",
+      "sfx_cue": "Subtle low bass hum sound effect.",
+      "b_roll": [
+        "MI5 headquarters exterior archival photograph"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "MI5 Lied To Three Courts"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-18s",
+      "voiceover": "Sir Brian Leveson oversaw the Investigatory Powers Commissioner's Office investigation into the security service. Computer Weekly reported on the surveillance watchdog being disappointed over government investigatory powers failings.",
+      "visual_cue": "Medium shot of Sir Brian Leveson speaking during an official inquiry hearing.",
+      "sfx_cue": "Paper rustling sound effect.",
+      "b_roll": [
+        "Sir Brian Leveson official inquiry photograph",
+        "Courtroom interior photograph"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Investigatory Powers Commissioner's Office Probe"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "18-24s",
+      "voiceover": "However, MI5 officers gave false evidence to the judiciary.",
+      "visual_cue": "Close up of BBC News article headline on a computer monitor screen.",
+      "sfx_cue": "Digital click sound effect.",
+      "b_roll": [
+        "BBC News article screenshot"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "The Security Service Accepted The Deception"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "24-38s",
+      "voiceover": "MI5 officers defended the violent neo-Nazi informant known as agent X despite knowing his misogynistic views. The Investigatory Powers Commissioner's Office published findings proving 3 courts received fabricated details.",
+      "visual_cue": "Wide shot of court building exterior steps in London.",
+      "sfx_cue": "Gavel strike sound effect.",
+      "b_roll": [
+        "London court building exterior photograph"
+      ],
+      "animation_cue": "Fade up",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "3 Courts Received Fabricated Details"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "38-45s",
+      "voiceover": "Sir Brian Leveson exposed 3 courts misled by MI5.",
+      "visual_cue": "Portrait photograph of Sir Brian Leveson in official robes.",
+      "sfx_cue": "Soft fading room tone.",
+      "b_roll": [
+        "Sir Brian Leveson portrait photograph"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Sir Brian Leveson"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+    "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+    "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings"
+  ]
+}
