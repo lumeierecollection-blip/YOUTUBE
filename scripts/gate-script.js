@@ -109,6 +109,11 @@ const editDistanceAtMost1 = (a, b) => {
   return true;
 };
 
+// "Mesopotamian" for the research's "Mesopotamia" (Persia/Persian, Korea/Korean, Syria/Syrian...) is the adjective, not a
+// typo, yet it is one insertion away and was a BLOCKER on attempts 1-7 for ch-1 in run 40899483670. Only the
+// name-ending-in-"a" + "n" shape is exempt, either way round; a substitution (Post/Pest) stays a near-miss.
+const isAdjectiveForm = (a, b) => (a === b + "n" && b.endsWith("a")) || (b === a + "n" && a.endsWith("a"));
+
 /**
  * SCR-18 (BLOCKER near-miss / MAJOR unknown) â€” every proper noun is copied from
  * the research artifact, character for character.
@@ -146,7 +151,7 @@ export function nameFidelityProblems(script, research) {
   const nearMissOfToken = (token) => {
     for (const { name, tokens } of nameLower) {
       for (const t of tokens) {
-        if (t === token || t.length < 4 || t[0] !== token[0]) continue;
+        if (t === token || t.length < 4 || t[0] !== token[0] || isAdjectiveForm(token, t)) continue;
         if (editDistanceAtMost1(token, t)) return name;
       }
     }
@@ -158,7 +163,7 @@ export function nameFidelityProblems(script, research) {
       let matching = 0, near = 0, ok = true;
       for (let k = 0; k < nt.length; k++) {
         if (nt[k] === tokens[k]) { matching++; continue; }
-        if (nt[k][0] !== tokens[k][0] || nt[k].length < 4 || !editDistanceAtMost1(tokens[k], nt[k])) { ok = false; break; }
+        if (nt[k][0] !== tokens[k][0] || nt[k].length < 4 || isAdjectiveForm(tokens[k], nt[k]) || !editDistanceAtMost1(tokens[k], nt[k])) { ok = false; break; }
         near++;
       }
       if (ok && matching >= 1 && near === 1) return name;
