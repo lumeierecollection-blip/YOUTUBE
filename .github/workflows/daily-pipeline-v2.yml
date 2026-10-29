@@ -869,6 +869,21 @@ jobs:
               fi
               echo "::warning::script gate rejected attempt $ATTEMPT/8 for $SCRIPT_SLUG"
               cat /tmp/gate-out-$FORMAT.log
+              # STRICT SENTENCE REPAIR. Runs 40971151924 ch-2 / ch-48: the writer's research was sound (ch-2 had six sourced
+              # figures) but every full regeneration produced a different rhetorical-question sentence that names no figure, so
+              # SCR-17 STRICT failed all 8 attempts. Same fix the story and repeat checks already use: rewrite ONLY the flagged
+              # sentences from the research (repair-sentences.mjs may answer CUT instead of inventing), then re-run every gate.
+              # Nothing is loosened: the gate runs again on the result. Attempt 5 is left to the topic re-pick below.
+              if [ "$ATTEMPT" -lt 8 ] && [ "$ATTEMPT" -ne 5 ] && [ "${STRICT_REPAIRED:-0}" -lt 3 ]                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
+                STRICT_REPAIRED=$((${STRICT_REPAIRED:-0} + 1))
+                grep -E '^  - SCR-17 STRICT' /tmp/gate-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                  echo "[script] ch-$CH: strict visual gate FAIL, repaired the flagged sentences ($STRICT_REPAIRED/3)"
+                  SKIP_GEN=1
+                  continue
+                fi
+                echo "[script] ch-$CH: strict visual gate FAIL, the sentence repair could not fix it - regenerating"
+              fi
               # STRICT STARVATION -> ONE TOPIC RE-PICK (SCR-19). The strict
               # rule can only be satisfied with sentences the RESEARCH can
               # support; when attempt 5 still fails it and nothing else, the
