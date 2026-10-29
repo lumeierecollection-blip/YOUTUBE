@@ -297,6 +297,9 @@ jobs:
         if: github.event.inputs.render_only != 'true'
         id: discover
         env:
+          # Discovery validation policy: unset/empty = advisory (checks reported, channel not stopped); "enforce" = skip the
+          # channel when no candidate passes. Set it as a repository VARIABLE (not a secret); see scripts/validate-discovery.js.
+          DISCOVERY_VALIDATION: ${{ vars.DISCOVERY_VALIDATION }}
           # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -342,8 +345,11 @@ jobs:
           # non-duplicate is reserved (scripts/rank-topics-imagery.js). Never drops one and never fails the run.
           node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
           # Validate 2-domain sourcing + visual coverage BEFORE reservation
+          # Under DISCOVERY_VALIDATION=advisory (the default) validate-discovery exits 0 even when no candidate passes, and tags them.
+          # A nonzero exit is "enforce" rejecting every candidate, or a crash: either way the channel is skipped, and the Reserve
+          # topic step honours steps.discover.outputs.skip (it used to be ignored, so a "skipped" channel was reserved anyway).
           node scripts/validate-discovery.js /tmp/topics.json "$CH" || {
-            echo "::error::discovery validation failed for channel $CH — no valid topics"
+            echo "::warning::discovery validation stopped channel $CH (every candidate rejected under DISCOVERY_VALIDATION=enforce, or the validator failed) — skipping this channel today"
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           }
@@ -357,6 +363,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           CH="${{ matrix.channel_id }}"
+          # Every later step gates on steps.reserve.outputs.skip, so a discovery skip has to be re-published HERE, before anything is reserved.
+          if [ "${{ steps.discover.outputs.skip }}" = "true" ]; then
+            echo "::warning::Channel $CH — discovery validation skipped this channel; no topic reserved"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           git config user.name  "pipeline-bot"
           git config user.email "pipeline@youtube-automation.local"
           COUNT=$(jq '.topics | length' /tmp/topics.json)
