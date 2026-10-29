@@ -795,11 +795,18 @@ jobs:
                 cat /tmp/dedupe-final-$FORMAT.log
                 if [ "$DD_EXIT" -eq 3 ]; then
                   grep -E '^  - ' /tmp/dedupe-final-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
-                  if [ "$ATTEMPT" -lt 8 ] && node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                  : > /tmp/repair-out-$FORMAT.log
+                  if [ "$ATTEMPT" -lt 8 ] && node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt > /tmp/repair-out-$FORMAT.log 2>&1; then
+                    cat /tmp/repair-out-$FORMAT.log
                     echo "[script] ch-$CH: repeated sentences, repaired them"
                     SKIP_GEN=1
                     continue
                   fi
+                  # WHY the repair did not happen is what the skip below used to hide (attempt cap, Gemini unavailable, an unusable
+                  # answer, a CUT refused on a beat's only sentence). Print it; nothing about the check or the skip changes.
+                  cat /tmp/repair-out-$FORMAT.log
+                  if [ "$ATTEMPT" -ge 8 ]; then REPAIR_WHY="no repair attempted: attempt $ATTEMPT of 8"; else REPAIR_WHY="$(tail -n 2 /tmp/repair-out-$FORMAT.log | tr '\n' ' ' | cut -c1-300)"; fi
+                  echo "::warning::[script] ch-$CH: sentence repair did not fix the repeat (${REPAIR_WHY:-no output from the repair})"
                   echo "::warning::[script] ch-$CH: the script repeats a sentence that deleting cannot fix ΓÇö channel skipped this run"
                   echo "skip=true" >> "$GITHUB_OUTPUT"
                   echo "skip_reason=repeats" >> "$GITHUB_OUTPUT"
