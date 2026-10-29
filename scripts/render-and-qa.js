@@ -18,6 +18,7 @@
 import "dotenv/config";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { resolveEditorTimeline, EditorTimelineError } from "./lib/editor-timeline-lookup.mjs";
+import { writeEditorManifest } from "./lib/editor-manifest.mjs";
 import { namingRetryDecision } from "./lib/naming-looks.mjs";
 import { enforcedPlanPathFor, revisedPlanPathFor, correctionsPathFor, outputPathFor } from "./lib/attempt-naming.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
@@ -2858,6 +2859,25 @@ async function renderEditorTimeline(channelId, scriptPath, format, timelineInfo,
     return { skipped: false, ok: false, queued: q || undefined };
   }
   console.log(`[editor] ${basename(scriptPath)} passed final-MP4 QA; report ${relative(ROOT, qaOut)}`);
+  // Evidence: ties this exact MP4 to its script, timeline, voiceover, assets and QA report (SHA-256) and names the renderer. A render
+  // that cannot be attested does not count as a pass.
+  let manifestPath;
+  try {
+    manifestPath = writeEditorManifest({ root: ROOT, channelId, scriptPath, timelinePath: timelineInfo.timelinePath, audioPath: audio, videoPath: outputPath, qaPath: qaOut, contactPath: qaContact });
+  } catch (err) {
+    console.error(`::error::${basename(scriptPath)} passed editor QA but its evidence manifest could not be written: ${err.message}`);
+    const q = await queueVideo({
+      verdict: "rejected",
+      videoPath: outputPath,
+      channelId,
+      stage: "editor-manifest",
+      check: "manifest",
+      reason: `no evidence manifest: ${String(err.message).slice(0, 300)}`,
+      extra: { editor_timeline: relative(ROOT, timelineInfo.timelinePath), editor_qa: relative(ROOT, qaOut) },
+    });
+    return { skipped: false, ok: false, queued: q || undefined };
+  }
+  console.log(`[editor] evidence manifest ${relative(ROOT, manifestPath)}`);
   return {
     skipped: false,
     ok: true,
@@ -2870,6 +2890,7 @@ async function renderEditorTimeline(channelId, scriptPath, format, timelineInfo,
     qaGatePass: true,
     editor: true,
     editorTimeline: timelineInfo.timelinePath,
+    editorManifest: manifestPath,
   };
 }
 
