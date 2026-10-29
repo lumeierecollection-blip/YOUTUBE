@@ -75,25 +75,22 @@ const MEASURABLE_KEYWORDS = [
   "significant", "significance", "p-value", "confidence interval",
 ];
 
+// Whole-word match (a plural is allowed). It was a substring test, so "Alterations" counted as containing "ratio", "Operate" as "rate",
+// "Separate" as "rate", "Bi-annual" etc. - a topic could pass the rule on a word that has nothing to do with a measurement.
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const KEYWORD_RES = MEASURABLE_KEYWORDS.map((kw) => new RegExp(`(?<![a-z0-9])${escapeRe(kw.toLowerCase())}(?:s|es)?(?![a-z0-9])`, "i"));
+const keywordHits = (text) => KEYWORD_RES.reduce((n, re) => n + (re.test(String(text || "")) ? 1 : 0), 0);
+
 function hasMeasurableKeywords(text) {
-  if (!text) return false;
-  const lower = text.toLowerCase();
-  return MEASURABLE_KEYWORDS.some(kw => lower.includes(kw.toLowerCase()));
+  return keywordHits(text) > 0;
 }
 
 export async function checkMeasurableKeywords(topic) {
   // Require the topic TITLE itself to contain a measurable keyword (strong signal).
   // Topics like "API release", "product launch", "model release" lack measurable keywords.
-  const titleLower = topic.topic.toLowerCase();
-  for (const kw of MEASURABLE_KEYWORDS) {
-    if (titleLower.includes(kw.toLowerCase())) return { pass: true };
-  }
-  // If title lacks measurable keyword, require angle to have ≥2 measurable keywords
-  let count = 0;
-  const angleLower = (topic.angle || "").toLowerCase();
-  for (const kw of MEASURABLE_KEYWORDS) {
-    if (angleLower.includes(kw.toLowerCase())) count++;
-  }
+  if (keywordHits(topic.topic) > 0) return { pass: true };
+  // If title lacks measurable keyword, require angle to have >=2 measurable keywords
+  const count = keywordHits(topic.angle);
   return count >= 2 ? { pass: true } : { pass: false, reason: "topic title lacks measurable keyword; angle needs ≥2 (percent, survey, million, revenue, etc.)" };
 }
 

@@ -175,3 +175,34 @@ test("Reserve topic, no discovery skip: proceeds to reserve (reserve-topic-singl
   assert.match(r.calls, /node scripts\/reserve-topic-single\.js/);
   assert.match(r.outputs, /skip=false/);
 });
+
+// ---- keyword rule: whole words, not substrings ------------------------------------------------------------------------------
+import { checkMeasurableKeywords } from "../validate-discovery.js";
+
+test("keyword rule: genuine measurable titles still pass (incl. plurals and the angle path)", async () => {
+  for (const topic of [
+    "Revenue Growth Hits 12 Million Users",         // revenue, growth, million
+    "GPT-6.1 Terra vs Claude Opus 5.5 Benchmarks",  // benchmark(s): plural
+    "Survey Finds Remote Workers Report Less Pain",  // survey
+    "Mortgage Rates Fall for a Third Quarter",       // rate(s), quarter
+  ]) assert.equal((await checkMeasurableKeywords({ topic, angle: "" })).pass, true, topic);
+  // title has none, but the angle carries two distinct measurable terms
+  assert.equal((await checkMeasurableKeywords({ topic: "A New Hoard Is Found", angle: "The survey of 400 finds shows a decline in imports" })).pass, true);
+});
+
+test("keyword rule: a keyword buried inside another word no longer counts (the substring defect)", async () => {
+  for (const topic of [
+    "Lower-Limb Biomechanical Alterations in Plantar Fasciitis Patients", // 'alterATIOns' contained "ratio"
+    "How Engineers Operate Haptic Steering Systems",                      // 'opeRATE' contained "rate"
+    "Why Separate Sources Disagree",                                      // 'sepaRATE'
+    "The Insignificantly Small Archive",                                  // 'significant' inside 'Insignificantly'
+  ]) {
+    const r = await checkMeasurableKeywords({ topic, angle: "" });
+    assert.equal(r.pass, false, `${topic} should not pass on a buried keyword`);
+    assert.match(r.reason, /measurable keyword/);
+  }
+});
+
+test("keyword rule: real ch-1 history titles are still flagged (the rule is unchanged, so advisory reports them honestly)", async () => {
+  for (const t of HISTORY) assert.equal((await checkMeasurableKeywords(t)).pass, false, t.topic);
+});
