@@ -1161,6 +1161,7 @@
       "google_account": "UNASSIGNED-48",
       "channel_id": "ch-48",
       "youtube_credentials_path": "config/creds/ch-48.json",
+      "stay_private": true,
       "description": "Designing for the human body. Ergonomics, human factors, and the science of comfortable productivity.",
       "content_pillars": [
         "ergonomic design",
