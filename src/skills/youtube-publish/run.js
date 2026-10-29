@@ -28,6 +28,7 @@ import { join, dirname, basename, extname } from "path";
 import { fileURLToPath } from "url";
 import { getAccessToken, loadCredentials, hasCredentials } from "../../utils/youtube-auth.js";
 import { unresolvedPlaceholdersForChannel } from "../../utils/placeholders.js";
+import { flipDecision, shouldStayPrivate } from "./queue-guard.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -401,7 +402,7 @@ async function uploadChannel(channelId, explicitVideo, dryRun, review = false) {
   const delayHours = channel.publish_delay_hours ?? 1;
   // A review upload stays private: it failed an AI check, and only the person who reviews it
   // in YouTube Studio makes it public. process-queue never flips it (cancelled: true).
-  const stayPrivate = channel.stay_private === true || review;
+  const stayPrivate = shouldStayPrivate(channel, review);
   const goPublicAt = new Date(Date.now() + delayHours * 3600 * 1000).toISOString();
   const entry = {
     video_id: videoId,
@@ -445,8 +446,12 @@ async function processQueue() {
     let changed = false;
 
     for (const entry of queue) {
-      if (entry.cancelled || entry.privacy_status === "public") continue;
-      if (Date.parse(entry.go_public_at) > now) continue;
+      const decision = flipDecision(entry, now);
+      if (!decision.flip) {
+        // a malformed record is never published, and never silent: someone hand-edited or restored it
+        if (decision.malformed) console.log(`  ${String(channel.id)} ${entry?.video_id ?? "(no id)"} NOT PUBLISHED - malformed queue entry: ${decision.reason}`);
+        continue;
+      }
 
       try {
         const token = await getAccessToken(channel);
