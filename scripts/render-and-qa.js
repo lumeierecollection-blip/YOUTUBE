@@ -17,6 +17,7 @@
  */
 import "dotenv/config";
 import { resolveChannel } from "./lib/channel-lookup.mjs";
+import { resolveEditorTimeline, EditorTimelineError } from "./lib/editor-timeline-lookup.mjs";
 import { namingRetryDecision } from "./lib/naming-looks.mjs";
 import { enforcedPlanPathFor, revisedPlanPathFor, correctionsPathFor, outputPathFor } from "./lib/attempt-naming.mjs";
 import { spawn, spawnSync, execFileSync } from "node:child_process";
@@ -284,15 +285,10 @@ function expectedOutputPath(channelId, scriptPath, format) {
 // script stem to a persisted timeline. Scripts without an entry keep the
 // existing Gemini-plan pipeline, so enabling this cannot change another
 // channel's video.
+// A configured-but-broken timeline (missing file, malformed, wrong script, missing credits/assets/audio) is an ERROR, never a quiet
+// fallback to the legacy renderer; EDITOR_STRICT=1 also makes an unmapped script an error (see scripts/lib/editor-timeline-lookup.mjs).
 function editorTimelineFor(scriptPath) {
-  if (!/^(1|true|yes)$/i.test(String(process.env.EDITOR_ENGINE || ""))) return null;
-  const mapPath = resolve(ROOT, process.env.EDITOR_TIMELINE_MAP || "scripts/editor/timelines.json");
-  if (!existsSync(mapPath)) return null;
-  const map = readJsonSafe(mapPath);
-  const entry = map && map[basename(scriptPath, ".json")];
-  if (!entry) return null;
-  const timelinePath = resolve(ROOT, entry);
-  return existsSync(timelinePath) ? { timelinePath, mapPath } : null;
+  return resolveEditorTimeline(scriptPath, { env: process.env, root: ROOT });
 }
 
 function runChild(cmd, args, { label, env }) {
@@ -2878,7 +2874,14 @@ async function renderEditorTimeline(channelId, scriptPath, format, timelineInfo,
 }
 
 async function renderWithCorrectionLoop(channelId, scriptPath, format, runId, outputOverride, skipQA) {
-  const editorTimeline = editorTimelineFor(scriptPath);
+  let editorTimeline;
+  try {
+    editorTimeline = editorTimelineFor(scriptPath);
+  } catch (err) {
+    if (!(err instanceof EditorTimelineError)) throw err;
+    console.error(`::error::editor timeline for ${basename(scriptPath)} [${err.code}]: ${err.message}`);
+    return { skipped: false, ok: false, editorError: err.code };
+  }
   if (editorTimeline) {
     console.log(`=== EDITOR: ${basename(scriptPath)} -> ${basename(editorTimeline.timelinePath)} ===`);
     return renderEditorTimeline(channelId, scriptPath, format, editorTimeline, outputOverride);

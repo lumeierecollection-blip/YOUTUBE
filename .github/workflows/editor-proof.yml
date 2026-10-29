@@ -37,6 +37,9 @@ jobs:
       RENDER_SCALE: ${{ inputs.scale || '0.5' }}
       RENDER_CONCURRENCY: "4"
       EDITOR_ENGINE: "1"
+      # A proof run must prove the EDITOR rendered the video: an unmapped script is an error here, never a quiet fallback to the
+      # legacy renderer (scripts/lib/editor-timeline-lookup.mjs).
+      EDITOR_STRICT: "1"
       EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
     steps:
       - uses: actions/checkout@v4
@@ -89,7 +92,10 @@ jobs:
             script="$(echo "$raw" | xargs)"
             [ -n "$script" ] || continue
             echo "::group::editor proof: $script"
-            if ! node scripts/render-and-qa.js --channel 1 --script "$script"; then
+            # The channel comes from the script's own path (data/research/<channel>/...); a path that does not name one is an error.
+            ch="$(echo "$script" | sed -n 's#^data/research/\([0-9][0-9]*\)/.*#\1#p')"
+            if [ -z "$ch" ]; then echo "::error::cannot tell the channel from $script (expected data/research/<channel>/...)"; status=1; echo "::endgroup::"; continue; fi
+            if ! node scripts/render-and-qa.js --channel "$ch" --script "$script"; then
               status=1
             fi
             echo "::endgroup::"
