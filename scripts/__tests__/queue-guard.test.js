@@ -110,7 +110,7 @@ test("exactly one source file can set a video public (run.js processQueue), and 
 test("run.js decides through the guard (no return to the inline fail-open checks)", () => {
   const src = readFileSync(join(ROOT, "src/skills/youtube-publish/run.js"), "utf8");
   assert.match(src, /from "\.\/queue-guard\.js"/);
-  assert.match(src, /flipDecision\(entry, now\)/);
+  assert.match(src, /flipDecision\(entry, now, channel\)/); // the channel is passed so stay_private is enforced at publish time
   assert.match(src, /shouldStayPrivate\(channel, review\)/);
   assert.doesNotMatch(src, /if \(entry\.cancelled \|\| entry\.privacy_status === "public"\) continue;/);
   assert.doesNotMatch(src, /channel\.stay_private === true \|\| review/);

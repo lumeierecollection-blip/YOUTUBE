@@ -446,7 +446,7 @@ async function processQueue() {
     let changed = false;
 
     for (const entry of queue) {
-      const decision = flipDecision(entry, now);
+      const decision = flipDecision(entry, now, channel);
       if (!decision.flip) {
         // a malformed record is never published, and never silent: someone hand-edited or restored it
         if (decision.malformed) console.log(`  ${String(channel.id)} ${entry?.video_id ?? "(no id)"} NOT PUBLISHED - malformed queue entry: ${decision.reason}`);
