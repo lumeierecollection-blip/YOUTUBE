@@ -23,7 +23,7 @@
  *   enforce  - if no candidate passes, exit 1. The workflow then marks the channel skipped and the Reserve topic step
  *              reserves nothing.
  * Exit 0 if a topic passes (outcome "passed") or the mode is advisory (outcome "advisory"); 1 if all candidates were
- * rejected under "enforce", or on any error.
+ * rejected under "enforce" (a policy outcome); 2 if the validator itself failed (see EXIT).
  */
 
 import { readFileSync, writeFileSync } from "fs";
@@ -251,11 +251,19 @@ export function applyPolicy(doc, { chosen, rejected }, mode) {
   return { outcome: "rejected", exitCode: 1, doc };
 }
 
+/**
+ * Exit codes, so a caller can tell a POLICY decision from a FAULT:
+ *   0 - passed, or advisory (checks failed but the mode lets the channel proceed)
+ *   1 - rejected under DISCOVERY_VALIDATION=enforce: a deliberate policy outcome, not a defect
+ *   2 - the validator itself failed (bad usage or mode, unreadable/empty input, an unexpected exception)
+ */
+export const EXIT = Object.freeze({ OK: 0, REJECTED: 1, ERROR: 2 });
+
 async function main() {
   const [topicsPath, channelId] = process.argv.slice(2);
   if (!topicsPath || !channelId) {
     console.error("Usage: node scripts/validate-discovery.js <topics.json> <channel-id>");
-    process.exit(1);
+    process.exit(EXIT.ERROR);
   }
   const mode = resolveValidationMode();
 
@@ -263,7 +271,7 @@ async function main() {
   const topics = doc.topics || [];
   if (topics.length === 0) {
     console.error("validate-discovery: no topics to validate");
-    process.exit(1);
+    process.exit(EXIT.ERROR);
   }
 
   const result = await screenCandidates(topics, channelId);
@@ -282,5 +290,5 @@ async function main() {
 }
 
 if (process.argv[1] && /validate-discovery\.js$/.test(process.argv[1].replace(/\\/g, "/"))) {
-  main().catch((e) => { console.error(e); process.exit(1); });
+  main().catch((e) => { console.error(e); process.exit(EXIT.ERROR); });
 }

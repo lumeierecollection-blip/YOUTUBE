@@ -346,13 +346,21 @@ jobs:
           node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
           # Validate 2-domain sourcing + visual coverage BEFORE reservation
           # Under DISCOVERY_VALIDATION=advisory (the default) validate-discovery exits 0 even when no candidate passes, and tags them.
-          # A nonzero exit is "enforce" rejecting every candidate, or a crash: either way the channel is skipped, and the Reserve
-          # topic step honours steps.discover.outputs.skip (it used to be ignored, so a "skipped" channel was reserved anyway).
-          node scripts/validate-discovery.js /tmp/topics.json "$CH" || {
-            echo "::warning::discovery validation stopped channel $CH (every candidate rejected under DISCOVERY_VALIDATION=enforce, or the validator failed) — skipping this channel today"
+          # Exit 1 = every candidate rejected under "enforce" (a policy decision); any other nonzero exit = the validator itself failed
+          # (bad usage or mode, unreadable input, a crash). Either way the channel is skipped (fail closed), but a fault is an ::error::
+          # so it is never mistaken for a deliberate rejection. The Reserve topic step honours steps.discover.outputs.skip (it used to
+          # be ignored, so a "skipped" channel was reserved anyway).
+          RC=0
+          node scripts/validate-discovery.js /tmp/topics.json "$CH" || RC=$?
+          if [ "$RC" -eq 1 ]; then
+            echo "::warning::discovery validation REJECTED every candidate for channel $CH under DISCOVERY_VALIDATION=enforce — skipping this channel today"
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
-          }
+          elif [ "$RC" -ne 0 ]; then
+            echo "::error::discovery validator FAILED for channel $CH (exit $RC) — a fault, not a rejection; skipping this channel today"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
 
       # —— Reserve the first NON-duplicate topic —————————————————————————
