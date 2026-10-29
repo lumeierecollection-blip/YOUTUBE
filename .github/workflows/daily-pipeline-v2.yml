@@ -1789,6 +1789,8 @@ jobs:
         env:
           REVIEW_RUN: ${{ steps.target.outputs.run_id }}
           REQUESTED: ${{ steps.target.outputs.channels }}
+          # The channels the creds step passed on: only these were ever handed to the publish step.
+          CREDENTIALED: ${{ steps.creds.outputs.channels }}
         run: |
           export TODAY=$(date -u +%F)
           node -e '
@@ -1827,13 +1829,14 @@ jobs:
             const requested = String(process.env.REQUESTED || "").split(",").map(s => s.trim()).filter(Boolean);
             const uploaded = (c) => uploads.some(u => String(u.channel).replace(/^0+/, "") === c.replace(/^0+/, ""));
             // What the publish step said for each channel it tried (no log = it had no credentials, so it was never tried).
+            const credentialed = String(process.env.CREDENTIALED || "").split(",").map(s => s.trim().replace(/^0+/, "")).filter(Boolean);
             const outcome = {};
             for (const c of requested) {
               const n = c.replace(/^0+/, "");
               let log = null; try { log = fs.readFileSync("/tmp/publish-out-" + n + ".log", "utf8"); } catch {}
               if (uploaded(c)) continue;
               const err = log && (log.match(/ERROR: ([^\n]+)/) || [])[1];
-              outcome[n] = !log ? "no OAuth credentials configured"
+              outcome[n] = !log ? (credentialed.includes(n) ? "no publish log for this channel although it HAS credentials: the publish step did not run or stopped before reaching it (see the review-publish log)" : "no OAuth credentials configured")
                 : err ? "upload FAILED: " + err.slice(0, 160)
                 : /No approved-review\/ or approved\/ renders found|No approved-review/.test(log) ? "no video passed QA this run"
                 : /already uploaded as/.test(log) ? "already uploaded (" + ((log.match(/already uploaded as (\S+)/) || [])[1] || "") + ")"
@@ -1864,7 +1867,14 @@ jobs:
           TODAY=$(date -u +%F)
           git add data/uploaded
           if git diff --cached --quiet; then echo "No digest changes."; exit 0; fi
-          git commit -m "uploaded: digest for $TODAY (review-publish of run ${{ steps.target.outputs.run_id }})"
+          # The subject says what the digest records. A day with nothing uploaded must not read as an upload day.
+          N=$(jq '.uploads | length' "data/uploaded/$TODAY.json" 2>/dev/null || echo 0)
+          if [ "${N:-0}" -gt 0 ]; then
+            SUBJECT="uploaded: digest for $TODAY - $N private upload(s) (review-publish of run ${{ steps.target.outputs.run_id }})"
+          else
+            SUBJECT="digest: NOTHING uploaded on $TODAY - see not_uploaded (review-publish of run ${{ steps.target.outputs.run_id }})"
+          fi
+          git commit -m "$SUBJECT"
           for attempt in 1 2 3 4 5; do
             git fetch origin "${{ github.ref_name }}"
             # downloaded artifacts (data/research, data/renders, ...) are untracked copies of files main may already hold: they block the rebase
