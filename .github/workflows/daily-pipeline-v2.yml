@@ -1761,7 +1761,14 @@ jobs:
           # that is the publish-queue it pushes, and when that push failed (run 39031532519 ch-1: "cannot rebase") this job uploaded the same
           # render a second time. approved/ belongs to the render job here; this job takes approved-review/ only. A dispatch keeps both queues.
           if [ "${{ github.event_name }}" = "schedule" ]; then rm -rf data/renders/approved; echo "schedule: approved/ was the render job's to upload ΓÇö approved-review/ only"; fi
-          ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
+          # Every channel here HAS credentials (the creds step only passes those on). Leave each one a log saying why nothing was published, or the digest
+          # reads "no log" as "no OAuth credentials" (runs 40712679484 and 40899483670 reported that for ch-1/2/48 when no render had passed QA).
+          ls -la data/renders/approved-review/ || {
+            for CH in $(echo "$REQUESTED" | tr ',' ' '); do
+              echo "No approved-review/ or approved/ renders found - run ${{ steps.target.outputs.run_id }} has no approved-review videos" > "/tmp/publish-out-$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//').log"
+            done
+            echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1;
+          }
           FAIL=0
           for CH in $(echo "$REQUESTED" | tr ',' ' '); do
             CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
