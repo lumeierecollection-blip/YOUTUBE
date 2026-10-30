@@ -1,0 +1,252 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-abilities-comparison",
+  "strongest_angle": "A fact‑based side‑by‑side comparison of Sherlock Holmes’s deductive output and Count Dracula’s supernatural longevity, using publication dates, story counts and iconic locations.",
+  "key_facts": [
+    {
+      "fact": "Sherlock Holmes first appeared in Arthur Conan Doyle’s “A Study in Scarlet” published in 1887 in London, while Bram Stoker’s “Dracula” was first published in 1897 in London, creating a ten‑year gap between the two iconic characters.",
+      "source_name": "Business Standard",
+      "source_url": "https://www.business-standard.com/article/news-ians/two-victorian-characters-and-their-eternal-influence-column-bookends-115021500066_1.html",
+      "confidence": "medium",
+      "named_entities": [
+        {
+          "name": "Sherlock Holmes",
+          "kind": "person"
+        },
+        {
+          "name": "Arthur Conan Doyle",
+          "kind": "person"
+        },
+        {
+          "name": "A Study in Scarlet",
+          "kind": "object"
+        },
+        {
+          "name": "1887",
+          "kind": "object"
+        },
+        {
+          "name": "London",
+          "kind": "place"
+        },
+        {
+          "name": "Dracula",
+          "kind": "person"
+        },
+        {
+          "name": "Bram Stoker",
+          "kind": "person"
+        },
+        {
+          "name": "1897",
+          "kind": "object"
+        }
+      ]
+    },
+    {
+      "fact": "Arthur Conan Doyle wrote a total of 60 canonical Sherlock Holmes works (four novels and fifty‑six short stories) whereas Bram Stoker authored only the single novel “Dracula”, a 1‑to‑60 ratio of story count.",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.com/news/magazine-19268563",
+      "confidence": "medium",
+      "named_entities": [
+        {
+          "name": "Arthur Conan Doyle",
+          "kind": "person"
+        },
+        {
+          "name": "Sherlock Holmes",
+          "kind": "person"
+        },
+        {
+          "name": "four novels",
+          "kind": "object"
+        },
+        {
+          "name": "fifty‑six short stories",
+          "kind": "object"
+        },
+        {
+          "name": "60",
+          "kind": "object"
+        },
+        {
+          "name": "Bram Stoker",
+          "kind": "person"
+        },
+        {
+          "name": "Dracula",
+          "kind": "person"
+        },
+        {
+          "name": "single novel",
+          "kind": "object"
+        },
+        {
+          "name": "1",
+          "kind": "object"
+        }
+      ]
+    },
+    {
+      "fact": "Sherlock Holmes’s investigations are centered at 221B Baker Street in London, while Count Dracula’s lair is Castle Dracula in the Transylvanian region of Romania, placing the detective in a modern metropolis and the vampire in a remote Eastern European stronghold.",
+      "source_name": "Dickinson College Blog",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "confidence": "medium",
+      "named_entities": [
+        {
+          "name": "Sherlock Holmes",
+          "kind": "person"
+        },
+        {
+          "name": "221B Baker Street",
+          "kind": "place"
+        },
+        {
+          "name": "London",
+          "kind": "place"
+        },
+        {
+          "name": "Count Dracula",
+          "kind": "person"
+        },
+        {
+          "name": "Castle Dracula",
+          "kind": "place"
+        },
+        {
+          "name": "Transylvania",
+          "kind": "place"
+        },
+        {
+          "name": "Romania",
+          "kind": "place"
+        }
+      ]
+    }
+  ],
+  "numbers": [
+    {
+      "value": 1887,
+      "unit": "year",
+      "label": "Holmes debut year",
+      "source_url": "https://www.business-standard.com/article/news-ians/two-victorian-characters-and-their-eternal-influence-column-bookends-115021500066_1.html"
+    },
+    {
+      "value": 1897,
+      "unit": "year",
+      "label": "Dracula publication year",
+      "source_url": "https://www.business-standard.com/article/news-ians/two-victorian-characters-and-their-eternal-influence-column-bookends-115021500066_1.html"
+    },
+    {
+      "value": 60,
+      "unit": "works",
+      "label": "Total Sherlock Holmes works",
+      "source_url": "https://www.bbc.com/news/magazine-19268563"
+    },
+    {
+      "value": 1,
+      "unit": "work",
+      "label": "Total Dracula works",
+      "source_url": "https://www.bbc.com/news/magazine-19268563"
+    },
+    {
+      "value": 4,
+      "unit": "novels",
+      "label": "Sherlock Holmes novels",
+      "source_url": "https://www.bbc.com/news/magazine-19268563"
+    },
+    {
+      "value": 56,
+      "unit": "short stories",
+      "label": "Sherlock Holmes short stories",
+      "source_url": "https://www.bbc.com/news/magazine-19268563"
+    },
+    {
+      "value": 221,
+      "unit": "address number",
+      "label": "Sherlock Holmes address number",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "A Study in Scarlet",
+      "kind": "object"
+    },
+    {
+      "name": "1887",
+      "kind": "object"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "1897",
+      "kind": "object"
+    },
+    {
+      "name": "four novels",
+      "kind": "object"
+    },
+    {
+      "name": "fifty‑six short stories",
+      "kind": "object"
+    },
+    {
+      "name": "60",
+      "kind": "object"
+    },
+    {
+      "name": "single novel",
+      "kind": "object"
+    },
+    {
+      "name": "1",
+      "kind": "object"
+    },
+    {
+      "name": "221B Baker Street",
+      "kind": "place"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Castle Dracula",
+      "kind": "place"
+    },
+    {
+      "name": "Transylvania",
+      "kind": "place"
+    },
+    {
+      "name": "Romania",
+      "kind": "place"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "nothing exhausts me, except inactivity",
+      "speaker": "Sherlock Holmes",
+      "source_name": "Detective VS Vampire - A Powerbattle",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    }
+  ]
+}

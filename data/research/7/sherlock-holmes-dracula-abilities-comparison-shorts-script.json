@@ -1,0 +1,37 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-abilities-comparison",
+  "format": "shorts",
+  "hook": "Literature shows a massive 60-to-1 gap between the total works of these two iconic characters.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Literature shows a massive 60-to-1 gap between the total works of these two iconic characters.",
+      "visual_cue": "Show Sherlock Holmes silhouette and Dracula bat icon with a 60‑to‑1 number overlay."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1887, Arthur Conan Doyle debuted Sherlock Holmes in London with A Study in Scarlet. Which character boasts a 60-to-1 advantage in total story count?",
+      "visual_cue": "Display 1887 newspaper headline for Holmes, 1897 headline for Dracula, then a question mark over a scale."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "While Holmes operated from 221B Baker Street, the vampire lurked in a remote Romanian stronghold.",
+      "visual_cue": "Show 221B address sign, then Castle Dracula silhouette in misty mountains."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Holmes works from 221B Baker Street in London; Dracula haunts his castle in Transylvania.",
+      "visual_cue": "Bar chart comparing 60 vs 1 works, then split-screen of London street and Transylvanian castle."
+    },
+    {
+      "id": "close",
+      "voiceover": "Sherlock's output dwarfs Dracula's by a staggering 60‑to‑1.",
+      "visual_cue": "Zoom on 60‑to‑1 ratio graphic, fade to channel logo."
+    }
+  ],
+  "sources_used": [
+    "https://www.business-standard.com/article/news-ians/two-victorian-characters-and-their-eternal-influence-column-bookends-115021500066_1.html",
+    "https://www.bbc.com/news/magazine-19268563"
+  ]
+}
