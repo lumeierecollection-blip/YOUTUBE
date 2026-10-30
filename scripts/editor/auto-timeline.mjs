@@ -58,6 +58,34 @@ export function transcriptFromWords(words) {
   return { text: segments.map((s) => s.text).join(""), segments, language: "en", source: words.source };
 }
 
+/** Logo lookup: the scene resolver's organisation path (Wikipedia infobox, Wikidata, Commons; free licence or the owner's fair-use record). */
+function logoResolverFromSceneResolver(channelId) {
+  const { resolveSceneEntity } = createRequire(import.meta.url)("../resolve-scene.cjs");
+  return async ({ name, sentence, context }) => {
+    const r = await resolveSceneEntity({ channel: channelId, beatIndex: `logo-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`, entity: { type: "organization", name }, context, sentence });
+    if (!r?.ok || !r.logo) return { ok: false, why: r?.why || "no verified mark" };
+    const L = r.logo;
+    const fu = L.fair_use;
+    const credit = fu
+      ? `Logo: ${fu.holder || L.name}, fair use for identification (file page: ${fu.descurl || L.source_url})`
+      : `Logo: ${L.name}, ${L.license || "Wikimedia Commons"} (${L.source_url})`;
+    return { ok: true, file: rel(L.abs), width: L.w, height: L.h, credit, source_url: L.source_url, license: fu ? fu.license || "Fair use (identification)" : L.license, dark_mark: await isDarkMark(L.abs) };
+  };
+}
+
+/** True when the mark's visible pixels are mostly dark (a plate must then be light). */
+async function isDarkMark(file) {
+  const sharp = (await import("sharp")).default;
+  const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  let sum = 0, n = 0;
+  for (let k = 0; k < data.length; k += info.channels) {
+    if (data[k + 3] < 128) continue;
+    sum += 0.299 * data[k] + 0.587 * data[k + 1] + 0.114 * data[k + 2];
+    n++;
+  }
+  return n > 0 && sum / n < 110;
+}
+
 function resolverFromEntityAssets() {
   const { resolveEntity } = require("../entity-assets.cjs");
   return async ({ type, name, context }) => {
@@ -117,7 +145,7 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
   return timeline;
 }
 
-export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration }) {
+export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration, logoResolver = async () => ({ ok: false }) }) {
   const stem = basename(scriptPath, ".json");
   const base = join(ROOT, "data", "tts", channelId, `${stem}-vo`);
   const audio = `${base}.mp3`;
@@ -140,7 +168,7 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const queries2 = pairs.second;
   const topic = pairs.topic || research?.strongest_angle || "";
   const { plan, cards, report } = await buildAutoPlan({
-    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, story: pairs.story || [], topic, style,
+    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, story: pairs.story || [], topic, logo: logoResolver, style,
     audioPath: rel(audio), transcriptPath: rel(transcriptPath), scriptPath: rel(scriptPath), resolve: resolver,
   });
   const source = (script.sources_used || [])[0] || "";
@@ -182,6 +210,7 @@ async function main() {
   const map = existsSync(baseMapPath) ? JSON.parse(readFileSync(baseMapPath, "utf8")) : {};
   const probeDuration = (f) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", f], { encoding: "utf8" }).trim());
   const resolver = resolverFromEntityAssets();
+  const logoResolver = logoResolverFromSceneResolver(channelId);
   const concept = conceptFinder();
   const ask = defaultAsk();
   // --style N / EDITOR_STYLE=N forces one look (the comparison workflow); otherwise each video chooses its own from its slug (auto-plan.mjs)
@@ -190,7 +219,7 @@ async function main() {
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");
-    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration });
+    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration, logoResolver });
     map[stem] = r.timelinePath;
     console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (style ${r.report.style}, timing from ${r.report.spans}, ${r.report.photos} verified photo(s))`);
     for (const s of r.report.scenes) console.log(`  [${s.sentence}] ${s.start}-${s.end}s ${s.shows}`);

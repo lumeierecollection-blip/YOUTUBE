@@ -65,6 +65,8 @@ function textLayer({ id, text, rect, size, weight = 700, color, align = "left", 
   };
 }
 
+export const LOGO_RECT = { x: 120, y: 520, w: 840, h: 680 };
+
 function imageLayer({ id, assetId, rect, fit, inF, outF, z, scene }) {
   const span = Math.max(1, outF - inF);
   // No slow zoom and no pan: a held picture stays put. Movement comes from the cut itself: every beat lands slightly large and snaps to
@@ -171,6 +173,11 @@ export function buildTimeline(plan, { audioDuration, captions = [], generatedAt 
         });
       }
       layers.push(imageLayer({ id: `scene-${i}-image`, assetId: scene.asset, rect, fit: scene.fit || "cover", inF, outF: visualOutF, z: z++, scene }));
+      // A logo (an organisation's own mark, verified by resolve-scene.cjs) sits centred on its plate: contained, never cropped, with the
+      // same punch-in as a picture so the beat still moves. Its plate colour is chosen by the planner so the mark always reads.
+      if (scene.logo && assets[scene.logo]) {
+        layers.push(imageLayer({ id: `scene-${i}-logo`, assetId: scene.logo, rect: LOGO_RECT, fit: "contain", inF, outF: visualOutF, z: z++, scene: { ...scene, fx: 0.5, fy: 0.5, filter: undefined, fade: 0, zoom: 0 } }));
+      }
       if (isObject) {
         layers.push(frameLayer({ id: `scene-${i}-frame`, rect: { x: rect.x - 14, y: rect.y - 14, w: rect.w + 28, h: rect.h + 28 }, inF, outF: visualOutF, z: z++, accent: palette.accent }));
       }

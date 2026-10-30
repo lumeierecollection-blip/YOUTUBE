@@ -359,7 +359,7 @@ Two real defects, unrelated to this session's actual work but found while using 
 | AST-08 | Icon sizes âˆˆ {64, 120, 180, 240} | compiler | in set | 1 | MINOR | 9 | UNK |
 | AST-09 | Lucide ISC notice present | file check | present | 0 | BLOCKER | 2 | **PASS** — verbatim (claim-assets-005) |
 | AST-10 | Feather MIT notice present for the inherited icons | file check | present | 0 | BLOCKER | 2 | **PASS** - verbatim (claim-assets-005) |
-| AST-11 | No brand logos anywhere in the asset set | manual + `grep` | 0 | 4 | BLOCKER | 2 | **PASS** - 0 (claim-assets-006) |
+| AST-11 | Organisation logos: only the organisation the sentence names, only its own verified mark (Wikipedia infobox / Wikidata / Commons via resolve-scene.cjs, rembg cutout, vision check), free licence or the owner-approved fair-use record with its credit; never a logo of another body, never redrawn or invented. Owner decision 2026-10-31 (supersedes the earlier "no brand logos" blanket rule); the editor path is `scripts/editor/auto-plan.mjs` step 0 | `scripts/resolve-scene.cjs`, `scripts/editor/auto-plan.mjs`, `scripts/lib/fair-use-logo.cjs` | 0 | 4 | BLOCKER | 2 | **PASS** - logo beats carry a credit and source_url per asset; photo gate CNV-06 still refuses logos |
 | AST-12 | Every source image â‰¥1134 Ã— 2016 | probe each file | 100% | 0 | MAJOR | 9 | UNK |
 | AST-13 | No asset fetched over the network at render time | `grep https` in compositions | 0 hits | 1 | BLOCKER | 9 | UNK |
 | AST-14 | Every image for a named person or place is verified real | source log | 100% | 4 | BLOCKER | 9 | UNK |

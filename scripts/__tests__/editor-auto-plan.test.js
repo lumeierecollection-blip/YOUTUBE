@@ -564,3 +564,33 @@ test("the frame critic samples evenly, passes the caption and topic to the model
   assert.equal(none.available, false);
   assert.equal(summarize([]).share_good, null);
 });
+
+// ---- organisation logos -------------------------------------------------------------------------------------------------------------
+import { LOGO_RECT } from "../editor/timeline.mjs";
+
+test("an organisation named in a sentence shows its verified mark on a plate; with no verified mark the sentence falls through; a dark mark gets a light plate", async () => {
+  const orgScript = { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Obscure Org filed the report. Nothing else happened here." }] };
+  const org = { ...base, script: orgScript, research: { ...research, named_entities: [{ name: "Obscure Org", kind: "organization" }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null] };
+  const ok = await buildAutoPlan({ ...org, logo: async ({ name }) => (name === "Obscure Org" ? { ok: true, file: "logo.png", width: 800, height: 400, credit: "Logo: Obscure Org, CC0", source_url: "https://commons.example/x", license: "CC0", dark_mark: true } : { ok: false }) });
+  const logoScene = ok.plan.scenes[0];
+  assert.equal(logoScene.logo, "logo-obscure-org");
+  assert.equal(ok.plan.assets["logo-obscure-org"].credit, "Logo: Obscure Org, CC0");
+  assert.match(ok.report.scenes[0].shows, /^logo of Obscure Org/);
+  const plate = ok.cards.find((c) => c.id === logoScene.asset);
+  assert.match(plate.svg, /fill="#F5F5FF"/, "a dark mark sits on a light plate");
+  assert.equal(logoScene.gradient, "rgba(0,0,0,0)", "no scrim over a mark");
+  // the CLI registers each plate as an asset (auto-timeline.mjs writes the SVG); the test does the same
+  ok.plan.assets[logoScene.asset] = { file: "plate.svg", width: 1080, height: 1920, credit: "Graphic", source_url: "u", license: "Original" };
+  const tl = buildTimeline(ok.plan, { audioDuration: 12, captions: [] });
+  const layer = tl.layers.find((l) => l.id === "scene-0-logo");
+  assert.ok(layer, "the mark is an image layer over its plate");
+  assert.deepEqual(layer.rect, LOGO_RECT);
+  assert.equal(layer.fit, "contain", "contained, never cropped");
+
+  const none = await buildAutoPlan({ ...org, logo: async () => ({ ok: false, why: "no Commons logo" }) });
+  assert.ok(none.plan.scenes.every((s) => !s.logo), "no verified mark, no logo beat");
+  assert.match(none.report.misses.map((m) => m.entity).join(" "), /logo of Obscure Org/, "the miss is reported");
+
+  const light = await buildAutoPlan({ ...org, logo: async () => ({ ok: true, file: "l.png", width: 800, height: 400, credit: "c", source_url: "u", license: "CC0", dark_mark: false }) });
+  assert.match(light.cards.find((c) => c.id === light.plan.scenes[0].asset).svg, /fill="#000011"/, "a light mark sits on the channel's dark background");
+});

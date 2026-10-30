@@ -163,9 +163,10 @@ export function withBg(svgText, bg) {
  * queries[i] / queries2[i]: the two concept search phrases for sentence i (or null). story: photographable phrases about the video as a whole
  * (the pool a sentence falls back on when its own phrases find nothing); topic: what the whole video is about (the photo check judges against it).
  * A photo is shown ONCE: it is never reused or re-framed, unless a verified photo of a named entity is wanted again because the script names it again.  style: 1-5 (styles.mjs).
+ * logo({name, sentence}) -> {ok, file, width, height, credit, source_url, license, dark_mark} | {ok:false}: an organisation's verified mark (resolve-scene.cjs).
  * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
-export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], story = [], topic = "", style = 1, maxPhotos = 8 }) {
+export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], story = [], topic = "", logo = async () => null, style = 1, maxPhotos = 8 }) {
   const sentences = scriptSentences(script);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
@@ -197,6 +198,11 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const n = sentences.length;
 
   const storyPool = story.filter(Boolean);
+  // An organisation named in a sentence shows its own mark on a plate (the mark is never redrawn or invented; no mark, no logo beat). A mark
+  // named again later reuses its record; a plate is light for a dark mark and dark for a light one so the mark always reads.
+  const logoByName = new Map();
+  const plateFor = (dark) => (dark ? palette.text : palette.bg);
+  const plateSvg = (color) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="${color}"/></svg>\n`;
   // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
   const findConcept = async (phrases, sentence, { fallback = true } = {}) => {
     const tries = [...phrases.filter(Boolean)];
@@ -236,8 +242,30 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     let scene = null;
     let how = "";
 
+    // 0. an organisation the sentence names, with a verified mark: the mark on its plate
+    let logoScene = null;
+    for (const ent of entitiesIn(sentence, idx).filter((e) => e.kind === "organization")) {
+      let rec = logoByName.get(ent.name);
+      if (rec === undefined) {
+        const r = await logo({ name: ent.name, sentence, context: research?.strongest_angle || "" }).catch((e) => ({ ok: false, why: String(e.message || e) }));
+        rec = r?.ok ? r : null;
+        logoByName.set(ent.name, rec);
+        if (!rec) misses.push({ sentence: i, entity: `logo of ${ent.name}`, why: r?.why || "no verified mark" });
+      }
+      if (!rec) continue;
+      const logoId = `logo-${ent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      if (!assets[logoId]) assets[logoId] = { file: rec.file, width: rec.width, height: rec.height, credit: rec.credit, source_url: rec.source_url, license: rec.license };
+      const plateId = `card-${i}`;
+      cards.push({ id: plateId, svg: plateSvg(plateFor(rec.dark_mark)) });
+      logoScene = { ...base, id: `s${i}-${logoId}`, asset: plateId, logo: logoId, gradient: "rgba(0,0,0,0)" };
+      how = `logo of ${ent.name}`;
+      break;
+    }
+    if (logoScene) scene = logoScene;
+
     // 1. a verified photo of a named entity the sentence names
     for (const ent of entitiesIn(sentence, idx)) {
+      if (scene) break;
       let photo = photoByName.get(ent.name);
       if (photo === undefined && photos < maxPhotos) {
         // The name as the script has it, then without an honorific ("Sir Brian Leveson" -> "Brian Leveson", the title Wikipedia uses).
