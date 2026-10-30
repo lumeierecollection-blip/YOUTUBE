@@ -1,0 +1,61 @@
+{
+  "topic_slug": "beyonce-parkwood-alien-superstar-lawsuit",
+  "strongest_angle": "Parkwood Entertainment filed court papers in October 2026 asking a California federal judge to impose financial penalties and dismiss a second objectively baseless lawsuit regarding the track Alien Superstar.",
+  "key_facts": [
+    {
+      "fact": "Parkwood Entertainment filed court papers in California on October 15, 2026, asking a federal judge to impose financial penalties and permanently dismiss the second lawsuit.",
+      "source_url": "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions",
+      "source_name": "Law Commentary",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Beyoncé's label Parkwood Entertainment targeted the former label boss and his attorney over tangled and conflicting copyright claims regarding the 2022 Renaissance track Alien Superstar.",
+      "source_url": "https://www.billboard.com/pro/beyonce-alien-superstar-case-label-blasts-lawsuit-sample",
+      "source_name": "Billboard",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Music Business Worldwide reported on October 21, 2026, that Beyoncé's company Parkwood Entertainment wants the plaintiff and lawyer to pay legal bills for an objectively baseless second lawsuit.",
+      "source_url": "https://www.musicbusinessworldwide.com/beyonces-parkwood-asks-court-to-make-plaintiff-and-his-lawyer-pay-for-objectively-baseless-second-alien-superstar-lawsuit",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Law Commentary reported on October 20, 2026, that Beyoncé's entertainment company accused a music copyright owner and his attorney of making contradictory ownership claims.",
+      "source_url": "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions",
+      "source_name": "Law Commentary",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Renaissance track Alien Superstar",
+      "value": 2022,
+      "unit": "year",
+      "source_url": "https://www.billboard.com/pro/beyonce-alien-superstar-case-label-blasts-lawsuit-sample"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Parkwood Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Alien Superstar",
+      "kind": "object"
+    },
+    {
+      "name": "Renaissance",
+      "kind": "object"
+    },
+    {
+      "name": "Beyoncé",
+      "kind": "person"
+    },
+    {
+      "name": "California",
+      "kind": "place"
+    }
+  ]
+}

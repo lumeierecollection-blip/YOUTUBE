@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "beyonce-parkwood-alien-superstar-lawsuit",
+  "format": "shorts",
+  "hook": "A second baseless lawsuit against Beyoncé over her 2022 track Alien Superstar risks major financial penalties.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A second baseless lawsuit against Beyoncé over her 2022 track Alien Superstar risks major financial penalties.",
+      "text_overlay": {
+        "text": "Alien Superstar Lawsuit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Parkwood Entertainment filed court papers in California on October 15, 2026, seeking penalties. Will a California federal judge force the plaintiff and his attorney to pay legal bills?",
+      "text_overlay": {
+        "text": "California Court Filing"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Parkwood Entertainment claims these ownership assertions are objectively baseless and contradictory.",
+      "text_overlay": {
+        "text": "Contradictory Claims"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Music Business Worldwide reported on October 21, 2026, that the label demands payment for legal costs. This move targets the tangled copyright claims surrounding the production of Alien Superstar.",
+      "text_overlay": {
+        "text": "Legal Costs Demanded"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The California federal judge must now rule on these requests for financial penalties.",
+      "text_overlay": {
+        "text": "Pending Court Ruling"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions",
+    "https://www.musicbusinessworldwide.com/beyonces-parkwood-asks-court-to-make-plaintiff-and-his-lawyer-pay-for-objectively-baseless-second-alien-superstar-lawsuit"
+  ]
+}
