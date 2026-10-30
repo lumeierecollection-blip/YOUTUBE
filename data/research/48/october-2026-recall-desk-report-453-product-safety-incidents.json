@@ -1,0 +1,127 @@
+{
+  "topic_slug": "october-2026-recall-desk-report-453-product-safety-incidents",
+  "strongest_angle": "Analyze the October 2026 Recall Desk report detailing 453 announced product recalls across the FDA, NHTSA, and CPSC, breaking down the severity tiers and issuing agencies by the numbers.",
+  "key_facts": [
+    {
+      "fact": "A total of 453 product recalls were announced in October 2026 according to The Recall Desk report.",
+      "source_url": "https://therecalldesk.com/archive/2026/10",
+      "source_name": "The Recall Desk",
+      "confidence": "high"
+    },
+    {
+      "fact": "The FDA Devices sector issued 245 recalls in October 2026, leading all monitored government agencies.",
+      "source_url": "https://therecalldesk.com/archive/2026/10",
+      "source_name": "The Recall Desk",
+      "confidence": "high"
+    },
+    {
+      "fact": "RecallSweep collects every recall published by the Consumer Product Safety Commission into one searchable feed with 3,471 recalls in the current 180-day window.",
+      "source_url": "https://recallsweep.com",
+      "source_name": "RecallSweep",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Recalls October 2026",
+      "value": 453,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Critical Severity Recalls",
+      "value": 10,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Severe Severity Recalls",
+      "value": 153,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "High Severity Recalls",
+      "value": 94,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Moderate Severity Recalls",
+      "value": 181,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Low Severity Recalls",
+      "value": 15,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "FDA Devices Recalls",
+      "value": 245,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "NHTSA Recalls",
+      "value": 76,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "FDA Drugs Recalls",
+      "value": 47,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "FDA Food Recalls",
+      "value": 42,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "CPSC Recalls",
+      "value": 39,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "USDA FSIS Recalls",
+      "value": 4,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "RecallSweep 180-day window recalls",
+      "value": 3471,
+      "unit": "recalls",
+      "source_url": "https://recallsweep.com"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "The Recall Desk",
+      "kind": "organization"
+    },
+    {
+      "name": "RecallSweep",
+      "kind": "organization"
+    },
+    {
+      "name": "FDA",
+      "kind": "organization"
+    },
+    {
+      "name": "NHTSA",
+      "kind": "organization"
+    },
+    {
+      "name": "CPSC",
+      "kind": "organization"
+    }
+  ]
+}

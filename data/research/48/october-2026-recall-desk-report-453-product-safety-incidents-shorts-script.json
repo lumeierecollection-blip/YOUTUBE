@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "october-2026-recall-desk-report-453-product-safety-incidents",
+  "format": "shorts",
+  "hook": "In October 2026, 453 product recalls were announced across government agencies.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, 453 product recalls were announced across government agencies.",
+      "text_overlay": {
+        "text": "453 Recalls: Oct 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How do the 245 FDA medical device recalls compare to the 39 CPSC product recalls?",
+      "text_overlay": {
+        "text": "FDA Devices: 245"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Moderate severity issues represent 181 of the total recalls announced throughout October 2026.",
+      "text_overlay": {
+        "text": "181 Moderate Recalls"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Critical safety failures reached 10 cases, while severe incidents hit 153 total recalls. RecallSweep, a searchable database, aggregates 3,471 CPSC recalls from the last 180 days.",
+      "text_overlay": {
+        "text": "153 Severe Recalls"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Search the RecallSweep database for all 3,471 recalls published by the CPSC within 180 days.",
+      "text_overlay": {
+        "text": "3,471 Recalls Tracked"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://therecalldesk.com/archive/2026/10",
+    "https://recallsweep.com"
+  ]
+}
