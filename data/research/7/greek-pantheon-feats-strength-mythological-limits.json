@@ -1,0 +1,72 @@
+{
+  "topic_slug": "greek-pantheon-feats-strength-mythological-limits",
+  "strongest_angle": "An in-depth analysis comparing the stated mythological feats, divine powers, and limitations of Olympian deities and heroes like Zeus and Heracles based on classical sources.",
+  "key_facts": [
+    {
+      "fact": "According to Classical-era mythology, Zeus and the Olympian gods resided on Mount Olympus after a 10-year-long war over the Titans.",
+      "source_url": "https://en.wikipedia.org/wiki/Twelve_Olympians",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Heracles was enlisted as a mortal necessity in the Olympian gods battle against the Giants, fighting paired with Zeus or Athena.",
+      "source_url": "https://doi.org/10.1093/oxfordhb/9780190650988.013.16",
+      "source_name": "Oxford Handbooks Online",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Cyclopes forged Zeus his thunderbolt, which became his most iconic symbol and weapon used after the overthrow of the previous generation.",
+      "source_url": "https://www.theoi.com/articles/who-was-the-strongest-greek-god-and-why",
+      "source_name": "Theoi Project",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Euripides tragedy Hippolytos, Artemis states that she must not interfere with Aphrodite's decision due to divine law.",
+      "source_url": "https://doi.org/10.14746/sppgl.2020.xxx.1",
+      "source_name": "Poznańskie Studia Polonistyczne. Seria Językoznawcza",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "War duration against Titans",
+      "value": 10,
+      "unit": "years",
+      "source_url": "https://en.wikipedia.org/wiki/Twelve_Olympians"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Zeus",
+      "kind": "person"
+    },
+    {
+      "name": "Heracles",
+      "kind": "person"
+    },
+    {
+      "name": "Mount Olympus",
+      "kind": "place"
+    },
+    {
+      "name": "Athena",
+      "kind": "person"
+    },
+    {
+      "name": "Artemis",
+      "kind": "person"
+    },
+    {
+      "name": "Aphrodite",
+      "kind": "person"
+    },
+    {
+      "name": "Titans",
+      "kind": "organization"
+    },
+    {
+      "name": "Cyclopes",
+      "kind": "organization"
+    }
+  ]
+}

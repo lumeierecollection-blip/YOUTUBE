@@ -1,0 +1,90 @@
+{
+  "channel_id": "7",
+  "topic_slug": "greek-pantheon-feats-strength-mythological-limits",
+  "format": "shorts",
+  "hook": "Mount Olympus became home to Zeus after a brutal 10-year war against the Titans.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Mount Olympus became home to Zeus after a brutal 10-year war against the Titans.",
+      "visual_cue": "Historical illustration of Mount Olympus peak under stormy skies",
+      "sfx_cue": "Thunder rumbling softly",
+      "b_roll": [
+        "Mount Olympus classical painting public domain"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "10 Years at War"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "The Cyclopes forged Zeus his iconic thunderbolt, a weapon he used after the Titans fell. What limits bound these divine powers?",
+      "visual_cue": "Ancient Greek coin showing thunderbolt symbol",
+      "sfx_cue": "Subtle metal strike",
+      "b_roll": [
+        "Cyclopes ancient art public domain",
+        "Heracles classical sculpture illustration"
+      ],
+      "animation_cue": "Slide right",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Forged by Cyclopes"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "But divine law prevents even the gods from bypassing the rules set for Mount Olympus.",
+      "visual_cue": "Scholarly text excerpt from Poznańskie Studia Polonistyczne",
+      "sfx_cue": "Page turn sound",
+      "b_roll": [
+        "Classical manuscript folio"
+      ],
+      "animation_cue": "Zoom in slightly",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Bound by Divine Law"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Artemis states divine law forbids her from interfering with Aphrodite's decision in 1 tragedy. Fighting alongside Zeus or Athena, mortal Heracles joined 1 battle against the Giants.",
+      "visual_cue": "Oxford Handbooks Online text source display",
+      "sfx_cue": "Low ambient tension hum",
+      "b_roll": [
+        "Hippolytos tragedy manuscript illustration"
+      ],
+      "animation_cue": "Pan left",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Artemis and Aphrodite"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Zeus and the Olympian gods guarded Mount Olympus after their 10-year war against the Titans.",
+      "visual_cue": "Wikipedia classical studies reference graphic",
+      "sfx_cue": "Soft wind chime",
+      "b_roll": [
+        "Mount Olympus peak vista"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade",
+      "text_overlay": {
+        "text": "Mount Olympus"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Twelve_Olympians",
+    "https://doi.org/10.1093/oxfordhb/9780190650988.013.16",
+    "https://www.theoi.com/articles/who-was-the-strongest-greek-god-and-why",
+    "https://doi.org/10.14746/sppgl.2020.xxx.1"
+  ]
+}
