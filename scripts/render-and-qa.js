@@ -68,6 +68,7 @@ const RENDER_JS = join(ROOT, "src", "skills", "remotion-render", "render.js");
 const REMOTION_ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "Root.jsx");
 const VIDEO_REVIEW_JS = join(__dirname, "video-review.js");
 const EDITOR_QA_JS = join(__dirname, "editor", "video-qa.js");
+const FRAME_CRITIC_JS = join(__dirname, "editor", "frame-critic.mjs");
 const FRAME_AUDIT_JS = join(__dirname, "frame-audit.js");
 const SLOP_CHECK_JS = join(__dirname, "slop-check.js");
 const GEMINI_REVIEW_JS = join(__dirname, "gemini-frame-review.js");
@@ -2859,6 +2860,16 @@ async function renderEditorTimeline(channelId, scriptPath, format, timelineInfo,
     return { skipped: false, ok: false, queued: q || undefined };
   }
   console.log(`[editor] ${basename(scriptPath)} passed final-MP4 QA; report ${relative(ROOT, qaOut)}`);
+  // The editor's eyes: a vision model looks at ten frames and says whether they would be published. ADVISORY (never fails the render): its
+  // report sits next to the MP4 and its warnings show in the log, so a chart that reads badly or a photo that does not fit is visible.
+  try {
+    await runChild("node", [
+      FRAME_CRITIC_JS, "--video", relative(ROOT, outputPath), "--timeline", relative(ROOT, timelineInfo.timelinePath),
+      "--out", relative(ROOT, outputPath.replace(/\.mp4$/, "-frame-critic.json")), "--max", "10",
+    ], { label: `${label} frame-critic` });
+  } catch (err) {
+    console.warn(`[frame-critic] skipped: ${err.message}`);
+  }
   // Evidence: ties this exact MP4 to its script, timeline, voiceover, assets and QA report (SHA-256) and names the renderer. A render
   // that cannot be attested does not count as a pass.
   let manifestPath;

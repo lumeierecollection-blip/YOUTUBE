@@ -28,14 +28,17 @@ export function parseQueryPairs(answer, count) {
   }
   const first = new Array(count).fill(null);
   const second = new Array(count).fill(null);
-  const src = obj && (obj.queries || obj);
-  if (!src || typeof src !== "object") return { first, second };
+  const src = obj && (obj.sentences || obj.queries || obj);
+  const clean0 = (v) => (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim()) ? v.trim().slice(0, 60) : null);
+  const story = obj && Array.isArray(obj.story) ? [...new Set(obj.story.map(clean0).filter(Boolean))].slice(0, 8) : [];
+  const topic = obj && typeof obj.subject === "string" ? obj.subject.trim().slice(0, 120) : "";
+  if (!src || typeof src !== "object") return { first, second, story, topic };
   const clean = (v) => (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim()) ? v.trim().slice(0, 60) : null);
   for (let i = 0; i < count; i++) {
     const v = Array.isArray(src) ? src[i] : src[String(i)];
     if (Array.isArray(v)) { first[i] = clean(v[0]); second[i] = clean(v[1]); if (second[i] === first[i]) second[i] = null; } else first[i] = clean(v);
   }
-  return { first, second };
+  return { first, second, story, topic };
 }
 
 export function parseQueries(answer, count) {
@@ -43,13 +46,16 @@ export function parseQueries(answer, count) {
 }
 
 export function conceptPrompt({ sentences, topic, niche }) {
-  return `You choose photographs for a short documentary video about: ${topic || "the story"} (channel niche: ${niche || "general"}).
-Every sentence gets TWO different pictures, shown one after the other while it is spoken. For EACH numbered sentence give two 2-5 word search phrases for
-Wikimedia Commons that find a REAL PHOTOGRAPH of the specific thing the sentence says, not just the place or the mood around it.
-Be specific to the claim: for "California storms flooded the coast" use "flooded street storm" and "storm waves pier", NOT "California beach".
-Keep the place or subject word in the phrase when it matters ("Yosemite granite cliff"), and make the two phrases show different things (a wide view, then a detail).
+  return `You are the picture editor of a short documentary video about: ${topic || "the story"} (channel niche: ${niche || "general"}).
+Read the WHOLE script first. Every picture must belong to this one story, so that the sequence of pictures explains the video as a whole: where it happens, what
+is at stake, the objects and places involved. Never a stock image that fits any video.
+1. "subject": the video's subject in 3-8 words (place + thing + time if the script gives them).
+2. "sentences": for EACH numbered sentence, two different 2-5 word Wikimedia Commons search phrases for a REAL PHOTOGRAPH of what that sentence says, inside the subject's world.
+   Keep the subject's place or thing in the phrase when it matters ("California wildfire smoke", not "fire"). Be specific to the claim: for "storms flooded the coast"
+   use "flooded street storm" and "storm waves pier", NOT "beach". The two phrases show different things (a wide view, then a detail).
+3. "story": 6 more phrases for photographs of the subject as a whole (landmarks, equipment, locations, daily life), used where a sentence has nothing photographable.
 Rules: never a person's name, a brand, a logo, a screenshot, a chart or a map; no abstract words ("success", "growth"); use null for a phrase when nothing photographable fits.
-Answer ONLY JSON like {"0":["airline cockpit","pilot checklist"],"1":["tide mill",null]}.
+Answer ONLY JSON like {"subject":"...","sentences":{"0":["airline cockpit","pilot checklist"],"1":["tide mill",null]},"story":["...","..."]}.
 
 ${sentences.map((s, i) => `${i}. ${s}`).join("\n")}`;
 }
@@ -104,14 +110,14 @@ export async function conceptQueries({ sentences, topic, niche, ask }) {
     return parseQueryPairs(await ask(conceptPrompt({ sentences, topic, niche })), sentences.length);
   } catch (e) {
     console.error(`[concept-photo] model call failed (${e.message}); no concept photos this run`);
-    return { first: new Array(sentences.length).fill(null), second: new Array(sentences.length).fill(null) };
+    return { first: new Array(sentences.length).fill(null), second: new Array(sentences.length).fill(null), story: [], topic: "" };
   }
 }
 
 export function defaultAsk() {
   return async (prompt) => {
     const { callLLM } = await import("../../src/lib/llm.js");
-    return callLLM([{ role: "user", content: prompt }], { maxTokens: 1200, temperature: 0, keepAlive: 0 }, "concept-photo");
+    return callLLM([{ role: "user", content: prompt }], { maxTokens: 1800, temperature: 0, keepAlive: 0 }, "concept-photo");
   };
 }
 
@@ -120,11 +126,11 @@ export function defaultAsk() {
  * real person (a stranger's face over an unrelated claim misrepresents them), (c) not be mostly readable text, a logo, a screenshot or a chart.
  * Fails CLOSED: no answer, or an unparseable one, rejects the photo.
  */
-export function visionPrompt({ sentence, query }) {
-  return `A documentary video narrates this sentence: "${sentence}"
+export function visionPrompt({ sentence, query, topic = "" }) {
+  return `A documentary video${topic ? ` about "${topic}"` : ""} narrates this sentence: "${sentence}"
 We are considering this photograph (found with the search phrase "${query}") to show on screen while it is spoken.
 Answer ONLY JSON: {"shows_subject": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
-shows_subject = a viewer would say the photo shows the specific thing the sentence claims or describes. A photo of only the place or the general setting does not count
+shows_subject = (it must also belong to the video's subject above, not just the sentence) a viewer would say the photo shows the specific thing the sentence claims or describes. A photo of only the place or the general setting does not count
 (a sunny beach does not illustrate "California storms"; a generic skyline does not illustrate "the bank collapsed"). If you would hesitate, answer false.
 identifiable_person = a real person's face is recognisable or clearly the focus (crowds far away and silhouettes are false).
 mostly_text_or_logo = readable text, a logo, a screenshot, a document, a map or a chart fills the frame.`;
@@ -144,9 +150,9 @@ export function parseVerdict(answer) {
 }
 
 /** askVision({prompt, imageBase64}) -> the model's answer. Injected for tests. */
-export async function verifyConceptPhoto({ sentence, query, jpeg, askVision }) {
+export async function verifyConceptPhoto({ sentence, query, topic = "", jpeg, askVision }) {
   try {
-    return parseVerdict(await askVision({ prompt: visionPrompt({ sentence, query }), imageBase64: jpeg.toString("base64") }));
+    return parseVerdict(await askVision({ prompt: visionPrompt({ sentence, query, topic }), imageBase64: jpeg.toString("base64") }));
   } catch (e) {
     return { ok: false, why: `vision check failed: ${e.message}` };
   }

@@ -133,9 +133,10 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   const withFig = plan.scenes.find((x) => x.graphic);
   assert.equal(withFig.graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic beside the photo");
   assert.ok(["bar", "ring"].includes(withFig.graphic.kind));
-  assert.equal(plan.scenes[0].graphic, undefined, "the photo is shown on its own first; the panel arrives on the second beat");
+  assert.ok(withFig.stagger > 30, "with no second photo the same photo stays and the panel arrives part-way in");
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
-  assert.match(report.scenes[2].shows, /concept-0 again, re-framed/, "a miss re-uses the story's own photo, framed differently");
+  assert.match(report.scenes[2].shows, /key-word poster/, "a miss never re-uses an earlier photo: each photo is shown once");
+  assert.equal(plan.scenes.filter((x) => x.asset === "concept-0").length, 1, "the photo appears in one scene only");
 });
 
 test("each of the five looks draws a figure overlay with no gradient fill and no sentence text", () => {
@@ -215,19 +216,27 @@ test("the home look comes up about half the time, and a forced look is honoured"
   assert.ok(home > 160 && home < 260, `home look share ${home}/400`);
 });
 
-test("every sentence is two visuals: a long photo shot is hard-cut to a tighter crop halfway, and nothing zooms or pans", async () => {
-  const { plan } = await planFor("split-test-shorts-script");
+test("a photo is shown once: no tighter-crop repeat, no re-use, and nothing zooms or pans", async () => {
+  let n = 0;
+  const concept = async () => ({ file: `c${n++}.jpg`, width: 2000, height: 1300, credit: "c", source_url: "u", license: "CC0" });
+  const { plan } = await planFor("split-test-shorts-script", { concept, queries: ["a", "b", "c"], queries2: ["d", "e", "f"], resolve: async () => ({ ok: false }) });
   const s = plan.scenes;
-  const second = s.find((x) => x.id.endsWith("b"));
-  assert.ok(second, "a scene was cut in two");
-  const first = s.find((x) => x.id === second.id.slice(0, -1) || x.id === second.id.slice(0, -1) + "a");
-  assert.equal(first.end, second.start);
-  assert.equal(first.asset, second.asset, "same photo, a different framing");
-  assert.equal(second.scale, 1.3, "the cut goes to a tighter crop");
-  assert.ok(second.fx !== undefined);
+  const counts = {};
+  for (const x of s) counts[x.asset] = (counts[x.asset] || 0) + 1;
+  for (const [asset, k] of Object.entries(counts)) if (/^concept-/.test(asset)) assert.equal(k, 1, `${asset} is shown once`);
+  assert.ok(s.every((x) => x.scale === undefined && x.motion === undefined && x.zoom === undefined), "no crop-in or camera move is planned");
   for (let i = 1; i < s.length; i++) assert.equal(s[i].start, s[i - 1].end, "no gap or overlap");
   assert.equal(s.at(-1).end, 24);
-  assert.ok(s.every((x) => x.motion === undefined && x.zoom === undefined), "no camera move is planned");
+});
+
+test("the story-wide pool fills a sentence whose own phrases find nothing, and the photo check is told what the whole video is about", async () => {
+  const seen = [];
+  const concept = async ({ query, topic }) => { seen.push([query, topic]); return query === "harbour crane" ? { file: "h.jpg", width: 2000, height: 1300, credit: "c", source_url: "u", license: "CC0" } : null; };
+  const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: [null, "nothing here", null, null], queries2: [null, null, null, null], story: ["harbour crane", "pier"], topic: "Port of Oakland strike" });
+  const hits = Object.entries(plan.assets).filter(([, v]) => v.file === "h.jpg");
+  assert.equal(hits.length, 1, "a sentence with no phrase of its own got a story-pool photo");
+  assert.equal(plan.scenes.filter((x) => x.asset === hits[0][0]).length, 1, "and it is shown once");
+  assert.ok(seen.every(([, t]) => t === "Port of Oakland strike"));
 });
 
 test("a sentence with a second concept photo shows it after the first, so each sentence changes picture", async () => {
@@ -476,7 +485,6 @@ test("a figure on a photo scene goes in its own panel under the photo; the photo
   const resolve = async ({ name }) => (/Doeson/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" } : { ok: false });
   const { plan } = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Doeson said 45% agreed. Then it ended." }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve, concept: async () => null, queries: [null, null], style: 1 });
   const s0 = plan.scenes.find((x) => x.graphic);
-  assert.ok(plan.scenes.indexOf(s0) > 0, "the photo comes first on its own, then the panel arrives");
   assert.deepEqual(s0.rect, PHOTO_RECT);
   assert.equal(s0.gradient, "rgba(0,0,0,0)");
   assert.equal(s0.graphic.mode, "split");
@@ -533,4 +541,26 @@ test("every beat opens with a small punch-in that settles in 9 frames, then the 
   assert.equal(k0.at(-1).v, k0[1].v, "then it holds still: no slow push");
   const k1 = tl.layers.find((l) => l.id === "scene-1-image").keyframes.scale;
   assert.equal(k1.length, 2, "punch: 0 turns it off");
+});
+
+// ---- the editor's eyes -------------------------------------------------------------------------------------------------------------
+import { critique, parseVerdict as parseFrameVerdict, pickTimes, summarize } from "../editor/frame-critic.mjs";
+
+test("the frame critic samples evenly, passes the caption and topic to the model, and fails soft when the model does not answer", async () => {
+  assert.deepEqual(pickTimes(20, 4), [2.5, 7.5, 12.5, 17.5]);
+  assert.equal(parseFrameVerdict({ content: "no json" }), null);
+  assert.equal(parseFrameVerdict({ verdict: "great" }), null);
+  const prompts = [];
+  const answers = ['{"verdict":"good","issues":[],"photo_matches_caption":true,"chart_readable":null}', '{"verdict":"bad","issues":["text over a face"],"photo_matches_caption":false,"chart_readable":false}', "garbage"];
+  const timeline = { fps: 30, captions: [{ start_f: 0, end_f: 300, text: "First words" }, { start_f: 300, end_f: 900, text: "Later words" }] };
+  const r = await critique({ duration: 30, timeline, max: 3, topic: "El Nino 2026", extractFrame: async () => Buffer.from("x"), askVision: async ({ prompt }) => { prompts.push(prompt); return { content: answers[prompts.length - 1] }; } });
+  assert.match(prompts[0], /El Nino 2026/);
+  assert.match(prompts[0], /First words/);
+  assert.match(prompts[1], /Later words/);
+  assert.equal(r.available, true);
+  assert.deepEqual([r.summary.good, r.summary.bad, r.summary.photo_mismatches, r.summary.unreadable_charts], [1, 1, 1, 1]);
+  assert.equal(r.frames[2].verdict, null, "an unparseable answer is recorded as no opinion, not as good");
+  const none = await critique({ duration: 10, max: 2, extractFrame: async () => Buffer.from("x"), askVision: async () => { throw new Error("down"); } });
+  assert.equal(none.available, false);
+  assert.equal(summarize([]).share_good, null);
 });

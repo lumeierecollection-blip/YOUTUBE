@@ -160,10 +160,12 @@ export function withBg(svgText, bg) {
 /**
  * resolve({type,name,context}) -> {ok,file,width,height,credit,source_url,license}   a VERIFIED photo of a named entity (entity-assets)
  * concept({query, used}) -> {file,width,height,credit,source_url,license} | null       a real photo of the CONCEPT (concept-photo)
- * queries[i]: the concept search phrase for sentence i (or null).  style: 1-5 (styles.mjs).
+ * queries[i] / queries2[i]: the two concept search phrases for sentence i (or null). story: photographable phrases about the video as a whole
+ * (the pool a sentence falls back on when its own phrases find nothing); topic: what the whole video is about (the photo check judges against it).
+ * A photo is shown ONCE: it is never reused or re-framed, unless a verified photo of a named entity is wanted again because the script names it again.  style: 1-5 (styles.mjs).
  * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
-export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], style = 1, maxPhotos = 8 }) {
+export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], story = [], topic = "", style = 1, maxPhotos = 8 }) {
   const sentences = scriptSentences(script);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
@@ -193,6 +195,19 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const yearsShown = new Set();
   let mapsShown = 0;
   const n = sentences.length;
+
+  const storyPool = story.filter(Boolean);
+  // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
+  const findConcept = async (phrases, sentence, { fallback = true } = {}) => {
+    const tries = [...phrases.filter(Boolean)];
+    if (fallback) tries.push(...storyPool.splice(0, 3));
+    for (const q of tries) {
+      const c = await concept({ query: q, sentence, topic, used: usedFiles }).catch(() => null);
+      if (c) { usedFiles.add(c.file); return { c, q }; }
+      misses.push({ sentence: -1, entity: `concept "${q}"`, why: "no acceptable Commons photo" });
+    }
+    return null;
+  };
 
   for (let i = 0; i < n; i++) {
     const sentence = sentences[i];
@@ -258,16 +273,16 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     }
 
     // 2. a real photo of the concept the sentence is about (+ its figure drawn over it). The scene-director payoff is a flat poster instead.
-    if (!scene && queries[i]) {
-      const c = await concept({ query: queries[i], sentence, used: usedFiles }).catch(() => null);
-      if (c) {
-        usedFiles.add(c.file);
+    if (!scene) {
+      const got = await findConcept([queries[i], queries2[i]], sentence);
+      if (got) {
+        const { c, q } = got;
         const id = `concept-${i}`;
         assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
         if (gfigs.length) splitScene(scene);
-        how = `concept photo "${queries[i]}"${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
-      } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
+        how = `concept photo "${q}"${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
+      }
     }
 
     // 3. no photo: the figure alone on a flat colour, or the sentence's key words as a poster
@@ -279,19 +294,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         cards.push({ id, svg: backdropSvg(palette) });
         how = `figure alone ${gfigs.map((f) => f.raw).join(", ")}`;
       } else {
-        // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a
-        // shot (a verified photo of the subject first, then a concept photo; never the one on screen a moment ago). A poster of key words
-        // is the last resort, only when the video has no photo at all.
-        const uses = (a) => scenes.filter((x) => x.asset === a).length;
-        const pool = Object.keys(assets).filter((a) => /^(photo|concept)-/.test(a) && a !== lastAsset && uses(a) < 5).sort((a, b) => (a.startsWith("photo-") ? 0 : 1) - (b.startsWith("photo-") ? 0 : 1));
-        if (pool.length) {
-          const reuse = pool[Math.floor(rng() * Math.min(pool.length, 2))];
-          scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, scale: 1.25, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
-          how = `${reuse} again, re-framed`;
-        } else {
-          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
-          how = "key-word poster";
-        }
+        // No photo for this sentence and no figure to draw. A photo is never shown twice, so the sentence's key words go up as a poster.
+        cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
+        how = "key-word poster";
       }
       if (!scene) {
         const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
@@ -303,45 +308,31 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     lastAsset = scene.graphic?.kind === "map" ? "map" : scene.asset;
     scene.look = look.name;
 
-    // Two visuals per sentence: a viewer's eye is held by a change every couple of seconds. The second beat is a different, contextual
-    // picture (the second concept photo for this sentence) or, failing that, a hard cut to a tighter crop of the same photo; a figure's
-    // panel arrives on the second beat, so the number lands after the picture has set the scene.
+    // Two visuals per sentence: a viewer's eye is held by a change every couple of seconds. The second beat is a DIFFERENT picture (the
+    // sentence's next phrase, never a crop of the first). Where a sentence has a figure the panel arrives on the second beat, so the
+    // number lands after the picture has set the scene. No second photo found: the sentence stays one beat (a photo is never shown twice).
     const dur = end - start;
     const isPhoto = (sc) => /^(photo|concept)-/.test(sc.asset);
-    const ask2 = [queries2[i], queries[i]].filter((q, k, a) => q && a.indexOf(q) === k && !how.includes('"' + q + '"'));
     const secondPhoto = async () => {
-      for (const q of ask2) {
-        const c = await concept({ query: q, sentence, used: usedFiles }).catch(() => null);
-        if (!c) continue;
-        usedFiles.add(c.file);
-        const id = `concept-${i}b`;
-        assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
-        return { id, how: `concept photo "${q}"` };
-      }
-      return null;
+      const got = await findConcept([queries2[i], queries[i]].filter((q) => q && !how.includes('"' + q + '"')), sentence, { fallback: storyPool.length > 3 });
+      if (!got) return null;
+      const id = `concept-${i}b`;
+      assets[id] = { file: got.c.file, width: got.c.width, height: got.c.height, credit: got.c.credit, source_url: got.c.source_url, license: got.c.license };
+      return { id, how: `concept photo "${got.q}"` };
     };
-    const tight = (sc, extra = {}) => ({ ...sc, id: sc.id + "b", graphic: undefined, kicker: undefined, kicker_y: undefined, rect: undefined, gradient: look.scrim, fade: 0, scale: 1.3, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.65]), ...extra });
     const cutAt = start + dur * (0.42 + rng() * 0.16);
     let first = scene;
     let second = null;
+    let panelDelay = 0;
     if (dur >= 2.6) {
       if (scene.graphic && scene.graphic.mode === "split") {
-        // photo on its own first, then the same story with its chart under it (a second photo if one fits, else a tighter crop)
         const alt = await secondPhoto();
-        first = { ...scene, id: scene.id + "a", graphic: undefined, rect: undefined, gradient: look.scrim, kicker_y: undefined };
-        second = alt
-          ? { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 }
-          : { ...scene, id: scene.id + "b", kicker: undefined, fade: 0, scale: 1.3, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.65]) };
-        how += alt ? ` then ${alt.how}` : " then a tighter crop";
-      } else if (scene.graphic) {
-        // a map or a figure on its own backdrop: then a real photo of the same sentence
-        const alt = await secondPhoto();
-        if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id }; how += ` then ${alt.how}`; }
-      } else if (isPhoto(scene)) {
-        const alt = await secondPhoto();
-        if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }
-        else if (dur >= 3.4) { second = tight(scene); how += " then a tighter crop"; }
-      } else if (/^card-/.test(scene.asset)) {
+        if (alt) {
+          first = { ...scene, id: scene.id + "a", graphic: undefined, rect: undefined, gradient: look.scrim, kicker_y: undefined };
+          second = { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 };
+          how += ` then ${alt.how}`;
+        } else panelDelay = Math.round(dur * 0.4 * 30); // same photo throughout; the panel arrives 40% in
+      } else if (scene.graphic || isPhoto(scene) || /^card-/.test(scene.asset)) {
         const alt = await secondPhoto();
         if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }
       }
@@ -352,7 +343,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       scenes.push({ ...second, start: Number(cutAt.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
       lastAsset = second.graphic?.kind === "map" ? "map" : second.asset;
     } else {
-      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
+      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: panelDelay || look.stagger });
     }
     report.push({ sentence: i, shows: how, start: Number(start.toFixed(2)), end: Number(end.toFixed(2)) });
   }

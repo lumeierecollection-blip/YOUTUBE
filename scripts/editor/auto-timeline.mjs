@@ -70,9 +70,9 @@ function resolverFromEntityAssets() {
 }
 
 /** concept({query, used}) -> a real, free-licence Commons photo of the concept, saved under data/editor/auto/concept/, or null. */
-function conceptFinder(askVision = defaultAskVision(), maxChecks = 60) {
+function conceptFinder(askVision = defaultAskVision(), maxChecks = 80) {
   let checks = 0;
-  return async ({ query, sentence, used }) => {
+  return async ({ query, sentence, topic, used }) => {
     const found = await searchCommons(query, 4);
     for (const rec of found) {
       const slug = rec.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60);
@@ -82,7 +82,7 @@ function conceptFinder(askVision = defaultAskVision(), maxChecks = 60) {
         const buf = await downloadPhoto(rec, file);
         const { width, height } = imageSize(buf);
         if (++checks > maxChecks) { console.error("[concept-photo] vision budget spent; no more concept photos"); return null; }
-        const v = await verifyConceptPhoto({ sentence, query, jpeg: buf, askVision });
+        const v = await verifyConceptPhoto({ sentence, query, topic, jpeg: buf, askVision });
         console.log(`[concept-photo] "${query}" / ${rec.title}: ${v.ok ? "accepted (" + v.why + ")" : "rejected, " + v.why}`);
         if (!v.ok) continue;
         return { file: rel(file), width, height, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license };
@@ -138,8 +138,9 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const pairs = concept ? await conceptQueries({ sentences: scriptSentences(script), topic: research?.strongest_angle, niche: channel?.niche, ask }) : { first: [], second: [] };
   const queries = pairs.first;
   const queries2 = pairs.second;
+  const topic = pairs.topic || research?.strongest_angle || "";
   const { plan, cards, report } = await buildAutoPlan({
-    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, style,
+    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, story: pairs.story || [], topic, style,
     audioPath: rel(audio), transcriptPath: rel(transcriptPath), scriptPath: rel(scriptPath), resolve: resolver,
   });
   const source = (script.sources_used || [])[0] || "";
