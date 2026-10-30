@@ -1242,11 +1242,6 @@
           "topic": "Gemini 4 Argon vs GPT-6.1 Sol Security Audit Benchmark Test",
           "slug": "gemini-4-argon-vs-gpt-6-security-audit",
           "reserved_at": "2026-10-29T15:23:34.032Z"
-        },
-        {
-          "topic": "AWS Step Functions Integrates Workflows as AI Agent Tools",
-          "slug": "aws-step-functions-ai-agent-tools",
-          "reserved_at": "2026-10-30T15:45:34.011Z"
         }
       ],
       "last_generated": "2026-10-30T15:45:34.011Z"
