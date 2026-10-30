@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sag-aftra-wga-openai-copyright",
+  "format": "shorts",
+  "hook": "Your creative work might be powering AI models without your permission.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your creative work might be powering AI models without your permission.",
+      "text_overlay": {
+        "text": "AI Training: Permission Required?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Are creative unions stopping OpenAI from training models on copyrighted works without paying the creators?",
+      "text_overlay": {
+        "text": "34-page amicus brief filed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But OpenAI CEO Sam Altman admitted to the British House of Lords that models need copyrighted material.",
+      "text_overlay": {
+        "text": "Sam Altman admits dependency"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Unions are urging a federal judge to reject a fair use exemption for AI training. SAG-AFTRA and other unions filed a 34-page amicus brief against OpenAI on October 29, 2026.",
+      "text_overlay": {
+        "text": "Unions demand rejection of exemption"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These groups are challenging OpenAI in federal court to stop the use of unlicensed works.",
+      "text_overlay": {
+        "text": "34-page brief filed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://digestai.news/story/sag-aftra-and-writers-guilds-ask-judge-to-reject-fair-use-exemption-fo",
+    "https://filings.escalegal.com/usa-today-v-openai-complaint-2026-10-08.pdf"
+  ]
+}
