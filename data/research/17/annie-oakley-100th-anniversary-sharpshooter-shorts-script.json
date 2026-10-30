@@ -1,0 +1,90 @@
+{
+  "channel_id": "17",
+  "topic_slug": "annie-oakley-100th-anniversary-sharpshooter",
+  "format": "shorts",
+  "hook": "Born in 1860, Phoebe Ann Moses rose from poverty and abuse to conquer the world!",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Born in 1860, Phoebe Ann Moses rose from poverty and abuse to conquer the world!",
+      "visual_cue": "Historical portrait photograph of Annie Oakley holding a rifle",
+      "sfx_cue": "Subtle rifle cock sound effect",
+      "b_roll": [
+        "Darke County historical photograph"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Annie Oakley's Legacy"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-18s",
+      "voiceover": "On August 13, 1860, Phoebe Ann Moses was born in rural Darke County, Ohio. At 15, she defeated marksman Frank E. Butler in a legendary shooting match.",
+      "visual_cue": "Archival document showing birth records and early shooting targets",
+      "sfx_cue": "Gentle acoustic pluck",
+      "b_roll": [
+        "Ohio rural landscape 19th century",
+        "Shooting contest historical illustration"
+      ],
+      "animation_cue": "Smooth pan left",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Born 1860 in Ohio"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "18-24s",
+      "voiceover": "In 1885, she joined Buffalo Bill's Wild West show and met an iconic leader.",
+      "visual_cue": "Vintage poster of Buffalo Bill's Wild West",
+      "sfx_cue": "Snares roll",
+      "b_roll": [
+        "Buffalo Bill Wild West show poster"
+      ],
+      "animation_cue": "Zoom in on poster",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Buffalo Bill's Wild West"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "24-38s",
+      "voiceover": "Sitting Bull gave her the Lakota name Watanya Cicilia, meaning Little Sure Shot. One hundred years after her 1926 death in Greenville, her marksmanship remains legendary.",
+      "visual_cue": "Historical photograph of Annie Oakley alongside Sitting Bull",
+      "sfx_cue": "Dramatic swell",
+      "b_roll": [
+        "Sitting Bull and Annie Oakley photograph",
+        "Greenville Ohio historical street"
+      ],
+      "animation_cue": "Slow zoom",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Little Sure Shot"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "38-45s",
+      "voiceover": "Visit Greenville's memorial honoring Annie Oakley's 100-year legacy.",
+      "visual_cue": "Historic plaque commemorating Annie Oakley in Greenville",
+      "sfx_cue": "Final acoustic chord",
+      "b_roll": [
+        "Greenville historical plaque"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "None",
+      "text_overlay": {
+        "text": "100-Year Legacy"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Annie_Oakley",
+    "https://www.dailyadvocate.com/2026/09/25/oakley-remembered-on-100th-anniversary-of-death",
+    "https://annieoakleycenterfoundation.com/story"
+  ]
+}

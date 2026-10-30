@@ -1,0 +1,83 @@
+{
+  "topic_slug": "annie-oakley-100th-anniversary-sharpshooter",
+  "strongest_angle": "Examine the remarkable 100-year legacy of Annie Oakley, the pioneering female superstar athlete born in Darke County, Ohio, who rose from poverty and abuse to achieve international fame in Buffalo Bill's Wild West.",
+  "key_facts": [
+    {
+      "fact": "Annie Oakley was born as Phoebe Ann Moses on August 13, 1860, in rural Darke County, Ohio, and died on November 3, 1926, at the home of Misses Broderick and Zemer on West Third Street in Greenville.",
+      "source_url": "https://www.dailyadvocate.com/2026/09/25/oakley-remembered-on-100th-anniversary-of-death",
+      "source_name": "Daily Advocate & Early Bird News",
+      "confidence": "high"
+    },
+    {
+      "fact": "At age 15, Annie Oakley won a shooting contest against an experienced marksman named Frank E. Butler, whom she married in 1876.",
+      "source_url": "https://en.wikipedia.org/wiki/Annie_Oakley",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "In 1885, Annie Oakley and her husband Frank joined Buffalo Bill's Wild West show, where she befriended Sitting Bull, who gave her the Lakota name Watanya Cicilia, meaning Little Sure Shot.",
+      "source_url": "https://annieoakleycenterfoundation.com/story",
+      "source_name": "Annie Oakley Center Foundation",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Birth year of Annie Oakley",
+      "value": 1860,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Annie_Oakley"
+    },
+    {
+      "label": "Death year of Annie Oakley",
+      "value": 1926,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Annie_Oakley"
+    },
+    {
+      "label": "Age when winning shooting contest against Frank E. Butler",
+      "value": 15,
+      "unit": "years",
+      "source_url": "https://en.wikipedia.org/wiki/Annie_Oakley"
+    },
+    {
+      "label": "Year joining Buffalo Bill's Wild West Show",
+      "value": 1885,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Annie_Oakley"
+    },
+    {
+      "label": "Anniversary year of death and remembrance in Greenville",
+      "value": 100,
+      "unit": "years",
+      "source_url": "https://www.dailyadvocate.com/2026/09/25/oakley-remembered-on-100th-anniversary-of-death"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Annie Oakley",
+      "kind": "person"
+    },
+    {
+      "name": "Frank E. Butler",
+      "kind": "person"
+    },
+    {
+      "name": "Sitting Bull",
+      "kind": "person"
+    },
+    {
+      "name": "Darke County",
+      "kind": "place"
+    },
+    {
+      "name": "Greenville",
+      "kind": "place"
+    },
+    {
+      "name": "Buffalo Bill's Wild West",
+      "kind": "organization"
+    }
+  ]
+}
