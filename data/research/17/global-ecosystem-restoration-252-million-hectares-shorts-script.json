@@ -1,0 +1,79 @@
+{
+  "channel_id": "17",
+  "topic_slug": "global-ecosystem-restoration-252-million-hectares",
+  "format": "shorts",
+  "hook": "Did you know the UN Environment Programme is restoring 252 million hectares, an area like Kazakhstan?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know the UN Environment Programme is restoring 252 million hectares, an area like Kazakhstan?",
+      "visual_cue": "Satellite view of Kazakhstan map overlaying a vibrant green forest landscape.",
+      "sfx_cue": "Subtle wind chime and forest ambient sound.",
+      "b_roll": [
+        "Satellite imagery of Kazakhstan",
+        "Lush green forest canopy"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares Restored"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "They released this massive restoration data in Yerevan on 29 October 2026. Can 149 countries actually succeed in restoring these vital natural ecosystems?",
+      "visual_cue": "United Nations Environment Programme logo on a clean white background.",
+      "sfx_cue": "Data processing digital blips.",
+      "b_roll": [
+        "United Nations Environment Programme logo",
+        "Global map highlighting 149 countries",
+        "Close up of diverse ecosystems"
+      ],
+      "text_overlay": {
+        "text": "149 Countries Involved"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These United Nations Environment Programme projects aren't just restoring land; they're creating over one million jobs.",
+      "visual_cue": "Time-lapse of a sapling growing into a tree.",
+      "sfx_cue": "Rising orchestral swell.",
+      "b_roll": [
+        "Time-lapse of forest growth",
+        "Workers planting trees in a field"
+      ],
+      "text_overlay": {
+        "text": "Economic Shift"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Restoration projects in 149 countries are now actively rebuilding vital natural habitats for our planet.",
+      "visual_cue": "Wide shot of a team working together in a reforestation project.",
+      "sfx_cue": "Uplifting music crescendo.",
+      "b_roll": [
+        "Group of environmental workers",
+        "Diverse landscapes being restored",
+        "Close up of hands planting seeds"
+      ],
+      "text_overlay": {
+        "text": "1 Million Green Jobs"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Nature is making a comeback across 252 million hectares.",
+      "visual_cue": "Drone shot flying over a vast, healthy green forest.",
+      "sfx_cue": "Fading nature sounds.",
+      "b_roll": [
+        "Drone footage of dense forest",
+        "Wide horizon of restored land"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+    "https://news.un.org/en/story/2026/10/1168700"
+  ]
+}

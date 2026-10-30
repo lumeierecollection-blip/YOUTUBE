@@ -1,0 +1,82 @@
+{
+  "topic_slug": "global-ecosystem-restoration-252-million-hectares",
+  "strongest_angle": "UNEP’s Restoration Progress Report shows that 252 million hectares across 149 countries are under restoration – an area the size of Kazakhstan – and that this effort has already created more than one million green jobs.",
+  "key_facts": [
+    {
+      "fact": "The UN Environment Programme (UNEP) report released in Yerevan on 29 October 2026 states that 252 million hectares across 149 countries are currently being restored.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UN Environment Programme (UNEP)",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 252 million hectares under restoration represent an area roughly equal to the size of Kazakhstan, according to UN News.",
+      "source_url": "https://news.un.org/en/story/2026/10/1168700",
+      "source_name": "UN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "UNEP reports that the restoration effort is generating more than one million green jobs worldwide.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UN Environment Programme (UNEP)",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 252,
+      "unit": "million hectares",
+      "label": "area under restoration",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "value": 149,
+      "unit": "countries",
+      "label": "countries with restoration projects",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "value": 1,
+      "unit": "million green jobs",
+      "label": "green jobs created",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "United Nations Environment Programme",
+      "kind": "organization"
+    },
+    {
+      "name": "UNEP",
+      "kind": "organization"
+    },
+    {
+      "name": "Yerevan",
+      "kind": "place"
+    },
+    {
+      "name": "Kazakhstan",
+      "kind": "place"
+    },
+    {
+      "name": "Canada",
+      "kind": "place"
+    },
+    {
+      "name": "Indonesia",
+      "kind": "place"
+    },
+    {
+      "name": "Todd Brown",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Yerevan, 29 October 2026 – A UN report published today finds that 252 million hectares (ha) across 149 countries are being restored, creating more than one million green jobs – the largest documented global restoration effort to date.",
+      "speaker": "UN Environment Programme",
+      "source_name": "UN Environment Programme (UNEP)",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    }
+  ]
+}
