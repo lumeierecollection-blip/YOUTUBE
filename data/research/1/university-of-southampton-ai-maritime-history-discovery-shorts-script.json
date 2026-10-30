@@ -1,0 +1,92 @@
+{
+  "channel_id": "1",
+  "topic_slug": "university-of-southampton-ai-maritime-history-trade",
+  "format": "shorts",
+  "hook": "Artificial intelligence just cracked open 461 years of hidden history.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Artificial intelligence just cracked open 461 years of hidden history.",
+      "visual_cue": "Close-up shot of handwritten historical port records glowing under digital scanning light.",
+      "sfx_cue": "Digital scan sound and paper rustling",
+      "b_roll": [
+        "Historical port books archive room",
+        "Digital scanning equipment over old paper"
+      ],
+      "animation_cue": "Fade in from black with subtle text glow",
+      "transition_out": "Cut to research lab",
+      "text_overlay": {
+        "text": "461 Years Unlocked"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Researchers at the University of Southampton trained artificial intelligence to process exactly 100,000 pages of handwritten documents. These fragile port books held secrets of Britain for centuries. Where did those records come from?",
+      "visual_cue": "Medium shot of University of Southampton researchers examining computer screens showing digital manuscript scans.",
+      "sfx_cue": "Subtle typing and ambient lab hum",
+      "b_roll": [
+        "University of Southampton laboratory",
+        "Computer monitor displaying digitized old manuscript pages"
+      ],
+      "animation_cue": "Slow zoom in on the computer screen",
+      "transition_out": "Quick cross dissolve to archive documents",
+      "text_overlay": {
+        "text": "100,000 Pages Processed"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Except reading the old text was only the beginning of the discovery.",
+      "visual_cue": "Close-up on ancient handwritten ink fading across aged paper texture.",
+      "sfx_cue": "Page turn sound effect",
+      "b_roll": [
+        "Detailed macro shot of historical handwriting",
+        "Ink fading on aged paper"
+      ],
+      "animation_cue": "Fast pan across lines of historical text",
+      "transition_out": "Hard cut to database interface",
+      "text_overlay": {
+        "text": "The Real Discovery"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "The University of Southampton team created a massive database of sea trade spanning 200 years. That vast network officially starts from the year 1565.",
+      "visual_cue": "Wide shot of a digital trade map rendering thousands of historical shipping routes across Britain.",
+      "sfx_cue": "Digital chime and data loading sound",
+      "b_roll": [
+        "Digital maritime trade route visualization",
+        "Map of Britain with historical sea trade routes highlighted"
+      ],
+      "animation_cue": "Rapid data points appearing on a digital map",
+      "transition_out": "Fade to research archive footage",
+      "text_overlay": {
+        "text": "Starting in 1565"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Four hundred sixty-one years of maritime past decoded through artificial intelligence.",
+      "visual_cue": "Cinematic wide shot of the University of Southampton campus exterior at dusk.",
+      "sfx_cue": "Gentle ambient tone ending",
+      "b_roll": [
+        "University of Southampton exterior building shot",
+        "Archival manuscripts resting on a wooden desk"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "461 Years Decoded"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+    "https://www.linkedin.com/posts/university-of-southampton_ai-has-helped-transform-thousands-of-centuries-activity-7517932543682355200-2zLj"
+  ]
+}

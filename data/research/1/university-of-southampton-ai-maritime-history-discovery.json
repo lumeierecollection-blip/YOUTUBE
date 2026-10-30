@@ -1,0 +1,61 @@
+{
+  "topic_slug": "university-of-southampton-ai-maritime-history-discovery",
+  "strongest_angle": "Researchers at the University of Southampton used artificial intelligence to process 100,000 pages of handwritten historical port books, uncovering 461 years of British maritime trade history.",
+  "key_facts": [
+    {
+      "fact": "Researchers at the University of Southampton trained artificial intelligence to process approximately 100,000 pages of handwritten port records.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Historians at the University of Southampton uncovered 461 years of Britain's maritime past using artificial intelligence.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The University of Southampton project created a database of Britain's sea trade spanning 200 years starting from the year 1565.",
+      "source_url": "https://www.linkedin.com/posts/university-of-southampton_ai-has-helped-transform-thousands-of-centuries-activity-7517932543682355200-2zLj",
+      "source_name": "University of Southampton LinkedIn",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pages of handwritten records processed",
+      "value": 100000,
+      "unit": "pages",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo"
+    },
+    {
+      "label": "Years of maritime past uncovered",
+      "value": 461,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo"
+    },
+    {
+      "label": "Years of sea trade covered from start date",
+      "value": 200,
+      "unit": "years",
+      "source_url": "https://www.linkedin.com/posts/university-of-southampton_ai-has-helped-transform-thousands-of-centuries-activity-7517932543682355200-2zLj"
+    },
+    {
+      "label": "Start year of database trade records",
+      "value": 1565,
+      "unit": "year",
+      "source_url": "https://www.linkedin.com/posts/university-of-southampton_ai-has-helped-transform-thousands-of-centuries-activity-7517932543682355200-2zLj"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "University of Southampton",
+      "kind": "organization"
+    },
+    {
+      "name": "Britain",
+      "kind": "place"
+    }
+  ]
+}
