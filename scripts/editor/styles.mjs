@@ -40,7 +40,7 @@ export function styleFor(n, pal) {
           bar ? `  <rect x="90" y="1050" width="${(9 * bar.value).toFixed(1)}" height="22" fill="${xmlEscape(accent)}"/>` : `  <rect x="90" y="1050" width="160" height="22" fill="${xmlEscape(accent)}"/>`,
           text(90, 1120, 24, "#D6D8DE", src(source))].join("\n"));
       },
-      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 760 + k * 150, fitSize(w, 128), k === phrase.length - 1 ? accent : "#FFFFFF", w, 'font-weight="800"')).join("\n"), pal.bg),
+      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 760 + k * 150, fitSize(w, 128, 700), k === phrase.length - 1 ? accent : "#FFFFFF", w, 'font-weight="800"')).join("\n"), pal.bg),
     };
     case 2: return {
       name: "hallmark", scrim: "rgba(16,13,9,0.34)", filter: { sepia: 0.28, saturate: 0.5, brightness: 0.9 }, stagger: 0,
@@ -50,7 +50,7 @@ export function styleFor(n, pal) {
           text(130, 1130, size, ink, f.raw, 'serif font-weight="400"'),
           text(130, 1215, 22, "#4A463C", src(source).toUpperCase(), 'letter-spacing="3"')].join("\n"));
       },
-      poster: ({ phrase }) => svg([`  <rect x="90" y="560" width="900" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(90, 740 + k * 140, fitSize(w, 118, 840), "#EFE8D8", w, 'serif'))].join("\n"), "#15130F"),
+      poster: ({ phrase }) => svg([`  <rect x="90" y="560" width="900" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(90, 740 + k * 140, fitSize(w, 118, 700), "#EFE8D8", w, 'serif'))].join("\n"), "#15130F"),
     };
     case 3: return {
       name: "vox", scrim: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.62) 100%)", filter: { sepia: 0.18, saturate: 0.32, brightness: 0.82 }, stagger: 0,
@@ -60,7 +60,7 @@ export function styleFor(n, pal) {
           `  <path d="M${cx - w / 2} 860 C ${cx - w / 2} 700, ${cx + w / 2 - 20} 690, ${cx + w / 2} 830 C ${cx + w / 2 + 6} 990, ${cx - w / 2 + 40} 1010, ${cx - w / 2 + 6} 880" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`,
           text(cx, 1090, 22, "#C9C9C9", src(source), 'text-anchor="middle"')].join("\n"));
       },
-      poster: ({ phrase }) => svg([...phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120), "#F4F1EA", w, 'font-weight="900"')), `  <path d="M90 ${830 + (phrase.length - 1) * 150} q 120 -22 240 0 t 240 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`].join("\n"), "#F1EEE6".replace("F1EEE6", "0B0B0C")),
+      poster: ({ phrase }) => svg([...phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120, 700), "#F4F1EA", w, 'font-weight="900"')), `  <path d="M90 ${830 + (phrase.length - 1) * 150} q 120 -22 240 0 t 240 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`].join("\n"), "#F1EEE6".replace("F1EEE6", "0B0B0C")),
     };
     case 4: return {
       name: "scene-director", scrim: "rgba(6,6,8,0.5)", filter: { saturate: 0.85, brightness: 0.9 }, stagger: 0,
@@ -72,7 +72,7 @@ export function styleFor(n, pal) {
         return svg([`  <rect x="90" y="300" width="${Math.min(760, 60 + Math.ceil(f.raw.length * chipSize * 0.66))}" height="150" fill="${xmlEscape(accent)}"/>`, text(120, 410, chipSize, ink, f.raw, 'font-weight="900"')].join("\n"));
       },
       payoffIsPoster: true,
-      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120), k === 0 ? accent : "#FFFFFF", w, 'font-weight="900"')).join("\n"), pal.bg),
+      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120, 700), k === 0 ? accent : "#FFFFFF", w, 'font-weight="900"')).join("\n"), pal.bg),
     };
     case 5: return {
       name: "mograph-critic", scrim: "rgba(5,5,8,0.4)", filter: { saturate: 0.95, brightness: 0.92 }, stagger: 9,
@@ -83,7 +83,7 @@ export function styleFor(n, pal) {
           text(984, 1352, 22, "#C7CAD1", src(source), 'text-anchor="end"'),
           bar ? `  <rect x="96" y="1394" width="888" height="8" fill="rgba(255,255,255,0.18)"/><rect x="96" y="1394" width="${(8.88 * bar.value).toFixed(1)}" height="8" fill="${xmlEscape(accent)}"/>` : ""].join("\n"));
       },
-      poster: ({ phrase }) => svg([`  <rect x="96" y="640" width="120" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(96, 780 + k * 140, fitSize(w, 112, 860), "#FFFFFF", w, 'font-weight="800"'))].join("\n"), pal.bg),
+      poster: ({ phrase }) => svg([`  <rect x="96" y="640" width="120" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(96, 780 + k * 140, fitSize(w, 112, 700), "#FFFFFF", w, 'font-weight="800"'))].join("\n"), pal.bg),
     };
     default: throw new Error(`unknown style ${n}`);
   }

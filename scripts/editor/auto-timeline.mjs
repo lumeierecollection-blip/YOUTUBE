@@ -15,7 +15,8 @@ import { join, resolve, basename, relative } from "path";
 import { execFileSync } from "child_process";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
-import { buildAutoPlan } from "./auto-plan.mjs";
+import { buildAutoPlan, seededRandom } from "./auto-plan.mjs";
+import { graphicLayers, decorationLayers, sweepLayers } from "./graphics.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
@@ -91,23 +92,26 @@ function conceptFinder(askVision = defaultAskVision(), maxChecks = 30) {
   };
 }
 
-/** A figure/overlay image layer on top of the scene's photo, entering after the scene's own fade (the style's stagger, in frames). */
-export function addOverlays(timeline, plan) {
+/**
+ * The animated graphics of each scene (graphics.mjs) go on top of the scene's picture, entering after the scene's own fade (the look's
+ * stagger, in frames) and leaving with it. They are real layers: solid bars with a keyframed clip, svg paths that draw on, text that counts.
+ */
+export function addGraphics(timeline, plan, { secondary } = {}) {
   plan.scenes.forEach((sc, i) => {
-    if (!sc.overlay) return;
     const base = timeline.layers.find((l) => l.id === "scene-" + i + "-image");
     if (!base) return;
+    if (!sc.graphic) {
+      // A photo scene with no figure still moves: the accent draws itself across it (graphics.mjs decorationLayers).
+      if (/^card-/.test(sc.asset)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
+      if (/^(photo|concept)-/.test(sc.asset)) timeline.layers.push(...decorationLayers({ id: "scene-" + i + "-d", look: sc.look, palette: plan.palette, inF: base.in + (sc.stagger || 0), outF: base.out }));
+      return;
+    }
+    const g = sc.graphic;
     const inF = base.in + (sc.stagger || 0);
-    const span = Math.max(2, base.out - inF);
-    const fade = Math.min(10, Math.max(3, Math.floor(span / 6)));
-    timeline.layers.push({
-      id: "scene-" + i + "-overlay", type: "image", asset_id: sc.overlay, rect: { x: 0, y: 0, w: 1080, h: 1920 }, fit: "cover", in: inF, out: base.out, z: 150,
-      props: { opacity: 1, scale: 1, fx: 0.5, fy: 0.5, sepia: 0, saturate: 1, brightness: 1, blur: 0 },
-      // the overlay drifts with the same slow push as the photo under it: the final-MP4 QA requires motion on every image layer
-      keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: fade, v: 1 }, { f: span, v: 1 }], scale: [{ f: 0, v: 1, e: "inOutSine" }, { f: span, v: 1.04 }] },
-    });
+    const layers = graphicLayers({ ...g, id: "scene-" + i + "-g", look: g.look, palette: plan.palette, secondary, inF, outF: base.out, rng: seededRandom(plan.id + ":" + i) });
+    timeline.layers.push(...layers);
   });
-  timeline.layers.sort((a, b) => a.z - b.z);
+  timeline.layers.sort((x, y) => x.z - y.z);
   return timeline;
 }
 
@@ -143,7 +147,7 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   writeFileSync(join(dir, "plan.json"), JSON.stringify(plan, null, 2));
 
   const captions = buildCaptions({ script, whisper: transcript, duration: audioDuration });
-  const timeline = addOverlays(buildTimeline(plan, { audioDuration, captions }), plan);
+  const timeline = addGraphics(buildTimeline(plan, { audioDuration, captions }), plan, { secondary: channel?.colors?.secondary });
   timeline.metadata.plan = rel(join(dir, "plan.json"));
   timeline.metadata.audio_duration_sec = audioDuration;
   timeline.metadata.generator = "scripts/editor/auto-timeline.mjs";

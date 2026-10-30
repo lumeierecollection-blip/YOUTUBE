@@ -131,6 +131,7 @@
         "fit": { "enum": ["cover", "contain"] },
         "radius": { "type": "number" },
         "blend": { "type": "string" },
+        "count": { "type": "object", "required": ["from", "to"], "properties": { "from": { "type": "number" }, "to": { "type": "number" }, "decimals": { "type": "integer", "minimum": 0 }, "prefix": { "type": "string" }, "suffix": { "type": "string" }, "group": { "type": "boolean" } } },
         "text": { "type": "string" },
         "style": { "type": "object" },
         "props": { "type": "object" },
