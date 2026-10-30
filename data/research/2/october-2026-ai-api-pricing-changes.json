@@ -1,0 +1,90 @@
+{
+  "topic_slug": "october-2026-ai-api-pricing-changes",
+  "strongest_angle": "The October 2026 AI API market saw a volatile shift with 64 price moves, where aggressive cuts like Anthropic's Haiku 5.5 competed against a broader trend of 46 price increases.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, 64 headline prices moved across 36 offers, consisting of 18 price cuts and 46 price increases.",
+      "source_url": "https://bertrande.com/en/reports/2026-10",
+      "source_name": "Bertrande",
+      "confidence": "high"
+    },
+    {
+      "fact": "Anthropic released Claude Haiku 5.5 on October 7, 2026, priced at $0.10 per million tokens, representing a 90% reduction from the $1.00 price of Haiku 4.5.",
+      "source_url": "https://aitokenprice.com/reports/2026-10",
+      "source_name": "AITokenPrice",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mistral Large 4 pricing was reduced on October 30, 2026, from $1.36 to $0.70 for input and from $4.18 to $2.10 for output, a decrease of approximately 50%.",
+      "source_url": "https://compareai.today/price-changes",
+      "source_name": "compareai.today",
+      "confidence": "high"
+    },
+    {
+      "fact": "As of October 30, 2026, 8 AI models have received a dated end of support or retirement notice.",
+      "source_url": "https://bertrande.com/en/reports/2026-10",
+      "source_name": "Bertrande",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total price moves",
+      "value": 64,
+      "unit": "moves",
+      "source_url": "https://bertrande.com/en/reports/2026-10"
+    },
+    {
+      "label": "Price cuts",
+      "value": 18,
+      "unit": "cuts",
+      "source_url": "https://bertrande.com/en/reports/2026-10"
+    },
+    {
+      "label": "Price increases",
+      "value": 46,
+      "unit": "increases",
+      "source_url": "https://bertrande.com/en/reports/2026-10"
+    },
+    {
+      "label": "Claude Haiku 5.5 price reduction",
+      "value": 90,
+      "unit": "percent",
+      "source_url": "https://aitokenprice.com/reports/2026-10"
+    },
+    {
+      "label": "Mistral Large 4 output price reduction",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://compareai.today/price-changes"
+    },
+    {
+      "label": "Models with end of support dates",
+      "value": 8,
+      "unit": "models",
+      "source_url": "https://bertrande.com/en/reports/2026-10"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude Haiku 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "Mistral Large 4",
+      "kind": "object"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Haiku 4.5",
+      "kind": "object"
+    }
+  ]
+}

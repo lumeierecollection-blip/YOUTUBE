@@ -1,0 +1,73 @@
+{
+  "channel_id": "2",
+  "topic_slug": "october-2026-ai-api-pricing-changes",
+  "format": "shorts",
+  "hook": "In October 2026, the AI market saw 64 distinct price moves.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, the AI market saw 64 distinct price moves.",
+      "visual_cue": "Large bold text showing 64 price moves on a dark background.",
+      "sfx_cue": "Digital ping",
+      "b_roll": [
+        "Abstract data points shifting on screen"
+      ],
+      "text_overlay": {
+        "text": "64 AI Price Moves"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "API providers like Anthropic and Mistral implemented 18 price cuts while raising costs 46 times. These 64 price moves include 18 cuts and 46 increases across the AI API market.",
+      "visual_cue": "Split-screen showing 18 cuts and 46 increases.",
+      "sfx_cue": "Whoosh transition",
+      "b_roll": [
+        "Bar chart comparing 18 cuts to 46 increases"
+      ],
+      "text_overlay": {
+        "text": "18 Cuts vs 46 Hikes"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Claude Haiku 5.5 dropped to $0.10, a massive 90% reduction.",
+      "visual_cue": "Close up of the $0.10 price point.",
+      "sfx_cue": "High-pitched chime",
+      "b_roll": [
+        "Text graphic highlighting 90% reduction"
+      ],
+      "text_overlay": {
+        "text": "90% Price Drop"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mistral Large 4 slashed output prices by 50 percent on October 30, 2026, for users. With 8 models facing retirement, developers must track these changes to their current AI tools.",
+      "visual_cue": "Graph showing the price drop for Mistral Large 4.",
+      "sfx_cue": "Data crunching sound",
+      "b_roll": [
+        "Animated line graph showing 50% decrease"
+      ],
+      "text_overlay": {
+        "text": "Mistral 50% Cut"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "By October 30, 8 AI models received official retirement notices from their respective developers.",
+      "visual_cue": "Text overlay showing 8 models retired.",
+      "sfx_cue": "Soft mechanical click",
+      "b_roll": [
+        "Minimalist text screen listing 8 models"
+      ],
+      "text_overlay": {
+        "text": "8 Models Retired"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://bertrande.com/en/reports/2026-10",
+    "https://aitokenprice.com/reports/2026-10",
+    "https://compareai.today/price-changes"
+  ]
+}
