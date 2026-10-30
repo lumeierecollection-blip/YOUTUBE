@@ -1,0 +1,111 @@
+{
+  "topic_slug": "hittite-tablets-1300bc-discovery-2026",
+  "strongest_angle": "The 2026 discovery of a massive Hittite tablet cache in Kayalıpınar reshapes our view of daily life, royal administration, and a deadly plague that struck the empire around 1300 BC.",
+  "key_facts": [
+    {
+      "fact": "Archaeologists uncovered 131 cuneiform tablets at the Kayalıpınar site in central Turkey, and the tablets are dated to roughly 1300 BC (about 3,400 years ago).",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "Including the new finds, the Kayalıpınar royal archive now contains 184 tablets, making it the largest Hittite archive uncovered in the 21st century.",
+      "source_url": "https://www.aa.com.tr/tr/kultur/sivasta-kral-2-tudhaliya-donemine-ait-131-civi-yazili-tablet-gun-yuzune-cikarildi/4082736",
+      "source_name": "Anadolu Agency",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The tablets record a high‑fever epidemic that primarily affected children and infants, an outbreak scholars date to approximately 3,400 years ago.",
+      "source_url": "https://www.ntv.com.tr/yasam/galeri-sivasta-bulunan-tabletlerle-ortaya-cikti-3-bin-400-yil-once-atesli-salgin-yayilmis-1745658",
+      "source_name": "NTV",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Turkey’s Ministry of Culture and Tourism, led by Minister Mehmet Nuri Ersoy, announced the discovery on International Archaeology Day, 16 October 2026.",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered",
+      "source_name": "Biblical Archaeology Society",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "New tablets uncovered",
+      "value": 131,
+      "unit": "tablets",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery"
+    },
+    {
+      "label": "Date of tablets (approx.)",
+      "value": 1300,
+      "unit": "BC",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery"
+    },
+    {
+      "label": "Age of tablets",
+      "value": 3400,
+      "unit": "years ago",
+      "source_url": "https://www.ntv.com.tr/yasam/galeri-sivasta-bulunan-tabletlerle-ortaya-cikti-3-bin-400-yil-once-atesli-salgin-yayilmis-1745658"
+    },
+    {
+      "label": "Total tablets in archive",
+      "value": 184,
+      "unit": "tablets",
+      "source_url": "https://www.aa.com.tr/tr/kultur/sivasta-kral-2-tudhaliya-donemine-ait-131-civi-yazili-tablet-gun-yuzune-cikarildi/4082736"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Turkey",
+      "kind": "place"
+    },
+    {
+      "name": "Hittite Empire",
+      "kind": "organization"
+    },
+    {
+      "name": "King 2 Tudhaliya",
+      "kind": "person"
+    },
+    {
+      "name": "Mehmet Nuri Ersoy",
+      "kind": "person"
+    },
+    {
+      "name": "Ministry of Culture and Tourism",
+      "kind": "organization"
+    },
+    {
+      "name": "Sivas",
+      "kind": "place"
+    },
+    {
+      "name": "Samuha",
+      "kind": "place"
+    },
+    {
+      "name": "Kızılırmak River",
+      "kind": "place"
+    },
+    {
+      "name": "National Geographic",
+      "kind": "organization"
+    },
+    {
+      "name": "Biblical Archaeology Society",
+      "kind": "organization"
+    },
+    {
+      "name": "Anadolu Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "NTV",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
