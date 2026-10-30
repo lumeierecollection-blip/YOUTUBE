@@ -21,13 +21,15 @@ export function blocklistHit(topic, channel) {
 
 export function fitPrompt(topic, channel) {
   return `A YouTube channel has this niche: "${channel.niche}".
+It covers these content pillars (a topic that fits ANY ONE of them belongs to the niche, even if the niche title names only one of them):
+${(channel.content_pillars || []).map((r) => `- ${r}`).join("\n")}
 Its rules (hard limits):
 ${(channel.niche_rules || []).map((r) => `- ${r}`).join("\n")}
 
 Candidate video topic: "${topic.topic}"
 Angle: "${topic.angle || ""}"
 
-Does the topic belong to the niche AND break none of the rules (e.g. it rests on an unproven allegation, needs clips or artwork we cannot show, is advice, or is not about what the niche covers)?
+Does the topic fit at least one pillar AND break none of the rules (e.g. it rests on an unproven allegation, needs clips or artwork we cannot show, is advice, or is not about what the niche covers)?
 Answer ONLY JSON: {"fits": true|false, "reason": "<12 words>"}`;
 }
 
