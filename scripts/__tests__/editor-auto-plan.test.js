@@ -148,7 +148,9 @@ test("each of the five looks draws a figure overlay with no gradient fill and no
     assert.match(st.poster({ phrase: ["ONE", "TWO"] }), /ONE/);
   }
   assert.deepEqual([0, 1, 2, 4].map((i) => functionOf(i, 5)), ["hook", "setup", "evidence", "payoff"]);
-  assert.deepEqual(keyPhrase("The pilots flew fatigued across Europe"), ["PILOTS", "FATIGUED", "EUROPE"]);
+  assert.deepEqual(keyPhrase("The pilots flew fatigued across Europe"), ["PILOTS FLEW", "FATIGUED"]);
+  assert.deepEqual(keyPhrase("A vintage 1950s wedding photo album dumped in an alleyway"), ["VINTAGE 1950S", "WEDDING PHOTO"], "a run with a year beats a plain one, and stays contiguous");
+  assert.deepEqual(keyPhrase("It was in a"), []);
 });
 
 test("overlays become image layers above the scrim and below the text, entering after the scene's own fade", () => {

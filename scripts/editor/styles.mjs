@@ -89,10 +89,25 @@ export function styleFor(n, pal) {
   }
 }
 
-/** One to three content words of a sentence, for a poster when nothing else can show it. */
+/**
+ * A short, readable phrase from a sentence for a poster when nothing else can show it: the best run of consecutive content words
+ * (up to four), preferring a run that holds a name, a year or a number; split over lines of at most two words. Never the three longest words
+ * pulled from different places ("VINTAGE ALLEYWAY DESPERATE"), which read as noise.
+ */
 export function keyPhrase(sentence) {
   const stop = new Set("the a an of to in on at for and or but is are was were be been it its this that these those with by from as than then when while which who whom what where how why not no yes will would can could may might has have had do does did into over under about after before more most less least very just only also across around through during between against within without".split(" "));
-  const words = String(sentence).replace(/[^\p{L}\p{N}%$'\s-]/gu, " ").split(/\s+/).filter((w) => w && !stop.has(w.toLowerCase()) && w.length > 2);
-  const picked = [...words].sort((a, b) => b.length - a.length).slice(0, 3);
-  return words.filter((w) => picked.includes(w)).slice(0, 3).map((w) => w.toUpperCase());
+  const tokens = String(sentence).replace(/[^\p{L}\p{N}%$'\s-]/gu, " ").split(/\s+/).filter(Boolean);
+  const runs = [];
+  let cur = [];
+  for (const w of tokens) {
+    if (!stop.has(w.toLowerCase()) && w.length > 2) cur.push(w);
+    else if (cur.length) { runs.push(cur); cur = []; }
+  }
+  if (cur.length) runs.push(cur);
+  if (!runs.length) return [];
+  const score = (r) => Math.min(r.length, 4) + (r.some((w, i) => /\d/.test(w) || (i > 0 && /^[A-Z]/.test(w))) ? 2 : 0);
+  const best = runs.reduce((x, y) => (score(y) > score(x) ? y : x)).slice(0, 4).map((w) => w.toUpperCase());
+  const lines = [];
+  for (let i = 0; i < best.length; i += 2) lines.push(best.slice(i, i + 2).join(" "));
+  return lines;
 }

@@ -250,7 +250,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
           how = `${reuse} again, re-framed`;
         } else {
-          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence), source: defaultSource }) });
+          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
           how = "key-word poster";
         }
       }
