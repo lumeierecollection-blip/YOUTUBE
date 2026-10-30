@@ -1,0 +1,52 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-construction-benchmark-78-percent",
+  "format": "shorts",
+  "hook": "Procore just launched Magpie 3.0, an AI engine that finished 78 percent of 200 construction tasks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Procore just launched Magpie 3.0, an AI engine that finished 78 percent of 200 construction tasks.",
+      "visual_cue": "Bar chart showing 78 percent completion rate for 200 tasks.",
+      "text_overlay": {
+        "text": "78% Task Success"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At Groundbreak 2026, Procore unveiled Magpie 3.0, a specialized engine built for construction project management. Does Magpie 3.0 outperform the closest general-purpose frontier model in construction benchmark testing?",
+      "visual_cue": "Footage of Groundbreak 2026 event stage and digital interface showing RFI processing.",
+      "text_overlay": {
+        "text": "Groundbreak 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Magpie 3.0 beats general AI, outperforming the closest standard model by 18 points total.",
+      "visual_cue": "Comparison chart showing Magpie 3.0 vs general AI with an 18-point gap highlighted.",
+      "text_overlay": {
+        "text": "18 Points Ahead"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Joyce Hwang announced this open beta release of Magpie 3.0 at Groundbreak 2026.",
+      "visual_cue": "Split-screen comparing general AI and specialized Magpie 3.0 performance metrics.",
+      "text_overlay": {
+        "text": "Specialized Reasoning"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Magpie 3.0 hit that 78 percent mark on construction tasks.",
+      "visual_cue": "Final summary card showing 78 percent success rate.",
+      "text_overlay": {
+        "text": "78% Completion Rate"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://www.procore.com/blog/groundbreak-2026-putting-the-future-of-construction-to-work"
+  ]
+}
