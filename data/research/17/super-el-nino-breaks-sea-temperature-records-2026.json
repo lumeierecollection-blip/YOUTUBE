@@ -1,0 +1,61 @@
+{
+  "topic_slug": "super-el-nino-breaks-sea-temperature-records-2026",
+  "strongest_angle": "Examine how average weekly sea-surface temperatures in the central Pacific reached record highs during October 2026 weeks ahead of the December peak, with the weekly relative Niño 3.4 index hitting +2.81°C as reported by Australia's Bureau of Meteorology and the Copernicus Climate Change Service.",
+  "key_facts": [
+    {
+      "fact": "The Copernicus Climate Change Service reported that sea surface temperatures in a region of the Pacific reached 29.70C in September 2026.",
+      "source_url": "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record",
+      "source_name": "RTé News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australia's Bureau of Meteorology stated that the weekly relative Niño 3.4 index reached +2.81°C during the week ending on October 11, 2026.",
+      "source_url": "https://www.weatherzone.com/au/news/el-nino-approaching-record-strength-as-pacific-subsurface-water-reaches-12c-above-average/1891603",
+      "source_name": "Weatherzone",
+      "confidence": "high"
+    },
+    {
+      "fact": "The World Meteorological Organization based in Geneva, Switzerland, forecast that sea-surface temperatures in the central and eastern tropical Pacific will increase to record levels during October-November-December 2026.",
+      "source_url": "https://wmo.int/news/media-centre/sea-surface-temperatures-reflect-strengthening-el-nino",
+      "source_name": "World Meteorological Organization",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pacific Sea Surface Temperature September",
+      "value": 29.7,
+      "unit": "Celsius",
+      "source_url": "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record"
+    },
+    {
+      "label": "Weekly relative Niño 3.4 index",
+      "value": 2.81,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.weatherzone.com/au/news/el-nino-approaching-record-strength-as-pacific-subsurface-water-reaches-12c-above-average/1891603"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Australia's Bureau of Meteorology",
+      "kind": "organization"
+    },
+    {
+      "name": "Copernicus Climate Change Service",
+      "kind": "organization"
+    },
+    {
+      "name": "World Meteorological Organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Geneva",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    }
+  ]
+}

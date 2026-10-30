@@ -1,0 +1,65 @@
+{
+  "channel_id": "17",
+  "topic_slug": "super-el-nino-breaks-sea-temperature-records-2026",
+  "format": "shorts",
+  "hook": "The Pacific Ocean hit a record-breaking 29.7 degrees Celsius in September.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Pacific Ocean hit a record-breaking 29.7 degrees Celsius in September.",
+      "visual_cue": "Satellite thermal map of the Pacific Ocean with heat intensity shown.",
+      "sfx_cue": "Low frequency hum of ocean currents.",
+      "b_roll": [
+        "Satellite thermal map of the Pacific Ocean"
+      ],
+      "text_overlay": {
+        "text": "29.7°C Record Heat"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Copernicus Climate Change Service sensors recorded this peak as temperatures across the region surged. But how intense is this Pacific Ocean warming trend during the current 2026 climate cycle?",
+      "visual_cue": "Data visualization showing temperature rise over the Pacific basin.",
+      "sfx_cue": "Rising digital tone.",
+      "b_roll": [
+        "Scientific data visualization of Pacific surface temperatures"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Australia's Bureau of Meteorology reports the Niño 3.4 index, tracking central Pacific surface heat, hit +2.81°C.",
+      "visual_cue": "Close up of a meteorological index chart showing the spike.",
+      "sfx_cue": "Sharp, clear mechanical click.",
+      "b_roll": [
+        "Weather chart showing the Niño 3.4 index spike"
+      ],
+      "text_overlay": {
+        "text": "+2.81°C Niño 3.4 Index"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This +2.81°C surge occurred weeks ahead of the typical December peak for the central Pacific. Tropical Pacific temperatures are climbing toward record levels during this October through December period.",
+      "visual_cue": "Animation of global temperature trends centered on the Pacific.",
+      "sfx_cue": "Steady, pulsing atmospheric sound.",
+      "b_roll": [
+        "World Meteorological Organization headquarters in Geneva",
+        "Global temperature trend animation"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "October through December will likely see these temperatures rise further.",
+      "visual_cue": "Wide shot of the vast, calm Pacific Ocean at dusk.",
+      "sfx_cue": "Sound of gentle waves.",
+      "b_roll": [
+        "Wide shot of the Pacific Ocean"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record",
+    "https://www.weatherzone.com/au/news/el-nino-approaching-record-strength-as-pacific-subsurface-water-reaches-12c-above-average/1891603",
+    "https://wmo.int/news/media-centre/sea-surface-temperatures-reflect-strengthening-el-nino"
+  ]
+}
