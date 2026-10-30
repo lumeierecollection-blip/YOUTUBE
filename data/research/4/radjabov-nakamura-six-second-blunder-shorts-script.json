@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "radjabov-nakamura-six-second-blunder",
+  "format": "shorts",
+  "hook": "Elite grandmasters rarely blunder away critical positions in just 6 seconds of intense tournament pressure.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Elite grandmasters rarely blunder away critical positions in just 6 seconds of intense tournament pressure.",
+      "text_overlay": {
+        "text": "6 Seconds to Disaster"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At the 2021 Meltwater Champions Chess Tour Finals, Teimour Radjabov faced off against Hikaru Nakamura. With only 6 seconds remaining, what forced Radjabov to play 48 Kd2 against his opponent?",
+      "text_overlay": {
+        "text": "2021 Meltwater Finals"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The trap snapped shut when Hikaru Nakamura played 48... Ke5, instantly securing a winning position.",
+      "text_overlay": {
+        "text": "Nakamura's Counter"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "After 49 Kd3, Nakamura played 49... Kd5, forcing a resignation due to the crushing zugzwang.",
+      "text_overlay": {
+        "text": "Radjabov Resigns"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Radjabov resigned the game and ultimately finished in second place at the 2021 tournament.",
+      "text_overlay": {
+        "text": "Second Place Finish"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spectator.com/article/panic-stations",
+    "https://en.chessbase.com/post/karsten-mueller-s-endgame-magic-166-endgame-highlights-from-the-finals-of-the-champions-chess-tour"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "topic_slug": "radjabov-nakamura-six-second-blunder",
+  "strongest_angle": "The 2021 Meltwater Champions Chess Tour Finals featured a critical endgame blunder where Teimour Radjabov, under extreme time pressure, failed to find the only drawing move against Hikaru Nakamura.",
+  "key_facts": [
+    {
+      "fact": "During the 2021 Meltwater Champions Chess Tour Finals, Teimour Radjabov had only six seconds to decide his 48th move against Hikaru Nakamura.",
+      "source_url": "https://spectator.com/article/panic-stations",
+      "source_name": "The Spectator",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the game, Teimour Radjabov played 48 Kd2, which allowed Hikaru Nakamura to play 48... Ke5, securing a winning position for Black.",
+      "source_url": "https://spectator.com/article/panic-stations",
+      "source_name": "The Spectator",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following the move 49 Kd3, Hikaru Nakamura played 49... Kd5, forcing Teimour Radjabov to resign due to zugzwang.",
+      "source_url": "https://spectator.com/article/panic-stations",
+      "source_name": "The Spectator",
+      "confidence": "high"
+    },
+    {
+      "fact": "The game between Teimour Radjabov and Hikaru Nakamura occurred during the 2021 Meltwater Champions Chess Tour Finals, where Radjabov ultimately finished in second place.",
+      "source_url": "https://en.chessbase.com/post/karsten-mueller-s-endgame-magic-166-endgame-highlights-from-the-finals-of-the-champions-chess-tour",
+      "source_name": "ChessBase",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Time remaining for Radjabov",
+      "value": 6,
+      "unit": "seconds",
+      "source_url": "https://spectator.com/article/panic-stations"
+    },
+    {
+      "label": "Move number of the blunder",
+      "value": 48,
+      "unit": "move",
+      "source_url": "https://spectator.com/article/panic-stations"
+    },
+    {
+      "label": "Move number of the resignation",
+      "value": 49,
+      "unit": "move",
+      "source_url": "https://spectator.com/article/panic-stations"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Six seconds! That’s how long Radjabov had to choose his next move in the diagram below, from an online rapid game in 2021. Plausible options are 1 Kd3, 1 Kd2 and 1 Kc3, but two of these lose by force.",
+      "speaker": "Luke McShane",
+      "source_name": "The Spectator",
+      "source_url": "https://spectator.com/article/panic-stations"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Teimour Radjabov",
+      "kind": "person"
+    },
+    {
+      "name": "Hikaru Nakamura",
+      "kind": "person"
+    },
+    {
+      "name": "Meltwater Champions Chess Tour Finals",
+      "kind": "organization"
+    },
+    {
+      "name": "Luke McShane",
+      "kind": "person"
+    }
+  ]
+}
