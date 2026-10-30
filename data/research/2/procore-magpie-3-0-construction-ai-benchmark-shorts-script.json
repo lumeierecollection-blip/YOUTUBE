@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-0-construction-ai-benchmark",
+  "format": "shorts",
+  "hook": "Magpie 3.0 completed 78 percent of construction tasks in testing.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "Magpie 3.0 completed 78 percent of construction tasks in testing.",
+      "visual_cue": "Display 78 percent benchmark result text on screen over a neutral studio background",
+      "sfx_cue": "subtle digital pop",
+      "b_roll": [
+        "Construction Metrics benchmark results chart"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "78% Task Success Rate"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:18",
+      "voiceover": "How does this compare to standard AI models that only reach a 60 percent success rate?",
+      "visual_cue": "Show Groundbreak 2026 conference presentation slide with benchmark metrics",
+      "sfx_cue": "whoosh",
+      "b_roll": [
+        "Groundbreak 2026 customer conference hall"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "200+ Construction Tasks Tested"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:25",
+      "voiceover": "However, Magpie 3.0 outperforms those general-purpose frontier models by 18 percentage points in construction tasks.",
+      "visual_cue": "Show comparative bar chart of benchmark scores",
+      "sfx_cue": "data tick",
+      "b_roll": [
+        "Construction Metrics benchmark CSV data"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "18 Percentage Points Behind"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:25-00:40",
+      "voiceover": "The closest general-purpose frontier model achieved only a 60 percent success rate during the testing. Procore AI customers accessed Magpie 3.0 through Procore Explore starting on October 16, 2026.",
+      "visual_cue": "Show Procore Explore platform interface screenshot",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "Procore Support release notes screen"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Open Beta on Procore Explore"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:40-00:48",
+      "voiceover": "Magpie 3.0 reached 78 percent across more than 200 construction tasks tested during the evaluation.",
+      "visual_cue": "Display final 78 percent success metric and total tasks count",
+      "sfx_cue": "gentle hum",
+      "b_roll": [
+        "Construction Metrics benchmark graphic"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Magpie 3.0 Benchmark Score"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://support.procore.com/products/online/procore-ai/release-notes",
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+  ]
+}
