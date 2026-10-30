@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "october-2026-recall-analysis-safety-incidents",
+  "format": "shorts",
+  "hook": "Viral social media posts claiming 453 recalls in October 2026 contradict official government data.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Viral social media posts claiming 453 recalls in October 2026 contradict official government data.",
+      "text_overlay": {
+        "text": "Official Recall Data vs Claims"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The FDA issued 274 medical device recall records, which stemmed from 81 distinct recall events. Why do these official figures differ so drastically from the viral 453 recall claim?",
+      "text_overlay": {
+        "text": "274 Medical Device Records"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "U.S. federal agencies actually reported only 138 total recall events by October 29, 2026.",
+      "text_overlay": {
+        "text": "138 Total Federal Recall Events"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Between October 5 and October 11, 2026, agencies published 281 official recalls and safety alerts.",
+      "text_overlay": {
+        "text": "73 NHTSA Events; 31 CPSC Events"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Total official U.S. recall events reached 138 by October 29.",
+      "text_overlay": {
+        "text": "138 Total Recall Events"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://devicesafetyindex.com/recalls/2026-10",
+    "https://recallbench.com/statistics/2026-10"
+  ]
+}

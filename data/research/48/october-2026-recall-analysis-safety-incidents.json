@@ -1,0 +1,74 @@
+{
+  "topic_slug": "october-2026-recall-analysis-safety-incidents",
+  "strongest_angle": "The provided figure of 453 recalls is unsupported by official data; instead, the FDA reported 274 medical device records in October 2026, while U.S. agencies collectively posted 138 total recall events as of October 29, 2026.",
+  "key_facts": [
+    {
+      "fact": "The FDA posted 274 medical device recall records in October 2026, which originated from 81 distinct recall events.",
+      "source_url": "https://devicesafetyindex.com/recalls/2026-10",
+      "source_name": "Device Safety Index",
+      "confidence": "high"
+    },
+    {
+      "fact": "As of October 29, 2026, U.S. federal agencies reported a total of 138 recall events, including 73 by the NHTSA and 31 by the CPSC.",
+      "source_url": "https://recallbench.com/statistics/2026-10",
+      "source_name": "Recall Bench",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the week of October 5 to October 11, 2026, there were 281 official recalls and safety alerts published across various sectors.",
+      "source_url": "https://recallatlas.org/weekly/2026-w41",
+      "source_name": "Recall Atlas",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "FDA medical device recall records",
+      "value": 274,
+      "unit": "records",
+      "source_url": "https://devicesafetyindex.com/recalls/2026-10"
+    },
+    {
+      "label": "Total U.S. agency recall events as of Oct 29",
+      "value": 138,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "NHTSA recall events",
+      "value": 73,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "CPSC recall events",
+      "value": 31,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "Weekly recall count (Oct 5-11)",
+      "value": 281,
+      "unit": "recalls",
+      "source_url": "https://recallatlas.org/weekly/2026-w41"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "FDA",
+      "kind": "organization"
+    },
+    {
+      "name": "NHTSA",
+      "kind": "organization"
+    },
+    {
+      "name": "CPSC",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    }
+  ]
+}
