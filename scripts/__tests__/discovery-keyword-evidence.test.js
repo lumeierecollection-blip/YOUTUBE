@@ -68,3 +68,10 @@ const NUMERIC_HOOK_REJECTED_TODAY = [
 test("KNOWN LIMITATION: titles whose only measurable cue is a number are rejected today (decide the policy deliberately before changing this)", async () => {
   for (const t of NUMERIC_HOOK_REJECTED_TODAY) assert.equal(await passes(t), false, t);
 });
+
+// A stated percentage is a measurement, and the rejection message already lists "percent" as qualifying (run 41009396847, ch-48:
+// "AAMI Foundation Study Finds 78% of Nurses ..." was rejected for lacking a keyword). Only a percentage counts - not a bare number.
+test("a title that states a percentage passes; a bare number or a ratio still does not", async () => {
+  for (const t of ["AAMI Foundation Study Finds 78% of Nurses Program Unfamiliar IV Pumps Faster", "Robot Uptime Rose 12.5 percent in a Year", "Cut by 3 per cent"]) assert.equal(await passes(t), true, t);
+  for (const t of ["50/30/20 budget breakdowns", "Humanoid Robots at BMW: 30,000 X3s Built in an 11-Month Pilot", "A 100 mph Collision", "Percent Signs Are Not Figures"]) assert.equal(await passes(t), false, t);
+});

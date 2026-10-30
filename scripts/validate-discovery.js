@@ -81,7 +81,11 @@ const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // The list repeats "survey" and "poll"; each hit is counted, so a single "survey" used to satisfy the angle's ">= 2 keywords" rule.
 // De-duplicate so a hit means a distinct keyword.
 const KEYWORD_RES = [...new Set(MEASURABLE_KEYWORDS.map((kw) => kw.toLowerCase()))].map((kw) => new RegExp(`(?<![a-z0-9])${escapeRe(kw)}(?:s|es)?(?![a-z0-9])`, "i"));
-const keywordHits = (text) => KEYWORD_RES.reduce((n, re) => n + (re.test(String(text || "")) ? 1 : 0), 0);
+// A stated percentage ("78%", "12.5 percent", "3 per cent") is a measurement. The rejection message has always listed "percent" as a
+// qualifying word, but the word list omitted it, so a title that carried its own figure ("AAMI Study Finds 78% of Nurses ...") was
+// rejected as "lacking a measurable keyword" (run 41009396847, ch-48). It counts once, as one distinct keyword.
+const PERCENT_RE = /\d(?:[.,]\d+)?\s?(?:%|percent\b|per cent\b|percentage points?\b)/i;
+const keywordHits = (text) => KEYWORD_RES.reduce((n, re) => n + (re.test(String(text || "")) ? 1 : 0), 0) + (PERCENT_RE.test(String(text || "")) ? 1 : 0);
 
 function hasMeasurableKeywords(text) {
   return keywordHits(text) > 0;
