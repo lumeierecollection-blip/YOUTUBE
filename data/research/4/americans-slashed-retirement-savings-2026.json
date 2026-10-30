@@ -1,0 +1,87 @@
+{
+  "topic_slug": "americans-slashed-retirement-savings-2026",
+  "strongest_angle": "Examining the July 2026 TIAA survey by KRC Research showing 43% of Americans cut retirement savings due to inflation and living costs.",
+  "key_facts": [
+    {
+      "fact": "According to a TIAA survey conducted by KRC Research among 1,000 U.S. adults, 43% of Americans have reduced or stopped retirement contributions over the past year.",
+      "source_url": "https://investlin.com/tiaa-survey-43-cut-retirement-savings-as-social-security-cut-looms",
+      "source_name": "InvestLin",
+      "confidence": "high"
+    },
+    {
+      "fact": "The TIAA survey revealed that Social Security faces a projected benefit reduction of roughly 22% by 2032.",
+      "source_url": "https://investlin.com/tiaa-survey-43-cut-retirement-savings-as-social-security-cut-looms",
+      "source_name": "InvestLin",
+      "confidence": "high"
+    },
+    {
+      "fact": "An Allianz Life study found that 51% of Americans stopped or reduced their retirement savings in the past six months due to economic pressures.",
+      "source_url": "https://www.allianzlife.com/about/newsroom/2026-press-releases/americans-cutting-back-on-retirement-savings",
+      "source_name": "Allianz Life",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Financial Advisory magazine reported that 12% of Americans have withdrawn money from retirement accounts to pay everyday bills.",
+      "source_url": "https://www.fa-mag.com/news/most-americans-are-unaware-of-possible-social-security-cuts--tiaa-says-88966.html?print=",
+      "source_name": "FA Magazine",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Share of Americans cutting retirement contributions",
+      "value": 43,
+      "unit": "percent",
+      "source_url": "https://investlin.com/tiaa-survey-43-cut-retirement-savings-as-social-security-cut-looms"
+    },
+    {
+      "label": "Projected Social Security benefit reduction",
+      "value": 22,
+      "unit": "percent",
+      "source_url": "https://investlin.com/tiaa-survey-43-cut-retirement-savings-as-social-security-cut-looms"
+    },
+    {
+      "label": "Target year for Social Security shortfall",
+      "value": 2032,
+      "unit": "year",
+      "source_url": "https://investlin.com/tiaa-survey-43-cut-retirement-savings-as-social-security-cut-looms"
+    },
+    {
+      "label": "Number of U.S. adults surveyed by KRC Research",
+      "value": 1000,
+      "unit": "adults",
+      "source_url": "https://www.tiaa.org/public/pdf/t/tiaa-cost-of-living-social-security-results.pdf"
+    },
+    {
+      "label": "Allianz Life study respondents cutting savings",
+      "value": 51,
+      "unit": "percent",
+      "source_url": "https://www.allianzlife.com/about/newsroom/2026-press-releases/americans-cutting-back-on-retirement-savings"
+    },
+    {
+      "label": "Americans withdrawing from retirement accounts",
+      "value": 12,
+      "unit": "percent",
+      "source_url": "https://www.fa-mag.com/news/most-americans-are-unaware-of-possible-social-security-cuts--tiaa-says-88966.html?print="
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "TIAA",
+      "kind": "organization"
+    },
+    {
+      "name": "KRC Research",
+      "kind": "organization"
+    },
+    {
+      "name": "Allianz Life",
+      "kind": "organization"
+    },
+    {
+      "name": "Social Security",
+      "kind": "organization"
+    }
+  ]
+}

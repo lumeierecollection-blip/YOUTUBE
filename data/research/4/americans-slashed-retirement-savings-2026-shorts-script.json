@@ -1,0 +1,68 @@
+{
+  "channel_id": "4",
+  "topic_slug": "americans-slashed-retirement-savings-2026",
+  "format": "shorts",
+  "hook": "Forty-three percent of Americans slashed retirement savings as living costs surged.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Forty-three percent of Americans slashed retirement savings as living costs surged.",
+      "b_roll": [
+        "Animated text showing 43% statistic",
+        "Rising cost graphs"
+      ],
+      "text_overlay": {
+        "text": "43% Cut Savings"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Financial organization TIAA had KRC Research survey 1,000 U.S. adults. Insurance company Allianz Life found 51% of Americans cut retirement savings. How do Americans cover everyday bills?",
+      "b_roll": [
+        "Survey document graphic",
+        "Allianz Life report highlight",
+        "Question mark animation"
+      ],
+      "text_overlay": {
+        "text": "1,000 Adults Surveyed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, Social Security faces a projected benefit reduction of roughly 22% by 2032.",
+      "b_roll": [
+        "Social Security shortfall timeline",
+        "22% reduction counter"
+      ],
+      "text_overlay": {
+        "text": "22% Cut By 2032"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Financial Advisory magazine reported 12% of Americans withdrew money from retirement accounts.",
+      "b_roll": [
+        "FA Magazine article snippet",
+        "12% withdrawal metric"
+      ],
+      "text_overlay": {
+        "text": "12% Withdrawing Funds"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Retirement contributions fell across 1,000 surveyed adults.",
+      "b_roll": [
+        "Summary chart of survey results"
+      ],
+      "text_overlay": {
+        "text": "Retirement Impact"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://investlin.com/tiaa-survey-43-cut-retirement-savings-as-social-security-cut-looms",
+    "https://www.allianzlife.com/about/newsroom/2026-press-releases/americans-cutting-back-on-retirement-savings",
+    "https://www.fa-mag.com/news/most-americans-are-unaware-of-possible-social-security-cuts--tiaa-says-88966.html?print="
+  ]
+}
