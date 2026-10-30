@@ -1,0 +1,68 @@
+{
+  "channel_id": "9",
+  "topic_slug": "world-bank-23-percent-commodity-price-rise-2026",
+  "format": "shorts",
+  "hook": "What if global commodity prices surged by 23 percent this year?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if global commodity prices surged by 23 percent this year?",
+      "b_roll": [
+        "Global stock market ticker graphic",
+        "World Bank logo"
+      ],
+      "text_overlay": {
+        "text": "23% Price Surge"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The World Bank projects this massive increase throughout 2026. Will logistical disruptions in the Black Sea paralyze grain shipments and push up global food prices?",
+      "b_roll": [
+        "World Bank office building",
+        "Map showing Iran and oil fields",
+        "Energy price trend line"
+      ],
+      "text_overlay": {
+        "text": "Energy up 32%"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse yet, global oil production is dropping by 5.2 percent throughout 2026.",
+      "b_roll": [
+        "Oil drilling rig",
+        "Declining graph"
+      ],
+      "text_overlay": {
+        "text": "Oil down 5.2%"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Logistical disruptions in the Black Sea are now impacting global food markets. Food commodity prices are expected to climb by 18 percent during the 2026-2027 period.",
+      "b_roll": [
+        "Cargo ship in the Black Sea",
+        "Food market shelves",
+        "Historical production chart"
+      ],
+      "text_overlay": {
+        "text": "Food up 18%"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Commodity markets face a total increase of 23 percent.",
+      "b_roll": [
+        "Global commodity exchange screen"
+      ],
+      "text_overlay": {
+        "text": "23% Total Rise"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026",
+    "https://www.nationthailand.com/news/world/40072889"
+  ]
+}

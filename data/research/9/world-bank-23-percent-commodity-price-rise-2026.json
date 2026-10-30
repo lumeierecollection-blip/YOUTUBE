@@ -1,0 +1,82 @@
+{
+  "topic_slug": "world-bank-23-percent-commodity-price-rise-2026",
+  "strongest_angle": "The World Bank's October 2026 forecast highlights a 23% surge in global commodity prices, driven by energy supply shocks from the war on Iran and logistical disruptions in the Black Sea.",
+  "key_facts": [
+    {
+      "fact": "The World Bank Group projects that global commodity prices will increase by 23 percent throughout 2026.",
+      "source_url": "https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026",
+      "source_name": "World Bank",
+      "confidence": "high"
+    },
+    {
+      "fact": "Energy prices are forecast to rise by 32 percent in 2026, reaching four-year highs due to the war on Iran.",
+      "source_url": "https://www.afp.com/en/world-bank-warns-worsening-food-insecurity-commodity-prices-soar",
+      "source_name": "AFP",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Food commodity prices are expected to climb by 18 percent during the 2026-2027 period, impacted by grain shipment problems in the Black Sea.",
+      "source_url": "https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026",
+      "source_name": "World Bank",
+      "confidence": "high"
+    },
+    {
+      "fact": "Global oil production is expected to fall by 5.2 percent in 2026, marking the steepest decline in over four decades outside of the 2020 pandemic.",
+      "source_url": "https://www.nationthailand.com/news/world/40072889",
+      "source_name": "Nation Thailand",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Projected increase in global commodity prices",
+      "value": 23,
+      "unit": "percent",
+      "source_url": "https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026"
+    },
+    {
+      "label": "Projected increase in energy prices",
+      "value": 32,
+      "unit": "percent",
+      "source_url": "https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026"
+    },
+    {
+      "label": "Projected increase in food commodity prices",
+      "value": 18,
+      "unit": "percent",
+      "source_url": "https://www.worldbank.org/en/news/press-release/2026/10/28/commodity-markets-outlook-october-2026"
+    },
+    {
+      "label": "Expected decline in global oil production",
+      "value": 5.2,
+      "unit": "percent",
+      "source_url": "https://www.nationthailand.com/news/world/40072889"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "World Bank",
+      "kind": "organization"
+    },
+    {
+      "name": "Iran",
+      "kind": "place"
+    },
+    {
+      "name": "Black Sea",
+      "kind": "place"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Israel",
+      "kind": "place"
+    },
+    {
+      "name": "Brent crude oil",
+      "kind": "object"
+    }
+  ]
+}
