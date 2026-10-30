@@ -1,0 +1,68 @@
+{
+  "topic_slug": "procore-magpie-3-benchmark-construction-tasks",
+  "strongest_angle": "Procore's Magpie 3.0 engine demonstrates a 78 percent success rate on construction-specific tasks, outperforming general-purpose AI models by an 18-point margin in October 2026 benchmarks.",
+  "key_facts": [
+    {
+      "fact": "Procore released the Magpie 3.0 reasoning engine in October 2026, which is designed to process complex construction documents like RFIs and drawings.",
+      "source_url": "https://www.procore.com/blog/groundbreak-2026-putting-the-future-of-construction-to-work",
+      "source_name": "Procore Blog",
+      "confidence": "high"
+    },
+    {
+      "fact": "In a benchmark test of over 200 construction tasks, the Procore Magpie 3.0 engine achieved a 78 percent task completion success rate.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Procore Magpie 3.0 engine outperformed the closest general-purpose frontier AI model by 18 percentage points, which achieved a 60 percent success rate.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Magpie 3.0 task success rate",
+      "value": 78,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "Total construction tasks in benchmark",
+      "value": 200,
+      "unit": "tasks",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "Performance lead over general AI",
+      "value": 18,
+      "unit": "percentage points",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "General-purpose model success rate",
+      "value": 60,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Procore",
+      "kind": "organization"
+    },
+    {
+      "name": "Magpie 3.0",
+      "kind": "object"
+    },
+    {
+      "name": "Construction Metrics",
+      "kind": "organization"
+    },
+    {
+      "name": "Joyce Hwang",
+      "kind": "person"
+    }
+  ]
+}

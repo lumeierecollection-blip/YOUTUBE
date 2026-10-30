@@ -1,0 +1,52 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-benchmark-construction-tasks",
+  "format": "shorts",
+  "hook": "Procore's new Magpie 3.0 AI engine hit a 78 percent success rate on complex construction tasks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Procore's new Magpie 3.0 AI engine hit a 78 percent success rate on complex construction tasks.",
+      "visual_cue": "Close-up of a construction site digital interface displaying a 78% progress bar.",
+      "text_overlay": {
+        "text": "78% Success Rate"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Procore launched Magpie 3.0 in October 2026 to process construction documents like Requests for Information. Does Magpie 3.0 beat the 60 percent success rate of general-purpose AI models used for everything?",
+      "visual_cue": "Split screen showing a stack of blueprints on the left and a 200-task checklist on the right.",
+      "text_overlay": {
+        "text": "200 Tasks Tested"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "It actually outperformed the closest general-purpose frontier AI model by 18 percentage points.",
+      "visual_cue": "Bar chart comparing Magpie 3.0 at 78% against a generic AI model at 60%.",
+      "text_overlay": {
+        "text": "18-Point Lead"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "While general models settled for a 60 percent success rate, Procore's engine handled the specialized workload more effectively. The data comes from October 2026 testing.",
+      "visual_cue": "A digital document analysis simulation highlighting successful task completion in green.",
+      "text_overlay": {
+        "text": "60% vs 78% Success"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Procore's Magpie 3.0 maintains a 78 percent success rate.",
+      "visual_cue": "Logo for Procore next to the final 78% performance figure.",
+      "text_overlay": {
+        "text": "78% Verified"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.procore.com/blog/groundbreak-2026-putting-the-future-of-construction-to-work",
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+  ]
+}
