@@ -2345,8 +2345,8 @@
       "last_generated": null
     },
     "17": {
-      "channel_name": "Epoch Chronicles",
-      "niche": "Epic History",
+      "channel_name": "Nature Files",
+      "niche": "Science & Nature Facts (animals, geology, weather, how the natural world works)",
       "used_topics": [
         {
           "topic": "The Fall of Constantinople: The Siege That Split Two Worlds",
@@ -2387,9 +2387,14 @@
           "topic": "The Fall of Empires: Lessons From Ancient Border Crises",
           "slug": "ancient-empire-collapse-frontier-lessons",
           "reserved_at": "2026-09-14T07:31:06.475Z"
+        },
+        {
+          "topic": "Earth's Early Mantle Sulfur Isotopes Reveal Surface Recycling",
+          "slug": "earths-early-mantle-sulfur-isotopes-portsmouth",
+          "reserved_at": "2026-10-30T15:18:21.659Z"
         }
       ],
-      "last_generated": "2026-09-14T07:31:06.475Z"
+      "last_generated": "2026-10-30T15:18:21.659Z"
     },
     "18": {
       "channel_name": "Brief History",
