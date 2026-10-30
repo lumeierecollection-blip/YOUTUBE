@@ -1,0 +1,53 @@
+{
+  "channel_id": "1",
+  "topic_slug": "house-democrats-epstein-files-cover-up-report-2026",
+  "format": "shorts",
+  "hook": "A new 50-page report claims classified Epstein files are missing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A new 50-page report claims classified Epstein files are missing.",
+      "visual_cue": "Close up of a government document with redacted text.",
+      "text_overlay": {
+        "text": "50-page report on Epstein files"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 26, 2026, House Judiciary Committee Democrats released a report accusing Donald Trump of participating in Jeffrey Epstein’s sex scheme. These accounts include 11 women who say they were trafficked. Where did the missing classified documents go?",
+      "visual_cue": "Graphic showing the House Judiciary Committee seal and the number 11.",
+      "text_overlay": {
+        "text": "11 women's accounts cited"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "CBS News identified 3 classified documents that the Department of Justice mishandled.",
+      "visual_cue": "News headline showing the 3 documents identified.",
+      "text_overlay": {
+        "text": "3 classified documents missing"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Robert Garcia warned that this missing material undermines government transparency. The report was released 8 days before the election. This timing raises questions about its impact on voters.",
+      "visual_cue": "Split screen of Rep. Robert Garcia and an election calendar.",
+      "text_overlay": {
+        "text": "Released 8 days before election"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 50-page document remains at the center of the investigation.",
+      "visual_cue": "Wide shot of a report cover on a desk.",
+      "text_overlay": {
+        "text": "50-page report"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://democrats-judiciary.house.gov/media-center/press-releases/judiciary-democrats-report-details-mounting-evidence-linking-trump-to-epstein-s-criminal-activities-and-doj-s-cover-up-specific-accounts-involving-11-women-provide-more-evidence-of-potential-sex-crimes",
+    "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest",
+    "https://www.ms.now/news/house-judiciary-democrats-report-trump-epstein-files"
+  ]
+}

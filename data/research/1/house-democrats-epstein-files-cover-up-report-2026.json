@@ -1,0 +1,105 @@
+{
+  "topic_slug": "house-democrats-epstein-files-cover-up-report-2026",
+  "strongest_angle": "An evidence‑based breakdown of the October 2026 House Judiciary Democrats report that claims missing classified material in the Epstein file bundle and alleges a DOJ/FBI cover‑up.",
+  "key_facts": [
+    {
+      "fact": "The House Judiciary Committee Democrats released a 50‑page staff report on October 26 2026 that accuses Donald Trump of participating in Jeffrey Epstein’s criminal sex scheme.",
+      "source_url": "https://democrats-judiciary.house.gov/media-center/press-releases/judiciary-democrats-report-details-mounting-evidence-linking-trump-to-epstein-s-criminal-activities-and-doj-s-cover-up-specific-accounts-involving-11-women-provide-more-evidence-of-potential-sex-crimes",
+      "source_name": "U.S. House Judiciary Committee Democrats",
+      "confidence": "high"
+    },
+    {
+      "fact": "The report cites specific accounts from 11 women who say they were trafficked by Epstein and that Trump was present during the abuse.",
+      "source_url": "https://democrats-judiciary.house.gov/media-center/press-releases/judiciary-democrats-report-details-mounting-evidence-linking-trump-to-epstein-s-criminal-activities-and-doj-s-cover-up-specific-accounts-involving-11-women-provide-more-evidence-of-potential-sex-crimes",
+      "source_name": "U.S. House Judiciary Committee Democrats",
+      "confidence": "medium"
+    },
+    {
+      "fact": "CBS News identified at least three classified documents within the seized Epstein file bundle that the DOJ received in March 2025, indicating classified material was mishandled.",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest",
+      "source_name": "CBS News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Rep. Robert Garcia, ranking member of the House Oversight Committee, issued a public statement on October 28 2026 warning that the missing classified material undermines government transparency.",
+      "source_url": "https://oversightdemocrats.house.gov/news/press-releases/ranking-member-robert-garcia-statement-following-new-reporting-on-missing-epstein-documents",
+      "source_name": "House Oversight Committee",
+      "confidence": "medium"
+    },
+    {
+      "fact": "According to a news article, the 50‑page report was released eight days before the November 3 2026 election, timing that the outlet says could influence voter perception.",
+      "source_url": "https://www.ms.now/news/house-judiciary-democrats-report-trump-epstein-files",
+      "source_name": "Ms. Now",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 50,
+      "unit": "pages",
+      "label": "Report length",
+      "source_url": "https://democrats-judiciary.house.gov/media-center/press-releases/judiciary-democrats-report-details-mounting-evidence-linking-trump-to-epstein-s-criminal-activities-and-doj-s-cover-up-specific-accounts-involving-11-women-provide-more-evidence-of-potential-sex-crimes"
+    },
+    {
+      "value": 11,
+      "unit": "women",
+      "label": "Women whose accounts are cited",
+      "source_url": "https://democrats-judiciary.house.gov/media-center/press-releases/judiciary-democrats-report-details-mounting-evidence-linking-trump-to-epstein-s-criminal-activities-and-doj-s-cover-up-specific-accounts-involving-11-women-provide-more-evidence-of-potential-sex-crimes"
+    },
+    {
+      "value": 3,
+      "unit": "documents",
+      "label": "Classified documents identified",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest"
+    },
+    {
+      "value": 8,
+      "unit": "days",
+      "label": "Days before election the report was released",
+      "source_url": "https://www.ms.now/news/house-judiciary-democrats-report-trump-epstein-files"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    },
+    {
+      "name": "Jeffrey Epstein",
+      "kind": "person"
+    },
+    {
+      "name": "House Judiciary Committee Democrats",
+      "kind": "organization"
+    },
+    {
+      "name": "Todd Blanche",
+      "kind": "person"
+    },
+    {
+      "name": "Robert Garcia",
+      "kind": "person"
+    },
+    {
+      "name": "Department of Justice",
+      "kind": "organization"
+    },
+    {
+      "name": "Federal Bureau of Investigation",
+      "kind": "organization"
+    },
+    {
+      "name": "House Oversight Committee",
+      "kind": "organization"
+    },
+    {
+      "name": "CBS News",
+      "kind": "organization"
+    },
+    {
+      "name": "Ms. Now",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
