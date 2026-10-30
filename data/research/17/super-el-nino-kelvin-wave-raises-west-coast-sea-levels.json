@@ -1,0 +1,73 @@
+{
+  "topic_slug": "super-el-nino-kelvin-wave-raises-west-coast-sea-levels",
+  "strongest_angle": "Explore how Kelvin waves driven by the 2026 Super El Niño are traveling north along the Pacific coastline and raising sea levels by up to a foot along the U.S. West Coast.",
+  "key_facts": [
+    {
+      "fact": "Sea levels along the West Coast began to rise by up to a foot in October 2026 as pulses of warm water called Kelvin waves hit the shoreline and moved north.",
+      "source_url": "https://apnews.com/article/el-nino-kelvin-waves-flooding-west-coast-52246a73e6842e4561b5195df526dd8e",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Coastally trapped Kelvin waves are traveling north along the U.S. West Coast as one of the first major signs of the 2026 Super El Niño.",
+      "source_url": "https://www.npr.org/2026/10/19/nx-s1-6001744/el-nino-kelvin-wave-west-coast",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the 1997/1998 El Niño event, coastally-trapped Kelvin waves similarly traveled north along the West Coast, as tracked by NOAA sea surface height anomalies.",
+      "source_url": "https://www.fisheries.noaa.gov/feature-story/ocean-indicators-were-tracking-el-ninos-arrival-west-coast",
+      "source_name": "NOAA Fisheries",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Daily sea level anomalies across the Pacific Ocean from March through late October 2026 were tracked relative to the 1993 to 2012 average.",
+      "source_url": "https://www.climate.us/news-features/videos/kelvin-wave-kicked-2026-el-nino-crosses-pacific-raises-west-coast-sea-levels",
+      "source_name": "Climate.us",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Maximum expected sea level rise",
+      "value": 1,
+      "unit": "foot",
+      "source_url": "https://apnews.com/article/el-nino-kelvin-waves-flooding-west-coast-52246a73e6842e4561b5195df526dd8e"
+    },
+    {
+      "label": "Baseline average start year",
+      "value": 1993,
+      "unit": "year",
+      "source_url": "https://www.climate.us/news-features/videos/kelvin-wave-kicked-2026-el-nino-crosses-pacific-raises-west-coast-sea-levels"
+    },
+    {
+      "label": "Baseline average end year",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://www.climate.us/news-features/videos/kelvin-wave-kicked-2026-el-nino-crosses-pacific-raises-west-coast-sea-levels"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "U.S. West Coast",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "NOAA Fisheries",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    },
+    {
+      "name": "NPR",
+      "kind": "organization"
+    }
+  ]
+}

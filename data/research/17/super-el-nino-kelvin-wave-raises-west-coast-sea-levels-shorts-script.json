@@ -1,0 +1,84 @@
+{
+  "channel_id": "17",
+  "topic_slug": "super-el-nino-kelvin-wave-raises-west-coast-sea-levels",
+  "format": "shorts",
+  "hook": "Warm ocean pulses are quietly raising sea levels along the shoreline.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Warm ocean pulses are quietly raising sea levels along the shoreline.",
+      "visual_cue": "Cinematic slow-motion shot of ocean waves crashing along a steep rocky shoreline.",
+      "sfx_cue": "Deep ocean wave swell rumble",
+      "b_roll": [
+        "Pacific ocean coastline aerial view",
+        "Coastal tide hitting rocky shore"
+      ],
+      "text_overlay": {
+        "text": "Rising Coastal Water"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, trapped Kelvin waves moved north along the U.S. West Coast. These surges mark an early sign of a Super El Niño. How high will water rise along the Pacific Ocean?",
+      "visual_cue": "Satellite ocean graphic tracking warm water pulse anomalies advancing northward along the coast.",
+      "sfx_cue": "Subtle radar sweep tone",
+      "b_roll": [
+        "Satellite sea surface temperature map",
+        "U.S. West Coast shoreline map overlay"
+      ],
+      "text_overlay": {
+        "text": "U.S. West Coast Surge"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "NOAA tracked similar coastally trapped Kelvin waves during the 1997/1998 El Niño event last century.",
+      "visual_cue": "Archival ocean indicators data graphic showing sea surface height anomalies along the Pacific shoreline.",
+      "sfx_cue": "Low resonant low-pass rumble",
+      "b_roll": [
+        "NOAA sea level anomaly chart animation",
+        "Ocean monitoring buoy floating on waves"
+      ],
+      "text_overlay": {
+        "text": "NOAA Historical Track"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Sea levels along the U.S. West Coast rose by up to 1 foot in October 2026. Measurements tracked daily anomalies relative to the 1993 to 2012 baseline average. The warm surge alters coastal water heights.",
+      "visual_cue": "Data visualization depicting sea level rise measurements peaking up to 1 foot above baseline.",
+      "sfx_cue": "Soft chime data chime",
+      "b_roll": [
+        "Digital water level measurement scale",
+        "High tide coastal water creeping up shoreline"
+      ],
+      "text_overlay": {
+        "text": "+1 Foot Sea Level Rise"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "close",
+      "voiceover": "Coastal waters remain elevated as waves travel further north.",
+      "visual_cue": "Wide cinematic sunset shot of the Pacific ocean horizon with rolling waves.",
+      "sfx_cue": "Ocean tide breathing slowly dissipating",
+      "b_roll": [
+        "Pacific ocean sunset drone view",
+        "Waves moving northward along Pacific coast"
+      ],
+      "text_overlay": {
+        "text": "Pacific Ocean Surge"
+      },
+      "transition_out": "fade"
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/el-nino-kelvin-waves-flooding-west-coast-52246a73e6842e4561b5195df526dd8e",
+    "https://www.fisheries.noaa.gov/feature-story/ocean-indicators-were-tracking-el-ninos-arrival-west-coast",
+    "https://www.npr.org/2026/10/19/nx-s1-6001744/el-nino-kelvin-wave-west-coast",
+    "https://www.climate.us/news-features/videos/kelvin-wave-kicked-2026-el-nino-crosses-pacific-raises-west-coast-sea-levels"
+  ]
+}
