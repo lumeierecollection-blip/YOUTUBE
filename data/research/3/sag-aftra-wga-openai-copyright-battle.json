@@ -1,0 +1,64 @@
+{
+  "topic_slug": "sag-aftra-wga-openai-copyright-battle",
+  "strongest_angle": "Major entertainment unions are formally intervening in federal court to challenge OpenAI's fair use defense, arguing that unauthorized AI training on creative works constitutes a direct threat to the livelihoods of human creators.",
+  "key_facts": [
+    {
+      "fact": "On October 29, 2026, a memorandum of law was filed in the Southern District of New York by SAG-AFTRA, the American Federation of Musicians, and the Writers Guild of America regarding the OpenAI copyright litigation.",
+      "source_url": "https://www.aiaffairs.com/government/entertainment-unions-openai-copyright-amicus-motion",
+      "source_name": "AIAffairs",
+      "confidence": "high"
+    },
+    {
+      "fact": "The unions jointly filed an amicus brief in the ongoing case In Re: OpenAI, Inc. Copyright Infringement Litigation to urge the court to reject a categorical fair use exemption for AI model training.",
+      "source_url": "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal battle involves a coalition of news outlets and writers who allege that OpenAI scraped copyrighted material from the internet without authorization to train its large language models.",
+      "source_url": "https://filings.escalegal.com/usa-today-v-openai-complaint-2026-10-08.pdf",
+      "source_name": "CourtListener",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Date of memorandum filing",
+      "value": 29,
+      "unit": "day of October 2026",
+      "source_url": "https://www.aiaffairs.com/government/entertainment-unions-openai-copyright-amicus-motion"
+    },
+    {
+      "label": "Total pages in the initial complaint document",
+      "value": 79,
+      "unit": "pages",
+      "source_url": "https://filings.escalegal.com/usa-today-v-openai-complaint-2026-10-08.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "SAG-AFTRA",
+      "kind": "organization"
+    },
+    {
+      "name": "Writers Guild of America",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Southern District of New York",
+      "kind": "place"
+    },
+    {
+      "name": "American Federation of Musicians",
+      "kind": "organization"
+    },
+    {
+      "name": "Sam Altman",
+      "kind": "person"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sag-aftra-wga-openai-copyright-battle",
+  "format": "shorts",
+  "hook": "Major unions are fighting OpenAI because unauthorized AI training threatens the livelihoods of human creators.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Major unions are fighting OpenAI because unauthorized AI training threatens the livelihoods of human creators.",
+      "text_overlay": {
+        "text": "Unions vs. OpenAI"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Will this 79-page complaint finally stop OpenAI from using creative works without permission?",
+      "text_overlay": {
+        "text": "Legal Action: Oct 29, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "SAG-AFTRA, the Writers Guild, and the American Federation of Musicians just intervened in federal court.",
+      "text_overlay": {
+        "text": "Coalition expands"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "These unions urge the court to reject OpenAI's fair use defense regarding their 79-page complaint. The unions argue that unauthorized training on creative works directly destroys jobs for human creators.",
+      "text_overlay": {
+        "text": "Fair Use Challenge"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This October 29, 2026, memorandum forces the Southern District of New York to address unauthorized scraping.",
+      "text_overlay": {
+        "text": "Case Unresolved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.aiaffairs.com/government/entertainment-unions-openai-copyright-amicus-motion",
+    "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138"
+  ]
+}
