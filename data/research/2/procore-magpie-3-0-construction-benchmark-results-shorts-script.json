@@ -1,0 +1,87 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-0-construction-benchmark-results",
+  "format": "shorts",
+  "hook": "Procore's Magpie 3.0 engine successfully completed 78 percent of over 200 specialized construction industry tasks.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Procore's Magpie 3.0 engine successfully completed 78 percent of over 200 specialized construction industry tasks.",
+      "visual_cue": "Benchmark statistic graphic showing 78 percent task completion rate.",
+      "sfx_cue": "whoosh impact",
+      "b_roll": [
+        "Construction Metrics benchmark results screenshot"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "78% Task Completion Rate"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "How did Procore's Magpie 3.0 outperform general-purpose frontier models during its recent construction AI benchmark?",
+      "visual_cue": "Timeline graphic displaying October 16 and October 22 dates.",
+      "sfx_cue": "digital click",
+      "b_roll": [
+        "Procore Explore release notes document"
+      ],
+      "animation_cue": "slide left",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "October 16, 2026 Open Beta"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:28",
+      "voiceover": "General-purpose models only reached a 60 percent success rate on those same 200 construction tasks.",
+      "visual_cue": "Comparison bar chart showing Magpie at 78 percent versus general models at 60 percent.",
+      "sfx_cue": "sub bass riser",
+      "b_roll": [
+        "Construction Metrics benchmark results chart"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "General Models: 60%"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:28-0:42",
+      "voiceover": "Procore reported an 18 percentage point performance margin over the closest general-purpose frontier AI model. Procore previewed these results on its blog after showcasing the benchmark at Groundbreak 2026.",
+      "visual_cue": "Highlighted statistic showing 18 percentage point performance margin.",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "Procore AI software interface screenshot"
+      ],
+      "animation_cue": "fade up",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "+18 Percentage Point Margin"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Procore released Magpie 3.0 in open beta on October 16, 2026.",
+      "visual_cue": "Final stat callout showing 78 percent success rate.",
+      "sfx_cue": "soft drop",
+      "b_roll": [
+        "Construction Metrics benchmark report"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Magpie 3.0 Benchmark"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://support.procore.com/products/online/procore-ai/release-notes"
+  ]
+}
