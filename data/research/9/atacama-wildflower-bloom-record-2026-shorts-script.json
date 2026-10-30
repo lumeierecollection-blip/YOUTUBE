@@ -1,0 +1,37 @@
+{
+  "channel_id": "9",
+  "topic_slug": "atacama-wildflower-bloom-record-2026",
+  "format": "shorts",
+  "hook": "What if 6,560 sq mi of the world’s driest desert suddenly bloomed?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if 6,560 sq mi of the world’s driest desert suddenly bloomed?",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, a wildflower bloom covered 6,560 square miles of Chile’s Atacama Desert. How does that size compare with the 1997 record?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the bloom’s reach is double any previous Atacama flowering.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The bloom covers 6,560 square miles, the largest flowering since 1997. 2026 now holds the Atacama’s flowering record.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "6,560 square miles of desert now bloom in color.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+    "https://theprimary.com/science/2026-10-03/chile-atacama-el-nino-bloom"
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "topic_slug": "atacama-wildflower-bloom-record-2026",
+  "strongest_angle": "The 2026 Atacama Desert wildflower bloom covered an unprecedented 6,560 sq mi, featured over 200 plant species, and represents the largest flowering event recorded since 1997.",
+  "key_facts": [
+    {
+      "fact": "The 2026 bloom carpeted about 6,560 square miles of Chile’s Atacama Desert, the world’s driest non‑polar desert.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high",
+      "named_entities": [
+        "Atacama Desert",
+        "Chile",
+        "6,560 square miles"
+      ]
+    },
+    {
+      "fact": "Scientists documented that the bloom includes more than 200 plant species, many sprouting from seeds and bulbs dormant for decades.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high",
+      "named_entities": [
+        "Atacama Desert",
+        "200 plant species"
+      ]
+    },
+    {
+      "fact": "The event is the most extensive flowering recorded since 1997, surpassing all previous blooms in the Atacama Desert.",
+      "source_url": "https://theprimary.com/science/2026-10-03/chile-atacama-el-nino-bloom",
+      "source_name": "The Primary",
+      "confidence": "high",
+      "named_entities": [
+        "Atacama Desert",
+        "1997",
+        "2026"
+      ]
+    }
+  ],
+  "numbers": [
+    {
+      "value": 6560,
+      "unit": "square miles",
+      "label": "Bloomed area",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    },
+    {
+      "value": 200,
+      "unit": "species",
+      "label": "Number of plant species observed",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    },
+    {
+      "value": 1997,
+      "unit": "year",
+      "label": "Previous record year",
+      "source_url": "https://theprimary.com/science/2026-10-03/chile-atacama-el-nino-bloom"
+    },
+    {
+      "value": 2026,
+      "unit": "year",
+      "label": "Current bloom year",
+      "source_url": "https://theprimary.com/science/2026-10-03/chile-atacama-el-nino-bloom"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Atacama Desert",
+      "type": "place",
+      "kind": "place"
+    },
+    {
+      "name": "Chile",
+      "type": "place",
+      "kind": "place"
+    },
+    {
+      "name": "Santiago Metropolitan Region",
+      "type": "place",
+      "kind": "place"
+    },
+    {
+      "name": "6,560 square miles",
+      "type": "object",
+      "kind": "object"
+    },
+    {
+      "name": "200 plant species",
+      "type": "object",
+      "kind": "object"
+    },
+    {
+      "name": "1997",
+      "type": "object",
+      "kind": "object"
+    },
+    {
+      "name": "2026",
+      "type": "object",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}
