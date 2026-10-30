@@ -266,7 +266,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         // shot (a verified photo of the subject first, then a concept photo; never the one on screen a moment ago). A poster of key words
         // is the last resort, only when the video has no photo at all.
         const uses = (a) => scenes.filter((x) => x.asset === a).length;
-        const pool = Object.keys(assets).filter((a) => /^(photo|concept)-/.test(a) && a !== lastAsset && uses(a) < 3).sort((a, b) => (a.startsWith("photo-") ? 0 : 1) - (b.startsWith("photo-") ? 0 : 1));
+        const pool = Object.keys(assets).filter((a) => /^(photo|concept)-/.test(a) && a !== lastAsset && uses(a) < 5).sort((a, b) => (a.startsWith("photo-") ? 0 : 1) - (b.startsWith("photo-") ? 0 : 1));
         if (pool.length) {
           const reuse = pool[Math.floor(rng() * Math.min(pool.length, 2))];
           scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
