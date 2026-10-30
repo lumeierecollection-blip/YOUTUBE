@@ -1,0 +1,66 @@
+{
+  "channel_id": "48",
+  "topic_slug": "jll-facilities-management-boardroom-priority-ai",
+  "format": "shorts",
+  "hook": "45% of organizations are scaling artificial intelligence in facilities management right now.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "45% of organizations are scaling artificial intelligence in facilities management right now.",
+      "b_roll": [
+        "Data visualization showing 45 percent adoption rate"
+      ],
+      "text_overlay": {
+        "text": "45% scaling AI"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "JLL surveyed 1,321 organizations across 15 countries in 2026. 70% experienced disruptions from skilled trades labor shortages. Where will those companies find workers by 2030?",
+      "b_roll": [
+        "Global map highlighting 15 countries",
+        "Chart showing 70 percent labor shortage disruptions"
+      ],
+      "text_overlay": {
+        "text": "1,321 organizations surveyed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "JLL found 70% of companies faced disruptions from skilled trades labor shortages.",
+      "b_roll": [
+        "Trend line rising from 37 to 71 percent"
+      ],
+      "text_overlay": {
+        "text": "71% robotics by 2030"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CRE Daily notes robotics adoption climbs from 37% to 71% by 2030. JLL shows 50% of global occupiers view facilities management as a competitive advantage.",
+      "b_roll": [
+        "Boardroom meeting display showing 86 percent projection",
+        "Bar chart comparing 50 percent competitive advantage"
+      ],
+      "text_overlay": {
+        "text": "86% adoption by 2030"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "JLL projects 86% of organizations scale artificial intelligence in facilities management by 2030.",
+      "b_roll": [
+        "Final summary graphic displaying 86 percent"
+      ],
+      "text_overlay": {
+        "text": "86% by 2030"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jll.com/en-us/newsroom/facilities-management-poised-to-become-boardroom-priority-as-ai-adoption-accelerates-jll-report-reveals",
+    "https://fortune.com/2026/10/27/jll-ceo-rems-neil-murray-automation-headcount-survey-skilled-trades",
+    "https://www.jll.com/en-us/insights/global-state-of-facilities-management-report",
+    "https://www.credaily.com/briefs/jll-facilities-management-to-turn-strategic-for-82-by-2030"
+  ]
+}
