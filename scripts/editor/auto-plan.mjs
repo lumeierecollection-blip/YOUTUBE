@@ -21,6 +21,8 @@ export function hostOf(url) {
 
 const PERCENT = /(\d+(?:\.\d+)?)\s?(?:%|percent\b)/gi;
 const MONEY = /[$£€]\s?\d[\d,]*(?:\.\d+)?(?:\s?(?:million|billion|trillion|thousand))?/gi;
+const PLAIN = /(?<![\d.,$£€])\d{2,4}(?![\d,]\d|\.\d|%)/g;
+const MONTH = /(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?$/i;
 const COUNT = /\b\d{1,3}(?:,\d{3})+\b|\b\d+(?:\.\d+)?\s?(?:million|billion|trillion)\b/gi;
 
 /** Figures a sentence states, in order of appearance. */
@@ -36,6 +38,18 @@ export function extractFigures(sentence) {
   take(PERCENT, "percent");
   take(MONEY, "number");
   take(COUNT, "number");
+  // A plain number ("453 product recalls", "3,471" is above): 10 or more, not a year, not part of a date ("October 29"), not an ordinal.
+  const text = String(sentence);
+  for (const m of text.matchAll(PLAIN)) {
+    const n = Number(m[0]);
+    const before = text.slice(Math.max(0, m.index - 12), m.index);
+    const after = text.slice(m.index + m[0].length, m.index + m[0].length + 3);
+    if (n >= 1900 && n <= 2100) continue;
+    if (MONTH.test(before.trim())) continue;
+    if (/^(st|nd|rd|th)\b/i.test(after)) continue;
+    if (found.some((f) => f.index < m.index + m[0].length && m.index < f.index + f.raw.length)) continue;
+    found.push({ raw: m[0], kind: "number", value: null, index: m.index, matched: m[0] });
+  }
   return found.sort((a, b) => a.index - b.index);
 }
 

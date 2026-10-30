@@ -264,3 +264,11 @@ test("poster lines shrink to fit the frame in every look", () => {
     for (const m of svg.matchAll(/font-size="(d+)"[^>]*>COUNT DRACULA</g)) assert.ok(Number(m[1]) * 13 * 0.6 <= 900, `look ${n}: size ${m[1]} fits`);
   }
 });
+
+test("plain numbers count as figures, but years, dates, ordinals and small numbers do not", () => {
+  const raws = (t) => extractFigures(t).map((f) => f.raw);
+  assert.deepEqual(raws("In October 2026, 453 product recalls were announced on October 29."), ["453"]);
+  assert.deepEqual(raws("Moderate severity issues represent 181 of the total, and 3 of them were 4th-ranked."), ["181"]);
+  assert.deepEqual(raws("It rose 12.5 percent to 3,471 recalls in 2025."), ["12.5%", "3,471"]);
+  assert.deepEqual(raws("The 5th site opened in March 2024 with 90 staff."), ["90"]);
+});
