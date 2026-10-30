@@ -1,0 +1,63 @@
+{
+  "channel_id": "48",
+  "topic_slug": "european-airline-pilots-fatigue-survey-2026",
+  "format": "shorts",
+  "hook": "Nearly 24 percent of European airline pilots fly while too fatigued.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Nearly 24 percent of European airline pilots fly while too fatigued.",
+      "b_roll": [
+        "Cockpit view during night flight"
+      ],
+      "text_overlay": {
+        "text": "24% of pilots fly fatigued"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, the European Cockpit Association published a survey of 7,200 captains and first officers. Where did 75 percent of pilots experience microsleeps?",
+      "b_roll": [
+        "Document report view",
+        "Pilots in cockpit"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Survey"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, three in four European airline pilots have experienced microsleeps in the cockpit.",
+      "b_roll": [
+        "Instrument panel close up"
+      ],
+      "text_overlay": {
+        "text": "75% experienced microsleeps"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The European Cockpit Association survey revealed that 50.3 percent of participating pilots consider that fatigue risk is not well managed.",
+      "b_roll": [
+        "Airline safety chart"
+      ],
+      "text_overlay": {
+        "text": "Fatigue risk not well managed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "In October 2026, Euronews reported that more than half of surveyed pilots admitted flying while tired.",
+      "b_roll": [
+        "Aircraft flying into clouds"
+      ],
+      "text_overlay": {
+        "text": "24% fly tired"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/business/2026/oct/26/quarter-europe-airline-pilots-fly-too-fatigued-to-work-survey",
+    "https://www.eurocockpit.eu/sites/default/files/2026-10/Key_numbers_fatigue_survey_Baines_Simmons_Report_2026_NT_26_1020_F%5B59%5D.pdf"
+  ]
+}

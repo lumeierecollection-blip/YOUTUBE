@@ -1,0 +1,71 @@
+{
+  "topic_slug": "european-airline-pilots-fatigue-survey-2026",
+  "strongest_angle": "Examination of the October 2026 European Cockpit Association survey revealing that nearly 24% of European airline pilots routinely fly while too fatigued, and three in four have experienced cockpit microsleeps.",
+  "key_facts": [
+    {
+      "fact": "According to a European Cockpit Association report published in October 2026, nearly a quarter of European airline pilots routinely fly despite being too fatigued to work.",
+      "source_url": "https://www.theguardian.com/business/2026/oct/26/quarter-europe-airline-pilots-fly-too-fatigued-to-work-survey",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The European Cockpit Association survey of almost 7,200 captains and first officers found that three in four European airline pilots have experienced microsleeps in the cockpit.",
+      "source_url": "https://www.theguardian.com/business/2026/oct/26/quarter-europe-airline-pilots-fly-too-fatigued-to-work-survey",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "A survey conducted by the European Cockpit Association revealed that over half of participating pilots consider that fatigue risk is not well managed in their airline.",
+      "source_url": "https://www.eurocockpit.eu/sites/default/files/2026-10/Key_numbers_fatigue_survey_Baines_Simmons_Report_2026_NT_26_1020_F%5B59%5D.pdf",
+      "source_name": "European Cockpit Association",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Euronews reporting from October 2026 on the European Cockpit Association survey, more than half of surveyed pilots admitted they flew while tired.",
+      "source_url": "https://www.euronews.com/2026/10/28/more-than-half-of-pilots-say-they-flew-while-tired-as-trust-in-reporting-systems-remains-l",
+      "source_name": "Euronews",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Percentage of pilots flying while too fatigued",
+      "value": 24,
+      "unit": "percent",
+      "source_url": "https://www.theguardian.com/business/2026/oct/26/quarter-europe-airline-pilots-fly-too-fatigued-to-work-survey"
+    },
+    {
+      "label": "Number of captains and first officers surveyed",
+      "value": 7200,
+      "unit": "pilots",
+      "source_url": "https://www.theguardian.com/business/2026/oct/26/quarter-europe-airline-pilots-fly-too-fatigued-to-work-survey"
+    },
+    {
+      "label": "Percentage of pilots experiencing microsleeps",
+      "value": 75,
+      "unit": "percent",
+      "source_url": "https://www.theguardian.com/business/2026/oct/26/quarter-europe-airline-pilots-fly-too-fatigued-to-work-survey"
+    },
+    {
+      "label": "Percentage of pilots stating fatigue risk is not well managed",
+      "value": 50.3,
+      "unit": "percent",
+      "source_url": "https://www.eurocockpit.eu/sites/default/files/2026-10/Key_numbers_fatigue_survey_Baines_Simmons_Report_2026_NT_26_1020_F%5B59%5D.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "European Cockpit Association",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "Euronews",
+      "kind": "organization"
+    }
+  ]
+}
