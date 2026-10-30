@@ -1,0 +1,59 @@
+{
+  "topic_slug": "super-el-nino-iguazu-falls-flow-rates-2026",
+  "strongest_angle": "Examine how the Super El Niño weather phenomenon drove a massive surge in water levels at the Iguazú Falls on the Brazil-Argentina border in October 2026, causing temporary closures and flooding across South America.",
+  "key_facts": [
+    {
+      "fact": "National park officials in Argentina temporarily closed Iguazú Falls after heavy rain caused the Iguazu River to flow at six times the normal rate in October 2026.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Iguazú Falls form a complex of cascades spanning more than a mile across both the Brazil and Argentina border.",
+      "source_url": "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "Heavy rains linked to El Niño caused flooding across swaths of Argentina, Paraguay, and Uruguay in October 2026.",
+      "source_url": "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "River flow rate multiplier compared to normal",
+      "value": 6,
+      "unit": "times",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Iguazú Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazu River",
+      "kind": "place"
+    },
+    {
+      "name": "Paraguay",
+      "kind": "place"
+    },
+    {
+      "name": "Uruguay",
+      "kind": "place"
+    }
+  ]
+}

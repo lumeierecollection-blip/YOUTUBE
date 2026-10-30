@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "super-el-nino-iguazu-falls-flow-rates-2026",
+  "format": "shorts",
+  "hook": "In October 2026, the Iguazú Falls faced a massive surge from the Super El Niño phenomenon.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, the Iguazú Falls faced a massive surge from the Super El Niño phenomenon.",
+      "text_overlay": {
+        "text": "Iguazú Falls Flooding"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How did this extreme weather impact the Iguazu River flow rate in the border region?",
+      "text_overlay": {
+        "text": "October 2026: El Niño"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the surge grew so dangerous that Argentina national park officials closed the Iguazú Falls.",
+      "text_overlay": {
+        "text": "Emergency Closure"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Incredibly, the Iguazu River surged at 6 times its normal flow rate during October 2026. Officials temporarily closed the Iguazú Falls complex to protect visitors from the dangerous floodwaters.",
+      "text_overlay": {
+        "text": "6x Normal Flow Rate"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "El Niño rains triggered widespread flooding across Argentina, Paraguay, and Uruguay throughout October 2026.",
+      "text_overlay": {
+        "text": "1 Mile of Cascades"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e"
+  ]
+}
