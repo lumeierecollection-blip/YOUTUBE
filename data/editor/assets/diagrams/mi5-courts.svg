@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A100A"/><stop offset="1" stop-color="#0F0A05"/></linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#D4A574" stroke-opacity="0.05" stroke-width="1"/></pattern>
+    <g id="court"><path d="M0 70 L110 0 L220 70 Z" fill="#2D1A12" stroke="#D4A574" stroke-width="3"/><g fill="#2D1A12" stroke="#D4A574" stroke-width="3"><rect x="20" y="80" width="26" height="150"/><rect x="72" y="80" width="26" height="150"/><rect x="124" y="80" width="26" height="150"/><rect x="176" y="80" width="26" height="150"/></g><rect x="0" y="232" width="222" height="26" fill="#2D1A12" stroke="#D4A574" stroke-width="3"/></g>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/><rect width="1080" height="1920" fill="url(#grid)"/>
+  <text x="90" y="190" fill="#D4A574" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="7">IPCO FINDING &#183; THREE COURTS</text>
+  <line x1="90" y1="230" x2="990" y2="230" stroke="#D4A574" stroke-opacity="0.5" stroke-width="2"/>
+  <use href="#court" x="45" y="560"/><use href="#court" x="429" y="560"/><use href="#court" x="813" y="560"/>
+  <g fill="#D4A574" font-family="Arial, sans-serif" font-size="24" letter-spacing="3" font-weight="700" text-anchor="middle">
+    <text x="156" y="870">COURT 1</text><text x="540" y="870">COURT 2</text><text x="924" y="870">COURT 3</text>
+  </g>
+  <text x="540" y="1060" fill="#F5EFE6" font-family="Georgia, serif" font-size="64" font-weight="700" text-anchor="middle">gave MI5 false evidence</text>
+  <text x="540" y="1140" fill="#B9B0A4" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">BBC News &#183; Investigatory Powers Commissioner&#8217;s Office</text>
+</svg>

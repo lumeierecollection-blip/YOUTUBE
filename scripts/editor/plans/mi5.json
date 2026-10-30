@@ -1,0 +1,99 @@
+{
+  "id": "mi5-false-evidence-neo-nazi-spy-case-watchdog-failure",
+  "title": "MI5 Gave Three Courts False Evidence",
+  "audio": "data/editor/audio/mi5.mp3",
+  "transcript": "data/editor/audio/mi5.json",
+  "script": "data/research/1/mi5-false-evidence-neo-nazi-spy-case-watchdog-failure-shorts-script.json",
+  "fps": 30,
+  "palette": {
+    "bg": "#0F0A05",
+    "text": "#F5EFE6",
+    "muted": "#B9B0A4",
+    "accent": "#D4A574",
+    "accent2": "#D4A574"
+  },
+  "fonts": { "primary": "Cormorant Garamond", "sans": "Inter" },
+  "caption_style": { "x": 80, "y": 1540, "w": 920, "h": 210, "size": 38 },
+  "caption_replacements": {},
+  "assets": {
+    "thames-house": {
+      "file": "data/editor/assets/raw/thames-house.jpg",
+      "width": 1920,
+      "height": 1280,
+      "credit": "Thames House, London (MI5 building) — Txllxt TxllxT / Wikimedia Commons, CC BY-SA 4.0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:London_-_Millbank_-_View_NW_on_Thames_House_(MI5_building)_1929-30_by_Sir_Frank_Baines_-_Imperial_Neoclassical_architecture_(after_Sir_Edwin_Luytens).jpg",
+      "license": "CC BY-SA 4.0"
+    },
+    "leveson": {
+      "file": "data/editor/assets/raw/leveson.jpg",
+      "width": 1000,
+      "height": 981,
+      "credit": "Sir Brian Leveson — Courts and Tribunals Judiciary / Wikimedia Commons, OGL v3",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sir_Brian_Leveson.jpg",
+      "license": "OGL 3"
+    },
+    "rcj": {
+      "file": "data/editor/assets/raw/rcj.jpg",
+      "width": 1920,
+      "height": 1280,
+      "credit": "Royal Courts of Justice, London — David Castor / Wikimedia Commons, CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Royal_Courts_of_Justice_2019.jpg",
+      "license": "CC0"
+    },
+    "cw-card": {
+      "file": "data/editor/assets/diagrams/mi5-cw.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Card: TradeApp editor, headline from Computer Weekly",
+      "source_url": "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings",
+      "license": "Original diagram"
+    },
+    "agent-card": {
+      "file": "data/editor/assets/diagrams/mi5-agent-x.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Card: TradeApp editor, facts from BBC News",
+      "source_url": "https://www.bbc.co.uk/news/articles/cj9gggjekyjo",
+      "license": "Original diagram"
+    },
+    "courts-card": {
+      "file": "data/editor/assets/diagrams/mi5-courts.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Card: TradeApp editor, facts from BBC News",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+      "license": "Original diagram"
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook-mi5", "start": 0, "end": 7.5, "asset": "thames-house", "fit": "cover", "motion": "in", "fx": 0.45,
+      "filter": { "sepia": 0.15, "saturate": 0.7, "brightness": 0.82 },
+      "layout": "lower", "kicker": "MI5 · THAMES HOUSE", "headline": "FALSE EVIDENCE\nTO 3 COURTS", "sub": "While defending a violent neo-Nazi informant."
+    },
+    {
+      "id": "leveson", "start": 7.5, "end": 15.54, "asset": "leveson", "fit": "cover", "motion": "in", "fy": 0.3,
+      "filter": { "sepia": 0.2, "saturate": 0.6, "brightness": 0.88 },
+      "layout": "lower", "kicker": "INVESTIGATORY POWERS COMMISSIONER", "headline": "SIR BRIAN\nLEVESON", "sub": "His office, IPCO, investigated MI5."
+    },
+    {
+      "id": "computer-weekly", "start": 15.54, "end": 23.36, "asset": "cw-card", "fit": "cover", "motion": "in"
+    },
+    {
+      "id": "judiciary", "start": 23.36, "end": 28.08, "asset": "rcj", "fit": "cover", "motion": "pan-left",
+      "filter": { "sepia": 0.15, "saturate": 0.7, "brightness": 0.85 },
+      "layout": "lower", "kicker": "THE JUDICIARY", "headline": "FALSE\nEVIDENCE", "sub": "MI5 officers gave it to the courts."
+    },
+    {
+      "id": "agent-x", "start": 28.08, "end": 37.02, "asset": "agent-card", "fit": "cover", "motion": "in"
+    },
+    {
+      "id": "three-courts", "start": 37.02, "end": 43.32, "asset": "courts-card", "fit": "cover", "motion": "in"
+    },
+    {
+      "id": "close", "start": 43.32, "end": 48.744, "asset": "leveson", "fit": "cover", "motion": "pan-right", "fy": 0.3,
+      "filter": { "sepia": 0.2, "saturate": 0.6, "brightness": 0.85 },
+      "layout": "lower", "kicker": "SIR BRIAN LEVESON", "headline": "3 COURTS\nMISLED", "sub": "IPCO and the courts were misled, he said."
+    }
+  ]
+}
