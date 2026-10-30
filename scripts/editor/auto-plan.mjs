@@ -11,6 +11,7 @@
  */
 import { scriptSentences } from "./captions.mjs";
 import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
+import { chooseKind, backdropSvg } from "./graphics.mjs";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 const KIND = { person: "person", people: "person", place: "place", location: "place", city: "place", country: "place", organization: "organization", company: "organization", agency: "organization", institution: "organization", university: "organization" };
@@ -199,10 +200,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
-    const overlayFor = (id) => {
-      cards.push({ id, svg: shiftSvg(look.figure({ figs, source: figSource, fn }), dy) });
-      return id;
-    };
+    // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
+    const graphicFor = () => ({ id: `g${i}`, kind: chooseKind(figs, rng, look.name), figs: figs.slice(0, 2), source: figSource, fn, dy, look: look.name });
     const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
     let scene = null;
     let how = "";
@@ -227,7 +226,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (id === lastAsset) continue; // never the same picture two scenes running
       assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license };
       scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
-      if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
+      if (figs.length) scene.graphic = graphicFor();
       how = `verified photo of ${ent.name}${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
       break;
     }
@@ -240,7 +239,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         const id = `concept-${i}`;
         assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
-        if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
+        if (figs.length) scene.graphic = graphicFor();
         how = `concept photo "${queries[i]}"${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
       } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
     }
@@ -249,9 +248,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     if (!scene) {
       const id = `card-${i}`;
       if (figs.length) {
-        const flat = look.name === "scene-director" && fn === "payoff" ? null : (look.name === "hallmark" ? "#15130F" : palette.bg);
-        const svgText = look.figure({ figs, source: figSource, fn });
-        cards.push({ id, svg: flat ? withBg(svgText, flat) : svgText });
+        // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer with a slow push, so the
+        // final-MP4 QA still sees motion on every image layer.
+        cards.push({ id, svg: backdropSvg(palette) });
         how = `figure alone ${figs.map((f) => f.raw).join(", ")}`;
       } else {
         // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a
@@ -268,15 +267,19 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           how = "key-word poster";
         }
       }
-      if (!scene) scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
+      if (!scene) {
+        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
+        if (figs.length) scene.graphic = graphicFor();
+      }
     }
 
     lastAsset = scene.asset;
+    scene.look = look.name;
     const isPhoto = /^(photo|concept)-/.test(scene.asset);
     if (isPhoto && end - start > 7.5) {
       // A long photo scene is re-framed halfway (a different part of the picture, a different move), the way an editor cuts a long shot.
       const mid = start + (end - start) * (0.45 + rng() * 0.15);
-      const second = { ...scene, id: scene.id + "b", overlay: undefined, kicker: undefined, fade: 0, motion: MOTIONS[(MOTIONS.indexOf(motion) + 2) % MOTIONS.length], fx: pick(rng, [0.3, 0.7]), fy: pick(rng, [0.3, 0.6]), zoom: 0.06 };
+      const second = { ...scene, id: scene.id + "b", graphic: undefined, kicker: undefined, fade: 0, motion: MOTIONS[(MOTIONS.indexOf(motion) + 2) % MOTIONS.length], fx: pick(rng, [0.3, 0.7]), fy: pick(rng, [0.3, 0.6]), zoom: 0.06 };
       scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(mid.toFixed(3)), stagger: look.stagger });
       scenes.push({ ...second, start: Number(mid.toFixed(3)), end: Number(end.toFixed(3)), stagger: 0 });
       lastMotion = second.motion;

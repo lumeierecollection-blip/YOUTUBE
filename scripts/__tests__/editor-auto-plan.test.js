@@ -105,7 +105,7 @@ test("the plan builds a valid editor timeline with captions from the voiceover",
 // ---- concept photos and the five looks --------------------------------------------------------------------------------------------
 import { parseQueries, conceptPrompt, searchCommons } from "../editor/concept-photo.mjs";
 import { styleFor, STYLE_NAMES, functionOf, keyPhrase } from "../editor/styles.mjs";
-import { addOverlays } from "../editor/auto-timeline.mjs";
+import { addGraphics } from "../editor/auto-timeline.mjs";
 
 test("the model's phrases are parsed from JSON or from text, null when absent", () => {
   assert.deepEqual(parseQueries({ "0": "airline cockpit", "1": null, "2": "None" }, 4), ["airline cockpit", null, null, null]);
@@ -129,8 +129,8 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   const concept = async ({ query }) => (query === "cockpit" ? { file: "c.jpg", width: 2000, height: 1300, credit: "Photo: Z / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : null);
   const { plan, cards, report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: ["cockpit", null, "nothing", "cockpit"] });
   assert.match(report.scenes[0].shows, /concept photo "cockpit" \+ figure 45%/);
-  assert.equal(plan.scenes[0].overlay, "overlay-0");
-  assert.ok(cards.some((c) => c.id === "overlay-0" && c.svg.includes("45%")));
+  assert.equal(plan.scenes[0].graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic over the photo");
+  assert.ok(["bar", "ring"].includes(plan.scenes[0].graphic.kind));
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
   assert.match(report.scenes[2].shows, /concept-0 again, re-framed/, "a miss re-uses the story's own photo, framed differently");
 });
@@ -153,13 +153,14 @@ test("each of the five looks draws a figure overlay with no gradient fill and no
   assert.deepEqual(keyPhrase("It was in a"), []);
 });
 
-test("overlays become image layers above the scrim and below the text, entering after the scene's own fade", () => {
+test("graphics become real layers above the scrim and below the text, entering after the scene's own fade", () => {
   const tl = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }, { id: "scene-0-gradient", z: 100, in: 0, out: 100 }, { id: "t", z: 210, in: 0, out: 100 }] };
-  addOverlays(tl, { scenes: [{ overlay: "overlay-0", stagger: 9 }] });
-  const o = tl.layers.find((l) => l.id === "scene-0-overlay");
-  assert.deepEqual([o.in, o.out, o.z, o.asset_id], [9, 100, 150, "overlay-0"]);
-  assert.deepEqual(tl.layers.map((l) => l.z), [11, 100, 150, 210]);
-  assert.ok(o.keyframes.scale.length >= 2 && o.keyframes.scale[1].v > o.keyframes.scale[0].v, "an overlay moves, as every image layer must");
+  const plan = { id: "p", palette: { accent: "#0f0", bg: "#000", text: "#fff" }, scenes: [{ stagger: 9, graphic: { id: "g0", kind: "bar", figs: [{ raw: "45%", kind: "percent", value: 45 }], source: "x.com", fn: "evidence", dy: 0, look: "anti-slop" } }] };
+  addGraphics(tl, plan);
+  const g = tl.layers.filter((l) => l.id.startsWith("scene-0-g-"));
+  assert.ok(g.length >= 3, "a bar, its track and a counting number at least");
+  assert.ok(g.every((l) => l.in >= 9 && l.out === 100 && l.z >= 150 && l.z < 200), "above the scrim, below the text, after the stagger");
+  assert.deepEqual(tl.layers.map((l) => l.z), [...tl.layers.map((l) => l.z)].sort((x, y) => x - y), "layers stay sorted by z");
 });
 
 // ---- the vision check on concept photos --------------------------------------------------------------------------------------------
@@ -271,4 +272,122 @@ test("plain numbers count as figures, but years, dates, ordinals and small numbe
   assert.deepEqual(raws("Moderate severity issues represent 181 of the total, and 3 of them were 4th-ranked."), ["181"]);
   assert.deepEqual(raws("It rose 12.5 percent to 3,471 recalls in 2025."), ["12.5%", "3,471"]);
   assert.deepEqual(raws("The 5th site opened in March 2024 with 90 staff."), ["90"]);
+});
+
+// ---- animated graphics (graphics.mjs) ---------------------------------------------------------------------------------------------
+import { graphicLayers, parseFigure, chooseKind, backdropSvg, decorationLayers } from "../editor/graphics.mjs";
+import { valueAt, formatCount } from "../../src/skills/remotion-render/editor/layer-math.js";
+
+const PAL = { accent: "#1ABC9C", bg: "#07070D", text: "#fff" };
+const g = (look, kind, figs, extra = {}) => graphicLayers({ id: "g", kind, figs, source: "jll.com", fn: "evidence", look, palette: PAL, inF: 0, outF: 90, ...extra });
+const PCT = { raw: "45%", kind: "percent", value: 45 };
+const NUM = { raw: "$2.5 million", kind: "number", value: null };
+
+test("a figure is parsed into what to count to and how to write it", () => {
+  assert.deepEqual(parseFigure(PCT), { from: 0, to: 45, decimals: 0, prefix: "", suffix: "%", group: false, percent: 45 });
+  const m = parseFigure(NUM);
+  assert.deepEqual([m.prefix, m.to, m.decimals, m.suffix], ["$", 2.5, 1, " million"]);
+  const c = parseFigure({ raw: "3,471", kind: "number" });
+  assert.deepEqual([c.to, c.group], [3471, true]);
+  assert.equal(formatCount(c, 1), "3,471");
+  assert.equal(formatCount(m, 1), "$2.5 million");
+  assert.equal(formatCount(parseFigure(PCT), 0.5), "23%", "half way through the count it shows half the number");
+});
+
+test("a percentage bar grows to exactly its share, and the number counts up to the stated figure", () => {
+  for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
+    const ls = g(look, "bar", [PCT]);
+    const fill = ls.find((l) => /-b-fill$/.test(l.id));
+    assert.ok(fill, `${look}: a growing bar`);
+    assert.equal(valueAt(fill, "clipR", 0), 100, `${look}: starts empty`);
+    assert.equal(valueAt(fill, "clipR", 80), 55, `${look}: ends at 45% of the track (clipR 55)`);
+    const n = ls.find((l) => l.count);
+    assert.ok(n, `${look}: a counting number`);
+    assert.equal(formatCount(n.count, valueAt(n, "count", 0)), "0%");
+    assert.equal(formatCount(n.count, valueAt(n, "count", 80)), "45%");
+  }
+});
+
+test("a ring draws on to exactly its share; two percentages get two bars; a plain number counts", () => {
+  const ring = g("vox", "ring", [PCT]).find((l) => l.type === "svg" && /ring$/.test(l.id));
+  assert.ok(ring);
+  assert.equal(valueAt(ring, "draw", 0), 0);
+  assert.ok(Math.abs(valueAt(ring, "draw", 80) - 0.45) < 1e-9);
+  const two = g("anti-slop", "bars2", [PCT, { raw: "71%", kind: "percent", value: 71 }]);
+  assert.equal(two.filter((l) => /-fill$/.test(l.id)).length, 2);
+  assert.equal(valueAt(two.find((l) => /b1-fill$/.test(l.id)), "clipR", 80), 29);
+  const count = g("mograph-critic", "count", [{ raw: "453", kind: "number" }]).find((l) => l.count);
+  assert.equal(formatCount(count.count, valueAt(count, "count", 80)), "453");
+});
+
+test("every look and kind yields layers that stay inside the frame, are on screen only while the scene is, and carry only sourced text", () => {
+  const cases = [["bar", [PCT]], ["ring", [PCT]], ["bars2", [PCT, { raw: "71%", kind: "percent", value: 71 }]], ["count", [NUM]]];
+  for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
+    for (const fn of ["hook", "evidence", "payoff"]) {
+      for (const [kind, figs] of cases) {
+        const ls = g(look, kind, figs, { fn, dy: 60 });
+        assert.ok(ls.length >= 2, `${look}/${fn}/${kind}`);
+        const ids = new Set(ls.map((l) => l.id));
+        assert.equal(ids.size, ls.length, "layer ids are unique");
+        for (const l of ls) {
+          assert.ok(l.in >= 0 && l.out <= 90 && l.out > l.in, `${look}/${kind}: ${l.id} timing`);
+          assert.ok(l.rect.x >= -1 && l.rect.x + l.rect.w <= 1081, `${look}/${kind}: ${l.id} inside the width`);
+          assert.ok(l.rect.y + l.rect.h > 0 && l.rect.y < 1920, `${look}/${kind}: ${l.id} on the canvas`);
+          if (l.type === "text" && l.text) assert.match(l.text, /^Source: jll\.com$/, "the only free text is the source");
+        }
+      }
+    }
+  }
+});
+
+test("the kind follows the figures, and a backdrop has no gradient", () => {
+  const rng = () => 0.1;
+  assert.equal(chooseKind([PCT], rng, "vox"), "ring");
+  assert.equal(chooseKind([PCT], rng, "hallmark"), "bar");
+  assert.equal(chooseKind([PCT, { raw: "9%", kind: "percent", value: 9 }], rng, "vox"), "bars2");
+  assert.equal(chooseKind([NUM], rng, "vox"), "count");
+  assert.ok(!/Gradient/.test(backdropSvg(PAL)));
+});
+
+test("a figure-only scene keeps an image layer with motion (the backdrop) under its graphic, so the final QA still passes", async () => {
+  const { plan, cards } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null], style: 3 });
+  const first = plan.scenes[0];
+  assert.match(first.asset, /^card-/);
+  assert.ok(cards.some((c) => c.id === first.asset && /<rect width="1080" height="1920"/.test(c.svg)));
+  assert.ok(first.graphic && first.graphic.figs[0].raw === "45%");
+});
+
+test("a full timeline with every look's graphics validates against schemas/editor-timeline.json", async (t) => {
+  const Ajv = await import("ajv").then((m) => m.default, () => null);
+  if (!Ajv) return t.skip("ajv is not installed on this machine (CI has it)");
+  const { readFileSync } = await import("node:fs");
+  const schema = JSON.parse(readFileSync(new URL("../../schemas/editor-timeline.json", import.meta.url), "utf8"));
+  const validate = new Ajv({ allErrors: true, strict: false }).compile(schema);
+  for (const style of [1, 2, 3, 4, 5]) {
+    const { plan, cards } = await buildAutoPlan({ ...base, resolve: photoOk, concept: async () => null, queries: [null, null, null, null], style, stem: `schema-${style}-shorts-script` });
+    for (const c of cards) plan.assets[c.id] = { file: `${c.id}.svg`, width: 1080, height: 1920 };
+    for (const a of Object.values(plan.assets)) { a.credit ??= "c"; a.source_url ??= "u"; }
+    const transcript = transcriptFromWords({ words });
+    const tl = addGraphics(buildTimeline(plan, { audioDuration: 22, captions: buildCaptions({ script, whisper: transcript, duration: 22 }) }), plan);
+    assert.ok(tl.layers.some((l) => l.count), `look ${style}: a counting number is in the timeline`);
+    assert.ok(validate(tl), `look ${style}: ${JSON.stringify((validate.errors || []).slice(0, 3))}`);
+  }
+});
+
+test("a photo scene with no figure still moves: the accent draws itself across it", () => {
+  const PAL2 = { accent: "#1ABC9C", bg: "#07070D", text: "#fff" };
+  for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
+    const ls = decorationLayers({ id: "d", look, palette: PAL2, inF: 10, outF: 100 });
+    assert.ok(ls.length >= 1 && ls.every((l) => l.in === 10 && l.out === 100), look);
+    const anim = ls.find((l) => l.keyframes.draw || l.keyframes.clipR);
+    assert.ok(anim, `${look}: something draws or wipes in`);
+    if (anim.keyframes.draw) { assert.equal(valueAt(anim, "draw", 0), 0); assert.equal(valueAt(anim, "draw", 40), 1); }
+    else { assert.equal(valueAt(anim, "clipR", 0), 100); assert.equal(valueAt(anim, "clipR", 40), 0); }
+  }
+  const tl = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
+  addGraphics(tl, { id: "p", palette: PAL2, scenes: [{ asset: "photo-x", look: "vox", stagger: 0 }] });
+  assert.ok(tl.layers.some((l) => l.id.startsWith("scene-0-d-")), "a photo scene without a graphic gets the decoration");
+  const tl2 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
+  addGraphics(tl2, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
+  assert.equal(tl2.layers.length, 1, "a backdrop scene with no graphic gets none");
 });

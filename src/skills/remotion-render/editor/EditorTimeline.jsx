@@ -10,7 +10,7 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "
 import { Audio } from "@remotion/media";
 import { currentAudio } from "../audio.js";
 import "../wait-for-fonts.js";
-import { stateAt, imageBox, CANVAS_W, CANVAS_H, FPS } from "./layer-math.js";
+import { stateAt, imageBox, formatCount, CANVAS_W, CANVAS_H, FPS } from "./layer-math.js";
 
 function layerFilter(s) {
   const f = [];
@@ -71,7 +71,7 @@ function TextLayer({ layer, s, tl }) {
         whiteSpace: "pre-wrap",
       }}
     >
-      {layer.text}
+      {layer.count ? formatCount(layer.count, s.count) : layer.text}
     </div>
   );
 }
