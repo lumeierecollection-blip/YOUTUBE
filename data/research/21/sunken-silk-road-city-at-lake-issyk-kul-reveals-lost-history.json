@@ -1,0 +1,95 @@
+{
+  "topic_slug": "sunken-silk-road-city-at-lake-issyk-kul-reveals-lost-history",
+  "strongest_angle": "Underwater excavations at Lake Issyk-Kul in Kyrgyzstan reveal a submerged 800-year-old Silk Road settlement and 13th-to-14th-century necropolises explored by international research teams and volunteers like Elizaveta Bodrova.",
+  "key_facts": [
+    {
+      "fact": "In Toru-Aygyr, Kyrgyzstan, diving volunteer Elizaveta Bodrova and a team of around 20 scientists are investigating a settlement that flooded an estimated 800 years ago.",
+      "source_url": "https://www.france24.com/en/live-news/20261005-sunken-silk-road-city-reveals-central-asia-s-lost-history",
+      "source_name": "France 24",
+      "confidence": "high"
+    },
+    {
+      "fact": "An international underwater archaeological expedition in the fall of 2025 discovered a 13th-14th century Muslim necropolis under the waters of Lake Issyk-Kul.",
+      "source_url": "https://rgo.ru/en/activity/redaction/news/archaeologists-have-discovered-a-13th-14th-century-muslim-necropolis-under-the-waters-of-lake-issyk",
+      "source_name": "RGS News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The ancient settlement at Lake Issyk-Kul in Kyrgyzstan is located on an ancient trading route that linked China to the Mediterranean from the 2nd century BC.",
+      "source_url": "https://www.arabnews.com/world/sunken-silk-road-city-reveals-central-asias-lost-history-3004665",
+      "source_name": "Arab News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estimated years since flooding",
+      "value": 800,
+      "unit": "years",
+      "source_url": "https://www.france24.com/en/live-news/20261005-sunken-silk-road-city-reveals-central-asia-s-lost-history"
+    },
+    {
+      "label": "Scientists on the team",
+      "value": 20,
+      "unit": "scientists",
+      "source_url": "https://www.france24.com/en/live-news/20261005-sunken-silk-road-city-reveals-central-asia-s-lost-history"
+    },
+    {
+      "label": "Century starting range for the necropolis",
+      "value": 13,
+      "unit": "century",
+      "source_url": "https://rgo.ru/en/activity/redaction/news/archaeologists-have-discovered-a-13th-14th-century-muslim-necropolis-under-the-waters-of-lake-issyk"
+    },
+    {
+      "label": "Century ending range for the necropolis",
+      "value": 14,
+      "unit": "century",
+      "source_url": "https://rgo.ru/en/activity/redaction/news/archaeologists-have-discovered-a-13th-14th-century-muslim-necropolis-under-the-waters-of-lake-issyk"
+    },
+    {
+      "label": "Starting century for the Silk Road trading route mentioned",
+      "value": 2,
+      "unit": "century BC",
+      "source_url": "https://www.arabnews.com/world/sunken-silk-road-city-reveals-central-asias-lost-history-3004665"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Lake Issyk-Kul",
+      "kind": "place"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "kind": "place"
+    },
+    {
+      "name": "Toru-Aygyr",
+      "kind": "place"
+    },
+    {
+      "name": "Elizaveta Bodrova",
+      "kind": "person"
+    },
+    {
+      "name": "RGS",
+      "kind": "organization"
+    },
+    {
+      "name": "Institute of Archeology of the RAS",
+      "kind": "organization"
+    },
+    {
+      "name": "National Academy of Sciences of the Kyrgyz Republic",
+      "kind": "organization"
+    },
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "Silk Road",
+      "kind": "organization"
+    }
+  ]
+}

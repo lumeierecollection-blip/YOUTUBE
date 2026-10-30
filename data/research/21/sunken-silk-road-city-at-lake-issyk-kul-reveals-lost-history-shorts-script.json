@@ -1,0 +1,90 @@
+{
+  "channel_id": "21",
+  "topic_slug": "sunken-silk-road-city-at-lake-issyk-kul-reveals-lost-history",
+  "format": "shorts",
+  "hook": "An 800-year-old Silk Road settlement sits completely underwater in Kyrgyzstan.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "An 800-year-old Silk Road settlement sits completely underwater in Kyrgyzstan.",
+      "visual_cue": "Wide aerial shot of Lake Issyk-Kul with dramatic mountain backdrop.",
+      "sfx_cue": "Deep ambient underwater tone with subtle water ripple sound.",
+      "b_roll": [
+        "Lake Issyk-Kul aerial footage"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Cut to underwater dive",
+      "text_overlay": {
+        "text": "800-Year-Old Sunken City"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "In Toru-Aygyr, diving volunteer Elizaveta Bodrova and 20 scientists are investigating structures that flooded centuries ago. This ancient trading route once linked China to the Mediterranean from the 2nd century BC. What remains buried beneath the cold waters?",
+      "visual_cue": "Underwater camera tracking divers moving through submerged ruins and stone formations.",
+      "sfx_cue": "Subtle regulator bubbles and low hum.",
+      "b_roll": [
+        "Underwater archaeological dive footage",
+        "Divers examining stone structures"
+      ],
+      "animation_cue": "Slow push in on diver",
+      "transition_out": "Cut to artifacts",
+      "text_overlay": {
+        "text": "20 Scientists Investigating Toru-Aygyr"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "But the fall of 2025 dive discovered a 13th-century Muslim necropolis.",
+      "visual_cue": "Close-up shot of an underwater stone grave marker being brushed clean by a diver.",
+      "sfx_cue": "Subtle rising metallic scrape.",
+      "b_roll": [
+        "Expedition divers working underwater"
+      ],
+      "animation_cue": "Quick zoom on stone marker",
+      "transition_out": "Cut to wide artifact shot",
+      "text_overlay": {
+        "text": "13th-14th Century Necropolis Found"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "RGS News reports the dive teams found burial sites dating from the 13th to the 14th century. These submerged ruins rewrite trade route history.",
+      "visual_cue": "Detailed shot of stone artifacts resting on the lake bed sediment.",
+      "sfx_cue": "Resonant metallic drone building tension.",
+      "b_roll": [
+        "Submerged stone masonry and artifacts",
+        "Research teams working on lake shore"
+      ],
+      "animation_cue": "Pan across stone artifacts",
+      "transition_out": "Cut to final shot",
+      "text_overlay": {
+        "text": "Lake Issyk-Kul Discoveries"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Dive Lake Issyk-Kul to explore Toru-Aygyr's underwater Silk Road ruins.",
+      "visual_cue": "Slow sunset pan across the surface of Lake Issyk-Kul.",
+      "sfx_cue": "Fading water ambiance and gentle wind.",
+      "b_roll": [
+        "Sunset over Lake Issyk-Kul"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Lake Issyk-Kul"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.france24.com/en/live-news/20261005-sunken-silk-road-city-reveals-central-asia-s-lost-history",
+    "https://rgo.ru/en/activity/redaction/news/archaeologists-have-discovered-a-13th-14th-century-muslim-necropolis-under-the-waters-of-lake-issyk",
+    "https://www.arabnews.com/world/sunken-silk-road-city-reveals-central-asias-lost-history-3004665"
+  ]
+}
