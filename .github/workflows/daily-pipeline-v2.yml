@@ -563,6 +563,25 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           node scripts/gate-research.js "$CH" "$SLUG"
 
+      # —— Is there anything to DRAW? (strict_visual channels only) ———————————————————————
+      # scripts/strict-prescreen.mjs measures the research before a script model is called. A starved topic (facts that only say who did
+      # what) used to burn the whole script budget; now the other discovery candidates are tried first (scripts/ci/strict-prescreen-pick.sh).
+      - name: Pre-screen the research for something to draw
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        env:
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENCODE_MODELS_RESEARCH: "ollama-cloud/gpt-oss:120b,ollama/qwen2.5:3b"
+          CHANNEL_ID: ${{ matrix.channel_id }}
+        run: bash scripts/ci/strict-prescreen-pick.sh
+
       # —— Stage C: script (gate-feedback retry) ——————————————————————————
       - name: Write script
         id: script

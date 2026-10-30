@@ -242,3 +242,16 @@ test("a video with no photo at all falls back to the key-word poster, never to a
   const { report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null] });
   assert.ok(report.scenes.some((x) => /key-word poster/.test(x.shows)));
 });
+
+// ---- figures fit their width ("252 million" was clipped at 260px in a real render) ----------------------------------------------------
+import { fitSize } from "../editor/styles.mjs";
+
+test("a figure is sized to fit: long figures shrink, short ones keep their size", () => {
+  assert.equal(fitSize("45%", 250), 250);
+  assert.ok(fitSize("252 million", 250) * "252 million".length * 0.62 <= 900, "the longest figure fits 900px");
+  assert.ok(fitSize("$300 billion", 340) < 340);
+  for (const n of [1, 2, 3, 4, 5]) {
+    const svg = styleFor(n, { bg: "#000", accent: "#0f0" }).figure({ figs: [{ raw: "252 million", kind: "number", value: null }], source: "x.com", fn: "hook" });
+    for (const m of svg.matchAll(/font-size="(\d+)"[^>]*>252 million</g)) assert.ok(Number(m[1]) * 11 * 0.6 <= 960, `look ${n}: size ${m[1]} fits`);
+  }
+});
