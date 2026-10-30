@@ -1,0 +1,79 @@
+{
+  "topic_slug": "iguazu-falls-super-el-nino-record-rates",
+  "strongest_angle": "Explore how heavy October 2026 rainfall linked to a Super El Nino weather pattern sent massive volumes of water surging over the Iguazu Falls along the Brazil-Argentina border, causing national park closures and flows up to ten times normal levels.",
+  "key_facts": [
+    {
+      "fact": "National park officials took the precautionary measure to limit tourist access after heavy rain caused the Iguazu River to flow at six times the normal rate in October 2026.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Iguazu Falls, an Unesco world heritage site, has reached a record water flow after heavy rains across the river basin, with El Nino weather patterns driving the flow to hit 10 times the normal amount in October 2026.",
+      "source_url": "https://www.theguardian.com/world/video/2026/oct/16/iguazu-falls-in-south-america-hits-record-10-times-normal-water-flow-video",
+      "source_name": "The Guardian",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Iguazu Falls span more than a mile across both the Brazil and Argentina border, experiencing a rain-soaked October 2026 linked to the Super El Nino weather pattern.",
+      "source_url": "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "Rivers swollen by heavy rains linked to El Nino continued flooding swaths of Argentina, Paraguay, and Uruguay in October 2026, forcing thousands of people from their homes.",
+      "source_url": "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e",
+      "source_name": "AP News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Iguazu River flow rate multiplier",
+      "value": 6,
+      "unit": "times normal rate",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    },
+    {
+      "label": "Iguazu Falls peak record flow multiplier",
+      "value": 10,
+      "unit": "times normal amount",
+      "source_url": "https://www.theguardian.com/world/video/2026/oct/16/iguazu-falls-in-south-america-hits-record-10-times-normal-water-flow-video"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Iguazú Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazu River",
+      "kind": "place"
+    },
+    {
+      "name": "Paraguay",
+      "kind": "place"
+    },
+    {
+      "name": "Uruguay",
+      "kind": "place"
+    },
+    {
+      "name": "Corrientes province",
+      "kind": "place"
+    }
+  ]
+}

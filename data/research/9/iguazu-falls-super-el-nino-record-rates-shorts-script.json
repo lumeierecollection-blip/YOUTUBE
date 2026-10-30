@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-super-el-nino-record-rates",
+  "format": "shorts",
+  "hook": "What happens when the Iguazú Falls hit a record 10 times their normal water flow?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when the Iguazú Falls hit a record 10 times their normal water flow?",
+      "text_overlay": {
+        "text": "10x Normal Flow"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, heavy rains across the Iguazu River basin triggered massive flooding. How did Iguazú National Park handle the Super El Nino, a climate pattern causing extreme rainfall?",
+      "text_overlay": {
+        "text": "October 2026 Flooding"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the Super El Nino, a climate pattern causing extreme rainfall, forced Iguazú National Park closures.",
+      "text_overlay": {
+        "text": "Park Closures"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This massive surge impacted the entire border between Argentina and Brazil in October 2026.",
+      "text_overlay": {
+        "text": "10 Times Normal Flow"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Iguazú Falls reached a record 10 times their normal flow in October 2026.",
+      "text_overlay": {
+        "text": "October 2026 Record"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://www.theguardian.com/world/video/2026/oct/16/iguazu-falls-in-south-america-hits-record-10-times-normal-water-flow-video"
+  ]
+}
