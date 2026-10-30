@@ -80,6 +80,8 @@ rounded-up or invented one. Do not pick the same formula as the title's obvious 
 - **The Comparison**: Two named options, one winner. Fails when: Say the losing option out loud. A comparison with no loser is an advert.
 - **The Deadline**: Something is changing on a date. Fails when: Only use with a real, checkable date. This is the fastest formula to lose trust with.
 Never use a formula that needs the narrator's own experience, a screenshot of their own work or inside access: this channel has none.
+**Figures are written as digits** ("1 million", "45%", "3 courts", "4th site"), never as words ("one million", "forty-five percent", "fourth"): the grounding gate counts digits, and a spelled-out figure draws nothing (run 41045989401: ch-48's strict gate refused "One million driverless vehicle movements" and "the fourth site" on five attempts).
+**When the context says strict_visual**, use only The Statistic, The Superlative, The List, The Comparison, The Before/After or The Deadline, and any question must name a figure, date or place in digits ("Where did the $91 million go?"): a bare question names nothing the frame can draw.
 <!-- HOOK-FORMULAS:END -->
 2. **SETUP** (section `setup`, 3 sentences, 26–34 words). Just enough context for
    the payoff to land. **The FIRST setup sentence says WHAT HAPPENED** — the
