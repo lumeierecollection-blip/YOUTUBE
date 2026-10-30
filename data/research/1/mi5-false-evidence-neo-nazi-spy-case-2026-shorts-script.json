@@ -2,89 +2,86 @@
   "channel_id": "1",
   "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-2026",
   "format": "shorts",
-  "hook": "MI5 gave false evidence to three courts while defending a violent neo-Nazi informant known as Agent X.",
+  "hook": "MI5 gave false evidence to protect a violent neo-Nazi spy known as Agent X.",
   "sections": [
     {
       "id": "hook",
-      "timing": "0:00-0:04",
-      "voiceover": "MI5 gave false evidence to three courts while defending a violent neo-Nazi informant known as Agent X.",
-      "visual_cue": "Close up archival footage showing courtroom exterior and surveillance files.",
-      "sfx_cue": "Dramatic low bass hit",
+      "timing": "0-4s",
+      "voiceover": "MI5 gave false evidence to protect a violent neo-Nazi spy known as Agent X.",
+      "visual_cue": "Archival footage of London government headquarters with stark documentary framing",
+      "sfx_cue": "Low heavy bass drop",
       "b_roll": [
-        "Courthouse exterior historical photography",
-        "Document archives"
+        "London government headquarters exterior"
       ],
       "animation_cue": "Fade in from black",
       "transition_out": "Hard cut",
       "text_overlay": {
-        "text": "MI5 Caught Lying to Courts"
+        "text": "MI5 False Evidence Scandal"
       }
     },
     {
       "id": "setup",
-      "timing": "0:04-0:16",
-      "voiceover": "In September 2026, the security service formally accepted that senior officers were repeatedly dishonest. An investigation by Computer Weekly and the Investigatory Powers Commissioner's Office exposed the deception. How did three separate courts get misled by intelligence officials?",
-      "visual_cue": "Documentary style montage of official government reports and surveillance papers.",
-      "sfx_cue": "Subtle paper rustle and rising synth drone",
+      "timing": "4-20s",
+      "voiceover": "In September 2026, MI5 accepted that deceptive information was provided while defending Agent X. The Investigatory Powers Commissioner's Office uncovered these actions across multiple legal proceedings. Where were those false claims submitted?",
+      "visual_cue": "Official government document pages turning with redaction highlights",
+      "sfx_cue": "Paper rustle and subtle riser",
       "b_roll": [
-        "Government report documents",
-        "Investigatory Powers Commissioner's Office files"
+        "Investigatory Powers Commissioner's Office report documents"
       ],
-      "animation_cue": "Slow zoom in on document text",
+      "animation_cue": "Slide up text",
       "transition_out": "Dissolve",
       "text_overlay": {
-        "text": "Senior Officers Dishonest"
+        "text": "September 2026 Admissions"
       }
     },
     {
       "id": "rehook",
-      "timing": "0:16-0:21",
-      "voiceover": "Lord Leveson's office exposed that MI5 misled watchdogs while protecting Agent X.",
-      "visual_cue": "Close up on surveillance monitoring equipment and redacted logs.",
-      "sfx_cue": "Clock tick tension riser",
+      "timing": "20-27s",
+      "voiceover": "Worse, the IPCO report found that one senior MI5 officer lied repeatedly.",
+      "visual_cue": "Close up on classified intelligence files stamped with security markings",
+      "sfx_cue": "Tension string plucks",
       "b_roll": [
-        "Surveillance equipment archival shot"
+        "Classified intelligence files"
       ],
-      "animation_cue": "Quick pan across text",
+      "animation_cue": "Quick zoom",
       "transition_out": "Hard cut",
       "text_overlay": {
-        "text": "A Deeper Failure"
+        "text": "Repeated Deception"
       }
     },
     {
       "id": "payoff",
-      "timing": "0:21-0:33",
-      "voiceover": "Investigatory Powers Commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as serious as anything he has ever dealt with.",
-      "visual_cue": "Portrait photograph of Lord Leveson alongside official BBC News report screenshots.",
-      "sfx_cue": "Deep impact thud",
+      "timing": "27-44s",
+      "voiceover": "The Investigatory Powers Commissioner's Office revealed that evidence was given to 3 separate courts. Investigatory powers commissioner Lord Leveson stated that this conduct is as serious as anything he has ever dealt with.",
+      "visual_cue": "Portrait photograph of Lord Leveson with official inquiry backdrop",
+      "sfx_cue": "Deep cinematic tone",
       "b_roll": [
-        "Lord Leveson official portrait",
-        "BBC News article screenshot"
+        "Lord Leveson official inquiry press appearance"
       ],
-      "animation_cue": "Slide from right",
+      "animation_cue": "Slow push in",
       "transition_out": "Dissolve",
       "text_overlay": {
-        "text": "As Serious As Anything"
+        "text": "3 Courts Misled"
       }
     },
     {
       "id": "close",
-      "timing": "0:33-0:38",
-      "voiceover": "Three courts misled by the security service over Agent X.",
-      "visual_cue": "Fading archival image of court documents showing the number three.",
-      "sfx_cue": "Fading ambient hum",
+      "timing": "44-50s",
+      "voiceover": "Lord Leveson condemned MI5 for misleading those three courts to protect Agent X.",
+      "visual_cue": "Wide shot of London courts exterior under overcast skies",
+      "sfx_cue": "Fading ambient tone",
       "b_roll": [
-        "Court documents close up"
+        "London courts exterior wide shot"
       ],
       "animation_cue": "Fade to black",
-      "transition_out": "Fade to black",
+      "transition_out": "Fade out",
       "text_overlay": {
-        "text": "Three Courts Misled"
+        "text": "Agent X Case"
       }
     }
   ],
   "sources_used": [
     "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
-    "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings"
+    "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o"
   ]
 }

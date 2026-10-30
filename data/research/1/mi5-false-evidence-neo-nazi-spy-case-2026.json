@@ -1,27 +1,27 @@
 {
   "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-2026",
-  "strongest_angle": "Investigation by the Investigatory Powers Commissioner's Office revealed that MI5 gave false evidence to three courts and misled watchdogs while defending a violent neo-Nazi informant known as Agent X.",
+  "strongest_angle": "Examine the October 2026 findings by investigatory powers commissioner Lord Leveson detailing how MI5 submitted false evidence across three courts to protect a violent neo-Nazi informant known as Agent X.",
   "key_facts": [
     {
-      "fact": "The Investigatory Powers Commissioner's Office revealed that MI5 gave false evidence to three different courts concerning the violent neo-Nazi informer known as Agent X.",
+      "fact": "An investigation by the Investigatory Powers Commissioner's Office (IPCO) revealed that MI5 gave false evidence to three separate courts regarding the violent neo-Nazi informant known as Agent X.",
       "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
       "source_name": "BBC News",
       "confidence": "high"
     },
     {
-      "fact": "Investigatory Powers Commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as serious as anything he has ever dealt with.",
+      "fact": "Investigatory powers commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as serious as anything he has ever dealt with.",
       "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
       "source_name": "BBC News",
       "confidence": "high"
     },
     {
-      "fact": "An investigation by Computer Weekly and IPCO exposed that MI5 had lied to the courts and misled the Investigatory Powers Commissioner's Office regarding Agent X.",
-      "source_url": "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings",
-      "source_name": "Computer Weekly",
-      "confidence": "high"
+      "fact": "The IPCO report found that one senior MI5 officer lied repeatedly while another misled his own colleagues and lied about what he was told regarding Agent X.",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "medium"
     },
     {
-      "fact": "In September 2026, the security service formally accepted that it gave evidence based on lies to three courts and that senior MI5 officers were repeatedly dishonest.",
+      "fact": "In September 2026, MI5 accepted for the first time that evidence based on lies was given to three courts while defending the violent neo-Nazi spy.",
       "source_url": "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
       "source_name": "BBC News",
       "confidence": "high"
@@ -29,7 +29,7 @@
   ],
   "numbers": [
     {
-      "label": "Courts misled by MI5",
+      "label": "Number of courts misled by MI5",
       "value": 3,
       "unit": "courts",
       "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo"
@@ -38,6 +38,12 @@
   "quotes": [
     {
       "text": "The man responsible for overseeing the conduct of the UK's intelligence services has said that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as \"serious as anything\" he has ever dealt with.",
+      "speaker": "Lord Leveson",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
+    },
+    {
+      "text": "Oversight depends on candour, said investigatory powers commissioner Lord Leveson. Failings of candour undermine the entire basis of oversight and ac…",
       "speaker": "Lord Leveson",
       "source_name": "BBC News",
       "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
@@ -59,6 +65,14 @@
     {
       "name": "Agent X",
       "kind": "person"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Computer Weekly",
+      "kind": "organization"
     }
   ]
 }
