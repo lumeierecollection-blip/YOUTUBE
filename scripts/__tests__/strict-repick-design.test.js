@@ -30,6 +30,6 @@ test("a swap moves the whole chain to the new topic: slug, research file, and th
   assert.match(strict, /case " \$BURNED " in \*" \$S "\*\) continue ;; esac/, "a burned topic is never picked again");
   assert.match(strict, /key_facts \| length >= 3/, "no research, no swap");
   assert.match(strict, /jq '\.structured_output' \/tmp\/research-repick\.json > "data\/research\/\$CH\/\$NEXT\.json"/);
-  assert.match(strict, /SLUG="\$NEXT"; SCRIPT_SLUG="\$\{SLUG\}-\$\{FORMAT\}"\s*\n\s*CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""\s*\n\s*REPICKED=1\s*\n\s*continue/);
+  assert.match(strict, /SLUG="\$NEXT"; SCRIPT_SLUG="\$\{SLUG\}-\$\{FORMAT\}"\s*\n\s*CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""; STRICT_REPAIRED=0\s*\n\s*REPICKED=1\s*\n\s*continue/);
   assert.match(strict, /research for the strict re-pick \$NEXT failed - continuing with the current topic/, "a failed swap keeps the current topic rather than inventing one");
 });
