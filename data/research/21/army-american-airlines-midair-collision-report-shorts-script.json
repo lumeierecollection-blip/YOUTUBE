@@ -1,0 +1,59 @@
+{
+  "channel_id": "21",
+  "topic_slug": "army-american-airlines-midair-collision-report",
+  "format": "shorts",
+  "hook": "Systemic safety failures and route placement issues caused 67 fatalities in a midair collision.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Systemic safety failures and route placement issues caused 67 fatalities in a midair collision.",
+      "visual_cue": "A digital map of Washington D.C. airspace highlighting the collision site."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January 29, 2025, an American Airlines regional jet and a U.S. Army Black Hawk helicopter collided near Ronald Reagan Washington National Airport. How did this fatal intersection happen?",
+      "visual_cue": "Animated flight paths showing the intersection of the helicopter route and the runway approach.",
+      "sfx_cue": "Radar ping sounds and rhythmic, low-frequency hum.",
+      "b_roll": [
+        "Public domain footage of a commercial regional jet",
+        "Official NTSB investigation document graphic"
+      ],
+      "text_overlay": {
+        "text": "January 29, 2025: Midair Collision"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The U.S. Army investigation revealed that the Federal Aviation Administration placed Helicopter Route 4 dangerously.",
+      "visual_cue": "Close up of the U.S. Army investigation report cover page.",
+      "sfx_cue": "Document page turn sound.",
+      "b_roll": [
+        "Government report document snippet"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The October 8, 2026, report confirmed these structural hazards directly caused the midair collision. Investigators blamed the Federal Aviation Administration for positioning that route too close to the runway 33 approach.",
+      "visual_cue": "Chart showing the 67 fatalities as a singular, sobering metric.",
+      "sfx_cue": "Somber, steady mechanical pulse.",
+      "b_roll": [
+        "Aerial view of the airport vicinity",
+        "Text overlay highlighting the 67 figure"
+      ],
+      "text_overlay": {
+        "text": "67 Lives Lost"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Systemic safety failures caused 67 fatalities near Ronald Reagan Washington National Airport.",
+      "visual_cue": "Final shot of the airport runway lights at dusk.",
+      "sfx_cue": "Sound of wind fading out."
+    }
+  ],
+  "sources_used": [
+    "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision",
+    "https://www.ntsb.gov/investigations/AccidentReports/Reports/AIR2602.pdf",
+    "https://www.devdiscourse.com/article/international/3989346-us-army-report-cites-systematic-failures-in-2025-helicopter-and-jet-collision-that-killed-67"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "topic_slug": "army-american-airlines-midair-collision-report",
+  "strongest_angle": "An official U.S. Army administrative investigation released in October 2026 detailed systemic safety failures and route placement issues that caused the January 29, 2025, midair collision between an Army Black Hawk helicopter and an American Airlines regional jet near Ronald Reagan Washington National Airport.",
+  "key_facts": [
+    {
+      "fact": "The U.S. Army administrative investigation into the January 29, 2025, collision near Ronald Reagan Washington National Airport was released on October 8, 2026.",
+      "source_url": "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision",
+      "source_name": "U.S. Army Public Affairs",
+      "confidence": "high"
+    },
+    {
+      "fact": "The NTSB concluded that the collision near Ronald Reagan Washington National Airport resulted in 67 fatalities involving an American Airlines regional jet and an Army Black Hawk helicopter.",
+      "source_url": "https://www.devdiscourse.com/article/international/3989346-us-army-report-cites-systematic-failures-in-2025-helicopter-and-jet-collision-that-killed-67",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "The National Transportation Safety Board found that the Federal Aviation Administration placed Helicopter Route 4 in close proximity to the runway 33 approach path at Ronald Reagan Washington National Airport.",
+      "source_url": "https://www.ntsb.gov/investigations/AccidentReports/Reports/AIR2602.pdf",
+      "source_name": "National Transportation Safety Board",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fatalities",
+      "value": 67,
+      "unit": "people",
+      "source_url": "https://www.devdiscourse.com/article/international/3989346-us-army-report-cites-systematic-failures-in-2025-helicopter-and-jet-collision-that-killed-67"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Army",
+      "kind": "organization"
+    },
+    {
+      "name": "American Airlines",
+      "kind": "organization"
+    },
+    {
+      "name": "National Transportation Safety Board",
+      "kind": "organization"
+    },
+    {
+      "name": "Federal Aviation Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Ronald Reagan Washington National Airport",
+      "kind": "place"
+    },
+    {
+      "name": "Helicopter Route 4",
+      "kind": "object"
+    },
+    {
+      "name": "Black Hawk",
+      "kind": "object"
+    }
+  ]
+}
