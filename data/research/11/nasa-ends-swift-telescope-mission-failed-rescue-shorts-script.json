@@ -1,0 +1,92 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-ends-swift-telescope-mission-failed-rescue",
+  "format": "shorts",
+  "hook": "NASA just pulled the plug on the Neil Gehrels Swift Observatory as it fell below 171 miles.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:04",
+      "voiceover": "NASA just pulled the plug on the Neil Gehrels Swift Observatory as it fell below 171 miles.",
+      "visual_cue": "Wide orbital shot of the Neil Gehrels Swift Observatory telescope drifting above Earth.",
+      "sfx_cue": "Low atmospheric hum with subtle satellite static.",
+      "b_roll": [
+        "NASA Science archival graphic of satellite decay",
+        "Earth horizon from low orbit"
+      ],
+      "animation_cue": "Zoom in on descending altitude indicator",
+      "transition_out": "Hard cut to launch site",
+      "text_overlay": {
+        "text": "171 Miles Left"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04 - 0:18",
+      "voiceover": "On July 3, Katalyst Space Technologies launched the LINK spacecraft from Kwajalein. Arizona engineers built America's first commercial space robot for one daring job. Can the LINK spacecraft save the telescope?",
+      "visual_cue": "Launch footage of the LINK spacecraft rising from the pad at Kwajalein.",
+      "sfx_cue": "Rocket thruster rumble building in intensity.",
+      "b_roll": [
+        "Katalyst Space Technologies facility in Arizona",
+        "LINK spacecraft hardware assembly view"
+      ],
+      "animation_cue": "Pan across launch trajectory map",
+      "transition_out": "Smooth dissolve to mission control",
+      "text_overlay": {
+        "text": "Kwajalein Launch Pad"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18 - 0:25",
+      "voiceover": "Katalyst Space Technologies watched the LINK spacecraft fail to rescue the Swift telescope.",
+      "visual_cue": "Animation showing the LINK spacecraft attempting to dock with the orbiting telescope.",
+      "sfx_cue": "Electronic pulsing tone indicating proximity alert.",
+      "b_roll": [
+        "Computer simulation of orbital docking mechanics",
+        "Telemetry data feeds on screens"
+      ],
+      "animation_cue": "Red warning pulse on docking telemetry",
+      "transition_out": "Fast wipe to final observation logs",
+      "text_overlay": {
+        "text": "Rescue Attempt Fails"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25 - 0:40",
+      "voiceover": "NASA reported that the Neil Gehrels Swift Observatory conducted its final observation on October 20. The Arizona company failed to boost the orbit.",
+      "visual_cue": "Final data readout screen showing telescope instruments powering down.",
+      "sfx_cue": "Soft chime followed by complete silence.",
+      "b_roll": [
+        "NASA Science telemetry dashboard showing mission end",
+        "Deep space starfield background"
+      ],
+      "animation_cue": "Fade out of active instrument indicators",
+      "transition_out": "Slow fade to black",
+      "text_overlay": {
+        "text": "Final Observation October 20"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40 - 0:45",
+      "voiceover": "NASA officially ended the science mission below 171 miles.",
+      "visual_cue": "Distant view of the silent telescope drifting into shadow.",
+      "sfx_cue": "Echoing cosmic resonance fading away.",
+      "b_roll": [
+        "Earth curvature against the dark void of space"
+      ],
+      "animation_cue": "Slow drift of stars across the frame",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Mission Concluded"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+    "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+    "https://www.theguardian.com/science/2026/sep/25/nasa-telescope-rescue-mission-fails"
+  ]
+}

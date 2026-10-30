@@ -1,0 +1,81 @@
+{
+  "topic_slug": "nasa-ends-swift-telescope-mission-failed-rescue",
+  "strongest_angle": "Breaking down the official conclusion of NASA's Neil Gehrels Swift Observatory mission following the failure of the commercial LINK spacecraft rescue attempt by Katalyst Space Technologies.",
+  "key_facts": [
+    {
+      "fact": "NASA officially ended the science mission of the Neil Gehrels Swift Observatory when the spacecraft was orbiting less than 171 miles above Earth's surface.",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Arizona company Katalyst Space Technologies attempted a private rescue mission using its LINK spacecraft to boost the decaying orbit of the Swift telescope.",
+      "source_url": "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The LINK spacecraft, billed as America's first commercial space robot, lifted off on July 3 from Kwajalein before the rescue attempt ultimately failed.",
+      "source_url": "https://www.theguardian.com/science/2026/sep/25/nasa-telescope-rescue-mission-fails",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA reported that the Neil Gehrels Swift Observatory conducted its final observation on October 20 before concluding operations.",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Orbital altitude",
+      "value": 171,
+      "unit": "miles",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Orbital altitude metric",
+      "value": 275,
+      "unit": "kilometers",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Launch day",
+      "value": 3,
+      "unit": "day of July",
+      "source_url": "https://www.theguardian.com/science/2026/sep/25/nasa-telescope-rescue-mission-fails"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Neil Gehrels Swift Observatory",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Katalyst Space Technologies",
+      "kind": "organization"
+    },
+    {
+      "name": "LINK",
+      "kind": "object"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Kwajalein",
+      "kind": "place"
+    }
+  ]
+}
