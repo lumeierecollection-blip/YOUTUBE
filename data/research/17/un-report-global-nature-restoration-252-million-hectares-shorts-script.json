@@ -1,0 +1,52 @@
+{
+  "channel_id": "17",
+  "topic_slug": "un-report-global-nature-restoration-252-million-hectares",
+  "format": "shorts",
+  "hook": "An area the size of Kazakhstan is currently undergoing massive ecological restoration.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "An area the size of Kazakhstan is currently undergoing massive ecological restoration.",
+      "visual_cue": "Map animation highlighting the landmass of Kazakhstan.",
+      "text_overlay": {
+        "text": "Restoring Kazakhstan's Size"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, 2026, the United Nations Environment Programme released a report detailing this global effort. How many people are working on these sites?",
+      "visual_cue": "Graphic showing the UN Environment Programme logo and a list of countries.",
+      "text_overlay": {
+        "text": "149 Countries Involved"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The scale is massive, with 252,000,000 hectares now under active, ongoing repair.",
+      "visual_cue": "Data visualization showing the expansion of restored land area.",
+      "text_overlay": {
+        "text": "252 Million Hectares"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This initiative has successfully created more than 1,000,000 green jobs globally. Workers are actively rehabilitating vital ecosystems in countries like Canada and Indonesia. The United Nations Environment Programme coordinates these restoration projects across land and sea areas globally.",
+      "visual_cue": "Footage of environmental workers planting trees and restoring coastal habitats.",
+      "text_overlay": {
+        "text": "1 Million Green Jobs"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The effort covers 252,000,000 hectares of our planet today.",
+      "visual_cue": "Wide shot of a healthy, restored ecosystem landscape.",
+      "text_overlay": {
+        "text": "252 Million Hectares"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+    "https://www.unep.org/en/news-and-stories/story/un-report-shows-nature-being-restored-unprecedented-scale"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "topic_slug": "un-report-global-nature-restoration-252-million-hectares",
+  "strongest_angle": "Analyze the October 2026 UN Environment Programme report revealing that 252 million hectares across 149 countries are currently under restoration, creating over one million green jobs.",
+  "key_facts": [
+    {
+      "fact": "Published on October 29, 2026, the United Nations Environment Programme report reveals that 252 million hectares are under restoration.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UN Environment Programme Press Release",
+      "confidence": "high"
+    },
+    {
+      "fact": "The global restoration effort spans across 149 countries, creating more than one million green jobs.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UN Environment Programme Press Release",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ecosystems currently under repair include salmon spawning grounds in Canada and coral reefs in Indonesia.",
+      "source_url": "https://news.un.org/en/story/2026/10/1168700",
+      "source_name": "UN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Restoration Progress Report released on October 29 by the United Nations Environment Programme covers an area of land and sea the size of Kazakhstan.",
+      "source_url": "https://www.unep.org/en/news-and-stories/story/un-report-shows-nature-being-restored-unprecedented-scale",
+      "source_name": "UN Environment Programme Story",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Hectares under restoration",
+      "value": 252000000,
+      "unit": "hectares",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Countries involved",
+      "value": 149,
+      "unit": "countries",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Green jobs created",
+      "value": 1000000,
+      "unit": "jobs",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "United Nations Environment Programme",
+      "kind": "organization"
+    },
+    {
+      "name": "Kazakhstan",
+      "kind": "place"
+    },
+    {
+      "name": "Canada",
+      "kind": "place"
+    },
+    {
+      "name": "Indonesia",
+      "kind": "place"
+    },
+    {
+      "name": "Yerevan",
+      "kind": "place"
+    }
+  ]
+}
