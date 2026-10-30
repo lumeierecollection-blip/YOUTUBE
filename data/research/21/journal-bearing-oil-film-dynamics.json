@@ -1,0 +1,64 @@
+{
+  "topic_slug": "journal-bearing-oil-film-dynamics",
+  "strongest_angle": "Engineering research from September 2026 reveals that flexible steel shafts in heavy-duty engines redistribute hydrodynamic support across multiple journal bearings, altering oil film stability.",
+  "key_facts": [
+    {
+      "fact": "A study published on September 18, 2026, by Yulin Zhang and colleagues analyzes a three-disk, four-support bearing-rotor system to understand how shaft flexibility affects hydrodynamic support.",
+      "source_url": "https://doi.org/10.5194/ms-17-857-2026",
+      "source_name": "Copernicus Publications",
+      "confidence": "high"
+    },
+    {
+      "fact": "Flexible steel shafts in heavy-duty engines rest on multiple oil-lubricated journal bearings, which generate pressurized films to prevent direct metal-to-metal contact during rotation.",
+      "source_url": "https://bioengineer.org/bending-shafts-quietly-reshape-the-hidden-oil-films-that-keep-rotors-stable",
+      "source_name": "Bioengineer.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "In a four-support bearing-rotor system, the bending of the shaft simultaneously changes the journal attitudes at each of the four support locations, redistributing the oil film pressure.",
+      "source_url": "https://ms.copernicus.org/articles/17/857/2026",
+      "source_name": "Copernicus Publications",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of disks in the analyzed rotor system",
+      "value": 3,
+      "unit": "disks",
+      "source_url": "https://doi.org/10.5194/ms-17-857-2026"
+    },
+    {
+      "label": "Number of bearing supports in the analyzed rotor system",
+      "value": 4,
+      "unit": "supports",
+      "source_url": "https://doi.org/10.5194/ms-17-857-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Yulin Zhang",
+      "kind": "person"
+    },
+    {
+      "name": "Bing Li",
+      "kind": "person"
+    },
+    {
+      "name": "Wubin Xu",
+      "kind": "person"
+    },
+    {
+      "name": "Hanyu Guo",
+      "kind": "person"
+    },
+    {
+      "name": "Yanpeng Yuan",
+      "kind": "person"
+    },
+    {
+      "name": "Copernicus Publications",
+      "kind": "organization"
+    }
+  ]
+}

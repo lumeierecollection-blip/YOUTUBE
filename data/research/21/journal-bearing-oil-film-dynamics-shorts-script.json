@@ -1,0 +1,92 @@
+{
+  "channel_id": "21",
+  "topic_slug": "journal-bearing-oil-film-dynamics",
+  "format": "shorts",
+  "hook": "Engine shafts rely on oil-lubricated journal bearings to prevent direct metal-to-metal contact during rotation.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Engine shafts rely on oil-lubricated journal bearings to prevent direct metal-to-metal contact during rotation.",
+      "visual_cue": "Close-up macro shot of a heavy steel shaft rotating inside a journal bearing with visible oil sheen.",
+      "sfx_cue": "Low mechanical hum with a fluid hydraulic squelch.",
+      "b_roll": [
+        "Heavy-duty engine assembly industrial floor footage",
+        "Macro lubrication oil film testing rig"
+      ],
+      "animation_cue": "Fade in from black, slow zoom on the rotating bearing surface.",
+      "transition_out": "Hard cut to investigation report data.",
+      "text_overlay": {
+        "text": "Hidden Oil Films in Heavy Engines"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "Yulin Zhang published a study on September 18, 2026, analyzing a 3-disk, 4-support bearing-rotor system. How does shaft bending alter pressure across the 4 supports?",
+      "visual_cue": "Split screen showing a research paper dated September 18, 2026, alongside a 3D CAD schematic of a 4-support rotor system.",
+      "sfx_cue": "Page turn digital artifact, then high-tech data blip.",
+      "b_roll": [
+        "Copernicus Publications journal publication layout",
+        "CAD animation of a rotor shaft with 4 support bearings"
+      ],
+      "animation_cue": "Subtle pan across the 3-disk rotor diagram highlighting the 4 support points.",
+      "transition_out": "Slide left to stress distribution analysis.",
+      "text_overlay": {
+        "text": "Study of a 3-Disk, 4-Support System"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "However, bending at one support shifts the shaft position across all 4 locations simultaneously.",
+      "visual_cue": "Dynamic graphical overlay highlighting force vectors shifting across 4 bearing locations simultaneously.",
+      "sfx_cue": "Tension-building electronic pulse.",
+      "b_roll": [
+        "Finite element analysis stress map animation",
+        "Engine test cell laboratory instrumentation"
+      ],
+      "animation_cue": "Pulsing red stress rings appearing at each of the 4 bearing supports.",
+      "transition_out": "Quick cross dissolve to pressure redistribution view.",
+      "text_overlay": {
+        "text": "Simultaneous Attitude Shifts"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "Researchers led by Yulin Zhang proved that shaft flexibility redistributes hydrodynamic support across the system. The oil film pressure shifts dynamically between the 4 supports.",
+      "visual_cue": "Detailed scientific simulation graphic showing oil film pressure gradients collapsing under shaft deflection.",
+      "sfx_cue": "Deep structural groan turning into a warning tone.",
+      "b_roll": [
+        "Yulin Zhang research findings data visualization",
+        "Engine bearing wear analysis lab footage"
+      ],
+      "animation_cue": "Slow push-in on the pressure redistribution graph showing the 4 support nodes.",
+      "transition_out": "Fade to final investigation summary.",
+      "text_overlay": {
+        "text": "Hydrodynamic Support Redistribution"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Flexible steel shafts reshape the hidden oil films across all 4 supports.",
+      "visual_cue": "Wide cinematic shot of a heavy-duty industrial engine rotor operating inside a test facility.",
+      "sfx_cue": "Engine slowing down to a quiet idle.",
+      "b_roll": [
+        "Heavy-duty engine test facility wide shot"
+      ],
+      "animation_cue": "Slow fade to black over the rotating shaft.",
+      "transition_out": "Fade out.",
+      "text_overlay": {
+        "text": "4 Journal Bearing Supports"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.5194/ms-17-857-2026",
+    "https://bioengineer.org/bending-shafts-quietly-reshape-the-hidden-oil-films-that-keep-rotors-stable",
+    "https://ms.copernicus.org/articles/17/857/2026"
+  ]
+}
