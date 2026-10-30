@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "radjabov-nakamura-six-second-rapid-blunder",
+  "format": "shorts",
+  "hook": "Six seconds is all it took for a grandmaster to blunder.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six seconds is all it took for a grandmaster to blunder.",
+      "text_overlay": {
+        "text": "6 Seconds Left"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In the 2021 Meltwater Champions Chess Tour Finals, Teimour Radjabov faced Hikaru Nakamura. They played the Queen's Gambit Declined Three Knights Variation during their intense match-up. Does this 6 second time limit force Teimour Radjabov to make a fatal mistake?",
+      "text_overlay": {
+        "text": "2021 Meltwater Finals"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Radjabov previously won a 3-1 match against Wesley So in round six of the tournament.",
+      "text_overlay": {
+        "text": "High Stakes"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Radjabov made a losing move against Hikaru Nakamura because he only had 6 seconds left.",
+      "text_overlay": {
+        "text": "3 Wins, 1 Loss"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only 6 seconds remained on the clock for Radjabov.",
+      "text_overlay": {
+        "text": "6 Seconds"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spectator.com/article/panic-stations",
+    "https://www.chess.com/news/view/2021-champions-chess-tour-finals-day-6"
+  ]
+}

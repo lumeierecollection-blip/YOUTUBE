@@ -1,0 +1,80 @@
+{
+  "topic_slug": "radjabov-nakamura-six-second-rapid-blunder",
+  "strongest_angle": "Examine the 2021 Meltwater Champions Chess Tour Finals game between Teimour Radjabov and Hikaru Nakamura, focusing on the critical blunder where Radjabov had only six seconds left on the clock.",
+  "key_facts": [
+    {
+      "fact": "During the Meltwater Champions Chess Tour Finals in 2021, grandmaster Teimour Radjabov had only six seconds to choose his move against Hikaru Nakamura.",
+      "source_url": "https://spectator.com/article/panic-stations",
+      "source_name": "The Spectator",
+      "confidence": "high"
+    },
+    {
+      "fact": "In round six of the 2021 Meltwater Champions Chess Tour Finals, grandmaster Teimour Radjabov won a 3-1 match against grandmaster Wesley So.",
+      "source_url": "https://www.chess.com/news/view/2021-champions-chess-tour-finals-day-6",
+      "source_name": "Chess.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "During round 2.5 of the Meltwater Tour Final in 2021, grandmaster Teimour Radjabov faced grandmaster Hikaru Nakamura using the Queen's Gambit Declined Three Knights Variation.",
+      "source_url": "https://chessmoments.com/games/1643452-radjabov-vs-nakamura-meltwater-tour-final-2021",
+      "source_name": "chessmoments",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Time remaining",
+      "value": 6,
+      "unit": "seconds",
+      "source_url": "https://spectator.com/article/panic-stations"
+    },
+    {
+      "label": "Tournament year",
+      "value": 2021,
+      "unit": "year",
+      "source_url": "https://spectator.com/article/panic-stations"
+    },
+    {
+      "label": "Match score against Wesley So",
+      "value": 3,
+      "unit": "wins",
+      "source_url": "https://www.chess.com/news/view/2021-champions-chess-tour-finals-day-6"
+    },
+    {
+      "label": "Match score against Wesley So losses",
+      "value": 1,
+      "unit": "losses",
+      "source_url": "https://www.chess.com/news/view/2021-champions-chess-tour-finals-day-6"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Six seconds! That’s how long Radjabov had to choose his next move in the diagram below, from an online rapid game in 2021.",
+      "speaker": "Luke McShane",
+      "source_name": "The Spectator",
+      "source_url": "https://spectator.com/article/panic-stations"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Teimour Radjabov",
+      "kind": "person"
+    },
+    {
+      "name": "Hikaru Nakamura",
+      "kind": "person"
+    },
+    {
+      "name": "Wesley So",
+      "kind": "person"
+    },
+    {
+      "name": "Meltwater Champions Chess Tour Finals",
+      "kind": "organization"
+    },
+    {
+      "name": "The Spectator",
+      "kind": "organization"
+    }
+  ]
+}
