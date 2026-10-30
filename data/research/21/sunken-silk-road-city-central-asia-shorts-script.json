@@ -1,0 +1,92 @@
+{
+  "channel_id": "21",
+  "topic_slug": "sunken-silk-road-city-central-asia",
+  "format": "shorts",
+  "hook": "An entire Silk Road city vanished beneath a mountain lake 800 years ago.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "An entire Silk Road city vanished beneath a mountain lake 800 years ago.",
+      "visual_cue": "Underwater drone shot descending into dark mountain lake waters revealing ancient stone masonry.",
+      "sfx_cue": "Deep underwater resonance and low drone.",
+      "b_roll": [
+        "Lake Issyk-Kul aerial view",
+        "Underwater stone ruins"
+      ],
+      "animation_cue": "Slow zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "800 Years Underwater"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Divers exploring Lake Issyk-Kul in Kyrgyzstan discovered the submerged ruins of Toru-Aygyr. The RGS and the National Academy of Sciences of the Kyrgyz Republic mapped the site. Can you imagine a sunken city covering five square kilometres?",
+      "visual_cue": "Divers with underwater lights swimming past submerged walls in Lake Issyk-Kul.",
+      "sfx_cue": "Bubbles and sonar ping.",
+      "b_roll": [
+        "Divers in Lake Issyk-Kul",
+        "Submerged stone walls map"
+      ],
+      "animation_cue": "Pan across map",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Toru-Aygyr Ruins Found"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "Yet this network linked China to the Mediterranean starting from the 2nd century BC.",
+      "visual_cue": "Close up of ancient coin resting on underwater silt.",
+      "sfx_cue": "Subtle metallic chime.",
+      "b_roll": [
+        "Silk Road ancient trade artifact",
+        "Underwater silt pan"
+      ],
+      "animation_cue": "Quick push in",
+      "transition_out": "Fast cut",
+      "text_overlay": {
+        "text": "Global Trade Empire"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "Divers from the RGS mapped the sunken city across five square kilometres of Toru-Aygyr.",
+      "visual_cue": "Archival expedition footage showing researchers examining artifacts on a boat.",
+      "sfx_cue": "Low wind and wave sound.",
+      "b_roll": [
+        "RGS expedition boat on Lake Issyk-Kul",
+        "Researchers examining artifacts"
+      ],
+      "animation_cue": "Slow pan right",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Muslim Necropolis Revealed"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Five square kilometres of lost history remain submerged in Lake Issyk-Kul.",
+      "visual_cue": "Wide shot of the vast expanse of Lake Issyk-Kul surrounded by mountains.",
+      "sfx_cue": "Wind howling over mountain lake.",
+      "b_roll": [
+        "Lake Issyk-Kul wide landscape"
+      ],
+      "animation_cue": "Slow pull back",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Five Square Kilometres"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.arabnews.com/world/sunken-silk-road-city-reveals-central-asias-lost-history-3004665",
+    "https://www.yahoo.com/news/science/articles/sunken-silk-road-city-reveals-021547041.html",
+    "https://rgo.ru/en/activity/redaction/news/archaeologists-have-discovered-a-13th-14th-century-muslim-necropolis-under-the-waters-of-lake-issyk"
+  ]
+}

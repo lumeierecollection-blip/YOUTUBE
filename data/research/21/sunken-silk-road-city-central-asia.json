@@ -1,0 +1,95 @@
+{
+  "topic_slug": "sunken-silk-road-city-central-asia",
+  "strongest_angle": "Explore the submerged ruins of Toru-Aygyr in Lake Issyk-Kul, Kyrgyzstan, examining the medieval Silk Road trade networks and a sunken city covering up to five square kilometers.",
+  "key_facts": [
+    {
+      "fact": "The submerged ruins of Toru-Aygyr in Kyrgyzstan's Lake Issyk-Kul are estimated to have been flooded 800 years ago.",
+      "source_url": "https://www.arabnews.com/world/sunken-silk-road-city-reveals-central-asias-lost-history-3004665",
+      "source_name": "Arab News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers believe the sunken city in Lake Issyk-Kul may have covered up to five square kilometres or nearly two square miles.",
+      "source_url": "https://www.yahoo.com/news/science/articles/sunken-silk-road-city-reveals-021547041.html",
+      "source_name": "Yahoo News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The ancient trading route of the Silk Road linked China to the Mediterranean starting from the 2nd century BC.",
+      "source_url": "https://www.france24.com/en/live-news/20261005-sunken-silk-road-city-reveals-central-asia-s-lost-history",
+      "source_name": "France 24",
+      "confidence": "high"
+    },
+    {
+      "fact": "An international underwater archaeological expedition of the RGS, the Institute of Archeology of the RAS, and the Institute of History, Archeology, and Ethnology of the National Academy of Sciences of the Kyrgyz Republic took place in the northwest of Lake Issyk-Kul.",
+      "source_url": "https://rgo.ru/en/activity/redaction/news/archaeologists-have-discovered-a-13th-14th-century-muslim-necropolis-under-the-waters-of-lake-issyk",
+      "source_name": "RGS News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estimated flood age of Toru-Aygyr",
+      "value": 800,
+      "unit": "years",
+      "source_url": "https://www.arabnews.com/world/sunken-silk-road-city-reveals-central-asias-lost-history-3004665"
+    },
+    {
+      "label": "Maximum estimated area of the sunken city",
+      "value": 5,
+      "unit": "square kilometres",
+      "source_url": "https://www.yahoo.com/news/science/articles/sunken-silk-road-city-reveals-021547041.html"
+    },
+    {
+      "label": "Maximum estimated area in square miles",
+      "value": 2,
+      "unit": "square miles",
+      "source_url": "https://www.yahoo.com/news/science/articles/sunken-silk-road-city-reveals-021547041.html"
+    },
+    {
+      "label": "Silk Road starting century",
+      "value": 2,
+      "unit": "century BC",
+      "source_url": "https://www.france24.com/en/live-news/20261005-sunken-silk-road-city-reveals-central-asia-s-lost-history"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Toru-Aygyr",
+      "kind": "place"
+    },
+    {
+      "name": "Lake Issyk-Kul",
+      "kind": "place"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "kind": "place"
+    },
+    {
+      "name": "Elizaveta Bodrova",
+      "kind": "person"
+    },
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "Europe",
+      "kind": "place"
+    },
+    {
+      "name": "Mediterranean",
+      "kind": "place"
+    },
+    {
+      "name": "RGS",
+      "kind": "organization"
+    },
+    {
+      "name": "National Academy of Sciences of the Kyrgyz Republic",
+      "kind": "organization"
+    }
+  ]
+}
