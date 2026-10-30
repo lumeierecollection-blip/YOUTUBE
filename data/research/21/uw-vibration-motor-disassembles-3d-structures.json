@@ -1,0 +1,93 @@
+{
+  "topic_slug": "uw-vibration-motor-disassembles-3d-structures",
+  "strongest_angle": "A 5 mm coin‑sized vibration motor can rapidly detach up to a dozen 3D‑printed modules in under half a minute, proving a fast, programmable way to de‑construct complex modular assemblies.",
+  "key_facts": [
+    {
+      "fact": "The vibration motor used in the study has a 5 mm diameter, matching the size of a typical coin.",
+      "source_url": "https://www.aa.washington.edu/news/article/2026-10-15/shake-and-release-one-small-motor-takes-whole-structure-apart-one-piece",
+      "source_name": "University of Washington News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Using that motor, the researchers were able to detach up to 12 individual 3D‑printed cuboctahedral modules in less than 30 seconds.",
+      "source_url": "https://www.nature.com/articles/s41467-026-72722-z",
+      "source_name": "Nature Communications",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The modular structure described in the paper consists of cuboctahedral units that interlock via self‑locking intra‑connectors, enabling load‑bearing assembly without electronics.",
+      "source_url": "https://www.nature.com/articles/s41467-026-72722-z",
+      "source_name": "Nature Communications",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The research was published on 23 January 2026 in the peer‑reviewed journal Nature Communications.",
+      "source_url": "https://www.nature.com/articles/s41467-026-72722-z",
+      "source_name": "Nature Communications",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 5,
+      "unit": "mm",
+      "label": "Motor diameter",
+      "source_url": "https://www.aa.washington.edu/news/article/2026-10-15/shake-and-release-one-small-motor-takes-whole-structure-apart-one-piece"
+    },
+    {
+      "value": 12,
+      "unit": "modules",
+      "label": "Maximum modules detached",
+      "source_url": "https://www.nature.com/articles/s41467-026-72722-z"
+    },
+    {
+      "value": 30,
+      "unit": "seconds",
+      "label": "Time to detach modules",
+      "source_url": "https://www.nature.com/articles/s41467-026-72722-z"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Martin Nisser",
+      "kind": "person"
+    },
+    {
+      "name": "Xinyi Yang",
+      "kind": "person"
+    },
+    {
+      "name": "Víctor Riera Naranjo",
+      "kind": "person"
+    },
+    {
+      "name": "Weijian Qian",
+      "kind": "person"
+    },
+    {
+      "name": "Christos E. Athanasiou",
+      "kind": "person"
+    },
+    {
+      "name": "Bolei Deng",
+      "kind": "person"
+    },
+    {
+      "name": "University of Washington",
+      "kind": "organization"
+    },
+    {
+      "name": "Department of Aeronautics & Astronautics",
+      "kind": "organization"
+    },
+    {
+      "name": "Nature Communications",
+      "kind": "organization"
+    },
+    {
+      "name": "cuboctahedral module",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}

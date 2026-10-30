@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "uw-vibration-motor-disassembles-3d-structures",
+  "format": "shorts",
+  "hook": "A 5 mm motor shreds twelve 3D modules in under 30 seconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 5 mm motor shreds twelve 3D modules in under 30 seconds.",
+      "visual_cue": "Close‑up of a 5 mm vibration motor beside a stack of 3D‑printed cuboctahedral modules."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 23 January 2026, University of Washington scientists demonstrated a motor separating 3D modules. How could it detach up to twelve modules in under 30 seconds?",
+      "visual_cue": "Screenshot of the Nature Communications article dated 23 January 2026 with the University of Washington logo."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the system contains no electronics, only the vibrating motor.",
+      "visual_cue": "Diagram highlighting the motor without any electronic components, showing only the vibrating element."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "A 5 mm motor ripped twelve cuboctahedral modules apart in 30 seconds. The proof shows a coin‑sized device can safely dismantle complex assemblies.",
+      "visual_cue": "Time‑lapse of the motor detaching twelve modules in 30 seconds, followed by a graphic of scalable de‑construction."
+    },
+    {
+      "id": "close",
+      "voiceover": "Twelve modules fell apart in just 30 seconds.",
+      "visual_cue": "Final frame overlaying \"12 modules\" and \"30 seconds\" on the motor."
+    }
+  ],
+  "sources_used": [
+    "https://www.aa.washington.edu/news/article/2026-10-15/shake-and-release-one-small-motor-takes-whole-structure-apart-one-piece",
+    "https://www.nature.com/articles/s41467-026-72722-z"
+  ]
+}
