@@ -1,0 +1,48 @@
+{
+  "channel_id": "4",
+  "topic_slug": "radjabov-nakamura-rapid-game-tactical-breakdown",
+  "format": "shorts",
+  "hook": "Most players think speed kills, but Teimour Radjabov proved that six seconds is enough to lose everything.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most players think speed kills, but Teimour Radjabov proved that six seconds is enough to lose everything.",
+      "text_overlay": {
+        "text": "6 Seconds to Decide"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "During the 2021 Meltwater Champions Chess Tour Finals, Teimour Radjabov faced Hikaru Nakamura in a high-stakes game. Kd2 surrender the board to his opponent in this critical position?",
+      "text_overlay": {
+        "text": "Radjabov vs. Nakamura"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, that specific move allowed Nakamura's king a decisive, game-ending intrusion into the center.",
+      "text_overlay": {
+        "text": "The Decisive Intrusion"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "After White played 48. Kd2, Black's king made a decisive intrusion after 48... Ke5. Chessgames records show Nakamura has 4 rapid wins against 3 for Radjabov and 14 draws.",
+      "text_overlay": {
+        "text": "Nakamura: 4 Wins, Radjabov: 3"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Those 6 seconds transformed a draw into a devastating loss.",
+      "text_overlay": {
+        "text": "6 Seconds Lost"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spectator.com/article/panic-stations",
+    "https://chessbase.com/post/zugzwang-3",
+    "https://www.chessgames.com/perl/chess.pl?pid=10084&pid2=49796"
+  ]
+}

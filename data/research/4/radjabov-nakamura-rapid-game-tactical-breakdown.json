@@ -1,0 +1,93 @@
+{
+  "topic_slug": "radjabov-nakamura-rapid-game-tactical-breakdown",
+  "strongest_angle": "Examining the critical endgame moment in the 2021 Meltwater Champions Chess Tour Finals game between Teimour Radjabov and Hikaru Nakamura where Radjabov had only six seconds to choose a move.",
+  "key_facts": [
+    {
+      "fact": "During the Meltwater Champions Chess Tour Finals in 2021, Teimour Radjabov had only 6 seconds to choose his move in a critical game against Hikaru Nakamura.",
+      "source_url": "https://spectator.com/article/panic-stations",
+      "source_name": "The Spectator",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the 2021 Meltwater Chess Champions Final game between Teimour Radjabov and Hikaru Nakamura, White played 48. Kd2 which allowed Black's king a decisive intrusion after 48... Ke5.",
+      "source_url": "https://spectator.com/article/panic-stations",
+      "source_name": "The Spectator",
+      "confidence": "high"
+    },
+    {
+      "fact": "Karsten Müller analyzed the endgame position from the 2021 Meltwater Chess Champions Final played between Teimour Radjabov and Hikaru Nakamura in ChessBase.",
+      "source_url": "https://chessbase.com/post/zugzwang-3",
+      "source_name": "ChessBase",
+      "confidence": "high"
+    },
+    {
+      "fact": "In historical rapid and exhibition games between Hikaru Nakamura and Teimour Radjabov, Hikaru Nakamura won 4 games while Teimour Radjabov won 3 games with 14 draws recorded on Chessgames.",
+      "source_url": "https://www.chessgames.com/perl/chess.pl?pid=10084&pid2=49796",
+      "source_name": "Chessgames.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Seconds remaining on clock",
+      "value": 6,
+      "unit": "seconds",
+      "source_url": "https://spectator.com/article/panic-stations"
+    },
+    {
+      "label": "Move number for White king",
+      "value": 48,
+      "unit": "move",
+      "source_url": "https://spectator.com/article/panic-stations"
+    },
+    {
+      "label": "Historical rapid wins by Nakamura",
+      "value": 4,
+      "unit": "wins",
+      "source_url": "https://www.chessgames.com/perl/chess.pl?pid=10084&pid2=49796"
+    },
+    {
+      "label": "Historical rapid wins by Radjabov",
+      "value": 3,
+      "unit": "wins",
+      "source_url": "https://www.chessgames.com/perl/chess.pl?pid=10084&pid2=49796"
+    },
+    {
+      "label": "Historical rapid draws",
+      "value": 14,
+      "unit": "draws",
+      "source_url": "https://www.chessgames.com/perl/chess.pl?pid=10084&pid2=49796"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Teimour Radjabov",
+      "kind": "person"
+    },
+    {
+      "name": "Hikaru Nakamura",
+      "kind": "person"
+    },
+    {
+      "name": "Meltwater Champions Chess Tour Finals",
+      "kind": "organization"
+    },
+    {
+      "name": "The Spectator",
+      "kind": "organization"
+    },
+    {
+      "name": "ChessBase",
+      "kind": "organization"
+    },
+    {
+      "name": "Chessgames.com",
+      "kind": "organization"
+    },
+    {
+      "name": "Karsten Müller",
+      "kind": "person"
+    }
+  ]
+}
