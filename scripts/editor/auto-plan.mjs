@@ -240,10 +240,20 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         cards.push({ id, svg: flat ? withBg(svgText, flat) : svgText });
         how = `figure alone ${figs.map((f) => f.raw).join(", ")}`;
       } else {
-        cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence), source: defaultSource }) });
-        how = "key-word poster";
+        // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a
+        // shot (a verified photo of the subject first, then a concept photo; never the one on screen a moment ago). A poster of key words
+        // is the last resort, only when the video has no photo at all.
+        const pool = Object.keys(assets).filter((a) => /^(photo|concept)-/.test(a) && a !== lastAsset).sort((a, b) => (a.startsWith("photo-") ? 0 : 1) - (b.startsWith("photo-") ? 0 : 1));
+        if (pool.length) {
+          const reuse = pool[Math.floor(rng() * Math.min(pool.length, 2))];
+          scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
+          how = `${reuse} again, re-framed`;
+        } else {
+          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence), source: defaultSource }) });
+          how = "key-word poster";
+        }
       }
-      scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
+      if (!scene) scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
     }
 
     lastAsset = scene.asset;

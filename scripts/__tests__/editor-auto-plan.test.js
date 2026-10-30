@@ -132,7 +132,7 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   assert.equal(plan.scenes[0].overlay, "overlay-0");
   assert.ok(cards.some((c) => c.id === "overlay-0" && c.svg.includes("45%")));
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
-  assert.match(report.scenes[2].shows, /key-word poster/);
+  assert.match(report.scenes[2].shows, /concept-0 again, re-framed/, "a miss re-uses the story's own photo, framed differently");
 });
 
 test("each of the five looks draws a figure overlay with no gradient fill and no sentence text", () => {
@@ -236,4 +236,9 @@ test("zoom and fade reach the timeline's image layer", () => {
   const img = buildTimeline(plan, { audioDuration: 4, captions: [] }).layers.find((l) => l.type === "image");
   assert.ok(Math.abs(img.keyframes.scale.at(-1).v - 1.16) < 1e-9);
   assert.deepEqual(img.keyframes.opacity.slice(0, 2).map((k) => k.v), [0, 1]);
+});
+
+test("a video with no photo at all falls back to the key-word poster, never to an empty scene", async () => {
+  const { report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null] });
+  assert.ok(report.scenes.some((x) => /key-word poster/.test(x.shows)));
 });
