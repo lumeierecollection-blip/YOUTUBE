@@ -1,0 +1,88 @@
+{
+  "channel_id": "11",
+  "topic_slug": "saturn-opposition-jupiter-moon-occultation-october-2026",
+  "format": "shorts",
+  "hook": "Saturn reaches opposition on October 4, 2026, shining in the constellation Cetus at magnitude 0.3.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:05",
+      "voiceover": "Saturn reaches opposition on October 4, 2026, shining in the constellation Cetus at magnitude 0.3.",
+      "visual_cue": "Wide cosmic shot of Saturn glowing brightly against the dark starry void of Cetus.",
+      "sfx_cue": "Deep space drone and a resonant chime.",
+      "b_roll": [
+        "Astrophotography still of Saturn in Cetus"
+      ],
+      "animation_cue": "Fade in from black with a slow cinematic zoom.",
+      "transition_out": "Cut to opposition alignment graphic.",
+      "text_overlay": {
+        "text": "Saturn Opposition 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05 - 0:18",
+      "voiceover": "On October 4, 2026, at 8 A.M. EDT, Saturn reaches opposition. The planet exhibits a 19.7-arcsecond disk with rings tilted 7.5 degrees toward Earth. Where will Jupiter hide just two days later?",
+      "visual_cue": "Orbital diagram showing Earth and Saturn aligned opposite the Sun.",
+      "sfx_cue": "Subtle low hum building tension.",
+      "b_roll": [
+        "Telescopic view of Saturn disk and ring tilt"
+      ],
+      "animation_cue": "Panned orbit lines scaling up smoothly.",
+      "transition_out": "Pan across to the Moon and Jupiter.",
+      "text_overlay": {
+        "text": "7.5 Degree Ring Tilt"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18 - 0:25",
+      "voiceover": "Except Saturn is only part of October's rare celestial alignment.",
+      "visual_cue": "Camera sweeps past Saturn toward the glowing limb of the waning crescent Moon.",
+      "sfx_cue": "Shifting wind sound in space.",
+      "b_roll": [
+        "Waning crescent Moon approach"
+      ],
+      "animation_cue": "Fast drift across star field.",
+      "transition_out": "Cut to occultation sequence.",
+      "text_overlay": {
+        "text": "The Lunar Occultation"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25 - 0:38",
+      "voiceover": "On October 6, 2026, a waning crescent Moon occults Jupiter as seen from New York, USA. Observers witness the gas giant vanish behind the lunar limb completely.",
+      "visual_cue": "Close up simulation of the Moon sliding directly across the bright disk of Jupiter over New York.",
+      "sfx_cue": "Soft mechanical click and reverberation.",
+      "b_roll": [
+        "Astronomy simulation of lunar occultation over New York"
+      ],
+      "animation_cue": "Moon edge crossing Jupiter disk.",
+      "transition_out": "Fade to deep cosmic backdrop.",
+      "text_overlay": {
+        "text": "October 6, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38 - 0:45",
+      "voiceover": "Magnitude 0.3 light travels across the solar system to meet us.",
+      "visual_cue": "Slow cinematic pull back from Saturn into the vast expanse of the cosmos.",
+      "sfx_cue": "Fading stellar drone.",
+      "b_roll": [
+        "Deep field star cluster"
+      ],
+      "animation_cue": "Slow steady zoom out to infinity.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "Cosmic Frontiers"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026",
+    "https://www.timeanddate.com/news/astronomy/moon-october-2026",
+    "https://www.telescopeadvisor.com/what-to-see-with-a-telescope-in-october-2026"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "topic_slug": "saturn-opposition-jupiter-moon-occultation-october-2026",
+  "strongest_angle": "In October 2026, Saturn reaches opposition on October 4 in the constellation Cetus, while Jupiter undergoes a rare lunar occultation for North America on October 6.",
+  "key_facts": [
+    {
+      "fact": "Saturn reaches opposition on October 4, 2026, at 8 A.M. EDT in the constellation Cetus.",
+      "source_url": "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026",
+      "source_name": "Astronomy.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 6, 2026, a waning crescent Moon occults Jupiter as seen from locations like New York, USA.",
+      "source_url": "https://www.timeanddate.com/news/astronomy/moon-october-2026",
+      "source_name": "Time and Date",
+      "confidence": "high"
+    },
+    {
+      "fact": "Saturn appears at magnitude 0.3 with a 19.7-arcsecond disk and rings tilted 7.5 degrees toward Earth during October 2026.",
+      "source_url": "https://www.telescopeadvisor.com/what-to-see-with-a-telescope-in-october-2026",
+      "source_name": "Telescope Advisor",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Saturn opposition date",
+      "value": 4,
+      "unit": "October",
+      "source_url": "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026"
+    },
+    {
+      "label": "Saturn opposition time",
+      "value": 8,
+      "unit": "A.M. EDT",
+      "source_url": "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026"
+    },
+    {
+      "label": "Jupiter occultation date",
+      "value": 6,
+      "unit": "October",
+      "source_url": "https://www.timeanddate.com/news/astronomy/moon-october-2026"
+    },
+    {
+      "label": "Saturn magnitude",
+      "value": 0.3,
+      "unit": "magnitude",
+      "source_url": "https://www.telescopeadvisor.com/what-to-see-with-a-telescope-in-october-2026"
+    },
+    {
+      "label": "Saturn disk size",
+      "value": 19.7,
+      "unit": "arcseconds",
+      "source_url": "https://www.telescopeadvisor.com/what-to-see-with-a-telescope-in-october-2026"
+    },
+    {
+      "label": "Saturn ring tilt",
+      "value": 7.5,
+      "unit": "degrees",
+      "source_url": "https://www.telescopeadvisor.com/what-to-see-with-a-telescope-in-october-2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Saturn",
+      "kind": "object"
+    },
+    {
+      "name": "Jupiter",
+      "kind": "object"
+    },
+    {
+      "name": "Mars",
+      "kind": "object"
+    },
+    {
+      "name": "Cetus",
+      "kind": "place"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "Moon",
+      "kind": "object"
+    }
+  ]
+}
