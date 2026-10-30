@@ -1,0 +1,76 @@
+{
+  "topic_slug": "army-report-dc-midair-collision",
+  "strongest_angle": "An official U.S. Army investigation released in October 2026 confirmed that systemic safety failures and communication breakdowns caused the January 2025 midair collision over Washington, D.C., which resulted in 67 fatalities.",
+  "key_facts": [
+    {
+      "fact": "The U.S. Army investigation into the January 29, 2025, midair collision was released to the public on October 8, 2026.",
+      "source_url": "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision",
+      "source_name": "U.S. Army Public Affairs",
+      "confidence": "high"
+    },
+    {
+      "fact": "The collision involved a U.S. Army Sikorsky HH60 Black Hawk helicopter (PAT25) and a PSA Airlines CRJ700 civilian aircraft (Flight 5342) near Ronald Reagan Washington National Airport.",
+      "source_url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=pdf&FileName=Army+Party+Submission+1+DCA25MA108-Rel.pdf&ID=19518243",
+      "source_name": "National Transportation Safety Board Docket",
+      "confidence": "high"
+    },
+    {
+      "fact": "The midair collision resulted in the deaths of 67 people, according to the military investigative findings provided to the affected families.",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision",
+      "source_name": "The Washington Post",
+      "confidence": "medium"
+    },
+    {
+      "fact": "LTG Laura Potter, the Director of the Army Staff, appointed an investigating officer on January 31, 2025, to examine the circumstances of the crash.",
+      "source_url": "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf",
+      "source_name": "U.S. Army Administrative Investigation Report",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total fatalities",
+      "value": 67,
+      "unit": "people",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision"
+    },
+    {
+      "label": "Date of collision",
+      "value": 29,
+      "unit": "day of January 2025",
+      "source_url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=pdf&FileName=Army+Party+Submission+1+DCA25MA108-Rel.pdf&ID=19518243"
+    },
+    {
+      "label": "Time of collision",
+      "value": 2048,
+      "unit": "Eastern Standard Time",
+      "source_url": "https://data.ntsb.gov/Docket/Document/docBLOB?FileExtension=pdf&FileName=Army+Party+Submission+1+DCA25MA108-Rel.pdf&ID=19518243"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Army",
+      "kind": "organization"
+    },
+    {
+      "name": "Washington, D.C.",
+      "kind": "place"
+    },
+    {
+      "name": "Ronald Reagan Washington National Airport",
+      "kind": "place"
+    },
+    {
+      "name": "Sikorsky HH60",
+      "kind": "object"
+    },
+    {
+      "name": "PSA Airlines",
+      "kind": "organization"
+    },
+    {
+      "name": "Laura Potter",
+      "kind": "person"
+    }
+  ]
+}

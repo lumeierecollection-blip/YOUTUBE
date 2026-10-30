@@ -1,0 +1,56 @@
+{
+  "channel_id": "21",
+  "topic_slug": "army-report-dc-midair-collision",
+  "format": "shorts",
+  "hook": "A midair collision over Washington, D.C. killed 67 people, and an official Army report finally explains why.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A midair collision over Washington, D.C. killed 67 people, and an official Army report finally explains why.",
+      "visual_cue": "Map of Washington D.C. airspace with a red warning symbol over the airport area.",
+      "text_overlay": {
+        "text": "67 Fatalities: The DC Collision Report"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January 29, 2025, a U.S. Did the Sikorsky HH60 and PSA Airlines Flight 5342 collide near Ronald Reagan Washington National Airport?",
+      "visual_cue": "Side-by-side archival footage of a Sikorsky HH60 and a CRJ700 aircraft.",
+      "sfx_cue": "Low-frequency hum of aviation radio static.",
+      "b_roll": [
+        "U.S. Army public domain stock photo of Sikorsky HH60",
+        "Public domain footage of a regional jet taxiing at an airport"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "An official U.S. Army investigation confirms systemic safety failures and communication breakdowns caused this tragedy.",
+      "visual_cue": "Close up of the U.S. Army administrative investigation report cover page.",
+      "sfx_cue": "Paper rustling sound.",
+      "b_roll": [
+        "Official U.S. Army investigation report document"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The October 2026 report confirms that critical air traffic control communication protocols failed that day. Investigators identified these recurring procedural gaps as the primary cause of the midair collision.",
+      "visual_cue": "Graphic showing the timeline of the collision events.",
+      "sfx_cue": "Clock ticking sound fading into silence.",
+      "b_roll": [
+        "Timeline infographic of the January 29 flight path"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "The final death toll from the crash remains 67 people.",
+      "visual_cue": "Text overlay of the casualty figure against a neutral grey background.",
+      "text_overlay": {
+        "text": "67 Fatalities"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision",
+    "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision"
+  ]
+}
