@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "anthropic-claude-haiku-5-5-october-2026-price-breakdown",
+  "format": "shorts",
+  "hook": "Claude Haiku 5.5 slashed token prices by 90 percent.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-3s",
+      "voiceover": "Claude Haiku 5.5 slashed token prices by 90 percent.",
+      "visual_cue": "Macro shot of a high-end server rack displaying a 90 percent price drop statistic",
+      "sfx_cue": "digital chime",
+      "b_roll": [
+        "Data center server room lighting"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "90% Price Cut"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "3-15s",
+      "voiceover": "On October 7, 2026, Anthropic released Claude Haiku 5.5 with input pricing at $0.10 per one million tokens.",
+      "visual_cue": "Animated document showing October 7, 2026 release date and $0.10 pricing metric",
+      "sfx_cue": "paper rustle",
+      "b_roll": [
+        "Anthropic platform documentation screenshot"
+      ],
+      "animation_cue": "pan left",
+      "transition_out": "wipe",
+      "text_overlay": {
+        "text": "$0.10 per Million Tokens"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "15-20s",
+      "voiceover": "That score is up 26 points from the previous release.",
+      "visual_cue": "Close up of output pricing metric chart showing $0.50 per MTok",
+      "sfx_cue": "click",
+      "b_roll": [
+        "Artificial Analysis chart screen"
+      ],
+      "animation_cue": "pulse",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "$0.50 Output Pricing"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "20-32s",
+      "voiceover": "VentureBeat reported that Anthropic hit this 90 percent price cut for requests under 100,000 tokens. Anthropic designed the model with a 1 million token context window and 128,000 maximum output tokens.",
+      "visual_cue": "Split screen comparison showing 100,000 token threshold and 1 million token context window",
+      "sfx_cue": "whoosh",
+      "b_roll": [
+        "VentureBeat publication article interface"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "1 Million Token Context Window"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "32-37s",
+      "voiceover": "Claude Haiku 5.5 reached 43 points on Artificial Analysis.",
+      "visual_cue": "Final scoreboard graphic highlighting 43 intelligence index points",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "Artificial Analysis benchmark table"
+      ],
+      "animation_cue": "hold",
+      "transition_out": "fade out",
+      "text_overlay": {
+        "text": "Score: 43 Points"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+    "https://artificialanalysis.ai/articles/claude-haiku-5-5"
+  ]
+}

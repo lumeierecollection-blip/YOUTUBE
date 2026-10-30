@@ -1,0 +1,110 @@
+{
+  "topic_slug": "anthropic-claude-haiku-5-5-october-2026-price-breakdown",
+  "strongest_angle": "Analyze Anthropic's October 7, 2026 release of Claude Haiku 5.5 at $0.10 input and $0.50 output per million tokens, achieving a 90% price cut compared to prior models, and evaluate how this shift reshapes the bottom tier of LLM API pricing.",
+  "key_facts": [
+    {
+      "fact": "Anthropic released Claude Haiku 5.5 on October 7, 2026, featuring input token pricing of $0.10 per one million tokens and output token pricing of $0.50 per one million tokens.",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "source_name": "Claude Platform Docs",
+      "confidence": "high"
+    },
+    {
+      "fact": "VentureBeat reported on October 7, 2026, that Anthropic achieved a 90 percent API price reduction with the launch of Claude Haiku 5.5 for requests below 100,000 tokens.",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+      "source_name": "VentureBeat",
+      "confidence": "high"
+    },
+    {
+      "fact": "Artificial Analysis reported on October 7, 2026, that Claude Haiku 5.5 scored 43 on the Artificial Analysis Intelligence Index, which is up 26 points one year after the previous Haiku release.",
+      "source_url": "https://artificialanalysis.ai/articles/claude-haiku-5-5",
+      "source_name": "Artificial Analysis",
+      "confidence": "high"
+    },
+    {
+      "fact": "Claude Haiku 5.5 provides a context window of 1 million tokens and a maximum output of 128,000 tokens according to documentation published by Anthropic.",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "source_name": "Claude Platform Docs",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Input Pricing per Million Tokens",
+      "value": 0.1,
+      "unit": "USD per MTok",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Output Pricing per Million Tokens",
+      "value": 0.5,
+      "unit": "USD per MTok",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "API Price Reduction Percentage",
+      "value": 90,
+      "unit": "percent",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna"
+    },
+    {
+      "label": "Intelligence Index Score",
+      "value": 43,
+      "unit": "points",
+      "source_url": "https://artificialanalysis.ai/articles/claude-haiku-5-5"
+    },
+    {
+      "label": "Intelligence Index Score Increase",
+      "value": 26,
+      "unit": "points",
+      "source_url": "https://artificialanalysis.ai/articles/claude-haiku-5-5"
+    },
+    {
+      "label": "Context Window Tokens",
+      "value": 1,
+      "unit": "million tokens",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Maximum Output Tokens",
+      "value": 128000,
+      "unit": "tokens",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Request Token Threshold for Price Cut",
+      "value": 100000,
+      "unit": "tokens",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Anthropic today released Claude Haiku 5.5, cutting token prices by 90% for requests below 100,000 tokens and targeting the repetitive work that can make enterprise AI expensive at scale",
+      "speaker": "Carl Franzen",
+      "source_name": "VentureBeat",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude Haiku 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "VentureBeat",
+      "kind": "organization"
+    },
+    {
+      "name": "Artificial Analysis",
+      "kind": "organization"
+    },
+    {
+      "name": "Carl Franzen",
+      "kind": "person"
+    }
+  ]
+}
