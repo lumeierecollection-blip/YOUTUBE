@@ -1,0 +1,97 @@
+{
+  "topic_slug": "wesley-so-jeffery-xiong-us-chess-championship-2026",
+  "strongest_angle": "Examine how Wesley So overcame a difficult middlegame position against Jeffery Xiong in Round 2 of the 2026 U.S. Chess Championship on October 10, 2026, in Saint Louis, securing a 1-0 victory with a rating of 2770 against Xiong's 2656.",
+  "key_facts": [
+    {
+      "fact": "During Round 2 of the 2026 U.S. Chess Championship held in Saint Louis on October 10, 2026, Grandmaster Wesley So with a rating of 2770 defeated Grandmaster Jeffery Xiong rated 2656 with a score of 1-0 on board 6.",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+      "source_name": "Saint Louis Chess Club",
+      "confidence": "high"
+    },
+    {
+      "fact": "Wesley So collected his second consecutive victory in the 2026 U.S. Chess Championship despite finding himself in considerable difficulties during the middlegame against Jeffery Xiong.",
+      "source_url": "https://www.chess.com/news/view/2026-us-chess-championships-round-2",
+      "source_name": "Chess.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Wesley So and Awonder Liang both won their games in round two of the 2026 U.S. Chess Championship to lead the open section with perfect 2/2 scores.",
+      "source_url": "https://en.chessbase.com/post/us-championships-2026-2",
+      "source_name": "ChessBase",
+      "confidence": "high"
+    },
+    {
+      "fact": "The game between Wesley So and Jeffery Xiong in the 2026 U.S. Chess Championship featured a tactical position after move 21...Nxf4 where a white knight move attacks both black rooks simultaneously.",
+      "source_url": "https://chessbotbuddies.org/news/so-xiong-2026",
+      "source_name": "ChessBotBuddies",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Wesley So Elo Rating",
+      "value": 2770,
+      "unit": "elo",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Jeffery Xiong Elo Rating",
+      "value": 2656,
+      "unit": "elo",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Round Number",
+      "value": 2,
+      "unit": "round",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Board Number",
+      "value": 6,
+      "unit": "board",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Match Result",
+      "value": 1,
+      "unit": "points",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Tournament Score",
+      "value": 2,
+      "unit": "points",
+      "source_url": "https://en.chessbase.com/post/us-championships-2026-2"
+    },
+    {
+      "label": "Move Number",
+      "value": 21,
+      "unit": "move",
+      "source_url": "https://chessbotbuddies.org/news/so-xiong-2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Wesley So",
+      "kind": "person"
+    },
+    {
+      "name": "Jeffery Xiong",
+      "kind": "person"
+    },
+    {
+      "name": "Awonder Liang",
+      "kind": "person"
+    },
+    {
+      "name": "Saint Louis",
+      "kind": "place"
+    },
+    {
+      "name": "2026 U.S. Chess Championship",
+      "kind": "organization"
+    }
+  ]
+}

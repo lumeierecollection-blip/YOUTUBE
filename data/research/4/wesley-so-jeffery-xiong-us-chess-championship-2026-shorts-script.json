@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "wesley-so-jeffery-xiong-us-chess-championship-2026",
+  "format": "shorts",
+  "hook": "Wesley So faced considerable middlegame difficulties before securing a brilliant victory in Saint Louis.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Wesley So faced considerable middlegame difficulties before securing a brilliant victory in Saint Louis.",
+      "text_overlay": {
+        "text": "Wesley So vs. Jeffery Xiong"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 10, 2026, Wesley So faced Jeffery Xiong in round two at the 2026 U.S. Chess Championship in Saint Louis. How did he win?",
+      "text_overlay": {
+        "text": "Round 2: Saint Louis"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The game turned at move 21 when a single knight move attacked two rooks.",
+      "text_overlay": {
+        "text": "Move 21: Tactical Shift"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "So forced a 1-0 result, bringing his tournament score to 2 points. This win kept him tied for the lead. His precision on board 6 proved decisive against Xiong's 2656 rating.",
+      "text_overlay": {
+        "text": "So wins on Board 6"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Wesley So remains undefeated with two perfect points in the tournament.",
+      "text_overlay": {
+        "text": "2/2 Score"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+    "https://en.chessbase.com/post/us-championships-2026-2"
+  ]
+}
