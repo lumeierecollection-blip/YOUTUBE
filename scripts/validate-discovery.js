@@ -15,7 +15,15 @@
  *   4. First passing topic becomes the chosen one; rewrite topics.json with
  *      only that topic (others moved to "rejected" array for audit).
  *
- * Exit 0 if a topic passes; 1 if all candidates exhausted.
+ * POLICY MODE (env DISCOVERY_VALIDATION, default "advisory"; anything else but "enforce" is an error, never a silent default):
+ *   advisory - the checks run and are reported, but a channel is not stopped by them. If no candidate passes, every
+ *              candidate is kept in ranked order, tagged validation.status "advisory_fail" with its reason, a ::warning::
+ *              is printed, doc.validation.outcome is "advisory" and the exit code is 0. This is what production has
+ *              effectively done since the "skip" result was never read (see the Reserve topic step).
+ *   enforce  - if no candidate passes, exit 1. The workflow then marks the channel skipped and the Reserve topic step
+ *              reserves nothing.
+ * Exit 0 if a topic passes (outcome "passed") or the mode is advisory (outcome "advisory"); 1 if all candidates were
+ * rejected under "enforce" (a policy outcome); 2 if the validator itself failed (see EXIT).
  */
 
 import { readFileSync, writeFileSync } from "fs";
@@ -67,25 +75,22 @@ const MEASURABLE_KEYWORDS = [
   "significant", "significance", "p-value", "confidence interval",
 ];
 
+// Whole-word match (a plural is allowed). It was a substring test, so "Alterations" counted as containing "ratio", "Operate" as "rate",
+// "Separate" as "rate", "Bi-annual" etc. - a topic could pass the rule on a word that has nothing to do with a measurement.
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const KEYWORD_RES = MEASURABLE_KEYWORDS.map((kw) => new RegExp(`(?<![a-z0-9])${escapeRe(kw.toLowerCase())}(?:s|es)?(?![a-z0-9])`, "i"));
+const keywordHits = (text) => KEYWORD_RES.reduce((n, re) => n + (re.test(String(text || "")) ? 1 : 0), 0);
+
 function hasMeasurableKeywords(text) {
-  if (!text) return false;
-  const lower = text.toLowerCase();
-  return MEASURABLE_KEYWORDS.some(kw => lower.includes(kw.toLowerCase()));
+  return keywordHits(text) > 0;
 }
 
-async function checkMeasurableKeywords(topic) {
+export async function checkMeasurableKeywords(topic) {
   // Require the topic TITLE itself to contain a measurable keyword (strong signal).
   // Topics like "API release", "product launch", "model release" lack measurable keywords.
-  const titleLower = topic.topic.toLowerCase();
-  for (const kw of MEASURABLE_KEYWORDS) {
-    if (titleLower.includes(kw.toLowerCase())) return { pass: true };
-  }
-  // If title lacks measurable keyword, require angle to have ≥2 measurable keywords
-  let count = 0;
-  const angleLower = (topic.angle || "").toLowerCase();
-  for (const kw of MEASURABLE_KEYWORDS) {
-    if (angleLower.includes(kw.toLowerCase())) count++;
-  }
+  if (keywordHits(topic.topic) > 0) return { pass: true };
+  // If title lacks measurable keyword, require angle to have >=2 measurable keywords
+  const count = keywordHits(topic.angle);
   return count >= 2 ? { pass: true } : { pass: false, reason: "topic title lacks measurable keyword; angle needs ≥2 (percent, survey, million, revenue, etc.)" };
 }
 
@@ -165,78 +170,125 @@ async function checkVisualCoverage(topic) {
   return { pass: fraction >= 0.8, coverage: fraction, detail };
 }
 
+export const VALIDATION_MODES = ["advisory", "enforce"];
+
+/** Unset -> "advisory". Anything else that is not a known mode is an ERROR: a typo must not silently pick a policy. */
+export function resolveValidationMode(env = process.env) {
+  const raw = String(env.DISCOVERY_VALIDATION ?? "").trim().toLowerCase();
+  if (raw === "") return "advisory";
+  if (VALIDATION_MODES.includes(raw)) return raw;
+  throw new Error(`DISCOVERY_VALIDATION="${env.DISCOVERY_VALIDATION}" is not one of ${VALIDATION_MODES.join(", ")}`);
+}
+
+const DEFAULT_CHECKS = { keyword: checkMeasurableKeywords, domains: checkTwoDomains, figures: checkFigureDensity, visual: checkVisualCoverage };
+
+/** Run the checks over the ranked candidates; the first that passes all of them is `chosen`. `checks` is injectable for tests. */
+export async function screenCandidates(topics, channelId, checks = DEFAULT_CHECKS, log = console.log) {
+  const rejected = [];
+  let chosen = null;
+
+  for (const topic of topics) {
+    log(`[validate-discovery] ch-${channelId}: checking "${topic.topic}"...`);
+
+    const keywordCheck = await checks.keyword(topic);
+    if (!keywordCheck.pass) {
+      log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${keywordCheck.reason}`);
+      rejected.push({ ...topic, reject_reason: keywordCheck.reason });
+      continue;
+    }
+
+    const domainCheck = await checks.domains(topic);
+    if (!domainCheck.pass) {
+      const why = domainCheck.status === "lookup_failed"
+        ? `source lookup failed (${domainCheck.answered}/${domainCheck.lookups} lookups answered), so independent sources could not be established`
+        : `only ${domainCheck.domains.length} independent domain(s): ${domainCheck.domains.join(", ")}`;
+      log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${why}, need 2`);
+      rejected.push({ ...topic, reject_reason: why });
+      continue;
+    }
+
+    const figureCheck = await checks.figures(topic);
+    if (!figureCheck.pass) {
+      const why = figureCheck.status === "lookup_failed"
+        ? `figure lookup failed (${figureCheck.answered}/${figureCheck.lookups} lookups answered), so measurable figures could not be established`
+        : `only ${figureCheck.figures} measurable figures in search results (need >=8)`;
+      log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${why}`);
+      rejected.push({ ...topic, reject_reason: why });
+      continue;
+    }
+
+    const visualCheck = await checks.visual(topic);
+    if (!visualCheck.pass) {
+      const pct = Math.round(visualCheck.coverage * 100);
+      log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${pct}% visual coverage (need 80%)`);
+      rejected.push({ ...topic, reject_reason: `${pct}% visual coverage (need 80%)` });
+      continue;
+    }
+
+    log(`[validate-discovery] ch-${channelId}: ACCEPTED "${topic.topic}" — ${domainCheck.domains.length} domains, ${figureCheck.figures} figures, ${Math.round(visualCheck.coverage * 100)}% visual coverage`);
+    chosen = topic;
+    break;
+  }
+  return { chosen, rejected };
+}
+
+/**
+ * Turn a screening result into the outcome + the topics document to write.
+ *   passed   - a candidate passed: only it is kept (exit 0).
+ *   advisory - none passed, mode advisory: ALL candidates kept in ranked order, each tagged with its reason (exit 0).
+ *   rejected - none passed, mode enforce: nothing to reserve (exit 1, document untouched).
+ */
+export function applyPolicy(doc, { chosen, rejected }, mode) {
+  const topics = doc.topics || [];
+  if (chosen) {
+    return { outcome: "passed", exitCode: 0, doc: { ...doc, topics: [chosen], rejected, validation: { mode, outcome: "passed", rejected: rejected.length } } };
+  }
+  if (mode === "advisory") {
+    const reasons = new Map(rejected.map((r) => [r.topic, r.reject_reason]));
+    const tagged = topics.map((t) => ({ ...t, validation: { status: "advisory_fail", reason: reasons.get(t.topic) || "not validated" } }));
+    return { outcome: "advisory", exitCode: 0, doc: { ...doc, topics: tagged, rejected, validation: { mode, outcome: "advisory", rejected: rejected.length } } };
+  }
+  return { outcome: "rejected", exitCode: 1, doc };
+}
+
+/**
+ * Exit codes, so a caller can tell a POLICY decision from a FAULT:
+ *   0 - passed, or advisory (checks failed but the mode lets the channel proceed)
+ *   1 - rejected under DISCOVERY_VALIDATION=enforce: a deliberate policy outcome, not a defect
+ *   2 - the validator itself failed (bad usage or mode, unreadable/empty input, an unexpected exception)
+ */
+export const EXIT = Object.freeze({ OK: 0, REJECTED: 1, ERROR: 2 });
+
 async function main() {
   const [topicsPath, channelId] = process.argv.slice(2);
   if (!topicsPath || !channelId) {
     console.error("Usage: node scripts/validate-discovery.js <topics.json> <channel-id>");
-    process.exit(1);
+    process.exit(EXIT.ERROR);
   }
+  const mode = resolveValidationMode();
 
   const doc = JSON.parse(readFileSync(topicsPath, "utf8"));
   const topics = doc.topics || [];
   if (topics.length === 0) {
     console.error("validate-discovery: no topics to validate");
-    process.exit(1);
+    process.exit(EXIT.ERROR);
   }
 
-  const rejected = [];
-  let chosen = null;
+  const result = await screenCandidates(topics, channelId);
+  const { outcome, exitCode, doc: out } = applyPolicy(doc, result, mode);
 
-  for (const topic of topics) {
-    console.log(`[validate-discovery] ch-${channelId}: checking "${topic.topic}"...`);
-
-    const keywordCheck = await checkMeasurableKeywords(topic);
-    if (!keywordCheck.pass) {
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${keywordCheck.reason}`);
-      rejected.push({ ...topic, reject_reason: keywordCheck.reason });
-      continue;
-    }
-
-    const domainCheck = await checkTwoDomains(topic);
-    if (!domainCheck.pass) {
-      const why = domainCheck.status === "lookup_failed"
-        ? `source lookup failed (${domainCheck.answered}/${domainCheck.lookups} lookups answered), so independent sources could not be established`
-        : `only ${domainCheck.domains.length} independent domain(s): ${domainCheck.domains.join(", ")}`;
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${why}, need 2`);
-      rejected.push({ ...topic, reject_reason: why });
-      continue;
-    }
-
-    const figureCheck = await checkFigureDensity(topic);
-    if (!figureCheck.pass) {
-      const why = figureCheck.status === "lookup_failed"
-        ? `figure lookup failed (${figureCheck.answered}/${figureCheck.lookups} lookups answered), so measurable figures could not be established`
-        : `only ${figureCheck.figures} measurable figures in search results (need >=8)`;
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${why}`);
-      rejected.push({ ...topic, reject_reason: why });
-      continue;
-    }
-
-    const visualCheck = await checkVisualCoverage(topic);
-    if (!visualCheck.pass) {
-      const pct = Math.round(visualCheck.coverage * 100);
-      console.log(`[validate-discovery] ch-${channelId}: REJECTED "${topic.topic}" — ${pct}% visual coverage (need 80%)`);
-      rejected.push({ ...topic, reject_reason: `${pct}% visual coverage (need 80%)` });
-      continue;
-    }
-
-    console.log(`[validate-discovery] ch-${channelId}: ACCEPTED "${topic.topic}" — ${domainCheck.domains.length} domains, ${figureCheck.figures} figures, ${Math.round(visualCheck.coverage * 100)}% visual coverage`);
-    chosen = topic;
-    break;
+  if (outcome === "advisory") {
+    console.log(`::warning::discovery validation ADVISORY for channel ${channelId}: all ${topics.length} candidates failed validation; proceeding with them unvalidated (DISCOVERY_VALIDATION=advisory). Set DISCOVERY_VALIDATION=enforce to skip the channel instead.`);
+  } else if (outcome === "rejected") {
+    console.error(`validate-discovery: ch-${channelId} — ALL ${topics.length} CANDIDATES REJECTED (DISCOVERY_VALIDATION=enforce) — channel will be skipped`);
   }
-
-  if (!chosen) {
-    console.error(`validate-discovery: ch-${channelId} — ALL ${topics.length} CANDIDATES REJECTED`);
-    process.exit(1);
+  if (outcome !== "rejected") {
+    writeFileSync(topicsPath, JSON.stringify(out, null, 2) + "\n");
+    console.log(`[validate-discovery] ch-${channelId}: outcome=${outcome}, ${out.topics.length} candidate(s) forwarded${result.chosen ? `, chosen "${result.chosen.topic}"` : ""}`);
   }
-
-  doc.topics = [chosen];
-  doc.rejected = rejected;
-  writeFileSync(topicsPath, JSON.stringify(doc, null, 2) + "\n");
-  console.log(`[validate-discovery] ch-${channelId}: chosen "${chosen.topic}"`);
-  process.exit(0);
+  process.exit(exitCode);
 }
 
 if (process.argv[1] && /validate-discovery\.js$/.test(process.argv[1].replace(/\\/g, "/"))) {
-  main().catch((e) => { console.error(e); process.exit(1); });
+  main().catch((e) => { console.error(e); process.exit(EXIT.ERROR); });
 }
