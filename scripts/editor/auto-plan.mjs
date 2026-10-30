@@ -166,7 +166,7 @@ export function withBg(svgText, bg) {
  * logo({name, sentence}) -> {ok, file, width, height, credit, source_url, license, dark_mark} | {ok:false}: an organisation's verified mark (resolve-scene.cjs).
  * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
-export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], story = [], topic = "", logo = async () => null, style = 1, maxPhotos = 8 }) {
+export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], story = [], topic = "", logo = async () => null, flag = async () => ({ ok: false }), style = 1, maxPhotos = 8 }) {
   const sentences = scriptSentences(script);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
@@ -201,6 +201,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   // An organisation named in a sentence shows its own mark on a plate (the mark is never redrawn or invented; no mark, no logo beat). A mark
   // named again later reuses its record; a plate is light for a dark mark and dark for a light one so the mark always reads.
   const logoByName = new Map();
+  const flagByName = new Map();
+  let flagsShown = 0;
   const plateFor = (dark) => (dark ? palette.text : palette.bg);
   const plateSvg = (color) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="${color}"/></svg>\n`;
   // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
@@ -260,6 +262,28 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       logoScene = { ...base, id: `s${i}-${logoId}`, asset: plateId, logo: logoId, gradient: "rgba(0,0,0,0)" };
       how = `logo of ${ent.name}`;
       break;
+    }
+    // 0b. a country the sentence names: its national flag on a plate (flag.mjs), then the drawn map in the second beat. At most two flags a video.
+    if (!logoScene && flagsShown < 2) {
+      const country = matchPlaces(sentence).find((h) => h.f.kind === "country");
+      if (country) {
+        let rec = flagByName.get(country.f.name);
+        if (rec === undefined) {
+          const r = await flag({ country: country.f.name, sentence }).catch((e) => ({ ok: false, why: String(e.message || e) }));
+          rec = r?.ok ? r : null;
+          flagByName.set(country.f.name, rec);
+          if (!rec) misses.push({ sentence: i, entity: `flag of ${country.f.name}`, why: r?.why || "no free flag" });
+          else flagsShown++;
+        }
+        if (rec) {
+          const flagId = `flag-${country.f.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+          if (!assets[flagId]) assets[flagId] = { file: rec.file, width: rec.width, height: rec.height, credit: rec.credit, source_url: rec.source_url, license: rec.license };
+          const plateId = `card-${i}`;
+          cards.push({ id: plateId, svg: plateSvg(plateFor(rec.dark_mark)) });
+          logoScene = { ...base, id: `s${i}-${flagId}`, asset: plateId, logo: flagId, gradient: "rgba(0,0,0,0)", flagOf: country.f.name };
+          how = `flag of ${country.f.name}`;
+        }
+      }
     }
     if (logoScene) scene = logoScene;
 
@@ -360,6 +384,14 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           second = { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 };
           how += ` then ${alt.how}`;
         } else panelDelay = Math.round(dur * 0.4 * 30); // same photo throughout; the panel arrives 40% in
+      } else if (scene.flagOf && mapsShown < 3 && lastAsset !== "map") {
+        const geo = mapFor({ highlight: matchPlaces(sentence).filter((h) => h.f.kind === "country" || h.f.kind === "state").slice(0, 3) });
+        const mid = `card-${i}-map`;
+        cards.push({ id: mid, svg: backdropSvg(palette) });
+        mapsShown++;
+        second = { id: `s${i}-map`, asset: mid, fit: "cover", fade: 0, look: look.name, start: 0, end: 0 };
+        second.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: scene.flagOf, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
+        how += ` then map of ${scene.flagOf}`;
       } else if (scene.graphic || isPhoto(scene) || /^card-/.test(scene.asset)) {
         const alt = await secondPhoto();
         if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }

@@ -594,3 +594,43 @@ test("an organisation named in a sentence shows its verified mark on a plate; wi
   const light = await buildAutoPlan({ ...org, logo: async () => ({ ok: true, file: "l.png", width: 800, height: 400, credit: "c", source_url: "u", license: "CC0", dark_mark: false }) });
   assert.match(light.cards.find((c) => c.id === light.plan.scenes[0].asset).svg, /fill="#000011"/, "a light mark sits on the channel's dark background");
 });
+
+// ---- country flags ---------------------------------------------------------------------------------------------------------------------
+import { findFlagFiles } from "../editor/flag.mjs";
+
+test("a country's flag is the free-licence 'Flag of <country>' file on Commons (never a map, coat of arms or historical flag)", async () => {
+  const page = (index, title, mime, license) => ({ index, title: `File:${title}`, imageinfo: [{ mime, url: "u", thumburl: "t", descriptionurl: "d", extmetadata: { LicenseShortName: { value: license } } }] });
+  const fake = async () => ({ query: { pages: {
+    a: page(1, "Flag of Nigeria.svg", "image/svg+xml", "Public domain"),
+    b: page(2, "Coat of arms of Nigeria.svg", "image/svg+xml", "Public domain"),
+    c: page(3, "Flag of Nigeria (1914).svg", "image/svg+xml", "Public domain"),
+    d: page(4, "Map of Nigeria.svg", "image/svg+xml", "CC BY-SA 4.0"),
+    e: page(5, "Flag of Nigeria.jpg", "image/jpeg", "Public domain"),
+    f: page(6, "Flag of Nigeria non-free.svg", "image/svg+xml", "Non-free"),
+  } } });
+  const r = await findFlagFiles("Nigeria", fake);
+  assert.deepEqual(r.map((x) => x.title), ["Flag of Nigeria.svg"]);
+  assert.equal(r[0].credit, "Flag: Nigeria, Public domain, Wikimedia Commons");
+});
+
+test("a sentence naming a country gets its flag on a plate, and its drawn map in the second beat", async () => {
+  const sents = ["Nigeria faces a new fuel shortage. Lagos queues are long again."];
+  const flagCalls = [];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1,
+    flag: async ({ country }) => { flagCalls.push(country); return { ok: true, file: "flag.png", width: 1024, height: 680, credit: "Flag: Nigeria, Public domain, Wikimedia Commons", source_url: "p", license: "Public domain", dark_mark: false }; } });
+  assert.deepEqual(flagCalls, ["Nigeria"]);
+  const [a, b] = r.plan.scenes;
+  assert.equal(a.logo, "flag-nigeria");
+  assert.equal(r.plan.assets["flag-nigeria"].credit, "Flag: Nigeria, Public domain, Wikimedia Commons");
+  assert.equal(b.graphic?.kind, "map", "the second beat is the drawn map");
+  assert.match(r.report.scenes[0].shows, /flag of Nigeria then map of Nigeria/);
+});
+
+test("with no free flag the country falls back to its map, and the miss is reported", async () => {
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Nigeria faces a new fuel shortage. Lagos queues are long." }] }, research: { ...research, named_entities: [] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1,
+    flag: async () => ({ ok: false, why: "no free-licence flag" }) });
+  assert.ok(r.plan.scenes.some((s) => s.graphic?.kind === "map"), "a map instead");
+  assert.match(r.report.misses.map((m) => m.entity).join(" "), /flag of Nigeria/);
+});

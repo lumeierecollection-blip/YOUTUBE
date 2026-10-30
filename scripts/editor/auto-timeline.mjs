@@ -20,6 +20,8 @@ import { graphicLayers, decorationLayers, sweepLayers } from "./graphics.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
+import { flagFinder } from "./flag.mjs";
+
 import { scriptSentences } from "./captions.mjs";
 import { resolveChannel } from "../lib/channel-lookup.mjs";
 import { conceptQueries, searchCommons, downloadPhoto, defaultAsk, defaultAskVision, verifyConceptPhoto } from "./concept-photo.mjs";
@@ -145,7 +147,7 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
   return timeline;
 }
 
-export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration, logoResolver = async () => ({ ok: false }) }) {
+export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration, logoResolver = async () => ({ ok: false }), flagResolver = async () => ({ ok: false }) }) {
   const stem = basename(scriptPath, ".json");
   const base = join(ROOT, "data", "tts", channelId, `${stem}-vo`);
   const audio = `${base}.mp3`;
@@ -168,7 +170,7 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const queries2 = pairs.second;
   const topic = pairs.topic || research?.strongest_angle || "";
   const { plan, cards, report } = await buildAutoPlan({
-    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, story: pairs.story || [], topic, logo: logoResolver, style,
+    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, story: pairs.story || [], topic, logo: logoResolver, flag: flagResolver, style,
     audioPath: rel(audio), transcriptPath: rel(transcriptPath), scriptPath: rel(scriptPath), resolve: resolver,
   });
   const source = (script.sources_used || [])[0] || "";
@@ -211,6 +213,7 @@ async function main() {
   const probeDuration = (f) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", f], { encoding: "utf8" }).trim());
   const resolver = resolverFromEntityAssets();
   const logoResolver = logoResolverFromSceneResolver(channelId);
+  const flagResolver = flagFinder({ isDark: isDarkMark });
   const concept = conceptFinder();
   const ask = defaultAsk();
   // --style N / EDITOR_STYLE=N forces one look (the comparison workflow); otherwise each video chooses its own from its slug (auto-plan.mjs)
@@ -219,7 +222,7 @@ async function main() {
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");
-    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration, logoResolver });
+    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration, logoResolver, flagResolver });
     map[stem] = r.timelinePath;
     console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (style ${r.report.style}, timing from ${r.report.spans}, ${r.report.photos} verified photo(s))`);
     for (const s of r.report.scenes) console.log(`  [${s.sentence}] ${s.start}-${s.end}s ${s.shows}`);
