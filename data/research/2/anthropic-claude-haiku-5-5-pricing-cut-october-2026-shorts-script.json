@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "anthropic-claude-haiku-5-5-pricing-cut-october-2026",
+  "format": "shorts",
+  "hook": "Anthropic slashed API prices by 90 percent overnight.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Anthropic slashed API prices by 90 percent overnight.",
+      "visual_cue": "Bold graphic showing 90% price cut for Claude Haiku 5.5",
+      "sfx_cue": "whoosh impact",
+      "b_roll": [
+        "VentureBeat article screenshot"
+      ],
+      "animation_cue": "zoom in on percentage",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "90% Price Cut"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "Did you know Anthropic launched Claude Haiku 5.5 on October 7, 2026? Input pricing starts at 10 cents per million tokens. Output pricing begins at 50 cents per million tokens. Will these 10-cent rates apply to prompts under 100,000 tokens?",
+      "visual_cue": "Price breakdown table showing $0.10 input and $0.50 output per million tokens",
+      "sfx_cue": "click chime",
+      "b_roll": [
+        "Claude Platform Docs screenshot"
+      ],
+      "animation_cue": "slide up pricing numbers",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "$0.10 Input / $0.50 Output"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "However, Anthropic applies this discount only to requests under 100,000 tokens.",
+      "visual_cue": "Highlighting 100,000 token threshold on dark background",
+      "sfx_cue": "bell chime",
+      "b_roll": [
+        "Anthropic website screenshot"
+      ],
+      "animation_cue": "pulse number",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Under 100k Tokens"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "That threshold covers 90 percent of previous requests. The system supports 1 million context tokens. Maximum output reaches 128,000 tokens.",
+      "visual_cue": "Comparison bar chart showing 90 percent volume and 1 million token limit",
+      "sfx_cue": "data tick",
+      "b_roll": [
+        "Claude platform overview page"
+      ],
+      "animation_cue": "bar fill animation",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "1 Million Context Window"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "Claude Haiku 5.5 hits 1 million context tokens.",
+      "visual_cue": "Final title card displaying Claude Haiku 5.5 and 1 million tokens",
+      "sfx_cue": "low hum",
+      "b_roll": [
+        "Anthropic brand mark"
+      ],
+      "animation_cue": "fade to black",
+      "transition_out": "none",
+      "text_overlay": {
+        "text": "Claude Haiku 5.5"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+    "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "https://www.anthropic.com/claude-haiku-5-5"
+  ]
+}

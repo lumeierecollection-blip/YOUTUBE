@@ -1,0 +1,102 @@
+{
+  "topic_slug": "anthropic-claude-haiku-5-5-pricing-cut-october-2026",
+  "strongest_angle": "Breakdown of Anthropic releasing Claude Haiku 5.5 on October 7, 2026, cutting API pricing by 90 percent to 10 cents per million tokens for prompts under 100,000 tokens.",
+  "key_facts": [
+    {
+      "fact": "On October 7, 2026, Anthropic launched Claude Haiku 5.5, reducing token prices by 90 percent for requests under 100,000 tokens.",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+      "source_name": "VentureBeat",
+      "confidence": "high"
+    },
+    {
+      "fact": "Claude Haiku 5.5 features input pricing starting at $0.10 per million tokens and output pricing from $0.50 per million tokens.",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "source_name": "Claude Platform Docs",
+      "confidence": "high"
+    },
+    {
+      "fact": "Claude Haiku 5.5 supports a context window of 1 million tokens and a maximum output of 128,000 tokens.",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "source_name": "Claude Platform Docs",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prompts up to 100,000 tokens account for approximately 90 percent of requests to previous Anthropic Haiku models.",
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+      "source_name": "Anthropic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Price reduction percentage",
+      "value": 90,
+      "unit": "percent",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna"
+    },
+    {
+      "label": "Token threshold for discount",
+      "value": 100000,
+      "unit": "tokens",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna"
+    },
+    {
+      "label": "Input pricing per million tokens",
+      "value": 0.1,
+      "unit": "USD per million tokens",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Output pricing per million tokens",
+      "value": 0.5,
+      "unit": "USD per million tokens",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Context window size",
+      "value": 1000000,
+      "unit": "tokens",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Maximum output tokens",
+      "value": 128000,
+      "unit": "tokens",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview"
+    },
+    {
+      "label": "Percentage of previous requests under 100k tokens",
+      "value": 90,
+      "unit": "percent",
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Anthropic today released Claude Haiku 5.5, cutting token prices by 90% for requests below 100,000 tokens and targeting the repetitive work that can make enterprise AI expensive at scale",
+      "speaker": "Carl Franzen",
+      "source_name": "VentureBeat",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna"
+    },
+    {
+      "text": "Introducing Claude Haiku 5.5: the cheapest, fastest, and most capable small model we’ve ever released.",
+      "speaker": "Anthropic",
+      "source_name": "Anthropic",
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude Haiku 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "VentureBeat",
+      "kind": "organization"
+    }
+  ]
+}
