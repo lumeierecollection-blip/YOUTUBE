@@ -1,0 +1,70 @@
+{
+  "topic_slug": "chris-brown-producer-sony-royalty-suit-2026",
+  "strongest_angle": "The lawsuit filed by producer Ishmael Sadiq Montague against Sony Music Entertainment over the underpayment of royalties from the 2022 hit 'Party'",
+  "key_facts": [
+    {
+      "fact": "Ishmael Sadiq Montague, known as J-Mack, filed a lawsuit against Sony Music Entertainment for nearly $1.25 million over a royalty dispute related to the 2022 hit 'Party'.",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Montague claims Sony Music underpaid him for his work on the song 'Party' and delayed the sale of his royalties.",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit alleges that Sony Music paid Montague half the agreed rate for his work on the song 'Party'.",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Montague's complaint was submitted to a New York federal court, accusing Sony Music Entertainment of fraudulent misrepresentation and negligent misrepresentation.",
+      "source_url": "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit",
+      "source_name": "Digital Music News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Royalty Dispute Amount",
+      "value": 1247500,
+      "unit": "USD",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate"
+    },
+    {
+      "label": "Agreed Rate",
+      "value": 1500000,
+      "unit": "USD",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ishmael Sadiq Montague",
+      "kind": "person"
+    },
+    {
+      "name": "Sony Music Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Chris Brown",
+      "kind": "person"
+    },
+    {
+      "name": "Xposure Music",
+      "kind": "organization"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Ishmael Sadiq Montague, known as J-Mack, filed the lawsuit against Sony in New York federal court.",
+      "speaker": "Ishmael Sadiq Montague",
+      "source_name": "Digital Music News",
+      "source_url": "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit"
+    }
+  ]
+}

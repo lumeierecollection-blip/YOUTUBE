@@ -1,0 +1,37 @@
+{
+  "channel_id": "3",
+  "topic_slug": "chris-brown-producer-sony-royalty-suit-2026",
+  "format": "shorts",
+  "hook": "Sony Music owes a producer $1.25 million and might never pay.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sony Music owes a producer $1.25 million and might never pay.",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, producer Ishmael Sadiq Montague sued Sony Music in federal court. Will $1.25 million royalty claim ever be honored?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The filing also accuses Sony of fraudulent and negligent misrepresentation.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Montague demands $1.2475 million, saying Sony paid only half his agreed share. The lawsuit claims Sony’s payment violated the $1.5 million contract. A ruling for Montague would force Sony to cover the missing $1.2475 million.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Sony still owes the $1.25 million claim in full.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+    "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit"
+  ]
+}
