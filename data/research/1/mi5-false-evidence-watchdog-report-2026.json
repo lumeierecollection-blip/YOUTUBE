@@ -1,0 +1,72 @@
+{
+  "topic_slug": "mi5-false-evidence-watchdog-report-2026",
+  "strongest_angle": "Investigate the findings by Investigatory Powers Commissioner Lord Leveson condemning MI5's use of false evidence and dishonest senior officers in the Agent X neo-Nazi spy case.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, Investigatory Powers Commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy was as serious as anything he had ever dealt with.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "An investigation by the Investigatory Powers Commissioner's Office revealed that MI5 had lied to the courts and misled the oversight body over its handling of a violent neo-Nazi informer known as Agent X.",
+      "source_url": "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings",
+      "source_name": "Computer Weekly",
+      "confidence": "high"
+    },
+    {
+      "fact": "In September 2026, the UK security service MI5 officially accepted that it gave evidence based on lies to three courts and that senior MI5 officers were repeatedly dishonest.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "An IPCO report found that one senior MI5 officer lied repeatedly while another misled his own colleagues and lied about what he was told during the neo-Nazi counter-terrorism case.",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of courts given false evidence",
+      "value": 3,
+      "unit": "courts",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Oversight depends on candour, said investigatory powers commissioner Lord Leveson. Failings of candour undermine the entire basis of oversight and accountability.",
+      "speaker": "Lord Leveson",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Lord Leveson",
+      "kind": "person"
+    },
+    {
+      "name": "MI5",
+      "kind": "organization"
+    },
+    {
+      "name": "Agent X",
+      "kind": "person"
+    },
+    {
+      "name": "Investigatory Powers Commissioner's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Computer Weekly",
+      "kind": "organization"
+    }
+  ]
+}

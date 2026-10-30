@@ -1,0 +1,87 @@
+{
+  "channel_id": "1",
+  "topic_slug": "mi5-false-evidence-watchdog-report-2026",
+  "format": "shorts",
+  "hook": "MI5 accepted giving evidence based on lies to 3 courts.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "MI5 accepted giving evidence based on lies to 3 courts.",
+      "visual_cue": "Close-up of official British court documents stamped with evidence markers on a mahogany desk.",
+      "sfx_cue": "Low dramatic rumble sound.",
+      "b_roll": [
+        "Royal Courts of Justice exterior",
+        "Document stamp hitting legal paper"
+      ],
+      "text_overlay": {
+        "text": "MI5 LIES TO 3 COURTS"
+      },
+      "transition_out": "fast-cut"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "The service was defending a violent neo-Nazi informer known as Agent X. Oversight findings revealed that senior officers were repeatedly dishonest. How far did senior officers go to protect Agent X?",
+      "visual_cue": "Archival security footage effect overlaying classified surveillance file labelled Agent X.",
+      "sfx_cue": "Subtle camera shutter and paper rustle.",
+      "b_roll": [
+        "MI5 Headquarters building Thames House",
+        "Redacted government dossier pages"
+      ],
+      "text_overlay": {
+        "text": "AGENT X SURVEILLANCE CASE"
+      },
+      "transition_out": "whip-pan"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:27",
+      "voiceover": "But Lord Leveson stated these lies were as serious as anything he had ever dealt with.",
+      "visual_cue": "Formal portrait shot of Investigatory Powers Commissioner Lord Leveson in official chambers.",
+      "sfx_cue": "Tense bass hit.",
+      "b_roll": [
+        "Investigatory Powers Commissioner logo emblem",
+        "High Court corridor silhouetted walking shot"
+      ],
+      "text_overlay": {
+        "text": "UNPRECEDENTED JUDICIAL CONDEMNATION"
+      },
+      "transition_out": "glitch-cut"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:42",
+      "voiceover": "An IPCO report found one senior officer lied repeatedly during the case. A second officer misled his colleagues about what he was told. MI5 officially accepted giving dishonest evidence to 3 courts.",
+      "visual_cue": "Split-screen graphic showing two anonymous senior officer silhouettes beside investigative report excerpts.",
+      "sfx_cue": "Gavel strike echoes silently.",
+      "b_roll": [
+        "IPCO official report cover page",
+        "Empty courtroom bench shot"
+      ],
+      "text_overlay": {
+        "text": "SENIOR OFFICERS DISHONEST"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "The Investigatory Powers Commissioner's Office report confirms MI5 misled the courts during this entire case.",
+      "visual_cue": "Wide cinematic tracking shot of Thames House reflecting off the River Thames at twilight.",
+      "sfx_cue": "Deep resonant low frequency hum fading out.",
+      "b_roll": [
+        "London skyline view near Parliament",
+        "Thames House exterior dusk shot"
+      ],
+      "text_overlay": {
+        "text": "OVERSIGHT AND ACCOUNTABILITY"
+      },
+      "transition_out": "none"
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+    "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
+  ]
+}
