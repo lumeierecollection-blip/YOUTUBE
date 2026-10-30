@@ -1242,9 +1242,14 @@
           "topic": "Gemini 4 Argon vs GPT-6.1 Sol Security Audit Benchmark Test",
           "slug": "gemini-4-argon-vs-gpt-6-security-audit",
           "reserved_at": "2026-10-29T15:23:34.032Z"
+        },
+        {
+          "topic": "Procore Magpie 3.0 Engine Benchmark Score on Construction Tasks",
+          "slug": "procore-magpie-3-0-construction-benchmark-78-percent",
+          "reserved_at": "2026-10-30T15:11:17.131Z"
         }
       ],
-      "last_generated": "2026-10-29T21:37:19.758Z"
+      "last_generated": "2026-10-30T15:11:17.131Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
