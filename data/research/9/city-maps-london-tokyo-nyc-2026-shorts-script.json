@@ -1,0 +1,39 @@
+{
+  "channel_id": "9",
+  "topic_slug": "city-maps-london-tokyo-nyc-2026",
+  "format": "shorts",
+  "hook": "What if London's streets had stayed at 10 meters instead of 20 meters?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if London's streets had stayed at 10 meters instead of 20 meters?",
+      "text_overlay": {
+        "text": "What if London's streets had stayed at 10 meters instead of 20 meters?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The 1666 Great Fire of London forced streets to widen to 20 meters. Tokyo’s 1923 earthquake led planners to double lanes from 10 to 20 meters. Why did Manhattan stay at 10 meters?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Manhattan’s 1614 grid never widened, keeping its narrow streets.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "London’s 20-meter streets gave it a spacious grid, unlike Manhattan’s 10-meter maze. Tokyo also adopted 20-meter avenues, shaping its orderly blocks. If London stayed at 10 meters, its map would look dense as Manhattan’s today.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "London’s 20-meter streets define its modern map.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html",
+    "https://www.bbc.com/news/magazine-35418272"
+  ]
+}

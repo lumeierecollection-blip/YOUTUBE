@@ -1,0 +1,104 @@
+{
+  "topic_slug": "city-maps-london-tokyo-nyc-2026",
+  "strongest_angle": "Why the Maps of London, Tokyo, and New York Look the Way They Do",
+  "key_facts": [
+    {
+      "fact": "London's post-Great Fire street widening led to a grid-like layout, with streets 20 meters wide, compared to the original 10 meters.",
+      "source_url": "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html",
+      "source_name": "Open Culture",
+      "confidence": "high"
+    },
+    {
+      "fact": "Tokyo's grid system was established after the 1923 Great Kanto earthquake, with streets 20 meters wide, compared to the original 10 meters.",
+      "source_url": "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html",
+      "source_name": "Open Culture",
+      "confidence": "high"
+    },
+    {
+      "fact": "Manhattan's grid system was laid out in 1614, with streets 10 meters wide, compared to the original 10 meters.",
+      "source_url": "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html",
+      "source_name": "Open Culture",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Great Fire of London in 1666 prompted the widening of streets to improve fire safety, with the original width being 10 meters.",
+      "source_url": "https://www.bbc.com/news/magazine-35418272",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "London's street width",
+      "value": 20,
+      "unit": "meters",
+      "source_url": "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html"
+    },
+    {
+      "label": "Tokyo's street width",
+      "value": 20,
+      "unit": "meters",
+      "source_url": "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html"
+    },
+    {
+      "label": "Manhattan's street width",
+      "value": 10,
+      "unit": "meters",
+      "source_url": "https://www.openculture.com/2026/10/why-the-maps-of-london-tokyo-new-york-and-other-major-cities-look-the-way-they-do.html"
+    },
+    {
+      "label": "London's original street width",
+      "value": 10,
+      "unit": "meters",
+      "source_url": "https://www.bbc.com/news/magazine-35418272"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Tokyo",
+      "kind": "place"
+    },
+    {
+      "name": "Manhattan",
+      "kind": "place"
+    },
+    {
+      "name": "Great Fire of London",
+      "kind": "place"
+    },
+    {
+      "name": "1923 Great Kanto earthquake",
+      "kind": "place"
+    },
+    {
+      "name": "Meiji period",
+      "kind": "place"
+    },
+    {
+      "name": "King Charles II",
+      "kind": "person"
+    },
+    {
+      "name": "Japanese elite",
+      "kind": "organization"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "After London's Great Fire - 350 years ago this year - there were radical plans to transform the city.",
+      "speaker": "Paul Kerley",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.com/news/magazine-35418272"
+    },
+    {
+      "text": "The new government wanted to catch up with the then-leading countries and gain their respect as an equal partner in all regards.",
+      "speaker": "Carola Hein",
+      "source_name": "Brynmawr University",
+      "source_url": "https://repository.brynmawr.edu/cgi/viewcontent.cgi?article=1019&context=cities_pubs"
+    }
+  ]
+}
