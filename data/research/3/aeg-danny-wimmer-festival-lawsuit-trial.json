@@ -1,0 +1,83 @@
+{
+  "topic_slug": "aeg-danny-wimmer-festival-lawsuit-trial",
+  "strongest_angle": "Examine the eight-year legal battle between AEG Presents and Danny Wimmer Presents heading toward a February 2027 jury trial, highlighting an unsuccessful $18.9 million buy-sell proposal over festivals like Rock on the Range.",
+  "key_facts": [
+    {
+      "fact": "On August 20, 2018, Melissa Ormond as AEG chief operating officer of festivals sent a buy-sell offer of roughly $18.9 million.",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+      "source_name": "Decibel",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal dispute between AEG Presents and Danny Wimmer Presents involves major rock festivals including Rock on the Range and Carolina Rebellion.",
+      "source_url": "https://app.midpage.ai/document/aeg-presents-productions-v-danny-10838075",
+      "source_name": "MidPage",
+      "confidence": "high"
+    },
+    {
+      "fact": "The eight-year legal war between AEG Presents and Danny Wimmer Presents is heading toward a jury trial scheduled for February 2027.",
+      "source_url": "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial",
+      "source_name": "TicketNews",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Buy-sell proposal amount",
+      "value": 18.9,
+      "unit": "million dollars",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Trial year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Legal battle duration",
+      "value": 8,
+      "unit": "years",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Offer date day",
+      "value": 20,
+      "unit": "day",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Offer date year",
+      "value": 2018,
+      "unit": "year",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "AEG Presents",
+      "kind": "organization"
+    },
+    {
+      "name": "Danny Wimmer Presents",
+      "kind": "organization"
+    },
+    {
+      "name": "Rock on the Range",
+      "kind": "object"
+    },
+    {
+      "name": "Carolina Rebellion",
+      "kind": "object"
+    },
+    {
+      "name": "Melissa Ormond",
+      "kind": "person"
+    },
+    {
+      "name": "Robert B. Broadbelt",
+      "kind": "person"
+    }
+  ]
+}

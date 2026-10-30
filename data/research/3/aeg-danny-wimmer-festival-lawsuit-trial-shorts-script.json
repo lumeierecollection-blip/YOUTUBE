@@ -1,0 +1,68 @@
+{
+  "channel_id": "3",
+  "topic_slug": "aeg-danny-wimmer-festival-lawsuit-trial",
+  "format": "shorts",
+  "hook": "Music giants AEG Presents and Danny Wimmer Presents failed a $18.9 million buyout, triggering eight years of litigation.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Music giants AEG Presents and Danny Wimmer Presents failed a $18.9 million buyout, triggering eight years of litigation.",
+      "b_roll": [
+        "Concert venue aerial shot",
+        "Document signing courtroom graphic"
+      ],
+      "text_overlay": {
+        "text": "$18.9 Million Buyout Failed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did AEG festival chief Melissa Ormond’s $18.9 million buy-sell offer for Rock on the Range fail?",
+      "b_roll": [
+        "Festival crowd footage",
+        "Legal document close-up"
+      ],
+      "text_overlay": {
+        "text": "August 20, 2018 Offer"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, that August 20, 2018 offer ignited an eight-year legal war between these two massive companies.",
+      "b_roll": [
+        "Courtroom gavel strike",
+        "Timeline graphic spanning years"
+      ],
+      "text_overlay": {
+        "text": "8-Year Legal Battle"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The dispute centers on ownership rights for major rock festivals like Carolina Rebellion and others. A jury trial scheduled for February 2027 will finally settle these competing corporate legal claims.",
+      "b_roll": [
+        "Festival stage production",
+        "Court docket paperwork"
+      ],
+      "text_overlay": {
+        "text": "Carolina Rebellion Dispute"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "AEG Presents and Danny Wimmer Presents now head to a February 2027 jury trial for resolution.",
+      "b_roll": [
+        "Courtroom exterior shot",
+        "Trial calendar graphic"
+      ],
+      "text_overlay": {
+        "text": "February 2027 Trial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+    "https://app.midpage.ai/document/aeg-presents-productions-v-danny-10838075",
+    "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial"
+  ]
+}
