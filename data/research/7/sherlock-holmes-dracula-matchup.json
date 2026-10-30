@@ -1,0 +1,78 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-matchup",
+  "strongest_angle": "Analyzing the canonical 1978 crossover novel Sherlock Holmes vs. Dracula by Loren D. Estleman, examining how the Victorian detective confronts the vampire starting from the 1890 landing at Whitby harbour.",
+  "key_facts": [
+    {
+      "fact": "Loren D. Estleman published the novel Sherlock Holmes vs. Dracula, or the Adventure of the Sanguinary Count in 1978 through publisher Doubleday with ISBN 0-385-14051-7.",
+      "source_url": "https://en.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "In August 1890, a schooner runs aground in Whitby harbour with a dead man leashed to the wheel, triggering strange nocturnal crimes investigated in crossover adaptations.",
+      "source_url": "https://www.bbc.com/mediacentre/proginfo/2020/04/sherlock-holmes-v-dracula",
+      "source_name": "BBC Media Centre",
+      "confidence": "high"
+    },
+    {
+      "fact": "A 1981 BBC Radio 4 play adapted Loren D. Estleman's 1978 novel, bringing together Count Dracula and Sherlock Holmes taking Whitby as its launching point.",
+      "source_url": "https://www.derby.ac.uk/departments/humanities/dracula-returns-to-derby/draculas-adversaries",
+      "source_name": "University of Derby",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year",
+      "value": 1978,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula"
+    },
+    {
+      "label": "Publication month and year",
+      "value": 1890,
+      "unit": "year",
+      "source_url": "https://www.bbc.com/mediacentre/proginfo/2020/04/sherlock-holmes-v-dracula"
+    },
+    {
+      "label": "Radio play adaptation year",
+      "value": 1981,
+      "unit": "year",
+      "source_url": "https://www.derby.ac.uk/departments/humanities/dracula-returns-to-derby/draculas-adversaries"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Mr. Sherlock Holmes? His voice was as deep and devoid of emotion as the bass note of an organ in a cathedral. The detective nodded. I am Count Dracula.",
+      "speaker": "Count Dracula",
+      "source_name": "DiVA Portal",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "Doubleday",
+      "kind": "organization"
+    },
+    {
+      "name": "Whitby",
+      "kind": "place"
+    },
+    {
+      "name": "BBC Radio 4",
+      "kind": "organization"
+    }
+  ]
+}

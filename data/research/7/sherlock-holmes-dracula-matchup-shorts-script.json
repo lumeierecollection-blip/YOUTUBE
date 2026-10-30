@@ -1,0 +1,56 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-matchup",
+  "format": "shorts",
+  "hook": "A dead man leashed to a ship's wheel arrived in 1890.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A dead man leashed to a ship's wheel arrived in 1890.",
+      "visual_cue": "A dark, misty 19th-century harbour scene showing a schooner at the dock.",
+      "text_overlay": {
+        "text": "1890: The Ghost Ship"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In August 1890, a schooner ran aground in Whitby harbour with a dead man leashed. Can Sherlock Holmes use his legendary logic to defeat the vampire Count Dracula in this crossover?",
+      "visual_cue": "Map of the Yorkshire coastline zooming in on the town of Whitby.",
+      "b_roll": [
+        "Historical map of Victorian England",
+        "Illustration of a 19th-century schooner"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The schooner's arrival in Whitby harbour triggers strange nocturnal crimes that demand the detective's immediate intervention.",
+      "visual_cue": "Close up on an old, leather-bound book with the title Sherlock Holmes vs. Dracula.",
+      "b_roll": [
+        "Vintage book cover design",
+        "Ink quill on parchment"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Author Loren D. Estleman wrote the 1978 novel Sherlock Holmes vs. Dracula to detail this encounter. BBC Radio 4 later adapted this battle between the detective and the vampire in 1981.",
+      "visual_cue": "A split screen showing a magnifying glass on the left and a vampire crest on the right.",
+      "b_roll": [
+        "1978 edition book cover",
+        "Microphone in a radio studio"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "The clash of logic and blood began in 1890.",
+      "visual_cue": "Silhouette of Sherlock Holmes standing against a full moon.",
+      "text_overlay": {
+        "text": "1890: The Legend Begins"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula",
+    "https://www.bbc.com/mediacentre/proginfo/2020/04/sherlock-holmes-v-dracula",
+    "https://www.derby.ac.uk/departments/humanities/dracula-returns-to-derby/draculas-adversaries"
+  ]
+}
