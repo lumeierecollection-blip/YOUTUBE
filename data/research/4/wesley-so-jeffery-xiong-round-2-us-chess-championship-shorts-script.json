@@ -1,0 +1,69 @@
+{
+  "channel_id": "4",
+  "topic_slug": "wesley-so-jeffery-xiong-round-2-us-chess-championship",
+  "format": "shorts",
+  "hook": "Board 6 witnessed Wesley So defeat Jeffery Xiong in Saint Louis.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Board 6 witnessed Wesley So defeat Jeffery Xiong in Saint Louis.",
+      "b_roll": [
+        "Saint Louis Chess Club tournament hall wide shot",
+        "Display screen showing pairings for Board 6"
+      ],
+      "text_overlay": {
+        "text": "Round 2 U.S. Chess Championship"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "During round 2 of the 2026 U.S. Chess Championship, what was the rating difference?",
+      "b_roll": [
+        "Grandmaster Wesley So at the tournament board",
+        "Grandmaster Jeffery Xiong making his move",
+        "Close-up of the chess clock and pieces on Board 6"
+      ],
+      "text_overlay": {
+        "text": "Wesley So 2770 vs Jeffery Xiong 2656"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "White held a rating of 2770, but Jeffery Xiong's rating reached 2656.",
+      "b_roll": [
+        "Digital chess board graphic highlighting move 21...Nxf4",
+        "Tactical analysis diagram on screen"
+      ],
+      "text_overlay": {
+        "text": "After 21...Nxf4"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The match result score reached 1 after the tactical sequence. Chess.com reported that round two victories went to Wesley So and Awonder Liang. Tournament leaders advanced with 2 points.",
+      "b_roll": [
+        "Scoreboard showing match result 1-0",
+        "Standings graphic highlighting 2 points leaders"
+      ],
+      "text_overlay": {
+        "text": "Match Result 1-0"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Wesley So reached 2 points at the Saint Louis Chess Club.",
+      "b_roll": [
+        "Saint Louis Chess Club exterior building shot",
+        "Tournament standings leader board"
+      ],
+      "text_overlay": {
+        "text": "2 Points Leader"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+    "https://chessbotbuddies.org/news/so-xiong-2026",
+    "https://www.chess.com/news/view/2026-us-chess-championships-round-2"
+  ]
+}

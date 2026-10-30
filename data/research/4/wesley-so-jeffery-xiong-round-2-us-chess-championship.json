@@ -1,0 +1,99 @@
+{
+  "topic_slug": "wesley-so-jeffery-xiong-round-2-us-chess-championship",
+  "strongest_angle": "Analyze the tactical encounter in Round 2 of the 2026 U.S. Chess Championship in Saint Louis where GM Wesley So defeated GM Jeffery Xiong with White pieces on Board 6.",
+  "key_facts": [
+    {
+      "fact": "In Round 2 of the 2026 U.S. Chess Championship held in Saint Louis, GM Wesley So playing with White defeated GM Jeffery Xiong on Board 6 with a result of 1-0.",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+      "source_name": "Saint Louis Chess Club",
+      "confidence": "high"
+    },
+    {
+      "fact": "GM Wesley So entered the game against GM Jeffery Xiong with a rating of 2770, while Jeffery Xiong held a rating of 2656.",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+      "source_name": "Saint Louis Chess Club",
+      "confidence": "high"
+    },
+    {
+      "fact": "ChessBotBuddies reported on the tactical sequence after 21...Nxf4 in the 2026 U.S. Chess Championship game between Wesley So and Jeffery Xiong in Saint Louis.",
+      "source_url": "https://chessbotbuddies.org/news/so-xiong-2026",
+      "source_name": "ChessBotBuddies",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Chess.com reported that GM Wesley So and GM Awonder Liang won their matches in round two of the 2026 U.S. Chess Championship to lead with 2/2 perfect scores.",
+      "source_url": "https://www.chess.com/news/view/2026-us-chess-championships-round-2",
+      "source_name": "Chess.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "White Rating Wesley So",
+      "value": 2770,
+      "unit": "Elo rating",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Black Rating Jeffery Xiong",
+      "value": 2656,
+      "unit": "Elo rating",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Game Round",
+      "value": 2,
+      "unit": "round",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Board Number",
+      "value": 6,
+      "unit": "board",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Match Result Score",
+      "value": 1,
+      "unit": "score",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Tournament Score Leader",
+      "value": 2,
+      "unit": "points",
+      "source_url": "https://www.chess.com/news/view/2026-us-chess-championships-round-2"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Wesley So",
+      "kind": "person"
+    },
+    {
+      "name": "Jeffery Xiong",
+      "kind": "person"
+    },
+    {
+      "name": "Awonder Liang",
+      "kind": "person"
+    },
+    {
+      "name": "Saint Louis",
+      "kind": "place"
+    },
+    {
+      "name": "Saint Louis Chess Club",
+      "kind": "organization"
+    },
+    {
+      "name": "Chess.com",
+      "kind": "organization"
+    },
+    {
+      "name": "ChessBotBuddies",
+      "kind": "organization"
+    }
+  ]
+}
