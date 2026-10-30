@@ -1,0 +1,74 @@
+{
+  "channel_id": "17",
+  "topic_slug": "global-ecosystem-restoration-un-report",
+  "format": "shorts",
+  "hook": "A massive movement is healing the planet, and it spans 149 countries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive movement is healing the planet, and it spans 149 countries.",
+      "visual_cue": "Satellite view of the Earth transitioning to a map highlighting global diversity.",
+      "sfx_cue": "Subtle, inspiring orchestral swell.",
+      "b_roll": [
+        "Satellite imagery of Earth from space"
+      ],
+      "text_overlay": {
+        "text": "149 Countries Restoring Nature"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The United Nations Environment Programme released a report in Yerevan on October 29, 2026. This document details how 252 million hectares are currently under restoration. Where is all this work happening?",
+      "visual_cue": "Graphic showing the UN report document cover with the city name Yerevan displayed.",
+      "sfx_cue": "Paper rustling sound.",
+      "b_roll": [
+        "UNEP report document cover image",
+        "Aerial footage of diverse landscapes being restored"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares Restored"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the vast majority of this restoration involves land-based projects.",
+      "visual_cue": "Split screen comparing land versus water restoration efforts.",
+      "sfx_cue": "Deep bass pulse.",
+      "b_roll": [
+        "Forest landscape restoration footage"
+      ],
+      "text_overlay": {
+        "text": "Mostly Land Restoration"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Straits Times noted that 232 million hectares of that total are land. These combined efforts have successfully created more than one million green jobs worldwide. Nature is making a comeback.",
+      "visual_cue": "Animated bar chart showing 232 million hectares of land restoration.",
+      "sfx_cue": "Rising chime sequence.",
+      "b_roll": [
+        "Workers planting trees in a nursery",
+        "Close up of hands holding soil"
+      ],
+      "text_overlay": {
+        "text": "1 Million Green Jobs Created"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That brings the total area under restoration to 252 million hectares.",
+      "visual_cue": "Graphic showing the final total of 252 million hectares.",
+      "sfx_cue": "Soft fading ambient nature sounds.",
+      "b_roll": [
+        "Lush green forest canopy"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares Total"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+    "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un"
+  ]
+}
