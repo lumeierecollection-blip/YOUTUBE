@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-conserves-power-resolves-pause",
+  "format": "shorts",
+  "hook": "NASA's Voyager 1 went silent for 48 hours, 16 billion miles away.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA's Voyager 1 went silent for 48 hours, 16 billion miles away.",
+      "visual_cue": "CGI animation of Voyager 1 drifting through deep space with Earth visible in the distance.",
+      "sfx_cue": "Low hum of deep space background noise, suddenly dropping to silence.",
+      "b_roll": [
+        "NASA artist rendition of Voyager 1 in interstellar space"
+      ],
+      "text_overlay": {
+        "text": "16 Billion Miles Away"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 18 and 19, 2026, the Deep Space Network missed signals from Voyager 1. Why did Voyager 1 suddenly stop sending data back to Earth for 48 hours?",
+      "visual_cue": "Diagram showing the Deep Space Network antenna array on Earth receiving signals.",
+      "sfx_cue": "Electronic pulsing sound representing radio signals.",
+      "b_roll": [
+        "Goldstone Deep Space Communications Complex antenna",
+        "NASA diagram of Voyager 1 power systems"
+      ],
+      "text_overlay": {
+        "text": "Communication Failure"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Voyager 1 autonomously restored its communication link on October 20, 2026, after the silence.",
+      "visual_cue": "Close up of the Voyager 1 antenna dish adjusting its orientation.",
+      "sfx_cue": "Digital activation sound.",
+      "b_roll": [
+        "Voyager 1 historical technical model"
+      ],
+      "text_overlay": {
+        "text": "Signal Restored"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The probe is now transmitting data across 24 billion kilometers of deep space. Voyager 1 remains operational 16 billion miles from Earth despite these extreme communication gaps.",
+      "visual_cue": "Split screen showing the craft and a data stream readout.",
+      "sfx_cue": "Steady rhythmic data transmission beeps.",
+      "b_roll": [
+        "NASA control room footage",
+        "Deep space starfield visualization"
+      ],
+      "text_overlay": {
+        "text": "24 Billion Kilometers"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Voyager 1 continues its lonely journey into the vast unknown.",
+      "visual_cue": "The probe fading into the distance against a backdrop of distant stars.",
+      "sfx_cue": "Echoing, fading ambient space sound.",
+      "b_roll": [
+        "Interstellar space wide shot"
+      ],
+      "text_overlay": {
+        "text": "Voyager 1"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+    "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+  ]
+}

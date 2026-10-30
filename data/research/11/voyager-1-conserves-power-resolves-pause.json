@@ -1,0 +1,74 @@
+{
+  "topic_slug": "voyager-1-conserves-power-resolves-pause",
+  "strongest_angle": "NASA's Voyager 1 successfully extended its mission lifespan by optimizing power consumption, even as it continues to navigate unexpected communication gaps at extreme distances from Earth.",
+  "key_facts": [
+    {
+      "fact": "In September 2026, NASA engineers successfully turned off three power-hungry devices on Voyager 1 and replaced them with lower-power alternatives to extend the spacecraft's operational life.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "NASA Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 18 and 19, 2026, the Deep Space Network failed to detect radio signals from Voyager 1 during two scheduled communication attempts.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "high"
+    },
+    {
+      "fact": "Voyager 1's communication link with Earth autonomously restored itself on October 20, 2026, after a 48-hour period of silence.",
+      "source_url": "https://astronews.com.tr/en/news/b7c3d2be5057",
+      "source_name": "Astro-News",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the October 2026 communication dropout, Voyager 1 was located 16 billion miles (24 billion kilometers) away from Earth.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of devices replaced for power conservation",
+      "value": 3,
+      "unit": "devices",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    },
+    {
+      "label": "Duration of communication pause",
+      "value": 48,
+      "unit": "hours",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    },
+    {
+      "label": "Distance from Earth in miles",
+      "value": 16000000000,
+      "unit": "miles",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    },
+    {
+      "label": "Distance from Earth in kilometers",
+      "value": 24000000000,
+      "unit": "kilometers",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Voyager 1",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Deep Space Network",
+      "kind": "organization"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    }
+  ]
+}
