@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "holei-sea-arch-collapse-hawaii-volcanoes",
+  "format": "shorts",
+  "hook": "The 90-foot Hōlei Sea Arch vanished into the Pacific within four days.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The 90-foot Hōlei Sea Arch vanished into the Pacific within four days.",
+      "b_roll": [
+        "Hōlei Sea Arch map location",
+        "Pacific Ocean waves crashing"
+      ],
+      "text_overlay": {
+        "text": "Hōlei Sea Arch Collapsed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 23, 2026, the National Park Service reported this formation intact in Hawaiʻi Volcanoes National Park. Lava flows created this structure 550 years ago along the Big Island's coast. Where did the stone go?",
+      "b_roll": [
+        "Hawaiʻi Volcanoes National Park landscape",
+        "Lava rock texture",
+        "Big Island southern coastline map"
+      ],
+      "text_overlay": {
+        "text": "Hawaiʻi Volcanoes National Park"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the exact moment of its total collapse remains entirely unknown.",
+      "b_roll": [
+        "Empty ocean horizon"
+      ],
+      "text_overlay": {
+        "text": "Collapse Moment Unknown"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "By September 27, 2026, the 27.4-meter-tall arch had fallen into the ocean. Nature reclaimed the landmark permanently. This geological feature is now gone from the southern coastline.",
+      "b_roll": [
+        "Pacific Ocean waves",
+        "Map showing coastline change"
+      ],
+      "text_overlay": {
+        "text": "September 27, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only the 550-year-old lava foundation remains near the Pacific.",
+      "b_roll": [
+        "Lava rock base at coastline"
+      ],
+      "text_overlay": {
+        "text": "550-Year-Old Lava Base"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nps.gov/places/holei-sea-arch.htm",
+    "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241"
+  ]
+}

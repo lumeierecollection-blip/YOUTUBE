@@ -1,0 +1,86 @@
+{
+  "topic_slug": "holei-sea-arch-collapse-hawaii-volcanoes",
+  "strongest_angle": "Analyze the geological collapse of the iconic 90-foot Hōlei Sea Arch formed by 550-year-old lava flows along the Big Island's southern coastline after it disappeared between September 23 and September 27, 2026.",
+  "key_facts": [
+    {
+      "fact": "The 90-foot-tall Hōlei Sea Arch in Hawaiʻi Volcanoes National Park collapsed into the Pacific Ocean between September 23 and September 27, 2026.",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "The collapsed Hōlei Sea Arch was formed by 550-year-old lava flows along the southern coastline of the Big Island.",
+      "source_url": "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241",
+      "source_name": "NBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lava rock formation known as Hōlei Sea Arch stood about 90 feet, or 27.4 meters, high before its collapse.",
+      "source_url": "https://www.bbc.com/news/articles/crd6dy4xepgyo",
+      "source_name": "BBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Arch Height (Feet)",
+      "value": 90,
+      "unit": "feet",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Arch Height (Meters)",
+      "value": 27.4,
+      "unit": "meters",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Lava Flow Age",
+      "value": 550,
+      "unit": "years",
+      "source_url": "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241"
+    },
+    {
+      "label": "Last Seen Intact Date",
+      "value": 23,
+      "unit": "September",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Disappearance Date",
+      "value": 27,
+      "unit": "September",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "It was last seen intact on September 23 and was gone by the night of September 27, 2026; the exact moment of collapse is unknown.",
+      "speaker": "National Park Service",
+      "source_name": "U.S. National Park Service",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Hōlei Sea Arch",
+      "kind": "object"
+    },
+    {
+      "name": "Hawaiʻi Volcanoes National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Big Island",
+      "kind": "place"
+    },
+    {
+      "name": "National Park Service",
+      "kind": "organization"
+    }
+  ]
+}
