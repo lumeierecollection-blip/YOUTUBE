@@ -1,0 +1,71 @@
+{
+  "topic_slug": "sherlock-holmes-versus-count-dracula-feats",
+  "strongest_angle": "An analysis comparing the stated canonical feats and attributes of Sherlock Holmes and Count Dracula, contrasting human logic with supernatural vampire abilities.",
+  "key_facts": [
+    {
+      "fact": "Count Dracula is explicitly described in Bram Stoker's novel as possessing the physical strength of twenty men.",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters",
+      "source_name": "SparkNotes",
+      "confidence": "high"
+    },
+    {
+      "fact": "Loren D. Estleman originally published the pastiche novel Sherlock Holmes vs. Dracula in 1978.",
+      "source_url": "https://en.m.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Dracula inhabits a crumbling castle located in the Carpathian Mountains.",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters",
+      "source_name": "SparkNotes",
+      "confidence": "high"
+    },
+    {
+      "fact": "Abraham Van Helsing describes Count Dracula as a former necromancer whose family had a long history of dealing with the devil.",
+      "source_url": "https://www.gradesaver.com/dracula/study-guide/character-list",
+      "source_name": "GradeSaver",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Physical strength multiplier of Count Dracula",
+      "value": 20,
+      "unit": "men",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters"
+    },
+    {
+      "label": "Publication year of Sherlock Holmes vs. Dracula",
+      "value": 1978,
+      "unit": "year",
+      "source_url": "https://en.m.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "Carpathian Mountains",
+      "kind": "place"
+    },
+    {
+      "name": "Abraham Van Helsing",
+      "kind": "person"
+    }
+  ]
+}

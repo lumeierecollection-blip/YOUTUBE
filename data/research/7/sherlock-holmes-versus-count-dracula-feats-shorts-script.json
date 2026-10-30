@@ -1,0 +1,51 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-versus-count-dracula-feats",
+  "format": "shorts",
+  "hook": "Possessing the strength of twenty men, Count Dracula remains a terrifying figure in Bram Stoker's novel.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Possessing the strength of twenty men, Count Dracula remains a terrifying figure in Bram Stoker's novel.",
+      "visual_cue": "A stark, high-contrast illustration of a dark, imposing silhouette in a castle window.",
+      "text_overlay": {
+        "text": "Strength of 20 men"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In the Carpathian Mountains, Abraham Van Helsing identifies the vampire as a former, devil-dealing necromancer. Does human logic provide a defense against a creature with the strength of twenty men?",
+      "visual_cue": "A map of the Carpathian Mountains transitioning to a classic magnifying glass over a Victorian document.",
+      "b_roll": [
+        "Historical map of the Carpathian Mountains",
+        "Vintage magnifying glass and ink pen on parchment"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Author Loren D. Estleman raised the stakes in his 1978 pastiche, Sherlock Holmes vs. Dracula.",
+      "visual_cue": "Close-up of a vintage 1978 book cover design with bold, period-appropriate typography.",
+      "b_roll": [
+        "1970s style book cover texture"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This 1978 novel pits the detective against the vampire's strength of twenty men. Sherlock Holmes relies on his human logic to survive the vampire's strength of twenty men.",
+      "visual_cue": "An abstract split-screen showing a brain diagram on one side and a dark, mystical swirling mist on the other.",
+      "text_overlay": {
+        "text": "Analysis: Logic vs. Supernature"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Carpathian Mountains remain the home of the Count and his twenty-man strength.",
+      "visual_cue": "The silhouette of the castle against a full moon, slowly fading to black."
+    }
+  ],
+  "sources_used": [
+    "https://www.sparknotes.com/lit/dracula/characters",
+    "https://en.m.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula",
+    "https://www.gradesaver.com/dracula/study-guide/character-list"
+  ]
+}
