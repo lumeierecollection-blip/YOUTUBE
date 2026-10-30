@@ -1,0 +1,102 @@
+{
+  "topic_slug": "cen-ts-18296-2-2026-child-anthropometric-design",
+  "strongest_angle": "The CEN/TS 18296-2:2026 technical specification provides a standardized framework for applying European child anthropometric data to improve the safety and ergonomics of product design.",
+  "key_facts": [
+    {
+      "fact": "The CEN/TS 18296-2:2026 specification covers children in the age range of 0 to 16 years old.",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf",
+      "source_name": "Frankowska Joanna, CEN-CENELEC Webinar",
+      "confidence": "high"
+    },
+    {
+      "fact": "For children aged 0 to 3 years, the standard provides 93 anthropometric measurements and 6 strength values.",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf",
+      "source_name": "Frankowska Joanna, CEN-CENELEC Webinar",
+      "confidence": "high"
+    },
+    {
+      "fact": "For children aged 4 to 16 years, the standard provides 186 anthropometric measurements and 14 strength values.",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf",
+      "source_name": "Frankowska Joanna, CEN-CENELEC Webinar",
+      "confidence": "high"
+    },
+    {
+      "fact": "The CEN/TS 18296-2:2026 document was approved by CEN on June 8, 2026, for an initial validity period of three years.",
+      "source_url": "https://cdn.standards.iteh.ai/samples/sist/sist-ts-cen-ts-18296-2-2026/40690e3ede154596abd6709e738558aa/sist-ts-cen-ts-18296-2-2026.pdf",
+      "source_name": "iTeh Standards and Slovenian Institute of Standardization",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age range lower bound",
+      "value": 0,
+      "unit": "years",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf"
+    },
+    {
+      "label": "Age range upper bound",
+      "value": 16,
+      "unit": "years",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf"
+    },
+    {
+      "label": "Anthropometric measurements for 0-3 year olds",
+      "value": 93,
+      "unit": "count",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf"
+    },
+    {
+      "label": "Strength values for 0-3 year olds",
+      "value": 6,
+      "unit": "count",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf"
+    },
+    {
+      "label": "Anthropometric measurements for 4-16 year olds",
+      "value": 186,
+      "unit": "count",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf"
+    },
+    {
+      "label": "Strength values for 4-16 year olds",
+      "value": 14,
+      "unit": "count",
+      "source_url": "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf"
+    },
+    {
+      "label": "Approval day",
+      "value": 8,
+      "unit": "day",
+      "source_url": "https://cdn.standards.iteh.ai/samples/sist/sist-ts-cen-ts-18296-2-2026/40690e3ede154596abd6709e738558aa/sist-ts-cen-ts-18296-2-2026.pdf"
+    },
+    {
+      "label": "Validity period",
+      "value": 3,
+      "unit": "years",
+      "source_url": "https://cdn.standards.iteh.ai/samples/sist/sist-ts-cen-ts-18296-2-2026/40690e3ede154596abd6709e738558aa/sist-ts-cen-ts-18296-2-2026.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "CEN",
+      "kind": "organization"
+    },
+    {
+      "name": "CEN/TS 18296-2:2026",
+      "kind": "object"
+    },
+    {
+      "name": "Europe",
+      "kind": "place"
+    },
+    {
+      "name": "Frankowska Joanna",
+      "kind": "person"
+    },
+    {
+      "name": "Slovenian Institute of Standardization",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "cen-ts-18296-2-2026-child-anthropometric-design",
+  "format": "shorts",
+  "hook": "The CEN/TS 18296-2:2026 technical specification from the European Committee for Standardization improves product safety for children.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The CEN/TS 18296-2:2026 technical specification from the European Committee for Standardization improves product safety for children.",
+      "text_overlay": {
+        "text": "186 New Design Measurements"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Does this European Committee for Standardization document provide enough data for toddlers aged 0-3?",
+      "text_overlay": {
+        "text": "Approved June 8, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the specification offers even more data, including 186 measurements and 14 strength values for older children.",
+      "text_overlay": {
+        "text": "Data by age group"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CEN approved this document for a 3-year validity period to standardize European child anthropometric data.",
+      "text_overlay": {
+        "text": "93 measurements for 0-3 years"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Europe will rely on these 93 measurements for toddlers and 186 for older children until 2029.",
+      "text_overlay": {
+        "text": "3-Year Validity Period"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://experts.cen.eu/media/CEN-CENELEC/Events/Webinars/2026/2026-09-10_webinar_new-childrens-anthropometric-strength-data-guidelines-for-europe_final.pdf",
+    "https://cdn.standards.iteh.ai/samples/sist/sist-ts-cen-ts-18296-2-2026/40690e3ede154596abd6709e738558aa/sist-ts-cen-ts-18296-2-2026.pdf"
+  ]
+}
