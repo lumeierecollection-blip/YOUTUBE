@@ -388,8 +388,11 @@ test("a photo scene with no figure still moves: the accent draws itself across i
   addGraphics(tl, { id: "p", palette: PAL2, scenes: [{ asset: "photo-x", look: "vox", stagger: 0 }] });
   assert.ok(tl.layers.some((l) => l.id.startsWith("scene-0-d-")), "a photo scene without a graphic gets the decoration");
   const tl2 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
-  addGraphics(tl2, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
-  assert.equal(tl2.layers.length, 1, "a backdrop scene with no graphic gets none");
+  addGraphics(tl2, { id: "p", palette: PAL2, scenes: [{ asset: "other-x", look: "vox", stagger: 0 }] });
+  const tl3 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
+  addGraphics(tl3, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
+  assert.ok(tl3.layers.some((l) => /-sweep$/.test(l.id)), "a poster scene gets the sweeping line so it never sits still");
+  assert.equal(tl2.layers.length, 1, "a card is not a photo scene, so it gets no decoration");
 });
 
 import { luminance, onFill } from "../editor/graphics.mjs";
@@ -425,4 +428,23 @@ test("the same year gets one timeline per video, and no more than three timeline
     words: sentences.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 26, resolve: async () => ({ ok: false }), concept: async () => null, queries: sentences.map(() => null), style: 1 });
   const years = r.plan.scenes.filter((s) => s.graphic && s.graphic.kind === "year").map((s) => s.graphic.figs[0].value);
   assert.deepEqual(years, [2000, 1998, 1999], "first three distinct years only; the repeat of 2000 gets none");
+});
+
+test("graphics never sit still: every layer drifts to the end of the scene, and a figure-only scene also gets a sweeping line", async () => {
+  for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
+    for (const [kind, figs] of [["bar", [PCT]], ["count", [NUM]], ["year", [{ raw: "2000", kind: "year", value: 2000 }]]]) {
+      const ls = g(look, kind, figs, { backdrop: true });
+      const moving = ls.filter((l) => !/-(flat|sweep)$/.test(l.id));
+      for (const l of moving) assert.ok(valueAt(l, "ty", l.out - l.in) <= -20, `${look}/${kind}: ${l.id} is still rising at the end`);
+      const sweep = ls.find((l) => /-sweep$/.test(l.id));
+      assert.ok(sweep, `${look}/${kind}: sweep`);
+      assert.ok(valueAt(sweep, "ty", 40) > valueAt(sweep, "ty", 10), "the sweep moves down the frame");
+      assert.ok(valueAt(sweep, "ty", 84) < valueAt(sweep, "ty", 83), "and starts again every cycle");
+      assert.equal(ls.some((l) => /-flat$/.test(l.id) && valueAt(l, "ty", 80) !== 0), false, "a full-bleed layer never drifts");
+    }
+  }
+  const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null], style: 2 });
+  const s0 = plan.scenes[0];
+  assert.equal(s0.graphic.backdrop, true);
+  assert.ok(s0.zoom >= 0.1, "the backdrop pushes harder under a figure");
 });

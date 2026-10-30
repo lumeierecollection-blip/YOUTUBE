@@ -16,7 +16,7 @@ import { execFileSync } from "child_process";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import { buildAutoPlan, seededRandom } from "./auto-plan.mjs";
-import { graphicLayers, decorationLayers } from "./graphics.mjs";
+import { graphicLayers, decorationLayers, sweepLayers } from "./graphics.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
@@ -102,6 +102,7 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
     if (!base) return;
     if (!sc.graphic) {
       // A photo scene with no figure still moves: the accent draws itself across it (graphics.mjs decorationLayers).
+      if (/^card-/.test(sc.asset)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
       if (/^(photo|concept)-/.test(sc.asset)) timeline.layers.push(...decorationLayers({ id: "scene-" + i + "-d", look: sc.look, palette: plan.palette, inF: base.in + (sc.stagger || 0), outF: base.out }));
       return;
     }

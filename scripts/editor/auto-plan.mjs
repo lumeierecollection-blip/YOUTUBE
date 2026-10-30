@@ -281,8 +281,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         }
       }
       if (!scene) {
-        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
-        if (gfigs.length) scene.graphic = graphicFor();
+        const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
+        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom: onBackdrop ? Math.max(zoom, 0.1) : zoom, fade };
+        if (gfigs.length) scene.graphic = { ...graphicFor(), backdrop: onBackdrop };
       }
     }
 
