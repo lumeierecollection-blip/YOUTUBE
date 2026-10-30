@@ -1,0 +1,80 @@
+{
+  "topic_slug": "1963-coventry-archive-elizabeth-tyler",
+  "strongest_angle": "In 1963, 17-year-old orphan Elizabeth Tyler documented the bomb sites of Coventry using a 1933 Rolleicord camera, creating an archive rediscovered six decades later.",
+  "key_facts": [
+    {
+      "fact": "In 1963, 17-year-old Elizabeth Tyler wandered the streets of Coventry capturing images of the city's bomb sites and abandoned buildings.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Tyler bought a Rolleicord camera from 1933 using her first wages from an evening job as a waitress while enrolled at the Coventry College of Art.",
+      "source_url": "https://www.caferoyalbooks.com/shop/p/elizabeth-tyler-coventry-1960s",
+      "source_name": "Café Royal Books",
+      "confidence": "high"
+    },
+    {
+      "fact": "The published book of Elizabeth Tyler's 1960s Coventry archive contains 36 pages printed in England with staple binding.",
+      "source_url": "https://www.caferoyalbooks.com/shop/p/elizabeth-tyler-coventry-1960s",
+      "source_name": "Café Royal Books",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of archive photographs",
+      "value": 1963,
+      "unit": "year",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Elizabeth Tyler's age in 1963",
+      "value": 17,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Year of the Rolleicord camera purchased by Elizabeth Tyler",
+      "value": 1933,
+      "unit": "year",
+      "source_url": "https://www.caferoyalbooks.com/shop/p/elizabeth-tyler-coventry-1960s"
+    },
+    {
+      "label": "Page count of the Café Royal Books publication",
+      "value": 36,
+      "unit": "pages",
+      "source_url": "https://www.caferoyalbooks.com/shop/p/elizabeth-tyler-coventry-1960s"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The environment was certainly harsh, reeking of poverty and hopelessness, but there is a defiant glint in the eyes of Tyler's subjects that belies that impression",
+      "speaker": "Alan Rider",
+      "source_name": "Outsideleft",
+      "source_url": "https://outsideleft.com/main.php?story=sent-from-coventry-1"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Elizabeth Tyler",
+      "kind": "person"
+    },
+    {
+      "name": "Coventry",
+      "kind": "place"
+    },
+    {
+      "name": "Leamington Spa",
+      "kind": "place"
+    },
+    {
+      "name": "Coventry College of Art",
+      "kind": "organization"
+    },
+    {
+      "name": "Rolleicord",
+      "kind": "object"
+    }
+  ]
+}

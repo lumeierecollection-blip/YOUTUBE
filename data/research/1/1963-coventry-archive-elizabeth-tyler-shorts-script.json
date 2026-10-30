@@ -1,0 +1,52 @@
+{
+  "channel_id": "1",
+  "topic_slug": "1963-coventry-archive-elizabeth-tyler",
+  "format": "shorts",
+  "hook": "In 1963, 17-year-old Elizabeth Tyler captured the ruins of Coventry on her vintage film camera.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1963, 17-year-old Elizabeth Tyler captured the ruins of Coventry on her vintage film camera.",
+      "visual_cue": "Close-up of a vintage black and white photograph showing a bomb site in Coventry.",
+      "text_overlay": {
+        "text": "Coventry 1963"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Elizabeth Tyler wandered through the city's abandoned bomb sites to record the decay. Did this Coventry College of Art student know her 1933 Rolleicord camera would document history?",
+      "visual_cue": "Historical still of a young woman holding a Rolleicord camera, followed by shots of rubble-strewn streets.",
+      "text_overlay": {
+        "text": "Elizabeth Tyler"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Tyler's archive of Coventry bomb sites remained hidden for six decades before their recent rediscovery.",
+      "visual_cue": "Archive footage of a dusty, closed-up cardboard box being opened.",
+      "text_overlay": {
+        "text": "Hidden for 60 years"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This archive immortalizes the city as it stood in 1963 through her unique photographic lens.",
+      "visual_cue": "Panning shot over the pages of a slim, staple-bound book featuring stark, monochromatic photography.",
+      "text_overlay": {
+        "text": "36-page archive"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Her 1933 camera turned a forgotten city into a lasting archive.",
+      "visual_cue": "Final shot of the Rolleicord camera resting on a table beside the printed book.",
+      "text_overlay": {
+        "text": "1933 Rolleicord"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+    "https://www.caferoyalbooks.com/shop/p/elizabeth-tyler-coventry-1960s"
+  ]
+}
