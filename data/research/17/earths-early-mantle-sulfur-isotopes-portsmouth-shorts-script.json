@@ -1,0 +1,77 @@
+{
+  "channel_id": "17",
+  "topic_slug": "earths-early-mantle-sulfur-isotopes-portsmouth",
+  "format": "shorts",
+  "hook": "Surface activity reshaped Earth's deep interior 3.4 billion years ago, according to University of Portsmouth researchers.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Surface activity reshaped Earth's deep interior 3.4 billion years ago, according to University of Portsmouth researchers.",
+      "visual_cue": "Close up of ancient zircon crystal grain with microscopic inclusions.",
+      "sfx_cue": "Deep, resonant hum transitioning into a sharp crystalline chime.",
+      "b_roll": [
+        "Macro photography of zircon crystal",
+        "Abstract rendering of Earth's crust layers"
+      ],
+      "text_overlay": {
+        "text": "3.4 billion years ago"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Scientists from the University of Portsmouth examined tiny mineral inclusions trapped in ancient zircon grains. How did this surface material reach the mantle?",
+      "visual_cue": "Laboratory setting at the European Synchrotron Radiation Facility showing scientists working at a console.",
+      "sfx_cue": "Sound of rapid, rhythmic digital data processing.",
+      "b_roll": [
+        "University of Portsmouth research lab",
+        "Close up of ID21 beamline equipment"
+      ],
+      "text_overlay": {
+        "text": "University of Portsmouth research"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But scientists used the European Synchrotron Radiation Facility's ID21 beamline to reveal this hidden process.",
+      "visual_cue": "Graphic showing sulfur valence speciation data on a screen.",
+      "sfx_cue": "High-pitched electronic ping.",
+      "b_roll": [
+        "Digital visualization of sulfur isotopes",
+        "Close up of XANES data readouts"
+      ],
+      "text_overlay": {
+        "text": "ID21 beamline analysis"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nature Geoscience, a scientific journal, details how oxygen-weathered rocks were dragged into the Earth's interior. Hugo Moreira and his team traced this cycle back 3.4 billion years.",
+      "visual_cue": "Animated diagram showing surface material subducting deep into Earth's mantle.",
+      "sfx_cue": "Deep, thrumming tectonic sound effect.",
+      "b_roll": [
+        "Animation of subduction zone magmas",
+        "Nature Geoscience publication logo"
+      ],
+      "text_overlay": {
+        "text": "3.4 billion years of recycling"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This recycling of oxidized surface material into the Earth's interior began 3.4 billion years ago.",
+      "visual_cue": "Slow zoom out from a single zircon grain to a view of the early Earth.",
+      "sfx_cue": "Fading atmospheric low-frequency drone.",
+      "b_roll": [
+        "Artist impression of Archaean Earth",
+        "Zircon crystal under microscope"
+      ],
+      "text_overlay": {
+        "text": "3.4 billion years ago"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.esrf.fr/home/news/general/content-news/general/earths-early-mantle-exchange-revealed.html",
+    "https://www.nature.com/articles/s41561-026-02119-6"
+  ]
+}
