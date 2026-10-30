@@ -1,0 +1,37 @@
+{
+  "channel_id": "3",
+  "topic_slug": "chris-brown-producer-sues-sony-2026",
+  "format": "shorts",
+  "hook": "Sony Music allegedly owes $1.25 million in unpaid royalties to a producer.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sony Music allegedly owes $1.25 million in unpaid royalties to a producer.",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "Oct 16, 2026, Ishmael Sadiq Montague sued Sony Music in New York federal court over “Party”. If Sony paid $0.625 million, how much remains owed?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the filing alleges Sony still owes the full $1.25 million.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Montague’s lawsuit demands the unpaid $1.25 million royalty. He argues Sony only delivered $0.625 million, half the agreed 1.5 % share. If the court upholds the contract, Sony must pay the full $1.25 million.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Sony faces a $1.25 million liability if sued.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://allhiphop.com/news/chris-browns-party-producer-sues-sony-for-1-25m-over-royalty-dispute",
+    "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate"
+  ]
+}

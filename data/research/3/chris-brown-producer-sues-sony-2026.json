@@ -1,0 +1,67 @@
+{
+  "topic_slug": "chris-brown-producer-sues-sony-2026",
+  "strongest_angle": "Producer Ishmael Sadiq Montague sued Sony Music on Oct 16 2026 in New York federal court, seeking $1.25 million for unpaid 1.5 % royalties from Chris Brown’s 2016 hit “Party”.",
+  "key_facts": [
+    {
+      "fact": "Ishmael Sadiq Montague filed a lawsuit in New York federal court on October 16, 2026 claiming Sony Music owes him $1.25 million in unpaid royalties from Chris Brown’s track “Party”.",
+      "source_url": "https://allhiphop.com/news/chris-browns-party-producer-sues-sony-for-1-25m-over-royalty-dispute",
+      "source_name": "AllHipHop",
+      "confidence": "high"
+    },
+    {
+      "fact": "The producer agreement that grants Montague a 1.5 % royalty on the master recording of “Party” was signed on November 1, 2016 between Montague and Chris Brown Entertainment LLC.",
+      "source_url": "https://www.musicbusinessworldwide.com/files/2026/10/Ishmael-Sadiq-Montague-v-Sony-Music.pdf",
+      "source_name": "Music Business Worldwide (PDF filing)",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Montague alleges Sony paid only half of the agreed 1.5 % rate, delivering roughly $0.625 million instead of the full $1.25 million he is owed.",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 1.25,
+      "unit": "million USD",
+      "label": "Claimed unpaid royalties",
+      "source_url": "https://allhiphop.com/news/chris-browns-party-producer-sues-sony-for-1-25m-over-royalty-dispute"
+    },
+    {
+      "value": 1.5,
+      "unit": "percent",
+      "label": "Royalty rate per producer agreement",
+      "source_url": "https://www.musicbusinessworldwide.com/files/2026/10/Ishmael-Sadiq-Montague-v-Sony-Music.pdf"
+    },
+    {
+      "value": 0.625,
+      "unit": "million USD",
+      "label": "Amount Sony allegedly paid",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ishmael Sadiq Montague",
+      "kind": "person"
+    },
+    {
+      "name": "Sony Music Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Chris Brown",
+      "kind": "person"
+    },
+    {
+      "name": "Chris Brown Entertainment LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "New York federal court",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}
