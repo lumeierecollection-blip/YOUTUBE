@@ -1,0 +1,53 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-abilities-compared",
+  "format": "shorts",
+  "hook": "Doctor Watson claimed Sherlock Holmes would burn at the stake for his uncanny deductive feats.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Doctor Watson claimed Sherlock Holmes would burn at the stake for his uncanny deductive feats.",
+      "visual_cue": "Close-up of a 19th-century magnifying glass resting on a handwritten manuscript page.",
+      "text_overlay": {
+        "text": "Burned at the stake?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Arthur Conan Doyle published the detective story The Sign of the Four in 1890. Meanwhile, Bram Stoker published Dracula in 1897, featuring a creature of the Carpathian Mountains. How do these powers compare?",
+      "visual_cue": "A timeline graphic appearing on screen showing 1890 and 1897.",
+      "text_overlay": {
+        "text": "1890 vs 1897"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Count Dracula inhabits the Carpathian Mountains with physical strength equal to 20 men.",
+      "visual_cue": "A silhouette icon representing the strength of 20 figures.",
+      "text_overlay": {
+        "text": "Strength of 20 men"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Count Dracula controls the weather and animal forms but needs formal invitations to enter homes. Arthur Conan Doyle wrote Sherlock Holmes while Bram Stoker created the legendary Count Dracula.",
+      "visual_cue": "A split screen comparing a Victorian study and a dark, gothic castle landscape.",
+      "text_overlay": {
+        "text": "Logic vs. Supernatural"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Doyle and Stoker defined the era with their iconic detective and the supernatural vampire.",
+      "visual_cue": "A final shot of a flickering candle next to a leather-bound book.",
+      "text_overlay": {
+        "text": "Deduction vs. Vampire"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+    "https://www.sparknotes.com/lit/dracula/characters",
+    "http://hdl.handle.net/10852/41485"
+  ]
+}

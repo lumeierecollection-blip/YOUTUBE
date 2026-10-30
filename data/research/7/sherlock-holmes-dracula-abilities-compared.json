@@ -1,0 +1,84 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-abilities-compared",
+  "strongest_angle": "An analytical comparison contrasting the canonical investigative and deductive feats of Sherlock Holmes in Arthur Conan Doyle's stories with the supernatural powers and limitations of Count Dracula in Bram Stoker's 1897 novel.",
+  "key_facts": [
+    {
+      "fact": "In Arthur Conan Doyle's Sherlock Holmes canon, the detective's powers of deduction are compared to supernatural and witchlike abilities, with Doctor Watson declaring that Sherlock would have been burned at the stake if he had lived a few centuries earlier.",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "source_name": "Late 19th Century British Literature & Culture",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Bram Stoker's Dracula published in 1897, Count Dracula inhabits a crumbling castle in the Carpathian Mountains where he possesses supernatural physical strength equal to twenty men.",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters",
+      "source_name": "SparkNotes",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Bram Stoker's Dracula, the vampire Count Dracula features supernatural abilities including the power to assume the form of an animal and control the weather, alongside strict limitations such as being unable to enter a victim's home unless formally invited.",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters",
+      "source_name": "SparkNotes",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arthur Conan Doyle published the detective story featuring Sherlock Holmes titled The Sign of the Four in 1890, the exact same decade Bram Stoker published Dracula in 1897.",
+      "source_url": "http://hdl.handle.net/10852/41485",
+      "source_name": "University of Agder",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Count Dracula strength multiplier compared to men",
+      "value": 20,
+      "unit": "men",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters"
+    },
+    {
+      "label": "Publication year of The Sign of the Four",
+      "value": 1890,
+      "unit": "year",
+      "source_url": "http://hdl.handle.net/10852/41485"
+    },
+    {
+      "label": "Publication year of Dracula by Bram Stoker",
+      "value": 1897,
+      "unit": "year",
+      "source_url": "http://hdl.handle.net/10852/41485"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "You would certainly have been burned, had you lived a few centuries ago",
+      "speaker": "Watson",
+      "source_name": "Late 19th Century British Literature & Culture",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Doctor Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "Carpathian Mountains",
+      "kind": "place"
+    }
+  ]
+}
