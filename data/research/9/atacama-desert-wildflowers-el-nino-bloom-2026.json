@@ -1,0 +1,75 @@
+{
+  "topic_slug": "atacama-desert-wildflowers-el-nino-bloom-2026",
+  "strongest_angle": "An unusually powerful El Nino weather pattern brought record rainfall to the Atacama Desert in Chile, transforming 6,560 square miles of the world's driest nonpolar desert into a massive wildflower bloom with over 200 plant species.",
+  "key_facts": [
+    {
+      "fact": "The 2026 flowering event spans approximately 6,560 square miles across Chile's Atacama Desert, making it the most extensive flowering event since 1997.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The bloom includes more than 200 plant species sprouting from seeds and bulbs that remained dormant underground for decades.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the Corporacion Nacional Forestal (CONAF) and Servicio de Biodiversidad y Areas Protegidas (SBAP), the phenomenon covers an area equivalent to 23% of germoplasma activation.",
+      "source_url": "https://goreatacama.gob.cl/2026/10/01/realizan-lanzamiento-de-temporada-2026-del-desierto-florido-en-atacama",
+      "source_name": "Gobierno Regional de Atacama",
+      "confidence": "high"
+    },
+    {
+      "fact": "The spectacular Desierto Florido covers an estimated area of 6,560 square miles or 17,000 square kilometers in the Atacama Desert.",
+      "source_url": "https://www.dailymail.com/sciencetech/article-16183923/El-Nino-flowers-bloom-Atacama.html",
+      "source_name": "Daily Mail Online",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Bloom area in square miles",
+      "value": 6560,
+      "unit": "square miles",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    },
+    {
+      "label": "Number of plant species",
+      "value": 200,
+      "unit": "species",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    },
+    {
+      "label": "Bloom area in square kilometers",
+      "value": 17000,
+      "unit": "square kilometers",
+      "source_url": "https://www.dailymail.com/sciencetech/article-16183923/El-Nino-flowers-bloom-Atacama.html"
+    },
+    {
+      "label": "Minimum activation percentage",
+      "value": 23,
+      "unit": "percent",
+      "source_url": "https://goreatacama.gob.cl/2026/10/01/realizan-lanzamiento-de-temporada-2026-del-desierto-florido-en-atacama"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Atacama Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "Corporacion Nacional Forestal",
+      "kind": "organization"
+    },
+    {
+      "name": "Servicio de Biodiversidad y Areas Protegidas",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "atacama-desert-wildflowers-el-nino-bloom-2026",
+  "format": "shorts",
+  "hook": "What if 6,560 square miles of the Atacama Desert suddenly transformed into a massive garden?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if 6,560 square miles of the Atacama Desert suddenly transformed into a massive garden?",
+      "b_roll": [
+        "Wide shot of dry, cracked desert landscape"
+      ],
+      "text_overlay": {
+        "text": "The world's driest desert"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, an intense El Nino weather pattern brought record rainfall to the Atacama Desert in Chile. How much of the Atacama Desert changed during this 2026 event?",
+      "b_roll": [
+        "Satellite imagery of Atacama region",
+        "Close-up of dormant seeds in dry soil",
+        "Map of Chile highlighting the Atacama"
+      ],
+      "text_overlay": {
+        "text": "Atacama Desert, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This rare Desierto Florido event covers 17,000 square kilometers, transforming the arid landscape into color.",
+      "b_roll": [
+        "Time-lapse of wildflowers emerging"
+      ],
+      "text_overlay": {
+        "text": "6,560 square miles"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CONAF and SBAP confirm this bloom triggers 23% of the desert's dormant underground seed bank.",
+      "b_roll": [
+        "Aerial view of colorful wildflower fields",
+        "Graphic showing 200 species diversity",
+        "Logo of CONAF and SBAP"
+      ],
+      "text_overlay": {
+        "text": "23% activation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This bloom marks the most extensive event since 1997.",
+      "b_roll": [
+        "Wide scenic shot of desert wildflowers"
+      ],
+      "text_overlay": {
+        "text": "Most extensive since 1997"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+    "https://goreatacama.gob.cl/2026/10/01/realizan-lanzamiento-de-temporada-2026-del-desierto-florido-en-atacama"
+  ]
+}
