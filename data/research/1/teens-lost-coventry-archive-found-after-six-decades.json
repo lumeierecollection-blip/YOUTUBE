@@ -1,0 +1,82 @@
+{
+  "topic_slug": "teens-lost-coventry-archive-found-after-six-decades",
+  "strongest_angle": "The discovery of a 1963 photographic archive by Elizabeth Tyler offers a rare, intimate look at Coventry's post-war bomb sites, preserved for six decades before being rediscovered in Sweden.",
+  "key_facts": [
+    {
+      "fact": "In 1963, 17-year-old Elizabeth Tyler captured images of bomb sites and abandoned buildings in Coventry using a second-hand camera.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The photographic archive was moved across four different countries over the course of six decades before being rediscovered in an attic.",
+      "source_url": "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html",
+      "source_name": "AOL",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Tyler, now 80 years old, was a student at the Coventry College of Art when she took the original photographs.",
+      "source_url": "https://www.bbc.com/news/articles/c6kg8py4977no",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The collection of black and white photographs remained stored in a box in an attic in Borstahusen, Sweden, for more than 60 years.",
+      "source_url": "https://www.landskronadirekt.com/2026/10/17/elizabeths-bortglomda-bilder-blev-en-fotografisk-sensation",
+      "source_name": "Landskrona Direkt",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of photographer in 1963",
+      "value": 17,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Number of countries the archive was moved through",
+      "value": 4,
+      "unit": "countries",
+      "source_url": "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html"
+    },
+    {
+      "label": "Current age of Elizabeth Tyler",
+      "value": 80,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Years the archive remained in storage",
+      "value": 60,
+      "unit": "years",
+      "source_url": "https://www.landskronadirekt.com/2026/10/17/elizabeths-bortglomda-bilder-blev-en-fotografisk-sensation"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Elizabeth Tyler",
+      "kind": "person"
+    },
+    {
+      "name": "Coventry",
+      "kind": "place"
+    },
+    {
+      "name": "Coventry College of Art",
+      "kind": "organization"
+    },
+    {
+      "name": "Borstahusen",
+      "kind": "place"
+    },
+    {
+      "name": "Sweden",
+      "kind": "place"
+    },
+    {
+      "name": "Leamington Spa",
+      "kind": "place"
+    }
+  ]
+}
