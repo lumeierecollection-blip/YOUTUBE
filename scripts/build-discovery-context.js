@@ -83,7 +83,10 @@ function main() {
         channel_name: c.channel_name,
         niche: c.niche,
         content_pillars: pillars,
-        ...(focus ? { focus_pillar: focus } : {}),
+        // A strict-visual channel is NOT steered to its least-covered pillar: for ch-48 that pillar was "body mechanics", which only
+        // yields research abstracts with no drawable figure (runs 41008440903, 41009396847, 41011390999: every candidate starved
+        // SCR-17 STRICT). Drawable facts outrank pillar balance there; the duplicate gate still stops repeats.
+        ...(focus && !c.strict_visual ? { focus_pillar: focus } : {}),
         tone: c.tone || "",
         style: c.style || "",
         // STRICT VISUAL (config strict_visual: ch-02, ch-48; CHECK-REGISTER
