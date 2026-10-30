@@ -1,0 +1,77 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-conserves-power-resolves-pause",
+  "format": "shorts",
+  "hook": "NASA's Voyager 1 went silent for two days in deep space.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "NASA's Voyager 1 went silent for two days in deep space.",
+      "visual_cue": "Graphic showing Voyager 1 in the dark void of interstellar space.",
+      "sfx_cue": "Deep, resonant space drone that cuts to silence.",
+      "b_roll": [
+        "NASA artist rendition of Voyager 1 in interstellar space"
+      ],
+      "text_overlay": {
+        "text": "VOYAGER 1 SILENCE"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:18",
+      "voiceover": "Engineers at NASA turned off three power-hungry devices on the probe in early September. These systems were replaced with three lower-power alternatives to save energy.",
+      "visual_cue": "Animated diagram showing three power modules being toggled off.",
+      "sfx_cue": "Subtle mechanical clicking sounds.",
+      "b_roll": [
+        "Technical schematic of Voyager 1 power systems"
+      ],
+      "text_overlay": {
+        "text": "3 POWER-HUNGRY DEVICES OFF"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:27",
+      "voiceover": "On October 20, Voyager 1 experienced an unexpected 48-hour pause in data transmission to NASA.",
+      "visual_cue": "Visual of a signal wave flatlining on a monitor.",
+      "sfx_cue": "Static noise that fades into a high-pitched alert tone.",
+      "b_roll": [
+        "Deep Space Network signal monitor graphic"
+      ],
+      "text_overlay": {
+        "text": "48-HOUR COMMUNICATION PAUSE"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:27-00:43",
+      "voiceover": "Voyager 1 autonomously resolved this 48-hour pause without any commands from NASA engineers. NASA confirms Voyager 1 remains active after successfully substituting those 3 power-hungry devices.",
+      "visual_cue": "Voyager 1 signal wave returning to a steady pulse.",
+      "sfx_cue": "Low, rhythmic hum returning.",
+      "b_roll": [
+        "NASA animation of Voyager 1 signal transmission"
+      ],
+      "text_overlay": {
+        "text": "AUTONOMOUS RESOLUTION"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:43-00:50",
+      "voiceover": "Voyager 1 continues its mission after completing the power-saving strategy in early September.",
+      "visual_cue": "Slow zoom out from Voyager 1 into the starry expanse.",
+      "sfx_cue": "Fading echo of a cosmic pulse.",
+      "b_roll": [
+        "Starfield background with Voyager 1 silhouette"
+      ],
+      "text_overlay": {
+        "text": "INTERSTELLAR JOURNEY"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+    "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+  ]
+}

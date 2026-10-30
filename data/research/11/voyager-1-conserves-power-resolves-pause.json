@@ -1,0 +1,49 @@
+{
+  "topic_slug": "voyager-1-conserves-power-resolves-pause",
+  "strongest_angle": "Analyze NASA's Voyager 1 interstellar spacecraft completing a power-saving strategy in September 2026 and autonomously resolving an unexpected 48-hour communication pause on October 20, 2026.",
+  "key_facts": [
+    {
+      "fact": "In early September, engineers at NASA successfully turned off three power-hungry devices on Voyager 1 and substituted them with three lower-power alternatives.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "NASA Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 20, an unexpected loss of communication occurred with the Voyager 1 spacecraft which resolved itself autonomously after 48 hours.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "NASA Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "Engineers completed Voyager 1's power-saving effort by turning off three devices simultaneously in early September.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Communication pause duration",
+      "value": 48,
+      "unit": "hours",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    },
+    {
+      "label": "Devices substituted in power conservation effort",
+      "value": 3,
+      "unit": "devices",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Voyager 1",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
