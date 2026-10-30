@@ -1,0 +1,75 @@
+{
+  "channel_id": "21",
+  "topic_slug": "army-reagan-airport-collision-report",
+  "format": "shorts",
+  "hook": "A midair collision near Ronald Reagan Washington National Airport killed 67 people.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A midair collision near Ronald Reagan Washington National Airport killed 67 people.",
+      "visual_cue": "Map showing the airport location and flight path proximity.",
+      "sfx_cue": "Low, ominous ambient drone.",
+      "b_roll": [
+        "Aerial view of Ronald Reagan Washington National Airport"
+      ],
+      "text_overlay": {
+        "text": "67 Fatalities"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January 29, 2025, a UH-60L Black Hawk helicopter struck a PSA Airlines CRJ700 flight. How did the Federal Aviation Administration allow these two aircraft to occupy the same path?",
+      "visual_cue": "Animated flight paths converging in the sky near Washington D.C.",
+      "sfx_cue": "Radio chatter sound effect.",
+      "b_roll": [
+        "Digital recreation of flight paths",
+        "Stock footage of a UH-60L Black Hawk"
+      ],
+      "text_overlay": {
+        "text": "January 29, 2025"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the U.S. Army report reveals that FAA routing protocols directly caused this deadly collision.",
+      "visual_cue": "Close up of an official government document cover page.",
+      "sfx_cue": "Sharp paper rustle.",
+      "b_roll": [
+        "U.S. Army administrative investigation report document"
+      ],
+      "text_overlay": {
+        "text": "Systemic Failure"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Released on October 8, 2026, the report confirms systemic safety failures within the Federal Aviation Administration. Military helicopters and civilian jets were routinely cleared to cross paths. This hazardous procedure led directly to the 67 deaths.",
+      "visual_cue": "Chart showing the timeline of the report release and the fatal collision.",
+      "sfx_cue": "Deep bass hit.",
+      "b_roll": [
+        "Official report pages being flipped",
+        "Federal Aviation Administration logo"
+      ],
+      "text_overlay": {
+        "text": "October 8, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The final investigation confirms 67 lives lost that January day.",
+      "visual_cue": "Slow fade to black with text overlay.",
+      "sfx_cue": "Fading ambient drone.",
+      "b_roll": [
+        "Black screen"
+      ],
+      "text_overlay": {
+        "text": "67 Lives Lost"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.politico.com/news/2026/10/08/army-report-washington-air-disaster-01111600",
+    "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f",
+    "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision"
+  ]
+}

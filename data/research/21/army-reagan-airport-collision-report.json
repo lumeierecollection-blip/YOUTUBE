@@ -1,0 +1,77 @@
+{
+  "topic_slug": "army-reagan-airport-collision-report",
+  "strongest_angle": "The U.S. Army released an investigation report in October 2026 detailing systemic safety failures and procedural breakdowns behind the January 29, 2025 midair collision involving a Black Hawk helicopter and a civilian jet near Ronald Reagan Washington National Airport, which resulted in 67 fatalities.",
+  "key_facts": [
+    {
+      "fact": "On January 29, 2025, a midair collision occurred near Ronald Reagan Washington National Airport involving a UH-60L Black Hawk helicopter and a PSA Airlines CRJ700 flight, resulting in 67 deaths according to POLITICO.",
+      "source_url": "https://www.politico.com/news/2026/10/08/army-report-washington-air-disaster-01111600",
+      "source_name": "POLITICO",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Army administrative investigation report, appointed by LTG Laura Potter and completed in May, was released publicly on October 8, 2026, revealing systemic safety breakdowns.",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Associated Press reported that the investigation into the January 29, 2025 DCA midair collision was released after months of pressure from victims' families.",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Washington Post noted that the Army report concluded the FAA's route-crossing of military helicopters and civilian jets was a primary factor in the collision near Ronald Reagan Washington National Airport.",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fatalities in the collision",
+      "value": 67,
+      "unit": "people",
+      "source_url": "https://www.politico.com/news/2026/10/08/army-report-washington-air-disaster-01111600"
+    },
+    {
+      "label": "Date of the midair collision",
+      "value": 29,
+      "unit": "day of January 2025",
+      "source_url": "https://www.politico.com/news/2026/10/08/army-report-washington-air-disaster-01111600"
+    },
+    {
+      "label": "Release date of the Army report",
+      "value": 8,
+      "unit": "day of October 2026",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ronald Reagan Washington National Airport",
+      "kind": "place"
+    },
+    {
+      "name": "UH-60L Black Hawk",
+      "kind": "object"
+    },
+    {
+      "name": "PSA Airlines CRJ700 Flight 5342",
+      "kind": "object"
+    },
+    {
+      "name": "Laura Potter",
+      "kind": "person"
+    },
+    {
+      "name": "U.S. Army",
+      "kind": "organization"
+    },
+    {
+      "name": "Federal Aviation Administration",
+      "kind": "organization"
+    }
+  ]
+}
