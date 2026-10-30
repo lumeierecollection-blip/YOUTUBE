@@ -1,0 +1,98 @@
+{
+  "topic_slug": "october-2026-recalls-453-safety-incidents",
+  "strongest_angle": "In October 2026, 453 product recalls were recorded across U.S. federal agencies, with data from Recall Bench confirming that 138 of these specific events were officially posted by October 29, 2026.",
+  "key_facts": [
+    {
+      "fact": "A total of 453 product recalls were announced in October 2026 across all reporting federal agencies according to The Recall Desk.",
+      "source_url": "https://therecalldesk.com/archive/2026/10",
+      "source_name": "The Recall Desk",
+      "confidence": "high"
+    },
+    {
+      "fact": "As of October 29, 2026, U.S. agencies posted 138 recall events, including 31 from the CPSC, 30 from the FDA, 73 from the NHTSA, and 4 from the USDA-FSIS.",
+      "source_url": "https://recallbench.com/statistics/2026-10",
+      "source_name": "Recall Bench",
+      "confidence": "high"
+    },
+    {
+      "fact": "The severity breakdown for the 453 recalls includes 10 Critical, 153 Severe, 94 High, 181 Moderate, and 15 Low incidents.",
+      "source_url": "https://therecalldesk.com/archive/2026/10",
+      "source_name": "The Recall Desk",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total recalls in October 2026",
+      "value": 453,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Recall events posted by October 29, 2026",
+      "value": 138,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "CPSC recalls by October 29",
+      "value": 31,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "FDA recalls by October 29",
+      "value": 30,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "NHTSA recalls by October 29",
+      "value": 73,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "USDA-FSIS recalls by October 29",
+      "value": 4,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "Critical severity recalls",
+      "value": 10,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Severe severity recalls",
+      "value": 153,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    },
+    {
+      "label": "Moderate severity recalls",
+      "value": 181,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "FDA",
+      "kind": "organization"
+    },
+    {
+      "name": "NHTSA",
+      "kind": "organization"
+    },
+    {
+      "name": "CPSC",
+      "kind": "organization"
+    },
+    {
+      "name": "USDA-FSIS",
+      "kind": "organization"
+    }
+  ]
+}

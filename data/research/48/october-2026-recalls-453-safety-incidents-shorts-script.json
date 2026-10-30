@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "october-2026-recalls-453-safety-incidents",
+  "format": "shorts",
+  "hook": "In October 2026, 453 product recalls were recorded across federal agencies.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, 453 product recalls were recorded across federal agencies.",
+      "text_overlay": {
+        "text": "453 Product Recalls"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The CPSC, FDA, NHTSA, and USDA-FSIS tracked these safety events throughout October 2026 for consumers. Which agency issued the most of the 138 recalls posted by October 29, 2026?",
+      "text_overlay": {
+        "text": "138 Recalls Posted"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The NHTSA alone posted 73 of these dangerous product recall events.",
+      "text_overlay": {
+        "text": "73 NHTSA Recalls"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Review data shows 153 of these incidents were classified as severe threats. Moderate incidents reached 181 total events.",
+      "text_overlay": {
+        "text": "153 Severe Incidents"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "October 2026 ended with 453 total safety product recalls recorded.",
+      "text_overlay": {
+        "text": "453 Total Recalls"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://therecalldesk.com/archive/2026/10",
+    "https://recallbench.com/statistics/2026-10"
+  ]
+}
