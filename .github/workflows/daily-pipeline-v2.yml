@@ -622,6 +622,9 @@ jobs:
             # with the re-pick still unused).
             for ATTEMPT in 1 2 3 4 5 6 7 8; do
               echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/8) ==="
+              # Attempts 1-3 use the cheap model. When the gate has refused three times (sloppy names, figures that name nothing), the writer and
+              # the sentence repair switch to the stronger model for the rest of the budget: run 41020644767 lost 4 of 10 channels on the cheap model alone.
+              if [ "$ATTEMPT" -ge 4 ]; then export SCRIPT_GEMINI_MODEL=gemini-3.5-flash; fi
               if [ "$SKIP_GEN" -eq 1 ]; then
               # The re-ask was a targeted repair (scripts/repair-sentences.mjs): the script
               # file was rewritten in place ΓÇö only the flagged sentences ΓÇö so there is no new
