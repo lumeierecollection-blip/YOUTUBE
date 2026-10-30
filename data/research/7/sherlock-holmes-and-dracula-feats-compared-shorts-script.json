@@ -1,0 +1,73 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-and-dracula-feats-compared",
+  "format": "shorts",
+  "hook": "Count Dracula possesses the raw physical strength of twenty strong men.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Count Dracula possesses the raw physical strength of twenty strong men.",
+      "visual_cue": "Close-up of an old, tattered parchment manuscript showing the number 20.",
+      "sfx_cue": "Deep, resonant bass thud on the number 20.",
+      "b_roll": [
+        "Public domain ink sketch of a Carpathian mountain silhouette"
+      ],
+      "text_overlay": {
+        "text": "20 Men Strong"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Van Helsing recorded this terrifying feat in Bram Stoker's classic novel. Does deductive reasoning at 221B Baker Street compare to the animal forms of Castle Dracula?",
+      "visual_cue": "Side-by-side comparison of a magnifying glass and a gothic castle silhouette.",
+      "sfx_cue": "Sound of a ticking clock transitioning to a faint, ominous wind.",
+      "b_roll": [
+        "Public domain 19th-century map of London",
+        "Public domain etching of a Victorian-era magnifying glass"
+      ],
+      "text_overlay": {
+        "text": "Logic vs. Might"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Count also stalks the walls of Castle Dracula like a bat.",
+      "visual_cue": "Illustration of a dark, vertical castle wall with a shadow creeping upward.",
+      "sfx_cue": "Sharp, screeching sound of flapping wings.",
+      "b_roll": [
+        "Public domain woodcut of a bat-like creature on a stone wall"
+      ],
+      "text_overlay": {
+        "text": "Monstrous Agility"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Holmes utilizes deductive reasoning while Dracula possesses the physical strength of 20 strong men.",
+      "visual_cue": "Split screen showing a Victorian notebook on one side and a clawed hand on the other.",
+      "sfx_cue": "Sound of a quill scratching paper.",
+      "b_roll": [
+        "Public domain ink drawing of Victorian scientific instruments"
+      ],
+      "text_overlay": {
+        "text": "Science vs. Nature"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The detective observes mysteries while the Count crawls on the walls of Castle Dracula.",
+      "visual_cue": "Silhouette of Holmes standing before a looming shadow.",
+      "sfx_cue": "Final, heavy door closing sound.",
+      "b_roll": [
+        "Public domain silhouette of a man in a deerstalker cap"
+      ],
+      "text_overlay": {
+        "text": "The Ultimate Matchup"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/count_dracula",
+    "https://www.sparknotes.com/lit/dracula/characters"
+  ]
+}

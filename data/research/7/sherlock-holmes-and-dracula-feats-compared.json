@@ -1,0 +1,73 @@
+{
+  "topic_slug": "sherlock-holmes-and-dracula-feats-compared",
+  "strongest_angle": "Comparing the physical limits and intellectual feats of Arthur Conan Doyle's detective Sherlock Holmes at 221B Baker Street against Bram Stoker's Count Dracula from Castle Dracula using verified literary citations.",
+  "key_facts": [
+    {
+      "fact": "Count Dracula possesses physical strength equivalent to twenty strong men according to Van Helsing in Bram Stoker's novel.",
+      "source_url": "https://en.wikipedia.org/wiki/count_dracula",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sherlock Holmes resides at 221B Baker Street and utilizes deductive reasoning and observation as his primary skills against various mysteries.",
+      "source_url": "https://versusguy.com/sherlock-holmes-vs-dracula",
+      "source_name": "VersusGuy",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Count Dracula inhabits Castle Dracula located in the Carpathian Mountains and can assume the form of an animal.",
+      "source_url": "https://www.sparknotes.com/lit/dracula/characters",
+      "source_name": "SparkNotes",
+      "confidence": "high"
+    },
+    {
+      "fact": "Draconian physical abilities include crawling on castle walls with his cloak spreading behind him like the wings of a monstrous bat during encounters in Chapter 18.",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+      "source_name": "DIVA Portal",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Dracula's equivalent strength in men",
+      "value": 20,
+      "unit": "men",
+      "source_url": "https://en.wikipedia.org/wiki/count_dracula"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "Van Helsing",
+      "kind": "person"
+    },
+    {
+      "name": "221B Baker Street",
+      "kind": "place"
+    },
+    {
+      "name": "Castle Dracula",
+      "kind": "place"
+    },
+    {
+      "name": "Carpathian Mountains",
+      "kind": "place"
+    }
+  ]
+}
