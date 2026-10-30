@@ -1,0 +1,73 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-0-construction-benchmark",
+  "format": "shorts",
+  "hook": "Procore built the Magpie 3.0 engine to complete over 200 construction tasks during benchmark testing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Procore built the Magpie 3.0 engine to complete over 200 construction tasks during benchmark testing.",
+      "visual_cue": "Close-up of Magpie 3.0 logo and a digital count of 200 tasks.",
+      "sfx_cue": "Digital activation sound.",
+      "b_roll": [
+        "Procore AI software interface screen capture"
+      ],
+      "text_overlay": {
+        "text": "78% Success Rate"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How does Magpie 3.0 compare to the 60 percent success rate of standard, non-specialized AI models?",
+      "visual_cue": "Calendar page marking October 16, 2026, followed by a data comparison graphic.",
+      "sfx_cue": "Data processing hum.",
+      "b_roll": [
+        "Procore Explore dashboard interface",
+        "Construction site blueprint animation"
+      ],
+      "text_overlay": {
+        "text": "Beta Launch: Oct 16, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this specialized engine beats general frontier AI models by 18 percentage points in benchmarks.",
+      "visual_cue": "Bar chart showing Magpie 3.0 at 78% vs general AI at 60%.",
+      "sfx_cue": "Rising chime.",
+      "b_roll": [
+        "Comparison bar chart animation"
+      ],
+      "text_overlay": {
+        "text": "18 point lead"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Benchmark testing reveals a 78 percent success rate for Magpie 3.0. Magpie 3.0 powers Procore AI agents, which are automated assistants that analyze complex construction project data.",
+      "visual_cue": "Split screen showing 78% success rate and 60% success rate labels.",
+      "sfx_cue": "Confirmation ping.",
+      "b_roll": [
+        "Procore AI agent interface screenshot"
+      ],
+      "text_overlay": {
+        "text": "78% vs 60%"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Procore Explore hosts Magpie 3.0, the reasoning engine powering Procore AI agents for construction projects.",
+      "visual_cue": "Final view of the Procore Magpie 3.0 dashboard showing the 78% result.",
+      "sfx_cue": "System power down sound.",
+      "b_roll": [
+        "Procore software logo"
+      ],
+      "text_overlay": {
+        "text": "78% Success"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://support.procore.com/products/online/procore-ai/release-notes"
+  ]
+}

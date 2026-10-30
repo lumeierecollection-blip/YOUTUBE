@@ -1,0 +1,130 @@
+{
+  "topic_slug": "procore-magpie-3-0-construction-benchmark",
+  "strongest_angle": "Procore's Magpie 3.0 reasoning engine achieved a 78% success rate across more than 200 construction tasks during benchmark testing, outperforming general frontier AI models by 18 percentage points.",
+  "key_facts": [
+    {
+      "fact": "Procore reported that its Magpie 3.0 engine completed 78 percent of over 200 construction tasks during benchmarking evaluations.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The closest general-purpose frontier model achieved a task success rate of 60 percent, falling 18 percentage points behind Procore Magpie 3.0.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Procore released the Magpie 3.0 open beta in Procore Explore on October 16, 2026, as the reasoning engine behind Procore AI agents.",
+      "source_url": "https://support.procore.com/products/online/procore-ai/release-notes",
+      "source_name": "Procore Support",
+      "confidence": "high"
+    },
+    {
+      "fact": "Joyce Hwang, Chief Marketing Officer at Procore, highlighted Magpie 3.0 at Groundbreak 2026 as combining deep construction-specific intelligence with a multimodal index.",
+      "source_url": "https://www.procore.com/blog/groundbreak-2026-putting-the-future-of-construction-to-work",
+      "source_name": "Procore Blog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Magpie 3.0 Task Success Rate",
+      "value": 78,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "Total Construction Tasks Tested",
+      "value": 200,
+      "unit": "tasks",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "Margin Over General AI Model",
+      "value": 18,
+      "unit": "percentage points",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "General Frontier Model Success Rate",
+      "value": 60,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+    },
+    {
+      "label": "Magpie 3.0 Beta Release Day",
+      "value": 16,
+      "unit": "day of month",
+      "source_url": "https://support.procore.com/products/online/procore-ai/release-notes"
+    },
+    {
+      "label": "Magpie 3.0 Beta Release Month",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://support.procore.com/products/online/procore-ai/release-notes"
+    },
+    {
+      "label": "Magpie 3.0 Beta Release Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://support.procore.com/products/online/procore-ai/release-notes"
+    },
+    {
+      "label": "Procore Years of Expertise",
+      "value": 20,
+      "unit": "years",
+      "source_url": "https://www.procore.com/blog/groundbreak-2026-putting-the-future-of-construction-to-work"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Procore says its Magpie 3.0 engine completed 78% of 200-plus construction tasks, 18 points above the closest general AI model",
+      "speaker": "Construction Metrics Editor",
+      "source_name": "Construction Metrics",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "text": "Magpie 3.0 is a new AI reasoning engine behind Procore AI agents, available in open beta to Procore AI customers through Procore Explore.",
+      "speaker": "Procore Support",
+      "source_name": "Procore Support",
+      "source_url": "https://support.procore.com/products/online/procore-ai/release-notes"
+    },
+    {
+      "text": "That’s what makes Magpie 3.0, the latest model powering Procore AI’s reasoning engine, so exciting.",
+      "speaker": "Joyce Hwang",
+      "source_name": "Procore Blog",
+      "source_url": "https://www.procore.com/blog/groundbreak-2026-putting-the-future-of-construction-to-work"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Procore",
+      "kind": "organization"
+    },
+    {
+      "name": "Magpie 3.0",
+      "kind": "object"
+    },
+    {
+      "name": "Magpie 2.5",
+      "kind": "object"
+    },
+    {
+      "name": "Procore Explore",
+      "kind": "organization"
+    },
+    {
+      "name": "Construction Metrics",
+      "kind": "organization"
+    },
+    {
+      "name": "Joyce Hwang",
+      "kind": "person"
+    },
+    {
+      "name": "Groundbreak 2026",
+      "kind": "place"
+    }
+  ]
+}
