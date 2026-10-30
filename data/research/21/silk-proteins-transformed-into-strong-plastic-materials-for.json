@@ -1,0 +1,78 @@
+{
+  "topic_slug": "silk-proteins-transformed-into-strong-plastic-materials-for",
+  "strongest_angle": "Researchers are transforming silk fibers into high-performance 6G telecom materials by using specific heat and pressure to preserve the protein's crystalline structure.",
+  "key_facts": [
+    {
+      "fact": "Imperial College London, the University of Michigan, and Tufts University led the research to fuse silk threads into transparent materials for 6G networks.",
+      "source_url": "https://phys.org/news/2026-05-silk-strong-plastic-materials-6g.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The manufacturing process requires heating silk fibers to temperatures between 257 and 419 degrees Fahrenheit to create the plastic-like composite.",
+      "source_url": "https://www.eurekalert.org/news-releases/1128339",
+      "source_name": "EurekAlert!",
+      "confidence": "high"
+    },
+    {
+      "fact": "The transformation of silk into these materials occurs under pressures ranging from 1900 to 9800 atmospheres.",
+      "source_url": "https://www.eurekalert.org/news-releases/1128339",
+      "source_name": "EurekAlert!",
+      "confidence": "high"
+    },
+    {
+      "fact": "The resulting silk-based material is capable of twisting terahertz frequencies of light, which is a key requirement for future 6G data encoding.",
+      "source_url": "https://phys.org/news/2026-05-silk-strong-plastic-materials-6g.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Minimum temperature for processing",
+      "value": 257,
+      "unit": "degrees Fahrenheit",
+      "source_url": "https://www.eurekalert.org/news-releases/1128339"
+    },
+    {
+      "label": "Maximum temperature for processing",
+      "value": 419,
+      "unit": "degrees Fahrenheit",
+      "source_url": "https://www.eurekalert.org/news-releases/1128339"
+    },
+    {
+      "label": "Minimum pressure for processing",
+      "value": 1900,
+      "unit": "atmospheres",
+      "source_url": "https://www.eurekalert.org/news-releases/1128339"
+    },
+    {
+      "label": "Maximum pressure for processing",
+      "value": 9800,
+      "unit": "atmospheres",
+      "source_url": "https://www.eurekalert.org/news-releases/1128339"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Imperial College London",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Michigan",
+      "kind": "organization"
+    },
+    {
+      "name": "Tufts University",
+      "kind": "organization"
+    },
+    {
+      "name": "6G",
+      "kind": "object"
+    },
+    {
+      "name": "Silk",
+      "kind": "object"
+    }
+  ]
+}

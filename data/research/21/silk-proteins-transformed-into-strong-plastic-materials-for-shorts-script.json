@@ -1,0 +1,81 @@
+{
+  "channel_id": "21",
+  "topic_slug": "silk-proteins-transformed-into-strong-plastic-materials-for",
+  "format": "shorts",
+  "hook": "Engineers are turning common silk into high-performance plastic for 6G networks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Engineers are turning common silk into high-performance plastic for 6G networks.",
+      "visual_cue": "Macro shot of shimmering silk fibers transitioning into a clear, rigid composite material.",
+      "sfx_cue": "High-frequency digital hum that transitions into a clean, resonant chime.",
+      "b_roll": [
+        "Close-up of silk threads on a loom",
+        "Digital animation showing silk protein structure"
+      ],
+      "text_overlay": {
+        "text": "Silk for 6G?"
+      },
+      "transition_out": "Dissolve to lab equipment."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Imperial College London, the University of Michigan, and Tufts University led this breakthrough silk research. How can organic silk fibers handle the massive data demands of future 6G networks?",
+      "visual_cue": "Map highlights of the three universities, followed by a schematic of a high-pressure heating chamber.",
+      "sfx_cue": "Low mechanical rumble increasing in pitch.",
+      "b_roll": [
+        "University logos displayed on screen",
+        "Laboratory pressure vessel schematics"
+      ],
+      "text_overlay": {
+        "text": "3 Universities, 1 New Material"
+      },
+      "transition_out": "Fade to black."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But creating this plastic-like composite requires heating silk fibers between 257 and 419 degrees Fahrenheit.",
+      "visual_cue": "Digital gauge needle climbing rapidly to 419 degrees Fahrenheit.",
+      "sfx_cue": "Sharp, metallic clicking of a pressure gauge.",
+      "b_roll": [
+        "Thermal camera footage of a heating element",
+        "Gauge showing pressure rising"
+      ],
+      "text_overlay": {
+        "text": "419 Degrees Fahrenheit"
+      },
+      "transition_out": "Cut to laboratory results."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers fuse these silk threads under 1900 to 9800 atmospheres to preserve the protein's crystalline structure. Imperial College London researchers found this silk twists terahertz light frequencies for high-speed 6G data encoding.",
+      "visual_cue": "Animation showing light waves twisting as they pass through the silk-based composite.",
+      "sfx_cue": "Soft, rhythmic pulses of digital data transmission.",
+      "b_roll": [
+        "Microscope view of protein structure",
+        "Light refraction animation"
+      ],
+      "text_overlay": {
+        "text": "9800 Atmospheres of Pressure"
+      },
+      "transition_out": "Slow zoom on the material."
+    },
+    {
+      "id": "close",
+      "voiceover": "This extreme pressure transformation makes silk a high-performance material for future 6G telecom networks.",
+      "visual_cue": "A single transparent sheet of the silk-plastic material held against a light source.",
+      "sfx_cue": "Final resonant hum fading out.",
+      "b_roll": [
+        "Laboratory sample of transparent material"
+      ],
+      "text_overlay": {
+        "text": "6G Ready"
+      },
+      "transition_out": "Fade to white."
+    }
+  ],
+  "sources_used": [
+    "https://phys.org/news/2026-05-silk-strong-plastic-materials-6g.html",
+    "https://www.eurekalert.org/news-releases/1128339"
+  ]
+}
