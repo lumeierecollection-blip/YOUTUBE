@@ -1,0 +1,78 @@
+{
+  "topic_slug": "iguazu-falls-super-el-nino-water-flow-2026",
+  "strongest_angle": "An October 2026 super El Nino weather pattern delivered heavy rainfall across South America, sending near-record water volumes surging over Iguazu Falls on the border between Argentina and Brazil.",
+  "key_facts": [
+    {
+      "fact": "The Rio Iguazu reached 17,700 cubic metres per second at Iguazu Falls in October 2026, which is nearly twelve times the average flow.",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+      "source_name": "Clarin",
+      "confidence": "high"
+    },
+    {
+      "fact": "Heavy rain caused the Iguazu River to flow at six times the normal rate, leading national park officials in Argentina to temporarily restrict tourist access.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Iguazu Falls spans more than a mile across both Argentina and Brazil, featuring a complex of cascades that experienced severe flooding due to El Nino.",
+      "source_url": "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "The heavy rains and subsequent floods forced the temporary closure of the Circuito Superior walkway for tourists at Iguazu National Park.",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+      "source_name": "Clarin",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Peak water flow rate",
+      "value": 17700,
+      "unit": "cubic metres per second",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    },
+    {
+      "label": "Flow multiple compared to average",
+      "value": 12,
+      "unit": "times average",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    },
+    {
+      "label": "Initial surge multiple compared to normal",
+      "value": 6,
+      "unit": "times normal rate",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Iguazu Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazu National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Rio Iguazu",
+      "kind": "place"
+    },
+    {
+      "name": "Circuito Superior",
+      "kind": "place"
+    }
+  ],
+  "topic": "Iguazu Falls Surge: Super El Nino Drives Near-Record Water Flow at Border"
+}

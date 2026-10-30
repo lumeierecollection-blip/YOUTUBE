@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-super-el-nino-water-flow-2026",
+  "format": "shorts",
+  "hook": "What happens when 17,700 cubic metres per second surge over Iguazu Falls?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when 17,700 cubic metres per second surge over Iguazu Falls?",
+      "b_roll": [
+        "Aerial view of Iguazu Falls during high water flow",
+        "Map highlighting the border between Argentina and Brazil"
+      ],
+      "text_overlay": {
+        "text": "17,700 cubic metres per second"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, a super El Nino weather pattern delivered heavy rainfall across South America. Why did heavy rain cause Rio Iguazu to flow at six times the normal rate?",
+      "b_roll": [
+        "Satellite imagery of South America showing weather patterns",
+        "Raging river waters near Iguazu National Park",
+        "Flooded walkways at Circuito Superior"
+      ],
+      "text_overlay": {
+        "text": "Super El Nino floods Rio Iguazu"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, that massive surge sent twelve times the average flow across Argentina and Brazil.",
+      "b_roll": [
+        "Graph showing water flow multiplication compared to average"
+      ],
+      "text_overlay": {
+        "text": "12 times average flow"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Iguazu Falls spans more than a mile, featuring a complex experiencing 17,700 cubic metres per second.",
+      "b_roll": [
+        "Wide shot of Iguazu Falls spanning Argentina and Brazil",
+        "Closed gates at Circuito Superior walkway"
+      ],
+      "text_overlay": {
+        "text": "Spans more than a mile"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Iguazu National Park officials temporarily restricted tourist access.",
+      "b_roll": [
+        "Close up of rushing water at Iguazu Falls"
+      ],
+      "text_overlay": {
+        "text": "Peak water flow rate"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+  ]
+}
