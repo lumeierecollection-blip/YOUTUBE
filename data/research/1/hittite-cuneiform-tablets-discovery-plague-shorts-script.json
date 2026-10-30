@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "hittite-cuneiform-tablets-discovery-plague",
+  "format": "shorts",
+  "hook": "184 cuneiform tablets unearthed at Samuha reveal a hidden plague.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "184 cuneiform tablets unearthed at Samuha reveal a hidden plague.",
+      "visual_cue": "Close‑up of 184 cuneiform tablets stacked, with a faint plague symbol overlay."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Archaeologists uncovered 184 cuneiform tablets at Samuha, an ancient Hittite settlement in Sivas, Turkey. What crisis does this archive reveal?",
+      "visual_cue": "Map of Turkey zooming to Sivas, then to Samuha site, followed by images of tablets and a portrait of King Tudhaliya II."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These 184 tablets reveal a deadly epidemic and military threats recorded at the Kayalıpınar site.",
+      "visual_cue": "Animated scene of ancient soldiers advancing toward Samuha, with a red plague cloud hovering above the city."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This 3,400-year-old archive details a Hittite empire pandemic; Çiğdem Maner's Koç University team unearthed these records. 184 tablets—131 from Tudhaliya II's reign—provide unprecedented detail on the crisis.",
+      "visual_cue": "Timeline graphic showing 3,400 years, split‑screen of ritual scenes and tablets, highlighting the numbers 184 and 131."
+    },
+    {
+      "id": "close",
+      "voiceover": "A hidden plague revealed by 184 tablets.",
+      "visual_cue": "Fade to a single tablet with the number 184 embossed."
+    }
+  ],
+  "sources_used": [
+    "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered",
+    "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "topic_slug": "hittite-cuneiform-tablets-discovery-plague",
+  "strongest_angle": "Archaeological excavations at the ancient site of Samuha have yielded a significant cache of 184 cuneiform tablets, providing quantitative and historical evidence of Hittite royal life and epidemic disease.",
+  "key_facts": [
+    {
+      "fact": "Archaeologists have unearthed a total of 184 cuneiform tablets at the ancient Hittite settlement of Samuha, located in the modern-day province of Sivas, Turkey.",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered",
+      "source_name": "Biblical Archaeology Society",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 131 tablets discovered during the 2026 excavation season specifically date back to the reign of the Hittite King Tudhaliya II.",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946",
+      "source_name": "Hurriyet Daily News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The royal archive at Samuha contains records detailing a deadly epidemic, military threats, and religious rituals dating back approximately 3,400 years.",
+      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news",
+      "source_name": "Daily Sabah",
+      "confidence": "high"
+    },
+    {
+      "fact": "A team led by Çiğdem Maner of Koç University has been conducting systematic excavations at the Kayalıpınar site since 2021.",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered",
+      "source_name": "Biblical Archaeology Society",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total tablets found at site",
+      "value": 184,
+      "unit": "tablets",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered"
+    },
+    {
+      "label": "Tablets unearthed in 2026",
+      "value": 131,
+      "unit": "tablets",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946"
+    },
+    {
+      "label": "Age of the archive",
+      "value": 3400,
+      "unit": "years",
+      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
+    },
+    {
+      "label": "Year excavations began",
+      "value": 2021,
+      "unit": "year",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "In the 2026 excavations, we unearthed 131 cuneiform tablets and fragments dating to the reign of King Tudhaliya II at ancient Samuha.",
+      "speaker": "Mehmet Nuri Ersoy",
+      "source_name": "Hurriyet Daily News",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Tudhaliya II",
+      "kind": "person"
+    },
+    {
+      "name": "Samuha",
+      "kind": "place"
+    },
+    {
+      "name": "Sivas",
+      "kind": "place"
+    },
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Çiğdem Maner",
+      "kind": "person"
+    },
+    {
+      "name": "Koç University",
+      "kind": "organization"
+    },
+    {
+      "name": "Mehmet Nuri Ersoy",
+      "kind": "person"
+    },
+    {
+      "name": "cuneiform tablets",
+      "kind": "object"
+    }
+  ]
+}
