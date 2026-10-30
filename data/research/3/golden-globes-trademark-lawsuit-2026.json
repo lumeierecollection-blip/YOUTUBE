@@ -1,0 +1,83 @@
+{
+  "topic_slug": "golden-globes-trademark-lawsuit-2026",
+  "strongest_angle": "Break down the October 2026 trademark lawsuit filed by Golden Globes, LLC against the Golden Globe Foundation in the Central District of California, detailing the four-claim federal complaint, financial disputes, and the legal battle led by Raffi Boghosian.",
+  "key_facts": [
+    {
+      "fact": "On September 30, 2026, Golden Globes, LLC filed a four-claim trademark infringement complaint in the Central District of California under case number 2:26-cv-11375 against the Golden Globe Foundation.",
+      "source_url": "https://trademarksupport.com/news/golden-globes-llc-v-golden-globe-foundation-cdcal",
+      "source_name": "Trademark Support",
+      "confidence": "high"
+    },
+    {
+      "fact": "Golden Globes, LLC, formerly known as Eldridge Globes, LLC, is led by owner Penske and has sued the nonprofit Golden Globe Foundation over unauthorized use of the registered GOLDEN GLOBE mark.",
+      "source_url": "https://pagesix.com/2026/10/13/hollywood/golden-globes-sues-golden-globe-foundation-in-latest-twist-for-awards-bizarre-legal-saga",
+      "source_name": "Page Six",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Golden Globe Foundation is currently led by board boss Raffi Boghosian, who was a former Hollywood Foreign Press Association member targeted in the September 30, 2026 federal complaint.",
+      "source_url": "https://deadline.com/2026/10/golden-globes-legal-battle-trademark-1237156199",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The federal lawsuit filed in the Central District of California seeks an injunction barring the foundation from using the name, alongside the foundation profits, trebled damages, and attorneys fees.",
+      "source_url": "https://awardsreview.com/articles/golden-globes-sues-golden-globe-foundation-over-trademark-99c16036",
+      "source_name": "Awards Review",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Case Number",
+      "value": 2,
+      "unit": "case district prefix",
+      "source_url": "https://trademarksupport.com/news/golden-globes-llc-v-golden-globe-foundation-cdcal"
+    },
+    {
+      "label": "Case Year",
+      "value": 26,
+      "unit": "year",
+      "source_url": "https://trademarksupport.com/news/golden-globes-llc-v-golden-globe-foundation-cdcal"
+    },
+    {
+      "label": "Case Sequence",
+      "value": 11375,
+      "unit": "docket number",
+      "source_url": "https://trademarksupport.com/news/golden-globes-llc-v-golden-globe-foundation-cdcal"
+    },
+    {
+      "label": "Complaint Claims",
+      "value": 4,
+      "unit": "claims",
+      "source_url": "https://awardsreview.com/articles/golden-globes-sues-golden-globe-foundation-over-trademark-99c16036"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Golden Globes, LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Golden Globe Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "Raffi Boghosian",
+      "kind": "person"
+    },
+    {
+      "name": "Central District of California",
+      "kind": "place"
+    },
+    {
+      "name": "Eldridge Globes, LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Hollywood Foreign Press Association",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "golden-globes-trademark-lawsuit-2026",
+  "format": "shorts",
+  "hook": "Penske's Golden Globes, LLC filed a trademark lawsuit on September 30, 2026, against the Golden Globe Foundation.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Penske's Golden Globes, LLC filed a trademark lawsuit on September 30, 2026, against the Golden Globe Foundation.",
+      "text_overlay": {
+        "text": "Federal Lawsuit Filed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "But who leads the Golden Globe Foundation, the organization now facing this federal trademark infringement case?",
+      "text_overlay": {
+        "text": "4 Trademark Claims"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, board boss Raffi Boghosian, a former Hollywood Foreign Press Association member, leads the targeted nonprofit.",
+      "text_overlay": {
+        "text": "Raffi Boghosian Targeted"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Golden Globes, LLC demands an injunction, trebled damages, and attorneys fees for unauthorized use of the mark. The Central District of California court oversees this active dispute under case number 2:26-cv-11375.",
+      "text_overlay": {
+        "text": "Case: 2:26-cv-11375"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This legal battle hinges on 4 federal claims seeking an injunction and the foundation's profits.",
+      "text_overlay": {
+        "text": "4 Claims Pending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://trademarksupport.com/news/golden-globes-llc-v-golden-globe-foundation-cdcal",
+    "https://awardsreview.com/articles/golden-globes-sues-golden-globe-foundation-over-trademark-99c16036"
+  ]
+}
