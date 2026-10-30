@@ -1,0 +1,15 @@
+{
+  "channels": [
+    1,
+    2,
+    48,
+    3,
+    4,
+    7,
+    9,
+    11,
+    17,
+    21
+  ],
+  "description": "Channels the daily pipeline PREPARES AND RENDERS (owner, 2026-10-30: ten channels; the three with working upload credentials publish, the rest run to the end and stop before upload). config/priority-channels.json stays the list of channels that may UPLOAD; add a channel there once its OAuth secrets exist. Every id here must resolve through scripts/lib/channel-lookup.cjs and have an editor_look (1-5) in config/channels.json."
+}

@@ -106,4 +106,45 @@ export function defaultAsk() {
   };
 }
 
-export { require };
+/**
+ * Look at the downloaded photo before it is used. It must (a) clearly show the subject of THIS sentence, (b) show no identifiable
+ * real person (a stranger's face over an unrelated claim misrepresents them), (c) not be mostly readable text, a logo, a screenshot or a chart.
+ * Fails CLOSED: no answer, or an unparseable one, rejects the photo.
+ */
+export function visionPrompt({ sentence, query }) {
+  return `A documentary video narrates this sentence: "${sentence}"
+We are considering this photograph (found with the search phrase "${query}") to show on screen while it is spoken.
+Answer ONLY JSON: {"shows_subject": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
+shows_subject = a viewer would say the photo plausibly illustrates what the sentence is about (not merely the same keyword).
+identifiable_person = a real person's face is recognisable or clearly the focus (crowds far away and silhouettes are false).
+mostly_text_or_logo = readable text, a logo, a screenshot, a document, a map or a chart fills the frame.`;
+}
+
+export function parseVerdict(answer) {
+  let obj = answer;
+  if (answer && typeof answer.content === "string") {
+    const m = answer.content.match(/\{[\s\S]*\}/);
+    try { obj = m ? JSON.parse(m[0]) : null; } catch { obj = null; }
+  }
+  if (!obj || typeof obj !== "object" || typeof obj.shows_subject !== "boolean") return { ok: false, why: "no usable verdict" };
+  if (!obj.shows_subject) return { ok: false, why: `does not show the subject (${obj.what_it_shows || "?"})` };
+  if (obj.identifiable_person !== false) return { ok: false, why: "shows an identifiable person" };
+  if (obj.mostly_text_or_logo !== false) return { ok: false, why: "mostly text, a logo, a screenshot or a chart" };
+  return { ok: true, why: obj.what_it_shows || "" };
+}
+
+/** askVision({prompt, imageBase64}) -> the model's answer. Injected for tests. */
+export async function verifyConceptPhoto({ sentence, query, jpeg, askVision }) {
+  try {
+    return parseVerdict(await askVision({ prompt: visionPrompt({ sentence, query }), imageBase64: jpeg.toString("base64") }));
+  } catch (e) {
+    return { ok: false, why: `vision check failed: ${e.message}` };
+  }
+}
+
+export function defaultAskVision() {
+  return async ({ prompt, imageBase64 }) => {
+    const { callLLM } = await import("../../src/lib/llm.js");
+    return callLLM([{ role: "user", content: [{ type: "text", text: prompt }, { type: "image_url", image_url: { url: `data:image/jpeg;base64,${imageBase64}` } }] }], { maxTokens: 300, temperature: 0, keepAlive: 0 }, "concept-photo-vision");
+  };
+}

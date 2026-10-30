@@ -182,7 +182,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
 
     // 2. a real photo of the concept the sentence is about (+ its figure drawn over it). The scene-director payoff is a flat poster instead.
     if (!scene && !(look.payoffIsPoster && fn === "payoff" && figs.length) && queries[i]) {
-      const c = await concept({ query: queries[i], used: usedFiles }).catch(() => null);
+      const c = await concept({ query: queries[i], sentence, used: usedFiles }).catch(() => null);
       if (c) {
         usedFiles.add(c.file);
         const id = `concept-${i}`;

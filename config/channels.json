@@ -95,7 +95,8 @@
           "impact-sting"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_01"
+      "creds_secret_prefix": "CHANNEL_01",
+      "editor_look": 3
     },
     {
       "id": 2,
@@ -186,7 +187,8 @@
           "glitch-cut"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_02"
+      "creds_secret_prefix": "CHANNEL_02",
+      "editor_look": 1
     },
     {
       "id": 3,
@@ -292,7 +294,8 @@
           "HERO_NUMBER"
         ],
         "excluded": []
-      }
+      },
+      "editor_look": 4
     },
     {
       "id": 4,
@@ -398,7 +401,8 @@
         "excluded": [
           "IMAGE_BEAT"
         ]
-      }
+      },
+      "editor_look": 5
     },
     {
       "id": 5,
@@ -570,7 +574,8 @@
           "dramatic-zoom"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_07"
+      "creds_secret_prefix": "CHANNEL_07",
+      "editor_look": 2
     },
     {
       "id": 8,
@@ -717,7 +722,8 @@
           "IMAGE_BEAT"
         ],
         "excluded": []
-      }
+      },
+      "editor_look": 4
     },
     {
       "id": 10,
@@ -849,7 +855,8 @@
           "light-leak"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_11"
+      "creds_secret_prefix": "CHANNEL_11",
+      "editor_look": 3
     },
     {
       "id": 12,
@@ -1144,7 +1151,8 @@
           "era-fade"
         ]
       },
-      "creds_secret_prefix": "CHANNEL_17"
+      "creds_secret_prefix": "CHANNEL_17",
+      "editor_look": 2
     },
     {
       "id": 48,
@@ -1188,7 +1196,8 @@
       "creds_secret_prefix": "CHANNEL_48",
       "visual_identity": {
         "philosophy": "Fit unique visual approach"
-      }
+      },
+      "editor_look": 5
     },
     {
       "id": 19,
@@ -1311,7 +1320,8 @@
       "estimated_rpm": "5-10",
       "visual_identity": {
         "philosophy": "Echoes unique visual approach"
-      }
+      },
+      "editor_look": 3
     },
     {
       "id": 22,

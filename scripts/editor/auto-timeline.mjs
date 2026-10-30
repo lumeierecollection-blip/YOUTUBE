@@ -21,7 +21,7 @@ import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
 import { scriptSentences } from "./captions.mjs";
 import { resolveChannel } from "../lib/channel-lookup.mjs";
-import { conceptQueries, searchCommons, downloadPhoto, defaultAsk } from "./concept-photo.mjs";
+import { conceptQueries, searchCommons, downloadPhoto, defaultAsk, defaultAskVision, verifyConceptPhoto } from "./concept-photo.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
@@ -69,8 +69,9 @@ function resolverFromEntityAssets() {
 }
 
 /** concept({query, used}) -> a real, free-licence Commons photo of the concept, saved under data/editor/auto/concept/, or null. */
-function conceptFinder() {
-  return async ({ query, used }) => {
+function conceptFinder(askVision = defaultAskVision(), maxChecks = 30) {
+  let checks = 0;
+  return async ({ query, sentence, used }) => {
     const found = await searchCommons(query, 4);
     for (const rec of found) {
       const slug = rec.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60);
@@ -79,6 +80,10 @@ function conceptFinder() {
       try {
         const buf = await downloadPhoto(rec, file);
         const { width, height } = imageSize(buf);
+        if (++checks > maxChecks) { console.error("[concept-photo] vision budget spent; no more concept photos"); return null; }
+        const v = await verifyConceptPhoto({ sentence, query, jpeg: buf, askVision });
+        console.log(`[concept-photo] "${query}" / ${rec.title}: ${v.ok ? "accepted (" + v.why + ")" : "rejected, " + v.why}`);
+        if (!v.ok) continue;
         return { file: rel(file), width, height, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license };
       } catch (e) { console.error("[concept-photo] " + rec.title + ": " + e.message); }
     }
@@ -170,7 +175,7 @@ async function main() {
   const resolver = resolverFromEntityAssets();
   const concept = conceptFinder();
   const ask = defaultAsk();
-  const style = Number(get("style") || process.env.EDITOR_STYLE || 1);
+  const style = Number(get("style") || process.env.EDITOR_STYLE || channel.editor_look || 1);
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");

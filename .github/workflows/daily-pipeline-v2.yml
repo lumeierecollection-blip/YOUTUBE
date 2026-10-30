@@ -1,6 +1,7 @@
 ﻿# YouTube Automation ΓÇö Daily Pipeline (v2)
 #
-# Scope: ONLY the channels in config/priority-channels.json (currently 1, 2, 48).
+# Scope: ONLY the channels in config/run-channels.json (prepared + rendered every day). Only those in config/priority-channels.json
+# (currently 1, 2, 48: working OAuth) are UPLOADED; every other run channel stops after render + QA, with no credentials needed.
 # Other channels are deferred until that file changes.
 #
 #   setup  ΓåÆ channel matrix from config/priority-channels.json
@@ -145,12 +146,12 @@ jobs:
         run: |
           MATRIX=$(node -e "
             const fs = require('fs');
-            const priority = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf-8')).channels.map(String);
+            const priority = JSON.parse(fs.readFileSync('config/run-channels.json', 'utf-8')).channels.map(String);
             const req = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '').replace(/^0+/, '')).filter(Boolean);
             const ids = req.length ? req : priority;
             const notPriority = ids.filter(id => !priority.includes(id));
             if (notPriority.length) {
-              console.error('Not priority channels: ' + notPriority.join(',') + ' (priority: ' + priority.join(',') + ')');
+              console.error('Not run channels (config/run-channels.json): ' + notPriority.join(',') + ' (priority: ' + priority.join(',') + ')');
               process.exit(1);
             }
             console.log(JSON.stringify({ include: ids.map(id => ({ channel_id: id })) }));
@@ -1515,6 +1516,7 @@ jobs:
       # main only (audit 2026-10-03): a dispatch with --ref <other branch> renders but never
       # reads the OAuth secrets or uploads. 135 v2 dispatches ran on a development branch.
       - name: Materialize OAuth credentials
+        id: creds
         # always(): a failed render must not strand an ALREADY-uploaded private
         # video past its go_public_at (ch-1 hOYJOrB9lR4 sat private 8 h on
         # 2026-10-20 because the render step failed before this one ran).
@@ -1565,6 +1567,12 @@ jobs:
             const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
             let ch;
             try { ch = resolveChannel(id); } catch (e) { console.error('::error::' + e.message); process.exit(1); }
+            const publishSet = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf8')).channels.map(String);
+            if (!publishSet.includes(id)) {
+              console.log('::notice::channel ' + id + ' is not in config/priority-channels.json: it runs to the end (render + QA) and stops before upload; no credentials are needed');
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, 'publish=false\n');
+              process.exit(0);
+            }
             const own = 'config/creds/' + ch.channel_id + '.json';
             const declared = ch.youtube_credentials_path || own;
             if (declared !== own) { console.error('::error::channel ' + id + ' declares ' + declared + ', not its own credentials file ' + own); process.exit(1); }
@@ -1581,14 +1589,14 @@ jobs:
           "
 
       - name: Publish to YouTube (private)
-        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.creds.outputs.publish != 'false' && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
         # always(): this flips videos the DAILY RUN ALREADY UPLOADED private;
         # today's render failing has nothing to do with yesterday's queue entry
         # (the watch item behind the ch-1 hOYJOrB9lR4 delay, 2026-10-20).
-        if: always() && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.hold_public != 'true'
+        if: always() && steps.creds.outputs.publish != 'false' && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.hold_public != 'true'
         run: node src/skills/youtube-publish/run.js process-queue
 
       - name: Commit publish queue

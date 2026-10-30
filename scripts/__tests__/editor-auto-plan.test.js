@@ -159,3 +159,25 @@ test("overlays become image layers above the scrim and below the text, entering 
   assert.deepEqual(tl.layers.map((l) => l.z), [11, 100, 150, 210]);
   assert.ok(o.keyframes.scale.length >= 2 && o.keyframes.scale[1].v > o.keyframes.scale[0].v, "an overlay moves, as every image layer must");
 });
+
+// ---- the vision check on concept photos --------------------------------------------------------------------------------------------
+import { parseVerdict, verifyConceptPhoto, visionPrompt } from "../editor/concept-photo.mjs";
+
+test("a concept photo passes only if it shows the subject, no identifiable person, and is not mostly text", () => {
+  const ok = { shows_subject: true, identifiable_person: false, mostly_text_or_logo: false, what_it_shows: "airline cockpit" };
+  assert.equal(parseVerdict(ok).ok, true);
+  assert.equal(parseVerdict({ ...ok, shows_subject: false }).ok, false);
+  assert.match(parseVerdict({ ...ok, identifiable_person: true }).why, /identifiable person/);
+  assert.match(parseVerdict({ ...ok, mostly_text_or_logo: true }).why, /text/);
+  assert.equal(parseVerdict({ content: "Sure: " + JSON.stringify(ok) }).ok, true);
+  assert.equal(parseVerdict({ shows_subject: true }).ok, false, "a missing field is not a pass");
+  assert.equal(parseVerdict(null).ok, false);
+  assert.match(visionPrompt({ sentence: "S", query: "Q" }), /"S"[\s\S]*"Q"/);
+});
+
+test("the vision check fails closed when the model errors or answers nonsense", async () => {
+  const jpeg = Buffer.from([0xff, 0xd8, 1, 2]);
+  assert.equal((await verifyConceptPhoto({ sentence: "s", query: "q", jpeg, askVision: async () => { throw new Error("quota"); } })).ok, false);
+  assert.equal((await verifyConceptPhoto({ sentence: "s", query: "q", jpeg, askVision: async () => ({ content: "no idea" }) })).ok, false);
+  assert.equal((await verifyConceptPhoto({ sentence: "s", query: "q", jpeg, askVision: async () => ({ shows_subject: true, identifiable_person: false, mostly_text_or_logo: false }) })).ok, true);
+});
