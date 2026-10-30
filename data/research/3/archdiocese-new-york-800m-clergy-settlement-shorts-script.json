@@ -1,0 +1,65 @@
+{
+  "channel_id": "3",
+  "topic_slug": "archdiocese-new-york-800m-clergy-settlement",
+  "format": "shorts",
+  "hook": "An $800 million legal settlement was agreed to by the Archdiocese of New York.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "An $800 million legal settlement was agreed to by the Archdiocese of New York.",
+      "b_roll": [
+        "Exterior shot of church building in New York"
+      ],
+      "text_overlay": {
+        "text": "$800M Settlement Agreed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Archbishop Ronald Hicks emailed clergy on Saturday, October 24, 2026, confirming the deal. Where did those 1,300 abuse claims originate under New York's Child Victims Act?",
+      "b_roll": [
+        "Document showing court filings",
+        "Courthouse exterior"
+      ],
+      "text_overlay": {
+        "text": "1,300 Parishioners"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "It's actually the second-largest payout involving a Catholic archdiocese in the United States.",
+      "b_roll": [
+        "Law office interior"
+      ],
+      "text_overlay": {
+        "text": "Child Victims Act"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Jeff Anderson represented over 250 plaintiffs seeking justice. Pending signed paperwork remains the final step for this agreement.",
+      "b_roll": [
+        "Legal documents on a desk"
+      ],
+      "text_overlay": {
+        "text": "Second-Largest U.S. Payout"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Archdiocese of New York finalized the $800 million agreement.",
+      "b_roll": [
+        "New York cityscape"
+      ],
+      "text_overlay": {
+        "text": "$800 Million Finalized"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/clergy-abuse-legal-settlement-new-york-archdiocese-fc20b55e4373499a7eb2fb663aeb3599",
+    "https://www.npr.org/2026/10/24/nx-s1-6015522/new-york-archdiocese-settlement-agreement",
+    "https://www.ncronline.org/news/ny-archdiocese-and-survivors-clergy-abuse-agree-800m-legal-settlement",
+    "https://www.usatoday.com/story/news/nation/2026/10/25/archdiocese-of-new-york-clergy-abuse-settlement/92433634007"
+  ]
+}

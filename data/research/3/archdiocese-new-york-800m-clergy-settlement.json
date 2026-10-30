@@ -1,0 +1,102 @@
+{
+  "topic_slug": "archdiocese-new-york-800m-clergy-settlement",
+  "strongest_angle": "Detail the terms of the October 2026 $800 million legal settlement between the Archdiocese of New York and approximately 1,300 parishioners, marking the second-largest payout involving a Catholic archdiocese in the United States.",
+  "key_facts": [
+    {
+      "fact": "The Archdiocese of New York agreed to an $800 million settlement with about 1,300 parishioners who alleged sexual abuse by clergy, marking the second-largest payout involving a Catholic archdiocese in the United States.",
+      "source_url": "https://apnews.com/article/clergy-abuse-legal-settlement-new-york-archdiocese-fc20b55e4373499a7eb2fb663aeb3599",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jeff Anderson, a lawyer representing more than 250 of the plaintiffs, stated that the settlement was finalized pending signed paperwork.",
+      "source_url": "https://www.npr.org/2026/10/24/nx-s1-6015522/new-york-archdiocese-settlement-agreement",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "Archbishop Ronald Hicks sent an email on Saturday, October 24, 2026, to clergy confirming the settlement agreement.",
+      "source_url": "https://www.ncronline.org/news/ny-archdiocese-and-survivors-clergy-abuse-agree-800m-legal-settlement",
+      "source_name": "National Catholic Reporter",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal claims were brought under New York's Child Victims Act and lookback laws following more than seven years of litigation.",
+      "source_url": "https://www.usatoday.com/story/news/nation/2026/10/25/archdiocese-of-new-york-clergy-abuse-settlement/92433634007",
+      "source_name": "USA Today",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Settlement amount",
+      "value": 800000000,
+      "unit": "dollars",
+      "source_url": "https://apnews.com/article/clergy-abuse-legal-settlement-new-york-archdiocese-fc20b55e4373499a7eb2fb663aeb3599"
+    },
+    {
+      "label": "Number of plaintiffs",
+      "value": 1300,
+      "unit": "people",
+      "source_url": "https://apnews.com/article/clergy-abuse-legal-settlement-new-york-archdiocese-fc20b55e4373499a7eb2fb663aeb3599"
+    },
+    {
+      "label": "Lawyer Jeff Anderson plaintiffs",
+      "value": 250,
+      "unit": "people",
+      "source_url": "https://www.npr.org/2026/10/24/nx-s1-6015522/new-york-archdiocese-settlement-agreement"
+    },
+    {
+      "label": "Years of litigation",
+      "value": 7,
+      "unit": "years",
+      "source_url": "https://www.usatoday.com/story/news/nation/2026/10/25/archdiocese-of-new-york-clergy-abuse-settlement/92433634007"
+    },
+    {
+      "label": "Herman Law firm plaintiffs",
+      "value": 260,
+      "unit": "people",
+      "source_url": "https://www.prnewswire.com/news-releases/herman-law-client-survivors-reach-landmark-settlement-with-archdiocese-of-new-york-302918706.html"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Archdiocese of New York and attorneys for about 1,300 parishioners who said they were sexually abused by clergy have agreed to an $800 million settlement of their legal claims, the second-largest involving a Catholic archdiocese in the U.S.",
+      "speaker": "John Hanna",
+      "source_name": "AP News",
+      "source_url": "https://apnews.com/article/clergy-abuse-legal-settlement-new-york-archdiocese-fc20b55e4373499a7eb2fb663aeb3599"
+    },
+    {
+      "text": "The Archdiocese of New York has agreed to pay $800 million to settle the claims brought against the church by some 1,300 people who say they faced sexual abuse from clergy members and lay workers.",
+      "speaker": "Chandelis Duster",
+      "source_name": "NPR",
+      "source_url": "https://www.npr.org/2026/10/24/nx-s1-6015522/new-york-archdiocese-settlement-agreement"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Archdiocese of New York",
+      "kind": "organization"
+    },
+    {
+      "name": "Ronald Hicks",
+      "kind": "person"
+    },
+    {
+      "name": "Jeff Anderson",
+      "kind": "person"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "Herman Law",
+      "kind": "organization"
+    }
+  ]
+}
