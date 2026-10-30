@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sagaftra-wga-openai-copyright-battle",
+  "format": "shorts",
+  "hook": "SAG-AFTRA and the Writers Guild are fighting to stop OpenAI from using creative work without permission.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "SAG-AFTRA and the Writers Guild are fighting to stop OpenAI from using creative work without permission.",
+      "text_overlay": {
+        "text": "Unions vs. OpenAI"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why did these unions compile a 34-page brief to present before a federal judge?",
+      "text_overlay": {
+        "text": "Legal Battle Filed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Wikimedia Foundation also filed a brief challenging fair use claims by Microsoft and Anthropic.",
+      "text_overlay": {
+        "text": "Wikimedia Joins In"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Unions argue that unlicensed AI training causes systemic harm to the livelihoods of creative professionals.",
+      "text_overlay": {
+        "text": "34-Page Brief Filed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "A federal judge must now decide if the unions' 34-page legal brief holds up in court.",
+      "text_overlay": {
+        "text": "Unresolved Litigation"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+    "https://newsopenai.net/policy/sag-aftra-wga-afm-ask-judge-to-reject-fair-use-exemption-in-openai"
+  ]
+}
