@@ -1,0 +1,75 @@
+{
+  "topic_slug": "coventry-archive-elizabeth-tyler-attic",
+  "strongest_angle": "In 1963, 17-year-old Elizabeth Tyler captured striking photographs of Coventry's bomb sites using a second-hand camera bought with waitress wages, an archive that was later found in an attic after six decades.",
+  "key_facts": [
+    {
+      "fact": "In 1963, 17-year-old Elizabeth Tyler wandered the streets of Coventry capturing images of the city's bomb sites and abandoned buildings.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Tyler was homeless, an orphan, and studying at Coventry College of Art while using a second-hand camera bought from her first wages as a waitress.",
+      "source_url": "https://www.firstcareoptical.co.uk/blog/coventry-1963-photos-why-sight-matters",
+      "source_name": "First Care Optical",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The images from Coventry survived being moved to four different countries over six decades and remained untouched in a box in an attic.",
+      "source_url": "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html",
+      "source_name": "AOL",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Tyler developed her films in the Coventry College of Art darkroom each evening after photographing old bomb sites with a 1933 Rolleicord camera.",
+      "source_url": "https://outsideleft.com/main.php?story=sent-from-coventry-1",
+      "source_name": "Outsideleft",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of Elizabeth Tyler in 1963",
+      "value": 17,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Years the archive spent in the attic",
+      "value": 6,
+      "unit": "decades",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Number of countries the images were moved through",
+      "value": 4,
+      "unit": "countries",
+      "source_url": "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html"
+    },
+    {
+      "label": "Model year of the Rolleicord camera",
+      "value": 1933,
+      "unit": "year",
+      "source_url": "https://outsideleft.com/main.php?story=sent-from-coventry-1"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Elizabeth Tyler",
+      "kind": "person"
+    },
+    {
+      "name": "Coventry",
+      "kind": "place"
+    },
+    {
+      "name": "Coventry College of Art",
+      "kind": "organization"
+    },
+    {
+      "name": "Rolleicord",
+      "kind": "object"
+    }
+  ]
+}

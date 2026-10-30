@@ -1,0 +1,90 @@
+{
+  "channel_id": "1",
+  "topic_slug": "coventry-archive-elizabeth-tyler-attic",
+  "format": "shorts",
+  "hook": "Over six decades, 17-year-old Elizabeth Tyler's lost photographs of Coventry bomb sites stayed hidden in an attic box.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "Over six decades, 17-year-old Elizabeth Tyler's lost photographs of Coventry bomb sites stayed hidden in an attic box.",
+      "visual_cue": "Close up of an old dusty wooden attic box opening in dim light.",
+      "sfx_cue": "Creaking wooden lid opening with a dusty thud",
+      "b_roll": [
+        "Dusty attic interior historical archive"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Cut to street view",
+      "text_overlay": {
+        "text": "Lost for 6 Decades"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:18",
+      "voiceover": "In 1963, 17-year-old Elizabeth Tyler wandered through Coventry photographing bomb sites. Working with waitress wages, she bought a second-hand 1933 Rolleicord camera. How'd Elizabeth Tyler's photographs survive?",
+      "visual_cue": "Archival photograph of 1960s Coventry bomb ruins.",
+      "sfx_cue": "Camera shutter click echoing",
+      "b_roll": [
+        "1963 Coventry bomb site historical photo",
+        "Coventry College of Art exterior"
+      ],
+      "animation_cue": "Slow zoom into the archival photograph",
+      "transition_out": "Slide left to next image",
+      "text_overlay": {
+        "text": "Coventry, 1963"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:24",
+      "voiceover": "Those rare images survived being moved through four countries.",
+      "visual_cue": "Map graphic showing multiple international borders crossed.",
+      "sfx_cue": "Subtle paper shuffling sound",
+      "b_roll": [
+        "Historical map of Europe migration routes"
+      ],
+      "animation_cue": "Dotted line tracing movement across borders",
+      "transition_out": "Quick cross dissolve",
+      "text_overlay": {
+        "text": "4 Countries"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:24-00:38",
+      "voiceover": "She developed her films at the Coventry College of Art darkroom. That archive spent 6 decades untouched in an attic box.",
+      "visual_cue": "Series of vintage black and white prints laid out on a wooden table.",
+      "sfx_cue": "Gentle projector hum",
+      "b_roll": [
+        "Vintage photographic prints on table",
+        "Elizabeth Tyler archive photographs"
+      ],
+      "animation_cue": "Pan across the spread of photographs",
+      "transition_out": "Fade to dark",
+      "text_overlay": {
+        "text": "Elizabeth Tyler Archive"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:38-00:43",
+      "voiceover": "Explore Elizabeth Tyler's 1963 Coventry bomb site archive.",
+      "visual_cue": "Wide shot of the closed wooden archive box resting in shadows.",
+      "sfx_cue": "Soft ambient room tone",
+      "b_roll": [
+        "Closed archive box in attic light"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Coventry Archive Found"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+    "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html",
+    "https://outsideleft.com/main.php?story=sent-from-coventry-1"
+  ]
+}
