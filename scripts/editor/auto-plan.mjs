@@ -191,6 +191,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const misses = [];
   let lastAsset = null;
   let lastMotion = null;
+  const yearsShown = new Set();
   const n = sentences.length;
 
   for (let i = 0; i < n; i++) {
@@ -207,7 +208,10 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
     // No number to draw? A year the research states becomes an animated timeline (the year counts up along a drawn line).
     const yearFig = !figs.length ? extractYear(sentence) : null;
-    const gfigs = figs.length ? figs : (yearFig && researchStates(research, yearFig) ? [yearFig] : []);
+    // each year gets one timeline per video, and at most three timelines in all: the same "2026" five times is a template, not a graphic
+    const yearOk = yearFig && !yearsShown.has(yearFig.value) && yearsShown.size < 3 && researchStates(research, yearFig);
+    const gfigs = figs.length ? figs : (yearOk ? [yearFig] : []);
+    if (!figs.length && yearOk) yearsShown.add(yearFig.value);
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
     const graphicFor = () => ({ id: `g${i}`, kind: chooseKind(gfigs, rng, look.name), figs: gfigs.slice(0, 2), source: figSource, fn, dy, look: look.name });

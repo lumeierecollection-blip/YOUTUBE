@@ -417,3 +417,12 @@ test("a year the research states becomes an animated timeline: the line wipes in
   assert.equal(r.plan.scenes[0].graphic.kind, "year");
   assert.equal(r.plan.scenes[1].graphic, undefined, "a sentence with no figure and no year gets no graphic");
 });
+
+test("the same year gets one timeline per video, and no more than three timelines", async () => {
+  const sentences = ["A 2000 wedding ended it.", "The 2000 wedding was big.", "In 1998 they met.", "In 1999 they wed.", "In 2001 they split.", "In 2002 they fought."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sentences.join(" ") }] },
+    research: { ...research, key_facts: [{ fact: "2000 1998 1999 2001 2002", source_url: "https://news.example.org/x" }] },
+    words: sentences.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 26, resolve: async () => ({ ok: false }), concept: async () => null, queries: sentences.map(() => null), style: 1 });
+  const years = r.plan.scenes.filter((s) => s.graphic && s.graphic.kind === "year").map((s) => s.graphic.figs[0].value);
+  assert.deepEqual(years, [2000, 1998, 1999], "first three distinct years only; the repeat of 2000 gets none");
+});
