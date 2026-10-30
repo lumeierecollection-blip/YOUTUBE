@@ -1,0 +1,37 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-super-el-nino-record-flow",
+  "format": "shorts",
+  "hook": "What if the Iguazú River surged six times its normal flow?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if the Iguazú River surged six times its normal flow?",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, Super El Niño flooded the region, pushing the Iguazú River sixfold. How wide is the falls stretch across Argentina and Brazil?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Iguazú River surged past the one-mile span of the falls, flooding Argentina and Brazil.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Iguazú Falls spans just over one mile across the Argentina‑Brazil border. Consequently, Iguazú National Park closed temporarily, stopping all visitors.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Six times the flow, one mile of falls, Iguazú National Park closed temporarily in October 2026.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://www.gpb.org/news/2026/10/22/greetings-the-brazil-argentina-border-where-waterfalls-are-flowing-at-near-record"
+  ]
+}

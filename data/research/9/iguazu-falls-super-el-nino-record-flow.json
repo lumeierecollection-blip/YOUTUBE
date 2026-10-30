@@ -1,0 +1,68 @@
+{
+  "topic_slug": "iguazu-falls-super-el-nino-record-flow",
+  "strongest_angle": "The Super El Niño of October 2026 triggered extreme rainfall, causing the Iguazú River to surge to six times its normal flow rate and forcing the temporary closure of Iguazú National Park.",
+  "key_facts": [
+    {
+      "fact": "Iguazú National Park officials closed the site in October 2026 after the Iguazú River reached a flow rate six times higher than normal.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Iguazú Falls complex spans more than one mile across the border between Argentina and Brazil.",
+      "source_url": "https://www.gpb.org/news/2026/10/22/greetings-the-brazil-argentina-border-where-waterfalls-are-flowing-at-near-record",
+      "source_name": "GPB",
+      "confidence": "high"
+    },
+    {
+      "fact": "Heavy rains linked to the Super El Niño weather pattern caused flooding across Argentina, Paraguay, and Uruguay in mid-October 2026.",
+      "source_url": "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Iguazú River flow rate multiplier",
+      "value": 6,
+      "unit": "times normal",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    },
+    {
+      "label": "Iguazú Falls width",
+      "value": 1,
+      "unit": "mile",
+      "source_url": "https://www.gpb.org/news/2026/10/22/greetings-the-brazil-argentina-border-where-waterfalls-are-flowing-at-near-record"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Iguazú Falls",
+      "kind": "object"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Paraguay",
+      "kind": "place"
+    },
+    {
+      "name": "Uruguay",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú River",
+      "kind": "object"
+    }
+  ]
+}
