@@ -1,0 +1,60 @@
+{
+  "topic_slug": "marco-pierre-white-gordon-ramsay-wedding-feud",
+  "strongest_angle": "Chef Marco Pierre White has officially clarified that his long-standing feud with Gordon Ramsay originated from a specific incident involving a camera crew at his 2000 wedding, debunking decades of speculation.",
+  "key_facts": [
+    {
+      "fact": "Chef Marco Pierre White revealed that his feud with Gordon Ramsay began when Ramsay brought a television camera crew to his wedding in the year 2000.",
+      "source_url": "https://www.independent.co.uk/bulletin/culture/gordon-ramsay-marco-pierre-white-feud-b3074944.html",
+      "source_name": "The Independent",
+      "confidence": "high"
+    },
+    {
+      "fact": "Gordon Ramsay previously worked as a protégé for Marco Pierre White at his London restaurant, Harveys, for a period of three years.",
+      "source_url": "https://www.foodbible.com/news/celebrity/marco-pierre-white-gordon-ramsay-feud-reason-481429-20261029",
+      "source_name": "FoodBible",
+      "confidence": "high"
+    },
+    {
+      "fact": "Marco Pierre White explicitly dismissed alternative rumors that the fallout was caused by arguments over food or Gordon Ramsay leaving the Harveys restaurant.",
+      "source_url": "https://www.independent.co.uk/bulletin/culture/gordon-ramsay-marco-pierre-white-feud-b3074944.html",
+      "source_name": "The Independent",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the wedding incident",
+      "value": 2000,
+      "unit": "year",
+      "source_url": "https://www.independent.co.uk/bulletin/culture/gordon-ramsay-marco-pierre-white-feud-b3074944.html"
+    },
+    {
+      "label": "Years Gordon Ramsay worked at Harveys",
+      "value": 3,
+      "unit": "years",
+      "source_url": "https://www.foodbible.com/news/celebrity/marco-pierre-white-gordon-ramsay-feud-reason-481429-20261029"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Marco Pierre White",
+      "kind": "person"
+    },
+    {
+      "name": "Gordon Ramsay",
+      "kind": "person"
+    },
+    {
+      "name": "Harveys",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    }
+  ]
+}

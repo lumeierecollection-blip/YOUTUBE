@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "marco-pierre-white-gordon-ramsay-wedding-feud",
+  "format": "shorts",
+  "hook": "A secret camera crew at a 2000 wedding destroyed the friendship between two famous chefs.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A secret camera crew at a 2000 wedding destroyed the friendship between two famous chefs.",
+      "text_overlay": {
+        "text": "The secret wedding feud"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Gordon Ramsay spent 3 years as a protégé at Harveys, a London restaurant owned by Marco Pierre White. But what actually caused their legendary fallout?",
+      "text_overlay": {
+        "text": "3 years at Harveys"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Marco Pierre White dismissed rumors that food arguments or Ramsay leaving his London restaurant caused it.",
+      "text_overlay": {
+        "text": "The rumors were wrong"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "That uninvited camera crew arrival at the 2000 wedding permanently fractured the relationship between the two chefs.",
+      "text_overlay": {
+        "text": "Camera crew at the wedding"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 2000 wedding remains the primary reason these two famous chefs stopped speaking to each other.",
+      "text_overlay": {
+        "text": "The 2000 wedding incident"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.independent.co.uk/bulletin/culture/gordon-ramsay-marco-pierre-white-feud-b3074944.html",
+    "https://www.foodbible.com/news/celebrity/marco-pierre-white-gordon-ramsay-feud-reason-481429-20261029"
+  ]
+}
