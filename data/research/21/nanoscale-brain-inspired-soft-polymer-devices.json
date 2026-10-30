@@ -1,0 +1,67 @@
+{
+  "topic_slug": "nanoscale-brain-inspired-soft-polymer-devices",
+  "strongest_angle": "Engineers at the Massachusetts Institute of Technology and the U.S. National Science Foundation developed soft polymer nanodevices that perform computing and memory functions simultaneously using mechanical movements.",
+  "key_facts": [
+    {
+      "fact": "Researchers funded by the U.S. National Science Foundation developed tiny new devices that simultaneously perform computing and temporary information storage using soft polymer mechanical movements.",
+      "source_url": "https://www.nsf.gov/mps/updates/nanoscale-device-inspired-brain-uses-soft-polymer-material",
+      "source_name": "U.S. National Science Foundation",
+      "confidence": "high"
+    },
+    {
+      "fact": "MIT researchers created a new computing platform using soft polymer thin films to build compact, energy-efficient electronics that emulate neuronal behavior at the nanoscale.",
+      "source_url": "https://news.mit.edu/2026/nanoscale-mechanics-could-enable-brain-inspired-computing-0916",
+      "source_name": "MIT News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Peter F. Satterthwaite, Sarah O. Spector, Maxwell Conte, Teddy Hsieh, Eduard O. Bobylev, Srinidhi Venkatesh, Jeremiah A. Johnson, and Farnaz Niroui authored the study on viscoelastic nanomechanical devices published in Science Advances.",
+      "source_url": "https://www.science.org/doi/10.1126/sciadv.aeg9893",
+      "source_name": "Science Advances",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "U.S. National Science Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "Massachusetts Institute of Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Peter F. Satterthwaite",
+      "kind": "person"
+    },
+    {
+      "name": "Sarah O. Spector",
+      "kind": "person"
+    },
+    {
+      "name": "Maxwell Conte",
+      "kind": "person"
+    },
+    {
+      "name": "Teddy Hsieh",
+      "kind": "person"
+    },
+    {
+      "name": "Eduard O. Bobylev",
+      "kind": "person"
+    },
+    {
+      "name": "Srinidhi Venkatesh",
+      "kind": "person"
+    },
+    {
+      "name": "Jeremiah A. Johnson",
+      "kind": "person"
+    },
+    {
+      "name": "Farnaz Niroui",
+      "kind": "person"
+    }
+  ]
+}

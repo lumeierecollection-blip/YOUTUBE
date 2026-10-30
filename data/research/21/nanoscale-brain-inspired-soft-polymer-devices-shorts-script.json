@@ -1,0 +1,38 @@
+{
+  "channel_id": "21",
+  "topic_slug": "nanoscale-brain-inspired-soft-polymer-devices",
+  "format": "shorts",
+  "hook": "Engineers at the Massachusetts Institute of Technology just created a new device that calculates using mechanical movements.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Engineers at the Massachusetts Institute of Technology just created a new device that calculates using mechanical movements.",
+      "visual_cue": "Close-up of a soft polymer film under a scanning electron microscope."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at the Massachusetts Institute of Technology developed tiny soft polymer nanodevices. How do these mechanical movements emulate neuronal behavior?",
+      "visual_cue": "Microscopic view of soft polymer structures shifting shape."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except these nanodevices achieve this functionality using energy-efficient mechanical motion instead of traditional electricity.",
+      "visual_cue": "Comparison graphic showing electrical circuit versus mechanical movement."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Farnaz Niroui and her team published these findings in the journal Science Advances. These devices mimic neuronal behavior through viscoelastic nanomechanical properties.",
+      "visual_cue": "Portrait shot of Farnaz Niroui overlaid with the Science Advances journal cover."
+    },
+    {
+      "id": "close",
+      "voiceover": "The U.S. National Science Foundation funded this new computing platform.",
+      "visual_cue": "Logo of the U.S. National Science Foundation."
+    }
+  ],
+  "sources_used": [
+    "https://news.mit.edu/2026/nanoscale-mechanics-could-enable-brain-inspired-computing-0916",
+    "https://www.nsf.gov/mps/updates/nanoscale-device-inspired-brain-uses-soft-polymer-material",
+    "https://www.science.org/doi/10.1126/sciadv.aeg9893"
+  ]
+}
