@@ -1,5 +1,5 @@
 // The automatic editor plan: one scene per spoken sentence, timed by the voiceover; a verified photo when a named entity has one,
-// otherwise a figure card (only numbers the research states) or a statement card. Nothing invented, nothing left uncovered.
+// otherwise a figure card (only numbers the research states) or a key-word poster. Nothing invented, nothing left uncovered.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildAutoPlan, extractFigures, researchStates, nameVariants, sentenceSpans, entitiesIn, entityIndex } from "../editor/auto-plan.mjs";
@@ -46,11 +46,11 @@ test("every sentence gets a scene, the scenes tile the audio with no gap, and a 
   for (let i = 1; i < 4; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
   assert.equal(plan.scenes.at(-1).end, 22);
   assert.equal(report.spans, "voiceover");
-  assert.match(report.scenes[0].shows, /figure card 45%/);
-  assert.match(report.scenes[1].shows, /figure card 1,321/);
-  assert.match(report.scenes[2].shows, /photo of Sir Jane Doeson/, "the honorific-free lookup found the photo");
+  assert.match(report.scenes[0].shows, /figure alone 45%/);
+  assert.match(report.scenes[1].shows, /figure alone 1,321/);
+  assert.match(report.scenes[2].shows, /verified photo of Sir Jane Doeson/, "the honorific-free lookup found the photo");
   assert.equal(plan.assets["photo-sir-jane-doeson"].credit, "Photo: X / Wikimedia Commons, CC0");
-  assert.match(report.scenes[3].shows, /statement card/, "the unsourced 99% is not featured");
+  assert.match(report.scenes[3].shows, /key-word poster/, "the unsourced 99% is not featured");
   assert.ok(!cards.some((c) => c.svg.includes("99%") && c.svg.includes("font-size=\"260\"")), "99% is not drawn as a figure");
   for (const s of plan.scenes) assert.ok(s.asset && (plan.assets[s.asset] || cards.some((c) => c.id === s.asset)), `scene ${s.id} has an asset`);
 });
@@ -61,7 +61,7 @@ test("the same photo is never shown in two scenes running", async () => {
   const resolve = async () => ({ ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" });
   const { report } = await buildAutoPlan({ ...base, script: two, words: w, audioDuration: 8, resolve });
   assert.match(report.scenes[0].shows, /photo/);
-  assert.match(report.scenes[1].shows, /statement card/);
+  assert.match(report.scenes[1].shows, /key-word poster/);
 });
 
 test("no voiceover sentence list for the script -> proportional timing, still covering the audio", async () => {
@@ -100,4 +100,61 @@ test("the plan builds a valid editor timeline with captions from the voiceover",
   assert.equal(tl.captions.length, 4);
   assert.equal(tl.metadata.image_scene_count, 4);
   assert.ok(tl.layers.every((l) => l.out <= tl.durationInFrames));
+});
+
+// ---- concept photos and the five looks --------------------------------------------------------------------------------------------
+import { parseQueries, conceptPrompt, searchCommons } from "../editor/concept-photo.mjs";
+import { styleFor, STYLE_NAMES, functionOf, keyPhrase } from "../editor/styles.mjs";
+import { addOverlays } from "../editor/auto-timeline.mjs";
+
+test("the model's phrases are parsed from JSON or from text, null when absent", () => {
+  assert.deepEqual(parseQueries({ "0": "airline cockpit", "1": null, "2": "None" }, 4), ["airline cockpit", null, null, null]);
+  assert.deepEqual(parseQueries({ content: 'Sure! {"queries":{"1":"tide mill"}}' }, 2), [null, "tide mill"]);
+  assert.deepEqual(parseQueries(null, 2), [null, null]);
+  assert.match(conceptPrompt({ sentences: ["a", "b"], topic: "t", niche: "n" }), /0\. a\n1\. b/);
+});
+
+test("Commons results are filtered to free JPEG photographs that are not logos, maps or charts", async () => {
+  const page = (index, title, mime, license, w = 3000, h = 2000) => ({ index, title: `File:${title}`, imageinfo: [{ mime, width: w, height: h, thumburl: "t", url: "u", descriptionurl: "d", extmetadata: { LicenseShortName: { value: license }, Artist: { value: "<b>A</b>" } } }] });
+  const fake = async () => ({ query: { pages: {
+    a: page(1, "Company logo.jpg", "image/jpeg", "CC0"), b: page(2, "Cockpit.png", "image/png", "CC0"), c: page(3, "Cockpit nonfree.jpg", "image/jpeg", "Non-free"),
+    d: page(4, "Tiny.jpg", "image/jpeg", "CC0", 400, 300), e: page(5, "Airliner cockpit.jpg", "image/jpeg", "CC BY-SA 4.0"),
+  } } });
+  const r = await searchCommons("cockpit", 3, fake);
+  assert.deepEqual(r.map((x) => x.title), ["Airliner cockpit.jpg"]);
+  assert.equal(r[0].credit, "Photo: A / Wikimedia Commons, CC BY-SA 4.0");
+});
+
+test("a sentence with no entity gets a concept photo, with its figure drawn over it; a miss falls back to a poster", async () => {
+  const concept = async ({ query }) => (query === "cockpit" ? { file: "c.jpg", width: 2000, height: 1300, credit: "Photo: Z / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : null);
+  const { plan, cards, report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: ["cockpit", null, "nothing", "cockpit"] });
+  assert.match(report.scenes[0].shows, /concept photo "cockpit" \+ figure 45%/);
+  assert.equal(plan.scenes[0].overlay, "overlay-0");
+  assert.ok(cards.some((c) => c.id === "overlay-0" && c.svg.includes("45%")));
+  assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
+  assert.match(report.scenes[2].shows, /key-word poster/);
+});
+
+test("each of the five looks draws a figure overlay with no gradient fill and no sentence text", () => {
+  const pal = { bg: "#000011", accent: "#00ff99" };
+  for (const n of [1, 2, 3, 4, 5]) {
+    const st = styleFor(n, pal);
+    assert.equal(st.name, STYLE_NAMES[n]);
+    for (const fn of ["hook", "evidence", "payoff"]) {
+      const svg = st.figure({ figs: [{ raw: "45%", kind: "percent", value: 45 }], source: "jll.com", fn });
+      assert.match(svg, /45%/);
+      assert.ok(!/linearGradient|radialGradient/.test(svg), `look ${n} ${fn}: flat colour only`);
+    }
+    assert.match(st.poster({ phrase: ["ONE", "TWO"] }), /ONE/);
+  }
+  assert.deepEqual([0, 1, 2, 4].map((i) => functionOf(i, 5)), ["hook", "setup", "evidence", "payoff"]);
+  assert.deepEqual(keyPhrase("The pilots flew fatigued across Europe"), ["PILOTS", "FATIGUED", "EUROPE"]);
+});
+
+test("overlays become image layers above the scrim and below the text, entering after the scene's own fade", () => {
+  const tl = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }, { id: "scene-0-gradient", z: 100, in: 0, out: 100 }, { id: "t", z: 210, in: 0, out: 100 }] };
+  addOverlays(tl, { scenes: [{ overlay: "overlay-0", stagger: 9 }] });
+  const o = tl.layers.find((l) => l.id === "scene-0-overlay");
+  assert.deepEqual([o.in, o.out, o.z, o.asset_id], [9, 100, 150, "overlay-0"]);
+  assert.deepEqual(tl.layers.map((l) => l.z), [11, 100, 150, 210]);
 });

@@ -19,6 +19,8 @@ import { buildAutoPlan } from "./auto-plan.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
+import { scriptSentences } from "./captions.mjs";
+import { conceptQueries, searchCommons, downloadPhoto, defaultAsk } from "./concept-photo.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
@@ -65,7 +67,44 @@ function resolverFromEntityAssets() {
   };
 }
 
-export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, probeDuration }) {
+/** concept({query, used}) -> a real, free-licence Commons photo of the concept, saved under data/editor/auto/concept/, or null. */
+function conceptFinder() {
+  return async ({ query, used }) => {
+    const found = await searchCommons(query, 4);
+    for (const rec of found) {
+      const slug = rec.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60);
+      const file = join(ROOT, "data", "editor", "auto", "concept", slug + ".jpg");
+      if (used.has(rel(file))) continue;
+      try {
+        const buf = await downloadPhoto(rec, file);
+        const { width, height } = imageSize(buf);
+        return { file: rel(file), width, height, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license };
+      } catch (e) { console.error("[concept-photo] " + rec.title + ": " + e.message); }
+    }
+    return null;
+  };
+}
+
+/** A figure/overlay image layer on top of the scene's photo, entering after the scene's own fade (the style's stagger, in frames). */
+export function addOverlays(timeline, plan) {
+  plan.scenes.forEach((sc, i) => {
+    if (!sc.overlay) return;
+    const base = timeline.layers.find((l) => l.id === "scene-" + i + "-image");
+    if (!base) return;
+    const inF = base.in + (sc.stagger || 0);
+    const span = Math.max(2, base.out - inF);
+    const fade = Math.min(10, Math.max(3, Math.floor(span / 6)));
+    timeline.layers.push({
+      id: "scene-" + i + "-overlay", type: "image", asset_id: sc.overlay, rect: { x: 0, y: 0, w: 1080, h: 1920 }, fit: "cover", in: inF, out: base.out, z: 150,
+      props: { opacity: 1, scale: 1, fx: 0.5, fy: 0.5, sepia: 0, saturate: 1, brightness: 1, blur: 0 },
+      keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: fade, v: 1 }, { f: span, v: 1 }] },
+    });
+  });
+  timeline.layers.sort((a, b) => a.z - b.z);
+  return timeline;
+}
+
+export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration }) {
   const stem = basename(scriptPath, ".json");
   const base = join(ROOT, "data", "tts", channelId, `${stem}-vo`);
   const audio = `${base}.mp3`;
@@ -83,20 +122,21 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const transcriptPath = join(dir, "transcript.json");
   writeFileSync(transcriptPath, JSON.stringify(transcript, null, 1));
 
+  const queries = concept ? await conceptQueries({ sentences: scriptSentences(script), topic: research?.strongest_angle, niche: channel?.niche, ask }) : [];
   const { plan, cards, report } = await buildAutoPlan({
-    script, research, words: words.words, audioDuration, channel, stem,
+    script, research, words: words.words, audioDuration, channel, stem, concept, queries, style,
     audioPath: rel(audio), transcriptPath: rel(transcriptPath), scriptPath: rel(scriptPath), resolve: resolver,
   });
   const source = (script.sources_used || [])[0] || "";
   for (const c of cards) {
     const file = join(dir, `${c.id}.svg`);
     writeFileSync(file, c.svg);
-    plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Card: automatic editor; words and figures from the script and its sources", source_url: source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram" };
+    plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Graphic: automatic editor, figures from the sources", source_url: source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram" };
   }
   writeFileSync(join(dir, "plan.json"), JSON.stringify(plan, null, 2));
 
   const captions = buildCaptions({ script, whisper: transcript, duration: audioDuration });
-  const timeline = buildTimeline(plan, { audioDuration, captions });
+  const timeline = addOverlays(buildTimeline(plan, { audioDuration, captions }), plan);
   timeline.metadata.plan = rel(join(dir, "plan.json"));
   timeline.metadata.audio_duration_sec = audioDuration;
   timeline.metadata.generator = "scripts/editor/auto-timeline.mjs";
@@ -127,12 +167,15 @@ async function main() {
   const map = existsSync(baseMapPath) ? JSON.parse(readFileSync(baseMapPath, "utf8")) : {};
   const probeDuration = (f) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", f], { encoding: "utf8" }).trim());
   const resolver = resolverFromEntityAssets();
+  const concept = conceptFinder();
+  const ask = defaultAsk();
+  const style = Number(get("style") || process.env.EDITOR_STYLE || 1);
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");
-    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, probeDuration });
+    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration });
     map[stem] = r.timelinePath;
-    console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (timing from ${r.report.spans}, ${r.report.photos} photo(s))`);
+    console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (style ${r.report.style}, timing from ${r.report.spans}, ${r.report.photos} verified photo(s))`);
     for (const s of r.report.scenes) console.log(`  [${s.sentence}] ${s.start}-${s.end}s ${s.shows}`);
     for (const m of r.report.misses) console.log(`  [${m.sentence}] no verified photo of ${m.entity}: ${m.why}`);
   }

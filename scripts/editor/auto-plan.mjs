@@ -10,7 +10,7 @@
  * scene's credit is recorded. A script that yields no scenes is an error, never an empty video.
  */
 import { scriptSentences } from "./captions.mjs";
-import { figureCard, statementCard } from "./cards.mjs";
+import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 const KIND = { person: "person", people: "person", place: "place", location: "place", city: "place", country: "place", organization: "organization", company: "organization", agency: "organization", institution: "organization", university: "organization" };
@@ -102,20 +102,28 @@ export function nameVariants(name) {
 
 const MOTIONS = ["in", "pan-left", "out", "pan-right"];
 
+/** Put a flat background behind a transparent overlay SVG. */
+export function withBg(svgText, bg) {
+  return svgText.replace(/(<svg[^>]*>)\n?/, `$1\n  <rect width="1080" height="1920" fill="${bg}"/>\n`);
+}
+
 /**
- * resolve({type,name}) -> Promise<{ok, file, width, height, credit, source_url, license}>  (injected; the CLI wires entity-assets).
- * Returns { plan, report } where report lists what every scene is, for the run log.
+ * resolve({type,name,context}) -> {ok,file,width,height,credit,source_url,license}   a VERIFIED photo of a named entity (entity-assets)
+ * concept({query, used}) -> {file,width,height,credit,source_url,license} | null       a real photo of the CONCEPT (concept-photo)
+ * queries[i]: the concept search phrase for sentence i (or null).  style: 1-5 (styles.mjs).
+ * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
-export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, maxPhotos = 8 }) {
+export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], style = 1, maxPhotos = 8 }) {
   const sentences = scriptSentences(script);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
-  const spans = sentenceSpans(words, sentences.length, audioDuration) || proportionalSpans(sentences, audioDuration);
-  const spanSource = sentenceSpans(words, sentences.length, audioDuration) ? "voiceover" : "proportional";
+  const exact = sentenceSpans(words, sentences.length, audioDuration);
+  const spans = exact || proportionalSpans(sentences, audioDuration);
+  const spanSource = exact ? "voiceover" : "proportional";
 
   const colors = channel?.colors || {};
   const palette = { bg: colors.bg || "#07070D", text: "#F5F5FF", muted: "#C9CDD6", accent: colors.canvas_accent || colors.accent || "#D4A574", accent2: colors.accent || "#D4A574" };
-  const cardPalette = { bg: palette.bg, accent: palette.accent, secondary: colors.secondary || "#1A1A33" };
+  const look = styleFor(style, palette);
   const font = channel?.font || "Inter";
   const idx = entityIndex(research);
   const sources = (research?.key_facts || []).map((f) => hostOf(f.source_url)).filter(Boolean);
@@ -124,16 +132,26 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const assets = {};
   const cards = [];
   const photoByName = new Map();
+  const usedFiles = new Set();
   let photos = 0;
   const scenes = [];
   const report = [];
   const misses = [];
   let lastAsset = null;
+  const n = sentences.length;
 
-  for (let i = 0; i < sentences.length; i++) {
+  for (let i = 0; i < n; i++) {
     const sentence = sentences[i];
     const { start, end } = spans[i];
     const motion = MOTIONS[i % MOTIONS.length];
+    const fn = functionOf(i, n);
+    const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
+    const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
+    const overlayFor = (id) => {
+      cards.push({ id, svg: look.figure({ figs, source: figSource, fn }) });
+      return id;
+    };
+    const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower" };
     let scene = null;
     let how = "";
 
@@ -154,35 +172,44 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       }
       if (!photo) continue;
       const id = `photo-${ent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-      if (id === lastAsset) continue; // never the same picture two scenes running; the sentence falls through to a card
+      if (id === lastAsset) continue; // never the same picture two scenes running
       assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license };
-      scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, fy: ent.kind === "person" ? 0.3 : 0.5, filter: { saturate: 0.85, brightness: 0.9 }, layout: "lower", kicker: ent.name };
-      how = `photo of ${ent.name}`;
+      scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
+      if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
+      how = `verified photo of ${ent.name}${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
       break;
     }
 
-    // 2. a figure card (only figures the research states)
-    if (!scene) {
-      const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
-      const src = hostOf((research?.numbers || []).find((n) => figs.some((f) => digitsOf(f.raw) === String(n.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
-      if (figs.length) {
-        const id = `figure-${i}`;
-        cards.push({ id, svg: figureCard({ palette: cardPalette, label: "The figure", sentence, figures: figs, source: src }) });
-        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion };
-        how = `figure card ${figs.map((f) => f.raw).join(", ")}`;
-      }
+    // 2. a real photo of the concept the sentence is about (+ its figure drawn over it). The scene-director payoff is a flat poster instead.
+    if (!scene && !(look.payoffIsPoster && fn === "payoff" && figs.length) && queries[i]) {
+      const c = await concept({ query: queries[i], used: usedFiles }).catch(() => null);
+      if (c) {
+        usedFiles.add(c.file);
+        const id = `concept-${i}`;
+        assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
+        scene = { ...base, id: `s${i}-${id}`, asset: id };
+        if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
+        how = `concept photo "${queries[i]}"${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
+      } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
     }
 
-    // 3. a statement card
+    // 3. no photo: the figure alone on a flat colour, or the sentence's key words as a poster
     if (!scene) {
-      const id = `statement-${i}`;
-      cards.push({ id, svg: statementCard({ palette: cardPalette, label: "From the sources", sentence, source: defaultSource }) });
+      const id = `card-${i}`;
+      if (figs.length) {
+        const flat = look.name === "scene-director" && fn === "payoff" ? null : (look.name === "hallmark" ? "#15130F" : palette.bg);
+        const svgText = look.figure({ figs, source: figSource, fn });
+        cards.push({ id, svg: flat ? withBg(svgText, flat) : svgText });
+        how = `figure alone ${figs.map((f) => f.raw).join(", ")}`;
+      } else {
+        cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence), source: defaultSource }) });
+        how = "key-word poster";
+      }
       scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion };
-      how = "statement card";
     }
 
     lastAsset = scene.asset;
-    scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)) });
+    scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
     report.push({ sentence: i, shows: how, start: Number(start.toFixed(2)), end: Number(end.toFixed(2)) });
   }
 
@@ -200,5 +227,5 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     assets,
     scenes,
   };
-  return { plan, cards, report: { spans: spanSource, scenes: report, photos, misses } };
+  return { plan, cards, report: { spans: spanSource, scenes: report, photos, misses, style: look.name } };
 }

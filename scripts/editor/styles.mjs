@@ -1,0 +1,95 @@
+/**
+ * Five looks for the automatic editor, one per design skill the owner picked to compare (2026-10-30):
+ *   1 anti-slop      (design-anti-slop): flat colour only, no gradients/glow/grids, one hard-edged accent, type sized by importance
+ *   2 hallmark       (hallmark): editorial paper tag with serif figure, locked tokens, restrained duotone-ish photo grade
+ *   3 vox            (vox-style-treatment): desaturated editorial photo grade + vignette, ONE accent used for a hand-drawn circle/underline
+ *   4 scene-director (scene-director): the layout follows the scene's FUNCTION (hook = hero figure, evidence = small chip, payoff = flat poster)
+ *   5 mograph-critic (mograph-critic): everything on one grid, lower-third strip, staggered entrance, one baseline
+ *
+ * A style never adds words. A figure overlay is the number the sentence states (and a bar of its exact share) plus the source host.
+ * The caption carries the sentence, so nothing repeats it. All overlays are transparent SVGs drawn over the scene's photo.
+ */
+import { xmlEscape } from "./cards.mjs";
+
+export const STYLE_NAMES = { 1: "anti-slop", 2: "hallmark", 3: "vox", 4: "scene-director", 5: "mograph-critic" };
+const F = "Arial, Helvetica, sans-serif";
+const SERIF = "Georgia, 'Times New Roman', serif";
+const svg = (inner, bg) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">\n${bg ? `  <rect width="1080" height="1920" fill="${xmlEscape(bg)}"/>\n` : ""}${inner}\n</svg>\n`;
+const text = (x, y, size, fill, body, extra = "") => `  <text x="${x}" y="${y}" fill="${xmlEscape(fill)}" font-family="${extra.includes("serif") ? SERIF : F}" font-size="${size}" ${extra.replace("serif", "")}>${xmlEscape(body)}</text>`;
+const firstPercent = (figs) => figs.find((f) => f.kind === "percent" && f.value >= 0 && f.value <= 100);
+const src = (source) => (source ? `Source: ${source}` : "");
+
+/** fn: the scene's function in the video, from its position. */
+export function functionOf(i, n) {
+  if (i === 0) return "hook";
+  if (i === n - 1) return "payoff";
+  return i === 1 ? "setup" : "evidence";
+}
+
+export function styleFor(n, pal) {
+  const accent = pal.accent;
+  const ink = "#101114";
+  switch (Number(n)) {
+    case 1: return {
+      name: "anti-slop", scrim: "rgba(8,8,10,0.52)", filter: { saturate: 0.9, brightness: 0.92 }, stagger: 0,
+      figure: ({ figs, source }) => {
+        const f = figs[0]; const bar = firstPercent(figs);
+        return svg([text(90, 1010, f.raw.length > 6 ? 190 : 250, "#FFFFFF", f.raw, 'font-weight="800"'),
+          bar ? `  <rect x="90" y="1050" width="${(9 * bar.value).toFixed(1)}" height="22" fill="${xmlEscape(accent)}"/>` : `  <rect x="90" y="1050" width="160" height="22" fill="${xmlEscape(accent)}"/>`,
+          text(90, 1120, 24, "#D6D8DE", src(source))].join("\n"));
+      },
+      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 760 + k * 150, 128, k === phrase.length - 1 ? accent : "#FFFFFF", w, 'font-weight="800"')).join("\n"), pal.bg),
+    };
+    case 2: return {
+      name: "hallmark", scrim: "rgba(16,13,9,0.34)", filter: { sepia: 0.28, saturate: 0.5, brightness: 0.9 }, stagger: 0,
+      figure: ({ figs, source }) => {
+        const f = figs[0]; const w = Math.min(900, 150 + f.raw.length * 112);
+        return svg([`  <rect x="90" y="930" width="${w}" height="330" fill="#EFE8D8"/>`, `  <rect x="90" y="930" width="${w}" height="8" fill="${xmlEscape(accent)}"/>`,
+          text(130, 1130, 200, ink, f.raw, 'serif font-weight="400"'),
+          text(130, 1215, 22, "#4A463C", src(source).toUpperCase(), 'letter-spacing="3"')].join("\n"));
+      },
+      poster: ({ phrase }) => svg([`  <rect x="90" y="560" width="900" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(90, 740 + k * 140, 118, "#EFE8D8", w, 'serif'))].join("\n"), "#15130F"),
+    };
+    case 3: return {
+      name: "vox", scrim: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.62) 100%)", filter: { sepia: 0.18, saturate: 0.32, brightness: 0.82 }, stagger: 0,
+      figure: ({ figs, source }) => {
+        const f = figs[0]; const cx = 540; const w = Math.min(860, 120 + f.raw.length * 120);
+        return svg([text(cx, 930, f.raw.length > 6 ? 200 : 250, "#FFFFFF", f.raw, 'text-anchor="middle" font-weight="900"'),
+          `  <path d="M${cx - w / 2} 860 C ${cx - w / 2} 700, ${cx + w / 2 - 20} 690, ${cx + w / 2} 830 C ${cx + w / 2 + 6} 990, ${cx - w / 2 + 40} 1010, ${cx - w / 2 + 6} 880" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`,
+          text(cx, 1090, 22, "#C9C9C9", src(source), 'text-anchor="middle"')].join("\n"));
+      },
+      poster: ({ phrase }) => svg([...phrase.map((w, k) => text(90, 800 + k * 150, 120, "#F4F1EA", w, 'font-weight="900"')), `  <path d="M90 ${830 + (phrase.length - 1) * 150} q 120 -22 240 0 t 240 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`].join("\n"), "#F1EEE6".replace("F1EEE6", "0B0B0C")),
+    };
+    case 4: return {
+      name: "scene-director", scrim: "rgba(6,6,8,0.5)", filter: { saturate: 0.85, brightness: 0.9 }, stagger: 0,
+      figure: ({ figs, source, fn }) => {
+        const f = figs[0];
+        if (fn === "hook") return svg([text(540, 980, f.raw.length > 6 ? 230 : 340, "#FFFFFF", f.raw, 'text-anchor="middle" font-weight="900"'), `  <rect x="340" y="1020" width="400" height="12" fill="${xmlEscape(accent)}"/>`].join("\n"));
+        if (fn === "payoff") return svg([text(90, 900, f.raw.length > 6 ? 230 : 330, ink, f.raw, 'font-weight="900"'), text(90, 990, 26, ink, src(source), 'font-weight="700"')].join("\n"), accent);
+        return svg([`  <rect x="90" y="300" width="${Math.min(700, 80 + f.raw.length * 70)}" height="150" fill="${xmlEscape(accent)}"/>`, text(120, 410, 100, ink, f.raw, 'font-weight="900"')].join("\n"));
+      },
+      payoffIsPoster: true,
+      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 800 + k * 150, 120, k === 0 ? accent : "#FFFFFF", w, 'font-weight="900"')).join("\n"), pal.bg),
+    };
+    case 5: return {
+      name: "mograph-critic", scrim: "rgba(5,5,8,0.4)", filter: { saturate: 0.95, brightness: 0.92 }, stagger: 9,
+      figure: ({ figs, source }) => {
+        const f = figs[0]; const bar = firstPercent(figs);
+        return svg([`  <rect x="0" y="1130" width="1080" height="300" fill="rgba(5,5,8,0.78)"/>`, `  <rect x="96" y="1166" width="120" height="6" fill="${xmlEscape(accent)}"/>`,
+          text(96, 1352, f.raw.length > 6 ? 130 : 170, "#FFFFFF", f.raw, 'font-weight="800"'),
+          text(984, 1352, 22, "#C7CAD1", src(source), 'text-anchor="end"'),
+          bar ? `  <rect x="96" y="1394" width="888" height="8" fill="rgba(255,255,255,0.18)"/><rect x="96" y="1394" width="${(8.88 * bar.value).toFixed(1)}" height="8" fill="${xmlEscape(accent)}"/>` : ""].join("\n"));
+      },
+      poster: ({ phrase }) => svg([`  <rect x="96" y="640" width="120" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(96, 780 + k * 140, 112, "#FFFFFF", w, 'font-weight="800"'))].join("\n"), pal.bg),
+    };
+    default: throw new Error(`unknown style ${n}`);
+  }
+}
+
+/** One to three content words of a sentence, for a poster when nothing else can show it. */
+export function keyPhrase(sentence) {
+  const stop = new Set("the a an of to in on at for and or but is are was were be been it its this that these those with by from as than then when while which who whom what where how why not no yes will would can could may might has have had do does did into over under about after before more most less least very just only also across around through during between against within without".split(" "));
+  const words = String(sentence).replace(/[^\p{L}\p{N}%$'\s-]/gu, " ").split(/\s+/).filter((w) => w && !stop.has(w.toLowerCase()) && w.length > 2);
+  const picked = [...words].sort((a, b) => b.length - a.length).slice(0, 3);
+  return words.filter((w) => picked.includes(w)).slice(0, 3).map((w) => w.toUpperCase());
+}

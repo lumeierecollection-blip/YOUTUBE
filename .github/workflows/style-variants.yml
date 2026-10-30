@@ -1,0 +1,130 @@
+name: Style Variants
+
+# Manual, read-only comparison run (owner, 2026-10-30). Takes the script + voiceover that a pipeline run already prepared
+# (the prep-<channel>-<run> artifact), and renders it five times with the automatic editor, once per look in
+# scripts/editor/styles.mjs (1 anti-slop, 2 hallmark, 3 vox, 4 scene-director, 5 mograph-critic), so the looks can be compared on
+# identical content. It never publishes, never writes to the repository, and uploads only the renders and their QA evidence.
+on:
+  # GitHub only offers workflow_dispatch for a workflow already on the default branch, so a new comparison workflow is started by
+  # pushing a change to THIS file on the feature branch; the inputs then take their defaults.
+  push:
+    branches: [fix/editor-green-iteration]
+    paths: [".github/workflows/style-variants.yml"]
+  workflow_dispatch:
+    inputs:
+      prep_run_id:
+        description: "Pipeline run whose prep-<channel>-<run> artifacts (script, research, voiceover) are rendered"
+        required: true
+        type: string
+      channels:
+        description: "JSON list of channel ids"
+        required: true
+        default: '["1","2","48"]'
+        type: string
+      scale:
+        description: "Render scale"
+        required: true
+        default: "0.5"
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  variant:
+    name: look ${{ matrix.style }} / ch ${{ matrix.channel }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        style: [1, 2, 3, 4, 5]
+        channel: ${{ fromJSON(inputs.channels || '["1","2","48"]') }}
+    env:
+      RENDER_SCALE: ${{ inputs.scale || '0.5' }}
+      RENDER_CONCURRENCY: "4"
+      EDITOR_ENGINE: "1"
+      EDITOR_STRICT: "1"
+      EDITOR_STYLE: ${{ matrix.style }}
+      EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+      GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+      GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+      GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+      OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GROQ_TEXT_MODEL: openai/gpt-oss-120b
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Ensure ffmpeg/ffprobe
+        run: |
+          if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          fi
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Cache Remotion Chrome
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/remotion
+          key: remotion-chrome-${{ runner.os }}
+
+      - name: Download the prepared script and voiceover
+        uses: actions/download-artifact@v4
+        with:
+          name: prep-${{ matrix.channel }}-${{ inputs.prep_run_id || '41014238003' }}
+          path: data/
+          run-id: ${{ inputs.prep_run_id || '41014238003' }}
+          github-token: ${{ github.token }}
+
+      - name: Build the editor timeline (look ${{ matrix.style }})
+        run: node scripts/editor/auto-timeline.mjs --channel "${{ matrix.channel }}" --style "${{ matrix.style }}" --github-env
+
+      - name: Render and run final-MP4 QA
+        run: node scripts/render-and-qa.js --channel "${{ matrix.channel }}"
+
+      - name: Upload renders and evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: look-${{ matrix.style }}-ch${{ matrix.channel }}
+          path: |
+            data/renders/approved/
+            data/renders/approved-review/
+            data/renders/rejected/
+            data/renders/${{ matrix.channel }}/*-editor-contact.jpg
+            data/renders/${{ matrix.channel }}/*-editor-qa.json
+            data/renders/${{ matrix.channel }}/*-editor-manifest.json
+            data/editor/auto/*/plan.json
+          if-no-files-found: warn
+          retention-days: 14
