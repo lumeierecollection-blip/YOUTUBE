@@ -1,0 +1,88 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-0-construction-benchmark",
+  "format": "shorts",
+  "hook": "Magpie 3.0 just completed 200 construction tasks with a 78 percent success rate.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Magpie 3.0 just completed 200 construction tasks with a 78 percent success rate.",
+      "visual_cue": "Benchmark results chart showing 78 percent success rate for Magpie 3.0",
+      "sfx_cue": "digital chime",
+      "b_roll": [
+        "Procore benchmark report document"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "78% Task Success Rate"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-18s",
+      "voiceover": "On October 22, 2026, Procore released benchmark results for its new reasoning engine. Procore tested workflow task families including RFI management, submittal management, and drawings and specifications. How did the closest frontier model score across those 200 tasks?",
+      "visual_cue": "Bar chart comparing task success rates for construction workflows",
+      "sfx_cue": "whoosh",
+      "b_roll": [
+        "Construction site blueprint and tablet interface"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "October 22, 2026 Benchmark Release"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "18-24s",
+      "voiceover": "General-purpose frontier models only reached 60 percent on the exact same test.",
+      "visual_cue": "Side-by-side comparison bar highlighting 60 percent frontier model result",
+      "sfx_cue": "pop",
+      "b_roll": [
+        "Frontier model benchmark csv spreadsheet"
+      ],
+      "animation_cue": "pulse",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Frontier Model at 60%"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "24-38s",
+      "voiceover": "Construction Metrics reported a performance margin of 18 percentage points on October 24, 2026.",
+      "visual_cue": "Highlighting 18 percentage points margin on data chart",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "Construction Metrics article screenshot"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "18 Percentage Points Margin"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "38-45s",
+      "voiceover": "Magpie 3.0 finished 200 construction tasks.",
+      "visual_cue": "Final summary card showing 200 tasks tested",
+      "sfx_cue": "subtle tone",
+      "b_roll": [
+        "Procore blog interface"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "200 Construction Tasks"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.procore.com/blog/ai-that-understands-the-job-not-just-the-document",
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+  ]
+}

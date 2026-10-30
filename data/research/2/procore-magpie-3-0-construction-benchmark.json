@@ -1,0 +1,75 @@
+{
+  "topic_slug": "procore-magpie-3-0-construction-benchmark",
+  "strongest_angle": "Analyze Procore's October 24, 2026 benchmark report showing its new Magpie 3.0 reasoning engine completing 78% of over 200 construction tasks, outperforming general AI models.",
+  "key_facts": [
+    {
+      "fact": "Procore released benchmark results on October 22, 2026, showing its Magpie 3.0 reasoning engine successfully completed 78 percent of over 200 construction tasks.",
+      "source_url": "https://www.procore.com/blog/ai-that-understands-the-job-not-just-the-document",
+      "source_name": "Procore Blog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Construction Metrics reported on October 24, 2026, that Procore AI with Magpie 3.0 outperformed the closest general-purpose frontier model by 18 percentage points.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Benchmark results published on October 24, 2026, list the task success rate for the closest general-purpose frontier model at 60 percent.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv",
+      "source_name": "Construction Metrics",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Procore's workflow task families tested in the benchmark include RFI management, submittal management, and drawings and specifications.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-tasks.csv",
+      "source_name": "Construction Metrics",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Magpie 3.0 Task Success Rate",
+      "value": 78,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+    },
+    {
+      "label": "Frontier Model Task Success Rate",
+      "value": 60,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+    },
+    {
+      "label": "Performance Margin",
+      "value": 18,
+      "unit": "percentage points",
+      "source_url": "https://www.procore.com/blog/ai-that-understands-the-job-not-just-the-document"
+    },
+    {
+      "label": "Total Construction Tasks Tested",
+      "value": 200,
+      "unit": "tasks",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Procore",
+      "kind": "organization"
+    },
+    {
+      "name": "Magpie 3.0",
+      "kind": "object"
+    },
+    {
+      "name": "Construction Metrics",
+      "kind": "organization"
+    },
+    {
+      "name": "Groundbreak 2026",
+      "kind": "place"
+    }
+  ]
+}
