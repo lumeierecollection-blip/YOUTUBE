@@ -1,0 +1,79 @@
+{
+  "topic_slug": "jet-powered-blitzkrieg-me-351-bomber",
+  "strongest_angle": "The Lippisch-Messerschmitt Me 351 A-2 represents an alternate history concept regarding German jet bombers, while actual historical developments included forty Messerschmitt designs and aircraft like the Me 262 and Arado Ar 234.",
+  "key_facts": [
+    {
+      "fact": "The Messerschmitt concern contributed some forty designs to the German air war effort of World War II alongside fighters like the Bf 109 and Me 262 as documented by Military Factory.",
+      "source_url": "https://www.militaryfactory.com/aircraft/luftwaffe-secret-projects-messerschmitt.php",
+      "source_name": "Military Factory",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Messerschmitt Me 262 was designed and produced by German aircraft manufacturer Messerschmitt as the world's first operational jet-powered fighter aircraft according to Wikipedia.",
+      "source_url": "https://en.wikipedia.org/wiki/Messerschmitt_Me_262",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Arado Ar 234 Blitz was a jet-powered bomber designed and produced by German aircraft manufacturer Arado as the world's first operational turbojet-powered bomber during World War II.",
+      "source_url": "https://en.wikipedia.org/wiki/Arado_Ar_234_Blitz",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sterling Michael Pavelec documented in The German jet program 1939-1945 that Adolf Hitler initially expressly forbade weapons programs not reaching fruition by February 1940.",
+      "source_url": "https://doi.org/10.11575/prism/18666",
+      "source_name": "PRISM University of Calgary",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Messerschmitt designs",
+      "value": 40,
+      "unit": "designs",
+      "source_url": "https://www.militaryfactory.com/aircraft/luftwaffe-secret-projects-messerschmitt.php"
+    },
+    {
+      "label": "Luftwaffe Secret Projects Messerschmitt entries",
+      "value": 21,
+      "unit": "entries",
+      "source_url": "https://www.militaryfactory.com/aircraft/luftwaffe-secret-projects-messerschmitt.php"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Messerschmitt",
+      "kind": "organization"
+    },
+    {
+      "name": "Arado",
+      "kind": "organization"
+    },
+    {
+      "name": "Adolf Hitler",
+      "kind": "person"
+    },
+    {
+      "name": "Me 262",
+      "kind": "object"
+    },
+    {
+      "name": "Arado Ar 234 Blitz",
+      "kind": "object"
+    },
+    {
+      "name": "Bf 109",
+      "kind": "object"
+    },
+    {
+      "name": "Alexander Lippisch",
+      "kind": "person"
+    },
+    {
+      "name": "Sterling Michael Pavelec",
+      "kind": "person"
+    }
+  ]
+}

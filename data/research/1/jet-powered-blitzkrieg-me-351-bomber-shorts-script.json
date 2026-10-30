@@ -1,0 +1,93 @@
+{
+  "channel_id": "1",
+  "topic_slug": "jet-powered-blitzkrieg-me-351-bomber",
+  "format": "shorts",
+  "hook": "Forty secret aircraft designs changed the German air war during World War Two.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Forty secret aircraft designs changed the German air war during World War Two.",
+      "visual_cue": "Archive blueprint showing secret wartime aircraft designs",
+      "sfx_cue": "Subtle low wind drone",
+      "b_roll": [
+        "Military Factory historical archive document",
+        "Luftwaffe secret project blueprints"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "40 Secret Aircraft Designs"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-15s",
+      "voiceover": "The Messerschmitt concern contributed forty designs to the German air war effort.",
+      "visual_cue": "Historical photograph of an Me 262 jet fighter on an airfield",
+      "sfx_cue": "Engine turbine hum",
+      "b_roll": [
+        "Wikipedia archive photo of Messerschmitt Me 262",
+        "Arado Ar 234 Blitz wartime photograph"
+      ],
+      "animation_cue": "Slow pan across aircraft image",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Messerschmitt and Arado Jet Programs"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "15-20s",
+      "voiceover": "Except Hitler initially banned weapons programs missing the February 1940 deadline.",
+      "visual_cue": "Document page from PRISM University of Calgary research publication",
+      "sfx_cue": "Paper rustle sound",
+      "b_roll": [
+        "PRISM University of Calgary research document",
+        "Wartime decree archive page"
+      ],
+      "animation_cue": "Zoom in on document text",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "The February 1940 Ban"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "20-30s",
+      "voiceover": "Messerschmitt designed the Me 262 as the world's first operational jet-powered fighter aircraft. German aircraft manufacturer Arado built the Arado Ar 234 Blitz as the world's first operational turbojet-powered bomber. Author Sterling Michael Pavelec documented the German jet program from 1939 to 1945.",
+      "visual_cue": "Close up shot of vintage aircraft manufacturing plant",
+      "sfx_cue": "Industrial factory ambience",
+      "b_roll": [
+        "Messerschmitt factory assembly hall archive photo",
+        "Arado aircraft production line"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Forty Designs Built"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "30-34s",
+      "voiceover": "Forty Messerschmitt designs defined the secret air war.",
+      "visual_cue": "Wide archive shot of wartime airfield",
+      "sfx_cue": "Fading propeller sound",
+      "b_roll": [
+        "Military Factory aircraft lineup archive"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Cut to black",
+      "text_overlay": {
+        "text": "40 Designs"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.militaryfactory.com/aircraft/luftwaffe-secret-projects-messerschmitt.php",
+    "https://en.wikipedia.org/wiki/Messerschmitt_Me_262",
+    "https://en.wikipedia.org/wiki/Arado_Ar_234_Blitz",
+    "https://doi.org/10.11575/prism/18666"
+  ]
+}
