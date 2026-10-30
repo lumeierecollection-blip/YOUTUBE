@@ -92,6 +92,13 @@ function imageLayer({ id, assetId, rect, fit, inF, outF, z, scene }) {
             ? [{ f: 0, v: 1.15 + zoom, e: "inOutSine" }, { f: span, v: 1.1 }]
             : [{ f: 0, v: 1.02, e: "inOutSine" }, { f: span, v: 1.1 + zoom }],
   };
+  // Per-beat movement: each beat opens with a small punch-in (the picture lands a little large and settles in ~9 frames), then the slow push
+  // continues. scene.punch = 0 turns it off. It is what makes a cut feel edited.
+  const punch = scene.punch === undefined ? 0.05 : Number(scene.punch);
+  if (punch > 0 && span > 24) {
+    const first = keyframes.scale[0];
+    keyframes.scale = [{ f: 0, v: first.v + punch, e: "outCubic" }, { f: 9, v: first.v, e: first.e }, ...keyframes.scale.slice(1)];
+  }
   if (scene.motion === "pan-left") {
     props.x = 0.025;
     keyframes.x = [{ f: 0, v: 0.025, e: "inOutSine" }, { f: span, v: -0.025 }];

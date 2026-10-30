@@ -108,8 +108,10 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
     }
     const g = sc.graphic;
     const inF = base.in + (sc.stagger || 0);
-    const layers = graphicLayers({ ...g, id: "scene-" + i + "-g", look: g.look, palette: plan.palette, secondary, inF, outF: base.out, rng: seededRandom(plan.id + ":" + i) });
+    const layers = graphicLayers({ ...g, id: "scene-" + i + "-g", look: g.look, palette: plan.palette, inF, outF: base.out, rng: seededRandom(plan.id + ":" + i) });
     timeline.layers.push(...layers);
+    // a hero panel is the whole picture: a thin accent line crosses the frame so it never sits still once its counter has finished
+    if (g.mode === "hero") timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
   });
   timeline.layers.sort((x, y) => x.z - y.z);
   return timeline;

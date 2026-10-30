@@ -11,7 +11,8 @@
  */
 import { scriptSentences } from "./captions.mjs";
 import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
-import { chooseKind, backdropSvg } from "./graphics.mjs";
+import { chooseKind, backdropSvg, figureLabel, mapFor, PHOTO_RECT } from "./graphics.mjs";
+import { matchPlaces } from "./maps.mjs";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 const KIND = { person: "person", people: "person", place: "place", location: "place", city: "place", country: "place", organization: "organization", company: "organization", agency: "organization", institution: "organization", university: "organization" };
@@ -192,6 +193,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   let lastAsset = null;
   let lastMotion = null;
   const yearsShown = new Set();
+  let mapsShown = 0;
   const n = sentences.length;
 
   for (let i = 0; i < n; i++) {
@@ -203,7 +205,6 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     lastMotion = motion;
     const zoom = pick(rng, [-0.03, 0, 0.03, 0.06]);
     const fade = i > 0 && rng() < 0.35 ? pick(rng, [6, 8, 10]) : 0;
-    const dy = pick(rng, DY[lookId] || [0]);
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
     // No number to draw? A year the research states becomes an animated timeline (the year counts up along a drawn line).
@@ -214,7 +215,14 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     if (!figs.length && yearOk) yearsShown.add(yearFig.value);
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
-    const graphicFor = () => ({ id: `g${i}`, kind: chooseKind(gfigs, rng, look.name), figs: gfigs.slice(0, 2), source: figSource, fn, dy, look: look.name });
+    // A graphic goes in a panel of its own: under the photo ("split") or, with no photo, as the picture itself ("hero").
+    const graphicFor = (mode, extra = {}) => ({ id: `g${i}`, kind: chooseKind(gfigs, rng, look.name), figs: gfigs.slice(0, 2), source: figSource, fn, look: look.name, label: figureLabel(sentence, gfigs[0]), mode, ...extra });
+    // On a photo scene the photo takes the top of the frame and the panel sits under it (no overlay, no scrim over the panel).
+    const splitScene = (sc) => { sc.rect = PHOTO_RECT; sc.gradient = "rgba(0,0,0,0)"; sc.kicker_y = 880; sc.graphic = graphicFor("split"); return sc; };
+    // Places the sentence names (a big country alone is not worth a map: it would be on screen for every news item)
+    const GENERIC = new Set(["United States of America", "United Kingdom", "China", "Russia"]);
+    const placeHits = !gfigs.length ? matchPlaces(sentence).filter((h) => h.f.kind === "state" || !GENERIC.has(h.f.name)) : [];
+    const mapOk = placeHits.length && mapsShown < 2 && lastAsset !== "map";
     const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
     let scene = null;
     let how = "";
@@ -239,20 +247,31 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (id === lastAsset) continue; // never the same picture two scenes running
       assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license };
       scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
-      if (gfigs.length) scene.graphic = graphicFor();
+      if (gfigs.length) splitScene(scene);
       how = `verified photo of ${ent.name}${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
       break;
     }
 
+    // 1b. no verified photo, but the sentence names a country or a US state: a DRAWN MAP with it highlighted (outlines draw on, the place fills)
+    if (!scene && mapOk) {
+      const geo = mapFor({ highlight: placeHits.slice(0, 3) });
+      const id = `card-${i}`;
+      cards.push({ id, svg: backdropSvg(palette) });
+      mapsShown++;
+      scene = { id: `s${i}-map`, asset: id, fit: "cover", motion, zoom: Math.max(zoom, 0.08), fade };
+      scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: placeHits[0].f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
+      how = `map of ${placeHits.slice(0, 3).map((h) => h.f.name).join(", ")}`;
+    }
+
     // 2. a real photo of the concept the sentence is about (+ its figure drawn over it). The scene-director payoff is a flat poster instead.
-    if (!scene && !(look.payoffIsPoster && fn === "payoff" && figs.length) && queries[i]) {
+    if (!scene && queries[i]) {
       const c = await concept({ query: queries[i], sentence, used: usedFiles }).catch(() => null);
       if (c) {
         usedFiles.add(c.file);
         const id = `concept-${i}`;
         assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
-        if (gfigs.length) scene.graphic = graphicFor();
+        if (gfigs.length) splitScene(scene);
         how = `concept photo "${queries[i]}"${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
       } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
     }
@@ -283,14 +302,14 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (!scene) {
         const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
         scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom: onBackdrop ? Math.max(zoom, 0.1) : zoom, fade };
-        if (gfigs.length) scene.graphic = { ...graphicFor(), backdrop: onBackdrop };
+        if (gfigs.length) scene.graphic = graphicFor("hero", { backdrop: onBackdrop });
       }
     }
 
-    lastAsset = scene.asset;
+    lastAsset = scene.graphic?.kind === "map" ? "map" : scene.asset;
     scene.look = look.name;
     const isPhoto = /^(photo|concept)-/.test(scene.asset);
-    if (isPhoto && end - start > 7.5) {
+    if (isPhoto && !scene.graphic && end - start > 7.5) {
       // A long photo scene is re-framed halfway (a different part of the picture, a different move), the way an editor cuts a long shot.
       const mid = start + (end - start) * (0.45 + rng() * 0.15);
       const second = { ...scene, id: scene.id + "b", graphic: undefined, kicker: undefined, fade: 0, motion: MOTIONS[(MOTIONS.indexOf(motion) + 2) % MOTIONS.length], fx: pick(rng, [0.3, 0.7]), fy: pick(rng, [0.3, 0.6]), zoom: 0.06 };

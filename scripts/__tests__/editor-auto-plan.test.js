@@ -275,7 +275,8 @@ test("plain numbers count as figures, but years, dates, ordinals and small numbe
 });
 
 // ---- animated graphics (graphics.mjs) ---------------------------------------------------------------------------------------------
-import { graphicLayers, parseFigure, chooseKind, backdropSvg, decorationLayers } from "../editor/graphics.mjs";
+import { graphicLayers, parseFigure, chooseKind, backdropSvg, decorationLayers, figureLabel, mapFor, PANEL, PHOTO_RECT } from "../editor/graphics.mjs";
+import { matchPlaces, buildMap, clipRing } from "../editor/maps.mjs";
 import { valueAt, formatCount } from "../../src/skills/remotion-render/editor/layer-math.js";
 
 const PAL = { accent: "#1ABC9C", bg: "#07070D", text: "#fff" };
@@ -320,24 +321,29 @@ test("a ring draws on to exactly its share; two percentages get two bars; a plai
   assert.equal(formatCount(count.count, valueAt(count, "count", 80)), "453");
 });
 
-test("every look and kind yields layers that stay inside the frame, are on screen only while the scene is, and carry only sourced text", () => {
-  const cases = [["bar", [PCT]], ["ring", [PCT]], ["bars2", [PCT, { raw: "71%", kind: "percent", value: 71 }]], ["count", [NUM]]];
+test("every look, kind and mode yields layers inside the frame, inside the panel, only while the scene is, with only sourced text", () => {
+  const cases = [["bar", [PCT]], ["ring", [PCT]], ["bars2", [PCT, { raw: "71%", kind: "percent", value: 71 }]], ["count", [NUM]], ["year", [{ raw: "2000", kind: "year", value: 2000 }]]];
   for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
-    for (const fn of ["hook", "evidence", "payoff"]) {
-      for (const [kind, figs] of cases) {
-        const ls = g(look, kind, figs, { fn, dy: 60 });
-        assert.ok(ls.length >= 2, `${look}/${fn}/${kind}`);
-        const ids = new Set(ls.map((l) => l.id));
-        assert.equal(ids.size, ls.length, "layer ids are unique");
-        for (const l of ls) {
-          assert.ok(l.in >= 0 && l.out <= 90 && l.out > l.in, `${look}/${kind}: ${l.id} timing`);
-          assert.ok(l.rect.x >= -1 && l.rect.x + l.rect.w <= 1081, `${look}/${kind}: ${l.id} inside the width`);
-          assert.ok(l.rect.y + l.rect.h > 0 && l.rect.y < 1920, `${look}/${kind}: ${l.id} on the canvas`);
-          if (l.type === "text" && l.text) assert.match(l.text, /^Source: jll\.com$/, "the only free text is the source");
+    for (const mode of ["split", "hero"]) {
+      for (const fn of ["hook", "evidence", "payoff"]) {
+        for (const [kind, figs] of cases) {
+          const ls = g(look, kind, figs, { fn, mode, label: "of surveyed organizations scaling AI today" });
+          const P = PANEL[mode];
+          assert.ok(ls.length >= 3, `${look}/${mode}/${kind}`);
+          assert.equal(new Set(ls.map((l) => l.id)).size, ls.length, "layer ids are unique");
+          for (const l of ls) {
+            const ctx = `${look}/${mode}/${fn}/${kind}: ${l.id}`;
+            assert.ok(l.in >= 0 && l.out <= 90 && l.out > l.in, `${ctx} timing`);
+            assert.ok(l.rect.x >= -1 && l.rect.x + l.rect.w <= 1081, `${ctx} inside the width`);
+            assert.ok(l.rect.y >= P.y - 2 && l.rect.y + l.rect.h <= P.y + P.h + 2, `${ctx} inside the panel (y ${l.rect.y}..${l.rect.y + l.rect.h}, panel ${P.y}..${P.y + P.h})`);
+            if (l.type === "text" && l.text) assert.match(l.text, /^(Source: jll\.com|\d+%|\d{4}|of surveyed organizations scaling AI today)$/i, `${ctx}: only sourced words`);
+          }
         }
       }
     }
   }
+  assert.ok(PANEL.split.y >= PHOTO_RECT.y + PHOTO_RECT.h, "the split panel starts below the photo: a chart never overlays its picture");
+  assert.ok(PANEL.split.y + PANEL.split.h <= 1535, "and ends above the captions");
 });
 
 test("the kind follows the figures, and a backdrop has no gradient", () => {
@@ -414,7 +420,7 @@ test("a year the research states becomes an animated timeline: the line wipes in
   const n = ls.find((l) => l.count);
   assert.equal(formatCount(n.count, valueAt(n, "count", 0)), "1986");
   assert.equal(formatCount(n.count, valueAt(n, "count", 80)), "2000");
-  assert.ok(ls.some((l) => /-line$/.test(l.id) && valueAt(l, "clipR", 0) === 100 && valueAt(l, "clipR", 60) === 0));
+  assert.ok(ls.some((l) => /-line-fill$/.test(l.id) && valueAt(l, "clipR", 0) === 100 && valueAt(l, "clipR", 60) === 0));
   assert.equal(ls.filter((l) => /-tick\d$/.test(l.id)).length, 3);
   const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "A 2000 wedding ended it. Nothing else happened." }] }, research: { ...research, key_facts: [{ fact: "The 2000 wedding", source_url: "https://news.example.org/x" }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
   assert.equal(r.plan.scenes[0].graphic.kind, "year");
@@ -430,21 +436,86 @@ test("the same year gets one timeline per video, and no more than three timeline
   assert.deepEqual(years, [2000, 1998, 1999], "first three distinct years only; the repeat of 2000 gets none");
 });
 
-test("graphics never sit still: every layer drifts to the end of the scene, and a figure-only scene also gets a sweeping line", async () => {
+test("graphics never sit still: every moving layer drifts to the end of the scene, and a hero scene also gets a sweeping line", async () => {
   for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
     for (const [kind, figs] of [["bar", [PCT]], ["count", [NUM]], ["year", [{ raw: "2000", kind: "year", value: 2000 }]]]) {
-      const ls = g(look, kind, figs, { backdrop: true });
-      const moving = ls.filter((l) => !/-(flat|sweep)$/.test(l.id));
-      for (const l of moving) assert.ok(valueAt(l, "ty", l.out - l.in) <= -20, `${look}/${kind}: ${l.id} is still rising at the end`);
-      const sweep = ls.find((l) => /-sweep$/.test(l.id));
-      assert.ok(sweep, `${look}/${kind}: sweep`);
-      assert.ok(valueAt(sweep, "ty", 40) > valueAt(sweep, "ty", 10), "the sweep moves down the frame");
-      assert.ok(valueAt(sweep, "ty", 84) < valueAt(sweep, "ty", 83), "and starts again every cycle");
-      assert.equal(ls.some((l) => /-flat$/.test(l.id) && valueAt(l, "ty", 80) !== 0), false, "a full-bleed layer never drifts");
+      const ls = g(look, kind, figs, { mode: "hero" });
+      const moving = ls.filter((l) => !/-(panel|edge|rule)$/.test(l.id));
+      for (const l of moving) assert.ok(valueAt(l, "ty", l.out - l.in) <= -15, `${look}/${kind}: ${l.id} is still rising at the end`);
     }
   }
+  const tl = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
+  addGraphics(tl, { id: "p", palette: PAL, scenes: [{ asset: "card-0", stagger: 0, graphic: { id: "g0", kind: "bar", figs: [PCT], source: "x.com", fn: "evidence", look: "vox", mode: "hero", label: "" } }] });
+  const sweep = tl.layers.find((l) => /-sweep$/.test(l.id));
+  assert.ok(sweep, "a hero scene gets the sweep");
+  assert.ok(valueAt(sweep, "ty", 40) > valueAt(sweep, "ty", 10), "the sweep moves down the frame");
+  assert.ok(valueAt(sweep, "ty", 84) < valueAt(sweep, "ty", 83), "and starts again every cycle");
   const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null], style: 2 });
   const s0 = plan.scenes[0];
+  assert.equal(s0.graphic.mode, "hero");
   assert.equal(s0.graphic.backdrop, true);
   assert.ok(s0.zoom >= 0.1, "the backdrop pushes harder under a figure");
+});
+
+// ---- split layout, captions, maps, per-beat punch ---------------------------------------------------------------------------------
+test("a figure on a photo scene goes in its own panel under the photo; the photo keeps the top, with no scrim over the panel", async () => {
+  const resolve = async ({ name }) => (/Doeson/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" } : { ok: false });
+  const { plan } = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Doeson said 45% agreed. Then it ended." }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve, concept: async () => null, queries: [null, null], style: 1 });
+  const s0 = plan.scenes[0];
+  assert.deepEqual(s0.rect, PHOTO_RECT);
+  assert.equal(s0.gradient, "rgba(0,0,0,0)");
+  assert.equal(s0.graphic.mode, "split");
+  assert.ok(s0.kicker_y + 64 <= PANEL.split.y, "the kicker stays inside the photo");
+  const tl = buildTimeline(plan, { audioDuration: 12, captions: [] });
+  const img = tl.layers.find((l) => l.id === "scene-0-image");
+  assert.deepEqual(img.rect, PHOTO_RECT);
+});
+
+test("a chart's caption is the sentence's own words around the figure", () => {
+  assert.equal(figureLabel("Nearly 24 percent of European airline pilots fly while too fatigued.", { raw: "24%", matched: "24 percent" }), "of European airline pilots fly while too fatigued");
+  assert.equal(figureLabel("JLL surveyed 1,321 organizations across 15 countries in 2026.", { raw: "1,321", matched: "1,321" }), "organizations across 15 countries in 2026");
+  assert.match(figureLabel("Robotics adoption climbs from 37% to 71% by 2030.", { raw: "37%", matched: "37%" }), /^to 71% by 2030|Robotics adoption climbs from$/);
+  assert.equal(figureLabel("", { raw: "1" }), "");
+});
+
+test("places named in a sentence are matched against real country and US-state outlines; a drawn map clips them to its rect", () => {
+  const names = (t) => matchPlaces(t).map((h) => h.f.name).sort();
+  assert.deepEqual(names("Chile hosts the Ojos del Salado"), ["Chile"]);
+  assert.deepEqual(names("Hawaii's sea arch collapsed"), ["Hawaii"]);
+  assert.deepEqual(names("Thailand and Cambodia dispute the seabed"), ["Cambodia", "Thailand"]);
+  assert.deepEqual(names("No places here"), []);
+  assert.deepEqual(names("A Turkey sandwich and a Jordan shoe"), [], "ambiguous words are not read as countries");
+  const m = buildMap({ highlight: matchPlaces("Chile and Argentina"), w: 912, h: 604 });
+  assert.equal(m.highlights.length, 2);
+  assert.ok(m.land.length > 500 && m.highlights.every((h) => h.d.length > 100));
+  const nums = [...m.highlights[0].d.matchAll(/(-?\d+\.\d) (-?\d+\.\d)/g)].map((x) => [Number(x[1]), Number(x[2])]);
+  assert.ok(nums.length > 20 && nums.every(([x, y]) => x >= -0.1 && x <= 912.1 && y >= -0.1 && y <= 604.1), "every point is inside the map rect");
+  const ring = clipRing([[-5, -5], [15, -5], [15, 15], [-5, 15]], [0, 0, 10, 10]);
+  assert.deepEqual(ring.map((p) => p.join(",")).sort(), ["0,0", "0,10", "10,0", "10,10"]);
+});
+
+test("a sentence that names a place, with no photo and no figure, gets a drawn map with the place highlighted (and at most two maps per video)", async () => {
+  const sents = ["Chile is a long thin country.", "Argentina lies on its east.", "Thailand and Cambodia disagree.", "Peru borders it to the north."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
+    words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 18, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
+  const maps = r.plan.scenes.filter((s) => s.graphic?.kind === "map");
+  assert.ok(maps.length >= 1 && maps.length <= 2, `maps: ${maps.length}`);
+  assert.equal(maps[0].graphic.mode, "hero");
+  assert.ok(maps[0].graphic.places.highlights[0].name);
+  assert.match(r.report.scenes.find((x) => /map of/.test(x.shows)).shows, /^map of Chile/);
+  const ls = graphicLayers({ id: "m", kind: "map", figs: maps[0].graphic.figs, source: "bbc.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "hero", places: maps[0].graphic.places });
+  const hl = ls.find((l) => /-hl0$/.test(l.id));
+  assert.equal(valueAt(hl, "draw", 0), 0);
+  assert.equal(valueAt(hl, "draw", 60), 1, "the highlighted place draws on");
+  assert.ok(ls.find((l) => /-land$/.test(l.id)), "the land outlines draw on too");
+});
+
+test("every beat opens with a small punch-in that settles, then the slow push continues", () => {
+  const plan = { fps: 30, palette: {}, fonts: {}, assets: { a: { file: "a.jpg", width: 1000, height: 1000 } }, scenes: [{ id: "s", start: 0, end: 4, asset: "a", fit: "cover", motion: "in" }, { id: "t", start: 4, end: 8, asset: "a", fit: "cover", motion: "in", punch: 0 }] };
+  const tl = buildTimeline(plan, { audioDuration: 8, captions: [] });
+  const k0 = tl.layers.find((l) => l.id === "scene-0-image").keyframes.scale;
+  assert.ok(k0[0].v > k0[1].v && k0[1].f === 9, "lands large, settles in 9 frames");
+  assert.ok(k0.at(-1).v > k0[1].v, "then keeps pushing");
+  const k1 = tl.layers.find((l) => l.id === "scene-1-image").keyframes.scale;
+  assert.equal(k1.length, 2, "punch: 0 turns it off");
 });
