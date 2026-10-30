@@ -1,0 +1,78 @@
+{
+  "topic_slug": "epstein-files-missing-classified-material-2026",
+  "strongest_angle": "Investigative analysis reveals that the Department of Justice holds 6 million pages of Epstein-related material, yet significant gaps in the document sequence suggest that classified information and emails were systematically withheld from public release.",
+  "key_facts": [
+    {
+      "fact": "The Department of Justice collected 6 million pages of material related to Jeffrey Epstein and released over 3 million pages after internal reviews.",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest",
+      "source_name": "CBS News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Internal documents indicate that at least three files identified as classified were included in the collection, including an FBI document.",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest",
+      "source_name": "CBS News",
+      "confidence": "high"
+    },
+    {
+      "fact": "A GitHub analysis of the EFTA document sequence shows that only 376,571 distinct documents exist out of a potential range spanning over 2.7 million slots.",
+      "source_url": "https://github.com/rhowardstone/Epstein-research/blob/main/overview/PHASE1_GAP_DETECTION.md",
+      "source_name": "Epstein-research GitHub",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Office of the Deputy Attorney General received classified material related to Jeffrey Epstein in March 2025.",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest",
+      "source_name": "CBS News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total pages collected by DOJ",
+      "value": 6000000,
+      "unit": "pages",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest"
+    },
+    {
+      "label": "Total pages released by DOJ",
+      "value": 3000000,
+      "unit": "pages",
+      "source_url": "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest"
+    },
+    {
+      "label": "Distinct documents identified in EFTA sequence",
+      "value": 376571,
+      "unit": "documents",
+      "source_url": "https://github.com/rhowardstone/Epstein-research/blob/main/overview/PHASE1_GAP_DETECTION.md"
+    },
+    {
+      "label": "Empty document slots in EFTA sequence",
+      "value": 2355212,
+      "unit": "slots",
+      "source_url": "https://github.com/rhowardstone/Epstein-research/blob/main/overview/PHASE1_GAP_DETECTION.md"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Jeffrey Epstein",
+      "kind": "person"
+    },
+    {
+      "name": "Department of Justice",
+      "kind": "organization"
+    },
+    {
+      "name": "FBI",
+      "kind": "organization"
+    },
+    {
+      "name": "Office of the Deputy Attorney General",
+      "kind": "organization"
+    },
+    {
+      "name": "EFTA",
+      "kind": "object"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "channel_id": "1",
+  "topic_slug": "epstein-files-missing-classified-material-2026",
+  "format": "shorts",
+  "hook": "The Department of Justice holds 6 million pages, but millions are missing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Department of Justice holds 6 million pages, but millions are missing.",
+      "visual_cue": "Close up of a thick, redacted document stack on a wooden desk.",
+      "sfx_cue": "Sound of a heavy paper folder hitting a desk.",
+      "b_roll": [
+        "Public domain footage of a government archive shelf"
+      ],
+      "text_overlay": {
+        "text": "6,000,000 Pages Collected"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal investigators collected 6 million pages related to Jeffrey Epstein. Officials released only 3 million pages after internal reviews. Why do 2,355,212 empty slots exist in the EFTA sequence, which tracks official document storage?",
+      "visual_cue": "Digital counter showing documents being sorted in a sequence.",
+      "sfx_cue": "Digital ticking sound accelerating.",
+      "b_roll": [
+        "CC-licensed image of a federal building exterior"
+      ],
+      "text_overlay": {
+        "text": "3,000,000 Pages Released"
+      },
+      "transition_out": "dissolve"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "GitHub analysis shows these gaps hide information, as only 376,571 distinct documents actually exist.",
+      "visual_cue": "Visual of a spreadsheet showing gaps in a document index.",
+      "sfx_cue": "Sharp, metallic click.",
+      "b_roll": [
+        "Screenshot of a redacted index file"
+      ],
+      "text_overlay": {
+        "text": "2,355,212 Empty Slots"
+      },
+      "transition_out": "slide-left"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Office of the Deputy Attorney General received classified Jeffrey Epstein material in March 2025. Internal documents confirm the Department of Justice included three classified files, including an FBI document.",
+      "visual_cue": "A series of redacted stamps falling onto document pages.",
+      "sfx_cue": "Stamping sound effect.",
+      "b_roll": [
+        "Public domain image of a classified document header"
+      ],
+      "text_overlay": {
+        "text": "Classified Material Withheld"
+      },
+      "transition_out": "fade-in"
+    },
+    {
+      "id": "close",
+      "voiceover": "Only 376,571 distinct documents exist in the official sequence.",
+      "visual_cue": "Text graphic showing the total document count against the background.",
+      "sfx_cue": "Subtle echo of a page turn.",
+      "b_roll": [
+        "Wide shot of a dark, archival storage room"
+      ],
+      "text_overlay": {
+        "text": "376,571 Documents Found"
+      },
+      "transition_out": "fade-to-black"
+    }
+  ],
+  "sources_used": [
+    "https://www.cbsnews.com/news/epstein-files-classified-material-missing-documents-suggest",
+    "https://github.com/rhowardstone/Epstein-research/blob/main/overview/PHASE1_GAP_DETECTION.md"
+  ]
+}
