@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "brown-university-multiferroic-ai-chips",
+  "format": "shorts",
+  "hook": "AI chips could run on less than 1 fJ per operation.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "AI chips could run on less than 1 fJ per operation.",
+      "visual_cue": "Close‑up of a futuristic AI chip glowing, overlay showing “<1 fJ” label."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 28 Oct 2026, Brown unveiled ultrathin BiFeO₃ films. Only a few ångströms thick, they sit on 3.94 Å DyScO₃. Will removing the dead‑layer cut AI chip energy below 1 fJ?",
+      "visual_cue": "Brown University press release image with BiFeO₃ film diagram and a 3.94 Å lattice illustration."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But conventional CMOS still consumes 10‑100 fJ per operation today.",
+      "visual_cue": "Side‑by‑side graphic comparing 10‑100 fJ CMOS energy with the sub‑1 fJ target."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Their model shows multiferroic chips consume under 1 fJ, versus 10‑100 fJ for CMOS. That’s an order‑of‑magnitude power cut for AI accelerators. The work, published in Nature Materials by Lucas Caretta and colleagues, marks a turning point.",
+      "visual_cue": "Animated chart dropping from 10‑100 fJ to <1 fJ, overlay of Nature Materials cover and researcher portraits."
+    },
+    {
+      "id": "close",
+      "voiceover": "AI chips may soon run on sub‑fJ energy, reshaping data‑center power needs.",
+      "visual_cue": "Final frame of an AI chip powering a data‑center, caption “sub‑fJ era”."
+    }
+  ],
+  "sources_used": [
+    "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone",
+    "https://techxplore.com/news/2026-10-ultrathin-dead-layer-effect-enable.html"
+  ]
+}

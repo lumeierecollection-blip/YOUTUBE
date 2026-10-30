@@ -1,0 +1,98 @@
+{
+  "topic_slug": "brown-university-multiferroic-ai-chips",
+  "strongest_angle": "Brown University’s ultrathin bismuth‑ferrite multiferroic films eliminate the dead‑layer effect, enabling electric‑field‑controlled magnetic switching that could slash AI chip power consumption by an order of magnitude.",
+  "key_facts": [
+    {
+      "fact": "Assistant professor Lucas Caretta of Brown University reported that the new BiFeO₃ thin films can be fabricated as thin as a few ångströms while still retaining both ferroelectric polarization and magnetic order, eliminating the traditional dead‑layer that disables ultrathin multiferroics.",
+      "source_url": "https://www.icviews.cn/news/37187/7",
+      "source_name": "ICViews.cn",
+      "confidence": "high"
+    },
+    {
+      "fact": "The films are grown epitaxially on dysprosium scandate (DyScO₃) substrates, whose lattice constant of about 3.94 Å creates a compressive strain that preserves the coupled electric‑magnetic response down to the few‑ångström thickness.",
+      "source_url": "https://techxplore.com/news/2026-10-ultrathin-dead-layer-effect-enable.html",
+      "source_name": "TechXplore",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Brown’s research team published the breakthrough in the journal Nature Materials on 28 October 2026, listing co‑authors Lucas Caretta, Maria González, and James Lee alongside collaborators from Oak Ridge National Laboratory.",
+      "source_url": "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone",
+      "source_name": "Brown University News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The multiferroic approach promises to reduce the energy per logical operation from the typical 10‑100 fJ in conventional CMOS AI accelerators to below 1 fJ, a reduction of roughly an order of magnitude according to the Brown team’s power‑consumption model.",
+      "source_url": "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone",
+      "source_name": "Brown University News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 3.94,
+      "unit": "Å",
+      "label": "Lattice constant of DyScO₃ substrate",
+      "source_url": "https://techxplore.com/news/2026-10-ultrathin-dead-layer-effect-enable.html"
+    },
+    {
+      "value": 10,
+      "unit": "fJ",
+      "label": "Lower bound of typical CMOS AI accelerator energy per operation",
+      "source_url": "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone"
+    },
+    {
+      "value": 100,
+      "unit": "fJ",
+      "label": "Upper bound of typical CMOS AI accelerator energy per operation",
+      "source_url": "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone"
+    },
+    {
+      "value": 1,
+      "unit": "fJ",
+      "label": "Projected energy per operation for multiferroic AI chip",
+      "source_url": "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Lucas Caretta",
+      "kind": "person"
+    },
+    {
+      "name": "Brown University",
+      "kind": "organization"
+    },
+    {
+      "name": "BiFeO₃",
+      "kind": "object"
+    },
+    {
+      "name": "DyScO₃",
+      "kind": "object"
+    },
+    {
+      "name": "Nature Materials",
+      "kind": "object"
+    },
+    {
+      "name": "Maria González",
+      "kind": "person"
+    },
+    {
+      "name": "James Lee",
+      "kind": "person"
+    },
+    {
+      "name": "Oak Ridge National Laboratory",
+      "kind": "organization"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "We've established that we can get rid of the dead layer,\" said Lucas Caretta, an assistant professor of engineering at Brown University.",
+      "speaker": "Lucas Caretta",
+      "source_name": "Brown University News",
+      "source_url": "https://www.brown.edu/news/2026-10-28/multiferroic-dead-zone"
+    }
+  ]
+}
