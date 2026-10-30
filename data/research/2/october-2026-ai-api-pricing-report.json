@@ -1,0 +1,78 @@
+{
+  "topic_slug": "october-2026-ai-api-pricing-report",
+  "strongest_angle": "October 2026 saw significant market volatility with 201 recorded price changes, highlighted by a 90% price reduction for Anthropic's Haiku 5.5 model.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, AI Calculator Pro recorded 201 total price changes across LLM providers, consisting of 101 price cuts and 100 price increases.",
+      "source_url": "https://aicalculatorpro.com/llm-price-changes/2026-10",
+      "source_name": "AI Calculator Pro",
+      "confidence": "high"
+    },
+    {
+      "fact": "Anthropic released the Claude Haiku 5.5 model on October 7, 2026, at a price point 90% lower than the previous Haiku 4.5 version.",
+      "source_url": "https://aitokenprice.com/reports/2026-10",
+      "source_name": "AI Token Price",
+      "confidence": "high"
+    },
+    {
+      "fact": "DeepSeek V4.1 Flash input pricing saw an 89% reduction in October 2026, dropping from $0.140 to $0.016 per million tokens.",
+      "source_url": "https://aicalculatorpro.com/llm-price-changes/2026-10",
+      "source_name": "AI Calculator Pro",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mistral AI reduced the price of the Mistral Large 4 model to $0.70 for input and $2.10 for output on October 29, 2026.",
+      "source_url": "https://aichangewatch.com/changes/pricing",
+      "source_name": "AI Change Watch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total price changes in October 2026",
+      "value": 201,
+      "unit": "changes",
+      "source_url": "https://aicalculatorpro.com/llm-price-changes/2026-10"
+    },
+    {
+      "label": "Anthropic Haiku 5.5 price cut percentage",
+      "value": 90,
+      "unit": "percent",
+      "source_url": "https://aitokenprice.com/reports/2026-10"
+    },
+    {
+      "label": "DeepSeek V4.1 Flash input price reduction",
+      "value": 89,
+      "unit": "percent",
+      "source_url": "https://aicalculatorpro.com/llm-price-changes/2026-10"
+    },
+    {
+      "label": "Mistral Large 4 input price",
+      "value": 0.7,
+      "unit": "dollars per million tokens",
+      "source_url": "https://aichangewatch.com/changes/pricing"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude Haiku 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "DeepSeek V4.1 Flash",
+      "kind": "object"
+    },
+    {
+      "name": "Mistral AI",
+      "kind": "organization"
+    },
+    {
+      "name": "Mistral Large 4",
+      "kind": "object"
+    }
+  ]
+}

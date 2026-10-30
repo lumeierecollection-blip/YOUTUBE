@@ -1,0 +1,73 @@
+{
+  "channel_id": "2",
+  "topic_slug": "october-2026-ai-api-pricing-report",
+  "format": "shorts",
+  "hook": "In October 2026, AI providers triggered 201 total price changes.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, AI providers triggered 201 total price changes.",
+      "visual_cue": "A large bold number 201 appearing on a white background with a digital ticker effect.",
+      "sfx_cue": "Digital count-up sound effect.",
+      "b_roll": [
+        "Abstract digital data ticker animation"
+      ],
+      "text_overlay": {
+        "text": "201 Price Changes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "AI Calculator Pro tracked 101 price cuts and 100 hikes across various LLM provider services. Anthropic released Claude Haiku 5.5 on October 7, 2026, with a massive 90 percent price cut.",
+      "visual_cue": "A split screen showing a downward red arrow for cuts and an upward green arrow for hikes.",
+      "sfx_cue": "Subtle swoosh transition.",
+      "b_roll": [
+        "Red and green data trend arrows"
+      ],
+      "text_overlay": {
+        "text": "101 Cuts vs 100 Hikes"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "That 90 percent discount beats the 89 percent price drop for the DeepSeek V4.1 Flash model.",
+      "visual_cue": "A bar chart showing the 89 percent drop for the specified model.",
+      "sfx_cue": "Sharp drop sound effect.",
+      "b_roll": [
+        "Animated bar chart showing rapid decline"
+      ],
+      "text_overlay": {
+        "text": "89% Price Drop"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mistral AI also slashed Mistral Large 4 input costs to 0.7 dollars per million tokens.",
+      "visual_cue": "A comparison table showing the 90 percent cut and the 0.7 dollar rate.",
+      "sfx_cue": "Soft chime on data reveal.",
+      "b_roll": [
+        "Data comparison table"
+      ],
+      "text_overlay": {
+        "text": "90% Cut vs $0.70 Rate"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Mistral AI also set the Mistral Large 4 output price at 2.10 dollars per million tokens.",
+      "visual_cue": "Final screen displaying the 201 total count again.",
+      "sfx_cue": "Final data ping.",
+      "b_roll": [
+        "Static graphic of 201 total changes"
+      ],
+      "text_overlay": {
+        "text": "201 Changes Total"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://aicalculatorpro.com/llm-price-changes/2026-10",
+    "https://aitokenprice.com/reports/2026-10",
+    "https://aichangewatch.com/changes/pricing"
+  ]
+}
