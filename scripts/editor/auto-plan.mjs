@@ -54,6 +54,12 @@ export function extractFigures(sentence) {
   return found.sort((a, b) => a.index - b.index);
 }
 
+/** A year (1000-2099) the sentence states, as a figure of kind "year"; the caller checks the research states it too. */
+export function extractYear(sentence) {
+  const m = String(sentence).match(/(?<![\d,.])(1[0-9]{3}|20[0-9]{2})(?![\d,]|\.\d)/);
+  return m ? { raw: m[1], kind: "year", value: Number(m[1]), index: m.index, matched: m[1] } : null;
+}
+
 /** The digits of a figure, so "1,321" and "1321" and "45 percent" / "45%" compare equal. */
 const digitsOf = (raw) => String(raw).replace(/[^\d.]/g, "");
 
@@ -199,9 +205,12 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     const dy = pick(rng, DY[lookId] || [0]);
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
+    // No number to draw? A year the research states becomes an animated timeline (the year counts up along a drawn line).
+    const yearFig = !figs.length ? extractYear(sentence) : null;
+    const gfigs = figs.length ? figs : (yearFig && researchStates(research, yearFig) ? [yearFig] : []);
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
-    const graphicFor = () => ({ id: `g${i}`, kind: chooseKind(figs, rng, look.name), figs: figs.slice(0, 2), source: figSource, fn, dy, look: look.name });
+    const graphicFor = () => ({ id: `g${i}`, kind: chooseKind(gfigs, rng, look.name), figs: gfigs.slice(0, 2), source: figSource, fn, dy, look: look.name });
     const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
     let scene = null;
     let how = "";
@@ -226,8 +235,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (id === lastAsset) continue; // never the same picture two scenes running
       assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license };
       scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
-      if (figs.length) scene.graphic = graphicFor();
-      how = `verified photo of ${ent.name}${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
+      if (gfigs.length) scene.graphic = graphicFor();
+      how = `verified photo of ${ent.name}${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
       break;
     }
 
@@ -239,19 +248,19 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         const id = `concept-${i}`;
         assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
-        if (figs.length) scene.graphic = graphicFor();
-        how = `concept photo "${queries[i]}"${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
+        if (gfigs.length) scene.graphic = graphicFor();
+        how = `concept photo "${queries[i]}"${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
       } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
     }
 
     // 3. no photo: the figure alone on a flat colour, or the sentence's key words as a poster
     if (!scene) {
       const id = `card-${i}`;
-      if (figs.length) {
+      if (gfigs.length) {
         // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer with a slow push, so the
         // final-MP4 QA still sees motion on every image layer.
         cards.push({ id, svg: backdropSvg(palette) });
-        how = `figure alone ${figs.map((f) => f.raw).join(", ")}`;
+        how = `figure alone ${gfigs.map((f) => f.raw).join(", ")}`;
       } else {
         // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a
         // shot (a verified photo of the subject first, then a concept photo; never the one on screen a moment ago). A poster of key words
@@ -269,7 +278,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       }
       if (!scene) {
         scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
-        if (figs.length) scene.graphic = graphicFor();
+        if (gfigs.length) scene.graphic = graphicFor();
       }
     }
 

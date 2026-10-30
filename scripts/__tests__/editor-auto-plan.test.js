@@ -391,3 +391,29 @@ test("a photo scene with no figure still moves: the accent draws itself across i
   addGraphics(tl2, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
   assert.equal(tl2.layers.length, 1, "a backdrop scene with no graphic gets none");
 });
+
+import { luminance, onFill } from "../editor/graphics.mjs";
+import { extractYear } from "../editor/auto-plan.mjs";
+
+test("text on an accent fill follows the fill: dark on light, white on dark (a dark-blue accent made dark text unreadable)", () => {
+  assert.equal(onFill("#1ABC9C"), "#101114");
+  assert.equal(onFill("#D4A574"), "#101114");
+  assert.equal(onFill("#1F3A8A"), "#FFFFFF");
+  assert.equal(onFill("#8B1E1E"), "#FFFFFF");
+  assert.ok(luminance("#FFFFFF") > 0.99 && luminance("#000000") < 0.01);
+});
+
+test("a year the research states becomes an animated timeline: the line wipes in, ticks pop, the year counts up to it", async () => {
+  assert.equal(extractYear("The 2000 wedding ended it.").value, 2000);
+  assert.equal(extractYear("It cost 1,500 dollars and 45 people."), null);
+  assert.equal(extractYear("No year here."), null);
+  const ls = graphicLayers({ id: "g", kind: "year", figs: [{ raw: "2000", kind: "year", value: 2000 }], source: "bbc.com", fn: "evidence", look: "vox", palette: PAL, inF: 0, outF: 90 });
+  const n = ls.find((l) => l.count);
+  assert.equal(formatCount(n.count, valueAt(n, "count", 0)), "1986");
+  assert.equal(formatCount(n.count, valueAt(n, "count", 80)), "2000");
+  assert.ok(ls.some((l) => /-line$/.test(l.id) && valueAt(l, "clipR", 0) === 100 && valueAt(l, "clipR", 60) === 0));
+  assert.equal(ls.filter((l) => /-tick\d$/.test(l.id)).length, 3);
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "A 2000 wedding ended it. Nothing else happened." }] }, research: { ...research, key_facts: [{ fact: "The 2000 wedding", source_url: "https://news.example.org/x" }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
+  assert.equal(r.plan.scenes[0].graphic.kind, "year");
+  assert.equal(r.plan.scenes[1].graphic, undefined, "a sentence with no figure and no year gets no graphic");
+});

@@ -10,6 +10,16 @@
 import { fitSize } from "./styles.mjs";
 
 const SANS = "Inter";
+
+/** Relative luminance (0..1) of a #rrggbb colour. */
+export function luminance(hex) {
+  const m = String(hex).replace("#", "").match(/^([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+  if (!m) return 0.5;
+  const [r, g, b] = [m[1], m[2], m[3]].map((h) => { const c = parseInt(h, 16) / 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+/** Text colour that reads on a given fill: dark ink on light fills, white on dark ones (a dark-blue accent made dark text unreadable). */
+export const onFill = (fill) => (luminance(fill) > 0.28 ? "#101114" : "#FFFFFF");
 const SERIF = "Georgia";
 
 /** "45%" / "$2.5 million" / "3,471" / "453" -> what to count to, and how to write it. */
@@ -28,6 +38,7 @@ export function parseFigure(fig) {
 
 /** Which graphic fits the figures: percentages get a bar or a ring (two percentages get two bars), anything else counts. */
 export function chooseKind(figs, rng, look) {
+  if (figs.length === 1 && figs[0].kind === "year") return "year";
   const pcts = figs.filter((f) => f.kind === "percent" && f.value >= 0 && f.value <= 100);
   if (pcts.length >= 2) return "bars2";
   if (pcts.length === 1) return look === "vox" || look === "anti-slop" ? (rng() < 0.45 ? "ring" : "bar") : "bar";
@@ -87,6 +98,18 @@ export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, p
   const rule = (suffix, rect, color = accent) => mk(suffix, "solid", rect, { style: { background: color }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [16, 0, "outCubic"]) } });
 
   const base = 900;
+  if (kind === "year") {
+    const y = Number(fig.value);
+    const onPlate = look === "hallmark";
+    const col = onPlate ? ink : "#FFFFFF";
+    if (onPlate) { mk("plate", "solid", { x: 90, y: base - 200, w: 900, h: 400 }, { style: { background: "#EFE8D8" }, keyframes: entrance(len, { slide: 60 }) }); }
+    const sp = { from: y - 14, to: y, decimals: 0, prefix: "", suffix: "", group: false };
+    number("n", { x: 90, y: base - 190, w: 900, h: 280 }, fitSize("0000", 230, 800), col, { align: "center", weight: look === "hallmark" ? 400 : 900, font: look === "hallmark" ? SERIF : SANS, shadow: !onPlate, spec: sp, delay: 2 });
+    mk("line", "solid", { x: 190, y: base + 130, w: 700, h: 8 }, { style: { background: onPlate ? ink : accent }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [22, 0, "outCubic"]) } });
+    [190, 536, 882].forEach((x, i) => mk(`tick${i}`, "solid", { x, y: base + 98, w: 8, h: 72 }, { style: { background: onPlate ? ink : accent }, delay: 8 + i * 5, keyframes: { ...entrance(len, { slide: 0 }), clipB: kf([0, 100], [10, 0, "outCubic"]) } }));
+    sourceTag({ x: 90, y: base + 190, w: 900, h: 30 }, onPlate ? "#4A463C" : "#C9CDD6", "center");
+    return layers;
+  }
   const big = (f, bw = 880, cap = 250) => fitSize(f.raw, cap, bw);
   const pct = (f) => (f.kind === "percent" ? Math.max(0, Math.min(100, f.value)) : null);
 
@@ -123,9 +146,10 @@ export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, p
   if (look === "scene-director") {
     if (fn === "payoff") {
       mk("flat", "solid", { x: 0, y: -dy, w: 1080, h: 1920 }, { style: { background: accent }, keyframes: { opacity: kf([0, 0], [10, 1], [Math.max(11, len - 8), 1], [len, 0]) } });
-      number("n", { x: 90, y: base - 260, w: 900, h: 420 }, fitSize(fig.raw, 330, 880), ink, { weight: 900, delay: 6 });
-      if (pct(fig) != null) growBar("b", { x: 90, y: base + 190, w: 900, h: 26 }, ink, pct(fig), 16, true);
-      sourceTag({ x: 90, y: base + 250, w: 900, h: 32 }, ink);
+      const onA = onFill(accent);
+      number("n", { x: 90, y: base - 260, w: 900, h: 420 }, fitSize(fig.raw, 330, 880), onA, { weight: 900, delay: 6 });
+      if (pct(fig) != null) growBar("b", { x: 90, y: base + 190, w: 900, h: 26 }, onA, pct(fig), 16, true);
+      sourceTag({ x: 90, y: base + 250, w: 900, h: 32 }, onA);
       return layers;
     }
     if (fn === "hook") {
@@ -136,7 +160,7 @@ export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, p
     }
     const w = Math.min(760, 60 + Math.ceil(fig.raw.length * fitSize(fig.raw, 100, 640) * 0.66));
     mk("chip", "solid", { x: 90, y: 300 - dy, w, h: 150 }, { style: { background: accent }, keyframes: { ...entrance(len, { slide: -50 }), clipR: kf([0, 100], [14, 0, "outCubic"]) } });
-    number("n", { x: 120, y: 300 - dy, w: w - 60, h: 150 }, fitSize(fig.raw, 100, 640), ink, { weight: 900, delay: 4 });
+    number("n", { x: 120, y: 300 - dy, w: w - 60, h: 150 }, fitSize(fig.raw, 100, 640), onFill(accent), { weight: 900, delay: 4 });
     if (pct(fig) != null) growBar("b", { x: 90, y: 462 - dy, w, h: 14 }, accent, pct(fig), 14, true);
     return layers;
   }
