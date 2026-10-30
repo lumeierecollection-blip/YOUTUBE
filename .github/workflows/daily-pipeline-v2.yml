@@ -591,7 +591,8 @@ jobs:
           # planner's src/lib/gemini-client.js): qwen2.5:3b copied the prompt's example and
           # repeated sentences (docs/V2-NARRATIVE-SCRIPT-GREEN.md). OPENCODE_MODELS_REASONING
           # (Ollama) is the fallback when Gemini cannot answer. force_planner=ollama skips Gemini.
-          SCRIPT_GEMINI_MODEL: gemini-3.5-flash-lite
+          # The stronger model writes from attempt 1: the lite model exaggerated ("larger than" for "roughly the size of", "record levels" for "an increase") and the claims gate then skipped 3 of 10 channels a run.
+          SCRIPT_GEMINI_MODEL: gemini-3.5-flash
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
