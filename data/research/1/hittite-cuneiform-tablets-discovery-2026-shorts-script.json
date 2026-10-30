@@ -2,88 +2,36 @@
   "channel_id": "1",
   "topic_slug": "hittite-cuneiform-tablets-discovery-2026",
   "format": "shorts",
-  "hook": "One ancient clay tablet recorded a royal tragedy buried for 3,400 years.",
+  "hook": "184 Hittite tablets unearthed in 2026 reveal a dead princess.",
   "sections": [
     {
       "id": "hook",
-      "timing": "0-4s",
-      "voiceover": "One ancient clay tablet recorded a royal tragedy buried for 3,400 years.",
-      "visual_cue": "Close-up cinematic shot of cuneiform script carved into an ancient clay tablet under dim museum lighting.",
-      "sfx_cue": "Subtle low frequency drone with a faint scraping texture.",
-      "b_roll": [
-        "Kayalıpınar archaeological site wide aerial shot"
-      ],
-      "animation_cue": "Slow zoom in on the carved wedge-shaped characters.",
-      "transition_out": "Hard cut to excavation trench.",
-      "text_overlay": {
-        "text": "3,400-Year-Old Secret"
-      }
+      "voiceover": "184 Hittite tablets unearthed in 2026 reveal a dead princess.",
+      "visual_cue": "Pile of 184 ancient tablets on a desert floor."
     },
     {
       "id": "setup",
-      "timing": "4-18s",
-      "voiceover": "Archaeologists working at Kayalıpınar in central Turkey discovered 131 cuneiform tablets. Turkey's Minister of Culture and Tourism Mehmet Nuri Ersoy announced the find. What secrets did King Tudhaliya II hide in the royal archive?",
-      "visual_cue": "Medium shot of archaeologists carefully brushing soil off a discovered artifact in a dusty trench at Kayalıpınar.",
-      "sfx_cue": "Soft brush scraping against stone.",
-      "b_roll": [
-        "Mehmet Nuri Ersoy speaking at a press conference",
-        "Excavation workers in central Turkey"
-      ],
-      "animation_cue": "Pan across the uncovered tablet surface.",
-      "transition_out": "Dissolve to archival room.",
-      "text_overlay": {
-        "text": "131 Tablets Unearthed"
-      }
+      "voiceover": "2026 digs at Kayalıpınar, Turkey uncovered 131 tablets, adding to 53 for 184 total. They date to King Tudhaliya II, about 3,400 years ago. What fever killed a princess and why?",
+      "visual_cue": "Map of Turkey zooming to Kayalıpınar site, then tablets stacked."
     },
     {
       "id": "rehook",
-      "timing": "18-24s",
-      "voiceover": "Combining the 131 tablets with 53 pieces found in 2025 at Šamuḥa makes 184 total archive pieces.",
-      "visual_cue": "Close-up tracking shot of multiple cataloged clay fragments resting on padded museum shelves.",
-      "sfx_cue": "Subtle paper shuffle and soft room tone.",
-      "b_roll": [
-        "Šamuḥa historical excavation site view"
-      ],
-      "animation_cue": "Counter incrementing up to 184.",
-      "transition_out": "Fast wipe to laboratory setting.",
-      "text_overlay": {
-        "text": "184 Total Archive Pieces"
-      }
+      "voiceover": "But the tablets also expose a crisis that threatened the empire’s food supply.",
+      "visual_cue": "Close‑up of a tablet showing grain ledger with red marks."
     },
     {
       "id": "payoff",
-      "timing": "24-38s",
-      "voiceover": "The 131 newly found tablets reveal a brutal epidemic during the reign of King Tudhaliya II. These 131 cuneiform tablets from Turkey detail a deadly epidemic that killed a nursing princess.",
-      "visual_cue": "Macro close-up shot of damaged clay edges revealing detailed cuneiform markings under raking light.",
-      "sfx_cue": "Low atmospheric tension swell.",
-      "b_roll": [
-        "Hittite royal artifact display case"
-      ],
-      "animation_cue": "Highlight overlay pulsing over specific cuneiform lines.",
-      "transition_out": "Fade to black and white.",
-      "text_overlay": {
-        "text": "Royal Court Epidemic"
-      }
+      "voiceover": "The tablets record a high‑fever epidemic that killed a royal princess. They list grain rations and livestock loans, showing a strained economy. The 184‑tablet archive reveals religion, disease, and daily life in the Hittite Empire.",
+      "visual_cue": "Pages of tablets displaying epidemic text and economic tables."
     },
     {
       "id": "close",
-      "timing": "38-45s",
-      "voiceover": "131 cuneiform tablets revealed a lost royal tragedy.",
-      "visual_cue": "Static wide shot of the excavated Kayalıpınar site at dusk with shadows stretching across the trench.",
-      "sfx_cue": "Wind ambient sound fading out.",
-      "b_roll": [
-        "Kayalıpınar site landscape at sunset"
-      ],
-      "animation_cue": "Fade to dark.",
-      "transition_out": "Fade out.",
-      "text_overlay": {
-        "text": "Kayalıpınar Archive"
-      }
+      "voiceover": "184 tablets now illuminate a forgotten Hittite world.",
+      "visual_cue": "Zoom on the number 184 etched on a tablet."
     }
   ],
   "sources_used": [
-    "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
-    "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive",
-    "https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha"
+    "https://turkeydailynews.com/hittite-royal-archive-184-tablets-kayalipinar-sivas",
+    "https://www.anatolianarchaeology.net/lost-hittite-royal-archive-reveals-3400-year-old-epidemic-princesss-death-and-military-crisis"
   ]
 }

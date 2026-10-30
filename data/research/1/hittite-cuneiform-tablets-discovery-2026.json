@@ -1,56 +1,63 @@
 {
   "topic_slug": "hittite-cuneiform-tablets-discovery-2026",
-  "strongest_angle": "The discovery of 131 cuneiform tablets at Kayalıpınar in central Turkey provides a direct glimpse into the Hittite Empire under King Tudhaliya II, detailing epidemics, royal family tragedies, and military affairs.",
+  "strongest_angle": "A massive 184‑tablet Hittite royal archive uncovered in 2026 reveals religious rites, a royal plague, and everyday economics of a 3,400‑year‑old empire.",
   "key_facts": [
     {
-      "fact": "Archaeologists working at Kayalıpınar in central Turkey discovered 131 cuneiform tablets written in Hittite and Hurrian, dating to the reign of King Tudhaliya II circa 1400 BC, as announced by Turkey's Minister of Culture and Tourism Mehmet Nuri Ersoy.",
+      "fact": "Archaeologists at the Kayalıpınar mound in the Yıldızeli district of Sivas Province, Turkey, uncovered 131 cuneiform tablets in the 2026 season, joining 53 tablets found in 2025 for a total archive of 184 tablets.",
+      "source_url": "https://turkeydailynews.com/hittite-royal-archive-184-tablets-kayalipinar-sivas",
+      "source_name": "Turkey Daily News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The tablets belong to the reign of Hittite King Tudhaliya II and are dated to about 3,400 years ago, placing the archive around 1,400 BCE.",
+      "source_url": "https://www.anatolianarchaeology.net/lost-hittite-royal-archive-reveals-3400-year-old-epidemic-princesss-death-and-military-crisis",
+      "source_name": "Anatolian Archaeology",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The texts record three main aspects of Hittite life: (1) detailed religious ritual offerings, (2) a high‑fever epidemic that killed a royal princess, and (3) economic transactions such as grain rations and livestock loans.",
       "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
       "source_name": "National Geographic",
-      "confidence": "high"
-    },
-    {
-      "fact": "Combining the 131 tablets found in the 2026 season with 53 pieces recovered in 2025 at the ancient Hittite city of Šamuḥa yields a grand total of 184 archive pieces.",
-      "source_url": "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive",
-      "source_name": "Ancient Cyprus",
-      "confidence": "high"
-    },
-    {
-      "fact": "One of the newly discovered tablets from the royal court in exile under Tudhaliya II details a deadly epidemic that decimated infants and young children, including a nursing princess.",
-      "source_url": "https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha",
-      "source_name": "CNRS Le journal",
       "confidence": "medium"
     }
   ],
   "numbers": [
     {
-      "label": "Newly discovered cuneiform tablets in 2026",
       "value": 131,
       "unit": "tablets",
-      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery"
+      "label": "tablets uncovered in the 2026 season",
+      "source_url": "https://turkeydailynews.com/hittite-royal-archive-184-tablets-kayalipinar-sivas"
     },
     {
-      "label": "Cuneiform pieces recovered in 2025",
       "value": 53,
-      "unit": "pieces",
-      "source_url": "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive"
+      "unit": "tablets",
+      "label": "tablets uncovered in 2025",
+      "source_url": "https://turkeydailynews.com/hittite-royal-archive-184-tablets-kayalipinar-sivas"
     },
     {
-      "label": "Total royal archive pieces unearthed",
       "value": 184,
       "unit": "tablets",
+      "label": "total tablets in the Kayalıpınar archive",
       "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
     },
     {
-      "label": "Approximate age of the unearthed royal archive",
       "value": 3400,
       "unit": "years",
-      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
+      "label": "age of the archive (years ago)",
+      "source_url": "https://www.anatolianarchaeology.net/lost-hittite-royal-archive-reveals-3400-year-old-epidemic-princesss-death-and-military-crisis"
     }
   ],
-  "quotes": [],
   "named_entities": [
     {
       "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Yıldızeli district",
+      "kind": "place"
+    },
+    {
+      "name": "Sivas Province",
       "kind": "place"
     },
     {
@@ -58,20 +65,37 @@
       "kind": "place"
     },
     {
-      "name": "Tudhaliya II",
-      "kind": "person"
-    },
-    {
       "name": "Mehmet Nuri Ersoy",
       "kind": "person"
     },
     {
-      "name": "Šamuḥa",
-      "kind": "place"
+      "name": "Tudhaliya II",
+      "kind": "person"
     },
     {
-      "name": "Sivas",
-      "kind": "place"
+      "name": "Hittite Empire",
+      "kind": "organization"
+    },
+    {
+      "name": "National Geographic",
+      "kind": "organization"
+    },
+    {
+      "name": "Anatolian Archaeology",
+      "kind": "organization"
+    },
+    {
+      "name": "Turkey Daily News",
+      "kind": "organization"
+    },
+    {
+      "name": "2026",
+      "kind": "object"
+    },
+    {
+      "name": "2025",
+      "kind": "object"
     }
-  ]
+  ],
+  "quotes": []
 }
