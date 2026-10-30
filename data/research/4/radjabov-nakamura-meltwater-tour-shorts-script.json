@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "radjabov-nakamura-meltwater-tour",
+  "format": "shorts",
+  "hook": "6 seconds left on the clock changed the 2021 Meltwater Champions Chess Tour Finals entirely.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "6 seconds left on the clock changed the 2021 Meltwater Champions Chess Tour Finals entirely.",
+      "text_overlay": {
+        "text": "6 seconds remaining"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Teimour Radjabov faced Hikaru Nakamura during the 2021 Meltwater Champions Chess Tour Finals under extreme time pressure. Did Teimour Radjabov make the right call under pressure?",
+      "text_overlay": {
+        "text": "Teimour Radjabov vs Hikaru Nakamura"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "He played a move that backfired, but Nakamura immediately seized the advantage with a counter-attack.",
+      "text_overlay": {
+        "text": "Zugzwang reached"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Hikaru Nakamura secured 28 points in the final standings. Radjabov finished with 23.5 points after he was forced to resign the final game.",
+      "text_overlay": {
+        "text": "28 points vs 23.5 points"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "He resigned because he faced zugzwang, a situation where any move he made worsened his position.",
+      "text_overlay": {
+        "text": "Final standings"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spectator.com/article/panic-stations",
+    "https://www.chessgames.com/perl/chess.pl?tid=105014"
+  ]
+}
