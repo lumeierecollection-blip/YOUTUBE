@@ -1,0 +1,57 @@
+{
+  "channel_id": "17",
+  "topic_slug": "super-el-nino-record-sea-temperatures",
+  "format": "shorts",
+  "hook": "The Bureau of Meteorology confirms the Pacific Ocean shattered historical sea-surface temperature records this year.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Bureau of Meteorology confirms the Pacific Ocean shattered historical sea-surface temperature records this year.",
+      "visual_cue": "Satellite thermal map of the Pacific Ocean with heat intensity highlighted.",
+      "sfx_cue": "Low, ominous ambient drone starting.",
+      "text_overlay": {
+        "text": "Pacific Ocean Record"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In September 2026, the Copernicus climate service recorded surface waters reaching 29.7 degrees Celsius. Does this record 29.70 degrees Celsius heat spike in the Pacific Ocean signal further warming?",
+      "visual_cue": "Data graph showing the spike in sea surface temperature over the month.",
+      "sfx_cue": "Subtle digital data processing sound.",
+      "text_overlay": {
+        "text": "29.7°C Recorded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Bureau of Meteorology warns that daily anomalies hit 3.08 degrees Celsius above average.",
+      "visual_cue": "Official logo of the Australian Bureau of Meteorology.",
+      "sfx_cue": "Sharp, sudden riser sound.",
+      "text_overlay": {
+        "text": "Bureau of Meteorology Data"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Warming in the central Pacific reached a record Niño3.4 index of 2.88 degrees Celsius by October 25. Thermal energy in the equatorial Pacific remains at unprecedented levels due to this intense warming.",
+      "visual_cue": "Close-up of a climate dashboard showing the 2.88 value.",
+      "sfx_cue": "High-tension pulse sound.",
+      "text_overlay": {
+        "text": "2.88°C Index Peak"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Records continue to climb as the December peak approaches.",
+      "visual_cue": "Wide shot of the Pacific Ocean at sunset.",
+      "sfx_cue": "Sound of waves fading to silence.",
+      "text_overlay": {
+        "text": "December Peak Ahead"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bom.gov.au/climate/enso/?index=nino34&ninoIndex=nino3.4&period=weekly",
+    "https://www.france24.com/en/environment/20261012-el-nino-pacific-temperature-record-weather"
+  ]
+}
