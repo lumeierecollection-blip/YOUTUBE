@@ -203,6 +203,15 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const logoByName = new Map();
   const flagByName = new Map();
   let flagsShown = 0;
+  // Fallback visuals (a figure from the research, a map of the topic's country) so that a beat with no photo of its own is not text alone.
+  const usedFigs = new Set();
+  let lastWasCard = false;
+  const topicPlace = matchPlaces([topic, research?.strongest_angle, sentences[0]].filter(Boolean).join(". "))[0] || null;
+  const spareFigs = (research?.numbers || []).filter((n) => n && Number.isFinite(Number(n.value)) && n.label).map((n) => {
+    const pct = /percent|%/i.test(String(n.unit || ""));
+    const v = Number(n.value);
+    return { n, fig: { raw: pct ? `${v}%` : v.toLocaleString("en-US"), kind: pct ? "percent" : "number", value: pct ? v : null } };
+  }).filter(({ fig }) => researchStates(research, fig));
   const plateFor = (dark) => (dark ? palette.text : palette.bg);
   const plateSvg = (color) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="${color}"/></svg>\n`;
   // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
@@ -264,8 +273,10 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       break;
     }
     // 0b. a country the sentence names: its national flag on a plate (flag.mjs), then the drawn map in the second beat. At most two flags a video.
-    if (!logoScene && flagsShown < 2) {
-      const country = matchPlaces(sentence).find((h) => h.f.kind === "country");
+    if (!logoScene && flagsShown < 1) {
+      // The country must be the sentence's subject (named in its first five words), and only one flag is shown per video: a flag for every
+      // passing mention of a country explains nothing.
+      const country = matchPlaces(sentence).find((h) => h.f.kind === "country" && sentence.indexOf(h.matched) >= 0 && sentence.slice(0, sentence.indexOf(h.matched)).trim().split(/\s+/).filter(Boolean).length <= 4);
       if (country) {
         let rec = flagByName.get(country.f.name);
         if (rec === undefined) {
@@ -346,9 +357,28 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         cards.push({ id, svg: backdropSvg(palette) });
         how = `figure alone ${gfigs.map((f) => f.raw).join(", ")}`;
       } else {
-        // No photo for this sentence and no figure to draw. A photo is never shown twice, so the sentence's key words go up as a poster.
-        cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
-        how = "key-word poster";
+        // No photo for this sentence and no figure of its own. Fallbacks, in order, so the beat still shows something real:
+        //  a) a figure the research states that no beat has shown yet, labelled with the research's own label (never two number cards in a row)
+        //  b) a drawn map of the topic's country, highlighted (at most three maps a video)
+        //  c) the sentence's key words as a poster: the last resort
+        const spare = lastWasCard ? null : spareFigs.find(({ fig }) => !usedFigs.has(fig.raw));
+        if (spare) {
+          usedFigs.add(spare.fig.raw);
+          cards.push({ id, svg: backdropSvg(palette) });
+          scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
+          scene.graphic = { id: `g${i}`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: "hero", backdrop: true };
+          how = `research figure ${spare.fig.raw} (${spare.n.label})`;
+        } else if (topicPlace && mapsShown < 3 && lastAsset !== "map") {
+          const geo = mapFor({ highlight: [topicPlace] });
+          cards.push({ id, svg: backdropSvg(palette) });
+          mapsShown++;
+          scene = { id: `s${i}-map`, asset: id, fit: "cover", fade };
+          scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
+          how = `map of ${topicPlace.f.name} (the topic)`;
+        } else {
+          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
+          how = "key-word poster";
+        }
       }
       if (!scene) {
         const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
@@ -359,6 +389,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
 
     lastAsset = scene.graphic?.kind === "map" ? "map" : scene.asset;
     scene.look = look.name;
+    // a number card is a card with a graphic that is not a map: no two of them in a row (the fallbacks above respect this)
+    lastWasCard = !!(scene.graphic && scene.graphic.kind !== "map" && /^card-/.test(scene.asset));
 
     // Two visuals per sentence: a viewer's eye is held by a change every couple of seconds. The second beat is a DIFFERENT picture (the
     // sentence's next phrase, never a crop of the first). Where a sentence has a figure the panel arrives on the second beat, so the
