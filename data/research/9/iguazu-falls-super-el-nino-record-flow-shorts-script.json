@@ -1,0 +1,32 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-super-el-nino-record-flow",
+  "format": "shorts",
+  "hook": "What happens when a waterfall hits twelve times its normal flow?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when a waterfall hits twelve times its normal flow?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, the Iguazú River surged to a record 17,700 cubic meters per second. Super El Niño rainfall triggers extreme water levels throughout the entire Iguazú River basin today."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the 1.6 kilometer span of the falls between Brazil and Argentina faces dangerous conditions."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This massive surge forces water through the Iguazú Falls at twelve times the normal rate. National park officials in Argentina closed the Circuito Superior walkway to all tourists."
+    },
+    {
+      "id": "close",
+      "voiceover": "The Iguazú Falls reached a record flow of 17,700 cubic meters per second this October."
+    }
+  ],
+  "sources_used": [
+    "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+    "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino"
+  ]
+}
