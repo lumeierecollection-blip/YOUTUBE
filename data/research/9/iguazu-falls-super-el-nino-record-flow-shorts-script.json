@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-super-el-nino-record-flow",
+  "format": "shorts",
+  "hook": "The Iguazú Falls, spanning over a mile, recently surged to six times their normal volume.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Iguazú Falls, spanning over a mile, recently surged to six times their normal volume.",
+      "text_overlay": {
+        "text": "6x Normal Flow"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "But could Iguazú National Park handle the Iguazú River surging at such dangerous levels?",
+      "text_overlay": {
+        "text": "Iguazú Falls: Brazil-Argentina Border"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But a Super El Niño weather event brought heavy rains, forcing the park's total closure.",
+      "text_overlay": {
+        "text": "Dangerous Water Levels"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "National park authorities in Argentina closed Iguazú National Park on October 12, 2026. The Iguazú River hit 6 times its normal flow rate during this Super El Niño event.",
+      "text_overlay": {
+        "text": "Park Closed: Oct 12, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This October 2026 event forced the temporary closure of the entire Iguazú Falls complex.",
+      "text_overlay": {
+        "text": "Iguazú Falls Record"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.gpb.org/news/2026/10/22/greetings-the-brazil-argentina-border-where-waterfalls-are-flowing-at-near-record",
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+  ]
+}
