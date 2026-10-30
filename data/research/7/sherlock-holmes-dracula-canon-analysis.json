@@ -1,0 +1,100 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-canon-analysis",
+  "strongest_angle": "Analyze Arthur Conan Doyle's Sherlock Holmes and Bram Stoker's Dracula through literary criticism exploring late nineteenth-century detective fiction, vampirism, and the bohemian symbolism of imperial Britain.",
+  "key_facts": [
+    {
+      "fact": "In Daniel Cottom's analysis published in ELH in September 2012, Sherlock Holmes and Dracula are examined as representing the origin and end of the nineteenth-century bohemian figure.",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028",
+      "source_name": "ELH",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In Amanda Fransson's 2019 narratological character study from Linnaeus University, Loren D. Estleman's novel Sherlock Holmes vs. Dracula is analyzed regarding imperialistic representation.",
+      "source_url": "http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Alnu%3Adiva-82442",
+      "source_name": "Linnaeus University",
+      "confidence": "medium"
+    },
+    {
+      "fact": "As documented on the Dickinson College British Literature blog, Dr. John Watson compares Sherlock Holmes's deductive powers to witchcraft at the beginning of the first canon story.",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "source_name": "Dickinson College",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In the study on Sherlock Holmes versus Dracula hosted on the DiVA portal, Sherlock Holmes states that nothing exhausts him except inactivity.",
+      "source_url": "https://lnu.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+      "source_name": "DiVA Portal",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028"
+    },
+    {
+      "label": "Publication Year",
+      "value": 2019,
+      "unit": "year",
+      "source_url": "http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Alnu%3Adiva-82442"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "You would certainly have been burned, had you lived a few centuries ago",
+      "speaker": "John Watson",
+      "source_name": "Dickinson College",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+    },
+    {
+      "text": "nothing exhausts me, except inactivity",
+      "speaker": "Sherlock Holmes",
+      "source_name": "DiVA Portal",
+      "source_url": "https://lnu.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "Daniel Cottom",
+      "kind": "person"
+    },
+    {
+      "name": "Amanda Fransson",
+      "kind": "person"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "John Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Linnaeus University",
+      "kind": "organization"
+    },
+    {
+      "name": "Dickinson College",
+      "kind": "organization"
+    }
+  ]
+}

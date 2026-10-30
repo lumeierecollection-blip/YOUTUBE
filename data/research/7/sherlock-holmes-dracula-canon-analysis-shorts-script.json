@@ -1,0 +1,89 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-canon-analysis",
+  "format": "shorts",
+  "hook": "Did you know 2012 research reveals Sherlock Holmes and Dracula share a surprising literary connection?",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Did you know 2012 research reveals Sherlock Holmes and Dracula share a surprising literary connection?",
+      "visual_cue": "Archival 19th-century London print zooming into fog over Baker Street.",
+      "sfx_cue": "Subtle Victorian street ambiance with distant carriage wheels.",
+      "b_roll": [
+        "19th century London street engraving"
+      ],
+      "animation_cue": "Slow Ken Burns zoom on vintage illustration",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "BOHEMIAN ORIGINS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-18s",
+      "voiceover": "Daniel Cottom published an analysis in ELH linking Sherlock Holmes and Dracula. Dr. John Watson compares deductive powers to witchcraft at the beginning of the first canon story. How do these figures connect to bohemian symbolism in imperial Britain?",
+      "visual_cue": "Academic journal text excerpt from ELH highlighting Daniel Cottom's study.",
+      "sfx_cue": "Page turn rustle",
+      "b_roll": [
+        "ELH journal publication archive view",
+        "Dickinson College literary manuscript page"
+      ],
+      "animation_cue": "Text highlight effect on author names",
+      "transition_out": "Fade transition",
+      "text_overlay": {
+        "text": "ELH STUDY 2012"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "18-24s",
+      "voiceover": "Did you know Sherlock Holmes states that nothing exhausts him except inactivity?",
+      "visual_cue": "Close up on vintage handwritten quote parchment.",
+      "sfx_cue": "Pen scratching on paper",
+      "b_roll": [
+        "Victorian manuscript handwriting sample"
+      ],
+      "animation_cue": "Parchment fade in",
+      "transition_out": "Quick whip pan",
+      "text_overlay": {
+        "text": "INACTIVITY"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "24-38s",
+      "voiceover": "Amanda Fransson studied Loren D. Estleman's novel in a 2019 study. Cottom examined both icons as the origin and end of bohemian figures.",
+      "visual_cue": "Linnaeus University repository document showing Amanda Fransson's 2019 research paper title.",
+      "sfx_cue": "Low atmospheric drone",
+      "b_roll": [
+        "Linnaeus University digital library portal screenshot"
+      ],
+      "animation_cue": "Smooth scroll down research abstract",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "LINNAEUS 2019"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "38-45s",
+      "voiceover": "Read Daniel Cottom's 2012 analysis in ELH to explore these characters.",
+      "visual_cue": "Wide shot of historic library stacks in Victorian London.",
+      "sfx_cue": "Fading clock chime",
+      "b_roll": [
+        "Victorian library interior photograph"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "LITERARY CRITICISM"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1353/elh.2012.0028",
+    "http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Alnu%3Adiva-82442",
+    "https://lnu.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+  ]
+}
