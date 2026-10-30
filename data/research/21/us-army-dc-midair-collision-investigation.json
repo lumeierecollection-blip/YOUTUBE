@@ -1,0 +1,65 @@
+{
+  "topic_slug": "us-army-dc-midair-collision-investigation",
+  "strongest_angle": "Examine the U.S. Army administrative investigation findings regarding the January 29, 2025 midair collision involving a UH-60L Black Hawk helicopter near Washington, D.C., which killed 67 people and revealed critical vulnerabilities across the International Civil Aviation Organization conflict management layers.",
+  "key_facts": [
+    {
+      "fact": "On January 29, 2025, a UH-60L Black Hawk helicopter with call sign PAT 25, assigned to the 12th Aviation Battalion, was involved in a midair collision near Washington, D.C., as detailed in the administrative investigation led by LTG Laura Potter.",
+      "source_url": "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf",
+      "source_name": "Roll Call",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Army investigation into the midair collision near Washington, D.C., found that 67 people were killed following the convergence of multiple systemic failures between a Black Hawk helicopter and a civilian airliner.",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "The International Civil Aviation Organization leverages three layers of conflict management—Airspace Structure, Air Traffic Control Separation, and Collision Avoidance Technology—which all exhibited critical vulnerabilities during the January 29, 2025 incident.",
+      "source_url": "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf",
+      "source_name": "Roll Call",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total fatalities in the midair collision",
+      "value": 67,
+      "unit": "people",
+      "source_url": "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision"
+    },
+    {
+      "label": "Aviation battalion assigned to PAT 25",
+      "value": 12,
+      "unit": "aviation battalion",
+      "source_url": "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Laura Potter",
+      "kind": "person"
+    },
+    {
+      "name": "Washington, D.C.",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Army",
+      "kind": "organization"
+    },
+    {
+      "name": "UH-60L Black Hawk",
+      "kind": "object"
+    },
+    {
+      "name": "12th Aviation Battalion",
+      "kind": "organization"
+    },
+    {
+      "name": "International Civil Aviation Organization",
+      "kind": "organization"
+    }
+  ]
+}

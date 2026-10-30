@@ -1,0 +1,72 @@
+{
+  "channel_id": "21",
+  "topic_slug": "us-army-dc-midair-collision-investigation",
+  "format": "shorts",
+  "hook": "A midair collision over Washington, D.C. killed 67 people instantly.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A midair collision over Washington, D.C. killed 67 people instantly.",
+      "visual_cue": "Aerial view of Washington D.C. skyline with a red warning pulse.",
+      "sfx_cue": "Low frequency air traffic control radio static.",
+      "b_roll": [
+        "Public domain footage of Washington D.C. skyline"
+      ],
+      "text_overlay": {
+        "text": "67 Dead: The D.C. Collision"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January 29, 2025, a UH-60L Black Hawk helicopter collided with a civilian airliner. Why did the International Civil Aviation Organization's three conflict management layers fail during this flight?",
+      "visual_cue": "Diagram showing a UH-60L Black Hawk flight path intersecting with a commercial airliner.",
+      "sfx_cue": "Sharp, rhythmic mechanical ticking.",
+      "b_roll": [
+        "Technical drawing of a UH-60L Black Hawk"
+      ],
+      "text_overlay": {
+        "text": "January 29, 2025"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The International Civil Aviation Organization's airspace, control, and technology layers all failed on January 29, 2025.",
+      "visual_cue": "Text graphic showing the ICAO logo with an overlay of a broken circuit line.",
+      "sfx_cue": "Distorted digital alarm sound.",
+      "b_roll": [
+        "International Civil Aviation Organization official seal"
+      ],
+      "text_overlay": {
+        "text": "Systemic Failure"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "LTG Laura Potter led the administrative investigation into these systemic vulnerabilities. These layers failed because Airspace Structure, Air Traffic Control Separation, and Collision Avoidance Technology all exhibited critical vulnerabilities. These gaps directly caused the deaths of 67 people.",
+      "visual_cue": "Official portrait of LTG Laura Potter beside a summary document icon.",
+      "sfx_cue": "Dull, heavy thud sound.",
+      "b_roll": [
+        "Still photo of LTG Laura Potter from Army records"
+      ],
+      "text_overlay": {
+        "text": "Investigation Findings"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Systemic failures claimed 67 lives in Washington, D.C.",
+      "visual_cue": "A close-up of the investigation report document cover.",
+      "sfx_cue": "Sound of wind passing through a radio channel.",
+      "b_roll": [
+        "Close up of the Army administrative investigation report cover"
+      ],
+      "text_overlay": {
+        "text": "67 Fatalities"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf",
+    "https://www.washingtonpost.com/national-security/2026/10/08/army-report-cites-systemic-flaws-that-led-fatal-dca-midair-collision"
+  ]
+}
