@@ -1,0 +1,87 @@
+{
+  "channel_id": "21",
+  "topic_slug": "six-fax-goliath-coaster-safety-upgrades-2026",
+  "format": "shorts",
+  "hook": "One theme park ride left a 42-year-old rider dead and forced an immediate emergency upgrade.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "One theme park ride left a 42-year-old rider dead and forced an immediate emergency upgrade.",
+      "visual_cue": "Close up shot of the Goliath roller coaster structure at Six Flags Over Georgia.",
+      "sfx_cue": "Mechanical click and wind rush sound effect",
+      "b_roll": [
+        "Six Flags Over Georgia exterior park archival photo"
+      ],
+      "animation_cue": "Fast zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Emergency Upgrade"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-15s",
+      "voiceover": "In October 2026, rider Hassan Kariem fell to his death from the Goliath hyper coaster at Six Flags Over Georgia. What safety feature was missing?",
+      "visual_cue": "Rendered diagram of roller coaster lap bar restraints without seatbelts.",
+      "sfx_cue": "Subtle low bass hum",
+      "b_roll": [
+        "Q4 Investor Relations Six Flags document archive view"
+      ],
+      "animation_cue": "Slow pan across document text",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "October 2026 Incident"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "15-22s",
+      "voiceover": "Except Six Flags' CEO announced seatbelts'll be added across rides with similar restraints.",
+      "visual_cue": "Close up shot of a safety seatbelt buckle being fastened.",
+      "sfx_cue": "Metal latch click sound",
+      "b_roll": [
+        "AP News press publication screenshot"
+      ],
+      "animation_cue": "Quick pan right",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "New Safety Seatbelts"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "22-35s",
+      "voiceover": "Six Flags CEO John Reilly confirmed those urgent modifications in an October 23, 2026 letter. AP News reported the operator decided to install safety seatbelts across other company rides.",
+      "visual_cue": "Full view of the Goliath hyper coaster track under daylight.",
+      "sfx_cue": "Roller coaster rumbling on steel tracks",
+      "b_roll": [
+        "Six Flags Over Georgia park overview photograph"
+      ],
+      "animation_cue": "Zoom out to wide angle",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Goliath Modifications"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "35-42s",
+      "voiceover": "Six Flags added seatbelts to the Goliath roller coaster.",
+      "visual_cue": "Final still frame of the Goliath roller coaster ride sign.",
+      "sfx_cue": "Soft fading ambient track",
+      "b_roll": [
+        "Six Flags ride safety sign official photo"
+      ],
+      "animation_cue": "Hold steady",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Goliath Safety Upgrades"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://s204.q4cdn.com/155295784/files/doc_news/2026/Oct/23/Six-Flags-CEO-Statement-10-23-26.pdf",
+    "https://apnews.com/article/roller-coaster-death-six-flags-georgia-90a9bfe6a6fc934ab7f2a1a6bf52d520"
+  ]
+}

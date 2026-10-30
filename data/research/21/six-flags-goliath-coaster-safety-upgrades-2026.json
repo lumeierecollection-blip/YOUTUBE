@@ -1,0 +1,59 @@
+{
+  "topic_slug": "six-flags-goliath-coaster-safety-upgrades-2026",
+  "strongest_angle": "Break down the mechanical restraint upgrades announced by Six Flags CEO John Reilly following the October 2026 fatal incident involving 42-year-old Hassan Kariem on the Goliath hyper coaster at Six Flags Over Georgia.",
+  "key_facts": [
+    {
+      "fact": "Six Flags CEO John Reilly announced in an October 23, 2026 letter that the company will add seatbelts to the Goliath roller coaster at Six Flags Over Georgia after a fatal fall earlier that month.",
+      "source_url": "https://s204.q4cdn.com/155295784/files/doc_news/2026/Oct/23/Six-Flags-CEO-Statement-10-23-26.pdf",
+      "source_name": "Q4 Investor Relations / Six Flags",
+      "confidence": "high"
+    },
+    {
+      "fact": "The October 2026 fatal incident at Six Flags Over Georgia involved 42-year-old rider Hassan Kariem, who fell to his death from the Goliath hyper coaster.",
+      "source_url": "https://s204.q4cdn.com/155295784/files/doc_news/2026/Oct/23/Six-Flags-CEO-Statement-10-23-26.pdf",
+      "source_name": "Q4 Investor Relations / Six Flags",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following the October 2026 accident on Goliath at Six Flags Over Georgia, the theme park operator decided to install safety seatbelts across other company rides featuring similar restraints.",
+      "source_url": "https://apnews.com/article/roller-coaster-death-six-flags-georgia-90a9bfe6a6fc934ab7f2a1a6bf52d520",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Rider Age",
+      "value": 42,
+      "unit": "years",
+      "source_url": "https://s204.q4cdn.com/155295784/files/doc_news/2026/Oct/23/Six-Flags-CEO-Statement-10-23-26.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "John Reilly",
+      "kind": "person"
+    },
+    {
+      "name": "Hassan Kariem",
+      "kind": "person"
+    },
+    {
+      "name": "Six Flags Over Georgia",
+      "kind": "place"
+    },
+    {
+      "name": "Goliath",
+      "kind": "object"
+    },
+    {
+      "name": "Six Flags",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    }
+  ]
+}
