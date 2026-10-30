@@ -1,0 +1,54 @@
+{
+  "topic_slug": "norse-mythology-nine-realms-architecture",
+  "strongest_angle": "The popular concept of a structured 'Nine Realms' map is a modern invention, as ancient Norse sources provide contradictory, non-hierarchical descriptions of the cosmos.",
+  "key_facts": [
+    {
+      "fact": "The poem Völuspá mentions nine worlds existing within the tree Yggdrasill, but no surviving ancient text provides a definitive list or map of these locations.",
+      "source_url": "https://codexdivinum.com/tradition/norse/nine",
+      "source_name": "Codex Divinum",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scholarly analysis by Eldar Heide shows that pre-Christian Scandinavian sources place the Æsir in multiple, conflicting locations including the east, west, sky, and under the sea.",
+      "source_url": "http://ojs.novus.no/index.php/MOM/article/view/226",
+      "source_name": "Novus Forlag",
+      "confidence": "high"
+    },
+    {
+      "fact": "The mythological tree Yggdrasill is described as the center of the cosmos, yet there is no evidence in source material that the realms were organized into vertical tiers or branches.",
+      "source_url": "https://norsemythology.substack.com/p/norse-cosmology-part-ii-the-shape",
+      "source_name": "Norse Mythology Substack",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of worlds mentioned in Völuspá",
+      "value": 9,
+      "unit": "worlds",
+      "source_url": "https://codexdivinum.com/tradition/norse/nine"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Völuspá",
+      "kind": "object"
+    },
+    {
+      "name": "Yggdrasill",
+      "kind": "object"
+    },
+    {
+      "name": "Æsir",
+      "kind": "organization"
+    },
+    {
+      "name": "Eldar Heide",
+      "kind": "person"
+    },
+    {
+      "name": "Hel",
+      "kind": "place"
+    }
+  ]
+}

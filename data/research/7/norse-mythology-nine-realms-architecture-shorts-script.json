@@ -1,0 +1,50 @@
+{
+  "channel_id": "7",
+  "topic_slug": "norse-mythology-nine-realms-architecture",
+  "format": "shorts",
+  "hook": "The popular Nine Realms map of Norse mythology is actually a modern, non-ancient invention.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The popular Nine Realms map of Norse mythology is actually a modern, non-ancient invention.",
+      "visual_cue": "A digital map of the cosmos dissolving into static.",
+      "text_overlay": {
+        "text": "Nine Realms map: A modern myth"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The poem Völuspá mentions 9 worlds existing within Yggdrasill, the mythological tree of the cosmos. Where did this organized structure actually come from?",
+      "visual_cue": "Ancient parchment illustration of a tree.",
+      "b_roll": [
+        "Historical manuscript page of Völuspá",
+        "Stylized drawing of Yggdrasill"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Scholar Eldar Heide proves the Æsir, or Norse gods, occupied many conflicting locations across history.",
+      "visual_cue": "Portrait of a scholar overlaid with ancient text fragments.",
+      "b_roll": [
+        "Fragmented Norse runic inscriptions"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Heide found pre-Christian sources scattered the Æsir across the east, west, sky, and sea. Yggdrasill shows the cosmos was fluid, not a vertical stack of 9 distinct worlds.",
+      "visual_cue": "Animated diagram showing shifting, non-hierarchical points.",
+      "b_roll": [
+        "Abstract representation of sea and sky"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "Discard the structured map, as ancient Norse sources provide no definitive list of locations.",
+      "visual_cue": "The tree Yggdrasill fading into a simple, unmapped horizon."
+    }
+  ],
+  "sources_used": [
+    "https://codexdivinum.com/tradition/norse/nine",
+    "http://ojs.novus.no/index.php/MOM/article/view/226"
+  ]
+}
