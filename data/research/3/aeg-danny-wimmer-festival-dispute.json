@@ -1,0 +1,71 @@
+{
+  "topic_slug": "aeg-danny-wimmer-festival-dispute",
+  "strongest_angle": "Examine the nearly eight-year legal battle between AEG Presents and Danny Wimmer Presents over major rock festivals, detailing the failed $18.9 million buy-sell proposal and the upcoming February 2027 jury trial in Los Angeles Superior Court.",
+  "key_facts": [
+    {
+      "fact": "AEG Presents offered roughly 18.9 million dollars to either buy out Danny Wimmer Presents' half of Rock on the Range and Carolina Rebellion or sell its own half to DWP.",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+      "source_name": "Decibel News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal battle between AEG Presents and Danny Wimmer Presents over two major rock festivals is moving toward a scheduled February 2027 jury trial in Los Angeles Superior Court.",
+      "source_url": "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial",
+      "source_name": "TicketNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "AEG Live Productions sued Danny Wimmer Presents after their relationship broke down and DWP began promoting its own Sonic Temple Art + Music Festival.",
+      "source_url": "https://app.midpage.ai/document/aeg-presents-productions-v-danny-10838075",
+      "source_name": "MidPage",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Buy-sell proposal amount",
+      "value": 18.9,
+      "unit": "million dollars",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Trial year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial"
+    },
+    {
+      "label": "Legal battle duration in years",
+      "value": 8,
+      "unit": "years",
+      "source_url": "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "AEG Presents",
+      "kind": "organization"
+    },
+    {
+      "name": "Danny Wimmer Presents",
+      "kind": "organization"
+    },
+    {
+      "name": "Rock on the Range",
+      "kind": "object"
+    },
+    {
+      "name": "Carolina Rebellion",
+      "kind": "object"
+    },
+    {
+      "name": "Sonic Temple Art + Music Festival",
+      "kind": "object"
+    },
+    {
+      "name": "Los Angeles Superior Court",
+      "kind": "place"
+    }
+  ]
+}

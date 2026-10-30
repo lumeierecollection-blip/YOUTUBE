@@ -1,0 +1,64 @@
+{
+  "channel_id": "3",
+  "topic_slug": "aeg-danny-wimmer-festival-dispute",
+  "format": "shorts",
+  "hook": "AEG Presents pitched an 18.9 million dollar buy-sell proposal for Rock on the Range.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "AEG Presents pitched an 18.9 million dollar buy-sell proposal for Rock on the Range.",
+      "b_roll": [
+        "A wide shot of a massive empty concert stage under dramatic lighting"
+      ],
+      "text_overlay": {
+        "text": "Millions at Risk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On February 2027, Los Angeles Superior Court will host a jury trial for AEG Presents and Danny Wimmer Presents. Why did AEG Live Productions sue Danny Wimmer Presents?",
+      "b_roll": [
+        "Exterior shot of Los Angeles Superior Court building",
+        "Close up of legal filing documents on a wooden desk"
+      ],
+      "text_overlay": {
+        "text": "Trial Scheduled"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, AEG Live Productions sued Danny Wimmer Presents after they launched Sonic Temple Art + Music Festival.",
+      "b_roll": [
+        "Concert crowd silhouette raising hands"
+      ],
+      "text_overlay": {
+        "text": "Rival Festival"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The legal battle has already spanned 8 years in court. AEG Presents and Danny Wimmer Presents face a trial date.",
+      "b_roll": [
+        "Stacked legal case folders on a table",
+        "A calendar page showing February 2027"
+      ],
+      "text_overlay": {
+        "text": "8 Years of Litigation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Los Angeles Superior Court holds the unresolved 18.9 million dollars dispute.",
+      "b_roll": [
+        "Courtroom gavel resting on a wooden bench"
+      ],
+      "text_overlay": {
+        "text": "Trial Awaits"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+    "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial"
+  ]
+}
