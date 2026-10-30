@@ -1,50 +1,62 @@
 {
   "topic_slug": "nasa-ends-swift-space-telescope-mission",
-  "strongest_angle": "Examine the technical failure of the private rescue mission by Katalyst Space Technologies and what happens as the Neil Gehrels Swift Observatory prepares to crash back to Earth after 22 years.",
+  "strongest_angle": "Examine the 2004 launch, orbital decay below 171 miles, and the failed commercial rescue attempt by Arizona company Katalyst Space Technologies that led NASA to terminate the Neil Gehrels Swift Observatory mission in October 2026.",
   "key_facts": [
     {
-      "fact": "NASA officially ended the mission of the Neil Gehrels Swift Observatory after it began orbiting less than 171 miles above Earth's surface.",
+      "fact": "The Neil Gehrels Swift Observatory launched in 2004 and concluded operations after orbiting less than 171 miles above Earth's surface.",
       "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
       "source_name": "NASA Science",
       "confidence": "high"
     },
     {
-      "fact": "The private rescue mission to boost Swift's decaying orbit was led by the Arizona company Katalyst Space Technologies using their LINK spacecraft.",
+      "fact": "The failed rescue mission was led by Arizona company Katalyst Space Technologies, whose LINK spacecraft tried to boost Swift's decaying orbit.",
       "source_url": "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
       "source_name": "Space",
       "confidence": "high"
     },
     {
-      "fact": "The Neil Gehrels Swift Observatory is expected to re-enter Earth's atmosphere in November, 22 years after its initial launch.",
-      "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission",
-      "source_name": "SpaceNews",
+      "fact": "NASA and Katalyst called off the rescue attempt on August 19, 2026, after the robotic helper tumbled out of control during its approach.",
+      "source_url": "https://www.sciencenews.org/article/swift-space-telescope-failed-rescue",
+      "source_name": "Science News",
       "confidence": "high"
     },
     {
-      "fact": "The Neil Gehrels Swift Observatory conducted its final astronomical observation on October 20 before the mission conclusion.",
+      "fact": "The Neil Gehrels Swift Observatory conducted its final observation on October 20, 2026, ahead of its expected atmospheric re-entry.",
       "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
       "source_name": "NASA Science",
-      "confidence": "medium"
+      "confidence": "high"
     }
   ],
   "numbers": [
     {
-      "label": "Orbital altitude",
+      "label": "Launch year",
+      "value": 2004,
+      "unit": "year",
+      "source_url": "https://www.nbcnews.com/science/space/nasa-swift-space-telescope-boost-mission-fails-rcna593421"
+    },
+    {
+      "label": "Orbital altitude threshold",
       "value": 171,
       "unit": "miles",
       "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
     },
     {
-      "label": "Orbital altitude metric",
+      "label": "Orbital altitude threshold in kilometers",
       "value": 275,
       "unit": "kilometers",
       "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
     },
     {
-      "label": "Mission lifetime",
+      "label": "Mission duration in years",
       "value": 22,
       "unit": "years",
       "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+    },
+    {
+      "label": "Rescue cancellation day",
+      "value": 19,
+      "unit": "day",
+      "source_url": "https://www.sciencenews.org/article/swift-space-telescope-failed-rescue"
     }
   ],
   "quotes": [],
@@ -58,7 +70,11 @@
       "kind": "organization"
     },
     {
-      "name": "LINK spacecraft",
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "LINK",
       "kind": "object"
     },
     {
@@ -66,8 +82,8 @@
       "kind": "place"
     },
     {
-      "name": "NASA",
-      "kind": "organization"
+      "name": "Earth",
+      "kind": "place"
     }
   ]
 }

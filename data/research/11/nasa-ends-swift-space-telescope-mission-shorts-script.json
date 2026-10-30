@@ -2,86 +2,89 @@
   "channel_id": "11",
   "topic_slug": "nasa-ends-swift-space-telescope-mission",
   "format": "shorts",
-  "hook": "A legendary space telescope fell below 171 miles and NASA pulled the plug.",
+  "hook": "A 22-year space telescope mission ended after its rescue spacecraft tumbled out of control above Earth.",
   "sections": [
     {
       "id": "hook",
-      "timing": "0:00-0:03",
-      "voiceover": "A legendary space telescope fell below 171 miles and NASA pulled the plug.",
-      "visual_cue": "Space telescope orbiting with Earth background",
-      "sfx_cue": "Low atmospheric hum",
+      "timing": "0:00-0:04",
+      "voiceover": "A 22-year space telescope mission ended after its rescue spacecraft tumbled out of control above Earth.",
+      "visual_cue": "Archival footage of the Neil Gehrels Swift Observatory in orbit against the backdrop of Earth.",
+      "sfx_cue": "Low atmospheric drone with a subtle satellite telemetry beep.",
       "b_roll": [
-        "Neil Gehrels Swift Observatory archival animation"
+        "NASA orbital illustration of Swift satellite"
       ],
-      "animation_cue": "Fade in",
-      "transition_out": "Hard cut",
+      "animation_cue": "Fade in from black, slow cinematic zoom.",
+      "transition_out": "Cut to orbital altitude graphic.",
       "text_overlay": {
-        "text": "171 MILES TO FALL"
+        "text": "The 22-Year Mission That Ended"
       }
     },
     {
       "id": "setup",
-      "timing": "0:03-0:20",
-      "voiceover": "NASA officially ended the Neil Gehrels Swift Observatory mission. Operating for 22 years, the spacecraft recorded its final observation on October 20. When will the decaying observatory re-enter Earth's atmosphere?",
-      "visual_cue": "Telescope instruments capturing final light data",
-      "sfx_cue": "Subtle radar beep",
+      "timing": "0:04-0:18",
+      "voiceover": "Could Arizona's Katalyst Space Technologies save the falling observatory before it was too late?",
+      "visual_cue": "Launch archive footage from 2004 transitioning to an orbital decay altitude diagram.",
+      "sfx_cue": "Rocket launch rumble fading into a quiet ambient hum.",
       "b_roll": [
-        "NASA Science mission control archival footage"
+        "2004 spacecraft launch archival video",
+        "Orbital decay altitude infographic"
       ],
-      "animation_cue": "Slide left",
-      "transition_out": "Smooth pan",
+      "animation_cue": "Slide transition showing altitude dropping.",
+      "transition_out": "Hard cut to Arizona company logo and spacecraft.",
       "text_overlay": {
-        "text": "22 YEARS IN ORBIT"
+        "text": "Orbiting Below 171 Miles"
       }
     },
     {
       "id": "rehook",
-      "timing": "0:20-0:28",
-      "voiceover": "Arizona company Katalyst Space Technologies tried a private rescue mission that failed.",
-      "visual_cue": "LINK spacecraft rendering in orbit",
-      "sfx_cue": "Engine startup glitch",
+      "timing": "0:18-0:24",
+      "voiceover": "Arizona firm Katalyst Space Technologies tried to save it, but its LINK spacecraft failed.",
+      "visual_cue": "Graphic representation of the LINK spacecraft approaching the orbiting telescope.",
+      "sfx_cue": "Mechanical thruster hiss.",
       "b_roll": [
-        "Arizona headquarters exterior establishing shot"
+        "Katalyst Space Technologies LINK spacecraft rendering"
       ],
-      "animation_cue": "Zoom in",
-      "transition_out": "Quick fade",
+      "animation_cue": "Fast pan following the approaching spacecraft.",
+      "transition_out": "Wipe transition to tumbling spacecraft.",
       "text_overlay": {
-        "text": "PRIVATE RESCUE FAILS"
+        "text": "The Commercial Rescue Attempt"
       }
     },
     {
       "id": "payoff",
-      "timing": "0:28-0:45",
-      "voiceover": "Arizona company Katalyst Space Technologies tried boosting the decaying orbit using their LINK spacecraft. Re-entering Earth's atmosphere in November, the observatory's 22-year mission ends.",
-      "visual_cue": "Spacecraft approaching a decaying satellite orbit",
-      "sfx_cue": "Atmospheric entry hiss",
+      "timing": "0:24-0:38",
+      "voiceover": "On August 19, 2026, mission teams called off the rescue. NASA terminated the observatory after its final observation on October 20, 2026.",
+      "visual_cue": "Animation showing the robotic helper tumbling away from the telescope in Earth orbit.",
+      "sfx_cue": "Alarm pulse followed by static silence.",
       "b_roll": [
-        "SpaceNews orbital trajectory graphic"
+        "Spacecraft tumbling animation sequence",
+        "NASA mission control facility interior"
       ],
-      "animation_cue": "Track forward",
-      "transition_out": "Fade to black",
+      "animation_cue": "Slow-motion rotation emphasizing the loss of control.",
+      "transition_out": "Fade to deep space starfield.",
       "text_overlay": {
-        "text": "ATMOSPHERIC RE-ENTRY"
+        "text": "Rescue Called Off August 19"
       }
     },
     {
       "id": "close",
-      "timing": "0:45-0:52",
-      "voiceover": "Twenty-two years of cosmic history ends in fire.",
-      "visual_cue": "Distant starfield slowly fading",
-      "sfx_cue": "Deep space drone",
+      "timing": "0:38-0:45",
+      "voiceover": "The Neil Gehrels Swift Observatory concluded operations after orbiting Earth for 22 years.",
+      "visual_cue": "Cinematic wide shot of the Swift observatory drifting silently against the stars before atmospheric re-entry.",
+      "sfx_cue": "Solitary piano chord fading into cosmic silence.",
       "b_roll": [
-        "NASA public domain deep space imagery"
+        "Swift observatory orbital departure graphic"
       ],
-      "animation_cue": "Slow zoom out",
-      "transition_out": "Fade out",
+      "animation_cue": "Slow fade to black.",
+      "transition_out": "Hold on final dark frame.",
       "text_overlay": {
-        "text": "TWENTY-TWO YEARS ENDS"
+        "text": "22 Years in Orbit"
       }
     }
   ],
   "sources_used": [
     "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
-    "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+    "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+    "https://www.sciencenews.org/article/swift-space-telescope-failed-rescue"
   ]
 }
