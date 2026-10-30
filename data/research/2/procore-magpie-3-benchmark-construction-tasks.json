@@ -1,0 +1,83 @@
+{
+  "topic_slug": "procore-magpie-3-benchmark-construction-tasks",
+  "strongest_angle": "Procore announced benchmark results for its Magpie 3.0 reasoning engine showing a 78 percent success rate on 200 construction tasks, outperforming general AI models by 18 percentage points in testing reviewed by Cal Poly.",
+  "key_facts": [
+    {
+      "fact": "Procore AI with Magpie 3.0 achieved a 78 percent success rate across 200 real construction tasks in benchmark testing.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Magpie 3.0 scored 18 percentage points higher than the closest general-purpose frontier model, which achieved a 60 percent task success rate.",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv",
+      "source_name": "Construction Metrics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 200 benchmark tasks were reviewed independently by California Polytechnic State University's California Centre for Construction Education.",
+      "source_url": "https://www.linkedin.com/posts/preeyas_contech-ai-procoreai-activity-7519319528930189312-IFD2",
+      "source_name": "LinkedIn",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Procore made Magpie 3.0 available in open beta to Procore AI customers through Procore Explore in October 2026.",
+      "source_url": "https://datagrid.com/release-notes/procore-ai-magpie-3-0-open-beta-available-in-procore-explore",
+      "source_name": "Datagrid",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Magpie 3.0 task success rate",
+      "value": 78,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "Standardized construction tasks tested",
+      "value": 200,
+      "unit": "tasks",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks"
+    },
+    {
+      "label": "Performance margin over closest general AI model",
+      "value": 18,
+      "unit": "percentage points",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+    },
+    {
+      "label": "Closest general-purpose model success rate",
+      "value": 60,
+      "unit": "percent",
+      "source_url": "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Procore",
+      "kind": "organization"
+    },
+    {
+      "name": "Magpie 3.0",
+      "kind": "object"
+    },
+    {
+      "name": "Construction Metrics",
+      "kind": "organization"
+    },
+    {
+      "name": "California Centre for Construction Education",
+      "kind": "organization"
+    },
+    {
+      "name": "California Polytechnic State University",
+      "kind": "organization"
+    },
+    {
+      "name": "Procore Explore",
+      "kind": "object"
+    }
+  ]
+}
