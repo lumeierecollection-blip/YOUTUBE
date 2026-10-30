@@ -932,11 +932,11 @@ jobs:
               # SCR-17 STRICT failed all 8 attempts. Same fix the story and repeat checks already use: rewrite ONLY the flagged
               # sentences from the research (repair-sentences.mjs may answer CUT instead of inventing), then re-run every gate.
               # Nothing is loosened: the gate runs again on the result. Attempt 5 is left to the topic re-pick below.
-              if [ "$ATTEMPT" -lt 8 ] && [ "$ATTEMPT" -ne 3 ] && [ "${STRICT_REPAIRED:-0}" -lt 3 ]                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
+              if [ "$ATTEMPT" -lt 8 ] && [ "$ATTEMPT" -ne 3 ] && [ "${STRICT_REPAIRED:-0}" -lt 5 ]                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
                 STRICT_REPAIRED=$((${STRICT_REPAIRED:-0} + 1))
                 grep -E '^  - SCR-17 STRICT' /tmp/gate-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
                 if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
-                  echo "[script] ch-$CH: strict visual gate FAIL, repaired the flagged sentences ($STRICT_REPAIRED/3)"
+                  echo "[script] ch-$CH: strict visual gate FAIL, repaired the flagged sentences ($STRICT_REPAIRED/5)"
                   SKIP_GEN=1
                   continue
                 fi
@@ -990,7 +990,7 @@ jobs:
                   if [ "$RP_EXIT" -eq 0 ] && jq -e '.structured_output.key_facts | length >= 3' /tmp/research-repick.json > /dev/null; then
                     jq '.structured_output' /tmp/research-repick.json > "data/research/$CH/$NEXT.json"
                     SLUG="$NEXT"; SCRIPT_SLUG="${SLUG}-${FORMAT}"
-                    CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""
+                    CLAIM_REASKED=0; SPEC_REASKED=0; SKIP_GEN=0; FEEDBACK=""; STRICT_REPAIRED=0
                     REPICKED=1
                     continue
                   fi
