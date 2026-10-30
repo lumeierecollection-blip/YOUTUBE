@@ -1,0 +1,159 @@
+{
+  "id": "anthropic-claude-haiku-5-5-pricing-cut-october-2026",
+  "title": "Claude Haiku 5.5: The 90% Price Cut",
+  "audio": "data/editor/audio/haiku.mp3",
+  "transcript": "data/editor/audio/haiku.json",
+  "script": "data/research/2/anthropic-claude-haiku-5-5-pricing-cut-october-2026-shorts-script.json",
+  "fps": 30,
+  "palette": {
+    "bg": "#050510",
+    "text": "#F5F5FF",
+    "muted": "#C9C6E6",
+    "accent": "#8B5CF6",
+    "accent2": "#8B5CF6"
+  },
+  "fonts": {
+    "primary": "Space Grotesk",
+    "sans": "Space Grotesk"
+  },
+  "caption_style": {
+    "x": 80,
+    "y": 1540,
+    "w": 920,
+    "h": 210,
+    "size": 38
+  },
+  "caption_replacements": {},
+  "assets": {
+    "claude-symbol": {
+      "file": "data/editor/assets/raw/claude-symbol.png",
+      "width": 960,
+      "height": 960,
+      "credit": "Claude symbol — Wikimedia Commons, CC0",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Claude_AI_symbol.svg",
+      "license": "CC0"
+    },
+    "price-card": {
+      "file": "data/editor/assets/diagrams/haiku-price.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Chart: TradeApp editor, prices from the Claude Platform Docs (bar lengths proportional to $0.10 : $0.50)",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "license": "Original diagram"
+    },
+    "threshold-card": {
+      "file": "data/editor/assets/diagrams/haiku-threshold.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Diagram: TradeApp editor, from VentureBeat",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+      "license": "Original diagram"
+    },
+    "share-card": {
+      "file": "data/editor/assets/diagrams/haiku-90.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Chart: TradeApp editor, from anthropic.com (bar 90% of width)",
+      "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+      "license": "Original diagram"
+    },
+    "limits-card": {
+      "file": "data/editor/assets/diagrams/haiku-context.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Chart: TradeApp editor, limits from the Claude Platform Docs (bar lengths proportional to 1,000,000 : 128,000)",
+      "source_url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "license": "Original diagram"
+    },
+    "hook-card": {
+      "file": "data/editor/assets/diagrams/haiku-hook.svg",
+      "width": 1080,
+      "height": 1920,
+      "credit": "Card: TradeApp editor, price cut from VentureBeat; wordmark Anthropic / Wikimedia Commons, public domain",
+      "source_url": "https://venturebeat.com/technology/anthropic-launches-claude-haiku-5-5-with-90-api-price-reduction-matching-gpt-6-luna",
+      "license": "Original diagram"
+    }
+  },
+  "scenes": [
+    {
+      "id": "hook-90",
+      "start": 0,
+      "end": 7.4,
+      "asset": "hook-card",
+      "fit": "cover",
+      "motion": "in"
+    },
+    {
+      "id": "launch",
+      "start": 7.4,
+      "end": 14.34,
+      "asset": "claude-symbol",
+      "fit": "contain",
+      "motion": "in",
+      "rect": {
+        "x": 220,
+        "y": 600,
+        "w": 640,
+        "h": 640
+      },
+      "layout": "object",
+      "kicker": "THE LAUNCH",
+      "headline": "OCT 7,\n2026",
+      "headline_size": 130,
+      "headline_h": 520,
+      "sub": "Anthropic launches Claude Haiku 5.5."
+    },
+    {
+      "id": "price",
+      "start": 14.34,
+      "end": 22.96,
+      "asset": "price-card",
+      "fit": "cover",
+      "motion": "in"
+    },
+    {
+      "id": "threshold",
+      "start": 22.96,
+      "end": 35.1,
+      "asset": "threshold-card",
+      "fit": "cover",
+      "motion": "in"
+    },
+    {
+      "id": "share",
+      "start": 35.1,
+      "end": 39.86,
+      "asset": "share-card",
+      "fit": "cover",
+      "motion": "in"
+    },
+    {
+      "id": "limits",
+      "start": 39.86,
+      "end": 48.78,
+      "asset": "limits-card",
+      "fit": "cover",
+      "motion": "in"
+    },
+    {
+      "id": "close",
+      "start": 48.78,
+      "end": 54.216,
+      "asset": "claude-symbol",
+      "fit": "contain",
+      "motion": "in",
+      "rect": {
+        "x": 220,
+        "y": 600,
+        "w": 640,
+        "h": 640
+      },
+      "layout": "object",
+      "kicker": "CLAUDE HAIKU 5.5",
+      "headline": "1 MILLION\nCONTEXT TOKENS",
+      "headline_size": 100,
+      "headline_h": 520,
+      "sub": "Maximum output: 128,000 tokens."
+    }
+  ]
+}

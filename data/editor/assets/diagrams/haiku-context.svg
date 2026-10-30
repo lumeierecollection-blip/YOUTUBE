@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A0A1A"/><stop offset="1" stop-color="#050510"/></linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#8B5CF6" stroke-opacity="0.07" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#bg)"/><rect width="1080" height="1920" fill="url(#grid)"/>
+  <text x="90" y="190" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="7">CLAUDE HAIKU 5.5 &#183; LIMITS</text>
+  <line x1="90" y1="230" x2="990" y2="230" stroke="#8B5CF6" stroke-opacity="0.6" stroke-width="2"/>
+  <text x="90" y="560" fill="#C9C6E6" font-family="Arial, sans-serif" font-size="30" letter-spacing="3" font-weight="700">CONTEXT WINDOW</text>
+  <rect x="90" y="584" width="900" height="90" fill="#8B5CF6"/>
+  <text x="90" y="750" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="64" font-weight="700">1,000,000 tokens</text>
+  <text x="90" y="900" fill="#C9C6E6" font-family="Arial, sans-serif" font-size="30" letter-spacing="3" font-weight="700">MAXIMUM OUTPUT</text>
+  <rect x="90" y="924" width="115" height="90" fill="#6D44D6"/>
+  <text x="90" y="1090" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="64" font-weight="700">128,000 tokens</text>
+  <text x="90" y="1260" fill="#9A97C4" font-family="Arial, sans-serif" font-size="24" >Source: Claude Platform Docs, Haiku 5.5 overview</text>
+</svg>
