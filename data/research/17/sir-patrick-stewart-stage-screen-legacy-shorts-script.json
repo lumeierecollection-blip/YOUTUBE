@@ -1,0 +1,90 @@
+{
+  "channel_id": "17",
+  "topic_slug": "sir-patrick-stewart-stage-screen-legacy",
+  "format": "shorts",
+  "hook": "Sir Patrick Stewart played Captain Jean-Luc Picard in 170 episodes of Star Trek.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Sir Patrick Stewart played Captain Jean-Luc Picard in 170 episodes of Star Trek.",
+      "visual_cue": "Close up portrait of Sir Patrick Stewart in dramatic lighting.",
+      "sfx_cue": "Subtle deep cinematic hum",
+      "b_roll": [
+        "Sir Patrick Stewart archival press photo"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "170 Episodes"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "On Wednesday, the 86-year-old actor died at his Los Angeles home. Did joining the Royal Shakespeare Company in 1966 launch his iconic career?",
+      "visual_cue": "Historical theatre exterior shot transitioning to Los Angeles skyline.",
+      "sfx_cue": "Soft dramatic strings",
+      "b_roll": [
+        "Royal Shakespeare Company building exterior",
+        "Los Angeles residential street"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Age 86 in Los Angeles"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "He didn't stop with television, playing iconic roles like Professor X in X-Men.",
+      "visual_cue": "Archival footage of royal investiture ceremony.",
+      "sfx_cue": "Majestic brass swell",
+      "b_roll": [
+        "Queen Elizabeth II knighthood ceremony still"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Fast cut",
+      "text_overlay": {
+        "text": "Knighted in 2010"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:42",
+      "voiceover": "Queen Elizabeth II knighted Sir Patrick Stewart in 2010 for services to drama. Sir Patrick Stewart shaped drama from the Royal Shakespeare Company to Star Trek.",
+      "visual_cue": "Side by side photo of Sir Patrick Stewart and Ian McKellen.",
+      "sfx_cue": "Emotional orchestral crescendo",
+      "b_roll": [
+        "Ian McKellen portrait",
+        "Star Trek bridge set still"
+      ],
+      "animation_cue": "Pan right",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Services to Drama"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "Remember his unforgettable performances across stage and screen.",
+      "visual_cue": "Wide cinematic shot of a theatre stage with spotlight.",
+      "sfx_cue": "Fading orchestral note",
+      "b_roll": [
+        "Empty illuminated theatre stage"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Cut to black",
+      "text_overlay": {
+        "text": "Sir Patrick Stewart"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/cm0qk2e9deqeo",
+    "https://www.bbc.com/news/articles/cm20v3029p5xo",
+    "https://en.wikipedia.org/wiki/Sir_Patrick_Stewart"
+  ]
+}

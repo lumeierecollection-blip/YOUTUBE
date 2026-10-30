@@ -1,0 +1,94 @@
+{
+  "topic_slug": "sir-patrick-stewart-stage-screen-legacy",
+  "strongest_angle": "Examining the legendary career and life of Sir Patrick Stewart, from his classical roots in the Royal Shakespeare Company to his iconic roles as Captain Jean-Luc Picard in Star Trek and Professor X in X-Men, following his passing at age 86.",
+  "key_facts": [
+    {
+      "fact": "Sir Patrick Stewart died at the age of 86 at his home in Los Angeles on Wednesday after suffering with Alzheimer's Disease and Lewy Body Dementia.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cm0qk2e9deqeo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sir Patrick Stewart depicted Captain Jean-Luc Picard in more than 170 episodes of the hit series Star Trek.",
+      "source_url": "https://www.bbc.com/news/articles/cm20v3029p5xo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "In 1966, Sir Patrick Stewart became a member of the Royal Shakespeare Company in the United Kingdom.",
+      "source_url": "https://en.wikipedia.org/wiki/Sir_Patrick_Stewart",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sir Patrick Stewart was knighted by Queen Elizabeth II for his services to drama in the year 2010.",
+      "source_url": "https://en.wikipedia.org/wiki/Sir_Patrick_Stewart",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age at death",
+      "value": 86,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/patrick-stewart-dies-8b38054ff74d4187a32158d78e345ad7"
+    },
+    {
+      "label": "Star Trek episodes as Picard",
+      "value": 170,
+      "unit": "episodes",
+      "source_url": "https://www.bbc.com/news/articles/cm20v3029p5xo"
+    },
+    {
+      "label": "Year joining Royal Shakespeare Company",
+      "value": 1966,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Sir_Patrick_Stewart"
+    },
+    {
+      "label": "Year of knighthood by Queen Elizabeth II",
+      "value": 2010,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Sir_Patrick_Stewart"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Sir Ian McKellen has led tributes to Sir Patrick Stewart following his death at the age of 86, calling him \"the most respected and beloved actor of his generation\".",
+      "speaker": "Jamie Whitehead",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.com/news/articles/cm20v3029p5xo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sir Patrick Stewart",
+      "kind": "person"
+    },
+    {
+      "name": "Los Angeles",
+      "kind": "place"
+    },
+    {
+      "name": "Royal Shakespeare Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Queen Elizabeth II",
+      "kind": "person"
+    },
+    {
+      "name": "USS Enterprise",
+      "kind": "object"
+    },
+    {
+      "name": "Ian McKellen",
+      "kind": "person"
+    },
+    {
+      "name": "William Shatner",
+      "kind": "person"
+    }
+  ]
+}
