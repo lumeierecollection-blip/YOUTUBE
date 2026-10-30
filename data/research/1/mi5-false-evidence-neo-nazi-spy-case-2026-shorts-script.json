@@ -2,91 +2,89 @@
   "channel_id": "1",
   "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-2026",
   "format": "shorts",
-  "hook": "MI5 lied to 3 courts while protecting a violent neo-Nazi spy.",
+  "hook": "MI5 gave false evidence to three courts while defending a violent neo-Nazi informant known as Agent X.",
   "sections": [
     {
       "id": "hook",
-      "timing": "0:00-0:03",
-      "voiceover": "MI5 lied to 3 courts while protecting a violent neo-Nazi spy.",
-      "visual_cue": "Close up of court gavel striking desk in dark lighting",
-      "sfx_cue": "Gavel strike impact",
+      "timing": "0:00-0:04",
+      "voiceover": "MI5 gave false evidence to three courts while defending a violent neo-Nazi informant known as Agent X.",
+      "visual_cue": "Close up archival footage showing courtroom exterior and surveillance files.",
+      "sfx_cue": "Dramatic low bass hit",
       "b_roll": [
-        "Royal Courts of Justice exterior archival shot",
-        "Courtroom interior dark atmosphere"
+        "Courthouse exterior historical photography",
+        "Document archives"
       ],
-      "animation_cue": "Quick zoom in",
+      "animation_cue": "Fade in from black",
       "transition_out": "Hard cut",
       "text_overlay": {
-        "text": "MI5 Lied to 3 Courts"
+        "text": "MI5 Caught Lying to Courts"
       }
     },
     {
       "id": "setup",
-      "timing": "0:03-0:18",
-      "voiceover": "In October 2026, the Investigatory Powers Commissioner's Office investigated MI5. Why did government bodies fail surveillance safeguards?",
-      "visual_cue": "Document pages flipping rapidly with government seals",
-      "sfx_cue": "Paper rustling and low hum",
+      "timing": "0:04-0:16",
+      "voiceover": "In September 2026, the security service formally accepted that senior officers were repeatedly dishonest. An investigation by Computer Weekly and the Investigatory Powers Commissioner's Office exposed the deception. How did three separate courts get misled by intelligence officials?",
+      "visual_cue": "Documentary style montage of official government reports and surveillance papers.",
+      "sfx_cue": "Subtle paper rustle and rising synth drone",
       "b_roll": [
-        "Investigatory Powers Commissioner's Office report cover",
-        "Government documents redacted"
+        "Government report documents",
+        "Investigatory Powers Commissioner's Office files"
       ],
-      "animation_cue": "Fade in text",
-      "transition_out": "Smooth slide",
+      "animation_cue": "Slow zoom in on document text",
+      "transition_out": "Dissolve",
       "text_overlay": {
-        "text": "October 2026 IPCO Report"
+        "text": "Senior Officers Dishonest"
       }
     },
     {
       "id": "rehook",
-      "timing": "0:18-0:24",
-      "voiceover": "Investigatory commissioner Lord Leveson called protecting agent X as serious as anything he dealt with.",
-      "visual_cue": "Portrait shot of Lord Leveson speaking at inquiry",
-      "sfx_cue": "Subtle tension riser",
+      "timing": "0:16-0:21",
+      "voiceover": "Lord Leveson's office exposed that MI5 misled watchdogs while protecting Agent X.",
+      "visual_cue": "Close up on surveillance monitoring equipment and redacted logs.",
+      "sfx_cue": "Clock tick tension riser",
       "b_roll": [
-        "Lord Leveson press conference archival footage"
+        "Surveillance equipment archival shot"
       ],
-      "animation_cue": "Slow push in",
-      "transition_out": "Dip to black",
+      "animation_cue": "Quick pan across text",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "A Deeper Failure"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:21-0:33",
+      "voiceover": "Investigatory Powers Commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as serious as anything he has ever dealt with.",
+      "visual_cue": "Portrait photograph of Lord Leveson alongside official BBC News report screenshots.",
+      "sfx_cue": "Deep impact thud",
+      "b_roll": [
+        "Lord Leveson official portrait",
+        "BBC News article screenshot"
+      ],
+      "animation_cue": "Slide from right",
+      "transition_out": "Dissolve",
       "text_overlay": {
         "text": "As Serious As Anything"
       }
     },
     {
-      "id": "payoff",
-      "timing": "0:24-0:38",
-      "voiceover": "MI5 accepted that senior officers were repeatedly dishonest to 3 courts. Lord Leveson expressed disappointment that government bodies failed surveillance safeguards.",
-      "visual_cue": "Close up of MI5 headquarters building exterior at night",
-      "sfx_cue": "Deep bass pulse",
-      "b_roll": [
-        "MI5 Thames House exterior building shot",
-        "Security camera turning"
-      ],
-      "animation_cue": "Pan right",
-      "transition_out": "Fade out",
-      "text_overlay": {
-        "text": "Repeated Dishonesty"
-      }
-    },
-    {
       "id": "close",
-      "timing": "0:38-0:43",
-      "voiceover": "Investigate how MI5 misled 3 courts during the October 2026 inquiry.",
-      "visual_cue": "Empty courtroom bench under single spotlight",
-      "sfx_cue": "Echoing chime",
+      "timing": "0:33-0:38",
+      "voiceover": "Three courts misled by the security service over Agent X.",
+      "visual_cue": "Fading archival image of court documents showing the number three.",
+      "sfx_cue": "Fading ambient hum",
       "b_roll": [
-        "Empty courtroom wide angle shot"
+        "Court documents close up"
       ],
-      "animation_cue": "Slow fade to black",
+      "animation_cue": "Fade to black",
       "transition_out": "Fade to black",
       "text_overlay": {
-        "text": "Oversight Depends On Candour"
+        "text": "Three Courts Misled"
       }
     }
   ],
   "sources_used": [
-    "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
     "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
-    "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
     "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings"
   ]
 }

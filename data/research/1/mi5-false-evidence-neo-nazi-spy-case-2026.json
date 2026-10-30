@@ -1,35 +1,35 @@
 {
   "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-2026",
-  "strongest_angle": "An October 2026 intelligence watchdog report by Lord Leveson revealed that MI5 provided false evidence and lied to three courts while defending a violent neo-Nazi spy known as agent X.",
+  "strongest_angle": "Investigation by the Investigatory Powers Commissioner's Office revealed that MI5 gave false evidence to three courts and misled watchdogs while defending a violent neo-Nazi informant known as Agent X.",
   "key_facts": [
     {
-      "fact": "Investigatory powers commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as serious as anything he has ever dealt with.",
-      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
-      "source_name": "BBC News",
-      "confidence": "high"
-    },
-    {
-      "fact": "The Investigatory Powers Commissioner's Office (IPCO) investigated how MI5 gave false evidence to three courts concerning the abusive informant known as agent X.",
+      "fact": "The Investigatory Powers Commissioner's Office revealed that MI5 gave false evidence to three different courts concerning the violent neo-Nazi informer known as Agent X.",
       "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
       "source_name": "BBC News",
       "confidence": "high"
     },
     {
-      "fact": "MI5 accepted that it gave evidence based on lies to three courts and that senior security service officers were repeatedly dishonest.",
-      "source_url": "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+      "fact": "Investigatory Powers Commissioner Lord Leveson stated that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as serious as anything he has ever dealt with.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
       "source_name": "BBC News",
       "confidence": "high"
     },
     {
-      "fact": "Sir Brian Leveson expressed being disappointed and concerned that a number of government bodies failed to follow safeguards in their use of surveillance and covert powers.",
+      "fact": "An investigation by Computer Weekly and IPCO exposed that MI5 had lied to the courts and misled the Investigatory Powers Commissioner's Office regarding Agent X.",
       "source_url": "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings",
       "source_name": "Computer Weekly",
+      "confidence": "high"
+    },
+    {
+      "fact": "In September 2026, the security service formally accepted that it gave evidence based on lies to three courts and that senior MI5 officers were repeatedly dishonest.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+      "source_name": "BBC News",
       "confidence": "high"
     }
   ],
   "numbers": [
     {
-      "label": "Number of courts misled by MI5 false evidence",
+      "label": "Courts misled by MI5",
       "value": 3,
       "unit": "courts",
       "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo"
@@ -38,12 +38,6 @@
   "quotes": [
     {
       "text": "The man responsible for overseeing the conduct of the UK's intelligence services has said that MI5 lying to multiple courts while defending a violent neo-Nazi spy is as \"serious as anything\" he has ever dealt with.",
-      "speaker": "Lord Leveson",
-      "source_name": "BBC News",
-      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
-    },
-    {
-      "text": "Oversight depends on candour, said investigatory powers commissioner Lord Leveson. Failings of candour undermine the entire basis of oversight and ac",
       "speaker": "Lord Leveson",
       "source_name": "BBC News",
       "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
@@ -59,16 +53,12 @@
       "kind": "person"
     },
     {
-      "name": "Sir Brian Leveson",
-      "kind": "person"
-    },
-    {
       "name": "Investigatory Powers Commissioner's Office",
       "kind": "organization"
     },
     {
-      "name": "BBC",
-      "kind": "organization"
+      "name": "Agent X",
+      "kind": "person"
     }
   ]
 }
