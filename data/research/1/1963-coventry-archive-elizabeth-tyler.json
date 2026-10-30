@@ -1,0 +1,82 @@
+{
+  "topic_slug": "1963-coventry-archive-elizabeth-tyler",
+  "strongest_angle": "In 1963, 17-year-old Elizabeth Tyler documented the post-war reconstruction of Coventry using a 1933 Rolleicord camera, creating a historical archive rediscovered in 2026 after 63 years.",
+  "key_facts": [
+    {
+      "fact": "In 1963, 17-year-old Elizabeth Tyler captured images of bomb sites and buildings in Coventry while attending the Coventry College of Art.",
+      "source_url": "https://outsideleft.com/main.php?story=sent-from-coventry-1",
+      "source_name": "Outsideleft",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Tyler used a 1933 Rolleicord camera to take her photographs, which she developed in the school darkroom.",
+      "source_url": "https://outsideleft.com/main.php?story=sent-from-coventry-1",
+      "source_name": "Outsideleft",
+      "confidence": "high"
+    },
+    {
+      "fact": "The collection of photographs was rediscovered in 2026 after being stored in an attic for 63 years.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Tyler, now 80 years old, currently resides in Borstahusen, Sweden.",
+      "source_url": "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html",
+      "source_name": "AOL",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of Elizabeth Tyler in 1963",
+      "value": 17,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Year the Rolleicord camera was manufactured",
+      "value": 1933,
+      "unit": "year",
+      "source_url": "https://outsideleft.com/main.php?story=sent-from-coventry-1"
+    },
+    {
+      "label": "Years the archive remained in an attic",
+      "value": 63,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6kg8py4977no"
+    },
+    {
+      "label": "Current age of Elizabeth Tyler",
+      "value": 80,
+      "unit": "years",
+      "source_url": "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Elizabeth Tyler",
+      "kind": "person"
+    },
+    {
+      "name": "Coventry",
+      "kind": "place"
+    },
+    {
+      "name": "Coventry College of Art",
+      "kind": "organization"
+    },
+    {
+      "name": "Rolleicord",
+      "kind": "object"
+    },
+    {
+      "name": "Borstahusen",
+      "kind": "place"
+    },
+    {
+      "name": "Luftwaffe",
+      "kind": "organization"
+    }
+  ]
+}

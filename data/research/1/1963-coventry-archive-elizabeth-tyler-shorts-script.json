@@ -1,0 +1,75 @@
+{
+  "channel_id": "1",
+  "topic_slug": "1963-coventry-archive-elizabeth-tyler",
+  "format": "shorts",
+  "hook": "A 1933 camera captured a city's reconstruction, then vanished for 63 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 1933 camera captured a city's reconstruction, then vanished for 63 years.",
+      "visual_cue": "Close-up of a vintage Rolleicord camera sitting on a dusty wooden shelf.",
+      "sfx_cue": "Mechanical shutter click.",
+      "b_roll": [
+        "1933 Rolleicord camera close-up"
+      ],
+      "text_overlay": {
+        "text": "Lost for 63 years"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1963, 17-year-old Elizabeth Tyler documented the bomb sites of Coventry while attending the Coventry College of Art. She used a 1933 Rolleicord camera to record the city's transformation. Where did these negatives go?",
+      "visual_cue": "Black and white historical photos of Coventry bomb sites displayed on a light table.",
+      "sfx_cue": "Soft ambient room tone.",
+      "b_roll": [
+        "1963 Coventry bomb site photographs",
+        "Coventry College of Art building exterior"
+      ],
+      "text_overlay": {
+        "text": "1963: Coventry, England"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The entire collection remained hidden in a private attic for 63 years.",
+      "visual_cue": "Wide shot of a dark, dusty attic interior filled with old boxes.",
+      "sfx_cue": "Echoing footsteps.",
+      "b_roll": [
+        "Attic interior with old boxes"
+      ],
+      "text_overlay": {
+        "text": "63 years in an attic"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers finally rediscovered the archive in 2026. These images offer a rare look at post-war life through the lens of a teenager. Elizabeth Tyler, now 80, currently resides in Borstahusen, Sweden.",
+      "visual_cue": "Archival photographs being carefully handled with white gloves.",
+      "sfx_cue": "Paper rustling.",
+      "b_roll": [
+        "Hands in white gloves handling negatives",
+        "Map highlighting Borstahusen, Sweden"
+      ],
+      "text_overlay": {
+        "text": "Rediscovered in 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This 1933 Rolleicord camera finally revealed 63 years of hidden history from Coventry.",
+      "visual_cue": "Final shot of the Rolleicord camera lens reflecting the light.",
+      "sfx_cue": "Gentle fade to silence.",
+      "b_roll": [
+        "Rolleicord camera lens reflection"
+      ],
+      "text_overlay": {
+        "text": "History preserved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://outsideleft.com/main.php?story=sent-from-coventry-1",
+    "https://www.bbc.co.uk/news/articles/c6kg8py4977no",
+    "https://www.aol.com/articles/teens-lost-city-archive-found-060723000.html"
+  ]
+}
