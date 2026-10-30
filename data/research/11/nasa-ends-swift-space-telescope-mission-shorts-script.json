@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-ends-swift-space-telescope-mission",
+  "format": "shorts",
+  "hook": "NASA's Neil Gehrels Swift Observatory, a space telescope, ended its 22-year mission after a failed rescue.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA's Neil Gehrels Swift Observatory, a space telescope, ended its 22-year mission after a failed rescue.",
+      "visual_cue": "Graphic showing the Neil Gehrels Swift Observatory in orbit.",
+      "sfx_cue": "Low ambient hum of space.",
+      "b_roll": [
+        "NASA illustration of Neil Gehrels Swift Observatory"
+      ],
+      "text_overlay": {
+        "text": "22-Year Mission Ends"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 20, 2026, NASA officially concluded the science mission of the Neil Gehrels Swift Observatory. Could a commercial spacecraft save it?",
+      "visual_cue": "Map showing satellite altitude relative to Earth.",
+      "sfx_cue": "Data pulsing sound.",
+      "b_roll": [
+        "NASA diagram of low Earth orbit",
+        "Visual representation of altitude 171 miles"
+      ],
+      "text_overlay": {
+        "text": "171 miles above Earth"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Arizona's Katalyst Space Technologies tried to save the observatory, but their LINK spacecraft failed the mission.",
+      "visual_cue": "Logo of Katalyst Space Technologies on screen.",
+      "sfx_cue": "Mechanical click.",
+      "b_roll": [
+        "Katalyst Space Technologies company graphic"
+      ],
+      "text_overlay": {
+        "text": "Failed rescue attempt"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The LINK spacecraft failed to reach the Neil Gehrels Swift Observatory during the summer of 2026. This mission leaves behind 22 years of data from visible, ultraviolet, X-ray, and gamma-ray telescopes.",
+      "visual_cue": "Animation of the failed docking maneuver.",
+      "sfx_cue": "Static interference.",
+      "b_roll": [
+        "Animation of LINK spacecraft proximity",
+        "NASA image of multiwavelength spectrum"
+      ],
+      "text_overlay": {
+        "text": "22 years of data"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "NASA permanently shut down the Neil Gehrels Swift Observatory in October 2026 after the failed rescue.",
+      "visual_cue": "Slow zoom out to the stars.",
+      "sfx_cue": "Fade to silence.",
+      "b_roll": [
+        "Public domain footage of deep space"
+      ],
+      "text_overlay": {
+        "text": "22-year legacy"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+    "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+  ]
+}

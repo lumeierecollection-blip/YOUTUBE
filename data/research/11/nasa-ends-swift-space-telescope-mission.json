@@ -1,0 +1,77 @@
+{
+  "topic_slug": "nasa-ends-swift-space-telescope-mission",
+  "strongest_angle": "Break down the historical 22-year mission of NASA's Neil Gehrels Swift Observatory, which concluded in October 2026 after orbiting less than 171 miles above Earth and a failed rescue attempt by Arizona company Katalyst Space Technologies.",
+  "key_facts": [
+    {
+      "fact": "NASA's Neil Gehrels Swift Observatory ended its science mission on October 20, 2026, when it was orbiting less than 171 miles or 275 kilometers above Earth's surface.",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The rescue mission was led by the Arizona company Katalyst Space Technologies, whose LINK spacecraft tried to meet up with Swift in the summer of 2026 to boost its decaying orbit.",
+      "source_url": "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA's Neil Gehrels Swift Observatory launched on November 20, 2004, and houses three multiwavelength telescopes collecting data in visible, ultraviolet, X-ray, and gamma-ray light.",
+      "source_url": "https://science.nasa.gov/mission/swift",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA shut down the astronomy spacecraft in October 2026 after 22 years in orbit following a failed attempt to reboost it with a commercial spacecraft.",
+      "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission",
+      "source_name": "SpaceNews",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Orbital altitude in miles",
+      "value": 171,
+      "unit": "miles",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Orbital altitude in kilometers",
+      "value": 275,
+      "unit": "kilometers",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Mission duration in years",
+      "value": 22,
+      "unit": "years",
+      "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Neil Gehrels Swift Observatory",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Katalyst Space Technologies",
+      "kind": "organization"
+    },
+    {
+      "name": "LINK",
+      "kind": "object"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    }
+  ]
+}
