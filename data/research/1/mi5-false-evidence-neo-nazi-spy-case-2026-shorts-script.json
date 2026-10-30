@@ -1,0 +1,92 @@
+{
+  "channel_id": "1",
+  "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-2026",
+  "format": "shorts",
+  "hook": "MI5 lied to 3 courts while protecting a violent neo-Nazi spy.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "MI5 lied to 3 courts while protecting a violent neo-Nazi spy.",
+      "visual_cue": "Close up of court gavel striking desk in dark lighting",
+      "sfx_cue": "Gavel strike impact",
+      "b_roll": [
+        "Royal Courts of Justice exterior archival shot",
+        "Courtroom interior dark atmosphere"
+      ],
+      "animation_cue": "Quick zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "MI5 Lied to 3 Courts"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "In October 2026, the Investigatory Powers Commissioner's Office investigated MI5. Why did government bodies fail surveillance safeguards?",
+      "visual_cue": "Document pages flipping rapidly with government seals",
+      "sfx_cue": "Paper rustling and low hum",
+      "b_roll": [
+        "Investigatory Powers Commissioner's Office report cover",
+        "Government documents redacted"
+      ],
+      "animation_cue": "Fade in text",
+      "transition_out": "Smooth slide",
+      "text_overlay": {
+        "text": "October 2026 IPCO Report"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "Investigatory commissioner Lord Leveson called protecting agent X as serious as anything he dealt with.",
+      "visual_cue": "Portrait shot of Lord Leveson speaking at inquiry",
+      "sfx_cue": "Subtle tension riser",
+      "b_roll": [
+        "Lord Leveson press conference archival footage"
+      ],
+      "animation_cue": "Slow push in",
+      "transition_out": "Dip to black",
+      "text_overlay": {
+        "text": "As Serious As Anything"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "MI5 accepted that senior officers were repeatedly dishonest to 3 courts. Lord Leveson expressed disappointment that government bodies failed surveillance safeguards.",
+      "visual_cue": "Close up of MI5 headquarters building exterior at night",
+      "sfx_cue": "Deep bass pulse",
+      "b_roll": [
+        "MI5 Thames House exterior building shot",
+        "Security camera turning"
+      ],
+      "animation_cue": "Pan right",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Repeated Dishonesty"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Investigate how MI5 misled 3 courts during the October 2026 inquiry.",
+      "visual_cue": "Empty courtroom bench under single spotlight",
+      "sfx_cue": "Echoing chime",
+      "b_roll": [
+        "Empty courtroom wide angle shot"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Oversight Depends On Candour"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
+    "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+    "https://www.bbc.co.uk/news/articles/c3j4jz07e2v8o",
+    "https://www.computerweekly.com/news/366652841/UK-surveillance-watchdog-disappointed-over-government-investigatory-powers-failings"
+  ]
+}
