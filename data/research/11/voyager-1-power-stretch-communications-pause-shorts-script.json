@@ -1,0 +1,77 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-power-stretch-communications-pause",
+  "format": "shorts",
+  "hook": "NASA's Voyager 1 went silent 16 billion miles away, leaving mission controllers waiting in the dark.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA's Voyager 1 went silent 16 billion miles away, leaving mission controllers waiting in the dark.",
+      "visual_cue": "Graphic showing Voyager 1 drifting in deep space with distance 16 billion miles displayed.",
+      "sfx_cue": "Low, resonant deep space hum.",
+      "b_roll": [
+        "NASA artist rendition of Voyager 1 in deep space"
+      ],
+      "text_overlay": {
+        "text": "16 Billion Miles Away"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 18, the Deep Space Network attempted contact with the probe at its extreme distance. Did the Deep Space Network lose contact because Voyager 1 is 16 billion miles from Earth?",
+      "visual_cue": "Animation of Earth and a radio signal pulse failing to reach the distant Voyager 1 probe.",
+      "sfx_cue": "Static radio interference sound.",
+      "b_roll": [
+        "Deep Space Network antenna array footage"
+      ],
+      "text_overlay": {
+        "text": "Contact Attempt: Oct 18"
+      },
+      "transition_out": "cross-dissolve"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Voyager 1 suddenly resumed its radio signal after the October 20 unexpected silence.",
+      "visual_cue": "Close-up of a waveform monitor suddenly flatlining then spiking back to life.",
+      "sfx_cue": "Sudden crisp radio pulse sound.",
+      "b_roll": [
+        "Digital waveform animation"
+      ],
+      "text_overlay": {
+        "text": "Signal Restored"
+      },
+      "transition_out": "fade-out"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The communication pause lasted 48 hours before the link with Earth self-corrected on October 20. NASA completed a months-long effort in September to stretch the Voyager 1 power supply capacity.",
+      "visual_cue": "Timeline graphic showing 48 hour gap labeled as Communication Pause.",
+      "sfx_cue": "Gentle, hopeful orchestral swell.",
+      "b_roll": [
+        "NASA JPL mission control center interior"
+      ],
+      "text_overlay": {
+        "text": "48-Hour Pause"
+      },
+      "transition_out": "cross-dissolve"
+    },
+    {
+      "id": "close",
+      "voiceover": "Voyager 1 remains our furthest messenger in the silent void.",
+      "visual_cue": "Slow zoom out from Voyager 1 into the vast star field.",
+      "sfx_cue": "Soft, fading ambient space noise.",
+      "b_roll": [
+        "NASA artist rendition of Voyager 1 against distant stars"
+      ],
+      "text_overlay": {
+        "text": "Voyager 1: 24 Billion Kilometers"
+      },
+      "transition_out": "fade-to-black"
+    }
+  ],
+  "sources_used": [
+    "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+    "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+  ]
+}

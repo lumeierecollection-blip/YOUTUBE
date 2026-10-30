@@ -1,0 +1,75 @@
+{
+  "topic_slug": "voyager-1-power-stretch-communications-pause",
+  "strongest_angle": "Break down how NASA's Voyager 1 spacecraft successfully managed its diminishing power supply through a months-long effort completed in September, followed by an unexpected 48-hour communication drop and recovery in October 2026.",
+  "key_facts": [
+    {
+      "fact": "In September, NASA's Voyager team successfully completed a months-long effort to stretch the Voyager 1 spacecraft's diminishing power supply.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "On Oct. 20, an unexpected loss of communication with Voyager 1 resolved itself after 48 hours before the mission team transmitted troubleshooting commands.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA's Deep Space Network could not detect a radio signal from Voyager 1 during two scheduled communications attempts 24 hours apart on Oct. 18 and Oct. 19.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "medium"
+    },
+    {
+      "fact": "During the communication attempts on Oct. 18 and Oct. 19, the Voyager 1 spacecraft was located 16 billion miles, or 24 billion kilometers, away from Earth.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Communication pause duration",
+      "value": 48,
+      "unit": "hours",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    },
+    {
+      "label": "First communication attempt interval",
+      "value": 24,
+      "unit": "hours",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    },
+    {
+      "label": "Distance from Earth in miles",
+      "value": 16000000000,
+      "unit": "miles",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    },
+    {
+      "label": "Distance from Earth in kilometers",
+      "value": 24000000000,
+      "unit": "kilometers",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Voyager 1",
+      "kind": "object"
+    },
+    {
+      "name": "Deep Space Network",
+      "kind": "organization"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    }
+  ]
+}
