@@ -1,0 +1,74 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-vs-dracula-feat-analysis",
+  "format": "shorts",
+  "hook": "Arthur Conan Doyle wrote that Watson compared Holmes's deductive powers to supernatural abilities, risking execution.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Arthur Conan Doyle wrote that Watson compared Holmes's deductive powers to supernatural abilities, risking execution.",
+      "visual_cue": "Close up of Victorian era magnifying glass resting on a handwritten manuscript page.",
+      "sfx_cue": "Faint sound of a quill scratching on parchment.",
+      "b_roll": [
+        "Historical illustration of a 19th-century study"
+      ],
+      "text_overlay": {
+        "text": "Holmes: Man or Monster?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "If Holmes is the ultimate rationalist, how could he possibly face the undead?",
+      "visual_cue": "Split screen showing a portrait of Arthur Conan Doyle and a moody silhouette of a castle.",
+      "sfx_cue": "Low, suspenseful violin note.",
+      "b_roll": [
+        "Portrait of Arthur Conan Doyle",
+        "Engraving of a gothic castle silhouette"
+      ],
+      "text_overlay": {
+        "text": "Rationalism vs. Horror"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The stakes rose in 1978 when author Loren D. Estleman wrote a crossover novel. This book depicts a direct encounter between the detective and the legendary Count Dracula.",
+      "visual_cue": "Image of a vintage library shelf with a single spotlight on a book spine.",
+      "sfx_cue": "Sound of a heavy book being opened.",
+      "b_roll": [
+        "Vintage library interior"
+      ],
+      "text_overlay": {
+        "text": "The 1978 Confrontation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "On page 121, the detective finally meets the legendary Count Dracula face-to-face. Academic Daniel Cottom identifies this clash as the fantastic end of the bohemian figure.",
+      "visual_cue": "Graphic showing the number 121 highlighted on a document.",
+      "sfx_cue": "Deep, resonating organ chord.",
+      "b_roll": [
+        "Close up of an old cathedral pipe organ"
+      ],
+      "text_overlay": {
+        "text": "Holmes meets Dracula"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Loren D. Estleman explores this collision between Victorian rationalism and supernatural gothic horror in 1978.",
+      "visual_cue": "Silhouette of a detective walking into the shadows of a fog-filled London street.",
+      "sfx_cue": "Soft, fading footsteps.",
+      "b_roll": [
+        "Foggy London street at dusk"
+      ],
+      "text_overlay": {
+        "text": "1978"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+    "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+    "https://doi.org/10.1353/elh.2012.0028"
+  ]
+}

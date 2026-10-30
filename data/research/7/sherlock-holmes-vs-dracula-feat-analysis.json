@@ -1,0 +1,78 @@
+{
+  "topic_slug": "sherlock-holmes-vs-dracula-feat-analysis",
+  "strongest_angle": "The comparison between Sherlock Holmes and Count Dracula represents a collision between Victorian rationalism and supernatural gothic horror, as explored in both academic analysis and literary pastiches.",
+  "key_facts": [
+    {
+      "fact": "Loren D. Estleman published the novel Sherlock Holmes vs. Dracula, or the Adventure of the Sanguinary Count in 1978, which depicts a direct encounter between the two characters.",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+      "source_name": "Detective VS Vampire - A Powerbattle",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the first Sherlock Holmes story, Arthur Conan Doyle writes that Watson compares Holmes's deductive powers to supernatural abilities, stating he would have been burned centuries ago.",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "source_name": "Sherlock the Vampire…or the Vampire Hunter? – Late 19th Century British Literature & Culture",
+      "confidence": "high"
+    },
+    {
+      "fact": "Academic analysis by Daniel Cottom identifies Sherlock Holmes as the fantastic end of the bohemian figure, while Count Dracula represents its fantasized origin in late 19th-century culture.",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028",
+      "source_name": "Sherlock Holmes Meets Dracula",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year of Estleman's novel",
+      "value": 1978,
+      "unit": "year",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    },
+    {
+      "label": "Page number of the encounter in Estleman's novel",
+      "value": 121,
+      "unit": "page",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Mr. Sherlock Holmes? His voice was as deep and devoid of emotion as the bass note of an organ in a cathedral. The detective nodded. I am Count Dracula.",
+      "speaker": "Count Dracula",
+      "source_name": "Detective VS Vampire - A Powerbattle",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    },
+    {
+      "text": "You would certainly have been burned, had you lived a few centuries ago, Watson declares",
+      "speaker": "John Watson",
+      "source_name": "Sherlock the Vampire…or the Vampire Hunter? – Late 19th Century British Literature & Culture",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "John Watson",
+      "kind": "person"
+    }
+  ]
+}
