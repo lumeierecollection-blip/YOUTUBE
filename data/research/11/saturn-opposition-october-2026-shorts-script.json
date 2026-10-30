@@ -1,0 +1,73 @@
+{
+  "channel_id": "11",
+  "topic_slug": "saturn-opposition-october-2026",
+  "format": "shorts",
+  "hook": "On October 4, 2026, Earth slipped directly between the Sun and Saturn.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "On October 4, 2026, Earth slipped directly between the Sun and Saturn.",
+      "visual_cue": "Space animation showing Earth, Sun, and Saturn aligning in their orbits.",
+      "sfx_cue": "Deep, resonant space ambient hum.",
+      "b_roll": [
+        "NASA space visualization of planetary alignment"
+      ],
+      "text_overlay": {
+        "text": "October 4, 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "This opposition, where Earth aligns between the Sun and Saturn, occurred precisely at 12 UTC. Where did the ringed planet Saturn appear in the sky during this October 2026 event?",
+      "visual_cue": "Saturn appearing bright against a dark starfield.",
+      "sfx_cue": "Soft, twinkling celestial chimes.",
+      "b_roll": [
+        "NASA public domain image of Saturn",
+        "Diagram of planetary opposition"
+      ],
+      "text_overlay": {
+        "text": "12 UTC Alignment"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Saturn drifted within Cetus, the Whale, making the planet visible throughout the entire night.",
+      "visual_cue": "Star map highlighting the constellation Cetus.",
+      "sfx_cue": "Low, mysterious bass pulse.",
+      "b_roll": [
+        "Stellar mapping of Cetus constellation"
+      ],
+      "text_overlay": {
+        "text": "Constellation: Cetus"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Observers in the United Kingdom tracked Saturn as it reached a peak altitude of 40 degrees. Earth offered the ideal vantage point for viewing this annual opposition of the ringed planet.",
+      "visual_cue": "Telescopic view of Saturn rising above the horizon.",
+      "sfx_cue": "Sound of a telescope mount moving smoothly.",
+      "b_roll": [
+        "Astrophotography of Saturn",
+        "View of night sky over the UK"
+      ],
+      "text_overlay": {
+        "text": "40 Degree Altitude"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch Saturn in the constellation of Cetus to witness this rare October 4, 2026 alignment.",
+      "visual_cue": "Slow zoom out from Saturn into the wide starfield.",
+      "sfx_cue": "Fading ambient space echo.",
+      "b_roll": [
+        "Wide field view of deep space"
+      ],
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/solar-system/skywatching/whats-up-october-2026-skywatching-tips-from-nasa",
+    "https://www.skyatnightmagazine.com/news/saturn-october-2026",
+    "https://earthsky.org/astronomy-essentials/saturn-at-opposition-closest-brightest-best"
+  ]
+}

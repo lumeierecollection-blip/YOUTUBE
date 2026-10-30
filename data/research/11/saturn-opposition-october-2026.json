@@ -1,0 +1,76 @@
+{
+  "topic_slug": "saturn-opposition-october-2026",
+  "strongest_angle": "On October 4, 2026, Earth passed directly between the Sun and Saturn, marking the annual opposition that provided the year's optimal viewing conditions for the ringed planet.",
+  "key_facts": [
+    {
+      "fact": "Saturn reached its annual opposition on October 4, 2026, allowing the planet to be visible throughout the entire night.",
+      "source_url": "https://science.nasa.gov/solar-system/skywatching/whats-up-october-2026-skywatching-tips-from-nasa",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the first half of October 2026, Saturn was positioned within the constellation of Cetus, the Whale.",
+      "source_url": "https://www.skyatnightmagazine.com/news/saturn-october-2026",
+      "source_name": "BBC Sky at Night Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Observers in the United Kingdom could see Saturn reach a peak altitude of 40 degrees when the planet was due south.",
+      "source_url": "https://www.skyatnightmagazine.com/news/saturn-october-2026",
+      "source_name": "BBC Sky at Night Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Earth moved between the Sun and Saturn at approximately 12 UTC on October 4, 2026.",
+      "source_url": "https://earthsky.org/astronomy-essentials/saturn-at-opposition-closest-brightest-best",
+      "source_name": "EarthSky",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Date of Saturn opposition",
+      "value": 4,
+      "unit": "October",
+      "source_url": "https://science.nasa.gov/solar-system/skywatching/whats-up-october-2026-skywatching-tips-from-nasa"
+    },
+    {
+      "label": "Peak altitude of Saturn in the UK",
+      "value": 40,
+      "unit": "degrees",
+      "source_url": "https://www.skyatnightmagazine.com/news/saturn-october-2026"
+    },
+    {
+      "label": "Time of opposition in UTC",
+      "value": 12,
+      "unit": "UTC",
+      "source_url": "https://earthsky.org/astronomy-essentials/saturn-at-opposition-closest-brightest-best"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Saturn",
+      "kind": "object"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Sun",
+      "kind": "object"
+    },
+    {
+      "name": "Cetus",
+      "kind": "place"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    }
+  ]
+}
