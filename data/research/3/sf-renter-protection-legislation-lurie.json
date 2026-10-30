@@ -1,0 +1,69 @@
+{
+  "topic_slug": "sf-renter-protection-legislation-lurie",
+  "strongest_angle": "In October 2026, Mayor Daniel Lurie and the San Francisco Board of Supervisors enacted legislation prohibiting evictions for tenants who owe less than a month's fair market rent, addressing fair market rents such as $2,485 for a studio.",
+  "key_facts": [
+    {
+      "fact": "Mayor Daniel Lurie and the San Francisco Board of Supervisors enacted legislation prohibiting evictions for tenants who owe less than a month's fair market rent.",
+      "source_url": "https://missionlocal.org/2026/10/new-san-francisco-legislation-would-set-new-monetary-threshold-for-evictions",
+      "source_name": "Mission Local",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fair market rent in San Francisco is $2,485 for a studio apartment.",
+      "source_url": "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php",
+      "source_name": "San Francisco Chronicle",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fair market rent in San Francisco is $2,977 for a one-bedroom apartment.",
+      "source_url": "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php",
+      "source_name": "San Francisco Chronicle",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fair market rent in San Francisco is $3,604 for a larger unit.",
+      "source_url": "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php",
+      "source_name": "San Francisco Chronicle",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Studio fair market rent",
+      "value": 2485,
+      "unit": "dollars",
+      "source_url": "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php"
+    },
+    {
+      "label": "One-bedroom fair market rent",
+      "value": 2977,
+      "unit": "dollars",
+      "source_url": "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php"
+    },
+    {
+      "label": "Larger unit fair market rent",
+      "value": 3604,
+      "unit": "dollars",
+      "source_url": "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Daniel Lurie",
+      "kind": "person"
+    },
+    {
+      "name": "Jackie Fielder",
+      "kind": "person"
+    },
+    {
+      "name": "San Francisco",
+      "kind": "place"
+    },
+    {
+      "name": "San Francisco Board of Supervisors",
+      "kind": "organization"
+    }
+  ]
+}

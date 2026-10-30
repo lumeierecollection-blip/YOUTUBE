@@ -1,0 +1,64 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sf-renter-protection-legislation-lurie",
+  "format": "shorts",
+  "hook": "Could a studio fair market rent of $2,485 trigger an eviction in San Francisco?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Could a studio fair market rent of $2,485 trigger an eviction in San Francisco?",
+      "b_roll": [
+        "A wide shot of San Francisco city skyline"
+      ],
+      "text_overlay": {
+        "text": "Eviction Risk in San Francisco"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, Mayor Daniel Lurie and the San Francisco Board of Supervisors enacted eviction protections. Does studio fair market rent hit $2,485 in San Francisco?",
+      "b_roll": [
+        "Portrait of Daniel Lurie",
+        "Exterior of San Francisco City Hall"
+      ],
+      "text_overlay": {
+        "text": "New October 2026 Law"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, one-bedroom fair market rent climbs to $2,977.",
+      "b_roll": [
+        "Apartment building exterior"
+      ],
+      "text_overlay": {
+        "text": "$2,977 One-Bedroom"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Larger units reach 3,604 dollars under the new guidelines. Tenants owing less than a month do not face eviction. The legislation protects renters across San Francisco.",
+      "b_roll": [
+        "Apartment interior view",
+        "San Francisco street sign"
+      ],
+      "text_overlay": {
+        "text": "$3,604 Larger Units"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "San Francisco protects tenants owing less than $2,485 for a studio.",
+      "b_roll": [
+        "San Francisco cityscape at dusk"
+      ],
+      "text_overlay": {
+        "text": "Protected Under 1 Month"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://missionlocal.org/2026/10/new-san-francisco-legislation-would-set-new-monetary-threshold-for-evictions",
+    "https://www.sfchronicle.com/sf/article/sf-unpaid-rent-eviction-law-22487457.php"
+  ]
+}
