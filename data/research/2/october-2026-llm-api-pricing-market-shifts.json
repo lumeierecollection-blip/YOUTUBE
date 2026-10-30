@@ -1,0 +1,75 @@
+{
+  "topic_slug": "october-2026-llm-api-pricing-market-shifts",
+  "strongest_angle": "Examining the October 2026 LLM API market shifts across tracking platforms, including Model Price Watch reporting a frontier intelligence cost of $5.14 per million tokens on October 1, 2026, and Sovyron recording 1629 API price changes.",
+  "key_facts": [
+    {
+      "fact": "On October 1, 2026, frontier intelligence cost $5.14 per million tokens according to Model Price Watch tracking across 10 flagship models.",
+      "source_url": "https://modelpricewatch.com/reports/state-of-llm-pricing-2026-10",
+      "source_name": "Model Price Watch",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sovyron recorded 1629 API price changes across 333 models in the 30 days leading up to October 30, 2026.",
+      "source_url": "https://sovyron.com/changes",
+      "source_name": "Sovyron",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google's Gemini 4 Argon model was scheduled on the apiprice platform for December 1, 2026, with an input price moving from $2 to $4.",
+      "source_url": "https://apiprice.app/en/changes",
+      "source_name": "API Price",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Frontier intelligence cost per million tokens",
+      "value": 5.14,
+      "unit": "dollars",
+      "source_url": "https://modelpricewatch.com/reports/state-of-llm-pricing-2026-10"
+    },
+    {
+      "label": "Total API price changes recorded by Sovyron",
+      "value": 1629,
+      "unit": "changes",
+      "source_url": "https://sovyron.com/changes"
+    },
+    {
+      "label": "Total models tracked by Sovyron",
+      "value": 333,
+      "unit": "models",
+      "source_url": "https://sovyron.com/changes"
+    },
+    {
+      "label": "Gemini 4 Argon scheduled input price start",
+      "value": 2,
+      "unit": "dollars",
+      "source_url": "https://apiprice.app/en/changes"
+    },
+    {
+      "label": "Gemini 4 Argon scheduled input price end",
+      "value": 4,
+      "unit": "dollars",
+      "source_url": "https://apiprice.app/en/changes"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Model Price Watch",
+      "kind": "organization"
+    },
+    {
+      "name": "Sovyron",
+      "kind": "organization"
+    },
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    }
+  ]
+}

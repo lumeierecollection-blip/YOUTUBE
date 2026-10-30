@@ -1,0 +1,53 @@
+{
+  "channel_id": "2",
+  "topic_slug": "october-2026-llm-api-pricing-market-shifts",
+  "format": "shorts",
+  "hook": "Frontier intelligence, the most advanced AI models, cost $5.14 per million tokens on October 1, 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Frontier intelligence, the most advanced AI models, cost $5.14 per million tokens on October 1, 2026.",
+      "visual_cue": "Text overlay showing the $5.14 price point against a digital market background.",
+      "text_overlay": {
+        "text": "$5.14 per million tokens"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did the tracking platform Sovyron record 1629 price changes across 333 models by October 30, 2026?",
+      "visual_cue": "A chart showing the 10 models tracked followed by a counter for the 1629 price changes.",
+      "text_overlay": {
+        "text": "1629 price changes recorded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Google is bucking this market trend by doubling the input price for Gemini 4 Argon.",
+      "visual_cue": "A digital screen showing a volatility graph for API pricing.",
+      "text_overlay": {
+        "text": "Market volatility"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Google scheduled the Gemini 4 Argon model for release on December 1, 2026. This move shifts the input price from $2 to $4 for all developers.",
+      "visual_cue": "A visual timeline showing the jump from $2 to $4 for Gemini 4 Argon.",
+      "text_overlay": {
+        "text": "$2 to $4 price jump"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Google sets the Gemini 4 Argon input price at $4 starting on December 1, 2026.",
+      "visual_cue": "A final text card displaying the $4 unit price for the Gemini 4 Argon model.",
+      "text_overlay": {
+        "text": "$4 per million tokens"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://modelpricewatch.com/reports/state-of-llm-pricing-2026-10",
+    "https://sovyron.com/changes",
+    "https://apiprice.app/en/changes"
+  ]
+}
