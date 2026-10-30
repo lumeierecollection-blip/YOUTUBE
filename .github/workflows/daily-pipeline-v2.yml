@@ -45,9 +45,9 @@ on:
         type: boolean
         default: false
       channels:
-        description: "Comma-separated channel IDs ΓÇö must be priority channels"
+        description: "Comma-separated channel IDs from config/run-channels.json (empty = all of them, as the daily cron does)"
         type: string
-        default: "1,2,48"
+        default: ""
       render_only:
         description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
         type: boolean
