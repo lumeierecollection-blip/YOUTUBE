@@ -1,0 +1,135 @@
+{
+  "topic_slug": "arica-driest-inhabited-place-2026",
+  "strongest_angle": "Guinness World Records verified Arica’s 0.76 mm average yearly rainfall using long‑term airport data, highlighted the 172‑month rainless stretch from October 1903 to January 1918, and explained how the Atacama Desert’s fog‑driven climate creates the world’s driest inhabited city, affecting residents and tourism.",
+  "key_facts": [
+    {
+      "fact": "Arica’s average annual precipitation is 0.76 mm (0.03 inches), measured at the city’s airport meteorological station over a 59‑year record, making it the driest inhabited place on Earth.",
+      "source_url": "https://en.m.wikipedia.org/wiki/Arica",
+      "source_name": "Wikipedia",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Guinness World Records documents that Arica experienced a continuous dry spell of 172 months (14.42 years) from October 1903 to January 1918, with no rain recorded.",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/535834-longest-sustained-dry-period",
+      "source_name": "Guinness World Records",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Atacama Desert stretches roughly 1,000 km along the coast of Peru and Chile and covers about 105,000 km², typically receiving 10–15 mm of rain per year, whereas Arica receives only 0.76 mm, a stark contrast.",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/577412-driest-desert",
+      "source_name": "Guinness World Records",
+      "confidence": "medium"
+    },
+    {
+      "fact": "CurrentResults confirms the same average of 0.76 mm per year and notes a drought lasting 173 months (over 14 years) from October 1903 to January 1918, corroborating Guinness data.",
+      "source_url": "https://www.currentresults.com/Weather-Extremes/world-rain-wind.php",
+      "source_name": "CurrentResults",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 0.76,
+      "unit": "mm",
+      "label": "average annual precipitation",
+      "source_url": "https://en.m.wikipedia.org/wiki/Arica"
+    },
+    {
+      "value": 0.03,
+      "unit": "inches",
+      "label": "average annual precipitation (inches)",
+      "source_url": "https://en.m.wikipedia.org/wiki/Arica"
+    },
+    {
+      "value": 172,
+      "unit": "months",
+      "label": "dry spell duration",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/535834-longest-sustained-dry-period"
+    },
+    {
+      "value": 14.42,
+      "unit": "years",
+      "label": "dry spell duration (years)",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/535834-longest-sustained-dry-period"
+    },
+    {
+      "value": 1903,
+      "unit": "year",
+      "label": "dry spell start year",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/535834-longest-sustained-dry-period"
+    },
+    {
+      "value": 1918,
+      "unit": "year",
+      "label": "dry spell end year",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/535834-longest-sustained-dry-period"
+    },
+    {
+      "value": 1000,
+      "unit": "km",
+      "label": "length of Atacama Desert along coast",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/577412-driest-desert"
+    },
+    {
+      "value": 105000,
+      "unit": "km²",
+      "label": "area of Atacama Desert",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/577412-driest-desert"
+    },
+    {
+      "value": 10,
+      "unit": "mm per year",
+      "label": "lower bound of typical Atacama rainfall",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/577412-driest-desert"
+    },
+    {
+      "value": 15,
+      "unit": "mm per year",
+      "label": "upper bound of typical Atacama rainfall",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/577412-driest-desert"
+    },
+    {
+      "value": 173,
+      "unit": "months",
+      "label": "dry spell duration (alternative source)",
+      "source_url": "https://www.currentresults.com/Weather-Extremes/world-rain-wind.php"
+    },
+    {
+      "value": 14,
+      "unit": "years",
+      "label": "dry spell duration (rounded years)",
+      "source_url": "https://www.currentresults.com/Weather-Extremes/world-rain-wind.php"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Arica",
+      "kind": "place"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "Guinness World Records",
+      "kind": "organization"
+    },
+    {
+      "name": "World Meteorological Organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Atacama Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Peru",
+      "kind": "place"
+    },
+    {
+      "name": "airport meteorological station",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}

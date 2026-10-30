@@ -1,0 +1,37 @@
+{
+  "channel_id": "9",
+  "topic_slug": "arica-driest-inhabited-place-2026",
+  "format": "shorts",
+  "hook": "What if your city only got 0.76 mm of rain each year?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if your city only got 0.76 mm of rain each year?",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "Guinness World Records confirmed Arica averages only 0.76 mm of rain yearly from airport data. It recorded a 172‑month dry spell—from October 1903 to January 1918—with zero rain. How does such aridity shape life in Arica?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the city still draws tourists despite the relentless drought.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Atacama Desert spans 1,000 km of coast and gets 10–15 mm of rain yearly. Locals harvest fog water while tourists come for the desert experience.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Arica still thrives with just 0.76 mm of rain.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://en.m.wikipedia.org/wiki/Arica",
+    "https://www.guinnessworldrecords.com/world-records/535834-longest-sustained-dry-period"
+  ]
+}
