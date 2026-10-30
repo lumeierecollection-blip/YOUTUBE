@@ -1,0 +1,85 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-conserves-power-resolves-communication-pause",
+  "format": "shorts",
+  "hook": "NASA turned off three power-hungry devices on Voyager 1 before radio contact vanished for 48 hours.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "NASA turned off three power-hungry devices on Voyager 1 before radio contact vanished for 48 hours.",
+      "visual_cue": "Close-up of Voyager 1 spacecraft model against deep starfield background.",
+      "sfx_cue": "Deep space hum fading into a sharp radio static burst.",
+      "b_roll": [],
+      "animation_cue": "Subtle zoom in on spacecraft telemetry dish.",
+      "transition_out": "Hard cut to dark space.",
+      "text_overlay": {
+        "text": "16 BILLION MILES AWAY"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "Jet Propulsion Laboratory engineers completed a months-long power-stretching operation in September. Deep Space Network receivers detected no radio signal during scheduled checks on October 18 and October 19. Did Voyager 1 transmit its signal after 16 billion miles?",
+      "visual_cue": "Animated diagram showing Jet Propulsion Laboratory control room monitors and antenna tracking arcs.",
+      "sfx_cue": "Low digital pulsing tone indicating radar sweep.",
+      "b_roll": [
+        "Deep Space Network antenna dish pointing at night sky"
+      ],
+      "animation_cue": "Pulsing radar rings expanding outward from Earth.",
+      "transition_out": "Dissolve to deep space telemetry readout.",
+      "text_overlay": {
+        "text": "POWER-STRETCHING OPERATION"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Then NASA faced a 48-hour communication pause on October 20 that resolved itself autonomously.",
+      "visual_cue": "Close-up of telemetry screen showing signal lock recovering from red to green.",
+      "sfx_cue": "Crisp electronic chime confirming signal lock.",
+      "b_roll": [
+        "Computer monitor displaying telemetry data graphs"
+      ],
+      "animation_cue": "Waveform spiking back to active state.",
+      "transition_out": "Quick pan across starfield.",
+      "text_overlay": {
+        "text": "AUTONOMOUS RECOVERY"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Voyager 1 operated on three lower-power alternatives while sitting 24 billion kilometers from Earth.",
+      "visual_cue": "Wide cinematic view of Voyager 1 drifting through interstellar space past distant stars.",
+      "sfx_cue": "Resonant cosmic drone building in volume.",
+      "b_roll": [
+        "Artist illustration of Voyager 1 in interstellar space"
+      ],
+      "animation_cue": "Distance counter ticking up to 24 billion kilometers.",
+      "transition_out": "Slow fade to black.",
+      "text_overlay": {
+        "text": "24 BILLION KILOMETERS"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Silence across 16 billion miles of void ends in deep space.",
+      "visual_cue": "Distant view of Earth as a pale blue dot fading into the vast cosmos.",
+      "sfx_cue": "Gentle stellar wind sound fading into absolute silence.",
+      "b_roll": [
+        "Pale blue dot photograph of Earth"
+      ],
+      "animation_cue": "Camera pulling back infinitely into the starfield.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "16 BILLION MILES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+    "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+  ]
+}

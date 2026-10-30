@@ -1,0 +1,63 @@
+{
+  "topic_slug": "voyager-1-conserves-power-resolves-communication-pause",
+  "strongest_angle": "NASA completed a critical power-stretching operation on Voyager 1 by turning off three power-hungry devices simultaneously in September, followed by successfully resolving an unexpected 48-hour communication pause on October 20.",
+  "key_facts": [
+    {
+      "fact": "In September, NASA engineers completed a months-long effort to stretch Voyager 1's diminishing power supply by simultaneously turning off three power-hungry devices and substituting them with three lower-power alternatives.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 20, an unexpected loss of communication with Voyager 1 resolved itself autonomously after 48 hours before the NASA mission team could transmit diagnostic commands.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA's Deep Space Network was unable to detect a radio signal from Voyager 1 during two scheduled communication attempts on October 18 and October 19, when the spacecraft was located 16 billion miles (24 billion kilometers) from Earth.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Communication pause duration",
+      "value": 48,
+      "unit": "hours",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    },
+    {
+      "label": "Distance from Earth in miles",
+      "value": 16000000000,
+      "unit": "miles",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    },
+    {
+      "label": "Distance from Earth in kilometers",
+      "value": 24000000000,
+      "unit": "kilometers",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Voyager 1",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Deep Space Network",
+      "kind": "organization"
+    }
+  ]
+}
