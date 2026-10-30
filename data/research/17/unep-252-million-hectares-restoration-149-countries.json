@@ -1,0 +1,74 @@
+{
+  "topic_slug": "unep-252-million-hectares-restoration-149-countries",
+  "strongest_angle": "Examine how the October 2026 UN Environment Programme report reveals that 252 million hectares are under restoration across 149 countries, creating over one million green jobs in the largest documented global restoration effort to date.",
+  "key_facts": [
+    {
+      "fact": "A United Nations report published on October 29, 2026, finds that 252 million hectares across 149 countries are currently being restored.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UNEP",
+      "confidence": "high"
+    },
+    {
+      "fact": "The restoration efforts across 149 countries have created more than one million green jobs, marking the largest documented global restoration effort to date according to the UN Environment Programme.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UNEP",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Restoration Progress Report published by the Food and Agriculture Organization and UN Environment Programme on October 29, 2026, serves as the first-ever stocktake of countries bringing degraded ecosystems back to life.",
+      "source_url": "https://www.fao.org/newsroom/detail/nature-is-making-a-comeback--but-the-world-must-move-faster-to-meet-restoration-targets---un-report/en",
+      "source_name": "FAO",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Hectares under restoration",
+      "value": 252000000,
+      "unit": "hectares",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Countries participating in restoration",
+      "value": 149,
+      "unit": "countries",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Green jobs created",
+      "value": 1000000,
+      "unit": "jobs",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "This report captures the largest documented restoration effort in history, said Doreen Robinson at the UN Environment Programme in Nairobi at a press",
+      "speaker": "Doreen Robinson",
+      "source_name": "Red Hot Singapore",
+      "source_url": "https://www.redhot.sg/restored-nature-hits-record-252-million-hectares-but-still-off-target-un-733377.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "UN Environment Programme",
+      "kind": "organization"
+    },
+    {
+      "name": "Food and Agriculture Organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Yerevan",
+      "kind": "place"
+    },
+    {
+      "name": "Nairobi",
+      "kind": "place"
+    },
+    {
+      "name": "Doreen Robinson",
+      "kind": "person"
+    }
+  ]
+}

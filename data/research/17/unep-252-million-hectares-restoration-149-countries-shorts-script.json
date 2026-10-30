@@ -1,0 +1,74 @@
+{
+  "channel_id": "17",
+  "topic_slug": "unep-252-million-hectares-restoration-149-countries",
+  "format": "shorts",
+  "hook": "Across 149 countries, 252 million hectares of degraded land are healing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Across 149 countries, 252 million hectares of degraded land are healing.",
+      "visual_cue": "Satellite footage showing a transition from barren land to lush green vegetation.",
+      "sfx_cue": "Soft, uplifting ambient synth tones.",
+      "b_roll": [
+        "Satellite imagery of reforestation projects"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares Healing"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Are these 149 countries seeing real results from their massive, coordinated environmental restoration work?",
+      "visual_cue": "A document cover showing the UN Environment Programme logo and a forest landscape.",
+      "sfx_cue": "Page turning sound effect.",
+      "b_roll": [
+        "UN Environment Programme report cover",
+        "Stock footage of ecosystem restoration"
+      ],
+      "text_overlay": {
+        "text": "UN Restoration Progress Report"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Doreen Robinson reports this restoration effort is doing more than just healing our degraded soil.",
+      "visual_cue": "Close-up of workers planting native trees in a degraded landscape.",
+      "sfx_cue": "Sound of rustling leaves and birds chirping.",
+      "b_roll": [
+        "Workers planting saplings in a restoration zone"
+      ],
+      "text_overlay": {
+        "text": "More than just land"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "These combined projects have officially created over one million green jobs for workers worldwide. Nairobi is now tracking this massive comeback across 252 million hectares of our planet.",
+      "visual_cue": "A series of shots showing diverse teams of people working in various ecological restoration sites.",
+      "sfx_cue": "Inspiring orchestral swell.",
+      "b_roll": [
+        "Diverse team working on land restoration",
+        "Aerial view of a restored forest canopy"
+      ],
+      "text_overlay": {
+        "text": "1,000,000 Green Jobs Created"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That record-breaking effort spans 252 million hectares of our planet.",
+      "visual_cue": "A wide aerial shot of a vast, restored landscape at sunset.",
+      "sfx_cue": "Fading ambient nature sounds.",
+      "b_roll": [
+        "Wide shot of a healthy, restored ecosystem"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+    "https://www.fao.org/newsroom/detail/nature-is-making-a-comeback--but-the-world-must-move-faster-to-meet-restoration-targets---un-report/en"
+  ]
+}
