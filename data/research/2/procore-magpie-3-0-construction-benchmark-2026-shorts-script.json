@@ -1,0 +1,87 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-0-construction-benchmark-2026",
+  "format": "shorts",
+  "hook": "Procore Technologies announced that its Magpie 3.0 reasoning engine completed 78 percent of tasks.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Procore Technologies announced that its Magpie 3.0 reasoning engine completed 78 percent of tasks.",
+      "visual_cue": "Close up of Procore Technologies logo and Magpie 3.0 system interface on display.",
+      "sfx_cue": "Digital activation hum",
+      "b_roll": [
+        "Groundbreak 2026 conference presentation screen"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "78% Task Completion"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-15s",
+      "voiceover": "Procore Technologies previewed the Magpie 3.0 reasoning engine at Groundbreak 2026. Magpie 3.0 evaluated over 200 tasks from superintendents and project managers about drawings and schedules. Procore Technologies tested Magpie 3.0 against general frontier models.",
+      "visual_cue": "Split screen showing architectural drawings, RFIs, and submittal documents.",
+      "sfx_cue": "Paper shuffle",
+      "b_roll": [
+        "Construction site blueprints and schedules"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Quick slide",
+      "text_overlay": {
+        "text": "200 Real-World Tasks"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "15-20s",
+      "voiceover": "However, Procore Technologies reported an 18 points margin over general frontier models.",
+      "visual_cue": "Bar chart comparing Magpie 3.0 against general models with 18 points gap.",
+      "sfx_cue": "Rising chime",
+      "b_roll": [
+        "Benchmark data graph on screen"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "18 Points Ahead"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "20-30s",
+      "voiceover": "Magpie 3.0 scored 78 percent on 200 real-world tasks. Miles Gordenker shared on LinkedIn how Procore Technologies beat general models during Groundbreak 2026.",
+      "visual_cue": "Dashboard showing 78 percent success rate across 200 construction tasks.",
+      "sfx_cue": "Success chime",
+      "b_roll": [
+        "Miles Gordenker LinkedIn post screenshot"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Quick cross",
+      "text_overlay": {
+        "text": "78% Success Rate"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "30-35s",
+      "voiceover": "Procore Technologies reached 78 percent task completion at Groundbreak 2026.",
+      "visual_cue": "Groundbreak 2026 stage with Magpie 3.0 benchmark figures.",
+      "sfx_cue": "Subtle downbeat",
+      "b_roll": [
+        "Groundbreak 2026 venue exterior"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Magpie 3.0"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://www.linkedin.com/posts/milesg_the-ai-model-folks-are-calling-the-best-in-activity-7519038405964431360-WmsK"
+  ]
+}
