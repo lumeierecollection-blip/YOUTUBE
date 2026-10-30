@@ -3,7 +3,7 @@ name: Style Variants
 # Manual, read-only comparison run (owner, 2026-10-30). Takes the script + voiceover that a pipeline run already prepared
 # (the prep-<channel>-<run> artifact), and renders it five times with the automatic editor, once per look in
 # scripts/editor/styles.mjs (1 anti-slop, 2 hallmark, 3 vox, 4 scene-director, 5 mograph-critic), so the looks can be compared on
-# identical content. It never publishes, never writes to the repository, and uploads only the renders and their QA evidence.
+# identical content (overlay layers carry motion; run 2). It never publishes, never writes to the repository, and uploads only the renders and their QA evidence.
 on:
   # GitHub only offers workflow_dispatch for a workflow already on the default branch, so a new comparison workflow is started by
   # pushing a change to THIS file on the feature branch; the inputs then take their defaults.

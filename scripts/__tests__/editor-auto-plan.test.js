@@ -157,4 +157,5 @@ test("overlays become image layers above the scrim and below the text, entering 
   const o = tl.layers.find((l) => l.id === "scene-0-overlay");
   assert.deepEqual([o.in, o.out, o.z, o.asset_id], [9, 100, 150, "overlay-0"]);
   assert.deepEqual(tl.layers.map((l) => l.z), [11, 100, 150, 210]);
+  assert.ok(o.keyframes.scale.length >= 2 && o.keyframes.scale[1].v > o.keyframes.scale[0].v, "an overlay moves, as every image layer must");
 });

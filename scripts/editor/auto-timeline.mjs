@@ -98,7 +98,8 @@ export function addOverlays(timeline, plan) {
     timeline.layers.push({
       id: "scene-" + i + "-overlay", type: "image", asset_id: sc.overlay, rect: { x: 0, y: 0, w: 1080, h: 1920 }, fit: "cover", in: inF, out: base.out, z: 150,
       props: { opacity: 1, scale: 1, fx: 0.5, fy: 0.5, sepia: 0, saturate: 1, brightness: 1, blur: 0 },
-      keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: fade, v: 1 }, { f: span, v: 1 }] },
+      // the overlay drifts with the same slow push as the photo under it: the final-MP4 QA requires motion on every image layer
+      keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: fade, v: 1 }, { f: span, v: 1 }], scale: [{ f: 0, v: 1, e: "inOutSine" }, { f: span, v: 1.04 }] },
     });
   });
   timeline.layers.sort((a, b) => a.z - b.z);
