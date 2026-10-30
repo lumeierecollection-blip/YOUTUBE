@@ -118,6 +118,8 @@ env:
   # Gemini-plan pipeline unchanged.
   EDITOR_ENGINE: "1"
   EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
+  # A script with no persisted timeline is an ERROR, not a silent fall back to the legacy renderer (scripts/lib/editor-timeline-lookup.mjs).
+  EDITOR_STRICT: "1"
 
 jobs:
   # ============================================================
@@ -313,43 +315,50 @@ jobs:
         run: |
           set -u
           CH="${{ matrix.channel_id }}"
-          node scripts/build-discovery-context.js --channel "$CH" > /tmp/context.json
+          node scripts/build-discovery-context.js --channel "$CH" > /tmp/context-base.json
 
-          set +e
-          cat /tmp/context.json | node scripts/ollama-agent.js \
-            --prompt-file prompts/discover-topics.md \
-            --append-system-prompt-file prompts/discover-candidates.md \
-            --min-items topics=3 --reject-duplicates-for "$CH" \
-            --schema-file schemas/topics.json \
-            --search-budget 3 \
-            --agent pipeline-research \
-            --model "$OPENCODE_MODELS_RESEARCH" \
-            --task-label discover-topics --max-retries 4 \
-            > /tmp/topics-raw.json 2> >(tee /tmp/topics-err.log >&2)
-          AGENT_EXIT=$?
-          set -e
+          # Up to 3 discovery asks. When the validator rejects every candidate, the NEXT ask is told which titles were rejected and why
+          # (context key previous_rejections), because the same model otherwise proposes the same kind of story again (run 41008440903:
+          # ch-2 and ch-48 got product/announcement topics with no figure to draw; all 8 script attempts then failed SCR-17 STRICT).
+          # The policy is unchanged: only the LAST ask is subject to DISCOVERY_VALIDATION (advisory forwards, enforce skips); earlier
+          # asks that find nothing valid simply re-ask. A candidate that fails validation is never reserved as if it had passed.
+          DISC_TRY=1
+          while :; do
+            cp /tmp/context-base.json /tmp/context.json
+            if [ -s /tmp/prev-rejections.json ]; then
+              jq --slurpfile r /tmp/prev-rejections.json '. + {previous_rejections: $r[0]}' /tmp/context-base.json > /tmp/context.json
+            fi
+            set +e
+            cat /tmp/context.json | node scripts/ollama-agent.js               --prompt-file prompts/discover-topics.md               --append-system-prompt-file prompts/discover-candidates.md               --min-items topics=3 --reject-duplicates-for "$CH"               --schema-file schemas/topics.json               --search-budget 3               --agent pipeline-research               --model "$OPENCODE_MODELS_RESEARCH"               --task-label discover-topics --max-retries 4               > /tmp/topics-raw.json 2> >(tee /tmp/topics-err.log >&2)
+            AGENT_EXIT=$?
+            set -e
 
-          if [ "$AGENT_EXIT" -ne 0 ]; then
-            echo "::error::discover-topics failed for channel $CH"
-            echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
-            exit 1
-          fi
-          if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
-            echo "::error::No topics discovered for channel $CH"
-            cat /tmp/topics-raw.json
-            exit 1
-          fi
-          jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
-          echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s)"
-          # Rank the candidates by whether their subjects can be SHOWN (a free logo or portrait), best first, before the first
-          # non-duplicate is reserved (scripts/rank-topics-imagery.js). Never drops one and never fails the run.
-          node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
-          # Validate 2-domain sourcing + visual coverage BEFORE reservation
-          # Under DISCOVERY_VALIDATION=advisory (the default) validate-discovery exits 0 even when no candidate passes, and tags them.
-          # Exit 1 = every candidate rejected under "enforce" (a policy decision); any other nonzero exit = the validator itself failed
-          # (bad usage or mode, unreadable input, a crash). Either way the channel is skipped (fail closed), but a fault is an ::error::
-          # so it is never mistaken for a deliberate rejection. The Reserve topic step honours steps.discover.outputs.skip (it used to
-          # be ignored, so a "skipped" channel was reserved anyway).
+            if [ "$AGENT_EXIT" -ne 0 ]; then
+              echo "::error::discover-topics failed for channel $CH"
+              echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
+              exit 1
+            fi
+            if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
+              echo "::error::No topics discovered for channel $CH"
+              cat /tmp/topics-raw.json
+              exit 1
+            fi
+            jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
+            echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s) (ask $DISC_TRY/3)"
+            node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
+            if [ "$DISC_TRY" -ge 3 ]; then break; fi
+            # Ask 1 and 2: a trial validation on a COPY under enforce, only to decide whether to ask again. The real validation (under the
+            # configured policy) runs once, after the loop, on the answer that is kept.
+            cp /tmp/topics.json /tmp/topics-try.json
+            TRY_RC=0
+            DISCOVERY_VALIDATION=enforce node scripts/validate-discovery.js /tmp/topics-try.json "$CH" > /tmp/validate.log 2>&1 || TRY_RC=$?
+            cat /tmp/validate.log
+            if [ "$TRY_RC" -ne 1 ]; then break; fi
+            echo "::warning::discovery ask $DISC_TRY/3 for channel $CH: every candidate rejected — asking again with the reasons"
+            # The validator logged one 'REJECTED "<title>" — <reason>' line per candidate; those are the reasons the next ask is given.
+            grep -o 'REJECTED ".*' /tmp/validate.log | sed 's/^REJECTED //' | jq -R -s -c 'split("\n") | map(select(length>0))' > /tmp/prev-rejections.json
+            DISC_TRY=$((DISC_TRY + 1))
+          done
           RC=0
           node scripts/validate-discovery.js /tmp/topics.json "$CH" || RC=$?
           if [ "$RC" -eq 1 ]; then

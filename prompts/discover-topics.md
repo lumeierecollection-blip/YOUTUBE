@@ -113,3 +113,11 @@ matrix that consumes this output simply runs with fewer channels that day.
 Return `structured_output` matching the provided JSON Schema: a `topics`
 array with one entry per channel you could ground, each with `channel_id`,
 `topic`, `angle`, `why_now`, `slug`, `pillar`.
+
+## Re-ask after a rejection (when `previous_rejections` is present)
+
+`previous_rejections` lists candidates from your previous answer that the pipeline's validator refused, each with the reason. Do not
+propose any of them again, and do not propose another story of the same kind (a vendor announcement, a product or API release, a
+partnership). Choose stories whose search results state their own figures, and put the main figure or the measured outcome in the
+topic TITLE itself (a count, a percentage, an amount of money, a quarter or a year-on-year change). Two independent outlets must
+report the story. Everything still has to come from your own search results; never add a figure to make a title pass.
