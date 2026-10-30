@@ -1,0 +1,75 @@
+{
+  "topic_slug": "wakefield-1950s-wedding-photo-album-recovered",
+  "strongest_angle": "Unpacking how a 1957 wedding album dumped behind Eva's Kitchen in Wakefield was successfully traced back to its rightful owner, Michael Dawson, whose storage unit had been burglarized.",
+  "key_facts": [
+    {
+      "fact": "In August 2026, business owner Éva Lemperger discovered a vintage wedding photo album dating back to 1957 behind her establishment, Eva's Kitchen on Kirkgate in Wakefield.",
+      "source_url": "https://www.wakefieldexpress.co.uk/news/people/call-to-help-reunite-1950s-photo-album-with-owner-after-being-found-in-wakefield-8943031",
+      "source_name": "Wakefield Express",
+      "confidence": "high"
+    },
+    {
+      "fact": "Andrew Bedford found the same discarded wedding album outside his city center cafe in Wakefield, West Yorkshire, before local historian and family history sleuthing tracked down the owner.",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/12/mystery-1950s-wedding-photo-album-wakefield-solved",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The recovered 1957 wedding album was ultimately reunited with Michael Dawson after being stolen from his storage unit in England following his parents' death.",
+      "source_url": "https://malaysia.news.yahoo.com/couple-finds-1950s-wedding-album-171039048.html",
+      "source_name": "Yahoo News Malaysia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Wedding Album Year",
+      "value": 1957,
+      "unit": "year",
+      "source_url": "https://www.bbc.co.uk/news/articles/ck4gjnjvjl9qo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Andrew Bedford",
+      "kind": "person"
+    },
+    {
+      "name": "Wakefield",
+      "kind": "place"
+    },
+    {
+      "name": "West Yorkshire",
+      "kind": "place"
+    },
+    {
+      "name": "Éva Lemperger",
+      "kind": "person"
+    },
+    {
+      "name": "Eva's Kitchen",
+      "kind": "organization"
+    },
+    {
+      "name": "Kirkgate",
+      "kind": "place"
+    },
+    {
+      "name": "Michael Dawson",
+      "kind": "person"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Wakefield Express",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "channel_id": "1",
+  "topic_slug": "wakefield-1950s-wedding-photo-album-recovered",
+  "format": "shorts",
+  "hook": "A vintage 1957 wedding photo album dumped in an alleyway sparked a desperate search for its stolen owner.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "A vintage 1957 wedding photo album dumped in an alleyway sparked a desperate search for its stolen owner.",
+      "visual_cue": "Close-up cinematic shot of weathered vintage wedding photographs lying on cobblestone pavement.",
+      "sfx_cue": "Low atmospheric drone with soft paper rustling.",
+      "b_roll": [
+        "Archival still of vintage wedding album cover",
+        "Alleyway behind restaurant in Wakefield"
+      ],
+      "animation_cue": "Fade in from black, slow pan across photograph edges",
+      "transition_out": "Hard cut to street level",
+      "text_overlay": {
+        "text": "The 1957 Mystery Album"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-20s",
+      "voiceover": "In August 2026, Éva Lemperger found a 1957 wedding album behind Eva's Kitchen on Kirkgate, but who owned it?",
+      "visual_cue": "Medium panning shot tracking along Kirkgate street sign in Wakefield.",
+      "sfx_cue": "Subtle city ambient hum.",
+      "b_roll": [
+        "Exterior shot of Eva's Kitchen on Kirkgate",
+        "Newspaper clipping snippet from Wakefield Express"
+      ],
+      "animation_cue": "Text caption sliding in from bottom left",
+      "transition_out": "Dissolve to historical archive visual",
+      "text_overlay": {
+        "text": "Found on Kirkgate"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "20-28s",
+      "voiceover": "Andrew Bedford later discovered the same album discarded outside his cafe, prompting a search for the owner.",
+      "visual_cue": "Close-up of magnifying glass moving over vintage wedding portrait pages.",
+      "sfx_cue": "Soft ticking clock accenting the investigation.",
+      "b_roll": [
+        "Historical research documents and open archives",
+        "West Yorkshire street map overview"
+      ],
+      "animation_cue": "Fast zoom into document details",
+      "transition_out": "Wipe transition to storage unit exterior",
+      "text_overlay": {
+        "text": "The Sleuths Step In"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "28-44s",
+      "voiceover": "That 1957 wedding album finally found its way back to Michael Dawson. Thieves had grabbed the keepsake from his storage unit in England. The burglary happened after Michael Dawson's parents passed away.",
+      "visual_cue": "Cinematic framing of historical photo album being handed over to Michael Dawson.",
+      "sfx_cue": "Uplifting ambient swell resolving the tension.",
+      "b_roll": [
+        "Storage unit exterior facility in England",
+        "Retrieved photo album resting open on wooden table"
+      ],
+      "animation_cue": "Slow push-in on reunited photo album",
+      "transition_out": "Smooth fade out to final card",
+      "text_overlay": {
+        "text": "Reunited with Michael Dawson"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "44-50s",
+      "voiceover": "Wakefield saw the 1957 wedding album returned home at last.",
+      "visual_cue": "Final lingering wide shot of the recovered 1957 wedding photograph album.",
+      "sfx_cue": "Gentle final chord ringing out.",
+      "b_roll": [
+        "The Guardian news article layout overview"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "1957 Album Returned Home"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wakefieldexpress.co.uk/news/people/call-to-help-reunite-1950s-photo-album-with-owner-after-being-found-in-wakefield-8943031",
+    "https://www.theguardian.com/uk-news/2026/oct/12/mystery-1950s-wedding-photo-album-wakefield-solved",
+    "https://malaysia.news.yahoo.com/couple-finds-1950s-wedding-album-171039048.html"
+  ]
+}
