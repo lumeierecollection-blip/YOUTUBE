@@ -1,0 +1,92 @@
+{
+  "channel_id": "17",
+  "topic_slug": "super-el-nino-2026-breaks-temperature-records",
+  "format": "shorts",
+  "hook": "Central Pacific sea-surface temperatures hit 30 degrees Celsius on October 22, 2026, marking the highest reading in modern history.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Central Pacific sea-surface temperatures hit 30 degrees Celsius on October 22, 2026, marking the highest reading in modern history.",
+      "visual_cue": "Satellite thermal imagery of the Pacific Ocean showing extreme heat anomalies.",
+      "sfx_cue": "Low ambient ocean hum with a sharp atmospheric rising tone.",
+      "b_roll": [
+        "Copernicus Climate Change Service satellite surface map",
+        "Pacific Ocean surface temperature thermal capture"
+      ],
+      "animation_cue": "Zoom in rapidly on the equatorial Pacific zone.",
+      "transition_out": "Hard cut on impact.",
+      "text_overlay": {
+        "text": "30°C IN THE PACIFIC"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "How extreme did these Pacific Ocean temperatures become by the end of October 2026?",
+      "visual_cue": "Graph overlay showing rising September and October ocean temperature data curves.",
+      "sfx_cue": "Subtle data ticking sound under narration.",
+      "b_roll": [
+        "Oceanographic research vessel on choppy water",
+        "Buoy sensor data feed graphic"
+      ],
+      "animation_cue": "Line graph drawing upwards to 29.7 degrees Celsius.",
+      "transition_out": "Dissolve to index chart.",
+      "text_overlay": {
+        "text": "29.7°C in September"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:28",
+      "voiceover": "But the Niño 3.4 index, a key Pacific climate gauge, hit a record 2.88 degrees Celsius.",
+      "visual_cue": "Index chart highlighting the Niño3.4 region spiking past previous records.",
+      "sfx_cue": "Deep warning pulse.",
+      "b_roll": [
+        "Bureau of Meteorology weather station radar display",
+        "Pacific basin anomaly map"
+      ],
+      "animation_cue": "Red indicator bar flashing on the plus 2.88 index marker.",
+      "transition_out": "Quick whip pan left.",
+      "text_overlay": {
+        "text": "Niño3.4 index at +2.88°C"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:28-0:42",
+      "voiceover": "Copernicus Climate Change Service data shows sea-surface temperatures reached 29.7 degrees Celsius back in September. Australia's Bureau of Meteorology confirmed this record Niño 3.4 index for the week ending 25 October 2026.",
+      "visual_cue": "Wide satellite view of ocean currents shifting across the equator.",
+      "sfx_cue": "Sustained atmospheric drone.",
+      "b_roll": [
+        "Global climate monitoring station interface",
+        "Equatorial Pacific current simulation"
+      ],
+      "animation_cue": "Heat map spreading outward across the ocean surface.",
+      "transition_out": "Fade to final data frame.",
+      "text_overlay": {
+        "text": "Modern record broken"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "This 30 degree Celsius reading remains the highest in modern observational history for the region.",
+      "visual_cue": "Final data callout showing the exact October 22 temperature milestone.",
+      "sfx_cue": "Soft resonant chime ending the sequence.",
+      "b_roll": [
+        "Copernicus Climate Change Service data log document snapshot"
+      ],
+      "animation_cue": "Bold numbers scaling slightly to center frame.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "October 22, 2026: 30°C"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.france24.com/en/environment/20261012-el-nino-pacific-temperature-record-weather",
+    "https://english.zeenews.com/world/article-el-nino-pacific-ocean-temperatures-reach-30c-record-3160479",
+    "https://www.bom.gov.au/climate/enso"
+  ]
+}

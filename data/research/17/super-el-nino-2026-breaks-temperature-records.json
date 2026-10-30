@@ -1,0 +1,63 @@
+{
+  "topic_slug": "super-el-nino-2026-breaks-temperature-records",
+  "strongest_angle": "Analysis of October 2026 data from the Copernicus Climate Change Service and Australia's Bureau of Meteorology reveals that sea-surface temperatures in the central Pacific have reached unprecedented levels, hitting 29.70C in September and 30C by October 22, 2026.",
+  "key_facts": [
+    {
+      "fact": "According to the Copernicus Climate Change Service, sea-surface temperatures in a key Pacific monitoring region reached a record 29.70C in September 2026.",
+      "source_url": "https://www.france24.com/en/environment/20261012-el-nino-pacific-temperature-record-weather",
+      "source_name": "France 24",
+      "confidence": "high"
+    },
+    {
+      "fact": "Central equatorial Pacific Ocean sea-surface temperatures touched an unprecedented 30C on October 22, 2026, marking the highest reading in modern observational history.",
+      "source_url": "https://english.zeenews.com/world/article-el-nino-pacific-ocean-temperatures-reach-30c-record-3160479",
+      "source_name": "Zee News English",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australia's Bureau of Meteorology reported that the weekly relative Niño3.4 index reached a record +2.88 C for the week ending 25 October 2026.",
+      "source_url": "https://www.bom.gov.au/climate/enso",
+      "source_name": "Australian Government Bureau of Meteorology",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "September sea surface temperature",
+      "value": 29.7,
+      "unit": "°C",
+      "source_url": "https://www.france24.com/en/environment/20261012-el-nino-pacific-temperature-record-weather"
+    },
+    {
+      "label": "October 22 sea surface temperature",
+      "value": 30,
+      "unit": "°C",
+      "source_url": "https://english.zeenews.com/world/article-el-nino-pacific-ocean-temperatures-reach-30c-record-3160479"
+    },
+    {
+      "label": "Niño3.4 index for week ending 25 October 2026",
+      "value": 2.88,
+      "unit": "°C",
+      "source_url": "https://www.bom.gov.au/climate/enso"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Copernicus Climate Change Service",
+      "kind": "organization"
+    },
+    {
+      "name": "Australia's Bureau of Meteorology",
+      "kind": "organization"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Niño 3.4",
+      "kind": "object"
+    }
+  ]
+}
