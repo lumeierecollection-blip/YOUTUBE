@@ -1,0 +1,73 @@
+{
+  "topic_slug": "thailand-cambodia-seabed-dispute-2026",
+  "strongest_angle": "An analysis of the maritime territorial dispute between Thailand and Cambodia over an overlapping 27,000 square kilometer Gulf of Thailand seabed claim holding $300 billion in resources, following October 2026 talks.",
+  "key_facts": [
+    {
+      "fact": "Thailand and Cambodia agreed to use a naval hotline and exercise restraint to ease maritime tensions after holding mediation talks at The Hague.",
+      "source_url": "https://www.scmp.com/week-asia/politics/article/3371443/thailand-cambodia-seek-calm-escalating-dispute-over-us300-billion-seabed",
+      "source_name": "South China Morning Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "Cambodia sought international conciliation after Thailand pulled out of their 2001 agreement to exploit offshore oil and gas resources in a 27,000 sq km chunk of maritime territory.",
+      "source_url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/21/rivals-agree-to-ease-maritime-dispute",
+      "source_name": "The Star",
+      "confidence": "high"
+    },
+    {
+      "fact": "The South-East Asian nations have for decades pushed rival claims over maritime territories and the demarcation of their 800km land border.",
+      "source_url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/21/rivals-agree-to-ease-maritime-dispute",
+      "source_name": "The Star",
+      "confidence": "high"
+    },
+    {
+      "fact": "On September 15, the foreign ministers of Thailand and Cambodia delivered opening statements in Singapore before a conciliation commission constituted under UNCLOS.",
+      "source_url": "https://amti.csis.org/bridging-the-gulf-thailand-and-cambodia-turn-to-unclos",
+      "source_name": "Asia Maritime Transparency Initiative",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estimated value of oil and gas resources in the disputed maritime area",
+      "value": 300,
+      "unit": "billion dollars",
+      "source_url": "https://www.reuters.com/world/asia-pacific/cambodia-launches-un-backed-process-settle-maritime-dispute-with-thailand-2026-06-02"
+    },
+    {
+      "label": "Size of the disputed maritime territory chunk",
+      "value": 27000,
+      "unit": "square kilometers",
+      "source_url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/21/rivals-agree-to-ease-maritime-dispute"
+    },
+    {
+      "label": "Length of the land border between Thailand and Cambodia",
+      "value": 800,
+      "unit": "kilometers",
+      "source_url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/21/rivals-agree-to-ease-maritime-dispute"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Thailand",
+      "kind": "place"
+    },
+    {
+      "name": "Cambodia",
+      "kind": "place"
+    },
+    {
+      "name": "The Hague",
+      "kind": "place"
+    },
+    {
+      "name": "Singapore",
+      "kind": "place"
+    },
+    {
+      "name": "Gulf of Thailand",
+      "kind": "place"
+    }
+  ]
+}

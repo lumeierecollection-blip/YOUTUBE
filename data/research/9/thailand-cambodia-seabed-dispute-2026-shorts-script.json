@@ -1,0 +1,63 @@
+{
+  "channel_id": "9",
+  "topic_slug": "thailand-cambodia-seabed-dispute-2026",
+  "format": "shorts",
+  "hook": "Thailand and Cambodia hold rival claims over 27,000 square kilometers of the Gulf of Thailand.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Thailand and Cambodia hold rival claims over 27,000 square kilometers of the Gulf of Thailand.",
+      "b_roll": [
+        "Map of the Gulf of Thailand seabed"
+      ],
+      "text_overlay": {
+        "text": "$300 Billion Gulf Dispute"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 15, foreign ministers from Thailand and Cambodia delivered statements in Singapore. The neighbors share an 800 kilometer land border alongside rival maritime territorial claims. Could $300 billion in seabed resources spark a clash in the Gulf of Thailand?",
+      "b_roll": [
+        "Singapore skyline and conference hall"
+      ],
+      "text_overlay": {
+        "text": "Singapore Talks"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Thailand pulled out of their 2001 agreement to exploit those resources.",
+      "b_roll": [
+        "Drawn maritime border lines"
+      ],
+      "text_overlay": {
+        "text": "The 2001 Deal"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Cambodia sought international conciliation because Thailand pulled out of their 2001 agreement. Mediation talks at The Hague led both nations to use a naval hotline.",
+      "b_roll": [
+        "The Hague courtroom exterior"
+      ],
+      "text_overlay": {
+        "text": "Naval Hotline Established"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 27,000 square kilometer seabed remains contested.",
+      "b_roll": [
+        "Offshore gas platform in the Gulf"
+      ],
+      "text_overlay": {
+        "text": "27,000 Sq Km Disputed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scmp.com/week-asia/politics/article/3371443/thailand-cambodia-seek-calm-escalating-dispute-over-us300-billion-seabed",
+    "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/21/rivals-agree-to-ease-maritime-dispute",
+    "https://amti.csis.org/bridging-the-gulf-thailand-and-cambodia-turn-to-unclos"
+  ]
+}
