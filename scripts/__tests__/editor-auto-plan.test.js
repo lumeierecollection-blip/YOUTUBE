@@ -257,3 +257,10 @@ test("a figure is sized to fit: long figures shrink, short ones keep their size"
     for (const m of svg.matchAll(/font-size="(\d+)"[^>]*>252 million</g)) assert.ok(Number(m[1]) * 11 * 0.6 <= 960, `look ${n}: size ${m[1]} fits`);
   }
 });
+
+test("poster lines shrink to fit the frame in every look", () => {
+  for (const n of [1, 2, 3, 4, 5]) {
+    const svg = styleFor(n, { bg: "#000", accent: "#0f0" }).poster({ phrase: ["COUNT DRACULA", "POSSESSES"] });
+    for (const m of svg.matchAll(/font-size="(d+)"[^>]*>COUNT DRACULA</g)) assert.ok(Number(m[1]) * 13 * 0.6 <= 900, `look ${n}: size ${m[1]} fits`);
+  }
+});
