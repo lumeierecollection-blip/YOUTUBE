@@ -913,7 +913,7 @@ jobs:
               # SCR-17 STRICT failed all 8 attempts. Same fix the story and repeat checks already use: rewrite ONLY the flagged
               # sentences from the research (repair-sentences.mjs may answer CUT instead of inventing), then re-run every gate.
               # Nothing is loosened: the gate runs again on the result. Attempt 5 is left to the topic re-pick below.
-              if [ "$ATTEMPT" -lt 8 ] && [ "$ATTEMPT" -ne 5 ] && [ "${STRICT_REPAIRED:-0}" -lt 3 ]                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
+              if [ "$ATTEMPT" -lt 8 ] && [ "$ATTEMPT" -ne 3 ] && [ "${STRICT_REPAIRED:-0}" -lt 3 ]                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
                 STRICT_REPAIRED=$((${STRICT_REPAIRED:-0} + 1))
                 grep -E '^  - SCR-17 STRICT' /tmp/gate-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
                 if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
@@ -925,14 +925,15 @@ jobs:
               fi
               # STRICT STARVATION -> ONE TOPIC RE-PICK (SCR-19). The strict
               # rule can only be satisfied with sentences the RESEARCH can
-              # support; when attempt 5 still fails it and nothing else, the
+              # support; when attempt 3 still fails it and nothing else, the
               # topic is the problem, not the wording. Run 39399514270 ch-48
               # burned all 8 attempts on a paper whose every fact was "X
               # analysed Y" - no rewrite can ground that without inventing.
               # Same machinery and one-per-run budget as the claims re-pick
               # (REPICKED/BURNED, ~45 lines above); the replacement topic
               # starts with a clean feedback slate and 3 attempts left.
-              if [ "$ATTEMPT" -eq 5 ] && [ "$REPICKED" -eq 0 ] \
+              # (moved from attempt 5 to 3, 2026-10-30: ch-48 spent five attempts on an abstract with nothing to draw, then the replacement had only three.)
+              if [ "$ATTEMPT" -eq 3 ] && [ "$REPICKED" -eq 0 ] \
                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
                  && [ -f /tmp/topics.json ]; then
                 BURNED="${BURNED:-} $SLUG"

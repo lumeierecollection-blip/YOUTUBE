@@ -1,6 +1,6 @@
 // Verified against run 40958756262 (ch-48: 5 rejected attempts on the Cochrane topic, a swap, 3 on the IEA guide) and the workflow source:
 // the attempt counter NOT resetting on a topic swap is the documented design, not a bug. One 8-attempt budget per channel per run; the
-// strict-visual starvation re-pick (SCR-19) fires at attempt 5, once, so the replacement topic gets the 3 attempts that remain with a clean
+// strict-visual starvation re-pick (SCR-19) fires at attempt 3, once, so the replacement topic gets the 5 attempts that remain with a clean
 // feedback slate. This pins that design and the correctness of the swap (new slug, new research, no stale re-ask counters) so a later edit
 // cannot quietly change the retry budget or break the swap. It does not claim 3 attempts is enough; the run's gate codes are in logs that
 // are not available here.
@@ -20,8 +20,8 @@ test("one 8-attempt budget and one re-pick per channel per run", () => {
   assert.match(run, /script gate still failing for \$SCRIPT_SLUG after 8 attempts/);
 });
 
-test("the strict-visual re-pick fires only at attempt 5, only once, only when SCR-17 STRICT is what failed", () => {
-  assert.match(strict, /\[ "\$ATTEMPT" -eq 5 \] && \[ "\$REPICKED" -eq 0 \]/);
+test("the strict-visual re-pick fires only at attempt 3, only once, only when SCR-17 STRICT is what failed", () => {
+  assert.match(strict, /\[ "\$ATTEMPT" -eq 3 \] && \[ "\$REPICKED" -eq 0 \]/);
   assert.match(strict, /grep -q 'SCR-17 STRICT' \/tmp\/gate-out-\$FORMAT\.log/);
 });
 
