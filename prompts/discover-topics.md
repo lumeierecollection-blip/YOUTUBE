@@ -117,7 +117,10 @@ array with one entry per channel you could ground, each with `channel_id`,
 ## Re-ask after a rejection (when `previous_rejections` is present)
 
 `previous_rejections` lists candidates from your previous answer that the pipeline's validator refused, each with the reason. Do not
-propose any of them again, and do not propose another story of the same kind (a vendor announcement, a product or API release, a
-partnership). Choose stories whose search results state their own figures, and put the main figure or the measured outcome in the
-topic TITLE itself (a count, a percentage, an amount of money, a quarter or a year-on-year change). Two independent outlets must
-report the story. Everything still has to come from your own search results; never add a figure to make a title pass.
+propose any of them again, and do not propose another story of the same kind (a research abstract, a vendor announcement, a product
+or API release, a partnership). Choose a different, concrete story that two independent outlets report and whose own text states
+counts, percentages, amounts, dates or places: an incident, a rule change, a recall, an injury or usage statistic, a deployment.
+
+Never put a figure in a title that your search results do not state. A title with an invented or rounded-up figure ("100% of ...",
+"Better by 100%") is a fabrication: it fails the source check and the channel is skipped for the day. A plain title is better than
+a made-up one.

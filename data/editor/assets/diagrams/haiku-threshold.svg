@@ -6,12 +6,12 @@
   <rect width="1080" height="1920" fill="url(#bg)"/><rect width="1080" height="1920" fill="url(#grid)"/>
   <text x="90" y="190" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="7">THE CATCH &#183; 100,000 TOKENS</text>
   <line x1="90" y1="230" x2="990" y2="230" stroke="#8B5CF6" stroke-opacity="0.6" stroke-width="2"/>
-  <rect x="90" y="620" width="360" height="130" fill="#8B5CF6"/>
-  <rect x="450" y="620" width="540" height="130" fill="#1A1A3A" stroke="#8B5CF6" stroke-opacity="0.6" stroke-width="2"/>
-  <line x1="450" y1="570" x2="450" y2="800" stroke="#FFFFFF" stroke-width="4"/>
+  <rect x="90" y="620" width="520" height="130" fill="#8B5CF6"/>
+  <rect x="610" y="620" width="380" height="130" fill="#1A1A3A" stroke="#8B5CF6" stroke-opacity="0.6" stroke-width="2"/>
+  <line x1="610" y1="570" x2="610" y2="800" stroke="#FFFFFF" stroke-width="4"/>
   <text x="90" y="560" fill="#C9C6E6" font-family="Arial, sans-serif" font-size="30" letter-spacing="3" font-weight="700">REQUEST SIZE</text>
   <text x="130" y="705" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="40" font-weight="700">under 100,000 tokens</text>
-  <text x="490" y="705" fill="#C9C6E6" font-family="Arial, sans-serif" font-size="40" >above</text>
+  <text x="650" y="705" fill="#C9C6E6" font-family="Arial, sans-serif" font-size="40" >above</text>
   <text x="90" y="900" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="64" font-weight="700">90% price cut</text>
   <text x="90" y="975" fill="#C9C6E6" font-family="Arial, sans-serif" font-size="34" >applies to requests under 100,000 tokens</text>
   <text x="90" y="1180" fill="#9A97C4" font-family="Arial, sans-serif" font-size="24" >Source: VentureBeat, Anthropic</text>

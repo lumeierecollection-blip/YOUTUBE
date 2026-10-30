@@ -112,6 +112,8 @@ jobs:
             data/renders/approved-review/
             data/renders/rejected/
             data/renders/1/
+            data/renders/2/
+            data/renders/48/
             data/renders/qa-counts.json
           if-no-files-found: warn
           retention-days: 14
