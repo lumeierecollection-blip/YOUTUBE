@@ -1,0 +1,63 @@
+{
+  "channel_id": "9",
+  "topic_slug": "holei-sea-arch-collapse-hawaii-volcanoes-park",
+  "format": "shorts",
+  "hook": "What happens when a 90-foot natural stone bridge vanishes into the Pacific Ocean in just four days?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when a 90-foot natural stone bridge vanishes into the Pacific Ocean in just four days?",
+      "b_roll": [
+        "Wide shot of the coastline in Hawaiʻi Volcanoes National Park"
+      ],
+      "text_overlay": {
+        "text": "90-Foot Arch Vanishes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Park officials confirmed the Hōlei Sea Arch stood intact on September 23, 2026. Where did the structure go by September 27?",
+      "b_roll": [
+        "Arch shoreline landmark view",
+        "Volcanic rock coastline map"
+      ],
+      "text_overlay": {
+        "text": "Standing 550 Years"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except a hurricane brushed the southern coastline right before the collapse.",
+      "b_roll": [
+        "Satellite wave motion over the Pacific Ocean"
+      ],
+      "text_overlay": {
+        "text": "Hurricane Force"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "A hurricane brushed the southern coastline, causing the Hōlei Sea Arch to collapse into the sea. The 90-foot landmark crashed directly into the Pacific Ocean.",
+      "b_roll": [
+        "Coastal waves crashing against basalt cliffs"
+      ],
+      "text_overlay": {
+        "text": "Into the Pacific"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 550-year-old lava flow structure is now gone from Hawaiʻi Volcanoes National Park.",
+      "b_roll": [
+        "Empty ocean horizon at Hawaiʻi Volcanoes National Park"
+      ],
+      "text_overlay": {
+        "text": "Geological History Gone"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nps.gov/places/holei-sea-arch.htm",
+    "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241"
+  ]
+}

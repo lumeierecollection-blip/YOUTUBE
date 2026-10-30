@@ -1,0 +1,81 @@
+{
+  "topic_slug": "holei-sea-arch-collapse-hawaii-volcanoes-park",
+  "strongest_angle": "Trace the geology of the 550-year-old lava flow arch in Hawaiʻi Volcanoes National Park that collapsed in late September 2026 after standing 90 feet high.",
+  "key_facts": [
+    {
+      "fact": "The Hōlei Sea Arch in Hawaiʻi Volcanoes National Park stood at a height of 90 feet before collapsing into the Pacific Ocean.",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "The collapsed lava rock structure was formed about 550 years ago by lava flows along the Big Island's southern coastline.",
+      "source_url": "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241",
+      "source_name": "NBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Park officials confirmed the landmark was last seen intact on September 23 and was gone by the night of September 27, 2026.",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 90-foot-tall volcanic feature collapsed into the sea after a hurricane brushed by the southern coastline.",
+      "source_url": "https://www.bbc.com/news/articles/crd6dy4xepgyo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Arch height in feet",
+      "value": 90,
+      "unit": "feet",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Arch height in meters",
+      "value": 27.4,
+      "unit": "meters",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Age of the lava flow arch",
+      "value": 550,
+      "unit": "years",
+      "source_url": "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241"
+    },
+    {
+      "label": "Last intact date in September",
+      "value": 23,
+      "unit": "day",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Gone date in September",
+      "value": 27,
+      "unit": "day",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Hōlei Sea Arch",
+      "kind": "object"
+    },
+    {
+      "name": "Hawaiʻi Volcanoes National Park",
+      "kind": "organization"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Big Island",
+      "kind": "place"
+    }
+  ]
+}
