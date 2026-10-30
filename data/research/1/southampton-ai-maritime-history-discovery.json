@@ -1,0 +1,79 @@
+{
+  "topic_slug": "southampton-ai-maritime-history-discovery",
+  "strongest_angle": "University of Southampton researchers used artificial intelligence to process 100,000 pages of delicate handwritten port books, uncovering 461 years of British maritime trade history.",
+  "key_facts": [
+    {
+      "fact": "Researchers at the University of Southampton used an AI tool to process approximately 100,000 pages of handwritten records detailing British maritime history.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The project uncovered 461 years of Britain's maritime past, spanning from the Elizabethan Era in the 16th Century.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Professor Craig Lambert was awarded a 2.86 million euro European Research Council Advanced Grant for the Uncharted Maritime Worlds project at the University of Southampton.",
+      "source_url": "https://www.southampton.ac.uk/humanities/news/2026/06/historian-awarded-major-erc-advanced-grant-for-ambitious-digital-maritime-history-project-.page",
+      "source_name": "University of Southampton",
+      "confidence": "high"
+    },
+    {
+      "fact": "Historians compiled a first-of-its-kind online interactive map using data transformed from centuries-old port books by artificial intelligence.",
+      "source_url": "https://phys.org/news/2026-10-ai-centuries-reveal-britain-vast.pdf",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pages of handwritten records processed",
+      "value": 100000,
+      "unit": "pages",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo"
+    },
+    {
+      "label": "Years of British maritime history uncovered",
+      "value": 461,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo"
+    },
+    {
+      "label": "ERC Advanced Grant funding amount",
+      "value": 2.86,
+      "unit": "million euros",
+      "source_url": "https://www.southampton.ac.uk/humanities/news/2026/06/historian-awarded-major-erc-advanced-grant-for-ambitious-digital-maritime-history-project-.page"
+    },
+    {
+      "label": "Project duration in years",
+      "value": 5,
+      "unit": "years",
+      "source_url": "https://www.southampton.ac.uk/humanities/news/2026/06/historian-awarded-major-erc-advanced-grant-for-ambitious-digital-maritime-history-project-.page"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "University of Southampton",
+      "kind": "organization"
+    },
+    {
+      "name": "Craig Lambert",
+      "kind": "person"
+    },
+    {
+      "name": "European Research Council",
+      "kind": "organization"
+    },
+    {
+      "name": "Britain",
+      "kind": "place"
+    },
+    {
+      "name": "Uncharted Maritime Worlds",
+      "kind": "object"
+    }
+  ]
+}

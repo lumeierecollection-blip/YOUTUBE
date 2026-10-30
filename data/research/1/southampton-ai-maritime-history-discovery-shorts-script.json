@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "southampton-ai-maritime-history-discovery",
+  "format": "shorts",
+  "hook": "Artificial intelligence just unlocked 461 years of hidden British maritime history.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Artificial intelligence just unlocked 461 years of hidden British maritime history.",
+      "visual_cue": "Close-up shot of delicate handwritten 16th-century port books resting on a wooden archival desk.",
+      "sfx_cue": "Subtle archival paper rustling sound",
+      "b_roll": [
+        "16th-century handwritten port book pages in an archive"
+      ],
+      "animation_cue": "Fast cinematic fade in",
+      "transition_out": "Hard cut to computer terminal",
+      "text_overlay": {
+        "text": "461 Years Unlocked"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Lambert secured a 2.86 million euro European Research Council Advanced Grant to fund it.",
+      "visual_cue": "Medium shot of researchers operating a digital scanner next to stacks of historical documents.",
+      "sfx_cue": "Soft digital scanning hum",
+      "b_roll": [
+        "University of Southampton research laboratory archival scanning setup"
+      ],
+      "animation_cue": "Slow zoom in on document text",
+      "transition_out": "Quick slide transition",
+      "text_overlay": {
+        "text": "100,000 Pages Scanned"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Except the Uncharted Maritime Worlds project needed 5 years to pull it off.",
+      "visual_cue": "Extreme close-up panning across fading ink script written on aged parchment.",
+      "sfx_cue": "Soft paper turn",
+      "b_roll": [
+        "Fading ink on 16th century manuscript parchment"
+      ],
+      "animation_cue": "Fast pan left to right",
+      "transition_out": "Dissolve cut",
+      "text_overlay": {
+        "text": "Fragile Manuscripts"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:39",
+      "voiceover": "Researchers transformed the port books into an interactive map revealing 461 years of trade. Historians mapped centuries of lost trade routes starting from the Elizabethan Era.",
+      "visual_cue": "Wide shot of a modern computer display showing a glowing digital interactive maritime map of Britain.",
+      "sfx_cue": "Digital interface activation chime",
+      "b_roll": [
+        "Interactive digital map of British maritime trade routes on computer screen"
+      ],
+      "animation_cue": "Zoom out revealing full digital map interface",
+      "transition_out": "Smooth crossfade",
+      "text_overlay": {
+        "text": "Interactive Maritime Map"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:39-0:45",
+      "voiceover": "Historians compiled a first-of-its-kind online interactive map using that artificial intelligence data.",
+      "visual_cue": "Cinematic wide shot of the University of Southampton campus exterior at dusk.",
+      "sfx_cue": "Gentle ambient wind sound",
+      "b_roll": [
+        "University of Southampton campus exterior architecture"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Uncharted Maritime Worlds"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+    "https://www.southampton.ac.uk/humanities/news/2026/06/historian-awarded-major-erc-advanced-grant-for-ambitious-digital-maritime-history-project-.page",
+    "https://phys.org/news/2026-10-ai-centuries-reveal-britain-vast.pdf"
+  ]
+}
