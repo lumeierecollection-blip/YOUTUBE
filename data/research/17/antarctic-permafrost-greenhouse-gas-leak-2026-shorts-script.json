@@ -1,0 +1,89 @@
+{
+  "channel_id": "17",
+  "topic_slug": "antarctic-permafrost-greenhouse-gas-leak-2026",
+  "format": "shorts",
+  "hook": "Antarctic permafrost just sprung an unexpected greenhouse gas leak across 22 square kilometers.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Antarctic permafrost just sprung an unexpected greenhouse gas leak across 22 square kilometers.",
+      "visual_cue": "Wide satellite view of Taylor Valley in Antarctica showing frozen terrain.",
+      "sfx_cue": "Low atmospheric drone with a sharp subtle crack",
+      "b_roll": [
+        "Antarctic Taylor Valley landscape aerial view"
+      ],
+      "animation_cue": "Fade in map overlay highlighting 22 square kilometers",
+      "transition_out": "Hard cut on impact",
+      "text_overlay": {
+        "text": "Antarctic Permafrost Leak"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "On October 29, 2026, the American Geophysical Union announced the discovery in Taylor Valley. Where is this deep geological carbon coming from?",
+      "visual_cue": "Scientific research documents and glacier drilling footage in Antarctica.",
+      "sfx_cue": "Subtle paper rustle and wind gust",
+      "b_roll": [
+        "Global Biogeochemical Cycles journal publication cover",
+        "Researchers in Antarctica sampling terrain"
+      ],
+      "animation_cue": "Highlight study date October 29, 2026",
+      "transition_out": "Smooth slide left",
+      "text_overlay": {
+        "text": "AGU Announcement"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Yet the Istituto Nazionale di Geofisica e Vulcanologia reported carbon dioxide emissions increased more than fivefold.",
+      "visual_cue": "Close up on seismic monitoring equipment measuring gas output.",
+      "sfx_cue": "Rising tone counter",
+      "b_roll": [
+        "Istituto Nazionale di Geofisica e Vulcanologia laboratory equipment"
+      ],
+      "animation_cue": "Zoom into fivefold multiplier graphic",
+      "transition_out": "Quick zoom cut",
+      "text_overlay": {
+        "text": "Emissions Up 5x"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Geochemical analyses conducted in 2020, 2023, and 2025 tracked the acceleration. The measurements confirm an unprecedented shift across Antarctica.",
+      "visual_cue": "Data chart comparing carbon emission spikes across 2020, 2023, and 2025.",
+      "sfx_cue": "Data chime ascending",
+      "b_roll": [
+        "Scientific data graph of Taylor Valley carbon emissions"
+      ],
+      "animation_cue": "Animate upward trend line across three timestamp points",
+      "transition_out": "Fade to black edge",
+      "text_overlay": {
+        "text": "Geochemical Analysis"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Measure Taylor Valley's emissions across 22 square kilometers.",
+      "visual_cue": "Slow aerial pullback over Taylor Valley ice sheets.",
+      "sfx_cue": "Wind fade out",
+      "b_roll": [
+        "Taylor Valley glacier expanse cinematic view"
+      ],
+      "animation_cue": "Slow steady push in on the valley floor",
+      "transition_out": "Final fade out",
+      "text_overlay": {
+        "text": "Taylor Valley, Antarctica"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.agu.org/10-29-2026-antarctic-permafrost-has-sprung-an-unexpected-greenhouse-gas-leak",
+    "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2026GB009134",
+    "https://www.ingv.it/en/urp-press/Press-office/Press-releases/Antarctica%3A-Deep-geological-carbon-emerges-from-permafrost-in-Taylor-Valley--where-carbon-dioxide-emissions-have-increased-more-than-fivefold"
+  ]
+}

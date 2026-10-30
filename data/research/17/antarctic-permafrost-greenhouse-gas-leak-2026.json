@@ -1,0 +1,75 @@
+{
+  "topic_slug": "antarctic-permafrost-greenhouse-gas-leak-2026",
+  "strongest_angle": "Explore the October 2026 American Geophysical Union announcement regarding unexpected greenhouse gas leaks from thawing Antarctic permafrost in Taylor Valley, measuring across nearly 22 square kilometers and showing carbon dioxide emissions increasing more than fivefold.",
+  "key_facts": [
+    {
+      "fact": "The American Geophysical Union announced on October 29, 2026, that Antarctic permafrost has sprung an unexpected greenhouse gas leak measuring across almost 22 square kilometers.",
+      "source_url": "https://news.agu.org/10-29-2026-antarctic-permafrost-has-sprung-an-unexpected-greenhouse-gas-leak",
+      "source_name": "AGU Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers including L. Ruggiero, A. Sciarra, and F. Florindo published a study in Global Biogeochemical Cycles on October 1, 2026, documenting rapid increases in geogenic carbon dioxide emissions from Antarctic permafrost.",
+      "source_url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2026GB009134",
+      "source_name": "Wiley Online Library",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Istituto Nazionale di Geofisica e Vulcanologia reported on October 20, 2026, that carbon dioxide emissions in Taylor Valley have increased more than fivefold based on geochemical analyses conducted in 2020, 2023, and 2025.",
+      "source_url": "https://www.ingv.it/en/urp-press/Press-office/Press-releases/Antarctica%3A-Deep-geological-carbon-emerges-from-permafrost-in-Taylor-Valley--where-carbon-dioxide-emissions-have-increased-more-than-fivefold",
+      "source_name": "INGV Press Office",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Leak area extent",
+      "value": 22,
+      "unit": "square kilometers",
+      "source_url": "https://news.agu.org/10-29-2026-antarctic-permafrost-has-sprung-an-unexpected-greenhouse-gas-leak"
+    },
+    {
+      "label": "Leak area extent in miles",
+      "value": 8.5,
+      "unit": "square miles",
+      "source_url": "https://news.agu.org/10-29-2026-antarctic-permafrost-has-sprung-an-unexpected-greenhouse-gas-leak"
+    },
+    {
+      "label": "Emissions increase factor",
+      "value": 5,
+      "unit": "fold increase",
+      "source_url": "https://www.ingv.it/en/urp-press/Press-office/Press-releases/Antarctica%3A-Deep-geological-carbon-emerges-from-permafrost-in-Taylor-Valley--where-carbon-dioxide-emissions-have-increased-more-than-fivefold"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "American Geophysical Union",
+      "kind": "organization"
+    },
+    {
+      "name": "Taylor Valley",
+      "kind": "place"
+    },
+    {
+      "name": "Antarctica",
+      "kind": "place"
+    },
+    {
+      "name": "L. Ruggiero",
+      "kind": "person"
+    },
+    {
+      "name": "A. Sciarra",
+      "kind": "person"
+    },
+    {
+      "name": "F. Florindo",
+      "kind": "person"
+    },
+    {
+      "name": "Istituto Nazionale di Geofisica e Vulcanologia",
+      "kind": "organization"
+    }
+  ]
+}
