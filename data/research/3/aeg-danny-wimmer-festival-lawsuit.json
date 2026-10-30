@@ -1,0 +1,82 @@
+{
+  "topic_slug": "aeg-danny-wimmer-festival-lawsuit",
+  "strongest_angle": "A nearly eight-year legal battle between AEG Presents and Danny Wimmer Presents over rock festival rights is set for a February 2027 jury trial in Los Angeles Superior Court, following a rejected $18.9 million buyout offer.",
+  "key_facts": [
+    {
+      "fact": "AEG Presents and Danny Wimmer Presents are scheduled for a jury trial in February 2027 at the Los Angeles Superior Court.",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+      "source_name": "Decibel News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Court filings reveal that AEG Presents previously offered $18.9 million to either buy out the interest of Danny Wimmer Presents in Rock on the Range and Carolina Rebellion or sell its own stake.",
+      "source_url": "https://www.ticketnews.com/2026/10/aeg-danny-wimmer-presents-festival-lawsuit-trial",
+      "source_name": "TicketNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal dispute began in November 2018 when AEG Presents filed a 25-count lawsuit against Danny Wimmer Presents in the Los Angeles Superior Court.",
+      "source_url": "https://news.pollstar.com/2018/12/06/danny-wimmer-presents-ceo-responds-to-aeg-lawsuit-over-two-rock-fests-exclusive",
+      "source_name": "Pollstar News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The partnership between AEG Presents and Danny Wimmer Presents previously co-promoted the Rock on the Range and Carolina Rebellion music festivals.",
+      "source_url": "https://app.midpage.ai/document/aeg-presents-productions-v-danny-10838075",
+      "source_name": "MidPage",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Buyout offer amount",
+      "value": 18.9,
+      "unit": "million dollars",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Duration of legal battle",
+      "value": 8,
+      "unit": "years",
+      "source_url": "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial"
+    },
+    {
+      "label": "Number of counts in the 2018 lawsuit",
+      "value": 25,
+      "unit": "counts",
+      "source_url": "https://news.pollstar.com/2018/12/06/danny-wimmer-presents-ceo-responds-to-aeg-lawsuit-over-two-rock-fests-exclusive"
+    },
+    {
+      "label": "Number of pages in the 2018 lawsuit",
+      "value": 114,
+      "unit": "pages",
+      "source_url": "https://news.pollstar.com/2018/12/06/danny-wimmer-presents-ceo-responds-to-aeg-lawsuit-over-two-rock-fests-exclusive"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "AEG Presents",
+      "kind": "organization"
+    },
+    {
+      "name": "Danny Wimmer Presents",
+      "kind": "organization"
+    },
+    {
+      "name": "Los Angeles Superior Court",
+      "kind": "place"
+    },
+    {
+      "name": "Rock on the Range",
+      "kind": "object"
+    },
+    {
+      "name": "Carolina Rebellion",
+      "kind": "object"
+    },
+    {
+      "name": "Sonic Temple Art + Music Festival",
+      "kind": "object"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "aeg-danny-wimmer-festival-lawsuit",
+  "format": "shorts",
+  "hook": "A legal war between music giants has dragged on for 8 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A legal war between music giants has dragged on for 8 years.",
+      "text_overlay": {
+        "text": "8 Years of Legal Warfare"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why did AEG Presents file a 25-count lawsuit against Danny Wimmer Presents in November 2018?",
+      "text_overlay": {
+        "text": "25-Count Lawsuit Filed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Tensions peaked when Danny Wimmer Presents rejected an 18.9 million dollar buyout offer from AEG.",
+      "text_overlay": {
+        "text": "$18.9 Million Buyout Rejected"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Los Angeles Superior Court judges scheduled a February 2027 jury trial to settle this dispute. AEG filed the 25-count lawsuit to resolve ownership stakes in Rock on the Range festivals.",
+      "text_overlay": {
+        "text": "Trial Set for Feb 2027"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 8 year legal battle heads to a final jury trial.",
+      "text_overlay": {
+        "text": "Trial Pending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+    "https://news.pollstar.com/2018/12/06/danny-wimmer-presents-ceo-responds-to-aeg-lawsuit-over-two-rock-fests-exclusive"
+  ]
+}
