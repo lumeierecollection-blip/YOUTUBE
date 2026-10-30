@@ -1,0 +1,84 @@
+{
+  "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-watchdog",
+  "strongest_angle": "Investigatory Powers Commissioner Lord Leveson confirmed that MI5 misled three separate courts during the handling of a violent neo-Nazi informant known as Agent X.",
+  "key_facts": [
+    {
+      "fact": "The Investigatory Powers Commissioner's Office (IPCO) report found that MI5 provided false evidence to three separate courts regarding the handling of a neo-Nazi informant known as Agent X.",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigatory Powers Commissioner Lord Leveson stated that the failure of MI5 to provide candid evidence to the courts is as serious as any issue he has dealt with in his oversight role.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The IPCO investigation determined that one senior MI5 officer lied repeatedly, while a second officer misled colleagues and provided false information about his instructions.",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The High Court and the Investigatory Powers Tribunal issued judgments on July 2, 2025, and July 30, 2025, respectively, which formally identified that MI5 relied on false evidence.",
+      "source_url": "https://data.parliament.uk/DepositedPapers/Files/DEP2026-0501/IPCO_Report_on_Agent_X_16_7_2026.pdf",
+      "source_name": "UK Parliament Deposited Papers",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of courts misled by MI5",
+      "value": 3,
+      "unit": "courts",
+      "source_url": "https://www.bbc.com/news/articles/c3dxwdwx8vxwo"
+    },
+    {
+      "label": "Date of Divisional Court judgment",
+      "value": 2,
+      "unit": "July 2025",
+      "source_url": "https://data.parliament.uk/DepositedPapers/Files/DEP2026-0501/IPCO_Report_on_Agent_X_16_7_2026.pdf"
+    },
+    {
+      "label": "Date of Investigatory Powers Tribunal judgment",
+      "value": 30,
+      "unit": "July 2025",
+      "source_url": "https://data.parliament.uk/DepositedPapers/Files/DEP2026-0501/IPCO_Report_on_Agent_X_16_7_2026.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Oversight depends on candour, Failings of candour undermine the entire basis of oversight and ac",
+      "speaker": "Lord Leveson",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.co.uk/news/articles/c3dxwdwx8vxwo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "MI5",
+      "kind": "organization"
+    },
+    {
+      "name": "Lord Leveson",
+      "kind": "person"
+    },
+    {
+      "name": "Agent X",
+      "kind": "person"
+    },
+    {
+      "name": "Investigatory Powers Commissioner's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "High Court",
+      "kind": "place"
+    },
+    {
+      "name": "Investigatory Powers Tribunal",
+      "kind": "organization"
+    }
+  ]
+}

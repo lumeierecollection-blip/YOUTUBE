@@ -1,0 +1,77 @@
+{
+  "channel_id": "1",
+  "topic_slug": "mi5-false-evidence-neo-nazi-spy-case-watchdog",
+  "format": "shorts",
+  "hook": "MI5 misled 3 separate courts while handling a violent neo-Nazi informant.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "MI5 misled 3 separate courts while handling a violent neo-Nazi informant.",
+      "visual_cue": "Close up on a redacted legal document with 3 court stamps visible.",
+      "sfx_cue": "Gavel strike, echo.",
+      "b_roll": [
+        "Public domain image of a UK courtroom interior"
+      ],
+      "text_overlay": {
+        "text": "3 Courts Misled"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "setup",
+      "voiceover": "The High Court identified that MI5 relied on false evidence on July 2, 2025. The Investigatory Powers Tribunal followed up with a second judgment on July 30, 2025. Did the IPCO, the agency's official watchdog, uncover systemic deception within MI5?",
+      "visual_cue": "Timeline graphic showing July 2 and July 30 dates.",
+      "sfx_cue": "Clock ticking.",
+      "b_roll": [
+        "Document scan of court ruling header"
+      ],
+      "text_overlay": {
+        "text": "July 2025 Judgments"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the investigation found one senior MI5 officer lied repeatedly to the courts.",
+      "visual_cue": "Close up of an official government report folder.",
+      "sfx_cue": "Page turn.",
+      "b_roll": [
+        "Public domain image of IPCO report cover"
+      ],
+      "text_overlay": {
+        "text": "Senior Officer Lied"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Lord Leveson confirmed MI5 failed to provide candid evidence regarding the violent neo-Nazi, Agent X. Another MI5 officer also misled colleagues and provided false information about his specific instructions.",
+      "visual_cue": "Portrait of Lord Leveson with an official seal overlay.",
+      "sfx_cue": "Low ominous drone.",
+      "b_roll": [
+        "Public domain photo of Lord Leveson"
+      ],
+      "text_overlay": {
+        "text": "Oversight Undermined"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "close",
+      "voiceover": "The intelligence agency misled 3 separate courts during this case.",
+      "visual_cue": "Graphic showing the number 3 over a silhouette of a building.",
+      "sfx_cue": "Distant siren.",
+      "b_roll": [
+        "Public domain image of UK government building exterior"
+      ],
+      "text_overlay": {
+        "text": "3 Separate Courts"
+      },
+      "transition_out": "fade"
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c3dxwdwx8vxwo",
+    "https://data.parliament.uk/DepositedPapers/Files/DEP2026-0501/IPCO_Report_on_Agent_X_16_7_2026.pdf"
+  ]
+}
