@@ -1,0 +1,73 @@
+{
+  "topic_slug": "nasa-ends-swift-space-telescope-mission",
+  "strongest_angle": "Examine the technical failure of the private rescue mission by Katalyst Space Technologies and what happens as the Neil Gehrels Swift Observatory prepares to crash back to Earth after 22 years.",
+  "key_facts": [
+    {
+      "fact": "NASA officially ended the mission of the Neil Gehrels Swift Observatory after it began orbiting less than 171 miles above Earth's surface.",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The private rescue mission to boost Swift's decaying orbit was led by the Arizona company Katalyst Space Technologies using their LINK spacecraft.",
+      "source_url": "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+      "source_name": "Space",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Neil Gehrels Swift Observatory is expected to re-enter Earth's atmosphere in November, 22 years after its initial launch.",
+      "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission",
+      "source_name": "SpaceNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Neil Gehrels Swift Observatory conducted its final astronomical observation on October 20 before the mission conclusion.",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+      "source_name": "NASA Science",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Orbital altitude",
+      "value": 171,
+      "unit": "miles",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Orbital altitude metric",
+      "value": 275,
+      "unit": "kilometers",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Mission lifetime",
+      "value": 22,
+      "unit": "years",
+      "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Neil Gehrels Swift Observatory",
+      "kind": "object"
+    },
+    {
+      "name": "Katalyst Space Technologies",
+      "kind": "organization"
+    },
+    {
+      "name": "LINK spacecraft",
+      "kind": "object"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-ends-swift-space-telescope-mission",
+  "format": "shorts",
+  "hook": "A legendary space telescope fell below 171 miles and NASA pulled the plug.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "A legendary space telescope fell below 171 miles and NASA pulled the plug.",
+      "visual_cue": "Space telescope orbiting with Earth background",
+      "sfx_cue": "Low atmospheric hum",
+      "b_roll": [
+        "Neil Gehrels Swift Observatory archival animation"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "171 MILES TO FALL"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:20",
+      "voiceover": "NASA officially ended the Neil Gehrels Swift Observatory mission. Operating for 22 years, the spacecraft recorded its final observation on October 20. When will the decaying observatory re-enter Earth's atmosphere?",
+      "visual_cue": "Telescope instruments capturing final light data",
+      "sfx_cue": "Subtle radar beep",
+      "b_roll": [
+        "NASA Science mission control archival footage"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Smooth pan",
+      "text_overlay": {
+        "text": "22 YEARS IN ORBIT"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:28",
+      "voiceover": "Arizona company Katalyst Space Technologies tried a private rescue mission that failed.",
+      "visual_cue": "LINK spacecraft rendering in orbit",
+      "sfx_cue": "Engine startup glitch",
+      "b_roll": [
+        "Arizona headquarters exterior establishing shot"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Quick fade",
+      "text_overlay": {
+        "text": "PRIVATE RESCUE FAILS"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:28-0:45",
+      "voiceover": "Arizona company Katalyst Space Technologies tried boosting the decaying orbit using their LINK spacecraft. Re-entering Earth's atmosphere in November, the observatory's 22-year mission ends.",
+      "visual_cue": "Spacecraft approaching a decaying satellite orbit",
+      "sfx_cue": "Atmospheric entry hiss",
+      "b_roll": [
+        "SpaceNews orbital trajectory graphic"
+      ],
+      "animation_cue": "Track forward",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "ATMOSPHERIC RE-ENTRY"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:45-0:52",
+      "voiceover": "Twenty-two years of cosmic history ends in fire.",
+      "visual_cue": "Distant starfield slowly fading",
+      "sfx_cue": "Deep space drone",
+      "b_roll": [
+        "NASA public domain deep space imagery"
+      ],
+      "animation_cue": "Slow zoom out",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "TWENTY-TWO YEARS ENDS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+    "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+  ]
+}
