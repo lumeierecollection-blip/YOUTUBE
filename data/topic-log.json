@@ -1560,8 +1560,8 @@
       "last_generated": "2026-10-18T12:44:36.531Z"
     },
     "7": {
-      "channel_name": "Dead Companies",
-      "niche": "Business Case Studies (How Companies Failed)",
+      "channel_name": "Lore Ledger",
+      "niche": "Fictional Universes from the Inside (public-domain worlds, official-canon facts, labelled what-ifs)",
       "used_topics": [
         {
           "topic": "WeWork's $47 Billion Collapse: The IPO That Broke a Unicorn",
@@ -1607,9 +1607,14 @@
           "topic": "First Brands Group: How a $5B Auto Parts Empire Collapsed",
           "slug": "first-brands-group-auto-parts-collapse-2026",
           "reserved_at": "2026-09-14T08:38:07.107Z"
+        },
+        {
+          "topic": "Norse Cosmology Explained: The Nine Realms and World-Building Architecture",
+          "slug": "norse-cosmology-nine-realms-architecture",
+          "reserved_at": "2026-10-30T15:09:41.569Z"
         }
       ],
-      "last_generated": "2026-09-14T08:38:07.107Z"
+      "last_generated": "2026-10-30T15:09:41.569Z"
     },
     "8": {
       "channel_name": "Ledger",
