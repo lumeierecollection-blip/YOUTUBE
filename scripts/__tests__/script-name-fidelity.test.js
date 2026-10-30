@@ -118,3 +118,22 @@ test("a lowercase mid-sentence word is never a name, however close it is to a re
   assert.deepEqual(blockers, []);
   assert.deepEqual(majors, []);
 });
+
+// Run 40899483670, ch-1: "Mesopotamian" (the adjective) was a BLOCKER against the research's "Mesopotamia" on attempts 1-7.
+const MESO = { ...RESEARCH, named_entities: [...RESEARCH.named_entities, { name: "Mesopotamia", kind: "place" }], key_facts: [{ fact: "Weights from Mesopotamia reached Ireland.", source_url: "https://example.org", source_name: "Example" }] };
+
+test("an adjective form of a researched place (Mesopotamian for Mesopotamia) is not a near-miss blocker", () => {
+  const { blockers } = nameFidelityProblems(script("Mesopotamian weighing technology reached Ireland."), MESO);
+  assert.deepEqual(blockers, []);
+});
+
+test("the exemption is narrow: a one-letter substitution of the same place is still a BLOCKER", () => {
+  const { blockers } = nameFidelityProblems(script("Mesopotamie weighing technology reached Ireland."), MESO);
+  assert.equal(blockers.length, 1);
+  assert.match(blockers[0], /Mesopotamia/);
+});
+
+test("the exemption does not cover other one-edit shapes (an extra letter that is not a trailing n)", () => {
+  const { blockers } = nameFidelityProblems(script("Mesopotamiax weighing technology reached Ireland."), MESO);
+  assert.equal(blockers.length, 1);
+});

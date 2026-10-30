@@ -113,3 +113,18 @@ matrix that consumes this output simply runs with fewer channels that day.
 Return `structured_output` matching the provided JSON Schema: a `topics`
 array with one entry per channel you could ground, each with `channel_id`,
 `topic`, `angle`, `why_now`, `slug`, `pillar`.
+
+## Re-ask after a rejection (when `previous_rejections` is present)
+
+`previous_rejections` lists candidates from your previous answer that the pipeline's validator refused, each with the reason. Do not
+propose any of them again, and do not propose another story of the same kind (a research abstract, a vendor announcement, a product
+or API release, a partnership). Choose a different, concrete story that two independent outlets report and whose own text states
+counts, percentages, amounts, dates or places: an incident, a rule change, a recall, an injury or usage statistic, a deployment.
+
+Never put a figure in a title that your search results do not state. A title with an invented or rounded-up figure ("100% of ...",
+"Better by 100%") is a fabrication: it fails the source check and the channel is skipped for the day. A plain title is better than
+a made-up one.
+
+## Niche rules (hard limits)
+
+The context may carry `niche_rules`: limits that keep this channel advertiser-friendly and inside YouTube's authenticity rules. They outrank every other instruction in this brief. Do not propose a topic that cannot be told within them (for example a celebrity story that rests on an unproven allegation, or a franchise story that needs clips or official art). Prefer a topic the rules let the video show with licensed images.

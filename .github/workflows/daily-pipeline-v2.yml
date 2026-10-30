@@ -1,6 +1,7 @@
 ﻿# YouTube Automation ΓÇö Daily Pipeline (v2)
 #
-# Scope: ONLY the channels in config/priority-channels.json (currently 1, 2, 48).
+# Scope: ONLY the channels in config/run-channels.json (prepared + rendered every day). Only those in config/priority-channels.json
+# (currently 1, 2, 48: working OAuth) are UPLOADED; every other run channel stops after render + QA, with no credentials needed.
 # Other channels are deferred until that file changes.
 #
 #   setup  ΓåÆ channel matrix from config/priority-channels.json
@@ -44,9 +45,9 @@ on:
         type: boolean
         default: false
       channels:
-        description: "Comma-separated channel IDs ΓÇö must be priority channels"
+        description: "Comma-separated channel IDs from config/run-channels.json (empty = all of them, as the daily cron does)"
         type: string
-        default: "1,2,48"
+        default: ""
       render_only:
         description: "DEBUG: skip discover/research/script; render the channel's latest committed script (never publishes)"
         type: boolean
@@ -80,6 +81,10 @@ on:
         # dropdown never dispatched. evalLoopMode() throws on any value outside
         # off/dry/live and is unit-tested for exactly that, so validation lives there.
         type: string
+      is_retry:
+        description: "Set by the pipeline itself: this run re-does only the channels that failed in the run before it. It never retries again."
+        type: boolean
+        default: false
       ollama_first:
         description: "Ask Ollama Cloud FIRST in every model chain (planner, props, image checks, frame review); Gemini becomes the fallback. Needs the OLLAMA_API_KEY secret."
         type: boolean
@@ -118,6 +123,8 @@ env:
   # Gemini-plan pipeline unchanged.
   EDITOR_ENGINE: "1"
   EDITOR_TIMELINE_MAP: "scripts/editor/timelines.json"
+  # A script with no persisted timeline is an ERROR, not a silent fall back to the legacy renderer (scripts/lib/editor-timeline-lookup.mjs).
+  EDITOR_STRICT: "1"
 
 jobs:
   # ============================================================
@@ -143,12 +150,12 @@ jobs:
         run: |
           MATRIX=$(node -e "
             const fs = require('fs');
-            const priority = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf-8')).channels.map(String);
+            const priority = JSON.parse(fs.readFileSync('config/run-channels.json', 'utf-8')).channels.map(String);
             const req = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '').replace(/^0+/, '')).filter(Boolean);
             const ids = req.length ? req : priority;
             const notPriority = ids.filter(id => !priority.includes(id));
             if (notPriority.length) {
-              console.error('Not priority channels: ' + notPriority.join(',') + ' (priority: ' + priority.join(',') + ')');
+              console.error('Not run channels (config/run-channels.json): ' + notPriority.join(',') + ' (priority: ' + priority.join(',') + ')');
               process.exit(1);
             }
             console.log(JSON.stringify({ include: ids.map(id => ({ channel_id: id })) }));
@@ -297,6 +304,11 @@ jobs:
         if: github.event.inputs.render_only != 'true'
         id: discover
         env:
+          # Discovery validation policy: unset/empty = advisory (checks reported, channel not stopped); "enforce" = skip the
+          # channel when no candidate passes. Set it as a repository VARIABLE (not a secret); see scripts/validate-discovery.js.
+          DISCOVERY_VALIDATION: ${{ vars.DISCOVERY_VALIDATION }}
+          # The channel's niche_rules are enforced on every candidate (blocklist always; the model's niche-fit check with this on).
+          NICHE_JUDGE: "1"
           # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -310,43 +322,61 @@ jobs:
         run: |
           set -u
           CH="${{ matrix.channel_id }}"
-          node scripts/build-discovery-context.js --channel "$CH" > /tmp/context.json
+          node scripts/build-discovery-context.js --channel "$CH" > /tmp/context-base.json
 
-          set +e
-          cat /tmp/context.json | node scripts/ollama-agent.js \
-            --prompt-file prompts/discover-topics.md \
-            --append-system-prompt-file prompts/discover-candidates.md \
-            --min-items topics=3 --reject-duplicates-for "$CH" \
-            --schema-file schemas/topics.json \
-            --search-budget 3 \
-            --agent pipeline-research \
-            --model "$OPENCODE_MODELS_RESEARCH" \
-            --task-label discover-topics --max-retries 4 \
-            > /tmp/topics-raw.json 2> >(tee /tmp/topics-err.log >&2)
-          AGENT_EXIT=$?
-          set -e
+          # Up to 3 discovery asks. When the validator rejects every candidate, the NEXT ask is told which titles were rejected and why
+          # (context key previous_rejections), because the same model otherwise proposes the same kind of story again (run 41008440903:
+          # ch-2 and ch-48 got product/announcement topics with no figure to draw; all 8 script attempts then failed SCR-17 STRICT).
+          # The policy is unchanged: only the LAST ask is subject to DISCOVERY_VALIDATION (advisory forwards, enforce skips); earlier
+          # asks that find nothing valid simply re-ask. A candidate that fails validation is never reserved as if it had passed.
+          DISC_TRY=1
+          while :; do
+            cp /tmp/context-base.json /tmp/context.json
+            if [ -s /tmp/prev-rejections.json ]; then
+              jq --slurpfile r /tmp/prev-rejections.json '. + {previous_rejections: $r[0]}' /tmp/context-base.json > /tmp/context.json
+            fi
+            set +e
+            cat /tmp/context.json | node scripts/ollama-agent.js               --prompt-file prompts/discover-topics.md               --append-system-prompt-file prompts/discover-candidates.md               --min-items topics=3 --reject-duplicates-for "$CH"               --schema-file schemas/topics.json               --search-budget 3               --agent pipeline-research               --model "$OPENCODE_MODELS_RESEARCH"               --task-label discover-topics --max-retries 4               > /tmp/topics-raw.json 2> >(tee /tmp/topics-err.log >&2)
+            AGENT_EXIT=$?
+            set -e
 
-          if [ "$AGENT_EXIT" -ne 0 ]; then
-            echo "::error::discover-topics failed for channel $CH"
-            echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
-            exit 1
-          fi
-          if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
-            echo "::error::No topics discovered for channel $CH"
-            cat /tmp/topics-raw.json
-            exit 1
-          fi
-          jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
-          echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s)"
-          # Rank the candidates by whether their subjects can be SHOWN (a free logo or portrait), best first, before the first
-          # non-duplicate is reserved (scripts/rank-topics-imagery.js). Never drops one and never fails the run.
-          node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
-          # Validate 2-domain sourcing + visual coverage BEFORE reservation
-          node scripts/validate-discovery.js /tmp/topics.json "$CH" || {
-            echo "::error::discovery validation failed for channel $CH — no valid topics"
+            if [ "$AGENT_EXIT" -ne 0 ]; then
+              echo "::error::discover-topics failed for channel $CH"
+              echo "--- stderr ---"; cat /tmp/topics-err.log 2>/dev/null || echo "(empty)"
+              exit 1
+            fi
+            if ! jq -e '.structured_output.topics | length > 0' /tmp/topics-raw.json > /dev/null; then
+              echo "::error::No topics discovered for channel $CH"
+              cat /tmp/topics-raw.json
+              exit 1
+            fi
+            jq '.structured_output' /tmp/topics-raw.json > /tmp/topics.json
+            echo "Discovered $(jq '.topics | length' /tmp/topics.json) candidate topic(s) (ask $DISC_TRY/3)"
+            node scripts/rank-topics-imagery.js /tmp/topics.json || echo "[imagery] ranking skipped"
+            if [ "$DISC_TRY" -ge 3 ]; then break; fi
+            # Ask 1 and 2: a trial validation on a COPY under enforce, only to decide whether to ask again. The real validation (under the
+            # configured policy) runs once, after the loop, on the answer that is kept.
+            cp /tmp/topics.json /tmp/topics-try.json
+            TRY_RC=0
+            DISCOVERY_VALIDATION=enforce node scripts/validate-discovery.js /tmp/topics-try.json "$CH" > /tmp/validate.log 2>&1 || TRY_RC=$?
+            cat /tmp/validate.log
+            if [ "$TRY_RC" -ne 1 ]; then break; fi
+            echo "::warning::discovery ask $DISC_TRY/3 for channel $CH: every candidate rejected — asking again with the reasons"
+            # The validator logged one 'REJECTED "<title>" — <reason>' line per candidate; those are the reasons the next ask is given.
+            grep -o 'REJECTED ".*' /tmp/validate.log | sed 's/^REJECTED //' | jq -R -s -c 'split("\n") | map(select(length>0))' > /tmp/prev-rejections.json
+            DISC_TRY=$((DISC_TRY + 1))
+          done
+          RC=0
+          node scripts/validate-discovery.js /tmp/topics.json "$CH" || RC=$?
+          if [ "$RC" -eq 1 ]; then
+            echo "::warning::discovery validation REJECTED every candidate for channel $CH under DISCOVERY_VALIDATION=enforce — skipping this channel today"
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
-          }
+          elif [ "$RC" -ne 0 ]; then
+            echo "::error::discovery validator FAILED for channel $CH (exit $RC) — a fault, not a rejection; skipping this channel today"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
 
       # —— Reserve the first NON-duplicate topic —————————————————————————
@@ -357,6 +387,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           CH="${{ matrix.channel_id }}"
+          # Every later step gates on steps.reserve.outputs.skip, so a discovery skip has to be re-published HERE, before anything is reserved.
+          if [ "${{ steps.discover.outputs.skip }}" = "true" ]; then
+            echo "::warning::Channel $CH — discovery validation skipped this channel; no topic reserved"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           git config user.name  "pipeline-bot"
           git config user.email "pipeline@youtube-automation.local"
           COUNT=$(jq '.topics | length' /tmp/topics.json)
@@ -527,6 +563,25 @@ jobs:
           SLUG=$(jq -r '.slug' /tmp/channel-topic.json)
           node scripts/gate-research.js "$CH" "$SLUG"
 
+      # —— Is there anything to DRAW? (strict_visual channels only) ———————————————————————
+      # scripts/strict-prescreen.mjs measures the research before a script model is called. A starved topic (facts that only say who did
+      # what) used to burn the whole script budget; now the other discovery candidates are tried first (scripts/ci/strict-prescreen-pick.sh).
+      - name: Pre-screen the research for something to draw
+        if: steps.reserve.outputs.skip != 'true' && github.event.inputs.render_only != 'true'
+        env:
+          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENCODE_MODELS_RESEARCH: "ollama-cloud/gpt-oss:120b,ollama/qwen2.5:3b"
+          CHANNEL_ID: ${{ matrix.channel_id }}
+        run: bash scripts/ci/strict-prescreen-pick.sh
+
       # —— Stage C: script (gate-feedback retry) ——————————————————————————
       - name: Write script
         id: script
@@ -592,6 +647,9 @@ jobs:
             # with the re-pick still unused).
             for ATTEMPT in 1 2 3 4 5 6 7 8; do
               echo "=== SCRIPT: $CH ΓÇö $SCRIPT_SLUG (attempt $ATTEMPT/8) ==="
+              # Attempts 1-3 use the cheap model. When the gate has refused three times (sloppy names, figures that name nothing), the writer and
+              # the sentence repair switch to the stronger model for the rest of the budget: run 41020644767 lost 4 of 10 channels on the cheap model alone.
+              if [ "$ATTEMPT" -ge 4 ]; then export SCRIPT_GEMINI_MODEL=gemini-3.5-flash; fi
               if [ "$SKIP_GEN" -eq 1 ]; then
               # The re-ask was a targeted repair (scripts/repair-sentences.mjs): the script
               # file was rewritten in place ΓÇö only the flagged sentences ΓÇö so there is no new
@@ -795,11 +853,18 @@ jobs:
                 cat /tmp/dedupe-final-$FORMAT.log
                 if [ "$DD_EXIT" -eq 3 ]; then
                   grep -E '^  - ' /tmp/dedupe-final-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
-                  if [ "$ATTEMPT" -lt 8 ] && node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                  : > /tmp/repair-out-$FORMAT.log
+                  if [ "$ATTEMPT" -lt 8 ] && node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt > /tmp/repair-out-$FORMAT.log 2>&1; then
+                    cat /tmp/repair-out-$FORMAT.log
                     echo "[script] ch-$CH: repeated sentences, repaired them"
                     SKIP_GEN=1
                     continue
                   fi
+                  # WHY the repair did not happen is what the skip below used to hide (attempt cap, Gemini unavailable, an unusable
+                  # answer, a CUT refused on a beat's only sentence). Print it; nothing about the check or the skip changes.
+                  cat /tmp/repair-out-$FORMAT.log
+                  if [ "$ATTEMPT" -ge 8 ]; then REPAIR_WHY="no repair attempted: attempt $ATTEMPT of 8"; else REPAIR_WHY="$(tail -n 2 /tmp/repair-out-$FORMAT.log | tr '\n' ' ' | cut -c1-300)"; fi
+                  echo "::warning::[script] ch-$CH: sentence repair did not fix the repeat (${REPAIR_WHY:-no output from the repair})"
                   echo "::warning::[script] ch-$CH: the script repeats a sentence that deleting cannot fix ΓÇö channel skipped this run"
                   echo "skip=true" >> "$GITHUB_OUTPUT"
                   echo "skip_reason=repeats" >> "$GITHUB_OUTPUT"
@@ -862,16 +927,32 @@ jobs:
               fi
               echo "::warning::script gate rejected attempt $ATTEMPT/8 for $SCRIPT_SLUG"
               cat /tmp/gate-out-$FORMAT.log
+              # STRICT SENTENCE REPAIR. Runs 40971151924 ch-2 / ch-48: the writer's research was sound (ch-2 had six sourced
+              # figures) but every full regeneration produced a different rhetorical-question sentence that names no figure, so
+              # SCR-17 STRICT failed all 8 attempts. Same fix the story and repeat checks already use: rewrite ONLY the flagged
+              # sentences from the research (repair-sentences.mjs may answer CUT instead of inventing), then re-run every gate.
+              # Nothing is loosened: the gate runs again on the result. Attempt 5 is left to the topic re-pick below.
+              if [ "$ATTEMPT" -lt 8 ] && [ "$ATTEMPT" -ne 3 ] && [ "${STRICT_REPAIRED:-0}" -lt 3 ]                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log; then
+                STRICT_REPAIRED=$((${STRICT_REPAIRED:-0} + 1))
+                grep -E '^  - SCR-17 STRICT' /tmp/gate-out-$FORMAT.log > /tmp/repair-fb-$FORMAT.txt || true
+                if node scripts/repair-sentences.mjs "data/research/$CH/${SCRIPT_SLUG}-script.json" "data/research/$CH/$SLUG.json" /tmp/repair-fb-$FORMAT.txt; then
+                  echo "[script] ch-$CH: strict visual gate FAIL, repaired the flagged sentences ($STRICT_REPAIRED/3)"
+                  SKIP_GEN=1
+                  continue
+                fi
+                echo "[script] ch-$CH: strict visual gate FAIL, the sentence repair could not fix it - regenerating"
+              fi
               # STRICT STARVATION -> ONE TOPIC RE-PICK (SCR-19). The strict
               # rule can only be satisfied with sentences the RESEARCH can
-              # support; when attempt 5 still fails it and nothing else, the
+              # support; when attempt 3 still fails it and nothing else, the
               # topic is the problem, not the wording. Run 39399514270 ch-48
               # burned all 8 attempts on a paper whose every fact was "X
               # analysed Y" - no rewrite can ground that without inventing.
               # Same machinery and one-per-run budget as the claims re-pick
               # (REPICKED/BURNED, ~45 lines above); the replacement topic
               # starts with a clean feedback slate and 3 attempts left.
-              if [ "$ATTEMPT" -eq 5 ] && [ "$REPICKED" -eq 0 ] \
+              # (moved from attempt 5 to 3, 2026-10-30: ch-48 spent five attempts on an abstract with nothing to draw, then the replacement had only three.)
+              if [ "$ATTEMPT" -eq 3 ] && [ "$REPICKED" -eq 0 ] \
                  && grep -q 'SCR-17 STRICT' /tmp/gate-out-$FORMAT.log \
                  && [ -f /tmp/topics.json ]; then
                 BURNED="${BURNED:-} $SLUG"
@@ -1306,6 +1387,14 @@ jobs:
             echo "::warning::no SFX verdicts from setup ΓÇö no SFX will play this board"
           fi
 
+      # Editor timeline, built automatically from this run's script, research and voiceover (scripts/editor/auto-timeline.mjs): one
+      # scene per spoken sentence, timed by the voiceover; a verified Wikimedia photo of a named entity, else a figure card (numbers
+      # the research states) or a statement card. It exports EDITOR_TIMELINE_MAP for the render step. With EDITOR_STRICT=1 a script
+      # that cannot get a valid timeline FAILS this job loudly; it never falls back to another renderer.
+      - name: Build editor timeline
+        if: steps.status.outputs.skip != 'true'
+        run: node scripts/editor/auto-timeline.mjs --channel "${{ matrix.channel_id }}" --github-env
+
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
         env:
@@ -1456,6 +1545,7 @@ jobs:
       # main only (audit 2026-10-03): a dispatch with --ref <other branch> renders but never
       # reads the OAuth secrets or uploads. 135 v2 dispatches ran on a development branch.
       - name: Materialize OAuth credentials
+        id: creds
         # always(): a failed render must not strand an ALREADY-uploaded private
         # video past its go_public_at (ch-1 hOYJOrB9lR4 sat private 8 h on
         # 2026-10-20 because the render step failed before this one ran).
@@ -1506,6 +1596,12 @@ jobs:
             const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
             let ch;
             try { ch = resolveChannel(id); } catch (e) { console.error('::error::' + e.message); process.exit(1); }
+            const publishSet = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf8')).channels.map(String);
+            if (!publishSet.includes(id)) {
+              console.log('::notice::channel ' + id + ' is not in config/priority-channels.json: it runs to the end (render + QA) and stops before upload; no credentials are needed');
+              fs.appendFileSync(process.env.GITHUB_OUTPUT, 'publish=false\n');
+              process.exit(0);
+            }
             const own = 'config/creds/' + ch.channel_id + '.json';
             const declared = ch.youtube_credentials_path || own;
             if (declared !== own) { console.error('::error::channel ' + id + ' declares ' + declared + ', not its own credentials file ' + own); process.exit(1); }
@@ -1522,14 +1618,14 @@ jobs:
           "
 
       - name: Publish to YouTube (private)
-        if: github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
+        if: steps.creds.outputs.publish != 'false' && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true'
         run: node src/skills/youtube-publish/run.js "${{ matrix.channel_id }}"
 
       - name: Process publish queue
         # always(): this flips videos the DAILY RUN ALREADY UPLOADED private;
         # today's render failing has nothing to do with yesterday's queue entry
         # (the watch item behind the ch-1 hOYJOrB9lR4 delay, 2026-10-20).
-        if: always() && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.hold_public != 'true'
+        if: always() && steps.creds.outputs.publish != 'false' && github.ref == 'refs/heads/main' && steps.status.outputs.skip != 'true' && github.event.inputs.dry_run != 'true' && github.event.inputs.render_only != 'true' && github.event.inputs.hold_public != 'true'
         run: node src/skills/youtube-publish/run.js process-queue
 
       - name: Commit publish queue
@@ -1761,7 +1857,14 @@ jobs:
           # that is the publish-queue it pushes, and when that push failed (run 39031532519 ch-1: "cannot rebase") this job uploaded the same
           # render a second time. approved/ belongs to the render job here; this job takes approved-review/ only. A dispatch keeps both queues.
           if [ "${{ github.event_name }}" = "schedule" ]; then rm -rf data/renders/approved; echo "schedule: approved/ was the render job's to upload ΓÇö approved-review/ only"; fi
-          ls -la data/renders/approved-review/ || { echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1; }
+          # Every channel here HAS credentials (the creds step only passes those on). Leave each one a log saying why nothing was published, or the digest
+          # reads "no log" as "no OAuth credentials" (runs 40712679484 and 40899483670 reported that for ch-1/2/48 when no render had passed QA).
+          ls -la data/renders/approved-review/ || {
+            for CH in $(echo "$REQUESTED" | tr ',' ' '); do
+              echo "No approved-review/ or approved/ renders found - run ${{ steps.target.outputs.run_id }} has no approved-review videos" > "/tmp/publish-out-$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//').log"
+            done
+            echo "::error::run ${{ steps.target.outputs.run_id }} has no approved-review videos (or its artifacts expired after 14 days)"; exit 1;
+          }
           FAIL=0
           for CH in $(echo "$REQUESTED" | tr ',' ' '); do
             CH=$(echo "$CH" | sed -E 's/^ch-?//I; s/^0+//')
@@ -1952,3 +2055,43 @@ jobs:
           echo "Setup:     ${{ needs.setup.result }}"
           echo "Prep:      ${{ needs.prep.result }}"
           echo "Render:    ${{ needs.render.result }}"
+
+  # ============================================================
+  # RETRY (once): a channel can fail for reasons that are not its fault (a model that wrote a sloppy script five times, a search that timed
+  # out). Every failure releases its topic reservation, so one more run draws a fresh topic. Only channels that failed BEFORE the upload
+  # step are retried, so a video that already went up is never uploaded twice, and a retry run never retries (is_retry).
+  # ============================================================
+  retry-failed:
+    needs: [setup, prep, render]
+    if: always() && needs.setup.result == 'success' && github.event.inputs.publish != 'true' && github.event.inputs.is_retry != 'true' && (needs.prep.result == 'failure' || needs.render.result == 'failure')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      actions: write
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RUN_ID: ${{ github.run_id }}
+      REPO: ${{ github.repository }}
+      REF: ${{ github.ref_name }}
+      DRY: ${{ github.event.inputs.dry_run || 'false' }}
+      HOLD: ${{ github.event.inputs.hold_public || 'false' }}
+      TIMEOUT: ${{ github.event.inputs.timeout_minutes || '90' }}
+    steps:
+      - name: Re-run the channels that failed before upload, once
+        run: |
+          set -euo pipefail
+          FAILED=$(gh api "repos/$REPO/actions/runs/$RUN_ID/jobs?per_page=100" --paginate \
+            --jq '.jobs[] | select(.conclusion=="failure") | select(([.steps[]? | select(.name=="Publish to YouTube (private)" and .conclusion=="success")] | length)==0) | .name' \
+            | sed -n 's/^\(prep\|render\) (\([0-9][0-9]*\))$/\2/p' | sort -un | paste -sd, -)
+          if [ -z "$FAILED" ]; then
+            echo "Nothing to retry: no channel failed before upload."
+            exit 0
+          fi
+          echo "Retrying once: channels $FAILED"
+          {
+            echo "### Retry"
+            echo "Run $RUN_ID had failures before upload in channels: $FAILED. Started one retry run for exactly those channels."
+          } >> "$GITHUB_STEP_SUMMARY"
+          gh workflow run daily-pipeline-v2.yml --repo "$REPO" --ref "$REF" \
+            -f channels="$FAILED" -f is_retry=true -f dry_run="$DRY" -f hold_public="$HOLD" -f timeout_minutes="$TIMEOUT" -f eval_loop_mode=off
