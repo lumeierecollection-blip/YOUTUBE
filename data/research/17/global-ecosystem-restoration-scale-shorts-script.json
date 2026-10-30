@@ -1,0 +1,52 @@
+{
+  "channel_id": "17",
+  "topic_slug": "global-ecosystem-restoration-scale",
+  "format": "shorts",
+  "hook": "252 million hectares of nature are being restored across 149 countries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "252 million hectares of nature are being restored across 149 countries.",
+      "visual_cue": "A digital map showing global highlights of land restoration efforts across continents.",
+      "text_overlay": {
+        "text": "252 Million Hectares Restoring"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The United Nations Environment Programme reports this massive scale of recovery currently spans the globe. Projects include salmon spawning grounds in Canada and coral reefs in Indonesia. How large is this area?",
+      "visual_cue": "A split screen showing a Canadian salmon stream and an Indonesian coral reef.",
+      "text_overlay": {
+        "text": "UN Environment Programme Report"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This total is roughly equivalent to the entire landmass of Kazakhstan.",
+      "visual_cue": "A globe zooming into Kazakhstan to illustrate the scale of the restored area.",
+      "text_overlay": {
+        "text": "Size of Kazakhstan"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Of these hectares, 232 million are located on land. These efforts have also created more than one million green jobs worldwide. Restoration is happening at an unprecedented rate.",
+      "visual_cue": "An animation showing a forest growing from a barren landscape to represent land-based restoration.",
+      "text_overlay": {
+        "text": "1 Million Green Jobs"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "252 million hectares are officially under active restoration today.",
+      "visual_cue": "A wide satellite view of Earth showing green restoration markers across the planet.",
+      "text_overlay": {
+        "text": "252 Million Hectares"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+    "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un"
+  ]
+}

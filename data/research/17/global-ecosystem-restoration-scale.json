@@ -1,0 +1,82 @@
+{
+  "topic_slug": "global-ecosystem-restoration-scale",
+  "strongest_angle": "A new UN Environment Programme report reveals that 252 million hectares of land and sea across 149 countries are currently being restored, an area roughly equivalent to the size of Kazakhstan, though funding must quadruple to meet global goals.",
+  "key_facts": [
+    {
+      "fact": "The United Nations Environment Programme reports that 252 million hectares of land and sea are currently under restoration across 149 countries.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UN Environment Programme",
+      "confidence": "high"
+    },
+    {
+      "fact": "Restoration efforts have created more than one million green jobs globally according to the United Nations Environment Programme.",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration",
+      "source_name": "UN Environment Programme",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Straits Times reports that of the 252 million hectares being restored, 232 million hectares are located on land.",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un",
+      "source_name": "The Straits Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ecosystem restoration projects mentioned by UN News include salmon spawning grounds in Canada and coral reefs in Indonesia.",
+      "source_url": "https://news.un.org/en/story/2026/10/1168700",
+      "source_name": "UN News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total hectares under restoration",
+      "value": 252000000,
+      "unit": "hectares",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Number of countries participating in restoration",
+      "value": 149,
+      "unit": "countries",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Green jobs created",
+      "value": 1000000,
+      "unit": "jobs",
+      "source_url": "https://www.unep.org/en/news-and-stories/press-release/nature-making-comeback-world-must-move-faster-meet-restoration"
+    },
+    {
+      "label": "Land-based restoration area",
+      "value": 232000000,
+      "unit": "hectares",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "From salmon spawning grounds in Canada to coral reefs in Indonesia, ecosystems around the world are being restored at an unprecedented rate.",
+      "speaker": "UN News",
+      "source_name": "UN News",
+      "source_url": "https://news.un.org/en/story/2026/10/1168700"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "United Nations Environment Programme",
+      "kind": "organization"
+    },
+    {
+      "name": "Kazakhstan",
+      "kind": "place"
+    },
+    {
+      "name": "Canada",
+      "kind": "place"
+    },
+    {
+      "name": "Indonesia",
+      "kind": "place"
+    }
+  ]
+}
