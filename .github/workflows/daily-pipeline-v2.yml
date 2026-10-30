@@ -307,6 +307,8 @@ jobs:
           # Discovery validation policy: unset/empty = advisory (checks reported, channel not stopped); "enforce" = skip the
           # channel when no candidate passes. Set it as a repository VARIABLE (not a secret); see scripts/validate-discovery.js.
           DISCOVERY_VALIDATION: ${{ vars.DISCOVERY_VALIDATION }}
+          # The channel's niche_rules are enforced on every candidate (blocklist always; the model's niche-fit check with this on).
+          NICHE_JUDGE: "1"
           # Answer step through Gemini first (scripts/ollama-agent.js searchGemini); Ollama is the fallback.
           FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

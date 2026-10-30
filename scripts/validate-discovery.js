@@ -26,6 +26,8 @@
  * rejected under "enforce" (a policy outcome); 2 if the validator itself failed (see EXIT).
  */
 
+import { guardTopics, defaultAsk as nicheAsk } from "./lib/niche-guard.mjs";
+import { resolveChannel } from "./lib/channel-lookup.mjs";
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import { createRequire } from "module";
@@ -278,6 +280,21 @@ async function main() {
   if (topics.length === 0) {
     console.error("validate-discovery: no topics to validate");
     process.exit(EXIT.ERROR);
+  }
+
+  // The channel's niche rules are enforced here, whatever DISCOVERY_VALIDATION says (advisory forwards a candidate that fails the
+  // measurable/source checks; it never forwards one that breaks the niche's own limits). NICHE_JUDGE=1 adds the model's niche-fit check.
+  let channel = null;
+  try { channel = resolveChannel(channelId); } catch { channel = null; }
+  if (channel && ((channel.niche_blocklist || []).length || process.env.NICHE_JUDGE === "1")) {
+    const guard = await guardTopics(topics, channel, { ask: process.env.NICHE_JUDGE === "1" ? nicheAsk() : null });
+    if (!guard.kept.length) {
+      console.error(`validate-discovery: ch-${channelId} — ALL ${topics.length} CANDIDATES BREAK THE NICHE RULES — channel will be skipped`);
+      process.exit(EXIT.REJECTED);
+    }
+    topics.length = 0;
+    topics.push(...guard.kept);
+    doc.topics = topics;
   }
 
   const result = await screenCandidates(topics, channelId);

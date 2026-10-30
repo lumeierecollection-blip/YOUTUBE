@@ -314,6 +314,23 @@
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
         "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
         "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ],
+      "niche_blocklist": [
+        "sexual",
+        "\\brape",
+        "assault",
+        "molest",
+        "\\babus",
+        "suicide",
+        "overdose",
+        "murder",
+        "\\bkilled\\b",
+        "\\bdied\\b",
+        "\\bdeath\\b",
+        "\\bminors?\\b",
+        "\\bchild",
+        "clergy",
+        "church"
       ]
     },
     {
@@ -429,6 +446,14 @@
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
         "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
         "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ],
+      "niche_blocklist": [
+        "\\bbet(s|ting)?\\b",
+        "\\bodds\\b",
+        "gambl",
+        "wager",
+        "suicide",
+        "\\babus"
       ]
     },
     {
@@ -610,7 +635,8 @@
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
         "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
         "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
-      ]
+      ],
+      "niche_blocklist": []
     },
     {
       "id": 8,
@@ -765,6 +791,14 @@
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
         "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
         "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ],
+      "niche_blocklist": [
+        "invasion",
+        "\\bwar\\b",
+        "airstrike",
+        "massacre",
+        "genocide",
+        "terror"
       ]
     },
     {
@@ -1208,6 +1242,12 @@
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
         "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
         "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ],
+      "niche_blocklist": [
+        "\\bcure",
+        "treatment",
+        "diagnos",
+        "supplement"
       ]
     },
     {
@@ -1390,6 +1430,11 @@
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
         "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
         "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ],
+      "niche_blocklist": [
+        "gore",
+        "graphic",
+        "\\bbodies\\b"
       ]
     },
     {
