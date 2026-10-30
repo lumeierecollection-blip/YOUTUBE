@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "october-2026-product-recall-statistics-analysis",
+  "format": "shorts",
+  "hook": "In October 2026, U.S. federal agencies posted 154 separate product recall events.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, U.S. federal agencies posted 154 separate product recall events.",
+      "text_overlay": {
+        "text": "154 Recalls in Oct 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Federal data shows the National Highway Traffic Safety Administration led with 81 recorded events. But what about the remaining 4 recalls reported by the USDA Food Safety and Inspection Service?",
+      "text_overlay": {
+        "text": "NHTSA: 81 recalls"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Consumer Product Safety Commission posted 39 recalls and the FDA added 30 more events.",
+      "text_overlay": {
+        "text": "USDA-FSIS: 4 recalls"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This higher figure includes 245 medical device recalls tracked by the Food and Drug Administration.",
+      "text_overlay": {
+        "text": "453 Total Recalls"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These 453 combined events reflect the total October 2026 recall landscape.",
+      "text_overlay": {
+        "text": "453 Total Recalls"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://recallbench.com/statistics/2026-10",
+    "https://therecalldesk.com/archive/2026/10?page=4"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "topic_slug": "october-2026-product-recall-statistics-analysis",
+  "strongest_angle": "In October 2026, U.S. federal agencies posted 154 recall events, with NHTSA accounting for 81, CPSC 39, FDA 30, and USDA-FSIS 4 as of October 30, 2026.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, U.S. agencies posted 154 recall events, distributed across CPSC 39, FDA 30, NHTSA 81, and USDA-FSIS 4 as of October 30, 2026.",
+      "source_url": "https://recallbench.com/statistics/2026-10",
+      "source_name": "Recall Bench",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Recall Desk reported 453 total recalls announced in October 2026, including 245 from FDA Devices and 76 from NHTSA.",
+      "source_url": "https://therecalldesk.com/archive/2026/10?page=4",
+      "source_name": "The Recall Desk",
+      "confidence": "medium"
+    },
+    {
+      "fact": "RecallSweep collects recalls published by the Consumer Product Safety Commission, Food and Drug Administration, National Highway Traffic Safety Administration, and USDA Food Safety and Inspection Service.",
+      "source_url": "https://recallsweep.com",
+      "source_name": "RecallSweep",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "October 2026 Total Recall Events",
+      "value": 154,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "CPSC October Recalls",
+      "value": 39,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "FDA October Recalls",
+      "value": 30,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "NHTSA October Recalls",
+      "value": 81,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "USDA-FSIS October Recalls",
+      "value": 4,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "The Recall Desk Total Recalls",
+      "value": 453,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10?page=4"
+    },
+    {
+      "label": "FDA Devices Recalls",
+      "value": 245,
+      "unit": "recalls",
+      "source_url": "https://therecalldesk.com/archive/2026/10?page=4"
+    },
+    {
+      "label": "RecallSweep 180-day Recalls",
+      "value": 3478,
+      "unit": "recalls",
+      "source_url": "https://recallsweep.com"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Consumer Product Safety Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "Food and Drug Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "National Highway Traffic Safety Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "USDA Food Safety and Inspection Service",
+      "kind": "organization"
+    }
+  ]
+}
