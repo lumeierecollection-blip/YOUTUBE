@@ -175,7 +175,9 @@ async function main() {
   const resolver = resolverFromEntityAssets();
   const concept = conceptFinder();
   const ask = defaultAsk();
-  const style = Number(get("style") || process.env.EDITOR_STYLE || channel.editor_look || 1);
+  // --style N / EDITOR_STYLE=N forces one look (the comparison workflow); otherwise each video chooses its own from its slug (auto-plan.mjs)
+  const forced = get("style") || process.env.EDITOR_STYLE;
+  const style = forced ? Number(forced) || 0 : 0;
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");

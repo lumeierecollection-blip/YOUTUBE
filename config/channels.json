@@ -96,7 +96,12 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_01",
-      "editor_look": 3
+      "editor_look": 3,
+      "niche_rules": [
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 2,
@@ -188,11 +193,16 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_02",
-      "editor_look": 1
+      "editor_look": 1,
+      "niche_rules": [
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 3,
-      "niche": "Legal Education (Know Your Rights)",
+      "niche": "Celebrity Feuds & Court Sagas (what the filings and the press actually say)",
       "clone": {
         "profile": "dossier-mono"
       },
@@ -200,8 +210,8 @@
       "style": "motion-graphics",
       "bg_mode": "black",
       "asset_treatment": "bw",
-      "channel_name": "Legal Brief",
-      "handle": "@legalbrief",
+      "channel_name": "Court & Spotlight",
+      "handle": "@courtandspotlight",
       "tts_voice": "en-US-GuyNeural",
       "font": "DM Sans",
       "estimated_rpm": "10-18",
@@ -209,20 +219,20 @@
       "channel_id": "ch-03",
       "youtube_credentials_path": "config/creds/ch-03.json",
       "paused": true,
-      "description": "Your constitutional rights explained in plain English. What to do during traffic stops, police encounters, and legal situations.",
+      "description": "Celebrity disputes, feuds and legal battles explained from court records and reputable reporting: what happened, what a judge decided, and what is still unproven.",
       "content_pillars": [
-        "constitutional rights explained",
-        "traffic stop scripts",
-        "police encounter laws",
-        "tenant rights",
-        "employment law basics"
+        "celebrity lawsuits and rulings explained",
+        "famous feuds: how they started and what is documented",
+        "settlements, verdicts and what they mean",
+        "entertainment-industry business fights",
+        "what the court filings say"
       ],
       "tags": [
-        "know your rights",
-        "legal education",
-        "constitutional rights",
-        "police encounter",
-        "legal tips"
+        "celebrity news",
+        "celebrity feud explained",
+        "court ruling",
+        "entertainment news",
+        "what really happened"
       ],
       "colors": {
         "primary": "#1A1A2E",
@@ -231,8 +241,8 @@
         "bg": "#0F0F1A",
         "canvas_accent": "#8B1E1E"
       },
-      "target_audience": "Adults 18-55 wanting legal awareness",
-      "tone": "authoritative-empowering",
+      "target_audience": "Adults 18-45 who follow entertainment news",
+      "tone": "sharp-factual-curious",
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
@@ -295,19 +305,28 @@
         ],
         "excluded": []
       },
-      "editor_look": 4
+      "editor_look": 4,
+      "niche_rules": [
+        "Use only court records, official statements and at least two reputable outlets; never gossip, blind items, leaked or private material, or viral posts nobody has verified.",
+        "Every statement about someone's conduct is attributed (\"according to the filing\", \"the court found\", \"the outlet reported\"); an allegation is never stated as fact and an unproven claim is labelled unproven.",
+        "No sexual-assault, abuse or death details beyond what a ruling states, nothing about minors, no health speculation, no claims about living people's motives.",
+        "Close on what is documented and what is still unresolved.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 4,
-      "niche": "Personal Finance (Budgeting for Beginners)",
+      "niche": "Sports Rivalries & Tactics Explained (why it happens, drawn as diagrams and stats)",
       "clone": {
         "profile": "cutout-collage"
       },
       "style": "motion-graphics",
       "bg_mode": "white",
       "asset_treatment": "color",
-      "channel_name": "Money Mind",
-      "handle": "@moneymind",
+      "channel_name": "Rival Lines",
+      "handle": "@rivallines",
       "tts_voice": "en-US-AriaNeural",
       "font": "Inter",
       "estimated_rpm": "8-15",
@@ -315,20 +334,20 @@
       "channel_id": "ch-04",
       "youtube_credentials_path": "config/creds/ch-04.json",
       "paused": true,
-      "description": "Simple budgeting strategies for real people. No jargon, no get-rich-quick. Just proven systems to take control of your money.",
+      "description": "Why the biggest rivalries exist, why dynasties happen and how tactics work, explained with official records, timelines and diagrams.",
       "content_pillars": [
-        "50/30/20 budget breakdowns",
-        "debt payoff strategies",
-        "saving challenges",
-        "budget tool reviews",
-        "money mindset shifts"
+        "rivalry origins and the moments that made them",
+        "tactics explained with diagrams",
+        "records and stat myths checked against official data",
+        "why dynasties and collapses happen",
+        "historic matches told from the results and reports"
       ],
       "tags": [
-        "budgeting",
-        "personal finance",
-        "money management",
-        "saving money",
-        "debt free"
+        "sports rivalry",
+        "sports explained",
+        "football tactics",
+        "sports history",
+        "why it happens"
       ],
       "colors": {
         "primary": "#0F172A",
@@ -337,8 +356,8 @@
         "bg": "#0A1020",
         "canvas_accent": "#1B7A4D"
       },
-      "target_audience": "Adults 18-40 seeking financial control",
-      "tone": "friendly-encouraging",
+      "target_audience": "Sports fans 16-45",
+      "tone": "energetic-analytical",
       "thumbnail_spec": {
         "style": "clean-infographic",
         "text_max_words": 4,
@@ -402,7 +421,15 @@
           "IMAGE_BEAT"
         ]
       },
-      "editor_look": 5
+      "editor_look": 5,
+      "niche_rules": [
+        "No match footage, broadcast clips or club/league logos unless the licence is verified; use stadium and historic photos with credit, plus diagrams, charts and timelines.",
+        "Statistics only from official league, federation or record-keeper pages; a disputed history is shown as disputed.",
+        "No betting tips, odds or gambling promotion; no speculation about injuries, private life or abuse of athletes.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 5,
@@ -488,11 +515,11 @@
     },
     {
       "id": 7,
-      "niche": "Business Case Studies (How Companies Failed)",
+      "niche": "Fictional Universes from the Inside (public-domain worlds, official-canon facts, labelled what-ifs)",
       "style": "cinematic-documentary",
       "bg_mode": "black",
-      "channel_name": "Dead Companies",
-      "handle": "@deadcompanies",
+      "channel_name": "Lore Ledger",
+      "handle": "@loreledger",
       "tts_voice": "en-US-AndrewNeural",
       "font": "DM Sans",
       "estimated_rpm": "8-15",
@@ -500,20 +527,20 @@
       "channel_id": "ch-07",
       "youtube_credentials_path": "config/creds/ch-07.json",
       "paused": true,
-      "description": "The rise and catastrophic fall of once-great companies. What went wrong, who's to blame, and the lessons left behind.",
+      "description": "The stories and rules of fictional worlds explained from inside them: plots, timelines, who could beat whom according to the stated canon, and what-ifs clearly labelled as analysis.",
       "content_pillars": [
-        "company collapse case studies",
-        "CEO failure analysis",
-        "market disruption stories",
-        "product launch disasters",
-        "business pivot postmortems"
+        "public-domain universes: Sherlock Holmes, Dracula, Greek and Norse myth, Arthurian legend",
+        "plot and timeline explained as if inside the story",
+        "stated feats and abilities compared from official sources, verdict labelled as analysis",
+        "what-if matchups between public-domain characters",
+        "how a story's world is built and why it works"
       ],
       "tags": [
-        "business failure",
-        "company case study",
-        "startup failure",
-        "business analysis",
-        "corporate collapse"
+        "lore explained",
+        "story explained",
+        "what if",
+        "mythology",
+        "fictional universe"
       ],
       "colors": {
         "primary": "#1A0A1A",
@@ -522,8 +549,8 @@
         "bg": "#0F0510",
         "canvas_accent": "#EF4444"
       },
-      "target_audience": "Business-curious adults 20-50",
-      "tone": "investigative-dramatic",
+      "target_audience": "Fans of stories, anime, games, myth 14-40",
+      "tone": "immersive-storyteller",
       "thumbnail_spec": {
         "style": "before-after",
         "text_max_words": 4,
@@ -575,7 +602,15 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_07",
-      "editor_look": 2
+      "editor_look": 2,
+      "niche_rules": [
+        "For copyrighted franchises use ONLY words and graphics: stated canon facts attributed to an official source, no clips, stills, official art, character images or look-alike drawings; prefer public-domain universes where the original illustrations are free to show.",
+        "A matchup or what-if verdict is explicitly labelled \"analysis\" and rests on stated facts (feats, limits) quoted from the sources; never present opinion as canon.",
+        "Narrate as the story's own world where it helps, but every fact still traces to a source.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 8,
@@ -620,7 +655,7 @@
     },
     {
       "id": 9,
-      "niche": "Geopolitical Explainers (Maps & Power)",
+      "niche": "Geography & Places (borders, odd territories, record places, how places came to be)",
       "clone": {
         "profile": "dossier-mono"
       },
@@ -637,20 +672,20 @@
       "stay_private": true,
       "youtube_credentials_path": "config/creds/ch-09.json",
       "skip_thumbnail_upload": true,
-      "description": "How borders shape power, conflict, and wealth. Geographic explanations of the world's most complex geopolitical situations.",
+      "description": "The strangest borders, the biggest and smallest places and the reasons a map looks the way it does, explained with maps and photographs.",
       "content_pillars": [
-        "border conflict explainers",
-        "resource geopolitics",
-        "sanctions impact analysis",
-        "territorial dispute breakdowns",
-        "geographic advantage explainers"
+        "strange borders and enclaves",
+        "record places: biggest, smallest, highest, driest",
+        "how cities and landmarks got their shape",
+        "natural wonders explained",
+        "why a map looks the way it does"
       ],
       "tags": [
-        "geopolitics",
-        "maps",
-        "border conflict",
-        "international relations",
-        "geographic explained"
+        "geography",
+        "maps explained",
+        "strange borders",
+        "places",
+        "world facts"
       ],
       "colors": {
         "primary": "#0A1A2E",
@@ -659,8 +694,8 @@
         "bg": "#050F1A",
         "canvas_accent": "#1E3A5F"
       },
-      "target_audience": "News-aware adults 20-55",
-      "tone": "analytical-authoritative",
+      "target_audience": "Curious viewers 14-55",
+      "tone": "curious-clear",
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
@@ -723,7 +758,14 @@
         ],
         "excluded": []
       },
-      "editor_look": 4
+      "editor_look": 4,
+      "niche_rules": [
+        "Where a border or territory is disputed, state each claim and who makes it; never endorse one side or describe a live conflict.",
+        "Figures (population, area, height) from official statistics or the survey body, with the year.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 10,
@@ -856,7 +898,14 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_11",
-      "editor_look": 3
+      "editor_look": 3,
+      "niche_rules": [
+        "NASA, ESA and other public-domain or CC images only, with credit.",
+        "Distinguish what was measured from what is theory; no claims of extraterrestrial life as fact.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 12,
@@ -1065,11 +1114,11 @@
     },
     {
       "id": 17,
-      "niche": "Epic History",
+      "niche": "Science & Nature Facts (animals, geology, weather, how the natural world works)",
       "style": "cinematic-documentary",
       "bg_mode": "black",
-      "channel_name": "Epoch Chronicles",
-      "handle": "@epochchronicles",
+      "channel_name": "Nature Files",
+      "handle": "@naturefiles",
       "tts_voice": "en-US-SaraNeural",
       "font": "Cormorant Garamond",
       "estimated_rpm": "6-10",
@@ -1077,20 +1126,20 @@
       "channel_id": "ch-17",
       "youtube_credentials_path": "config/creds/ch-17.json",
       "paused": true,
-      "description": "The pivotal moments that changed civilization. Rise and fall of empires, revolutions, and the turning points of human history.",
+      "description": "How animals, rocks, oceans, weather and plants actually work, from university, museum and government research.",
       "content_pillars": [
-        "empire rise and fall",
-        "revolution deep dives",
-        "turning point analysis",
-        "historical figure profiles",
-        "civilization explainers"
+        "animal abilities and oddities",
+        "geology, minerals and how Earth works",
+        "weather and oceans",
+        "plants and ecosystems",
+        "everyday physics explained"
       ],
       "tags": [
-        "epic history",
-        "civilization",
-        "empire",
-        "revolution",
-        "turning points"
+        "science facts",
+        "nature",
+        "animals",
+        "how it works",
+        "earth science"
       ],
       "colors": {
         "primary": "#1A1510",
@@ -1099,8 +1148,8 @@
         "bg": "#0F0C08",
         "canvas_accent": "#B45309"
       },
-      "target_audience": "History enthusiasts 20-55",
-      "tone": "epic-narrative",
+      "target_audience": "Curious viewers 12-55",
+      "tone": "wonder-precise",
       "thumbnail_spec": {
         "style": "dramatic-visual",
         "text_max_words": 4,
@@ -1152,7 +1201,14 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_17",
-      "editor_look": 2
+      "editor_look": 2,
+      "niche_rules": [
+        "Sources are studies, universities, museums and government agencies; say what a study found and its limits.",
+        "No health or cure claims, no advice, no wildlife-handling encouragement.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 48,
@@ -1197,7 +1253,12 @@
       "visual_identity": {
         "philosophy": "Fit unique visual approach"
       },
-      "editor_look": 5
+      "editor_look": 5,
+      "niche_rules": [
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 19,
@@ -1283,30 +1344,31 @@
     },
     {
       "id": 21,
-      "niche": "Ancient History & Civilizations",
+      "niche": "Engineering & Disasters Explained (how machines work, why they failed, what changed)",
       "style": "cinematic-documentary",
       "bg_mode": "black",
       "asset_treatment": "color",
-      "channel_name": "Echoes",
-      "handle": "@echoes",
+      "channel_name": "Failure Files",
+      "handle": "@failurefiles",
       "tts_voice": "en-US-AndrewNeural",
       "font": "Inter",
       "google_account": "UNASSIGNED-21",
       "channel_id": "ch-21",
       "youtube_credentials_path": "config/creds/ch-21.json",
-      "description": "Lost civilizations, ancient engineering, and the rise and fall of empires. Archaeology meets storytelling.",
+      "description": "How bridges, planes, dams and machines work and what investigators found when they failed, from official reports.",
       "content_pillars": [
-        "ancient engineering",
-        "lost cities",
-        "empire rise and fall",
-        "archaeological discoveries",
-        "ancient daily life"
+        "famous engineering failures from the official report",
+        "how a machine or structure works",
+        "safety lessons and what changed afterwards",
+        "materials and inventions",
+        "megaprojects and how they were built"
       ],
       "tags": [
-        "ancient history",
-        "civilizations",
-        "archaeology",
-        "lost cities"
+        "engineering",
+        "disaster explained",
+        "how it works",
+        "investigation",
+        "engineering failure"
       ],
       "colors": {
         "primary": "#1A0F00",
@@ -1315,13 +1377,20 @@
         "bg": "#0D0800",
         "canvas_accent": "#D4A017"
       },
-      "target_audience": "History enthusiasts 18-60",
-      "tone": "epic-narrative",
+      "target_audience": "Curious viewers 16-55",
+      "tone": "calm-investigative",
       "estimated_rpm": "5-10",
       "visual_identity": {
         "philosophy": "Echoes unique visual approach"
       },
-      "editor_look": 3
+      "editor_look": 3,
+      "niche_rules": [
+        "Base every failure on the official investigation report plus a second reputable source; use report findings, not speculation about blame.",
+        "No victim names beyond the report, no graphic detail, nothing that blames a named living person beyond what the report states.",
+        "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
+        "No clips, stills, thumbnails or artwork taken from films, shows, broadcasts or leagues; only public-domain, CC or government images with the credit on screen.",
+        "Nothing that is medical, legal, financial or betting ADVICE; explain what happened and why, never what the viewer should do with their money, health or case."
+      ]
     },
     {
       "id": 22,

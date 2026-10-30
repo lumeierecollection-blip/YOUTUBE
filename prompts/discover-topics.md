@@ -124,3 +124,7 @@ counts, percentages, amounts, dates or places: an incident, a rule change, a rec
 Never put a figure in a title that your search results do not state. A title with an invented or rounded-up figure ("100% of ...",
 "Better by 100%") is a fabrication: it fails the source check and the channel is skipped for the day. A plain title is better than
 a made-up one.
+
+## Niche rules (hard limits)
+
+The context may carry `niche_rules`: limits that keep this channel advertiser-friendly and inside YouTube's authenticity rules. They outrank every other instruction in this brief. Do not propose a topic that cannot be told within them (for example a celebrity story that rests on an unproven allegation, or a franchise story that needs clips or official art). Prefer a topic the rules let the video show with licensed images.

@@ -82,6 +82,7 @@ function main() {
         channel_id: String(c.id),
         channel_name: c.channel_name,
         niche: c.niche,
+        niche_rules: c.niche_rules || [],
         content_pillars: pillars,
         // A strict-visual channel is NOT steered to its least-covered pillar: for ch-48 that pillar was "body mechanics", which only
         // yields research abstracts with no drawable figure (runs 41008440903, 41009396847, 41011390999: every candidate starved

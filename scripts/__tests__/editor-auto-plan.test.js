@@ -181,3 +181,59 @@ test("the vision check fails closed when the model errors or answers nonsense", 
   assert.equal((await verifyConceptPhoto({ sentence: "s", query: "q", jpeg, askVision: async () => ({ content: "no idea" }) })).ok, false);
   assert.equal((await verifyConceptPhoto({ sentence: "s", query: "q", jpeg, askVision: async () => ({ shows_subject: true, identifiable_person: false, mostly_text_or_logo: false }) })).ok, true);
 });
+
+// ---- per-video variety ------------------------------------------------------------------------------------------------------------
+import { seededRandom, pickLook, shiftSvg } from "../editor/auto-plan.mjs";
+
+const photoOk = async () => ({ ok: true, file: "p.jpg", width: 1000, height: 1400, credit: "c", source_url: "u", license: "l" });
+const longScript = { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Doeson spoke at length about the plan. Then Doeson left the building. 45% agreed afterwards." }] };
+const longWords = [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 12, end: 13, sentence: 1 }, { text: "c", start: 18, end: 19, sentence: 2 }];
+const planFor = (stem, extra = {}) => buildAutoPlan({ ...base, stem, script: longScript, words: longWords, audioDuration: 24, style: 0, resolve: photoOk, ...extra });
+
+test("the random stream is seeded by the slug: same slug same plan, different slug different plan", async () => {
+  const a = seededRandom("x"), b = seededRandom("x"), c = seededRandom("y");
+  assert.deepEqual([a(), a(), a()], [b(), b(), b()]);
+  assert.notDeepEqual([seededRandom("x")(), seededRandom("x")()], [c(), c()]);
+  const one = await planFor("video-one-shorts-script"), again = await planFor("video-one-shorts-script");
+  assert.deepEqual(one.plan.scenes, again.plan.scenes, "a re-render is identical");
+  const looks = new Set();
+  const moves = new Set();
+  for (let i = 0; i < 30; i++) { const r = await planFor(`video-${i}-shorts-script`); looks.add(r.report.look); moves.add(r.plan.scenes.map((s) => s.motion).join(",")); }
+  assert.ok(looks.size >= 4, `looks used across 30 videos: ${[...looks]}`);
+  assert.ok(moves.size >= 10, `distinct camera sequences across 30 videos: ${moves.size}`);
+});
+
+test("the home look comes up about half the time, and a forced look is honoured", () => {
+  let home = 0;
+  for (let i = 0; i < 400; i++) if (pickLook(seededRandom("s" + i), 3) === 3) home++;
+  assert.ok(home > 160 && home < 260, `home look share ${home}/400`);
+});
+
+test("a long photo shot is re-framed halfway and never moves the same way twice running", async () => {
+  const { plan } = await planFor("split-test-shorts-script");
+  const s = plan.scenes;
+  assert.ok(s.some((x) => x.id.endsWith("b")), "a scene was split");
+  const first = s.find((x) => x.id.endsWith("b"));
+  const orig = s.find((x) => x.id === first.id.slice(0, -1));
+  assert.equal(orig.end, first.start);
+  assert.equal(orig.asset, first.asset);
+  assert.notEqual(orig.motion, first.motion);
+  for (let i = 1; i < s.length; i++) assert.notEqual(s[i].motion, s[i - 1].motion, `scene ${i}`);
+  for (let i = 1; i < s.length; i++) assert.equal(s[i].start, s[i - 1].end, "no gap or overlap");
+  assert.equal(s.at(-1).end, 24);
+});
+
+test("a shifted overlay stays a valid SVG", () => {
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920">\n<text>45%</text>\n</svg>\n';
+  const moved = shiftSvg(svg, 60);
+  assert.match(moved, /<g transform="translate\(0,60\)">[\s\S]*<\/g>\n<\/svg>/);
+  assert.equal(shiftSvg(svg, 0), svg);
+});
+
+test("zoom and fade reach the timeline's image layer", () => {
+  const plan = { fps: 30, palette: {}, fonts: {}, assets: { a: { file: "a.jpg", width: 1000, height: 1000 } },
+    scenes: [{ id: "s", start: 0, end: 4, asset: "a", fit: "cover", motion: "in", zoom: 0.06, fade: 8 }] };
+  const img = buildTimeline(plan, { audioDuration: 4, captions: [] }).layers.find((l) => l.type === "image");
+  assert.ok(Math.abs(img.keyframes.scale.at(-1).v - 1.16) < 1e-9);
+  assert.deepEqual(img.keyframes.opacity.slice(0, 2).map((k) => k.v), [0, 1]);
+});

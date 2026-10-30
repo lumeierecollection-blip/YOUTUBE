@@ -45,6 +45,8 @@ function main() {
     channel_id: String(channelId),
     channel_name: channel.channel_name,
     niche: channel.niche,
+    // Hard limits that keep this niche advertiser-friendly and inside YouTube's authenticity rules (config/channels.json niche_rules).
+    niche_rules: channel.niche_rules || [],
     style: channel.style,
     tone: channel.tone,
     format,

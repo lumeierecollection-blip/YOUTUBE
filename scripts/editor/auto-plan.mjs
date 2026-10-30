@@ -102,6 +102,35 @@ export function nameVariants(name) {
 
 const MOTIONS = ["in", "pan-left", "out", "pan-right"];
 
+/**
+ * Variety, so no two videos are cut the same way and a video does not repeat itself. Everything below is drawn from a random stream
+ * seeded by the video's own slug: a re-render of the same video is identical, a different video is different.
+ */
+export function seededRandom(text) {
+  let h = 2166136261;
+  for (const ch of String(text)) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); }
+  let a = h >>> 0;
+  return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+
+/** The video's look: the channel's home look about half the time, otherwise one of the other four. */
+export function pickLook(rng, home) {
+  const all = [1, 2, 3, 4, 5];
+  const h = all.includes(Number(home)) ? Number(home) : all[Math.floor(rng() * 5)];
+  if (rng() < 0.5) return h;
+  const others = all.filter((x) => x !== h);
+  return others[Math.floor(rng() * others.length)];
+}
+
+/** Move an overlay SVG's content up or down (its own layout otherwise stays put). */
+export function shiftSvg(svgText, dy) {
+  if (!dy) return svgText;
+  return svgText.replace(/(<svg[^>]*>\n)/, `$1<g transform="translate(0,${dy})">\n`).replace(/<\/svg>\s*$/, "</g>\n</svg>\n");
+}
+
+const DY = { 1: [-120, -60, 0, 60, 140], 2: [-60, 0, 60, 120, 200], 3: [-100, -40, 0, 60, 120], 4: [0, 60, 120, 700], 5: [-30, 0, 30] };
+const pick = (rng, arr) => arr[Math.floor(rng() * arr.length)];
+
 /** Put a flat background behind a transparent overlay SVG. */
 export function withBg(svgText, bg) {
   return svgText.replace(/(<svg[^>]*>)\n?/, `$1\n  <rect width="1080" height="1920" fill="${bg}"/>\n`);
@@ -123,7 +152,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
 
   const colors = channel?.colors || {};
   const palette = { bg: colors.bg || "#07070D", text: "#F5F5FF", muted: "#C9CDD6", accent: colors.canvas_accent || colors.accent || "#D4A574", accent2: colors.accent || "#D4A574" };
-  const look = styleFor(style, palette);
+  const rng = seededRandom(stem);
+  const lookId = Number(style) >= 1 ? Number(style) : pickLook(rng, channel?.editor_look);
+  const look = styleFor(lookId, palette);
   const font = channel?.font || "Inter";
   const idx = entityIndex(research);
   const sources = (research?.key_facts || []).map((f) => hostOf(f.source_url)).filter(Boolean);
@@ -138,20 +169,27 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const report = [];
   const misses = [];
   let lastAsset = null;
+  let lastMotion = null;
   const n = sentences.length;
 
   for (let i = 0; i < n; i++) {
     const sentence = sentences[i];
     const { start, end } = spans[i];
-    const motion = MOTIONS[i % MOTIONS.length];
+    // never the same move twice running; push strength and a fade-in (instead of a hard cut) vary per scene
+    let motion = pick(rng, MOTIONS);
+    if (motion === lastMotion) motion = MOTIONS[(MOTIONS.indexOf(motion) + 1 + Math.floor(rng() * 3)) % MOTIONS.length];
+    lastMotion = motion;
+    const zoom = pick(rng, [-0.03, 0, 0.03, 0.06]);
+    const fade = i > 0 && rng() < 0.35 ? pick(rng, [6, 8, 10]) : 0;
+    const dy = pick(rng, DY[lookId] || [0]);
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     const overlayFor = (id) => {
-      cards.push({ id, svg: look.figure({ figs, source: figSource, fn }) });
+      cards.push({ id, svg: shiftSvg(look.figure({ figs, source: figSource, fn }), dy) });
       return id;
     };
-    const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower" };
+    const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
     let scene = null;
     let how = "";
 
@@ -205,11 +243,21 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence), source: defaultSource }) });
         how = "key-word poster";
       }
-      scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion };
+      scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
     }
 
     lastAsset = scene.asset;
-    scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
+    const isPhoto = /^(photo|concept)-/.test(scene.asset);
+    if (isPhoto && end - start > 7.5) {
+      // A long photo scene is re-framed halfway (a different part of the picture, a different move), the way an editor cuts a long shot.
+      const mid = start + (end - start) * (0.45 + rng() * 0.15);
+      const second = { ...scene, id: scene.id + "b", overlay: undefined, kicker: undefined, fade: 0, motion: MOTIONS[(MOTIONS.indexOf(motion) + 2) % MOTIONS.length], fx: pick(rng, [0.3, 0.7]), fy: pick(rng, [0.3, 0.6]), zoom: 0.06 };
+      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(mid.toFixed(3)), stagger: look.stagger });
+      scenes.push({ ...second, start: Number(mid.toFixed(3)), end: Number(end.toFixed(3)), stagger: 0 });
+      lastMotion = second.motion;
+    } else {
+      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
+    }
     report.push({ sentence: i, shows: how, start: Number(start.toFixed(2)), end: Number(end.toFixed(2)) });
   }
 
@@ -227,5 +275,5 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     assets,
     scenes,
   };
-  return { plan, cards, report: { spans: spanSource, scenes: report, photos, misses, style: look.name } };
+  return { plan, cards, report: { spans: spanSource, scenes: report, photos, misses, style: look.name, look: lookId } };
 }
