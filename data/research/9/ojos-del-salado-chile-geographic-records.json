@@ -1,0 +1,76 @@
+{
+  "topic_slug": "ojos-del-salado-chile-geographic-records",
+  "strongest_angle": "Chile hosts extreme geographical records, including the world's highest active volcano, Ojos del Salado, and the driest inhabited place on Earth, Arica.",
+  "key_facts": [
+    {
+      "fact": "The Ojos del Salado volcano reaches an altitude of 6,893 meters above sea level on the border between Chile and Argentina.",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/66787-highest-active-volcano",
+      "source_name": "Guinness World Records",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arica is recognized as the driest inhabited place on Earth, receiving an average of 0.76 millimeters of rain per year.",
+      "source_url": "https://viajandochile.com/en/news/chile-natural-records",
+      "source_name": "Viajando Chile",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Ojos del Salado volcanic complex covers an area ranging from 70 to 160 square kilometers in the Andes mountains.",
+      "source_url": "https://en.wikipedia.org/wiki/Ojos_del_salado",
+      "source_name": "Wikipedia",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Ojos del Salado summit altitude",
+      "value": 6893,
+      "unit": "meters",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/66787-highest-active-volcano"
+    },
+    {
+      "label": "Arica average annual rainfall",
+      "value": 0.76,
+      "unit": "millimeters",
+      "source_url": "https://viajandochile.com/en/news/chile-natural-records"
+    },
+    {
+      "label": "Ojos del Salado minimum area",
+      "value": 70,
+      "unit": "square kilometers",
+      "source_url": "https://en.wikipedia.org/wiki/Ojos_del_salado"
+    },
+    {
+      "label": "Ojos del Salado maximum area",
+      "value": 160,
+      "unit": "square kilometers",
+      "source_url": "https://en.wikipedia.org/wiki/Ojos_del_salado"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ojos del Salado",
+      "kind": "object"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Arica",
+      "kind": "place"
+    },
+    {
+      "name": "Guinness World Records",
+      "kind": "organization"
+    },
+    {
+      "name": "Andes",
+      "kind": "place"
+    }
+  ]
+}

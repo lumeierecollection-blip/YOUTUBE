@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ojos-del-salado-chile-geographic-records",
+  "format": "shorts",
+  "hook": "Did you know Chile hosts the 6,893-meter Ojos del Salado and the driest city, Arica?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Chile hosts the 6,893-meter Ojos del Salado and the driest city, Arica?",
+      "text_overlay": {
+        "text": "Chile's Natural Records"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Ojos del Salado rises 6,893 meters above sea level on the Andes border. Is there any place on Earth drier than the Chilean city of Arica?",
+      "text_overlay": {
+        "text": "Ojos del Salado: 6,893m"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Arica is even more extreme, holding the record as the driest inhabited place on Earth.",
+      "text_overlay": {
+        "text": "Arica: Driest Inhabited Place"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Ojos del Salado volcano covers an area ranging from 70 to 160 square kilometers.",
+      "text_overlay": {
+        "text": "0.76mm annual rainfall"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Chile claims the 6,893-meter Ojos del Salado summit and the 0.76-millimeter rainfall record in Arica.",
+      "text_overlay": {
+        "text": "Ojos del Salado and Arica"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.guinnessworldrecords.com/world-records/66787-highest-active-volcano",
+    "https://viajandochile.com/en/news/chile-natural-records"
+  ]
+}
