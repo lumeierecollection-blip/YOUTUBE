@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "super-el-nino-atacama-desert-wildflowers",
+  "format": "shorts",
+  "hook": "You won't believe how a super El Niño turned the Atacama Desert into 6,560 square miles of flowers.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You won't believe how a super El Niño turned the Atacama Desert into 6,560 square miles of flowers.",
+      "text_overlay": {
+        "text": "Atacama Desert Bloom"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Record rainfall fueled by a super El Niño hit Chile's Atacama Desert, the world's driest non-polar desert. Could this rare moisture turn the Atacama Desert into a massive, colorful carpet of wildflowers?",
+      "text_overlay": {
+        "text": "6,560 square miles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The shock is that over 200 plant species grew from seeds and bulbs dormant for decades.",
+      "text_overlay": {
+        "text": "Dormant seeds"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Over 200 plant species suddenly erupted across the Atacama Desert, ending years of extreme, barren dryness.",
+      "text_overlay": {
+        "text": "200+ plant species"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This rare event covers 6,560 square miles, transforming the Atacama Desert into a vibrant floral landscape.",
+      "text_overlay": {
+        "text": "6,560 square miles"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+    "https://apnews.com/article/chile-atacama-desert-flowers-tourism-el-nino-78793a8c18ba92adaf389a0302a1eb2b"
+  ]
+}

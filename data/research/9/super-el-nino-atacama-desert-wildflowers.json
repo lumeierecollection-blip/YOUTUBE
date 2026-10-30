@@ -1,0 +1,61 @@
+{
+  "topic_slug": "super-el-nino-atacama-desert-wildflowers",
+  "strongest_angle": "Record rainfall fueled by a super El Niño transformed Chile's Atacama Desert—the world's driest nonpolar desert—into a vast 6,560-square-mile carpet of wildflowers featuring more than 200 plant species.",
+  "key_facts": [
+    {
+      "fact": "Record rainfall fueled by a super El Niño transformed Chile's Atacama Desert into a vast carpet of wildflowers spanning about 6,560 square miles.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The desert bloom in Chile's Atacama Desert includes more than 200 plant species, with some seeds and bulbs having remained dormant for decades.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chile's Atacama Desert is recognized as the driest non-polar desert on Earth, experiencing rare moisture from heavy rains in the El Niño weather pattern.",
+      "source_url": "https://apnews.com/article/chile-atacama-desert-flowers-tourism-el-nino-78793a8c18ba92adaf389a0302a1eb2b",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Bloom area",
+      "value": 6560,
+      "unit": "square miles",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    },
+    {
+      "label": "Plant species count",
+      "value": 200,
+      "unit": "species",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Atacama Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "El Niño",
+      "kind": "object"
+    },
+    {
+      "name": "Los Angeles Times",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
