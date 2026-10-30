@@ -41,9 +41,10 @@ test("entities: a person is found by surname, honorifics are dropped for the pho
 test("every sentence gets a scene, the scenes tile the audio with no gap, and a figure the research lacks is not drawn", async () => {
   const resolve = async ({ name }) => (/Jane Doeson/.test(name) && !/^Sir/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "Photo: X / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : { ok: false, why: "none" });
   const { plan, cards, report } = await buildAutoPlan({ ...base, resolve });
-  assert.equal(plan.scenes.length, 4);
+  assert.equal(report.scenes.length, 4, "one report line per sentence");
+  assert.ok(plan.scenes.length >= 4, "and at least one scene per sentence (a long one is cut in two)");
   assert.equal(plan.scenes[0].start, 0);
-  for (let i = 1; i < 4; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
+  for (let i = 1; i < plan.scenes.length; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
   assert.equal(plan.scenes.at(-1).end, 22);
   assert.equal(report.spans, "voiceover");
   assert.match(report.scenes[0].shows, /figure alone 45%/);
@@ -129,8 +130,10 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   const concept = async ({ query }) => (query === "cockpit" ? { file: "c.jpg", width: 2000, height: 1300, credit: "Photo: Z / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : null);
   const { plan, cards, report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: ["cockpit", null, "nothing", "cockpit"] });
   assert.match(report.scenes[0].shows, /concept photo "cockpit" \+ figure 45%/);
-  assert.equal(plan.scenes[0].graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic over the photo");
-  assert.ok(["bar", "ring"].includes(plan.scenes[0].graphic.kind));
+  const withFig = plan.scenes.find((x) => x.graphic);
+  assert.equal(withFig.graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic beside the photo");
+  assert.ok(["bar", "ring"].includes(withFig.graphic.kind));
+  assert.equal(plan.scenes[0].graphic, undefined, "the photo is shown on its own first; the panel arrives on the second beat");
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
   assert.match(report.scenes[2].shows, /concept-0 again, re-framed/, "a miss re-uses the story's own photo, framed differently");
 });
@@ -201,9 +204,9 @@ test("the random stream is seeded by the slug: same slug same plan, different sl
   assert.deepEqual(one.plan.scenes, again.plan.scenes, "a re-render is identical");
   const looks = new Set();
   const moves = new Set();
-  for (let i = 0; i < 30; i++) { const r = await planFor(`video-${i}-shorts-script`); looks.add(r.report.look); moves.add(r.plan.scenes.map((s) => s.motion).join(",")); }
+  for (let i = 0; i < 30; i++) { const r = await planFor(`video-${i}-shorts-script`); looks.add(r.report.look); moves.add(r.plan.scenes.map((s) => `${s.fade}|${s.fx}|${s.fy}`).join(",")); }
   assert.ok(looks.size >= 4, `looks used across 30 videos: ${[...looks]}`);
-  assert.ok(moves.size >= 10, `distinct camera sequences across 30 videos: ${moves.size}`);
+  assert.ok(moves.size >= 10, `distinct cut patterns across 30 videos: ${moves.size}`);
 });
 
 test("the home look comes up about half the time, and a forced look is honoured", () => {
@@ -212,18 +215,28 @@ test("the home look comes up about half the time, and a forced look is honoured"
   assert.ok(home > 160 && home < 260, `home look share ${home}/400`);
 });
 
-test("a long photo shot is re-framed halfway and never moves the same way twice running", async () => {
+test("every sentence is two visuals: a long photo shot is hard-cut to a tighter crop halfway, and nothing zooms or pans", async () => {
   const { plan } = await planFor("split-test-shorts-script");
   const s = plan.scenes;
-  assert.ok(s.some((x) => x.id.endsWith("b")), "a scene was split");
-  const first = s.find((x) => x.id.endsWith("b"));
-  const orig = s.find((x) => x.id === first.id.slice(0, -1));
-  assert.equal(orig.end, first.start);
-  assert.equal(orig.asset, first.asset);
-  assert.notEqual(orig.motion, first.motion);
-  for (let i = 1; i < s.length; i++) assert.notEqual(s[i].motion, s[i - 1].motion, `scene ${i}`);
+  const second = s.find((x) => x.id.endsWith("b"));
+  assert.ok(second, "a scene was cut in two");
+  const first = s.find((x) => x.id === second.id.slice(0, -1) || x.id === second.id.slice(0, -1) + "a");
+  assert.equal(first.end, second.start);
+  assert.equal(first.asset, second.asset, "same photo, a different framing");
+  assert.equal(second.scale, 1.3, "the cut goes to a tighter crop");
+  assert.ok(second.fx !== undefined);
   for (let i = 1; i < s.length; i++) assert.equal(s[i].start, s[i - 1].end, "no gap or overlap");
   assert.equal(s.at(-1).end, 24);
+  assert.ok(s.every((x) => x.motion === undefined && x.zoom === undefined), "no camera move is planned");
+});
+
+test("a sentence with a second concept photo shows it after the first, so each sentence changes picture", async () => {
+  const concept = async ({ query }) => ({ file: query + ".jpg", width: 2000, height: 1300, credit: "c", source_url: "u", license: "CC0" });
+  const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: ["flooded street", null, null, null], queries2: ["storm waves pier", null, null, null] });
+  const [a, b] = plan.scenes;
+  assert.equal(plan.assets[a.asset].file, "flooded street.jpg");
+  assert.equal(plan.assets[b.asset].file, "storm waves pier.jpg");
+  assert.equal(a.end, b.start);
 });
 
 test("a shifted overlay stays a valid SVG", () => {
@@ -233,11 +246,13 @@ test("a shifted overlay stays a valid SVG", () => {
   assert.equal(shiftSvg(svg, 0), svg);
 });
 
-test("zoom and fade reach the timeline's image layer", () => {
+test("a held picture never zooms or pans; a fade reaches the timeline's image layer", () => {
   const plan = { fps: 30, palette: {}, fonts: {}, assets: { a: { file: "a.jpg", width: 1000, height: 1000 } },
     scenes: [{ id: "s", start: 0, end: 4, asset: "a", fit: "cover", motion: "in", zoom: 0.06, fade: 8 }] };
   const img = buildTimeline(plan, { audioDuration: 4, captions: [] }).layers.find((l) => l.type === "image");
-  assert.ok(Math.abs(img.keyframes.scale.at(-1).v - 1.16) < 1e-9);
+  assert.equal(img.keyframes.scale.at(-1).v, 1, "no slow push: the scale at the end is the scale it settled at");
+  assert.equal(img.keyframes.scale.at(-2).v, 1);
+  assert.equal(img.keyframes.x, undefined, "no pan");
   assert.deepEqual(img.keyframes.opacity.slice(0, 2).map((k) => k.v), [0, 1]);
 });
 
@@ -454,20 +469,20 @@ test("graphics never sit still: every moving layer drifts to the end of the scen
   const s0 = plan.scenes[0];
   assert.equal(s0.graphic.mode, "hero");
   assert.equal(s0.graphic.backdrop, true);
-  assert.ok(s0.zoom >= 0.1, "the backdrop pushes harder under a figure");
 });
 
 // ---- split layout, captions, maps, per-beat punch ---------------------------------------------------------------------------------
 test("a figure on a photo scene goes in its own panel under the photo; the photo keeps the top, with no scrim over the panel", async () => {
   const resolve = async ({ name }) => (/Doeson/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" } : { ok: false });
   const { plan } = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Doeson said 45% agreed. Then it ended." }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve, concept: async () => null, queries: [null, null], style: 1 });
-  const s0 = plan.scenes[0];
+  const s0 = plan.scenes.find((x) => x.graphic);
+  assert.ok(plan.scenes.indexOf(s0) > 0, "the photo comes first on its own, then the panel arrives");
   assert.deepEqual(s0.rect, PHOTO_RECT);
   assert.equal(s0.gradient, "rgba(0,0,0,0)");
   assert.equal(s0.graphic.mode, "split");
   assert.ok(s0.kicker_y + 64 <= PANEL.split.y, "the kicker stays inside the photo");
   const tl = buildTimeline(plan, { audioDuration: 12, captions: [] });
-  const img = tl.layers.find((l) => l.id === "scene-0-image");
+  const img = tl.layers.find((l) => l.id === `scene-${plan.scenes.indexOf(s0)}-image`);
   assert.deepEqual(img.rect, PHOTO_RECT);
 });
 
@@ -494,7 +509,7 @@ test("places named in a sentence are matched against real country and US-state o
   assert.deepEqual(ring.map((p) => p.join(",")).sort(), ["0,0", "0,10", "10,0", "10,10"]);
 });
 
-test("a sentence that names a place, with no photo and no figure, gets a drawn map with the place highlighted (and at most two maps per video)", async () => {
+test("a sentence that names a place, with no photo and no figure, gets a drawn map with the place highlighted (and at most three maps per video)", async () => {
   const sents = ["Chile is a long thin country.", "Argentina lies on its east.", "Thailand and Cambodia disagree.", "Peru borders it to the north."];
   const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
     words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 18, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
@@ -510,12 +525,12 @@ test("a sentence that names a place, with no photo and no figure, gets a drawn m
   assert.ok(ls.find((l) => /-land$/.test(l.id)), "the land outlines draw on too");
 });
 
-test("every beat opens with a small punch-in that settles, then the slow push continues", () => {
+test("every beat opens with a small punch-in that settles in 9 frames, then the picture holds", () => {
   const plan = { fps: 30, palette: {}, fonts: {}, assets: { a: { file: "a.jpg", width: 1000, height: 1000 } }, scenes: [{ id: "s", start: 0, end: 4, asset: "a", fit: "cover", motion: "in" }, { id: "t", start: 4, end: 8, asset: "a", fit: "cover", motion: "in", punch: 0 }] };
   const tl = buildTimeline(plan, { audioDuration: 8, captions: [] });
   const k0 = tl.layers.find((l) => l.id === "scene-0-image").keyframes.scale;
   assert.ok(k0[0].v > k0[1].v && k0[1].f === 9, "lands large, settles in 9 frames");
-  assert.ok(k0.at(-1).v > k0[1].v, "then keeps pushing");
+  assert.equal(k0.at(-1).v, k0[1].v, "then it holds still: no slow push");
   const k1 = tl.layers.find((l) => l.id === "scene-1-image").keyframes.scale;
   assert.equal(k1.length, 2, "punch: 0 turns it off");
 });

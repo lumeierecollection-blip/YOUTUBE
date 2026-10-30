@@ -19,28 +19,37 @@ const MIN_SIDE = 900;
 const BAD_NAME = /logo|icon|map|flag|diagram|chart|graph|screenshot|poster|cover|stamp|coin|signature|banner|infographic|\bpdf\b|\bsvg\b|scan|page|book|manuscript|portrait|selfie|crowd|nude|swim|bikini|advert|billboard|ad_/i;
 const FREE = /^(cc0|cc[- ]by|cc[- ]by[- ]sa|public domain|pd|ogl|gfdl|attribution)/i;
 
-export function parseQueries(answer, count) {
+/** {first:[...], second:[...]}: the two phrases for each sentence (a plain string counts as the first). */
+export function parseQueryPairs(answer, count) {
   let obj = answer;
   if (answer && typeof answer.content === "string") {
     const m = answer.content.match(/\{[\s\S]*\}/);
     try { obj = m ? JSON.parse(m[0]) : null; } catch { obj = null; }
   }
-  const out = new Array(count).fill(null);
+  const first = new Array(count).fill(null);
+  const second = new Array(count).fill(null);
   const src = obj && (obj.queries || obj);
-  if (!src || typeof src !== "object") return out;
+  if (!src || typeof src !== "object") return { first, second };
+  const clean = (v) => (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim()) ? v.trim().slice(0, 60) : null);
   for (let i = 0; i < count; i++) {
     const v = Array.isArray(src) ? src[i] : src[String(i)];
-    if (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim())) out[i] = v.trim().slice(0, 60);
+    if (Array.isArray(v)) { first[i] = clean(v[0]); second[i] = clean(v[1]); if (second[i] === first[i]) second[i] = null; } else first[i] = clean(v);
   }
-  return out;
+  return { first, second };
+}
+
+export function parseQueries(answer, count) {
+  return parseQueryPairs(answer, count).first;
 }
 
 export function conceptPrompt({ sentences, topic, niche }) {
   return `You choose photographs for a short documentary video about: ${topic || "the story"} (channel niche: ${niche || "general"}).
-For EACH numbered sentence give a 2-4 word search phrase for Wikimedia Commons that finds a REAL PHOTOGRAPH of something a camera can capture which makes the
-sentence's subject visible: an object, a place, a workplace, an activity, a piece of equipment (e.g. "airline cockpit", "tide mill", "factory floor robot arm").
-Rules: never a person's name, a brand, a logo, a screenshot, a chart or a map; no abstract words ("success", "growth"); if nothing photographable fits, use null.
-Answer ONLY JSON like {"0":"airline cockpit","1":null}.
+Every sentence gets TWO different pictures, shown one after the other while it is spoken. For EACH numbered sentence give two 2-5 word search phrases for
+Wikimedia Commons that find a REAL PHOTOGRAPH of the specific thing the sentence says, not just the place or the mood around it.
+Be specific to the claim: for "California storms flooded the coast" use "flooded street storm" and "storm waves pier", NOT "California beach".
+Keep the place or subject word in the phrase when it matters ("Yosemite granite cliff"), and make the two phrases show different things (a wide view, then a detail).
+Rules: never a person's name, a brand, a logo, a screenshot, a chart or a map; no abstract words ("success", "growth"); use null for a phrase when nothing photographable fits.
+Answer ONLY JSON like {"0":["airline cockpit","pilot checklist"],"1":["tide mill",null]}.
 
 ${sentences.map((s, i) => `${i}. ${s}`).join("\n")}`;
 }
@@ -92,17 +101,17 @@ export async function downloadPhoto(rec, destAbs) {
 /** Ask the model once for every sentence's phrase. `ask(prompt)` is injected so the tests need no provider. */
 export async function conceptQueries({ sentences, topic, niche, ask }) {
   try {
-    return parseQueries(await ask(conceptPrompt({ sentences, topic, niche })), sentences.length);
+    return parseQueryPairs(await ask(conceptPrompt({ sentences, topic, niche })), sentences.length);
   } catch (e) {
     console.error(`[concept-photo] model call failed (${e.message}); no concept photos this run`);
-    return new Array(sentences.length).fill(null);
+    return { first: new Array(sentences.length).fill(null), second: new Array(sentences.length).fill(null) };
   }
 }
 
 export function defaultAsk() {
   return async (prompt) => {
     const { callLLM } = await import("../../src/lib/llm.js");
-    return callLLM([{ role: "user", content: prompt }], { maxTokens: 600, temperature: 0, keepAlive: 0 }, "concept-photo");
+    return callLLM([{ role: "user", content: prompt }], { maxTokens: 1200, temperature: 0, keepAlive: 0 }, "concept-photo");
   };
 }
 
@@ -115,7 +124,8 @@ export function visionPrompt({ sentence, query }) {
   return `A documentary video narrates this sentence: "${sentence}"
 We are considering this photograph (found with the search phrase "${query}") to show on screen while it is spoken.
 Answer ONLY JSON: {"shows_subject": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
-shows_subject = a viewer would say the photo plausibly illustrates what the sentence is about (not merely the same keyword).
+shows_subject = a viewer would say the photo shows the specific thing the sentence claims or describes. A photo of only the place or the general setting does not count
+(a sunny beach does not illustrate "California storms"; a generic skyline does not illustrate "the bank collapsed"). If you would hesitate, answer false.
 identifiable_person = a real person's face is recognisable or clearly the focus (crowds far away and silhouettes are false).
 mostly_text_or_logo = readable text, a logo, a screenshot, a document, a map or a chart fills the frame.`;
 }

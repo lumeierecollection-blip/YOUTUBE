@@ -70,7 +70,7 @@ function resolverFromEntityAssets() {
 }
 
 /** concept({query, used}) -> a real, free-licence Commons photo of the concept, saved under data/editor/auto/concept/, or null. */
-function conceptFinder(askVision = defaultAskVision(), maxChecks = 30) {
+function conceptFinder(askVision = defaultAskVision(), maxChecks = 60) {
   let checks = 0;
   return async ({ query, sentence, used }) => {
     const found = await searchCommons(query, 4);
@@ -135,9 +135,11 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const transcriptPath = join(dir, "transcript.json");
   writeFileSync(transcriptPath, JSON.stringify(transcript, null, 1));
 
-  const queries = concept ? await conceptQueries({ sentences: scriptSentences(script), topic: research?.strongest_angle, niche: channel?.niche, ask }) : [];
+  const pairs = concept ? await conceptQueries({ sentences: scriptSentences(script), topic: research?.strongest_angle, niche: channel?.niche, ask }) : { first: [], second: [] };
+  const queries = pairs.first;
+  const queries2 = pairs.second;
   const { plan, cards, report } = await buildAutoPlan({
-    script, research, words: words.words, audioDuration, channel, stem, concept, queries, style,
+    script, research, words: words.words, audioDuration, channel, stem, concept, queries, queries2, style,
     audioPath: rel(audio), transcriptPath: rel(transcriptPath), scriptPath: rel(scriptPath), resolve: resolver,
   });
   const source = (script.sources_used || [])[0] || "";

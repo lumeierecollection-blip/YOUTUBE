@@ -122,7 +122,6 @@ export function nameVariants(name) {
   return plain && plain !== name ? [name, plain] : [name];
 }
 
-const MOTIONS = ["in", "pan-left", "out", "pan-right"];
 
 /**
  * Variety, so no two videos are cut the same way and a video does not repeat itself. Everything below is drawn from a random stream
@@ -164,7 +163,7 @@ export function withBg(svgText, bg) {
  * queries[i]: the concept search phrase for sentence i (or null).  style: 1-5 (styles.mjs).
  * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
-export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], style = 1, maxPhotos = 8 }) {
+export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], style = 1, maxPhotos = 8 }) {
   const sentences = scriptSentences(script);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
@@ -191,7 +190,6 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const report = [];
   const misses = [];
   let lastAsset = null;
-  let lastMotion = null;
   const yearsShown = new Set();
   let mapsShown = 0;
   const n = sentences.length;
@@ -199,11 +197,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   for (let i = 0; i < n; i++) {
     const sentence = sentences[i];
     const { start, end } = spans[i];
-    // never the same move twice running; push strength and a fade-in (instead of a hard cut) vary per scene
-    let motion = pick(rng, MOTIONS);
-    if (motion === lastMotion) motion = MOTIONS[(MOTIONS.indexOf(motion) + 1 + Math.floor(rng() * 3)) % MOTIONS.length];
-    lastMotion = motion;
-    const zoom = pick(rng, [-0.03, 0, 0.03, 0.06]);
+    // No slow zoom or pan (timeline.mjs): a fade-in instead of a hard cut is the only per-scene variation
     const fade = i > 0 && rng() < 0.35 ? pick(rng, [6, 8, 10]) : 0;
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
@@ -222,8 +216,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     // Places the sentence names (a big country alone is not worth a map: it would be on screen for every news item)
     const GENERIC = new Set(["United States of America", "United Kingdom", "China", "Russia"]);
     const placeHits = !gfigs.length ? matchPlaces(sentence).filter((h) => h.f.kind === "state" || !GENERIC.has(h.f.name)) : [];
-    const mapOk = placeHits.length && mapsShown < 2 && lastAsset !== "map";
-    const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
+    const mapOk = placeHits.length && mapsShown < 3 && lastAsset !== "map";
+    const base = { fit: "cover", filter: look.filter, gradient: look.scrim, layout: "lower", fade };
     let scene = null;
     let how = "";
 
@@ -258,7 +252,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       const id = `card-${i}`;
       cards.push({ id, svg: backdropSvg(palette) });
       mapsShown++;
-      scene = { id: `s${i}-map`, asset: id, fit: "cover", motion, zoom: Math.max(zoom, 0.08), fade };
+      scene = { id: `s${i}-map`, asset: id, fit: "cover", fade };
       scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: placeHits[0].f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
       how = `map of ${placeHits.slice(0, 3).map((h) => h.f.name).join(", ")}`;
     }
@@ -280,7 +274,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     if (!scene) {
       const id = `card-${i}`;
       if (gfigs.length) {
-        // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer with a slow push, so the
+        // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer so the
         // final-MP4 QA still sees motion on every image layer.
         cards.push({ id, svg: backdropSvg(palette) });
         how = `figure alone ${gfigs.map((f) => f.raw).join(", ")}`;
@@ -292,7 +286,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         const pool = Object.keys(assets).filter((a) => /^(photo|concept)-/.test(a) && a !== lastAsset && uses(a) < 5).sort((a, b) => (a.startsWith("photo-") ? 0 : 1) - (b.startsWith("photo-") ? 0 : 1));
         if (pool.length) {
           const reuse = pool[Math.floor(rng() * Math.min(pool.length, 2))];
-          scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
+          scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, scale: 1.25, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
           how = `${reuse} again, re-framed`;
         } else {
           cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
@@ -301,21 +295,62 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       }
       if (!scene) {
         const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
-        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom: onBackdrop ? Math.max(zoom, 0.1) : zoom, fade };
+        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
         if (gfigs.length) scene.graphic = graphicFor("hero", { backdrop: onBackdrop });
       }
     }
 
     lastAsset = scene.graphic?.kind === "map" ? "map" : scene.asset;
     scene.look = look.name;
-    const isPhoto = /^(photo|concept)-/.test(scene.asset);
-    if (isPhoto && !scene.graphic && end - start > 7.5) {
-      // A long photo scene is re-framed halfway (a different part of the picture, a different move), the way an editor cuts a long shot.
-      const mid = start + (end - start) * (0.45 + rng() * 0.15);
-      const second = { ...scene, id: scene.id + "b", graphic: undefined, kicker: undefined, fade: 0, motion: MOTIONS[(MOTIONS.indexOf(motion) + 2) % MOTIONS.length], fx: pick(rng, [0.3, 0.7]), fy: pick(rng, [0.3, 0.6]), zoom: 0.06 };
-      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(mid.toFixed(3)), stagger: look.stagger });
-      scenes.push({ ...second, start: Number(mid.toFixed(3)), end: Number(end.toFixed(3)), stagger: 0 });
-      lastMotion = second.motion;
+
+    // Two visuals per sentence: a viewer's eye is held by a change every couple of seconds. The second beat is a different, contextual
+    // picture (the second concept photo for this sentence) or, failing that, a hard cut to a tighter crop of the same photo; a figure's
+    // panel arrives on the second beat, so the number lands after the picture has set the scene.
+    const dur = end - start;
+    const isPhoto = (sc) => /^(photo|concept)-/.test(sc.asset);
+    const ask2 = [queries2[i], queries[i]].filter((q, k, a) => q && a.indexOf(q) === k && !how.includes('"' + q + '"'));
+    const secondPhoto = async () => {
+      for (const q of ask2) {
+        const c = await concept({ query: q, sentence, used: usedFiles }).catch(() => null);
+        if (!c) continue;
+        usedFiles.add(c.file);
+        const id = `concept-${i}b`;
+        assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
+        return { id, how: `concept photo "${q}"` };
+      }
+      return null;
+    };
+    const tight = (sc, extra = {}) => ({ ...sc, id: sc.id + "b", graphic: undefined, kicker: undefined, kicker_y: undefined, rect: undefined, gradient: look.scrim, fade: 0, scale: 1.3, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.65]), ...extra });
+    const cutAt = start + dur * (0.42 + rng() * 0.16);
+    let first = scene;
+    let second = null;
+    if (dur >= 2.6) {
+      if (scene.graphic && scene.graphic.mode === "split") {
+        // photo on its own first, then the same story with its chart under it (a second photo if one fits, else a tighter crop)
+        const alt = await secondPhoto();
+        first = { ...scene, id: scene.id + "a", graphic: undefined, rect: undefined, gradient: look.scrim, kicker_y: undefined };
+        second = alt
+          ? { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 }
+          : { ...scene, id: scene.id + "b", kicker: undefined, fade: 0, scale: 1.3, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.65]) };
+        how += alt ? ` then ${alt.how}` : " then a tighter crop";
+      } else if (scene.graphic) {
+        // a map or a figure on its own backdrop: then a real photo of the same sentence
+        const alt = await secondPhoto();
+        if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id }; how += ` then ${alt.how}`; }
+      } else if (isPhoto(scene)) {
+        const alt = await secondPhoto();
+        if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }
+        else if (dur >= 3.4) { second = tight(scene); how += " then a tighter crop"; }
+      } else if (/^card-/.test(scene.asset)) {
+        const alt = await secondPhoto();
+        if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }
+      }
+    }
+    if (second) {
+      second.look = look.name;
+      scenes.push({ ...first, start: Number(start.toFixed(3)), end: Number(cutAt.toFixed(3)), stagger: look.stagger });
+      scenes.push({ ...second, start: Number(cutAt.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
+      lastAsset = second.graphic?.kind === "map" ? "map" : second.asset;
     } else {
       scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
     }
