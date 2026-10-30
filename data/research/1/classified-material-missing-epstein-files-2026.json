@@ -1,0 +1,70 @@
+{
+  "topic_slug": "classified-material-missing-epstein-files-2026",
+  "strongest_angle": "A CBS News investigation reveals that the Department of Justice holds classified Epstein-related materials that were previously claimed not to exist, contradicting official transparency statements.",
+  "key_facts": [
+    {
+      "fact": "The Justice Department has released more than 3,000,000 pages of material related to the Jeffrey Epstein investigation.",
+      "source_url": "https://www.cbsnews.com/video/analysis-raises-questions-pages-missing-epstein-files",
+      "source_name": "CBS News",
+      "confidence": "high"
+    },
+    {
+      "fact": "On March 25, 2025, the FBI New York office delivered 16 items to the Office of the Deputy Attorney General, including two labeled as classified material.",
+      "source_url": "https://thegopfiles.com/story/cbs-analysis-finds-epstein-file-gaps-and-classified-items-doj-said-did-not-exist",
+      "source_name": "The GOP Files",
+      "confidence": "high"
+    },
+    {
+      "fact": "A series of approximately 4,500 images of checks from Jeffrey Epstein's financial records were processed as part of the Epstein Files Transparency Act document release.",
+      "source_url": "https://hotwirenetwork.com/article/classified-material-missing-from-epstein-files-documents-suggest",
+      "source_name": "Hot Wire Network",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total pages released in Epstein investigation",
+      "value": 3000000,
+      "unit": "pages",
+      "source_url": "https://www.cbsnews.com/video/analysis-raises-questions-pages-missing-epstein-files"
+    },
+    {
+      "label": "Items delivered to the Deputy Attorney General on March 25, 2025",
+      "value": 16,
+      "unit": "items",
+      "source_url": "https://thegopfiles.com/story/cbs-analysis-finds-epstein-file-gaps-and-classified-items-doj-said-did-not-exist"
+    },
+    {
+      "label": "Images of checks from Epstein's records",
+      "value": 4500,
+      "unit": "images",
+      "source_url": "https://hotwirenetwork.com/article/classified-material-missing-from-epstein-files-documents-suggest"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Jeffrey Epstein",
+      "kind": "person"
+    },
+    {
+      "name": "Todd Blanche",
+      "kind": "person"
+    },
+    {
+      "name": "Department of Justice",
+      "kind": "organization"
+    },
+    {
+      "name": "FBI New York",
+      "kind": "organization"
+    },
+    {
+      "name": "Office of the Deputy Attorney General",
+      "kind": "place"
+    },
+    {
+      "name": "Epstein Files Transparency Act",
+      "kind": "object"
+    }
+  ]
+}

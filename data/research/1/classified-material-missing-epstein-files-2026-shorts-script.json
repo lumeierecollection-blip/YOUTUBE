@@ -1,0 +1,52 @@
+{
+  "channel_id": "1",
+  "topic_slug": "classified-material-missing-epstein-files-2026",
+  "format": "shorts",
+  "hook": "A CBS News investigation reveals the Department of Justice hid classified Epstein files they denied existed.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A CBS News investigation reveals the Department of Justice hid classified Epstein files they denied existed.",
+      "visual_cue": "Close up on a Department of Justice building sign, black and white.",
+      "text_overlay": {
+        "text": "Classified files hidden?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why did FBI New York deliver 16 items, including two classified, to the Deputy Attorney General?",
+      "visual_cue": "FBI New York office exterior followed by a stack of official government documents.",
+      "text_overlay": {
+        "text": "16 items delivered"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Department of Justice held these classified materials despite official claims that no such records existed.",
+      "visual_cue": "Digital news headline on a screen showing CBS News branding.",
+      "text_overlay": {
+        "text": "CBS News investigation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Officials processed 3,000,000 pages under the Epstein Files Transparency Act, yet these 16 items remained hidden. This discovery contradicts official transparency statements regarding the existence of classified Jeffrey Epstein investigation materials.",
+      "visual_cue": "Fast-paced motion graphic showing a massive stack of paper documents and bank check imagery.",
+      "text_overlay": {
+        "text": "3,000,000 pages released"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Department of Justice still holds these 16 classified items.",
+      "visual_cue": "Shot of the Department of Justice seal on a heavy wooden door.",
+      "text_overlay": {
+        "text": "16 classified items"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cbsnews.com/video/analysis-raises-questions-pages-missing-epstein-files",
+    "https://thegopfiles.com/story/cbs-analysis-finds-epstein-file-gaps-and-classified-items-doj-said-did-not-exist"
+  ]
+}
