@@ -1,0 +1,32 @@
+{
+  "channel_id": "21",
+  "topic_slug": "six-flags-goliath-safety-upgrades",
+  "format": "shorts",
+  "hook": "A 42‑year‑old died on a coaster that never used seat belts.",
+  "sections": [
+    {
+      "id": "setup",
+      "voiceover": "On Oct 12, 2026, 42‑year‑old Hassan Ibn Kariem fell from Goliath at Six Flags Over Georgia in Austell and died. The coaster’s first drop towers 165 feet. Will seat belts now protect riders on this 180‑foot drop?",
+      "visual_cue": "Show a map of Austell, GA, then a silhouette of Goliath with height markers."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "John Reilly said seat belts will be added to Goliath and coasters.",
+      "visual_cue": "Display John Reilly speaking at a press conference with a graphic of a seat belt overlay on the coaster."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Six Flags will add seat belts to Goliath and similar coasters. The move follows the October 12 fall that killed 42‑year‑old Hassan Ibn Kariem. It aims to protect riders on the coaster’s 180‑foot drop.",
+      "visual_cue": "Animation of seat belts being installed on the coaster, then a safety‑check graphic."
+    },
+    {
+      "id": "close",
+      "voiceover": "Seat belts now guard Goliath’s terrifying 180‑foot plunge.",
+      "visual_cue": "Final shot of the coaster with glowing seat belts as the train ascends."
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/roller-coaster-death-six-flags-georgia-90a9bfe6a6fc934ab7f2a1a6bf52d520",
+    "https://abcnews.com/US/flags-announces-new-safety-measures-goliath-coaster-rider/story?id=137539590"
+  ]
+}

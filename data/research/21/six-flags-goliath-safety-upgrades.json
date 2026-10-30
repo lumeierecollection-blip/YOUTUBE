@@ -1,0 +1,91 @@
+{
+  "topic_slug": "six-flags-goliath-safety-upgrades",
+  "strongest_angle": "Six Flags is retrofitting seat belts on the Goliath hyper coaster and similar rides after a fatal fall, highlighting a shift in restraint policy for high‑speed coasters.",
+  "key_facts": [
+    {
+      "fact": "On October 12, 2026, 42‑year‑old Hassan Jihad Ibn Kariem fell from the Goliath hyper coaster at Six Flags Over Georgia in Austell, Georgia, resulting in his death.",
+      "source_url": "https://apnews.com/article/roller-coaster-death-six-flags-georgia-90a9bfe6a6fc934ab7f2a1a6bf52d520",
+      "source_name": "AP News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Six Flags CEO John Reilly announced on October 23, 2026 that seat belts will be installed on Goliath and all comparable hyper‑coaster models across the company’s parks.",
+      "source_url": "https://abcnews.com/US/flags-announces-new-safety-measures-goliath-coaster-rider/story?id=137539590",
+      "source_name": "ABC News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Goliath’s first drop measures 165 feet and its second drop measures 180 feet, making it one of the tallest hyper coasters in the United States.",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/24/six-flags-goliath-rollercoaster-seatbelts",
+      "source_name": "The Guardian",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Six Flags reported that guests have taken more than one billion rides across its parks during the past four years.",
+      "source_url": "https://s204.q4cdn.com/155295784/files/doc_news/2026/Oct/23/Six-Flags-CEO-Statement-10-23-26.pdf",
+      "source_name": "Six Flags CEO Statement (PDF)",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of victim",
+      "value": 42,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/roller-coaster-death-six-flags-georgia-90a9bfe6a6fc934ab7f2a1a6bf52d520"
+    },
+    {
+      "label": "Goliath first drop height",
+      "value": 165,
+      "unit": "feet",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/24/six-flags-goliath-rollercoaster-seatbelts"
+    },
+    {
+      "label": "Goliath second drop height",
+      "value": 180,
+      "unit": "feet",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/24/six-flags-goliath-rollercoaster-seatbelts"
+    },
+    {
+      "label": "Total rides taken at Six Flags (past 4 years)",
+      "value": 1000000000,
+      "unit": "rides",
+      "source_url": "https://s204.q4cdn.com/155295784/files/doc_news/2026/Oct/23/Six-Flags-CEO-Statement-10-23-26.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Hassan Jihad Ibn Kariem",
+      "kind": "person"
+    },
+    {
+      "name": "Six Flags Over Georgia",
+      "kind": "place"
+    },
+    {
+      "name": "Austell",
+      "kind": "place"
+    },
+    {
+      "name": "Georgia",
+      "kind": "place"
+    },
+    {
+      "name": "Six Flags",
+      "kind": "organization"
+    },
+    {
+      "name": "John Reilly",
+      "kind": "person"
+    },
+    {
+      "name": "Goliath",
+      "kind": "object"
+    },
+    {
+      "name": "hyper coaster",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}
