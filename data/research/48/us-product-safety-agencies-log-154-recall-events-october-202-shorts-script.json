@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "us-product-safety-agencies-log-154-recall-events-october-202",
+  "format": "shorts",
+  "hook": "Federal agencies issued 154 urgent safety recall events this October alone.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Federal agencies issued 154 urgent safety recall events this October alone.",
+      "text_overlay": {
+        "text": "154 Recall Events in Oct 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did you know the Food and Drug Administration and USDA-FSIS logged 34 food recalls in October?",
+      "text_overlay": {
+        "text": "81 NHTSA, 39 CPSC, 30 FDA"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, that is a significant decrease from the 76 food recalls logged in October 2025.",
+      "text_overlay": {
+        "text": "34 Food Recalls"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Thirteen of those 34 food recalls are Class I, meaning they pose serious health risks today. Which agency issued the most recalls among the 154 events tracked by data firm RecallBench?",
+      "text_overlay": {
+        "text": "13 Class I Recalls"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The National Highway Traffic Safety Administration leads with 81 vehicle recall campaigns this month.",
+      "text_overlay": {
+        "text": "81 NHTSA Vehicle Recalls"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://recallbench.com/statistics/2026-10",
+    "https://recallsweep.com"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "topic_slug": "us-product-safety-agencies-log-154-recall-events-october-202",
+  "strongest_angle": "Analyze the October 2026 recall statistics compiled by RecallBench and RecallSweep, highlighting 154 total federal safety events including 81 NHTSA vehicle recalls, 39 CPSC consumer product warnings, 30 FDA events, and 4 USDA-FSIS actions as of October 30, 2026.",
+  "key_facts": [
+    {
+      "fact": "U.S. agencies posted 154 total recall events in October 2026 as of October 30, 2026, consisting of 39 from the CPSC, 30 from the FDA, 81 from the NHTSA, and 4 from the USDA-FSIS according to RecallBench data.",
+      "source_url": "https://recallbench.com/statistics/2026-10",
+      "source_name": "RecallBench",
+      "confidence": "high"
+    },
+    {
+      "fact": "Out of 34 food recalls logged by the FDA and USDA-FSIS in October 2026, 13 were classified as Class I, compared to 76 total food recall events in October 2025.",
+      "source_url": "https://recallbench.com/statistics/2026-10",
+      "source_name": "RecallBench",
+      "confidence": "high"
+    },
+    {
+      "fact": "RecallSweep collects every recall published by the Consumer Product Safety Commission, Food and Drug Administration, National Highway Traffic Safety Administration and USDA Food Safety within its current 180-day window, with the most recent issued October 29, 2026.",
+      "source_url": "https://recallsweep.com",
+      "source_name": "RecallSweep",
+      "confidence": "high"
+    },
+    {
+      "fact": "Year-to-date figures for 2026 across agencies include 490 consumer product recalls announced by the CPSC and 757 vehicle recall campaigns logged by the NHTSA as of October 29, 2026.",
+      "source_url": "https://recallbench.com/statistics/2026",
+      "source_name": "RecallBench",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total October 2026 recall events",
+      "value": 154,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "CPSC October 2026 recalls",
+      "value": 39,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "FDA October 2026 recalls",
+      "value": 30,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "NHTSA October 2026 recalls",
+      "value": 81,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "USDA-FSIS October 2026 recalls",
+      "value": 4,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "October 2026 food recalls",
+      "value": 34,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "October 2026 Class I food recalls",
+      "value": 13,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "October 2025 food recall events",
+      "value": 76,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-10"
+    },
+    {
+      "label": "RecallSweep window days",
+      "value": 180,
+      "unit": "days",
+      "source_url": "https://recallsweep.com"
+    },
+    {
+      "label": "2026 CPSC consumer product recalls",
+      "value": 490,
+      "unit": "recalls",
+      "source_url": "https://recallbench.com/statistics/2026"
+    },
+    {
+      "label": "2026 NHTSA vehicle recall campaigns",
+      "value": 757,
+      "unit": "campaigns",
+      "source_url": "https://recallbench.com/statistics/2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "RecallBench",
+      "kind": "organization"
+    },
+    {
+      "name": "RecallSweep",
+      "kind": "organization"
+    },
+    {
+      "name": "CPSC",
+      "kind": "organization"
+    },
+    {
+      "name": "FDA",
+      "kind": "organization"
+    },
+    {
+      "name": "NHTSA",
+      "kind": "organization"
+    },
+    {
+      "name": "USDA-FSIS",
+      "kind": "organization"
+    }
+  ]
+}
