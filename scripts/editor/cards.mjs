@@ -52,7 +52,9 @@ function sentenceLines(sentence, { x = 90, y, size = 46, maxChars = 34, max = 7,
 export function figureCard({ palette, label, sentence, figures, source }) {
   const fig = figures.slice(0, 2);
   const parts = [];
-  let y = 400;
+  // Free area is y 300-1440 (captions sit at 1540+). The sentence is NOT repeated here: the caption carries it.
+  const blockHeight = fig.reduce((h, f) => h + (fig.length === 1 ? 260 : 170) * 0.78 + 30 + (f.kind === "percent" && f.value >= 0 && f.value <= 100 ? 96 : 20), 0);
+  let y = Math.max(320, 300 + (1140 - blockHeight) / 2 - 60);
   for (const f of fig) {
     const size = fig.length === 1 ? 260 : 170;
     parts.push(`  <text x="90" y="${y + size * 0.78}" fill="#FFFFFF" font-family="${FONT}" font-size="${size}" font-weight="700">${xmlEscape(f.raw)}</text>`);
@@ -65,10 +67,9 @@ export function figureCard({ palette, label, sentence, figures, source }) {
       y += 20;
     }
   }
-  parts.push(sentenceLines(sentence, { y: y + 40, size: fig.length === 1 ? 44 : 38, max: fig.length === 1 ? 6 : 4 }));
   return frame({ palette, label, body: parts.join("\n"), source });
 }
 
 export function statementCard({ palette, label, sentence, source }) {
-  return frame({ palette, label, body: sentenceLines(sentence, { y: 560, size: 62, maxChars: 24, max: 8, fill: "#FFFFFF" }), source });
+  return frame({ palette, label, body: sentenceLines(sentence, { y: 640, size: 66, maxChars: 22, max: 8, fill: "#FFFFFF" }), source });
 }
