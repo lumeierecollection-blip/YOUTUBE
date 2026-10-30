@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "paramount-wbd-merger-injunction",
+  "format": "shorts",
+  "hook": "Your favorite streaming apps could vanish after the massive $110.9 billion merger.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your favorite streaming apps could vanish after the massive $110.9 billion merger.",
+      "text_overlay": {
+        "text": "$110.9 Billion Merger"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 19, 2026, five subscribers filed a legal motion in the United States District Court for the Northern District of California. Will these services stay independent?",
+      "text_overlay": {
+        "text": "Legal Challenge Filed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the motion demands Skydance Corporation keep Paramount+ and HBO Max operating as separate services.",
+      "text_overlay": {
+        "text": "Services at Risk"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing regarding this case. The hearing at 1301 Clay Street decides if Skydance Corporation must preserve these independent services.",
+      "text_overlay": {
+        "text": "Hearing: Dec 3, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The $110.9 billion deal remains under intense judicial scrutiny today.",
+      "text_overlay": {
+        "text": "Case Unresolved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/wp-content/uploads/2026/10/Skydance-Motion-for-Preliminary-Injunction-revised-complaint-1.pdf",
+    "https://www.americansreport.com/blog/paramount-wbd-merger-opponents-file-injunction-to-break-up-skydance-barely-two-weeks-after-110-billion-dollar-deal-closed"
+  ]
+}

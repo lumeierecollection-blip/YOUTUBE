@@ -1,0 +1,114 @@
+{
+  "topic_slug": "paramount-wbd-merger-injunction",
+  "strongest_angle": "Five streaming subscribers filed a preliminary injunction motion in the United States District Court for the Northern District of California to force Skydance Corporation to keep Paramount+ and HBO Max operating separately following the $110.9 billion corporate merger.",
+  "key_facts": [
+    {
+      "fact": "Five streaming subscribers including Pamela Faust, Len Marazzo, Lisa McCarthy, Deborah Rubinsohn, and Gary Talewsky filed a preliminary injunction motion on October 19, 2026, in the United States District Court for the Northern District of California.",
+      "source_url": "https://deadline.com/wp-content/uploads/2026/10/Skydance-Motion-for-Preliminary-Injunction-revised-complaint-1.pdf",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The preliminary injunction hearing is scheduled for Thursday, December 3, 2026, at 2:00 p.m. before the Honorable Araceli Martínez-Olguín in Courtroom 5 located at 1301 Clay Street, Oakland, California.",
+      "source_url": "https://deadline.com/wp-content/uploads/2026/10/Skydance-Motion-for-Preliminary-Injunction-revised-complaint-1.pdf",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal motion targets the $110.9 billion media consolidation deal that created Skydance Corporation, seeking to preserve viable independent HBO Max and Paramount+ services.",
+      "source_url": "https://www.americansreport.com/blog/paramount-wbd-merger-opponents-file-injunction-to-break-up-skydance-barely-two-weeks-after-110-billion-dollar-deal-closed",
+      "source_name": "Americans Report",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Merger Deal Value",
+      "value": 110.9,
+      "unit": "billion dollars",
+      "source_url": "https://www.americansreport.com/blog/paramount-wbd-merger-opponents-file-injunction-to-break-up-skydance-barely-two-weeks-after-110-billion-dollar-deal-closed"
+    },
+    {
+      "label": "Courtroom Number",
+      "value": 5,
+      "unit": "courtroom",
+      "source_url": "https://deadline.com/wp-content/uploads/2026/10/Skydance-Motion-for-Preliminary-Injunction-revised-complaint-1.pdf"
+    },
+    {
+      "label": "Street Address Number",
+      "value": 1301,
+      "unit": "street number",
+      "source_url": "https://deadline.com/wp-content/uploads/2026/10/Skydance-Motion-for-Preliminary-Injunction-revised-complaint-1.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Plaintiffs request an order requiring Defendants Paramount Skydance Corporation and Skydance Media, LLC to hold and operate separately, pending final adjudication or further order, the acquired Warner Bros. Discovery businesses and assets necessary to preserve viable independent HBO Max and Paramount+ services, together with identifiable associated film and",
+      "speaker": "Plaintiffs",
+      "source_name": "Deadline",
+      "source_url": "https://deadline.com/2026/10/skydance-paramount-wbd-merger-injuction-motion-1237167643"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Pamela Faust",
+      "kind": "person"
+    },
+    {
+      "name": "Len Marazzo",
+      "kind": "person"
+    },
+    {
+      "name": "Lisa McCarthy",
+      "kind": "person"
+    },
+    {
+      "name": "Deborah Rubinsohn",
+      "kind": "person"
+    },
+    {
+      "name": "Gary Talewsky",
+      "kind": "person"
+    },
+    {
+      "name": "Araceli Martínez-Olguín",
+      "kind": "person"
+    },
+    {
+      "name": "Skydance Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Paramount Skydance Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Skydance Media, LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Warner Bros. Discovery",
+      "kind": "organization"
+    },
+    {
+      "name": "United States District Court for the Northern District of California",
+      "kind": "organization"
+    },
+    {
+      "name": "Oakland",
+      "kind": "place"
+    },
+    {
+      "name": "California",
+      "kind": "place"
+    },
+    {
+      "name": "Paramount+",
+      "kind": "object"
+    },
+    {
+      "name": "HBO Max",
+      "kind": "object"
+    }
+  ]
+}
