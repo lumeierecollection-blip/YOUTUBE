@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "aeg-danny-wimmer-festival-trial-dispute",
+  "format": "shorts",
+  "hook": "A 18.9 million dollar dispute is tearing apart two music giants.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 18.9 million dollar dispute is tearing apart two music giants.",
+      "text_overlay": {
+        "text": "$18.9 Million Dispute"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2018, AEG Presents filed a corporate lawsuit against Danny Wimmer Presents. Did their failed $18.9 million buy-sell offer for those festivals end their co-promotion partnership?",
+      "text_overlay": {
+        "text": "2018 Lawsuit Filed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the conflict escalated when Danny Wimmer Presents launched the rival Sonic Temple Art + Music Festival.",
+      "text_overlay": {
+        "text": "8-Year Legal Battle"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judges at the Stanley Mosk Courthouse will finally oversee a jury trial in February 2027. This legal battle between AEG Presents and Danny Wimmer Presents has now spanned 8 years.",
+      "text_overlay": {
+        "text": "Trial: February 2027"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 8-year battle heads to trial in 2027.",
+      "text_overlay": {
+        "text": "Trial Set for 2027"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://decibel.news/p/aeg-v-dwp-rock-on-the-range-fight-heads-to-trial",
+    "https://unicourt.com/case/ca-la23-aeg-presents-productions-llc-a-et-al-vs-danny-wimmer-presents-310979"
+  ]
+}
