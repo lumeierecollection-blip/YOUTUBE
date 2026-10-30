@@ -1,0 +1,88 @@
+{
+  "channel_id": "7",
+  "topic_slug": "alphabet-500-billion-stock-plunge-ai-spending",
+  "format": "shorts",
+  "hook": "Alphabet wiped out $500 billion in market value on Thursday.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Alphabet wiped out $500 billion in market value on Thursday.",
+      "visual_cue": "Chart showing 500 billion dollars market value loss in New York",
+      "sfx_cue": "Market bell ring followed by a sharp drop sound",
+      "b_roll": [
+        "New York stock exchange trading floor overview"
+      ],
+      "animation_cue": "Red drop animation over the 500 billion figure",
+      "transition_out": "Cut to trading screen",
+      "text_overlay": {
+        "text": "$500 Billion Wipeout"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "On Thursday, Alphabet shares sank by 12.6% in New York. Google parent company Alphabet lost just over $500 billion in value. Wall Street pushed the stock to a six-month low. Why did Alphabet lose part of its $3.47 trillion valuation?",
+      "visual_cue": "Alphabet stock ticker showing 12.6 percent decline on New York trading terminal",
+      "sfx_cue": "Low digital hum",
+      "b_roll": [
+        "Wall Street trading terminals showing red numbers"
+      ],
+      "animation_cue": "Bar chart descending from 3.47 trillion dollars",
+      "transition_out": "Fade to historical chart comparison",
+      "text_overlay": {
+        "text": "12.6% Drop"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "However, that drop surpassed Alphabet's previous record daily drop of 11.63% from March 2020.",
+      "visual_cue": "Line graph comparing 11.63 percent drop from March 2020 with current drop",
+      "sfx_cue": "Alarm chime",
+      "b_roll": [
+        "CNBC market broadcast graphic showing pandemic market volatility"
+      ],
+      "animation_cue": "Line crossing previous record threshold",
+      "transition_out": "Wipe to CNBC source reference",
+      "text_overlay": {
+        "text": "Beating March 2020 Record"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "Massive artificial intelligence spending and disappointing quarterly growth triggered Alphabet's record $500 billion market value loss.",
+      "visual_cue": "NBC News report headline on artificial intelligence spending and Alphabet shares",
+      "sfx_cue": "Subtle rising tension drone",
+      "b_roll": [
+        "Googleplex exterior building shot in California"
+      ],
+      "animation_cue": "Highlighting artificial intelligence spending data points",
+      "transition_out": "Fade to final valuation graphic",
+      "text_overlay": {
+        "text": "Artificial Intelligence Spending Panic"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "Alphabet lost a massive $500 billion in market value during the Thursday session.",
+      "visual_cue": "Final market cap figure of $500 billion displayed on New York screen",
+      "sfx_cue": "Closing electronic tone",
+      "b_roll": [
+        "New York stock exchange closing bell view"
+      ],
+      "animation_cue": "Pulsing red total of 500 billion dollars",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "$500 Billion Loss"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcnews.com/business/markets/alphabet-google-stock-ai-advertising-rcna606322",
+    "https://www.bbc.com/news/articles/cm9qzdqpxy48o",
+    "https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html"
+  ]
+}

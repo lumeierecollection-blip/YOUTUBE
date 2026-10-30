@@ -1,0 +1,87 @@
+{
+  "topic_slug": "alphabet-500-billion-stock-plunge-ai-spending",
+  "strongest_angle": "Investigate how Alphabet's massive artificial intelligence spending and disappointing quarterly growth triggered a record-breaking $500 billion market value loss on Thursday, marking the company's worst trading day ever.",
+  "key_facts": [
+    {
+      "fact": "Alphabet shares sank by 12.6% on Thursday, marking the company's worst one-day drop ever and wiping out $500 billion in market value.",
+      "source_url": "https://www.nbcnews.com/business/markets/alphabet-google-stock-ai-advertising-rcna606322",
+      "source_name": "NBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google parent company Alphabet lost just over $500 billion in value on Thursday, pushing its stock to a six-month low in New York.",
+      "source_url": "https://www.bbc.com/news/articles/cm9qzdqpxy48o",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "The drop surpassed Alphabet's previous record daily drop of 11.63% which was set in March 2020 during the pandemic market volatility.",
+      "source_url": "https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Alphabet is America's fourth-largest company and was valued at $3.47 trillion before the massive market sell-off occurred.",
+      "source_url": "https://www.nbcnews.com/business/markets/alphabet-google-stock-ai-advertising-rcna606322",
+      "source_name": "NBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Market value wipeout",
+      "value": 500,
+      "unit": "billion dollars",
+      "source_url": "https://www.nbcnews.com/business/markets/alphabet-google-stock-ai-advertising-rcna606322"
+    },
+    {
+      "label": "Daily stock drop percentage",
+      "value": 12.6,
+      "unit": "percent",
+      "source_url": "https://www.nbcnews.com/business/markets/alphabet-google-stock-ai-advertising-rcna606322"
+    },
+    {
+      "label": "Previous record drop percentage",
+      "value": 11.63,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/2026/10/29/alphabet-google-microsoft-msft-shares-today-earnings.html"
+    },
+    {
+      "label": "Company market capitalization",
+      "value": 3.47,
+      "unit": "trillion dollars",
+      "source_url": "https://www.nbcnews.com/business/markets/alphabet-google-stock-ai-advertising-rcna606322"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Alphabet",
+      "kind": "organization"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "Sundar Pichai",
+      "kind": "person"
+    },
+    {
+      "name": "YouTube",
+      "kind": "organization"
+    },
+    {
+      "name": "Wall Street",
+      "kind": "place"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "S&P 500",
+      "kind": "organization"
+    }
+  ]
+}
