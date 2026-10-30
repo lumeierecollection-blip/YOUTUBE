@@ -1,0 +1,74 @@
+{
+  "channel_id": "2",
+  "topic_slug": "procore-magpie-3-0-construction-benchmark-78-percent",
+  "format": "shorts",
+  "hook": "Procore, a construction software company, just hit a 78 percent success rate on construction tasks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Procore, a construction software company, just hit a 78 percent success rate on construction tasks.",
+      "visual_cue": "Large bold text overlay showing 78 percent success rate.",
+      "sfx_cue": "Digital ping sound.",
+      "b_roll": [
+        "Abstract data visualization of construction progress."
+      ],
+      "text_overlay": {
+        "text": "78% Task Success"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Does this beat the 60 percent benchmark set by general-purpose frontier models used for tasks?",
+      "visual_cue": "Split screen showing a construction site blueprint and a server rack.",
+      "sfx_cue": "Mechanical shutter sound.",
+      "b_roll": [
+        "Construction site blueprints on a digital screen.",
+        "Server room rack lights blinking."
+      ],
+      "text_overlay": {
+        "text": "200+ Tasks Tested"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Construction Metrics published benchmark data in October 2026 showing general models scored lower.",
+      "visual_cue": "Bar chart comparing 78 percent against 60 percent.",
+      "sfx_cue": "Data crunching sound.",
+      "b_roll": [
+        "Side-by-side bar chart animation."
+      ],
+      "text_overlay": {
+        "text": "18 Points Ahead"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The closest frontier model only reached a 60 percent success rate during the same testing cycle. Magpie 3.0, Procore's new reasoning engine, outperformed general-purpose frontier models across 200 construction tasks.",
+      "visual_cue": "Graph showing the 60 percent benchmark line versus the 78 percent performance.",
+      "sfx_cue": "Rising synth tone.",
+      "b_roll": [
+        "Graph highlighting the 18 percentage point gap."
+      ],
+      "text_overlay": {
+        "text": "60% General Model"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Magpie 3.0 now leads with that 78 percent task success rate.",
+      "visual_cue": "Final screen showing the 78 percent figure clearly.",
+      "sfx_cue": "Soft chime.",
+      "b_roll": [
+        "Close up of 78 percent on a dashboard."
+      ],
+      "text_overlay": {
+        "text": "78% Success"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks",
+    "https://constructionmetrics.com/2026/10/24/procore-magpie-benchmark-78-percent-construction-tasks/benchmark-results.csv",
+    "https://datagrid.com/release-notes/procore-ai-magpie-3-0-open-beta-available-in-procore-explore"
+  ]
+}
