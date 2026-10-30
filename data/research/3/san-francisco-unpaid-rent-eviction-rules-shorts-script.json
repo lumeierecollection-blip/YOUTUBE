@@ -1,0 +1,65 @@
+{
+  "channel_id": "3",
+  "topic_slug": "san-francisco-unpaid-rent-eviction-rules",
+  "format": "shorts",
+  "hook": "San Francisco banned back rent evictions under one month's threshold.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "San Francisco banned back rent evictions under one month's threshold.",
+      "b_roll": [
+        "Apartment buildings in San Francisco",
+        "Eviction notice document"
+      ],
+      "text_overlay": {
+        "text": "Eviction Risk in San Francisco"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Mayor Daniel Lurie signed file number 260962 on October 29, 2026. Hidden fees add 10 to 30 percent to monthly costs. Why did San Francisco Mayor Daniel Lurie sign new legislation protecting renters?",
+      "b_roll": [
+        "San Francisco City Hall",
+        "Lease agreement contract pages"
+      ],
+      "text_overlay": {
+        "text": "File number 260962"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Board of Supervisors voted unanimously on October 20, 2026, to require upfront fee disclosures.",
+      "b_roll": [
+        "Board of Supervisors chambers"
+      ],
+      "text_overlay": {
+        "text": "Unanimous Vote"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Renters are protected from eviction under 1 month of unpaid rent. Landlords must disclose total costs. Urban Institute Initiative data reveals massive hidden fees.",
+      "b_roll": [
+        "Tenant rights protest",
+        "Financial cost breakdown chart"
+      ],
+      "text_overlay": {
+        "text": "1 Month Threshold Protected"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "File number 260962 stops unwarranted evictions across San Francisco.",
+      "b_roll": [
+        "San Francisco skyline"
+      ],
+      "text_overlay": {
+        "text": "File 260962"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sf.gov/news-mayor-lurie-signs-legislation-protecting-renters-from-unwarranted-evictions-hidden-rental-fees",
+    "https://sfgov.legistar.com/LegislationDetail.aspx?GUID=EB3AA0B0-1774-48AB-B010-1021765C03EC&ID=8201429"
+  ]
+}

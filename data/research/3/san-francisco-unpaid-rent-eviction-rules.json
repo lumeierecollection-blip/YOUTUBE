@@ -1,0 +1,79 @@
+{
+  "topic_slug": "san-francisco-unpaid-rent-eviction-rules",
+  "strongest_angle": "Mayor Daniel Lurie and the San Francisco Board of Supervisors passed new October 2026 legislation prohibiting evictions for back rent under one month's threshold and requiring upfront fee disclosures.",
+  "key_facts": [
+    {
+      "fact": "On October 29, 2026, San Francisco Mayor Daniel Lurie signed two pieces of legislation protecting renters from unwarranted evictions and hidden rental fees.",
+      "source_url": "https://www.sf.gov/news-mayor-lurie-signs-legislation-protecting-renters-from-unwarranted-evictions-hidden-rental-fees",
+      "source_name": "SF.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "The San Francisco Board of Supervisors voted unanimously on October 20, 2026, to require landlords to reveal total costs and recurring fees on all apartment listings.",
+      "source_url": "https://missionlocal.org/2026/10/san-francisco-hidden-rent-fees-legislation",
+      "source_name": "Mission Local",
+      "confidence": "high"
+    },
+    {
+      "fact": "San Francisco File number 260962 established new administrative code rules regarding evictions for nonpayment of rent, introduced on September 1, 2026.",
+      "source_url": "https://sfgov.legistar.com/LegislationDetail.aspx?GUID=EB3AA0B0-1774-48AB-B010-1021765C03EC&ID=8201429",
+      "source_name": "City and County of San Francisco",
+      "confidence": "high"
+    },
+    {
+      "fact": "An analysis from the Urban Institute Initiative found that hidden fees for amenities, utilities, and trash can increase tenants' total monthly costs by 10 to 30 percent.",
+      "source_url": "https://missionlocal.org/2026/10/san-francisco-hidden-rent-fees-legislation",
+      "source_name": "Mission Local",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Minimum rent threshold fraction",
+      "value": 1,
+      "unit": "month",
+      "source_url": "https://missionlocal.org/2026/10/new-san-francisco-legislation-would-set-new-monetary-threshold-for-evictions"
+    },
+    {
+      "label": "Lower bound of monthly cost increase from hidden fees",
+      "value": 10,
+      "unit": "percent",
+      "source_url": "https://missionlocal.org/2026/10/san-francisco-hidden-rent-fees-legislation"
+    },
+    {
+      "label": "Upper bound of monthly cost increase from hidden fees",
+      "value": 30,
+      "unit": "percent",
+      "source_url": "https://missionlocal.org/2026/10/san-francisco-hidden-rent-fees-legislation"
+    },
+    {
+      "label": "Legislation file number",
+      "value": 260962,
+      "unit": "file number",
+      "source_url": "https://sfgov.legistar.com/LegislationDetail.aspx?GUID=EB3AA0B0-1774-48AB-B010-1021765C03EC&ID=8201429"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "San Francisco",
+      "kind": "place"
+    },
+    {
+      "name": "Daniel Lurie",
+      "kind": "person"
+    },
+    {
+      "name": "Jackie Fielder",
+      "kind": "person"
+    },
+    {
+      "name": "Board of Supervisors",
+      "kind": "organization"
+    },
+    {
+      "name": "Urban Institute Initiative",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
