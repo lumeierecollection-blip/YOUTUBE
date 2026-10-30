@@ -1,0 +1,64 @@
+{
+  "channel_id": "9",
+  "topic_slug": "atacama-desert-super-el-nino-wildflowers-2026",
+  "format": "shorts",
+  "hook": "What happens when the driest desert on Earth suddenly floods with record rainfall?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when the driest desert on Earth suddenly floods with record rainfall?",
+      "b_roll": [
+        "Satellite map of Atacama Desert in Chile"
+      ],
+      "text_overlay": {
+        "text": "The Driest Desert Floods"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "AP News reports that a super El Niño transformed Chile's Atacama Desert, but can flowers grow? Can a super El Niño's record rainfall bring life to Chile's Atacama Desert?",
+      "b_roll": [
+        "Aerial footage of northern Chile",
+        "Rain clouds over desert terrain"
+      ],
+      "text_overlay": {
+        "text": "Record El Niño Rains"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this massive flowering event marks the most extensive one since 1997.",
+      "b_roll": [
+        "Comparison archive photos of 1997 and 2026"
+      ],
+      "text_overlay": {
+        "text": "Last Seen in 1997"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Los Angeles Times documented 6,560 square miles bursting open. More than 200 plant species carpeted the sand. Spring blooms will persist until November.",
+      "b_roll": [
+        "Vibrant fields of wildflowers across the desert floor",
+        "Close-up of desert plant species"
+      ],
+      "text_overlay": {
+        "text": "6,560 Square Miles of Flowers"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Those 6,560 square miles remain covered in wildflowers until November.",
+      "b_roll": [
+        "Wide shot of blooming Atacama Desert landscape"
+      ],
+      "text_overlay": {
+        "text": "Blooming Until November"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+    "https://apnews.com/article/chile-atacama-desert-flowers-tourism-el-nino-78793a8c18ba92adaf389a0302a1eb2b"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "topic_slug": "atacama-desert-super-el-nino-wildflowers-2026",
+  "strongest_angle": "Record rainfall fueled by a super El Niño has transformed Chile's Atacama Desert, the world's driest nonpolar desert, into a vast 6,560-square-mile blanket of wildflowers.",
+  "key_facts": [
+    {
+      "fact": "Record rainfall fueled by a super El Niño has transformed Chile's Atacama Desert into a 6,560-square-mile wildflower bloom featuring more than 200 plant species.",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The historic precipitation event has carpeted 6,560 square miles of northern Chile's Atacama Desert in wildflowers, marking the most extensive flowering event since 1997.",
+      "source_url": "https://theprimary.com/science/2026-10-03/chile-atacama-el-nino-bloom",
+      "source_name": "Primary",
+      "confidence": "high"
+    },
+    {
+      "fact": "Spring blooms have emerged across Chile's Atacama Desert after El Niño rains, with the phenomenon expected to last until November.",
+      "source_url": "https://apnews.com/article/chile-atacama-desert-flowers-tourism-el-nino-78793a8c18ba92adaf389a0302a1eb2b",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Bloom area in square miles",
+      "value": 6560,
+      "unit": "square miles",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    },
+    {
+      "label": "Plant species count",
+      "value": 200,
+      "unit": "species",
+      "source_url": "https://www.latimes.com/environment/story/2026-10-07/earths-driest-desert-is-covered-in-wildflowers-right-now"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "Atacama Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Los Angeles Times",
+      "kind": "organization"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    },
+    {
+      "name": "Primary",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}
