@@ -2410,10 +2410,16 @@
       "last_generated": null
     },
     "21": {
-      "channel_name": "Lunar Frequencies",
-      "niche": "Soundscapes for Sleep & Healing",
-      "used_topics": [],
-      "last_generated": null
+      "channel_name": "Failure Files",
+      "niche": "Engineering & Disasters Explained (how machines work, why they failed, what changed)",
+      "used_topics": [
+        {
+          "topic": "Nanoscale Brain-Inspired Devices Made of Soft Polymer Material",
+          "slug": "nanoscale-brain-inspired-soft-polymer-devices",
+          "reserved_at": "2026-10-30T15:17:41.383Z"
+        }
+      ],
+      "last_generated": "2026-10-30T15:17:41.383Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
