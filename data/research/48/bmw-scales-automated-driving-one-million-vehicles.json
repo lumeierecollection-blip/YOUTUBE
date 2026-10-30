@@ -1,0 +1,87 @@
+{
+  "topic_slug": "bmw-scales-automated-driving-one-million-vehicles",
+  "strongest_angle": "Compare the efficiency gains and safety performance of BMW Group’s Automated Driving In‑Plant system that moved one million vehicles without drivers, using daily move counts, plant‑specific totals and its 99.5 % operational availability.",
+  "key_facts": [
+    {
+      "fact": "BMW Group reported that its Automated Driving In‑Plant (ADIP) system moved a total of 1,000,000 vehicles without drivers across its factories from the start of the pilot in Dingolfing in 2022 through October 2026.",
+      "source_url": "https://www.press.bmwgroup.com/global/article/detail/T0462233EN?language=en",
+      "source_name": "BMW Group Press Release",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The ADIP network, now operating at Dingolfing, Leipzig, Regensburg and Oxford, handles around 3,500 vehicle moves per day across all sites.",
+      "source_url": "https://www.automotiveworld.com/news/bmw-group-moves-one-million-cars-without-drivers-in-plants",
+      "source_name": "Automotive World",
+      "confidence": "medium"
+    },
+    {
+      "fact": "At the Oxford plant alone, more than 53,000 driverless vehicle movements were logged during the past year (2025).",
+      "source_url": "https://www.automotiveworld.com/news/bmw-group-moves-one-million-cars-without-drivers-in-plants",
+      "source_name": "Automotive World",
+      "confidence": "medium"
+    },
+    {
+      "fact": "BMW’s automated‑vehicle system achieved an operational availability of over 99.5 % for vehicle movements in production environments.",
+      "source_url": "https://embotech.ai/news/1-million-driverless-vehicles",
+      "source_name": "Embotech AI",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 1000000,
+      "unit": "vehicles",
+      "label": "Total driverless vehicle movements",
+      "source_url": "https://www.press.bmwgroup.com/global/article/detail/T0462233EN?language=en"
+    },
+    {
+      "value": 3500,
+      "unit": "moves per day",
+      "label": "Average daily moves across ADIP network",
+      "source_url": "https://www.automotiveworld.com/news/bmw-group-moves-one-million-cars-without-drivers-in-plants"
+    },
+    {
+      "value": 53000,
+      "unit": "moves",
+      "label": "Oxford plant annual driverless moves (2025)",
+      "source_url": "https://www.automotiveworld.com/news/bmw-group-moves-one-million-cars-without-drivers-in-plants"
+    },
+    {
+      "value": 99.5,
+      "unit": "percent",
+      "label": "System operational availability",
+      "source_url": "https://embotech.ai/news/1-million-driverless-vehicles"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "BMW Group",
+      "kind": "organization"
+    },
+    {
+      "name": "Automated Driving In‑Plant system",
+      "kind": "object"
+    },
+    {
+      "name": "Dingolfing plant",
+      "kind": "place"
+    },
+    {
+      "name": "Leipzig plant",
+      "kind": "place"
+    },
+    {
+      "name": "Regensburg plant",
+      "kind": "place"
+    },
+    {
+      "name": "Oxford plant",
+      "kind": "place"
+    },
+    {
+      "name": "Embotech AI",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

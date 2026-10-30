@@ -1,0 +1,33 @@
+{
+  "channel_id": "48",
+  "topic_slug": "bmw-scales-automated-driving-one-million-vehicles",
+  "format": "shorts",
+  "hook": "BMW Group's driverless system moved 1,000,000 vehicles across factories from Dingolfing to Oxford.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "BMW Group's driverless system moved 1,000,000 vehicles across factories from Dingolfing to Oxford."
+    },
+    {
+      "id": "setup",
+      "voiceover": "How did the Oxford plant reach 53,000 moves in 2025?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the system's availability stayed above 99.5 % despite the volume."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "BMW's automated vehicle system achieved over 99.5% operational availability for production vehicle movements. Oxford's plant alone logged more than 53,000 driverless vehicle movements during 2025."
+    },
+    {
+      "id": "close",
+      "voiceover": "Follow BMW Group's network handling 3,500 daily moves across Dingolfing, Leipzig, Regensburg, and Oxford."
+    }
+  ],
+  "sources_used": [
+    "https://www.press.bmwgroup.com/global/article/detail/T0462233EN?language=en",
+    "https://www.automotiveworld.com/news/bmw-group-moves-one-million-cars-without-drivers-in-plants",
+    "https://embotech.ai/news/1-million-driverless-vehicles"
+  ]
+}
