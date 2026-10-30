@@ -1,0 +1,62 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-gothic-myth-crossovers",
+  "strongest_angle": "Examining literary crossovers between Sherlock Holmes and Dracula through academic analyses and pastiche novels from authors like Loren D. Estleman and Christian Klaver.",
+  "key_facts": [
+    {
+      "fact": "Loren D. Estleman wrote the novel Sherlock Holmes vs Dracula or the Adventure of the Sanguinary Count, analyzed in essays hosted on Diva Portal.",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+      "source_name": "Diva Portal",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Author Christian Klaver featured Count Dracula arriving at Baker Street to seek Sherlock Holmes's help in his Classified Dossier series.",
+      "source_url": "https://sherlock.kristoferhallen.com/sherlock-meets",
+      "source_name": "Kristofer Hallen",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Daniel Cottom published an analysis of Sherlock Holmes Meets Dracula within the cultural world of the late nineteenth century via University of Pennsylvania Press.",
+      "source_url": "https://doi.org/10.9783/9780812208078.229",
+      "source_name": "University of Pennsylvania Press",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Sherlockian.net documents Arthur Conan Doyle's original story The Sussex Vampire where Sherlock Holmes investigates a case involving suspected supernatural elements.",
+      "source_url": "https://sherlockian.net/investigating/vampire-stories",
+      "source_name": "Sherlockian.net",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "Christian Klaver",
+      "kind": "person"
+    },
+    {
+      "name": "Daniel Cottom",
+      "kind": "person"
+    },
+    {
+      "name": "Baker Street",
+      "kind": "place"
+    },
+    {
+      "name": "University of Pennsylvania Press",
+      "kind": "organization"
+    }
+  ]
+}

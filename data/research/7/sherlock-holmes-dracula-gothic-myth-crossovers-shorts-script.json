@@ -1,0 +1,92 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-gothic-myth-crossovers",
+  "format": "shorts",
+  "hook": "Did Count Dracula arrive at Baker Street to hire Sherlock Holmes?",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-5s",
+      "voiceover": "Did Count Dracula arrive at Baker Street to hire Sherlock Holmes?",
+      "visual_cue": "Historical 19th-century London street illustration showing Baker Street in fog.",
+      "sfx_cue": "Creaking door and approaching footsteps.",
+      "b_roll": [
+        "Baker Street historical illustration",
+        "Foggy London streets 19th century engraving"
+      ],
+      "animation_cue": "Fade in from black with slow zoom on the doorway.",
+      "transition_out": "Hard cut to interior study.",
+      "text_overlay": {
+        "text": "Dracula Arrives at Baker Street"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "5-20s",
+      "voiceover": "Author Christian Klaver's Classified Dossier series features this exact meeting. Novelist Loren D. Estleman penned Sherlock Holmes vs Dracula or the Adventure of the Sanguinary Count. Where did these Victorian literary crossovers begin?",
+      "visual_cue": "Vintage book covers and archival manuscript pages displayed on a wooden desk.",
+      "sfx_cue": "Page turning sound.",
+      "b_roll": [
+        "Victorian book cover vintage print",
+        "Archival manuscript paper texture"
+      ],
+      "animation_cue": "Slide right to reveal manuscript text.",
+      "transition_out": "Smooth dissolve to academic papers.",
+      "text_overlay": {
+        "text": "Victorian Literary Crossovers"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "20-30s",
+      "voiceover": "However, University of Pennsylvania Press published Daniel Cottom analyzing Sherlock Holmes Meets Dracula.",
+      "visual_cue": "University press publication title page in academic typography.",
+      "sfx_cue": "Subtle paper rustle.",
+      "b_roll": [
+        "University press publication title page"
+      ],
+      "animation_cue": "Zoom in on publication title.",
+      "transition_out": "Fast push-in to text excerpt.",
+      "text_overlay": {
+        "text": "University Press Analysis"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "30-45s",
+      "voiceover": "Sherlockian.net documents Arthur Conan Doyle writing The Sussex Vampire where Holmes investigated suspected supernatural elements. These gothic myth crossovers unite two iconic literary worlds.",
+      "visual_cue": "Archival photograph of Arthur Conan Doyle and early vampire fiction illustrations.",
+      "sfx_cue": "Clock ticking softly in the background.",
+      "b_roll": [
+        "Arthur Conan Doyle archival photograph",
+        "Early vampire fiction illustration"
+      ],
+      "animation_cue": "Pan across historical photographs.",
+      "transition_out": "Slow fade to final card.",
+      "text_overlay": {
+        "text": "Rational Detection Meets Gothic Horror"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "45-50s",
+      "voiceover": "Count Dracula met Sherlock Holmes in Victorian fiction.",
+      "visual_cue": "Classic silhouette of Sherlock Holmes with magnifying glass against a gothic archway.",
+      "sfx_cue": "Low atmospheric drone ending on a sharp note.",
+      "b_roll": [
+        "Classic detective silhouette illustration"
+      ],
+      "animation_cue": "Hold static frame with subtle vignette.",
+      "transition_out": "Fade to black.",
+      "text_overlay": {
+        "text": "Sherlock Holmes vs Dracula"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+    "https://sherlock.kristoferhallen.com/sherlock-meets",
+    "https://doi.org/10.9783/9780812208078.229",
+    "https://sherlockian.net/investigating/vampire-stories"
+  ]
+}
