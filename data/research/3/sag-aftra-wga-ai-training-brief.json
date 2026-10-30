@@ -1,0 +1,44 @@
+{
+  "topic_slug": "sag-aftra-wga-ai-training-brief",
+  "strongest_angle": "Major Hollywood labor unions including SAG-AFTRA and the Writers Guild of America jointly filed an amicus brief urging a federal judge to reject fair-use exemptions for AI model training.",
+  "key_facts": [
+    {
+      "fact": "SAG-AFTRA, the American Federation of Music, and the Writers Guild of America East and West jointly filed an amicus brief on a Thursday.",
+      "source_url": "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Hollywood unions filed their amicus brief urging a federal judge to reject fair use exemptions for training AI models in an ongoing copyright battle involving OpenAI.",
+      "source_url": "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The joint amicus brief was also reported and syndicated through platforms like Yahoo News concerning the OpenAI copyright battle.",
+      "source_url": "https://www.yahoo.com/news/politics/articles/sag-aftra-wga-afm-ask-001306706.html",
+      "source_name": "Yahoo News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "SAG-AFTRA",
+      "kind": "organization"
+    },
+    {
+      "name": "Writers Guild of America",
+      "kind": "organization"
+    },
+    {
+      "name": "American Federation of Music",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    }
+  ]
+}

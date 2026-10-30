@@ -1,0 +1,69 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sag-aftra-wga-ai-training-brief",
+  "format": "shorts",
+  "hook": "SAG-AFTRA and Writers Guild of America just dropped a bombshell amicus brief against OpenAI!",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "SAG-AFTRA and Writers Guild of America just dropped a bombshell amicus brief against OpenAI!",
+      "b_roll": [
+        "Exterior shot of a federal courthouse exterior in daylight.",
+        "Close up of union documents resting on a wooden desk."
+      ],
+      "text_overlay": {
+        "text": "HOLLYWOOD UNIONS WARN JUDGE"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Thursday, SAG-AFTRA filed a joint amicus brief against OpenAI in court. Writers Guild of America and American Federation of Music joined the legal filing. Why are 3 major Hollywood unions fighting OpenAI in this copyright battle?",
+      "b_roll": [
+        "Legal paperwork showing court filing stamps.",
+        "Archival footage of guild members meeting outside.",
+        "Close up of a judge's gavel on a wooden sound block."
+      ],
+      "text_overlay": {
+        "text": "JOINT AMICUS BRIEF FILED"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The joint legal filing urges a federal judge to reject fair use exemptions.",
+      "b_roll": [
+        "Wide shot of federal court attorneys reviewing briefs.",
+        "Detailed view of copyright law documents."
+      ],
+      "text_overlay": {
+        "text": "FAIR USE EXEMPTIONS CHALLENGED"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "OpenAI now faces 3 major Hollywood unions demanding the rejection of fair use. OpenAI faces this copyright battle over training models without creator permission.",
+      "b_roll": [
+        "Company logo displayed outside corporate headquarters.",
+        "News broadcast monitors showing legal headlines.",
+        "Stacked legal briefs on a courtroom podium."
+      ],
+      "text_overlay": {
+        "text": "OPENAI COPYRIGHT DISPUTE"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the Yahoo News report on SAG-AFTRA fighting OpenAI.",
+      "b_roll": [
+        "Exterior view of SAG-AFTRA building signage.",
+        "Official court seal on federal documents."
+      ],
+      "text_overlay": {
+        "text": "LEGAL BATTLE CONTINUES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+    "https://www.yahoo.com/news/politics/articles/sag-aftra-wga-afm-ask-001306706.html"
+  ]
+}
