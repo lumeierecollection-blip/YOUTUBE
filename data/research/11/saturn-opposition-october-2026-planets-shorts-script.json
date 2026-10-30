@@ -1,0 +1,73 @@
+{
+  "channel_id": "11",
+  "topic_slug": "saturn-opposition-october-2026-planets",
+  "format": "shorts",
+  "hook": "On October 4, Saturn reaches opposition, meaning the planet aligns with Earth for perfect viewing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "On October 4, Saturn reaches opposition, meaning the planet aligns with Earth for perfect viewing.",
+      "visual_cue": "High-resolution NASA image of Saturn with visible rings against a dark starfield.",
+      "sfx_cue": "Deep, resonant cinematic space chime.",
+      "b_roll": [
+        "NASA public domain image of Saturn"
+      ],
+      "text_overlay": {
+        "text": "Saturn Opposition: Oct 4"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Saturn settles into the constellation Cetus, making the planet visible throughout the entire night. But what other rare celestial events will share the October sky?",
+      "visual_cue": "Star chart animation highlighting the constellation Cetus and Saturn's location.",
+      "sfx_cue": "Low hum of a planetarium projector sound.",
+      "b_roll": [
+        "Public domain star map of Cetus constellation"
+      ],
+      "text_overlay": {
+        "text": "Visible all night"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the sky gets even busier as the Moon hides Jupiter during a rare lunar occultation.",
+      "visual_cue": "Simulation of the Moon passing in front of the planet Jupiter.",
+      "sfx_cue": "Soft, ethereal synth swell.",
+      "b_roll": [
+        "NASA simulation of lunar occultation"
+      ],
+      "text_overlay": {
+        "text": "Moon hides Jupiter"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "By October 21, the Orionid meteor shower peaks, bringing debris from Halley's Comet across our atmosphere. You'll see the Moon, Jupiter, and Saturn appearing across the night sky throughout this busy October.",
+      "visual_cue": "Time-lapse footage of meteors streaking across a night sky.",
+      "sfx_cue": "Subtle whoosh sound for meteor trails.",
+      "b_roll": [
+        "Public domain footage of meteor shower"
+      ],
+      "text_overlay": {
+        "text": "Orionid Peak: Oct 21"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Mark October 21 on your calendar to catch the peak of the Orionid meteor shower.",
+      "visual_cue": "Slow zoom out from Saturn to show the vastness of the solar system.",
+      "sfx_cue": "Fading echo of space atmosphere.",
+      "b_roll": [
+        "NASA public domain imagery of deep space"
+      ],
+      "text_overlay": {
+        "text": "Spectators of the cosmos"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026",
+    "https://www.rmg.co.uk/stories/space-astronomy/astronomy/night-sky-highlights-october-2026",
+    "https://www.space.com/stargazing/jupiter-disappears-behind-the-moon-saturn-shines-at-its-best-and-mars-meets-the-beehive-october-2026-planet-guide"
+  ]
+}

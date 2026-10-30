@@ -1,0 +1,68 @@
+{
+  "topic_slug": "saturn-opposition-october-2026-planets",
+  "strongest_angle": "October 2026 offers a rare alignment of planetary events, headlined by Saturn reaching opposition on October 4, providing optimal viewing conditions for the ringed planet throughout the entire night.",
+  "key_facts": [
+    {
+      "fact": "On October 4, 2026, Saturn reaches opposition in the constellation Cetus, making the planet visible throughout the entire night.",
+      "source_url": "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026",
+      "source_name": "Astronomy.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Orionid meteor shower, which originates from Halley's Comet, is active during October 2026 with peak viewing opportunities occurring on October 21.",
+      "source_url": "https://www.rmg.co.uk/stories/space-astronomy/astronomy/night-sky-highlights-october-2026",
+      "source_name": "Royal Observatory Greenwich",
+      "confidence": "high"
+    },
+    {
+      "fact": "In October 2026, observers can witness a rare lunar occultation where the Moon passes in front of the planet Jupiter.",
+      "source_url": "https://www.space.com/stargazing/jupiter-disappears-behind-the-moon-saturn-shines-at-its-best-and-mars-meets-the-beehive-october-2026-planet-guide",
+      "source_name": "Space.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Date of Saturn opposition",
+      "value": 4,
+      "unit": "October",
+      "source_url": "https://www.astronomy.com/observing/the-sky-today-sunday-october-4-2026"
+    },
+    {
+      "label": "Date of Orionid meteor shower peak",
+      "value": 21,
+      "unit": "October",
+      "source_url": "https://www.rmg.co.uk/stories/space-astronomy/astronomy/night-sky-highlights-october-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Saturn",
+      "kind": "object"
+    },
+    {
+      "name": "Jupiter",
+      "kind": "object"
+    },
+    {
+      "name": "Mars",
+      "kind": "object"
+    },
+    {
+      "name": "Cetus",
+      "kind": "place"
+    },
+    {
+      "name": "Halley's Comet",
+      "kind": "object"
+    },
+    {
+      "name": "Moon",
+      "kind": "object"
+    },
+    {
+      "name": "Beehive cluster",
+      "kind": "object"
+    }
+  ]
+}
