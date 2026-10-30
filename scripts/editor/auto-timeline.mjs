@@ -20,6 +20,7 @@ import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
 import { scriptSentences } from "./captions.mjs";
+import { resolveChannel } from "../lib/channel-lookup.mjs";
 import { conceptQueries, searchCommons, downloadPhoto, defaultAsk } from "./concept-photo.mjs";
 
 const require = createRequire(import.meta.url);
@@ -158,8 +159,7 @@ async function main() {
   const channelId = get("channel");
   if (!channelId) throw new Error("usage: auto-timeline.mjs --channel <id> [--script <path>] [--github-env]");
   const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf8")).channels;
-  const channel = channels.find((c) => String(c.id) === String(channelId));
-  if (!channel) throw new Error(`channel ${channelId} is not in config/channels.json`);
+  const channel = resolveChannel(channelId, channels);
   const scripts = get("script") ? [resolve(ROOT, get("script"))] : findScripts(channelId);
   if (!scripts.length) throw new Error(`channel ${channelId}: no script with a voiceover to build a timeline for`);
 
