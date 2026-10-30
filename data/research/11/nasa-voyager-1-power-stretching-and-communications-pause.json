@@ -1,0 +1,53 @@
+{
+  "topic_slug": "nasa-voyager-1-power-stretching-and-communications-pause",
+  "strongest_angle": "NASA's Voyager team successfully stretched the diminishing power supply of Voyager 1 in September 2026 via the Big Bang operation and resolved an unexpected 48-hour communication pause on October 20, 2026.",
+  "key_facts": [
+    {
+      "fact": "In early September 2026, engineers completed Voyager 1's Big Bang power-saving effort by turning off three devices and substituting them with three lower-power alternatives simultaneously.",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+      "source_name": "Orbital Wire",
+      "confidence": "high"
+    },
+    {
+      "fact": "On October 20, 2026, an unexpected loss of communication with Voyager 1 resolved itself after 48 hours before the team sent commands to the spacecraft.",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+      "source_name": "NASA Jet Propulsion Laboratory",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA's Voyager team successfully completed a months-long effort to conserve the diminishing power supply of the Voyager 1 spacecraft in interstellar space.",
+      "source_url": "https://astronews.com.tr/en/news/b7c3d2be5057",
+      "source_name": "Astro News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Communication pause duration",
+      "value": 48,
+      "unit": "hours",
+      "source_url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+    },
+    {
+      "label": "Devices turned off and replaced simultaneously",
+      "value": 3,
+      "unit": "devices",
+      "source_url": "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Voyager 1",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Big Bang",
+      "kind": "object"
+    }
+  ]
+}

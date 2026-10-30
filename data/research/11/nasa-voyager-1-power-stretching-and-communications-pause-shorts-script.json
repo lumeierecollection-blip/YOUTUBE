@@ -1,0 +1,79 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-voyager-1-power-stretching-and-communications-pause",
+  "format": "shorts",
+  "hook": "Voyager 1 fell silent in deep space for 48 hours, but then it woke up.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "Voyager 1 fell silent in deep space for 48 hours, but then it woke up.",
+      "visual_cue": "Artist impression of Voyager 1 in deep space.",
+      "sfx_cue": "Deep space hum fading into a sharp digital ping.",
+      "b_roll": [
+        "NASA illustration of Voyager 1 probe"
+      ],
+      "text_overlay": {
+        "text": "Silence in Deep Space"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:15",
+      "voiceover": "On October 20, 2026, NASA lost contact with the craft. How did the team resolve this unexpected pause without sending new commands?",
+      "visual_cue": "NASA logo and mission control room graphics.",
+      "sfx_cue": "Low frequency data stream sound.",
+      "b_roll": [
+        "NASA Jet Propulsion Laboratory control room",
+        "Deep space star field"
+      ],
+      "text_overlay": {
+        "text": "Unexpected Loss of Signal"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:15-00:22",
+      "voiceover": "Except the team had already completed the Big Bang power-saving effort in early September.",
+      "visual_cue": "Diagram showing power management systems.",
+      "sfx_cue": "Mechanical clicking sound of switches.",
+      "b_roll": [
+        "Engineering schematic of Voyager 1"
+      ],
+      "text_overlay": {
+        "text": "Big Bang Effort"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:22-00:35",
+      "voiceover": "Engineers successfully turned off 3 devices to save energy. The spacecraft stabilized itself, proving its resilience in the void of interstellar space.",
+      "visual_cue": "Graphic showing 3 devices powering down and 3 replacements powering up.",
+      "sfx_cue": "Digital pulse rhythm.",
+      "b_roll": [
+        "Voyager 1 internal system visualization",
+        "Interstellar space background"
+      ],
+      "text_overlay": {
+        "text": "3 Devices Replaced"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:35-00:40",
+      "voiceover": "Even in the cold dark, Voyager 1 continues its long journey.",
+      "visual_cue": "Cinematic shot of the probe moving away into a star field.",
+      "sfx_cue": "Ethereal wind-like space sound.",
+      "b_roll": [
+        "Voyager 1 moving through space"
+      ],
+      "text_overlay": {
+        "text": "A Journey Continues"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://orbital-wire.com/agency-program-news/nasa-restores-contact-voyager-1-silence",
+    "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause"
+  ]
+}
