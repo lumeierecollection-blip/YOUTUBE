@@ -1,0 +1,82 @@
+{
+  "topic_slug": "2026-super-el-nino-coastal-flooding",
+  "strongest_angle": "The 2026 Super El Niño is driving record-breaking sea-surface temperatures in the Pacific, causing unprecedented king tide flooding across Southern California coastal communities.",
+  "key_facts": [
+    {
+      "fact": "The Bureau of Meteorology reported that average weekly sea-surface temperatures in the central Pacific have reached their highest level on record.",
+      "source_url": "https://www.bbc.com/weather/articles/cmlye0d7q7zno",
+      "source_name": "BBC Weather",
+      "confidence": "high"
+    },
+    {
+      "fact": "High tides in October 2026 caused flooding in business districts in Newport Beach and along the Pacific Coast Highway in Sunset Beach.",
+      "source_url": "https://www.latimes.com/california/story/2026-10-27/la-me-heat-california-coast-water",
+      "source_name": "Los Angeles Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2026 El Niño Pacific Ocean temperatures have surpassed the equivalent measurements recorded during the historic 1997 and 2015 events.",
+      "source_url": "https://news.un.org/en/story/2026/10/1168537",
+      "source_name": "UN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists estimate that king tides could rise another one to two feet in Orange County coastal neighborhoods during the 2026 El Niño event.",
+      "source_url": "https://www.latimes.com/california/story/2026-10-30/la-me-floods-battle-oc-el-nino",
+      "source_name": "Los Angeles Times",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of historic El Niño event",
+      "value": 1997,
+      "unit": "year",
+      "source_url": "https://news.un.org/en/story/2026/10/1168537"
+    },
+    {
+      "label": "Year of historic El Niño event",
+      "value": 2015,
+      "unit": "year",
+      "source_url": "https://news.un.org/en/story/2026/10/1168537"
+    },
+    {
+      "label": "Potential rise in king tide height",
+      "value": 1,
+      "unit": "foot",
+      "source_url": "https://www.latimes.com/california/story/2026-10-30/la-me-floods-battle-oc-el-nino"
+    },
+    {
+      "label": "Potential rise in king tide height",
+      "value": 2,
+      "unit": "feet",
+      "source_url": "https://www.latimes.com/california/story/2026-10-30/la-me-floods-battle-oc-el-nino"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Bureau of Meteorology",
+      "kind": "organization"
+    },
+    {
+      "name": "Newport Beach",
+      "kind": "place"
+    },
+    {
+      "name": "Sunset Beach",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Coast Highway",
+      "kind": "object"
+    },
+    {
+      "name": "Orange County",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    }
+  ]
+}

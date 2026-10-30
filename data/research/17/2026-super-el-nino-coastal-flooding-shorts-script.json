@@ -1,0 +1,76 @@
+{
+  "channel_id": "17",
+  "topic_slug": "2026-super-el-nino-coastal-flooding",
+  "format": "shorts",
+  "hook": "The Pacific Ocean is hitting record-breaking temperatures, hotter than any point in recorded history.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Pacific Ocean is hitting record-breaking temperatures, hotter than any point in recorded history.",
+      "visual_cue": "Satellite imagery showing thermal anomalies in the central Pacific Ocean.",
+      "sfx_cue": "Distant sound of crashing waves building in intensity.",
+      "b_roll": [
+        "NASA Earth Observatory satellite global sea surface temperature map"
+      ],
+      "text_overlay": {
+        "text": "Record Pacific Heat"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, the Bureau of Meteorology confirmed record-breaking sea-surface temperatures across the central Pacific. How is this heat impacting California?",
+      "visual_cue": "Animated timeline comparing 1997, 2015, and 2026 temperature markers.",
+      "sfx_cue": "Low frequency hum that pulses with the dates.",
+      "b_roll": [
+        "Bureau of Meteorology sea surface temperature chart",
+        "Historical climate data graph overlay"
+      ],
+      "text_overlay": {
+        "text": "2026 vs. 1997 & 2015"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This heat is driving unprecedented king tide flooding across Southern California coastal communities.",
+      "visual_cue": "Wide shot of high water levels encroaching on coastal infrastructure.",
+      "sfx_cue": "Sound of rushing water and urban traffic noise.",
+      "b_roll": [
+        "Footage of Newport Beach business district flooding"
+      ],
+      "text_overlay": {
+        "text": "Orange County King Tides"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "King tides will rise another one to two feet in Orange County coastal neighborhoods.",
+      "visual_cue": "Map showing the Pacific Coast Highway with flood hazard zones highlighted.",
+      "sfx_cue": "Sound of sirens in the distance.",
+      "b_roll": [
+        "Sunset Beach coastal map",
+        "Pacific Coast Highway flood footage"
+      ],
+      "text_overlay": {
+        "text": "1 to 2 Feet Rise Expected"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Bureau of Meteorology data confirms this 2026 event is the hottest on record.",
+      "visual_cue": "Slow zoom out from a calm but rising shoreline.",
+      "sfx_cue": "Sound of ocean waves fading out.",
+      "b_roll": [
+        "Pacific Ocean shoreline at sunset"
+      ],
+      "text_overlay": {
+        "text": "2026 Pacific Super El Niño"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/weather/articles/cmlye0d7q7zno",
+    "https://www.latimes.com/california/story/2026-10-27/la-me-heat-california-coast-water",
+    "https://news.un.org/en/story/2026/10/1168537",
+    "https://www.latimes.com/california/story/2026-10-30/la-me-floods-battle-oc-el-nino"
+  ]
+}
