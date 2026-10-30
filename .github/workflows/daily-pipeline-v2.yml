@@ -1357,6 +1357,14 @@ jobs:
             echo "::warning::no SFX verdicts from setup ΓÇö no SFX will play this board"
           fi
 
+      # Editor timeline, built automatically from this run's script, research and voiceover (scripts/editor/auto-timeline.mjs): one
+      # scene per spoken sentence, timed by the voiceover; a verified Wikimedia photo of a named entity, else a figure card (numbers
+      # the research states) or a statement card. It exports EDITOR_TIMELINE_MAP for the render step. With EDITOR_STRICT=1 a script
+      # that cannot get a valid timeline FAILS this job loudly; it never falls back to another renderer.
+      - name: Build editor timeline
+        if: steps.status.outputs.skip != 'true'
+        run: node scripts/editor/auto-timeline.mjs --channel "${{ matrix.channel_id }}" --github-env
+
       - name: Render + QA
         if: steps.status.outputs.skip != 'true'
         env:
