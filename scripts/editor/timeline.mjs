@@ -77,16 +77,20 @@ function imageLayer({ id, assetId, rect, fit, inF, outF, z, scene }) {
     brightness: scene.filter?.brightness ?? 1,
     blur: scene.filter?.blur ?? 0,
   };
+  // scene.zoom (default 0) strengthens or softens the push; scene.fade (frames) fades the scene in from the background instead of cutting.
+  // Both are chosen per video by scripts/editor/auto-plan.mjs so that no two videos move the same way.
+  const zoom = Number(scene.zoom || 0);
+  const fadeF = Math.min(Math.max(0, Math.round(Number(scene.fade || 0))), Math.floor(span / 3));
   const keyframes = {
-    opacity: [{ f: 0, v: 1 }, { f: span, v: 1 }],
+    opacity: fadeF >= 2 ? [{ f: 0, v: 0, e: "outCubic" }, { f: fadeF, v: 1 }, { f: span, v: 1 }] : [{ f: 0, v: 1 }, { f: span, v: 1 }],
     scale:
       scene.motion === "out"
-        ? [{ f: 0, v: 1.1, e: "inOutSine" }, { f: span, v: 1.02 }]
+        ? [{ f: 0, v: 1.1 + zoom, e: "inOutSine" }, { f: span, v: 1.02 }]
         : scene.motion === "pan-left"
-          ? [{ f: 0, v: 1.1, e: "inOutSine" }, { f: span, v: 1.15 }]
+          ? [{ f: 0, v: 1.1, e: "inOutSine" }, { f: span, v: 1.15 + zoom }]
           : scene.motion === "pan-right"
-            ? [{ f: 0, v: 1.15, e: "inOutSine" }, { f: span, v: 1.1 }]
-            : [{ f: 0, v: 1.02, e: "inOutSine" }, { f: span, v: 1.1 }],
+            ? [{ f: 0, v: 1.15 + zoom, e: "inOutSine" }, { f: span, v: 1.1 }]
+            : [{ f: 0, v: 1.02, e: "inOutSine" }, { f: span, v: 1.1 + zoom }],
   };
   if (scene.motion === "pan-left") {
     props.x = 0.025;

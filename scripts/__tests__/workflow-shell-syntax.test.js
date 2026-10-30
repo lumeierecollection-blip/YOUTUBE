@@ -60,6 +60,20 @@ test("the digest step's embedded JS holds no single quote (it is single-quoted b
   assert.ok(!m[1].includes("'"), `a single quote inside node -e '...' ends the bash quote: ${(m[1].match(/.{0,30}'.{0,30}/) || [""])[0]}`);
 });
 
+// Runs 40712679484 / 40899483670: no render passed QA, `ls approved-review/` failed and the step exited before writing any
+// /tmp/publish-out-<ch>.log. The digest treats "no log" as "no OAuth credentials configured" - wrong: those channels had credentials.
+test("the publish step leaves each channel a log when approved-review/ is missing, so the digest cannot blame credentials", () => {
+  const step = pipeline.find((s) => /Publish approved-review videos/.test(s.where));
+  assert.ok(step, "publish step not found");
+  const missing = step.script.match(/ls -la data\/renders\/approved-review\/ \|\| \{([\s\S]*?)\n\s*\}/);
+  assert.ok(missing, "the missing approved-review/ branch moved - revisit this test");
+  assert.match(missing[1], /publish-out-/, "the missing-dir branch must write /tmp/publish-out-<ch>.log");
+  assert.match(missing[1], /No approved-review\/ or approved\/ renders found/);
+  assert.match(missing[1], /exit 1/, "a run with nothing to publish must still fail loudly");
+  const digest = pipeline.find((s) => /Write the daily upload digest/.test(s.where));
+  assert.match(digest.script, /No approved-review\\\/ or approved\\\/ renders found/, "digest regex for the message the publish step writes");
+});
+
 test("the digest JS itself is valid JavaScript", () => {
   const step = pipeline.find((s) => /Write the daily upload digest/.test(s.where));
   const js = step.script.match(/node -e '([\s\S]*)'\s*$/)[1];
