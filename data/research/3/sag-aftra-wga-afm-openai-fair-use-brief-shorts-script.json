@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sag-aftra-wga-afm-openai-fair-use-brief",
+  "format": "shorts",
+  "hook": "OpenAI is training AI models on creative work, but SAG-AFTRA is fighting back in court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "OpenAI is training AI models on creative work, but SAG-AFTRA is fighting back in court.",
+      "text_overlay": {
+        "text": "Unlicensed AI Training"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Can a judge stop OpenAI from using unlicensed content under a broad fair use exemption?",
+      "text_overlay": {
+        "text": "Legal Challenge"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Writers Guild of America argues this training harms individual professionals rather than just companies.",
+      "text_overlay": {
+        "text": "Beyond the Companies"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "SAG-AFTRA and other unions filed a 34-page brief detailing how unlicensed training hurts human creators. The American Federation of Musicians joined this legal filing to block OpenAI from using work.",
+      "text_overlay": {
+        "text": "Protecting Creators"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These labor unions now urge a federal judge to reject OpenAI's request for fair use.",
+      "text_overlay": {
+        "text": "Awaiting Decision"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://digestai.news/story/sag-aftra-and-writers-guilds-ask-judge-to-reject-fair-use-exemption-fo",
+    "https://newsopenai.net/policy/sag-aftra-wga-afm-ask-judge-to-reject-fair-use-exemption-in-openai"
+  ]
+}
