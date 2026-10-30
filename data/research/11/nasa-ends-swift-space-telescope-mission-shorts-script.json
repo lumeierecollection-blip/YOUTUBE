@@ -1,0 +1,73 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-ends-swift-space-telescope-mission",
+  "format": "shorts",
+  "hook": "The Neil Gehrels Swift Observatory is falling toward Earth after 21 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Neil Gehrels Swift Observatory is falling toward Earth after 21 years.",
+      "visual_cue": "CGI animation of the satellite orbiting Earth.",
+      "sfx_cue": "Low atmospheric hum.",
+      "b_roll": [
+        "Public domain footage of Earth from space"
+      ],
+      "text_overlay": {
+        "text": "Mission Ended"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "NASA concluded this science mission as the spacecraft dips below 171 miles of altitude. A commercial rescue attempt to reboost the telescope recently failed to stabilize it. How low can it go?",
+      "visual_cue": "Data graphic showing altitude decreasing.",
+      "sfx_cue": "Mechanical ticking sound.",
+      "b_roll": [
+        "NASA animation of satellite orbital decay"
+      ],
+      "text_overlay": {
+        "text": "171 miles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the telescope performed its final observation only days ago, on October 20, 2026.",
+      "visual_cue": "Close up of telescope components in space.",
+      "sfx_cue": "Soft chime.",
+      "b_roll": [
+        "NASA public domain image of Swift observatory"
+      ],
+      "text_overlay": {
+        "text": "Final data: Oct 20, 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "NASA officially shut down the spacecraft as its orbit continues to decay. This mission launched in November 2004, and now faces imminent atmospheric reentry. Gravity will soon reclaim this piece of history.",
+      "visual_cue": "Telescope drifting in dark space.",
+      "sfx_cue": "Fading orchestral swell.",
+      "b_roll": [
+        "Archive footage of 2004 launch"
+      ],
+      "text_overlay": {
+        "text": "Atmospheric Reentry"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "It remains only 171 miles above our home planet today.",
+      "visual_cue": "Earth glowing on the horizon.",
+      "sfx_cue": "Deep bass note.",
+      "b_roll": [
+        "View of Earth from ISS"
+      ],
+      "text_overlay": {
+        "text": "171 miles"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+    "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+    "https://spacenews.com/nasas-swift-space-telescope-ends-mission"
+  ]
+}
