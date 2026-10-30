@@ -1,0 +1,62 @@
+{
+  "channel_id": "4",
+  "topic_slug": "suleymanli-meshkovs-bundesliga-2026-waiting-moves",
+  "format": "shorts",
+  "hook": "Stunning upsets shook the opening round of the 2026-27 German Bundesliga!",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Stunning upsets shook the opening round of the 2026-27 German Bundesliga!",
+      "b_roll": [
+        "chessboard overview"
+      ],
+      "text_overlay": {
+        "text": "Favorites win every time"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Grandmaster Aydin Suleymanli played with 2679 Elo against Grandmaster Nikita Meshkovs at 2521 Elo. Opening round matches started with the Queen's Indian Defense. How many moves decided the board?",
+      "b_roll": [
+        "rating comparison chart"
+      ],
+      "text_overlay": {
+        "text": "German Bundesliga round one"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Nikita Meshkovs fought hard, but 41 moves ended the game.",
+      "b_roll": [
+        "move counter graphic"
+      ],
+      "text_overlay": {
+        "text": "41 moves played"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Grandmaster Aydin Suleymanli defeated Grandmaster Nikita Meshkovs with a score of 1-0. The Queen's Indian Defense variation featured the Petrosian Attack.",
+      "b_roll": [
+        "final score display"
+      ],
+      "text_overlay": {
+        "text": "Score: 1 to 0"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Grandmaster Aydin Suleymanli claimed 1 point.",
+      "b_roll": [
+        "victory board layout"
+      ],
+      "text_overlay": {
+        "text": "German Bundesliga 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://chessmind.ai/events/german-bundesliga-202627-schachbundesliga/main/round-1/suleymanli-vs-meshkovs",
+    "https://www.partida.live/en/partida/dppuxRu1/qIM6K2D8"
+  ]
+}

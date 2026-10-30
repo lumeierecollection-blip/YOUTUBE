@@ -1,0 +1,75 @@
+{
+  "topic_slug": "suleymanli-meshkovs-bundesliga-2026-waiting-moves",
+  "strongest_angle": "Grandmaster Aydin Suleymanli defeated Grandmaster Nikita Meshkovs with a score of 1-0 in 41 moves during the opening round of the 2026-27 German Bundesliga using the Queen's Indian Defense.",
+  "key_facts": [
+    {
+      "fact": "Grandmaster Aydin Suleymanli defeated Grandmaster Nikita Meshkovs with a score of 1-0 in 41 moves during the opening round of the 2026-27 German Bundesliga.",
+      "source_url": "https://chessmind.ai/events/german-bundesliga-202627-schachbundesliga/main/round-1/suleymanli-vs-meshkovs",
+      "source_name": "ChessMind",
+      "confidence": "high"
+    },
+    {
+      "fact": "Grandmaster Aydin Suleymanli held an Elo rating of 2679 while playing as White against Grandmaster Nikita Meshkovs rated 2521 playing as Black.",
+      "source_url": "https://www.partida.live/en/partida/dppuxRu1/qIM6K2D8",
+      "source_name": "Partida",
+      "confidence": "high"
+    },
+    {
+      "fact": "The game between Grandmaster Aydin Suleymanli and Grandmaster Nikita Meshkovs featured the Queen's Indian Defense: Kasparov-Petrosian Variation, Petrosian Attack opening code E12.",
+      "source_url": "https://chessmind.ai/events/german-bundesliga-202627-schachbundesliga/main/round-1/suleymanli-vs-meshkovs",
+      "source_name": "ChessMind",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Suleymanli vs Meshkovs Game Result White Wins",
+      "value": 1,
+      "unit": "score",
+      "source_url": "https://www.partida.live/en/partida/dppuxRu1/qIM6K2D8"
+    },
+    {
+      "label": "Total Board Count in Match",
+      "value": 50,
+      "unit": "board",
+      "source_url": "https://www.partida.live/en/partida/dppuxRu1/qIM6K2D8"
+    },
+    {
+      "label": "White Elo Rating Aydin Suleymanli",
+      "value": 2679,
+      "unit": "Elo",
+      "source_url": "https://www.partida.live/en/partida/dppuxRu1/qIM6K2D8"
+    },
+    {
+      "label": "Black Elo Rating Nikita Meshkovs",
+      "value": 2521,
+      "unit": "Elo",
+      "source_url": "https://www.partida.live/en/partida/dppuxRu1/qIM6K2D8"
+    },
+    {
+      "label": "Total Moves in the Game",
+      "value": 41,
+      "unit": "moves",
+      "source_url": "https://chessmind.ai/events/german-bundesliga-202627-schachbundesliga/main/round-1/suleymanli-vs-meshkovs"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Aydin Suleymanli",
+      "kind": "person"
+    },
+    {
+      "name": "Nikita Meshkovs",
+      "kind": "person"
+    },
+    {
+      "name": "German Bundesliga",
+      "kind": "organization"
+    },
+    {
+      "name": "Queen's Indian Defense",
+      "kind": "object"
+    }
+  ]
+}
