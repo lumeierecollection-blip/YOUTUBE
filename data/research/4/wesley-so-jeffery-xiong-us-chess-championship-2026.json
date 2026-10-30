@@ -1,0 +1,122 @@
+{
+  "topic_slug": "wesley-so-jeffery-xiong-us-chess-championship-2026",
+  "strongest_angle": "Break down the round two encounter at the 2026 U.S. Chess Championship in Saint Louis where Grandmaster Wesley So defeated Grandmaster Jeffery Xiong despite an inferior position.",
+  "key_facts": [
+    {
+      "fact": "Grandmaster Wesley So defeated Grandmaster Jeffery Xiong with the white pieces at board 6 during round two of the 2026 U.S. Chess Championship held on October 10, 2026, in Saint Louis, USA, achieving a 1-0 result.",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+      "source_name": "Saint Louis Chess Club",
+      "confidence": "high"
+    },
+    {
+      "fact": "Grandmaster Wesley So entered round two of the 2026 U.S. Chess Championship with an Elo rating of 2770, playing against Grandmaster Jeffery Xiong who held a rating of 2656.",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+      "source_name": "Saint Louis Chess Club",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chess publications noted that Grandmaster Wesley So was much worse against Grandmaster Jeffery Xiong during round two before executing a turnaround to join Awonder Liang with a 2/2 perfect score.",
+      "source_url": "https://www.chess.com/news/view/2026-us-chess-championships-round-2",
+      "source_name": "Chess.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chess analysts highlighted a specific tactical puzzle moment from round two after move 21...Nxf4 where a single white knight move attacked both black rooks simultaneously in Saint Louis.",
+      "source_url": "https://chessbotbuddies.org/news/so-xiong-2026",
+      "source_name": "ChessBotBuddies",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Round Number",
+      "value": 2,
+      "unit": "round",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "White Elo Rating",
+      "value": 2770,
+      "unit": "Elo points",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Black Elo Rating",
+      "value": 2656,
+      "unit": "Elo points",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Board Number",
+      "value": 6,
+      "unit": "board",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Result Score White",
+      "value": 1,
+      "unit": "score",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Result Score Black",
+      "value": 0,
+      "unit": "score",
+      "source_url": "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2"
+    },
+    {
+      "label": "Tournament Score",
+      "value": 2,
+      "unit": "points",
+      "source_url": "https://www.chess.com/news/view/2026-us-chess-championships-round-2"
+    },
+    {
+      "label": "Round Two Score",
+      "value": 2,
+      "unit": "rounds",
+      "source_url": "https://www.chess.com/news/view/2026-us-chess-championships-round-2"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Wesley So",
+      "kind": "person"
+    },
+    {
+      "name": "Jeffery Xiong",
+      "kind": "person"
+    },
+    {
+      "name": "Saint Louis",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Chess Championship",
+      "kind": "organization"
+    },
+    {
+      "name": "Awonder Liang",
+      "kind": "person"
+    },
+    {
+      "name": "Sam Sevian",
+      "kind": "person"
+    },
+    {
+      "name": "Fabiano Caruana",
+      "kind": "person"
+    },
+    {
+      "name": "ChessBotBuddies",
+      "kind": "organization"
+    },
+    {
+      "name": "Chess.com",
+      "kind": "organization"
+    },
+    {
+      "name": "Saint Louis Chess Club",
+      "kind": "organization"
+    }
+  ]
+}

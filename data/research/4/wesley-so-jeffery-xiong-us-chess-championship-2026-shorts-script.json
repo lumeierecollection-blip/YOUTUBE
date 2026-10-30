@@ -1,0 +1,65 @@
+{
+  "channel_id": "4",
+  "topic_slug": "wesley-so-jeffery-xiong-us-chess-championship-2026",
+  "format": "shorts",
+  "hook": "Wesley So won a match with a losing position.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "How did Grandmaster Wesley So win with an inferior position against Grandmaster Jeffery Xiong?",
+      "b_roll": [
+        "Board 6 setup in Saint Louis"
+      ],
+      "text_overlay": {
+        "text": "Wesley So won a match with a losing position"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "With an Elo rating of 2770, Grandmaster Wesley So played against the 2656 opponent.",
+      "b_roll": [
+        "Saint Louis tournament hall",
+        "Rating comparison graphic"
+      ],
+      "text_overlay": {
+        "text": "Round 2 in Saint Louis"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Chess publications noted that Grandmaster Wesley So was much worse before finding a tactical turnaround.",
+      "b_roll": [
+        "Tactical diagram"
+      ],
+      "text_overlay": {
+        "text": "Move 21...Nxf4"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Grandmaster Wesley So executed a tactical turnaround after move 21...Nxf4 in Saint Louis. Grandmaster Wesley So achieved a 2/2 score matching Awonder Liang.",
+      "b_roll": [
+        "Knight attack animation",
+        "Scoreboard graphic"
+      ],
+      "text_overlay": {
+        "text": "1-0 Victory"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Grandmaster Wesley So secured the 2/2 score in Saint Louis.",
+      "b_roll": [
+        "Saint Louis Chess Club logo"
+      ],
+      "text_overlay": {
+        "text": "2/2 Score"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://saintlouischessclub.org/game/101026-wesley-so-vs-jeffery-xiong-2026-u-s-chess-championship-round-2",
+    "https://www.chess.com/news/view/2026-us-chess-championships-round-2",
+    "https://chessbotbuddies.org/news/so-xiong-2026"
+  ]
+}
