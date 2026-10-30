@@ -1,0 +1,77 @@
+{
+  "topic_slug": "sag-aftra-wga-openai-copyright-battle",
+  "strongest_angle": "Hollywood unions—including SAG‑AFTRA, the American Federation of Musicians, and both Writers Guilds—have filed an amicus brief asking a federal judge to reject a fair‑use exemption for training OpenAI’s models on unlicensed creative works, arguing that such training causes concrete harms to their members.",
+  "key_facts": [
+    {
+      "fact": "SAG‑AFTRA, the American Federation of Musicians, the Writers Guild of America East and the Writers Guild of America West jointly filed an amicus brief supporting plaintiffs in the OpenAI copyright case.",
+      "source_url": "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+      "source_name": "Deadline",
+      "confidence": "high",
+      "named_entities": [
+        "SAG‑AFTRA",
+        "American Federation of Musicians",
+        "Writers Guild of America East",
+        "Writers Guild of America West",
+        "OpenAI"
+      ]
+    },
+    {
+      "fact": "The four unions filed the memorandum of law on 29 October 2026 in the Southern District of New York.",
+      "source_url": "https://www.aiaffairs.com/government/entertainment-unions-openai-copyright-amicus-motion",
+      "source_name": "AI Affairs",
+      "confidence": "medium",
+      "named_entities": [
+        "SAG‑AFTRA",
+        "American Federation of Musicians",
+        "Writers Guild of America East",
+        "Writers Guild of America West",
+        "Southern District of New York"
+      ]
+    },
+    {
+      "fact": "The filing took place in the Southern District of New York, the federal court that is handling the consolidated copyright litigation against OpenAI.",
+      "source_url": "https://www.aiaffairs.com/government/entertainment-unions-openai-copyright-amicus-motion",
+      "source_name": "AI Affairs",
+      "confidence": "medium",
+      "named_entities": [
+        "Southern District of New York",
+        "OpenAI"
+      ]
+    }
+  ],
+  "numbers": [
+    {
+      "value": 4,
+      "unit": "organizations",
+      "label": "Number of unions filing the amicus brief",
+      "source_url": "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "SAG‑AFTRA",
+      "kind": "organization"
+    },
+    {
+      "name": "American Federation of Musicians",
+      "kind": "organization"
+    },
+    {
+      "name": "Writers Guild of America East",
+      "kind": "organization"
+    },
+    {
+      "name": "Writers Guild of America West",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Southern District of New York",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

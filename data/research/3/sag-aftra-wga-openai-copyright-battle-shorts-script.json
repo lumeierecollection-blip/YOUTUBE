@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "sag-aftra-wga-openai-copyright-battle",
+  "format": "shorts",
+  "hook": "OpenAI trains its models on unlicensed creative works, but Hollywood unions are fighting back now.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "OpenAI trains its models on unlicensed creative works, but Hollywood unions are fighting back now.",
+      "text_overlay": {
+        "text": "AI Training Risks"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Which organizations are challenging OpenAI's use of creative works to train its artificial intelligence models?",
+      "text_overlay": {
+        "text": "4 Unions vs. OpenAI"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "SAG‑AFTRA, the American Federation of Musicians, and both Writers Guilds filed a formal legal brief.",
+      "text_overlay": {
+        "text": "The Coalition"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "These 4 unions ask a federal judge to reject OpenAI's fair‑use defense for unlicensed training. Their legal brief demands that the court protects these creators from unauthorized model training.",
+      "text_overlay": {
+        "text": "Rejecting Fair Use"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Southern District of New York evaluates if OpenAI's training causes concrete harms to members.",
+      "text_overlay": {
+        "text": "Litigation Pending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/10/sag-aftra-wga-afm-openai-copyright-court-battle-brief-1237209138",
+    "https://www.aiaffairs.com/government/entertainment-unions-openai-copyright-amicus-motion"
+  ]
+}
