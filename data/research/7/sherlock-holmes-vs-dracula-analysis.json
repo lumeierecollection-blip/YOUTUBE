@@ -1,0 +1,113 @@
+{
+  "topic_slug": "sherlock-holmes-vs-dracula-analysis",
+  "strongest_angle": "A fact‑based side‑by‑side look at Count Dracula’s canonically quantified superhuman strength versus Sherlock Holmes’s legendary deductive feats shows how a Victorian detective would measure up against an immortal vampire.",
+  "key_facts": [
+    {
+      "fact": "Count Dracula’s superhuman strength is described by Professor Van Helsing as equal to the strength of 20 strong men.",
+      "source_url": "https://en.wikipedia.org/wiki/count_dracula",
+      "source_name": "Wikipedia",
+      "confidence": "high",
+      "named_entities": [
+        {
+          "name": "Count Dracula",
+          "kind": "person"
+        },
+        {
+          "name": "Professor Van Helsing",
+          "kind": "person"
+        }
+      ]
+    },
+    {
+      "fact": "According to the Wikipedia article, Dracula possesses three notable supernatural traits: superhuman strength, lack of reflection, and lack of shadow.",
+      "source_url": "https://en.wikipedia.org/wiki/count_dracula",
+      "source_name": "Wikipedia",
+      "confidence": "high",
+      "named_entities": [
+        {
+          "name": "Count Dracula",
+          "kind": "person"
+        }
+      ]
+    },
+    {
+      "fact": "The academic essay “Detective VS Vampire – A Powerbattle” was published in 2019, providing a modern comparative analysis of the two characters.",
+      "source_url": "http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Alnu%3Adiva-82442",
+      "source_name": "URN.KB.SE",
+      "confidence": "high",
+      "named_entities": [
+        {
+          "name": "Detective VS Vampire – A Powerbattle",
+          "kind": "object"
+        }
+      ]
+    },
+    {
+      "fact": "In the Dickinson College blog, author roberter cites Watson’s line, “You would certainly have been burned, had you lived a few centuries ago,” highlighting that Sherlock Holmes’s deductions are likened to supernatural powers.",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "source_name": "Dickinson College Blog",
+      "confidence": "medium",
+      "named_entities": [
+        {
+          "name": "Sherlock Holmes",
+          "kind": "person"
+        },
+        {
+          "name": "Dr. John Watson",
+          "kind": "person"
+        }
+      ]
+    }
+  ],
+  "numbers": [
+    {
+      "value": 20,
+      "unit": "strong men",
+      "label": "Dracula strength equivalence",
+      "source_url": "https://en.wikipedia.org/wiki/count_dracula"
+    },
+    {
+      "value": 3,
+      "unit": "traits",
+      "label": "Number of Dracula supernatural traits listed",
+      "source_url": "https://en.wikipedia.org/wiki/count_dracula"
+    },
+    {
+      "value": 2019,
+      "unit": "year",
+      "label": "Publication year of the comparative essay",
+      "source_url": "http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Alnu%3Adiva-82442"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Professor Van Helsing",
+      "kind": "person"
+    },
+    {
+      "name": "Detective VS Vampire – A Powerbattle",
+      "kind": "object"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Dr. John Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Dickinson College Blog",
+      "kind": "organization"
+    },
+    {
+      "name": "URN.KB.SE",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

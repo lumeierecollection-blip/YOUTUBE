@@ -1,0 +1,74 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-vs-dracula-analysis",
+  "format": "shorts",
+  "hook": "Twenty strong men represent the raw physical power Count Dracula possesses according to Professor Van Helsing.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Twenty strong men represent the raw physical power Count Dracula possesses according to Professor Van Helsing.",
+      "visual_cue": "Text overlay showing the number 20 next to a silhouette of men.",
+      "sfx_cue": "Low, ominous bass thud.",
+      "b_roll": [
+        "Abstract graphic representing strength"
+      ],
+      "text_overlay": {
+        "text": "20 Strong Men"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Wikipedia notes Dracula possesses 3 supernatural traits, including superhuman strength and a lack of reflection. How would Sherlock Holmes's logic survive against such immortal force in a battle of wits?",
+      "visual_cue": "Split screen showing Victorian-era medical records and a magnifying glass.",
+      "sfx_cue": "Page turning sound effect.",
+      "b_roll": [
+        "Historical Victorian medical ledger illustration",
+        "Magnifying glass over antique parchment"
+      ],
+      "text_overlay": {
+        "text": "3 Supernatural Traits"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the 2019 essay Detective VS Vampire – A Powerbattle claims Holmes's deductive reasoning mimics supernatural power.",
+      "visual_cue": "Text overlay showing the year 2019.",
+      "sfx_cue": "Clock ticking sound.",
+      "b_roll": [
+        "Academic essay cover graphic"
+      ],
+      "text_overlay": {
+        "text": "2019 Powerbattle Analysis"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Dr. John Watson writes in the Dickinson College blog that Holmes's deductive method rivals supernatural threats.",
+      "visual_cue": "Animated chart comparing physical strength to deductive reasoning icons.",
+      "sfx_cue": "Sharp, intellectual chime.",
+      "b_roll": [
+        "Diagram comparing strength and deduction"
+      ],
+      "text_overlay": {
+        "text": "Strength vs. Deduction"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Holmes applies his legendary deductive feats against the immortal Count in this Victorian clash.",
+      "visual_cue": "Close-up of a Victorian ink pen resting on a desk.",
+      "sfx_cue": "Final quill scratch sound.",
+      "b_roll": [
+        "Antique ink pen and paper"
+      ],
+      "text_overlay": {
+        "text": "Logic vs. Immortality"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/count_dracula",
+    "http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Alnu%3Adiva-82442",
+    "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+  ]
+}
