@@ -1,0 +1,65 @@
+{
+  "channel_id": "9",
+  "topic_slug": "hawaii-holei-sea-arch-collapse-2026",
+  "format": "shorts",
+  "hook": "What happens when a 550-year-old landmark vanishes into the ocean in just four days?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when a 550-year-old landmark vanishes into the ocean in just four days?",
+      "b_roll": [
+        "Wide shot of coastline"
+      ],
+      "text_overlay": {
+        "text": "Landmark Vanishes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Where did the ancient arch go?",
+      "b_roll": [
+        "Arch standing intact",
+        "Coastline view"
+      ],
+      "text_overlay": {
+        "text": "September 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "That's when a hurricane brushed past the Big Island southern coastline.",
+      "b_roll": [
+        "Storm waves"
+      ],
+      "text_overlay": {
+        "text": "Hurricane Force"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Hawaiʻi Volcanoes National Park officials believe a hurricane caused the 90-foot arch to collapse. Erosion finally claimed the 550-year-old Hōlei Sea Arch. The 90-foot lava rock structure crashed straight into the Pacific Ocean.",
+      "b_roll": [
+        "Waves crashing against rock",
+        "Ocean spray"
+      ],
+      "text_overlay": {
+        "text": "Sudden Collapse"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Hawaiʻi Volcanoes National Park rangers documented the sudden collapse of the Hōlei Sea Arch.",
+      "b_roll": [
+        "Empty ocean horizon"
+      ],
+      "text_overlay": {
+        "text": "Gone Forever"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/crd6dy4xepgyo",
+    "https://www.nps.gov/places/holei-sea-arch.htm",
+    "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241"
+  ]
+}

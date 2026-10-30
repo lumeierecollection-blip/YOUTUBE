@@ -1,0 +1,67 @@
+{
+  "topic_slug": "hawaii-holei-sea-arch-collapse-2026",
+  "strongest_angle": "Trace the sudden September 2026 collapse of the iconic 90-foot Hōlei Sea Arch in Hawaiʻi Volcanoes National Park after standing for approximately 550 years.",
+  "key_facts": [
+    {
+      "fact": "The 90-foot-tall Hōlei Sea Arch located in Hawaiʻi Volcanoes National Park collapsed into the Pacific Ocean in late September 2026.",
+      "source_url": "https://www.bbc.com/news/articles/crd6dy4xepgyo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lava rock structure formed about 550 years ago and was last seen intact on September 23, 2026, before being discovered gone by September 27, 2026.",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "Park officials believe the feature along the Big Island southern coastline collapsed in late September as a hurricane brushed past the area.",
+      "source_url": "https://www.nbcnews.com/news/us-news/hawaiis-picturesque-holei-sea-arch-collapses-ocean-rcna601241",
+      "source_name": "NBC News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Height of Hōlei Sea Arch in feet",
+      "value": 90,
+      "unit": "feet",
+      "source_url": "https://www.bbc.com/news/articles/crd6dy4xepgyo"
+    },
+    {
+      "label": "Height of Hōlei Sea Arch in meters",
+      "value": 27.4,
+      "unit": "meters",
+      "source_url": "https://www.bbc.com/news/articles/crd6dy4xepgyo"
+    },
+    {
+      "label": "Approximate age of the lava rock structure",
+      "value": 550,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/articles/crd6dy4xepgyo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Hōlei Sea Arch",
+      "kind": "object"
+    },
+    {
+      "name": "Hawaiʻi Volcanoes National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Big Island",
+      "kind": "place"
+    },
+    {
+      "name": "Janice Wei",
+      "kind": "person"
+    }
+  ]
+}
