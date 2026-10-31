@@ -1,0 +1,32 @@
+{
+  "channel_id": "9",
+  "topic_slug": "super-el-nino-iguazu-waterfalls-record-flow",
+  "format": "shorts",
+  "hook": "What if Iguazú Falls surged six times its normal flow?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if Iguazú Falls surged six times its normal flow?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Rains on Brazil and Argentina forced the Iguazu River to flow six times faster. What impact did the surge have on Argentina, Paraguay and Uruguay?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the flood forced thousands from their homes across three countries."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The river surged to a six‑fold flow, pushing water over a mile‑wide curtain of falls. That torrent flooded low‑lying areas, prompting emergency evacuations. Thousands of residents were displaced across Argentina, Paraguay and Uruguay."
+    },
+    {
+      "id": "close",
+      "voiceover": "National park officials closed Iguazú Falls after the river surged at six times normal rates."
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino"
+  ]
+}
