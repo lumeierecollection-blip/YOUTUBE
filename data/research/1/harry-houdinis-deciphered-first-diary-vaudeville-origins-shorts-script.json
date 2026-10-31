@@ -1,0 +1,87 @@
+{
+  "channel_id": "1",
+  "topic_slug": "harry-houdinis-deciphered-first-diary-vaudeville-origins",
+  "format": "shorts",
+  "hook": "A deciphered red pocket diary from 1897 revealed Houdini's secret struggles.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "A deciphered red pocket diary from 1897 revealed Houdini's secret struggles.",
+      "visual_cue": "Close-up of a vintage leather pocket journal opening to reveal handwritten entries.",
+      "sfx_cue": "Paper page turning with subtle low rumble",
+      "b_roll": [
+        "Archival footage of late 19th-century stage magician performance posters",
+        "Macro shot of antique handwriting on aged paper"
+      ],
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "HOUDINI'S SECRET DIARY (1897)"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "In 1897, performer Harry Houdini began documenting his grueling dime museum career. Collector Dr. Bruce Averbook preserved this rare two-year record through 1899. What hidden reality did this red pocket diary reveal about Houdini?",
+      "visual_cue": "Historical photos of 1890s dime museum storefronts and traveling circus tents.",
+      "sfx_cue": "Faint crowd chatter from historic audio archive",
+      "b_roll": [
+        "Historical archival photograph of 1890s dime museum hall",
+        "Vintage photograph of turn-of-the-century circus encampment"
+      ],
+      "transition_out": "Wipe right",
+      "text_overlay": {
+        "text": "1897–1899 DIME MUSEUMS"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "But he wasn't alone, as his wife Bess drove their crucial survival during those grueling shows.",
+      "visual_cue": "Historical portrait of Bess Houdini alongside early stage apparatus.",
+      "sfx_cue": "Soft dramatic string swell",
+      "b_roll": [
+        "Archival publicity portrait of Bess and Harry Houdini"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "THE UNSEEN PARTNER"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "National Geographic writer Nina Strochlic detailed how Bess shaped his international stardom. They weathered brutal medicine shows and circuses together across early vaudeville. Averbook published these genuine entries spanning 1897 to 1899 in a new book.",
+      "visual_cue": "Page flip transition showing published book pages alongside historic vaudeville playbills.",
+      "sfx_cue": "Camera shutter click followed by quiet riser",
+      "b_roll": [
+        "National Geographic article headline presentation",
+        "Early vaudeville theatre stage historical photography",
+        "Published book pages from Escaping Obscurity"
+      ],
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "NATIONAL GEOGRAPHIC ANALYSIS"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:44",
+      "voiceover": "That small red diary captured Houdini's true rise from 1897.",
+      "visual_cue": "Slow zoom out on the original pocket diary resting on a wooden display tabletop.",
+      "sfx_cue": "Low bass hit fading out",
+      "b_roll": [
+        "High-resolution scan of the original pocket travel diary cover"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "ESCAPING OBSCURITY (1897-1899)"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wildabouthoudini.com/2023/05/you-will-soon-be-able-to-read-houdinis.html",
+    "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary",
+    "https://www.wildabouthoudini.com/2025/06/you-can-now-read-houdinis-first-diary.html"
+  ]
+}
