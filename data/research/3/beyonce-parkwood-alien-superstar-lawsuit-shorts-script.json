@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "beyonce-parkwood-alien-superstar-lawsuit",
+  "format": "shorts",
+  "hook": "Parkwood Entertainment is demanding legal fees after a second objectively baseless lawsuit hit them in 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Parkwood Entertainment is demanding legal fees after a second objectively baseless lawsuit hit them in 2026.",
+      "text_overlay": {
+        "text": "Legal Fees Demanded"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 15, 2026, Parkwood Entertainment filed motions in a California federal court. Why is Parkwood Entertainment asking a California federal court to penalize the plaintiff and attorney?",
+      "text_overlay": {
+        "text": "October 15, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Parkwood Entertainment claims this lawsuit over the 2022 song Alien Superstar is completely meritless.",
+      "text_overlay": {
+        "text": "Alien Superstar Dispute"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Parkwood Entertainment requested that a California federal judge impose monetary sanctions on plaintiff Shuji Hirose.",
+      "text_overlay": {
+        "text": "Sanctions Requested"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The court must now decide on these 2026 financial penalties.",
+      "text_overlay": {
+        "text": "2026 Filing"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions",
+    "https://www.musicbusinessworldwide.com/beyonces-parkwood-asks-court-to-make-plaintiff-and-his-lawyer-pay-for-objectively-baseless-second-alien-superstar-lawsuit"
+  ]
+}

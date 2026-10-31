@@ -1,0 +1,71 @@
+{
+  "topic_slug": "beyonce-parkwood-alien-superstar-lawsuit",
+  "strongest_angle": "In October 2026, Beyoncé's management company Parkwood Entertainment filed a motion asking a California federal court to make plaintiff Shuji Hirose and his attorney DaShawn Hayes pay legal bills for an objectively baseless second lawsuit over the song Alien Superstar.",
+  "key_facts": [
+    {
+      "fact": "On October 15, 2026, Parkwood Entertainment filed motions in a California federal court asking for a permanent dismissal and financial penalties against plaintiff Shuji Hirose and his attorney DaShawn Hayes.",
+      "source_url": "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions",
+      "source_name": "Law Commentary",
+      "confidence": "high"
+    },
+    {
+      "fact": "Parkwood Entertainment filed court papers in Los Angeles asking a federal court to make music rights owner Shuji Hirose and his lawyer pay its legal bills over the song Alien Superstar.",
+      "source_url": "https://www.musicbusinessworldwide.com/beyonces-parkwood-asks-court-to-make-plaintiff-and-his-lawyer-pay-for-objectively-baseless-second-alien-superstar-lawsuit",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Parkwood Entertainment requested that a California federal judge impose monetary damages and sanctions on plaintiff Shuji Hirose and his attorney DaShawn Hayes due to contradictory ownership claims.",
+      "source_url": "https://playback.gr/en/Beyonce%27s-company-disputes-second-lawsuit-over-Alien-Superstar",
+      "source_name": "Playback",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Filing Day",
+      "value": 15,
+      "unit": "day of the month",
+      "source_url": "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions"
+    },
+    {
+      "label": "Filing Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions"
+    },
+    {
+      "label": "Song Release Year",
+      "value": 2022,
+      "unit": "year",
+      "source_url": "https://www.lawcommentary.com/articles/beyonce-alien-superstar-lawsuit-sanctions"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Beyoncé",
+      "kind": "person"
+    },
+    {
+      "name": "Parkwood Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Shuji Hirose",
+      "kind": "person"
+    },
+    {
+      "name": "DaShawn Hayes",
+      "kind": "person"
+    },
+    {
+      "name": "Alien Superstar",
+      "kind": "object"
+    },
+    {
+      "name": "California federal court",
+      "kind": "place"
+    }
+  ]
+}
