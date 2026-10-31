@@ -1,0 +1,73 @@
+{
+  "topic_slug": "herrenknecht-panama-canal-tunnel-4-5km",
+  "strongest_angle": "The 13.46 m diameter Herrenknecht Mixshield TBM “Panamá” completed a 4.5 km drive from Farfán to Albrook under the Panama Canal, achieving breakthrough on 26 Oct 2026 – the first bored tunnel beneath the waterway and a record‑long single drive for a TBM of this size.",
+  "key_facts": [
+    {
+      "fact": "The Herrenknecht Mixshield TBM named “Panamá” has a cutterhead diameter of 13.46 m.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "The machine excavated a continuous 4.5 km tunnel from Farfán on the western side of the canal to Albrook on the eastern side.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Final breakthrough was achieved at Albrook on 26 October 2026, marking the first bored tunnel constructed under the Panama Canal.",
+      "source_url": "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro",
+      "source_name": "La Prensa Panamá",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 13.46,
+      "unit": "meters",
+      "label": "TBM cutterhead diameter",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "value": 4.5,
+      "unit": "kilometers",
+      "label": "Tunnel length excavated",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "Mixshield",
+      "kind": "object"
+    },
+    {
+      "name": "Panamá",
+      "kind": "object"
+    },
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Farfán",
+      "kind": "place"
+    },
+    {
+      "name": "Panama Metro Line 3",
+      "kind": "object"
+    },
+    {
+      "name": "César Pinzón",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

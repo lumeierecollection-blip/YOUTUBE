@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "herrenknecht-panama-canal-tunnel-4-5km",
+  "format": "shorts",
+  "hook": "A 13.46‑meter TBM bored a 4.5‑km tunnel beneath the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 13.46‑meter TBM bored a 4.5‑km tunnel beneath the Panama Canal.",
+      "visual_cue": "Show the massive TBM cutterhead and a map of the Panama Canal tunnel route."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 26 Oct 2026 the Herrenknecht TBM “Panamá” finished a 4.5 km drive from Farfán to Albrook. What does this length mean for Panama Canal engineering?",
+      "visual_cue": "Display a timeline of the drive, the cutterhead size graphic, and a question overlay over the canal map."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the tunnel’s sheer size also forced new safety protocols.",
+      "visual_cue": "Show engineers reviewing safety plans beside the tunnel cross‑section."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 4.5 km bore marked the first tunnel under the Panama Canal. Engineers now cite the Panama Metro Line 3 tunnel as the new benchmark.",
+      "visual_cue": "Show breakthrough footage, the cutterhead in action, and a graphic comparing the Line 3 tunnel to other projects."
+    },
+    {
+      "id": "close",
+      "voiceover": "A 13.46‑meter cutterhead reshaped canal tunneling forever.",
+      "visual_cue": "Close on the TBM’s cutterhead rotating underground."
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro"
+  ]
+}
