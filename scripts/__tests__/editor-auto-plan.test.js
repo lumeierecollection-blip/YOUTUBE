@@ -134,8 +134,7 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   const withFig = plan.scenes.find((x) => x.graphic);
   assert.equal(withFig.graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic beside the photo");
   assert.ok(["bar", "ring"].includes(withFig.graphic.kind));
-  if (/ then /.test(report.scenes[0].shows)) assert.ok(plan.scenes.length >= 2, "the photo beat is followed by its second visual");
-  else assert.ok(withFig.stagger > 30, "with no second visual the same photo stays and the panel arrives part-way in");
+  assert.ok(withFig.stagger <= 9, "the panel is there from the start of its beat: no empty half-frame while it waits");
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
   assert.match(report.scenes[2].shows, /key-word poster/, "a miss never re-uses an earlier photo: each photo is shown once");
   assert.equal(plan.scenes.filter((x) => x.asset === "concept-0").length, 1, "the photo appears in one scene only");
@@ -424,7 +423,7 @@ test("a photo scene with no figure still moves: the accent draws itself across i
   const tl3 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
   addGraphics(tl3, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
   assert.ok(tl3.layers.some((l) => /-sweep$/.test(l.id)), "a poster scene gets the sweeping line so it never sits still");
-  assert.equal(tl2.layers.length, 1, "a card is not a photo scene, so it gets no decoration");
+  assert.equal(tl2.layers.filter((l) => !/-field$/.test(l.id)).length, 1, "an unknown asset gets no decoration (only the drifting field every beat has)");
 });
 
 import { luminance, onFill } from "../editor/graphics.mjs";
@@ -734,4 +733,29 @@ test("a photo of the video's subject is accepted even when it does not show this
   assert.equal(parseVerdict({ fits_video: true, misleading: true, identifiable_person: false, mostly_text_or_logo: false }).ok, false);
   assert.equal(parseVerdict({ fits_video: false, misleading: false, identifiable_person: false, mostly_text_or_logo: false }).ok, false);
   assert.equal(parseVerdict({ fits_video: true, misleading: false, identifiable_person: true, mostly_text_or_logo: false }).ok, false, "a recognisable person is still refused");
+});
+
+// ---- the drifting halftone field --------------------------------------------------------------------------------------------------------
+import { fieldLayers } from "../editor/graphics.mjs";
+
+test("every beat has a halftone dot field that drifts by exactly one tile per cycle, so it moves without ever jumping", () => {
+  const [f] = fieldLayers({ id: "x", palette: { ink: "#101114" }, inF: 0, outF: 300 });
+  assert.equal(f.type, "solid");
+  assert.ok(f.rect.x <= -56 && f.rect.w >= 1080 + 112 && f.rect.h >= 1920 + 112, "larger than the frame by more than a tile on every side");
+  assert.ok(valueAt(f, "tx", 28) < valueAt(f, "tx", 5), "it drifts");
+  assert.equal(Math.round(valueAt(f, "tx", 56)), -56, "one tile per 56 frames");
+  assert.equal(Math.round(valueAt(f, "tx", 57)), 0, "then back to the identical pattern");
+  for (let fr = 0; fr < 300; fr += 7) assert.ok(valueAt(f, "tx", fr) >= -56 && valueAt(f, "tx", fr) <= 0, "never leaves the margin");
+  const tl = { layers: [{ id: "scene-0-image", in: 0, out: 120, z: 11 }] };
+  addGraphics(tl, { id: "p", palette: { ink: "#101114", accent: "#c00" }, scenes: [{ asset: "photo-a", stagger: 0, look: "vox" }] });
+  assert.ok(tl.layers.find((l) => /-field$/.test(l.id) && l.z > 11 && l.z < 12), "just above the picture, below its scrim");
+});
+
+test("a flat card is never darkened, and a year is never drawn as a statistic", async () => {
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "The water fell away quietly. Nobody noticed at first." }] },
+    research: { ...research, named_entities: [], numbers: [{ label: "start year of the diary", value: 1897, unit: "", source_url: "https://news.example.org/x" }, { label: "pages in the diary", value: 453, unit: "pages", source_url: "https://news.example.org/x" }] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 5, end: 6, sentence: 1 }], audioDuration: 10, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
+  for (const sc of r.plan.scenes.filter((x) => /^card-/.test(x.asset))) assert.equal(sc.gradient, "rgba(0,0,0,0)", `${sc.id}: no scrim on a card`);
+  const drawn = r.plan.scenes.flatMap((x) => x.graphic?.figs?.map((f) => f.raw) || []);
+  assert.ok(!drawn.some((x) => /1,?897/.test(x)), "a year is not a figure");
 });

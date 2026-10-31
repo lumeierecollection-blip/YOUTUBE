@@ -16,7 +16,7 @@ import { execFileSync } from "child_process";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import { buildAutoPlan, seededRandom } from "./auto-plan.mjs";
-import { graphicLayers, decorationLayers, sweepLayers } from "./graphics.mjs";
+import { graphicLayers, decorationLayers, sweepLayers, fieldLayers } from "./graphics.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
@@ -130,6 +130,8 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
   plan.scenes.forEach((sc, i) => {
     const base = timeline.layers.find((l) => l.id === "scene-" + i + "-image");
     if (!base) return;
+    // Every beat has the drifting dot field just above its picture (below the scrim and the graphics): nothing on screen is ever a held still.
+    timeline.layers.push(...fieldLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out, z: base.z + 0.5, onPhoto: /^(photo|concept)-/.test(sc.asset) }));
     if (!sc.graphic) {
       // A photo scene with no figure still moves: the accent draws itself across it (graphics.mjs decorationLayers).
       if (/^card-/.test(sc.asset)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));

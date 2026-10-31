@@ -171,7 +171,7 @@ function Captions({ tl, frame }) {
       }}
     >
       {plated ? (
-        <div style={{ background: st.plate, borderRadius: 14, padding: "18px 26px", maxWidth: "100%" }}>{words}</div>
+        <div style={{ display: "flex", flexWrap: "wrap", alignContent: "center", justifyContent: "center", background: st.plate, borderRadius: 14, padding: "18px 26px", maxWidth: "100%", boxSizing: "border-box" }}>{words}</div>
       ) : (
         <div style={{ display: "flex", flexWrap: "wrap", alignContent: "center", justifyContent: "center" }}>{words}</div>
       )}

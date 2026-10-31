@@ -305,6 +305,30 @@ export function sweepLayers({ id, palette, inF, outF, z = 150 }) {
     keyframes: { ty: pts, opacity: [{ f: 0, v: 0 }, { f: 6, v: 0.22 }, { f: Math.max(7, len - 6), v: 0.22 }, { f: len, v: 0 }] } }];
 }
 
+/**
+ * A halftone dot field that drifts diagonally (about 30 px/s) behind a scene's graphics: the Vox skill's print-dot texture, and the reason no beat
+ * is ever a held still. It is one solid layer with a CSS dot pattern, larger than the frame, translated in a sawtooth that jumps back by exactly one
+ * tile (the pattern is identical there, so the jump cannot be seen). It states nothing: it is texture, in the channel's ink on paper cards and
+ * in white over a photo. The final-MP4 QA (video-qa.js, near-static run <= 4 s) is what measures that it moves.
+ */
+export function fieldLayers({ id, palette, inF, outF, z = 12, onPhoto = false }) {
+  const len = Math.max(8, outF - inF);
+  const tile = 56;
+  const period = 56; // frames per tile: 56 px per 56 frames at 30 fps = 30 px/s
+  const dot = onPhoto ? "rgba(255,255,255,0.16)" : rgba(palette.ink || "#101114", 0.12);
+  const saw = [];
+  for (let f = 0; f < len; f += period + 1) {
+    saw.push({ f, v: 0, e: "linear" });
+    saw.push({ f: Math.min(len, f + period), v: -tile, e: "linear" });
+    if (f + period < len) saw.push({ f: f + period + 1, v: 0, e: "linear" });
+  }
+  return [{
+    id: `${id}-field`, type: "solid", rect: { x: -120, y: -120, w: 1320, h: 2160 }, in: inF, out: outF, z, props: { opacity: 1 },
+    style: { background: `radial-gradient(circle, ${dot} 5px, transparent 5.8px) 0 0 / ${tile}px ${tile}px` },
+    keyframes: { opacity: kf([0, 0], [8, 1], [Math.max(9, len - 8), 1], [len, 0]), tx: saw, ty: saw },
+  }];
+}
+
 /** Map geometry for a sentence's places, projected into the map rect of a hero panel. */
 export function mapFor({ highlight, pin = null }) {
   return buildMap({ highlight, pin, w: FULL_MAP.w, h: FULL_MAP.h });

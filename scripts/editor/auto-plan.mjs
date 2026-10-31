@@ -220,7 +220,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   // A map of a place the story is not about is worse than no map.
   const namedPlaces = new Set((research?.named_entities || []).filter((e) => KIND[String(e.kind || "").toLowerCase()] === "place").map((e) => String(e.name).toLowerCase()));
   const topicPlace = matchPlaces(String(research?.strongest_angle || topic || ""), { max: 3 }).find((h) => namedPlaces.has(String(h.f.name).toLowerCase())) || null;
-  const spareFigs = (research?.numbers || []).filter((n) => n && Number.isFinite(Number(n.value)) && n.label).map((n) => {
+  const spareFigs = (research?.numbers || []).filter((n) => n && Number.isFinite(Number(n.value)) && n.label && !/\byears?\b/i.test(String(n.label)) && !(Number.isInteger(Number(n.value)) && Number(n.value) >= 1800 && Number(n.value) <= 2100 && !/%|percent/i.test(String(n.unit || "")))).map((n) => {
     const pct = /percent|%/i.test(String(n.unit || ""));
     const v = Number(n.value);
     return { n, fig: { raw: pct ? `${v}%` : v.toLocaleString("en-US"), kind: pct ? "percent" : "number", value: pct ? v : null } };
@@ -434,7 +434,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           first = { ...scene, id: scene.id + "a", graphic: undefined, rect: undefined, gradient: look.scrim, kicker_y: undefined };
           second = { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 };
           how += ` then ${alt.how}`;
-        } else panelDelay = Math.round(dur * 0.4 * 30); // same photo throughout; the panel arrives 40% in
+        }
       } else if (scene.flagOf && mapsShown < 4 && lastAsset !== "map") {
         const geo = mapFor({ highlight: matchPlaces(sentence).filter((h) => h.f.kind === "country" || h.f.kind === "state").slice(0, 3) });
         const mid = `card-${i}-map`;
@@ -471,6 +471,11 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         how += ` then map of ${topicPlace.f.name} (the topic)`;
       }
     }
+    // A flat card (paper, a map, a poster, a plate) is never darkened: only a photo gets the soft scrim along its bottom.
+    const noScrim = (sc) => (/^card-/.test(sc.asset) && sc.gradient === undefined ? { ...sc, gradient: "rgba(0,0,0,0)" } : sc);
+    scene = noScrim(scene);
+    first = noScrim(first);
+    if (second) second = noScrim(second);
     if (second) {
       second.look = look.name;
       scenes.push({ ...first, start: Number(start.toFixed(3)), end: Number(cutAt.toFixed(3)), stagger: look.stagger });
