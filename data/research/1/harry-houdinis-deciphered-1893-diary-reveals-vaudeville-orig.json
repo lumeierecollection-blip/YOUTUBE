@@ -1,0 +1,71 @@
+{
+  "topic_slug": "harry-houdinis-deciphered-1893-diary-reveals-vaudeville-orig",
+  "strongest_angle": "National Geographic published an article in October 2026 detailing Harry Houdini's newly deciphered first diary, showcasing his early vaudeville struggles and the partnership with his wife Bess.",
+  "key_facts": [
+    {
+      "fact": "National Geographic published an article on October 28, 2026 by Nina Strochlic about Harry Houdini's newly deciphered first diary.",
+      "source_url": "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "Collector Dr. Bruce Averbook owns Harry Houdini's early travel diary spanning from 1897 to 1899, detailing his formative experiences in dime museums and early vaudeville.",
+      "source_url": "https://www.wildabouthoudini.com/2023/05/you-will-soon-be-able-to-read-houdinis.html",
+      "source_name": "Wild About Harry",
+      "confidence": "high"
+    },
+    {
+      "fact": "John Cox reported on October 29, 2026 on Wild About Harry about the National Geographic article featuring Houdini's first diary and the book Escaping Obscurity.",
+      "source_url": "https://www.wildabouthoudini.com",
+      "source_name": "Wild About Harry",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary"
+    },
+    {
+      "label": "Diary Start Year",
+      "value": 1897,
+      "unit": "year",
+      "source_url": "https://www.wildabouthoudini.com/2023/05/you-will-soon-be-able-to-read-houdinis.html"
+    },
+    {
+      "label": "Diary End Year",
+      "value": 1899,
+      "unit": "year",
+      "source_url": "https://www.wildabouthoudini.com/2023/05/you-will-soon-be-able-to-read-houdinis.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Harry Houdini",
+      "kind": "person"
+    },
+    {
+      "name": "National Geographic",
+      "kind": "organization"
+    },
+    {
+      "name": "Nina Strochlic",
+      "kind": "person"
+    },
+    {
+      "name": "Dr. Bruce Averbook",
+      "kind": "person"
+    },
+    {
+      "name": "John Cox",
+      "kind": "person"
+    },
+    {
+      "name": "Escaping Obscurity",
+      "kind": "object"
+    }
+  ]
+}

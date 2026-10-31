@@ -1,0 +1,73 @@
+{
+  "channel_id": "1",
+  "topic_slug": "harry-houdinis-deciphered-1893-diary-reveals-vaudeville-orig",
+  "format": "shorts",
+  "hook": "National Geographic published an article about Harry Houdini's newly deciphered first diary.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "National Geographic published an article about Harry Houdini's newly deciphered first diary.",
+      "visual_cue": "Close-up of a weathered, antique leather-bound journal sitting on a dark wooden desk.",
+      "sfx_cue": "Sound of a soft, old page turning.",
+      "b_roll": [
+        "Public domain image of an 1890s era diary"
+      ],
+      "text_overlay": {
+        "text": "The Lost Diary of Houdini"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Nina Strochlic revealed details from the manuscript on October 28, 2026. Collector Dr. What hardships did Harry Houdini document during those vaudeville years?",
+      "visual_cue": "Split screen showing the National Geographic logo and a portrait of a young Harry Houdini.",
+      "sfx_cue": "Subtle, rising investigative string music.",
+      "b_roll": [
+        "National Geographic logo",
+        "Historical portrait of young Harry Houdini"
+      ],
+      "text_overlay": {
+        "text": "Deciphering 1897-1899"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Blogger John Cox reported on October 29, 2026, about the book Escaping Obscurity.",
+      "visual_cue": "Cinematic shot of a flickering gas lamp casting shadows over handwritten cursive notes.",
+      "sfx_cue": "Sound of a quill scratching on paper.",
+      "b_roll": [
+        "Close up of 19th century handwriting"
+      ],
+      "text_overlay": {
+        "text": "Life Before Fame"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nina Strochlic detailed his grueling formative experiences in dime museums. Harry Houdini faced grueling struggles before 1899.",
+      "visual_cue": "Illustration of a 19th-century vaudeville stage with performer silhouettes.",
+      "sfx_cue": "Muffled sound of a distant, turn-of-the-century vaudeville piano.",
+      "b_roll": [
+        "Historical illustration of a 1890s vaudeville stage"
+      ],
+      "text_overlay": {
+        "text": "Vaudeville Beginnings"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "You'll find Nina Strochlic's article in National Geographic about the 1897 travel diary.",
+      "visual_cue": "The diary closing on the desk as the light fades.",
+      "sfx_cue": "A soft click of a lock.",
+      "b_roll": [
+        "Antique journal closing"
+      ],
+      "text_overlay": {
+        "text": "1897: The Beginning"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary",
+    "https://www.wildabouthoudini.com/2023/05/you-will-soon-be-able-to-read-houdinis.html"
+  ]
+}
