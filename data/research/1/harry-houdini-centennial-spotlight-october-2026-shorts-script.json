@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "harry-houdini-centennial-spotlight-october-2026",
+  "format": "shorts",
+  "hook": "A $10,000 portrait of Houdini is up for auction today.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A $10,000 portrait of Houdini is up for auction today.",
+      "visual_cue": "Auction catalog page highlighting the $10,000 price."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Strand Magazine is publishing a lost Houdini essay for his centennial. Potter & Potter lists a lobby portrait at $5,000‑$10,000. Will the Harry Ransom Center reveal new clues about his Grace Hospital death?",
+      "visual_cue": "Magazine cover, portrait image, Harry Ransom Center façade."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the essay also fuels fresh debate over whether his death was natural.",
+      "visual_cue": "Old newspaper clippings juxtaposed with the essay manuscript."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The portrait will be auctioned by Potter & Potter with a $5,000 opening bid. The Houdini essay now hangs at the Harry Ransom Center. It reignites debate over his 1926 death at Grace Hospital.",
+      "visual_cue": "Auction hammer, exhibition hall display, hospital sign."
+    },
+    {
+      "id": "close",
+      "voiceover": "The $10,000 portrait may vanish into history soon.",
+      "visual_cue": "Portrait fading into darkness as auction gavel falls."
+    }
+  ],
+  "sources_used": [
+    "https://www.finebooksmagazine.com/fine-books-news/strand-magazine-publish-rediscovered-history-houdini",
+    "https://apnews.com/article/harry-houdini-magician-death-date-1fd6f1a0c31e7db127eaf0cf18987760"
+  ]
+}
