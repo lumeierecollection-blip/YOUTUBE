@@ -1,0 +1,81 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-matchup-2026",
+  "strongest_angle": "Examining literary analyses and crossover publications regarding Sherlock Holmes and Count Dracula.",
+  "key_facts": [
+    {
+      "fact": "In The Sussex Vampire, Sherlock Holmes investigates a case where the client believes the supernatural is involved, as documented by Sherlockian.net.",
+      "source_url": "https://sherlockian.net/investigating/vampire-stories",
+      "source_name": "Sherlockian.net",
+      "confidence": "high"
+    },
+    {
+      "fact": "Daniel Corthom published Sherlock Holmes Meets Dracula in ELH in September 2012, examining the meeting of Holmes and Dracula within nineteenth-century bohemian culture.",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028",
+      "source_name": "ELH / Project MUSE",
+      "confidence": "high"
+    },
+    {
+      "fact": "Christian Klaver authored Sherlock Holmes and Count Dracula published as Book 1 of The Classified Dossier by Penguin Random House with ISBN 9781789099287.",
+      "source_url": "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver",
+      "source_name": "Penguin Random House",
+      "confidence": "high"
+    },
+    {
+      "fact": "Phoebe-Lou Adams wrote about Sherlock Holmes vs. Dracula, or the Adventure of the Sanguinary Count in the August 1978 issue of The Atlantic.",
+      "source_url": "https://www.theatlantic.com/magazine/archive/1978/08/sherlock-holmes-vs-dracula-or-the-adventure-of-the-sanguinary-count/663328",
+      "source_name": "The Atlantic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "ISBN prefix",
+      "value": 9781789099287,
+      "unit": "ISBN",
+      "source_url": "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver"
+    },
+    {
+      "label": "Publication Year",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028"
+    },
+    {
+      "label": "Publication Year",
+      "value": 1978,
+      "unit": "year",
+      "source_url": "https://www.theatlantic.com/magazine/archive/1978/08/sherlock-holmes-vs-dracula-or-the-adventure-of-the-sanguinary-count/663328"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Daniel Cottom",
+      "kind": "person"
+    },
+    {
+      "name": "Christian Klaver",
+      "kind": "person"
+    },
+    {
+      "name": "Penguin Random House",
+      "kind": "organization"
+    },
+    {
+      "name": "The Atlantic",
+      "kind": "organization"
+    },
+    {
+      "name": "ELH",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-matchup-2026",
+  "format": "shorts",
+  "hook": "Literary analysis in 1978 matched detective Sherlock Holmes against Count Dracula.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Literary analysis in 1978 matched detective Sherlock Holmes against Count Dracula.",
+      "visual_cue": "Archival print showing Victorian London street with high-contrast lighting.",
+      "sfx_cue": "Low bass drone with paper turning sound.",
+      "b_roll": [
+        "Victorian London historical illustration",
+        "1970s magazine printing press archive"
+      ],
+      "transition_out": "Fast whip pan right",
+      "text_overlay": {
+        "text": "HOLMES VS DRACULA: 1978 ANALYSIS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "In The Sussex Vampire, Sherlock Holmes investigated a client believing in supernatural forces. Where did literary analysts track Count Dracula?",
+      "visual_cue": "Close-up of vintage Arthur Conan Doyle story text alongside publisher archive documents.",
+      "sfx_cue": "Soft clock ticking sound and fountain pen writing.",
+      "b_roll": [
+        "Vintage Sherlock Holmes manuscript page",
+        "Penguin Random House archival book display"
+      ],
+      "transition_out": "Quick cut",
+      "text_overlay": {
+        "text": "THE SUSSEX VAMPIRE DOSSIER"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:23",
+      "voiceover": "However, Sherlockian.net documented Holmes investigating a case where the client believed the supernatural was involved.",
+      "visual_cue": "Split screen showing magnifying glass over detective notes and dark gothic silhouette graphics.",
+      "sfx_cue": "Tense violin slide sound effect.",
+      "b_roll": [
+        "Magnifying glass macro shot on text",
+        "Shadowy gothic mansion hallway"
+      ],
+      "transition_out": "Fade to dark",
+      "text_overlay": {
+        "text": "REJECTING THE SUPERNATURAL"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:23-0:38",
+      "voiceover": "In August 1978, Phoebe-Lou Adams reviewed the matchup in The Atlantic. Penguin Random House cataloged the dossier under ISBN 9781789099287.",
+      "visual_cue": "Sequence showing Atlantic publication banner, academic journal cover, and ISBN catalog card.",
+      "sfx_cue": "Camera shutter click followed by rising orchestral chord.",
+      "b_roll": [
+        "The Atlantic magazine 1978 issue archive",
+        "Academic journal pages turning",
+        "Digital library catalog screen"
+      ],
+      "transition_out": "Smooth slide left",
+      "text_overlay": {
+        "text": "ISBN 9781789099287"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Don't miss Christian Klaver's Sherlock Holmes and Count Dracula from Penguin Random House.",
+      "visual_cue": "Graphic framing classic detective pipe silhouette beside castle outline.",
+      "sfx_cue": "Deep resonant gong fade out.",
+      "b_roll": [
+        "Sherlock Holmes emblem graphic",
+        "Gothic library interior shot"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "LITERARY ANALYSIS VERDICT"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theatlantic.com/magazine/archive/1978/08/sherlock-holmes-vs-dracula-or-the-adventure-of-the-sanguinary-count/663328",
+    "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver",
+    "https://sherlockian.net/investigating/vampire-stories",
+    "https://doi.org/10.1353/elh.2012.0028"
+  ]
+}
