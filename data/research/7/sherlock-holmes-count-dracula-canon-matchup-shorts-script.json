@@ -1,0 +1,55 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-count-dracula-canon-matchup",
+  "format": "shorts",
+  "hook": "Can you believe Sherlock Holmes's cold logic faces the supernatural hunger of Count Dracula in literature?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Can you believe Sherlock Holmes's cold logic faces the supernatural hunger of Count Dracula in literature?",
+      "visual_cue": "Side-by-side charcoal sketches of a detective and a vampire silhouette.",
+      "text_overlay": {
+        "text": "The Ultimate Victorian Matchup"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1996, Sally Elizabeth Skinner analyzed how these icons define the darkest edges of Gothic literature. Could Holmes actually solve the mystery of Dracula?",
+      "visual_cue": "A digital scan of a 1996 academic journal cover from Princeton University.",
+      "b_roll": [
+        "19th-century London fog illustration",
+        "Library archive document scan"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Dickinson College notes Watson once mistook Holmes's deductions for supernatural powers, raising the stakes for logic.",
+      "visual_cue": "Close-up of a vintage fountain pen writing on parchment.",
+      "b_roll": [
+        "Historical manuscript page"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Estleman shows Holmes's rational methods failing against the ancient threat of the Sanguinary Count.",
+      "visual_cue": "A split-screen showing a magnifying glass on the left and a stone crypt on the right.",
+      "b_roll": [
+        "Victorian-era map of London",
+        "Symbolic scales of justice"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the 1996 essay by Skinner to explore these eternal symbols of human fear and reason.",
+      "visual_cue": "A fading silhouette of both characters walking into the London fog.",
+      "text_overlay": {
+        "text": "Reason vs. The Supernatural"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://dataspace-dev.princeton.edu/handle/88435/dsp01w9505184g",
+    "https://doi.org/10.1353/elh.2012.0028",
+    "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+  ]
+}

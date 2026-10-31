@@ -1,0 +1,75 @@
+{
+  "topic_slug": "sherlock-holmes-count-dracula-canon-matchup",
+  "strongest_angle": "Examining Arthur Conan Doyle's Sherlock Holmes and Bram Stoker's Count Dracula through academic character analyses and literary studies comparing their canonical traits, methods, and representations.",
+  "key_facts": [
+    {
+      "fact": "In the academic essay Doin' It In the Dark: Sherlock Holmes and Count Dracula in Fin-de-Siecle London published in 1996, author Sally Elizabeth Skinner explores Gothic literature and media analysis.",
+      "source_url": "https://dataspace-dev.princeton.edu/handle/88435/dsp01w9505184g",
+      "source_name": "Princeton University Dataspace",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Daniel Cottom's publication Sherlock Holmes Meets Dracula explores how the meeting of Holmes and Dracula within the late nineteenth century provides a reevaluation of modern civilization.",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028",
+      "source_name": "Project MUSE ELH",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the literary study Detective VS Vampire - A Powerbattle, the author analyzes Loren D. Estleman's novel Sherlock Holmes vs Dracula or the Adventure of the Sanguinary Count.",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+      "source_name": "DiVA portal",
+      "confidence": "medium"
+    },
+    {
+      "fact": "According to the Dickinson College British Literature and Culture blog post by roberter, Sherlock Holmes's deductions at the beginning of the first story are compared to supernatural powers by Watson.",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "source_name": "Dickinson College Blogs",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year of Skinner Essay",
+      "value": 1996,
+      "unit": "year",
+      "source_url": "https://dataspace-dev.princeton.edu/handle/88435/dsp01w9505184g"
+    },
+    {
+      "label": "Publication Month of Cottom Article",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://doi.org/10.1353/elh.2012.0028"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Sally Elizabeth Skinner",
+      "kind": "person"
+    },
+    {
+      "name": "Daniel Cottom",
+      "kind": "person"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "Princeton University",
+      "kind": "organization"
+    },
+    {
+      "name": "Dickinson College",
+      "kind": "organization"
+    }
+  ]
+}
