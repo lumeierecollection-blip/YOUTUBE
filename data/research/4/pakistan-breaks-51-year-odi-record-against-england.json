@@ -1,0 +1,97 @@
+{
+  "topic_slug": "pakistan-breaks-51-year-odi-record-against-england",
+  "strongest_angle": "Examine how Shadab Khan and Haris Rauf put on an 89-run 10th-wicket partnership in Lahore to achieve a historic run chase and break a 51-year record against England.",
+  "key_facts": [
+    {
+      "fact": "Shadab Khan and Haris Rauf combined to put on 89 runs for the 10th wicket at Gaddafi Stadium in Lahore, breaking a record that had lasted 51 years.",
+      "source_url": "https://www.icc-cricket.com/news/shadab-the-hero-as-pakistan-break-51-year-record-in-run-chase",
+      "source_name": "ICC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Pakistan's run chase appeared doomed at 154-9 in reply to England's total of 241 before securing a thrilling one-wicket victory in the ODI tri-series.",
+      "source_url": "https://apnews.com/article/cricket-pakistan-england-triseries-4dca94441b6ba2080997ce4b8f0e9d09",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "All-rounder Shadab Khan struck a superb unbeaten century of 113 runs from 96 balls to guide Pakistan past England.",
+      "source_url": "https://www.bbc.com/sport/cricket/articles/cq0mek4de4xno",
+      "source_name": "BBC Sport",
+      "confidence": "high"
+    },
+    {
+      "fact": "The unbeaten tenth-wicket partnership between Shadab Khan and Haris Rauf lasted precisely 80 balls during the match in Lahore on October 25, 2026.",
+      "source_url": "https://www.cricinfo.com/story/pak-vs-eng-stats-shadab-khan-and-haris-rauf-break-last-men-standing-records-1560027",
+      "source_name": "Cricinfo",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Tenth-wicket partnership runs",
+      "value": 89,
+      "unit": "runs",
+      "source_url": "https://www.icc-cricket.com/news/shadab-the-hero-as-pakistan-break-51-year-record-in-run-chase"
+    },
+    {
+      "label": "Record duration",
+      "value": 51,
+      "unit": "years",
+      "source_url": "https://www.icc-cricket.com/news/shadab-the-hero-as-pakistan-break-51-year-record-in-run-chase"
+    },
+    {
+      "label": "Pakistan score at ninth wicket",
+      "value": 154,
+      "unit": "runs",
+      "source_url": "https://apnews.com/article/cricket-pakistan-england-triseries-4dca94441b6ba2080997ce4b8f0e9d09"
+    },
+    {
+      "label": "England total score",
+      "value": 241,
+      "unit": "runs",
+      "source_url": "https://apnews.com/article/cricket-pakistan-england-triseries-4dca94441b6ba2080997ce4b8f0e9d09"
+    },
+    {
+      "label": "Shadab Khan individual score",
+      "value": 113,
+      "unit": "runs",
+      "source_url": "https://www.bbc.com/sport/cricket/articles/cq0mek4de4xno"
+    },
+    {
+      "label": "Balls faced by Shadab Khan",
+      "value": 96,
+      "unit": "balls",
+      "source_url": "https://www.bbc.com/sport/cricket/articles/cq0mek4de4xno"
+    },
+    {
+      "label": "Balls faced in the 10th-wicket partnership",
+      "value": 80,
+      "unit": "balls",
+      "source_url": "https://www.cricinfo.com/story/pak-vs-eng-stats-shadab-khan-and-haris-rauf-break-last-men-standing-records-1560027"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Shadab Khan",
+      "kind": "person"
+    },
+    {
+      "name": "Haris Rauf",
+      "kind": "person"
+    },
+    {
+      "name": "Pakistan",
+      "kind": "organization"
+    },
+    {
+      "name": "England",
+      "kind": "organization"
+    },
+    {
+      "name": "Lahore",
+      "kind": "place"
+    }
+  ]
+}

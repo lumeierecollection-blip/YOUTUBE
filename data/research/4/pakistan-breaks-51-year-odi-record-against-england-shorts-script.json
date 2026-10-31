@@ -1,0 +1,66 @@
+{
+  "channel_id": "4",
+  "topic_slug": "pakistan-breaks-51-year-odi-record-against-england",
+  "format": "shorts",
+  "hook": "A 51-year record fell when Pakistan hit 89 final-wicket runs.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 51-year record fell when Pakistan hit 89 final-wicket runs.",
+      "b_roll": [
+        "stadium scoreboard showing final runs"
+      ],
+      "text_overlay": {
+        "text": "51-Year Record Broken"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 25, 2026, Pakistan chased England's total of 241 in Lahore. How's Pakistan going to chase down England's total of 241 at Gaddafi Stadium?",
+      "b_roll": [
+        "map of Lahore highlighting Gaddafi Stadium",
+        "cricket scoreboard collapse graphic"
+      ],
+      "text_overlay": {
+        "text": "Target: 241 Runs"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Shadab Khan and Haris Rauf survived 80 tense balls together.",
+      "b_roll": [
+        "timeline diagram of 80 balls partnership"
+      ],
+      "text_overlay": {
+        "text": "80 Balls Remaining"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Shadab Khan struck a superb unbeaten 113 off 96 balls. That epic effort delivered a stunning one-wicket victory over England.",
+      "b_roll": [
+        "graphic showing 113 runs off 96 balls stat card",
+        "partnership tracker diagram reaching 89 runs"
+      ],
+      "text_overlay": {
+        "text": "113 Unbeaten / 1-Wicket Win"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Their 89-run 10th-wicket partnership shattered a record that'd lasted 51 years in Lahore.",
+      "b_roll": [
+        "historical comparison stat banner"
+      ],
+      "text_overlay": {
+        "text": "89 Runs for 10th Wicket"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.icc-cricket.com/news/shadab-the-hero-as-pakistan-break-51-year-record-in-run-chase",
+    "https://apnews.com/article/cricket-pakistan-england-triseries-4dca94441b6ba2080997ce4b8f0e9d09",
+    "https://www.bbc.com/sport/cricket/articles/cq0mek4de4xno",
+    "https://www.cricinfo.com/story/pak-vs-eng-stats-shadab-khan-and-haris-rauf-break-last-men-standing-records-1560027"
+  ]
+}
