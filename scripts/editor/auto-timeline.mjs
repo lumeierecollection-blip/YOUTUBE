@@ -132,7 +132,7 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const parts = scriptSentenceParts(script);
   const sentences = parts.map((p) => p.text);
   const scriptQueries = parts.map((p) => deterministicQuery((Array.isArray(p.section?.b_roll) ? p.section.b_roll.find(Boolean) : "") || p.section?.visual_cue || p.text));
-  const modelQueries = concept ? await conceptQueries({ sentences, topic: research?.strongest_angle, niche: channel?.niche, ask }) : [];
+  const modelQueries = concept && scriptQueries.some((q) => !q) ? await conceptQueries({ sentences, topic: research?.strongest_angle, niche: channel?.niche, ask }) : [];
   const queries = sentences.map((_, i) => scriptQueries[i] || modelQueries[i] || null);
   for (let i = 0; i < queries.length; i++) console.log("[concept-photo] sentence " + i + ": " + (queries[i] ? '"' + queries[i] + '" (' + (scriptQueries[i] ? "script b_roll/visual_cue" : "model") + ")" : "no query"));
   const { plan, cards, report } = await buildAutoPlan({
