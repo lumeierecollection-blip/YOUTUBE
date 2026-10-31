@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "panama-metro-line-3-tunnel-drive-completed",
+  "format": "shorts",
+  "hook": "A 13.46‑meter TBM bored a tunnel under the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 13.46‑meter TBM bored a tunnel under the Panama Canal.",
+      "visual_cue": "Show the 13.46‑meter Herrenknecht Mixshield TBM named Panamá."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Oct 26 2026, TBM Panamá completed a 4.5 km drive. How did a 13.46‑meter machine bore such a long underground passage?",
+      "visual_cue": "Map of the Panama Canal highlighting the route from Farfán to Albrook."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the machine was built by Herrenknecht, a German tunnelling specialist.",
+      "visual_cue": "Display the Herrenknecht logo with a German engineering badge."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Mixshield TBM Panamá, 13.46 m in diameter, powered the entire 4.5 km excavation. César Pinzón of Metro de Panamá confirmed the milestone for Line 3.",
+      "visual_cue": "Animated line showing 4.5 km tunnel progress ending at Albrook on Oct 26 2026."
+    },
+    {
+      "id": "close",
+      "voiceover": "A 13.46‑meter machine carved Panama’s first canal tunnel.",
+      "visual_cue": "Close‑up of TBM Panamá with overlay ‘13.46 m diameter’."
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro"
+  ]
+}
