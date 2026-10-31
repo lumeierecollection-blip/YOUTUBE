@@ -1,0 +1,73 @@
+{
+  "channel_id": "11",
+  "topic_slug": "iac-study-measures-exact-size-largest-galaxy-ic-1101",
+  "format": "shorts",
+  "hook": "The Instituto de Astrofísica de Canarias finally measured IC 1101, the largest known galaxy ever discovered.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Instituto de Astrofísica de Canarias finally measured IC 1101, the largest known galaxy ever discovered.",
+      "visual_cue": "Ultra-deep imaging shot of the massive galaxy IC 1101 glowing in deep space.",
+      "sfx_cue": "Low-frequency cosmic hum fading into a sharp crystalline chime.",
+      "b_roll": [
+        "NASA public-domain archival footage of distant galactic clusters."
+      ],
+      "text_overlay": {
+        "text": "IC 1101: The Boundary Found"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 2, 2026, they published a study detailing the exact size of this galaxy. How large is the physical extent of IC 1101 according to this new study?",
+      "visual_cue": "Overlay of the research paper title from Astronomy & Astrophysics appearing over a galaxy map.",
+      "sfx_cue": "Subtle page-turning sound layered with a scientific hum.",
+      "b_roll": [
+        "Instituto de Astrofísica de Canarias official logo graphic.",
+        "Astronomy & Astrophysics journal publication page."
+      ],
+      "text_overlay": {
+        "text": "Study published Oct 2, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But researchers led by Carlos Marrero-de la Rosa used ultra-deep imaging to map its true size.",
+      "visual_cue": "Zooming in on the core of IC 1101 with digital measurement grid overlays.",
+      "sfx_cue": "High-pitched data processing beep.",
+      "b_roll": [
+        "High-resolution CCD image of IC 1101 from public-domain sources."
+      ],
+      "text_overlay": {
+        "text": "Beyond simple estimation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Astronomy & Astrophysics published this study on October 1, 2026, detailing the galaxy's physical extent. Catherine Vialle reported that the Instituto de Astrofísica de Canarias mapped this massive cosmic giant.",
+      "visual_cue": "Visual representation of the galaxy's light profile expanding across the screen.",
+      "sfx_cue": "Deep, resonant bass note as the image clarifies.",
+      "b_roll": [
+        "ESA public-domain deep space imagery."
+      ],
+      "text_overlay": {
+        "text": "True size confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the Astronomy & Astrophysics study to see the full dimensions of IC 1101.",
+      "visual_cue": "Slow zoom out revealing the scale of IC 1101 within the surrounding void.",
+      "sfx_cue": "Fading orchestral synth swell.",
+      "b_roll": [
+        "Wide-angle shot of the deep cosmic web."
+      ],
+      "text_overlay": {
+        "text": "IC 1101: The Titan Mapped"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.iac.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+    "https://www.aanda.org/articles/aa/full_html/2026/10/aa60963-26/aa60963-26.html"
+  ]
+}

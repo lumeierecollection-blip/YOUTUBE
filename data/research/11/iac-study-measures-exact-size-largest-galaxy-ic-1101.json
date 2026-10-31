@@ -1,0 +1,48 @@
+{
+  "topic_slug": "iac-study-measures-exact-size-largest-galaxy-ic-1101",
+  "strongest_angle": "The Instituto de Astrofísica de Canarias published a study measuring the exact size and physical extent of the largest known galaxy, IC 1101, using ultra-deep imaging.",
+  "key_facts": [
+    {
+      "fact": "The Instituto de Astrofísica de Canarias published a study on October 2, 2026, measuring the exact size of the galaxy IC 1101.",
+      "source_url": "https://www.iac.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+      "source_name": "Instituto de Astrofísica de Canarias",
+      "confidence": "high"
+    },
+    {
+      "fact": "Carlos Marrero-de la Rosa and colleagues authored the study on IC 1101 published in Astronomy & Astrophysics on October 1, 2026.",
+      "source_url": "https://www.aanda.org/articles/aa/full_html/2026/10/aa60963-26/aa60963-26.html",
+      "source_name": "Astronomy & Astrophysics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Catherine Vialle reported on the press release regarding the IC 1101 galaxy study published on October 2, 2026.",
+      "source_url": "https://www.aanda.org/2026-press-releases/3241-an-iac-study-measures-the-exact-size-of-the-largest-known-galaxy",
+      "source_name": "Astronomy & Astrophysics Press Releases",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Instituto de Astrofísica de Canarias",
+      "kind": "organization"
+    },
+    {
+      "name": "IC 1101",
+      "kind": "object"
+    },
+    {
+      "name": "Carlos Marrero-de la Rosa",
+      "kind": "person"
+    },
+    {
+      "name": "Astronomy & Astrophysics",
+      "kind": "organization"
+    },
+    {
+      "name": "Catherine Vialle",
+      "kind": "person"
+    }
+  ]
+}
