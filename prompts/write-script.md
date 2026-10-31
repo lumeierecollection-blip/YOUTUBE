@@ -210,11 +210,25 @@ elements, or the script is BLOCKED:**
 | "A worldwide release is coming later this year." | Vague time, no grounded date | "A global rollout begins Q2 2025." (date) |
 | "Meta Style Sketch builds your closet automatically." | Invented product name, entity only | "Meta's AI fashion app builds a digital closet from Instagram and Facebook photos." (cause/sequence — use research's name) |
 | "The app links Instagram and Facebook." | Entity only, no grounded visual | "The app imports photos from Instagram and Facebook to generate 50 outfit combinations." (quantity + cause/sequence) |
+| "Three participants felt prosthetic limbs move like real muscles." | Entity + vague action, no figure/date/place/list/comparison | "Three below‑knee amputees felt prosthetic limbs move with 0.8 mm RMS precision." (quantity + place) |
+| "Even that sub‑millimeter error enables near‑instant control." | Vague quantity ("sub‑millimeter"), no specific figure | "Even the 0.8 mm RMS error enables control at 10‑milliTesla field strength." (quantity + quantity) |
+| "The magnetic beads convert muscle contractions into signals." | Cause/sequence stated but no grounded figure | "The 2‑mm magnetic beads convert contractions into signals at 10‑milliTesla." (quantity + quantity + cause/sequence) |
+| "Three participants now control prosthetics with sub‑millimeter precision." | Vague count + vague precision | "Three participants control prosthetics at 0.8 mm RMS error." (quantity + quantity) |
+| "Meta's Style Sketch launches in three Asian countries." | Vague count ("three"), no specific places | "Meta's Style Sketch launches in Indonesia, Singapore, Thailand." (place list) |
+| "The rollout is limited to just three nations." | Vague count, no specific places | "The rollout is limited to Indonesia, Singapore, Thailand." (place list) |
+| "Three Asian countries now have Meta's virtual closet." | Vague count, no specific places | "Indonesia, Singapore, Thailand now have Meta's virtual closet." (place list) |
 
 **Every sentence in your script MUST match a PASSING pattern.** If the research
 does not provide a grounded element for a sentence, CUT THE SENTENCE or rewrite
 it using a fact the research DOES provide. Do not invent figures, dates, places,
 or lists — that violates the claims gate (SCR-18) and skips the channel.
+
+**HARD RULE FOR STRICT_VISUAL CHANNELS (ch-02, ch-48):**
+- Count your grounded elements PER SENTENCE before returning. A sentence with ZERO grounded elements = BLOCKER.
+- "Three Asian countries" = 0 grounded elements (vague count). "Indonesia, Singapore, Thailand" = LIST (3+ places) = 1 grounded element.
+- "Sub-millimeter" = 0 grounded elements (not a specific figure). "0.8 mm RMS" = QUANTITY = 1 grounded element.
+- "Participants" = 0 grounded elements (bare noun). "Three participants" = QUANTITY (count with unit implied) = 1 grounded element ONLY if the research states the exact count with context.
+- Every sentence MUST have at least ONE of: comparison, list (3+ items), timeline (dated event), place (named), percentage, quantity/figure with unit, trend, cause/sequence, money object, document.
 
 - **One idea per sentence, one drawable thing per idea** — a person, a place, an object, a figure with its unit, a dated event. Never two ideas to save words; never an idea with nothing to point at.
 - **The hook survives muted autoplay.** Its first words are what is on screen in the first two seconds, so it names the concrete thing (the number, the place, the object) — not a feeling about it.

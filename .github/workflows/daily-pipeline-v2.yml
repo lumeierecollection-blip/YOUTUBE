@@ -1415,6 +1415,9 @@ jobs:
           name: rendered-${{ matrix.channel_id }}-${{ github.run_id }}
           path: |
             data/renders/${{ matrix.channel_id }}/
+            data/renders/approved/
+            data/renders/approved-review/
+            data/renders/rejected/
             data/visual-plans/${{ matrix.channel_id }}/
             data/renders/qa-counts.json
             src/skills/remotion-render/public/asset-library/manifest.json
