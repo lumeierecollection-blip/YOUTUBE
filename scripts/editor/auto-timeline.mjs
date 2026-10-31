@@ -100,10 +100,10 @@ function resolverFromEntityAssets() {
 }
 
 /** concept({query, used}) -> a real, free-licence Commons photo of the concept, saved under data/editor/auto/concept/, or null. */
-function conceptFinder(askVision = defaultAskVision(), maxChecks = 80) {
+function conceptFinder(askVision = defaultAskVision(), maxChecks = 120) {
   let checks = 0;
   return async ({ query, sentence, topic, used }) => {
-    const found = await searchCommons(query, 4);
+    const found = await searchCommons(query, 8);
     for (const rec of found) {
       const slug = rec.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60);
       const file = join(ROOT, "data", "editor", "auto", "concept", slug + ".jpg");
@@ -141,7 +141,7 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
     const layers = graphicLayers({ ...g, id: "scene-" + i + "-g", look: g.look, palette: plan.palette, inF, outF: base.out, rng: seededRandom(plan.id + ":" + i) });
     timeline.layers.push(...layers);
     // a hero panel is the whole picture: a thin accent line crosses the frame so it never sits still once its counter has finished
-    if (g.mode === "hero") timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
+    if (["hero", "bare", "full"].includes(g.mode)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
   });
   timeline.layers.sort((x, y) => x.z - y.z);
   return timeline;

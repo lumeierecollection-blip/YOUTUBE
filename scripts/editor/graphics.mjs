@@ -86,7 +86,9 @@ const THEMES = {
 };
 
 /** Where the panel sits. split: under a 990 px photo, above the captions (y 1540+). hero: the panel is the picture. */
-export const PANEL = { split: { x: 60, y: 1015, w: 960, h: 480 }, hero: { x: 60, y: 520, w: 960, h: 820 } };
+export const PANEL = { split: { x: 60, y: 1015, w: 960, h: 480 }, hero: { x: 60, y: 520, w: 960, h: 820 }, full: { x: 0, y: 0, w: 1080, h: 1920 }, bare: { x: 0, y: 0, w: 1080, h: 1920 } };
+/** A map beat is the whole frame: the map is drawn at this size (mapFor projects to it). */
+export const FULL_MAP = { w: 960, h: 1200 };
 export const PHOTO_RECT = { x: 0, y: 0, w: 1080, h: 990 };
 export const MAP_RECT = { w: PANEL.hero.w - 48, h: PANEL.hero.h - 132 - 84 };
 
@@ -94,10 +96,12 @@ export const MAP_RECT = { w: PANEL.hero.w - 48, h: PANEL.hero.h - 132 - 84 };
 export function graphicLayers({ id, kind, figs, source, label = "", places = null, fn = "evidence", look, palette, inF, outF, z = 150, mode = "split", rng = Math.random }) {
   const len = Math.max(8, outF - inF);
   const layers = [];
-  const hero = mode === "hero";
+  // hero: a boxed panel that is the picture. full: a map across the whole frame, no box. bare: a number on the open frame, no box.
+  const hero = mode === "hero" || mode === "full" || mode === "bare";
+  const bare = mode === "bare";
   const theme = { ...(THEMES[look] || THEMES["anti-slop"]) };
   const accent = palette.accent;
-  let P = { ...(PANEL[hero ? "hero" : "split"]) };
+  let P = { ...(PANEL[hero ? mode : "split"]) };
   if (look === "mograph-critic") P = { ...P, x: 0, w: 1080 };
   const payoffFlat = look === "scene-director" && fn === "payoff" && hero;
   if (payoffFlat) { theme.bg = accent; theme.text = onFill(accent); theme.muted = onFill(accent); theme.grid = onFill(accent) === "#FFFFFF" ? "rgba(255,255,255,0.3)" : "rgba(16,17,20,0.3)"; theme.track = theme.grid; theme.edge = null; }
@@ -136,12 +140,12 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   const sourceTag = () => source && text("source", { x: X, y: P.y + P.h - (hero ? 70 : 52), w: W, h: 34 }, `Source: ${source}`.slice(0, 80), { size: 22, color: theme.muted, upper: look === "hallmark", tracking: look === "hallmark" ? 0.08 : 0, delay: 6 });
 
   // ---- the panel itself: a solid plate (slides up) with a border that draws on ----
-  mk("panel", "solid", P, { style: { background: theme.bg }, radius: theme.radius, noDrift: true, keyframes: { opacity: kf([0, 0], [8, 1], [Math.max(9, len - 8), 1], [len, 0]), ty: kf([0, 60, "outCubic"], [14, 0]) } });
+  if (mode === "hero" || mode === "split") mk("panel", "solid", P, { style: { background: theme.bg }, radius: theme.radius, noDrift: true, keyframes: { opacity: kf([0, 0], [8, 1], [Math.max(9, len - 8), 1], [len, 0]), ty: kf([0, 60, "outCubic"], [14, 0]) } });
   if (theme.edge) mk("edge", "svg", P, { viewBox: [0, 0, P.w, P.h], paths: [{ d: `M2 2 H${P.w - 2} V${P.h - 2} H2 Z`, stroke: theme.edge, strokeWidth: 3 }], noDrift: true, keyframes: { opacity: kf([0, 0], [6, 1], [Math.max(7, len - 8), 1], [len, 0]), draw: kf([0, 0], [26, 1, "outCubic"]) } });
   if (look === "mograph-critic") mk("rule", "solid", { x: X, y: P.y + 22, w: 120, h: 6 }, { style: { background: accent }, noDrift: true, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [16, 0, "outCubic"]) } });
   else if (look === "anti-slop" || look === "scene-director") mk("rule", "solid", { x: P.x, y: P.y, w: 150, h: 8 }, { style: { background: barColor }, noDrift: true, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [16, 0, "outCubic"]) } });
 
-  const capY = P.y + (hero ? 36 : 24), capH = hero ? 96 : 72;
+  const capY = P.y + (bare ? 440 : mode === "full" ? 240 : hero ? 36 : 24), capH = hero ? 96 : 72;
   const capSize = hero ? 36 : 28;
   const caption = () => label && text("caption", { x: X, y: capY, w: W, h: capH }, label, { size: capSize, color: theme.muted, weight: look === "hallmark" ? 400 : 600, font: look === "hallmark" ? SERIF : SANS, upper: look !== "hallmark", tracking: look === "hallmark" ? 0 : 0.04, valign: "top" });
 
@@ -159,7 +163,7 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   const pct = (f) => (f.kind === "percent" ? Math.max(0, Math.min(100, f.value)) : null);
 
   if (kind === "map") {
-    const MP = { x: P.x + 24, y: P.y + 132, w: MAP_RECT.w, h: MAP_RECT.h };
+    const MP = mode === "full" ? { x: 60, y: 380, w: FULL_MAP.w, h: FULL_MAP.h } : { x: P.x + 24, y: P.y + 132, w: MAP_RECT.w, h: MAP_RECT.h };
     const names = (places?.highlights || []).map((h) => h.name).slice(0, 3);
     if (names.length) text("title", { x: X, y: capY, w: W, h: 70 }, names.join("  ·  "), { size: hero ? 46 : 36, color: theme.text, weight: 800, upper: true, tracking: 0.1, font: look === "hallmark" ? SERIF : SANS });
     if (places?.land) mk("land", "svg", MP, { viewBox: [0, 0, MP.w, MP.h], paths: [{ d: places.land, stroke: look === "hallmark" ? "rgba(21,19,15,0.55)" : "rgba(255,255,255,0.4)", fill: look === "hallmark" ? "#DCD3BE" : "#1C2230", strokeWidth: 1.6 }], keyframes: { ...entrance(len, { slide: 0 }), draw: kf([0, 0], [26, 1, "outCubic"]) } });
@@ -198,9 +202,9 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   }
 
   if (kind === "count") {
-    countText("n", { x: X, y: P.y + (hero ? 150 : 96), w: W, h: hero ? 340 : 190 }, sp, fitSize(fig.raw, hero ? 260 : 170, W), {});
-    mk("meter", "solid", { x: X, y: P.y + (hero ? 540 : 310), w: W, h: 8 }, { style: { background: theme.track }, keyframes: entrance(len, { slide: 0 }) });
-    mk("meter-fill", "solid", { x: X, y: P.y + (hero ? 540 : 310), w: W, h: 8 }, { style: { background: barColor }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [30, 0, "outCubic"]) } });
+    countText("n", { x: X, y: P.y + (bare ? 560 : hero ? 150 : 96), w: W, h: hero ? 340 : 190 }, sp, fitSize(fig.raw, hero ? 260 : 170, W), {});
+    mk("meter", "solid", { x: X, y: P.y + (bare ? 1000 : hero ? 540 : 310), w: W, h: 8 }, { style: { background: theme.track }, keyframes: entrance(len, { slide: 0 }) });
+    mk("meter-fill", "solid", { x: X, y: P.y + (bare ? 1000 : hero ? 540 : 310), w: W, h: 8 }, { style: { background: barColor }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [30, 0, "outCubic"]) } });
     sourceTag();
     return layers;
   }
@@ -220,7 +224,7 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   if (kind === "bars2") {
     const [a, b] = figs.filter((f) => f.kind === "percent").slice(0, 2);
     const rowH = hero ? 190 : 100;
-    const top = P.y + (hero ? 150 : 96);
+    const top = P.y + (bare ? 560 : hero ? 150 : 96);
     const numW = hero ? 330 : 250;
     const trackX = X + numW + 20, trackW = W - numW - 20;
     [a, b].forEach((f, i) => {
@@ -290,5 +294,5 @@ export function sweepLayers({ id, palette, inF, outF, z = 150 }) {
 
 /** Map geometry for a sentence's places, projected into the map rect of a hero panel. */
 export function mapFor({ highlight, pin = null }) {
-  return buildMap({ highlight, pin, w: MAP_RECT.w, h: MAP_RECT.h });
+  return buildMap({ highlight, pin, w: FULL_MAP.w, h: FULL_MAP.h });
 }

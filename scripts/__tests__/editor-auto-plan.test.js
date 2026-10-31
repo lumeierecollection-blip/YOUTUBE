@@ -524,10 +524,10 @@ test("a sentence that names a place, with no photo and no figure, gets a drawn m
     words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 18, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
   const maps = r.plan.scenes.filter((s) => s.graphic?.kind === "map");
   assert.ok(maps.length >= 1 && maps.length <= 2, `maps: ${maps.length}`);
-  assert.equal(maps[0].graphic.mode, "hero");
+  assert.equal(maps[0].graphic.mode, "full", "a map beat is the whole frame");
   assert.ok(maps[0].graphic.places.highlights[0].name);
   assert.match(r.report.scenes.find((x) => /map of/.test(x.shows)).shows, /^map of Chile/);
-  const ls = graphicLayers({ id: "m", kind: "map", figs: maps[0].graphic.figs, source: "bbc.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "hero", places: maps[0].graphic.places });
+  const ls = graphicLayers({ id: "m", kind: "map", figs: maps[0].graphic.figs, source: "bbc.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "full", places: maps[0].graphic.places });
   const hl = ls.find((l) => /-hl0$/.test(l.id));
   assert.equal(valueAt(hl, "draw", 0), 0);
   assert.equal(valueAt(hl, "draw", 60), 1, "the highlighted place draws on");
@@ -657,4 +657,32 @@ test("two number cards never run back to back, and a text-only beat falls back t
   assert.ok(!shows.some((x, i) => i && /research figure/.test(x) && /research figure/.test(shows[i - 1])), `no two research-figure cards in a row: ${shows.join(" | ")}`);
   assert.ok(shows.filter((x) => /research figure|map of/.test(x)).length >= 2, `fallbacks used instead of text: ${shows.join(" | ")}`);
   assert.equal(r.report.scenes.filter((x) => /key-word poster/.test(x.shows)).length <= 1, true, "at most one text-only beat");
+});
+
+// ---- full-frame maps, bare number cards, no repeated figure in a row ------------------------------------------------------------------
+test("a figure is not drawn on two beats running, and number cards alternate between the boxed and the bare layout", async () => {
+  const sents = ["Rain fell 45% less this year.", "Rain fell 45% less than the year before.", "Farms lost 1,321 acres.", "Farmers waited for the rain."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [], numbers: [{ label: "rain", value: 45, unit: "percent", source_url: "https://news.example.org/x" }, { label: "acres lost", value: 1321, unit: "acres", source_url: "https://news.example.org/y" }] },
+    words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
+  const figRaws = r.plan.scenes.map((s) => s.graphic?.figs?.[0]?.raw || null);
+  for (let i = 1; i < figRaws.length; i++) if (figRaws[i] && figRaws[i - 1]) assert.notEqual(figRaws[i], figRaws[i - 1], `beat ${i} repeats the figure on beat ${i - 1}`);
+  const cards = r.plan.scenes.filter((s) => s.graphic && s.graphic.kind !== "map");
+  assert.ok(cards.length >= 2, "there are number cards to alternate");
+  for (let i = 1; i < cards.length; i++) assert.notEqual(cards[i].graphic.mode, cards[i - 1].graphic.mode, "two number cards in a row never share a layout");
+});
+
+test("a map beat is the whole frame: every point of the map lies inside the 1080x1920 canvas, and it has no box", () => {
+  const maps = [matchPlaces("Chile and Argentina")];
+  const geo = mapFor({ highlight: maps[0] });
+  const ls = graphicLayers({ id: "m", kind: "map", figs: [{ raw: "Chile", kind: "place" }], source: "bbc.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "full", places: geo });
+  assert.ok(!ls.some((l) => /-panel$/.test(l.id)), "no box behind a full-frame map");
+  const land = ls.find((l) => /-land$/.test(l.id));
+  assert.ok(land.rect.x >= 0 && land.rect.y >= 0 && land.rect.x + land.rect.w <= 1080 && land.rect.y + land.rect.h <= 1920, "the map sits inside the frame");
+});
+
+test("a bare number card has no box, and its number sits on the open frame", () => {
+  const ls = graphicLayers({ id: "c", kind: "count", figs: [{ raw: "45%", kind: "percent", value: 45 }], source: "x.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "bare" });
+  assert.ok(!ls.some((l) => /-panel$/.test(l.id)), "no box");
+  const n = ls.find((l) => /-n$/.test(l.id));
+  assert.ok(n.rect.y >= 400 && n.rect.y + n.rect.h <= 1920, "the number sits in the open frame");
 });

@@ -206,6 +206,10 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   // Fallback visuals (a figure from the research, a map of the topic's country) so that a beat with no photo of its own is not text alone.
   const usedFigs = new Set();
   let lastWasCard = false;
+  let lastFig = null;
+  // number cards alternate layouts by their own count, so two cards in a row never share one
+  let cardCount = 0;
+  const cardMode = () => (cardCount++ % 2 ? "bare" : "hero");
   const topicPlace = matchPlaces([topic, research?.strongest_angle, sentences[0]].filter(Boolean).join(". "))[0] || null;
   const spareFigs = (research?.numbers || []).filter((n) => n && Number.isFinite(Number(n.value)) && n.label).map((n) => {
     const pct = /percent|%/i.test(String(n.unit || ""));
@@ -217,7 +221,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
   const findConcept = async (phrases, sentence, { fallback = true } = {}) => {
     const tries = [...phrases.filter(Boolean)];
-    if (fallback) tries.push(...storyPool.splice(0, 3));
+    if (fallback) tries.push(...storyPool.splice(0, 6));
     for (const q of tries) {
       const c = await concept({ query: q, sentence, topic, used: usedFiles }).catch(() => null);
       if (c) { usedFiles.add(c.file); return { c, q }; }
@@ -237,7 +241,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     const yearFig = !figs.length ? extractYear(sentence) : null;
     // each year gets one timeline per video, and at most three timelines in all: the same "2026" five times is a template, not a graphic
     const yearOk = yearFig && !yearsShown.has(yearFig.value) && yearsShown.size < 3 && researchStates(research, yearFig);
-    const gfigs = figs.length ? figs : (yearOk ? [yearFig] : []);
+    let gfigs = figs.length ? figs : (yearOk ? [yearFig] : []);
+    // The same figure on the very next beat is the same beat again: a figure that was just shown is not drawn twice in a row.
+    if (gfigs.length && gfigs.every((f) => f.raw === lastFig)) gfigs = [];
     if (!figs.length && yearOk) yearsShown.add(yearFig.value);
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
@@ -331,7 +337,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       cards.push({ id, svg: backdropSvg(palette) });
       mapsShown++;
       scene = { id: `s${i}-map`, asset: id, fit: "cover", fade };
-      scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: placeHits[0].f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
+      scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: placeHits[0].f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: geo };
       how = `map of ${placeHits.slice(0, 3).map((h) => h.f.name).join(", ")}`;
     }
 
@@ -366,14 +372,14 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           usedFigs.add(spare.fig.raw);
           cards.push({ id, svg: backdropSvg(palette) });
           scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
-          scene.graphic = { id: `g${i}`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: "hero", backdrop: true };
+          scene.graphic = { id: `g${i}`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: cardMode(), backdrop: true };
           how = `research figure ${spare.fig.raw} (${spare.n.label})`;
         } else if (topicPlace && mapsShown < 3 && lastAsset !== "map") {
           const geo = mapFor({ highlight: [topicPlace] });
           cards.push({ id, svg: backdropSvg(palette) });
           mapsShown++;
           scene = { id: `s${i}-map`, asset: id, fit: "cover", fade };
-          scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
+          scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: geo };
           how = `map of ${topicPlace.f.name} (the topic)`;
         } else {
           cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
@@ -383,7 +389,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (!scene) {
         const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
         scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
-        if (gfigs.length) scene.graphic = graphicFor("hero", { backdrop: onBackdrop });
+        if (gfigs.length) scene.graphic = graphicFor(cardMode(), { backdrop: onBackdrop });
       }
     }
 
@@ -391,6 +397,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     scene.look = look.name;
     // a number card is a card with a graphic that is not a map: no two of them in a row (the fallbacks above respect this)
     lastWasCard = !!(scene.graphic && scene.graphic.kind !== "map" && /^card-/.test(scene.asset));
+    lastFig = scene.graphic && scene.graphic.kind !== "map" ? (scene.graphic.figs?.[0]?.raw || null) : null;
 
     // Two visuals per sentence: a viewer's eye is held by a change every couple of seconds. The second beat is a DIFFERENT picture (the
     // sentence's next phrase, never a crop of the first). Where a sentence has a figure the panel arrives on the second beat, so the
@@ -422,7 +429,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         cards.push({ id: mid, svg: backdropSvg(palette) });
         mapsShown++;
         second = { id: `s${i}-map`, asset: mid, fit: "cover", fade: 0, look: look.name, start: 0, end: 0 };
-        second.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: scene.flagOf, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "hero", places: geo };
+        second.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: scene.flagOf, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: geo };
         how += ` then map of ${scene.flagOf}`;
       } else if (scene.graphic || isPhoto(scene) || /^card-/.test(scene.asset)) {
         const alt = await secondPhoto();
