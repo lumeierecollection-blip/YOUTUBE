@@ -605,9 +605,14 @@
           "topic": "Harry Houdini's Centennial Spotlight and Newly Published Essays",
           "slug": "harry-houdini-centennial-spotlight-october-2026",
           "reserved_at": "2026-10-31T22:06:13.278Z"
+        },
+        {
+          "topic": "The True Story of the Loudun Possessions and Ken Russell's The Devils Restored in 4K",
+          "slug": "loudun-possessions-ken-russell-the-devils-4k",
+          "reserved_at": "2026-10-31T23:08:03.725Z"
         }
       ],
-      "last_generated": "2026-10-31T22:06:13.278Z"
+      "last_generated": "2026-10-31T23:08:03.725Z"
     },
     "2": {
       "channel_name": "AI Tested",
