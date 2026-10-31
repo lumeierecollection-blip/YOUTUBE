@@ -1,0 +1,77 @@
+{
+  "channel_id": "21",
+  "topic_slug": "herrenknecht-tbm-panama-canal-tunnel",
+  "format": "shorts",
+  "hook": "A massive machine just carved a tunnel 60 meters beneath the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive machine just carved a tunnel 60 meters beneath the Panama Canal.",
+      "visual_cue": "Aerial footage of the Panama Canal transitioning to a TBM schematic.",
+      "sfx_cue": "Deep mechanical rumble that cuts to silence.",
+      "b_roll": [
+        "Aerial view of the Panama Canal",
+        "Technical diagram of the Herrenknecht Mixshield TBM"
+      ],
+      "text_overlay": {
+        "text": "60 Meters Below"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How does this 26,616kNm Herrenknecht Mixshield TBM maintain stability while boring beneath the Panama Canal?",
+      "visual_cue": "Map showing the tunnel path from Farfán to Albrook.",
+      "sfx_cue": "Sound of a heavy machine starting up.",
+      "b_roll": [
+        "Map animation of the tunnel route",
+        "Close-up of the TBM cutting wheel"
+      ],
+      "text_overlay": {
+        "text": "Panama Metro Line 3"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The machine uses a 5,600kW motor to balance extreme water pressure at these massive depths.",
+      "visual_cue": "Close-up of the cutterhead rotating.",
+      "sfx_cue": "Heavy grinding sound effect.",
+      "b_roll": [
+        "Stock footage of industrial TBM cutterhead",
+        "Technical spec graphic"
+      ],
+      "text_overlay": {
+        "text": "5,600 kW Power"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This Mixshield TBM successfully completed the first-ever undercrossing of the Panama Canal for Metro Line 3. President José Raúl Mulino launched this historic project in September 2024 to connect Panama City.",
+      "visual_cue": "Animation showing the TBM exiting the ground at the Albrook site.",
+      "sfx_cue": "Mechanical break-through sound.",
+      "b_roll": [
+        "Construction site footage at Albrook",
+        "Technical diagram of torque force"
+      ],
+      "text_overlay": {
+        "text": "26,616 kNm Torque"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Panamá machine finished its journey 60 meters below sea level.",
+      "visual_cue": "Final shot of the TBM cutterhead above ground.",
+      "sfx_cue": "Fading industrial hum.",
+      "b_roll": [
+        "Close-up of the TBM exterior",
+        "Wide shot of the Albrook tunnel entrance"
+      ],
+      "text_overlay": {
+        "text": "60 Meters Below"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://www.geomechanics.io/news/article/panama-canal-mixshield-undercrossing-design-and-tunnelling-lessons-for-engineers"
+  ]
+}

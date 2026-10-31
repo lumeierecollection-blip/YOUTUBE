@@ -1,0 +1,98 @@
+{
+  "topic_slug": "herrenknecht-tbm-panama-canal-tunnel",
+  "strongest_angle": "Analyze the mechanics and operation of the 13.46m diameter Herrenknecht Mixshield TBM named Panamá, which finished its breakthrough at Albrook on October 26, 2026, for Panama Metro Line 3.",
+  "key_facts": [
+    {
+      "fact": "A 13.46m diameter Herrenknecht Mixshield TBM named Panamá completed its 4.5km drive beneath the Panama Canal, achieving its final breakthrough at Albrook on 26 October 2026 for Panama Metro Line 3.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "President José Rakúl Mulino of the Republic of Panama personally pressed the start button in September 2024 to begin the cutting wheel rotation of the XXL Mixshield tunnel boring machine in Panama City.",
+      "source_url": "https://www.herrenknecht.com/en/references/referencesdetail/panama-metro-line-3",
+      "source_name": "Herrenknecht",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 5,600kW, 26,616kNm Herrenknecht Mixshield TBM achieved the first-ever TBM undercrossing of the Panama Canal at depths exceeding 60m below sea level.",
+      "source_url": "https://www.geomechanics.io/news/article/panama-canal-mixshield-undercrossing-design-and-tunnelling-lessons-for-engineers",
+      "source_name": "Geomechanics.io News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TBM Diameter",
+      "value": 13.46,
+      "unit": "meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Tunnel Drive Length",
+      "value": 4.5,
+      "unit": "kilometers",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Power Output",
+      "value": 5600,
+      "unit": "kW",
+      "source_url": "https://www.geomechanics.io/news/article/panama-canal-mixshield-undercrossing-design-and-tunnelling-lessons-for-engineers"
+    },
+    {
+      "label": "Torque",
+      "value": 26616,
+      "unit": "kNm",
+      "source_url": "https://www.geomechanics.io/news/article/panama-canal-mixshield-undercrossing-design-and-tunnelling-lessons-for-engineers"
+    },
+    {
+      "label": "Maximum Depth Below Sea Level",
+      "value": 60,
+      "unit": "meters",
+      "source_url": "https://www.geomechanics.io/news/article/panama-canal-mixshield-undercrossing-design-and-tunnelling-lessons-for-engineers"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Panamá",
+      "kind": "object"
+    },
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Panama Metro Line 3",
+      "kind": "organization"
+    },
+    {
+      "name": "Farfán",
+      "kind": "place"
+    },
+    {
+      "name": "José Raúl Mulino",
+      "kind": "person"
+    },
+    {
+      "name": "Panama City",
+      "kind": "place"
+    },
+    {
+      "name": "HPH",
+      "kind": "organization"
+    },
+    {
+      "name": "Balboa station",
+      "kind": "place"
+    }
+  ]
+}
