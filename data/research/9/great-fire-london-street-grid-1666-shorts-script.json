@@ -1,0 +1,39 @@
+{
+  "channel_id": "9",
+  "topic_slug": "great-fire-london-street-grid-1666",
+  "format": "shorts",
+  "hook": "What if London’s medieval maze had stayed unchanged after the 1666 fire?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if London’s medieval maze had stayed unchanged after the 1666 fire?",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1666, the Great Fire destroyed London’s narrow medieval streets. Wren and John Evelyn submitted a new grid of wide avenues. Why didn’t the 1667 Rebuilding Act implement those plans?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Because the Act’s guidelines were not implemented, London’s layout stayed medieval.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Instead, the fire created public squares and new churches. Those elements became a model for Philadelphia’s later grid plan. But Wren’s wide‑avenue dream never materialized, keeping London’s maze largely unchanged.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "London’s streets remain a medieval labyrinth today.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1080/02665433.2018.1552837",
+    "http://theguardian.com/cities/2016/jan/25/how-london-might-have-looked-five-masterplans-after-great-fire-1666",
+    "https://www.bbc.com/news/magazine-35418272",
+    "https://www.londonmuseum.org.uk/collections/london-stories/great-fire-london-housing-crisis"
+  ]
+}

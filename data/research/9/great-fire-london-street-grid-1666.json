@@ -1,0 +1,78 @@
+{
+  "topic_slug": "great-fire-london-street-grid-1666",
+  "strongest_angle": "The Great Fire of 1666 forced a complete redesign of London's streets, leading to the wide, straight avenues seen today, and compare the pre-fire medieval layout with the post-fire grid.",
+  "key_facts": [
+    {
+      "fact": "Christopher Wren proposed a grid system for London that would have replaced the cramped medieval streets with wide avenues, inspired by continental city designs.",
+      "source_url": "https://doi.org/10.1080/02665433.2018.1552837",
+      "source_name": "Michael Hebbert",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Great Fire of 1666 provided an opportunity to redesign the city, with plans submitted by Christopher Wren and John Evelyn aiming for a new, grand city layout.",
+      "source_url": "http://theguardian.com/cities/2016/jan/25/how-london-might-have-looked-five-masterplans-after-great-fire-1666",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The First Rebuilding Act of 1667 set guidelines for rebuilding, but no plans were implemented, leaving the city's layout largely unchanged from its medieval state.",
+      "source_url": "https://www.bbc.com/news/magazine-35418272",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Great Fire of 1666 led to the creation of public squares and churches, which became a model for future city planning, including Philadelphia's grid system.",
+      "source_url": "https://www.londonmuseum.org.uk/collections/london-stories/great-fire-london-housing-crisis",
+      "source_name": "London Museum",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "1666",
+      "value": 1,
+      "unit": "year",
+      "source_url": "http://theguardian.com/cities/2016/jan/25/how-london-might-have-looked-five-masterplans-after-great-fire-1666"
+    },
+    {
+      "label": "1667",
+      "value": 1,
+      "unit": "year",
+      "source_url": "https://www.bbc.com/news/magazine-35418272"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Christopher Wren",
+      "kind": "person"
+    },
+    {
+      "name": "John Evelyn",
+      "kind": "person"
+    },
+    {
+      "name": "King Charles II",
+      "kind": "person"
+    },
+    {
+      "name": "Wren",
+      "kind": "person"
+    },
+    {
+      "name": "St Paul's Cathedral",
+      "kind": "organization"
+    },
+    {
+      "name": "Philadelphia",
+      "kind": "place"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Christopher Wren sought to persuade King Charles II to rebuild London according to the best principles of baroque urbanism, with wide straight streets, axial symmetry, monumental endpoints, and a waterfront with open quays.",
+      "speaker": "Michael Hebbert",
+      "source_name": "The long after-life of Christopher Wren’s short-lived London plan of 1666",
+      "source_url": "https://doi.org/10.1080/02665433.2018.1552837"
+    }
+  ]
+}
