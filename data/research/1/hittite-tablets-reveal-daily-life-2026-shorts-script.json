@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "hittite-tablets-reveal-daily-life-2026",
+  "format": "shorts",
+  "hook": "131 tablets unearthed in Turkey rewrite Hittite history today.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "131 tablets unearthed in Turkey rewrite Hittite history today.",
+      "visual_cue": "Close‑up of 131 ancient tablets stacked on a table."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026 archaeologists at Kayalıpınar, Sivas uncovered 131 tablets from King Tudhaliya II. How do these tablets reshape Hittite daily life?",
+      "visual_cue": "Map of Turkey highlighting Kayalıpınar and Samuha, then zoom on tablets."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet UNESCO's register recognizes the Bogazköy archive as the only surviving Hittite record.",
+      "visual_cue": "Scroll of unread cuneiform symbols fading into a question mark."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 131 Kayalıpınar tablets detail royal decrees and tax data. UNESCO added the Bogazköy archive to its Memory of the World register.",
+      "visual_cue": "Animated charts showing numbers, then UNESCO logo with archive plaque."
+    },
+    {
+      "id": "close",
+      "voiceover": "131 tablets now rewrite what we know of Hittite life.",
+      "visual_cue": "Fade to a single tablet with the number 131 etched."
+    }
+  ],
+  "sources_used": [
+    "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946",
+    "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "topic_slug": "hittite-tablets-reveal-daily-life-2026",
+  "strongest_angle": "2026 excavations in central Turkey uncovered hundreds of Hittite tablets, giving concrete numbers on royal administration and everyday life in the ancient empire.",
+  "key_facts": [
+    {
+      "fact": "During the 2026 excavations at Kayalıpınar in Sivas province, archaeologists uncovered 131 cuneiform tablets that date to the reign of King Tudhaliya II.",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946",
+      "source_name": "Hurriyet Daily News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Later in 2026, officials announced that the Samuha royal archive now contains a total of 184 tablets after the latest discoveries were added.",
+      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news",
+      "source_name": "Daily Sabah",
+      "confidence": "medium"
+    },
+    {
+      "fact": "UNESCO has inscribed the archive of Hittite cuneiform tablets from Bogazköy (ancient Hattusas) on its Memory of the World Register, recognizing it as the only surviving written record of the Hittite civilization.",
+      "source_url": "https://www.unesco.org/en/memory-world/hittite-cuneiform-tablets-bogazkoy",
+      "source_name": "UNESCO",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 131,
+      "unit": "tablets",
+      "label": "tablets uncovered at Kayalıpınar (2026)",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946"
+    },
+    {
+      "value": 184,
+      "unit": "tablets",
+      "label": "total tablets in the Samuha royal archive after 2026 finds",
+      "source_url": "https://www.dailysabah.com/life/hittite-royal-archive-with-184-tablets-unearthed-in-central-turkiye/news"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "King Tudhaliya II",
+      "kind": "person"
+    },
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Sivas province",
+      "kind": "place"
+    },
+    {
+      "name": "Mehmet Nuri Ersoy",
+      "kind": "person"
+    },
+    {
+      "name": "Samuha",
+      "kind": "place"
+    },
+    {
+      "name": "UNESCO",
+      "kind": "organization"
+    },
+    {
+      "name": "Bogazköy",
+      "kind": "place"
+    },
+    {
+      "name": "Hattusas",
+      "kind": "place"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "In the 2026 excavations, we unearthed 131 cuneiform tablets and fragments dating to the reign of King Tudhaliya II at ancient Samuha.",
+      "speaker": "Mehmet Nuri Ersoy",
+      "source_name": "Hurriyet Daily News",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946"
+    }
+  ]
+}
