@@ -3,7 +3,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildAutoPlan, extractFigures, researchStates, nameVariants, sentenceSpans, entitiesIn, entityIndex, splitClauses, clauseSpans } from "../editor/auto-plan.mjs";
-import { deterministicQuery } from "../editor/concept-photo.mjs";
+import { deterministicQuery, visualQuery } from "../editor/concept-photo.mjs";
 import { figureCard, statementCard, wrapText } from "../editor/cards.mjs";
 import { transcriptFromWords } from "../editor/auto-timeline.mjs";
 import { buildCaptions } from "../editor/captions.mjs";
@@ -43,6 +43,12 @@ test("script queries are deterministic concrete phrases, not camera direction", 
   const q = deterministicQuery("Close-up shot of handwritten historical port records glowing under digital scanning light.");
   assert.match(q, /handwritten historical port records/);
   for (const camera of ["close-up", "shot", "glowing"]) assert.ok(!new RegExp(`\\b${camera}\\b`, "i").test(q), `camera word ${camera} leaked`);
+});
+
+test("a visual query skips logos and camera direction, and falls through to the next b_roll", () => {
+  assert.equal(visualQuery({ b_roll: ["National Geographic logo", "Historical portrait of young Harry Houdini"] }), "Historical portrait young Harry Houdini");
+  assert.equal(visualQuery({ b_roll: ["Close up of 19th century handwriting"] }), "19th century handwriting");
+  assert.equal(visualQuery({ b_roll: ["Map of Britain with trade routes"], visual_cue: "Antique journal on a desk" }), "Antique journal desk");
 });
 
 test("a clause split tiles the sentence and stays inside it", () => {

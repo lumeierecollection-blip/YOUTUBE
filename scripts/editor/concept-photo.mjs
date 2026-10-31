@@ -46,9 +46,26 @@ ${sentences.map((s, i) => `${i}. ${s}`).join("\n")}`;
 }
 
 const CAMERA_WORDS = new Set(["close", "closeup", "close-up", "medium", "wide", "shot", "slow", "zoom", "pan", "fade", "cut", "dissolve", "macro", "footage", "b-roll", "broll", "animation", "animated", "camera", "frame", "scene", "light", "lighting", "glowing", "archival", "visualization", "visualisation", "infographic"]);
-const QUERY_STOP = new Set(["a", "an", "the", "of", "in", "on", "at", "to", "for", "from", "with", "and", "or", "but", "as", "by", "into", "over", "under", "through", "showing", "shows", "show", "displaying", "display", "featuring", "feature", "their", "his", "her", "its", "this", "that", "these", "those", "is", "are", "was", "were", "be", "been", "being", "has", "have", "had", "will", "would", "can", "could", "should", "may", "might", "must", "very", "more", "most", "about", "around", "across", "abstract", "concept", "graphic", "graphics", "chart", "diagram", "during", "after", "before", "while", "when", "where", "which", "who", "whom", "whose", "what", "how", "why"]);
+const QUERY_STOP = new Set(["a", "an", "the", "of", "in", "on", "at", "to", "for", "from", "with", "and", "or", "but", "as", "by", "into", "over", "under", "through", "showing", "shows", "show", "displaying", "display", "featuring", "feature", "their", "his", "her", "its", "this", "that", "these", "those", "is", "are", "was", "were", "be", "been", "being", "has", "have", "had", "will", "would", "can", "could", "should", "may", "might", "must", "very", "more", "most", "about", "around", "across", "abstract", "concept", "graphic", "graphics", "chart", "diagram", "image", "photo", "photograph", "picture", "public", "domain", "logo", "illustration", "drawing", "painting", "up", "closing", "sitting", "standing", "during", "after", "before", "while", "when", "where", "which", "who", "whom", "whose", "what", "how", "why"]);
 
 /** A Commons search phrase taken from the script's own b_roll / visual_cue: concrete nouns only, no camera direction. */
+const BAD_VISUAL = /\b(logo|map|chart|graph|diagram|infographic|screenshot|animation|animated|visuali[sz]ation|title card)\b/i;
+
+/** A query from the script's first usable b_roll / visual_cue, skipping logos, maps and charts. */
+export function visualQuery(section) {
+  const cues = [
+    ...(Array.isArray(section?.b_roll) ? section.b_roll : []),
+    section?.visual_cue,
+    section?.voiceover,
+  ].map((x) => String(x || "").trim()).filter(Boolean);
+  for (const cue of cues) {
+    if (BAD_VISUAL.test(cue)) continue;
+    const q = deterministicQuery(cue);
+    if (q) return q;
+  }
+  return "";
+}
+
 export function deterministicQuery(text) {
   const words = String(text || "")
     .replace(/[^\p{L}\p{N}\s-]/gu, " ")

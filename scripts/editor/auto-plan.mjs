@@ -311,6 +311,10 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (!photo) continue;
       const id = `photo-${ent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       if (id === lastAsset) continue; // never the same picture two scenes running
+      if (scenes.filter((x) => x.asset === id).length >= 3) {
+        misses.push({ sentence: sentenceIndex, entity: ent.name, why: "already used three times; reuse cap" });
+        continue;
+      }
       assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license, kind: "photo" };
       scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
       if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
@@ -351,8 +355,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           how = `${reuse} again, re-framed`;
         } else {
           const named = entitiesIn(sentence, idx)[0];
-          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource, kind: named?.kind, entity: named?.name }), kind: named ? "plate" : "poster", source: defaultSource, source_url: (script.sources_used || [])[0] || "" });
-          how = "key-word poster";
+          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource, kind: named?.kind, entity: named?.name }), kind: "plate", source: defaultSource, source_url: (script.sources_used || [])[0] || "" });
+          how = "designed plate";
         }
       }
       if (!scene) scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom, fade };
