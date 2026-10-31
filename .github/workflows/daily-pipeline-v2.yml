@@ -551,6 +551,7 @@ jobs:
           # parse and the workflow could not be dispatched). Keep the
           # matrix value in env so the script itself stays literal.
           CHANNEL_ID: ${{ matrix.channel_id }}
+          FORCE_PLANNER: ollama
         run: |
           set -euo pipefail
           CH="$CHANNEL_ID"

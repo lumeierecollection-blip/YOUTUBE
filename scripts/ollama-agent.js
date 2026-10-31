@@ -63,6 +63,7 @@ const SEARCH_RESULT_CHARS = Number(process.env.SEARCH_RESULT_CHARS) || 600; // c
 const GEMINI_AGENTS = new Set(["pipeline-script"]);
 const GEMINI_SCRIPT_MODEL = process.env.SCRIPT_GEMINI_MODEL || "gemini-3.5-flash-lite";
 const hasGeminiKey = () => Boolean(process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY);
+const forceOllama = () => process.env.FORCE_PLANNER === "ollama";
 
 // Exa's text is a sequence of result blocks, each starting "Title:". Keep
 // every block's header lines (Title/URL/date) and trim its body, so all
@@ -450,7 +451,7 @@ async function main() {
   const userPrompt = `${basePrompt}${inputBlock}${toolNote}`;
   const chLabel = `[script] ch-${args["channel-id"] ?? "?"}`;
 
-  if (GEMINI_AGENTS.has(agent)) {
+  if (GEMINI_AGENTS.has(agent) && !forceOllama()) {
     if (hasGeminiKey()) {
       const ok = await geminiAnswer({ system, userPrompt, schema, validate, ajv, lengths, maxRetries, chLabel, agent, taskLabel, args });
       if (ok) return;
