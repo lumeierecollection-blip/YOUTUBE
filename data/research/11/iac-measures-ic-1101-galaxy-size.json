@@ -1,0 +1,57 @@
+{
+  "topic_slug": "iac-measures-ic-1101-galaxy-size",
+  "strongest_angle": "Explore how the Instituto de Astrofísica de Canarias measured the largest known galaxy, IC 1101, revealing a main body spanning 520 kiloparsecs or nearly 1.7 million light-years across.",
+  "key_facts": [
+    {
+      "fact": "Researchers published a study on October 2, 2026, led by the Instituto de Astrofísica de Canarias, measuring the size of the largest known galaxy, IC 1101.",
+      "source_url": "https://www.iac.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+      "source_name": "Instituto de Astrofísica de Canarias",
+      "confidence": "high"
+    },
+    {
+      "fact": "The galaxy IC 1101 has an estimated diameter of 520 kiloparsecs, or nearly 1.7 million light-years, as reported in a study submitted in July 2026.",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way",
+      "source_name": "Science News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Astronomers utilized ultra-deep images captured in 2022 by the Isaac Newton Telescope to analyze the physical extent and structure of IC 1101.",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way",
+      "source_name": "Science News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "IC 1101 diameter in kiloparsecs",
+      "value": 520,
+      "unit": "kiloparsecs",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way"
+    },
+    {
+      "label": "IC 1101 diameter in light-years",
+      "value": 1.7,
+      "unit": "million light-years",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "IC 1101",
+      "kind": "object"
+    },
+    {
+      "name": "Instituto de Astrofísica de Canarias",
+      "kind": "organization"
+    },
+    {
+      "name": "Isaac Newton Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Carlos Marrero-de la Rosa",
+      "kind": "person"
+    }
+  ]
+}

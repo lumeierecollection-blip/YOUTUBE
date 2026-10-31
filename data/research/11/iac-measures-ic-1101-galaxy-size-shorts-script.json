@@ -1,0 +1,73 @@
+{
+  "channel_id": "11",
+  "topic_slug": "iac-measures-ic-1101-galaxy-size",
+  "format": "shorts",
+  "hook": "The largest known galaxy in our universe spans nearly 1.7 million light-years across.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The largest known galaxy in our universe spans nearly 1.7 million light-years across.",
+      "visual_cue": "Deep space wide shot of an enormous, glowing, diffuse elliptical galaxy.",
+      "sfx_cue": "Deep, resonant space ambient hum.",
+      "b_roll": [
+        "Public domain image of IC 1101."
+      ],
+      "text_overlay": {
+        "text": "1.7 Million Light-Years Wide"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 2, 2026, the Instituto de Astrofísica de Canarias published a new study analyzing the structure of IC 1101. How did researchers use 2022 Isaac Newton Telescope images to define this galaxy's physical extent?",
+      "visual_cue": "Graphic showing the Instituto de Astrofísica de Canarias logo next to the Isaac Newton Telescope.",
+      "sfx_cue": "Soft, rhythmic data processing sound.",
+      "b_roll": [
+        "Institutional logo of Instituto de Astrofísica de Canarias.",
+        "Exterior shot of the Isaac Newton Telescope."
+      ],
+      "text_overlay": {
+        "text": "Measuring IC 1101"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Carlos Marrero-de la Rosa discovered the galaxy's main body is actually 520 kiloparsecs wide.",
+      "visual_cue": "Animated comparison showing a standard spiral galaxy shrinking next to the vast IC 1101.",
+      "sfx_cue": "Subtle shift in musical tone.",
+      "b_roll": [
+        "Computer generated scale comparison."
+      ],
+      "text_overlay": {
+        "text": "Expanding Our Knowledge"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Instituto de Astrofísica de Canarias confirmed the main body spans 520 kiloparsecs, or 1.7 million light-years. IC 1101 now stands as the largest galaxy ever recorded.",
+      "visual_cue": "A chart showing the 520 kiloparsecs value with a glowing point of light representing the galaxy.",
+      "sfx_cue": "Deep, final bass note.",
+      "b_roll": [
+        "Data visualization of the 520 kiloparsecs measurement."
+      ],
+      "text_overlay": {
+        "text": "520 Kiloparsecs"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Astronomers utilized 2022 Isaac Newton Telescope data to map the true size of IC 1101.",
+      "visual_cue": "Slow zoom into the center of the galaxy, fading to black.",
+      "sfx_cue": "Fading ambient sound.",
+      "b_roll": [
+        "Cinematic slow-motion starfield."
+      ],
+      "text_overlay": {
+        "text": "Cosmic Vastness"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.iac.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+    "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way"
+  ]
+}
