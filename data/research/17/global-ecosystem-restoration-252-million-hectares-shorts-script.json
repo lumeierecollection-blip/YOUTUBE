@@ -1,0 +1,76 @@
+{
+  "channel_id": "17",
+  "topic_slug": "global-ecosystem-restoration-252-million-hectares",
+  "format": "shorts",
+  "hook": "Governments are currently restoring 252 million hectares of nature across 149 countries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Governments are currently restoring 252 million hectares of nature across 149 countries.",
+      "visual_cue": "Animated globe highlighting global restoration zones",
+      "sfx_cue": "Subtle, rising ambient drone",
+      "b_roll": [
+        "Satellite view of Earth spinning",
+        "Map highlighting 149 countries"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares Restored"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, 2026, the United Nations Environment Programme released its first comprehensive stocktake of these efforts. How much of this work happens on land?",
+      "visual_cue": "Close-up of the United Nations Environment Programme report cover",
+      "sfx_cue": "Document rustling sound",
+      "b_roll": [
+        "UNEP report document on a desk",
+        "Time-lapse of forest growth"
+      ],
+      "text_overlay": {
+        "text": "UNEP Restoration Stocktake"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Out of that total global effort, 232 million hectares involve land restoration specifically.",
+      "visual_cue": "Data visualization showing land versus total restoration",
+      "sfx_cue": "Soft digital ping",
+      "b_roll": [
+        "Aerial footage of reforestation site",
+        "Bar chart showing 232 million hectares"
+      ],
+      "text_overlay": {
+        "text": "232M Hectares on Land"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Doreen Robinson describes this as the largest documented restoration effort in history. Each hectare represents a step toward bringing ecosystems back to life.",
+      "visual_cue": "Portrait of Doreen Robinson next to restoration data",
+      "sfx_cue": "Inspirational orchestral swell",
+      "b_roll": [
+        "Doreen Robinson speaking",
+        "Footage of wetlands and forests"
+      ],
+      "text_overlay": {
+        "text": "Largest Restoration in History"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Nature is recovering across 252 million hectares of our planet.",
+      "visual_cue": "Wide shot of a healthy, restored landscape",
+      "sfx_cue": "Birds chirping fading out",
+      "b_roll": [
+        "Panoramic landscape of restored green valley"
+      ],
+      "text_overlay": {
+        "text": "252 Million Hectares Recovering"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un",
+    "https://www.unep.org/en/publications/report/restoration-progress-report-natures-comeback-scaling-ecosystem-restoration"
+  ]
+}
