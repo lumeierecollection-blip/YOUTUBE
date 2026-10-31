@@ -175,6 +175,48 @@ show:
   risk, threat, crime, approval or tracking word → a drawn symbol; dated events →
   a timeline; three or more things in a comma list → a list. A sentence that
   names none of these is a words-only card.
+
+## SCR-17 STRICT — every sentence MUST ground a visual (channels with strict_visual)
+
+For channels with `strict_visual: true` (ch-02, ch-48), the script gate runs a
+stricter check: **every sentence must contain at least ONE of these grounded
+elements, or the script is BLOCKED:**
+
+| Grounded element | Sentence MUST contain | Example that PASSES |
+|---|---|---|
+| **Comparison** | Two compared figures with relation | "Modelpick recorded 42% versus 31% for chatbot workloads." |
+| **List** | Three or more items in a comma list | "The test covered coding, reasoning, and creative writing." |
+| **Timeline** | Dated events with specific dates | "On March 3, the API launched; by March 15, usage hit 10,000 calls." |
+| **Place** | A named geographic place | "The data center in Ashburn, Virginia recorded the spike." |
+| **Percentage** | A stated percentage with subject | "Chatbot workloads cost 42% more than the baseline." |
+| **Quantity/Figure** | A specific number with unit | "The bill came to $352 million in Q3." |
+| **Trend** | A stated rise/fall/double/tumble with subject | "Latency doubled when traffic exceeded 5,000 RPS." |
+| **Cause/Sequence** | A cause and its effect in one sentence | "The memory leak caused the crash after 4 hours." |
+| **Money object** | A physical money reference | "The $100 bill on the table was counterfeit." |
+| **Document** | A named document/report/filing | "The SEC filing shows revenue of $2.1 billion." |
+
+**Sentences that FAIL SCR-17 STRICT (no grounded element):**
+- "What did the research show?" (question, no grounding)
+- "The results were surprising." (judgment only, no figure/place/list/comparison)
+- "Modelpick recorded the numbers." (vague, no specific figure)
+- "The gap hit hard." (abstract, no number/comparison/place)
+- "They announced a new feature." (no specific figure, date, place, list, comparison)
+
+**Sentences that PASS SCR-17 STRICT:**
+- "Modelpick recorded 42% versus 31% for chatbot workloads." (comparison)
+- "The test covered coding, reasoning, and creative writing." (list of 3)
+- "On March 3 the API launched; by March 15 usage hit 10,000 calls." (timeline)
+- "The data center in Ashburn Virginia recorded the spike." (place)
+- "Chatbot workloads cost 42% more than the baseline." (percentage)
+- "The bill came to $352 million in Q3." (quantity with unit)
+- "Latency doubled when traffic exceeded 5,000 RPS." (trend)
+- "The memory leak caused the crash after 4 hours." (cause/sequence)
+- "The SEC Form 10-K shows revenue of $2.1 billion." (document)
+
+**Every sentence in your script must match a PASSING pattern above.** If the
+research does not provide a grounded element for a sentence, cut the sentence
+or rewrite it using a fact the research DOES provide. Do not invent figures,
+dates, places, or lists to satisfy this rule — that violates the claims gate.
 - **One idea per sentence, one drawable thing per idea** — a person, a place,
   an object, a figure with its unit, a dated event. Never two ideas to save
   words; never an idea with nothing to point at.
