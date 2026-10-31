@@ -1202,9 +1202,14 @@
           "topic": "LLM API Price Changes and New Model Costs for October 2026",
           "slug": "llm-api-price-changes-october-2026-report",
           "reserved_at": "2026-10-20T21:54:36.490Z"
+        },
+        {
+          "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
+          "slug": "openai-servicenow-enterprise-workflow-partnership",
+          "reserved_at": "2026-10-31T17:46:07.826Z"
         }
       ],
-      "last_generated": "2026-10-24T12:47:02.197Z"
+      "last_generated": "2026-10-31T17:46:07.826Z"
     },
     "3": {
       "channel_name": "AI Tested",
