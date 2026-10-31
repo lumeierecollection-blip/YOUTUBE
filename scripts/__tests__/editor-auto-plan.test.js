@@ -579,7 +579,7 @@ test("an organisation named in a sentence shows its verified mark on a plate; wi
   assert.equal(ok.plan.assets["logo-obscure-org"].credit, "Logo: Obscure Org, CC0");
   assert.match(ok.report.scenes[0].shows, /^logo of Obscure Org/);
   const plate = ok.cards.find((c) => c.id === logoScene.asset);
-  assert.match(plate.svg, /fill="#F5F5FF"/, "a dark mark sits on a light plate");
+  assert.match(plate.svg, /fill="#F4F1EA"/, "a dark mark sits on a light (paper) plate");
   assert.equal(logoScene.gradient, "rgba(0,0,0,0)", "no scrim over a mark");
   // the CLI registers each plate as an asset (auto-timeline.mjs writes the SVG); the test does the same
   ok.plan.assets[logoScene.asset] = { file: "plate.svg", width: 1080, height: 1920, credit: "Graphic", source_url: "u", license: "Original" };
@@ -594,7 +594,7 @@ test("an organisation named in a sentence shows its verified mark on a plate; wi
   assert.match(none.report.misses.map((m) => m.entity).join(" "), /logo of Obscure Org/, "the miss is reported");
 
   const light = await buildAutoPlan({ ...org, logo: async () => ({ ok: true, file: "l.png", width: 800, height: 400, credit: "c", source_url: "u", license: "CC0", dark_mark: false }) });
-  assert.match(light.cards.find((c) => c.id === light.plan.scenes[0].asset).svg, /fill="#000011"/, "a light mark sits on the channel's dark background");
+  assert.match(light.cards.find((c) => c.id === light.plan.scenes[0].asset).svg, /fill="#101114"/, "a light mark sits on the ink plate");
 });
 
 // ---- country flags ---------------------------------------------------------------------------------------------------------------------
@@ -704,4 +704,34 @@ test("the topic map is a place the research names, never a place word from a sen
     words: sents.map((_, i) => ({ text: "w", start: i * 6, end: i * 6 + 1, sentence: i })), audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
   assert.ok(r.report.scenes.every((x) => !/New York (the topic)/.test(x.shows)), "a place word in a sentence is not the topic's map");
   assert.ok(r.plan.scenes.every((x) => !(x.graphic && x.graphic.kind !== "map" && x.graphic.figs?.[0]?.raw === "99%")), "a figure with no research support is not drawn");
+});
+
+// ---- the light look ---------------------------------------------------------------------------------------------------------------------
+import { mixHex, readableOn } from "../editor/graphics.mjs";
+
+test("a date's day number is not a figure, and the default look is light: paper background, ink type, captions on an ink plate", async () => {
+  assert.deepEqual(extractFigures("On 26 Oct 2026 the machine finished a 4.5 km drive").map((f) => f.raw), [], "26 is the day of a date");
+  assert.deepEqual(extractFigures("They counted 453 tablets on 26 October").map((f) => f.raw), ["453"]);
+  const { plan, cards } = await buildAutoPlan({ ...base, channel: { ...channel, colors: { ...channel.colors, paper: "#F7F2E8", ink: "#14100A" } }, resolve: async () => ({ ok: false }) });
+  assert.equal(plan.palette.bg, "#F7F2E8");
+  assert.equal(plan.palette.text, "#14100A");
+  assert.ok(luminance(plan.palette.bg) > 0.7 && luminance(plan.palette.text) < 0.05, "light paper, dark ink");
+  assert.ok(luminance(plan.palette.accent) < 0.5, "the accent is darkened until it reads on paper");
+  assert.deepEqual([plan.caption_style.plate, plan.caption_style.text], ["#14100A", "#F7F2E8"], "captions: light type on an ink plate");
+  const backdrop = cards.find((c) => /fill="#F7F2E8"/.test(c.svg));
+  assert.ok(backdrop, "a figure card sits on the paper, not on near-black");
+});
+
+test("readableOn darkens a colour until it reads on the background, and leaves one that already does", () => {
+  assert.equal(readableOn("#FFFFFF", "#112233", "#000000"), "#112233");
+  const c = readableOn("#FBF6F1", "#D4A574", "#0F0A05");
+  assert.ok(luminance(c) < luminance("#D4A574"));
+  assert.equal(mixHex("#000000", "#FFFFFF", 0.5), "#808080");
+});
+
+test("a photo of the video's subject is accepted even when it does not show this sentence's exact detail; a misleading one is not", () => {
+  assert.equal(parseVerdict({ fits_video: true, misleading: false, identifiable_person: false, mostly_text_or_logo: false, what_it_shows: "Iguazu Falls panorama" }).ok, true);
+  assert.equal(parseVerdict({ fits_video: true, misleading: true, identifiable_person: false, mostly_text_or_logo: false }).ok, false);
+  assert.equal(parseVerdict({ fits_video: false, misleading: false, identifiable_person: false, mostly_text_or_logo: false }).ok, false);
+  assert.equal(parseVerdict({ fits_video: true, misleading: false, identifiable_person: true, mostly_text_or_logo: false }).ok, false, "a recognisable person is still refused");
 });

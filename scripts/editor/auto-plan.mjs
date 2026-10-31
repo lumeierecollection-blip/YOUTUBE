@@ -11,7 +11,7 @@
  */
 import { scriptSentences } from "./captions.mjs";
 import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
-import { chooseKind, backdropSvg, figureLabel, mapFor, PHOTO_RECT } from "./graphics.mjs";
+import { chooseKind, backdropSvg, figureLabel, mapFor, PHOTO_RECT, mixHex, readableOn } from "./graphics.mjs";
 import { matchPlaces } from "./maps.mjs";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
@@ -25,6 +25,7 @@ const PERCENT = /(\d+(?:\.\d+)?)\s?(?:%|percent\b)/gi;
 const MONEY = /[$£€]\s?\d[\d,]*(?:\.\d+)?(?:\s?(?:million|billion|trillion|thousand))?/gi;
 const PLAIN = /(?<![\d.,$£€])\d{2,4}(?![\d,]\d|\.\d|%)/g;
 const MONTH = /(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?$/i;
+const MONTH_AFTER = /^\s*(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\b/i;
 const COUNT = /\b\d{1,3}(?:,\d{3})+\b|\b\d+(?:\.\d+)?\s?(?:million|billion|trillion)\b/gi;
 
 /** Figures a sentence states, in order of appearance. */
@@ -48,6 +49,7 @@ export function extractFigures(sentence) {
     const after = text.slice(m.index + m[0].length, m.index + m[0].length + 3);
     if (n >= 1900 && n <= 2100) continue;
     if (MONTH.test(before.trim())) continue;
+    if (MONTH_AFTER.test(text.slice(m.index + m[0].length, m.index + m[0].length + 14))) continue;
     if (/^(st|nd|rd|th)\b/i.test(after)) continue;
     if (found.some((f) => f.index < m.index + m[0].length && m.index < f.index + f.raw.length)) continue;
     found.push({ raw: m[0], kind: "number", value: null, index: m.index, matched: m[0] });
@@ -175,7 +177,11 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const spanSource = exact ? "voiceover" : "proportional";
 
   const colors = channel?.colors || {};
-  const palette = { bg: colors.bg || "#07070D", text: "#F5F5FF", muted: "#C9CDD6", accent: colors.canvas_accent || colors.accent || "#D4A574", accent2: colors.accent || "#D4A574" };
+  // A light editorial palette: the channel's paper and ink (channels.json colours.paper / ink) with its accent darkened until it reads on the paper.
+  // Captions sit on an ink plate (accentOnInk is the accent as it reads on that plate), so they read over paper and over photos alike.
+  const paper = colors.paper || "#F4F1EA", ink = colors.ink || "#101114";
+  const rawAccent = colors.canvas_accent || colors.accent || "#D4A574";
+  const palette = { bg: paper, paper, ink, text: ink, muted: mixHex(ink, paper, 0.4), accent: readableOn(paper, rawAccent, ink), accent2: colors.accent || rawAccent, accentOnInk: readableOn(ink, rawAccent, paper) };
   const rng = seededRandom(stem);
   const lookId = Number(style) >= 1 ? Number(style) : pickLook(rng, channel?.editor_look);
   const look = styleFor(lookId, palette);
@@ -219,7 +225,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     const v = Number(n.value);
     return { n, fig: { raw: pct ? `${v}%` : v.toLocaleString("en-US"), kind: pct ? "percent" : "number", value: pct ? v : null } };
   }).filter(({ fig }) => researchStates(research, fig));
-  const plateFor = (dark) => (dark ? palette.text : palette.bg);
+  const plateFor = (dark) => (dark ? palette.paper : palette.ink);
   const plateSvg = (color) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="${color}"/></svg>\n`;
   // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
   const findConcept = async (phrases, sentence, { fallback = true } = {}) => {
@@ -485,7 +491,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     fps: 30,
     palette,
     fonts: { primary: font, sans: font },
-    caption_style: { x: 80, y: 1540, w: 920, h: 210, size: 38 },
+    caption_style: { x: 80, y: 1540, w: 920, h: 210, size: 38, plate: palette.ink, text: palette.paper, hi: palette.accentOnInk },
     caption_replacements: {},
     assets,
     scenes,

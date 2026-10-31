@@ -16,6 +16,8 @@ const F = "Arial, Helvetica, sans-serif";
 /** Largest font size (<= base) at which `raw` fits `width` px; bold sans digits are about 0.62 em wide. */
 export const fitSize = (raw, base, width = 880) => Math.max(56, Math.min(base, Math.floor(width / (Math.max(1, String(raw).length) * 0.64))));
 const SERIF = "Georgia, 'Times New Roman', serif";
+/** A light scrim only along the bottom of a photo (behind the kicker and the caption plate): the photo itself is not darkened. */
+const SCRIM = "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.14) 34%, rgba(0,0,0,0) 62%)";
 const svg = (inner, bg) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">\n${bg ? `  <rect width="1080" height="1920" fill="${xmlEscape(bg)}"/>\n` : ""}${inner}\n</svg>\n`;
 const text = (x, y, size, fill, body, extra = "") => `  <text x="${x}" y="${y}" fill="${xmlEscape(fill)}" font-family="${extra.includes("serif") ? SERIF : F}" font-size="${size}" ${extra.replace("serif", "")}>${xmlEscape(body)}</text>`;
 const firstPercent = (figs) => figs.find((f) => f.kind === "percent" && f.value >= 0 && f.value <= 100);
@@ -33,37 +35,37 @@ export function styleFor(n, pal) {
   const ink = "#101114";
   switch (Number(n)) {
     case 1: return {
-      name: "anti-slop", scrim: "rgba(8,8,10,0.52)", filter: { saturate: 0.9, brightness: 0.92 }, stagger: 0,
+      name: "anti-slop", scrim: SCRIM, filter: { saturate: 0.95, brightness: 1 }, stagger: 0,
       figure: ({ figs, source }) => {
         const f = figs[0]; const bar = firstPercent(figs);
         return svg([text(90, 1010, fitSize(f.raw, 250), "#FFFFFF", f.raw, 'font-weight="800"'),
           bar ? `  <rect x="90" y="1050" width="${(9 * bar.value).toFixed(1)}" height="22" fill="${xmlEscape(accent)}"/>` : `  <rect x="90" y="1050" width="160" height="22" fill="${xmlEscape(accent)}"/>`,
           text(90, 1120, 24, "#D6D8DE", src(source))].join("\n"));
       },
-      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 760 + k * 150, fitSize(w, 128, 700), k === phrase.length - 1 ? accent : "#FFFFFF", w, 'font-weight="800"')).join("\n"), pal.bg),
+      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 760 + k * 150, fitSize(w, 128, 700), k === phrase.length - 1 ? accent : pal.text, w, 'font-weight="800"')).join("\n"), pal.bg),
     };
     case 2: return {
-      name: "hallmark", scrim: "rgba(16,13,9,0.34)", filter: { sepia: 0.28, saturate: 0.5, brightness: 0.9 }, stagger: 0,
+      name: "hallmark", scrim: SCRIM, filter: { sepia: 0.16, saturate: 0.62, brightness: 1 }, stagger: 0,
       figure: ({ figs, source }) => {
         const f = figs[0]; const size = fitSize(f.raw, 200, 720); const w = Math.min(900, 150 + Math.ceil(f.raw.length * size * 0.56));
         return svg([`  <rect x="90" y="930" width="${w}" height="330" fill="#EFE8D8"/>`, `  <rect x="90" y="930" width="${w}" height="8" fill="${xmlEscape(accent)}"/>`,
           text(130, 1130, size, ink, f.raw, 'serif font-weight="400"'),
           text(130, 1215, 22, "#4A463C", src(source).toUpperCase(), 'letter-spacing="3"')].join("\n"));
       },
-      poster: ({ phrase }) => svg([`  <rect x="90" y="560" width="900" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(90, 740 + k * 140, fitSize(w, 118, 700), "#EFE8D8", w, 'serif'))].join("\n"), "#15130F"),
+      poster: ({ phrase }) => svg([`  <rect x="90" y="560" width="900" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(90, 740 + k * 140, fitSize(w, 118, 700), pal.text, w, 'serif'))].join("\n"), pal.bg),
     };
     case 3: return {
-      name: "vox", scrim: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.62) 100%)", filter: { sepia: 0.18, saturate: 0.32, brightness: 0.82 }, stagger: 0,
+      name: "vox", scrim: `${SCRIM}, radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 48%, rgba(0,0,0,0.26) 100%)`, filter: { sepia: 0.1, saturate: 0.55, brightness: 1 }, stagger: 0,
       figure: ({ figs, source }) => {
         const f = figs[0]; const cx = 540; const w = Math.min(860, 120 + f.raw.length * 120);
         return svg([text(cx, 930, fitSize(f.raw, 250), "#FFFFFF", f.raw, 'text-anchor="middle" font-weight="900"'),
           `  <path d="M${cx - w / 2} 860 C ${cx - w / 2} 700, ${cx + w / 2 - 20} 690, ${cx + w / 2} 830 C ${cx + w / 2 + 6} 990, ${cx - w / 2 + 40} 1010, ${cx - w / 2 + 6} 880" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`,
           text(cx, 1090, 22, "#C9C9C9", src(source), 'text-anchor="middle"')].join("\n"));
       },
-      poster: ({ phrase }) => svg([...phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120, 700), "#F4F1EA", w, 'font-weight="900"')), `  <path d="M90 ${830 + (phrase.length - 1) * 150} q 120 -22 240 0 t 240 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`].join("\n"), "#F1EEE6".replace("F1EEE6", "0B0B0C")),
+      poster: ({ phrase }) => svg([...phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120, 700), pal.text, w, 'font-weight="900"')), `  <path d="M90 ${830 + (phrase.length - 1) * 150} q 120 -22 240 0 t 240 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`].join("\n"), pal.bg),
     };
     case 4: return {
-      name: "scene-director", scrim: "rgba(6,6,8,0.5)", filter: { saturate: 0.85, brightness: 0.9 }, stagger: 0,
+      name: "scene-director", scrim: SCRIM, filter: { saturate: 0.9, brightness: 1 }, stagger: 0,
       figure: ({ figs, source, fn }) => {
         const f = figs[0];
         const chipSize = fitSize(f.raw, 100, 640);
@@ -72,10 +74,10 @@ export function styleFor(n, pal) {
         return svg([`  <rect x="90" y="300" width="${Math.min(760, 60 + Math.ceil(f.raw.length * chipSize * 0.66))}" height="150" fill="${xmlEscape(accent)}"/>`, text(120, 410, chipSize, ink, f.raw, 'font-weight="900"')].join("\n"));
       },
       payoffIsPoster: true,
-      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120, 700), k === 0 ? accent : "#FFFFFF", w, 'font-weight="900"')).join("\n"), pal.bg),
+      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 800 + k * 150, fitSize(w, 120, 700), k === 0 ? accent : pal.text, w, 'font-weight="900"')).join("\n"), pal.bg),
     };
     case 5: return {
-      name: "mograph-critic", scrim: "rgba(5,5,8,0.4)", filter: { saturate: 0.95, brightness: 0.92 }, stagger: 9,
+      name: "mograph-critic", scrim: SCRIM, filter: { saturate: 0.95, brightness: 1 }, stagger: 9,
       figure: ({ figs, source }) => {
         const f = figs[0]; const bar = firstPercent(figs);
         return svg([`  <rect x="0" y="1130" width="1080" height="300" fill="rgba(5,5,8,0.78)"/>`, `  <rect x="96" y="1166" width="120" height="6" fill="${xmlEscape(accent)}"/>`,
@@ -83,7 +85,7 @@ export function styleFor(n, pal) {
           text(984, 1352, 22, "#C7CAD1", src(source), 'text-anchor="end"'),
           bar ? `  <rect x="96" y="1394" width="888" height="8" fill="rgba(255,255,255,0.18)"/><rect x="96" y="1394" width="${(8.88 * bar.value).toFixed(1)}" height="8" fill="${xmlEscape(accent)}"/>` : ""].join("\n"));
       },
-      poster: ({ phrase }) => svg([`  <rect x="96" y="640" width="120" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(96, 780 + k * 140, fitSize(w, 112, 700), "#FFFFFF", w, 'font-weight="800"'))].join("\n"), pal.bg),
+      poster: ({ phrase }) => svg([`  <rect x="96" y="640" width="120" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(96, 780 + k * 140, fitSize(w, 112, 700), pal.text, w, 'font-weight="800"'))].join("\n"), pal.bg),
     };
     default: throw new Error(`unknown style ${n}`);
   }

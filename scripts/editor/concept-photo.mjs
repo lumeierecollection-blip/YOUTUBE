@@ -129,9 +129,9 @@ export function defaultAsk() {
 export function visionPrompt({ sentence, query, topic = "" }) {
   return `A documentary video${topic ? ` about "${topic}"` : ""} narrates this sentence: "${sentence}"
 We are considering this photograph (found with the search phrase "${query}") to show on screen while it is spoken.
-Answer ONLY JSON: {"shows_subject": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
-shows_subject = (it must also belong to the video's subject above, not just the sentence) a viewer would say the photo shows the specific thing the sentence claims or describes. A photo of only the place or the general setting does not count
-(a sunny beach does not illustrate "California storms"; a generic skyline does not illustrate "the bank collapsed"). If you would hesitate, answer false.
+Answer ONLY JSON: {"fits_video": true|false, "misleading": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
+fits_video = the photo is of the video's subject, or of something this sentence talks about (the same place, object, event or kind of thing). A photo of the subject itself counts even when it does not show the exact detail of this one sentence.
+misleading = the photo shows something else that would give a viewer a wrong idea: another place, another country, another event, or something unrelated.
 identifiable_person = a real person's face is recognisable or clearly the focus (crowds far away and silhouettes are false).
 mostly_text_or_logo = readable text, a logo, a screenshot, a document, a map or a chart fills the frame.`;
 }
@@ -142,8 +142,10 @@ export function parseVerdict(answer) {
     const m = answer.content.match(/\{[\s\S]*\}/);
     try { obj = m ? JSON.parse(m[0]) : null; } catch { obj = null; }
   }
-  if (!obj || typeof obj !== "object" || typeof obj.shows_subject !== "boolean") return { ok: false, why: "no usable verdict" };
-  if (!obj.shows_subject) return { ok: false, why: `does not show the subject (${obj.what_it_shows || "?"})` };
+  const fits = typeof obj?.fits_video === "boolean" ? obj.fits_video : obj?.shows_subject;
+  if (!obj || typeof obj !== "object" || typeof fits !== "boolean") return { ok: false, why: "no usable verdict" };
+  if (!fits) return { ok: false, why: `does not fit the video (${obj.what_it_shows || "?"})` };
+  if (obj.misleading === true) return { ok: false, why: `would mislead (${obj.what_it_shows || "?"})` };
   if (obj.identifiable_person !== false) return { ok: false, why: "shows an identifiable person" };
   if (obj.mostly_text_or_logo !== false) return { ok: false, why: "mostly text, a logo, a screenshot or a chart" };
   return { ok: true, why: obj.what_it_shows || "" };

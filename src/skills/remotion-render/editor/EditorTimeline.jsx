@@ -140,6 +140,13 @@ function Captions({ tl, frame }) {
   const c = (tl.captions || []).find((x) => frame >= x.start_f && frame < x.end_f);
   if (!c) return null;
   const st = tl.caption_style || {};
+  // st.plate: the words sit on a solid plate (ink, light type) so they read over paper and over photos alike; without it, white type with a shadow.
+  const plated = Boolean(st.plate);
+  const words = c.words.map((w, i) => (
+    <span key={i} style={{ color: frame >= w.start_f ? (plated ? st.hi || tl.palette.accent : tl.palette.accent) : plated ? st.text || "#fff" : tl.palette.text, marginRight: "0.28em" }}>
+      {w.text}
+    </span>
+  ));
   return (
     <div
       data-captions
@@ -150,8 +157,6 @@ function Captions({ tl, frame }) {
         top: st.y ?? 1500,
         height: st.h ?? 190,
         display: "flex",
-        flexWrap: "wrap",
-        alignContent: "center",
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
@@ -160,16 +165,16 @@ function Captions({ tl, frame }) {
         fontWeight: 700,
         fontSize: st.size ?? 52,
         lineHeight: 1.15,
-        color: tl.palette.text,
-        textShadow: "0 2px 12px rgba(0,0,0,0.85), 0 0 3px rgba(0,0,0,0.9)",
+        color: plated ? st.text || "#fff" : tl.palette.text,
+        textShadow: plated ? "none" : "0 2px 12px rgba(0,0,0,0.85), 0 0 3px rgba(0,0,0,0.9)",
         zIndex: 9000,
       }}
     >
-      {c.words.map((w, i) => (
-        <span key={i} style={{ color: frame >= w.start_f ? tl.palette.accent : tl.palette.text, marginRight: "0.28em" }}>
-          {w.text}
-        </span>
-      ))}
+      {plated ? (
+        <div style={{ background: st.plate, borderRadius: 14, padding: "18px 26px", maxWidth: "100%" }}>{words}</div>
+      ) : (
+        <div style={{ display: "flex", flexWrap: "wrap", alignContent: "center", justifyContent: "center" }}>{words}</div>
+      )}
     </div>
   );
 }

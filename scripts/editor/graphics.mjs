@@ -25,6 +25,17 @@ export function luminance(hex) {
   const [r, g, b] = [m[1], m[2], m[3]].map((h) => { const c = parseInt(h, 16) / 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); });
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
+/** Colour helpers for the light editorial palette (channels.json colours.paper / ink). */
+const toRgb = (h) => { const m = String(h).replace("#", "").match(/^([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i); return m ? [1, 2, 3].map((i) => parseInt(m[i], 16)) : [128, 128, 128]; };
+export const mixHex = (a, b, t) => "#" + toRgb(a).map((v, i) => Math.round(v + (toRgb(b)[i] - v) * t).toString(16).padStart(2, "0")).join("").toUpperCase();
+export const rgba = (hex, a) => { const [r, g, b] = toRgb(hex); return `rgba(${r},${g},${b},${a})`; };
+const contrast = (a, b) => { const la = luminance(a) + 0.05, lb = luminance(b) + 0.05; return Math.max(la, lb) / Math.min(la, lb); };
+/** `color` darkened toward `toward` until it reads on `bg` (contrast >= 3.2: it is used for large type, fills and lines). */
+export function readableOn(bg, color, toward) {
+  let c = color;
+  for (let i = 0; i < 12 && contrast(bg, c) < 3.2; i++) c = mixHex(c, toward, 0.15);
+  return c;
+}
 /** Text colour that reads on a given fill: dark ink on light fills, white on dark ones. */
 export const onFill = (fill) => (luminance(fill) > 0.28 ? "#101114" : "#FFFFFF");
 
@@ -99,7 +110,9 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   // hero: a boxed panel that is the picture. full: a map across the whole frame, no box. bare: a number on the open frame, no box.
   const hero = mode === "hero" || mode === "full" || mode === "bare";
   const bare = mode === "bare";
-  const theme = { ...(THEMES[look] || THEMES["anti-slop"]) };
+  // Light editorial theme: paper panel, ink type, hairline ink rules. Each look keeps its own face, weight, corner radius and bar height.
+  const paper = palette.paper || "#F4F1EA", ink = palette.ink || "#101114";
+  const theme = { ...(THEMES[look] || THEMES["anti-slop"]), bg: mixHex(paper, "#FFFFFF", 0.65), text: ink, muted: mixHex(ink, paper, 0.4), edge: rgba(ink, 0.28), grid: rgba(ink, 0.2), track: rgba(ink, 0.1) };
   const accent = palette.accent;
   let P = { ...(PANEL[hero ? mode : "split"]) };
   if (look === "mograph-critic") P = { ...P, x: 0, w: 1080 };
@@ -126,16 +139,16 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   const text = (suffix, rect, t, { size = 28, weight = 600, color = theme.muted, align = "left", font = SANS, upper = false, tracking = 0, shadow = false, delay = 0, valign = "center", lineHeight = 1.15 } = {}) =>
     mk(suffix, "text", rect, { text: t, style: { size, weight, color, align, valign, font, upper, tracking, shadow, lineHeight }, delay, keyframes: entrance(len, { slide: 18, delay }) });
   const countText = (suffix, rect, sp, size, { color = theme.text, align = "left", weight = theme.weight, font = theme.font, delay = 0 } = {}) => {
-    const cl = Math.min(36, Math.max(14, len - 14));
+    const cl = Math.min(110, Math.max(20, Math.round(len * 0.6)));
     if (sp.static) return text(suffix, rect, sp.static, { size, weight, color, align, font, delay, valign: "center", lineHeight: 1 });
     return mk(suffix, "text", rect, { style: { size, weight, color, align, valign: "center", font, shadow: false, lineHeight: 1 },
       count: { from: sp.from, to: sp.to, decimals: sp.decimals, prefix: sp.prefix, suffix: sp.suffix, group: sp.group }, delay,
-      keyframes: { ...entrance(len, { slide: 22, delay }), count: kf([0, 0], [cl, 1, "outExpo"]) } });
+      keyframes: { ...entrance(len, { slide: 22, delay }), count: kf([0, 0], [cl, 1, "outCubic"]) } });
   };
   const bar = (suffix, rect, pct, { color = barColor, delay = 12 } = {}) => {
     mk(`${suffix}-track`, "solid", rect, { style: { background: theme.track }, keyframes: { opacity: kf([0, 0], [8, 1], [Math.max(9, len - 8), 1], [len, 0]) } });
-    const fillLen = Math.min(34, Math.max(12, len - delay - 10));
-    return mk(`${suffix}-fill`, "solid", rect, { style: { background: color }, delay, keyframes: { clipR: kf([0, 100], [fillLen, 100 - pct, "outExpo"]), opacity: kf([0, 0], [4, 1], [Math.max(5, len - delay - 8), 1], [len - delay, 0]) } });
+    const fillLen = Math.min(90, Math.max(12, Math.round(len * 0.6) - delay));
+    return mk(`${suffix}-fill`, "solid", rect, { style: { background: color }, delay, keyframes: { clipR: kf([0, 100], [fillLen, 100 - pct, "outCubic"]), opacity: kf([0, 0], [4, 1], [Math.max(5, len - delay - 8), 1], [len - delay, 0]) } });
   };
   const sourceTag = () => source && text("source", { x: X, y: P.y + P.h - (hero ? 70 : 52), w: W, h: 34 }, `Source: ${source}`.slice(0, 80), { size: 22, color: theme.muted, upper: look === "hallmark", tracking: look === "hallmark" ? 0.08 : 0, delay: 6 });
 
@@ -166,7 +179,7 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
     const MP = mode === "full" ? { x: 60, y: 380, w: FULL_MAP.w, h: FULL_MAP.h } : { x: P.x + 24, y: P.y + 132, w: MAP_RECT.w, h: MAP_RECT.h };
     const names = (places?.highlights || []).map((h) => h.name).slice(0, 3);
     if (names.length) text("title", { x: X, y: capY, w: W, h: 70 }, names.join("  ·  "), { size: hero ? 46 : 36, color: theme.text, weight: 800, upper: true, tracking: 0.1, font: look === "hallmark" ? SERIF : SANS });
-    if (places?.land) mk("land", "svg", MP, { viewBox: [0, 0, MP.w, MP.h], paths: [{ d: places.land, stroke: look === "hallmark" ? "rgba(21,19,15,0.55)" : "rgba(255,255,255,0.4)", fill: look === "hallmark" ? "#DCD3BE" : "#1C2230", strokeWidth: 1.6 }], keyframes: { ...entrance(len, { slide: 0 }), draw: kf([0, 0], [26, 1, "outCubic"]) } });
+    if (places?.land) mk("land", "svg", MP, { viewBox: [0, 0, MP.w, MP.h], paths: [{ d: places.land, stroke: rgba(ink, 0.45), fill: rgba(ink, 0.07), strokeWidth: 1.6 }], keyframes: { ...entrance(len, { slide: 0 }), draw: kf([0, 0], [26, 1, "outCubic"]) } });
     (places?.highlights || []).forEach((h, i) => mk(`hl${i}`, "svg", MP, { viewBox: [0, 0, MP.w, MP.h], paths: [{ d: h.d, stroke: accent, fill: accent, strokeWidth: 3.5 }], delay: 12 + i * 8, keyframes: { ...entrance(len, { slide: 0 }), draw: kf([0, 0], [20, 1, "outCubic"]) } }));
     (places?.highlights || []).forEach((h, i) => {
       if (names.length < 2 && i === 0 && !places.pin) return; // a single named region is already in the title
@@ -204,7 +217,7 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
   if (kind === "count") {
     countText("n", { x: X, y: P.y + (bare ? 560 : hero ? 150 : 96), w: W, h: hero ? 340 : 190 }, sp, fitSize(fig.raw, hero ? 260 : 170, W), {});
     mk("meter", "solid", { x: X, y: P.y + (bare ? 1000 : hero ? 540 : 310), w: W, h: 8 }, { style: { background: theme.track }, keyframes: entrance(len, { slide: 0 }) });
-    mk("meter-fill", "solid", { x: X, y: P.y + (bare ? 1000 : hero ? 540 : 310), w: W, h: 8 }, { style: { background: barColor }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [30, 0, "outCubic"]) } });
+    mk("meter-fill", "solid", { x: X, y: P.y + (bare ? 1000 : hero ? 540 : 310), w: W, h: 8 }, { style: { background: barColor }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [Math.min(100, Math.max(30, Math.round(len * 0.7))), 0, "inOutSine"]) } });
     sourceTag();
     return layers;
   }
@@ -214,7 +227,7 @@ export function graphicLayers({ id, kind, figs, source, label = "", places = nul
     const ry = P.y + (hero ? 150 : 100);
     const arc = `M${R / 2} 16 A${R / 2 - 16} ${R / 2 - 16} 0 1 1 ${R / 2 - 0.1} 16`;
     mk("ring-track", "svg", { x: X, y: ry, w: R, h: R }, { viewBox: [0, 0, R, R], paths: [{ d: arc, stroke: theme.track, strokeWidth: 26 }], keyframes: entrance(len, { slide: 0 }) });
-    mk("ring", "svg", { x: X, y: ry, w: R, h: R }, { viewBox: [0, 0, R, R], paths: [{ d: arc, stroke: barColor, strokeWidth: 30 }], keyframes: { ...entrance(len, { slide: 0 }), draw: kf([0, 0], [8, 0], [42, Math.max(0.02, pct(fig) / 100), "outExpo"]) } });
+    mk("ring", "svg", { x: X, y: ry, w: R, h: R }, { viewBox: [0, 0, R, R], paths: [{ d: arc, stroke: barColor, strokeWidth: 30 }], keyframes: { ...entrance(len, { slide: 0 }), draw: kf([0, 0], [8, 0], [Math.min(100, Math.max(42, Math.round(len * 0.6))), Math.max(0.02, pct(fig) / 100), "outCubic"]) } });
     countText("n", { x: X + 30, y: ry + R / 2 - 60, w: R - 60, h: 120 }, sp, fitSize(fig.raw, 110, R - 80), { align: "center", delay: 4 });
     if (label) text("ring-caption", { x: X + R + 40, y: P.y + (hero ? 190 : 110), w: W - R - 40, h: hero ? 280 : 220 }, label, { size: hero ? 42 : 34, color: theme.text, weight: 700, font: look === "hallmark" ? SERIF : SANS, lineHeight: 1.25, delay: 10 });
     sourceTag();
@@ -255,7 +268,7 @@ export function backdropSvg(palette) {
   for (let y = 0; y <= 1920; y += 90) lines.push(`<line x1="0" y1="${y}" x2="1080" y2="${y}"/>`);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
   <rect width="1080" height="1920" fill="${palette.bg}"/>
-  <g stroke="${palette.accent}" stroke-opacity="0.08" stroke-width="1">${lines.join("")}</g>
+  <g stroke="${palette.ink || palette.accent}" stroke-opacity="0.07" stroke-width="1">${lines.join("")}</g>
 </svg>
 `;
 }
