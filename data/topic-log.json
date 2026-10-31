@@ -1304,8 +1304,8 @@
       "last_generated": "2026-10-30T15:10:50.722Z"
     },
     "4": {
-      "channel_name": "Hidden Past",
-      "niche": "History Untold (What Really Happened)",
+      "channel_name": "Rival Lines",
+      "niche": "Sports Rivalries & Tactics Explained (why it happens, drawn as diagrams and stats)",
       "used_topics": [
         {
           "topic": "The Great Fire of London: What Really Happened",
@@ -1361,9 +1361,14 @@
           "topic": "The 160,000-Year-Old Denisovan Forearm Bone Found in China",
           "slug": "denisovan-forearm-bone-bianfu-cave",
           "reserved_at": "2026-09-14T08:34:20.027Z"
+        },
+        {
+          "topic": "Pakistan Breaks 51-Year ODI Record Against England in Lahore",
+          "slug": "pakistan-breaks-51-year-odi-record-against-england",
+          "reserved_at": "2026-10-31T14:38:51.645Z"
         }
       ],
-      "last_generated": "2026-09-14T08:34:20.028Z"
+      "last_generated": "2026-10-31T14:38:51.645Z"
     },
     "5": {
       "channel_name": "Broadsheet",
