@@ -204,6 +204,12 @@ elements, or the script is BLOCKED:**
 | "The engineer shipped the release." | Names person, no grounded element | "The 7B model shipped with 42% pass rate on coding benchmarks." (quantity + percentage) |
 | "Results were better than expected." | Judgment, no figure/comparison | "The model scored 42% versus 31% baseline on chatbot workloads." (comparison) |
 | "A new feature was announced." | Vague, no grounded element | "The October 28 release added 3 new benchmarks: coding, reasoning, creative writing." (timeline + list) |
+| "How many downloads did it get?" | Question, not a statement with grounded fact | "The app logged 50,000 downloads in its first week." (quantity) |
+| "It's limited to select Asian markets." | Vague place, no specific countries | "It launched in Japan, South Korea, and Taiwan only." (place list) |
+| "The rollout is in parts of Asia." | Vague place | "Available in Japan, South Korea, and Taiwan as of March 2025." (place + date) |
+| "A worldwide release is coming later this year." | Vague time, no grounded date | "A global rollout begins Q2 2025." (date) |
+| "Meta Style Sketch builds your closet automatically." | Invented product name, entity only | "Meta's AI fashion app builds a digital closet from Instagram and Facebook photos." (cause/sequence — use research's name) |
+| "The app links Instagram and Facebook." | Entity only, no grounded visual | "The app imports photos from Instagram and Facebook to generate 50 outfit combinations." (quantity + cause/sequence) |
 
 **Every sentence in your script MUST match a PASSING pattern.** If the research
 does not provide a grounded element for a sentence, CUT THE SENTENCE or rewrite
