@@ -1,0 +1,48 @@
+{
+  "channel_id": "9",
+  "topic_slug": "super-el-nino-iguazu-waterfalls-near-record-rates",
+  "format": "shorts",
+  "hook": "What happens when a river hits 6 times its normal flow?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What happens when a river hits 6 times its normal flow?",
+      "text_overlay": {
+        "text": "6x Normal Flow"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Could the mile-wide Iguazú Falls on the Brazil-Argentina border survive a record-breaking water surge?",
+      "text_overlay": {
+        "text": "October 2026: Iguazú Falls"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But these rains also flooded Argentina, Paraguay, and Uruguay, forcing thousands from their homes.",
+      "text_overlay": {
+        "text": "Regional Flooding"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Officials closed Iguazú Falls as the Iguazu River hit 6 times its normal flow rate. The Iguazu River reached near-record water volumes during the October 2026 rains in South America.",
+      "text_overlay": {
+        "text": "6x Normal Rate"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Authorities closed Iguazú Falls as the October 2026 rains caused widespread damage across the region.",
+      "text_overlay": {
+        "text": "Iguazú Falls"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino",
+    "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e"
+  ]
+}
