@@ -79,7 +79,10 @@ ${topic ? `The video is about: ${topic}
 ` : ""}${caption ? `The narrator is saying: "${caption}"
 ` : ""}Time in video: ${t.toFixed(1)}s.`;
     let verdict = null;
-    try { verdict = parseVerdict(await askVision({ prompt, imageBase64: jpeg.toString("base64") })); } catch { verdict = null; }
+    for (let attempt = 0; attempt < 2 && !verdict; attempt++) {
+      if (attempt) await new Promise((r) => setTimeout(r, 20000));
+      try { verdict = parseVerdict(await askVision({ prompt, imageBase64: jpeg.toString("base64") })); } catch { verdict = null; }
+    }
     frames.push({ t, caption, ...(verdict || { verdict: null, issues: ["no answer from the vision model"] }) });
   }
   return { available: frames.some((f) => f.verdict), summary: summarize(frames), frames };

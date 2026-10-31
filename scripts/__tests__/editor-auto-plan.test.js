@@ -649,7 +649,7 @@ test("a flag only for a country that is the sentence's subject, and only one per
 });
 
 test("two number cards never run back to back, and a text-only beat falls back to a research figure or the topic's map before a poster", async () => {
-  const research2 = { ...research, strongest_angle: "Drought in Chile", named_entities: [],
+  const research2 = { ...research, strongest_angle: "Drought in Chile", named_entities: [{ name: "Chile", kind: "place" }],
     numbers: [{ label: "reservoirs at half capacity", value: 45, unit: "percent", source_url: "https://news.example.org/x" }, { label: "farms that lost their crop", value: 1321, unit: "farms", source_url: "https://news.example.org/y" }] };
   const sents = ["The water fell away quietly.", "Nobody reported the change at first.", "Then the harvest was counted.", "Farmers waited for rain."];
   const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: research2,
@@ -694,6 +694,14 @@ test("a long beat is cut to a second visual only where the research or topic giv
     words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 9, end: 10, sentence: 1 }], audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 };
   const noPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash" } });
   assert.ok(noPlace.report.scenes.every((x) => !/then .*poster/.test(x.shows)), "no poster as a second visual");
-  const withPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash over Chile" } });
+  const withPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash over Chile", named_entities: [{ name: "Chile", kind: "place" }] } });
   assert.ok(withPlace.report.scenes.some((x) => /then map of Chile/.test(x.shows)), "a long card gets the topic's map as its second visual");
+});
+
+test("the topic map is a place the research names, never a place word from a sentence; a number with no label from its sentence is not drawn as a bare number", async () => {
+  const sents = ["Lawyers filed the complaint in New York on Monday.", "The figure was 99% of the sample."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, strongest_angle: "Lawsuit over AI training", named_entities: [], numbers: [] },
+    words: sents.map((_, i) => ({ text: "w", start: i * 6, end: i * 6 + 1, sentence: i })), audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
+  assert.ok(r.report.scenes.every((x) => !/New York (the topic)/.test(x.shows)), "a place word in a sentence is not the topic's map");
+  assert.ok(r.plan.scenes.every((x) => !(x.graphic && x.graphic.kind !== "map" && x.graphic.figs?.[0]?.raw === "99%")), "a figure with no research support is not drawn");
 });

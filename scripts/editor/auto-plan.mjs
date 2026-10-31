@@ -210,7 +210,10 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   // number cards alternate layouts by their own count, so two cards in a row never share one
   let cardCount = 0;
   const cardMode = () => (cardCount++ % 2 ? "bare" : "hero");
-  const topicPlace = matchPlaces([topic, research?.strongest_angle, sentences[0]].filter(Boolean).join(". "))[0] || null;
+  // The topic's map: only a place the research names as a place (a verified entity), never a place word that happens to sit in a sentence.
+  // A map of a place the story is not about is worse than no map.
+  const namedPlaces = new Set((research?.named_entities || []).filter((e) => KIND[String(e.kind || "").toLowerCase()] === "place").map((e) => String(e.name).toLowerCase()));
+  const topicPlace = matchPlaces(String(research?.strongest_angle || topic || ""), { max: 3 }).find((h) => namedPlaces.has(String(h.f.name).toLowerCase())) || null;
   const spareFigs = (research?.numbers || []).filter((n) => n && Number.isFinite(Number(n.value)) && n.label).map((n) => {
     const pct = /percent|%/i.test(String(n.unit || ""));
     const v = Number(n.value);
@@ -244,6 +247,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     let gfigs = figs.length ? figs : (yearOk ? [yearFig] : []);
     // The same figure on the very next beat is the same beat again: a figure that was just shown is not drawn twice in a row.
     if (gfigs.length && gfigs.every((f) => f.raw === lastFig)) gfigs = [];
+    // A number is drawn only with a label taken from its own sentence: a bare number on its own reads as nothing (the frame critic's most
+    // common complaint). Without a label the beat shows another visual.
+    if (gfigs.length && !figureLabel(sentence, gfigs[0])) gfigs = [];
     if (!figs.length && yearOk) yearsShown.add(yearFig.value);
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
