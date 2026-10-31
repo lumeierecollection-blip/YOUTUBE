@@ -1,0 +1,52 @@
+{
+  "channel_id": "21",
+  "topic_slug": "silk-plastic-materials-6g-potential",
+  "format": "shorts",
+  "hook": "Researchers just turned raw silk into a transparent, plastic-like material strong enough to potentially power future 6G networks.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Researchers just turned raw silk into a transparent, plastic-like material strong enough to potentially power future 6G networks.",
+      "visual_cue": "Close-up macro shot of shimmering silk fibers transitioning into a clear, solid sheet.",
+      "text_overlay": {
+        "text": "Silk into 6G plastic?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How do researchers from Tufts University and Imperial College London turn silk into 6G hardware?",
+      "visual_cue": "Graphic showing the University of Michigan logo beside a diagram of compressed silk fibers.",
+      "b_roll": [
+        "Laboratory equipment for high pressure testing",
+        "Microscopic view of crystalline silk structures"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This team forces silk to twist terahertz waves, high-frequency light pulses that carry massive data loads.",
+      "visual_cue": "Abstract animation showing light waves twisting through a crystalline grid structure.",
+      "b_roll": [
+        "Light frequency visualization"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "To fuse the fibers, the team heated them between 257 and 419 degrees Fahrenheit. Chemical Engineering reports this process forces water out, fusing silk into a single solid sheet.",
+      "visual_cue": "Chart showing temperature and pressure ranges rising on a scale.",
+      "b_roll": [
+        "Temperature gauge rising",
+        "Pressure gauge needle moving through high range"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "Engineers use this preserved crystalline structure to build the essential hardware for future 6G networks.",
+      "visual_cue": "Wide shot of a modern fiber optic lab setting.",
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://news.engin.umich.edu/2026/05/silk-made-into-strong-plastic-like-materials-with-6g-potential",
+    "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential"
+  ]
+}

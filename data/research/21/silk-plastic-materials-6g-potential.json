@@ -1,0 +1,77 @@
+{
+  "topic_slug": "silk-plastic-materials-6g-potential",
+  "strongest_angle": "University of Michigan researchers developed a method to fuse short silk fibers into durable, transparent plastic-like materials by applying temperatures between 257 and 419 degrees Fahrenheit and pressures between 1900 and 9800 atmospheres, preserving crystalline structures to potentially enable 6G network components.",
+  "key_facts": [
+    {
+      "fact": "University of Michigan researchers led research to fuse silk threads into strong, transparent plastic-like materials under high temperature and pressure, as reported by Michigan Engineering News on May 14, 2026.",
+      "source_url": "https://news.engin.umich.edu/2026/05/silk-made-into-strong-plastic-like-materials-with-6g-potential",
+      "source_name": "Michigan Engineering News",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to research led by Imperial College London, University of Michigan Engineering and Tufts University, published on Phys.org on May 14, 2026, the fused silk materials can twist terahertz frequencies of light for potential 6G network components.",
+      "source_url": "https://phys.org/news/2026-05-silk-strong-plastic-materials-6g.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "As detailed in Chemical Engineering on October 22, 2026, when silk fibers are heated between 257 and 419 degrees Fahrenheit and 1900 and 9800 atmospheres of pressure, water evaporates and tangled regions fuse into a single sheet.",
+      "source_url": "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential",
+      "source_name": "Chemical Engineering",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Minimum temperature",
+      "value": 257,
+      "unit": "degrees Fahrenheit",
+      "source_url": "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential"
+    },
+    {
+      "label": "Maximum temperature",
+      "value": 419,
+      "unit": "degrees Fahrenheit",
+      "source_url": "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential"
+    },
+    {
+      "label": "Minimum pressure",
+      "value": 1900,
+      "unit": "atmospheres",
+      "source_url": "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential"
+    },
+    {
+      "label": "Maximum pressure",
+      "value": 9800,
+      "unit": "atmospheres",
+      "source_url": "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "University of Michigan",
+      "kind": "organization"
+    },
+    {
+      "name": "Imperial College London",
+      "kind": "organization"
+    },
+    {
+      "name": "Tufts University",
+      "kind": "organization"
+    },
+    {
+      "name": "Derek Smith",
+      "kind": "person"
+    },
+    {
+      "name": "Kate McAlpine",
+      "kind": "person"
+    },
+    {
+      "name": "Madison Korte",
+      "kind": "person"
+    }
+  ]
+}
