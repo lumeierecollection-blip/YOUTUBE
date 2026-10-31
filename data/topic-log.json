@@ -2345,9 +2345,14 @@
           "topic": "NASA Ends Swift Space Telescope Mission After 21 Years",
           "slug": "nasa-ends-swift-space-telescope-mission",
           "reserved_at": "2026-10-30T15:19:41.254Z"
+        },
+        {
+          "topic": "NASA Voyager 1 Conserves Power After 48 Hour Communication Pause",
+          "slug": "voyager-1-conserves-power-october-2026",
+          "reserved_at": "2026-10-31T14:48:28.036Z"
         }
       ],
-      "last_generated": "2026-10-30T15:19:41.255Z"
+      "last_generated": "2026-10-31T14:48:28.037Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
