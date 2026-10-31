@@ -1,0 +1,81 @@
+{
+  "topic_slug": "address-to-the-nations-indigenous-creators-pledger-briggs",
+  "strongest_angle": "Explore how creators David Pledger and Tony Briggs used a TV special to imagine an Australia without colonisation, the 2025 Cybernetic Imagination Residency that backed the work, and the multi‑format launch of their collaborative practice in 2023.",
+  "key_facts": [
+    {
+      "fact": "The television special “Address to the Nations” premiered on ABC in 2026, created by David Pledger and Tony Briggs.",
+      "source_url": "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564",
+      "source_name": "ABC News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Pledger and Briggs were selected as 2025 Cybernetic Imagination Residents at the ANU School of Cybernetics.",
+      "source_url": "https://cybernetics.anu.edu.au/projects/tomorrows-pasts",
+      "source_name": "ANU School of Cybernetics",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Their collaborative practice “Tomorrow’s Pasts”, launched in 2023, spans four formats: videogame, digital art, theatre, and television.",
+      "source_url": "https://notyet.com.au/projects/tomorrows-past",
+      "source_name": "Not Yet It's Difficult",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 2026,
+      "unit": "year",
+      "label": "Year the TV special premiered",
+      "source_url": "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564"
+    },
+    {
+      "value": 2025,
+      "unit": "year",
+      "label": "Year they became Cybernetic Imagination Residents",
+      "source_url": "https://cybernetics.anu.edu.au/projects/tomorrows-pasts"
+    },
+    {
+      "value": 2023,
+      "unit": "year",
+      "label": "Year the collaborative practice launched",
+      "source_url": "https://notyet.com.au/projects/tomorrows-past"
+    },
+    {
+      "value": 4,
+      "unit": "formats",
+      "label": "Number of media formats in Tomorrow’s Pasts",
+      "source_url": "https://notyet.com.au/projects/tomorrows-past"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "David Pledger",
+      "kind": "person"
+    },
+    {
+      "name": "Tony Briggs",
+      "kind": "person"
+    },
+    {
+      "name": "Sherry‑Lee Watson",
+      "kind": "person"
+    },
+    {
+      "name": "ANU School of Cybernetics",
+      "kind": "organization"
+    },
+    {
+      "name": "Tomorrow’s Pasts",
+      "kind": "organization"
+    },
+    {
+      "name": "briggsnpledger",
+      "kind": "organization"
+    },
+    {
+      "name": "ABC",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

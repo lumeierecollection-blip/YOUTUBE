@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "address-to-the-nations-indigenous-creators-pledger-briggs",
+  "format": "shorts",
+  "hook": "A TV special imagined Australia without colonisation, and it aired in 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A TV special imagined Australia without colonisation, and it aired in 2026.",
+      "visual_cue": "Opening shot of the ABC logo fading into the “Address to the Nations” title screen."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026 ABC aired “Address to the Nations”, a special by David Pledger and Tony Briggs. What did their 2023 “Tomorrow’s Pasts” launch achieve?",
+      "visual_cue": "Clip of the 2026 broadcast intro, then portrait of Pledger and Briggs, then a graphic showing the 2023 launch banner with four icons representing the formats."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the four‑format project sparked a national debate on history.",
+      "visual_cue": "Split‑screen of game, digital art, theatre, and TV clips with news‑headline overlays."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The special imagined Australia without colonisation, using game, digital art, theatre and TV. In 2026 it ignited a national debate on rewriting history.",
+      "visual_cue": "Montage of each format’s scene, overlay of the 2025 residency badge, then newspaper headlines from 2026."
+    },
+    {
+      "id": "close",
+      "voiceover": "A 2026 TV special imagined an uncolonised Australia.",
+      "visual_cue": "Fade to black with the “Address to the Nations” title lingering."
+    }
+  ],
+  "sources_used": [
+    "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564",
+    "https://cybernetics.anu.edu.au/projects/tomorrows-pasts"
+  ]
+}
