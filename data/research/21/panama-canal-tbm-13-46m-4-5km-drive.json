@@ -1,0 +1,84 @@
+{
+  "topic_slug": "panama-canal-tbm-13-46m-4-5km-drive",
+  "strongest_angle": "The 13.46-meter Herrenknecht Mixshield TBM named 'Panamá' completed the longest single-pass tunnel segment for the new Metro Line 3, marking a significant milestone in the Panama Canal construction.",
+  "key_facts": [
+    {
+      "fact": "The 13.46-meter diameter Herrenknecht Mixshield TBM named 'Panamá' completed a 4.5-kilometer drive beneath the Panama Canal on October 26, 2026, enabling a 12-kilometer underground rail link.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "The tuneladora Panamá, a 13.46-meter diameter Herrenknecht Mixshield TBM, completed a 4.5-kilometer drive beneath the Panama Canal, marking the first bored tunnel under the waterway.",
+      "source_url": "https://tunnelingworld.com/?p=20846",
+      "source_name": "TunnelingWorld.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The tuneladora Panamá, a 13.46-meter diameter Herrenknecht Mixshield TBM, broke through at Albrook on October 26, 2026, completing its 4.5-kilometer drive from Farfán, which is part of the construction of the Línea 3 Metro in Panama.",
+      "source_url": "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro",
+      "source_name": "La Prensa Panamá",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TBM Diameter",
+      "value": 13.46,
+      "unit": "meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "TBM Drive Length",
+      "value": 4.5,
+      "unit": "km",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Panama Canal Tunnel Length",
+      "value": 4.5,
+      "unit": "km",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Herrenknecht Mixshield TBM",
+      "kind": "organization"
+    },
+    {
+      "name": "Panamá",
+      "kind": "person"
+    },
+    {
+      "name": "Farfán",
+      "kind": "place"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Metro de Panamá",
+      "kind": "organization"
+    },
+    {
+      "name": "César Pinzón",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The tuneladora Panamá, a 13.46-meter diameter Herrenknecht Mixshield TBM, completed a 4.5-kilometer drive beneath the Panama Canal, marking the first bored tunnel under the waterway.",
+      "speaker": "TunnelingWorld.com",
+      "source_name": "TunnelingWorld.com",
+      "source_url": "https://tunnelingworld.com/?p=20846"
+    },
+    {
+      "text": "Tuneladora Panamá culminó la excavación del tramo subterráneo de la Línea 3 del Metro, llegando a Albrook el 26 de octubre de 2026.",
+      "speaker": "La Prensa Panamá",
+      "source_name": "La Prensa Panamá",
+      "source_url": "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro"
+    }
+  ]
+}

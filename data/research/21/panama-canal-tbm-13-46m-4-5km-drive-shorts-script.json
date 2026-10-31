@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "panama-canal-tbm-13-46m-4-5km-drive",
+  "format": "shorts",
+  "hook": "13.46‑meter TBM carved a 4.5‑km tunnel under the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "13.46‑meter TBM carved a 4.5‑km tunnel under the Panama Canal.",
+      "visual_cue": "TBM drilling tunnel beneath the Panama Canal"
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Oct 26 2026, the Herrenknecht Mixshield TBM ‘Panamá’ broke through at Albrook. It finished a 4.5‑km drive from Farfán under the canal. Why does this 13.46‑meter machine matter for Metro Line 3?",
+      "visual_cue": "Map showing Oct 26 2026 breakthrough at Albrook"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "And it became the longest single‑pass tunnel segment ever bored under a waterway.",
+      "visual_cue": "Graphic highlighting longest single‑pass tunnel record"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The ‘Panamá’ TBM cut a 4.5‑km tunnel under the canal. It opens a 12‑km underground rail link for Metro de Panamá. At 13.46 meters wide, it’s the world’s largest waterway bore.",
+      "visual_cue": "Animation of tunnel linking Metro de Panamá line"
+    },
+    {
+      "id": "close",
+      "voiceover": "A 13.46‑meter machine reshaped Panama’s transit future.",
+      "visual_cue": "Zoom on 13.46‑meter TBM silhouette"
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://tunnelingworld.com/?p=20846"
+  ]
+}
