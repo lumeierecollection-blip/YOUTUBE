@@ -1242,9 +1242,14 @@
           "topic": "Gemini 4 Argon vs GPT-6.1 Sol Security Audit Benchmark Test",
           "slug": "gemini-4-argon-vs-gpt-6-security-audit",
           "reserved_at": "2026-10-29T15:23:34.032Z"
+        },
+        {
+          "topic": "Meta Style Sketch: Inside the October 2026 AI Fashion App Launch",
+          "slug": "meta-style-sketch-october-2026-ai-fashion-app",
+          "reserved_at": "2026-10-31T14:39:47.666Z"
         }
       ],
-      "last_generated": "2026-10-30T15:45:34.011Z"
+      "last_generated": "2026-10-31T14:39:47.666Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
