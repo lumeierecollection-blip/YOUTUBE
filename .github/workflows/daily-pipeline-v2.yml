@@ -532,7 +532,7 @@ jobs:
           # repeated sentences (docs/V2-NARRATIVE-SCRIPT-GREEN.md). OPENCODE_MODELS_REASONING
           # (Ollama) is the fallback when Gemini cannot answer. force_planner=ollama skips Gemini.
           SCRIPT_GEMINI_MODEL: gemini-3.5-flash-lite
-          FORCE_PLANNER: ${{ github.event.inputs.force_planner }}
+          FORCE_PLANNER: ollama
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
@@ -551,7 +551,6 @@ jobs:
           # parse and the workflow could not be dispatched). Keep the
           # matrix value in env so the script itself stays literal.
           CHANNEL_ID: ${{ matrix.channel_id }}
-          FORCE_PLANNER: ollama
         run: |
           set -euo pipefail
           CH="$CHANNEL_ID"
