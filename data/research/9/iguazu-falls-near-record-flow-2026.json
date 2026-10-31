@@ -1,0 +1,89 @@
+{
+  "topic_slug": "iguazu-falls-near-record-flow-2026",
+  "strongest_angle": "Super El Niño 2026 drives Iguazú Falls to a near‑record 17 700 m³/s flow, flooding the Brazil‑Argentina border, forcing tourist‑circuit closures and stressing hydro‑electric generation.",
+  "key_facts": [
+    {
+      "fact": "On 23 Oct 2026 the Iguazú River reached a flow of 17 700 m³/s at the falls, almost twelve times its long‑term average.",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+      "source_name": "Clarín",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The surge pushed water levels to six times the normal rate, leading Argentine park officials to temporarily close the Upper Circuit for tourists on 12 Oct 2026.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Between 20 Oct and 27 Oct 2026 the flow exceeded historical averages by more than ten times, marking the 11th such extreme event recorded.",
+      "source_url": "https://noticiasambientales.com/environment-en/iguazu-falls-exceeded-their-historical-flow-11-times-and-warnings-issued-for-the-rise-of-the-coast",
+      "source_name": "Noticias Ambientales",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 17700,
+      "unit": "m³/s",
+      "label": "record flow at Iguazú Falls",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    },
+    {
+      "value": 12,
+      "unit": "times",
+      "label": "multiple of long‑term average flow",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    },
+    {
+      "value": 6,
+      "unit": "times",
+      "label": "increase over normal rate prompting closure",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    },
+    {
+      "value": 11,
+      "unit": "times",
+      "label": "historical extreme events recorded in 2026",
+      "source_url": "https://noticiasambientales.com/environment-en/iguazu-falls-exceeded-their-historical-flow-11-times-and-warnings-issued-for-the-rise-of-the-coast"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Iguazú River",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Clarín",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    },
+    {
+      "name": "Noticias Ambientales",
+      "kind": "organization"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Circuito Superior",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}
