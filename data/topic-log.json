@@ -1642,9 +1642,14 @@
           "topic": "Norse Cosmology Explained: The Nine Realms and World-Building Architecture",
           "slug": "norse-cosmology-nine-realms-architecture",
           "reserved_at": "2026-10-30T15:09:41.569Z"
+        },
+        {
+          "topic": "Sherlock Holmes vs Count Dracula: A Public Domain What-If Matchup",
+          "slug": "sherlock-holmes-vs-count-dracula-matchup",
+          "reserved_at": "2026-10-31T15:12:23.332Z"
         }
       ],
-      "last_generated": "2026-10-30T15:09:41.569Z"
+      "last_generated": "2026-10-31T15:12:23.332Z"
     },
     "8": {
       "channel_name": "Ledger",
