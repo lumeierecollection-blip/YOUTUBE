@@ -1,0 +1,76 @@
+{
+  "topic_slug": "super-el-nino-sea-temperature-record-2026",
+  "strongest_angle": "Examine how the 2026 super El Niño shattered temperature records in the Pacific Ocean months ahead of its December peak, reaching 3.08 degrees Celsius warmer than the 1991 to 2020 average according to Science News and the Copernicus Climate Change Service.",
+  "key_facts": [
+    {
+      "fact": "On September 21, 2026, the daily sea surface temperature in the central and eastern equatorial Pacific Ocean reached 3.08 degrees Celsius warmer than the 1991 to 2020 average, as reported by Science News.",
+      "source_url": "https://www.sciencenews.org/article/record-breaking-el-nino-temperatures",
+      "source_name": "Science News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Copernicus Climate Change Service stated that sea surface temperatures in a key region of the Pacific reached 29.70 degrees Celsius in September 2026.",
+      "source_url": "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record",
+      "source_name": "RTÉ News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australia's Bureau of Meteorology reported that the weekly relative Niño3.4 index reached a record +2.88 degrees Celsius for the week ending October 25, 2026.",
+      "source_url": "https://www.bom.gov.au/climate/enso/?index=nino34&ninoIndex=nino3.4&period=weekly",
+      "source_name": "Australian Government Bureau of Meteorology",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Temperature anomaly above average",
+      "value": 3.08,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.sciencenews.org/article/record-breaking-el-nino-temperatures"
+    },
+    {
+      "label": "Sea surface temperature in Pacific region",
+      "value": 29.7,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record"
+    },
+    {
+      "label": "Weekly relative Niño3.4 index",
+      "value": 2.88,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.bom.gov.au/climate/enso/?index=nino34&ninoIndex=nino3.4&period=weekly"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Copernicus Climate Change Service said sea surface temperatures in a region of the Pacific reached 29.70C last month",
+      "speaker": "Copernicus Climate Change Service",
+      "source_name": "RTÉ News",
+      "source_url": "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record"
+    },
+    {
+      "text": "The weekly relative Niño3.4 index reached a record +2.88 °C for the week ending 25 October 2026, the highest value in the bureau's weekly sea surface temperature (SST) dataset",
+      "speaker": "Australian Government Bureau of Meteorology",
+      "source_name": "Australian Government",
+      "source_url": "https://www.bom.gov.au/climate/enso/?index=nino34&ninoIndex=nino3.4&period=weekly"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Australia's Bureau of Meteorology",
+      "kind": "organization"
+    },
+    {
+      "name": "Copernicus Climate Change Service",
+      "kind": "organization"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Science News",
+      "kind": "organization"
+    }
+  ]
+}

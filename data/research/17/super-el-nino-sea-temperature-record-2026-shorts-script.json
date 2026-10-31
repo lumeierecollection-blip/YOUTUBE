@@ -1,0 +1,75 @@
+{
+  "channel_id": "17",
+  "topic_slug": "super-el-nino-sea-temperature-record-2026",
+  "format": "shorts",
+  "hook": "The Pacific Ocean hit a record-shattering heat level months ahead of schedule.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Pacific Ocean hit a record-shattering heat level months ahead of schedule.",
+      "visual_cue": "Satellite view of the Pacific Ocean with thermal mapping overlay.",
+      "sfx_cue": "Deep, resonant bass pulse.",
+      "b_roll": [
+        "NASA Earth Observatory satellite imagery of Pacific sea surface temperatures"
+      ],
+      "text_overlay": {
+        "text": "Record Pacific Heat"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did the Copernicus Climate Change Service record 29.70 degrees Celsius in that same Pacific region?",
+      "visual_cue": "Animated graph showing the 3.08 degree temperature anomaly spike.",
+      "sfx_cue": "Rising digital chime.",
+      "b_roll": [
+        "Data visualization of sea surface temperature anomalies",
+        "Oceanographic buoy on water surface"
+      ],
+      "text_overlay": {
+        "text": "3.08°C Above Average"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Niño3.4 index, which tracks equatorial Pacific surface temperatures, surged to signal extreme climate shifts.",
+      "visual_cue": "Close-up of a digital weather monitoring interface showing the Niño3.4 index.",
+      "sfx_cue": "Sharp, sudden electronic ping.",
+      "b_roll": [
+        "Bureau of Meteorology climate monitoring dashboard"
+      ],
+      "text_overlay": {
+        "text": "Niño3.4 Index Surge"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Australia's Bureau of Meteorology confirmed this index hit a record +2.88 degrees Celsius in October. This warming confirms a super El Niño, an intense climate pattern driven by Pacific heat.",
+      "visual_cue": "Bar chart showing the weekly record value of 2.88 degrees Celsius.",
+      "sfx_cue": "Low frequency hum.",
+      "b_roll": [
+        "Bar chart visualization of the Niño3.4 index record",
+        "Copernicus climate data map"
+      ],
+      "text_overlay": {
+        "text": "+2.88°C Record"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That +2.88 degree index remains the highest recorded weekly value.",
+      "visual_cue": "Wide shot of the Pacific Ocean horizon at sunset.",
+      "sfx_cue": "Fading ambient ocean waves.",
+      "b_roll": [
+        "Cinematic wide shot of Pacific Ocean waves"
+      ],
+      "text_overlay": {
+        "text": "Highest Weekly Value"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencenews.org/article/record-breaking-el-nino-temperatures",
+    "https://www.rte.ie/news/world/2026/1012/1594965-el-nino-temperature-record",
+    "https://www.bom.gov.au/climate/enso/?index=nino34&ninoIndex=nino3.4&period=weekly"
+  ]
+}
