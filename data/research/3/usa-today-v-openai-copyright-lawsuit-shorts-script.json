@@ -1,0 +1,44 @@
+{
+  "channel_id": "3",
+  "topic_slug": "usa-today-v-openai-copyright-lawsuit",
+  "format": "shorts",
+  "hook": "USA Today is suing OpenAI for over $250 million in damages.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "USA Today is suing OpenAI for over $250 million in damages."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 8, 2026, the company filed a copyright complaint in the U.S. District Court for the Southern District of New York. What exactly triggered this massive claim?",
+      "text_overlay": {
+        "text": "Lawsuit filed Oct 8, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the lawsuit covers hundreds of thousands of articles from 19 separate publications.",
+      "text_overlay": {
+        "text": "19 publications impacted"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The complaint alleges that OpenAI used this material to train its large language models without authorization. Consequently, the company seeks more than $250 million to cover the intellectual property infringement. This filing remains active in the court system.",
+      "text_overlay": {
+        "text": "$250 million in damages sought"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The case is registered under docket number 8892.",
+      "text_overlay": {
+        "text": "Docket number 8892"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.forbes.com/sites/fionariley/2026/10/08/usa-today-sues-openai-for-over-250-million-alleging-willful-copyright-infringement",
+    "https://www.theverge.com/ai-artificial-intelligence/1008198/usa-today-openai-copyright-lawsuit"
+  ]
+}

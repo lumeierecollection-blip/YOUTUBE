@@ -1,0 +1,60 @@
+{
+  "topic_slug": "usa-today-v-openai-copyright-lawsuit",
+  "strongest_angle": "Examine the October 2026 lawsuit filed in the U.S. District Court for the Southern District of New York by USA Today's parent company and 13 entities against OpenAI, seeking over $250 million in damages for unauthorized scraping of paywalled articles.",
+  "key_facts": [
+    {
+      "fact": "USA Today Co., Inc. and 13 associated entities filed a copyright lawsuit against OpenAI in the U.S. District Court for the Southern District of New York on October 8, 2026.",
+      "source_url": "https://www.forbes.com/sites/fionariley/2026/10/08/usa-today-sues-openai-for-over-250-million-alleging-willful-copyright-infringement",
+      "source_name": "Forbes",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit filed by USA Today against OpenAI seeks damages in excess of $250 million for allegedly copying hundreds of thousands of articles from 19 publications.",
+      "source_url": "https://www.theverge.com/ai-artificial-intelligence/1008198/usa-today-openai-copyright-lawsuit",
+      "source_name": "The Verge",
+      "confidence": "high"
+    },
+    {
+      "fact": "The legal complaint alleges that OpenAI scraped copyrighted material and paywalled articles without authorization to train and operate its large language models.",
+      "source_url": "https://thedesk.net/wp-content/uploads/2026/10/2026-10-USA-Today-v-OpenAI-Complaint-WM.pdf",
+      "source_name": "TheDesk.net",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Damages sought",
+      "value": 250,
+      "unit": "million dollars",
+      "source_url": "https://www.theverge.com/ai-artificial-intelligence/1008198/usa-today-openai-copyright-lawsuit"
+    },
+    {
+      "label": "Case number",
+      "value": 8892,
+      "unit": "docket number",
+      "source_url": "https://dockets.justia.com/docket/new-york/nysdce/1:2026cv08892/674652"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "USA Today Co., Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. District Court for the Southern District of New York",
+      "kind": "place"
+    },
+    {
+      "name": "Sam Altman",
+      "kind": "person"
+    },
+    {
+      "name": "Gannett Satellite Information Network, LLC",
+      "kind": "organization"
+    }
+  ]
+}
