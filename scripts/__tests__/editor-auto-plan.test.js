@@ -748,7 +748,10 @@ test("every beat has a halftone dot field that drifts by exactly one tile per cy
   for (let fr = 0; fr < 300; fr += 7) assert.ok(valueAt(f, "tx", fr) >= -56 && valueAt(f, "tx", fr) <= 0, "never leaves the margin");
   const tl = { layers: [{ id: "scene-0-image", in: 0, out: 120, z: 11 }] };
   addGraphics(tl, { id: "p", palette: { ink: "#101114", accent: "#c00" }, scenes: [{ asset: "photo-a", stagger: 0, look: "vox" }] });
-  assert.ok(tl.layers.find((l) => /-field$/.test(l.id) && l.z > 11 && l.z < 12), "just above the picture, below its scrim");
+  const field = tl.layers.find((l) => /-field$/.test(l.id));
+  assert.equal(field.z, 11, "the same z as its picture: CSS z-index is an integer, a fraction is ignored and would hide the field behind the picture");
+  assert.ok(tl.layers.indexOf(field) > tl.layers.findIndex((l) => l.id === "scene-0-image"), "and after it, so it paints above it");
+  assert.ok(tl.layers.every((l) => Number.isInteger(l.z)), "every layer has an integer z");
 });
 
 test("a flat card is never darkened, and a year is never drawn as a statistic", async () => {

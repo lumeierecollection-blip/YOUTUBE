@@ -130,8 +130,8 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
   plan.scenes.forEach((sc, i) => {
     const base = timeline.layers.find((l) => l.id === "scene-" + i + "-image");
     if (!base) return;
-    // Every beat has the drifting dot field just above its picture (below the scrim and the graphics): nothing on screen is ever a held still.
-    timeline.layers.push(...fieldLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out, z: base.z + 0.5, onPhoto: /^(photo|concept)-/.test(sc.asset) }));
+    // Every beat has the drifting dot field just above its picture (same integer z, pushed after it: CSS z-index ignores a fraction, which hid the field behind the picture before; it sits below the scrim and the graphics): nothing on screen is ever a held still.
+    timeline.layers.push(...fieldLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out, z: base.z, onPhoto: /^(photo|concept)-/.test(sc.asset) }));
     if (!sc.graphic) {
       // A photo scene with no figure still moves: the accent draws itself across it (graphics.mjs decorationLayers).
       if (/^card-/.test(sc.asset)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
@@ -145,6 +145,9 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
     // a hero panel is the whole picture: a thin accent line crosses the frame so it never sits still once its counter has finished
     if (["hero", "bare", "full"].includes(g.mode)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
   });
+  // CSS z-index is an integer: a fractional z is ignored by the renderer and the layer ends up behind the picture (the dot field was invisible for a render).
+  const bad = timeline.layers.find((l) => !Number.isInteger(l.z));
+  if (bad) throw new Error(`layer ${bad.id} has a non-integer z (${bad.z}); the renderer would ignore it`);
   timeline.layers.sort((x, y) => x.z - y.z);
   return timeline;
 }
