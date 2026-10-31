@@ -11,7 +11,8 @@
  */
 import { scriptSentences } from "./captions.mjs";
 import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
-import { chooseKind, backdropSvg } from "./graphics.mjs";
+import { chooseKind, backdropSvg, figureLabel, mapFor, PHOTO_RECT, mixHex, readableOn } from "./graphics.mjs";
+import { matchPlaces } from "./maps.mjs";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 const KIND = { person: "person", people: "person", place: "place", location: "place", city: "place", country: "place", organization: "organization", company: "organization", agency: "organization", institution: "organization", university: "organization" };
@@ -24,6 +25,7 @@ const PERCENT = /(\d+(?:\.\d+)?)\s?(?:%|percent\b)/gi;
 const MONEY = /[$£€]\s?\d[\d,]*(?:\.\d+)?(?:\s?(?:million|billion|trillion|thousand))?/gi;
 const PLAIN = /(?<![\d.,$£€])\d{2,4}(?![\d,]\d|\.\d|%)/g;
 const MONTH = /(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\.?$/i;
+const MONTH_AFTER = /^\s*(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)\b/i;
 const COUNT = /\b\d{1,3}(?:,\d{3})+\b|\b\d+(?:\.\d+)?\s?(?:million|billion|trillion)\b/gi;
 
 /** Figures a sentence states, in order of appearance. */
@@ -47,6 +49,7 @@ export function extractFigures(sentence) {
     const after = text.slice(m.index + m[0].length, m.index + m[0].length + 3);
     if (n >= 1900 && n <= 2100) continue;
     if (MONTH.test(before.trim())) continue;
+    if (MONTH_AFTER.test(text.slice(m.index + m[0].length, m.index + m[0].length + 14))) continue;
     if (/^(st|nd|rd|th)\b/i.test(after)) continue;
     if (found.some((f) => f.index < m.index + m[0].length && m.index < f.index + f.raw.length)) continue;
     found.push({ raw: m[0], kind: "number", value: null, index: m.index, matched: m[0] });
@@ -121,7 +124,6 @@ export function nameVariants(name) {
   return plain && plain !== name ? [name, plain] : [name];
 }
 
-const MOTIONS = ["in", "pan-left", "out", "pan-right"];
 
 /**
  * Variety, so no two videos are cut the same way and a video does not repeat itself. Everything below is drawn from a random stream
@@ -160,10 +162,13 @@ export function withBg(svgText, bg) {
 /**
  * resolve({type,name,context}) -> {ok,file,width,height,credit,source_url,license}   a VERIFIED photo of a named entity (entity-assets)
  * concept({query, used}) -> {file,width,height,credit,source_url,license} | null       a real photo of the CONCEPT (concept-photo)
- * queries[i]: the concept search phrase for sentence i (or null).  style: 1-5 (styles.mjs).
+ * queries[i] / queries2[i]: the two concept search phrases for sentence i (or null). story: photographable phrases about the video as a whole
+ * (the pool a sentence falls back on when its own phrases find nothing); topic: what the whole video is about (the photo check judges against it).
+ * A photo is shown ONCE: it is never reused or re-framed, unless a verified photo of a named entity is wanted again because the script names it again.  style: 1-5 (styles.mjs).
+ * logo({name, sentence}) -> {ok, file, width, height, credit, source_url, license, dark_mark} | {ok:false}: an organisation's verified mark (resolve-scene.cjs).
  * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
-export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], style = 1, maxPhotos = 8 }) {
+export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], queries2 = [], story = [], topic = "", logo = async () => null, flag = async () => ({ ok: false }), style = 1, maxPhotos = 8 }) {
   const sentences = scriptSentences(script);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
@@ -172,7 +177,11 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const spanSource = exact ? "voiceover" : "proportional";
 
   const colors = channel?.colors || {};
-  const palette = { bg: colors.bg || "#07070D", text: "#F5F5FF", muted: "#C9CDD6", accent: colors.canvas_accent || colors.accent || "#D4A574", accent2: colors.accent || "#D4A574" };
+  // A light editorial palette: the channel's paper and ink (channels.json colours.paper / ink) with its accent darkened until it reads on the paper.
+  // Captions sit on an ink plate (accentOnInk is the accent as it reads on that plate), so they read over paper and over photos alike.
+  const paper = colors.paper || "#F4F1EA", ink = colors.ink || "#101114";
+  const rawAccent = colors.canvas_accent || colors.accent || "#D4A574";
+  const palette = { bg: paper, paper, ink, text: ink, muted: mixHex(ink, paper, 0.4), accent: readableOn(paper, rawAccent, ink), accent2: colors.accent || rawAccent, accentOnInk: readableOn(ink, rawAccent, paper) };
   const rng = seededRandom(stem);
   const lookId = Number(style) >= 1 ? Number(style) : pickLook(rng, channel?.editor_look);
   const look = styleFor(lookId, palette);
@@ -190,37 +199,126 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const report = [];
   const misses = [];
   let lastAsset = null;
-  let lastMotion = null;
   const yearsShown = new Set();
+  let mapsShown = 0;
   const n = sentences.length;
+
+  const storyPool = story.filter(Boolean);
+  // An organisation named in a sentence shows its own mark on a plate (the mark is never redrawn or invented; no mark, no logo beat). A mark
+  // named again later reuses its record; a plate is light for a dark mark and dark for a light one so the mark always reads.
+  const logoByName = new Map();
+  const flagByName = new Map();
+  let flagsShown = 0;
+  // Fallback visuals (a figure from the research, a map of the topic's country) so that a beat with no photo of its own is not text alone.
+  const usedFigs = new Set();
+  let lastWasCard = false;
+  let lastFig = null;
+  // number cards alternate layouts by their own count, so two cards in a row never share one
+  let cardCount = 0;
+  const cardMode = () => (cardCount++ % 2 ? "bare" : "hero");
+  // The topic's map: only a place the research names as a place (a verified entity), never a place word that happens to sit in a sentence.
+  // A map of a place the story is not about is worse than no map.
+  const namedPlaces = new Set((research?.named_entities || []).filter((e) => KIND[String(e.kind || "").toLowerCase()] === "place").map((e) => String(e.name).toLowerCase()));
+  const topicPlace = matchPlaces(String(research?.strongest_angle || topic || ""), { max: 3 }).find((h) => namedPlaces.has(String(h.f.name).toLowerCase())) || null;
+  const spareFigs = (research?.numbers || []).filter((n) => n && Number.isFinite(Number(n.value)) && n.label && !/\byears?\b/i.test(String(n.label)) && !(Number.isInteger(Number(n.value)) && Number(n.value) >= 1800 && Number(n.value) <= 2100 && !/%|percent/i.test(String(n.unit || "")))).map((n) => {
+    const pct = /percent|%/i.test(String(n.unit || ""));
+    const v = Number(n.value);
+    return { n, fig: { raw: pct ? `${v}%` : v.toLocaleString("en-US"), kind: pct ? "percent" : "number", value: pct ? v : null } };
+  }).filter(({ fig }) => researchStates(research, fig));
+  const plateFor = (dark) => (dark ? palette.paper : palette.ink);
+  const plateSvg = (color) => `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="${color}"/></svg>\n`;
+  // First acceptable concept photo among the phrases, then (if allowed) among the story-wide phrases; each pool phrase is used once.
+  const findConcept = async (phrases, sentence, { fallback = true } = {}) => {
+    const tries = [...phrases.filter(Boolean)];
+    if (fallback) tries.push(...storyPool.splice(0, 6));
+    for (const q of tries) {
+      const c = await concept({ query: q, sentence, topic, used: usedFiles }).catch(() => null);
+      if (c) { usedFiles.add(c.file); return { c, q }; }
+      misses.push({ sentence: -1, entity: `concept "${q}"`, why: "no acceptable Commons photo" });
+    }
+    return null;
+  };
 
   for (let i = 0; i < n; i++) {
     const sentence = sentences[i];
     const { start, end } = spans[i];
-    // never the same move twice running; push strength and a fade-in (instead of a hard cut) vary per scene
-    let motion = pick(rng, MOTIONS);
-    if (motion === lastMotion) motion = MOTIONS[(MOTIONS.indexOf(motion) + 1 + Math.floor(rng() * 3)) % MOTIONS.length];
-    lastMotion = motion;
-    const zoom = pick(rng, [-0.03, 0, 0.03, 0.06]);
+    // No slow zoom or pan (timeline.mjs): a fade-in instead of a hard cut is the only per-scene variation
     const fade = i > 0 && rng() < 0.35 ? pick(rng, [6, 8, 10]) : 0;
-    const dy = pick(rng, DY[lookId] || [0]);
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
     // No number to draw? A year the research states becomes an animated timeline (the year counts up along a drawn line).
     const yearFig = !figs.length ? extractYear(sentence) : null;
     // each year gets one timeline per video, and at most three timelines in all: the same "2026" five times is a template, not a graphic
     const yearOk = yearFig && !yearsShown.has(yearFig.value) && yearsShown.size < 3 && researchStates(research, yearFig);
-    const gfigs = figs.length ? figs : (yearOk ? [yearFig] : []);
+    let gfigs = figs.length ? figs : (yearOk ? [yearFig] : []);
+    // The same figure on the very next beat is the same beat again: a figure that was just shown is not drawn twice in a row.
+    if (gfigs.length && gfigs.every((f) => f.raw === lastFig)) gfigs = [];
+    // A number is drawn only with a label taken from its own sentence: a bare number on its own reads as nothing (the frame critic's most
+    // common complaint). Without a label the beat shows another visual.
+    if (gfigs.length && !figureLabel(sentence, gfigs[0])) gfigs = [];
     if (!figs.length && yearOk) yearsShown.add(yearFig.value);
     const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
     // The figure is drawn as real animated layers (graphics.mjs): a bar that grows, a ring that draws on, a number that counts up.
-    const graphicFor = () => ({ id: `g${i}`, kind: chooseKind(gfigs, rng, look.name), figs: gfigs.slice(0, 2), source: figSource, fn, dy, look: look.name });
-    const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
+    // A graphic goes in a panel of its own: under the photo ("split") or, with no photo, as the picture itself ("hero").
+    const graphicFor = (mode, extra = {}) => ({ id: `g${i}`, kind: chooseKind(gfigs, rng, look.name), figs: gfigs.slice(0, 2), source: figSource, fn, look: look.name, label: figureLabel(sentence, gfigs[0]), mode, ...extra });
+    // On a photo scene the photo takes the top of the frame and the panel sits under it (no overlay, no scrim over the panel).
+    const splitScene = (sc) => { sc.rect = PHOTO_RECT; sc.gradient = "rgba(0,0,0,0)"; sc.kicker_y = 880; sc.graphic = graphicFor("split"); return sc; };
+    // Places the sentence names (a big country alone is not worth a map: it would be on screen for every news item)
+    const GENERIC = new Set(["United States of America", "United Kingdom", "China", "Russia"]);
+    const placeHits = !gfigs.length ? matchPlaces(sentence).filter((h) => h.f.kind === "state" || !GENERIC.has(h.f.name)) : [];
+    const mapOk = placeHits.length && mapsShown < 4 && lastAsset !== "map";
+    const base = { fit: "cover", filter: look.filter, gradient: look.scrim, layout: "lower", fade };
     let scene = null;
     let how = "";
 
+    // 0. an organisation the sentence names, with a verified mark: the mark on its plate
+    let logoScene = null;
+    for (const ent of entitiesIn(sentence, idx).filter((e) => e.kind === "organization")) {
+      let rec = logoByName.get(ent.name);
+      if (rec === undefined) {
+        const r = await logo({ name: ent.name, sentence, context: research?.strongest_angle || "" }).catch((e) => ({ ok: false, why: String(e.message || e) }));
+        rec = r?.ok ? r : null;
+        logoByName.set(ent.name, rec);
+        if (!rec) misses.push({ sentence: i, entity: `logo of ${ent.name}`, why: r?.why || "no verified mark" });
+      }
+      if (!rec) continue;
+      const logoId = `logo-${ent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+      if (!assets[logoId]) assets[logoId] = { file: rec.file, width: rec.width, height: rec.height, credit: rec.credit, source_url: rec.source_url, license: rec.license };
+      const plateId = `card-${i}`;
+      cards.push({ id: plateId, svg: plateSvg(plateFor(rec.dark_mark)) });
+      logoScene = { ...base, id: `s${i}-${logoId}`, asset: plateId, logo: logoId, gradient: "rgba(0,0,0,0)" };
+      how = `logo of ${ent.name}`;
+      break;
+    }
+    // 0b. a country the sentence names: its national flag on a plate (flag.mjs), then the drawn map in the second beat. At most two flags a video.
+    if (!logoScene && flagsShown < 1) {
+      // The country must be the sentence's subject (named in its first five words), and only one flag is shown per video: a flag for every
+      // passing mention of a country explains nothing.
+      const country = matchPlaces(sentence).find((h) => h.f.kind === "country" && sentence.indexOf(h.matched) >= 0 && sentence.slice(0, sentence.indexOf(h.matched)).trim().split(/\s+/).filter(Boolean).length <= 4);
+      if (country) {
+        let rec = flagByName.get(country.f.name);
+        if (rec === undefined) {
+          const r = await flag({ country: country.f.name, sentence }).catch((e) => ({ ok: false, why: String(e.message || e) }));
+          rec = r?.ok ? r : null;
+          flagByName.set(country.f.name, rec);
+          if (!rec) misses.push({ sentence: i, entity: `flag of ${country.f.name}`, why: r?.why || "no free flag" });
+          else flagsShown++;
+        }
+        if (rec) {
+          const flagId = `flag-${country.f.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+          if (!assets[flagId]) assets[flagId] = { file: rec.file, width: rec.width, height: rec.height, credit: rec.credit, source_url: rec.source_url, license: rec.license };
+          const plateId = `card-${i}`;
+          cards.push({ id: plateId, svg: plateSvg(plateFor(rec.dark_mark)) });
+          logoScene = { ...base, id: `s${i}-${flagId}`, asset: plateId, logo: flagId, gradient: "rgba(0,0,0,0)", flagOf: country.f.name };
+          how = `flag of ${country.f.name}`;
+        }
+      }
+    }
+    if (logoScene) scene = logoScene;
+
     // 1. a verified photo of a named entity the sentence names
     for (const ent of entitiesIn(sentence, idx)) {
+      if (scene) break;
       let photo = photoByName.get(ent.name);
       if (photo === undefined && photos < maxPhotos) {
         // The name as the script has it, then without an honorific ("Sir Brian Leveson" -> "Brian Leveson", the title Wikipedia uses).
@@ -239,42 +337,62 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (id === lastAsset) continue; // never the same picture two scenes running
       assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license };
       scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
-      if (gfigs.length) scene.graphic = graphicFor();
+      if (gfigs.length) splitScene(scene);
       how = `verified photo of ${ent.name}${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
       break;
     }
 
+    // 1b. no verified photo, but the sentence names a country or a US state: a DRAWN MAP with it highlighted (outlines draw on, the place fills)
+    if (!scene && mapOk) {
+      const geo = mapFor({ highlight: placeHits.slice(0, 3) });
+      const id = `card-${i}`;
+      cards.push({ id, svg: backdropSvg(palette) });
+      mapsShown++;
+      scene = { id: `s${i}-map`, asset: id, fit: "cover", fade };
+      scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: placeHits[0].f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: geo };
+      how = `map of ${placeHits.slice(0, 3).map((h) => h.f.name).join(", ")}`;
+    }
+
     // 2. a real photo of the concept the sentence is about (+ its figure drawn over it). The scene-director payoff is a flat poster instead.
-    if (!scene && !(look.payoffIsPoster && fn === "payoff" && figs.length) && queries[i]) {
-      const c = await concept({ query: queries[i], sentence, used: usedFiles }).catch(() => null);
-      if (c) {
-        usedFiles.add(c.file);
+    if (!scene) {
+      const got = await findConcept([queries[i], queries2[i]], sentence);
+      if (got) {
+        const { c, q } = got;
         const id = `concept-${i}`;
         assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
-        if (gfigs.length) scene.graphic = graphicFor();
-        how = `concept photo "${queries[i]}"${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
-      } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
+        if (gfigs.length) splitScene(scene);
+        how = `concept photo "${q}"${gfigs.length ? ` + ${gfigs[0].kind === "year" ? "timeline" : "figure"} ${gfigs[0].raw}` : ""}`;
+      }
     }
 
     // 3. no photo: the figure alone on a flat colour, or the sentence's key words as a poster
     if (!scene) {
       const id = `card-${i}`;
       if (gfigs.length) {
-        // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer with a slow push, so the
+        // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer so the
         // final-MP4 QA still sees motion on every image layer.
         cards.push({ id, svg: backdropSvg(palette) });
         how = `figure alone ${gfigs.map((f) => f.raw).join(", ")}`;
       } else {
-        // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a
-        // shot (a verified photo of the subject first, then a concept photo; never the one on screen a moment ago). A poster of key words
-        // is the last resort, only when the video has no photo at all.
-        const uses = (a) => scenes.filter((x) => x.asset === a).length;
-        const pool = Object.keys(assets).filter((a) => /^(photo|concept)-/.test(a) && a !== lastAsset && uses(a) < 5).sort((a, b) => (a.startsWith("photo-") ? 0 : 1) - (b.startsWith("photo-") ? 0 : 1));
-        if (pool.length) {
-          const reuse = pool[Math.floor(rng() * Math.min(pool.length, 2))];
-          scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
-          how = `${reuse} again, re-framed`;
+        // No photo for this sentence and no figure of its own. Fallbacks, in order, so the beat still shows something real:
+        //  a) a figure the research states that no beat has shown yet, labelled with the research's own label (never two number cards in a row)
+        //  b) a drawn map of the topic's country, highlighted (at most three maps a video)
+        //  c) the sentence's key words as a poster: the last resort
+        const spare = lastWasCard ? null : spareFigs.find(({ fig }) => !usedFigs.has(fig.raw));
+        if (spare) {
+          usedFigs.add(spare.fig.raw);
+          cards.push({ id, svg: backdropSvg(palette) });
+          scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
+          scene.graphic = { id: `g${i}`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: cardMode(), backdrop: true };
+          how = `research figure ${spare.fig.raw} (${spare.n.label})`;
+        } else if (topicPlace && mapsShown < 4 && lastAsset !== "map") {
+          const geo = mapFor({ highlight: [topicPlace] });
+          cards.push({ id, svg: backdropSvg(palette) });
+          mapsShown++;
+          scene = { id: `s${i}-map`, asset: id, fit: "cover", fade };
+          scene.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: geo };
+          how = `map of ${topicPlace.f.name} (the topic)`;
         } else {
           cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
           how = "key-word poster";
@@ -282,23 +400,89 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       }
       if (!scene) {
         const onBackdrop = gfigs.length > 0 && /^card-/.test(id);
-        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", motion, zoom: onBackdrop ? Math.max(zoom, 0.1) : zoom, fade };
-        if (gfigs.length) scene.graphic = { ...graphicFor(), backdrop: onBackdrop };
+        scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
+        if (gfigs.length) scene.graphic = graphicFor(cardMode(), { backdrop: onBackdrop });
       }
     }
 
-    lastAsset = scene.asset;
+    lastAsset = scene.graphic?.kind === "map" ? "map" : scene.asset;
     scene.look = look.name;
-    const isPhoto = /^(photo|concept)-/.test(scene.asset);
-    if (isPhoto && end - start > 7.5) {
-      // A long photo scene is re-framed halfway (a different part of the picture, a different move), the way an editor cuts a long shot.
-      const mid = start + (end - start) * (0.45 + rng() * 0.15);
-      const second = { ...scene, id: scene.id + "b", graphic: undefined, kicker: undefined, fade: 0, motion: MOTIONS[(MOTIONS.indexOf(motion) + 2) % MOTIONS.length], fx: pick(rng, [0.3, 0.7]), fy: pick(rng, [0.3, 0.6]), zoom: 0.06 };
-      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(mid.toFixed(3)), stagger: look.stagger });
-      scenes.push({ ...second, start: Number(mid.toFixed(3)), end: Number(end.toFixed(3)), stagger: 0 });
-      lastMotion = second.motion;
+    // a number card is a card with a graphic that is not a map: no two of them in a row (the fallbacks above respect this)
+    lastWasCard = !!(scene.graphic && scene.graphic.kind !== "map" && /^card-/.test(scene.asset));
+    lastFig = scene.graphic && scene.graphic.kind !== "map" ? (scene.graphic.figs?.[0]?.raw || null) : null;
+
+    // Two visuals per sentence: a viewer's eye is held by a change every couple of seconds. The second beat is a DIFFERENT picture (the
+    // sentence's next phrase, never a crop of the first). Where a sentence has a figure the panel arrives on the second beat, so the
+    // number lands after the picture has set the scene. No second photo found: the sentence stays one beat (a photo is never shown twice).
+    const dur = end - start;
+    const isPhoto = (sc) => /^(photo|concept)-/.test(sc.asset);
+    const secondPhoto = async () => {
+      const got = await findConcept([queries2[i], queries[i]].filter((q) => q && !how.includes('"' + q + '"')), sentence, { fallback: storyPool.length > 3 });
+      if (!got) return null;
+      const id = `concept-${i}b`;
+      assets[id] = { file: got.c.file, width: got.c.width, height: got.c.height, credit: got.c.credit, source_url: got.c.source_url, license: got.c.license };
+      return { id, how: `concept photo "${got.q}"` };
+    };
+    const cutAt = start + dur * (0.42 + rng() * 0.16);
+    let first = scene;
+    let second = null;
+    let panelDelay = 0;
+    if (dur >= 2.6) {
+      if (scene.graphic && scene.graphic.mode === "split") {
+        const alt = await secondPhoto();
+        if (alt) {
+          first = { ...scene, id: scene.id + "a", graphic: undefined, rect: undefined, gradient: look.scrim, kicker_y: undefined };
+          second = { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 };
+          how += ` then ${alt.how}`;
+        }
+      } else if (scene.flagOf && mapsShown < 4 && lastAsset !== "map") {
+        const geo = mapFor({ highlight: matchPlaces(sentence).filter((h) => h.f.kind === "country" || h.f.kind === "state").slice(0, 3) });
+        const mid = `card-${i}-map`;
+        cards.push({ id: mid, svg: backdropSvg(palette) });
+        mapsShown++;
+        second = { id: `s${i}-map`, asset: mid, fit: "cover", fade: 0, look: look.name, start: 0, end: 0 };
+        second.graphic = { id: `g${i}`, kind: "map", figs: [{ raw: scene.flagOf, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: geo };
+        how += ` then map of ${scene.flagOf}`;
+      } else if (scene.graphic || isPhoto(scene) || /^card-/.test(scene.asset)) {
+        const alt = await secondPhoto();
+        if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }
+      }
+    }
+    if (!second && dur > 4.5 && !scene.logo) {
+      // A long beat with one visual is cut to a second one where the research or the topic gives one: a card gets the topic's map, a map gets
+      // an unused research figure. Nothing else is invented: no poster (a flat card with centred words reads as a template), and a beat with no
+      // such visual is left as it is, so the final QA (which refuses more than 4 s of near-stillness) decides whether the video may ship.
+      if (scene.graphic?.kind === "map") {
+        const spare = lastWasCard ? null : spareFigs.find(({ fig }) => !usedFigs.has(fig.raw));
+        if (spare) {
+          usedFigs.add(spare.fig.raw);
+          const cid = `card-${i}b`;
+          cards.push({ id: cid, svg: backdropSvg(palette) });
+          second = { id: `s${i}-figb`, asset: cid, fit: "cover", fade: 0, look: look.name };
+          second.graphic = { id: `g${i}b`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: cardMode(), backdrop: true };
+          how += ` then research figure ${spare.fig.raw} (${spare.n.label})`;
+        }
+      } else if (topicPlace && mapsShown < 4 && lastAsset !== "map") {
+        const mid = `card-${i}m`;
+        cards.push({ id: mid, svg: backdropSvg(palette) });
+        mapsShown++;
+        second = { id: `s${i}-mapb`, asset: mid, fit: "cover", fade: 0, look: look.name };
+        second.graphic = { id: `g${i}m`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: mapFor({ highlight: [topicPlace] }) };
+        how += ` then map of ${topicPlace.f.name} (the topic)`;
+      }
+    }
+    // A flat card (paper, a map, a poster, a plate) is never darkened: only a photo gets the soft scrim along its bottom.
+    const noScrim = (sc) => (/^card-/.test(sc.asset) && sc.gradient === undefined ? { ...sc, gradient: "rgba(0,0,0,0)" } : sc);
+    scene = noScrim(scene);
+    first = noScrim(first);
+    if (second) second = noScrim(second);
+    if (second) {
+      second.look = look.name;
+      scenes.push({ ...first, start: Number(start.toFixed(3)), end: Number(cutAt.toFixed(3)), stagger: look.stagger });
+      scenes.push({ ...second, start: Number(cutAt.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
+      lastAsset = second.graphic?.kind === "map" ? "map" : second.asset;
     } else {
-      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
+      scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: panelDelay || look.stagger });
     }
     report.push({ sentence: i, shows: how, start: Number(start.toFixed(2)), end: Number(end.toFixed(2)) });
   }
@@ -312,7 +496,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     fps: 30,
     palette,
     fonts: { primary: font, sans: font },
-    caption_style: { x: 80, y: 1540, w: 920, h: 210, size: 38 },
+    caption_style: { x: 80, y: 1540, w: 920, h: 210, size: 38, plate: palette.ink, text: palette.paper, hi: palette.accentOnInk },
     caption_replacements: {},
     assets,
     scenes,

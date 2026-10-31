@@ -65,11 +65,16 @@ function textLayer({ id, text, rect, size, weight = 700, color, align = "left", 
   };
 }
 
+export const LOGO_RECT = { x: 120, y: 520, w: 840, h: 680 };
+
 function imageLayer({ id, assetId, rect, fit, inF, outF, z, scene }) {
   const span = Math.max(1, outF - inF);
+  // No slow zoom and no pan: a held picture stays put. Movement comes from the cut itself: every beat lands slightly large and snaps to
+  // size in ~9 frames (scene.punch, 0 turns it off), and a second beat on the same photo is a hard cut to a tighter crop (scene.scale).
+  const base = Number(scene.scale || 1);
   const props = {
     opacity: 1,
-    scale: scene.motion === "out" ? 1.1 : 1.02,
+    scale: base,
     fx: scene.fx ?? 0.5,
     fy: scene.fy ?? 0.5,
     sepia: scene.filter?.sepia ?? 0,
@@ -77,28 +82,13 @@ function imageLayer({ id, assetId, rect, fit, inF, outF, z, scene }) {
     brightness: scene.filter?.brightness ?? 1,
     blur: scene.filter?.blur ?? 0,
   };
-  // scene.zoom (default 0) strengthens or softens the push; scene.fade (frames) fades the scene in from the background instead of cutting.
-  // Both are chosen per video by scripts/editor/auto-plan.mjs so that no two videos move the same way.
-  const zoom = Number(scene.zoom || 0);
   const fadeF = Math.min(Math.max(0, Math.round(Number(scene.fade || 0))), Math.floor(span / 3));
+  const punch = scene.punch === undefined ? 0.06 : Number(scene.punch);
+  const settle = Math.min(9, Math.max(2, span - 1));
   const keyframes = {
     opacity: fadeF >= 2 ? [{ f: 0, v: 0, e: "outCubic" }, { f: fadeF, v: 1 }, { f: span, v: 1 }] : [{ f: 0, v: 1 }, { f: span, v: 1 }],
-    scale:
-      scene.motion === "out"
-        ? [{ f: 0, v: 1.1 + zoom, e: "inOutSine" }, { f: span, v: 1.02 }]
-        : scene.motion === "pan-left"
-          ? [{ f: 0, v: 1.1, e: "inOutSine" }, { f: span, v: 1.15 + zoom }]
-          : scene.motion === "pan-right"
-            ? [{ f: 0, v: 1.15 + zoom, e: "inOutSine" }, { f: span, v: 1.1 }]
-            : [{ f: 0, v: 1.02, e: "inOutSine" }, { f: span, v: 1.1 + zoom }],
+    scale: punch > 0 ? [{ f: 0, v: base + punch, e: "outCubic" }, { f: settle, v: base }, { f: span, v: base }] : [{ f: 0, v: base }, { f: span, v: base }],
   };
-  if (scene.motion === "pan-left") {
-    props.x = 0.025;
-    keyframes.x = [{ f: 0, v: 0.025, e: "inOutSine" }, { f: span, v: -0.025 }];
-  } else if (scene.motion === "pan-right") {
-    props.x = -0.025;
-    keyframes.x = [{ f: 0, v: -0.025, e: "inOutSine" }, { f: span, v: 0.025 }];
-  }
   return { id, type: "image", asset_id: assetId, rect, fit, in: inF, out: outF, z, props, keyframes };
 }
 
@@ -183,6 +173,11 @@ export function buildTimeline(plan, { audioDuration, captions = [], generatedAt 
         });
       }
       layers.push(imageLayer({ id: `scene-${i}-image`, assetId: scene.asset, rect, fit: scene.fit || "cover", inF, outF: visualOutF, z: z++, scene }));
+      // A logo (an organisation's own mark, verified by resolve-scene.cjs) sits centred on its plate: contained, never cropped, with the
+      // same punch-in as a picture so the beat still moves. Its plate colour is chosen by the planner so the mark always reads.
+      if (scene.logo && assets[scene.logo]) {
+        layers.push(imageLayer({ id: `scene-${i}-logo`, assetId: scene.logo, rect: LOGO_RECT, fit: "contain", inF, outF: visualOutF, z: z++, scene: { ...scene, fx: 0.5, fy: 0.5, filter: undefined, fade: 0, zoom: 0 } }));
+      }
       if (isObject) {
         layers.push(frameLayer({ id: `scene-${i}-frame`, rect: { x: rect.x - 14, y: rect.y - 14, w: rect.w + 28, h: rect.h + 28 }, inF, outF: visualOutF, z: z++, accent: palette.accent }));
       }

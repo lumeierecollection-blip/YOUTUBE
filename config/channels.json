@@ -41,7 +41,9 @@
         "secondary": "#2D1A12",
         "accent": "#D4A574",
         "bg": "#0F0A05",
-        "canvas_accent": "#D4A574"
+        "canvas_accent": "#D4A574",
+        "paper": "#FBF6F1",
+        "ink": "#0F0A05"
       },
       "target_audience": "History enthusiasts 20-55",
       "tone": "investigative-revelatory",
@@ -139,7 +141,9 @@
         "secondary": "#1A1A3A",
         "accent": "#8B5CF6",
         "bg": "#050510",
-        "canvas_accent": "#8B5CF6"
+        "canvas_accent": "#8B5CF6",
+        "paper": "#F3EFFE",
+        "ink": "#050510"
       },
       "target_audience": "Tech-curious professionals 20-45",
       "tone": "casual-authoritative",
@@ -239,7 +243,9 @@
         "secondary": "#16213E",
         "accent": "#F5536B",
         "bg": "#0F0F1A",
-        "canvas_accent": "#8B1E1E"
+        "canvas_accent": "#8B1E1E",
+        "paper": "#F3E9E9",
+        "ink": "#0F0F1A"
       },
       "target_audience": "Adults 18-45 who follow entertainment news",
       "tone": "sharp-factual-curious",
@@ -371,7 +377,9 @@
         "secondary": "#1E293B",
         "accent": "#22C55E",
         "bg": "#0A1020",
-        "canvas_accent": "#1B7A4D"
+        "canvas_accent": "#1B7A4D",
+        "paper": "#E8F2ED",
+        "ink": "#0A1020"
       },
       "target_audience": "Sports fans 16-45",
       "tone": "energetic-analytical",
@@ -488,7 +496,9 @@
         "secondary": "#1A1530",
         "accent": "#F39C12",
         "bg": "#070510",
-        "canvas_accent": "#F39C12"
+        "canvas_accent": "#F39C12",
+        "paper": "#FEF5E7",
+        "ink": "#070510"
       },
       "target_audience": "Music enthusiasts 18-40",
       "tone": "passionate-educational",
@@ -529,7 +539,9 @@
         "secondary": "#141428",
         "accent": "#3498DB",
         "bg": "#05050A",
-        "canvas_accent": "#3498DB"
+        "canvas_accent": "#3498DB",
+        "paper": "#EBF5FB",
+        "ink": "#05050A"
       },
       "target_audience": "Analytical thinkers 20-50",
       "tone": "contemplative-precise",
@@ -572,7 +584,9 @@
         "secondary": "#2D1530",
         "accent": "#EF4444",
         "bg": "#0F0510",
-        "canvas_accent": "#EF4444"
+        "canvas_accent": "#EF4444",
+        "paper": "#FDECEC",
+        "ink": "#0F0510"
       },
       "target_audience": "Fans of stories, anime, games, myth 14-40",
       "tone": "immersive-storyteller",
@@ -670,7 +684,9 @@
         "secondary": "#141428",
         "accent": "#8E44AD",
         "bg": "#05050A",
-        "canvas_accent": "#8E44AD"
+        "canvas_accent": "#8E44AD",
+        "paper": "#F4ECF7",
+        "ink": "#05050A"
       },
       "target_audience": "Science enthusiasts 18-50",
       "tone": "contemplative-precise",
@@ -718,7 +734,9 @@
         "secondary": "#152A40",
         "accent": "#3B82F6",
         "bg": "#050F1A",
-        "canvas_accent": "#1E3A5F"
+        "canvas_accent": "#1E3A5F",
+        "paper": "#E9EBEF",
+        "ink": "#050F1A"
       },
       "target_audience": "Curious viewers 14-55",
       "tone": "curious-clear",
@@ -833,7 +851,9 @@
         "secondary": "#331528",
         "accent": "#E91E63",
         "bg": "#0D050A",
-        "canvas_accent": "#E91E63"
+        "canvas_accent": "#E91E63",
+        "paper": "#FDE9EF",
+        "ink": "#0D050A"
       },
       "target_audience": "Language enthusiasts 18-45",
       "tone": "playful-educational",
@@ -877,7 +897,9 @@
         "secondary": "#0A0A30",
         "accent": "#818CF8",
         "bg": "#020210",
-        "canvas_accent": "#818CF8"
+        "canvas_accent": "#818CF8",
+        "paper": "#F2F4FE",
+        "ink": "#020210"
       },
       "target_audience": "Science/space enthusiasts 18-50",
       "tone": "awe-inspiring-philosophical",
@@ -973,7 +995,9 @@
         "secondary": "#141428",
         "accent": "#F1C40F",
         "bg": "#05050A",
-        "canvas_accent": "#F1C40F"
+        "canvas_accent": "#F1C40F",
+        "paper": "#FEF9E7",
+        "ink": "#05050A"
       },
       "target_audience": "Financially curious 20-50",
       "tone": "contemplative-precise",
@@ -1014,7 +1038,9 @@
         "secondary": "#1A1A1A",
         "accent": "#E67E22",
         "bg": "#070707",
-        "canvas_accent": "#E67E22"
+        "canvas_accent": "#E67E22",
+        "paper": "#FDF2E9",
+        "ink": "#070707"
       },
       "target_audience": "Science enthusiasts 18-45",
       "tone": "playful-technical",
@@ -1055,7 +1081,9 @@
         "secondary": "#003300",
         "accent": "#2ECC71",
         "bg": "#000D00",
-        "canvas_accent": "#2ECC71"
+        "canvas_accent": "#2ECC71",
+        "paper": "#EAFAF1",
+        "ink": "#000D00"
       },
       "target_audience": "Nature enthusiasts 18-45",
       "tone": "gentle-educational",
@@ -1096,7 +1124,9 @@
         "secondary": "#141428",
         "accent": "#9B59B6",
         "bg": "#05050A",
-        "canvas_accent": "#9B59B6"
+        "canvas_accent": "#9B59B6",
+        "paper": "#F5EEF8",
+        "ink": "#05050A"
       },
       "target_audience": "Socially aware adults 18-50",
       "tone": "contemplative-analytical",
@@ -1137,7 +1167,9 @@
         "secondary": "#332A00",
         "accent": "#D4A017",
         "bg": "#0D0B00",
-        "canvas_accent": "#D4A017"
+        "canvas_accent": "#D4A017",
+        "paper": "#FBF6E8",
+        "ink": "#0D0B00"
       },
       "target_audience": "Earth science enthusiasts 18-55",
       "tone": "epic-factual",
@@ -1180,7 +1212,9 @@
         "secondary": "#2D2520",
         "accent": "#B45309",
         "bg": "#0F0C08",
-        "canvas_accent": "#B45309"
+        "canvas_accent": "#B45309",
+        "paper": "#F8EEE6",
+        "ink": "#0F0C08"
       },
       "target_audience": "Curious viewers 12-55",
       "tone": "wonder-precise",
@@ -1285,7 +1319,9 @@
         "secondary": "#1A1A33",
         "accent": "#1ABC9C",
         "bg": "#07070D",
-        "canvas_accent": "#1ABC9C"
+        "canvas_accent": "#1ABC9C",
+        "paper": "#E8F8F5",
+        "ink": "#07070D"
       },
       "target_audience": "Design & health enthusiasts 18-45",
       "tone": "practical-educational",
@@ -1332,7 +1368,9 @@
         "secondary": "#0A0A33",
         "accent": "#F1C40F",
         "bg": "#03030D",
-        "canvas_accent": "#F1C40F"
+        "canvas_accent": "#F1C40F",
+        "paper": "#FEF9E7",
+        "ink": "#03030D"
       },
       "target_audience": "Space enthusiasts 18-55",
       "tone": "awe-inspiring",
@@ -1373,7 +1411,9 @@
         "secondary": "#002850",
         "accent": "#00BFFF",
         "bg": "#000A14",
-        "canvas_accent": "#00BFFF"
+        "canvas_accent": "#00BFFF",
+        "paper": "#E6F9FF",
+        "ink": "#000A14"
       },
       "target_audience": "Ocean enthusiasts 18-45",
       "tone": "mysterious-awe",
@@ -1415,7 +1455,9 @@
         "secondary": "#332200",
         "accent": "#D4A017",
         "bg": "#0D0800",
-        "canvas_accent": "#D4A017"
+        "canvas_accent": "#D4A017",
+        "paper": "#FBF6E8",
+        "ink": "#0D0800"
       },
       "target_audience": "Curious viewers 16-55",
       "tone": "calm-investigative",
@@ -1469,7 +1511,9 @@
         "secondary": "#2D1B4E",
         "accent": "#9B59B6",
         "bg": "#0D0517",
-        "canvas_accent": "#9B59B6"
+        "canvas_accent": "#9B59B6",
+        "paper": "#F5EEF8",
+        "ink": "#0D0517"
       },
       "target_audience": "Curious adults 18-45",
       "tone": "insightful-curious",
@@ -1510,7 +1554,9 @@
         "secondary": "#151530",
         "accent": "#00D4FF",
         "bg": "#050510",
-        "canvas_accent": "#00D4FF"
+        "canvas_accent": "#00D4FF",
+        "paper": "#E6FBFF",
+        "ink": "#050510"
       },
       "target_audience": "Science enthusiasts 18-50",
       "tone": "awe-inspiring",
@@ -1551,7 +1597,9 @@
         "secondary": "#330A00",
         "accent": "#FF6B35",
         "bg": "#0D0300",
-        "canvas_accent": "#FF6B35"
+        "canvas_accent": "#FF6B35",
+        "paper": "#FFF0EB",
+        "ink": "#0D0300"
       },
       "target_audience": "Food enthusiasts 18-45",
       "tone": "playful-educational",
@@ -1592,7 +1640,9 @@
         "secondary": "#1A1A1A",
         "accent": "#E74C3C",
         "bg": "#050505",
-        "canvas_accent": "#E74C3C"
+        "canvas_accent": "#E74C3C",
+        "paper": "#FDEDEC",
+        "ink": "#050505"
       },
       "target_audience": "Design enthusiasts 20-50",
       "tone": "contemplative",
@@ -1641,7 +1691,9 @@
         "secondary": "#151530",
         "accent": "#22C55E",
         "bg": "#050510",
-        "canvas_accent": "#6B2A6B"
+        "canvas_accent": "#6B2A6B",
+        "paper": "#F0EAF0",
+        "ink": "#050510"
       },
       "target_audience": "True crime/business enthusiasts 20-50",
       "tone": "investigative-conspiratorial",
@@ -1740,7 +1792,9 @@
         "secondary": "#003300",
         "accent": "#2ECC71",
         "bg": "#000D00",
-        "canvas_accent": "#2ECC71"
+        "canvas_accent": "#2ECC71",
+        "paper": "#EAFAF1",
+        "ink": "#000D00"
       },
       "target_audience": "Environmentally conscious 18-50",
       "tone": "urgent-factual",
@@ -1781,7 +1835,9 @@
         "secondary": "#330A0A",
         "accent": "#C0392B",
         "bg": "#0D0303",
-        "canvas_accent": "#C0392B"
+        "canvas_accent": "#C0392B",
+        "paper": "#F9EBEA",
+        "ink": "#0D0303"
       },
       "target_audience": "Story enthusiasts 18-55",
       "tone": "epic-narrative",
@@ -1822,7 +1878,9 @@
         "secondary": "#003333",
         "accent": "#1ABC9C",
         "bg": "#000D0D",
-        "canvas_accent": "#1ABC9C"
+        "canvas_accent": "#1ABC9C",
+        "paper": "#E8F8F5",
+        "ink": "#000D0D"
       },
       "target_audience": "Science enthusiasts 18-45",
       "tone": "forward-looking",
@@ -1865,7 +1923,9 @@
         "secondary": "#151530",
         "accent": "#06B6D4",
         "bg": "#050510",
-        "canvas_accent": "#06B6D4"
+        "canvas_accent": "#06B6D4",
+        "paper": "#E6F8FB",
+        "ink": "#050510"
       },
       "target_audience": "True crime/science enthusiasts 20-55",
       "tone": "empathetic-scientific",
@@ -1955,7 +2015,9 @@
         "secondary": "#151530",
         "accent": "#FBBF24",
         "bg": "#050510",
-        "canvas_accent": "#FBBF24"
+        "canvas_accent": "#FBBF24",
+        "paper": "#FFF9E9",
+        "ink": "#050510"
       },
       "target_audience": "True crime/advocacy enthusiasts 18-55",
       "tone": "empathetic-urgent",
@@ -2043,7 +2105,9 @@
         "secondary": "#1A0033",
         "accent": "#8E44AD",
         "bg": "#07000D",
-        "canvas_accent": "#8E44AD"
+        "canvas_accent": "#8E44AD",
+        "paper": "#F4ECF7",
+        "ink": "#07000D"
       },
       "target_audience": "Science enthusiasts 18-50",
       "tone": "awe-inspiring",
@@ -2084,7 +2148,9 @@
         "secondary": "#00331A",
         "accent": "#27AE60",
         "bg": "#000D07",
-        "canvas_accent": "#27AE60"
+        "canvas_accent": "#27AE60",
+        "paper": "#E9F7EF",
+        "ink": "#000D07"
       },
       "target_audience": "Tech enthusiasts 18-45",
       "tone": "mysterious-educational",
@@ -2125,7 +2191,9 @@
         "secondary": "#330A00",
         "accent": "#E74C3C",
         "bg": "#0D0300",
-        "canvas_accent": "#E74C3C"
+        "canvas_accent": "#E74C3C",
+        "paper": "#FDEDEC",
+        "ink": "#0D0300"
       },
       "target_audience": "Earth science enthusiasts 18-55",
       "tone": "dramatic-factual",
@@ -2168,7 +2236,9 @@
         "secondary": "#0A0A30",
         "accent": "#60A5FA",
         "bg": "#020210",
-        "canvas_accent": "#60A5FA"
+        "canvas_accent": "#60A5FA",
+        "paper": "#EFF6FF",
+        "ink": "#020210"
       },
       "target_audience": "Tech/engineering enthusiasts 18-45",
       "tone": "calm-authoritative",
@@ -2256,7 +2326,9 @@
         "secondary": "#0A0A33",
         "accent": "#9B59B6",
         "bg": "#03030D",
-        "canvas_accent": "#9B59B6"
+        "canvas_accent": "#9B59B6",
+        "paper": "#F5EEF8",
+        "ink": "#03030D"
       },
       "target_audience": "Photography & space enthusiasts 18-50",
       "tone": "artistic-technical",
@@ -2297,7 +2369,9 @@
         "secondary": "#1A1A33",
         "accent": "#3498DB",
         "bg": "#07070D",
-        "canvas_accent": "#3498DB"
+        "canvas_accent": "#3498DB",
+        "paper": "#EBF5FB",
+        "ink": "#07070D"
       },
       "target_audience": "Urban enthusiasts 18-45",
       "tone": "analytical-creative",
@@ -2338,7 +2412,9 @@
         "secondary": "#332A00",
         "accent": "#D4A017",
         "bg": "#0D0B00",
-        "canvas_accent": "#D4A017"
+        "canvas_accent": "#D4A017",
+        "paper": "#FBF6E8",
+        "ink": "#0D0B00"
       },
       "target_audience": "Science enthusiasts 18-55",
       "tone": "epic-narrative",
@@ -2381,7 +2457,9 @@
         "secondary": "#151530",
         "accent": "#EF4444",
         "bg": "#050510",
-        "canvas_accent": "#EF4444"
+        "canvas_accent": "#EF4444",
+        "paper": "#FDECEC",
+        "ink": "#050510"
       },
       "target_audience": "Medical/true crime enthusiasts 18-50",
       "tone": "calm-clinical-dramatic",
@@ -2469,7 +2547,9 @@
         "secondary": "#141428",
         "accent": "#ECF0F1",
         "bg": "#05050A",
-        "canvas_accent": "#ECF0F1"
+        "canvas_accent": "#ECF0F1",
+        "paper": "#FDFEFE",
+        "ink": "#05050A"
       },
       "target_audience": "Intellectually curious 18-55",
       "tone": "contemplative-profound",
@@ -2510,7 +2590,9 @@
         "secondary": "#002850",
         "accent": "#00CED1",
         "bg": "#000A14",
-        "canvas_accent": "#00CED1"
+        "canvas_accent": "#00CED1",
+        "paper": "#E6FAFA",
+        "ink": "#000A14"
       },
       "target_audience": "Ocean enthusiasts 18-50",
       "tone": "awe-inspiring",
@@ -2551,7 +2633,9 @@
         "secondary": "#1A1533",
         "accent": "#F1C40F",
         "bg": "#07050D",
-        "canvas_accent": "#F1C40F"
+        "canvas_accent": "#F1C40F",
+        "paper": "#FEF9E7",
+        "ink": "#07050D"
       },
       "target_audience": "Music & science enthusiasts 18-45",
       "tone": "playful-technical",
@@ -2592,7 +2676,9 @@
         "secondary": "#1A1A1A",
         "accent": "#E74C3C",
         "bg": "#050505",
-        "canvas_accent": "#E74C3C"
+        "canvas_accent": "#E74C3C",
+        "paper": "#FDEDEC",
+        "ink": "#050505"
       },
       "target_audience": "True crime & science fans 18-50",
       "tone": "tense-factual",
@@ -2640,7 +2726,9 @@
         "secondary": "#1E293B",
         "accent": "#A78BFA",
         "bg": "#0A1020",
-        "canvas_accent": "#B8860B"
+        "canvas_accent": "#B8860B",
+        "paper": "#F8F3E7",
+        "ink": "#0A1020"
       },
       "target_audience": "Working professionals 22-50",
       "tone": "insightful-empowering",
@@ -2739,7 +2827,9 @@
         "secondary": "#141433",
         "accent": "#3498DB",
         "bg": "#05050D",
-        "canvas_accent": "#3498DB"
+        "canvas_accent": "#3498DB",
+        "paper": "#EBF5FB",
+        "ink": "#05050D"
       },
       "target_audience": "Aviation enthusiasts 18-50",
       "tone": "technical-dramatic",
@@ -2782,7 +2872,9 @@
         "secondary": "#1E293B",
         "accent": "#22C55E",
         "bg": "#0A1020",
-        "canvas_accent": "#22C55E"
+        "canvas_accent": "#22C55E",
+        "paper": "#E9F9EF",
+        "ink": "#0A1020"
       },
       "target_audience": "Job seekers/career changers 20-45",
       "tone": "professional-encouraging",
@@ -2872,7 +2964,9 @@
         "secondary": "#152D45",
         "accent": "#3B82F6",
         "bg": "#050F18",
-        "canvas_accent": "#3B82F6"
+        "canvas_accent": "#3B82F6",
+        "paper": "#EBF3FE",
+        "ink": "#050F18"
       },
       "target_audience": "Seniors/caregivers 50-75",
       "tone": "calm-empathetic-reassuring",
@@ -2969,7 +3063,9 @@
         "secondary": "#1E293B",
         "accent": "#22C55E",
         "bg": "#0A1020",
-        "canvas_accent": "#1B7A4D"
+        "canvas_accent": "#1B7A4D",
+        "paper": "#E8F2ED",
+        "ink": "#0A1020"
       },
       "target_audience": "Adults 18-40 interested in film and pop culture",
       "tone": "editorial-informative",
@@ -3075,7 +3171,9 @@
         "secondary": "#D0D0D0",
         "accent": "#2B2B2B",
         "canvas_accent": "#2B2B2B",
-        "bg": "#F0F0F0"
+        "bg": "#F0F0F0",
+        "paper": "#EAEAEA",
+        "ink": "#282828"
       },
       "target_audience": "Design and history enthusiasts 18-55",
       "tone": "investigative-narrative",
@@ -3126,7 +3224,9 @@
         "secondary": "#505050",
         "accent": "#D8D8D8",
         "canvas_accent": "#303030",
-        "bg": "#303030"
+        "bg": "#303030",
+        "paper": "#EAEAEA",
+        "ink": "#303030"
       },
       "target_audience": "Film and history enthusiasts 18-55",
       "tone": "reverent-melancholic",
@@ -3177,7 +3277,9 @@
         "secondary": "#241C18",
         "accent": "#8C5A3C",
         "canvas_accent": "#8C5A3C",
-        "bg": "#101010"
+        "bg": "#101010",
+        "paper": "#F4EFEC",
+        "ink": "#101010"
       },
       "target_audience": "Business and history enthusiasts 20-55",
       "tone": "measured-authoritative",
@@ -3228,7 +3330,9 @@
         "secondary": "#B8B8B8",
         "accent": "#1A1A1A",
         "canvas_accent": "#1A1A1A",
-        "bg": "#F0F0F0"
+        "bg": "#F0F0F0",
+        "paper": "#E8E8E8",
+        "ink": "#282828"
       },
       "target_audience": "Curious general readers 20-50",
       "tone": "quiet-considered",

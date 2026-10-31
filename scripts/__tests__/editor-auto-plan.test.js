@@ -41,16 +41,18 @@ test("entities: a person is found by surname, honorifics are dropped for the pho
 test("every sentence gets a scene, the scenes tile the audio with no gap, and a figure the research lacks is not drawn", async () => {
   const resolve = async ({ name }) => (/Jane Doeson/.test(name) && !/^Sir/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "Photo: X / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : { ok: false, why: "none" });
   const { plan, cards, report } = await buildAutoPlan({ ...base, resolve });
-  assert.equal(plan.scenes.length, 4);
+  assert.equal(report.scenes.length, 4, "one report line per sentence");
+  assert.ok(plan.scenes.length >= 4, "and at least one scene per sentence (a long one is cut in two)");
   assert.equal(plan.scenes[0].start, 0);
-  for (let i = 1; i < 4; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
+  for (let i = 1; i < plan.scenes.length; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
   assert.equal(plan.scenes.at(-1).end, 22);
   assert.equal(report.spans, "voiceover");
   assert.match(report.scenes[0].shows, /figure alone 45%/);
   assert.match(report.scenes[1].shows, /figure alone 1,321/);
   assert.match(report.scenes[2].shows, /verified photo of Sir Jane Doeson/, "the honorific-free lookup found the photo");
   assert.equal(plan.assets["photo-sir-jane-doeson"].credit, "Photo: X / Wikimedia Commons, CC0");
-  assert.match(report.scenes[3].shows, /key-word poster/, "the unsourced 99% is not featured");
+  assert.doesNotMatch(report.scenes[3].shows, /99%/, "the unsourced 99% is not featured");
+  assert.match(report.scenes[3].shows, /key-word poster|research figure|map of/, "a fallback that is never the unsourced figure");
   assert.ok(!cards.some((c) => c.svg.includes("99%") && c.svg.includes("font-size=\"260\"")), "99% is not drawn as a figure");
   for (const s of plan.scenes) assert.ok(s.asset && (plan.assets[s.asset] || cards.some((c) => c.id === s.asset)), `scene ${s.id} has an asset`);
 });
@@ -61,7 +63,7 @@ test("the same photo is never shown in two scenes running", async () => {
   const resolve = async () => ({ ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" });
   const { report } = await buildAutoPlan({ ...base, script: two, words: w, audioDuration: 8, resolve });
   assert.match(report.scenes[0].shows, /photo/);
-  assert.match(report.scenes[1].shows, /key-word poster/);
+  assert.match(report.scenes[1].shows, /key-word poster|research figure|map of/, "the second beat is not a reused photo");
 });
 
 test("no voiceover sentence list for the script -> proportional timing, still covering the audio", async () => {
@@ -98,7 +100,7 @@ test("the plan builds a valid editor timeline with captions from the voiceover",
   const tl = buildTimeline(plan, { audioDuration: 22, captions });
   assert.equal(tl.durationInFrames, 660);
   assert.equal(tl.captions.length, 4);
-  assert.equal(tl.metadata.image_scene_count, 4);
+  assert.equal(tl.metadata.image_scene_count, plan.scenes.length, "one image layer per beat (a sentence can be two beats)");
   assert.ok(tl.layers.every((l) => l.out <= tl.durationInFrames));
 });
 
@@ -129,10 +131,13 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   const concept = async ({ query }) => (query === "cockpit" ? { file: "c.jpg", width: 2000, height: 1300, credit: "Photo: Z / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : null);
   const { plan, cards, report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: ["cockpit", null, "nothing", "cockpit"] });
   assert.match(report.scenes[0].shows, /concept photo "cockpit" \+ figure 45%/);
-  assert.equal(plan.scenes[0].graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic over the photo");
-  assert.ok(["bar", "ring"].includes(plan.scenes[0].graphic.kind));
+  const withFig = plan.scenes.find((x) => x.graphic);
+  assert.equal(withFig.graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic beside the photo");
+  assert.ok(["bar", "ring"].includes(withFig.graphic.kind));
+  assert.ok(withFig.stagger <= 9, "the panel is there from the start of its beat: no empty half-frame while it waits");
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
-  assert.match(report.scenes[2].shows, /concept-0 again, re-framed/, "a miss re-uses the story's own photo, framed differently");
+  assert.match(report.scenes[2].shows, /key-word poster/, "a miss never re-uses an earlier photo: each photo is shown once");
+  assert.equal(plan.scenes.filter((x) => x.asset === "concept-0").length, 1, "the photo appears in one scene only");
 });
 
 test("each of the five looks draws a figure overlay with no gradient fill and no sentence text", () => {
@@ -201,9 +206,9 @@ test("the random stream is seeded by the slug: same slug same plan, different sl
   assert.deepEqual(one.plan.scenes, again.plan.scenes, "a re-render is identical");
   const looks = new Set();
   const moves = new Set();
-  for (let i = 0; i < 30; i++) { const r = await planFor(`video-${i}-shorts-script`); looks.add(r.report.look); moves.add(r.plan.scenes.map((s) => s.motion).join(",")); }
+  for (let i = 0; i < 30; i++) { const r = await planFor(`video-${i}-shorts-script`); looks.add(r.report.look); moves.add(r.plan.scenes.map((s) => `${s.fade}|${s.fx}|${s.fy}`).join(",")); }
   assert.ok(looks.size >= 4, `looks used across 30 videos: ${[...looks]}`);
-  assert.ok(moves.size >= 10, `distinct camera sequences across 30 videos: ${moves.size}`);
+  assert.ok(moves.size >= 8, `distinct cut patterns across 30 videos: ${moves.size}`);
 });
 
 test("the home look comes up about half the time, and a forced look is honoured", () => {
@@ -212,18 +217,36 @@ test("the home look comes up about half the time, and a forced look is honoured"
   assert.ok(home > 160 && home < 260, `home look share ${home}/400`);
 });
 
-test("a long photo shot is re-framed halfway and never moves the same way twice running", async () => {
-  const { plan } = await planFor("split-test-shorts-script");
+test("a photo is shown once: no tighter-crop repeat, no re-use, and nothing zooms or pans", async () => {
+  let n = 0;
+  const concept = async () => ({ file: `c${n++}.jpg`, width: 2000, height: 1300, credit: "c", source_url: "u", license: "CC0" });
+  const { plan } = await planFor("split-test-shorts-script", { concept, queries: ["a", "b", "c"], queries2: ["d", "e", "f"], resolve: async () => ({ ok: false }) });
   const s = plan.scenes;
-  assert.ok(s.some((x) => x.id.endsWith("b")), "a scene was split");
-  const first = s.find((x) => x.id.endsWith("b"));
-  const orig = s.find((x) => x.id === first.id.slice(0, -1));
-  assert.equal(orig.end, first.start);
-  assert.equal(orig.asset, first.asset);
-  assert.notEqual(orig.motion, first.motion);
-  for (let i = 1; i < s.length; i++) assert.notEqual(s[i].motion, s[i - 1].motion, `scene ${i}`);
+  const counts = {};
+  for (const x of s) counts[x.asset] = (counts[x.asset] || 0) + 1;
+  for (const [asset, k] of Object.entries(counts)) if (/^concept-/.test(asset)) assert.equal(k, 1, `${asset} is shown once`);
+  assert.ok(s.every((x) => x.scale === undefined && x.motion === undefined && x.zoom === undefined), "no crop-in or camera move is planned");
   for (let i = 1; i < s.length; i++) assert.equal(s[i].start, s[i - 1].end, "no gap or overlap");
   assert.equal(s.at(-1).end, 24);
+});
+
+test("the story-wide pool fills a sentence whose own phrases find nothing, and the photo check is told what the whole video is about", async () => {
+  const seen = [];
+  const concept = async ({ query, topic }) => { seen.push([query, topic]); return query === "harbour crane" ? { file: "h.jpg", width: 2000, height: 1300, credit: "c", source_url: "u", license: "CC0" } : null; };
+  const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: [null, "nothing here", null, null], queries2: [null, null, null, null], story: ["harbour crane", "pier"], topic: "Port of Oakland strike" });
+  const hits = Object.entries(plan.assets).filter(([, v]) => v.file === "h.jpg");
+  assert.equal(hits.length, 1, "a sentence with no phrase of its own got a story-pool photo");
+  assert.equal(plan.scenes.filter((x) => x.asset === hits[0][0]).length, 1, "and it is shown once");
+  assert.ok(seen.every(([, t]) => t === "Port of Oakland strike"));
+});
+
+test("a sentence with a second concept photo shows it after the first, so each sentence changes picture", async () => {
+  const concept = async ({ query }) => ({ file: query + ".jpg", width: 2000, height: 1300, credit: "c", source_url: "u", license: "CC0" });
+  const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept, queries: ["flooded street", null, null, null], queries2: ["storm waves pier", null, null, null] });
+  const [a, b] = plan.scenes;
+  assert.equal(plan.assets[a.asset].file, "flooded street.jpg");
+  assert.equal(plan.assets[b.asset].file, "storm waves pier.jpg");
+  assert.equal(a.end, b.start);
 });
 
 test("a shifted overlay stays a valid SVG", () => {
@@ -233,11 +256,13 @@ test("a shifted overlay stays a valid SVG", () => {
   assert.equal(shiftSvg(svg, 0), svg);
 });
 
-test("zoom and fade reach the timeline's image layer", () => {
+test("a held picture never zooms or pans; a fade reaches the timeline's image layer", () => {
   const plan = { fps: 30, palette: {}, fonts: {}, assets: { a: { file: "a.jpg", width: 1000, height: 1000 } },
     scenes: [{ id: "s", start: 0, end: 4, asset: "a", fit: "cover", motion: "in", zoom: 0.06, fade: 8 }] };
   const img = buildTimeline(plan, { audioDuration: 4, captions: [] }).layers.find((l) => l.type === "image");
-  assert.ok(Math.abs(img.keyframes.scale.at(-1).v - 1.16) < 1e-9);
+  assert.equal(img.keyframes.scale.at(-1).v, 1, "no slow push: the scale at the end is the scale it settled at");
+  assert.equal(img.keyframes.scale.at(-2).v, 1);
+  assert.equal(img.keyframes.x, undefined, "no pan");
   assert.deepEqual(img.keyframes.opacity.slice(0, 2).map((k) => k.v), [0, 1]);
 });
 
@@ -275,7 +300,8 @@ test("plain numbers count as figures, but years, dates, ordinals and small numbe
 });
 
 // ---- animated graphics (graphics.mjs) ---------------------------------------------------------------------------------------------
-import { graphicLayers, parseFigure, chooseKind, backdropSvg, decorationLayers } from "../editor/graphics.mjs";
+import { graphicLayers, parseFigure, chooseKind, backdropSvg, decorationLayers, figureLabel, mapFor, PANEL, PHOTO_RECT } from "../editor/graphics.mjs";
+import { matchPlaces, buildMap, clipRing } from "../editor/maps.mjs";
 import { valueAt, formatCount } from "../../src/skills/remotion-render/editor/layer-math.js";
 
 const PAL = { accent: "#1ABC9C", bg: "#07070D", text: "#fff" };
@@ -320,24 +346,29 @@ test("a ring draws on to exactly its share; two percentages get two bars; a plai
   assert.equal(formatCount(count.count, valueAt(count, "count", 80)), "453");
 });
 
-test("every look and kind yields layers that stay inside the frame, are on screen only while the scene is, and carry only sourced text", () => {
-  const cases = [["bar", [PCT]], ["ring", [PCT]], ["bars2", [PCT, { raw: "71%", kind: "percent", value: 71 }]], ["count", [NUM]]];
+test("every look, kind and mode yields layers inside the frame, inside the panel, only while the scene is, with only sourced text", () => {
+  const cases = [["bar", [PCT]], ["ring", [PCT]], ["bars2", [PCT, { raw: "71%", kind: "percent", value: 71 }]], ["count", [NUM]], ["year", [{ raw: "2000", kind: "year", value: 2000 }]]];
   for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
-    for (const fn of ["hook", "evidence", "payoff"]) {
-      for (const [kind, figs] of cases) {
-        const ls = g(look, kind, figs, { fn, dy: 60 });
-        assert.ok(ls.length >= 2, `${look}/${fn}/${kind}`);
-        const ids = new Set(ls.map((l) => l.id));
-        assert.equal(ids.size, ls.length, "layer ids are unique");
-        for (const l of ls) {
-          assert.ok(l.in >= 0 && l.out <= 90 && l.out > l.in, `${look}/${kind}: ${l.id} timing`);
-          assert.ok(l.rect.x >= -1 && l.rect.x + l.rect.w <= 1081, `${look}/${kind}: ${l.id} inside the width`);
-          assert.ok(l.rect.y + l.rect.h > 0 && l.rect.y < 1920, `${look}/${kind}: ${l.id} on the canvas`);
-          if (l.type === "text" && l.text) assert.match(l.text, /^Source: jll\.com$/, "the only free text is the source");
+    for (const mode of ["split", "hero"]) {
+      for (const fn of ["hook", "evidence", "payoff"]) {
+        for (const [kind, figs] of cases) {
+          const ls = g(look, kind, figs, { fn, mode, label: "of surveyed organizations scaling AI today" });
+          const P = PANEL[mode];
+          assert.ok(ls.length >= 3, `${look}/${mode}/${kind}`);
+          assert.equal(new Set(ls.map((l) => l.id)).size, ls.length, "layer ids are unique");
+          for (const l of ls) {
+            const ctx = `${look}/${mode}/${fn}/${kind}: ${l.id}`;
+            assert.ok(l.in >= 0 && l.out <= 90 && l.out > l.in, `${ctx} timing`);
+            assert.ok(l.rect.x >= -1 && l.rect.x + l.rect.w <= 1081, `${ctx} inside the width`);
+            assert.ok(l.rect.y >= P.y - 2 && l.rect.y + l.rect.h <= P.y + P.h + 2, `${ctx} inside the panel (y ${l.rect.y}..${l.rect.y + l.rect.h}, panel ${P.y}..${P.y + P.h})`);
+            if (l.type === "text" && l.text) assert.match(l.text, /^(Source: jll\.com|\d+%|\d{4}|of surveyed organizations scaling AI today)$/i, `${ctx}: only sourced words`);
+          }
         }
       }
     }
   }
+  assert.ok(PANEL.split.y >= PHOTO_RECT.y + PHOTO_RECT.h, "the split panel starts below the photo: a chart never overlays its picture");
+  assert.ok(PANEL.split.y + PANEL.split.h <= 1535, "and ends above the captions");
 });
 
 test("the kind follows the figures, and a backdrop has no gradient", () => {
@@ -392,7 +423,7 @@ test("a photo scene with no figure still moves: the accent draws itself across i
   const tl3 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
   addGraphics(tl3, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
   assert.ok(tl3.layers.some((l) => /-sweep$/.test(l.id)), "a poster scene gets the sweeping line so it never sits still");
-  assert.equal(tl2.layers.length, 1, "a card is not a photo scene, so it gets no decoration");
+  assert.equal(tl2.layers.filter((l) => !/-field$/.test(l.id)).length, 1, "an unknown asset gets no decoration (only the drifting field every beat has)");
 });
 
 import { luminance, onFill } from "../editor/graphics.mjs";
@@ -414,7 +445,7 @@ test("a year the research states becomes an animated timeline: the line wipes in
   const n = ls.find((l) => l.count);
   assert.equal(formatCount(n.count, valueAt(n, "count", 0)), "1986");
   assert.equal(formatCount(n.count, valueAt(n, "count", 80)), "2000");
-  assert.ok(ls.some((l) => /-line$/.test(l.id) && valueAt(l, "clipR", 0) === 100 && valueAt(l, "clipR", 60) === 0));
+  assert.ok(ls.some((l) => /-line-fill$/.test(l.id) && valueAt(l, "clipR", 0) === 100 && valueAt(l, "clipR", 60) === 0));
   assert.equal(ls.filter((l) => /-tick\d$/.test(l.id)).length, 3);
   const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "A 2000 wedding ended it. Nothing else happened." }] }, research: { ...research, key_facts: [{ fact: "The 2000 wedding", source_url: "https://news.example.org/x" }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
   assert.equal(r.plan.scenes[0].graphic.kind, "year");
@@ -430,21 +461,304 @@ test("the same year gets one timeline per video, and no more than three timeline
   assert.deepEqual(years, [2000, 1998, 1999], "first three distinct years only; the repeat of 2000 gets none");
 });
 
-test("graphics never sit still: every layer drifts to the end of the scene, and a figure-only scene also gets a sweeping line", async () => {
+test("graphics never sit still: every moving layer drifts to the end of the scene, and a hero scene also gets a sweeping line", async () => {
   for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
     for (const [kind, figs] of [["bar", [PCT]], ["count", [NUM]], ["year", [{ raw: "2000", kind: "year", value: 2000 }]]]) {
-      const ls = g(look, kind, figs, { backdrop: true });
-      const moving = ls.filter((l) => !/-(flat|sweep)$/.test(l.id));
-      for (const l of moving) assert.ok(valueAt(l, "ty", l.out - l.in) <= -20, `${look}/${kind}: ${l.id} is still rising at the end`);
-      const sweep = ls.find((l) => /-sweep$/.test(l.id));
-      assert.ok(sweep, `${look}/${kind}: sweep`);
-      assert.ok(valueAt(sweep, "ty", 40) > valueAt(sweep, "ty", 10), "the sweep moves down the frame");
-      assert.ok(valueAt(sweep, "ty", 84) < valueAt(sweep, "ty", 83), "and starts again every cycle");
-      assert.equal(ls.some((l) => /-flat$/.test(l.id) && valueAt(l, "ty", 80) !== 0), false, "a full-bleed layer never drifts");
+      const ls = g(look, kind, figs, { mode: "hero" });
+      const moving = ls.filter((l) => !/-(panel|edge|rule)$/.test(l.id));
+      for (const l of moving) assert.ok(valueAt(l, "ty", l.out - l.in) <= -15, `${look}/${kind}: ${l.id} is still rising at the end`);
     }
   }
+  const tl = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
+  addGraphics(tl, { id: "p", palette: PAL, scenes: [{ asset: "card-0", stagger: 0, graphic: { id: "g0", kind: "bar", figs: [PCT], source: "x.com", fn: "evidence", look: "vox", mode: "hero", label: "" } }] });
+  const sweep = tl.layers.find((l) => /-sweep$/.test(l.id));
+  assert.ok(sweep, "a hero scene gets the sweep");
+  assert.ok(valueAt(sweep, "ty", 40) > valueAt(sweep, "ty", 10), "the sweep moves down the frame");
+  assert.ok(valueAt(sweep, "ty", 84) < valueAt(sweep, "ty", 83), "and starts again every cycle");
   const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null], style: 2 });
   const s0 = plan.scenes[0];
+  assert.equal(s0.graphic.mode, "hero");
   assert.equal(s0.graphic.backdrop, true);
-  assert.ok(s0.zoom >= 0.1, "the backdrop pushes harder under a figure");
+});
+
+// ---- split layout, captions, maps, per-beat punch ---------------------------------------------------------------------------------
+test("a figure on a photo scene goes in its own panel under the photo; the photo keeps the top, with no scrim over the panel", async () => {
+  const resolve = async ({ name }) => (/Doeson/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" } : { ok: false });
+  const { plan } = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Doeson said 45% agreed. Then it ended." }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve, concept: async () => null, queries: [null, null], style: 1 });
+  const s0 = plan.scenes.find((x) => x.graphic);
+  assert.deepEqual(s0.rect, PHOTO_RECT);
+  assert.equal(s0.gradient, "rgba(0,0,0,0)");
+  assert.equal(s0.graphic.mode, "split");
+  assert.ok(s0.kicker_y + 64 <= PANEL.split.y, "the kicker stays inside the photo");
+  const tl = buildTimeline(plan, { audioDuration: 12, captions: [] });
+  const img = tl.layers.find((l) => l.id === `scene-${plan.scenes.indexOf(s0)}-image`);
+  assert.deepEqual(img.rect, PHOTO_RECT);
+});
+
+test("a chart's caption is the sentence's own words around the figure", () => {
+  assert.equal(figureLabel("Nearly 24 percent of European airline pilots fly while too fatigued.", { raw: "24%", matched: "24 percent" }), "of European airline pilots fly while too fatigued");
+  assert.equal(figureLabel("JLL surveyed 1,321 organizations across 15 countries in 2026.", { raw: "1,321", matched: "1,321" }), "organizations across 15 countries in 2026");
+  assert.match(figureLabel("Robotics adoption climbs from 37% to 71% by 2030.", { raw: "37%", matched: "37%" }), /^to 71% by 2030|Robotics adoption climbs from$/);
+  assert.equal(figureLabel("", { raw: "1" }), "");
+});
+
+test("places named in a sentence are matched against real country and US-state outlines; a drawn map clips them to its rect", () => {
+  const names = (t) => matchPlaces(t).map((h) => h.f.name).sort();
+  assert.deepEqual(names("Chile hosts the Ojos del Salado"), ["Chile"]);
+  assert.deepEqual(names("Hawaii's sea arch collapsed"), ["Hawaii"]);
+  assert.deepEqual(names("Thailand and Cambodia dispute the seabed"), ["Cambodia", "Thailand"]);
+  assert.deepEqual(names("No places here"), []);
+  assert.deepEqual(names("A Turkey sandwich and a Jordan shoe"), [], "ambiguous words are not read as countries");
+  const m = buildMap({ highlight: matchPlaces("Chile and Argentina"), w: 912, h: 604 });
+  assert.equal(m.highlights.length, 2);
+  assert.ok(m.land.length > 500 && m.highlights.every((h) => h.d.length > 100));
+  const nums = [...m.highlights[0].d.matchAll(/(-?\d+\.\d) (-?\d+\.\d)/g)].map((x) => [Number(x[1]), Number(x[2])]);
+  assert.ok(nums.length > 20 && nums.every(([x, y]) => x >= -0.1 && x <= 912.1 && y >= -0.1 && y <= 604.1), "every point is inside the map rect");
+  const ring = clipRing([[-5, -5], [15, -5], [15, 15], [-5, 15]], [0, 0, 10, 10]);
+  assert.deepEqual(ring.map((p) => p.join(",")).sort(), ["0,0", "0,10", "10,0", "10,10"]);
+});
+
+test("a sentence that names a place, with no photo and no figure, gets a drawn map with the place highlighted (and at most four maps per video)", async () => {
+  const sents = ["Chile is a long thin country.", "Argentina lies on its east.", "Thailand and Cambodia disagree.", "Peru borders it to the north."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
+    words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 18, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
+  const maps = r.plan.scenes.filter((s) => s.graphic?.kind === "map");
+  assert.ok(maps.length >= 1 && maps.length <= 4, `maps: ${maps.length}`);
+  assert.equal(maps[0].graphic.mode, "full", "a map beat is the whole frame");
+  assert.ok(maps[0].graphic.places.highlights[0].name);
+  assert.match(r.report.scenes.find((x) => /map of/.test(x.shows)).shows, /^map of Chile/);
+  const ls = graphicLayers({ id: "m", kind: "map", figs: maps[0].graphic.figs, source: "bbc.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "full", places: maps[0].graphic.places });
+  const hl = ls.find((l) => /-hl0$/.test(l.id));
+  assert.equal(valueAt(hl, "draw", 0), 0);
+  assert.equal(valueAt(hl, "draw", 60), 1, "the highlighted place draws on");
+  assert.ok(ls.find((l) => /-land$/.test(l.id)), "the land outlines draw on too");
+});
+
+test("every beat opens with a small punch-in that settles in 9 frames, then the picture holds", () => {
+  const plan = { fps: 30, palette: {}, fonts: {}, assets: { a: { file: "a.jpg", width: 1000, height: 1000 } }, scenes: [{ id: "s", start: 0, end: 4, asset: "a", fit: "cover", motion: "in" }, { id: "t", start: 4, end: 8, asset: "a", fit: "cover", motion: "in", punch: 0 }] };
+  const tl = buildTimeline(plan, { audioDuration: 8, captions: [] });
+  const k0 = tl.layers.find((l) => l.id === "scene-0-image").keyframes.scale;
+  assert.ok(k0[0].v > k0[1].v && k0[1].f === 9, "lands large, settles in 9 frames");
+  assert.equal(k0.at(-1).v, k0[1].v, "then it holds still: no slow push");
+  const k1 = tl.layers.find((l) => l.id === "scene-1-image").keyframes.scale;
+  assert.equal(k1.length, 2, "punch: 0 turns it off");
+});
+
+// ---- the editor's eyes -------------------------------------------------------------------------------------------------------------
+import { critique, parseVerdict as parseFrameVerdict, pickTimes, summarize } from "../editor/frame-critic.mjs";
+
+test("the frame critic samples evenly, passes the caption and topic to the model, and fails soft when the model does not answer", async () => {
+  assert.deepEqual(pickTimes(20, 4), [4, 9, 14, 19], "each sample lands after the counter has settled");
+  assert.equal(parseFrameVerdict({ content: "no json" }), null);
+  assert.equal(parseFrameVerdict({ verdict: "great" }), null);
+  const prompts = [];
+  const answers = ['{"verdict":"good","issues":[],"photo_matches_caption":true,"chart_readable":null}', '{"verdict":"bad","issues":["text over a face"],"photo_matches_caption":false,"chart_readable":false}', "garbage"];
+  const timeline = { fps: 30, captions: [{ start_f: 0, end_f: 300, text: "First words" }, { start_f: 300, end_f: 900, text: "Later words" }] };
+  const r = await critique({ duration: 30, timeline, max: 3, topic: "El Nino 2026", extractFrame: async () => Buffer.from("x"), askVision: async ({ prompt }) => { prompts.push(prompt); return { content: answers[prompts.length - 1] }; } });
+  assert.match(prompts[0], /El Nino 2026/);
+  assert.match(prompts[0], /First words/);
+  assert.match(prompts[1], /Later words/);
+  assert.equal(r.available, true);
+  assert.deepEqual([r.summary.good, r.summary.bad, r.summary.photo_mismatches, r.summary.unreadable_charts], [1, 1, 1, 1]);
+  assert.equal(r.frames[2].verdict, null, "an unparseable answer is recorded as no opinion, not as good");
+  const none = await critique({ duration: 10, max: 2, extractFrame: async () => Buffer.from("x"), askVision: async () => { throw new Error("down"); } });
+  assert.equal(none.available, false);
+  assert.equal(summarize([]).share_good, null);
+});
+
+// ---- organisation logos -------------------------------------------------------------------------------------------------------------
+import { LOGO_RECT } from "../editor/timeline.mjs";
+
+test("an organisation named in a sentence shows its verified mark on a plate; with no verified mark the sentence falls through; a dark mark gets a light plate", async () => {
+  const orgScript = { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Obscure Org filed the report. Nothing else happened here." }] };
+  const org = { ...base, script: orgScript, research: { ...research, named_entities: [{ name: "Obscure Org", kind: "organization" }] }, words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null] };
+  const ok = await buildAutoPlan({ ...org, logo: async ({ name }) => (name === "Obscure Org" ? { ok: true, file: "logo.png", width: 800, height: 400, credit: "Logo: Obscure Org, CC0", source_url: "https://commons.example/x", license: "CC0", dark_mark: true } : { ok: false }) });
+  const logoScene = ok.plan.scenes[0];
+  assert.equal(logoScene.logo, "logo-obscure-org");
+  assert.equal(ok.plan.assets["logo-obscure-org"].credit, "Logo: Obscure Org, CC0");
+  assert.match(ok.report.scenes[0].shows, /^logo of Obscure Org/);
+  const plate = ok.cards.find((c) => c.id === logoScene.asset);
+  assert.match(plate.svg, /fill="#F4F1EA"/, "a dark mark sits on a light (paper) plate");
+  assert.equal(logoScene.gradient, "rgba(0,0,0,0)", "no scrim over a mark");
+  // the CLI registers each plate as an asset (auto-timeline.mjs writes the SVG); the test does the same
+  ok.plan.assets[logoScene.asset] = { file: "plate.svg", width: 1080, height: 1920, credit: "Graphic", source_url: "u", license: "Original" };
+  const tl = buildTimeline(ok.plan, { audioDuration: 12, captions: [] });
+  const layer = tl.layers.find((l) => l.id === "scene-0-logo");
+  assert.ok(layer, "the mark is an image layer over its plate");
+  assert.deepEqual(layer.rect, LOGO_RECT);
+  assert.equal(layer.fit, "contain", "contained, never cropped");
+
+  const none = await buildAutoPlan({ ...org, logo: async () => ({ ok: false, why: "no Commons logo" }) });
+  assert.ok(none.plan.scenes.every((s) => !s.logo), "no verified mark, no logo beat");
+  assert.match(none.report.misses.map((m) => m.entity).join(" "), /logo of Obscure Org/, "the miss is reported");
+
+  const light = await buildAutoPlan({ ...org, logo: async () => ({ ok: true, file: "l.png", width: 800, height: 400, credit: "c", source_url: "u", license: "CC0", dark_mark: false }) });
+  assert.match(light.cards.find((c) => c.id === light.plan.scenes[0].asset).svg, /fill="#101114"/, "a light mark sits on the ink plate");
+});
+
+// ---- country flags ---------------------------------------------------------------------------------------------------------------------
+import { findFlagFiles } from "../editor/flag.mjs";
+
+test("a country's flag is the free-licence 'Flag of <country>' file on Commons (never a map, coat of arms or historical flag)", async () => {
+  const page = (index, title, mime, license) => ({ index, title: `File:${title}`, imageinfo: [{ mime, url: "u", thumburl: "t", descriptionurl: "d", extmetadata: { LicenseShortName: { value: license } } }] });
+  const fake = async () => ({ query: { pages: {
+    a: page(1, "Flag of Nigeria.svg", "image/svg+xml", "Public domain"),
+    b: page(2, "Coat of arms of Nigeria.svg", "image/svg+xml", "Public domain"),
+    c: page(3, "Flag of Nigeria (1914).svg", "image/svg+xml", "Public domain"),
+    d: page(4, "Map of Nigeria.svg", "image/svg+xml", "CC BY-SA 4.0"),
+    e: page(5, "Flag of Nigeria.jpg", "image/jpeg", "Public domain"),
+    f: page(6, "Flag of Nigeria non-free.svg", "image/svg+xml", "Non-free"),
+  } } });
+  const r = await findFlagFiles("Nigeria", fake);
+  assert.deepEqual(r.map((x) => x.title), ["Flag of Nigeria.svg"]);
+  assert.equal(r[0].credit, "Flag: Nigeria, Public domain, Wikimedia Commons");
+});
+
+test("a sentence naming a country gets its flag on a plate, and its drawn map in the second beat", async () => {
+  const sents = ["Nigeria faces a new fuel shortage. Lagos queues are long again."];
+  const flagCalls = [];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1,
+    flag: async ({ country }) => { flagCalls.push(country); return { ok: true, file: "flag.png", width: 1024, height: 680, credit: "Flag: Nigeria, Public domain, Wikimedia Commons", source_url: "p", license: "Public domain", dark_mark: false }; } });
+  assert.deepEqual(flagCalls, ["Nigeria"]);
+  const [a, b] = r.plan.scenes;
+  assert.equal(a.logo, "flag-nigeria");
+  assert.equal(r.plan.assets["flag-nigeria"].credit, "Flag: Nigeria, Public domain, Wikimedia Commons");
+  assert.equal(b.graphic?.kind, "map", "the second beat is the drawn map");
+  assert.match(r.report.scenes[0].shows, /flag of Nigeria then map of Nigeria/);
+});
+
+test("with no free flag the country falls back to its map, and the miss is reported", async () => {
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "Nigeria faces a new fuel shortage. Lagos queues are long." }] }, research: { ...research, named_entities: [] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }], audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1,
+    flag: async () => ({ ok: false, why: "no free-licence flag" }) });
+  assert.ok(r.plan.scenes.some((s) => s.graphic?.kind === "map"), "a map instead");
+  assert.match(r.report.misses.map((m) => m.entity).join(" "), /flag of Nigeria/);
+});
+
+// ---- variety and no text-only beats ---------------------------------------------------------------------------------------------------
+test("a flag only for a country that is the sentence's subject, and only one per video", async () => {
+  const sents = ["Chile is facing a drought this year. Officials there expect a poor harvest.", "After many years of careful research by the team at the institute, Chile was mentioned again. Nothing else changed in the plan."];
+  const flagCalls = [];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }, { text: "c", start: 12, end: 13, sentence: 2 }, { text: "d", start: 18, end: 19, sentence: 3 }], audioDuration: 24,
+    resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null], style: 1,
+    flag: async ({ country }) => { flagCalls.push(country); return { ok: true, file: "f.png", width: 1, height: 1, credit: "c", source_url: "u", license: "PD", dark_mark: false }; } });
+  assert.deepEqual(flagCalls, ["Chile"], "one flag, for the sentence where Chile is the subject; the passing mention gets none");
+});
+
+test("two number cards never run back to back, and a text-only beat falls back to a research figure or the topic's map before a poster", async () => {
+  const research2 = { ...research, strongest_angle: "Drought in Chile", named_entities: [{ name: "Chile", kind: "place" }],
+    numbers: [{ label: "reservoirs at half capacity", value: 45, unit: "percent", source_url: "https://news.example.org/x" }, { label: "farms that lost their crop", value: 1321, unit: "farms", source_url: "https://news.example.org/y" }] };
+  const sents = ["The water fell away quietly.", "Nobody reported the change at first.", "Then the harvest was counted.", "Farmers waited for rain."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: research2,
+    words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
+  const shows = r.report.scenes.map((x) => x.shows);
+  assert.ok(!shows.some((x, i) => i && /research figure/.test(x) && /research figure/.test(shows[i - 1])), `no two research-figure cards in a row: ${shows.join(" | ")}`);
+  assert.ok(shows.filter((x) => /research figure|map of/.test(x)).length >= 2, `fallbacks used instead of text: ${shows.join(" | ")}`);
+  assert.equal(r.report.scenes.filter((x) => /key-word poster/.test(x.shows)).length <= 1, true, "at most one text-only beat");
+});
+
+// ---- full-frame maps, bare number cards, no repeated figure in a row ------------------------------------------------------------------
+test("a figure is not drawn on two beats running, and number cards alternate between the boxed and the bare layout", async () => {
+  const sents = ["Rain fell 45% less this year.", "Rain fell 45% less than the year before.", "Farms lost 1,321 acres.", "Farmers waited for the rain."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [], numbers: [{ label: "rain", value: 45, unit: "percent", source_url: "https://news.example.org/x" }, { label: "acres lost", value: 1321, unit: "acres", source_url: "https://news.example.org/y" }] },
+    words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
+  const figRaws = r.plan.scenes.map((s) => s.graphic?.figs?.[0]?.raw || null);
+  for (let i = 1; i < figRaws.length; i++) if (figRaws[i] && figRaws[i - 1]) assert.notEqual(figRaws[i], figRaws[i - 1], `beat ${i} repeats the figure on beat ${i - 1}`);
+  const cards = r.plan.scenes.filter((s) => s.graphic && s.graphic.kind !== "map");
+  assert.ok(cards.length >= 2, "there are number cards to alternate");
+  for (let i = 1; i < cards.length; i++) assert.notEqual(cards[i].graphic.mode, cards[i - 1].graphic.mode, "two number cards in a row never share a layout");
+});
+
+test("a map beat is the whole frame: every point of the map lies inside the 1080x1920 canvas, and it has no box", () => {
+  const maps = [matchPlaces("Chile and Argentina")];
+  const geo = mapFor({ highlight: maps[0] });
+  const ls = graphicLayers({ id: "m", kind: "map", figs: [{ raw: "Chile", kind: "place" }], source: "bbc.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "full", places: geo });
+  assert.ok(!ls.some((l) => /-panel$/.test(l.id)), "no box behind a full-frame map");
+  const land = ls.find((l) => /-land$/.test(l.id));
+  assert.ok(land.rect.x >= 0 && land.rect.y >= 0 && land.rect.x + land.rect.w <= 1080 && land.rect.y + land.rect.h <= 1920, "the map sits inside the frame");
+});
+
+test("a bare number card has no box, and its number sits on the open frame", () => {
+  const ls = graphicLayers({ id: "c", kind: "count", figs: [{ raw: "45%", kind: "percent", value: 45 }], source: "x.com", look: "vox", palette: PAL, inF: 0, outF: 90, mode: "bare" });
+  assert.ok(!ls.some((l) => /-panel$/.test(l.id)), "no box");
+  const n = ls.find((l) => /-n$/.test(l.id));
+  assert.ok(n.rect.y >= 400 && n.rect.y + n.rect.h <= 1920, "the number sits in the open frame");
+});
+
+test("a long beat is cut to a second visual only where the research or topic gives one: never a poster", async () => {
+  const sents = ["The plane was flying low over the river.", "Investigators are still reading the cockpit recordings to find the cause of the fire."];
+  const common = { ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [], numbers: [{ label: "passengers aboard", value: 67, unit: "people", source_url: "https://news.example.org/x" }] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 9, end: 10, sentence: 1 }], audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 };
+  const noPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash" } });
+  assert.ok(noPlace.report.scenes.every((x) => !/then .*poster/.test(x.shows)), "no poster as a second visual");
+  const withPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash over Chile", named_entities: [{ name: "Chile", kind: "place" }] } });
+  assert.ok(withPlace.report.scenes.some((x) => /then map of Chile/.test(x.shows)), "a long card gets the topic's map as its second visual");
+});
+
+test("the topic map is a place the research names, never a place word from a sentence; a number with no label from its sentence is not drawn as a bare number", async () => {
+  const sents = ["Lawyers filed the complaint in New York on Monday.", "The figure was 99% of the sample."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, strongest_angle: "Lawsuit over AI training", named_entities: [], numbers: [] },
+    words: sents.map((_, i) => ({ text: "w", start: i * 6, end: i * 6 + 1, sentence: i })), audioDuration: 12, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
+  assert.ok(r.report.scenes.every((x) => !/New York (the topic)/.test(x.shows)), "a place word in a sentence is not the topic's map");
+  assert.ok(r.plan.scenes.every((x) => !(x.graphic && x.graphic.kind !== "map" && x.graphic.figs?.[0]?.raw === "99%")), "a figure with no research support is not drawn");
+});
+
+// ---- the light look ---------------------------------------------------------------------------------------------------------------------
+import { mixHex, readableOn } from "../editor/graphics.mjs";
+
+test("a date's day number is not a figure, and the default look is light: paper background, ink type, captions on an ink plate", async () => {
+  assert.deepEqual(extractFigures("On 26 Oct 2026 the machine finished a 4.5 km drive").map((f) => f.raw), [], "26 is the day of a date");
+  assert.deepEqual(extractFigures("They counted 453 tablets on 26 October").map((f) => f.raw), ["453"]);
+  const { plan, cards } = await buildAutoPlan({ ...base, channel: { ...channel, colors: { ...channel.colors, paper: "#F7F2E8", ink: "#14100A" } }, resolve: async () => ({ ok: false }) });
+  assert.equal(plan.palette.bg, "#F7F2E8");
+  assert.equal(plan.palette.text, "#14100A");
+  assert.ok(luminance(plan.palette.bg) > 0.7 && luminance(plan.palette.text) < 0.05, "light paper, dark ink");
+  assert.ok(luminance(plan.palette.accent) < 0.5, "the accent is darkened until it reads on paper");
+  assert.deepEqual([plan.caption_style.plate, plan.caption_style.text], ["#14100A", "#F7F2E8"], "captions: light type on an ink plate");
+  const backdrop = cards.find((c) => /fill="#F7F2E8"/.test(c.svg));
+  assert.ok(backdrop, "a figure card sits on the paper, not on near-black");
+});
+
+test("readableOn darkens a colour until it reads on the background, and leaves one that already does", () => {
+  assert.equal(readableOn("#FFFFFF", "#112233", "#000000"), "#112233");
+  const c = readableOn("#FBF6F1", "#D4A574", "#0F0A05");
+  assert.ok(luminance(c) < luminance("#D4A574"));
+  assert.equal(mixHex("#000000", "#FFFFFF", 0.5), "#808080");
+});
+
+test("a photo of the video's subject is accepted even when it does not show this sentence's exact detail; a misleading one is not", () => {
+  assert.equal(parseVerdict({ fits_video: true, misleading: false, identifiable_person: false, mostly_text_or_logo: false, what_it_shows: "Iguazu Falls panorama" }).ok, true);
+  assert.equal(parseVerdict({ fits_video: true, misleading: true, identifiable_person: false, mostly_text_or_logo: false }).ok, false);
+  assert.equal(parseVerdict({ fits_video: false, misleading: false, identifiable_person: false, mostly_text_or_logo: false }).ok, false);
+  assert.equal(parseVerdict({ fits_video: true, misleading: false, identifiable_person: true, mostly_text_or_logo: false }).ok, false, "a recognisable person is still refused");
+});
+
+// ---- the drifting halftone field --------------------------------------------------------------------------------------------------------
+import { fieldLayers } from "../editor/graphics.mjs";
+
+test("every beat has a halftone dot field that drifts by exactly one tile per cycle, so it moves without ever jumping", () => {
+  const [f] = fieldLayers({ id: "x", palette: { ink: "#101114" }, inF: 0, outF: 300 });
+  assert.equal(f.type, "solid");
+  assert.ok(f.rect.x <= -56 && f.rect.w >= 1080 + 112 && f.rect.h >= 1920 + 112, "larger than the frame by more than a tile on every side");
+  assert.ok(valueAt(f, "tx", 28) < valueAt(f, "tx", 5), "it drifts");
+  assert.equal(Math.round(valueAt(f, "tx", 56)), -56, "one tile per 56 frames");
+  assert.equal(Math.round(valueAt(f, "tx", 57)), 0, "then back to the identical pattern");
+  for (let fr = 0; fr < 300; fr += 7) assert.ok(valueAt(f, "tx", fr) >= -56 && valueAt(f, "tx", fr) <= 0, "never leaves the margin");
+  const tl = { layers: [{ id: "scene-0-image", in: 0, out: 120, z: 11 }] };
+  addGraphics(tl, { id: "p", palette: { ink: "#101114", accent: "#c00" }, scenes: [{ asset: "photo-a", stagger: 0, look: "vox" }] });
+  const field = tl.layers.find((l) => /-field$/.test(l.id));
+  assert.equal(field.z, 11, "the same z as its picture: CSS z-index is an integer, a fraction is ignored and would hide the field behind the picture");
+  assert.ok(tl.layers.indexOf(field) > tl.layers.findIndex((l) => l.id === "scene-0-image"), "and after it, so it paints above it");
+  assert.ok(tl.layers.every((l) => Number.isInteger(l.z)), "every layer has an integer z");
+});
+
+test("a flat card is never darkened, and a year is never drawn as a statistic", async () => {
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: "The water fell away quietly. Nobody noticed at first." }] },
+    research: { ...research, named_entities: [], numbers: [{ label: "start year of the diary", value: 1897, unit: "", source_url: "https://news.example.org/x" }, { label: "pages in the diary", value: 453, unit: "pages", source_url: "https://news.example.org/x" }] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 5, end: 6, sentence: 1 }], audioDuration: 10, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
+  for (const sc of r.plan.scenes.filter((x) => /^card-/.test(x.asset))) assert.equal(sc.gradient, "rgba(0,0,0,0)", `${sc.id}: no scrim on a card`);
+  const drawn = r.plan.scenes.flatMap((x) => x.graphic?.figs?.map((f) => f.raw) || []);
+  assert.ok(!drawn.some((x) => /1,?897/.test(x)), "a year is not a figure");
 });

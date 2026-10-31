@@ -19,28 +19,43 @@ const MIN_SIDE = 900;
 const BAD_NAME = /logo|icon|map|flag|diagram|chart|graph|screenshot|poster|cover|stamp|coin|signature|banner|infographic|\bpdf\b|\bsvg\b|scan|page|book|manuscript|portrait|selfie|crowd|nude|swim|bikini|advert|billboard|ad_/i;
 const FREE = /^(cc0|cc[- ]by|cc[- ]by[- ]sa|public domain|pd|ogl|gfdl|attribution)/i;
 
-export function parseQueries(answer, count) {
+/** {first:[...], second:[...]}: the two phrases for each sentence (a plain string counts as the first). */
+export function parseQueryPairs(answer, count) {
   let obj = answer;
   if (answer && typeof answer.content === "string") {
     const m = answer.content.match(/\{[\s\S]*\}/);
     try { obj = m ? JSON.parse(m[0]) : null; } catch { obj = null; }
   }
-  const out = new Array(count).fill(null);
-  const src = obj && (obj.queries || obj);
-  if (!src || typeof src !== "object") return out;
+  const first = new Array(count).fill(null);
+  const second = new Array(count).fill(null);
+  const src = obj && (obj.sentences || obj.queries || obj);
+  const clean0 = (v) => (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim()) ? v.trim().slice(0, 60) : null);
+  const story = obj && Array.isArray(obj.story) ? [...new Set(obj.story.map(clean0).filter(Boolean))].slice(0, 8) : [];
+  const topic = obj && typeof obj.subject === "string" ? obj.subject.trim().slice(0, 120) : "";
+  if (!src || typeof src !== "object") return { first, second, story, topic };
+  const clean = (v) => (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim()) ? v.trim().slice(0, 60) : null);
   for (let i = 0; i < count; i++) {
     const v = Array.isArray(src) ? src[i] : src[String(i)];
-    if (typeof v === "string" && v.trim() && !/^none$/i.test(v.trim())) out[i] = v.trim().slice(0, 60);
+    if (Array.isArray(v)) { first[i] = clean(v[0]); second[i] = clean(v[1]); if (second[i] === first[i]) second[i] = null; } else first[i] = clean(v);
   }
-  return out;
+  return { first, second, story, topic };
+}
+
+export function parseQueries(answer, count) {
+  return parseQueryPairs(answer, count).first;
 }
 
 export function conceptPrompt({ sentences, topic, niche }) {
-  return `You choose photographs for a short documentary video about: ${topic || "the story"} (channel niche: ${niche || "general"}).
-For EACH numbered sentence give a 2-4 word search phrase for Wikimedia Commons that finds a REAL PHOTOGRAPH of something a camera can capture which makes the
-sentence's subject visible: an object, a place, a workplace, an activity, a piece of equipment (e.g. "airline cockpit", "tide mill", "factory floor robot arm").
-Rules: never a person's name, a brand, a logo, a screenshot, a chart or a map; no abstract words ("success", "growth"); if nothing photographable fits, use null.
-Answer ONLY JSON like {"0":"airline cockpit","1":null}.
+  return `You are the picture editor of a short documentary video about: ${topic || "the story"} (channel niche: ${niche || "general"}).
+Read the WHOLE script first. Every picture must belong to this one story, so that the sequence of pictures explains the video as a whole: where it happens, what
+is at stake, the objects and places involved. Never a stock image that fits any video.
+1. "subject": the video's subject in 3-8 words (place + thing + time if the script gives them).
+2. "sentences": for EACH numbered sentence, two different 2-5 word Wikimedia Commons search phrases for a REAL PHOTOGRAPH of what that sentence says, inside the subject's world.
+   Keep the subject's place or thing in the phrase when it matters ("California wildfire smoke", not "fire"). Be specific to the claim: for "storms flooded the coast"
+   use "flooded street storm" and "storm waves pier", NOT "beach". The two phrases show different things (a wide view, then a detail).
+3. "story": 6 more phrases for photographs of the subject as a whole (landmarks, equipment, locations, daily life), used where a sentence has nothing photographable.
+Rules: never a person's name, a brand, a logo, a screenshot, a chart or a map; no abstract words ("success", "growth"); use null for a phrase when nothing photographable fits.
+Answer ONLY JSON like {"subject":"...","sentences":{"0":["airline cockpit","pilot checklist"],"1":["tide mill",null]},"story":["...","..."]}.
 
 ${sentences.map((s, i) => `${i}. ${s}`).join("\n")}`;
 }
@@ -92,17 +107,17 @@ export async function downloadPhoto(rec, destAbs) {
 /** Ask the model once for every sentence's phrase. `ask(prompt)` is injected so the tests need no provider. */
 export async function conceptQueries({ sentences, topic, niche, ask }) {
   try {
-    return parseQueries(await ask(conceptPrompt({ sentences, topic, niche })), sentences.length);
+    return parseQueryPairs(await ask(conceptPrompt({ sentences, topic, niche })), sentences.length);
   } catch (e) {
     console.error(`[concept-photo] model call failed (${e.message}); no concept photos this run`);
-    return new Array(sentences.length).fill(null);
+    return { first: new Array(sentences.length).fill(null), second: new Array(sentences.length).fill(null), story: [], topic: "" };
   }
 }
 
 export function defaultAsk() {
   return async (prompt) => {
     const { callLLM } = await import("../../src/lib/llm.js");
-    return callLLM([{ role: "user", content: prompt }], { maxTokens: 600, temperature: 0, keepAlive: 0 }, "concept-photo");
+    return callLLM([{ role: "user", content: prompt }], { maxTokens: 1800, temperature: 0, keepAlive: 0 }, "concept-photo");
   };
 }
 
@@ -111,11 +126,12 @@ export function defaultAsk() {
  * real person (a stranger's face over an unrelated claim misrepresents them), (c) not be mostly readable text, a logo, a screenshot or a chart.
  * Fails CLOSED: no answer, or an unparseable one, rejects the photo.
  */
-export function visionPrompt({ sentence, query }) {
-  return `A documentary video narrates this sentence: "${sentence}"
+export function visionPrompt({ sentence, query, topic = "" }) {
+  return `A documentary video${topic ? ` about "${topic}"` : ""} narrates this sentence: "${sentence}"
 We are considering this photograph (found with the search phrase "${query}") to show on screen while it is spoken.
-Answer ONLY JSON: {"shows_subject": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
-shows_subject = a viewer would say the photo plausibly illustrates what the sentence is about (not merely the same keyword).
+Answer ONLY JSON: {"fits_video": true|false, "misleading": true|false, "identifiable_person": true|false, "mostly_text_or_logo": true|false, "what_it_shows": "<8 words>"}
+fits_video = the photo is of the video's subject, or of something this sentence talks about (the same place, object, event or kind of thing). A photo of the subject itself counts even when it does not show the exact detail of this one sentence.
+misleading = the photo shows something else that would give a viewer a wrong idea: another place, another country, another event, or something unrelated.
 identifiable_person = a real person's face is recognisable or clearly the focus (crowds far away and silhouettes are false).
 mostly_text_or_logo = readable text, a logo, a screenshot, a document, a map or a chart fills the frame.`;
 }
@@ -126,17 +142,19 @@ export function parseVerdict(answer) {
     const m = answer.content.match(/\{[\s\S]*\}/);
     try { obj = m ? JSON.parse(m[0]) : null; } catch { obj = null; }
   }
-  if (!obj || typeof obj !== "object" || typeof obj.shows_subject !== "boolean") return { ok: false, why: "no usable verdict" };
-  if (!obj.shows_subject) return { ok: false, why: `does not show the subject (${obj.what_it_shows || "?"})` };
+  const fits = typeof obj?.fits_video === "boolean" ? obj.fits_video : obj?.shows_subject;
+  if (!obj || typeof obj !== "object" || typeof fits !== "boolean") return { ok: false, why: "no usable verdict" };
+  if (!fits) return { ok: false, why: `does not fit the video (${obj.what_it_shows || "?"})` };
+  if (obj.misleading === true) return { ok: false, why: `would mislead (${obj.what_it_shows || "?"})` };
   if (obj.identifiable_person !== false) return { ok: false, why: "shows an identifiable person" };
   if (obj.mostly_text_or_logo !== false) return { ok: false, why: "mostly text, a logo, a screenshot or a chart" };
   return { ok: true, why: obj.what_it_shows || "" };
 }
 
 /** askVision({prompt, imageBase64}) -> the model's answer. Injected for tests. */
-export async function verifyConceptPhoto({ sentence, query, jpeg, askVision }) {
+export async function verifyConceptPhoto({ sentence, query, topic = "", jpeg, askVision }) {
   try {
-    return parseVerdict(await askVision({ prompt: visionPrompt({ sentence, query }), imageBase64: jpeg.toString("base64") }));
+    return parseVerdict(await askVision({ prompt: visionPrompt({ sentence, query, topic }), imageBase64: jpeg.toString("base64") }));
   } catch (e) {
     return { ok: false, why: `vision check failed: ${e.message}` };
   }

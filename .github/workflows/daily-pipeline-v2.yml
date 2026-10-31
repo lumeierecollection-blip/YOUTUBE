@@ -1236,11 +1236,20 @@ jobs:
 
       - name: Check prep status
         id: status
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           CH="${{ matrix.channel_id }}"
           F="data/prep-status/$CH.json"
+          # Seen in runs 41134949807 (channels 4, 9, 17) and 41138064744 (9): the prep artifact downloaded with its digest verified,
+          # but data/prep-status/<ch>.json was not in data/. Re-fetch the same artifact once, and say what IS there if it is still missing.
           if [ ! -f "$F" ]; then
-            echo "::error::prep artifact for channel $CH has no status file"
+            echo "::warning::prep status missing after download; re-fetching prep-${CH}-${{ github.run_id }} once"
+            gh run download "${{ github.run_id }}" -n "prep-$CH-${{ github.run_id }}" -D data || true
+          fi
+          if [ ! -f "$F" ]; then
+            echo "::error::prep artifact for channel $CH has no status file (after a re-fetch). data/ holds:"
+            ls -la data data/prep-status 2>/dev/null || true
             exit 1
           fi
           cat "$F"

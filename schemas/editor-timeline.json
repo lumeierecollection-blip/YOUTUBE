@@ -23,7 +23,10 @@
         "text": { "type": "string", "minLength": 1 },
         "muted": { "type": "string" },
         "accent": { "type": "string", "minLength": 1 },
-        "accent2": { "type": "string" }
+        "accent2": { "type": "string" },
+        "paper": { "type": "string" },
+        "ink": { "type": "string" },
+        "accentOnInk": { "type": "string" }
       }
     },
     "fonts": {
@@ -43,7 +46,10 @@
         "y": { "type": "number" },
         "w": { "type": "number" },
         "h": { "type": "number" },
-        "size": { "type": "number" }
+        "size": { "type": "number" },
+        "plate": { "type": "string" },
+        "text": { "type": "string" },
+        "hi": { "type": "string" }
       }
     },
     "assets": {
