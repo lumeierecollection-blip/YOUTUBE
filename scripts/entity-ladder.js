@@ -111,7 +111,7 @@ function directiveFor(e, g, b, replaces) {
       const orgs = g.ents.filter((x) => x.type === "organization").map((x) => x.name).slice(0, 4);
       return orgs.length >= 2 ? { art: { kind: "plates", name: orgs.join(", "), names: orgs }, replaces } : { art: { kind: "plate-organization", name: e.name }, replaces };
     }
-    case "date": return { art: { kind: "date", name: e.name, text: e.name }, replaces };
+    case "date": return { figure: { value: e.name, label: null }, replaces };
     case "span": return { art: { kind: "span", name: e.name, text: e.name, ends: e.ends || null }, replaces };
     case "number": {
       const q = quantitiesOf(sentence).find((x) => x.value.trim() === e.name);
@@ -251,7 +251,7 @@ export function ladderAll(b, plan) {
     if (drawnOf(c).length === 1 && ["PORTRAIT", "PHOTO-CARD", "PHOTO-BAND", "SCENE-LOW", "SCENE-FULL", "ARCHITECTURE"].includes(String(c.composition || "").toUpperCase())) return [];
   }
 
-  const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" ? "figure" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
+  const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" || e.type === "date" ? "figure" : e.type === "span" ? e.type : "plate-organization");
   // Deduped by name: a figure can be both NAMED and MISSING (it is named, and
   // the beat is not drawing it), and `missing` and `allFigures` then name it
   // twice — which put "50 percent, 50 percent" in one row. A row is a set of
