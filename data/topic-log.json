@@ -1237,9 +1237,14 @@
           "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
           "slug": "openai-servicenow-enterprise-workflow-partnership",
           "reserved_at": "2026-10-31T17:46:07.826Z"
+        },
+        {
+          "topic": "GitHub Open Sources Replica AI Prototyping Tool",
+          "slug": "github-replica-open-source-ai-prototyping",
+          "reserved_at": "2026-10-31T23:07:53.375Z"
         }
       ],
-      "last_generated": "2026-10-31T22:06:48.290Z"
+      "last_generated": "2026-10-31T23:07:53.375Z"
     },
     "3": {
       "channel_name": "AI Tested",
