@@ -94,13 +94,15 @@ export function SemanticScene({ beat, colors, fontFamily }) {
   }
 
   return (
-    <Shot shot={shot} states={beat.visualStates} durationInFrames={beat.durationInFrames}>
-      <Ground material={shot.material} colors={colors} seed={(beat.startFrame || 0) + 1} />
-      <Component beat={beat} colors={colors} fontFamily={fontFamily} />
-    </Shot>
-    {/* Light falloff sits OUTSIDE the camera transform: the frame is lit,
-        not the world, so a push-in does not drag the vignette with it. */}
-    <Falloff colors={colors} strength={0.4} />
+    <>
+      <Shot shot={shot} states={beat.visualStates} durationInFrames={beat.durationInFrames}>
+        <Ground material={shot.material} colors={colors} seed={(beat.startFrame || 0) + 1} />
+        <Component beat={beat} colors={colors} fontFamily={fontFamily} />
+      </Shot>
+      {/* Light falloff sits OUTSIDE the camera transform: the frame is lit,
+          not the world, so a push-in does not drag the vignette with it. */}
+      <Falloff colors={colors} strength={0.4} />
+    </>
   );
 }
 
