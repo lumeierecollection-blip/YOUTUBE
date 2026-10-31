@@ -1,0 +1,76 @@
+{
+  "topic_slug": "chuck-klosterman-rock-velvet-underground-beatles",
+  "strongest_angle": "Cultural critic Chuck Klosterman publishes his 14th book, Rock*, presenting an alternate history where the Velvet Underground's 1967 debut album becomes the biggest-selling record in history while the Beatles fade into obscurity.",
+  "key_facts": [
+    {
+      "fact": "Cultural critic Chuck Klosterman authored his 14th book titled Rock*: A Mainstream Alternative History of Alternative Mainstream Music.",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock",
+      "source_name": "GQ",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the alternate history premise of Rock*, the 1967 album The Velvet Underground & Nico becomes the biggest-selling and most culturally influential record in history.",
+      "source_url": "https://www.wsj.com/arts-culture/books/rock-review-the-day-the-music-did-otherwise-71f58ed5",
+      "source_name": "Wall Street Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Within Chuck Klosterman's fictional universe, the Velvet Underground supplants the Beatles on the charts and in pop culture after the public spurns Sgt. Pepper's Lonely Hearts Club Band.",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock",
+      "source_name": "GQ",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Book number in author's bibliography",
+      "value": 14,
+      "unit": "books",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock"
+    },
+    {
+      "label": "Release year of the Velvet Underground debut album",
+      "value": 1967,
+      "unit": "year",
+      "source_url": "https://www.wsj.com/arts-culture/books/rock-review-the-day-the-music-did-otherwise-71f58ed5"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Chuck Klosterman",
+      "kind": "person"
+    },
+    {
+      "name": "Rock*",
+      "kind": "object"
+    },
+    {
+      "name": "The Velvet Underground & Nico",
+      "kind": "object"
+    },
+    {
+      "name": "The Beatles",
+      "kind": "organization"
+    },
+    {
+      "name": "The Velvet Underground",
+      "kind": "organization"
+    },
+    {
+      "name": "Sgt. Pepper's Lonely Hearts Club Band",
+      "kind": "object"
+    },
+    {
+      "name": "Da Capo",
+      "kind": "organization"
+    },
+    {
+      "name": "GQ",
+      "kind": "organization"
+    },
+    {
+      "name": "Wall Street Journal",
+      "kind": "organization"
+    }
+  ]
+}

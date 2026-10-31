@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "chuck-klosterman-rock-velvet-underground-beatles",
+  "format": "shorts",
+  "hook": "What if the Velvet Underground became the biggest band in history?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if the Velvet Underground became the biggest band in history?",
+      "visual_cue": "Close up of an old vinyl record spinning on a turntable."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Klosterman’s 14th book, Rock*, presents an alternate history where music culture shifts in a new direction. What if the public spurns Sgt. Pepper's Lonely Hearts Club Band, leaving The Beatles behind?",
+      "visual_cue": "Animated timeline showing the book cover next to a record sleeve."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Velvet Underground's 1967 debut album actually becomes the global bestseller.",
+      "visual_cue": "Graphic of a 1967 calendar date highlighting the debut release."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Klosterman writes that The Velvet Underground & Nico supplants The Beatles in total cultural influence. The Velvet Underground & Nico becomes the biggest-selling record in history during this 1967 timeline.",
+      "visual_cue": "Split screen comparing a Beatles album cover and the Velvet Underground debut."
+    },
+    {
+      "id": "close",
+      "voiceover": "This fictional version of The Velvet Underground & Nico outsells every other record in music history.",
+      "visual_cue": "The book title Rock* appearing on a dark, textured background."
+    }
+  ],
+  "sources_used": [
+    "https://www.gq.com/story/chuck-klosterman-rock",
+    "https://www.wsj.com/arts-culture/books/rock-review-the-day-the-music-did-otherwise-71f58ed5"
+  ]
+}
