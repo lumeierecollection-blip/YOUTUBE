@@ -1,0 +1,79 @@
+{
+  "topic_slug": "herrenknecht-tbm-panama-canal-tunnel-drive",
+  "strongest_angle": "Examine the 13.46m diameter Herrenknecht Mixshield TBM named Panamá, which finished its 4.5km subterranean drive from Farfán to Albrook on 26 October 2026, marking a major engineering milestone for Panama Metro Line 3.",
+  "key_facts": [
+    {
+      "fact": "A 13.46m diameter Herrenknecht Mixshield TBM named Panamá completed a 4.5km subterranean drive from Farfán to Albrook beneath the Panama Canal on 26 October 2026.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 13.5m-diameter Herrenknecht Mixshield TBM breakthrough at Albrook marked the completion of the first bored tunnel constructed under the waterway for Metro de Panamá's Line 3 project.",
+      "source_url": "https://tunnelingworld.com/?p=20846",
+      "source_name": "Tunneling World",
+      "confidence": "high"
+    },
+    {
+      "fact": "Project director César Pinzón and the Metro de Panamá team confirmed the successful underground excavation conclusion on Monday, 26 October 2026.",
+      "source_url": "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro",
+      "source_name": "La Prensa Panamá",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TBM Diameter (Tunnelling Journal)",
+      "value": 13.46,
+      "unit": "meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "TBM Diameter (Tunneling World)",
+      "value": 13.5,
+      "unit": "meters",
+      "source_url": "https://tunnelingworld.com/?p=20846"
+    },
+    {
+      "label": "Tunnel Drive Length",
+      "value": 4.5,
+      "unit": "kilometers",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Paná",
+      "kind": "object"
+    },
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    },
+    {
+      "name": "Farfán",
+      "kind": "place"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Panama Metro Line 3",
+      "kind": "organization"
+    },
+    {
+      "name": "César Pinzón",
+      "kind": "person"
+    },
+    {
+      "name": "Metro de Panamá",
+      "kind": "organization"
+    }
+  ]
+}

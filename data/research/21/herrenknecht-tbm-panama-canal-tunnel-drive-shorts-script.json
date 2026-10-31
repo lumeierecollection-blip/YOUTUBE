@@ -1,0 +1,74 @@
+{
+  "channel_id": "21",
+  "topic_slug": "herrenknecht-tbm-panama-canal-tunnel-drive",
+  "format": "shorts",
+  "hook": "A massive machine just carved the first tunnel beneath the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive machine just carved the first tunnel beneath the Panama Canal.",
+      "visual_cue": "Aerial shot of the Panama Canal waterway.",
+      "sfx_cue": "Deep mechanical drone fading in.",
+      "b_roll": [
+        "Aerial view of the Panama Canal"
+      ],
+      "text_overlay": {
+        "text": "First tunnel under the Panama Canal"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 26 October 2026, the 13.46m diameter Herrenknecht Mixshield TBM named Panamá finished its 4.5km drive. Why did Metro de Panamá steer this massive tunnel-boring machine beneath the Panama Canal?",
+      "visual_cue": "Close-up of a TBM cutterhead in a workshop environment.",
+      "sfx_cue": "Heavy industrial drilling sounds.",
+      "b_roll": [
+        "Stock footage of a Herrenknecht TBM cutterhead",
+        "Map animation highlighting Farfán to Albrook route"
+      ],
+      "text_overlay": {
+        "text": "4.5km subterranean drive completed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Albrook breakthrough marked the first bored tunnel ever built under the Panama Canal.",
+      "visual_cue": "Cross-section diagram of the tunnel under the canal floor.",
+      "sfx_cue": "Subtle sonar ping.",
+      "b_roll": [
+        "Technical schematic of the tunnel profile"
+      ],
+      "text_overlay": {
+        "text": "First bored tunnel for Line 3"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Project director César Pinzón confirmed the team finished the 4.5km subterranean drive on 26 October 2026.",
+      "visual_cue": "Project team on-site at the Albrook breakthrough point.",
+      "sfx_cue": "Cheering and mechanical clanking.",
+      "b_roll": [
+        "César Pinzón at the breakthrough site",
+        "Metro de Panamá logo"
+      ],
+      "text_overlay": {
+        "text": "Metro de Panamá Line 3 milestone"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Panamá TBM completed its 4.5km journey under the canal.",
+      "visual_cue": "Wide shot of the TBM emerging at the Albrook site.",
+      "sfx_cue": "Mechanical shutdown hiss.",
+      "b_roll": [
+        "TBM breakthrough footage"
+      ],
+      "text_overlay": {
+        "text": "4.5km drive finished"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://tunnelingworld.com/?p=20846"
+  ]
+}
