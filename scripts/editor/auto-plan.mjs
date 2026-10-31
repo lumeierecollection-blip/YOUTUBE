@@ -254,7 +254,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     // Places the sentence names (a big country alone is not worth a map: it would be on screen for every news item)
     const GENERIC = new Set(["United States of America", "United Kingdom", "China", "Russia"]);
     const placeHits = !gfigs.length ? matchPlaces(sentence).filter((h) => h.f.kind === "state" || !GENERIC.has(h.f.name)) : [];
-    const mapOk = placeHits.length && mapsShown < 3 && lastAsset !== "map";
+    const mapOk = placeHits.length && mapsShown < 4 && lastAsset !== "map";
     const base = { fit: "cover", filter: look.filter, gradient: look.scrim, layout: "lower", fade };
     let scene = null;
     let how = "";
@@ -374,7 +374,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           scene = { id: `s${i}-${id}`, asset: id, fit: "cover", fade };
           scene.graphic = { id: `g${i}`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: cardMode(), backdrop: true };
           how = `research figure ${spare.fig.raw} (${spare.n.label})`;
-        } else if (topicPlace && mapsShown < 3 && lastAsset !== "map") {
+        } else if (topicPlace && mapsShown < 4 && lastAsset !== "map") {
           const geo = mapFor({ highlight: [topicPlace] });
           cards.push({ id, svg: backdropSvg(palette) });
           mapsShown++;
@@ -423,7 +423,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           second = { ...scene, id: `s${i}-${alt.id}`, asset: alt.id, kicker: undefined, fade: 0 };
           how += ` then ${alt.how}`;
         } else panelDelay = Math.round(dur * 0.4 * 30); // same photo throughout; the panel arrives 40% in
-      } else if (scene.flagOf && mapsShown < 3 && lastAsset !== "map") {
+      } else if (scene.flagOf && mapsShown < 4 && lastAsset !== "map") {
         const geo = mapFor({ highlight: matchPlaces(sentence).filter((h) => h.f.kind === "country" || h.f.kind === "state").slice(0, 3) });
         const mid = `card-${i}-map`;
         cards.push({ id: mid, svg: backdropSvg(palette) });
@@ -435,6 +435,34 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         const alt = await secondPhoto();
         if (alt) { second = { ...base, id: `s${i}-${alt.id}`, asset: alt.id, fade: 0 }; how += ` then ${alt.how}`; }
       }
+    }
+    if (!second && dur > 4.5 && !scene.logo) {
+      // Last resort inside a long beat: a poster of the sentence's last clause, a different picture (the phrase is the sentence's own words).
+      const words = sentence.split(/\s+/);
+      const tail = keyPhrase(words.slice(Math.floor(words.length / 2)).join(" "));
+      const posterB = () => {
+        const pid = `card-${i}p`;
+        cards.push({ id: pid, svg: look.poster({ phrase: tail.length ? tail : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
+        return { id: `s${i}-posterb`, asset: pid, fit: "cover", fade: 0, look: look.name };
+      };
+      if (scene.graphic?.kind === "map") {
+        const spare = lastWasCard ? null : spareFigs.find(({ fig }) => !usedFigs.has(fig.raw));
+        if (spare) {
+          usedFigs.add(spare.fig.raw);
+          const cid = `card-${i}b`;
+          cards.push({ id: cid, svg: backdropSvg(palette) });
+          second = { id: `s${i}-figb`, asset: cid, fit: "cover", fade: 0, look: look.name };
+          second.graphic = { id: `g${i}b`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: cardMode(), backdrop: true };
+          how += ` then research figure ${spare.fig.raw} (${spare.n.label})`;
+        } else { second = posterB(); how += " then a poster of the last clause"; }
+      } else if (topicPlace && mapsShown < 4 && lastAsset !== "map") {
+        const mid = `card-${i}m`;
+        cards.push({ id: mid, svg: backdropSvg(palette) });
+        mapsShown++;
+        second = { id: `s${i}-mapb`, asset: mid, fit: "cover", fade: 0, look: look.name };
+        second.graphic = { id: `g${i}m`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: mapFor({ highlight: [topicPlace] }) };
+        how += ` then map of ${topicPlace.f.name} (the topic)`;
+      } else { second = posterB(); how += " then a poster of the last clause"; }
     }
     if (second) {
       second.look = look.name;

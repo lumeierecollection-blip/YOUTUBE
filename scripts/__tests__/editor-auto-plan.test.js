@@ -100,7 +100,7 @@ test("the plan builds a valid editor timeline with captions from the voiceover",
   const tl = buildTimeline(plan, { audioDuration: 22, captions });
   assert.equal(tl.durationInFrames, 660);
   assert.equal(tl.captions.length, 4);
-  assert.equal(tl.metadata.image_scene_count, 4);
+  assert.equal(tl.metadata.image_scene_count, plan.scenes.length, "one image layer per beat (a sentence can be two beats)");
   assert.ok(tl.layers.every((l) => l.out <= tl.durationInFrames));
 });
 
@@ -134,7 +134,8 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   const withFig = plan.scenes.find((x) => x.graphic);
   assert.equal(withFig.graphic.figs[0].raw, "45%", "the figure is drawn as an animated graphic beside the photo");
   assert.ok(["bar", "ring"].includes(withFig.graphic.kind));
-  assert.ok(withFig.stagger > 30, "with no second photo the same photo stays and the panel arrives part-way in");
+  if (/ then /.test(report.scenes[0].shows)) assert.ok(plan.scenes.length >= 2, "the photo beat is followed by its second visual");
+  else assert.ok(withFig.stagger > 30, "with no second visual the same photo stays and the panel arrives part-way in");
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
   assert.match(report.scenes[2].shows, /key-word poster/, "a miss never re-uses an earlier photo: each photo is shown once");
   assert.equal(plan.scenes.filter((x) => x.asset === "concept-0").length, 1, "the photo appears in one scene only");
@@ -518,12 +519,12 @@ test("places named in a sentence are matched against real country and US-state o
   assert.deepEqual(ring.map((p) => p.join(",")).sort(), ["0,0", "0,10", "10,0", "10,10"]);
 });
 
-test("a sentence that names a place, with no photo and no figure, gets a drawn map with the place highlighted (and at most three maps per video)", async () => {
+test("a sentence that names a place, with no photo and no figure, gets a drawn map with the place highlighted (and at most four maps per video)", async () => {
   const sents = ["Chile is a long thin country.", "Argentina lies on its east.", "Thailand and Cambodia disagree.", "Peru borders it to the north."];
   const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [] },
     words: sents.map((_, i) => ({ text: "w", start: i * 4, end: i * 4 + 1, sentence: i })), audioDuration: 18, resolve: async () => ({ ok: false }), concept: async () => null, queries: sents.map(() => null), style: 1 });
   const maps = r.plan.scenes.filter((s) => s.graphic?.kind === "map");
-  assert.ok(maps.length >= 1 && maps.length <= 2, `maps: ${maps.length}`);
+  assert.ok(maps.length >= 1 && maps.length <= 4, `maps: ${maps.length}`);
   assert.equal(maps[0].graphic.mode, "full", "a map beat is the whole frame");
   assert.ok(maps[0].graphic.places.highlights[0].name);
   assert.match(r.report.scenes.find((x) => /map of/.test(x.shows)).shows, /^map of Chile/);
@@ -685,4 +686,14 @@ test("a bare number card has no box, and its number sits on the open frame", () 
   assert.ok(!ls.some((l) => /-panel$/.test(l.id)), "no box");
   const n = ls.find((l) => /-n$/.test(l.id));
   assert.ok(n.rect.y >= 400 && n.rect.y + n.rect.h <= 1920, "the number sits in the open frame");
+});
+
+test("no sentence longer than 4.5 s is shown on a single visual: each long sentence has at least two beats", async () => {
+  const sents = ["The plane was flying low over the river.", "Investigators are still reading the cockpit recordings to find the cause of the fire."];
+  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, strongest_angle: "Plane crash over the river", named_entities: [], numbers: [{ label: "passengers aboard", value: 67, unit: "people", source_url: "https://news.example.org/x" }] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 9, end: 10, sentence: 1 }], audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
+  for (const sc of r.report.scenes) {
+    const beats = r.plan.scenes.filter((x) => x.start >= sc.start - 0.01 && x.end <= sc.end + 0.01);
+    if (sc.end - sc.start > 4.5) assert.ok(beats.length >= 2, `sentence ${sc.sentence} (${sc.end - sc.start}s) is one visual: ${sc.shows}`);
+  }
 });
