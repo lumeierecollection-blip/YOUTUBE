@@ -1,0 +1,71 @@
+{
+  "topic_slug": "chris-brown-producer-sues-sony-music-royalties",
+  "strongest_angle": "Examine the October 16, 2026 federal court lawsuit filed by producer Ishmael Sadiq Montague against Sony Music Entertainment in New York, demanding nearly $1.25 million over royalties for the Chris Brown single 'Party'.",
+  "key_facts": [
+    {
+      "fact": "On October 16, 2026, producer Ishmael Sadiq Montague filed a lawsuit against Sony Music Entertainment in a New York federal court seeking nearly $1.25 million.",
+      "source_url": "https://www.hotnewhiphop.com/1013944-chris-brown-party-producer-lawsuit",
+      "source_name": "HotNewHipHop",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ishmael Sadiq Montague co-produced Chris Brown's 2016 single 'Party' under the producer name ISM, which also features guest artists Gucci Mane and Usher.",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit alleges that Sony Music Entertainment paid Montague half the agreed royalty rate of 3%, accruing only 1.5% at the vendor level.",
+      "source_url": "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit",
+      "source_name": "Digital Music News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit amount",
+      "value": 1250000,
+      "unit": "USD",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate"
+    },
+    {
+      "label": "Agreed royalty rate",
+      "value": 3,
+      "unit": "percent",
+      "source_url": "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit"
+    },
+    {
+      "label": "Paid royalty rate",
+      "value": 1.5,
+      "unit": "percent",
+      "source_url": "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ishmael Sadiq Montague",
+      "kind": "person"
+    },
+    {
+      "name": "Sony Music Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Chris Brown",
+      "kind": "person"
+    },
+    {
+      "name": "Party",
+      "kind": "object"
+    },
+    {
+      "name": "Gucci Mane",
+      "kind": "person"
+    },
+    {
+      "name": "Usher",
+      "kind": "person"
+    }
+  ]
+}
