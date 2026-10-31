@@ -311,7 +311,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (!photo) continue;
       const id = `photo-${ent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
       if (id === lastAsset) continue; // never the same picture two scenes running
-      assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license };
+      assets[id] = { file: photo.file, width: photo.width, height: photo.height, credit: photo.credit, source_url: photo.source_url, license: photo.license, kind: "photo" };
       scene = { ...base, id: `s${i}-${id}`, asset: id, fy: ent.kind === "person" ? 0.3 : 0.5, kicker: ent.name };
       if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
       how = `verified photo of ${ent.name}${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
@@ -324,7 +324,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (c) {
         usedFiles.add(c.file);
         const id = `concept-${i}`;
-        assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
+        assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license, kind: "photo" };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
         if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
         how = `concept photo "${queries[sentenceIndex]}"${figs.length ? ` + figure ${figs[0].raw}` : ""}`;

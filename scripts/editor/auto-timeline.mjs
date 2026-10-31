@@ -143,7 +143,7 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   for (const c of cards) {
     const file = join(dir, `${c.id}.svg`);
     writeFileSync(file, c.svg);
-    plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Graphic: automatic editor, figures from the sources", source_url: c.source_url || source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram" };
+    plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Graphic: automatic editor, figures from the sources", source_url: c.source_url || source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram", kind: c.kind || "card" };
   }
   writeFileSync(join(dir, "plan.json"), JSON.stringify(plan, null, 2));
 

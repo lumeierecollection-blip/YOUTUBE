@@ -19,10 +19,10 @@
   },
   "caption_style": {
     "x": 80,
-    "y": 1540,
+    "y": 1500,
     "w": 920,
-    "h": 210,
-    "size": 38
+    "h": 240,
+    "size": 44
   },
   "assets": {
     "merneith-seal": {

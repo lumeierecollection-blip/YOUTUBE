@@ -25,6 +25,7 @@ import {
   isVisiblyRendered,
   layersActiveAt,
 } from "../../src/skills/remotion-render/editor/layer-math.js";
+import { assetKind, frameMetrics, gateFrameMetrics, gateTimelineMetrics, timelineMetrics } from "./qa-metrics.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const args = Object.fromEntries(
@@ -53,6 +54,7 @@ const contactPath = abs(args.contact) || outPath.replace(/\.json$/, "-contact.jp
 const framesDir = abs(args.frames) || join(ROOT, "data", "editor", "qa", `${timeline.id}-frames`);
 mkdirSync(dirname(outPath), { recursive: true });
 mkdirSync(dirname(contactPath), { recursive: true });
+const sceneMetrics = timelineMetrics(timeline);
 
 const probe = JSON.parse(
   run("ffprobe", [
@@ -121,15 +123,19 @@ if (motionShare < 0.8) fail("motion-keyframes", `only ${(motionShare * 100).toFi
 
 const wholeSeconds = Math.max(1, Math.floor(timelineDuration));
 let imageSeconds = 0;
+let photoSeconds = 0;
 let textOnlySeconds = 0;
 for (let sec = 0; sec < wholeSeconds; sec++) {
   const frame = sec * fps;
   const active = layersActiveAt(timeline, frame);
-  const hasImage = active.some((l) => (l.type === "image" || l.type === "svg") && isVisiblyRendered(l, frame));
-  if (hasImage) imageSeconds++;
-  else if (active.some((l) => l.type === "text")) textOnlySeconds++;
+  const visible = active.filter((l) => (l.type === "image" || l.type === "svg") && isVisiblyRendered(l, frame));
+  if (visible.length) {
+    imageSeconds++;
+    if (visible.some((l) => assetKind(timeline, l.asset_id) === "photo")) photoSeconds++;
+  } else if (active.some((l) => l.type === "text")) textOnlySeconds++;
 }
 const imageShare = imageSeconds / wholeSeconds;
+const photoShare = photoSeconds / wholeSeconds;
 if (imageShare < 0.8) fail("image-seconds", `only ${(imageShare * 100).toFixed(0)}% of seconds have a visible image/SVG`);
 if (textOnlySeconds > 1) fail("text-only", `${textOnlySeconds} second(s) are text-only`);
 
@@ -167,6 +173,7 @@ let staticRun = 0;
 let motionSum = 0;
 let motionCount = 0;
 let previous = null;
+const frameLumas = [];
 for (const file of frameFiles) {
   const path = join(framesDir, file);
   const { data, info } = await sharp(path).greyscale().raw().toBuffer({ resolveWithObject: true });
@@ -178,6 +185,7 @@ for (const file of frameFiles) {
   }
   const mean = sum / data.length;
   lumaSum += mean;
+  frameLumas.push(mean);
   if (mean < 5 && max < 30) blackFrames++;
   if (previous && previous.length === data.length) {
     let diff = 0;
@@ -196,9 +204,12 @@ for (const file of frameFiles) {
 }
 const meanLuma = frameFiles.length ? lumaSum / frameFiles.length : 0;
 const meanMotion = motionCount ? motionSum / motionCount : 0;
+const pixelMetrics = frameMetrics(frameLumas);
 if (blackFrames > 0) fail("black-frames", `${blackFrames} black frame(s) in the export`);
 if (maxStaticRun > 4.0) fail("static-run", `longest near-static run is ${maxStaticRun.toFixed(1)}s (limit 4.0s)`);
 if (meanMotion < 0.05) fail("motion", `mean frame motion is ${meanMotion.toFixed(3)} (limit 0.05)`);
+for (const f of gateTimelineMetrics(sceneMetrics)) failures.push(f);
+for (const f of gateFrameMetrics(pixelMetrics)) failures.push(f);
 
 /* ── Contact sheet ──────────────────────────────────────────────── */
 
@@ -237,7 +248,19 @@ const report = {
     longest_static_run_s: Number(maxStaticRun.toFixed(1)),
     image_seconds: imageSeconds,
     image_seconds_share: Number(imageShare.toFixed(3)),
+    photo_seconds: photoSeconds,
+    photo_seconds_share: Number(photoShare.toFixed(3)),
     text_only_seconds: textOnlySeconds,
+    scene_count: sceneMetrics.scene_count,
+    first_scene_end_s: sceneMetrics.first_scene_end_s,
+    median_scene_s: sceneMetrics.median_scene_s,
+    max_scene_s: sceneMetrics.max_scene_s,
+    poster_seconds: sceneMetrics.poster_seconds,
+    poster_share: sceneMetrics.poster_share,
+    max_asset_uses: sceneMetrics.max_asset_uses,
+    consecutive_asset_reuse: sceneMetrics.consecutive_asset_reuse,
+    caption_size: sceneMetrics.caption_size,
+    dark_frame_share: pixelMetrics.dark_frame_share,
     image_layers: imageLayers.length,
     scene_image_layers: sceneImages.length,
     motion_layers: movingLayers.length,
