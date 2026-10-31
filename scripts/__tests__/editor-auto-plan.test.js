@@ -86,7 +86,7 @@ test("every sentence is covered, the scenes tile the audio with no gap, and a fi
   assert.ok(report.scenes.some((s) => /figure alone 1,321/.test(s.shows)));
   assert.ok(report.scenes.some((s) => /verified photo of Sir Jane Doeson/.test(s.shows)), "the honorific-free lookup found the photo");
   assert.equal(plan.assets["photo-sir-jane-doeson"].credit, "Photo: X / Wikimedia Commons, CC0");
-  assert.ok(report.scenes.some((s) => /key-word poster/.test(s.shows)), "the unsourced 99% is not featured");
+  assert.ok(report.scenes.some((s) => /designed plate/.test(s.shows)), "the unsourced 99% is not featured");
   assert.equal(new Set(report.scenes.map((s) => s.sentence)).size, 4, "every spoken sentence is covered by at least one scene");
   assert.ok(!cards.some((c) => c.svg.includes("99%") && c.svg.includes("font-size=\"260\"")), "99% is not drawn as a figure");
   for (const s of plan.scenes) assert.ok(s.asset && (plan.assets[s.asset] || cards.some((c) => c.id === s.asset)), `scene ${s.id} has an asset`);
@@ -98,7 +98,7 @@ test("the same photo is never shown in two scenes running", async () => {
   const resolve = async () => ({ ok: true, file: "p.jpg", width: 800, height: 1000, credit: "c", source_url: "u", license: "l" });
   const { report } = await buildAutoPlan({ ...base, script: two, words: w, audioDuration: 8, resolve });
   assert.match(report.scenes[0].shows, /photo/);
-  assert.match(report.scenes[1].shows, /key-word poster/);
+  assert.match(report.scenes[1].shows, /designed plate/);
 });
 
 test("no voiceover sentence list for the script -> proportional timing, still covering the audio", async () => {
@@ -276,9 +276,9 @@ test("zoom and fade reach the timeline's image layer", () => {
   assert.deepEqual(img.keyframes.opacity.slice(0, 2).map((k) => k.v), [0, 1]);
 });
 
-test("a video with no photo at all falls back to the key-word poster, never to an empty scene", async () => {
+test("a video with no photo at all falls back to a designed plate, never to an empty scene", async () => {
   const { report } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null] });
-  assert.ok(report.scenes.some((x) => /key-word poster/.test(x.shows)));
+  assert.ok(report.scenes.some((x) => /designed plate/.test(x.shows)));
 });
 
 // ---- figures fit their width ("252 million" was clipped at 260px in a real render) ----------------------------------------------------
