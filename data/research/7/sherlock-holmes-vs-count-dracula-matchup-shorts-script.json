@@ -1,0 +1,76 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-vs-dracula-matchup",
+  "format": "shorts",
+  "hook": "Superhuman strength equal to 20 strong men defines Count Dracula, but can Sherlock Holmes outthink him?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Superhuman strength equal to 20 strong men defines Count Dracula, but can Sherlock Holmes outthink him?",
+      "visual_cue": "Side-by-side silhouette comparison of a detective and a vampire.",
+      "sfx_cue": "Low, ominous string pluck.",
+      "b_roll": [
+        "Historical Victorian London silhouette",
+        "Gothic castle silhouette"
+      ],
+      "text_overlay": {
+        "text": "Holmes vs. Dracula: The Analysis"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Bram Stoker's original text, the Count displays terrifying, superhuman physical power. Author Loren D. Estleman explored this vampire encounter in his 1978 novel, Sherlock Holmes vs. Dracula. How does the detective survive such force?",
+      "visual_cue": "Old parchment background with 18th-century ink drawings.",
+      "sfx_cue": "Page turning sound.",
+      "b_roll": [
+        "Vintage library interior",
+        "Handwritten manuscript leaf"
+      ],
+      "text_overlay": {
+        "text": "1978: Estleman's Pastiche"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Author Christian Klaver raises the stakes in his 2022 book, Sherlock Holmes and Dracula.",
+      "visual_cue": "Close-up of a modern book cover design.",
+      "sfx_cue": "Heavy thud.",
+      "b_roll": [
+        "Modern book spine on shelf"
+      ],
+      "text_overlay": {
+        "text": "2022: Klaver's Interpretation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Penguin Random House published this intense investigation across 432 pages on October 11, 2022.",
+      "visual_cue": "Magnifying glass hovering over a dense wall of text.",
+      "sfx_cue": "Focusing lens sound.",
+      "b_roll": [
+        "Victorian magnifying glass",
+        "Ink and quill on paper"
+      ],
+      "text_overlay": {
+        "text": "432 Pages of Logic"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Dracula possesses the physical strength of 20 strong men, challenging the detective's legendary deductive skills.",
+      "visual_cue": "A single candle flame flickering in the dark.",
+      "sfx_cue": "Wind whistling.",
+      "b_roll": [
+        "Flickering candle in dark room"
+      ],
+      "text_overlay": {
+        "text": "Logic vs. Strength"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.m.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula",
+    "https://en.wikipedia.org/wiki/Dracula_(character)",
+    "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver"
+  ]
+}

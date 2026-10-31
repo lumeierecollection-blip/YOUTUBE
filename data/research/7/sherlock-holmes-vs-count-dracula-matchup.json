@@ -1,0 +1,83 @@
+{
+  "topic_slug": "sherlock-holmes-vs-dracula-matchup",
+  "strongest_angle": "Analyzing the canonical attributes of Arthur Conan Doyle's Sherlock Holmes against Bram Stoker's Count Dracula using original literary sources and pastiches.",
+  "key_facts": [
+    {
+      "fact": "Sherlock Holmes vs. Dracula, or The Adventures of the Sanguinary Count is a Sherlock Holmes pastiche novel by Loren D. Estleman originally published in 1978.",
+      "source_url": "https://en.m.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chapter 18 of Bram Stoker's Dracula describes the supernatural abilities of Dracula, including superhuman strength equivalent to 20 strong men.",
+      "source_url": "https://en.wikipedia.org/wiki/Dracula_(character)",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Christian Klaver authored the book Sherlock Holmes and Dracula, published by Penguin Random House with 432 pages on October 11, 2022.",
+      "source_url": "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver",
+      "source_name": "Penguin Random House",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year of Estleman Novel",
+      "value": 1978,
+      "unit": "year",
+      "source_url": "https://en.m.wikipedia.org/wiki/Sherlock_Holmes_vs._Dracula"
+    },
+    {
+      "label": "Dracula Strength Equivalent",
+      "value": 20,
+      "unit": "strong men",
+      "source_url": "https://en.wikipedia.org/wiki/Dracula_(character)"
+    },
+    {
+      "label": "Page Count of Klaver Book",
+      "value": 432,
+      "unit": "pages",
+      "source_url": "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver"
+    },
+    {
+      "label": "Publication Day of Klaver Book",
+      "value": 11,
+      "unit": "day",
+      "source_url": "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver"
+    },
+    {
+      "label": "Publication Year of Klaver Book",
+      "value": 2022,
+      "unit": "year",
+      "source_url": "https://www.penguinrandomhouse.com/books/678794/sherlock-holmes-and-count-dracula-by-christian-klaver"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    },
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "Christian Klaver",
+      "kind": "person"
+    },
+    {
+      "name": "Penguin Random House",
+      "kind": "organization"
+    }
+  ]
+}
