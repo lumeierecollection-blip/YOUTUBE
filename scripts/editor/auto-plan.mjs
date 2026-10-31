@@ -9,8 +9,9 @@
  * Nothing is invented: a card carries only the sentence's own words and numbers, a photo only what the resolver verified, and a
  * scene's credit is recorded. A script that yields no scenes is an error, never an empty video.
  */
-import { scriptSentences } from "./captions.mjs";
+import { scriptSentenceParts } from "./captions.mjs";
 import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
+import { isAttributionSource } from "../entity-coverage.js";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 const KIND = { person: "person", people: "person", place: "place", location: "place", city: "place", country: "place", organization: "organization", company: "organization", agency: "organization", institution: "organization", university: "organization" };
@@ -84,6 +85,87 @@ export function sentenceSpans(words, count, audioDuration) {
   return starts.map((s, i) => ({ start: i === 0 ? 0 : s, end: i === count - 1 ? audioDuration : starts[i + 1] }));
 }
 
+const CLAUSE_SPLIT = /(?<=[,;:—])\s+|\s+(?=(?:and|but|so|because|while|when|after|before|until|except)\b)/i;
+const MAX_BEAT = 4.5;
+
+/** Split a spoken sentence at a clause boundary. Short fragments are merged; the caller times them against the word list. */
+export function splitClauses(sentence) {
+  const text = String(sentence || "").replace(/\s+/g, " ").trim();
+  if (!text) return [];
+  const raw = text.split(CLAUSE_SPLIT).map((s) => s.trim()).filter(Boolean);
+  const out = [];
+  for (const part of raw) {
+    const clean = part.replace(/^(?:and|but|so|because|while|when|after|before|until|except)\s+/i, "").trim();
+    if (!clean) continue;
+    const count = clean.split(/\s+/).length;
+    if (out.length && (count < 4 || out.at(-1).split(/\s+/).length < 4)) out[out.length - 1] = (out.at(-1) + " " + clean).trim();
+    else out.push(clean);
+  }
+  return out.length ? out : [text];
+}
+
+/** Clause spans inside one sentence, timed from that sentence's word list; contiguous and ending exactly at the sentence end. */
+export function clauseSpans({ sentence, start, end, words = [], sentenceIndex = 0 }) {
+  if (!(end - start > 3.2)) return [{ text: sentence, start, end }];
+  const clauses = splitClauses(sentence);
+  const sw = (words || []).filter((w) => w.sentence === sentenceIndex && Number.isFinite(w.start) && Number.isFinite(w.end)).sort((a, b) => a.start - b.start);
+  const counts = clauses.map((c) => c.split(/\s+/).filter(Boolean).length);
+  const total = counts.reduce((a, b) => a + b, 0);
+  const spans = [];
+  if (sw.length === total) {
+    let cursor = 0;
+    for (let k = 0; k < clauses.length; k++) {
+      const a = cursor;
+      const b = cursor + counts[k] - 1;
+      const s = k === 0 ? start : Math.max(start, sw[a].start);
+      const e = k === clauses.length - 1 ? end : Math.max(s + 0.05, sw[b].end);
+      spans.push({ text: clauses[k], start: s, end: e });
+      cursor += counts[k];
+    }
+  } else {
+    const totalChars = clauses.reduce((a, c) => a + Math.max(1, c.length), 0);
+    let acc = 0;
+    for (const clause of clauses) {
+      const s = start + ((end - start) * acc) / totalChars;
+      acc += Math.max(1, clause.length);
+      const e = start + ((end - start) * acc) / totalChars;
+      spans.push({ text: clause, start: s, end: e });
+    }
+  }
+  const merged = [];
+  for (const sp of spans) {
+    if (merged.length && (sp.end - sp.start < 0.8 || merged.at(-1).end - merged.at(-1).start < 0.8)) {
+      merged[merged.length - 1].text += " " + sp.text;
+      merged[merged.length - 1].end = sp.end;
+    } else merged.push({ ...sp });
+  }
+  const out = [];
+  for (const sp of merged) {
+    const inside = sw.filter((w) => w.start >= sp.start - 0.02 && w.end <= sp.end + 0.02);
+    const clauseWords = sp.text.split(/\s+/).filter(Boolean);
+    if (sp.end - sp.start > MAX_BEAT && clauseWords.length >= 6) {
+      const cut = Math.max(3, Math.min(clauseWords.length - 3, Math.round(clauseWords.length / 2)));
+      const cutTime = inside.length > cut ? inside[cut].start : sp.start + ((sp.end - sp.start) * cut) / clauseWords.length;
+      out.push({ text: clauseWords.slice(0, cut).join(" "), start: sp.start, end: cutTime });
+      out.push({ text: clauseWords.slice(cut).join(" "), start: cutTime, end: sp.end });
+    } else out.push(sp);
+  }
+  for (let k = 0; k < out.length; k++) {
+    out[k].start = k === 0 ? start : out[k - 1].end;
+    if (k === out.length - 1) out[k].end = end;
+  }
+  return out;
+}
+
+/** A resolver result must name the entity somewhere other than its own file name. Stops "Anthropic" resolving to a Slack office. */
+export function provenanceMatches(name, result = {}) {
+  const stop = new Set(["the", "of", "and", "for", "inc", "ltd", "corp", "company", "university", "organization", "organisation", "group", "institute", "agency", "department", "ministry", "city", "county", "state", "republic", "kingdom", "united"]);
+  const tokens = clean(name).split(" ").filter((t) => t.length >= 4 && !stop.has(t));
+  if (!tokens.length) return true;
+  const hay = clean(`${result.source_url || ""} ${result.page_url || ""} ${result.credit || ""}`);
+  return tokens.some((t) => hay.includes(t));
+}
+
 function proportionalSpans(sentences, audioDuration) {
   const total = sentences.reduce((a, s) => a + Math.max(1, s.length), 0);
   let acc = 0;
@@ -143,12 +225,19 @@ export function withBg(svgText, bg) {
  * Returns { plan, cards, report }. A card is { id, svg }; the CLI writes it and registers its asset.
  */
 export async function buildAutoPlan({ script, research, words, audioDuration, channel, stem, audioPath, transcriptPath, scriptPath, resolve, concept = async () => null, queries = [], style = 1, maxPhotos = 8 }) {
-  const sentences = scriptSentences(script);
+  const parts = scriptSentenceParts(script);
+  const sentences = parts.map((p) => p.text);
   if (!sentences.length) throw new Error(`auto-plan: ${stem} has no spoken sentences`);
   if (!(audioDuration > 0)) throw new Error(`auto-plan: ${stem} has no audio duration`);
   const exact = sentenceSpans(words, sentences.length, audioDuration);
   const spans = exact || proportionalSpans(sentences, audioDuration);
   const spanSource = exact ? "voiceover" : "proportional";
+  const beats = [];
+  sentences.forEach((sentence, si) => {
+    for (const c of clauseSpans({ sentence, start: spans[si].start, end: spans[si].end, words, sentenceIndex: si })) {
+      beats.push({ ...c, sentence, sentenceIndex: si, section: parts[si]?.section });
+    }
+  });
 
   const colors = channel?.colors || {};
   const palette = { bg: colors.bg || "#07070D", text: "#F5F5FF", muted: "#C9CDD6", accent: colors.canvas_accent || colors.accent || "#D4A574", accent2: colors.accent || "#D4A574" };
@@ -170,11 +259,13 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
   const misses = [];
   let lastAsset = null;
   let lastMotion = null;
-  const n = sentences.length;
+  const n = beats.length;
 
   for (let i = 0; i < n; i++) {
-    const sentence = sentences[i];
-    const { start, end } = spans[i];
+    const beat = beats[i];
+    const sentence = beat.text;
+    const sentenceIndex = beat.sentenceIndex;
+    const { start, end } = beat;
     // never the same move twice running; push strength and a fade-in (instead of a hard cut) vary per scene
     let motion = pick(rng, MOTIONS);
     if (motion === lastMotion) motion = MOTIONS[(MOTIONS.indexOf(motion) + 1 + Math.floor(rng() * 3)) % MOTIONS.length];
@@ -184,9 +275,11 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     const dy = pick(rng, DY[lookId] || [0]);
     const fn = functionOf(i, n);
     const figs = extractFigures(sentence).filter((f) => researchStates(research, f));
-    const figSource = hostOf((research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")))?.source_url) || defaultSource;
+    const figNumber = (research?.numbers || []).find((nn) => figs.some((f) => digitsOf(f.raw) === String(nn.value).replace(/[^\d.]/g, "")));
+    const figSource = hostOf(figNumber?.source_url) || defaultSource;
+    const figUrl = figNumber?.source_url || (research?.key_facts || []).find((f) => figs.some((x) => digitsOf(x.raw) && JSON.stringify(f).replace(/(\d),(\d)/g, "$1$2").includes(digitsOf(x.raw))))?.source_url || (script.sources_used || [])[0] || "";
     const overlayFor = (id) => {
-      cards.push({ id, svg: shiftSvg(look.figure({ figs, source: figSource, fn }), dy) });
+      cards.push({ id, svg: shiftSvg(look.figure({ figs, source: figSource, fn }), dy), kind: "figure", figures: figs.map((f) => f.raw), source: figSource, source_url: figUrl });
       return id;
     };
     const base = { fit: "cover", motion, filter: look.filter, gradient: look.scrim, layout: "lower", zoom, fade };
@@ -195,6 +288,10 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
 
     // 1. a verified photo of a named entity the sentence names
     for (const ent of entitiesIn(sentence, idx)) {
+      if (ent.kind === "organization" && isAttributionSource(ent.name, sentence)) {
+        misses.push({ sentence: sentenceIndex, entity: ent.name, why: "attribution source, not the subject" });
+        continue;
+      }
       let photo = photoByName.get(ent.name);
       if (photo === undefined && photos < maxPhotos) {
         // The name as the script has it, then without an honorific ("Sir Brian Leveson" -> "Brian Leveson", the title Wikipedia uses).
@@ -203,10 +300,13 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           r = await resolve({ type: ent.kind, name: candidate, context: research?.strongest_angle || "" }).catch((e) => ({ ok: false, why: String(e.message || e) }));
           if (r?.ok) break;
         }
+        if (r?.ok && (ent.kind === "organization" || ent.kind === "place") && !provenanceMatches(ent.name, r)) {
+          r = { ok: false, why: `asset metadata does not name ${ent.name}` };
+        }
         photo = r?.ok ? r : null;
         photoByName.set(ent.name, photo);
         if (photo) photos++;
-        else misses.push({ sentence: i, entity: ent.name, why: r?.why });
+        else misses.push({ sentence: sentenceIndex, entity: ent.name, why: r?.why });
       }
       if (!photo) continue;
       const id = `photo-${ent.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
@@ -219,16 +319,16 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     }
 
     // 2. a real photo of the concept the sentence is about (+ its figure drawn over it). The scene-director payoff is a flat poster instead.
-    if (!scene && !(look.payoffIsPoster && fn === "payoff" && figs.length) && queries[i]) {
-      const c = await concept({ query: queries[i], sentence, used: usedFiles }).catch(() => null);
+    if (!scene && !(look.payoffIsPoster && fn === "payoff" && figs.length) && queries[sentenceIndex]) {
+      const c = await concept({ query: queries[sentenceIndex], sentence, used: usedFiles }).catch(() => null);
       if (c) {
         usedFiles.add(c.file);
         const id = `concept-${i}`;
         assets[id] = { file: c.file, width: c.width, height: c.height, credit: c.credit, source_url: c.source_url, license: c.license };
         scene = { ...base, id: `s${i}-${id}`, asset: id };
         if (figs.length) scene.overlay = overlayFor(`overlay-${i}`);
-        how = `concept photo "${queries[i]}"${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
-      } else misses.push({ sentence: i, entity: `concept "${queries[i]}"`, why: "no acceptable Commons photo" });
+        how = `concept photo "${queries[sentenceIndex]}"${figs.length ? ` + figure ${figs[0].raw}` : ""}`;
+      } else misses.push({ sentence: sentenceIndex, entity: `concept "${queries[sentenceIndex]}"`, why: "no acceptable Commons photo" });
     }
 
     // 3. no photo: the figure alone on a flat colour, or the sentence's key words as a poster
@@ -237,7 +337,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (figs.length) {
         const flat = look.name === "scene-director" && fn === "payoff" ? null : (look.name === "hallmark" ? "#15130F" : palette.bg);
         const svgText = look.figure({ figs, source: figSource, fn });
-        cards.push({ id, svg: flat ? withBg(svgText, flat) : svgText });
+        cards.push({ id, svg: flat ? withBg(svgText, flat) : svgText, kind: "figure", figures: figs.map((f) => f.raw), source: figSource, source_url: figUrl });
         how = `figure alone ${figs.map((f) => f.raw).join(", ")}`;
       } else {
         // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a
@@ -250,7 +350,8 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           scene = { ...base, id: `s${i}-${reuse}-again`, asset: reuse, fx: pick(rng, [0.25, 0.75]), fy: pick(rng, [0.3, 0.7]) };
           how = `${reuse} again, re-framed`;
         } else {
-          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
+          const named = entitiesIn(sentence, idx)[0];
+          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource, kind: named?.kind, entity: named?.name }), kind: "poster", source: defaultSource, source_url: (script.sources_used || [])[0] || "" });
           how = "key-word poster";
         }
       }
@@ -269,7 +370,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     } else {
       scenes.push({ ...scene, start: Number(start.toFixed(3)), end: Number(end.toFixed(3)), stagger: look.stagger });
     }
-    report.push({ sentence: i, shows: how, start: Number(start.toFixed(2)), end: Number(end.toFixed(2)) });
+    report.push({ sentence: sentenceIndex, clause: sentence, shows: how, start: Number(start.toFixed(2)), end: Number(end.toFixed(2)) });
   }
 
   const plan = {
@@ -281,7 +382,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
     fps: 30,
     palette,
     fonts: { primary: font, sans: font },
-    caption_style: { x: 80, y: 1540, w: 920, h: 210, size: 38 },
+    caption_style: { x: 80, y: 1500, w: 920, h: 240, size: 44 },
     caption_replacements: {},
     assets,
     scenes,

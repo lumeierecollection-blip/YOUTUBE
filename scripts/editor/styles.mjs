@@ -21,6 +21,37 @@ const text = (x, y, size, fill, body, extra = "") => `  <text x="${x}" y="${y}" 
 const firstPercent = (figs) => figs.find((f) => f.kind === "percent" && f.value >= 0 && f.value <= 100);
 const src = (source) => (source ? `Source: ${source}` : "");
 
+/** Mix a hex colour towards white; a designed plate needs a surface that is not the near-black page. */
+const lighten = (hex, amount = 0.32) => {
+  const m = String(hex || "").match(/^#([0-9a-f]{6})$/i);
+  if (!m) return hex;
+  const n = parseInt(m[1], 16);
+  const mix = (c) => Math.round(c + (255 - c) * amount);
+  return `#${[(n >> 16) & 255, (n >> 8) & 255, n & 255].map(mix).map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+};
+const initialsOf = (s) => String(s || "").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+const readableOn = (hex) => {
+  const m = String(hex || "").match(/^#([0-9a-f]{6})$/i);
+  if (!m) return "#101114";
+  const n = parseInt(m[1], 16);
+  const luma = 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255);
+  return luma > 150 ? "#101114" : "#FFFFFF";
+};
+
+/** A designed fallback plate: a lighter surface with an entity glyph, never a full-frame black slide. */
+const plate = ({ bg, accent, phrase, kind, entity, textColor = "#FFFFFF", fontExtra = "", panel }) => {
+  const surface = panel || lighten(bg, 0.32);
+  let glyph = `  <rect x="112" y="556" width="96" height="8" fill="${xmlEscape(accent)}"/>`;
+  if (kind === "place") glyph = `  <circle cx="150" cy="600" r="34" fill="none" stroke="${xmlEscape(accent)}" stroke-width="6"/><path d="M150 566 v-22 M150 634 v22 M116 600 h-22 M184 600 h22" stroke="${xmlEscape(accent)}" stroke-width="6"/>`;
+  else if (kind === "organization") glyph = `  <rect x="108" y="556" width="96" height="96" rx="18" fill="${xmlEscape(accent)}"/><text x="156" y="618" text-anchor="middle" fill="${xmlEscape(readableOn(accent))}" font-family="${F}" font-size="38" font-weight="800">${xmlEscape(initialsOf(entity) || "ORG")}</text>`;
+  else if (kind === "person") glyph = `  <circle cx="150" cy="584" r="28" fill="${xmlEscape(accent)}"/><path d="M100 650 q50 -50 100 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="14" stroke-linecap="round"/>`;
+  return svg([
+    `  <rect x="60" y="500" width="960" height="820" rx="28" fill="${xmlEscape(surface)}" stroke="${xmlEscape(accent)}" stroke-opacity="0.35" stroke-width="3"/>`,
+    glyph,
+    ...phrase.map((w, k) => text(90, 820 + k * 140, 118, textColor, w, fontExtra)),
+  ].join("\n"), bg);
+};
+
 /** fn: the scene's function in the video, from its position. */
 export function functionOf(i, n) {
   if (i === 0) return "hook";
@@ -40,7 +71,7 @@ export function styleFor(n, pal) {
           bar ? `  <rect x="90" y="1050" width="${(9 * bar.value).toFixed(1)}" height="22" fill="${xmlEscape(accent)}"/>` : `  <rect x="90" y="1050" width="160" height="22" fill="${xmlEscape(accent)}"/>`,
           text(90, 1120, 24, "#D6D8DE", src(source))].join("\n"));
       },
-      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 760 + k * 150, 128, k === phrase.length - 1 ? accent : "#FFFFFF", w, 'font-weight="800"')).join("\n"), pal.bg),
+      poster: ({ phrase, kind, entity }) => plate({ bg: pal.bg, accent, phrase, kind, entity, textColor: "#FFFFFF", fontExtra: 'font-weight="800"' }),
     };
     case 2: return {
       name: "hallmark", scrim: "rgba(16,13,9,0.34)", filter: { sepia: 0.28, saturate: 0.5, brightness: 0.9 }, stagger: 0,
@@ -50,7 +81,7 @@ export function styleFor(n, pal) {
           text(130, 1130, size, ink, f.raw, 'serif font-weight="400"'),
           text(130, 1215, 22, "#4A463C", src(source).toUpperCase(), 'letter-spacing="3"')].join("\n"));
       },
-      poster: ({ phrase }) => svg([`  <rect x="90" y="560" width="900" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(90, 740 + k * 140, 118, "#EFE8D8", w, 'serif'))].join("\n"), "#15130F"),
+      poster: ({ phrase, kind, entity }) => plate({ bg: "#15130F", accent, phrase, kind, entity, textColor: "#EFE8D8", fontExtra: "serif", panel: "#5C574D" }),
     };
     case 3: return {
       name: "vox", scrim: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.62) 100%)", filter: { sepia: 0.18, saturate: 0.32, brightness: 0.82 }, stagger: 0,
@@ -60,7 +91,7 @@ export function styleFor(n, pal) {
           `  <path d="M${cx - w / 2} 860 C ${cx - w / 2} 700, ${cx + w / 2 - 20} 690, ${cx + w / 2} 830 C ${cx + w / 2 + 6} 990, ${cx - w / 2 + 40} 1010, ${cx - w / 2 + 6} 880" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`,
           text(cx, 1090, 22, "#C9C9C9", src(source), 'text-anchor="middle"')].join("\n"));
       },
-      poster: ({ phrase }) => svg([...phrase.map((w, k) => text(90, 800 + k * 150, 120, "#F4F1EA", w, 'font-weight="900"')), `  <path d="M90 ${830 + (phrase.length - 1) * 150} q 120 -22 240 0 t 240 0" fill="none" stroke="${xmlEscape(accent)}" stroke-width="9" stroke-linecap="round"/>`].join("\n"), "#F1EEE6".replace("F1EEE6", "0B0B0C")),
+      poster: ({ phrase, kind, entity }) => plate({ bg: "#0B0B0C", accent, phrase, kind, entity, textColor: "#F4F1EA", fontExtra: 'font-weight="900"', panel: "#58585A" }),
     };
     case 4: return {
       name: "scene-director", scrim: "rgba(6,6,8,0.5)", filter: { saturate: 0.85, brightness: 0.9 }, stagger: 0,
@@ -72,7 +103,7 @@ export function styleFor(n, pal) {
         return svg([`  <rect x="90" y="300" width="${Math.min(760, 60 + Math.ceil(f.raw.length * chipSize * 0.66))}" height="150" fill="${xmlEscape(accent)}"/>`, text(120, 410, chipSize, ink, f.raw, 'font-weight="900"')].join("\n"));
       },
       payoffIsPoster: true,
-      poster: ({ phrase }) => svg(phrase.map((w, k) => text(90, 800 + k * 150, 120, k === 0 ? accent : "#FFFFFF", w, 'font-weight="900"')).join("\n"), pal.bg),
+      poster: ({ phrase, kind, entity }) => plate({ bg: pal.bg, accent, phrase, kind, entity, textColor: "#FFFFFF", fontExtra: 'font-weight="900"' }),
     };
     case 5: return {
       name: "mograph-critic", scrim: "rgba(5,5,8,0.4)", filter: { saturate: 0.95, brightness: 0.92 }, stagger: 9,
@@ -83,7 +114,7 @@ export function styleFor(n, pal) {
           text(984, 1352, 22, "#C7CAD1", src(source), 'text-anchor="end"'),
           bar ? `  <rect x="96" y="1394" width="888" height="8" fill="rgba(255,255,255,0.18)"/><rect x="96" y="1394" width="${(8.88 * bar.value).toFixed(1)}" height="8" fill="${xmlEscape(accent)}"/>` : ""].join("\n"));
       },
-      poster: ({ phrase }) => svg([`  <rect x="96" y="640" width="120" height="6" fill="${xmlEscape(accent)}"/>`, ...phrase.map((w, k) => text(96, 780 + k * 140, 112, "#FFFFFF", w, 'font-weight="800"'))].join("\n"), pal.bg),
+      poster: ({ phrase, kind, entity }) => plate({ bg: pal.bg, accent, phrase, kind, entity, textColor: "#FFFFFF", fontExtra: 'font-weight="800"', panel: "#58585F" }),
     };
     default: throw new Error(`unknown style ${n}`);
   }

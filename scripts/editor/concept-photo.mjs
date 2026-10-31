@@ -45,6 +45,20 @@ Answer ONLY JSON like {"0":"airline cockpit","1":null}.
 ${sentences.map((s, i) => `${i}. ${s}`).join("\n")}`;
 }
 
+const CAMERA_WORDS = new Set(["close", "closeup", "close-up", "medium", "wide", "shot", "slow", "zoom", "pan", "fade", "cut", "dissolve", "macro", "footage", "b-roll", "broll", "animation", "animated", "camera", "frame", "scene", "light", "lighting", "glowing", "archival", "visualization", "visualisation", "infographic"]);
+const QUERY_STOP = new Set(["a", "an", "the", "of", "in", "on", "at", "to", "for", "from", "with", "and", "or", "but", "as", "by", "into", "over", "under", "through", "showing", "shows", "show", "displaying", "display", "featuring", "feature", "their", "his", "her", "its", "this", "that", "these", "those", "is", "are", "was", "were", "be", "been", "being", "has", "have", "had", "will", "would", "can", "could", "should", "may", "might", "must", "very", "more", "most", "about", "around", "across", "abstract", "concept", "graphic", "graphics", "chart", "diagram", "during", "after", "before", "while", "when", "where", "which", "who", "whom", "whose", "what", "how", "why"]);
+
+/** A Commons search phrase taken from the script's own b_roll / visual_cue: concrete nouns only, no camera direction. */
+export function deterministicQuery(text) {
+  const words = String(text || "")
+    .replace(/[^\p{L}\p{N}\s-]/gu, " ")
+    .split(/\s+/)
+    .map((w) => w.trim())
+    .filter(Boolean)
+    .filter((w) => !CAMERA_WORDS.has(w.toLowerCase()) && !QUERY_STOP.has(w.toLowerCase()));
+  return words.slice(0, 5).join(" ").trim();
+}
+
 async function getJson(url) {
   const ctl = new AbortController();
   const t = setTimeout(() => ctl.abort(), 20000);

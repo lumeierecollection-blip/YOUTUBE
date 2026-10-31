@@ -31,9 +31,17 @@ export function splitSentences(text) {
   return out;
 }
 
-export function scriptSentences(script) {
+export function scriptSentenceParts(script) {
   const sections = Array.isArray(script?.sections) ? script.sections : [];
-  return splitSentences(sections.map((x) => x.voiceover || "").filter(Boolean).join(" "));
+  const out = [];
+  for (const section of sections) {
+    for (const text of splitSentences(section.voiceover || "")) out.push({ text, section });
+  }
+  return out;
+}
+
+export function scriptSentences(script) {
+  return scriptSentenceParts(script).map((x) => x.text);
 }
 
 function wordsOf(sentence) {

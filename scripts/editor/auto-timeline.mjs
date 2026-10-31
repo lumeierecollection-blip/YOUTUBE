@@ -19,9 +19,9 @@ import { buildAutoPlan } from "./auto-plan.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
-import { scriptSentences } from "./captions.mjs";
+import { scriptSentenceParts } from "./captions.mjs";
 import { resolveChannel } from "../lib/channel-lookup.mjs";
-import { conceptQueries, searchCommons, downloadPhoto, defaultAsk, defaultAskVision, verifyConceptPhoto } from "./concept-photo.mjs";
+import { conceptQueries, deterministicQuery, searchCommons, downloadPhoto, defaultAsk, defaultAskVision, verifyConceptPhoto } from "./concept-photo.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
@@ -129,7 +129,12 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   const transcriptPath = join(dir, "transcript.json");
   writeFileSync(transcriptPath, JSON.stringify(transcript, null, 1));
 
-  const queries = concept ? await conceptQueries({ sentences: scriptSentences(script), topic: research?.strongest_angle, niche: channel?.niche, ask }) : [];
+  const parts = scriptSentenceParts(script);
+  const sentences = parts.map((p) => p.text);
+  const scriptQueries = parts.map((p) => deterministicQuery((Array.isArray(p.section?.b_roll) ? p.section.b_roll.find(Boolean) : "") || p.section?.visual_cue || p.text));
+  const modelQueries = concept ? await conceptQueries({ sentences, topic: research?.strongest_angle, niche: channel?.niche, ask }) : [];
+  const queries = sentences.map((_, i) => scriptQueries[i] || modelQueries[i] || null);
+  for (let i = 0; i < queries.length; i++) console.log("[concept-photo] sentence " + i + ": " + (queries[i] ? '"' + queries[i] + '" (' + (scriptQueries[i] ? "script b_roll/visual_cue" : "model") + ")" : "no query"));
   const { plan, cards, report } = await buildAutoPlan({
     script, research, words: words.words, audioDuration, channel, stem, concept, queries, style,
     audioPath: rel(audio), transcriptPath: rel(transcriptPath), scriptPath: rel(scriptPath), resolve: resolver,
@@ -138,7 +143,7 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   for (const c of cards) {
     const file = join(dir, `${c.id}.svg`);
     writeFileSync(file, c.svg);
-    plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Graphic: automatic editor, figures from the sources", source_url: source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram" };
+    plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Graphic: automatic editor, figures from the sources", source_url: c.source_url || source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram" };
   }
   writeFileSync(join(dir, "plan.json"), JSON.stringify(plan, null, 2));
 

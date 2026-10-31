@@ -1,8 +1,9 @@
-// The automatic editor plan: one scene per spoken sentence, timed by the voiceover; a verified photo when a named entity has one,
+// The automatic editor plan: one or more scenes per spoken sentence, split at clauses and timed by the voiceover; a verified photo when a named entity has one,
 // otherwise a figure card (only numbers the research states) or a key-word poster. Nothing invented, nothing left uncovered.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildAutoPlan, extractFigures, researchStates, nameVariants, sentenceSpans, entitiesIn, entityIndex } from "../editor/auto-plan.mjs";
+import { buildAutoPlan, extractFigures, researchStates, nameVariants, sentenceSpans, entitiesIn, entityIndex, splitClauses, clauseSpans } from "../editor/auto-plan.mjs";
+import { deterministicQuery } from "../editor/concept-photo.mjs";
 import { figureCard, statementCard, wrapText } from "../editor/cards.mjs";
 import { transcriptFromWords } from "../editor/auto-timeline.mjs";
 import { buildCaptions } from "../editor/captions.mjs";
@@ -38,19 +39,49 @@ test("entities: a person is found by surname, honorifics are dropped for the pho
   assert.deepEqual(nameVariants("Jane Doeson"), ["Jane Doeson"]);
 });
 
-test("every sentence gets a scene, the scenes tile the audio with no gap, and a figure the research lacks is not drawn", async () => {
+test("script queries are deterministic concrete phrases, not camera direction", () => {
+  const q = deterministicQuery("Close-up shot of handwritten historical port records glowing under digital scanning light.");
+  assert.match(q, /handwritten historical port records/);
+  for (const camera of ["close-up", "shot", "glowing"]) assert.ok(!new RegExp(`\\b${camera}\\b`, "i").test(q), `camera word ${camera} leaked`);
+});
+
+test("a clause split tiles the sentence and stays inside it", () => {
+  const s = "Pilots flew tired and hungry, and the survey found 80%.";
+  assert.equal(splitClauses(s).length, 2);
+  const spans = clauseSpans({ sentence: s, start: 4, end: 14, words: [], sentenceIndex: 0 });
+  assert.equal(spans[0].start, 4);
+  assert.equal(spans.at(-1).end, 14);
+  for (let i = 1; i < spans.length; i++) assert.equal(spans[i].start, spans[i - 1].end);
+});
+
+test("an attribution source is not a subject photo, and a mismatched asset is rejected", async () => {
+  const series = {
+    sources_used: ["https://example.com/a"],
+    sections: [{ id: "hook", voiceover: "CNBC reported that prices climbed. Anthropic released a model." }],
+  };
+  const named = { named_entities: [{ name: "CNBC", kind: "organization" }, { name: "Anthropic", kind: "organization" }], key_facts: [], numbers: [] };
+  const resolve = async ({ name }) => ({ ok: true, file: `${name}.jpg`, width: 800, height: 600, credit: "Photo: X / Wikimedia Commons, CC BY 4.0", source_url: name === "Anthropic" ? "https://example.com/slack-offices" : "https://example.com/cnbc", license: "CC BY 4.0" });
+  const w = [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 6, end: 7, sentence: 1 }];
+  const { report } = await buildAutoPlan({ ...base, script: series, research: named, words: w, audioDuration: 12, resolve, style: 1 });
+  assert.ok(report.misses.some((m) => m.entity === "CNBC" && /attribution/.test(m.why)), "CNBC is a source, not the subject");
+  assert.ok(report.misses.some((m) => m.entity === "Anthropic" && /does not name/.test(m.why)), "the Slack asset cannot stand in for Anthropic");
+  assert.equal(report.photos, 0);
+});
+
+test("every sentence is covered, the scenes tile the audio with no gap, and a figure the research lacks is not drawn", async () => {
   const resolve = async ({ name }) => (/Jane Doeson/.test(name) && !/^Sir/.test(name) ? { ok: true, file: "p.jpg", width: 800, height: 1000, credit: "Photo: X / Wikimedia Commons, CC0", source_url: "u", license: "CC0" } : { ok: false, why: "none" });
   const { plan, cards, report } = await buildAutoPlan({ ...base, resolve });
-  assert.equal(plan.scenes.length, 4);
+  assert.ok(plan.scenes.length >= 4, `scenes: ${plan.scenes.length}`);
   assert.equal(plan.scenes[0].start, 0);
-  for (let i = 1; i < 4; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
+  for (let i = 1; i < plan.scenes.length; i++) assert.equal(plan.scenes[i].start, plan.scenes[i - 1].end);
   assert.equal(plan.scenes.at(-1).end, 22);
   assert.equal(report.spans, "voiceover");
-  assert.match(report.scenes[0].shows, /figure alone 45%/);
-  assert.match(report.scenes[1].shows, /figure alone 1,321/);
-  assert.match(report.scenes[2].shows, /verified photo of Sir Jane Doeson/, "the honorific-free lookup found the photo");
+  assert.ok(report.scenes.some((s) => /figure alone 45%/.test(s.shows)));
+  assert.ok(report.scenes.some((s) => /figure alone 1,321/.test(s.shows)));
+  assert.ok(report.scenes.some((s) => /verified photo of Sir Jane Doeson/.test(s.shows)), "the honorific-free lookup found the photo");
   assert.equal(plan.assets["photo-sir-jane-doeson"].credit, "Photo: X / Wikimedia Commons, CC0");
-  assert.match(report.scenes[3].shows, /key-word poster/, "the unsourced 99% is not featured");
+  assert.ok(report.scenes.some((s) => /key-word poster/.test(s.shows)), "the unsourced 99% is not featured");
+  assert.equal(new Set(report.scenes.map((s) => s.sentence)).size, 4, "every spoken sentence is covered by at least one scene");
   assert.ok(!cards.some((c) => c.svg.includes("99%") && c.svg.includes("font-size=\"260\"")), "99% is not drawn as a figure");
   for (const s of plan.scenes) assert.ok(s.asset && (plan.assets[s.asset] || cards.some((c) => c.id === s.asset)), `scene ${s.id} has an asset`);
 });
@@ -98,7 +129,7 @@ test("the plan builds a valid editor timeline with captions from the voiceover",
   const tl = buildTimeline(plan, { audioDuration: 22, captions });
   assert.equal(tl.durationInFrames, 660);
   assert.equal(tl.captions.length, 4);
-  assert.equal(tl.metadata.image_scene_count, 4);
+  assert.equal(tl.metadata.image_scene_count, plan.scenes.length);
   assert.ok(tl.layers.every((l) => l.out <= tl.durationInFrames));
 });
 
@@ -132,7 +163,7 @@ test("a sentence with no entity gets a concept photo, with its figure drawn over
   assert.equal(plan.scenes[0].overlay, "overlay-0");
   assert.ok(cards.some((c) => c.id === "overlay-0" && c.svg.includes("45%")));
   assert.equal(plan.assets["concept-0"].credit, "Photo: Z / Wikimedia Commons, CC0");
-  assert.match(report.scenes[2].shows, /concept-0 again, re-framed/, "a miss re-uses the story's own photo, framed differently");
+  assert.ok(report.scenes.some((s) => /again, re-framed/.test(s.shows)), "a miss re-uses the story's own photo, framed differently");
 });
 
 test("each of the five looks draws a figure overlay with no gradient fill and no sentence text", () => {
@@ -211,18 +242,17 @@ test("the home look comes up about half the time, and a forced look is honoured"
   assert.ok(home > 160 && home < 260, `home look share ${home}/400`);
 });
 
-test("a long photo shot is re-framed halfway and never moves the same way twice running", async () => {
-  const { plan } = await planFor("split-test-shorts-script");
+test("a long sentence is split into clause scenes and never moves the same way twice running", async () => {
+  const { plan, report } = await planFor("split-test-shorts-script");
   const s = plan.scenes;
-  assert.ok(s.some((x) => x.id.endsWith("b")), "a scene was split");
-  const first = s.find((x) => x.id.endsWith("b"));
-  const orig = s.find((x) => x.id === first.id.slice(0, -1));
-  assert.equal(orig.end, first.start);
-  assert.equal(orig.asset, first.asset);
-  assert.notEqual(orig.motion, first.motion);
-  for (let i = 1; i < s.length; i++) assert.notEqual(s[i].motion, s[i - 1].motion, `scene ${i}`);
-  for (let i = 1; i < s.length; i++) assert.equal(s[i].start, s[i - 1].end, "no gap or overlap");
+  assert.ok(s.length > 3, `scenes: ${s.length}`);
+  assert.equal(s[0].start, 0);
+  for (let i = 1; i < s.length; i++) {
+    assert.equal(s[i].start, s[i - 1].end, "no gap or overlap");
+    assert.notEqual(s[i].motion, s[i - 1].motion, `scene ${i}`);
+  }
   assert.equal(s.at(-1).end, 24);
+  assert.ok(report.scenes.filter((x) => x.sentence === 0).length >= 2, "the first long sentence became at least two scenes");
 });
 
 test("a shifted overlay stays a valid SVG", () => {
