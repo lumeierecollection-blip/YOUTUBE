@@ -1,0 +1,84 @@
+{
+  "topic_slug": "chris-brown-producer-sony-music-lawsuit",
+  "strongest_angle": "Producer Ishmael Sadiq Montague filed a lawsuit in October 2026 against Sony Music Entertainment, alleging the company failed to pay the full 1.5% royalty rate for the song Party and stalled a rights transfer deal.",
+  "key_facts": [
+    {
+      "fact": "Producer Ishmael Sadiq Montague filed a lawsuit against Sony Music Entertainment in a New York federal court on October 16, 2026.",
+      "source_url": "https://allhiphop.com/news/chris-browns-party-producer-sues-sony-for-1-25m-over-royalty-dispute",
+      "source_name": "AllHipHop",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ishmael Sadiq Montague claims he is owed a 1.5% royalty rate on the Chris Brown song Party, but alleges Sony Music paid him at a rate of 0.75%.",
+      "source_url": "https://www.hotnewhiphop.com/1013944-chris-brown-party-producer-lawsuit",
+      "source_name": "HotNewHipHop",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit filed by Ishmael Sadiq Montague against Sony Music Entertainment seeks damages of at least $1,247,500.",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ishmael Sadiq Montague alleges that Sony Music Entertainment stalled a royalty rights deal involving Xposure Music.",
+      "source_url": "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit",
+      "source_name": "Digital Music News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Royalty rate owed",
+      "value": 1.5,
+      "unit": "percent",
+      "source_url": "https://www.hotnewhiphop.com/1013944-chris-brown-party-producer-lawsuit"
+    },
+    {
+      "label": "Royalty rate paid",
+      "value": 0.75,
+      "unit": "percent",
+      "source_url": "https://www.hotnewhiphop.com/1013944-chris-brown-party-producer-lawsuit"
+    },
+    {
+      "label": "Total damages sought",
+      "value": 1247500,
+      "unit": "dollars",
+      "source_url": "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ishmael Sadiq Montague",
+      "kind": "person"
+    },
+    {
+      "name": "Sony Music Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Chris Brown",
+      "kind": "person"
+    },
+    {
+      "name": "Party",
+      "kind": "object"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "Xposure Music",
+      "kind": "organization"
+    },
+    {
+      "name": "Gucci Mane",
+      "kind": "person"
+    },
+    {
+      "name": "Usher",
+      "kind": "person"
+    }
+  ]
+}
