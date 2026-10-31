@@ -1222,9 +1222,14 @@
           "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
           "slug": "openai-servicenow-enterprise-workflow-partnership",
           "reserved_at": "2026-10-31T17:46:07.826Z"
+        },
+        {
+          "topic": "DeepSeek V4.1 Flash Input Price Cut Down 89% in October 2026",
+          "slug": "deepseek-v4-1-flash-october-pricing-cut",
+          "reserved_at": "2026-10-31T21:01:20.132Z"
         }
       ],
-      "last_generated": "2026-10-31T20:22:43.827Z"
+      "last_generated": "2026-10-31T21:01:20.132Z"
     },
     "3": {
       "channel_name": "AI Tested",
