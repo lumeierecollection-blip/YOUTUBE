@@ -48,7 +48,8 @@ export function parseVerdict(answer) {
 /** n timestamps spread evenly through a video of `duration` seconds (never the very first or last frame). */
 export function pickTimes(duration, n) {
   const out = [];
-  for (let k = 0; k < n; k++) out.push(Number(((duration * (k + 0.5)) / n).toFixed(2)));
+  // A counter animates for about a second after its beat starts: sample after it has settled, or the critic reads a number mid-count as a bare number.
+  for (let k = 0; k < n; k++) out.push(Number(Math.min(duration - 0.3, (duration * (k + 0.5)) / n + 1.5).toFixed(2)));
   return out;
 }
 

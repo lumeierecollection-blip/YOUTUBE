@@ -437,14 +437,9 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       }
     }
     if (!second && dur > 4.5 && !scene.logo) {
-      // Last resort inside a long beat: a poster of the sentence's last clause, a different picture (the phrase is the sentence's own words).
-      const words = sentence.split(/\s+/);
-      const tail = keyPhrase(words.slice(Math.floor(words.length / 2)).join(" "));
-      const posterB = () => {
-        const pid = `card-${i}p`;
-        cards.push({ id: pid, svg: look.poster({ phrase: tail.length ? tail : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource }) });
-        return { id: `s${i}-posterb`, asset: pid, fit: "cover", fade: 0, look: look.name };
-      };
+      // A long beat with one visual is cut to a second one where the research or the topic gives one: a card gets the topic's map, a map gets
+      // an unused research figure. Nothing else is invented: no poster (a flat card with centred words reads as a template), and a beat with no
+      // such visual is left as it is, so the final QA (which refuses more than 4 s of near-stillness) decides whether the video may ship.
       if (scene.graphic?.kind === "map") {
         const spare = lastWasCard ? null : spareFigs.find(({ fig }) => !usedFigs.has(fig.raw));
         if (spare) {
@@ -454,7 +449,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           second = { id: `s${i}-figb`, asset: cid, fit: "cover", fade: 0, look: look.name };
           second.graphic = { id: `g${i}b`, kind: chooseKind([spare.fig], rng, look.name), figs: [spare.fig], source: hostOf(spare.n.source_url) || defaultSource, fn, look: look.name, label: String(spare.n.label).slice(0, 60), mode: cardMode(), backdrop: true };
           how += ` then research figure ${spare.fig.raw} (${spare.n.label})`;
-        } else { second = posterB(); how += " then a poster of the last clause"; }
+        }
       } else if (topicPlace && mapsShown < 4 && lastAsset !== "map") {
         const mid = `card-${i}m`;
         cards.push({ id: mid, svg: backdropSvg(palette) });
@@ -462,7 +457,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
         second = { id: `s${i}-mapb`, asset: mid, fit: "cover", fade: 0, look: look.name };
         second.graphic = { id: `g${i}m`, kind: "map", figs: [{ raw: topicPlace.f.name, kind: "place" }], source: defaultSource, fn, look: look.name, label: "", mode: "full", places: mapFor({ highlight: [topicPlace] }) };
         how += ` then map of ${topicPlace.f.name} (the topic)`;
-      } else { second = posterB(); how += " then a poster of the last clause"; }
+      }
     }
     if (second) {
       second.look = look.name;

@@ -549,7 +549,7 @@ test("every beat opens with a small punch-in that settles in 9 frames, then the 
 import { critique, parseVerdict as parseFrameVerdict, pickTimes, summarize } from "../editor/frame-critic.mjs";
 
 test("the frame critic samples evenly, passes the caption and topic to the model, and fails soft when the model does not answer", async () => {
-  assert.deepEqual(pickTimes(20, 4), [2.5, 7.5, 12.5, 17.5]);
+  assert.deepEqual(pickTimes(20, 4), [4, 9, 14, 19], "each sample lands after the counter has settled");
   assert.equal(parseFrameVerdict({ content: "no json" }), null);
   assert.equal(parseFrameVerdict({ verdict: "great" }), null);
   const prompts = [];
@@ -688,12 +688,12 @@ test("a bare number card has no box, and its number sits on the open frame", () 
   assert.ok(n.rect.y >= 400 && n.rect.y + n.rect.h <= 1920, "the number sits in the open frame");
 });
 
-test("no sentence longer than 4.5 s is shown on a single visual: each long sentence has at least two beats", async () => {
+test("a long beat is cut to a second visual only where the research or topic gives one: never a poster", async () => {
   const sents = ["The plane was flying low over the river.", "Investigators are still reading the cockpit recordings to find the cause of the fire."];
-  const r = await buildAutoPlan({ ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, strongest_angle: "Plane crash over the river", named_entities: [], numbers: [{ label: "passengers aboard", value: 67, unit: "people", source_url: "https://news.example.org/x" }] },
-    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 9, end: 10, sentence: 1 }], audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 });
-  for (const sc of r.report.scenes) {
-    const beats = r.plan.scenes.filter((x) => x.start >= sc.start - 0.01 && x.end <= sc.end + 0.01);
-    if (sc.end - sc.start > 4.5) assert.ok(beats.length >= 2, `sentence ${sc.sentence} (${sc.end - sc.start}s) is one visual: ${sc.shows}`);
-  }
+  const common = { ...base, script: { sources_used: ["https://example.com/a"], sections: [{ id: "a", voiceover: sents.join(" ") }] }, research: { ...research, named_entities: [], numbers: [{ label: "passengers aboard", value: 67, unit: "people", source_url: "https://news.example.org/x" }] },
+    words: [{ text: "a", start: 0, end: 1, sentence: 0 }, { text: "b", start: 9, end: 10, sentence: 1 }], audioDuration: 16, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null], style: 1 };
+  const noPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash" } });
+  assert.ok(noPlace.report.scenes.every((x) => !/then .*poster/.test(x.shows)), "no poster as a second visual");
+  const withPlace = await buildAutoPlan({ ...common, research: { ...common.research, strongest_angle: "Plane crash over Chile" } });
+  assert.ok(withPlace.report.scenes.some((x) => /then map of Chile/.test(x.shows)), "a long card gets the topic's map as its second visual");
 });
