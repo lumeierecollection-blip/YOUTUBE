@@ -351,7 +351,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
           how = `${reuse} again, re-framed`;
         } else {
           const named = entitiesIn(sentence, idx)[0];
-          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource, kind: named?.kind, entity: named?.name }), kind: "poster", source: defaultSource, source_url: (script.sources_used || [])[0] || "" });
+          cards.push({ id, svg: look.poster({ phrase: keyPhrase(sentence).length ? keyPhrase(sentence) : [String(defaultSource || "THE SOURCES").toUpperCase()], source: defaultSource, kind: named?.kind, entity: named?.name }), kind: named ? "plate" : "poster", source: defaultSource, source_url: (script.sources_used || [])[0] || "" });
           how = "key-word poster";
         }
       }

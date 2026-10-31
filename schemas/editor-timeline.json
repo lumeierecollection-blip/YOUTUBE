@@ -60,7 +60,7 @@
           "credit": { "type": "string" },
           "source_url": { "type": "string" },
           "license": { "type": "string" },
-          "kind": { "type": "string", "enum": ["photo", "figure", "poster", "card"] }
+          "kind": { "type": "string", "enum": ["photo", "figure", "poster", "card", "plate"] }
         }
       }
     },

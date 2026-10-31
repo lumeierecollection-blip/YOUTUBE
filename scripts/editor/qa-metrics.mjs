@@ -28,7 +28,7 @@ const round = (n, places = 3) => Number(Number(n).toFixed(places));
 export function assetKind(timeline, id) {
   const asset = timeline?.assets?.[id];
   if (!asset) return "unknown";
-  if (["photo", "figure", "poster", "card"].includes(asset.kind)) return asset.kind;
+  if (["photo", "figure", "poster", "card", "plate"].includes(asset.kind)) return asset.kind;
   return SVG.test(String(asset.file || "")) ? "card" : "photo";
 }
 
