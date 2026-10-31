@@ -1,0 +1,60 @@
+{
+  "topic_slug": "openai-servicenow-enterprise-workflow-partnership",
+  "strongest_angle": "OpenAI and ServiceNow announced an expanded partnership on October 28, 2026, integrating OpenAI models and agents into ServiceNow products to automate development, security, and employee workflows.",
+  "key_facts": [
+    {
+      "fact": "On October 28, 2026, OpenAI and ServiceNow announced an expanded partnership to bring OpenAI models and agents into ServiceNow workflows ranging from development to security.",
+      "source_url": "https://openai.com/index/openai-servicenow-partnership-expansion",
+      "source_name": "OpenAI",
+      "confidence": "high"
+    },
+    {
+      "fact": "ServiceNow, traded on the NYSE under the ticker NOW and headquartered in Santa Clara, California, announced the expanded collaboration on October 28, 2026.",
+      "source_url": "https://www.businesswire.com/news/home/20261028776113/en/ServiceNow-and-OpenAI-accelerate-enterprise-AI-from-models-and-operations-to-cybersecurity-and-agentic-development",
+      "source_name": "Business Wire",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to AI Affairs, the October 28, 2026 agreement expanded upon a previous January 2026 partnership between OpenAI and ServiceNow.",
+      "source_url": "https://www.aiaffairs.com/corporate/openai-servicenow-expand-enterprise-workflow-partnership",
+      "source_name": "AI Affairs",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Partnership expansion month",
+      "value": 28,
+      "unit": "day",
+      "source_url": "https://openai.com/index/openai-servicenow-partnership-expansion"
+    },
+    {
+      "label": "Partnership expansion year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://openai.com/index/openai-servicenow-partnership-expansion"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "ServiceNow",
+      "kind": "organization"
+    },
+    {
+      "name": "Santa Clara",
+      "kind": "place"
+    },
+    {
+      "name": "ChatGPT",
+      "kind": "object"
+    },
+    {
+      "name": "Codex",
+      "kind": "object"
+    }
+  ]
+}

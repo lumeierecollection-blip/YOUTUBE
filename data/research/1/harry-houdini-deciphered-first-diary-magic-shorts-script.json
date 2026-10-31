@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "harry-houdini-deciphered-first-diary-magic",
+  "format": "shorts",
+  "hook": "A little red book reveals the secret struggles of Harry Houdini from 1897 to 1899.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "A little red book reveals the secret struggles of Harry Houdini from 1897 to 1899.",
+      "visual_cue": "Close up shot of a weathered red travel diary resting on a wooden table.",
+      "sfx_cue": "Page turning sound effect.",
+      "b_roll": [
+        "Historical photograph of Harry Houdini"
+      ],
+      "animation_cue": "Subtle zoom in on the diary cover.",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "The Lost Diary"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:20",
+      "voiceover": "Author John Cox announced the publication covering 1897. Collector Dr. Bruce Averbook provided the diary for this project. Where did these early notes come from?",
+      "visual_cue": "Medium shot of historical documents displayed inside The Averbook Magic Art Museum and Library.",
+      "sfx_cue": "Soft ambient room tone.",
+      "b_roll": [
+        "The Averbook Magic Art Museum and Library interior"
+      ],
+      "animation_cue": "Pan across open archive pages.",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Escaping Obscurity"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:20-00:28",
+      "voiceover": "National Geographic writer Nina Strochlic reported that his wife, Bess, drove his stardom.",
+      "visual_cue": "Portrait photograph of Bess and Harry Houdini together.",
+      "sfx_cue": "Subtle vintage camera shutter click.",
+      "b_roll": [
+        "Archival portrait of Bess Houdini"
+      ],
+      "animation_cue": "Slow push in on the photograph.",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "The Role of Bess"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:28-00:43",
+      "voiceover": "Every page of Harry Houdini's first travel diary from 1897 to 1899 is now public. These deciphered notes chart his rise to international stardom. The collection reveals dime-store vaudeville struggles.",
+      "visual_cue": "Detailed shot of handwritten diary pages with annotations by John Cox.",
+      "sfx_cue": "Paper rustling sounds.",
+      "b_roll": [
+        "Wild About Harry publication spread"
+      ],
+      "animation_cue": "Highlighting text lines on screen.",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "International Stardom"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:43-00:50",
+      "voiceover": "Dr. Bruce Averbook holds this diary from 1897 in his collection.",
+      "visual_cue": "Wide cinematic view of a vintage vaudeville stage in 1897.",
+      "sfx_cue": "Faint theater applause fade out.",
+      "b_roll": [
+        "Vintage vaudeville theater exterior"
+      ],
+      "animation_cue": "Slow fade to black.",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Harry Houdini 1897"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wildabouthoudini.com/2025/06/you-can-now-read-houdinis-first-diary.html",
+    "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary",
+    "https://www.averbookmuseum.com/blog-posts/houdinis-earliest-known-diary-now-published"
+  ]
+}
