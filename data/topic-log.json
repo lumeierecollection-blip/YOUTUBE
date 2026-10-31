@@ -1227,9 +1227,14 @@
           "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
           "slug": "openai-servicenow-enterprise-workflow-partnership",
           "reserved_at": "2026-10-31T17:46:07.826Z"
+        },
+        {
+          "topic": "Meta Style Sketch: October 2026 AI Fashion App First Look",
+          "slug": "meta-style-sketch-ai-fashion-app-first-look",
+          "reserved_at": "2026-10-31T21:23:22.032Z"
         }
       ],
-      "last_generated": "2026-10-31T21:01:20.132Z"
+      "last_generated": "2026-10-31T21:23:22.032Z"
     },
     "3": {
       "channel_name": "AI Tested",
