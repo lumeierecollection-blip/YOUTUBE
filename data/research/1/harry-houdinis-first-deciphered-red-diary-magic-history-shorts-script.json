@@ -1,0 +1,74 @@
+{
+  "channel_id": "1",
+  "topic_slug": "harry-houdinis-first-deciphered-red-diary-magic-history",
+  "format": "shorts",
+  "hook": "A tiny red diary reveals the secret beginnings of Harry Houdini.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A tiny red diary reveals the secret beginnings of Harry Houdini.",
+      "visual_cue": "Macro shot of a weathered red leather notebook cover.",
+      "sfx_cue": "Soft page turning sound.",
+      "b_roll": [
+        "Close-up of a vintage red diary cover"
+      ],
+      "text_overlay": {
+        "text": "Houdini's Secret Diary"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Between 1897 and 1899, the young performer kept handwritten notes during his grueling vaudeville tours. Dr. What hidden struggles defined his rise before he became an international star?",
+      "visual_cue": "Historical map of 1890s vaudeville travel routes and a portrait of young Houdini.",
+      "sfx_cue": "Ambient circus music fading in.",
+      "b_roll": [
+        "Vintage vaudeville posters",
+        "Portrait of young Harry Houdini"
+      ],
+      "text_overlay": {
+        "text": "1897–1899"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except these pages contain more than just simple notes on magic tricks.",
+      "visual_cue": "Close-up of handwritten ink script on aged paper.",
+      "sfx_cue": "Pen scratching on paper.",
+      "b_roll": [
+        "Close-up of handwritten diary pages"
+      ],
+      "text_overlay": {
+        "text": "More than magic"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "National Geographic confirmed that experts finally deciphered the text, charting his evolution alongside Bess Houdini. This book, titled Escaping Obscurity, documents his transformation into a legend.",
+      "visual_cue": "Split screen showing the book cover and a photo of Bess Houdini.",
+      "sfx_cue": "Dramatic orchestral swell.",
+      "b_roll": [
+        "Book cover of Escaping Obscurity",
+        "Photo of Bess Houdini"
+      ],
+      "text_overlay": {
+        "text": "Escaping Obscurity"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The red diary captures his journey from 1897 until 1899.",
+      "visual_cue": "The book closing shut on a wooden table.",
+      "sfx_cue": "Thud of a book closing.",
+      "b_roll": [
+        "Book closing on a table"
+      ],
+      "text_overlay": {
+        "text": "1897–1899"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wildabouthoudini.com/2025/06/you-can-now-read-houdinis-first-diary.html",
+    "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary"
+  ]
+}
