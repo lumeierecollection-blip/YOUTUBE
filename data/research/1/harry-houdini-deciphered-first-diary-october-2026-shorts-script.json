@@ -1,0 +1,92 @@
+{
+  "channel_id": "1",
+  "topic_slug": "harry-houdini-deciphered-first-diary-october-2026",
+  "format": "shorts",
+  "hook": "Exactly 100 years after Harry Houdini died, his secret 1897 red diary finally emerged.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Exactly 100 years after Harry Houdini died, his secret 1897 red diary finally emerged.",
+      "visual_cue": "Archival black and white photograph of Harry Houdini performing an escape, slowly zooming into a leather diary cover.",
+      "sfx_cue": "Dramatic bass drop followed by faint ticking clock sound",
+      "b_roll": [
+        "Historical black and white portrait of Harry Houdini",
+        "Close-up of antique leather-bound journal"
+      ],
+      "animation_cue": "Slow push-in on antique journal with subtle dust particle overlay",
+      "transition_out": "Quick flash cut",
+      "text_overlay": {
+        "text": "1897 SECRET DIARY"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "On October 28, 2026, Nina Strochlic exposed his hidden notebook. Bruce Averbook's private collection finally reveal the truth behind his early vaudeville struggles?",
+      "visual_cue": "Historical news article headlines overlaying vintage vaudeville stage photography.",
+      "sfx_cue": "Paper rustling followed by soft ambient string notes",
+      "b_roll": [
+        "Vintage vaudeville theater marquee photo",
+        "Archival image of Harry Houdini and Bess"
+      ],
+      "animation_cue": "Document pan across handwritten diary text",
+      "transition_out": "Wipe right",
+      "text_overlay": {
+        "text": "OCTOBER 28, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:27",
+      "voiceover": "The Averbook Magic Art Museum & Library confirms no diary was public before this 2026 release.",
+      "visual_cue": "Slow motion shot of library archives and private collection display cases.",
+      "sfx_cue": "Low tension riser sound",
+      "b_roll": [
+        "Archive museum entrance sign",
+        "Locked museum glass display case"
+      ],
+      "animation_cue": "Subtle zoom out on museum vault shelves",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "UNPUBLISHED ARCHIVES"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:42",
+      "voiceover": "Annotator John Cox transcribed the full manuscript for the book Escaping Obscurity: The Travel Diary. National Geographic Italia confirms Harry Houdini died exactly 100 years ago on October 31, 1926.",
+      "visual_cue": "Book pages turning rapidly to reveal historical annotations and dates.",
+      "sfx_cue": "Soft book page flip sound followed by low dramatic hit",
+      "b_roll": [
+        "Close-up of book titled Escaping Obscurity",
+        "Archival newspaper reporting death of Harry Houdini"
+      ],
+      "animation_cue": "Ken Burns pan across annotated journal pages",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "CENTENARY 1926-2026"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "This 1897 travel diary finally escaped obscurity in the book Escaping Obscurity: The Travel Diary.",
+      "visual_cue": "Final still frame of the restored red travel diary fading into historic portrait of Houdini.",
+      "sfx_cue": "Final cinematic cello resolve",
+      "b_roll": [
+        "High resolution photograph of original 1897 pocket diary"
+      ],
+      "animation_cue": "Slow zoom out to full frame image",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "ESCAPING OBSCURITY"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nationalgeographic.com/culture/article/how-harry-houdini-superfans-deciphered-his-first-diary",
+    "https://www.averbookmuseum.com/blog-posts/houdinis-earliest-known-diary-now-published",
+    "https://www.nationalgeographic.it/houdini-primo-diario-magia-fine-ottocento"
+  ]
+}
