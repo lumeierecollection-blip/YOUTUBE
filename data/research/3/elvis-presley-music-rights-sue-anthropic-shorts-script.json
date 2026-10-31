@@ -1,0 +1,32 @@
+{
+  "channel_id": "3",
+  "topic_slug": "elvis-presley-music-rights-sue-anthropic",
+  "format": "shorts",
+  "hook": "Elvis's catalog faces a $48.6 million AI theft nightmare by Anthropic.",
+  "sections": [
+    {
+      "id": "setup",
+      "voiceover": "Authentic Brands Group sued Anthropic using 274 Elvis songs to train its AI. The filing alleges the move violated copyright law by stripping lyric credits. Will Anthropic face the $48.6 million damages the suit seeks?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the case seeks over $48.6 million, dwarfing typical AI lawsuits.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "A court win could force Anthropic to pay $48.6 million. That would be the biggest AI‑music copyright payout ever. It pushes the industry to reconsider training on protected songs.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "The $48.6 million claim still hangs in court.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c6rmyl0kxyxjo",
+    "https://www.musicbusinessworldwide.com/rightsholders-behind-elvis-presleys-hits-sue-anthropic-for-more-than-48-6m-alleging-it-scraped-lyrics-to-274-songs-and-stripped-songwriter-credits-to-train-claude"
+  ]
+}

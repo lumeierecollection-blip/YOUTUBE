@@ -1,0 +1,68 @@
+{
+  "topic_slug": "elvis-presley-music-rights-sue-anthropic",
+  "strongest_angle": "The lawsuit highlights the complex legal and ethical issues surrounding AI-generated music.",
+  "key_facts": [
+    {
+      "fact": "Authentic Brands Group, representing Elvis Presley’s catalog, claims Anthropic used 274 of his songs to train its Claude model without permission.",
+      "source_url": "https://www.bbc.com/news/articles/c6rmyl0kxyxjo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit alleges that Anthropic violated copyright law by using Elvis Presley's copyrighted lyrics without permission.",
+      "source_url": "https://www.musicbusinessworldwide.com/rightsholders-behind-elvis-presleys-hits-sue-anthropic-for-more-than-48-6m-alleging-it-scraped-lyrics-to-274-songs-and-stripped-songwriter-credits-to-train-claude",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit seeks over $48.6 million in damages from Anthropic for the alleged copyright violations.",
+      "source_url": "https://www.musicbusinessworldwide.com/rightsholders-behind-elvis-presleys-hits-sue-anthropic-for-more-than-48-6m-alleging-it-scraped-lyrics-to-274-songs-and-stripped-songwriter-credits-to-train-claude",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of songs",
+      "value": 274,
+      "unit": "songs",
+      "source_url": "https://www.bbc.com/news/articles/c6rmyl0kxyxjo"
+    },
+    {
+      "label": "Amount of damages",
+      "value": 48600000,
+      "unit": "dollars",
+      "source_url": "https://www.musicbusinessworldwide.com/rightsholders-behind-elvis-presleys-hits-sue-anthropic-for-more-than-48-6m-alleging-it-scraped-lyrics-to-274-songs-and-stripped-songwriter-credits-to-train-claude"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Authentic Brands Group",
+      "kind": "organization"
+    },
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Elvis Presley",
+      "kind": "person"
+    },
+    {
+      "name": "Claude",
+      "kind": "person"
+    },
+    {
+      "name": "Music Business Worldwide",
+      "kind": "organization"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Elvis Plaintiffs' claim is that Anthropic used 274 of his songs to train its AI model Claude.",
+      "speaker": "Authentic Brands Group",
+      "source_name": "Music Business Worldwide",
+      "source_url": "https://www.musicbusinessworldwide.com/rightsholders-behind-elvis-presleys-hits-sue-anthropic-for-more-than-48-6m-alleging-it-scraped-lyrics-to-274-songs-and-stripped-songwriter-credits-to-train-claude"
+    }
+  ]
+}
