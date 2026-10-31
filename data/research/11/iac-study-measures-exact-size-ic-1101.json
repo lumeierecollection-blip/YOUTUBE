@@ -1,0 +1,60 @@
+{
+  "topic_slug": "iac-study-measures-exact-size-ic-1101",
+  "strongest_angle": "An October 2026 study led by the Instituto de Astrofísica de Canarias measured the colossal galaxy IC 1101 using ultra-deep imaging, providing precise constraints on the physical size limits of the most extended known galaxy in the Universe.",
+  "key_facts": [
+    {
+      "fact": "The Instituto de Astrofísica de Canarias published a study on October 2, 2026, measuring the size of the largest known galaxy, IC 1101.",
+      "source_url": "https://www.iac.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+      "source_name": "Instituto de Astrofísica de Canarias",
+      "confidence": "high"
+    },
+    {
+      "fact": "Astronomers Carlos Marrero-de la Rosa, Ignacio Trujillo, Ignacio Ruiz Cejudo, Mireia Montes, and Fernando Buitrago authored the Astronomy & Astrophysics paper on IC 1101 published on October 1, 2026.",
+      "source_url": "https://www.aanda.org/articles/aa/full_html/2026/10/aa60963-26/aa60963-26.html",
+      "source_name": "Astronomy & Astrophysics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Instituto de Astrofísica de Canarias press release on October 2, 2026 credits C. Marrero-de la Rosa et al. for the ultra-deep imaging study of IC 1101.",
+      "source_url": "https://www.aanda.org/2026-press-releases/3241-an-iac-study-measures-the-exact-size-of-the-largest-known-galaxy",
+      "source_name": "Astronomy & Astrophysics Press Releases",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "IC 1101",
+      "kind": "object"
+    },
+    {
+      "name": "Instituto de Astrofísica de Canarias",
+      "kind": "organization"
+    },
+    {
+      "name": "Carlos Marrero-de la Rosa",
+      "kind": "person"
+    },
+    {
+      "name": "Ignacio Trujillo",
+      "kind": "person"
+    },
+    {
+      "name": "Ignacio Ruiz Cejudo",
+      "kind": "person"
+    },
+    {
+      "name": "Mireia Montes",
+      "kind": "person"
+    },
+    {
+      "name": "Fernando Buitrago",
+      "kind": "person"
+    },
+    {
+      "name": "Astronomy & Astrophysics",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

@@ -1,0 +1,79 @@
+{
+  "channel_id": "11",
+  "topic_slug": "iac-study-measures-exact-size-ic-1101",
+  "format": "shorts",
+  "hook": "IC 1101 is the most extended galaxy in the Universe, but how big is it?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "IC 1101 is the most extended galaxy in the Universe, but how big is it?",
+      "visual_cue": "Ultra-deep space imagery showing the vast, diffuse glow of galaxy IC 1101.",
+      "sfx_cue": "Deep, resonant bass swell transitioning into ethereal ambient space music.",
+      "b_roll": [
+        "NASA public-domain archival footage of deep-field galactic clusters"
+      ],
+      "text_overlay": {
+        "text": "IC 1101: The Giant Measured"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 2, 2026, the Instituto de Astrofísica de Canarias released a study of IC 1101. How large is it?",
+      "visual_cue": "Graphic overlay of the Instituto de Astrofísica de Canarias logo and a telescope pointing toward a specific galactic coordinate.",
+      "sfx_cue": "Soft, rhythmic digital pulse representing data collection.",
+      "b_roll": [
+        "Instituto de Astrofísica de Canarias facility exterior",
+        "Computer screen showing raw astronomical data processing"
+      ],
+      "text_overlay": {
+        "text": "Instituto de Astrofísica de Canarias Study"
+      },
+      "transition_out": "cross-dissolve"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Instituto de Astrofísica de Canarias team used ultra-deep imaging to define its physical limits.",
+      "visual_cue": "Slow zoom into the center of IC 1101, showing the fading light of its outer stars.",
+      "sfx_cue": "Low frequency hum heightening tension.",
+      "b_roll": [
+        "Public-domain simulation of galactic light distribution"
+      ],
+      "text_overlay": {
+        "text": "Defining the Edge"
+      },
+      "transition_out": "fade-to-white"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Carlos Marrero-de la Rosa and his colleagues published these precise size constraints in Astronomy & Astrophysics. Their October 2026 study confirms IC 1101 remains the most extended galaxy in the Universe.",
+      "visual_cue": "Text overlay of the publication title, Astronomy & Astrophysics, superimposed on a star field.",
+      "sfx_cue": "Sparkling chime sound as the text appears.",
+      "b_roll": [
+        "Astronomy & Astrophysics journal digital landing page",
+        "Public-domain wide-angle space survey"
+      ],
+      "text_overlay": {
+        "text": "Astronomy & Astrophysics Publication"
+      },
+      "transition_out": "slow-zoom"
+    },
+    {
+      "id": "close",
+      "voiceover": "Read the Instituto de Astrofísica de Canarias report to explore the full study data today.",
+      "visual_cue": "Wide, panoramic view of the night sky fading into the vast darkness of space.",
+      "sfx_cue": "Fading orchestral synth note.",
+      "b_roll": [
+        "Time-lapse of the night sky"
+      ],
+      "text_overlay": {
+        "text": "The Scale of the Universe"
+      },
+      "transition_out": "fade-to-black"
+    }
+  ],
+  "sources_used": [
+    "https://www.iac.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+    "https://www.aanda.org/articles/aa/full_html/2026/10/aa60963-26/aa60963-26.html"
+  ]
+}
