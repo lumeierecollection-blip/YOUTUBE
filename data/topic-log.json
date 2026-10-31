@@ -570,9 +570,14 @@
           "topic": "60 Years After Aberfan: National Library of Wales Releases New Books of Remembrance",
           "slug": "aberfan-60-years-books-of-remembrance",
           "reserved_at": "2026-10-24T12:51:32.628Z"
+        },
+        {
+          "topic": "Harry Houdini's Deciphered First Diary Reveals Lost Turn-of-the-Century Magic",
+          "slug": "harry-houdini-deciphered-first-diary-magic",
+          "reserved_at": "2026-10-31T17:44:35.502Z"
         }
       ],
-      "last_generated": "2026-10-24T12:51:32.628Z"
+      "last_generated": "2026-10-31T17:44:35.502Z"
     },
     "2": {
       "channel_name": "AI Tested",
