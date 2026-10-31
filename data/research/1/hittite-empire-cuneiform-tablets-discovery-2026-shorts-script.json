@@ -1,0 +1,89 @@
+{
+  "channel_id": "1",
+  "topic_slug": "hittite-empire-cuneiform-tablets-discovery-2026",
+  "format": "shorts",
+  "hook": "131 hidden cuneiform tablets reveal a lost royal tragedy buried for 3,400 years in Turkey.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "131 hidden cuneiform tablets reveal a lost royal tragedy buried for 3,400 years in Turkey.",
+      "visual_cue": "Close up shot of ancient cuneiform clay tablets resting on a dark museum table under warm lighting.",
+      "sfx_cue": "Low subtle cinematic drone",
+      "b_roll": [
+        "Historical artifact museum display of cuneiform tablets"
+      ],
+      "animation_cue": "Subtle slow zoom in on the artifact",
+      "transition_out": "Cut to excavation site",
+      "text_overlay": {
+        "text": "131 Ancient Tablets Discovered"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-20s",
+      "voiceover": "What did researchers find when archaeologists at Kayalıpınar started digging? Çiğdem Maner led Koç University excavations at the site since 2021.",
+      "visual_cue": "Wide panning shot of the Kayalıpınar archaeological dig site in central Turkey with workers brushing soil from stones.",
+      "sfx_cue": "Soft wind ambient sound",
+      "b_roll": [
+        "Kayalıpınar archaeological excavation site aerial view",
+        "Archaeologists brushing soil from ancient stone ruins"
+      ],
+      "animation_cue": "Pan across the dig site trenches",
+      "transition_out": "Cut to university laboratory",
+      "text_overlay": {
+        "text": "Kayalıpınar Excavation Site"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "20-27s",
+      "voiceover": "Except that single discovery pushes the site archive total to 184 tablets.",
+      "visual_cue": "Medium shot of a researcher examining stone inscriptions with a magnifying glass in a bright laboratory.",
+      "sfx_cue": "Paper rustling and subtle metallic tone",
+      "b_roll": [
+        "Researcher examining clay tablets in laboratory close up"
+      ],
+      "animation_cue": "Quick push in on the tablet surface details",
+      "transition_out": "Cut to archival records",
+      "text_overlay": {
+        "text": "184 Total Tablets Found"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "27-43s",
+      "voiceover": "Mehmet Nuri Ersoy announced that 131 newly found tablets detail Hittite royal tragedies. Mehmet Nuri Ersoy confirmed these texts date to King Tudhaliya II's reign.",
+      "visual_cue": "Overhead shot of detailed clay inscriptions under side lighting showing wedge-shaped cuneiform characters clearly.",
+      "sfx_cue": "Rising string chord",
+      "b_roll": [
+        "Detailed macro shot of cuneiform wedge writing on dry clay"
+      ],
+      "animation_cue": "Slow orbital camera movement around the clay tablet",
+      "transition_out": "Fade to final graphic",
+      "text_overlay": {
+        "text": "3,400-Year-Old Royal Archive"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "43-48s",
+      "voiceover": "184 total tablets preserved the lost Hittite history.",
+      "visual_cue": "Cinematic wide shot of the central Turkey landscape fading into sunset behind ancient stone ruins.",
+      "sfx_cue": "Fading ambient wind sound",
+      "b_roll": [
+        "Central Turkey landscape at dusk over ancient ruins"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "End screen",
+      "text_overlay": {
+        "text": "History Preserved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
+    "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered",
+    "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946"
+  ]
+}
