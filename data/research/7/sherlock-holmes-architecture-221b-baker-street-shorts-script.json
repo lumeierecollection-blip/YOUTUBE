@@ -1,0 +1,73 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-architecture-221b-baker-street",
+  "format": "shorts",
+  "hook": "221B Baker Street is famous for housing Sherlock Holmes, yet the address never actually existed.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "221B Baker Street is famous for housing Sherlock Holmes, yet the address never actually existed.",
+      "visual_cue": "Close up on a vintage London street sign reading Baker Street.",
+      "sfx_cue": "Sound of a distant horse carriage on cobblestones.",
+      "b_roll": [
+        "19th-century London street map illustration"
+      ],
+      "text_overlay": {
+        "text": "221B Baker Street: A Non-Existent Address"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Arthur Conan Doyle wrote that Holmes and John Watson resided there from 1881 to 1904. During those years, the building was physically missing from the real London street. Where did they live?",
+      "visual_cue": "Portrait of Arthur Conan Doyle transitioning to a 19th-century map of Baker Street.",
+      "sfx_cue": "Sound of a pen scratching on paper.",
+      "b_roll": [
+        "Victorian-era London street scene illustration",
+        "Arthur Conan Doyle portrait"
+      ],
+      "text_overlay": {
+        "text": "1881-1904: The Fictional Residency"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Smithsonian Magazine notes the address didn't exist in 1881, nor did it exist in 1887.",
+      "visual_cue": "Text overlay highlighting the Smithsonian Magazine source and the missing years.",
+      "sfx_cue": "Sharp clock tick.",
+      "b_roll": [
+        "Smithsonian Magazine logo graphic"
+      ],
+      "text_overlay": {
+        "text": "Fact: No 221B in 1881 or 1887"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Martin toyed for forty years with building a full-scale replica of the famous room. Arthur Conan Doyle simply placed the duo on a street plot that did not exist.",
+      "visual_cue": "Illustration of a cozy Victorian study interior.",
+      "sfx_cue": "Atmospheric fireplace crackle.",
+      "b_roll": [
+        "Victorian study desk illustration"
+      ],
+      "text_overlay": {
+        "text": "An Imaginary Home"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The famous 221B Baker Street remains a purely fictional construct.",
+      "visual_cue": "Wide shot of a foggy London street at night.",
+      "sfx_cue": "Fading carriage sound.",
+      "b_roll": [
+        "Foggy London street illustration"
+      ],
+      "text_overlay": {
+        "text": "221B Baker Street: Pure Fiction"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784",
+    "http://xneb.org/tedbe/sh/221b/My_own_221b.pdf"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "topic_slug": "sherlock-holmes-architecture-221b-baker-street",
+  "strongest_angle": "An architectural and spatial analysis showing how Arthur Conan Doyle placed Sherlock Holmes and John Watson at 221B Baker Street from 1881 to 1904, despite the address not physically existing on Baker Street during those years.",
+  "key_facts": [
+    {
+      "fact": "According to Arthur Conan Doyle's stories, Sherlock Holmes and John Watson lived at 221B Baker Street from 1881 to 1904.",
+      "source_url": "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jimmy Stamp notes that 221B Baker Street did not exist in 1881, nor did it exist in 1887.",
+      "source_url": "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Martin notes in Planning and Building a replica of 221B Baker Street that for forty years he toyed with the idea of making a full-scale replica of the room.",
+      "source_url": "http://xneb.org/tedbe/sh/221b/My_own_221b.pdf",
+      "source_name": "xneb.org",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Residence start year for Holmes and Watson",
+      "value": 1881,
+      "unit": "year",
+      "source_url": "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784"
+    },
+    {
+      "label": "Residence end year for Holmes and Watson",
+      "value": 1904,
+      "unit": "year",
+      "source_url": "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784"
+    },
+    {
+      "label": "First year 221B Baker Street did not exist in reality",
+      "value": 1881,
+      "unit": "year",
+      "source_url": "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784"
+    },
+    {
+      "label": "Second year 221B Baker Street did not exist in reality",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://www.smithsonianmag.com/arts-culture/the-mystery-of-221b-baker-street-3608784"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "John Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "221B Baker Street",
+      "kind": "place"
+    },
+    {
+      "name": "Jimmy Stamp",
+      "kind": "person"
+    },
+    {
+      "name": "Smithsonian Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "Gavin Brend",
+      "kind": "person"
+    },
+    {
+      "name": "Alison L. Booth",
+      "kind": "person"
+    },
+    {
+      "name": "University of Minnesota",
+      "kind": "organization"
+    }
+  ]
+}
