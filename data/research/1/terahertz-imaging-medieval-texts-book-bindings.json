@@ -1,0 +1,113 @@
+{
+  "topic_slug": "terahertz-imaging-medieval-texts-book-bindings",
+  "strongest_angle": "Researchers at the Georgia Institute of Technology and Bar-Ilan University launched a project in October 2026 using terahertz imaging funded by a $25,000 National Endowment for the Humanities award to reveal medieval texts hidden inside Spanish book bindings following the 1492 expulsion.",
+  "key_facts": [
+    {
+      "fact": "The National Endowment for the Humanities awarded $25,000 to the Georgia Tech Research Corporation for the project starting October 1, 2026.",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26",
+      "source_name": "NEH Award Search",
+      "confidence": "high"
+    },
+    {
+      "fact": "Dr. Leor Jacobi at Bar-Ilan University and Prof. David Citrin at the Georgia Institute of Technology are collaborating on using terahertz imaging to reveal hidden texts in medieval Spanish book bindings.",
+      "source_url": "https://www.linkedin.com/posts/u-s--israel-binational-science-foundation_neh-bsf-humanitiesresearch-activity-7493260552534712320-CoJ3",
+      "source_name": "U.S.-Israel Binational Science Foundation LinkedIn",
+      "confidence": "high"
+    },
+    {
+      "fact": "When the Jewish community was expelled from much of the Iberian Peninsula in 1492, many books stayed behind and were reused to build bindings or covers for other manuscripts.",
+      "source_url": "https://news.research.gatech.edu/2026/10/30/terahertz-imaging-could-reveal-medieval-texts-hidden-book-bindings",
+      "source_name": "Research News Center Georgia Tech",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "NEH Award Amount",
+      "value": 25000,
+      "unit": "dollars",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Project Start Date Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Project Start Date Month",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Project Start Date Day",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Project End Date Year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Project End Date Month",
+      "value": 9,
+      "unit": "month",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Project End Date Day",
+      "value": 30,
+      "unit": "day",
+      "source_url": "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26"
+    },
+    {
+      "label": "Expulsion Year",
+      "value": 1492,
+      "unit": "year",
+      "source_url": "https://news.research.gatech.edu/2026/10/30/terahertz-imaging-could-reveal-medieval-texts-hidden-book-bindings"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Georgia Institute of Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Bar-Ilan University",
+      "kind": "organization"
+    },
+    {
+      "name": "Georgia Tech Research Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "David S. Citrin",
+      "kind": "person"
+    },
+    {
+      "name": "Leor Jacobi",
+      "kind": "person"
+    },
+    {
+      "name": "National Endowment for the Humanities",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S.-Israel Binational Science Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "Iberian Peninsula",
+      "kind": "place"
+    },
+    {
+      "name": "Atlanta",
+      "kind": "place"
+    }
+  ]
+}

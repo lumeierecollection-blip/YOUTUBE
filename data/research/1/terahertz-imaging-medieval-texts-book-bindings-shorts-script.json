@@ -1,0 +1,75 @@
+{
+  "channel_id": "1",
+  "topic_slug": "terahertz-imaging-medieval-texts-book-bindings",
+  "format": "shorts",
+  "hook": "Researchers are using a $25,000 National Endowment for the Humanities grant to uncover lost Jewish manuscripts.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Researchers are using a $25,000 National Endowment for the Humanities grant to uncover lost Jewish manuscripts.",
+      "visual_cue": "Close-up of an ancient, weathered leather book spine on a wooden library table.",
+      "sfx_cue": "Soft page-turning sound.",
+      "b_roll": [
+        "Macro shot of antique book binding"
+      ],
+      "text_overlay": {
+        "text": "Hidden Medieval Texts"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Will terahertz imaging finally reveal the Jewish texts hidden inside these 1492 Spanish book bindings?",
+      "visual_cue": "Split screen showing a laboratory scanner and a 15th-century map of the Iberian Peninsula.",
+      "sfx_cue": "High-tech scanning digital hum.",
+      "b_roll": [
+        "Laboratory imaging equipment",
+        "15th-century map of Spain"
+      ],
+      "text_overlay": {
+        "text": "1492 Expulsion"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Jewish communities were expelled from the Iberian Peninsula in 1492, leaving behind books repurposed as bindings.",
+      "visual_cue": "Slow zoom into a dark, layered parchment texture.",
+      "sfx_cue": "Low atmospheric tension swell.",
+      "b_roll": [
+        "Extreme close-up of aged parchment"
+      ],
+      "text_overlay": {
+        "text": "Lost for Centuries"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Dr. Leor Jacobi and Prof. David Citrin use terahertz imaging to scan these historic, repurposed artifacts. This technology successfully reveals the hidden medieval texts trapped inside the 1492 Spanish book bindings.",
+      "visual_cue": "Portraits of the researchers overlaid with a digital terahertz scan effect.",
+      "sfx_cue": "Subtle data processing beep.",
+      "b_roll": [
+        "David S. Citrin profile photo",
+        "Leor Jacobi profile photo",
+        "Terahertz sensor illustration"
+      ],
+      "text_overlay": {
+        "text": "$25,000 NEH Grant"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Georgia Institute of Technology and Bar-Ilan University launched this project on October 1, 2026.",
+      "visual_cue": "Wide shot of an ancient book resting on a shelf in a dimly lit archive.",
+      "sfx_cue": "Resonant, fading echo.",
+      "b_roll": [
+        "Archive library shelves"
+      ],
+      "text_overlay": {
+        "text": "1492 Artifacts"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://awardsearch.neh.gov/AwardDetail.aspx?gn=RZ-310753-26",
+    "https://news.research.gatech.edu/2026/10/30/terahertz-imaging-could-reveal-medieval-texts-hidden-book-bindings"
+  ]
+}
