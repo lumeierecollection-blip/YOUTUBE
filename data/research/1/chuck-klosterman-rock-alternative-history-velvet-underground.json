@@ -1,0 +1,61 @@
+{
+  "topic_slug": "chuck-klosterman-rock-alternative-history-velvet-underground",
+  "strongest_angle": "Investigating cultural critic Chuck Klosterman's 14th book, Rock*, which explores an alternative history where the Velvet Underground's 1967 debut album supplanted the Beatles as the defining commercial and cultural force in rock music.",
+  "key_facts": [
+    {
+      "fact": "Cultural critic Chuck Klosterman published his 14th book titled Rock*: A Mainstream Alternative History of Alternative Mainstream Music in 2026.",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock",
+      "source_name": "GQ",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the alternate history constructed by author Chuck Klosterman in Rock*, the 1967 album The Velvet Underground and Nico becomes the biggest-selling and most culturally influential record in history.",
+      "source_url": "https://www.wsj.com/arts-culture/books/rock-review-the-day-the-music-did-otherwise-71f58ed5",
+      "source_name": "WSJ",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chuck Klosterman's 14th book, Rock*, maps a fictional universe where the public spurns Sgt. Pepper's Lonely Hearts Club Band as corny.",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock",
+      "source_name": "GQ",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Book number in author's bibliography",
+      "value": 14,
+      "unit": "book",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock"
+    },
+    {
+      "label": "Publication year of the Velvet Underground and Nico album",
+      "value": 1967,
+      "unit": "year",
+      "source_url": "https://www.gq.com/story/chuck-klosterman-rock"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Chuck Klosterman",
+      "kind": "person"
+    },
+    {
+      "name": "The Velvet Underground",
+      "kind": "organization"
+    },
+    {
+      "name": "The Beatles",
+      "kind": "organization"
+    },
+    {
+      "name": "Rock*",
+      "kind": "object"
+    },
+    {
+      "name": "Sgt. Pepper's Lonely Hearts Club Band",
+      "kind": "object"
+    }
+  ]
+}

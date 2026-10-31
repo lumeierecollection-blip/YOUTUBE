@@ -1,0 +1,76 @@
+{
+  "channel_id": "1",
+  "topic_slug": "chuck-klosterman-rock-alternative-history-velvet-underground",
+  "format": "shorts",
+  "hook": "What if the most influential rock album in history wasn't The Beatles?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if the most influential rock album in history wasn't The Beatles?",
+      "visual_cue": "A split screen showing The Beatles and The Velvet Underground icons.",
+      "sfx_cue": "Distorted electric guitar feedback fades into a clean chord.",
+      "b_roll": [
+        "Vintage 1960s recording studio stills",
+        "Public domain black and white photography of rock musicians"
+      ],
+      "text_overlay": {
+        "text": "The Beatles vs. The Velvet Underground"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, cultural critic Chuck Klosterman released his 14th book, Rock*. It maps a universe where the 1967 debut from The Velvet Underground dominates global charts. Pepper's Lonely Hearts Club Band?",
+      "visual_cue": "Close up of the book cover Rock* by Chuck Klosterman.",
+      "sfx_cue": "Page turning sound effect.",
+      "b_roll": [
+        "Chuck Klosterman book cover art",
+        "1960s vinyl record spinning on a turntable"
+      ],
+      "text_overlay": {
+        "text": "Chuck Klosterman's 14th book: Rock*"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "In this reality, listeners reject that Beatles record because they find it too corny.",
+      "visual_cue": "A record store bin with a 'Sgt. Pepper' album marked down.",
+      "sfx_cue": "Sound of a needle scratching across a vinyl record.",
+      "b_roll": [
+        "Vintage record store interior",
+        "Close up of 1960s album cover art"
+      ],
+      "text_overlay": {
+        "text": "Sgt. Pepper's deemed 'corny'"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Klosterman argues that The Velvet Underground and Nico becomes the ultimate commercial force. This version of history makes that 1967 album the biggest-selling record ever. The Velvet Underground replaces the entire trajectory of mainstream rock music.",
+      "visual_cue": "Animated chart showing album sales rising for The Velvet Underground.",
+      "sfx_cue": "Rhythmic drum beat building in intensity.",
+      "b_roll": [
+        "Conceptual chart animation",
+        "Vintage concert footage of 1960s crowds"
+      ],
+      "text_overlay": {
+        "text": "The Velvet Underground: The biggest band in history"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "It remains a fascinating 14th book for the author.",
+      "visual_cue": "The author Chuck Klosterman sitting at a desk with his books.",
+      "sfx_cue": "Soft acoustic guitar strum fading out.",
+      "b_roll": [
+        "Author portrait in a library setting"
+      ],
+      "text_overlay": {
+        "text": "Rock* by Chuck Klosterman"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.gq.com/story/chuck-klosterman-rock",
+    "https://www.wsj.com/arts-culture/books/rock-review-the-day-the-music-did-otherwise-71f58ed5"
+  ]
+}
