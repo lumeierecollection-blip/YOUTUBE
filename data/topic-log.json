@@ -600,9 +600,14 @@
           "topic": "MI5 False Evidence in Neo-Nazi Spy Case Declared a Serious Intelligence Failing",
           "slug": "mi5-false-evidence-watchdog-report-2026",
           "reserved_at": "2026-10-30T15:11:01.008Z"
+        },
+        {
+          "topic": "Harry Houdini's First Newly Deciphered Red Diary Reveals Magic History",
+          "slug": "harry-houdinis-first-deciphered-red-diary-magic-history",
+          "reserved_at": "2026-10-31T14:40:26.653Z"
         }
       ],
-      "last_generated": "2026-10-30T15:11:01.008Z"
+      "last_generated": "2026-10-31T14:40:26.653Z"
     },
     "2": {
       "channel_name": "AI Tested",
