@@ -1,0 +1,78 @@
+{
+  "topic_slug": "super-el-nino-iguazu-falls-record-rates",
+  "strongest_angle": "The October 2026 Super El Nino weather phenomenon triggered torrential rains across South America, causing the Iguazu River to surge up to 10 times its normal flow rate and forcing the temporary closure of Iguazu National Park.",
+  "key_facts": [
+    {
+      "fact": "The Iguazu River flowed at six times the normal rate after heavy rains, leading national park officials to limit tourist access at Iguazu Falls.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Iguazu Falls reached a record water flow of 10 times the normal amount driven by El Nino weather patterns across the river basin.",
+      "source_url": "https://www.theguardian.com/world/video/2026/oct/16/iguazu-falls-in-south-america-hits-record-10-times-normal-water-flow-video",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Heavy rains linked to El Nino continued flooding swaths of Argentina, Paraguay, and Uruguay in October 2026, forcing thousands of people from their homes.",
+      "source_url": "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Iguazu Falls complex spans more than a mile across the Brazil-Argentina border.",
+      "source_url": "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino",
+      "source_name": "NPR",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Iguazu River flow rate multiple",
+      "value": 6,
+      "unit": "times normal",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    },
+    {
+      "label": "Peak Iguazu Falls record flow rate multiple",
+      "value": 10,
+      "unit": "times normal",
+      "source_url": "https://www.theguardian.com/world/video/2026/oct/16/iguazu-falls-in-south-america-hits-record-10-times-normal-water-flow-video"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Iguazú Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Paraguay",
+      "kind": "place"
+    },
+    {
+      "name": "Uruguay",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú River",
+      "kind": "place"
+    },
+    {
+      "name": "Corrientes province",
+      "kind": "place"
+    }
+  ]
+}

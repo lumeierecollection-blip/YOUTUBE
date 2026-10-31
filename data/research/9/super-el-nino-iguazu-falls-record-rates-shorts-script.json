@@ -1,0 +1,68 @@
+{
+  "channel_id": "9",
+  "topic_slug": "super-el-nino-iguazu-falls-record-rates",
+  "format": "shorts",
+  "hook": "What if a waterfall surged to 10 times its normal flow?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if a waterfall surged to 10 times its normal flow?",
+      "b_roll": [
+        "Aerial view of turbulent waterfall torrents",
+        "Graphic showing 10x flow surge multiplier"
+      ],
+      "text_overlay": {
+        "text": "10x Flow Surge"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, heavy El Nino rains struck Argentina and Brazil. Did Iguazu National Park officials keep the site open during this extreme river surge?",
+      "b_roll": [
+        "Regional map showing the border of Argentina and Brazil",
+        "Flooding river waters along the Iguazu River basin"
+      ],
+      "text_overlay": {
+        "text": "October 2026 Basin Rains"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the situation worsened as El Nino pushed the Iguazu Falls flow to 10 times normal.",
+      "b_roll": [
+        "Churning water rapids hitting peak volume at the falls"
+      ],
+      "text_overlay": {
+        "text": "Record Water Flow"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Officials temporarily closed access to Iguazu Falls for safety. Flooding spread across Argentina, Paraguay, and Uruguay during October 2026. Heavy rains forced thousands of people from their flooded homes.",
+      "b_roll": [
+        "Park entrance signs with temporary closure notice",
+        "Map showing flooded regions across Argentina, Paraguay, and Uruguay",
+        "Flooded residential areas across the river basin"
+      ],
+      "text_overlay": {
+        "text": "Park Closed & Regional Floods"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This massive waterfall complex spans more than a mile across the Brazil and Argentina border.",
+      "b_roll": [
+        "Panoramic view of the Iguazu Falls complex spanning the international border"
+      ],
+      "text_overlay": {
+        "text": "1 Mile Border Span"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://www.theguardian.com/world/video/2026/oct/16/iguazu-falls-in-south-america-hits-record-10-times-normal-water-flow-video",
+    "https://apnews.com/article/south-america-argentina-uruguay-paraguay-el-nino-flooding-iguazu-falls-5ed67ee546c783cb272054e180be492e",
+    "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino"
+  ]
+}
