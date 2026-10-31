@@ -1,0 +1,101 @@
+{
+  "topic_slug": "building-tiane-longtan-concrete-arch-bridge",
+  "strongest_angle": "Break down the construction engineering and dimensions behind the Tian'e Longtan Bridge, the world's longest-span concrete arch bridge located in Guangxi, China.",
+  "key_facts": [
+    {
+      "fact": "The Tian'e Longtan Bridge features a calculated clear span of 600 meters across the Longtan Reservoir area in Tian'e County, Guangxi Zhuang Autonomous Region, China.",
+      "source_url": "https://www.engineering.org.cn/engi/EN/10.1016/j.eng.2024.05.019",
+      "source_name": "Frontiers of Engineering",
+      "confidence": "high"
+    },
+    {
+      "fact": "The total length of the Tian'e Longtan Bridge is 2,488.55 meters with a total width of 24.5 meters, utilizing a twin-ribbed arch structure.",
+      "source_url": "https://link.springer.com/article/10.1186/s43251-026-00222-7",
+      "source_name": "Springer Nature Link",
+      "confidence": "high"
+    },
+    {
+      "fact": "The bridge's arch ribs have a designed external concrete volume of 27,944 cubic meters, constructed using a segmented and ring-wise casting method.",
+      "source_url": "https://www.chn-highway.com.cn/EN/Y2026/V71/I9/218",
+      "source_name": "China Highway",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The effective rise of the arch is 125 meters, featuring a rise-to-span ratio of 1/4.8 and an arch axis coefficient of 1.9.",
+      "source_url": "https://link.springer.com/article/10.1186/s43251-026-00222-7",
+      "source_name": "Springer Nature Link",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "calculated clear span",
+      "value": 600,
+      "unit": "meters",
+      "source_url": "https://www.chn-highway.com.cn/EN/Y2026/V71/I9/218"
+    },
+    {
+      "label": "total length",
+      "value": 2488.55,
+      "unit": "meters",
+      "source_url": "https://link.springer.com/article/10.1186/s43251-026-00222-7"
+    },
+    {
+      "label": "total width",
+      "value": 24.5,
+      "unit": "meters",
+      "source_url": "https://link.springer.com/article/10.1186/s43251-026-00222-7"
+    },
+    {
+      "label": "external concrete volume",
+      "value": 27944,
+      "unit": "cubic meters",
+      "source_url": "https://www.chn-highway.com.cn/EN/Y2026/V71/I9/218"
+    },
+    {
+      "label": "effective rise",
+      "value": 125,
+      "unit": "meters",
+      "source_url": "https://link.springer.com/article/10.1186/s43251-026-00222-7"
+    },
+    {
+      "label": "arch axis coefficient",
+      "value": 1.9,
+      "unit": "coefficient",
+      "source_url": "https://link.springer.com/article/10.1186/s43251-026-00222-7"
+    },
+    {
+      "label": "river depth",
+      "value": 160,
+      "unit": "meters",
+      "source_url": "https://www.engineering.org.cn/engi/EN/10.1016/j.eng.2024.05.019"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Tian'e Longtan Bridge",
+      "kind": "object"
+    },
+    {
+      "name": "Tian'e County",
+      "kind": "place"
+    },
+    {
+      "name": "Guangxi Zhuang Autonomous Region",
+      "kind": "place"
+    },
+    {
+      "name": "China",
+      "kind": "place"
+    },
+    {
+      "name": "Longtan Reservoir",
+      "kind": "place"
+    },
+    {
+      "name": "Nandan-Tian'e Expressway",
+      "kind": "place"
+    }
+  ]
+}

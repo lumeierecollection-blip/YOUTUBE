@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "building-tiane-longtan-concrete-arch-bridge",
+  "format": "shorts",
+  "hook": "The Tian'e Longtan Bridge spans 600 meters, making it the world's longest concrete arch bridge.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Tian'e Longtan Bridge spans 600 meters, making it the world's longest concrete arch bridge.",
+      "visual_cue": "Wide aerial shot of the massive concrete arch bridge spanning a deep reservoir."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Located in Tian'e County, China, this structure rises above the Longtan Reservoir. How much concrete fills these massive twin-ribbed arches?",
+      "visual_cue": "Map showing Guangxi, China, zooming into the bridge site, followed by a schematic of the twin-ribbed arch structure."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Constructing these ribs required a precise, ring-wise casting method to manage the weight.",
+      "visual_cue": "Close-up animation showing the segmented ring-wise casting process on the arch."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The final structure contains 27,944 cubic meters of external concrete. It stands as a feat of modern bridge engineering.",
+      "visual_cue": "Graphic displaying the concrete volume figure alongside the 125-meter rise measurement."
+    },
+    {
+      "id": "close",
+      "voiceover": "The bridge's clear span remains a record-breaking 600 meters.",
+      "visual_cue": "Final shot of the bridge reflecting on the water, highlighting the 600-meter span."
+    }
+  ],
+  "sources_used": [
+    "https://www.engineering.org.cn/engi/EN/10.1016/j.eng.2024.05.019",
+    "https://link.springer.com/article/10.1186/s43251-026-00222-7"
+  ]
+}
