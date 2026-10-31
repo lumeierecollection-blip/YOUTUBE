@@ -1,0 +1,47 @@
+{
+  "topic_slug": "cate-blanchett-openai-copyright-amicus",
+  "strongest_angle": "Examine the amicus brief filed by the Human Consent Foundation, led by Cate Blanchett, challenging OpenAI and Microsoft in the ongoing New York Times copyright lawsuit.",
+  "key_facts": [
+    {
+      "fact": "The Human Consent Foundation, backed by Cate Blanchett, filed an amicus brief on Friday in the New York Times lawsuit against OpenAI and Microsoft.",
+      "source_url": "https://www.thewrap.com/industry-news/public-policy-legal/cate-blanchett-led-coalition-amicus-brief-new-york-times-openai-microsoft-battle",
+      "source_name": "TheWrap",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Human Consent Foundation and Hollywood companies filed an amicus brief challenging OpenAI and Microsoft regarding AI training data licensing.",
+      "source_url": "https://variety.com/2026/biz/news/cate-blanchett-hollywood-stars-brief-nyt-openai-lawsuit-1236935578",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "ScreenStat reported that Hollywood's creative establishment is challenging OpenAI and Microsoft's argument that licensing copyrighted work at scale is impossible.",
+      "source_url": "https://screenstat.in/blanchett-coalition-openai-licensing-doable",
+      "source_name": "ScreenStat",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Cate Blanchett",
+      "kind": "person"
+    },
+    {
+      "name": "Human Consent Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Microsoft",
+      "kind": "organization"
+    },
+    {
+      "name": "New York Times",
+      "kind": "organization"
+    }
+  ]
+}

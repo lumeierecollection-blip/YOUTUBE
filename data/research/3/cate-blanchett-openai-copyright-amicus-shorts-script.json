@@ -1,0 +1,70 @@
+{
+  "channel_id": "3",
+  "topic_slug": "cate-blanchett-openai-copyright-amicus",
+  "format": "shorts",
+  "hook": "Cate Blanchett just led the Human Consent Foundation to challenge OpenAI and Microsoft in court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Cate Blanchett just led the Human Consent Foundation to challenge OpenAI and Microsoft in court.",
+      "b_roll": [
+        "court filing document",
+        "Cate Blanchett portrait"
+      ],
+      "text_overlay": {
+        "text": "Cate Blanchett Challenges Tech Giants"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Friday, the Human Consent Foundation filed a brief supporting the New York Times. Does OpenAI actually need to license copyrighted work to train its massive artificial intelligence models?",
+      "b_roll": [
+        "New York Times building",
+        "Human Consent Foundation logo",
+        "Variety headline"
+      ],
+      "text_overlay": {
+        "text": "Amicus Brief Filed in Federal Court"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "OpenAI claims licensing copyrighted work at scale is impossible, but the Human Consent Foundation disagrees.",
+      "b_roll": [
+        "OpenAI office exterior",
+        "digital data stream"
+      ],
+      "text_overlay": {
+        "text": "OpenAI Defense: Scaled Licensing Impossible"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "ScreenStat reports that the foundation rejects the tech giant's claim that licensing is impossible. These 2 tech companies must now defend their training systems against Hollywood's creative establishment.",
+      "b_roll": [
+        "Microsoft corporate headquarters",
+        "ScreenStat report graphics",
+        "court gavel"
+      ],
+      "text_overlay": {
+        "text": "Targeting OpenAI & Microsoft"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Court filings now challenge 2 tech giants over creative rights.",
+      "b_roll": [
+        "Federal courthouse columns",
+        "legal brief paperwork"
+      ],
+      "text_overlay": {
+        "text": "Creative Rights Battle Begins"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thewrap.com/industry-news/public-policy-legal/cate-blanchett-led-coalition-amicus-brief-new-york-times-openai-microsoft-battle",
+    "https://variety.com/2026/biz/news/cate-blanchett-hollywood-stars-brief-nyt-openai-lawsuit-1236935578",
+    "https://screenstat.in/blanchett-coalition-openai-licensing-doable"
+  ]
+}
