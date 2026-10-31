@@ -1,0 +1,105 @@
+{
+  "topic_slug": "iguazu-falls-near-record-flow-2026",
+  "strongest_angle": "Super El Niño 2026 drove unprecedented rainfall, pushing Iguazú Falls to flow at up to 17,700 m³/s—nearly twelve times the long‑term average and the highest recorded this decade.",
+  "key_facts": [
+    {
+      "fact": "On 12 October 2026 the ANA gauge at the Hotel das Cataratas recorded a flow of 11,831 m³/s at Iguazú Falls, the highest measurement in the Guia 3 series since 17 June 2026.",
+      "source_url": "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-12-en",
+      "source_name": "Guia3",
+      "confidence": "medium"
+    },
+    {
+      "fact": "On 25 October 2026 the river’s flow was measured at 11,061 m³/s, which is 7.4 times the long‑term historical average of about 1,500 m³/s.",
+      "source_url": "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-25-en",
+      "source_name": "Guia3",
+      "confidence": "medium"
+    },
+    {
+      "fact": "On 26 October 2026 the Iguazú River reached a record 17,700 m³/s, almost twelve times the average flow, leading park officials to close the Upper Circuit walkway for tourists.",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+      "source_name": "Clarín",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 11831,
+      "unit": "m³/s",
+      "label": "Flow at Hotel das Cataratas (12 Oct 2026)",
+      "source_url": "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-12-en"
+    },
+    {
+      "value": 11061,
+      "unit": "m³/s",
+      "label": "Flow measured 25 Oct 2026",
+      "source_url": "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-25-en"
+    },
+    {
+      "value": 7.4,
+      "unit": "times average",
+      "label": "Multiple of long‑term average (25 Oct 2026)",
+      "source_url": "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-25-en"
+    },
+    {
+      "value": 1500,
+      "unit": "m³/s",
+      "label": "Long‑term historical average flow",
+      "source_url": "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-25-en"
+    },
+    {
+      "value": 17700,
+      "unit": "m³/s",
+      "label": "Record flow (26 Oct 2026)",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    },
+    {
+      "value": 12,
+      "unit": "times average",
+      "label": "Multiple of average flow (26 Oct 2026)",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Iguazú Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú River",
+      "kind": "place"
+    },
+    {
+      "name": "ANA gauge",
+      "kind": "object"
+    },
+    {
+      "name": "Hotel das Cataratas",
+      "kind": "place"
+    },
+    {
+      "name": "Super El Niño",
+      "kind": "object"
+    },
+    {
+      "name": "Upper Circuit walkway",
+      "kind": "object"
+    },
+    {
+      "name": "Clarín",
+      "kind": "organization"
+    },
+    {
+      "name": "Guia3",
+      "kind": "organization"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

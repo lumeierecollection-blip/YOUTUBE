@@ -1,0 +1,32 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-near-record-flow-2026",
+  "format": "shorts",
+  "hook": "What if Iguazú Falls hit 17,700 m³/s, twelve times normal?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if Iguazú Falls hit 17,700 m³/s, twelve times normal?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 26 Oct 2026 the ANA gauge at Iguazú River logged a record 17,700 m³/s flow. Why did officials close the Upper Circuit walkway for tourists?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the record on 12 Oct was 11,831 m³/s, shy of the later peak."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 17,700 m³/s surge became the decade’s highest at Iguazú Falls. Officials closed the Upper Circuit walkway, stopping all tourist traffic. That flow was nearly twelve times the 1,500 m³/s average, eclipsing the 11,831 m³/s of 12 Oct."
+    },
+    {
+      "id": "close",
+      "voiceover": "Iguazú Falls peaked at 17,700 m³/s on 26 Oct 2026."
+    }
+  ],
+  "sources_used": [
+    "https://www.guia3.com/noticia/dados-cataratas-recorde-2026-10-12-en",
+    "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+  ]
+}
