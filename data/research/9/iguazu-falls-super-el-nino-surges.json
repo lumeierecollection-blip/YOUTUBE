@@ -1,0 +1,71 @@
+{
+  "topic_slug": "iguazu-falls-super-el-nino-surges",
+  "strongest_angle": "In October 2026, a Super El Niño event caused unprecedented water surges at Iguazú National Park, driving water flow rates up to 17,700 cubic meters per second and forcing the temporary closure of the Circuito Superior.",
+  "key_facts": [
+    {
+      "fact": "National park officials at Iguazú National Park on the Brazil-Argentina border temporarily closed tourist access after heavy rain caused the Iguazú River to flow at six times the normal rate in October 2026.",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Iguazú River reached a record flow rate for 2026 on Monday, hitting 17,700 cubic meters per second at the waterfalls, which is nearly twelve times the average volume.",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html",
+      "source_name": "Clarín",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists link a rain-soaked October 2026 and near-record volumes of water surging across the Brazil-Argentina border to a Super El Niño event.",
+      "source_url": "https://www.npr.org/2026/10/22/g-s1-148553/argentina-brazil-iguazu-falls-waterfalls-super-el-nino",
+      "source_name": "NPR",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Flow rate multiplier (Guardian report)",
+      "value": 6,
+      "unit": "times normal rate",
+      "source_url": "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels"
+    },
+    {
+      "label": "Peak water flow volume",
+      "value": 17700,
+      "unit": "cubic meters per second",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    },
+    {
+      "label": "Flow rate multiplier (Clarín report)",
+      "value": 12,
+      "unit": "times average",
+      "source_url": "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Iguazú Falls",
+      "kind": "place"
+    },
+    {
+      "name": "Argentina",
+      "kind": "place"
+    },
+    {
+      "name": "Brazil",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Iguazú River",
+      "kind": "place"
+    },
+    {
+      "name": "Circuito Superior",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "channel_id": "9",
+  "topic_slug": "iguazu-falls-super-el-nino-surges",
+  "format": "shorts",
+  "hook": "Iguazú River hit 17,700 m³/s, temporarily closing the park on October 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Iguazú River hit 17,700 m³/s, temporarily closing the park on October 2026.",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "October 2026’s Super El Niño dumped rain on the Brazil‑Argentina border. Why did the surge force the Circuito Superior walkway to close?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the water rose twelve times the average, far worse than forecasts.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Scientists linked the extreme flow to the Super El Niño event. Visitors missed the chance to see the falls as flow peaked at 17,700 m³/s.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "The record 17,700 m³/s flow remains unmatched to date.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/world/2026/oct/13/argentina-iguazu-falls-temporarily-closed-el-nino-water-levels",
+    "https://www.clarin.com/sociedad/efecto-nino-cataratas-caudal-record-2026-pasarelas-permanece-cerrada_0_JKeVmF63lL.html"
+  ]
+}
