@@ -1,0 +1,37 @@
+{
+  "channel_id": "9",
+  "topic_slug": "un-adopts-new-world-map-africa-size",
+  "format": "shorts",
+  "hook": "What if the map you trust hides Africa’s true size?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if the map you trust hides Africa’s true size?",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 4 September 2026 the UN General Assembly adopted the “Correct the Map” resolution. Togo sponsored it, and the African Union urged replacing the Mercator projection with an area‑preserving map. How many nations voted for it?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the United States cast the sole negative vote.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The vote tallied 164 in favour, one against, and six abstentions. Such a near‑unanimous outcome forces the UN to adopt an area‑preserving map. Soon classrooms and atlases will show Africa at its real size.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "164 nations chose to redraw the world’s view.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/ce30vp55dnlo",
+    "https://www.reuters.com/world/africa/un-approves-resolution-support-map-that-shows-africas-true-size-2026-09-04"
+  ]
+}

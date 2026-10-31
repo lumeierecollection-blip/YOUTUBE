@@ -1,0 +1,79 @@
+{
+  "topic_slug": "un-adopts-new-world-map-africa-size",
+  "strongest_angle": "The UN General Assembly voted on 4 September 2026 to replace the Mercator projection with an area‑preserving map, a move backed by 164 nations and led by Togo and the African Union to show Africa’s true size.",
+  "key_facts": [
+    {
+      "fact": "On 4 September 2026 the UN General Assembly adopted the “Correct the Map” resolution with 164 member states voting in favour, the United States voting against, and six countries abstaining.",
+      "source_url": "https://www.bbc.com/news/articles/ce30vp55dnlo",
+      "source_name": "BBC News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The resolution was sponsored by the West African nation of Togo and supported by members of the African Union, calling for a shift away from the 16th‑century Mercator projection toward an area‑preserving map.",
+      "source_url": "https://www.reuters.com/world/africa/un-approves-resolution-support-map-that-shows-africas-true-size-2026-09-04",
+      "source_name": "Reuters",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The United States was the only country to cast a negative vote on the “Correct the Map” resolution, while France, the United Kingdom and many other nations voted for it.",
+      "source_url": "https://www.bbc.com/news/articles/ce30vp55dnlo",
+      "source_name": "BBC News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 164,
+      "unit": "votes",
+      "label": "votes in favour",
+      "source_url": "https://www.bbc.com/news/articles/ce30vp55dnlo"
+    },
+    {
+      "value": 1,
+      "unit": "vote",
+      "label": "vote against",
+      "source_url": "https://www.bbc.com/news/articles/ce30vp55dnlo"
+    },
+    {
+      "value": 6,
+      "unit": "abstentions",
+      "label": "abstaining votes",
+      "source_url": "https://www.bbc.com/news/articles/ce30vp55dnlo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "United Nations General Assembly",
+      "kind": "organization"
+    },
+    {
+      "name": "Togo",
+      "kind": "place"
+    },
+    {
+      "name": "African Union",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "France",
+      "kind": "place"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    },
+    {
+      "name": "Mercator projection",
+      "kind": "object"
+    },
+    {
+      "name": "area‑preserving map",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}
