@@ -1,0 +1,52 @@
+{
+  "topic_slug": "bodum-5-9-million-french-press-recall-burn-injury",
+  "strongest_angle": "The October 29, 2026 recall of 5.9 million Bodum French press coffee makers highlights critical safety risks associated with replaceable glass carafes, impacting eight distinct product models.",
+  "key_facts": [
+    {
+      "fact": "On October 29, 2026, the U.S. Consumer Product Safety Commission announced a recall of 5.9 million Bodum French press coffee makers.",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Bodum-USA-Recalls-5-9-Million-French-Press-Coffee-Makers-with-Replaceable-Glass-Carafes-Due-to-Risk-of-Serious-Burn-Injury",
+      "source_name": "CPSC.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "The recall involves eight specific models of Bodum coffee makers that feature replaceable glass carafes.",
+      "source_url": "https://www.today.com/food/recall/bodum-french-press-recall-coffee-makers-burn-risk-rcna606367",
+      "source_name": "Today.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Bodum USA initiated this voluntary recall due to the risk of the glass carafe breaking during use, which can lead to serious burn injuries.",
+      "source_url": "https://www.usatoday.com/story/money/consumer-protection/2026/10/29/french-press-coffee-makers-recall-see-impacted-products/92501640007",
+      "source_name": "USA Today",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total number of Bodum French press units recalled",
+      "value": 5.9,
+      "unit": "million",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Bodum-USA-Recalls-5-9-Million-French-Press-Coffee-Makers-with-Replaceable-Glass-Carafes-Due-to-Risk-of-Serious-Burn-Injury"
+    },
+    {
+      "label": "Number of Bodum coffee maker models affected",
+      "value": 8,
+      "unit": "models",
+      "source_url": "https://www.today.com/food/recall/bodum-french-press-recall-coffee-makers-burn-risk-rcna606367"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Bodum USA",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. Consumer Product Safety Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "French press coffee maker",
+      "kind": "object"
+    }
+  ]
+}

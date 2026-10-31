@@ -1,0 +1,48 @@
+{
+  "channel_id": "48",
+  "topic_slug": "bodum-5-9-million-french-press-recall-burn-injury",
+  "format": "shorts",
+  "hook": "A daily kitchen staple just triggered a recall of 5.9 million units.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A daily kitchen staple just triggered a recall of 5.9 million units.",
+      "text_overlay": {
+        "text": "5.9M RECALLED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, 2026, federal officials announced a recall of Bodum French press coffee makers. Which flaw affected 5.9 million coffee makers?",
+      "text_overlay": {
+        "text": "BODUM RECALL"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But it's worse: 8 distinct models feature replaceable glass carafes that break during use.",
+      "text_overlay": {
+        "text": "8 MODELS AFFECTED"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Bodum USA confirmed the replaceable glass carafe can break during operation. Structural breakage causes severe hot coffee spills and serious burn injuries. Safety authorities flagged 8 separate models across the product line.",
+      "text_overlay": {
+        "text": "BURN RISK"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That puts 5.9 million dangerous coffee makers under official recall.",
+      "text_overlay": {
+        "text": "OFFICIAL RECALL"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cpsc.gov/Recalls/2027/Bodum-USA-Recalls-5-9-Million-French-Press-Coffee-Makers-with-Replaceable-Glass-Carafes-Due-to-Risk-of-Serious-Burn-Injury",
+    "https://www.today.com/food/recall/bodum-french-press-recall-coffee-makers-burn-risk-rcna606367",
+    "https://www.usatoday.com/story/money/consumer-protection/2026/10/29/french-press-coffee-makers-recall-see-impacted-products/92501640007"
+  ]
+}
