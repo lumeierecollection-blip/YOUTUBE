@@ -1,0 +1,37 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-conserves-power-october-2026",
+  "format": "shorts",
+  "hook": "Voyager 1 survived a 48‑hour silence 24 billion km from Earth.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Voyager 1 survived a 48‑hour silence 24 billion km from Earth.",
+      "visual_cue": "Voyager 1 image with distance overlay showing 24 billion km."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In September 2026, NASA engineers performed a power-saving swap by disabling three devices on Voyager 1. Did the 48-hour communication blackout on October 20, 2026, resolve itself for the Voyager team?",
+      "visual_cue": "Diagram of power swap showing three devices turned off and three low‑power units activated."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Voyager 1 drifted 24 billion kilometers from Earth when the Deep Space Network lost signal.",
+      "visual_cue": "Graphic of Voyager 1 location 24 billion km from Earth with blackout icon."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Voyager 1 signal returned automatically after 48 hours of silence on October 20, 2026. NASA engineers swapped three devices for lower-power alternatives to keep the 1977 probe active.",
+      "visual_cue": "Animation of signal returning, data stream to Deep Space Network, and 1977 launch badge."
+    },
+    {
+      "id": "close",
+      "voiceover": "Voyager 1's journey continues, still powered by ingenuity.",
+      "visual_cue": "Voyager 1 sailing through interstellar space, caption “still powered by ingenuity”."
+    }
+  ],
+  "sources_used": [
+    "https://www.jpl.nasa.gov/news/nasas-voyager-1-conserves-power-resolves-brief-communications-pause",
+    "https://orbital-wire.com/agency-program-news/nasa-voyager-1-power-swap-restores-contact"
+  ]
+}
