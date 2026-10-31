@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "cate-blanchett-openai-copyright-brief",
+  "format": "shorts",
+  "hook": "OpenAI claims licensing copyrighted work at scale is impossible, but a new legal filing proves otherwise.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "OpenAI claims licensing copyrighted work at scale is impossible, but a new legal filing proves otherwise.",
+      "text_overlay": {
+        "text": "OpenAI Licensing Challenge"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Does the Human Consent Foundation challenge OpenAI's claim that licensing copyrighted work is impossible?",
+      "text_overlay": {
+        "text": "31-Page Amicus Brief"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Cate Blanchett's Human Consent Foundation and a coalition filed this brief on Friday in New York.",
+      "text_overlay": {
+        "text": "Coalition Members"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This 31-page brief directly disputes OpenAI's claim that mass licensing remains technically impossible to achieve. Writer, Inc. and other groups joined this 31-page amicus brief to prove mass licensing is actually doable.",
+      "text_overlay": {
+        "text": "Licensing Is Doable"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 31-page document now awaits review by the court.",
+      "text_overlay": {
+        "text": "31 Pages Under Review"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theaigentic.com/wire/wmvvp3fca64f9c7d7",
+    "https://screenstat.in/blanchett-coalition-openai-licensing-doable"
+  ]
+}
