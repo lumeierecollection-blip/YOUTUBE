@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-24T13:06:02.864Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+  "beats": [
+    {
+      "beat_index": 0,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 1,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 2,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 3,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 4,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 5,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 6,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 7,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 8,
+      "names": [],
+      "verdict": "PASS"
+    }
+  ],
+  "failing": []
+}

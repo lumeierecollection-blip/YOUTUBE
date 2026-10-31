@@ -1,0 +1,16 @@
+{
+  "corrections": [
+    {
+      "beat": 3,
+      "element": "headline",
+      "problem": "CONTRADICTION on headline: current value \"Will the National Library protect these?\" (The on-screen headline drops 'of Wales', which is required to match the sentence's full naming of the National Library of Wales.)",
+      "fix": "set headline to \"Will the National Library of Wales protect these?\" so the beat shows exactly what its sentence says"
+    },
+    {
+      "beat": 5,
+      "element": "headline",
+      "problem": "CONTRADICTION on headline: current value \"National Library finished new copies\" (The headline omits 'of Wales' from 'National Library of Wales', violating the strict spelling rule for organizations.)",
+      "fix": "set headline to \"National Library of Wales finished new copies\" so the beat shows exactly what its sentence says"
+    }
+  ]
+}

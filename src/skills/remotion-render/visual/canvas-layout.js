@@ -946,24 +946,43 @@ function heroShotLayout(c, comp, flip) {
     if (c.lead_in) boxes.kicker = dataBox(String(c.lead_in), { width: 700, size: 34, maxLines: 1, y: under, flip });
     const top = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : under;
     boxes.statement = headlineBox(text, { width: 940, bottom: BOTTOM - 12, flip, maxLines: 3, maxHeight: BOTTOM - 12 - top, max: 170 });
-    // Its ink stands 34 px above the band's floor: the drop shadow (20 px blur) must not reach the words under it.
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 440, floor: LOW_VISUAL.top + LOW_VISUAL.h - 10, side: "center" }), primary: true };
+    // Support up to 3 concept visuals stacked vertically in the top band
+    for (let i = 0; i < Math.min(cv.length, 3); i++) {
+      const floor = LOW_VISUAL.top + LOW_VISUAL.h - 10 + i * 140; // stack with vertical spacing
+      boxes[`cutout${i}`] = { ...placeHero(cv[i], { maxW: 940, maxH: 400, floor, side: "center" }), primary: i === 0 };
+    }
   } else if (comp === "HERO-LOW") {
     // Shot 8: a short line high up, air, then the object large on the middle band's floor.
     const y = boxes.kicker ? boxes.kicker.y + boxes.kicker.h + 22 : TOP + 6;
     boxes.statement = headlineBox(text, { width: 760, y, flip, maxLines: 2, maxHeight: Math.min(300, HEADER_MAX_Y - y), max: 104 });
     // The ink stands on y 1296, as the TYPE-FULL hero's does: its drop shadow (20 px blur) reads as ink
     // and crossed y 1340 from a 1326 floor (shot-proof run 37859081660, zones-no-overlap, 143 columns).
-    boxes.cutout0 = { ...placeHero(cv[0], { maxW: 940, maxH: 650, floor: HERO_FLOOR, side: "center" }), primary: true };   // centred (owner, 2026-10-09: the visual is the hero)
+    // Support up to 3 concept visuals side by side or stacked on the middle band
+    for (let i = 0; i < Math.min(cv.length, 3); i++) {
+      const side = i === 0 ? "center" : (i % 2 === 1 ? away : near);
+      const maxW = cv.length > 1 ? 560 : 940;
+      const floor = HERO_FLOOR - i * 120; // stack upward if multiple
+      boxes[`cutout${i}`] = { ...placeHero(cv[i], { maxW, maxH: 500, floor, side }), primary: i === 0 };
+    }
   } else {
     // Shot 13: the objects off-centre at opposing angles; a second object smaller, high on the other side.
     const tilt = flip ? 9 : -9;
+    // First object
     boxes.cutout0 = { ...placeHero(cv[0], { maxW: cv[1] ? 560 : 640, maxH: 600, deg: tilt, floor: HERO_FLOOR, side: away }), primary: true };
+    // Second object (if exists)
     if (cv[1]) {
       const second = placeHero(cv[1], { maxW: 400, maxH: 360, deg: -tilt, floor: BODY_TOP + 380, side: near });
       // Kept only where it stays clear of the first object's box.
       const a = boxes.cutout0, b = second;
       if (!(a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h) && b.y >= BODY_TOP) boxes.cutout1 = second;
+    }
+    // Third object (if exists) - place above the first two
+    if (cv[2]) {
+      const third = placeHero(cv[2], { maxW: 360, maxH: 300, deg: 0, floor: BODY_TOP + 200, side: "center" });
+      const a = boxes.cutout0;
+      if (!(a.x < third.x + third.w && third.x < a.x + a.w && a.y < third.y + third.h && third.y < a.y + a.h) && third.y >= BODY_TOP) {
+        boxes.cutout2 = third;
+      }
     }
   }
   return { composition: comp, boxes, hero: "cutout0", flip };

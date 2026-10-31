@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "failures": [],
+  "measured": {
+    "audio_seconds": 47.088,
+    "last_cue_end": 46.52,
+    "drift_s": 0,
+    "longest_silence_s": 0,
+    "full_scale_samples": 0,
+    "video_seconds": 47.146667
+  }
+}

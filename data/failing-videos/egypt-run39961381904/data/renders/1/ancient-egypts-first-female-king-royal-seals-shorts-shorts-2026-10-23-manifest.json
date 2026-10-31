@@ -1,0 +1,1312 @@
+{
+  "video": "ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 0.75,
+  "accent": "#D4A574",
+  "ground": "#FFFFFF",
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "shutter",
+      "file": "cc0/shutter.wav",
+      "db": -20,
+      "at_frame": 345,
+      "event_frame": 352,
+      "peak_frames": 7,
+      "beat": 1,
+      "reason": "photo arrives",
+      "credit": {
+        "title": "DSLR Shutter fast 006.wav",
+        "author": "ristooooo1",
+        "source": "https://freesound.org/s/539136/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/shutter-modern.wav"
+      }
+    },
+    {
+      "role": "whip",
+      "file": "cc0/whip.wav",
+      "db": -22,
+      "at_frame": 895,
+      "event_frame": 896,
+      "peak_frames": 1,
+      "beat": 3,
+      "reason": "cut ENTITY -> HERO",
+      "credit": {
+        "title": "SWSH_Badminton Racquet_Recording_01_JW Audio",
+        "author": "JW_Audio",
+        "source": "https://freesound.org/s/838766/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/whip.wav"
+      }
+    },
+    {
+      "role": "shutter",
+      "file": "cc0/shutter.wav",
+      "db": -20,
+      "at_frame": 1131,
+      "event_frame": 1138,
+      "peak_frames": 7,
+      "beat": 4,
+      "reason": "photo arrives",
+      "credit": {
+        "title": "DSLR Shutter fast 006.wav",
+        "author": "ristooooo1",
+        "source": "https://freesound.org/s/539136/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/shutter-modern.wav"
+      }
+    }
+  ],
+  "totalFrames": 1538,
+  "durationSec": 51.27,
+  "generatedAt": "2026-10-23T14:18:27.274Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 0,
+      "duration_frames": 351,
+      "start_sec": 0,
+      "duration_sec": 11.7,
+      "mechanism": "CAPABILITY",
+      "visual_type": "MAP",
+      "canvas": {
+        "composition": "MAP-CENTERED",
+        "hero": "map",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "map": {
+            "x": 0,
+            "y": 640,
+            "w": 1080,
+            "h": 470,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 70,
+            "y": 1196,
+            "w": 940,
+            "h": 105,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 110,
+            "bleed": 0,
+            "lines": [
+              "forgotten female ruler"
+            ]
+          }
+        },
+        "content": {
+          "x": 0,
+          "y": 130,
+          "w": 1080,
+          "h": 1199
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "number",
+            "name": "5000"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "MAP",
+        "data": {
+          "place": "Egypt",
+          "labels": [
+            "5000 years"
+          ]
+        },
+        "sentence": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 110,
+        "headline_align": "center",
+        "accent_used": true,
+        "variant": 0,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "SCENE-FULL",
+        "ground_color": null,
+        "headline_text": "forgotten female ruler",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "headline": [
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "forgotten",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "female",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "ruler",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "forgotten female ruler"
+      ],
+      "on_screen_text": [
+        {
+          "text": "forgotten female ruler",
+          "role": "narrative",
+          "source": "canvas.headline"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "forgotten female ruler"
+      ],
+      "banned_text": [],
+      "objects": [
+        "ancient female ruler"
+      ],
+      "camera": [
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 351,
+      "duration_frames": 287,
+      "start_sec": 11.7,
+      "duration_sec": 9.57,
+      "mechanism": "CAPABILITY",
+      "visual_type": "PHOTO",
+      "canvas": {
+        "composition": "PHOTO-CARD",
+        "hero": "photo",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 187,
+            "y": 1213,
+            "w": 706,
+            "h": 91,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 96,
+            "bleed": 0,
+            "lines": [
+              "Tomb Y at Abydos"
+            ]
+          },
+          "kicker": {
+            "x": 48,
+            "y": 160,
+            "w": 289,
+            "h": 37,
+            "role": "data",
+            "align": "left",
+            "rotate": null,
+            "size": 34,
+            "bleed": 0,
+            "lines": [
+              "ABYDOS, EGYPT"
+            ]
+          },
+          "photo": {
+            "x": 327,
+            "y": 640,
+            "w": 426,
+            "h": 490,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 984,
+          "h": 1198
+        },
+        "zones": {
+          "top": [
+            "headline"
+          ],
+          "middle": [
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": {
+          "subject": "photo",
+          "move": 0.1,
+          "from_frame": 30
+        },
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "person",
+            "name": "William Matthew Flinders Petrie"
+          },
+          {
+            "type": "place",
+            "name": "Abydos"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": 0,
+        "match_cut_prev": false,
+        "photo": {
+          "asset": "entities/people/william-matthew-flinders-petrie.jpg",
+          "entity": "William Matthew Flinders Petrie",
+          "kind": "person",
+          "view": "person",
+          "verified_as": "File:Sir (William Matthew) Flinders Petrie by George Frederic Watts.jpg",
+          "seen": null,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+          "place_check": null
+        },
+        "chrome": {
+          "label": {
+            "text": "ABYDOS, EGYPT",
+            "position": "top-left",
+            "drawn": [
+              "kicker"
+            ],
+            "planner": true
+          },
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "PHOTO",
+        "data": {
+          "entity": "William Matthew Flinders Petrie",
+          "entity_type": "person"
+        },
+        "sentence": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit.",
+        "entity_pop": {
+          "frame": 30,
+          "word": "Petrie",
+          "from": 47,
+          "to": 67,
+          "kind": "photo"
+        },
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "staggered",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 96,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 1,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "PHOTO-CARD",
+        "ground_color": null,
+        "headline_text": "Tomb Y at Abydos",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ],
+            "kicker": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "Tomb",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Y",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "at",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Abydos",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            }
+          ],
+          "kicker": [
+            {
+              "t": "ABYDOS,"
+            },
+            {
+              "t": "EGYPT"
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "tomb Y at Abydos"
+      ],
+      "on_screen_text": [
+        {
+          "text": "Tomb Y at Abydos",
+          "role": "narrative",
+          "source": "canvas.headline"
+        },
+        {
+          "text": "ABYDOS, EGYPT",
+          "role": "quiet",
+          "source": "canvas.kicker"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Tomb Y at Abydos"
+      ],
+      "banned_text": [],
+      "objects": [
+        "excavation at Abydos"
+      ],
+      "camera": [
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 638,
+      "duration_frames": 258,
+      "start_sec": 21.27,
+      "duration_sec": 8.6,
+      "mechanism": "TYPOGRAPHY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "ENTITY-ART",
+        "hero": "art",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "art": {
+            "x": 320,
+            "y": 700,
+            "w": 440,
+            "h": 440,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "rule_end": {
+            "x": 936,
+            "y": 1334,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "pull": {
+            "x": 48,
+            "y": 1450,
+            "w": 476.2758599999999,
+            "h": 68.44,
+            "role": "data",
+            "align": "left",
+            "rotate": null,
+            "size": 58,
+            "bleed": 0,
+            "lines": [
+              "daughter of Djer"
+            ]
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 984,
+          "h": 1210
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": {
+          "kind": "plate-person",
+          "name": "Djer",
+          "names": null,
+          "kinds": null,
+          "style": null,
+          "source_url": null,
+          "license": null,
+          "items": null,
+          "region": null,
+          "ends": null,
+          "text": null,
+          "asset": null
+        },
+        "entities": [
+          {
+            "type": "person",
+            "name": "Djer"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": {
+            "text": "daughter of Djer",
+            "position": "bottom",
+            "tone": "accent"
+          },
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Was she actually the daughter of Djer, the third king of the First Dynasty?",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": null,
+        "headline_align": null,
+        "accent_used": false,
+        "variant": 2,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "STATEMENT",
+        "ground_color": null,
+        "headline_text": null,
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {},
+          "number": null
+        },
+        "words": {},
+        "headline_motion": null,
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "daughter of Djer"
+      ],
+      "on_screen_text": [
+        {
+          "text": "daughter of Djer",
+          "role": "quiet",
+          "source": "canvas.pull"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 896,
+      "duration_frames": 212,
+      "start_sec": 29.87,
+      "duration_sec": 7.07,
+      "mechanism": "CAPABILITY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "HERO-OVER",
+        "hero": "cutout0",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "kicker": {
+            "x": 637,
+            "y": 160,
+            "w": 395,
+            "h": 37,
+            "role": "data",
+            "align": "right",
+            "rotate": null,
+            "size": 34,
+            "bleed": 0,
+            "lines": [
+              "SCIENTIFIC AMERICAN"
+            ]
+          },
+          "statement": {
+            "x": 245,
+            "y": 1244,
+            "w": 590,
+            "h": 84,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 88,
+            "bleed": 0,
+            "lines": [
+              "First female ruler"
+            ]
+          },
+          "cutout0": {
+            "x": 70,
+            "y": 842,
+            "w": 940,
+            "h": 258,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 70,
+          "y": 130,
+          "w": 962,
+          "h": 1198
+        },
+        "zones": {
+          "top": [
+            "headline"
+          ],
+          "middle": [
+            "headline",
+            "chart"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "institution",
+            "name": "Scientific American"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": {
+            "text": "SCIENTIFIC AMERICAN",
+            "position": "top-right",
+            "drawn": [
+              "kicker"
+            ],
+            "planner": true
+          },
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+        "entity_pop": null,
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [
+          {
+            "name": "Scientific American",
+            "class": "cutout",
+            "logo": true,
+            "money": false,
+            "asset": "cutouts-live/1/3-scientific-american-logo.png",
+            "source": "wikipedia infobox",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Scientific_American_logo.svg",
+            "license": "Public domain"
+          }
+        ],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 88,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 3,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "PHOTO-INSET",
+        "ground_color": null,
+        "headline_text": "First female ruler",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ],
+            "kicker": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "kicker": [
+            {
+              "t": "SCIENTIFIC"
+            },
+            {
+              "t": "AMERICAN"
+            }
+          ],
+          "statement": [
+            {
+              "t": "First",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "female",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "ruler",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "first female ruler"
+      ],
+      "on_screen_text": [
+        {
+          "text": "SCIENTIFIC AMERICAN",
+          "role": "quiet",
+          "source": "canvas.kicker"
+        },
+        {
+          "text": "First female ruler",
+          "role": "narrative",
+          "source": "canvas.statement"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "First female ruler"
+      ],
+      "banned_text": [],
+      "objects": [
+        "analyzed seals"
+      ],
+      "camera": [
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 1108,
+      "duration_frames": 231,
+      "start_sec": 36.93,
+      "duration_sec": 7.7,
+      "mechanism": "ACTION_CONSEQUENCE",
+      "visual_type": "PHOTO",
+      "canvas": {
+        "composition": "SCENE-LOW",
+        "hero": "photo",
+        "boxes": {
+          "photo": {
+            "x": 0,
+            "y": 0,
+            "w": 1080,
+            "h": 1920,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 233,
+            "y": 1091,
+            "w": 614,
+            "h": 209,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 110,
+            "bleed": 0,
+            "lines": [
+              "5000 years of",
+              "history"
+            ]
+          }
+        },
+        "content": {
+          "x": 0,
+          "y": 0,
+          "w": 1080,
+          "h": 1920
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": {
+          "subject": "photo",
+          "move": 0.1,
+          "from_frame": 30
+        },
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "person",
+            "name": "William Matthew Flinders Petrie"
+          },
+          {
+            "type": "number",
+            "name": "5000"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": {
+          "asset": "entities/people/william-matthew-flinders-petrie.jpg",
+          "entity": "William Matthew Flinders Petrie",
+          "kind": "person",
+          "view": "person",
+          "verified_as": "File:Sir (William Matthew) Flinders Petrie by George Frederic Watts.jpg",
+          "seen": null,
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+          "place_check": null
+        },
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "PHOTO",
+        "data": {
+          "entity": "William Matthew Flinders Petrie",
+          "entity_type": "person"
+        },
+        "sentence": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+        "entity_pop": {
+          "frame": 30,
+          "word": "Petrie",
+          "from": 123,
+          "to": 139,
+          "kind": "photo"
+        },
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "staggered",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 110,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 4,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "photo",
+        "shot": "SCENE-LOW",
+        "ground_color": null,
+        "headline_text": "5000 years of history",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "5000",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "years",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "of",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "history",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "5000 years of history",
+          "role": "narrative",
+          "source": "canvas.headline"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "5000 years of history"
+      ],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "hold",
+        "tilt_down"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 1339,
+      "duration_frames": 199,
+      "start_sec": 44.63,
+      "duration_sec": 6.63,
+      "mechanism": "CAPABILITY",
+      "visual_type": "MAP",
+      "canvas": {
+        "composition": "MAP-CENTERED",
+        "hero": "map",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "map": {
+            "x": 0,
+            "y": 640,
+            "w": 1080,
+            "h": 470,
+            "role": null,
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "headline": {
+            "x": 101,
+            "y": 1213,
+            "w": 879,
+            "h": 91,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 96,
+            "bleed": 0,
+            "lines": [
+              "Meretneith ruled Egypt"
+            ]
+          }
+        },
+        "content": {
+          "x": 0,
+          "y": 130,
+          "w": 1080,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "person",
+            "name": "Meretneith"
+          },
+          {
+            "type": "number",
+            "name": "5000"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "MAP",
+        "data": {
+          "place": "Egypt"
+        },
+        "sentence": "Meretneith ruled ancient Egypt more than 5000 years ago.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 96,
+        "headline_align": "center",
+        "accent_used": true,
+        "variant": 5,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "SCENE-FULL",
+        "ground_color": null,
+        "headline_text": "Meretneith ruled Egypt",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "headline": [
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "headline": [
+            {
+              "t": "Meretneith",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "ruled",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Egypt",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "crop-open",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [
+        "Meretneith ruled Egypt"
+      ],
+      "on_screen_text": [
+        {
+          "text": "Meretneith ruled Egypt",
+          "role": "narrative",
+          "source": "canvas.headline"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Meretneith ruled Egypt"
+      ],
+      "banned_text": [],
+      "objects": [
+        "Meretneith rule"
+      ],
+      "camera": [
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-10-24T13:05:58.109Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+  "reference": "research/motion-graphics-ref (shared)",
+  "beats": [
+    {
+      "beat_index": 1,
+      "family": "YES",
+      "playful": "NO",
+      "issues": ""
+    },
+    {
+      "beat_index": 6,
+      "family": "YES",
+      "playful": "NO",
+      "issues": ""
+    },
+    {
+      "beat_index": 7,
+      "family": "YES",
+      "playful": "NO",
+      "issues": ""
+    }
+  ],
+  "failing": [],
+  "sheets": [
+    "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24-look/look-beat-1.png",
+    "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24-look/look-beat-6.png",
+    "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24-look/look-beat-7.png"
+  ]
+}

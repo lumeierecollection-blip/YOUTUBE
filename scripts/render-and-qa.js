@@ -687,7 +687,9 @@ async function qaOne(runId, rendered, planPath) {
   let visionQaPromise;
   if (audit.code === 0 && geminiNeeded && (process.env.VISION_API_KEY || process.env.OLLAMA_URL)) {
     const chId = `ch-${String(channelId).padStart(2, "0")}`;
-    visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
+    const visionQaArgs = [VISUAL_QA_JS, "--channel", chId, "--video", outputPath];
+    if (planPath && existsSync(planPath)) visionQaArgs.push("--plan", planPath);
+    visionQaPromise = runChild("node", visionQaArgs, {
       label: `qa/vision ${basename(outputPath)}`,
     });
   }

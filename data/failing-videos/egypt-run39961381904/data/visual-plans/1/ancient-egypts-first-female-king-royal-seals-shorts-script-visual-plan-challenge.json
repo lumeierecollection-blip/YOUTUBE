@@ -1,0 +1,45 @@
+{
+  "reviewedAt": "2026-10-23T14:03:31.804Z",
+  "source": "gemini-challenger/plan",
+  "plan": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/ancient-egypts-first-female-king-royal-seals-shorts-script-visual-plan.json",
+  "approved": true,
+  "beats": [
+    {
+      "beat_index": 0,
+      "verdict": "OK",
+      "reason": "The visuals of a map of Egypt and the headline 'Forgotten female ruler' accurately convey the sentence's mention of ancient Egypt and a forgotten female ruler.",
+      "sentence": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago."
+    },
+    {
+      "beat_index": 1,
+      "verdict": "OK",
+      "reason": "The visual of William Matthew Flinders Petrie and the headline 'Excavated tomb Y' directly support the sentence's claim about him excavating tomb Y.",
+      "sentence": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit."
+    },
+    {
+      "beat_index": 2,
+      "verdict": "OK",
+      "reason": "The typography headline 'Daughter of Djer' captures the core question asked in the sentence regarding Djer.",
+      "sentence": "Was she actually the daughter of Djer, the third king of the First Dynasty?"
+    },
+    {
+      "beat_index": 3,
+      "verdict": "OK",
+      "reason": "The typography headline 'Scientific American reported' properly reflects the sentence stating that Scientific American reported on the seals.",
+      "sentence": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler."
+    },
+    {
+      "beat_index": 4,
+      "verdict": "OK",
+      "reason": "The visual of William Matthew Flinders Petrie and the headline 'Uncovered 5000 years of history' align with the sentence's description of his excavation at tomb Y.",
+      "sentence": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history."
+    },
+    {
+      "beat_index": 5,
+      "verdict": "OK",
+      "reason": "The typography headline 'Meretneith ruled ancient Egypt' matches the sentence's statement about Meretneith ruling ancient Egypt.",
+      "sentence": "Meretneith ruled ancient Egypt more than 5000 years ago."
+    }
+  ],
+  "summary": "All beats accurately represent their respective sentences without any mismatches or contradictions."
+}

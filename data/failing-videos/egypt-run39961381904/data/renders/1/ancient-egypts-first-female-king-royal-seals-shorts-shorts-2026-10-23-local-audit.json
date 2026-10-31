@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-10-23T14:12:30.330Z",
+  "video": "ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+  "channel": "1",
+  "technical": {
+    "width": 810,
+    "height": 1440,
+    "fps": 30,
+    "durationSec": 51.33,
+    "hasAudio": true
+  },
+  "visual": {
+    "ok": true,
+    "meanLuma": 0.852,
+    "blackFrames": [],
+    "blackFrameCount": 0,
+    "meanMotion": 0.0654,
+    "lowMotion": false,
+    "sceneChanges": 5,
+    "maxStaticRunSec": 6.59,
+    "nearDuplicatePairs": 13
+  },
+  "plan_compliance": {
+    "ok": true,
+    "beatCountPlan": 6,
+    "beatCountRender": 6,
+    "textForwardPct": 100,
+    "textForwardSource": "drawn",
+    "distinctMechanisms": 6,
+    "distinctCapabilities": 0,
+    "longestMechanismRun": 1,
+    "monoculture": true,
+    "mechanismDistribution": {
+      "CAPABILITY": 3,
+      "TYPOGRAPHY": 2,
+      "ACTION_CONSEQUENCE": 1
+    },
+    "capabilityDistribution": {},
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "monoculture: 100% text-forward, 6 distinct mechanisms, longest run 1"
+      }
+    ]
+  },
+  "typography": {
+    "ok": true,
+    "textBeats": 6,
+    "totalBeats": 6,
+    "textBeatShare": 1,
+    "longestTextRun": 6,
+    "multiLineBeats": 0,
+    "wouldWrapBeats": 0,
+    "headlineLikeBeats": 0,
+    "transcriptLikeBeats": 3,
+    "repeatedPhrases": [],
+    "perBeat": [
+      {
+        "index": 0,
+        "hasText": true,
+        "phrase": "Forgotten female ruler",
+        "words": 3,
+        "chars": 22,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": false
+      },
+      {
+        "index": 1,
+        "hasText": true,
+        "phrase": "Excavated tomb Y",
+        "words": 3,
+        "chars": 16,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": false
+      },
+      {
+        "index": 2,
+        "hasText": true,
+        "phrase": "Was she actually the daughter",
+        "words": 5,
+        "chars": 29,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 3,
+        "hasText": true,
+        "phrase": "Scientific American reported",
+        "words": 3,
+        "chars": 28,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": false
+      },
+      {
+        "index": 4,
+        "hasText": true,
+        "phrase": "Uncovered 5000 years of history",
+        "words": 5,
+        "chars": 31,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 5,
+        "hasText": true,
+        "phrase": "Meretneith ruled ancient Egypt",
+        "words": 4,
+        "chars": 30,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      }
+    ],
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 2,
+        "problem": "\"Was she actually the daughter\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "\"Uncovered 5000 years of history\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "\"Meretneith ruled ancient Egypt\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "100% of beats carry on-screen text (max 40%) — typography must be selective, not the default treatment"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "6 consecutive text beats — TEXT->TEXT->TEXT reads as a slideshow, not visual storytelling"
+      }
+    ]
+  },
+  "audio": {
+    "ok": true,
+    "hasAudio": true,
+    "integratedLufs": -20.9,
+    "truePeakDb": -3.5,
+    "clipping": false,
+    "longSilenceCount": 0,
+    "maxSilenceSec": 0,
+    "effectivelySilent": false
+  },
+  "channel_history": {
+    "ok": true,
+    "recentAvgTextForwardPct": null,
+    "thisTextForwardPct": 100,
+    "outlier": false
+  },
+  "risk": {
+    "score": 93,
+    "level": "HIGH",
+    "reasons": [
+      "static/frozen 6.59s",
+      "13 near-duplicate frame pairs",
+      "monoculture (100% text-forward)",
+      "3 transcript-like phrase(s)",
+      "100% text beats (max 40%)",
+      "6 consecutive text beats"
+    ]
+  },
+  "gemini_required": true,
+  "uncertain_beats": [
+    2,
+    4,
+    5
+  ],
+  "blockers": [],
+  "corrections": [
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "monoculture: 100% text-forward, 6 distinct mechanisms, longest run 1",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 2,
+      "scene": "beat 2",
+      "problem": "\"Was she actually the daughter\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "\"Uncovered 5000 years of history\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "\"Meretneith ruled ancient Egypt\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "100% of beats carry on-screen text (max 40%) — typography must be selective, not the default treatment",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "6 consecutive text beats — TEXT->TEXT->TEXT reads as a slideshow, not visual storytelling",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    }
+  ]
+}

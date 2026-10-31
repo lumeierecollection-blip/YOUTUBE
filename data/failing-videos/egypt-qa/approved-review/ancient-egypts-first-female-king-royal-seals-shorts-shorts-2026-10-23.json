@@ -1,0 +1,11 @@
+{
+  "run_id": "39961381904",
+  "channel": 1,
+  "verdict": "approved-review",
+  "failed_stage": "naming-check",
+  "failed_check": null,
+  "reason": "FAILED — an entity on screen is misnamed: beats 4",
+  "duration_s": 51.3,
+  "queued_at": "2026-10-23T14:21:52.795Z",
+  "local_audit": "all checks passed"
+}

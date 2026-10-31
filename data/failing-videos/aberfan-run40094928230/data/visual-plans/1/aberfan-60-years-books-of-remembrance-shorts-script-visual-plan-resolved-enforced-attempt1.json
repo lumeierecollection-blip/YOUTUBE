@@ -1,0 +1,4073 @@
+{
+  "generatedAt": "2026-10-24T12:58:40.585Z",
+  "channel": "1",
+  "source": "gemini",
+  "iteration": "correction",
+  "totalBeats": 9,
+  "beats": [
+    {
+      "index": 0,
+      "kind": "EDITORIAL",
+      "visual_type": "COUNTER",
+      "canvas_composition": "NUMBER-FULL",
+      "shot": "STAT",
+      "ground": "#FDFBF7",
+      "lead_in": null,
+      "headline": "144 names preserved",
+      "emphasis_word": "144",
+      "scene_description": "An oversized number 144 counts up rapidly in the lower center of the frame, set in bold serif digits, with a small sans label underneath reading NEW BOOKS PRESERVE NAMES; behind it, a vintage parchment texture fills the warm cream ground.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "144"
+        }
+      ],
+      "entity_anchor_word": "144",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "number"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "together",
+      "animation_family": "count-up",
+      "text_entrance": "POP_HARD",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "144 names preserved",
+          "magnitude": "144"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "144 names preserved",
+        "why": null,
+        "moment": "hook",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": null,
+      "layout": {
+        "cols": 6,
+        "rows": 10,
+        "slots": [
+          {
+            "id": "number",
+            "col": 1,
+            "row": 3,
+            "col_span": 4,
+            "row_span": 3,
+            "align": "center",
+            "v_align": "center"
+          },
+          {
+            "id": "headline",
+            "col": 0,
+            "row": 7,
+            "col_span": 6,
+            "row_span": 2,
+            "align": "left",
+            "v_align": "top"
+          }
+        ]
+      },
+      "planner_chose_type": true,
+      "data": {
+        "value": "144",
+        "label": "names after village"
+      },
+      "visual_headline": "144 names preserved",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "144 names preserved"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "label": "RISE_FROM_BASE",
+        "headline": "CUT_IN",
+        "number": "COUNT_DOWN",
+        "exit": {
+          "element": "label",
+          "id": "SLIDE_OUT_R"
+        }
+      },
+      "recent_animations": [
+        "RISE_FROM_BASE",
+        "COUNT_DOWN",
+        "SLIDE_OUT_R"
+      ],
+      "narration": "New books preserve 144 names after a village lost its future in seconds.",
+      "reason": "An oversized number 144 counts up rapidly in the lower center of the frame, set in bold serif digits, with a small sans label underneath reading NEW BOOKS PRESERVE NAMES; behind it, a vintage parchment texture fills the warm cream ground.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "144",
+          "label": "names after village"
+        },
+        "sentence": "New books preserve 144 names after a village lost its future in seconds.",
+        "lead_in": null,
+        "headline": "144 names preserved",
+        "emphasis_word": "144",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "number"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "144"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_HARD",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#FDFBF7",
+        "entrance_style": "together",
+        "layout": {
+          "cols": 6,
+          "rows": 10,
+          "slots": [
+            {
+              "id": "number",
+              "col": 1,
+              "row": 3,
+              "col_span": 4,
+              "row_span": 3,
+              "align": "center",
+              "v_align": "center"
+            },
+            {
+              "id": "headline",
+              "col": 0,
+              "row": 7,
+              "col_span": 6,
+              "row_span": 2,
+              "align": "left",
+              "v_align": "top"
+            }
+          ]
+        },
+        "anchor_word": "144",
+        "composition": "NUMBER-STAT",
+        "shot": "STAT",
+        "shot_drawn": true,
+        "beat_index": 0,
+        "beat_total": 9,
+        "variant": 0,
+        "hero_headline": true,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "number_accent": true,
+        "anim": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "label": null,
+        "pull_phrase": null
+      }
+    },
+    {
+      "index": 1,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "SCENE-FULL",
+      "shot": "SCENE-FULL",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "Aberfan coal waste tip collapsed",
+      "emphasis_word": "Aberfan",
+      "scene_description": "A historical black-and-white photo of the Aberfan disaster site fills the frame, showing the scarred Welsh hillside and debris under an overcast sky; the headline sits cleanly across the top band in editorial serif.",
+      "named_entities": [
+        {
+          "type": "place",
+          "name": "Aberfan"
+        }
+      ],
+      "entity_anchor_word": "Aberfan",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.3,
+          "target": "photo"
+        }
+      ],
+      "persists_from": 0,
+      "match_cut_prev": false,
+      "entrance_style": "visual-first",
+      "animation_family": "slide-in",
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "coal waste tip collapsed"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {
+        "figure": null
+      },
+      "typography_direction": null,
+      "label": {
+        "text": "21 October 1966",
+        "position": "top-left"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "coal waste tip collapsed"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "SPLIT_REVEAL"
+      },
+      "recent_animations": [
+        "RISE_FROM_BASE",
+        "COUNT_DOWN",
+        "SLIDE_OUT_R",
+        "SPLIT_REVEAL"
+      ],
+      "narration": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan.",
+      "visual_headline": "",
+      "reason": "A historical black-and-white photo of the Aberfan disaster site fills the frame, showing the scarred Welsh hillside and debris under an overcast sky; the headline sits cleanly across the top band in editorial serif.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": [
+          {
+            "at_percent": 0.3,
+            "target": "photo"
+          }
+        ],
+        "persists_from": 0,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "place",
+            "name": "Aberfan"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "visual-first",
+        "anchor_word": "Aberfan",
+        "composition": "ENTITY-ART",
+        "shot": "SCENE-FULL",
+        "shot_drawn": false,
+        "art": {
+          "kind": "plates",
+          "name": "Aberfan, October 1966, 21",
+          "names": [
+            "Aberfan",
+            "October 1966",
+            "21"
+          ],
+          "kinds": [
+            "plate-place",
+            "date",
+            "figure"
+          ],
+          "items": [
+            null,
+            null,
+            null
+          ]
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "hero_headline": ""
+      },
+      "concept_visuals": [],
+      "art": {
+        "kind": "plates",
+        "name": "Aberfan, October 1966, 21",
+        "names": [
+          "Aberfan",
+          "October 1966",
+          "21"
+        ],
+        "kinds": [
+          "plate-place",
+          "date",
+          "figure"
+        ],
+        "items": [
+          null,
+          null,
+          null
+        ]
+      },
+      "ladder_visual": {
+        "art": {
+          "kind": "plates",
+          "name": "Aberfan, October 1966, 21",
+          "names": [
+            "Aberfan",
+            "October 1966",
+            "21"
+          ],
+          "kinds": [
+            "plate-place",
+            "date",
+            "figure"
+          ],
+          "items": [
+            null,
+            null,
+            null
+          ]
+        }
+      },
+      "mechanism": "STATE_CHANGE"
+    },
+    {
+      "index": 2,
+      "kind": "EDITORIAL",
+      "visual_type": "COUNTER",
+      "canvas_composition": "DATA-FULL",
+      "shot": "FIGURE",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "116 children and 28 adults lost",
+      "emphasis_word": "116",
+      "scene_description": "Two bold numbers appear side by side in light ink against a dark navy ground: 116 children and 28 adults, with crisp sans labels below each, flanked by fine grid lines reminiscent of an archival ledger.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "116"
+        },
+        {
+          "type": "number",
+          "name": "28"
+        }
+      ],
+      "entity_anchor_word": "116",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "chart"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "staggered",
+      "animation_family": "count-up",
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "lives lost",
+          "magnitude": "144"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "layout": {
+        "cols": 6,
+        "rows": 10,
+        "slots": [
+          {
+            "id": "headline",
+            "col": 0,
+            "row": 1,
+            "col_span": 6,
+            "row_span": 2,
+            "align": "left",
+            "v_align": "top"
+          },
+          {
+            "id": "chart",
+            "col": 0,
+            "row": 4,
+            "col_span": 6,
+            "row_span": 5,
+            "align": "center",
+            "v_align": "center"
+          }
+        ]
+      },
+      "planner_chose_type": true,
+      "data": {
+        "value": "116",
+        "label": "children adults"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "lives lost"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "label": "MASK_SWEEP",
+        "headline": "LETTER_STAGGER",
+        "number": "SCALE_IMPACT",
+        "exit": {
+          "element": "label",
+          "id": "SCALE_DOWN"
+        }
+      },
+      "recent_animations": [
+        "RISE_FROM_BASE",
+        "COUNT_DOWN",
+        "SLIDE_OUT_R",
+        "SPLIT_REVEAL",
+        "MASK_SWEEP",
+        "LETTER_STAGGER",
+        "SCALE_IMPACT",
+        "SCALE_DOWN"
+      ],
+      "narration": "116 children and 28 adults lost their lives in the disaster.",
+      "visual_headline": "",
+      "reason": "Two bold numbers appear side by side in light ink against a dark navy ground: 116 children and 28 adults, with crisp sans labels below each, flanked by fine grid lines reminiscent of an archival ledger.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "116",
+          "label": "children adults"
+        },
+        "sentence": "116 children and 28 adults lost their lives in the disaster.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "chart"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "116"
+          },
+          {
+            "type": "number",
+            "name": "28"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#0E0E10",
+        "concept_visuals": [
+          {
+            "name": "28",
+            "class": "figure",
+            "logo": false,
+            "asset": null,
+            "w": null,
+            "h": null,
+            "source_url": null,
+            "license": null
+          }
+        ],
+        "entrance_style": "staggered",
+        "layout": {
+          "cols": 6,
+          "rows": 10,
+          "slots": [
+            {
+              "id": "headline",
+              "col": 0,
+              "row": 1,
+              "col_span": 6,
+              "row_span": 2,
+              "align": "left",
+              "v_align": "top"
+            },
+            {
+              "id": "chart",
+              "col": 0,
+              "row": 4,
+              "col_span": 6,
+              "row_span": 5,
+              "align": "center",
+              "v_align": "center"
+            }
+          ]
+        },
+        "anchor_word": "116",
+        "composition": "NUMBER-FULL",
+        "number_label_off": false,
+        "shot": "FIGURE",
+        "shot_drawn": true,
+        "label": null,
+        "pull_phrase": null,
+        "anim": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ],
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "hero_headline": ""
+      },
+      "concept_visuals": [
+        {
+          "name": "28",
+          "class": "figure",
+          "logo": false,
+          "asset": null,
+          "w": null,
+          "h": null,
+          "source_url": null,
+          "license": null
+        }
+      ],
+      "ladder_visual": {
+        "art": {
+          "kind": "figure",
+          "name": "28"
+        }
+      },
+      "mechanism": "EVIDENCE_FIGURE"
+    },
+    {
+      "index": 3,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "TYPE-FULL",
+      "shot": "STATEMENT",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "Will the National Library of Wales protect these?",
+      "emphasis_word": "protect",
+      "scene_description": "An editorial text-led frame on a clean white ground, featuring the question set in large serif type low on the left side, underlined by a sharp accent ink bar.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "National Library of Wales"
+        }
+      ],
+      "entity_anchor_word": "Library",
+      "concepts": [],
+      "motion_tier": "micro",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "together",
+      "animation_family": "pop-in",
+      "text_entrance": "POP_WORD_STACK",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "preservation question"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "layout": {
+        "cols": 6,
+        "rows": 10,
+        "slots": [
+          {
+            "id": "statement",
+            "col": 0,
+            "row": 3,
+            "col_span": 6,
+            "row_span": 5,
+            "align": "left",
+            "v_align": "center"
+          }
+        ]
+      },
+      "planner_chose_type": true,
+      "data": null,
+      "visual_headline": "",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "document",
+            "anchor": "center",
+            "motion": "reveal",
+            "scale": 1,
+            "label": "preservation question"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "SCALE_PUNCH"
+      },
+      "recent_animations": [
+        "SPLIT_REVEAL",
+        "MASK_SWEEP",
+        "LETTER_STAGGER",
+        "SCALE_IMPACT",
+        "SCALE_DOWN",
+        "SCALE_PUNCH"
+      ],
+      "narration": "Will the National Library of Wales protect these pages?",
+      "reason": "An editorial text-led frame on a clean white ground, featuring the question set in large serif type low on the left side, underlined by a sharp accent ink bar.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "hero_cutout": {
+        "name": "National Library of Wales",
+        "class": "cutout",
+        "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+        "w": 1024,
+        "h": 157,
+        "logo": true,
+        "source": "wikipedia infobox",
+        "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+        "license": "CC BY-SA 3.0",
+        "ink": {
+          "pts": [
+            [
+              0.015,
+              0.175
+            ],
+            [
+              0.071,
+              0.182
+            ],
+            [
+              0.125,
+              0.175
+            ],
+            [
+              0.13,
+              0.162
+            ],
+            [
+              0.194,
+              0.175
+            ],
+            [
+              0.237,
+              0.194
+            ],
+            [
+              0.256,
+              0.175
+            ],
+            [
+              0.295,
+              0.175
+            ],
+            [
+              0.336,
+              0.175
+            ],
+            [
+              0.375,
+              0.175
+            ],
+            [
+              0.417,
+              0.175
+            ],
+            [
+              0.46,
+              0.175
+            ],
+            [
+              0.5,
+              0.175
+            ],
+            [
+              0.552,
+              0.175
+            ],
+            [
+              0.584,
+              0.175
+            ],
+            [
+              0.646,
+              0.175
+            ],
+            [
+              0.672,
+              0.175
+            ],
+            [
+              0.709,
+              0.175
+            ],
+            [
+              0.75,
+              0.175
+            ],
+            [
+              0.798,
+              0.175
+            ],
+            [
+              0.842,
+              0.175
+            ],
+            [
+              0.881,
+              0.175
+            ],
+            [
+              0.919,
+              0.175
+            ],
+            [
+              0.972,
+              0.175
+            ],
+            [
+              0.011,
+              0.825
+            ],
+            [
+              0.055,
+              0.831
+            ],
+            [
+              0.11,
+              0.831
+            ],
+            [
+              0.137,
+              0.825
+            ],
+            [
+              0.201,
+              0.806
+            ],
+            [
+              0.222,
+              0.825
+            ],
+            [
+              0.256,
+              0.825
+            ],
+            [
+              0.298,
+              0.825
+            ],
+            [
+              0.334,
+              0.825
+            ],
+            [
+              0.394,
+              0.825
+            ],
+            [
+              0.42,
+              0.831
+            ],
+            [
+              0.462,
+              0.825
+            ],
+            [
+              0.502,
+              0.825
+            ],
+            [
+              0.552,
+              0.825
+            ],
+            [
+              0.584,
+              0.825
+            ],
+            [
+              0.625,
+              0.825
+            ],
+            [
+              0.677,
+              0.825
+            ],
+            [
+              0.709,
+              0.806
+            ],
+            [
+              0.776,
+              0.831
+            ],
+            [
+              0.798,
+              0.825
+            ],
+            [
+              0.844,
+              0.825
+            ],
+            [
+              0.912,
+              0.818
+            ],
+            [
+              0.921,
+              0.825
+            ],
+            [
+              0.984,
+              0.831
+            ],
+            [
+              0.126,
+              0.169
+            ],
+            [
+              0.015,
+              0.213
+            ],
+            [
+              0.015,
+              0.258
+            ],
+            [
+              0.015,
+              0.296
+            ],
+            [
+              0.015,
+              0.341
+            ],
+            [
+              0.015,
+              0.379
+            ],
+            [
+              0.012,
+              0.443
+            ],
+            [
+              0.011,
+              0.538
+            ],
+            [
+              0.012,
+              0.551
+            ],
+            [
+              0.015,
+              0.589
+            ],
+            [
+              0.014,
+              0.634
+            ],
+            [
+              0.014,
+              0.672
+            ],
+            [
+              0.014,
+              0.717
+            ],
+            [
+              0.014,
+              0.755
+            ],
+            [
+              0.011,
+              0.818
+            ],
+            [
+              0.148,
+              0.169
+            ],
+            [
+              0.979,
+              0.175
+            ],
+            [
+              0.965,
+              0.226
+            ],
+            [
+              0.979,
+              0.283
+            ],
+            [
+              0.979,
+              0.296
+            ],
+            [
+              0.979,
+              0.341
+            ],
+            [
+              0.999,
+              0.392
+            ],
+            [
+              0.996,
+              0.424
+            ],
+            [
+              0.154,
+              0.538
+            ],
+            [
+              0.999,
+              0.57
+            ],
+            [
+              0.999,
+              0.589
+            ],
+            [
+              0.989,
+              0.666
+            ],
+            [
+              0.999,
+              0.704
+            ],
+            [
+              1,
+              0.717
+            ],
+            [
+              1,
+              0.755
+            ],
+            [
+              0.998,
+              0.799
+            ]
+          ]
+        }
+      },
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Will the National Library of Wales protect these pages?",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "micro",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "institution",
+            "name": "National Library of Wales"
+          }
+        ],
+        "hero_cutout": {
+          "name": "National Library of Wales",
+          "class": "cutout",
+          "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+          "w": 1024,
+          "h": 157,
+          "logo": true,
+          "source": "wikipedia infobox",
+          "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+          "license": "CC BY-SA 3.0",
+          "ink": {
+            "pts": [
+              [
+                0.015,
+                0.175
+              ],
+              [
+                0.071,
+                0.182
+              ],
+              [
+                0.125,
+                0.175
+              ],
+              [
+                0.13,
+                0.162
+              ],
+              [
+                0.194,
+                0.175
+              ],
+              [
+                0.237,
+                0.194
+              ],
+              [
+                0.256,
+                0.175
+              ],
+              [
+                0.295,
+                0.175
+              ],
+              [
+                0.336,
+                0.175
+              ],
+              [
+                0.375,
+                0.175
+              ],
+              [
+                0.417,
+                0.175
+              ],
+              [
+                0.46,
+                0.175
+              ],
+              [
+                0.5,
+                0.175
+              ],
+              [
+                0.552,
+                0.175
+              ],
+              [
+                0.584,
+                0.175
+              ],
+              [
+                0.646,
+                0.175
+              ],
+              [
+                0.672,
+                0.175
+              ],
+              [
+                0.709,
+                0.175
+              ],
+              [
+                0.75,
+                0.175
+              ],
+              [
+                0.798,
+                0.175
+              ],
+              [
+                0.842,
+                0.175
+              ],
+              [
+                0.881,
+                0.175
+              ],
+              [
+                0.919,
+                0.175
+              ],
+              [
+                0.972,
+                0.175
+              ],
+              [
+                0.011,
+                0.825
+              ],
+              [
+                0.055,
+                0.831
+              ],
+              [
+                0.11,
+                0.831
+              ],
+              [
+                0.137,
+                0.825
+              ],
+              [
+                0.201,
+                0.806
+              ],
+              [
+                0.222,
+                0.825
+              ],
+              [
+                0.256,
+                0.825
+              ],
+              [
+                0.298,
+                0.825
+              ],
+              [
+                0.334,
+                0.825
+              ],
+              [
+                0.394,
+                0.825
+              ],
+              [
+                0.42,
+                0.831
+              ],
+              [
+                0.462,
+                0.825
+              ],
+              [
+                0.502,
+                0.825
+              ],
+              [
+                0.552,
+                0.825
+              ],
+              [
+                0.584,
+                0.825
+              ],
+              [
+                0.625,
+                0.825
+              ],
+              [
+                0.677,
+                0.825
+              ],
+              [
+                0.709,
+                0.806
+              ],
+              [
+                0.776,
+                0.831
+              ],
+              [
+                0.798,
+                0.825
+              ],
+              [
+                0.844,
+                0.825
+              ],
+              [
+                0.912,
+                0.818
+              ],
+              [
+                0.921,
+                0.825
+              ],
+              [
+                0.984,
+                0.831
+              ],
+              [
+                0.126,
+                0.169
+              ],
+              [
+                0.015,
+                0.213
+              ],
+              [
+                0.015,
+                0.258
+              ],
+              [
+                0.015,
+                0.296
+              ],
+              [
+                0.015,
+                0.341
+              ],
+              [
+                0.015,
+                0.379
+              ],
+              [
+                0.012,
+                0.443
+              ],
+              [
+                0.011,
+                0.538
+              ],
+              [
+                0.012,
+                0.551
+              ],
+              [
+                0.015,
+                0.589
+              ],
+              [
+                0.014,
+                0.634
+              ],
+              [
+                0.014,
+                0.672
+              ],
+              [
+                0.014,
+                0.717
+              ],
+              [
+                0.014,
+                0.755
+              ],
+              [
+                0.011,
+                0.818
+              ],
+              [
+                0.148,
+                0.169
+              ],
+              [
+                0.979,
+                0.175
+              ],
+              [
+                0.965,
+                0.226
+              ],
+              [
+                0.979,
+                0.283
+              ],
+              [
+                0.979,
+                0.296
+              ],
+              [
+                0.979,
+                0.341
+              ],
+              [
+                0.999,
+                0.392
+              ],
+              [
+                0.996,
+                0.424
+              ],
+              [
+                0.154,
+                0.538
+              ],
+              [
+                0.999,
+                0.57
+              ],
+              [
+                0.999,
+                0.589
+              ],
+              [
+                0.989,
+                0.666
+              ],
+              [
+                0.999,
+                0.704
+              ],
+              [
+                1,
+                0.717
+              ],
+              [
+                1,
+                0.755
+              ],
+              [
+                0.998,
+                0.799
+              ]
+            ]
+          }
+        },
+        "text_entrance": null,
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "concept_visuals": [
+          {
+            "name": "National Library of Wales",
+            "class": "cutout",
+            "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+            "w": 1024,
+            "h": 157,
+            "logo": true,
+            "source": "wikipedia infobox",
+            "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+            "license": "CC BY-SA 3.0",
+            "ink": {
+              "pts": [
+                [
+                  0.015,
+                  0.175
+                ],
+                [
+                  0.071,
+                  0.182
+                ],
+                [
+                  0.125,
+                  0.175
+                ],
+                [
+                  0.13,
+                  0.162
+                ],
+                [
+                  0.194,
+                  0.175
+                ],
+                [
+                  0.237,
+                  0.194
+                ],
+                [
+                  0.256,
+                  0.175
+                ],
+                [
+                  0.295,
+                  0.175
+                ],
+                [
+                  0.336,
+                  0.175
+                ],
+                [
+                  0.375,
+                  0.175
+                ],
+                [
+                  0.417,
+                  0.175
+                ],
+                [
+                  0.46,
+                  0.175
+                ],
+                [
+                  0.5,
+                  0.175
+                ],
+                [
+                  0.552,
+                  0.175
+                ],
+                [
+                  0.584,
+                  0.175
+                ],
+                [
+                  0.646,
+                  0.175
+                ],
+                [
+                  0.672,
+                  0.175
+                ],
+                [
+                  0.709,
+                  0.175
+                ],
+                [
+                  0.75,
+                  0.175
+                ],
+                [
+                  0.798,
+                  0.175
+                ],
+                [
+                  0.842,
+                  0.175
+                ],
+                [
+                  0.881,
+                  0.175
+                ],
+                [
+                  0.919,
+                  0.175
+                ],
+                [
+                  0.972,
+                  0.175
+                ],
+                [
+                  0.011,
+                  0.825
+                ],
+                [
+                  0.055,
+                  0.831
+                ],
+                [
+                  0.11,
+                  0.831
+                ],
+                [
+                  0.137,
+                  0.825
+                ],
+                [
+                  0.201,
+                  0.806
+                ],
+                [
+                  0.222,
+                  0.825
+                ],
+                [
+                  0.256,
+                  0.825
+                ],
+                [
+                  0.298,
+                  0.825
+                ],
+                [
+                  0.334,
+                  0.825
+                ],
+                [
+                  0.394,
+                  0.825
+                ],
+                [
+                  0.42,
+                  0.831
+                ],
+                [
+                  0.462,
+                  0.825
+                ],
+                [
+                  0.502,
+                  0.825
+                ],
+                [
+                  0.552,
+                  0.825
+                ],
+                [
+                  0.584,
+                  0.825
+                ],
+                [
+                  0.625,
+                  0.825
+                ],
+                [
+                  0.677,
+                  0.825
+                ],
+                [
+                  0.709,
+                  0.806
+                ],
+                [
+                  0.776,
+                  0.831
+                ],
+                [
+                  0.798,
+                  0.825
+                ],
+                [
+                  0.844,
+                  0.825
+                ],
+                [
+                  0.912,
+                  0.818
+                ],
+                [
+                  0.921,
+                  0.825
+                ],
+                [
+                  0.984,
+                  0.831
+                ],
+                [
+                  0.126,
+                  0.169
+                ],
+                [
+                  0.015,
+                  0.213
+                ],
+                [
+                  0.015,
+                  0.258
+                ],
+                [
+                  0.015,
+                  0.296
+                ],
+                [
+                  0.015,
+                  0.341
+                ],
+                [
+                  0.015,
+                  0.379
+                ],
+                [
+                  0.012,
+                  0.443
+                ],
+                [
+                  0.011,
+                  0.538
+                ],
+                [
+                  0.012,
+                  0.551
+                ],
+                [
+                  0.015,
+                  0.589
+                ],
+                [
+                  0.014,
+                  0.634
+                ],
+                [
+                  0.014,
+                  0.672
+                ],
+                [
+                  0.014,
+                  0.717
+                ],
+                [
+                  0.014,
+                  0.755
+                ],
+                [
+                  0.011,
+                  0.818
+                ],
+                [
+                  0.148,
+                  0.169
+                ],
+                [
+                  0.979,
+                  0.175
+                ],
+                [
+                  0.965,
+                  0.226
+                ],
+                [
+                  0.979,
+                  0.283
+                ],
+                [
+                  0.979,
+                  0.296
+                ],
+                [
+                  0.979,
+                  0.341
+                ],
+                [
+                  0.999,
+                  0.392
+                ],
+                [
+                  0.996,
+                  0.424
+                ],
+                [
+                  0.154,
+                  0.538
+                ],
+                [
+                  0.999,
+                  0.57
+                ],
+                [
+                  0.999,
+                  0.589
+                ],
+                [
+                  0.989,
+                  0.666
+                ],
+                [
+                  0.999,
+                  0.704
+                ],
+                [
+                  1,
+                  0.717
+                ],
+                [
+                  1,
+                  0.755
+                ],
+                [
+                  0.998,
+                  0.799
+                ]
+              ]
+            }
+          }
+        ],
+        "entrance_style": "together",
+        "layout": {
+          "cols": 6,
+          "rows": 10,
+          "slots": [
+            {
+              "id": "statement",
+              "col": 0,
+              "row": 3,
+              "col_span": 6,
+              "row_span": 5,
+              "align": "left",
+              "v_align": "center"
+            }
+          ]
+        },
+        "source_credit": "commons.wikimedia.org",
+        "anchor_word": "Library",
+        "composition": "TYPE-FULL",
+        "shot_drawn": false,
+        "beat_index": 3,
+        "beat_total": 9,
+        "variant": 3,
+        "hero_headline": "",
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "statement": [
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_EMPHASIS",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null
+      },
+      "mechanism": "PHYSICAL_GROWTH"
+    },
+    {
+      "index": 4,
+      "kind": "TYPE",
+      "visual_type": "TYPE",
+      "canvas_composition": "DOCUMENT",
+      "shot": "PHOTO-CARD",
+      "ground": "#FDFBF7",
+      "lead_in": null,
+      "headline": "Original Book of Remembrance wears down",
+      "emphasis_word": "wears",
+      "scene_description": "A framed archival photo of the aging, weathered pages of the original Aberfan Book of Remembrance inside a heavy dark border in the upper half of the frame, with the serif headline positioned cleanly above.",
+      "named_entities": [
+        {
+          "type": "object",
+          "name": "Aberfan Book of Remembrance"
+        }
+      ],
+      "entity_anchor_word": "Book",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.4,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "visual-first",
+      "animation_family": "slide-in",
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "book wears down"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "depletion",
+        "evidence"
+      ],
+      "objects": {
+        "figure": null
+      },
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": {
+        "text": "fresh copies are needed",
+        "position": "bottom",
+        "case": "as-written",
+        "tone": "accent"
+      },
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "vessel",
+            "anchor": "center",
+            "motion": "drain",
+            "scale": 1.2,
+            "label": "book wears down"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "FADE_LIFT"
+      },
+      "recent_animations": [
+        "MASK_SWEEP",
+        "LETTER_STAGGER",
+        "SCALE_IMPACT",
+        "SCALE_DOWN",
+        "SCALE_PUNCH",
+        "FADE_LIFT"
+      ],
+      "narration": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed.",
+      "mechanism": "VISIBLE_CONSUMPTION",
+      "visual_headline": "",
+      "reason": "A framed archival photo of the aging, weathered pages of the original Aberfan Book of Remembrance inside a heavy dark border in the upper half of the frame, with the serif headline positioned cleanly above.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": [
+          {
+            "at_percent": 0.4,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "object",
+            "name": "Aberfan Book of Remembrance"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#FDFBF7",
+        "entrance_style": "visual-first",
+        "anchor_word": "Book",
+        "composition": "TYPE-FULL",
+        "shot": "PHOTO-CARD",
+        "shot_drawn": false,
+        "beat_index": 4,
+        "beat_total": 9,
+        "variant": 4,
+        "hero_headline": "",
+        "emphasis_beat": true,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null
+      }
+    },
+    {
+      "index": 5,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "SCENE-LOW",
+      "shot": "SCENE-LOW",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "National Library of Wales finished new copies",
+      "emphasis_word": "finished",
+      "scene_description": "A sharp, modern photograph of the grand exterior stone facade of the National Library of Wales, filling the lower portion of the frame beneath the bold headline in the top band.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "National Library of Wales"
+        }
+      ],
+      "entity_anchor_word": "Library",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "together",
+      "animation_family": "pop-in",
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "new copies finished"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {
+        "figure": null
+      },
+      "typography_direction": null,
+      "label": {
+        "text": "July 2026",
+        "position": "top-right"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": null,
+      "visual_headline": "",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "grow",
+            "count": 6,
+            "scale": 1,
+            "label": "new copies finished"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "RISE_FROM_BASE"
+      },
+      "recent_animations": [
+        "SCALE_PUNCH",
+        "FADE_LIFT",
+        "CUT_IN",
+        "BLUR_IN",
+        "MASK_CLOSE"
+      ],
+      "narration": "The National Library of Wales finished new copies ahead of July 2026.",
+      "reason": "A sharp, modern photograph of the grand exterior stone facade of the National Library of Wales, filling the lower portion of the frame beneath the bold headline in the top band.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "hero_cutout": {
+        "name": "National Library of Wales",
+        "class": "cutout",
+        "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+        "w": 1024,
+        "h": 157,
+        "logo": true,
+        "source": "wikipedia infobox",
+        "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+        "license": "CC BY-SA 3.0",
+        "ink": {
+          "pts": [
+            [
+              0.015,
+              0.175
+            ],
+            [
+              0.071,
+              0.182
+            ],
+            [
+              0.125,
+              0.175
+            ],
+            [
+              0.13,
+              0.162
+            ],
+            [
+              0.194,
+              0.175
+            ],
+            [
+              0.237,
+              0.194
+            ],
+            [
+              0.256,
+              0.175
+            ],
+            [
+              0.295,
+              0.175
+            ],
+            [
+              0.336,
+              0.175
+            ],
+            [
+              0.375,
+              0.175
+            ],
+            [
+              0.417,
+              0.175
+            ],
+            [
+              0.46,
+              0.175
+            ],
+            [
+              0.5,
+              0.175
+            ],
+            [
+              0.552,
+              0.175
+            ],
+            [
+              0.584,
+              0.175
+            ],
+            [
+              0.646,
+              0.175
+            ],
+            [
+              0.672,
+              0.175
+            ],
+            [
+              0.709,
+              0.175
+            ],
+            [
+              0.75,
+              0.175
+            ],
+            [
+              0.798,
+              0.175
+            ],
+            [
+              0.842,
+              0.175
+            ],
+            [
+              0.881,
+              0.175
+            ],
+            [
+              0.919,
+              0.175
+            ],
+            [
+              0.972,
+              0.175
+            ],
+            [
+              0.011,
+              0.825
+            ],
+            [
+              0.055,
+              0.831
+            ],
+            [
+              0.11,
+              0.831
+            ],
+            [
+              0.137,
+              0.825
+            ],
+            [
+              0.201,
+              0.806
+            ],
+            [
+              0.222,
+              0.825
+            ],
+            [
+              0.256,
+              0.825
+            ],
+            [
+              0.298,
+              0.825
+            ],
+            [
+              0.334,
+              0.825
+            ],
+            [
+              0.394,
+              0.825
+            ],
+            [
+              0.42,
+              0.831
+            ],
+            [
+              0.462,
+              0.825
+            ],
+            [
+              0.502,
+              0.825
+            ],
+            [
+              0.552,
+              0.825
+            ],
+            [
+              0.584,
+              0.825
+            ],
+            [
+              0.625,
+              0.825
+            ],
+            [
+              0.677,
+              0.825
+            ],
+            [
+              0.709,
+              0.806
+            ],
+            [
+              0.776,
+              0.831
+            ],
+            [
+              0.798,
+              0.825
+            ],
+            [
+              0.844,
+              0.825
+            ],
+            [
+              0.912,
+              0.818
+            ],
+            [
+              0.921,
+              0.825
+            ],
+            [
+              0.984,
+              0.831
+            ],
+            [
+              0.126,
+              0.169
+            ],
+            [
+              0.015,
+              0.213
+            ],
+            [
+              0.015,
+              0.258
+            ],
+            [
+              0.015,
+              0.296
+            ],
+            [
+              0.015,
+              0.341
+            ],
+            [
+              0.015,
+              0.379
+            ],
+            [
+              0.012,
+              0.443
+            ],
+            [
+              0.011,
+              0.538
+            ],
+            [
+              0.012,
+              0.551
+            ],
+            [
+              0.015,
+              0.589
+            ],
+            [
+              0.014,
+              0.634
+            ],
+            [
+              0.014,
+              0.672
+            ],
+            [
+              0.014,
+              0.717
+            ],
+            [
+              0.014,
+              0.755
+            ],
+            [
+              0.011,
+              0.818
+            ],
+            [
+              0.148,
+              0.169
+            ],
+            [
+              0.979,
+              0.175
+            ],
+            [
+              0.965,
+              0.226
+            ],
+            [
+              0.979,
+              0.283
+            ],
+            [
+              0.979,
+              0.296
+            ],
+            [
+              0.979,
+              0.341
+            ],
+            [
+              0.999,
+              0.392
+            ],
+            [
+              0.996,
+              0.424
+            ],
+            [
+              0.154,
+              0.538
+            ],
+            [
+              0.999,
+              0.57
+            ],
+            [
+              0.999,
+              0.589
+            ],
+            [
+              0.989,
+              0.666
+            ],
+            [
+              0.999,
+              0.704
+            ],
+            [
+              1,
+              0.717
+            ],
+            [
+              1,
+              0.755
+            ],
+            [
+              0.998,
+              0.799
+            ]
+          ]
+        }
+      },
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "The National Library of Wales finished new copies ahead of July 2026.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "institution",
+            "name": "National Library of Wales"
+          }
+        ],
+        "hero_cutout": {
+          "name": "National Library of Wales",
+          "class": "cutout",
+          "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+          "w": 1024,
+          "h": 157,
+          "logo": true,
+          "source": "wikipedia infobox",
+          "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+          "license": "CC BY-SA 3.0",
+          "ink": {
+            "pts": [
+              [
+                0.015,
+                0.175
+              ],
+              [
+                0.071,
+                0.182
+              ],
+              [
+                0.125,
+                0.175
+              ],
+              [
+                0.13,
+                0.162
+              ],
+              [
+                0.194,
+                0.175
+              ],
+              [
+                0.237,
+                0.194
+              ],
+              [
+                0.256,
+                0.175
+              ],
+              [
+                0.295,
+                0.175
+              ],
+              [
+                0.336,
+                0.175
+              ],
+              [
+                0.375,
+                0.175
+              ],
+              [
+                0.417,
+                0.175
+              ],
+              [
+                0.46,
+                0.175
+              ],
+              [
+                0.5,
+                0.175
+              ],
+              [
+                0.552,
+                0.175
+              ],
+              [
+                0.584,
+                0.175
+              ],
+              [
+                0.646,
+                0.175
+              ],
+              [
+                0.672,
+                0.175
+              ],
+              [
+                0.709,
+                0.175
+              ],
+              [
+                0.75,
+                0.175
+              ],
+              [
+                0.798,
+                0.175
+              ],
+              [
+                0.842,
+                0.175
+              ],
+              [
+                0.881,
+                0.175
+              ],
+              [
+                0.919,
+                0.175
+              ],
+              [
+                0.972,
+                0.175
+              ],
+              [
+                0.011,
+                0.825
+              ],
+              [
+                0.055,
+                0.831
+              ],
+              [
+                0.11,
+                0.831
+              ],
+              [
+                0.137,
+                0.825
+              ],
+              [
+                0.201,
+                0.806
+              ],
+              [
+                0.222,
+                0.825
+              ],
+              [
+                0.256,
+                0.825
+              ],
+              [
+                0.298,
+                0.825
+              ],
+              [
+                0.334,
+                0.825
+              ],
+              [
+                0.394,
+                0.825
+              ],
+              [
+                0.42,
+                0.831
+              ],
+              [
+                0.462,
+                0.825
+              ],
+              [
+                0.502,
+                0.825
+              ],
+              [
+                0.552,
+                0.825
+              ],
+              [
+                0.584,
+                0.825
+              ],
+              [
+                0.625,
+                0.825
+              ],
+              [
+                0.677,
+                0.825
+              ],
+              [
+                0.709,
+                0.806
+              ],
+              [
+                0.776,
+                0.831
+              ],
+              [
+                0.798,
+                0.825
+              ],
+              [
+                0.844,
+                0.825
+              ],
+              [
+                0.912,
+                0.818
+              ],
+              [
+                0.921,
+                0.825
+              ],
+              [
+                0.984,
+                0.831
+              ],
+              [
+                0.126,
+                0.169
+              ],
+              [
+                0.015,
+                0.213
+              ],
+              [
+                0.015,
+                0.258
+              ],
+              [
+                0.015,
+                0.296
+              ],
+              [
+                0.015,
+                0.341
+              ],
+              [
+                0.015,
+                0.379
+              ],
+              [
+                0.012,
+                0.443
+              ],
+              [
+                0.011,
+                0.538
+              ],
+              [
+                0.012,
+                0.551
+              ],
+              [
+                0.015,
+                0.589
+              ],
+              [
+                0.014,
+                0.634
+              ],
+              [
+                0.014,
+                0.672
+              ],
+              [
+                0.014,
+                0.717
+              ],
+              [
+                0.014,
+                0.755
+              ],
+              [
+                0.011,
+                0.818
+              ],
+              [
+                0.148,
+                0.169
+              ],
+              [
+                0.979,
+                0.175
+              ],
+              [
+                0.965,
+                0.226
+              ],
+              [
+                0.979,
+                0.283
+              ],
+              [
+                0.979,
+                0.296
+              ],
+              [
+                0.979,
+                0.341
+              ],
+              [
+                0.999,
+                0.392
+              ],
+              [
+                0.996,
+                0.424
+              ],
+              [
+                0.154,
+                0.538
+              ],
+              [
+                0.999,
+                0.57
+              ],
+              [
+                0.999,
+                0.589
+              ],
+              [
+                0.989,
+                0.666
+              ],
+              [
+                0.999,
+                0.704
+              ],
+              [
+                1,
+                0.717
+              ],
+              [
+                1,
+                0.755
+              ],
+              [
+                0.998,
+                0.799
+              ]
+            ]
+          }
+        },
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "concept_visuals": [
+          {
+            "name": "National Library of Wales",
+            "class": "cutout",
+            "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+            "w": 1024,
+            "h": 157,
+            "logo": true,
+            "source": "wikipedia infobox",
+            "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+            "license": "CC BY-SA 3.0",
+            "ink": {
+              "pts": [
+                [
+                  0.015,
+                  0.175
+                ],
+                [
+                  0.071,
+                  0.182
+                ],
+                [
+                  0.125,
+                  0.175
+                ],
+                [
+                  0.13,
+                  0.162
+                ],
+                [
+                  0.194,
+                  0.175
+                ],
+                [
+                  0.237,
+                  0.194
+                ],
+                [
+                  0.256,
+                  0.175
+                ],
+                [
+                  0.295,
+                  0.175
+                ],
+                [
+                  0.336,
+                  0.175
+                ],
+                [
+                  0.375,
+                  0.175
+                ],
+                [
+                  0.417,
+                  0.175
+                ],
+                [
+                  0.46,
+                  0.175
+                ],
+                [
+                  0.5,
+                  0.175
+                ],
+                [
+                  0.552,
+                  0.175
+                ],
+                [
+                  0.584,
+                  0.175
+                ],
+                [
+                  0.646,
+                  0.175
+                ],
+                [
+                  0.672,
+                  0.175
+                ],
+                [
+                  0.709,
+                  0.175
+                ],
+                [
+                  0.75,
+                  0.175
+                ],
+                [
+                  0.798,
+                  0.175
+                ],
+                [
+                  0.842,
+                  0.175
+                ],
+                [
+                  0.881,
+                  0.175
+                ],
+                [
+                  0.919,
+                  0.175
+                ],
+                [
+                  0.972,
+                  0.175
+                ],
+                [
+                  0.011,
+                  0.825
+                ],
+                [
+                  0.055,
+                  0.831
+                ],
+                [
+                  0.11,
+                  0.831
+                ],
+                [
+                  0.137,
+                  0.825
+                ],
+                [
+                  0.201,
+                  0.806
+                ],
+                [
+                  0.222,
+                  0.825
+                ],
+                [
+                  0.256,
+                  0.825
+                ],
+                [
+                  0.298,
+                  0.825
+                ],
+                [
+                  0.334,
+                  0.825
+                ],
+                [
+                  0.394,
+                  0.825
+                ],
+                [
+                  0.42,
+                  0.831
+                ],
+                [
+                  0.462,
+                  0.825
+                ],
+                [
+                  0.502,
+                  0.825
+                ],
+                [
+                  0.552,
+                  0.825
+                ],
+                [
+                  0.584,
+                  0.825
+                ],
+                [
+                  0.625,
+                  0.825
+                ],
+                [
+                  0.677,
+                  0.825
+                ],
+                [
+                  0.709,
+                  0.806
+                ],
+                [
+                  0.776,
+                  0.831
+                ],
+                [
+                  0.798,
+                  0.825
+                ],
+                [
+                  0.844,
+                  0.825
+                ],
+                [
+                  0.912,
+                  0.818
+                ],
+                [
+                  0.921,
+                  0.825
+                ],
+                [
+                  0.984,
+                  0.831
+                ],
+                [
+                  0.126,
+                  0.169
+                ],
+                [
+                  0.015,
+                  0.213
+                ],
+                [
+                  0.015,
+                  0.258
+                ],
+                [
+                  0.015,
+                  0.296
+                ],
+                [
+                  0.015,
+                  0.341
+                ],
+                [
+                  0.015,
+                  0.379
+                ],
+                [
+                  0.012,
+                  0.443
+                ],
+                [
+                  0.011,
+                  0.538
+                ],
+                [
+                  0.012,
+                  0.551
+                ],
+                [
+                  0.015,
+                  0.589
+                ],
+                [
+                  0.014,
+                  0.634
+                ],
+                [
+                  0.014,
+                  0.672
+                ],
+                [
+                  0.014,
+                  0.717
+                ],
+                [
+                  0.014,
+                  0.755
+                ],
+                [
+                  0.011,
+                  0.818
+                ],
+                [
+                  0.148,
+                  0.169
+                ],
+                [
+                  0.979,
+                  0.175
+                ],
+                [
+                  0.965,
+                  0.226
+                ],
+                [
+                  0.979,
+                  0.283
+                ],
+                [
+                  0.979,
+                  0.296
+                ],
+                [
+                  0.979,
+                  0.341
+                ],
+                [
+                  0.999,
+                  0.392
+                ],
+                [
+                  0.996,
+                  0.424
+                ],
+                [
+                  0.154,
+                  0.538
+                ],
+                [
+                  0.999,
+                  0.57
+                ],
+                [
+                  0.999,
+                  0.589
+                ],
+                [
+                  0.989,
+                  0.666
+                ],
+                [
+                  0.999,
+                  0.704
+                ],
+                [
+                  1,
+                  0.717
+                ],
+                [
+                  1,
+                  0.755
+                ],
+                [
+                  0.998,
+                  0.799
+                ]
+              ]
+            }
+          },
+          {
+            "name": "July 2026",
+            "class": "date",
+            "logo": false,
+            "asset": null,
+            "w": null,
+            "h": null,
+            "source_url": null,
+            "license": null
+          }
+        ],
+        "entrance_style": "together",
+        "source_credit": "commons.wikimedia.org",
+        "anchor_word": "Library",
+        "composition": "TYPE-FULL",
+        "shot": "SCENE-LOW",
+        "shot_drawn": false,
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ],
+            "kicker": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "hero_headline": ""
+      },
+      "concept_visuals": [
+        {
+          "name": "July 2026",
+          "class": "date",
+          "logo": false,
+          "asset": null,
+          "w": null,
+          "h": null,
+          "source_url": null,
+          "license": null
+        }
+      ],
+      "ladder_visual": {
+        "art": {
+          "kind": "date",
+          "name": "July 2026"
+        }
+      }
+    },
+    {
+      "index": 6,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "PORTRAIT",
+      "shot": "PORTRAIT",
+      "ground": "#FDFBF7",
+      "lead_in": null,
+      "headline": "Davies guards community history",
+      "emphasis_word": "Davies",
+      "scene_description": "A dignified portrait of Davies, chair of the Aberfan Memorial Charity, framed as an editorial cutout photograph standing in the center of the frame against a warm cream ground with delicate grid lines.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Davies"
+        },
+        {
+          "type": "institution",
+          "name": "Aberfan Memorial Charity"
+        }
+      ],
+      "entity_anchor_word": "Davies",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "visual-first",
+      "animation_family": "slide-in",
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "chair guards history"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": {
+        "text": "Aberfan Memorial Charity",
+        "position": "top-left"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "chair guards history"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "SLIDE_FROM_R"
+      },
+      "recent_animations": [
+        "FADE_LIFT",
+        "CUT_IN",
+        "BLUR_IN",
+        "MASK_CLOSE",
+        "SLIDE_FROM_R"
+      ],
+      "narration": "Aberfan Memorial Charity chair Davies guards the community's history now.",
+      "mechanism": "ACTION_CONSEQUENCE",
+      "cap_reassigned": {
+        "from": "CAPABILITY:revelation",
+        "why": "CAPABILITY:revelation exceeded 40% (max 3 of 9)"
+      },
+      "visual_headline": "",
+      "reason": "A dignified portrait of Davies, chair of the Aberfan Memorial Charity, framed as an editorial cutout photograph standing in the center of the frame against a warm cream ground with delicate grid lines.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Aberfan Memorial Charity chair Davies guards the community's history now.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "person",
+            "name": "Davies"
+          },
+          {
+            "type": "institution",
+            "name": "Aberfan Memorial Charity"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#FDFBF7",
+        "entrance_style": "visual-first",
+        "anchor_word": "Davies",
+        "composition": "ENTITY-ART",
+        "shot": "PORTRAIT",
+        "shot_drawn": false,
+        "art": {
+          "kind": "plates",
+          "name": "Davies, Aberfan Memorial Charity",
+          "names": [
+            "Davies",
+            "Aberfan Memorial Charity"
+          ],
+          "kinds": [
+            "plate-person",
+            "plate-organization"
+          ],
+          "items": [
+            null,
+            null
+          ]
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "hero_headline": ""
+      },
+      "concept_visuals": [],
+      "art": {
+        "kind": "plates",
+        "name": "Davies, Aberfan Memorial Charity",
+        "names": [
+          "Davies",
+          "Aberfan Memorial Charity"
+        ],
+        "kinds": [
+          "plate-person",
+          "plate-organization"
+        ],
+        "items": [
+          null,
+          null
+        ]
+      },
+      "ladder_visual": {
+        "art": {
+          "kind": "plates",
+          "name": "Davies, Aberfan Memorial Charity",
+          "names": [
+            "Davies",
+            "Aberfan Memorial Charity"
+          ],
+          "kinds": [
+            "plate-person",
+            "plate-organization"
+          ],
+          "items": [
+            null,
+            null
+          ]
+        }
+      }
+    },
+    {
+      "index": 7,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "NUMBER-FULL",
+      "shot": "STAT",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "At 68 years old, Davies protects memory",
+      "emphasis_word": "68",
+      "scene_description": "An oversized number 68 in light ink fills the center of the dark navy frame, accompanied by a small sans label reading YEARS OF DEVOTION below it; the serif headline rests in the top band.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Davies"
+        },
+        {
+          "type": "number",
+          "name": "68"
+        }
+      ],
+      "entity_anchor_word": "68",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "number"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "entrance_style": "together",
+      "animation_family": "count-up",
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "age 68",
+          "magnitude": "68"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "layout": {
+        "cols": 6,
+        "rows": 10,
+        "slots": [
+          {
+            "id": "headline",
+            "col": 0,
+            "row": 1,
+            "col_span": 6,
+            "row_span": 2,
+            "align": "left",
+            "v_align": "top"
+          },
+          {
+            "id": "number",
+            "col": 1,
+            "row": 4,
+            "col_span": 4,
+            "row_span": 3,
+            "align": "center",
+            "v_align": "center"
+          }
+        ]
+      },
+      "planner_chose_type": true,
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "age 68"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "MASK_SWEEP",
+        "label": "SLIDE_FROM_L",
+        "number": "ROLL_DIGIT",
+        "exit": {
+          "element": "label",
+          "id": "FADE_OUT"
+        }
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "BLUR_IN",
+        "MASK_CLOSE",
+        "SLIDE_FROM_R",
+        "MASK_SWEEP"
+      ],
+      "narration": "At 68 years old, Davies protects the village's memory.",
+      "visual_headline": "",
+      "reason": "An oversized number 68 in light ink fills the center of the dark navy frame, accompanied by a small sans label reading YEARS OF DEVOTION below it; the serif headline rests in the top band.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "At 68 years old, Davies protects the village's memory.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "number"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "person",
+            "name": "Davies"
+          },
+          {
+            "type": "number",
+            "name": "68"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#0E0E10",
+        "entrance_style": "together",
+        "layout": {
+          "cols": 6,
+          "rows": 10,
+          "slots": [
+            {
+              "id": "headline",
+              "col": 0,
+              "row": 1,
+              "col_span": 6,
+              "row_span": 2,
+              "align": "left",
+              "v_align": "top"
+            },
+            {
+              "id": "number",
+              "col": 1,
+              "row": 4,
+              "col_span": 4,
+              "row_span": 3,
+              "align": "center",
+              "v_align": "center"
+            }
+          ]
+        },
+        "anchor_word": "68",
+        "composition": "ENTITY-ART",
+        "shot": "STAT",
+        "shot_drawn": false,
+        "art": {
+          "kind": "plate-person",
+          "name": "Davies"
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "hero_headline": ""
+      },
+      "concept_visuals": [],
+      "art": {
+        "kind": "plate-person",
+        "name": "Davies"
+      },
+      "ladder_visual": {
+        "art": {
+          "kind": "plate-person",
+          "name": "Davies"
+        }
+      }
+    },
+    {
+      "index": 8,
+      "kind": "TYPE",
+      "visual_type": "COUNTER",
+      "canvas_composition": "MONEY",
+      "shot": "PHOTO-INSET",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "144 names remain protected",
+      "emphasis_word": "protected",
+      "scene_description": "A crisp, close-up photograph of newly bound leather and freshly pressed ink on parchment, shown inside a small rounded card with a block shadow in the upper half of the frame; the bold headline sits beneath.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "144"
+        }
+      ],
+      "entity_anchor_word": "144",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": true,
+      "entrance_style": "visual-first",
+      "animation_family": "pop-in",
+      "text_entrance": "POP_HARD",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "144 names protected in leather and ink",
+          "magnitude": "144"
+        }
+      ],
+      "capabilities": [
+        "accumulation",
+        "revelation",
+        "typographic_emphasis"
+      ],
+      "objects": {
+        "figure": null
+      },
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "data": {
+        "value": "144",
+        "label": "names remain protected in"
+      },
+      "visual_headline": "",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "144 names protected in leather and ink"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "animations": {
+        "headline": "WORD_FLY"
+      },
+      "recent_animations": [
+        "SLIDE_FROM_R",
+        "MASK_SWEEP",
+        "SLIDE_FROM_L",
+        "ROLL_DIGIT"
+      ],
+      "narration": "144 names remain protected in fresh leather and ink.",
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "reason": "A crisp, close-up photograph of newly bound leather and freshly pressed ink on parchment, shown inside a small rounded card with a block shadow in the upper half of the frame; the bold headline sits beneath.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "layout": {
+        "cols": 6,
+        "rows": 10,
+        "slots": [
+          {
+            "id": "headline",
+            "col": 0,
+            "row": 1,
+            "col_span": 6,
+            "row_span": 2,
+            "align": "left",
+            "v_align": "top"
+          },
+          {
+            "id": "number",
+            "col": 0,
+            "row": 4,
+            "col_span": 6,
+            "row_span": 4,
+            "align": "center",
+            "v_align": "center"
+          }
+        ]
+      },
+      "canvas": {
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "144",
+          "label": "names remain protected in"
+        },
+        "sentence": "144 names remain protected in fresh leather and ink.",
+        "lead_in": null,
+        "headline": "",
+        "emphasis_word": null,
+        "emphasis_words": null,
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": true,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "144"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_HARD",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "visual-first",
+        "layout": {
+          "cols": 6,
+          "rows": 10,
+          "slots": [
+            {
+              "id": "headline",
+              "col": 0,
+              "row": 1,
+              "col_span": 6,
+              "row_span": 2,
+              "align": "left",
+              "v_align": "top"
+            },
+            {
+              "id": "number",
+              "col": 0,
+              "row": 4,
+              "col_span": 6,
+              "row_span": 4,
+              "align": "center",
+              "v_align": "center"
+            }
+          ]
+        },
+        "anchor_word": "144",
+        "composition": "NUMBER-FULL",
+        "shot": "PHOTO-INSET",
+        "shot_drawn": false,
+        "label": null,
+        "pull_phrase": null,
+        "anim": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "hero_headline": ""
+      },
+      "ladder_visual": {
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "144",
+          "label": "names remain protected in"
+        }
+      }
+    }
+  ],
+  "composedBeats": 0,
+  "compositionIssues": [],
+  "compilationReport": [
+    {
+      "beat": 1,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    },
+    {
+      "beat": 6,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    }
+  ],
+  "capabilityDistribution": {
+    "evidence": 4,
+    "revelation": 5,
+    "typographic_emphasis": 2,
+    "depletion": 1,
+    "accumulation": 1
+  },
+  "mechanismDistribution": "CAPABILITY:evidence:3 CAPABILITY:revelation:3 TYPOGRAPHY:2 ACTION_CONSEQUENCE:1",
+  "compositionsDropped": [],
+  "plannerDecisions": {
+    "grounds": {
+      "#FDFBF7": 3,
+      "white": 4,
+      "#0E0E10": 2
+    },
+    "types": {
+      "declared": 9,
+      "kept": 7,
+      "ungrounded": 2,
+      "defaultedType": 0
+    },
+    "compositionMappings": [
+      {
+        "beat": 5,
+        "field": "canvas_composition",
+        "wrote": "SCENE-LOW",
+        "mappedTo": "SCENE-FULL"
+      }
+    ],
+    "compositions_used": {
+      "counts": {
+        "NUMBER-FULL": 2,
+        "SCENE-FULL": 2,
+        "DATA-FULL": 1,
+        "TYPE-FULL": 1,
+        "DOCUMENT": 1,
+        "PORTRAIT": 1,
+        "MONEY": 1
+      },
+      "n": 9,
+      "top": "NUMBER-FULL",
+      "topShare": 0.2222222222222222,
+      "templated": false
+    },
+    "styleSpec": null
+  },
+  "variety": {
+    "type_full": 4,
+    "beats": 9,
+    "max_type": 3,
+    "adjacent_type": 0,
+    "max_consecutive_same": 1,
+    "distinct_compositions": 3,
+    "converted": 0,
+    "entrance_styles": [
+      "together",
+      "visual-first",
+      "staggered",
+      "together",
+      "visual-first",
+      "together",
+      "visual-first",
+      "together",
+      "visual-first"
+    ]
+  },
+  "recent_animations": [
+    [
+      "RISE_FROM_BASE",
+      "COUNT_DOWN",
+      "SLIDE_OUT_R"
+    ],
+    [
+      "RISE_FROM_BASE",
+      "COUNT_DOWN",
+      "SLIDE_OUT_R",
+      "SPLIT_REVEAL"
+    ],
+    [
+      "RISE_FROM_BASE",
+      "COUNT_DOWN",
+      "SLIDE_OUT_R",
+      "SPLIT_REVEAL",
+      "MASK_SWEEP",
+      "LETTER_STAGGER",
+      "SCALE_IMPACT",
+      "SCALE_DOWN"
+    ],
+    [
+      "SPLIT_REVEAL",
+      "MASK_SWEEP",
+      "LETTER_STAGGER",
+      "SCALE_IMPACT",
+      "SCALE_DOWN",
+      "SCALE_PUNCH"
+    ],
+    [
+      "MASK_SWEEP",
+      "LETTER_STAGGER",
+      "SCALE_IMPACT",
+      "SCALE_DOWN",
+      "SCALE_PUNCH",
+      "FADE_LIFT"
+    ],
+    [
+      "SCALE_PUNCH",
+      "FADE_LIFT",
+      "CUT_IN"
+    ],
+    [
+      "FADE_LIFT",
+      "CUT_IN",
+      "WORD_FLY"
+    ],
+    [
+      "CUT_IN",
+      "WORD_FLY",
+      "SLIDE_FROM_L",
+      "ROLL_DIGIT",
+      "FADE_OUT"
+    ],
+    [
+      "WORD_FLY",
+      "SLIDE_FROM_L",
+      "ROLL_DIGIT",
+      "FADE_OUT",
+      "WORD_FLY"
+    ]
+  ],
+  "visual_summary": {
+    "beats": 9,
+    "pngs": 2,
+    "no_concept": 0
+  },
+  "shots_final": {
+    "shots": [
+      "STAT",
+      "AS-RESOLVED",
+      "FIGURE",
+      "HERO-STACK",
+      "AS-RESOLVED",
+      "HERO-STACK",
+      "AS-RESOLVED",
+      "AS-RESOLVED",
+      "FIGURE"
+    ],
+    "problems": []
+  },
+  "entity_report": {
+    "resolved": [
+      "beat 3: institution \"National Library of Wales\" -> logo cutouts-live/1/3-national-library-of-wales-logo.png (found)",
+      "beat 5: institution \"National Library of Wales\" -> logo cutouts-live/1/3-national-library-of-wales-logo.png (found)"
+    ],
+    "fell_back": [
+      "beat 1: place \"Aberfan\": no verified photo",
+      "beat 6: person \"Davies\": no verified portrait of \"Davies\" (6 candidate(s) rejected)",
+      "beat 6: institution \"Aberfan Memorial Charity\": no verified logo or photo"
+    ],
+    "rejected": [],
+    "name_cards": []
+  }
+}

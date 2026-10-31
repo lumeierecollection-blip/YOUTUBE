@@ -408,40 +408,28 @@ export function planeOffset(shot, depth, e) {
  * by the component that applies them — the same "one model, two callers"
  * rule planeOffset is under.
  */
-export const SUSTAIN_DRIFT_PX = 10;
-export const SUSTAIN_SCALE_GAIN = 0.018;
-
+/**
+ * The cameraSafe function computes the safe area accounting for Shot's
+ * transform only. No SustainCamera drift/scale is applied — that was
+ * removed because it added meaningless motion during sustaining states.
+ */
 export function cameraSafe(shot, safe) {
   const cx = CANVAS_W / 2;
   const cy = CANVAS_H / 2;
   const c = (shot && shot.camera) || { from: { scale: 1, x: 0, y: 0 }, to: { scale: 1, x: 0, y: 0 } };
 
-  /**
-   * Both transforms are `translate(d) scale(s)` about the same centre, so
-   * they compose to a single `translate(ds + dc*ss) scale(sc*ss)` and the
-   * inverse is one division. `Shot` interpolates linearly in eased progress
-   * and `SustainCamera` in its own, independently — so the extremes are the
-   * endpoint COMBINATIONS, and every one of them is checked rather than
-   * assuming which is worst.
-   */
-  const sustainScales = [1, 1 + SUSTAIN_SCALE_GAIN];
-  const sustainDx = [-SUSTAIN_DRIFT_PX, 0, SUSTAIN_DRIFT_PX];
   let left = -Infinity, right = Infinity, top = -Infinity, bottom = Infinity;
   for (const end of [c.from, c.to]) {
     const sc = end.scale || 1;
     const dxc = (end.x || 0) * CANVAS_W;
     const dyc = (end.y || 0) * CANVAS_H;
-    for (const ss of sustainScales) {
-      for (const dxs of sustainDx) {
-        const s = sc * ss;
-        const dx = dxs + dxc * ss;
-        const dy = dyc * ss; // SustainCamera translates X only
-        left = Math.max(left, cx + (safe.left - cx - dx) / s);
-        right = Math.min(right, cx + (safe.right - cx - dx) / s);
-        top = Math.max(top, cy + (safe.top - cy - dy) / s);
-        bottom = Math.min(bottom, cy + (safe.bottom - cy - dy) / s);
-      }
-    }
+    const s = sc;
+    const dx = dxc;
+    const dy = dyc;
+    left = Math.max(left, cx + (safe.left - cx - dx) / s);
+    right = Math.min(right, cx + (safe.right - cx - dx) / s);
+    top = Math.max(top, cy + (safe.top - cy - dy) / s);
+    bottom = Math.min(bottom, cy + (safe.bottom - cy - dy) / s);
   }
   return { left, right, top, bottom, width: right - left, height: bottom - top };
 }

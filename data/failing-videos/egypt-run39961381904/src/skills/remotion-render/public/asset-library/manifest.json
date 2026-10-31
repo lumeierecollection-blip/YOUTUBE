@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "note": "Real-asset manifest (scripts/fetch-assets.cjs). Excluded on migration: asset-library/ch-fixture/cave-spider-cutout.png — a rembg test fixture with no recorded source or license.",
+  "assets": [
+    {
+      "id": "loc-piggy-bank-savings-all-of-our-savings-to-the-homeland-0",
+      "source": "loc",
+      "source_url": "http://www.loc.gov/item/2021670895/",
+      "download_url": "https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:17:28:1:wdl_17281:1-BSM4717/full/pct:100/0/default.jpg#h=4134&w=2844",
+      "local_path": "asset-library/ch-01/piggy-bank-savings-all-of-our-savings-to-the-homeland-0.png",
+      "license": "PD",
+      "attribution": "Library of Congress",
+      "topics": [
+        "finance"
+      ],
+      "concepts": [
+        "piggy bank savings"
+      ],
+      "description": "Library of Congress item (title slug in filename: \"all of our savings to the homeland\"); queried as \"piggy bank savings\"",
+      "source_text": {
+        "title": "piggy bank savings all of our savings to the homeland"
+      },
+      "width": 2281,
+      "height": 2448,
+      "treatment": "cutout",
+      "fetched_at": "2026-08-22T00:48:58.986Z",
+      "migrated_from": "data/asset-library/index.json"
+    }
+  ]
+}

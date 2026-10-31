@@ -57,6 +57,56 @@ import { execFileSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { decodePNG } from "../src/skills/remotion-render/decode-png.js";
 
+/**
+ * Validate a PNG file has proper transparency (alpha channel) and no solid background.
+ * Returns { ok: boolean, hasAlpha: boolean, alphaCoverage: number, issues: string[] }
+ */
+function validatePNGTransparency(pngPath) {
+  try {
+    const { data, width, height, channels } = decodePNG(pngPath);
+    if (channels < 4) {
+      return { ok: false, hasAlpha: false, alphaCoverage: 0, issues: ["PNG has no alpha channel (not RGBA)"] };
+    }
+    let transparentPixels = 0;
+    let opaquePixels = 0;
+    let semiTransparentPixels = 0;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const i = (y * width + x) * channels;
+        const alpha = data[i + 3];
+        if (alpha === 0) transparentPixels++;
+        else if (alpha === 255) opaquePixels++;
+        else semiTransparentPixels++;
+      }
+    }
+    const total = width * height;
+    const alphaCoverage = (transparentPixels + semiTransparentPixels) / total;
+    const issues = [];
+    if (transparentPixels === 0 && semiTransparentPixels === 0) {
+      issues.push("PNG has no transparent or semi-transparent pixels (fully opaque)");
+    }
+    if (alphaCoverage < 0.05) {
+      issues.push(`Very low transparency coverage: ${(alphaCoverage * 100).toFixed(1)}%`);
+    }
+    // Check for white background (common rembg failure mode)
+    let whiteBgPixels = 0;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const i = (y * width + x) * channels;
+        if (data[i] > 240 && data[i+1] > 240 && data[i+2] > 240 && data[i+3] === 255) {
+          whiteBgPixels++;
+        }
+      }
+    }
+    if (whiteBgPixels / total > 0.1) {
+      issues.push(`Possible white background: ${(whiteBgPixels / total * 100).toFixed(1)}% solid white pixels`);
+    }
+    return { ok: issues.length === 0, hasAlpha: true, alphaCoverage, issues };
+  } catch (e) {
+    return { ok: false, hasAlpha: false, alphaCoverage: 0, issues: [`Failed to decode PNG: ${e.message}`] };
+  }
+}
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 /**
@@ -486,9 +536,216 @@ function main() {
       if (!assetLines.length) {
         results["7.6"].note = "no external assets in this plan, so 7.6 has nothing to verify — a pass here is vacuous, not strong";
       }
+
+      // ── 7.7 PNG quality validation (transparency, no solid backgrounds) ───────
+      // Need to parse the visual plan JSON file, not the section-5 plan text
+      let visualPlanPath = null;
+      try {
+        // The visual plan is typically at data/visual-plans/<channelNum>/<video>-visual-plan.json
+        const visualPlansDir = join(ROOT, "data", "visual-plans");
+        const videoBase = basename(vid).replace(/\.[^.]+$/, "");
+        // Extract channel number from cid (e.g., "ch-01" -> "1")
+        const channelNum = cid.match(/ch-0*(\d+)/i)?.[1] || "1";
+        const channelDir = join(visualPlansDir, channelNum);
+
+        // Search in channel-specific directory first
+        if (existsSync(channelDir)) {
+          const vpFiles = readdirSync(channelDir).filter((f) => f.includes(videoBase) && f.endsWith(".json"));
+          if (vpFiles.length > 0) {
+            visualPlanPath = join(channelDir, vpFiles[0]);
+          }
+        }
+        // Fallback: search top-level and all channel directories
+        if (!visualPlanPath && existsSync(visualPlansDir)) {
+          const allDirs = [visualPlansDir, ...readdirSync(visualPlansDir).map((d) => join(visualPlansDir, d)).filter((d) => existsSync(d))];
+          for (const dir of allDirs) {
+            try {
+              const vpFiles = readdirSync(dir).filter((f) => f.includes(videoBase) && f.endsWith(".json"));
+              if (vpFiles.length > 0) {
+                visualPlanPath = join(dir, vpFiles[0]);
+                break;
+              }
+            } catch {}
+          }
+        }
+      } catch {}
+
+      const cutoutRefs = [];
+
+      // From plan assets: look for cutout PNG references
+      for (const line of plan.assets) {
+        const m = line.match(/cutouts-live\/([^)\s]+\.png)/i);
+        if (m) cutoutRefs.push(m[1]);
+      }
+
+      // From visual plan beats: concept_visuals that are cutout PNGs
+      if (visualPlanPath && existsSync(visualPlanPath)) {
+        const visualPlan = JSON.parse(readFileSync(visualPlanPath, "utf-8"));
+        if (visualPlan.beats) {
+          for (const beat of visualPlan.beats) {
+            if (beat.canvas?.concept_visuals) {
+              for (const cv of beat.canvas.concept_visuals) {
+                if (cv.asset && cv.class === "cutout" && cv.asset.endsWith(".png")) {
+                  const name = basename(cv.asset);
+                  if (!cutoutRefs.includes(name)) cutoutRefs.push(name);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      const pngResults = [];
+      const pngIssues = [];
+
+      for (const ref of cutoutRefs) {
+        // Check both locations where cutout PNGs live
+        const paths = [
+          join(ROOT, "src", "skills", "remotion-render", "public", "cutouts-live", ref),
+          join(ROOT, "src", "skills", "remotion-render", "png-bank", ref),
+        ];
+
+        let found = false;
+        for (const p of paths) {
+          if (existsSync(p)) {
+            found = true;
+            const v = validatePNGTransparency(p);
+            pngResults.push({ file: ref, path: p, ...v });
+            if (!v.ok) {
+              for (const iss of v.issues) {
+                pngIssues.push(`${ref}: ${iss}`);
+              }
+            }
+            break;
+          }
+        }
+        if (!found) {
+          pngResults.push({ file: ref, ok: false, hasAlpha: false, alphaCoverage: 0, issues: ["File not found in cutouts-live/ or png-bank/"] });
+          pngIssues.push(`${ref}: File not found in cutouts-live/ or png-bank/`);
+        }
+      }
+
+      results["7.7"] = { checked: cutoutRefs.length, results: pngResults };
+      if (pngIssues.length) {
+        findings.push(`7.7 PNG quality: ${pngIssues.length} issue(s) — ${pngIssues.join("; ")}`);
+      }
+
+      // ── 7.8 sentence-level visual coverage ───────────────────────────────
+      if (visualPlanPath && existsSync(visualPlanPath)) {
+        const visualPlan = JSON.parse(readFileSync(visualPlanPath, "utf-8"));
+        const scriptText = plan.text.join(" ");
+        // Split into sentences (simple heuristic)
+        const sentences = scriptText.split(/(?<=[.!?])\s+/).filter((s) => s.trim().length > 10);
+        const beats = visualPlan.beats || [];
+
+        let uncoveredSentences = 0;
+        const sentenceCoverage = [];
+
+        for (let i = 0; i < sentences.length; i++) {
+          const sentence = sentences[i].trim();
+          // Find beats that cover this sentence (by narration text match)
+          const coveringBeats = beats.filter((b) =>
+            b.narration && b.narration.includes(sentence.split(" ").slice(0, 5).join(" "))
+          );
+
+          let visualCount = 0;
+          let conceptVisualCount = 0;
+          for (const beat of coveringBeats) {
+            if (beat.canvas?.concept_visuals) {
+              conceptVisualCount += beat.canvas.concept_visuals.filter((v) => v.class === "cutout" || v.class === "photo" || v.class === "plate-organization" || v.class === "plate-person").length;
+            }
+            if (beat.canvas?.photo || beat.canvas?.art || beat.compiledScene?.objects?.length > 0) {
+              visualCount++;
+            }
+          }
+
+          const hasVisual = coveringBeats.length > 0 && (visualCount > 0 || conceptVisualCount > 0);
+          if (!hasVisual) {
+            uncoveredSentences++;
+          }
+          sentenceCoverage.push({
+            sentence: sentence.slice(0, 80) + (sentence.length > 80 ? "..." : ""),
+            covered: hasVisual,
+            beats: coveringBeats.length,
+            conceptVisuals: conceptVisualCount
+          });
+        }
+
+        results["7.8"] = {
+          totalSentences: sentences.length,
+          uncoveredSentences,
+          coverage: ((sentences.length - uncoveredSentences) / sentences.length * 100).toFixed(1) + "%",
+          details: sentenceCoverage
+        };
+
+        if (uncoveredSentences > 0) {
+          findings.push(`7.8 sentence coverage: ${uncoveredSentences} of ${sentences.length} sentence(s) lack visual coverage`);
+        }
+      } else {
+        results["7.8"] = { skipped: "no visual plan found" };
+      }
+
+      // ── 7.9 motion meaningfulness ────────────────────────────────────────
+      if (visualPlanPath && existsSync(visualPlanPath)) {
+        const visualPlan = JSON.parse(readFileSync(visualPlanPath, "utf-8"));
+        const beats = visualPlan.beats || [];
+        const motionIssues = [];
+
+        for (const beat of beats) {
+          // Check for meaningless motion: animations without clear object/action link
+          const hasNarrationObject = beat.narration && (
+            beat.narration.match(/\b(move|grow|shrink|rotate|turn|slide|fall|rise|expand|contract|pulse|fade|appear|disappear|build|break|cut|flow|fill|empty|count|track|measure|scan|highlight|reveal|zoom|pan|push|pull)\b/i)
+          );
+
+          const animations = beat.animations || {};
+          const visualEvents = beat.visual_events || [];
+          const canvasAnim = beat.canvas?.anim || {};
+          const kinetic = beat.canvas?.kinetic || {};
+
+          // Check for generic particle/voxel effects (SUSTAIN_DRIFT, particle, etc.)
+          const hasMeaninglessMotion =
+            (kinetic.edge && !hasNarrationObject) || // edge drift without object motion
+            (beat.shot === "SUSTAIN" && !hasNarrationObject) ||
+            visualEvents.some((e) => e.type === "particle" || e.type === "voxel" || e.type === "drift");
+
+          // Check if motion events have clear labels tied to narration concepts
+          const eventLabels = visualEvents.map((e) => e.label).filter(Boolean);
+          const narrationNouns = beat.narration ? beat.narration.match(/\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b/g) || [] : [];
+
+          let eventsTiedToNarration = 0;
+          for (const label of eventLabels) {
+            if (narrationNouns.some((noun) => label.toLowerCase().includes(noun.toLowerCase()))) {
+              eventsTiedToNarration++;
+            }
+          }
+
+          if (visualEvents.length > 0 && eventsTiedToNarration === 0) {
+            motionIssues.push(`Beat ${beat.index}: ${visualEvents.length} visual event(s) with no narration link (labels: ${eventLabels.join(", ")})`);
+          }
+
+          if (hasMeaninglessMotion) {
+            motionIssues.push(`Beat ${beat.index}: Possible meaningless motion (sustain/edge drift without narration object)`);
+          }
+        }
+
+        results["7.9"] = {
+          totalBeats: beats.length,
+          motionIssues: motionIssues.length,
+          details: motionIssues
+        };
+
+        if (motionIssues.length > 0) {
+          findings.push(`7.9 motion meaningfulness: ${motionIssues.length} issue(s) — ${motionIssues.slice(0, 3).join("; ")}${motionIssues.length > 3 ? " ..." : ""}`);
+        }
+      } else {
+        results["7.9"] = { skipped: "no visual plan found" };
+      }
     } else {
       results["7.5"] = { skipped: "no --plan given" };
       results["7.6"] = { skipped: "no --plan given" };
+      results["7.7"] = { skipped: "no --plan given" };
+      results["7.8"] = { skipped: "no --plan given" };
+      results["7.9"] = { skipped: "no --plan given" };
       findings.push("7.5 / 7.6: no plan supplied, so neither could be checked. Section 7 requires both.");
     }
 
@@ -531,7 +788,7 @@ function main() {
   writeFileSync(out, JSON.stringify(record, null, 2) + "\n");
 
   console.log(`\nsection-7 QA — ${cid} — ${basename(vid)}`);
-  for (const k of ["7.1", "7.2", "7.3", "7.4", "7.5", "7.6"]) {
+  for (const k of ["7.1", "7.2", "7.3", "7.4", "7.5", "7.6", "7.7", "7.8", "7.9"]) {
     const hit = findings.some((f) => f.startsWith(k));
     console.log(`  ${hit ? "REJECT" : "ok    "}  ${k}`);
   }

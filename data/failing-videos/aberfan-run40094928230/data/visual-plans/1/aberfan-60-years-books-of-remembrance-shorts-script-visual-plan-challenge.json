@@ -1,0 +1,63 @@
+{
+  "reviewedAt": "2026-10-24T12:57:59.892Z",
+  "source": "gemini-challenger/plan",
+  "plan": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/aberfan-60-years-books-of-remembrance-shorts-script-visual-plan.json",
+  "approved": false,
+  "beats": [
+    {
+      "beat_index": 0,
+      "verdict": "OK",
+      "reason": "The headline and number directly reflect the books preserving 144 names.",
+      "sentence": "New books preserve 144 names after a village lost its future in seconds."
+    },
+    {
+      "beat_index": 1,
+      "verdict": "OK",
+      "reason": "The headline matches the date and the visual shows the place mentioned in the sentence.",
+      "sentence": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan."
+    },
+    {
+      "beat_index": 2,
+      "verdict": "OK",
+      "reason": "The headline and number correctly highlight the 116 children and 28 adults who lost their lives.",
+      "sentence": "116 children and 28 adults lost their lives in the disaster."
+    },
+    {
+      "beat_index": 3,
+      "verdict": "CONTRADICTION",
+      "reason": "The on-screen headline drops 'of Wales', which is required to match the sentence's full naming of the National Library of Wales.",
+      "sentence": "Will the National Library of Wales protect these pages?"
+    },
+    {
+      "beat_index": 4,
+      "verdict": "WEAK",
+      "reason": "The typography fits the sentence, but it is generic and does not capture the specific need for fresh copies.",
+      "sentence": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed."
+    },
+    {
+      "beat_index": 5,
+      "verdict": "CONTRADICTION",
+      "reason": "The headline omits 'of Wales' from 'National Library of Wales', violating the strict spelling rule for organizations.",
+      "sentence": "The National Library of Wales finished new copies ahead of July 2026."
+    },
+    {
+      "beat_index": 6,
+      "verdict": "OK",
+      "reason": "The headline and photograph accurately match the chair Davies guarding the community's history.",
+      "sentence": "Aberfan Memorial Charity chair Davies guards the community's history now."
+    },
+    {
+      "beat_index": 7,
+      "verdict": "OK",
+      "reason": "The headline and number 68 match the exact age and subject of the sentence.",
+      "sentence": "At 68 years old, Davies protects the village's memory."
+    },
+    {
+      "beat_index": 8,
+      "verdict": "OK",
+      "reason": "The typography correctly states the 144 names remaining protected in fresh leather and ink.",
+      "sentence": "144 names remain protected in fresh leather and ink."
+    }
+  ],
+  "summary": "Most beats are accurate, but beats 3 and 5 are contradictions due to dropping 'of Wales' from the National Library of Wales."
+}

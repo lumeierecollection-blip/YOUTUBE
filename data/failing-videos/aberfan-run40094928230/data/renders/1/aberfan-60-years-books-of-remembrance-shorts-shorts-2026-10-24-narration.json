@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-10-24T13:06:07.205Z",
+  "model": "gemini-3.5-flash-lite",
+  "runs": 1,
+  "audio": "/home/runner/work/YOUTUBE/YOUTUBE/data/tts/1/aberfan-60-years-books-of-remembrance-shorts-script-vo.mp3",
+  "sentences": [
+    {
+      "index": 0,
+      "text": "New books preserve 144 names after a village lost its future in seconds.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Professional narration with natural intonation and pacing."
+    },
+    {
+      "index": 1,
+      "text": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Good emotional delivery and clear pronunciation."
+    },
+    {
+      "index": 2,
+      "text": "116 children and 28 adults lost their lives in the disaster.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Maintains a steady, engaging documentary tone."
+    },
+    {
+      "index": 3,
+      "text": "Will the National Library of Wales protect these pages?",
+      "score": 7,
+      "scores": [
+        7
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Slightly elevated pitch for the question, well-executed."
+    },
+    {
+      "index": 4,
+      "text": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Natural pauses and good emphasis on key words."
+    },
+    {
+      "index": 5,
+      "text": "The National Library of Wales finished new copies ahead of July 2026.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Clear articulation and steady professional flow."
+    },
+    {
+      "index": 6,
+      "text": "Aberfan Memorial Charity chair Davies guards the community's history now.",
+      "score": 7,
+      "scores": [
+        7
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Solid pacing with appropriate emphasis."
+    },
+    {
+      "index": 7,
+      "text": "At 68 years old, Davies protects the village's memory.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Natural cadence and professional warmth."
+    },
+    {
+      "index": 8,
+      "text": "144 names remain protected in fresh leather and ink.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Strong concluding sentence with good resonance."
+    }
+  ],
+  "failing": [],
+  "skipped": []
+}

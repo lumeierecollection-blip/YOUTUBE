@@ -1,0 +1,82 @@
+{
+  "checkedAt": "2026-10-23T14:12:19.473Z",
+  "model": "gemini-3.5-flash-lite",
+  "runs": 1,
+  "audio": "/home/runner/work/YOUTUBE/YOUTUBE/data/tts/1/ancient-egypts-first-female-king-royal-seals-shorts-script-vo.mp3",
+  "sentences": [
+    {
+      "index": 0,
+      "text": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Professional delivery with natural intonation."
+    },
+    {
+      "index": 1,
+      "text": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Engaging narration style and good pacing."
+    },
+    {
+      "index": 2,
+      "text": "Was she actually the daughter of Djer, the third king of the First Dynasty?",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Sounds like a human narrator with proper inflection."
+    },
+    {
+      "index": 3,
+      "text": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Clear voice with good intonation and rhythm."
+    },
+    {
+      "index": 4,
+      "text": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Professional quality read with natural pacing."
+    },
+    {
+      "index": 5,
+      "text": "Meretneith ruled ancient Egypt more than 5000 years ago.",
+      "score": 8,
+      "scores": [
+        8
+      ],
+      "sounds": "HUMAN",
+      "intonation": "VARIED",
+      "pauses": "NATURAL",
+      "why": "Solid documentary delivery with great intonation."
+    }
+  ],
+  "failing": [],
+  "skipped": []
+}

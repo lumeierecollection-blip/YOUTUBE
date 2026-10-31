@@ -1,0 +1,10 @@
+{
+  "corrections": [
+    {
+      "beat": 5,
+      "element": "visual_type",
+      "problem": "MISMATCH on visual_type: current value \"PHOTO\" (The plan shows a photograph of ancient Egypt, but there are no surviving real photographs of ancient Egypt from over 5000 years ago.)",
+      "fix": "set visual_type to \"AI_IMAGE\" so the beat shows exactly what its sentence says"
+    }
+  ]
+}

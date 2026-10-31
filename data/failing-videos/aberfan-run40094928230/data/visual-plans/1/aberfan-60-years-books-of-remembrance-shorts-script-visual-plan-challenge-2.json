@@ -1,0 +1,63 @@
+{
+  "reviewedAt": "2026-10-24T12:58:42.456Z",
+  "source": "gemini-challenger/plan",
+  "plan": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/aberfan-60-years-books-of-remembrance-shorts-script-visual-plan.json",
+  "approved": true,
+  "beats": [
+    {
+      "beat_index": 0,
+      "verdict": "OK",
+      "reason": "The visual plan clearly represents the 144 names and the preservation aspect stated in the sentence.",
+      "sentence": "New books preserve 144 names after a village lost its future in seconds."
+    },
+    {
+      "beat_index": 1,
+      "verdict": "OK",
+      "reason": "The visual uses a real photograph of Aberfan and matches the date and event described in the sentence.",
+      "sentence": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan."
+    },
+    {
+      "beat_index": 2,
+      "verdict": "OK",
+      "reason": "The visual accurately highlights the casualty numbers (116 children and 28 adults) from the sentence.",
+      "sentence": "116 children and 28 adults lost their lives in the disaster."
+    },
+    {
+      "beat_index": 3,
+      "verdict": "OK",
+      "reason": "The visual correctly features the National Library of Wales as named in the sentence.",
+      "sentence": "Will the National Library of Wales protect these pages?"
+    },
+    {
+      "beat_index": 4,
+      "verdict": "OK",
+      "reason": "The typography and headline accurately reflect the wear on the original Book of Remembrance.",
+      "sentence": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed."
+    },
+    {
+      "beat_index": 5,
+      "verdict": "OK",
+      "reason": "The visual correctly references the National Library of Wales and the completion of new copies.",
+      "sentence": "The National Library of Wales finished new copies ahead of July 2026."
+    },
+    {
+      "beat_index": 6,
+      "verdict": "OK",
+      "reason": "The visual accurately depicts Davies and the role described in the sentence.",
+      "sentence": "Aberfan Memorial Charity chair Davies guards the community's history now."
+    },
+    {
+      "beat_index": 7,
+      "verdict": "OK",
+      "reason": "The visual properly highlights the age of 68 in connection with Davies.",
+      "sentence": "At 68 years old, Davies protects the village's memory."
+    },
+    {
+      "beat_index": 8,
+      "verdict": "OK",
+      "reason": "The typography effectively conveys the 144 names remaining protected in fresh leather and ink.",
+      "sentence": "144 names remain protected in fresh leather and ink."
+    }
+  ],
+  "summary": "All beats accurately reflect their corresponding sentences without any contradictions or mismatches."
+}

@@ -1,0 +1,1753 @@
+{
+  "canvas": true,
+  "accent": "#1B7A4D",
+  "ground": "#FFFFFF",
+  "beats": [
+    {
+      "beat_id": "t0",
+      "start_frame": 0,
+      "duration_frames": 90,
+      "text": "Why does the fifty thirty twenty rule break now?",
+      "original_text": "Why does the fifty thirty twenty rule break now?",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "TYPE",
+          "headline": "Why the 50/30/20 rule breaks",
+          "lead_in": "a budget rule",
+          "motion_tier": "major",
+          "composition": "TYPE-FULL",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": true,
+            "style": "POP_HARD",
+            "entrances": {
+              "statement": [
+                "POP_HARD",
+                "POP_HARD",
+                "POP_HARD",
+                "POP_HARD",
+                "POP_HARD"
+              ],
+              "kicker": [
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Why",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "text": "does",
+          "from": 14,
+          "to": 22
+        },
+        {
+          "text": "the",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "text": "fifty",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "text": "thirty",
+          "from": 37,
+          "to": 45
+        },
+        {
+          "text": "twenty",
+          "from": 45,
+          "to": 53
+        },
+        {
+          "text": "rule",
+          "from": 53,
+          "to": 60
+        },
+        {
+          "text": "break",
+          "from": 60,
+          "to": 68
+        },
+        {
+          "text": "now?",
+          "from": 68,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t1",
+      "start_frame": 90,
+      "duration_frames": 90,
+      "text": "The fraud cost investors one hundred five million dollars.",
+      "original_text": "The fraud cost investors one hundred five million dollars.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "COUNTER",
+          "data": {
+            "value": "$105M",
+            "label": "lost by investors"
+          },
+          "headline": "Investor losses",
+          "motion_tier": "medium",
+          "composition": "NUMBER-FULL",
+          "beat_total": 20,
+          "entity_pop": {
+            "frame": 31,
+            "word": "one",
+            "from": 37,
+            "to": 45,
+            "kind": "number"
+          },
+          "anim": {
+            "number": "ROLL_DIGIT"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ],
+              "label": [
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": "pop_roll"
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "text": "fraud",
+          "from": 14,
+          "to": 22
+        },
+        {
+          "text": "cost",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "text": "investors",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "text": "one",
+          "from": 37,
+          "to": 45
+        },
+        {
+          "text": "hundred",
+          "from": 45,
+          "to": 53
+        },
+        {
+          "text": "five",
+          "from": 53,
+          "to": 60
+        },
+        {
+          "text": "million",
+          "from": 60,
+          "to": 68
+        },
+        {
+          "text": "dollars.",
+          "from": 68,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t2",
+      "start_frame": 180,
+      "duration_frames": 90,
+      "text": "Needs take fifty percent, wants thirty, savings twenty.",
+      "original_text": "Needs take fifty percent, wants thirty, savings twenty.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "BAR",
+          "data": {
+            "bars": [
+              {
+                "label": "needs",
+                "value": "50%"
+              },
+              {
+                "label": "wants",
+                "value": "30%"
+              },
+              {
+                "label": "savings",
+                "value": "20%"
+              }
+            ]
+          },
+          "headline": "Where the money goes",
+          "lead_in": "the split",
+          "motion_tier": "medium",
+          "composition": "DATA-FULL",
+          "beat_total": 20,
+          "anim": {
+            "chart": "BAR_SPLIT"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ],
+              "kicker": [
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Needs",
+          "from": 6,
+          "to": 15
+        },
+        {
+          "text": "take",
+          "from": 15,
+          "to": 24
+        },
+        {
+          "text": "fifty",
+          "from": 24,
+          "to": 32
+        },
+        {
+          "text": "percent,",
+          "from": 32,
+          "to": 41
+        },
+        {
+          "text": "wants",
+          "from": 41,
+          "to": 50
+        },
+        {
+          "text": "thirty,",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "text": "savings",
+          "from": 59,
+          "to": 67
+        },
+        {
+          "text": "twenty.",
+          "from": 67,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t3",
+      "start_frame": 270,
+      "duration_frames": 90,
+      "text": "The law passed in twenty nineteen and was repealed in twenty twenty four.",
+      "original_text": "The law passed in twenty nineteen and was repealed in twenty twenty four.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "TIMELINE",
+          "data": {
+            "markers": [
+              {
+                "date": "2019",
+                "label": "the law passed"
+              },
+              {
+                "date": "2024",
+                "label": "was repealed"
+              }
+            ]
+          },
+          "headline": "The wage law",
+          "motion_tier": "medium",
+          "composition": "TIMELINE",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 11
+        },
+        {
+          "text": "law",
+          "from": 11,
+          "to": 17
+        },
+        {
+          "text": "passed",
+          "from": 17,
+          "to": 22
+        },
+        {
+          "text": "in",
+          "from": 22,
+          "to": 28
+        },
+        {
+          "text": "twenty",
+          "from": 28,
+          "to": 33
+        },
+        {
+          "text": "nineteen",
+          "from": 33,
+          "to": 38
+        },
+        {
+          "text": "and",
+          "from": 38,
+          "to": 44
+        },
+        {
+          "text": "was",
+          "from": 44,
+          "to": 49
+        },
+        {
+          "text": "repealed",
+          "from": 49,
+          "to": 54
+        },
+        {
+          "text": "in",
+          "from": 54,
+          "to": 60
+        },
+        {
+          "text": "twenty",
+          "from": 60,
+          "to": 65
+        },
+        {
+          "text": "twenty",
+          "from": 65,
+          "to": 71
+        },
+        {
+          "text": "four.",
+          "from": 71,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t4",
+      "start_frame": 360,
+      "duration_frames": 90,
+      "text": "Forty five percent of renters are cost burdened.",
+      "original_text": "Forty five percent of renters are cost burdened.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "GAUGE",
+          "data": {
+            "percent": 45,
+            "label": "renters cost-burdened"
+          },
+          "headline": "Cost burden",
+          "motion_tier": "medium",
+          "composition": "DATA-FULL",
+          "beat_total": 20,
+          "anim": {
+            "number": "ROLL_DIGIT",
+            "chart": "PIE_FROM_TOP"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS"
+              ],
+              "label": [
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": "pop_roll"
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Forty",
+          "from": 6,
+          "to": 15
+        },
+        {
+          "text": "five",
+          "from": 15,
+          "to": 24
+        },
+        {
+          "text": "percent",
+          "from": 24,
+          "to": 32
+        },
+        {
+          "text": "of",
+          "from": 32,
+          "to": 41
+        },
+        {
+          "text": "renters",
+          "from": 41,
+          "to": 50
+        },
+        {
+          "text": "are",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "text": "cost",
+          "from": 59,
+          "to": 67
+        },
+        {
+          "text": "burdened.",
+          "from": 67,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t5",
+      "start_frame": 450,
+      "duration_frames": 90,
+      "text": "The three tiers are basic, standard, and premium.",
+      "original_text": "The three tiers are basic, standard, and premium.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "LIST",
+          "data": {
+            "items": [
+              "basic",
+              "standard",
+              "premium"
+            ],
+            "lead": "The three tiers are"
+          },
+          "headline": "Three tiers",
+          "motion_tier": "medium",
+          "composition": "LIST-BUILD",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 15
+        },
+        {
+          "text": "three",
+          "from": 15,
+          "to": 24
+        },
+        {
+          "text": "tiers",
+          "from": 24,
+          "to": 32
+        },
+        {
+          "text": "are",
+          "from": 32,
+          "to": 41
+        },
+        {
+          "text": "basic,",
+          "from": 41,
+          "to": 50
+        },
+        {
+          "text": "standard,",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "text": "and",
+          "from": 59,
+          "to": 67
+        },
+        {
+          "text": "premium.",
+          "from": 67,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t6",
+      "start_frame": 540,
+      "duration_frames": 90,
+      "text": "Test fixture photo, standing in for a named person.",
+      "original_text": "Test fixture photo, standing in for a named person.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "PHOTO",
+          "data": {
+            "entity": "test fixture"
+          },
+          "photo": {
+            "asset": "b-roll/ch-fixture/movile-centipede.jpg",
+            "entity": "Test fixture",
+            "kind": "place",
+            "view": "person",
+            "credit": "Repo test fixture photo"
+          },
+          "headline": "Photo beat (fixture)",
+          "motion_tier": "major",
+          "composition": "PORTRAIT",
+          "beat_total": 20,
+          "entity_pop": {
+            "frame": 8,
+            "word": "fixture",
+            "from": 14,
+            "to": 22,
+            "kind": "portrait"
+          },
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Test",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "text": "fixture",
+          "from": 14,
+          "to": 22
+        },
+        {
+          "text": "photo,",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "text": "standing",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "text": "in",
+          "from": 37,
+          "to": 45
+        },
+        {
+          "text": "for",
+          "from": 45,
+          "to": 53
+        },
+        {
+          "text": "a",
+          "from": 53,
+          "to": 60
+        },
+        {
+          "text": "named",
+          "from": 60,
+          "to": 68
+        },
+        {
+          "text": "person.",
+          "from": 68,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t7",
+      "start_frame": 630,
+      "duration_frames": 90,
+      "text": "Higher rates raise rent, and rent cuts savings.",
+      "original_text": "Higher rates raise rent, and rent cuts savings.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "PROCESS",
+          "data": {
+            "nodes": [
+              "higher rates",
+              "rent",
+              "savings"
+            ]
+          },
+          "headline": "The chain",
+          "motion_tier": "major",
+          "composition": "PROCESS-FULL",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Higher",
+          "from": 6,
+          "to": 15
+        },
+        {
+          "text": "rates",
+          "from": 15,
+          "to": 24
+        },
+        {
+          "text": "raise",
+          "from": 24,
+          "to": 32
+        },
+        {
+          "text": "rent,",
+          "from": 32,
+          "to": 41
+        },
+        {
+          "text": "and",
+          "from": 41,
+          "to": 50
+        },
+        {
+          "text": "rent",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "text": "cuts",
+          "from": 59,
+          "to": 67
+        },
+        {
+          "text": "savings.",
+          "from": 67,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t8",
+      "start_frame": 720,
+      "duration_frames": 90,
+      "text": "In Iran, prices rose again.",
+      "original_text": "In Iran, prices rose again.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "MAP",
+          "data": {
+            "place": "Iran"
+          },
+          "headline": "Prices rose",
+          "motion_tier": "micro",
+          "composition": "MAP-CENTERED",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "In",
+          "from": 6,
+          "to": 20
+        },
+        {
+          "text": "Iran,",
+          "from": 20,
+          "to": 34
+        },
+        {
+          "text": "prices",
+          "from": 34,
+          "to": 48
+        },
+        {
+          "text": "rose",
+          "from": 48,
+          "to": 62
+        },
+        {
+          "text": "again.",
+          "from": 62,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t9",
+      "start_frame": 810,
+      "duration_frames": 90,
+      "text": "Renters pay forty two percent of income versus thirty one percent for owners.",
+      "original_text": "Renters pay forty two percent of income versus thirty one percent for owners.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "COMPARE",
+          "data": {
+            "a": {
+              "value": "42%",
+              "label": "income"
+            },
+            "b": {
+              "value": "31%",
+              "label": "owners"
+            },
+            "relation": "vs"
+          },
+          "headline": "Who pays more",
+          "motion_tier": "medium",
+          "composition": "COMPARISON-SPLIT",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Renters",
+          "from": 6,
+          "to": 11
+        },
+        {
+          "text": "pay",
+          "from": 11,
+          "to": 17
+        },
+        {
+          "text": "forty",
+          "from": 17,
+          "to": 22
+        },
+        {
+          "text": "two",
+          "from": 22,
+          "to": 28
+        },
+        {
+          "text": "percent",
+          "from": 28,
+          "to": 33
+        },
+        {
+          "text": "of",
+          "from": 33,
+          "to": 38
+        },
+        {
+          "text": "income",
+          "from": 38,
+          "to": 44
+        },
+        {
+          "text": "versus",
+          "from": 44,
+          "to": 49
+        },
+        {
+          "text": "thirty",
+          "from": 49,
+          "to": 54
+        },
+        {
+          "text": "one",
+          "from": 54,
+          "to": 60
+        },
+        {
+          "text": "percent",
+          "from": 60,
+          "to": 65
+        },
+        {
+          "text": "for",
+          "from": 65,
+          "to": 71
+        },
+        {
+          "text": "owners.",
+          "from": 71,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t10",
+      "start_frame": 900,
+      "duration_frames": 90,
+      "text": "Trucking entrepreneur indicted for fraud.",
+      "original_text": "Trucking entrepreneur indicted for fraud.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "TYPE",
+          "composition": "TYPE-SPLIT",
+          "headline": "Trucking entrepreneur indicted for fraud",
+          "motion_tier": "medium",
+          "text_entrance": "POP_LETTER",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_LETTER",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS"
+              ],
+              "statement": [
+                "POP_LETTER",
+                "POP_LETTER",
+                "POP_LETTER"
+              ],
+              "kicker": [
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": null
+          }
+        }
+      },
+      "spoken": [
+        {
+          "text": "Trucking",
+          "from": 6,
+          "to": 20
+        },
+        {
+          "text": "entrepreneur",
+          "from": 20,
+          "to": 34
+        },
+        {
+          "text": "indicted",
+          "from": 34,
+          "to": 48
+        },
+        {
+          "text": "for",
+          "from": 48,
+          "to": 62
+        },
+        {
+          "text": "fraud.",
+          "from": 62,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t11",
+      "start_frame": 990,
+      "duration_frames": 90,
+      "text": "The fraud cost investors one hundred five million dollars.",
+      "original_text": "The fraud cost investors one hundred five million dollars.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "MONEY",
+          "data": {
+            "value": "$105M",
+            "object": "United States dollar banknotes"
+          },
+          "photo": {
+            "asset": "b-roll/ch-fixture/movile-centipede.jpg",
+            "entity": null,
+            "kind": "place",
+            "view": "money",
+            "credit": "Repo test fixture photo"
+          },
+          "headline": "Money beat (fixture photo)",
+          "motion_tier": "medium",
+          "composition": "MONEY",
+          "beat_total": 20,
+          "entity_pop": {
+            "frame": 31,
+            "word": "one",
+            "from": 37,
+            "to": 45,
+            "kind": "photo"
+          },
+          "anim": {
+            "number": "ROLL_DIGIT"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ]
+            },
+            "number": "pop_roll"
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "text": "fraud",
+          "from": 14,
+          "to": 22
+        },
+        {
+          "text": "cost",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "text": "investors",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "text": "one",
+          "from": 37,
+          "to": 45
+        },
+        {
+          "text": "hundred",
+          "from": 45,
+          "to": 53
+        },
+        {
+          "text": "five",
+          "from": 53,
+          "to": 60
+        },
+        {
+          "text": "million",
+          "from": 60,
+          "to": 68
+        },
+        {
+          "text": "dollars.",
+          "from": 68,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t12",
+      "start_frame": 1080,
+      "duration_frames": 90,
+      "text": "Test fixture photo, standing in for a named building.",
+      "original_text": "Test fixture photo, standing in for a named building.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "PHOTO",
+          "composition": "ARCHITECTURE",
+          "data": {
+            "entity": "test fixture"
+          },
+          "photo": {
+            "asset": "b-roll/ch-fixture/movile-centipede.jpg",
+            "entity": "Test building",
+            "kind": "place",
+            "view": "building",
+            "credit": "Repo test fixture photo"
+          },
+          "headline": "Architecture beat (fixture)",
+          "motion_tier": "medium",
+          "beat_total": 20,
+          "entity_pop": {
+            "frame": 62,
+            "word": "building.",
+            "from": 68,
+            "to": 76,
+            "kind": "photo"
+          },
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_EMPHASIS",
+                "POP_STANDARD",
+                "POP_STANDARD"
+              ],
+              "kicker": [
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Test",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "text": "fixture",
+          "from": 14,
+          "to": 22
+        },
+        {
+          "text": "photo,",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "text": "standing",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "text": "in",
+          "from": 37,
+          "to": 45
+        },
+        {
+          "text": "for",
+          "from": 45,
+          "to": 53
+        },
+        {
+          "text": "a",
+          "from": 53,
+          "to": 60
+        },
+        {
+          "text": "named",
+          "from": 60,
+          "to": 68
+        },
+        {
+          "text": "building.",
+          "from": 68,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t13",
+      "start_frame": 1170,
+      "duration_frames": 90,
+      "text": "The Dodd-Frank Act reshaped banking.",
+      "original_text": "The Dodd-Frank Act reshaped banking.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "DOCUMENT",
+          "data": {
+            "name": "Dodd-Frank Act"
+          },
+          "photo": {
+            "asset": "b-roll/ch-fixture/movile-centipede.jpg",
+            "entity": "Dodd-Frank Act",
+            "kind": "place",
+            "view": "document",
+            "credit": "Repo test fixture photo"
+          },
+          "headline": "The act reshaped banking (fixture)",
+          "motion_tier": "medium",
+          "composition": "DOCUMENT",
+          "beat_total": 20,
+          "entity_pop": {
+            "frame": 28,
+            "word": "Act",
+            "from": 34,
+            "to": 48,
+            "kind": "photo"
+          },
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD",
+                "POP_STANDARD"
+              ],
+              "kicker": [
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 20
+        },
+        {
+          "text": "Dodd-Frank",
+          "from": 20,
+          "to": 34
+        },
+        {
+          "text": "Act",
+          "from": 34,
+          "to": 48
+        },
+        {
+          "text": "reshaped",
+          "from": 48,
+          "to": 62
+        },
+        {
+          "text": "banking.",
+          "from": 62,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t14",
+      "start_frame": 1260,
+      "duration_frames": 90,
+      "text": "The law passed in nineteen thirty eight.",
+      "original_text": "The law passed in nineteen thirty eight.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "COUNTER",
+          "data": {
+            "value": "1938",
+            "label": "the year the law passed"
+          },
+          "headline": "The wage law",
+          "motion_tier": "medium",
+          "composition": "NUMBER-FULL",
+          "beat_total": 20,
+          "anim": {
+            "number": "SNAP_IN"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ],
+              "label": [
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": "pop"
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 16
+        },
+        {
+          "text": "law",
+          "from": 16,
+          "to": 26
+        },
+        {
+          "text": "passed",
+          "from": 26,
+          "to": 36
+        },
+        {
+          "text": "in",
+          "from": 36,
+          "to": 46
+        },
+        {
+          "text": "nineteen",
+          "from": 46,
+          "to": 56
+        },
+        {
+          "text": "thirty",
+          "from": 56,
+          "to": 66
+        },
+        {
+          "text": "eight.",
+          "from": 66,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t15",
+      "start_frame": 1350,
+      "duration_frames": 90,
+      "text": "Rates will cut into savings.",
+      "original_text": "Rates will cut into savings.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "TYPE",
+          "headline": "Rates will cut savings",
+          "emphasis_word": "cut",
+          "emphasis_beat": true,
+          "motion_tier": "medium",
+          "composition": "TYPE-FULL",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_STANDARD",
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Rates",
+          "from": 6,
+          "to": 20
+        },
+        {
+          "text": "will",
+          "from": 20,
+          "to": 34
+        },
+        {
+          "text": "cut",
+          "from": 34,
+          "to": 48
+        },
+        {
+          "text": "into",
+          "from": 48,
+          "to": 62
+        },
+        {
+          "text": "savings.",
+          "from": 62,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t16",
+      "start_frame": 1440,
+      "duration_frames": 90,
+      "text": "Housing alone is thirty four percent of income.",
+      "original_text": "Housing alone is thirty four percent of income.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "PIE",
+          "data": {
+            "percent": 34,
+            "label": "of income on housing"
+          },
+          "headline": "Housing share",
+          "motion_tier": "medium",
+          "camera_focus": [
+            {
+              "at_percent": 0.45,
+              "target": "number"
+            }
+          ],
+          "composition": "DATA-FULL",
+          "beat_total": 20,
+          "anim": {
+            "number": "ROLL_DIGIT",
+            "chart": "PIE_POP"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_EMPHASIS",
+                "POP_STANDARD"
+              ],
+              "label": [
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT",
+                "POP_SOFT"
+              ]
+            },
+            "number": "pop_roll"
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Housing",
+          "from": 6,
+          "to": 15
+        },
+        {
+          "text": "alone",
+          "from": 15,
+          "to": 24
+        },
+        {
+          "text": "is",
+          "from": 24,
+          "to": 32
+        },
+        {
+          "text": "thirty",
+          "from": 32,
+          "to": 41
+        },
+        {
+          "text": "four",
+          "from": 41,
+          "to": 50
+        },
+        {
+          "text": "percent",
+          "from": 50,
+          "to": 59
+        },
+        {
+          "text": "of",
+          "from": 59,
+          "to": 67
+        },
+        {
+          "text": "income.",
+          "from": 67,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t17",
+      "start_frame": 1530,
+      "duration_frames": 90,
+      "text": "The rule breaks.",
+      "original_text": "The rule breaks.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "TYPE",
+          "headline": "The rule breaks",
+          "lead_in": "so",
+          "motion_tier": "medium",
+          "text_entrance": "POP_WORD_STACK",
+          "composition": "TYPE-FULL",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_WORD_STACK",
+            "entrances": {
+              "statement": [
+                "POP_WORD_STACK",
+                "POP_WORD_STACK",
+                "POP_WORD_STACK"
+              ],
+              "kicker": [
+                "POP_SOFT"
+              ]
+            },
+            "number": null
+          }
+        }
+      },
+      "spoken": [
+        {
+          "text": "The",
+          "from": 6,
+          "to": 29
+        },
+        {
+          "text": "rule",
+          "from": 29,
+          "to": 53
+        },
+        {
+          "text": "breaks.",
+          "from": 53,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t18",
+      "start_frame": 1620,
+      "duration_frames": 90,
+      "text": "Two rules now matter most.",
+      "original_text": "Two rules now matter most.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "PROCESS",
+          "data": {
+            "nodes": [
+              "save first",
+              "then spend"
+            ]
+          },
+          "headline": "The fix",
+          "motion_tier": "medium",
+          "composition": "PROCESS-FULL",
+          "beat_total": 20,
+          "anim": {},
+          "kinetic": {
+            "seed": "qa",
+            "edge": false,
+            "style": "POP_STANDARD",
+            "entrances": {
+              "headline": [
+                "POP_STANDARD",
+                "POP_EMPHASIS"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Two",
+          "from": 6,
+          "to": 20
+        },
+        {
+          "text": "rules",
+          "from": 20,
+          "to": 34
+        },
+        {
+          "text": "now",
+          "from": 34,
+          "to": 48
+        },
+        {
+          "text": "matter",
+          "from": 48,
+          "to": 62
+        },
+        {
+          "text": "most.",
+          "from": 62,
+          "to": 76
+        }
+      ],
+      "words": []
+    },
+    {
+      "beat_id": "t19",
+      "start_frame": 1710,
+      "duration_frames": 90,
+      "text": "Rates went from two to four point five percent.",
+      "original_text": "Rates went from two to four point five percent.",
+      "scene": {
+        "mechanism": "TYPOGRAPHY",
+        "canvas": {
+          "visual_type": "LINE",
+          "data": {
+            "points": [
+              {
+                "label": "2022",
+                "value": "2%"
+              },
+              {
+                "label": "2024",
+                "value": "3.5%"
+              },
+              {
+                "label": "2026",
+                "value": "4.5%"
+              }
+            ]
+          },
+          "headline": "The rate climb",
+          "motion_tier": "medium",
+          "camera_focus": [
+            {
+              "at_percent": 0.35,
+              "target": "chart"
+            },
+            {
+              "at_percent": 0.75,
+              "target": "full"
+            }
+          ],
+          "composition": "DATA-FULL",
+          "beat_total": 20,
+          "anim": {
+            "chart": "LINE_DOT_FIRST"
+          },
+          "kinetic": {
+            "seed": "qa",
+            "edge": true,
+            "style": "POP_HARD",
+            "entrances": {
+              "headline": [
+                "POP_HARD",
+                "POP_HARD",
+                "POP_HARD"
+              ]
+            },
+            "number": null
+          },
+          "text_entrance": null
+        }
+      },
+      "spoken": [
+        {
+          "text": "Rates",
+          "from": 6,
+          "to": 14
+        },
+        {
+          "text": "went",
+          "from": 14,
+          "to": 22
+        },
+        {
+          "text": "from",
+          "from": 22,
+          "to": 29
+        },
+        {
+          "text": "two",
+          "from": 29,
+          "to": 37
+        },
+        {
+          "text": "to",
+          "from": 37,
+          "to": 45
+        },
+        {
+          "text": "four",
+          "from": 45,
+          "to": 53
+        },
+        {
+          "text": "point",
+          "from": 53,
+          "to": 60
+        },
+        {
+          "text": "five",
+          "from": 60,
+          "to": 68
+        },
+        {
+          "text": "percent.",
+          "from": 68,
+          "to": 76
+        }
+      ],
+      "words": []
+    }
+  ],
+  "palette": {
+    "primary": [
+      "#0F172A",
+      "#1E293B",
+      "#22C55E",
+      "#FAFAFA"
+    ],
+    "secondary": []
+  },
+  "fonts": {
+    "primary": "Inter",
+    "secondary": "Inter"
+  }
+}

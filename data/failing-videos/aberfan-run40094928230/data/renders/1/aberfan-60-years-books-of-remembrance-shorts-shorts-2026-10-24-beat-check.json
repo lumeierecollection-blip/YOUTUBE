@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-24T13:05:48.934Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+  "beats": [
+    {
+      "beat_index": 0,
+      "matches": "YES",
+      "what_is_shown": "A counter showing the number 144 with the label 'NAMES AFTER VILLAGE'.",
+      "reason": "The counter correctly displays 144 corresponding to the sentence's figure and subject.",
+      "sentence": "New books preserve 144 names after a village lost its future in seconds."
+    },
+    {
+      "beat_index": 1,
+      "matches": "YES",
+      "what_is_shown": "Typography showing 'Aberfan', 'October 1966', '21', and 'coal waste tip collapsed'.",
+      "reason": "The typography effectively captures the key elements of the sentence's point.",
+      "sentence": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan."
+    },
+    {
+      "beat_index": 2,
+      "matches": "YES",
+      "what_is_shown": "A counter showing 116 with text '116 children and 28 adults lost'.",
+      "reason": "The counter displays the correct primary figure and text matching the sentence.",
+      "sentence": "116 children and 28 adults lost their lives in the disaster."
+    },
+    {
+      "beat_index": 3,
+      "matches": "YES",
+      "what_is_shown": "Typography displaying the name and logo of the National Library of Wales with the question about protecting pages.",
+      "reason": "The on-screen text clearly captures the point of the sentence.",
+      "sentence": "Will the National Library of Wales protect these pages?"
+    },
+    {
+      "beat_index": 4,
+      "matches": "YES",
+      "what_is_shown": "Typography stating 'Original Book of Remembrance wears down fresh copies are needed'.",
+      "reason": "The typography effectively conveys the sentence's point.",
+      "sentence": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed."
+    },
+    {
+      "beat_index": 5,
+      "matches": "YES",
+      "what_is_shown": "Typography with the National Library of Wales logo and text 'National Library of Wales finished new copies'.",
+      "reason": "The text clearly captures the point stated in the sentence.",
+      "sentence": "The National Library of Wales finished new copies ahead of July 2026."
+    },
+    {
+      "beat_index": 6,
+      "matches": "YES",
+      "what_is_shown": "Typography showing 'Davies', 'Aberfan Memorial Charity', and 'guards community history'.",
+      "reason": "The on-screen text accurately captures the point of the sentence.",
+      "sentence": "Aberfan Memorial Charity chair Davies guards the community's history now."
+    },
+    {
+      "beat_index": 7,
+      "matches": "YES",
+      "what_is_shown": "Typography showing 'Davies' and '68 years old, protects memory'.",
+      "reason": "The typography clearly captures the sentence's point.",
+      "sentence": "At 68 years old, Davies protects the village's memory."
+    },
+    {
+      "beat_index": 8,
+      "matches": "YES",
+      "what_is_shown": "A counter showing 144 with the label 'NAMES REMAIN PROTECTED'.",
+      "reason": "The counter correctly displays 144 and a label that fits the sentence.",
+      "sentence": "144 names remain protected in fresh leather and ink."
+    }
+  ],
+  "failing": [],
+  "wrong_person": []
+}

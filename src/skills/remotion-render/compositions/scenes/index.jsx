@@ -1,7 +1,6 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { stateAt } from "../../visual/states.js";
-import { SUSTAIN_DRIFT_PX, SUSTAIN_SCALE_GAIN } from "../../visual/composition.js";
 import { GeospatialRadiusScene } from "./GeospatialRadiusScene.jsx";
 import {
   AccumulationScene, TransformationScene, ComparisonScene,
@@ -90,65 +89,34 @@ export function SemanticScene({ beat, colors, fontFamily }) {
     // No plan (legacy/classifier beats): behave exactly as before rather
     // than staging something the director never described.
     return (
-      <SustainCamera beat={beat}>
-        <Component beat={beat} colors={colors} fontFamily={fontFamily} />
-      </SustainCamera>
+      <Component beat={beat} colors={colors} fontFamily={fontFamily} />
     );
   }
 
   return (
-    <SustainCamera beat={beat}>
-      <Shot shot={shot} states={beat.visualStates} durationInFrames={beat.durationInFrames}>
-        <Ground material={shot.material} colors={colors} seed={(beat.startFrame || 0) + 1} />
-        <Component beat={beat} colors={colors} fontFamily={fontFamily} />
-      </Shot>
-      {/* Light falloff sits OUTSIDE the camera transform: the frame is lit,
-          not the world, so a push-in does not drag the vignette with it. */}
-      <Falloff colors={colors} strength={0.4} />
-    </SustainCamera>
+    <Shot shot={shot} states={beat.visualStates} durationInFrames={beat.durationInFrames}>
+      <Ground material={shot.material} colors={colors} seed={(beat.startFrame || 0) + 1} />
+      <Component beat={beat} colors={colors} fontFamily={fontFamily} />
+    </Shot>
+    {/* Light falloff sits OUTSIDE the camera transform: the frame is lit,
+        not the world, so a push-in does not drag the vignette with it. */}
+    <Falloff colors={colors} strength={0.4} />
   );
 }
 
 /**
- * A slow camera move across sustaining states.
+ * Beat-level scene composition (Cinematic Documentary).
  *
- * WHY: states.js densifies a long beat by appending sustaining states
- * (reframe / detail / settle), and the diagnostics counted that as "no
- * static hold". Inspecting a real rendered frame showed the flaw in that
- * reasoning — the scenes only react to their own NAMED states, so a
- * sustaining state subdivided the timeline while the picture sat perfectly
- * still. The metric was honest about state changes and quietly dishonest
- * about visible ones.
+ * The beat's strategy selects a shot through composition.js's shotOf. That
+ * shot names the material, framing, depth and camera — the four
+ * art-direction decisions every scene must own. This component draws the
+ * shot's primitives, its sustain states, and its caption.
  *
- * This makes the sustain real: during sustaining states only, the whole
- * composition drifts and pushes slightly, the way a held shot breathes.
- * It is deliberately small (a few pixels, ~2% scale) — enough that the
- * frame is alive, far short of the "random zooms" PART 17 bans, and it
- * never fires during the states that carry the actual meaning.
+ * SHOT:  the strategy's named shot (a frame from the reference grammar)
+ * STATES:  sustaining states (reframe / detail / settle) densify long beats
+ *          without adding new meaning — they keep the picture alive.
+ * CAPTION:  the sentence's pull phrase, drawn once per beat, bottom zone.
+ *
+ * The camera is SHOT.CAMERA. No automatic drift, no sustain push — a shot
+ * moves when the strategy says it moves, and only then.
  */
-function SustainCamera({ beat, children }) {
-  const frame = useCurrentFrame();
-  const states = beat.visualStates || [];
-  const active = stateAt(states, frame);
-
-  if (!active || !active.sustaining) return <>{children}</>;
-
-  // Which sustain is this, so consecutive sustains keep moving the same
-  // direction instead of resetting.
-  const sustainIndex = states.filter((s) => s.sustaining && s.startFrame <= active.startFrame).length - 1;
-  const p = Math.max(0, Math.min(1, (frame - active.startFrame) / Math.max(active.durationInFrames, 1)));
-  const eased = p * p * (3 - 2 * p); // smoothstep
-
-  const dir = sustainIndex % 2 === 0 ? 1 : -1;
-  // The two magnitudes live in visual/composition.js beside cameraSafe,
-  // which has to account for this transform as well as Shot's — see the
-  // note there. Restating them here is how they drifted out of the model.
-  const dx = dir * SUSTAIN_DRIFT_PX * eased;
-  const scale = 1 + SUSTAIN_SCALE_GAIN * eased;
-
-  return (
-    <div style={{ position: "absolute", inset: 0, transform: `translateX(${dx}px) scale(${scale})` }}>
-      {children}
-    </div>
-  );
-}
