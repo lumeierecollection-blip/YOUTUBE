@@ -1,0 +1,53 @@
+{
+  "topic_slug": "address-to-nations-indigenous-2026",
+  "strongest_angle": "Address to the Nations reimagines history from Indigenous perspective, sparking nationwide debate and inspiring inclusive futures.",
+  "key_facts": [
+    {
+      "fact": "Address to the Nations, a televised project, presents three Indigenous narratives that rewrite key events in Australian history.",
+      "source_url": "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564",
+      "source_name": "ABC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The project features David Pledger, Tony Briggs, and actor Sherry-Lee Watson as its creators.",
+      "source_url": "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564",
+      "source_name": "ABC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Address to the Nations project has sparked nationwide debate about Indigenous perspectives in Australian history.",
+      "source_url": "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564",
+      "source_name": "ABC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Creative project reimagines history from First Nations perspective, highlighting Indigenous narratives in Australian history.",
+      "source_url": "https://notyet.com.au/projects/tomorrows-past",
+      "source_name": "Tomorrow's Pasts - Not Yet It's Difficult",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "David Pledger",
+      "kind": "person"
+    },
+    {
+      "name": "Tony Briggs",
+      "kind": "person"
+    },
+    {
+      "name": "Sherry-Lee Watson",
+      "kind": "person"
+    },
+    {
+      "name": "ABC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Tomorrow's Pasts - Not Yet It's Difficult",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "channel_id": "1",
+  "topic_slug": "address-to-nations-indigenous-2026",
+  "format": "shorts",
+  "hook": "Three Indigenous narratives rewrite Australia's history, sparking nationwide fallout.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Three Indigenous narratives rewrite Australia's history, sparking nationwide fallout.",
+      "visual_cue": "Three bold text cards displaying the narrative titles.",
+      "sfx_cue": "",
+      "b_roll": [],
+      "transition_out": "",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Oct 29 2026, ABC News aired Address to the Nations, a series rewriting Australian history. Creators David Pledger, Tony Briggs and Sherry‑Lee Watson built the project highlighting Indigenous history. Will it stick?",
+      "visual_cue": "Timeline graphic of the Oct 29 2026 broadcast with portrait thumbnails of the three creators.",
+      "sfx_cue": "",
+      "b_roll": [],
+      "transition_out": "",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the series also ignited fierce backlash from conservative groups.",
+      "visual_cue": "Red protest signs clash with the series logo on screen.",
+      "sfx_cue": "",
+      "b_roll": [],
+      "transition_out": "",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The series sparked a nationwide debate, forcing Australians to confront rewritten history. Indigenous leaders praised the platform for finally centering First Nations voices. ABC News reported the project is reshaping public discourse across Australia.",
+      "visual_cue": "Map of Australia overlaid with debate icons and photos of Indigenous leaders.",
+      "sfx_cue": "",
+      "b_roll": [],
+      "transition_out": "",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Three Indigenous narratives now challenge Australia's history.",
+      "visual_cue": "Closing title card summarizing the three narratives against a backdrop of the Australian continent.",
+      "sfx_cue": "",
+      "b_roll": [],
+      "transition_out": "",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.abc.net.au/news/2026-10-29/address-to-the-nations-indigenous-perspective-on-history/107319564",
+    "https://notyet.com.au/projects/tomorrows-past"
+  ]
+}
