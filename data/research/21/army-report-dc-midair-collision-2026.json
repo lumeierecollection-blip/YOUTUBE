@@ -1,0 +1,87 @@
+{
+  "topic_slug": "army-report-dc-midair-collision-2026",
+  "strongest_angle": "The Army’s May 2026 investigative report details communication breakdowns, radar blind‑spot failures and procedural lapses, and issues 12 concrete safety recommendations to prevent future air‑to‑air collisions.",
+  "key_facts": [
+    {
+      "fact": "On January 29, 2025 a Black Hawk helicopter and an American Airlines jet collided over Washington, D.C., killing 67 people.",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Army’s investigative report released in May 2026 identified two failed radio transmissions and radar blind spots as primary communication breakdowns that prevented the helicopter crew from spotting the jet.",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f",
+      "source_name": "Associated Press",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The report issued 12 safety recommendations, including revised ATC procedures and upgraded collision‑avoidance technology, to correct the procedural lapses uncovered.",
+      "source_url": "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision",
+      "source_name": "U.S. Army Public Affairs",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The International Civil Aviation Organization’s three‑layer conflict‑management framework—airspace structure, ATC separation, and collision‑avoidance technology—was found to have critical vulnerabilities in this incident.",
+      "source_url": "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf",
+      "source_name": "Roll Call",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 67,
+      "unit": "people",
+      "label": "Fatalities",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f"
+    },
+    {
+      "value": 12,
+      "unit": "recommendations",
+      "label": "Safety recommendations issued",
+      "source_url": "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision"
+    },
+    {
+      "value": 2,
+      "unit": "transmissions",
+      "label": "Failed radio transmissions identified",
+      "source_url": "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f"
+    },
+    {
+      "value": 3,
+      "unit": "layers",
+      "label": "ICAO conflict‑management layers",
+      "source_url": "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Black Hawk helicopter",
+      "kind": "object"
+    },
+    {
+      "name": "American Airlines jet",
+      "kind": "object"
+    },
+    {
+      "name": "Washington, D.C.",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Army",
+      "kind": "organization"
+    },
+    {
+      "name": "International Civil Aviation Organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Air Traffic Control",
+      "kind": "object"
+    },
+    {
+      "name": "collision‑avoidance technology",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}

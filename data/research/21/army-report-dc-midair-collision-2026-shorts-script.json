@@ -1,0 +1,38 @@
+{
+  "channel_id": "21",
+  "topic_slug": "army-report-dc-midair-collision-2026",
+  "format": "shorts",
+  "hook": "67 people died when a Black Hawk hit a jet.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "67 people died when a Black Hawk hit a jet.",
+      "visual_cue": "Animated number 67 over silhouettes of a Black Hawk helicopter and an American Airlines jet."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Jan 29 2025 a Black Hawk helicopter hit an American Airlines jet over Washington, D.C., killing 67 people. The U.S. Army report found two failed radio transmissions. Why did 12 safety recommendations not prevent this?",
+      "visual_cue": "Map of Washington, D.C. with crash icons, a radar graphic showing two failed transmissions, and a question mark over the number 12."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the radar blind spots stayed unaddressed in the plan.",
+      "visual_cue": "Radar screen highlighting a blind‑spot area with a red overlay."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The investigation highlighted critical flaws across the ICAO’s three‑layer conflict‑management system. Airspace structure, ATC separation, and collision‑avoidance technology proved insufficient. Consequently, the U.S. Army issued 12 recommendations, urging upgraded collision‑avoidance technology and revised ATC procedures.",
+      "visual_cue": "Diagram of ICAO’s three layers with red warnings, followed by a list of 12 recommendation icons and upgraded tech symbols."
+    },
+    {
+      "id": "close",
+      "voiceover": "In total, 67 people lost their lives that day.",
+      "visual_cue": "Fading memorial wall displaying the number 67 beside a solemn sky background."
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/reagan-midair-collision-army-ntsb-report-families-3ae64e3517fde5596977920b3dcff36f",
+    "https://www.army.mil/article-amp/296045/army_releases_findings_from_administrative_investigation_into_january_29_2025_midair_collision",
+    "https://rollcall.com/app/uploads/2026/10/armyreport_DCA.pdf"
+  ]
+}
