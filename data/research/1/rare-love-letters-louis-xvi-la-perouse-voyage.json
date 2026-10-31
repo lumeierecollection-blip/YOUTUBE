@@ -1,0 +1,101 @@
+{
+  "topic_slug": "rare-love-letters-louis-xvi-la-perouse-voyage",
+  "strongest_angle": "Examine the newly discovered cache of 12 letters written by physicist Jean-André Mongez during the 1785 La Pérouse expedition commissioned by Louis XVI, offering a unique personal window into the ill-fated voyage.",
+  "key_facts": [
+    {
+      "fact": "A collection of 12 unpublished autograph letters written by the physicist Jean-André Mongez has surfaced 238 years after the disappearance of the La Pérouse expedition.",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php",
+      "source_name": "ladepeche.fr",
+      "confidence": "high"
+    },
+    {
+      "fact": "Physicist Jean-André Mongez, born in Lyon in 1750 and perished in Vanikoro in 1788, wrote two of his letters at Brest aboard La Boussole, including one on the eve of departure on August 1, 1785.",
+      "source_url": "https://www.daguerre.fr/lot/185958/35627082-la-perouse-expedition-autographs-mongez-jean-andre-an",
+      "source_name": "Daguerre",
+      "confidence": "high"
+    },
+    {
+      "fact": "The newly discovered cache of letters, estimated up to 50,000 euros, was found inside a 19th-century book of engravings being prepared for sale by auctioneer Benoît Derouineau.",
+      "source_url": "https://zot.news/article/veiled-love-letters-la-perouse-voyage-resurface-pyu3h",
+      "source_name": "Zotpaper",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total letters discovered",
+      "value": 12,
+      "unit": "letters",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php"
+    },
+    {
+      "label": "Years since disappearance",
+      "value": 238,
+      "unit": "years",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php"
+    },
+    {
+      "label": "Estimated auction value",
+      "value": 50000,
+      "unit": "euros",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php"
+    },
+    {
+      "label": "Birth year of Jean-André Mongez",
+      "value": 1750,
+      "unit": "year",
+      "source_url": "https://www.daguerre.fr/lot/185958/35627082-la-perouse-expedition-autographs-mongez-jean-andre-an"
+    },
+    {
+      "label": "Death year of Jean-André Mongez",
+      "value": 1788,
+      "unit": "year",
+      "source_url": "https://www.daguerre.fr/lot/185958/35627082-la-perouse-expedition-autographs-mongez-jean-andre-an"
+    },
+    {
+      "label": "Departure year of the expedition",
+      "value": 1785,
+      "unit": "year",
+      "source_url": "https://www.daguerre.fr/lot/185958/35627082-la-perouse-expedition-autographs-mongez-jean-andre-an"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Louis XVI",
+      "kind": "person"
+    },
+    {
+      "name": "Jean-François de Galaup",
+      "kind": "person"
+    },
+    {
+      "name": "Jean-André Mongez",
+      "kind": "person"
+    },
+    {
+      "name": "Benoît Derouineau",
+      "kind": "person"
+    },
+    {
+      "name": "Ludovic Miran",
+      "kind": "person"
+    },
+    {
+      "name": "La Boussole",
+      "kind": "object"
+    },
+    {
+      "name": "Vanikoro",
+      "kind": "place"
+    },
+    {
+      "name": "Lyon",
+      "kind": "place"
+    },
+    {
+      "name": "Brest",
+      "kind": "place"
+    }
+  ]
+}

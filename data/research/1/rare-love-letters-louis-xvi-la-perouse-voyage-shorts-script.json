@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "rare-love-letters-louis-xvi-la-perouse-voyage",
+  "format": "shorts",
+  "hook": "Twelve letters vanished for 238 years resurfaced in a book.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Twelve letters vanished for 238 years resurfaced in a book.",
+      "visual_cue": "Twelve letters and an old book lying on a wooden table."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1785, Mongez boarded La Boussole at Brest for Louis XVI’s voyage. He wrote two letters, one on August 1 before sailing. 238 years, twelve €50,000 letters emerged from a book sold by Derouineau.",
+      "visual_cue": "Illustrated map of 1785 Brest port, La Boussole ship, and a 19th‑century book opening."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But historians had assumed no personal documents survived the wreck.",
+      "visual_cue": "Dusty archive shelves with scholars flipping through old parchments."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The letters show Mongez’s scientific notes and a secret romance aboard La Boussole. Their personal tone shatters the official cold‑war view of the expedition. Valued at €50,000, they force museums to rethink the voyage’s legacy.",
+      "visual_cue": "Open letters revealing sketches, a love note, and a museum exhibit label with €50,000 price."
+    },
+    {
+      "id": "close",
+      "voiceover": "Twelve hidden letters finally speak after 238 silent years.",
+      "visual_cue": "Close‑up of a letter fading into a sunrise over the ocean."
+    }
+  ],
+  "sources_used": [
+    "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php",
+    "https://www.daguerre.fr/lot/185958/35627082-la-perouse-expedition-autographs-mongez-jean-andre-an"
+  ]
+}
