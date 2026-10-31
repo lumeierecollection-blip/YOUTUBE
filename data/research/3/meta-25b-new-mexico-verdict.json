@@ -1,0 +1,82 @@
+{
+  "topic_slug": "meta-25b-new-mexico-verdict",
+  "strongest_angle": "The $25 billion verdict against Meta, based on over 43 million privacy violations, marks the biggest U.S. penalty for a tech company and could reshape how states enforce consumer‑data protections.",
+  "key_facts": [
+    {
+      "fact": "In September 2026, a New Mexico jury found Meta Platforms liable for over 43 million violations of the state's consumer‑protection laws related to Facebook privacy.",
+      "source_url": "https://apnews.com/article/facebook-penalty-cambridge-analytica-new-mexico-b329f82c3d3db3758a159405acbd4d0e",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Judge Francis Mathew reduced the statutory award from $219.49 billion to $25 billion for the 43.9 million violations, issuing the final judgment against Meta.",
+      "source_url": "https://www.law360.com/articles/2540912/meta-owes-25b-after-nm-data-privacy-trial",
+      "source_name": "Law360",
+      "confidence": "high"
+    },
+    {
+      "fact": "The $25 billion judgment surpasses Meta's earlier $18 billion child‑safety settlement from August 2026, making it the largest privacy‑related penalty ever imposed on a technology firm.",
+      "source_url": "https://www.washingtonpost.com/technology/2026/10/21/meta-ordered-pay-25b-new-mexico-misleading-users-privacy",
+      "source_name": "The Washington Post",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 43,
+      "unit": "million violations",
+      "label": "Violations found by jury (Sept 2026)",
+      "source_url": "https://apnews.com/article/facebook-penalty-cambridge-analytica-new-mexico-b329f82c3d3db3758a159405acbd4d0e"
+    },
+    {
+      "value": 43.9,
+      "unit": "million violations",
+      "label": "Violations used for penalty calculation (Law360)",
+      "source_url": "https://www.law360.com/articles/2540912/meta-owes-25b-after-nm-data-privacy-trial"
+    },
+    {
+      "value": 25,
+      "unit": "billion dollars",
+      "label": "Final damages awarded to New Mexico",
+      "source_url": "https://www.law360.com/articles/2540912/meta-owes-25b-after-nm-data-privacy-trial"
+    },
+    {
+      "value": 219.49,
+      "unit": "billion dollars",
+      "label": "Statutory maximum award before judge's reduction",
+      "source_url": "https://www.law360.com/articles/2540912/meta-owes-25b-after-nm-data-privacy-trial"
+    },
+    {
+      "value": 18,
+      "unit": "billion dollars",
+      "label": "Meta's prior child‑safety settlement (Aug 2026)",
+      "source_url": "https://www.washingtonpost.com/technology/2026/10/21/meta-ordered-pay-25b-new-mexico-misleading-users-privacy"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Meta Platforms",
+      "kind": "organization"
+    },
+    {
+      "name": "New Mexico",
+      "kind": "place"
+    },
+    {
+      "name": "Judge Francis Mathew",
+      "kind": "person"
+    },
+    {
+      "name": "Facebook",
+      "kind": "object"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "the state is \"entitled\" to $219.49 billion in penalties",
+      "speaker": "Judge Francis Mathew",
+      "source_name": "Law360",
+      "source_url": "https://www.law360.com/articles/2540912/meta-owes-25b-after-nm-data-privacy-trial"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "channel_id": "3",
+  "topic_slug": "meta-25b-new-mexico-verdict",
+  "format": "shorts",
+  "hook": "Meta could be crippled by a $25 billion privacy penalty.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Meta could be crippled by a $25 billion privacy penalty."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In September 2026, a New Mexico jury found Meta liable for 43 million privacy violations. Will the $25 billion penalty dwarf Meta’s $18 billion child‑safety settlement?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the state said it was entitled to the full $219.49 billion."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The $25 billion judgment is the largest U.S. tech‑company penalty. It eclipses Meta’s earlier $18 billion child‑safety settlement from August 2026. Meta now owes New Mexico $25 billion, reshaping data‑privacy enforcement."
+    },
+    {
+      "id": "close",
+      "voiceover": "The $25 billion verdict stands as the record penalty."
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/facebook-penalty-cambridge-analytica-new-mexico-b329f82c3d3db3758a159405acbd4d0e",
+    "https://www.law360.com/articles/2540912/meta-owes-25b-after-nm-data-privacy-trial",
+    "https://www.washingtonpost.com/technology/2026/10/21/meta-ordered-pay-25b-new-mexico-misleading-users-privacy"
+  ]
+}
