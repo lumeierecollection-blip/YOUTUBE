@@ -1,0 +1,77 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-communication-pause-power-2026",
+  "format": "shorts",
+  "hook": "Voyager 1 went silent 24 billion kilometers away for 48 hours.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Voyager 1 went silent 24 billion kilometers away for 48 hours.",
+      "visual_cue": "Graphic showing Voyager 1 in deep space with a 24 billion kilometer label.",
+      "sfx_cue": "Deep space ambient hum that suddenly cuts out.",
+      "b_roll": [
+        "NASA artist rendition of Voyager 1 in interstellar space"
+      ],
+      "text_overlay": {
+        "text": "Silence in Deep Space"
+      },
+      "transition_out": "Fade to black"
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 18, 2026, NASA's Deep Space Network failed to detect a signal. But how did the probe survive this blackout while drifting 24 billion kilometers from Earth?",
+      "visual_cue": "Animation of Earth-based radio dishes scanning an empty void.",
+      "sfx_cue": "Static radio interference sound.",
+      "b_roll": [
+        "Goldstone Deep Space Communications Complex antenna footage"
+      ],
+      "text_overlay": {
+        "text": "Signal Lost"
+      },
+      "transition_out": "Crossfade"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Voyager 1 restored contact on its own, yet it loses 4 watts of power every year.",
+      "visual_cue": "Close-up of Voyager 1 probe showing its antenna turning toward Earth.",
+      "sfx_cue": "A soft, rhythmic digital ping returning.",
+      "b_roll": [
+        "Voyager 1 technical diagram"
+      ],
+      "text_overlay": {
+        "text": "Contact Restored"
+      },
+      "transition_out": "Cut"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Voyager 1 uses radioisotope thermoelectric generators that convert decaying plutonium heat into electricity for survival.",
+      "visual_cue": "Split screen showing internal circuitry and the probe's power decay chart.",
+      "sfx_cue": "Electrical hum increasing in intensity.",
+      "b_roll": [
+        "NASA technical schematics of Voyager power systems"
+      ],
+      "text_overlay": {
+        "text": "Power Conservation Strategy"
+      },
+      "transition_out": "Fade out"
+    },
+    {
+      "id": "close",
+      "voiceover": "A machine launched in 1977 still survives in the dark.",
+      "visual_cue": "Voyager 1 drifting into the distant starfield.",
+      "sfx_cue": "Ethereal, low-frequency cosmic synth tone.",
+      "b_roll": [
+        "Historical 1977 launch footage"
+      ],
+      "text_overlay": {
+        "text": "Voyager 1: Still Flying"
+      },
+      "transition_out": "End"
+    }
+  ],
+  "sources_used": [
+    "https://orbital-wire.com/agency-program-news/nasa-voyager-1-power-swap-restores-contact",
+    "https://tech.yahoo.com/science/articles/voyager-1-goes-silent-2-181728145.html"
+  ]
+}
