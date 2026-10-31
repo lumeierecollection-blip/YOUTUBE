@@ -9,6 +9,7 @@
  * on its word instead.
  */
 import { flattenBoxes, ZONES, CAPTION, FULL_PHOTO_COMPS } from "./canvas-layout.js";
+import { enterKind } from "./transitions.js";
 
 // START 0: a beat's first group is on screen on the cut frame itself (the boundary is a hard
 // cut, transitions.js — nothing of the outgoing beat is left to cover frame 0).
