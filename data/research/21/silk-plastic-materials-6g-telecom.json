@@ -1,0 +1,50 @@
+{
+  "topic_slug": "silk-plastic-materials-6g-telecom",
+  "strongest_angle": "Researchers at the University of Michigan, Imperial College London, and Tufts University developed a manufacturing method in May 2026 to fuse silk threads into strong, transparent plastic-like materials capable of twisting terahertz frequencies for 6G telecom networks.",
+  "key_facts": [
+    {
+      "fact": "Imperial College London, University of Michigan Engineering, and Tufts University led research published in May 2026 showing that silk threads can be fused into transparent, plastic-like materials to twist terahertz frequencies of light.",
+      "source_url": "https://phys.org/news/2026-05-silk-strong-plastic-materials-6g.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The manufacturing method developed at the University of Michigan fuses silk threads under high temperature and pressure while preserving their natural crystalline structure, reducing chemical and water use compared to alternative processes.",
+      "source_url": "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential",
+      "source_name": "Chemical Engineering University of Michigan",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers published findings in Nature Sustainability detailing how hierarchical materials from fused silk overcome the poor processability of fibroin to create strong, lightweight alternatives for telecom applications.",
+      "source_url": "https://www.nature.com/articles/s41893-026-01821-y",
+      "source_name": "Nature Sustainability",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists at Tufts University co-led the study developing the new transformation method for silk, producing solid materials that preserve and enhance natural strength without synthetic additives.",
+      "source_url": "https://now.tufts.edu/2026/05/15/silkworm-super-material",
+      "source_name": "Tufts Now",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "University of Michigan",
+      "kind": "organization"
+    },
+    {
+      "name": "Imperial College London",
+      "kind": "organization"
+    },
+    {
+      "name": "Tufts University",
+      "kind": "organization"
+    },
+    {
+      "name": "Nature Sustainability",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}

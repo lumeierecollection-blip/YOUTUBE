@@ -1,0 +1,86 @@
+{
+  "channel_id": "21",
+  "topic_slug": "silk-plastic-materials-6g-telecom",
+  "format": "shorts",
+  "hook": "In May 2026, researchers turned pure silk threads into transparent plastic.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "In May 2026, researchers turned pure silk threads into transparent plastic.",
+      "visual_cue": "Macro shot of raw silkworm silk thread transforming under pressure into a clear glass-like polymer sheet.",
+      "sfx_cue": "Low metallic hum rising to a crisp snap",
+      "b_roll": [
+        "Macro silkworm silk spool",
+        "Clear transparent polymer sample"
+      ],
+      "text_overlay": {
+        "text": "MAY 2026: SILK TO PLASTIC"
+      },
+      "transition_out": "Hard cut on impact"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "Engineers at University of Michigan fused silk threads under high heat. Where will 3 labs guide 6G light waves?",
+      "visual_cue": "Split screen showing university laboratory presses fusing silk fibers, followed by a map highlighting Michigan, London, and Tufts.",
+      "sfx_cue": "Pneumatic press hiss followed by subtle digital ping",
+      "b_roll": [
+        "University of Michigan engineering lab high pressure press",
+        "Imperial College London materials testing apparatus"
+      ],
+      "text_overlay": {
+        "text": "3 UNIVERSITIES / ZERO ADDED WATER"
+      },
+      "transition_out": "Wipe to microscopic angle"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:25",
+      "voiceover": "However, Nature Sustainability showed that silk threads didn't process easily into strong materials for telecom applications.",
+      "visual_cue": "Diagram of fragile fibroin protein chain fracturing under high-frequency electromagnetic radiation.",
+      "sfx_cue": "Static crackle and alarm ping",
+      "b_roll": [
+        "Microscopic fibroin protein structure breakdown diagram"
+      ],
+      "text_overlay": {
+        "text": "THE TERHERTZ BREAKING POINT"
+      },
+      "transition_out": "Quick flash dissolve"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "Published in Nature Sustainability, 3 universities transformed silkworm silk into solid components. The 2026 design cuts chemical waste while preserving thread strength.",
+      "visual_cue": "3D render of terahertz light beam spiraling through fused silk component into a 6G signal tower receiver.",
+      "sfx_cue": "Resonant optical pulse sound",
+      "b_roll": [
+        "Nature Sustainability journal header graphic",
+        "6G transmitter component prototype with laser beam passing through"
+      ],
+      "text_overlay": {
+        "text": "NATURE SUSTAINABILITY / 6G LIGHT CONTROL"
+      },
+      "transition_out": "Zoom blur transition"
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "Silkworm threads now power next generation 6G network hardware.",
+      "visual_cue": "Extreme close-up of finished silk telecom component installed inside modern 6G antenna housing.",
+      "sfx_cue": "Deep bass tone settling into silence",
+      "b_roll": [
+        "Next generation 6G telecom circuit board with transparent silk optic element"
+      ],
+      "text_overlay": {
+        "text": "SILKWORM SILK IN 6G HARDWARE"
+      },
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://phys.org/news/2026-05-silk-strong-plastic-materials-6g.html",
+    "https://che.engin.umich.edu/2026/10/22/silk-made-into-strong-plastic-like-materials-with-6g-potential",
+    "https://www.nature.com/articles/s41893-026-01821-y"
+  ]
+}
