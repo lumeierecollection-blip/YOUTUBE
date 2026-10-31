@@ -1,0 +1,37 @@
+{
+  "channel_id": "4",
+  "topic_slug": "shadab-khan-pakistan-break-51-year-odi-record",
+  "format": "shorts",
+  "hook": "Chasing England's 241 runs, Pakistan sat at 154-9, needing a miracle to avoid certain defeat.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Chasing England's 241 runs, Pakistan sat at 154-9, needing a miracle to avoid certain defeat.",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "Could Khan's unbeaten 113, the highest score ever by a number 8 batter, change the outcome?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The match seemed lost until this lower-order duo defied England on October 25, 2026.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Their 89-run partnership in 80 balls pushed Pakistan past England's total score of 241 runs. Pakistan won by one wicket, ending a 51-year 10th-wicket record.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "An 89-run last-wicket stand rewrote cricket history.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.icc-cricket.com/news/shadab-the-hero-as-pakistan-break-51-year-record-in-run-chase",
+    "https://apnews.com/article/cricket-pakistan-england-triseries-4dca94441b6ba2080997ce4b8f0e9d09"
+  ]
+}
