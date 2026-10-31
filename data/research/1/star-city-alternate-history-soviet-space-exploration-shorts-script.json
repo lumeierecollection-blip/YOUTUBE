@@ -1,0 +1,66 @@
+{
+  "channel_id": "1",
+  "topic_slug": "star-city-alternate-history-soviet-space-exploration",
+  "format": "shorts",
+  "hook": "Apple TV’s secret Soviet base hides a ten‑episode twist.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Apple TV’s secret Soviet base hides a ten‑episode twist.",
+      "visual_cue": "A shadowy Soviet training facility with a bold \"10 episodes\" overlay.",
+      "sfx_cue": "low rumble, distant siren",
+      "b_roll": [
+        "archival footage of Star City training grounds"
+      ],
+      "transition_out": "quick cut"
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, Reason’s Jason Russell reviewed Apple TV’s Star City. What happened when journalists finally entered Star City in 1997?",
+      "visual_cue": "Timeline graphic: Oct 2026 → show cover, then ten‑episode badge, then 1997 newspaper headline.",
+      "sfx_cue": "typewriter clicks, then a ticking clock",
+      "b_roll": [
+        "Reason magazine cover featuring Star City",
+        "Apple TV series title screen",
+        "1997 newspaper clipping of journalists at Star City"
+      ],
+      "transition_out": "fade to black"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet TV veterans Ben Nedivi, Matt Wolpert, and Ronald D. Moore created it.",
+      "visual_cue": "Portraits of the three creators appear side‑by‑side with a director’s clapboard.",
+      "sfx_cue": "camera shutter sound",
+      "b_roll": [
+        "behind‑the‑scenes photo of the production team"
+      ],
+      "transition_out": "wipe left"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The ten‑episode series shows KGB overseers turning cosmonaut training into a surveillance nightmare. Recruits endured loyalty tests, and dissent vanished without a trace. When journalists entered Star City in 1997, they exposed that chilling reality.",
+      "visual_cue": "Montage: KGB officers watching trainees, a locked file labeled \"loyalty tests\", then 1997 press badge flashing.",
+      "sfx_cue": "heartbeat thump, then a gasp",
+      "b_roll": [
+        "dramatic reenactment of KGB monitoring",
+        "close‑up of a stamped loyalty test document",
+        "news footage of 1997 journalists at the base"
+      ],
+      "transition_out": "slow dissolve"
+    },
+    {
+      "id": "close",
+      "voiceover": "A ten‑episode glimpse into Soviet paranoia finally revealed.",
+      "visual_cue": "Final title card: \"10 episodes – Soviet Paranoia\" with fading starfield.",
+      "sfx_cue": "soft echoing chime",
+      "b_roll": [
+        "starry night sky over the Kremlin silhouette"
+      ],
+      "transition_out": "fade out"
+    }
+  ],
+  "sources_used": [
+    "https://reason.com/2026/09/11/star-city",
+    "https://www.space.com/space-exploration/human-spaceflight/what-is-star-city-the-secret-cold-war-cosmonaut-training-town-in-apple-tvs-new-for-all-mankind-spinoff"
+  ]
+}
