@@ -1,0 +1,73 @@
+{
+  "topic_slug": "panama-canal-tunnel-drive-completed-2026",
+  "strongest_angle": "Completion of the 13.46 m Herrenknecht Mixshield TBM’s 4.5 km drive under the Panama Canal, linking Farfán to Albrook for Metro Line 3.",
+  "key_facts": [
+    {
+      "fact": "The Herrenknecht Mixshield TBM named “Panamá”, measuring 13.46 m in diameter, completed a 4.5 km underground drive beneath the Panama Canal.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "tunnellingjournal.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The tunnel reached its final breakthrough at the Albrook shaft on 26 October 2026, ending the excavation phase.",
+      "source_url": "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro",
+      "source_name": "prensa.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The bored tunnel runs from the Farfán portal on the western side of the canal to Albrook on the eastern side, becoming the first tunnel bored under the Panama Canal waterway.",
+      "source_url": "https://tunnelingworld.com/?p=20846",
+      "source_name": "tunnelingworld.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 13.46,
+      "unit": "meters",
+      "label": "TBM diameter",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "value": 4.5,
+      "unit": "kilometers",
+      "label": "Tunnel length",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "Mixshield",
+      "kind": "object"
+    },
+    {
+      "name": "Panamá",
+      "kind": "object"
+    },
+    {
+      "name": "Panama Metro Line 3",
+      "kind": "organization"
+    },
+    {
+      "name": "Farfán",
+      "kind": "place"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    },
+    {
+      "name": "César Pinzón",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

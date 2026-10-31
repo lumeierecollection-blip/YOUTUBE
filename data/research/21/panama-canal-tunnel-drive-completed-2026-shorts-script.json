@@ -1,0 +1,32 @@
+{
+  "channel_id": "21",
+  "topic_slug": "panama-canal-tunnel-drive-completed-2026",
+  "format": "shorts",
+  "hook": "A 13.46‑meter boring machine tunneled 4.5 km beneath the Panama Canal.",
+  "sections": [
+    {
+      "id": "setup",
+      "voiceover": "On 26 Oct 2026 the TBM “Panamá” finished a 4.5 km drive under the Panama Canal. It links Farfán west to Albrook east, the canal’s first underground link.",
+      "visual_cue": "Map of Panama Canal showing Farfán portal, Albrook shaft, and the 4.5 km tunnel path."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the 13.46‑meter diameter made boring through soft soils a huge challenge.",
+      "visual_cue": "Close‑up of the TBM cutterhead cutting through soft earth."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Mixshield TBM’s 13.46‑meter diameter and cutter kept the face stable. That stability let the 4.5 km tunnel finish on schedule, breaking at Albrook 26 Oct 2026.",
+      "visual_cue": "Animation of the completed tunnel with Metro Line 3 trains moving through."
+    },
+    {
+      "id": "close",
+      "voiceover": "The first tunnel under the Panama Canal is complete.",
+      "visual_cue": "Celebratory shot of the tunnel entrance with the Panama Canal in the background."
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://www.prensa.com/sociedad/tuneladora-completa-la-excavacion-del-tramo-subterraneo-de-la-linea-3-del-metro"
+  ]
+}
