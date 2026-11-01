@@ -1,0 +1,81 @@
+{
+  "channel_id": "1",
+  "topic_slug": "margaret-clitherow-execution-guy-fawkes",
+  "format": "shorts",
+  "hook": "In 1586, a pregnant mother was brutally crushed to death in York.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1586, a pregnant mother was brutally crushed to death in York.",
+      "visual_cue": "Historical illustration of 16th-century York with dramatic shadows and tense atmosphere.",
+      "sfx_cue": "Heavy wooden thud followed by low ambient drone",
+      "b_roll": [
+        "York street historical painting",
+        "16th-century stone archway visual"
+      ],
+      "text_overlay": {
+        "text": "York, 1586"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Authorities didn't spare Margaret Clitherow after accusing her of harbouring Catholic priests in York. She refused to enter a plea while pregnant with her 4th child. What did Guy Fawkes see in York?",
+      "visual_cue": "Close-up of a handwritten 1586 trial record document transition to a map of York.",
+      "sfx_cue": "Quill scratching paper sound effect",
+      "b_roll": [
+        "Elizabethan document scroll",
+        "Vintage map of medieval York"
+      ],
+      "text_overlay": {
+        "text": "Margaret Clitherow"
+      },
+      "transition_out": "wipe"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But she wouldn't testify, so they slowly crushed her to death on Lady Day in 1586.",
+      "visual_cue": "Cinematic pan across a crowd of onlookers in historic attire gathered in a cobblestone square.",
+      "sfx_cue": "Subtle crowd murmur and wind swell",
+      "b_roll": [
+        "16th-century crowd artwork",
+        "Cobblestone street close-up"
+      ],
+      "text_overlay": null,
+      "transition_out": "cut"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Historians theorise Guy Fawkes witnessed this 1586 execution in York. Christopher Wright and John Wright also knew her tragic story. This brutal act shaped conspirators before the 1605 gunpowder plot.",
+      "visual_cue": "Historical portraits of Guy Fawkes alongside Christopher Wright and John Wright with gunpowder plot documents.",
+      "sfx_cue": "Low dramatic brass pulse",
+      "b_roll": [
+        "Guy Fawkes historical portrait",
+        "1605 Gunpowder Plot manuscript detail"
+      ],
+      "text_overlay": {
+        "text": "1605 Gunpowder Plot"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "close",
+      "voiceover": "Don't forget how Clitherow's 1586 death in York influenced the 1605 gunpowder plot.",
+      "visual_cue": "Slow zoom out on the historic city walls of York under a dusk sky.",
+      "sfx_cue": "Deep ringing bell chime fading out",
+      "b_roll": [
+        "York city walls twilight view"
+      ],
+      "text_overlay": {
+        "text": "York, 1586"
+      },
+      "transition_out": "fade"
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c62xk7pzjnyo",
+    "https://en.wikipedia.org/wiki/Margaret_Clitherow",
+    "https://www.york.ac.uk/news-and-events/features/2018/three-things-to-remember-fifth-november",
+    "https://www.indcatholicnews.com/news/56170"
+  ]
+}
