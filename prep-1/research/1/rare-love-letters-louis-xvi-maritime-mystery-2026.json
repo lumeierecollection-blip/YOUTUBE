@@ -1,0 +1,79 @@
+{
+  "topic_slug": "rare-love-letters-louis-xvi-maritime-mystery-2026",
+  "strongest_angle": "Explore the newly discovered cache of 12 letters written by scientist Jean-André Mongez during the ill-fated 1785 La Pérouse expedition, offering intimate personal accounts and historical insight 238 years after the ships disappeared.",
+  "key_facts": [
+    {
+      "fact": "Twelve mysterious letters written by scientist Jean-André Mongez during the La Pérouse expedition have been rediscovered by a private individual, 238 years after the expedition's disappearance.",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php",
+      "source_name": "ladepeche.fr",
+      "confidence": "high"
+    },
+    {
+      "fact": "As Louis XVI faced execution by guillotine on 21 January 1793, he reportedly asked if there was any news of naval officer Jean-François de Galaup, the count of La Pérouse.",
+      "source_url": "https://mezha.net/eng/news/mezha-f8aafffe7a598d032568d604_rare_love_letters",
+      "source_name": "Mezha",
+      "confidence": "high"
+    },
+    {
+      "fact": "The newly surfaced correspondence was written by scientist Jean-André Mongez and addressed to Louise Victoria Le Cloustier, a married woman from a minor noble family based in Rouen.",
+      "source_url": "https://newsdive.net/2026/10/29/rare-letters-to-french-noblewoman-offer-new-clues-to-louis-xvi-s-maritime-mystery",
+      "source_name": "News Dive",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of rediscovered letters",
+      "value": 12,
+      "unit": "letters",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php"
+    },
+    {
+      "label": "Years since the disappearance of Lapérouse",
+      "value": 238,
+      "unit": "years",
+      "source_url": "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php"
+    },
+    {
+      "label": "Year of the maritime expedition",
+      "value": 1785,
+      "unit": "year",
+      "source_url": "https://www.theguardian.com/world/2026/oct/29/rare-love-letters-french-aristocrat-la-perouse-maritime-mystery"
+    },
+    {
+      "label": "Year of Louis XVI execution",
+      "value": 1793,
+      "unit": "year",
+      "source_url": "https://mezha.net/eng/news/mezha-f8aafffe7a598d032568d604_rare_love_letters"
+    },
+    {
+      "label": "Day of January for Louis XVI execution",
+      "value": 21,
+      "unit": "day",
+      "source_url": "https://mezha.net/eng/news/mezha-f8aafffe7a598d032568d604_rare_love_letters"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Louis XVI",
+      "kind": "person"
+    },
+    {
+      "name": "Jean-François de Galaup, comte de La Pérouse",
+      "kind": "person"
+    },
+    {
+      "name": "Jean-André Mongez",
+      "kind": "person"
+    },
+    {
+      "name": "Louise Victoria Le Cloustier",
+      "kind": "person"
+    },
+    {
+      "name": "Rouen",
+      "kind": "place"
+    }
+  ]
+}

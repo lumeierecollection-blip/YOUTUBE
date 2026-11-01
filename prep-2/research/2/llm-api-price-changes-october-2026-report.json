@@ -1,0 +1,105 @@
+{
+  "topic_slug": "llm-api-price-changes-october-2026-report",
+  "strongest_angle": "Reviewing the October 2026 LLM API changes which recorded six price moves including two cuts and four increases, alongside new model introductions tracked by API Cost Check and ModelBank.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, API Cost Check recorded 6 price moves consisting of 2 cuts and 4 increases, alongside 3 new models.",
+      "source_url": "https://apicostcheck.com/news/2026-10",
+      "source_name": "apicostcheck.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mistral Large 4 experienced an input price increase from $0.68 to $1.36 per million tokens on October 20, 2026.",
+      "source_url": "https://apicostcheck.com/news/2026-10",
+      "source_name": "apicostcheck.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Qwen3 VL 32b Thinking saw its output price drop from $2.87 to $0.64, representing a 77.7% reduction on October 9, 2026.",
+      "source_url": "https://apicostcheck.com/news/2026-10",
+      "source_name": "apicostcheck.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "ModelBank tracks price changes across 352 models using an automated sync every 10 minutes.",
+      "source_url": "https://modelbank.ai/prices",
+      "source_name": "ModelBank",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total price moves recorded",
+      "value": 6,
+      "unit": "moves",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "Price cuts recorded",
+      "value": 2,
+      "unit": "cuts",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "Price increases recorded",
+      "value": 4,
+      "unit": "increases",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "New models recorded",
+      "value": 3,
+      "unit": "models",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "Mistral Large 4 input price before",
+      "value": 0.68,
+      "unit": "dollars per million tokens",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "Mistral Large 4 input price after",
+      "value": 1.36,
+      "unit": "dollars per million tokens",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "Qwen3 VL 32b Thinking output price before",
+      "value": 2.87,
+      "unit": "dollars per million tokens",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "Qwen3 VL 32b Thinking output price after",
+      "value": 0.64,
+      "unit": "dollars per million tokens",
+      "source_url": "https://apicostcheck.com/news/2026-10"
+    },
+    {
+      "label": "ModelBank tracked models",
+      "value": 352,
+      "unit": "models",
+      "source_url": "https://modelbank.ai/prices"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Mistral Large 4",
+      "kind": "object"
+    },
+    {
+      "name": "Qwen3 VL 32b Thinking",
+      "kind": "object"
+    },
+    {
+      "name": "API Cost Check",
+      "kind": "organization"
+    },
+    {
+      "name": "ModelBank",
+      "kind": "organization"
+    }
+  ]
+}

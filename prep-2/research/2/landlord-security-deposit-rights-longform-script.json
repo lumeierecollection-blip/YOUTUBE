@@ -1,0 +1,128 @@
+{
+    "channel_id": "2",
+    "topic_slug": "landlord-security-deposit-rights",
+    "format": "longform",
+    "hook": "If your landlord misses one legal deadline after you move out, they could owe you triple your deposit \u2014 but almost no tenant knows the clock is running.",
+    "sections": [
+        {
+            "id": "the-trap",
+            "voiceover": "Every year, landlords across the country hold onto security deposits they no longer have any legal right to keep \u2014 not because tenants agreed to lose that money, but because almost nobody reads the statute that would get it back. Security deposit law in the United States is not one law. It's a patchwork of separate state statutes, and inside that patchwork are binding deadlines \u2014 some as short as fourteen days, some as long as sixty \u2014 that force a landlord to either return your money or justify every dollar they withhold, in writing, on time. Miss that deadline, and in most states the landlord doesn't just owe you an explanation. They lose the right to keep anything at all. That's the mechanism this video is going to walk you through: what a landlord is legally required to do with your deposit, the deadline that decides whether they get to keep any of it, and the penalties waiting for the landlords who gamble that you won't check.",
+            "beats": [
+                {
+                    "text": "State-by-state deposit law is a patchwork, not one federal rule.",
+                    "archetype": "TERM_DEFINE",
+                    "anchor_token": "patchwork"
+                },
+                {
+                    "text": "Landlords bank on tenants never reading the statute that governs their deposit.",
+                    "archetype": "STATEMENT",
+                    "anchor_token": "almost nobody reads the statute"
+                }
+            ],
+            "text_overlay": null
+        },
+        {
+            "id": "wear-and-tear",
+            "voiceover": "Before any deadline matters, there's a threshold question: what can a landlord actually charge you for? Federal housing guidance is explicit on this. HUD's own handbook states that basic cleaning and repair needed to ready a unit for the next tenant are ordinary costs of doing business \u2014 landlord expenses, not tenant expenses. Only damage that goes beyond normal wear and tear can be charged against your deposit. A worn carpet from years of ordinary foot traffic is wear and tear. A carpet burned by a dropped cigarette is damage. Faded paint from sunlight is wear and tear. A hole punched through drywall is damage. That distinction is the first thing landlords count on tenants not knowing, because if they can relabel wear and tear as damage, they can justify deductions that never had a legal basis to begin with.",
+            "beats": [
+                {
+                    "text": "HUD guidance: only damage beyond normal wear and tear can be charged to a tenant.",
+                    "archetype": "TERM_DEFINE",
+                    "anchor_token": "normal wear and tear"
+                },
+                {
+                    "text": "Ordinary wear versus chargeable damage \u2014 the line landlords blur.",
+                    "archetype": "CONTRAST",
+                    "anchor_token": "damage"
+                }
+            ],
+            "text_overlay": null
+        },
+        {
+            "id": "the-clock",
+            "voiceover": "Here's the deadline patchwork, state by state. New York and Hawaii give landlords just fourteen days to return a deposit or send an itemized statement of deductions. California gives twenty-one days \u2014 landlords there must mail back the full deposit or an itemized statement within three weeks of move-out, and if any single deduction exceeds one hundred twenty-five dollars, they have to attach receipts for the labor and materials. Texas allows thirty days, and nationally, thirty days is the most common statutory window, used by twenty-two states. Arkansas and West Virginia are the most lenient, allowing landlords up to sixty days. But here's the reveal that changes everything: in most states, if a landlord blows through that deadline \u2014 doesn't return the deposit, doesn't send the itemized statement \u2014 they don't get a grace period. They forfeit the right to withhold anything. The full deposit becomes owed, deductions or not.",
+            "beats": [
+                {
+                    "text": "The deadline patchwork: how long landlords get before they must account for your deposit.",
+                    "archetype": "PROGRESS",
+                    "anchor_token": "deadline patchwork",
+                    "data": {
+                        "unit": "days",
+                        "series": [
+                            {
+                                "label": "New York / Hawaii",
+                                "value": 14
+                            },
+                            {
+                                "label": "California",
+                                "value": 21
+                            },
+                            {
+                                "label": "Texas",
+                                "value": 30
+                            },
+                            {
+                                "label": "Arkansas / West Virginia",
+                                "value": 60,
+                                "highlight": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "text": "Miss the deadline in most states, and the landlord forfeits the right to withhold anything.",
+                    "archetype": "TERM_DEFINE",
+                    "anchor_token": "forfeit"
+                }
+            ],
+            "text_overlay": {
+                "text": "Miss the deadline. Forfeit the deposit."
+            }
+        },
+        {
+            "id": "the-penalty",
+            "voiceover": "Missing the deadline isn't just a paperwork problem \u2014 in some states it's a financial one. Texas Property Code Section 92.109 states that a landlord who retains a deposit in bad faith is liable for one hundred dollars, plus three times the portion of the deposit wrongfully withheld, plus the tenant's reasonable attorney's fees. And under that same law, a landlord who fails to return the deposit or provide a written itemized description of deductions by the thirtieth day after the tenant moves out is presumed to have acted in bad faith \u2014 the burden shifts to them to prove otherwise. Texas isn't alone in imposing triple damages. Massachusetts and Colorado both impose treble-damages penalties on landlords who deliberately fail to return a security deposit as state law requires. The contrast is stark: a landlord who follows the process on time owes nothing beyond legitimate deductions. A landlord who ignores it can end up owing three times what they tried to keep.",
+            "beats": [
+                {
+                    "text": "Texas bad-faith penalty: one hundred dollars flat, on top of triple damages.",
+                    "archetype": "HERO_NUMBER",
+                    "anchor_token": "one hundred dollars"
+                },
+                {
+                    "text": "On-time landlord versus bad-faith landlord \u2014 the liability gap.",
+                    "archetype": "CONTRAST",
+                    "anchor_token": "bad faith"
+                },
+                {
+                    "text": "States that impose treble-damages penalties on bad-faith landlords.",
+                    "archetype": "LIST_ITEM",
+                    "anchor_token": "treble-damages"
+                }
+            ],
+            "text_overlay": null
+        },
+        {
+            "id": "take-action",
+            "voiceover": "None of this helps unless you use it. Start before you even move out: photograph the condition of the unit and keep records, so there's evidence to compare against whatever your landlord claims later. Know your state's deadline \u2014 whether that's fourteen days, twenty-one, thirty, or sixty \u2014 and mark the date you handed back the keys. If that deadline passes without a full refund or a written itemized statement of deductions, put your demand in writing and cite the statute. And if a landlord still refuses, small claims court exists for exactly this \u2014 Texas tenants who prove bad faith can recover the deposit, one hundred dollars, triple damages, and attorney's fees, all without hiring a lawyer to file. The deadline that protects landlords who follow the law is the same deadline that punishes the ones who don't. Knowing which day it falls on is the difference between losing your deposit and getting it back three times over.",
+            "beats": [
+                {
+                    "text": "Four steps to enforce your deposit rights.",
+                    "archetype": "LIST_ITEM",
+                    "anchor_token": "photograph the condition"
+                },
+                {
+                    "text": "The deadline that punishes landlords is the same one that protects them if they follow it.",
+                    "archetype": "STATEMENT",
+                    "anchor_token": "three times over"
+                }
+            ],
+            "text_overlay": null
+        }
+    ],
+    "sources_used": [
+        "https://law.justia.com/codes/texas/property-code/title-8/chapter-92/subchapter-c/section-92-109/",
+        "https://codes.findlaw.com/ca/civil-code/civ-sect-1950-5/",
+        "https://www.hud.gov/sites/documents/hsg-06-01gc5guid.pdf",
+        "https://ipropertymanagement.com/laws/security-deposits"
+    ]
+}

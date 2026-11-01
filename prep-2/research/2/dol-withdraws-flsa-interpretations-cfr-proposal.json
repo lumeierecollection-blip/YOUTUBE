@@ -1,0 +1,68 @@
+{
+  "topic_slug": "dol-withdraws-flsa-interpretations-cfr-proposal",
+  "strongest_angle": "Examining the U.S. Department of Labor's decision to withdraw its controversial proposal regarding Fair Labor Standards Act interpretations and what it means for the Code of Federal Regulations.",
+  "key_facts": [
+    {
+      "fact": "On October 7, 2026, the Wage and Hour Division of the U.S. Department of Labor published a notice withdrawing its July 2025 proposal to strip nine parts of longstanding Fair Labor Standards Act interpretive guidance out of the Code of Federal Regulations.",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr",
+      "source_name": "Law and the Workplace",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Department of Labor originally published its notice of proposed rulemaking on July 2, 2025 under Federal Register citation 90 FR 28985, proposing to remove parts located in Title 29, Chapter V, Subchapter B of the Code of Federal Regulations.",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of",
+      "source_name": "Federal Register",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Labor Department abandoned the plan to remove nonbinding wage-and-hour guidance from its regulations after public comments questioned the benefits of the proposal.",
+      "source_url": "https://news.bloomberglaw.com/daily-labor-report/dol-scraps-plan-to-replace-wage-rules-with-informal-guidance",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of proposed rulemaking notice",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Federal Register volume number",
+      "value": 90,
+      "unit": "volume",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Federal Register page citation",
+      "value": 28985,
+      "unit": "page",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Number of parts of interpretive guidance proposed to be stripped",
+      "value": 9,
+      "unit": "parts",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Department of Labor",
+      "kind": "organization"
+    },
+    {
+      "name": "Wage and Hour Division",
+      "kind": "organization"
+    },
+    {
+      "name": "Code of Federal Regulations",
+      "kind": "object"
+    },
+    {
+      "name": "Fair Labor Standards Act",
+      "kind": "object"
+    }
+  ]
+}

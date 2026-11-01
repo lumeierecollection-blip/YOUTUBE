@@ -1,0 +1,90 @@
+{
+  "channel_id": "2",
+  "topic_slug": "mit-instructmesh-ai-3d-models-fabrication",
+  "format": "shorts",
+  "hook": "Generated 3D models fail 3D printing because visual plausibility replaces geometric accuracy.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:03",
+      "voiceover": "Generated 3D models fail 3D printing because visual plausibility replaces geometric accuracy.",
+      "visual_cue": "Close up of a distorted 3D printed object failing on a build plate",
+      "sfx_cue": "Mechanical click",
+      "b_roll": [
+        "Distorted 3D printed plastic object"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Models Fail 3D Printing"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:03-00:15",
+      "voiceover": "On August 28, 2026, researchers at MIT Computer Science and Artificial Intelligence Laboratory and Google detailed InstructMesh in an arXiv paper. Alongside Ahmed Katary and Demircan Tas, Faruqi helped detail the tool.",
+      "visual_cue": "Split screen showing arXiv paper text alongside MIT Computer Science and Artificial Intelligence Laboratory logo",
+      "sfx_cue": "Whoosh",
+      "b_roll": [
+        "arXiv paper interface",
+        "MIT laboratory interior"
+      ],
+      "animation_cue": "Slide left",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "August 28, 2026 arXiv Paper"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:15-00:22",
+      "voiceover": "InstructMesh addresses this exact gap by enabling selective repair.",
+      "visual_cue": "Highlighting the year 2026 on the arXiv document",
+      "sfx_cue": "Pop",
+      "b_roll": [
+        "Close up of submission date on document"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Year 2026 Submission"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:22-00:35",
+      "voiceover": "InstructMesh lets users highlight specific parts of a blueprint for printing. MIT News published the finding in October 2026. Ahmed Katary and his co-authors designed InstructMesh for this exact fix.",
+      "visual_cue": "User highlighting a 3D blueprint interface on a computer screen",
+      "sfx_cue": "Chime",
+      "b_roll": [
+        "MIT News website article screenshot",
+        "Computer screen showing 3D wireframe mesh"
+      ],
+      "animation_cue": "Pan right",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "October 1, 2026 MIT News"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:35-00:40",
+      "voiceover": "InstructMesh repaired the 3D model in 2026.",
+      "visual_cue": "Completed 3D printed object on a build plate",
+      "sfx_cue": "Tone",
+      "b_roll": [
+        "Finished 3D printed geometric shape"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "InstructMesh 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.csail.mit.edu/news/new-tool-lets-users-repair-ai-generated-3d-models-then-fabricate-them-just-way-they-want",
+    "https://arxiv.org/abs/2608.28534",
+    "https://news.mit.edu/2026/instructmesh-tool-lets-users-repair-ai-3d-models-then-fabricate-them-1001"
+  ]
+}

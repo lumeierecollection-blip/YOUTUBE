@@ -1,0 +1,63 @@
+{
+  "channel_id": "1",
+  "topic_slug": "forbes-advisor-best-budgeting-apps-october-2026",
+  "format": "shorts",
+  "hook": "Forbes Advisor tested 14 budgeting apps for a full month, and the results reveal everything.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Forbes Advisor tested 14 budgeting apps for a full month, and the results reveal everything.",
+      "b_roll": [
+        "A digital tablet displaying a financial app audit list"
+      ],
+      "text_overlay": {
+        "text": "14 Apps Tested"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Forbes Advisor examined features, fees, and usability during their audit. CNBC Select reviewed more than two dozen applications for consumers. Which tool topped the list?",
+      "b_roll": [
+        "A researcher reviewing software performance metrics on a screen"
+      ],
+      "text_overlay": {
+        "text": "The October Audit"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Forbes Advisor Canada audited its regional budgeting app rankings on October 13, 2026.",
+      "b_roll": [
+        "A calendar graphic highlighting October 13"
+      ],
+      "text_overlay": {
+        "text": "October 13, 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Forbes Advisor scored 14 budgeting apps based on fees, features, and usability. Aaron Broverman and Erin Bendig verified the regional findings. Forbes Advisor Canada focused evaluations on household debt management.",
+      "b_roll": [
+        "Detailed comparison charts showing scores for financial software"
+      ],
+      "text_overlay": {
+        "text": "Rigorous Evaluation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Forbes Advisor published 14 tested tools.",
+      "b_roll": [
+        "The published audit report on a glowing display"
+      ],
+      "text_overlay": {
+        "text": "14 Apps"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.forbes.com/advisor/banking/best-budgeting-apps",
+    "https://www.cnbc.com/select/best-budgeting-apps",
+    "https://www.forbes.com/advisor/ca/banking/best-budgeting-apps"
+  ]
+}

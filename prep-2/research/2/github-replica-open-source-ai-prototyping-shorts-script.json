@@ -1,0 +1,37 @@
+{
+  "channel_id": "2",
+  "topic_slug": "github-replica-open-source-ai-prototyping",
+  "format": "shorts",
+  "hook": "GitHub just released an AI prototyping tool under MIT.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "GitHub just released an AI prototyping tool under MIT.",
+      "visual_cue": "GitHub logo with the word “Replica” and a MIT license badge."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 28, 2026, GitHub Design open‑sourced Replica, an AI‑powered prototyping tool. It runs in Copilot and ships under the MIT license. Does the 2‑minute read cover all the steps?",
+      "visual_cue": "Timeline showing Oct 28 2026, then a screenshot of Replica in Copilot, then a 2‑minute read icon with a question mark."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But it only works with components you already have, not new ones.",
+      "visual_cue": "Split‑screen comparison: left side shows existing repo components, right side shows empty new components."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The GitHub blog offers a 2‑minute read guide to launch Replica. Developers can pull the MIT‑licensed code from the public repository today. Once integrated, teams instantly generate interactive prototypes inside Copilot without extra licensing fees.",
+      "visual_cue": "Blog page with 2‑minute read badge, then GitHub repo page, then Copilot UI creating a prototype."
+    },
+    {
+      "id": "close",
+      "voiceover": "Free, open‑source prototyping now at your fingertips.",
+      "visual_cue": "Hand reaching toward a glowing “Free” button over the Replica logo."
+    }
+  ],
+  "sources_used": [
+    "https://github.blog/changelog/2026-10-28-introducing-replica-an-open-source-ai-prototyping-tool",
+    "https://nvdium.com/en/articles/140006649"
+  ]
+}

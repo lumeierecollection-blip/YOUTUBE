@@ -1,0 +1,64 @@
+{
+  "channel_id": "1",
+  "topic_slug": "voya-october-2026-financial-confidence-index",
+  "format": "shorts",
+  "hook": "Voya Financial proves raw income alone fails to build true financial security.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Voya Financial proves raw income alone fails to build true financial security.",
+      "b_roll": [
+        "A close-up shot of a smartphone screen displaying a bank balance."
+      ],
+      "text_overlay": {
+        "text": "Wealth doesn't need more money."
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Voya Financial surveyed 4,097 employed Americans ages 25 to 64 in October 2026. What actually drives your financial success?",
+      "b_roll": [
+        "A wide shot of office workers seated at modern desks.",
+        "A graphic showing survey documents being compiled."
+      ],
+      "text_overlay": {
+        "text": "4,097 workers surveyed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Voya Financial reveals that higher salaries alone fail to secure your retirement.",
+      "b_roll": [
+        "An animation showing a rising income chart flattening out."
+      ],
+      "text_overlay": {
+        "text": "Income isn't enough"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Voya Financial workplace financial education builds stronger habits for 4,097 surveyed workers. Voya Financial published 4,097 survey responses in October 2026.",
+      "b_roll": [
+        "An instructor pointing to a financial growth chart on a whiteboard.",
+        "Employees smiling while reviewing retirement documents together."
+      ],
+      "text_overlay": {
+        "text": "Workplace education wins"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read America's Financial Confidence Index by Voya Financial to see how 4,097 workers build habits.",
+      "b_roll": [
+        "The official report cover displayed on a clean desk."
+      ],
+      "text_overlay": {
+        "text": "Financial Confidence Index"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://6ix.com/news/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money",
+    "https://insurancewire.net/article/voya-survey-finds-workplace-financial-education-drives-action-not"
+  ]
+}

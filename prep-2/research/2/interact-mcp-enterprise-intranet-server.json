@@ -1,0 +1,79 @@
+{
+  "topic_slug": "interact-mcp-enterprise-intranet-server",
+  "strongest_angle": "Examine Interact MCP's new enterprise intranet Model Context Protocol server connection, detailing how it securely integrates internal knowledge bases and user permissions with large language model assistants.",
+  "key_facts": [
+    {
+      "fact": "Tom Walters, VP of Product at Interact, introduced Interact MCP as a permission-aware connection built for large enterprises on the foundation of Cue and Conductor.",
+      "source_url": "https://www.interactsoftware.com/news/introducing-interact-mcp",
+      "source_name": "Interact",
+      "confidence": "high"
+    },
+    {
+      "fact": "Interact MCP brings corporate intranet data into compatible AI environments including Claude, ChatGPT, Microsoft 365 Copilot, Gemini Enterprise, Workday Sana, and SAP Joule.",
+      "source_url": "https://www.interactsoftware.com/interact-mcp",
+      "source_name": "Interact",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Vinkius partner platform lists the Interact Software MCP connector for Claude with 10 official tools for managing intranet people, content, and groups.",
+      "source_url": "https://mcpforclaude.com/mcp/interact-software",
+      "source_name": "MCP for Claude",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Official tools provided by the Interact Software MCP connector",
+      "value": 10,
+      "unit": "tools",
+      "source_url": "https://mcpforclaude.com/mcp/interact-software"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Tom Walters",
+      "kind": "person"
+    },
+    {
+      "name": "Interact",
+      "kind": "organization"
+    },
+    {
+      "name": "Cue",
+      "kind": "object"
+    },
+    {
+      "name": "Conductor",
+      "kind": "object"
+    },
+    {
+      "name": "Claude",
+      "kind": "object"
+    },
+    {
+      "name": "ChatGPT",
+      "kind": "object"
+    },
+    {
+      "name": "Microsoft 365 Copilot",
+      "kind": "object"
+    },
+    {
+      "name": "Gemini Enterprise",
+      "kind": "object"
+    },
+    {
+      "name": "Workday Sana",
+      "kind": "organization"
+    },
+    {
+      "name": "SAP Joule",
+      "kind": "object"
+    },
+    {
+      "name": "Vinkius",
+      "kind": "organization"
+    }
+  ]
+}

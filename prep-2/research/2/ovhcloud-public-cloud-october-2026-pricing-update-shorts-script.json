@@ -1,0 +1,89 @@
+{
+  "channel_id": "2",
+  "topic_slug": "ovhcloud-public-cloud-october-2026-pricing-update",
+  "format": "shorts",
+  "hook": "One line in your cloud invoice just jumped by 21.9% starting October 1, 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "One line in your cloud invoice just jumped by 21.9% starting October 1, 2026.",
+      "visual_cue": "Close-up of OVHcloud pricing dashboard showing updated invoice totals.",
+      "sfx_cue": "Digital notification chime",
+      "b_roll": [
+        "OVHcloud dashboard screenshot"
+      ],
+      "animation_cue": "Zoom in on percentage increase",
+      "transition_out": "Cut to server rack",
+      "text_overlay": {
+        "text": "Cloud Pricing Jumps 21.9%"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "On October 1, 2026, OVHcloud stopped including a local disk and a public IPv4 address in Generation 3 instances. Where did those components go?",
+      "visual_cue": "Split-screen graphic showing unbundled storage and IP components.",
+      "sfx_cue": "Whoosh transition",
+      "b_roll": [
+        "OVHcloud blog post screenshot",
+        "Datacenter server hardware"
+      ],
+      "animation_cue": "Slide elements apart",
+      "transition_out": "Cut to analyst report",
+      "text_overlay": {
+        "text": "Unbundled Storage & IPv4"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Worse, webhosting.today analyst Łukasz Nowak shows hourly costs hit €0.0001458 per gigabyte.",
+      "visual_cue": "Display of webhosting.today article header with analyst name.",
+      "sfx_cue": "Subtle click",
+      "b_roll": [
+        "webhosting.today article screenshot"
+      ],
+      "animation_cue": "Highlight analyst name",
+      "transition_out": "Cut to pricing calculator",
+      "text_overlay": {
+        "text": "Exact Hourly Costs Revealed"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "OVHcloud price increases land between 1.4% and 21.9% for identical configurations.",
+      "visual_cue": "Data chart showing hourly rates of 0.0001458€ and 0.0027€.",
+      "sfx_cue": "Cash register tick",
+      "b_roll": [
+        "Cloud billing breakdown spreadsheet"
+      ],
+      "animation_cue": "Animate chart bars rising",
+      "transition_out": "Fade to summary",
+      "text_overlay": {
+        "text": "€0.0027/hr per IPv4 Address"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:46",
+      "voiceover": "Those unbundled fees hit every Generation 3 instance.",
+      "visual_cue": "Final graphic showing OVHcloud B3, C3, and R3 server tiers.",
+      "sfx_cue": "Soft chime",
+      "b_roll": [
+        "OVHcloud server infrastructure"
+      ],
+      "animation_cue": "Fade out elements",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Generation 3 Pricing Update"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://blog.ovhcloud.com/en/posts/public-cloud-pricing-update-october-2026",
+    "https://us.ovhcloud.com/resources/blog/public-cloud-our-prices-are-changing",
+    "https://webhosting.today/2026/10/05/ovhcloud-unbundled-the-ip-and-the-disk-hetzner-took-its-cheapest-line-off-sale-the-memory-bill-has-reached-the-price-list"
+  ]
+}

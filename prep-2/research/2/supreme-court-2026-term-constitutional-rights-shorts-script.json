@@ -1,0 +1,66 @@
+{
+  "channel_id": "2",
+  "topic_slug": "supreme-court-2026-term-constitutional-rights",
+  "format": "shorts",
+  "hook": "Your constitutional rights hang on a single docket number arriving in December 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your constitutional rights hang on a single docket number arriving in December 2026.",
+      "b_roll": [
+        "Supreme Court exterior facade",
+        "Gavel falling on wooden bench"
+      ],
+      "text_overlay": {
+        "text": "Your constitutional rights hang on a single docket number."
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Cook County residents faced a strict ban on semiautomatic rifles. Which court accepted docket number 25 for review?",
+      "b_roll": [
+        "Cook County courthouse building",
+        "Legal papers resting on a mahogany desk"
+      ],
+      "text_overlay": {
+        "text": "Which court accepted docket number 25 for review?"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the U.S. Supreme Court formally opened its new term on Monday, October 3, 2026.",
+      "b_roll": [
+        "Courtroom interior with justices' bench"
+      ],
+      "text_overlay": {
+        "text": "The Supreme Court opened its term on October 3, 2026."
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Connecticut and Cook County, Illinois challenged the constitutionality of bans on AR-15s. Georgetown Law highlighted docket case number 238 in its reports.",
+      "b_roll": [
+        "Law school library stacks",
+        "SCOTUSblog digital headlines on screen"
+      ],
+      "text_overlay": {
+        "text": "Justices will review AR-15 restrictions this December."
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Docket number 25 case 238 arrives in December 2026.",
+      "b_roll": [
+        "Supreme Court seals on stone wall"
+      ],
+      "text_overlay": {
+        "text": "Docket number 25 case 238 arrives in December 2026."
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scotusblog.com/2026/09/court-announces-cases-it-will-hear-in-december-including-challenges-to-the-constitutionality-of-",
+    "https://www.npr.org/2026/10/03/nx-s1-5986341/supreme-court-term-religion-guns-environment-immigration",
+    "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+  ]
+}

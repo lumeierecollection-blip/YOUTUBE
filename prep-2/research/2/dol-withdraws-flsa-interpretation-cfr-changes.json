@@ -1,0 +1,72 @@
+{
+  "topic_slug": "dol-withdraws-flsa-interpretation-cfr-changes",
+  "strongest_angle": "The U.S. Department of Labor Wage and Hour Division officially withdrew its July 2025 proposal to remove longstanding Fair Labor Standards Act interpretive guidance from the Code of Federal Regulations in October 2026.",
+  "key_facts": [
+    {
+      "fact": "On October 7, 2026, the Wage and Hour Division of the U.S. Department of Labor published a notice withdrawing its July 2025 proposal to strip nine parts of longstanding Fair Labor Standards Act interpretive guidance out of the Code of Federal Regulations.",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr",
+      "source_name": "Law and the Workplace",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Department of Labor originally published a notice of proposed rulemaking regarding statements of general policy or interpretation on July 2, 2025, designated as 90 FR 28985.",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-07/html/2026-20523.htm",
+      "source_name": "Federal Register",
+      "confidence": "high"
+    },
+    {
+      "fact": "Max Kutner reported for Law360 on October 6, 2026, that the U.S. Department of Labor cancelled its proposal to nix wage-hour guidance that had not gone through notice-and-comment rulemaking.",
+      "source_url": "https://www.law360.com/articles/2534728/dol-cancels-proposal-to-nix-wage-hour-guidance",
+      "source_name": "Law360",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Federal Register Volume",
+      "value": 91,
+      "unit": "volume",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-07/html/2026-20523.htm"
+    },
+    {
+      "label": "Federal Register Issue",
+      "value": 193,
+      "unit": "issue",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-07/html/2026-20523.htm"
+    },
+    {
+      "label": "Federal Register Citation Year",
+      "value": 90,
+      "unit": "FR",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-07/html/2026-20523.htm"
+    },
+    {
+      "label": "Federal Register Page Citation",
+      "value": 28985,
+      "unit": "page",
+      "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-10-07/html/2026-20523.htm"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Department of Labor",
+      "kind": "organization"
+    },
+    {
+      "name": "Wage and Hour Division",
+      "kind": "organization"
+    },
+    {
+      "name": "Code of Federal Regulations",
+      "kind": "object"
+    },
+    {
+      "name": "Max Kutner",
+      "kind": "person"
+    },
+    {
+      "name": "Law360",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "topic_slug": "boston-bus-cameras-stop-sign-enforcement",
+  "strongest_angle": "Boston Public Schools is launching a new AI-enabled camera enforcement program to fine motorists who illegally pass stopped school buses.",
+  "key_facts": [
+    {
+      "fact": "The City of Boston and Boston Public Schools issued a Request for Proposals for an AI-enabled stop-arm camera school bus safety program.",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035",
+      "source_name": "Boston.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "Boston City Councilor Enrique Pepén stated that the cameras would activate when the stop-arm of a school bus is extended.",
+      "source_url": "https://www.nbcboston.com/news/local/ai-enabled-cameras-could-be-coming-to-boston-school-buses/4026957",
+      "source_name": "NBC Boston",
+      "confidence": "high"
+    },
+    {
+      "fact": "Boston Public Schools is located at 2300 Washington Street in Roxbury, Massachusetts 02119.",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035",
+      "source_name": "Boston.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Boston Globe reported that the City of Boston plans to add cameras to school buses to fine drivers who illegally pass stop signs.",
+      "source_url": "https://www.bostonglobe.com/2026/10/08/metro/city-of-boston-cameras-school-bus-stop-signs",
+      "source_name": "The Boston Globe",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Street number",
+      "value": 2300,
+      "unit": "street number",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035"
+    },
+    {
+      "label": "ZIP code",
+      "value": 2119,
+      "unit": "ZIP code",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Boston",
+      "kind": "place"
+    },
+    {
+      "name": "Boston Public Schools",
+      "kind": "organization"
+    },
+    {
+      "name": "Enrique Pepén",
+      "kind": "person"
+    },
+    {
+      "name": "Roxbury",
+      "kind": "place"
+    },
+    {
+      "name": "William Monroe Trotter K-6 School",
+      "kind": "place"
+    }
+  ]
+}

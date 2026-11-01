@@ -1,0 +1,63 @@
+{
+  "channel_id": "2",
+  "topic_slug": "dol-withdraws-flsa-interpretations-cfr-proposal",
+  "format": "shorts",
+  "hook": "Your wage protections under federal law faced a direct threat inside the Code of Federal Regulations.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your wage protections under federal law faced a direct threat inside the Code of Federal Regulations.",
+      "b_roll": [
+        "Close-up of federal law documents"
+      ],
+      "text_overlay": {
+        "text": "Wage Protections Threatened"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2025, officials targeted 9 parts of wage guidance. The Wage and Hour Division drafted a plan to remove rules. Where did those protections go?",
+      "b_roll": [
+        "U.S. Department of Labor seal",
+        "Code of Federal Regulations volumes"
+      ],
+      "text_overlay": {
+        "text": "9 Parts Targeted"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Public comments questioned the benefits, but the Wage and Hour Division kept pushing.",
+      "b_roll": [
+        "Public rulemaking notices on Federal Register"
+      ],
+      "text_overlay": {
+        "text": "Public Pushback"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Federal regulators officially withdrew the proposal on October 7, 2026. The U.S. Department of Labor protected your standards. Code regulations keep every single rule intact.",
+      "b_roll": [
+        "Official withdrawal notice document"
+      ],
+      "text_overlay": {
+        "text": "Proposal Withdrawn"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check your rights under the Fair Labor Standards Act.",
+      "b_roll": [
+        "Fair Labor Standards Act text"
+      ],
+      "text_overlay": {
+        "text": "Know Your Rights"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr",
+    "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+  ]
+}

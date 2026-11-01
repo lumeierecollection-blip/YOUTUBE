@@ -1,0 +1,80 @@
+{
+  "topic_slug": "october-2026-employment-pay-transparency",
+  "strongest_angle": "Explain the new Connecticut pay‑transparency mandate and expanded lactation‑break rules, plus the nationwide trend of fourteen states requiring salary‑range postings as of October 2026.",
+  "key_facts": [
+    {
+      "fact": "Effective October 1 2026, Connecticut law requires all Connecticut employers to disclose a salary range in every internal and external job posting and to create an employee guide describing pay codes.",
+      "source_url": "https://www.adp.com/spark/articles/2026/09/october-2026-employer-compliance-calendar-key-hr-payroll-benefits-and-workforce-management-deadlines.aspx",
+      "source_name": "adp.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Connecticut’s October 1 2026 amendment also expands employer obligations to provide reasonable lactation breaks for nursing employees.",
+      "source_url": "https://www.thompsonhine.com/insights/employment-legislation-outlook-october-2026",
+      "source_name": "thompsonhine.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "As of October 2026, fourteen states and Washington, D.C. require employers to post a pay range in job advertisements.",
+      "source_url": "https://tryp50.com/resources/pay-transparency-laws-by-state",
+      "source_name": "tryp50.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The IRS updated the 2026 General Instructions for Forms W‑2 and W‑3, raising the maximum exclusion for employer‑provided dependent‑care benefits to $7,500 beginning with the 2026 tax year.",
+      "source_url": "https://www.paycom.com/resources/blog/state-of-compliance-october-2026-federal-and-state-compliance-updates",
+      "source_name": "paycom.com",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "states requiring pay range postings",
+      "value": 14,
+      "unit": "states",
+      "source_url": "https://tryp50.com/resources/pay-transparency-laws-by-state"
+    },
+    {
+      "label": "maximum dependent‑care benefit exclusion",
+      "value": 7500,
+      "unit": "USD",
+      "source_url": "https://www.paycom.com/resources/blog/state-of-compliance-october-2026-federal-and-state-compliance-updates"
+    },
+    {
+      "label": "effective day of October",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://www.adp.com/spark/articles/2026/09/october-2026-employer-compliance-calendar-key-hr-payroll-benefits-and-workforce-management-deadlines.aspx"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Connecticut pay transparency law and requirement to create an employee guide for pay codes effective October 1.",
+      "speaker": "Thompson Hine LLP",
+      "source_name": "thompsonhine.com",
+      "source_url": "https://www.thompsonhine.com/insights/employment-legislation-outlook-october-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Connecticut",
+      "kind": "place"
+    },
+    {
+      "name": "Washington, D.C.",
+      "kind": "place"
+    },
+    {
+      "name": "Internal Revenue Service",
+      "kind": "organization"
+    },
+    {
+      "name": "Forms W-2",
+      "kind": "object"
+    },
+    {
+      "name": "Forms W-3",
+      "kind": "object"
+    }
+  ]
+}

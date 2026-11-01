@@ -1,0 +1,56 @@
+{
+  "topic_slug": "maryland-2027-tenants-bill-of-rights-october-2026",
+  "strongest_angle": "The Moore-Miller administration's 2027 Tenants' Bill of Rights, effective October 1, 2026, mandates critical updates to lease disclosures and tenant protections across Maryland.",
+  "key_facts": [
+    {
+      "fact": "The Maryland Department of Housing and Community Development published the 2027 Tenants' Bill of Rights on October 1, 2026, to reflect new state housing legislation.",
+      "source_url": "https://dhcd.maryland.gov/news-stories/press-releases/moore-miller-administration-publishes-2027-tenants-bill-rights-highlights-key-landlord-and-tenant",
+      "source_name": "Maryland Department of Housing and Community Development",
+      "confidence": "high"
+    },
+    {
+      "fact": "Maryland law requires landlords to attach the most current version of the Tenants' Bill of Rights to every lease agreement without any modifications.",
+      "source_url": "https://dhcd.maryland.gov/housing/renter-landlord-resources/tenants-bill-rights",
+      "source_name": "Maryland Department of Housing and Community Development",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2027 Tenant’s Bill of Rights, which took effect on October 1, 2026, provides both tenants and landlords with the most current information regarding state housing protections.",
+      "source_url": "https://www.cronista.com/en/today/maryland-renters-have-new-protections-under-laws-that-took-effect-on-october-1",
+      "source_name": "Cronista",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of the Tenants' Bill of Rights",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://dhcd.maryland.gov/news-stories/press-releases/moore-miller-administration-publishes-2027-tenants-bill-rights-highlights-key-landlord-and-tenant"
+    },
+    {
+      "label": "Day of the month the laws took effect",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://dhcd.maryland.gov/news-stories/press-releases/moore-miller-administration-publishes-2027-tenants-bill-rights-highlights-key-landlord-and-tenant"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Moore-Miller administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Maryland Department of Housing and Community Development",
+      "kind": "organization"
+    },
+    {
+      "name": "Maryland",
+      "kind": "place"
+    },
+    {
+      "name": "Office of Tenant and Landlord Affairs",
+      "kind": "organization"
+    }
+  ]
+}

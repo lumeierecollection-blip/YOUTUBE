@@ -1,0 +1,90 @@
+{
+  "topic_slug": "dol-pulls-plug-flsa-interpretations-cfr-withdrawal",
+  "strongest_angle": "The U.S. Department of Labor Wage and Hour Division officially withdrew its controversial July 2025 proposal to remove nine parts of Fair Labor Standards Act interpretive guidance from the Code of Federal Regulations.",
+  "key_facts": [
+    {
+      "fact": "On October 7, 2026, the Wage and Hour Division of the U.S. Department of Labor published a notice withdrawing its July 2025 proposal to strip nine parts of longstanding Fair Labor Standards Act interpretive guidance out of the Code of Federal Regulations.",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr",
+      "source_name": "Law and the Workplace",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Department of Labor published the initial notice of proposed rulemaking on July 2, 2025, identified as 90 FR 28985, proposing to remove parts located in Title 29, Chapter V, Subchapter B of the Code of Federal Regulations.",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of",
+      "source_name": "Federal Register",
+      "confidence": "high"
+    },
+    {
+      "fact": "Max Kutner reported for Law360 that the U.S. Department of Labor announced on Tuesday that it is withdrawing a proposal to remove interpretive rules and policy statements regarding the Fair Labor Standards Act.",
+      "source_url": "https://www.law360.com/articles/2534728/dol-cancels-proposal-to-nix-wage-hour-guidance",
+      "source_name": "Law360",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Notice of Proposed Rulemaking publication year",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Federal Register volume number",
+      "value": 90,
+      "unit": "volume",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Federal Register citation page number",
+      "value": 28985,
+      "unit": "page",
+      "source_url": "https://www.federalregister.gov/documents/2026/10/07/2026-20523/statements-of-general-policy-or-interpretation-not-directly-related-to-regulations-withdrawal-of"
+    },
+    {
+      "label": "Parts of Fair Labor Standards Act interpretive guidance targeted",
+      "value": 9,
+      "unit": "parts",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr"
+    },
+    {
+      "label": "Withdrawal notice day of the month",
+      "value": 7,
+      "unit": "day",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr"
+    },
+    {
+      "label": "Withdrawal notice month",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr"
+    },
+    {
+      "label": "Withdrawal notice year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.lawandtheworkplace.com/2026/10/dol-pulls-the-plug-on-plan-to-move-flsa-interpretations-out-of-the-cfr"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "U.S. Department of Labor",
+      "kind": "organization"
+    },
+    {
+      "name": "Wage and Hour Division",
+      "kind": "organization"
+    },
+    {
+      "name": "Code of Federal Regulations",
+      "kind": "object"
+    },
+    {
+      "name": "Max Kutner",
+      "kind": "person"
+    },
+    {
+      "name": "Allan Bloom",
+      "kind": "person"
+    }
+  ]
+}

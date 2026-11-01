@@ -1,0 +1,95 @@
+{
+  "topic_slug": "minimax-m3-1-flash-benchmark-analysis",
+  "strongest_angle": "MiniMax M3.1 Flash outperforms DeepSeek and Opus 5 on key business and software benchmarks like DeepSWE v1.1 at lower costs, but struggles with high hallucination rates.",
+  "key_facts": [
+    {
+      "fact": "MiniMax M3.1 Flash achieves 73.7% on DeepSWE v1.1, placing it alongside top models according to MiniMax Research.",
+      "source_url": "https://www.minimax.io/blog/minimax-m31f",
+      "source_name": "MiniMax Research",
+      "confidence": "high"
+    },
+    {
+      "fact": "CellCog reported that MiniMax published comparison tables against GPT-5.6 Sol and Claude Opus 5 with the M3.1 Flash release.",
+      "source_url": "https://cellcog.ai/blog/minimax-m3-1-flash",
+      "source_name": "CellCog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Tech City Authority noted that DeepSeek V4.1 Flash beats MiniMax M3.1 Flash on coding tests including DeepSWE with a score of 77.0 versus 73.7.",
+      "source_url": "https://www.techcityauthority.com/2026/10/minimax-m3-1-flash-price-performance.html",
+      "source_name": "Tech City Authority",
+      "confidence": "high"
+    },
+    {
+      "fact": "AGI Hunt reported that MiniMax M3.1 Flash attempts 98% of questions while experiencing high hallucination rates.",
+      "source_url": "https://agihunt.info/en/p/1a154e63b024eddc20dfa6affff",
+      "source_name": "AGI Hunt",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "MiniMax M3.1 Flash DeepSWE v1.1 score",
+      "value": 73.7,
+      "unit": "percent",
+      "source_url": "https://www.minimax.io/blog/minimax-m31f"
+    },
+    {
+      "label": "DeepSeek V4.1 Flash DeepSWE score",
+      "value": 77,
+      "unit": "percent",
+      "source_url": "https://www.techcityauthority.com/2026/10/minimax-m3-1-flash-price-performance.html"
+    },
+    {
+      "label": "MiniMax M3.1 Flash question attempt rate",
+      "value": 98,
+      "unit": "percent",
+      "source_url": "https://agihunt.info/en/p/1a154e63b024eddc20dfa6affff"
+    },
+    {
+      "label": "MiniMax-M3 question attempt rate",
+      "value": 35,
+      "unit": "percent",
+      "source_url": "https://agihunt.info/en/p/1a154e63b024eddc20dfa6affff"
+    },
+    {
+      "label": "MiniMax-M3 hallucination rate",
+      "value": 18,
+      "unit": "percent",
+      "source_url": "https://agihunt.info/en/p/1a154e63b024eddc20dfa6affff"
+    },
+    {
+      "label": "MiniMax-M3 accuracy score",
+      "value": 17,
+      "unit": "percent",
+      "source_url": "https://agihunt.info/en/p/1a154e63b024eddc20dfa6affff"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "MiniMax",
+      "kind": "organization"
+    },
+    {
+      "name": "DeepSeek",
+      "kind": "organization"
+    },
+    {
+      "name": "Opus 5",
+      "kind": "organization"
+    },
+    {
+      "name": "CellCog",
+      "kind": "organization"
+    },
+    {
+      "name": "AGI Hunt",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude",
+      "kind": "organization"
+    }
+  ]
+}

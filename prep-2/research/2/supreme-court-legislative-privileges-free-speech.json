@@ -1,0 +1,71 @@
+{
+  "topic_slug": "supreme-court-legislative-privileges-free-speech",
+  "strongest_angle": "Analyze how the Supreme Court of India's seven-judge bench disposed of the reference concerning legislative privileges versus free speech as infructuous because the 2003 Tamil Nadu Assembly resolution was withdrawn.",
+  "key_facts": [
+    {
+      "fact": "A seven-judge bench of the Supreme Court of India unanimously disposed of a reference to define the extent of legislators’ privileges vis-à-vis citizens’ fundamental right to free speech, calling it infructuous.",
+      "source_url": "https://theprint.in/judiciary/scs-7-judge-bench-disposes-of-reference-on-extent-of-legislative-privileges-vs-free-speech-for-now/3063077",
+      "source_name": "ThePrint",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Supreme Court noted that the resolution passed in the Tamil Nadu Assembly in 2003, which was the trigger for the case regarding the arrest of editors of The Hindu, was withdrawn in 2004.",
+      "source_url": "https://www.newindianexpress.com/india/2026/Oct/07/seven-judge-sc-bench-closes-reference-on-legislative-privilege-and-free-speech",
+      "source_name": "The New Indian Express",
+      "confidence": "high"
+    },
+    {
+      "fact": "Article 194(3) of the Constitution grants state legislatures certain privileges and immunities, while Article 19(1)(a) guarantees freedom of speech and expression, including press freedom.",
+      "source_url": "https://indianexpress.com/article/explained/explained-law/supreme-court-legislative-privileges-free-speech-case-10907897",
+      "source_name": "Indian Express",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Supreme Court bench size",
+      "value": 7,
+      "unit": "judges",
+      "source_url": "https://www.newindianexpress.com/india/2026/Oct/07/seven-judge-sc-bench-closes-reference-on-legislative-privilege-and-free-speech"
+    },
+    {
+      "label": "Tamil Nadu Assembly resolution year",
+      "value": 2003,
+      "unit": "year",
+      "source_url": "https://www.newindianexpress.com/india/2026/Oct/07/seven-judge-sc-bench-closes-reference-on-legislative-privilege-and-free-speech"
+    },
+    {
+      "label": "Resolution withdrawal year",
+      "value": 2004,
+      "unit": "year",
+      "source_url": "https://www.newindianexpress.com/india/2026/Oct/07/seven-judge-sc-bench-closes-reference-on-legislative-privilege-and-free-speech"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Supreme Court of India",
+      "kind": "organization"
+    },
+    {
+      "name": "Tamil Nadu Assembly",
+      "kind": "organization"
+    },
+    {
+      "name": "The Hindu",
+      "kind": "organization"
+    },
+    {
+      "name": "Article 194(3)",
+      "kind": "object"
+    },
+    {
+      "name": "Article 19(1)(a)",
+      "kind": "object"
+    },
+    {
+      "name": "Article 105",
+      "kind": "object"
+    }
+  ]
+}

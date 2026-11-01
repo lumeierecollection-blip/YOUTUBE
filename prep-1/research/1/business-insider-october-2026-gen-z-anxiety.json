@@ -1,0 +1,68 @@
+{
+  "topic_slug": "business-insider-october-2026-gen-z-anxiety",
+  "strongest_angle": "Examine Noah Sheidlower's October 2026 Business Insider report detailing how high savings figures at a young age can still be accompanied by worsening financial anxiety and mindset distress.",
+  "key_facts": [
+    {
+      "fact": "Noah Sheidlower authored an October 2026 Business Insider report detailing how accumulating $100,000 by age 22 failed to prevent ongoing financial anxiety by age 25.",
+      "source_url": "https://www.businessinsider.com/gen-z-financial-anxiety-money-saving-2026-10",
+      "source_name": "Business Insider",
+      "confidence": "high"
+    },
+    {
+      "fact": "Noah Sheidlower conducted conversations with two dozen Gen Z workers, older Americans, and financial experts for the Business Insider report published in October 2026.",
+      "source_url": "https://africa.businessinsider.com/news/i-tried-to-stop-being-anxious-about-money-it-completely-backfired/er37fz0",
+      "source_name": "Business Insider Africa",
+      "confidence": "high"
+    },
+    {
+      "fact": "Business Insider published an article on LinkedIn in October 2026 highlighting that Gen Z workers cannot stop panicking about money despite high achievements.",
+      "source_url": "https://www.linkedin.com/pulse/gen-z-cant-stop-panicking-money-businessinsider-jrjre",
+      "source_name": "LinkedIn Pulse",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Savings amount at age 22",
+      "value": 100000,
+      "unit": "dollars",
+      "source_url": "https://www.businessinsider.com/gen-z-financial-anxiety-money-saving-2026-10"
+    },
+    {
+      "label": "Age when reaching $100,000 in savings",
+      "value": 22,
+      "unit": "years",
+      "source_url": "https://www.businessinsider.com/gen-z-financial-anxiety-money-saving-2026-10"
+    },
+    {
+      "label": "Age when experiencing ongoing financial panic",
+      "value": 25,
+      "unit": "years",
+      "source_url": "https://africa.businessinsider.com/news/i-had-dollar100000-saved-by-the-time-i-was-22-im-25-now-and-cant-stop-panicking-about/er37fz0"
+    },
+    {
+      "label": "Number of Gen Z workers, older Americans, and financial experts interviewed",
+      "value": 2,
+      "unit": "dozen",
+      "source_url": "https://africa.businessinsider.com/news/i-tried-to-stop-being-anxious-about-money-it-completely-backfired/er37fz0"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Noah Sheidlower",
+      "kind": "person"
+    },
+    {
+      "name": "Business Insider",
+      "kind": "organization"
+    },
+    {
+      "name": "LinkedIn",
+      "kind": "organization"
+    },
+    {
+      "name": "Gen Z",
+      "kind": "organization"
+    }
+  ]
+}

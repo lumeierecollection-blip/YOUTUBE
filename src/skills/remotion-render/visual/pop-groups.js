@@ -13,7 +13,8 @@ import { enterKind } from "./transitions.js";
 
 // START 0: a beat's first group is on screen on the cut frame itself (the boundary is a hard
 // cut, transitions.js — nothing of the outgoing beat is left to cover frame 0).
-export const POP = Object.freeze({ IN: 6, STAGGER: 8, START: 0 });
+// S0: initial scale for pop-in (0.94 — avoids the 1.04 overshoot the old ease-out produced).
+export const POP = Object.freeze({ IN: 6, STAGGER: 8, START: 0, S0: 0.94 });
 // Entrance styles (owner's spec 2026-10-03, part C.4; scripts/composition-variety.js assigns
 // one per beat, never the same twice in a row). Frames from the beat's start, per group:
 //   together      every group pops at 0 (all landed by frame 6)
@@ -69,7 +70,8 @@ export function popGroups(c, L) {
   const ek = entityGroupKey(c, L, groups);
   if (ek && c.entity_pop && Number.isFinite(c.entity_pop.frame) && order.some((g) => g.key !== ek && g.major)) {
     const rest = arrival(order.filter((g) => g.key !== ek), style);
-    const entity = { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - POP.START), entity: true };
+    // Entity pop arrives one frame before the word so it's visible when the word is spoken
+    const entity = { ...order.find((g) => g.key === ek), at: Math.max(0, c.entity_pop.frame - 1), entity: true };
     // PopGroups paints in array order, so ARRIVAL order must not become PAINT order for the full-bleed photo: appended last it was drawn over
     // the headline and every other group, and the words vanished the moment the photo popped (board 38044082797 ch 1 beat 7: "no words found").
     // The photo stays the bottom layer; the other bands are clipped to separate zones, so their order does not matter.

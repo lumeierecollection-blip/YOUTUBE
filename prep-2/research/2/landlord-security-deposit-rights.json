@@ -1,0 +1,136 @@
+{
+    "topic_slug": "landlord-security-deposit-rights",
+    "strongest_angle": "PROCESS CAVEAT (read first): WebFetch was non-functional for this entire research pass (repeated 'Socket is closed' errors on every URL attempted, including unrelated control domains like google.com) \u2014 no source below was actually opened and read via fetch, only surfaced via WebSearch result snippets. This violates this stage's normal requirement that every source_url be fetch-verified, so every fact here is marked confidence:medium and this artifact should be treated as UNVERIFIED and re-run through Stage B once WebFetch is restored, before Stage C or any gate treats it as frozen ground truth. Substantively, the angle holds up across independently corroborating search snippets: security-deposit law is a patchwork of state statutes that impose binding deadlines (14 to 60 days) and itemization requirements on landlords, several of which forfeit the landlord's right to any deduction \u2014 and even attach treble-damages penalties \u2014 if the landlord misses the deadline or fails to itemize, yet enforcement depends entirely on tenants knowing to invoke it.",
+    "key_facts": [
+        {
+            "fact": "Texas Property Code Sec. 92.109 states a landlord who in bad faith retains a security deposit is liable for $100 plus three times the portion of the deposit wrongfully withheld, plus the tenant's reasonable attorney's fees.",
+            "source_url": "https://law.justia.com/codes/texas/property-code/title-8/chapter-92/subchapter-c/section-92-109/",
+            "source_name": "Justia \u2014 Texas Property Code (statutory text, via search snippet, not opened)",
+            "confidence": "medium"
+        },
+        {
+            "fact": "Under Texas Property Code Sec. 92.109, a landlord who fails to return the deposit or provide a written itemized description of deductions by the 30th day after the tenant surrenders possession is presumed to have acted in bad faith.",
+            "source_url": "https://law.justia.com/codes/texas/property-code/title-8/chapter-92/subchapter-c/section-92-109/",
+            "source_name": "Justia \u2014 Texas Property Code (statutory text, via search snippet, not opened)",
+            "confidence": "medium"
+        },
+        {
+            "fact": "California Civil Code Sec. 1950.5 requires a landlord to mail the tenant either the full deposit or an itemized statement of deductions within 21 calendar days of move-out, and if a deduction exceeds $125, the landlord must also provide receipts for the labor and materials.",
+            "source_url": "https://codes.findlaw.com/ca/civil-code/civ-sect-1950-5/",
+            "source_name": "FindLaw \u2014 California Civil Code (statutory text, via search snippet, not opened)",
+            "confidence": "medium"
+        },
+        {
+            "fact": "HUD guidance (Handbook 4350.3, Chapter 5 special claims guidance) distinguishes normal wear and tear from chargeable tenant damage, stating that costs of basic cleaning and repair needed to ready a unit for the next tenant are ordinary costs of doing business, and only damage not attributable to normal wear and tear may be charged against a tenant.",
+            "source_url": "https://www.hud.gov/sites/documents/hsg-06-01gc5guid.pdf",
+            "source_name": "U.S. Department of Housing and Urban Development, Handbook 4350.3 Ch. 5 (via search snippet, not opened)",
+            "confidence": "medium"
+        },
+        {
+            "fact": "Across state security-deposit statutes, the most common statutory return deadline is 30 days, used by 22 states, while New York and Hawaii require return within 14 days and Arkansas and West Virginia allow up to 60 days.",
+            "source_url": "https://ipropertymanagement.com/laws/security-deposits",
+            "source_name": "iPropertyManagement 50-state security deposit law survey (secondary aggregator, via search snippet, not opened)",
+            "confidence": "medium"
+        },
+        {
+            "fact": "In most states, a landlord who misses the statutory deadline for returning the deposit or providing an itemized statement forfeits the right to withhold any portion of the deposit and must return it in full.",
+            "source_url": "https://ipropertymanagement.com/laws/security-deposits",
+            "source_name": "iPropertyManagement 50-state security deposit law survey (secondary aggregator, via search snippet, not opened)",
+            "confidence": "medium"
+        },
+        {
+            "fact": "Massachusetts and Colorado impose treble-damages penalties (three times the wrongfully withheld amount) on landlords who deliberately fail to return a security deposit as required by state law.",
+            "source_url": "https://ipropertymanagement.com/laws/security-deposits",
+            "source_name": "iPropertyManagement 50-state security deposit law survey (secondary aggregator, via search snippet, not opened)",
+            "confidence": "medium"
+        }
+    ],
+    "numbers": [
+        {
+            "label": "California deadline to return deposit or send itemized statement after move-out",
+            "value": 21,
+            "unit": "days",
+            "source_url": "https://codes.findlaw.com/ca/civil-code/civ-sect-1950-5/"
+        },
+        {
+            "label": "California threshold above which landlord must provide receipts for repair deductions",
+            "value": 125,
+            "unit": "USD",
+            "source_url": "https://codes.findlaw.com/ca/civil-code/civ-sect-1950-5/"
+        },
+        {
+            "label": "Texas deadline before bad-faith presumption attaches",
+            "value": 30,
+            "unit": "days",
+            "source_url": "https://law.justia.com/codes/texas/property-code/title-8/chapter-92/subchapter-c/section-92-109/"
+        },
+        {
+            "label": "Texas bad-faith flat penalty added to treble damages",
+            "value": 100,
+            "unit": "USD",
+            "source_url": "https://law.justia.com/codes/texas/property-code/title-8/chapter-92/subchapter-c/section-92-109/"
+        },
+        {
+            "label": "Texas bad-faith damages multiplier on wrongfully withheld amount",
+            "value": 3,
+            "unit": "multiplier (x deposit wrongfully withheld)",
+            "source_url": "https://law.justia.com/codes/texas/property-code/title-8/chapter-92/subchapter-c/section-92-109/"
+        },
+        {
+            "label": "Number of states using 30-day return deadline as most common statutory window",
+            "value": 22,
+            "unit": "states",
+            "source_url": "https://ipropertymanagement.com/laws/security-deposits"
+        },
+        {
+            "label": "Shortest state security-deposit return deadline (New York, Hawaii)",
+            "value": 14,
+            "unit": "days",
+            "source_url": "https://ipropertymanagement.com/laws/security-deposits"
+        },
+        {
+            "label": "Longest state security-deposit return deadline (Arkansas, West Virginia)",
+            "value": 60,
+            "unit": "days",
+            "source_url": "https://ipropertymanagement.com/laws/security-deposits"
+        }
+    ],
+    "named_entities": [
+        {
+            "name": "U.S. Department of Housing and Urban Development",
+            "kind": "organization"
+        },
+        {
+            "name": "California",
+            "kind": "place"
+        },
+        {
+            "name": "Texas",
+            "kind": "place"
+        },
+        {
+            "name": "New York",
+            "kind": "place"
+        },
+        {
+            "name": "Hawaii",
+            "kind": "place"
+        },
+        {
+            "name": "Arkansas",
+            "kind": "place"
+        },
+        {
+            "name": "West Virginia",
+            "kind": "place"
+        },
+        {
+            "name": "Massachusetts",
+            "kind": "place"
+        },
+        {
+            "name": "Colorado",
+            "kind": "place"
+        }
+    ]
+}

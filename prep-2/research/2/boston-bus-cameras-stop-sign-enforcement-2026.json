@@ -1,0 +1,80 @@
+{
+  "topic_slug": "boston-bus-cameras-stop-sign-enforcement-2026",
+  "strongest_angle": "Boston Public Schools and city officials announced an AI-enabled stop-arm camera safety program in October 2026 to catch and penalize drivers who illegally pass school buses, starting with a three-month warning period.",
+  "key_facts": [
+    {
+      "fact": "The City of Boston and Boston Public Schools announced a plan in October 2026 to install stop-arm cameras on school buses to identify and fine drivers who illegally pass them.",
+      "source_url": "https://www.bostonglobe.com/2026/10/08/metro/city-of-boston-cameras-school-bus-stop-signs",
+      "source_name": "The Boston Globe",
+      "confidence": "high"
+    },
+    {
+      "fact": "Boston Mayor Michelle Wu addressed the new stop-arm camera safety legislation and program during the October 2026 announcement.",
+      "source_url": "https://www.bostonherald.com/2026/10/08/bps-to-install-new-school-bus-safety-cameras-to-catch-illegally-passing-cars",
+      "source_name": "Boston Herald",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Boston Public Schools Transportation Department, located at 2300 Washington Street in Roxbury, MA 02119, requested vendor proposals for the AI-enabled stop-arm camera safety program.",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035",
+      "source_name": "Boston.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "The school bus safety camera program in Boston includes a three-month pilot period that will issue warnings before officially expanding to fines.",
+      "source_url": "https://whdh.com/news/boston-schools-pilot-program-aims-to-increase-school-bus-safety",
+      "source_name": "WHDH 7News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pilot warning period duration",
+      "value": 3,
+      "unit": "months",
+      "source_url": "https://whdh.com/news/boston-schools-pilot-program-aims-to-increase-school-bus-safety"
+    },
+    {
+      "label": "Street number for Boston Public Schools Transportation Department",
+      "value": 2300,
+      "unit": "street number",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035"
+    },
+    {
+      "label": "Zip code for Boston Public Schools Transportation Department",
+      "value": 2119,
+      "unit": "zip code",
+      "source_url": "https://www.boston.gov/bid-listings/ev00018035"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Drivers who ignore safety laws and put our kids at risk must be held accountable",
+      "speaker": "Michelle Wu",
+      "source_name": "Boston Herald",
+      "source_url": "https://www.bostonherald.com/2026/10/08/bps-to-install-new-school-bus-safety-cameras-to-catch-illegally-passing-cars"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Boston",
+      "kind": "place"
+    },
+    {
+      "name": "Boston Public Schools",
+      "kind": "organization"
+    },
+    {
+      "name": "Michelle Wu",
+      "kind": "person"
+    },
+    {
+      "name": "Roxbury",
+      "kind": "place"
+    },
+    {
+      "name": "Boston Public Schools Transportation Department",
+      "kind": "organization"
+    }
+  ]
+}

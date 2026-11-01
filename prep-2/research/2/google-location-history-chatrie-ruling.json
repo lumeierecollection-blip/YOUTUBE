@@ -1,0 +1,90 @@
+{
+  "topic_slug": "google-location-history-chatrie-ruling",
+  "strongest_angle": "The 2026 Supreme Court decision in Chatrie v. United States establishes that police accessing Google Location History constitutes a Fourth Amendment search, affirming that individuals maintain a reasonable expectation of privacy in their cell-phone location data regardless of duration or third-party storage.",
+  "key_facts": [
+    {
+      "fact": "The Supreme Court ruled 6-3 that police conducted a Fourth Amendment search when they acquired Okello Chatrie's location data from Google.",
+      "source_url": "https://www.scotusblog.com/cases/chatrie-v-united-states/",
+      "source_name": "SCOTUSblog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Justice Elena Kagan wrote that an individual has a reasonable expectation of privacy in records about his cell phone's location, even if the data was handed over by a third-party tech company for a limited time.",
+      "source_url": "https://www.law.cornell.edu/supremecourt/text/25-112",
+      "source_name": "Legal Information Institute (Cornell Law)",
+      "confidence": "high"
+    },
+    {
+      "fact": "The ruling extends the logic of Carpenter v. United States, which held that accessing cell-site location information (CSLI) is a search because it provides an intimate window into a person's life.",
+      "source_url": "https://www.courthousenews.com/wp-content/uploads/2026/06/chatrie-v-united-states-opinion-scotus.pdf",
+      "source_name": "Courthouse News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The court rejected the government's argument that accessing only a short amount of location data does not count as a search, noting that even short-term monitoring can reveal sensitive associations.",
+      "source_url": "https://www.law.cornell.edu/supremecourt/text/25-112",
+      "source_name": "Legal Information Institute (Cornell Law)",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Court vacated the lower court's judgment and remanded the case to determine if the specific multi-step geofence warrant satisfied requirements of particularity and probable cause.",
+      "source_url": "https://supreme.justia.com/cases/federal/us/609/25-112/",
+      "source_name": "Justia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Geofence radius for the warrant",
+      "value": 150,
+      "unit": "meters",
+      "source_url": "https://www.law.cornell.edu/supremecourt/text/25-112"
+    },
+    {
+      "label": "Initial number of anonymized accounts within geofence",
+      "value": 19,
+      "unit": "accounts",
+      "source_url": "https://www.scotusblog.com/2026/06/court-rules-that-law-enforcements-use-of-geofence-warrant-was-a-search/"
+    },
+    {
+      "label": "Number of accounts identified at the final step of the warrant process",
+      "value": 3,
+      "unit": "accounts",
+      "source_url": "https://www.scotusblog.com/2026/06/court-rules-that-law-enforcements-use-of-geofence-warrant-was-a-search/"
+    },
+    {
+      "label": "Smartphone ownership rate among Americans in 2025",
+      "value": 91,
+      "unit": "percent",
+      "source_url": "https://www.courthousenews.com/wp-content/uploads/2026/06/chatrie-v-united-states-opinion-scotus.pdf"
+    },
+    {
+      "label": "Amount of stolen cash recovered from Chatrie's residences",
+      "value": 100000,
+      "unit": "dollars",
+      "source_url": "https://www.scotusblog.com/2026/06/court-rules-that-law-enforcements-use-of-geofence-warrant-was-a-search/"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Okello Chatrie",
+      "kind": "person"
+    },
+    {
+      "name": "Elena Kagan",
+      "kind": "person"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "United States Supreme Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Midlothian, Virginia",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "topic_slug": "colorado-ag-domestic-violence-housing-protections",
+  "strongest_angle": "Explain Colorado's expanded housing protections under House Bill 25-1168 and the Attorney General's advisory targeting landlord compliance.",
+  "key_facts": [
+    {
+      "fact": "Colorado Attorney General Phil Weiser issued a public advisory on October 6, 2026, reminding landlords of expanded housing protections for victim-survivors of domestic violence under House Bill 25-1168.",
+      "source_url": "https://coag.gov/press-releases/weiser-reminds-colorado-landlords-of-expanded-housing-protections-for-domestic-violence-survivors",
+      "source_name": "Colorado Attorney General",
+      "confidence": "high"
+    },
+    {
+      "fact": "House Bill 25-1168 expanded current legal exceptions and protections against unlawful detention and eviction to include victims of unlawful sexual behavior and stalking alongside domestic violence.",
+      "source_url": "https://leg.colorado.gov/bills/hb25-1168",
+      "source_name": "Colorado General Assembly",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Division of Real Estate summary shows House Bill 25-1168 was signed and became effective on May 22, 2025, with primary sponsors including Representative Mandy Lindsay, Representative Cecelia Espenoza, and Senator Mike Weissman.",
+      "source_url": "https://dre.colorado.gov/hb25-1168-summary",
+      "source_name": "Colorado Division of Real Estate",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "House Bill Number",
+      "value": 251168,
+      "unit": "bill",
+      "source_url": "https://cocourtsdaily.com/attorney-general-weiser-reminds-landlords-of-expanded-protections-for-domestic-violence-survivors"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Phil Weiser",
+      "kind": "person"
+    },
+    {
+      "name": "Colorado",
+      "kind": "place"
+    },
+    {
+      "name": "Colorado Attorney General's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "House Bill 25-1168",
+      "kind": "object"
+    },
+    {
+      "name": "Mandy Lindsay",
+      "kind": "person"
+    },
+    {
+      "name": "Cecelia Espenoza",
+      "kind": "person"
+    },
+    {
+      "name": "Mike Weissman",
+      "kind": "person"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "topic_slug": "supreme-court-october-term-2026-first-amendment",
+  "strongest_angle": "Break down the major constitutional cases on the Supreme Court's docket for the October 2026 term, focusing on upcoming First Amendment and religious freedom arguments such as St. Mary Catholic Parish v. Roy.",
+  "key_facts": [
+    {
+      "fact": "The Supreme Court scheduled oral argument in St. Mary Catholic Parish v. Roy, docket number 25-581, addressing the First Amendment Free Exercise Clause.",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf",
+      "source_name": "Georgetown Law Supreme Court Institute",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Missionaries of Saint John the Baptist, Inc. v. Frederic, the Supreme Court is examining religious zoning disputes under the Religious Land Use and Institutionalized Persons Act.",
+      "source_url": "https://www.scotusblog.com/cases/missionaries-of-saint-john-the-baptist-inc-v-frederic",
+      "source_name": "SCOTUSblog",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Supreme Court announced cases and controversies for arguments from October to December 2026, featuring major First Amendment and religious rights challenges.",
+      "source_url": "https://constitutioncenter.org/blog/new-supreme-court-term-features-first-amendment-other-challenges",
+      "source_name": "Constitution Center",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Docket number for St. Mary Catholic Parish v. Roy",
+      "value": 25,
+      "unit": "docket prefix",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+    },
+    {
+      "label": "Docket case number for St. Mary Catholic Parish v. Roy",
+      "value": 581,
+      "unit": "docket suffix",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Supreme Court",
+      "kind": "organization"
+    },
+    {
+      "name": "St. Mary Catholic Parish v. Roy",
+      "kind": "object"
+    },
+    {
+      "name": "Missionaries of Saint John the Baptist, Inc. v. Frederic",
+      "kind": "object"
+    },
+    {
+      "name": "Religious Land Use and Institutionalized Persons Act",
+      "kind": "organization"
+    },
+    {
+      "name": "Georgetown Law Supreme Court Institute",
+      "kind": "organization"
+    }
+  ]
+}

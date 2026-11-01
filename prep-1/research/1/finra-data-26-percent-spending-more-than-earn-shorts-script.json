@@ -1,0 +1,62 @@
+{
+  "channel_id": "1",
+  "topic_slug": "finra-data-26-percent-spending-more-than-earn",
+  "format": "shorts",
+  "hook": "Twenty six percent of Americans now spend more money than they earn every single month.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Twenty six percent of Americans now spend more money than they earn every single month.",
+      "b_roll": [
+        "chart showing spending statistics"
+      ],
+      "text_overlay": {
+        "text": "26% Spend More"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Financial Industry Regulatory Authority published the National Financial Capability Study showing this decline. What else does the National Financial Capability Study reveal?",
+      "b_roll": [
+        "research study documents"
+      ],
+      "text_overlay": {
+        "text": "FINRA Study"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Credit cards' numbers tell an even worse story.",
+      "b_roll": [
+        "credit cards pile"
+      ],
+      "text_overlay": {
+        "text": "Credit Balances"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Cardholders paying balances in full dropped by 6 percentage points. This data comes from the sixth wave of the Financial Industry Regulatory Authority study.",
+      "b_roll": [
+        "budget calculator"
+      ],
+      "text_overlay": {
+        "text": "Down 6 Points"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Twenty six percent of all Americans continue struggling with their monthly budgets.",
+      "b_roll": [
+        "empty wallet"
+      ],
+      "text_overlay": {
+        "text": "26% Struggling"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.investopedia.com/why-26-percent-of-americans-are-spending-beyond-their-means-as-financial-pressures-mount-11983948",
+    "https://www.finra.org/investors/insights/finra-foundation-national-financial-capability-study"
+  ]
+}

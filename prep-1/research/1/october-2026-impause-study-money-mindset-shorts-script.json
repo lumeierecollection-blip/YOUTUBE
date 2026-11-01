@@ -1,0 +1,68 @@
+{
+  "channel_id": "1",
+  "topic_slug": "october-2026-impause-study-money-mindset",
+  "format": "shorts",
+  "hook": "You spend 96 days a year worried about money, and your brain decides purchases 1.5 seconds before you notice.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You spend 96 days a year worried about money, and your brain decides purchases 1.5 seconds before you notice.",
+      "b_roll": [
+        "A calendar counting down 96 highlighted days in red",
+        "A human brain scan lighting up in a laboratory setting"
+      ],
+      "text_overlay": {
+        "text": "96 Days Wasted"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Americans carry constant financial stress daily. Where does the nucleus accumbens light up in your brain?",
+      "b_roll": [
+        "A pie chart showing 14 percent in control",
+        "A neural scan pointing to the nucleus accumbens"
+      ],
+      "text_overlay": {
+        "text": "Only 14% In Control"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except 62% of consumers regret those impulse purchases immediately.",
+      "b_roll": [
+        "A shopping cart filled with unwanted items",
+        "A percentage meter ticking up to 62 percent"
+      ],
+      "text_overlay": {
+        "text": "62% Regret"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Penny Hoarder report proves this anxiety dominates our lives. Financial stress consumes 96 days annually. Take control of your money mindset today.",
+      "b_roll": [
+        "The Penny Hoarder report cover on screen",
+        "A budget planner app open on a smartphone"
+      ],
+      "text_overlay": {
+        "text": "Take Control"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Track your spending habits right now to reclaim your financial future.",
+      "b_roll": [
+        "A person writing down expenses in a notebook"
+      ],
+      "text_overlay": {
+        "text": "Track Your Spending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thepennyhoarder.com/budgeting/financial-anxiety-barometer",
+    "https://impause.com/blog/how-to-improve-money-mindset-5-psychology-shifts-2026",
+    "https://impause.com/blog/role-of-neuroscience-in-money-habits-2026",
+    "https://impause.com/blog/role-of-feedback-loops-in-spending-psychology-2026"
+  ]
+}

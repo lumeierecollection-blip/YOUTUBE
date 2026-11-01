@@ -1,0 +1,69 @@
+{
+  "channel_id": "2",
+  "topic_slug": "employer-cheat-sheet-workplace-laws-october-2026",
+  "format": "shorts",
+  "hook": "New workplace laws taking effect this October in 12 states cover pay transparency.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "New workplace laws taking effect this October in 12 states cover pay transparency.",
+      "b_roll": [
+        "Warning sign flashing over office building",
+        "Legal document on wooden desk"
+      ],
+      "text_overlay": {
+        "text": "New October Workplace Laws"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Fisher Phillips LLP published an employer cheat sheet on September 18 outlining these rules. Connecticut enforces pay transparency under Sub. HB 5003. Where does Maryland stand on captive audience meetings?",
+      "b_roll": [
+        "Law firm office building exterior",
+        "State map highlighting Connecticut",
+        "Meeting room with employees"
+      ],
+      "text_overlay": {
+        "text": "Fisher Phillips Cheat Sheet"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, the District of Columbia introduces critical compliance mandates.",
+      "b_roll": [
+        "Gavel hitting sound block",
+        "Courtroom doors closing"
+      ],
+      "text_overlay": {
+        "text": "No Defense"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "ADP reported that Connecticut employers must disclose wage ranges on October 1. Connecticut employers face new wage disclosure rules on October 1.",
+      "b_roll": [
+        "Job posting document on computer screen",
+        "Auditor reviewing financial spreadsheets",
+        "Red warning stamp on paper"
+      ],
+      "text_overlay": {
+        "text": "Wage Disclosure Mandate"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check your Connecticut listings now.",
+      "b_roll": [
+        "Manager checking checklist on clipboard",
+        "Secure office desk"
+      ],
+      "text_overlay": {
+        "text": "Review Postings Now"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://usabackground.com/new-workplace-laws-october-2026",
+    "https://www.fisherphillips.com/en/insights/insights/employer-cheat-sheet-for-workplace-laws-taking-effect-in-october-2026"
+  ]
+}

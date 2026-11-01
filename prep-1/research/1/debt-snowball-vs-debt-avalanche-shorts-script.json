@@ -1,0 +1,123 @@
+{
+  "channel_id": "1",
+  "channel_name": "Money Mind",
+  "topic": "Debt Snowball vs Debt Avalanche: Which Actually Works",
+  "topic_slug": "debt-snowball-vs-debt-avalanche",
+  "format": "shorts",
+  "style": "minimal",
+  "tone": "friendly-encouraging",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "word_count": 16,
+      "voiceover": "The snowball versus avalanche debate is a $215 question. Not choosing at all costs you $13,600.",
+      "visual_cue": "Black screen. \"$215\" slams in center in large Inter, then \"$13,600\" replaces it. Dark background #0A1020, accent #22C55E.",
+      "sfx_cue": "Sharp tick on each number. Silence after \"$13,600.\"",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "A $215 question. Not choosing costs $13,600.",
+        "font": "Inter",
+        "size": "80px",
+        "color": "#22C55E",
+        "bg": "#0A1020",
+        "animation": "word-by-word, 0.12s per word"
+      },
+      "transition_out": "Hard cut to black",
+      "pacing_notes": "Numbers are the hook. Deliver flat, then stop.",
+      "research_sources": [
+        "Untaught, 'Debt Snowball vs. Avalanche', getuntaught.com, 2026-07-20"
+      ]
+    },
+    {
+      "id": "proof",
+      "timing": "0:06-0:30",
+      "word_count": 100,
+      "voiceover": "Avalanche pays the highest interest first. It wins the math. On a realistic $10,636 in debt, it finished in 27 months with $2,838 in interest. Snowball pays the smallest balance first. It took 28 months and $3,053. A gap of just $215.\n\nBut the calculators miss the point. A Kellogg study of 6,000 debt settlement clients found the people who actually finished were the ones who closed accounts early. The snowball closes its first account in month four. The avalanche closes nothing until month ten. Small wins keep people going.",
+      "visual_cue": "Kinetic text blocks on #1E293B. Each fact its own screen, 3-6 words per line. Key numbers in #22C55E. Brief pause before \"But the calculators miss the point.\"",
+      "sfx_cue": "Typing sounds as text appears. Bass hit on \"month ten.\"",
+      "b_roll": [],
+      "text_overlay": [
+        {
+          "text": "Avalanche: 27 months, $2,838 in interest.",
+          "font": "Inter",
+          "size": "56px",
+          "color": "#22C55E",
+          "bg": "#1E293B",
+          "animation": "slide-up, 0.3s"
+        },
+        {
+          "text": "Snowball: 28 months, $3,053. A $215 gap.",
+          "font": "Inter",
+          "size": "56px",
+          "color": "#22C55E",
+          "bg": "#1E293B",
+          "animation": "slide-up, 0.3s"
+        },
+        {
+          "text": "Kellogg, 6,000 clients: closers finished.",
+          "font": "Inter",
+          "size": "56px",
+          "color": "#22C55E",
+          "bg": "#1E293B",
+          "animation": "slide-up, 0.3s"
+        },
+        {
+          "text": "Snowball closes in month 4. Avalanche month 10.",
+          "font": "Inter",
+          "size": "56px",
+          "color": "#22C55E",
+          "bg": "#1E293B",
+          "animation": "slide-up, 0.3s"
+        }
+      ],
+      "transition_out": "Wipe left to black",
+      "pacing_notes": "Fast, punchy. Each sentence is a hammer. Pause 0.5s before the Kellogg turn.",
+      "research_sources": [
+        "Untaught, getuntaught.com, 2026-07-20",
+        "Gal & McShane, 'Can Small Victories Help Win the War?', Journal of Marketing Research, 2012"
+      ]
+    },
+    {
+      "id": "close",
+      "timing": "0:30-0:40",
+      "word_count": 25,
+      "voiceover": "So the real answer? Avalanche, if you trust your discipline. Snowball, if you've quit a plan before. Either beats paying minimums. Follow for the numbers.",
+      "visual_cue": "Two word chips: \"AVALANCHE — discipline\" and \"SNOWBALL — momentum\". Then channel name centered on #0A1020. Follow button animation.",
+      "sfx_cue": "Single tone, fade.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "PICK ONE. AUTOMATE IT. FOLLOW.",
+        "font": "Inter",
+        "size": "72px",
+        "color": "#FFFFFF",
+        "bg": "#0A1020",
+        "animation": "scale-up from center"
+      },
+      "transition_out": "Loop point",
+      "pacing_notes": "Land the answer, then stop. CTA once, at the end.",
+      "research_sources": [
+        "Untaught, getuntaught.com, 2026-07-20"
+      ]
+    }
+  ],
+  "total_words": 141,
+  "estimated_duration_seconds": 55,
+  "hook": {
+    "type": "contrarian-number",
+    "text": "The snowball versus avalanche debate is a $215 question. Not choosing at all costs you $13,600.",
+    "spoken_duration_seconds": 6,
+    "visual_cue": "Number typography on dark background"
+  },
+  "cta_primary": {
+    "placement": "close",
+    "text": "Follow for the numbers."
+  },
+  "production_notes": "Shorts format: Minimal / kinetic typography. Colors: #0F172A primary, #1E293B secondary, #22C55E accent. Font: Inter. Vertical 9:16. No B-roll — all text animations. Voiceover tone: friendly-encouraging. Text sync to voiceover is critical. Estimated ~55-60s spoken at edge-tts -8% rate.",
+  "research_sources": [
+    { "fact": "Avalanche beat snowball by $215 and one month on a $10,636 load at $500/month (27 vs 28 months; $2,838 vs $3,053 interest).", "source": "Untaught, getuntaught.com, 2026-07-20", "year": 2026 },
+    { "fact": "Closing accounts, not dollar balance, predicted finishing in ~6,000 debt settlement clients.", "source": "Gal & McShane, Journal of Marketing Research 49:487-501, 2012", "year": 2012 },
+    { "fact": "Snowball closes its first account in month 4; avalanche closes nothing until month 10.", "source": "Untaught, getuntaught.com, 2026-07-20", "year": 2026 },
+    { "fact": "Minimum payments cost more than $13,600 over choosing a method on the modeled $10,636 load.", "source": "Untaught, getuntaught.com, 2026-07-20", "year": 2026 }
+  ]
+}

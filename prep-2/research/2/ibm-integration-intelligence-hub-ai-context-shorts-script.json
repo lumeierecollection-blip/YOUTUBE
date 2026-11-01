@@ -1,0 +1,37 @@
+{
+  "channel_id": "2",
+  "topic_slug": "ibm-integration-intelligence-hub-ai-context",
+  "format": "shorts",
+  "hook": "IBM's new Integration Intelligence Hub launched on October 26, 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "IBM's new Integration Intelligence Hub launched on October 26, 2026.",
+      "visual_cue": "Title card showing IBM Integration Intelligence Hub logo with date October 26, 2026."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 26, 2026 IBM announced the Integration Intelligence Hub. Will Jiri De Jagere and Jigdesh Sampath’s announcement change enterprise AI?",
+      "visual_cue": "Screenshot of IBM announcement dated October 26, 2026; diagram of Model Context Protocol with IBM TechXchange 2026 banner; portraits of Jiri De Jagere and Jigdesh Sampath beside the word \"announcement\"."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the hub only works with the Model Context Protocol, limiting adoption.",
+      "visual_cue": "Graphic highlighting the Model Context Protocol text with a caution icon."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "AI agents now query enterprise assets as structured data in 2026. They can discover, understand and act on integrations automatically at IBM TechXchange. IBM says the hub will set the 2026 AI integration standard.",
+      "visual_cue": "Timeline bar marking year 2026 with AI agents icon; scene of IBM TechXchange stage with integration flow arrows; bold text \"2026 AI integration standard\" over IBM hub image."
+    },
+    {
+      "id": "close",
+      "voiceover": "The Integration Intelligence Hub launched on October 26, 2026.",
+      "visual_cue": "Closing slide displaying Integration Intelligence Hub launch date October 26, 2026."
+    }
+  ],
+  "sources_used": [
+    "https://www.ibm.com/new/announcements/ibm-integration-intelligence-hub-gives-ai-the-context-to-act-not-just-access",
+    "https://community.ibm.com/community/user/blogs/krishna-k-n/2026/10/28/ibm-intelligence-hub-for-webmethods-b2b"
+  ]
+}

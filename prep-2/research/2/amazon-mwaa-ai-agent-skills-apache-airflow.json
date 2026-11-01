@@ -1,0 +1,66 @@
+{
+  "topic_slug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "strongest_angle": "We demonstrate the new Amazon Managed Workflows for Apache Airflow integration with the Agent Toolkit for AWS, showing how AI agent skills handle authoring, debugging, testing, and environment upgrades.",
+  "key_facts": [
+    {
+      "fact": "Amazon Managed Workflows for Apache Airflow integrates with the Agent Toolkit for AWS to provide built-in AI agent skills that author, debug, and test workflows.",
+      "source_url": "https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-mwaa-ai-agent-skills",
+      "source_name": "AWS",
+      "confidence": "high"
+    },
+    {
+      "fact": "The AWS Data Analytics plugin in the open-source Agent Toolkit for AWS provides skills following the open Agent Skills standard for Amazon MWAA.",
+      "source_url": "https://docs.aws.amazon.com/mwaa/latest/userguide/using-agent-skills.html",
+      "source_name": "Amazon Web Services Documentation",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Amazon MWAA enables upgrading environments using any AI coding assistant that supports agent skills like authoring-mwaa-workflow and debugging-mwaa-workflow.",
+      "source_url": "https://mwpro.co.uk/blog/2026/10/15/amazon-managed-workflows-for-apache-airflow-now-offers-ai-agent-skills",
+      "source_name": "MWPro",
+      "confidence": "high"
+    },
+    {
+      "fact": "Amazon Managed Workflows for Apache Airflow includes four specific skills named authoring-mwaa-workflow, debugging-mwaa-workflow, testing-mwaa-workflow, and upgrading-mwaa-workflow.",
+      "source_url": "https://www.westloop.io/post/amazon-managed-workflows-for-apache-airflow-now-offers-ai-agent-skills",
+      "source_name": "West Loop Strategy",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Amazon Managed Workflows for Apache Airflow",
+      "kind": "organization"
+    },
+    {
+      "name": "AWS",
+      "kind": "organization"
+    },
+    {
+      "name": "Agent Toolkit for AWS",
+      "kind": "object"
+    },
+    {
+      "name": "AWS Data Analytics plugin",
+      "kind": "object"
+    },
+    {
+      "name": "authoring-mwaa-workflow",
+      "kind": "object"
+    },
+    {
+      "name": "debugging-mwaa-workflow",
+      "kind": "object"
+    },
+    {
+      "name": "testing-mwaa-workflow",
+      "kind": "object"
+    },
+    {
+      "name": "upgrading-mwaa-workflow",
+      "kind": "object"
+    }
+  ]
+}

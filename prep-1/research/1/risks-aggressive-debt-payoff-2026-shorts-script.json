@@ -1,0 +1,61 @@
+{
+  "channel_id": "1",
+  "topic_slug": "risks-aggressive-debt-payoff-2026",
+  "format": "shorts",
+  "hook": "The Federal Reserve Bank of New York reports American credit card debt is near record highs.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Federal Reserve Bank of New York reports American credit card debt is near record highs."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Americans currently hold record-breaking credit card debt according to the Federal Reserve Bank of New York. Does this strategy leave your emergency fund vulnerable to the California Department of Financial Protection and Innovation?",
+      "b_roll": [
+        "chart showing rising credit card debt line",
+        "person emptying a piggy bank",
+        "question mark graphic"
+      ],
+      "text_overlay": {
+        "text": "Record debt levels"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Gerald Financial Research Team warns this creates significant financial risk.",
+      "b_roll": [
+        "warning symbol graphic"
+      ],
+      "text_overlay": {
+        "text": "Hidden financial risk"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "You lose the emergency fund the California Department of Financial Protection and Innovation deems your safety net.",
+      "b_roll": [
+        "emergency fund icon",
+        "flowchart showing debt accumulation",
+        "empty wallet"
+      ],
+      "text_overlay": {
+        "text": "Emergency funds are vital"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Keep your emergency cash before rushing to pay off debt.",
+      "b_roll": [
+        "savings account icon"
+      ],
+      "text_overlay": {
+        "text": "Prioritize savings"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://abcnews.com/Business/401k-pay-off-credit-card-debt/story?id=137002410",
+    "https://joingerald.com/learn/debt--credit/debt-payoff-risks",
+    "https://dfpi.ca.gov/news/insights/three-steps-to-managing-and-getting-out-of-debt"
+  ]
+}

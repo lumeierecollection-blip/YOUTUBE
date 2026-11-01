@@ -1,0 +1,90 @@
+{
+  "channel_id": "1",
+  "topic_slug": "ancient-egypts-first-female-king-royal-seals",
+  "format": "shorts",
+  "hook": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+      "visual_cue": "Close up of ancient royal seals showing hieroglyphic carvings under museum lighting.",
+      "sfx_cue": "Low atmospheric drone with a sharp subtle artifact click.",
+      "b_roll": [
+        "Royal seals archaeological artifact macro shot"
+      ],
+      "animation_cue": "Fade in with subtle zoom",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "The First Female Ruler"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:18",
+      "voiceover": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit. Was she actually the daughter of Djer, the third king of the First Dynasty?",
+      "visual_cue": "Historical excavation photograph of tomb Y at Abydos alongside scholarly manuscript pages.",
+      "sfx_cue": "Subtle turning page sound followed by low tension drone.",
+      "b_roll": [
+        "William Matthew Flinders Petrie historical photo archive",
+        "Abydos excavation site historical map"
+      ],
+      "animation_cue": "Pan across excavation photograph",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Tomb Y at Abydos"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:25",
+      "voiceover": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+      "visual_cue": "Digital interface highlighting ancient hieroglyphics on stone fragments.",
+      "sfx_cue": "Digital scan tone rising in pitch.",
+      "b_roll": [
+        "Digital scan of ancient Egyptian hieroglyphics"
+      ],
+      "animation_cue": "Scale up on digital highlight",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Digital Clues"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:25-00:38",
+      "voiceover": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+      "visual_cue": "Scientific American report pages displayed next to high resolution imagery of royal seals from Egypt.",
+      "sfx_cue": "Resonant historical chime.",
+      "b_roll": [
+        "Scientific American article layout",
+        "Ancient Egyptian royal seals macro photography"
+      ],
+      "animation_cue": "Slide in from right",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "First Dynasty Power"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:38-00:45",
+      "voiceover": "Meretneith ruled ancient Egypt more than 5000 years ago.",
+      "visual_cue": "Wide cinematic shot of the desert landscape surrounding Abydos under a twilight sky.",
+      "sfx_cue": "Fading wind ambiance with a deep sustained tone.",
+      "b_roll": [
+        "Abydos desert landscape aerial view"
+      ],
+      "animation_cue": "Slow zoom out to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "5000 Years Ago"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.smithsonianmag.com/smart-news/the-first-female-pharaoh-an-old-photo-of-ancient-hieroglyphics-highlights-the-status-of-one-of-egypts-earliest-queens-researchers-say-180989594",
+    "https://doaj.org/article/544ece399cc54a9d93f77c27ee826482",
+    "https://phys.org/news/2026-09-year-royal-mystery-digital-clues.html"
+  ]
+}

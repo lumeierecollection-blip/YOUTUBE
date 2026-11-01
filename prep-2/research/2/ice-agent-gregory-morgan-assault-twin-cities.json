@@ -1,0 +1,114 @@
+{
+  "topic_slug": "ice-agent-gregory-morgan-assault-twin-cities",
+  "strongest_angle": "Examine the criminal charges filed by Hennepin County Attorney Mary Moriarty against ICE agent Gregory D. Morgan Jr. for two counts of second-degree assault following a February 5, 2026 highway incident on Highway 62.",
+  "key_facts": [
+    {
+      "fact": "Hennepin County Attorney Mary Moriarty announced felony assault charges on April 16, 2026, against ICE agent Gregory D. Morgan Jr. in connection with a February 5, 2026 road rage incident along Highway 62.",
+      "source_url": "https://www.mprnews.org/story/2026/04/16/ice-agent-faces-felony-charges-in-feb-road-rage-incident",
+      "source_name": "MPR News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Hennepin County Attorney’s Office charged ICE agent Gregory Donnell Morgan Jr. with two counts of second-degree assault involving a dangerous weapon under Minnesota Statute 609.222.1.",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf",
+      "source_name": "State of Minnesota District Court County of Hennepin",
+      "confidence": "high"
+    },
+    {
+      "fact": "Federal immigration agent Gregory D. Morgan Jr. testified in court that he feared for his safety during the highway encounter with another driver in the Minneapolis area.",
+      "source_url": "https://www.mprnews.org/story/2026/10/13/ice-agent-gregory-d-morgan-jr-charged-with-assault-in-twin-cities-highway-encounter",
+      "source_name": "MPR News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Counts of second-degree assault",
+      "value": 2,
+      "unit": "counts",
+      "source_url": "https://www.hennepinattorney.org/news/news/2026/April/morgan-charges"
+    },
+    {
+      "label": "Highway number",
+      "value": 62,
+      "unit": "Highway",
+      "source_url": "https://www.hennepinattorney.org/news/news/2026/April/morgan-charges"
+    },
+    {
+      "label": "Maximum sentence years",
+      "value": 7,
+      "unit": "years",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    },
+    {
+      "label": "Minimum fine",
+      "value": 4200,
+      "unit": "dollars",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    },
+    {
+      "label": "Maximum fine",
+      "value": 14000,
+      "unit": "dollars",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    },
+    {
+      "label": "Offense month",
+      "value": 2,
+      "unit": "month",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    },
+    {
+      "label": "Offense day",
+      "value": 5,
+      "unit": "day",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    },
+    {
+      "label": "Offense year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    },
+    {
+      "label": "Judicial district",
+      "value": 4,
+      "unit": "district",
+      "source_url": "https://mitchellhamline.edu/library/wp-content/uploads/sites/7/2026/04/MN-v.-Donnell-Morgan-Jr-Charging-Document.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Gregory D. Morgan Jr.",
+      "kind": "person"
+    },
+    {
+      "name": "Mary Moriarty",
+      "kind": "person"
+    },
+    {
+      "name": "Hennepin County",
+      "kind": "place"
+    },
+    {
+      "name": "Highway 62",
+      "kind": "place"
+    },
+    {
+      "name": "Minneapolis",
+      "kind": "place"
+    },
+    {
+      "name": "Immigration and Customs Enforcement",
+      "kind": "organization"
+    },
+    {
+      "name": "Hennepin County Attorney's Office",
+      "kind": "organization"
+    },
+    {
+      "name": "State of Minnesota District Court County of Hennepin 4th Judicial District",
+      "kind": "organization"
+    }
+  ]
+}

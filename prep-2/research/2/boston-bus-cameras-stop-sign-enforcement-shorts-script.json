@@ -1,0 +1,63 @@
+{
+  "channel_id": "2",
+  "topic_slug": "boston-bus-cameras-stop-sign-enforcement",
+  "format": "shorts",
+  "hook": "Boston just launched AI cameras to catch drivers passing stopped school buses.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Boston just launched AI cameras to catch drivers passing stopped school buses.",
+      "b_roll": [
+        "Exterior shot of a Boston school bus"
+      ],
+      "text_overlay": {
+        "text": "BOSTON BUS CAMERAS"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Boston Public Schools issued a proposal for the camera program. Boston City Councilor Enrique Pepén stated that the cameras activate when stop-arms extend. Where will these cameras fine drivers?",
+      "b_roll": [
+        "Document view of the Boston proposal",
+        "Councilor Enrique Pepén speaking"
+      ],
+      "text_overlay": {
+        "text": "STOP-ARM ENFORCEMENT"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Boston Globe reported that illegal passing triggers the fines.",
+      "b_roll": [
+        "The Boston Globe newspaper headline"
+      ],
+      "text_overlay": {
+        "text": "THE BOSTON GLOBE"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Boston Public Schools operates from 2300 Washington Street in Roxbury. Boston Public Schools is located at 2300 Washington Street in Roxbury.",
+      "b_roll": [
+        "Street sign at 2300 Washington Street"
+      ],
+      "text_overlay": {
+        "text": "2300 WASHINGTON ST"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Boston Public Schools issued the proposal.",
+      "b_roll": [
+        "School bus stop sign extending"
+      ],
+      "text_overlay": {
+        "text": "BOSTON BUSES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.boston.gov/bid-listings/ev00018035",
+    "https://www.bostonglobe.com/2026/10/08/metro/city-of-boston-cameras-school-bus-stop-signs"
+  ]
+}

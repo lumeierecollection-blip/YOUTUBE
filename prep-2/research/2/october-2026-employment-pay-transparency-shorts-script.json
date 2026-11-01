@@ -1,0 +1,32 @@
+{
+  "channel_id": "2",
+  "topic_slug": "october-2026-employment-pay-transparency",
+  "format": "shorts",
+  "hook": "You could be breaking the law if your Connecticut job ad lacks a salary range starting Oct 1, 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You could be breaking the law if your Connecticut job ad lacks a salary range starting Oct 1, 2026."
+    },
+    {
+      "id": "setup",
+      "voiceover": "How many states, plus Washington, D.C., now require salary‑range postings in job ads as of October 2026?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the catch is, even outside Connecticut, fourteen states and Washington, D.C. already enforce salary‑range posting rules."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Fourteen states and D.C. now demand salary‑range postings in ads. The IRS now lets employers exclude up to $7,500 of dependent‑care benefits from taxable wages on 2026 W‑2s."
+    },
+    {
+      "id": "close",
+      "voiceover": "Check your job posting by Oct 1, 2026 to ensure salary ranges are listed, or risk fines."
+    }
+  ],
+  "sources_used": [
+    "https://www.adp.com/spark/articles/2026/09/october-2026-employer-compliance-calendar-key-hr-payroll-benefits-and-workforce-management-deadlines.aspx",
+    "https://tryp50.com/resources/pay-transparency-laws-by-state"
+  ]
+}

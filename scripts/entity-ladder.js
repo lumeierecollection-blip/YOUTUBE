@@ -283,9 +283,8 @@ export function ladderAll(b, plan) {
     // NOT A ROW, TWICE. Two adjacent beats both taking a `plates` row is the
     // same frame twice, and canvas-type refuses it: board 38321106622 ch-5
     // "ENTITY-ART:plates twice in a row" — beats 4 and 5, both rows of named
-    // entities, drawn by this ladder. The neighbour keeps its own visual and
-    // this beat names ride the shot it already has, which is the same rule the
-    // map rung has had all along ("a map beside a map is the same frame twice").
+    // entities, drawn by this ladder. When neighbour has a plates row, this beat
+    // must show its entities as individual plates instead of another row.
     // The plan is optional: without it the neighbour check cannot run and the beat
     // takes a row. Read the neighbours' APPLIED art (entityLadder applies each
     // directive in place as it walks the plan left to right, so a previous
@@ -304,13 +303,16 @@ export function ladderAll(b, plan) {
     //   ch-44 beat 1  organization "Google Scholar" -> draws plate-place
     // `kinds[0]` is the rung row[0]'s own type was given two lines above, so the
     // right rung was already computed and then discarded.
-    // neighbourIsRow only affects whether this beat REPLACES or KEEPS the row style,
-    // NOT whether it drops entities. Two adjacent plates beats must both show all
-    // their entities; canvas-type gate rejects duplicate plates KINDS, not the
-    // fact that two beats both have a plates row. The earlier "drop entities"
-    // behaviour caused ch-1 beat 7 to lose its figure for "17" when beat 6 had a
-    // plates row (board 38285053635).
-    out.push({ art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: neighbourIsRow ? false : !keeps, alongside: keeps || neighbourIsRow });
+    if (neighbourIsRow) {
+      // Neighbour has a plates row: emit individual plate directives instead
+      for (let i = 0; i < row.length; i++) {
+        const e = row[i];
+        const kind = kindOf(e);
+        out.push({ art: { kind, name: e.name }, replaces: false, alongside: true });
+      }
+    } else {
+      out.push({ art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
+    }
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
   }

@@ -1,0 +1,82 @@
+{
+  "topic_slug": "uipath-integration-service-typesafe-connector",
+  "strongest_angle": "UiPath updated its Integration Service in October 2026 with a preview of the TypeSafe connector, which calls the TypeSafe System One API to execute rapid scoring and decision-making logic, while Gartner reported that robotic process automation is a fast growing software technology market.",
+  "key_facts": [
+    {
+      "fact": "On October 16, 2026, UiPath released the TypeSafe connector in preview for Integration Service in Automation Cloud.",
+      "source_url": "https://docs.uipath.com/integration-service/automation-cloud/latest/release-notes/october-2026",
+      "source_name": "UiPath Documentation",
+      "confidence": "high"
+    },
+    {
+      "fact": "The TypeSafe connector calls the TypeSafe System One API to make fast choice, score, and yes/no decisions about text or JSON content.",
+      "source_url": "https://docs.uipath.com/integration-service/automation-cloud/latest/user-guide/uipath-typesafe-typesafe",
+      "source_name": "UiPath Documentation",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Gartner, robotic process automation is the fastest growing software technology market based on revenue trends and growing reputation.",
+      "source_url": "https://www.uipath.com/blog/product-and-updates/introducing-uipath-integration-service",
+      "source_name": "UiPath Blog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Release Day",
+      "value": 16,
+      "unit": "day of the month",
+      "source_url": "https://docs.uipath.com/integration-service/automation-cloud/latest/release-notes/october-2026"
+    },
+    {
+      "label": "Release Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://docs.uipath.com/integration-service/automation-cloud/latest/release-notes/october-2026"
+    },
+    {
+      "label": "Publication Year",
+      "value": 2021,
+      "unit": "year",
+      "source_url": "https://www.uipath.com/blog/product-and-updates/introducing-uipath-integration-service"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "According to Gartner¹, robotic process automation (RPA) is now the fastest growing software technology market.",
+      "speaker": "Charlie Greenberg",
+      "source_name": "UiPath Blog",
+      "source_url": "https://www.uipath.com/blog/product-and-updates/introducing-uipath-integration-service"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "UiPath",
+      "kind": "organization"
+    },
+    {
+      "name": "TypeSafe",
+      "kind": "organization"
+    },
+    {
+      "name": "Gartner",
+      "kind": "organization"
+    },
+    {
+      "name": "Integration Service",
+      "kind": "object"
+    },
+    {
+      "name": "System One API",
+      "kind": "object"
+    },
+    {
+      "name": "Automation Cloud",
+      "kind": "object"
+    },
+    {
+      "name": "Charlie Greenberg",
+      "kind": "person"
+    }
+  ]
+}

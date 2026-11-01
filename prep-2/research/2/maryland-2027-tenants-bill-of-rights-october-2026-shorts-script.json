@@ -1,0 +1,47 @@
+{
+  "channel_id": "2",
+  "topic_slug": "maryland-2027-tenants-bill-of-rights-october-2026",
+  "format": "shorts",
+  "hook": "Maryland now requires the 2027 Tenants' Bill of Rights, a new housing disclosure, for every lease.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Maryland now requires the 2027 Tenants' Bill of Rights, a new housing disclosure, for every lease.",
+      "text_overlay": {
+        "text": "Lease Invalid?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 1, 2026, the Maryland Department of Housing and Community Development published the 2027 Tenants' Bill of Rights. How can you ensure your rental contract remains compliant?",
+      "text_overlay": {
+        "text": "New Maryland Law"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Maryland law mandates that landlords attach the official 2027 Tenants' Bill of Rights without any modifications.",
+      "text_overlay": {
+        "text": "No Modifications Allowed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Landlords must attach the 2027 Tenants' Bill of Rights to every lease agreement in Maryland.",
+      "text_overlay": {
+        "text": "2027 Tenants' Bill of Rights"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 2027 Tenants' Bill of Rights is now mandatory statewide.",
+      "text_overlay": {
+        "text": "2027 Rights Effective"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://dhcd.maryland.gov/news-stories/press-releases/moore-miller-administration-publishes-2027-tenants-bill-rights-highlights-key-landlord-and-tenant",
+    "https://www.cronista.com/en/today/maryland-renters-have-new-protections-under-laws-that-took-effect-on-october-1"
+  ]
+}

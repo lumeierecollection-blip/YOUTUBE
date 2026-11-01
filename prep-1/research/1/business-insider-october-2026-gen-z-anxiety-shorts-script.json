@@ -1,0 +1,66 @@
+{
+  "channel_id": "1",
+  "topic_slug": "business-insider-october-2026-gen-z-anxiety",
+  "format": "shorts",
+  "hook": "Saving $100,000 by age 22 did not stop constant financial panic by age 25.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Saving $100,000 by age 22 did not stop constant financial panic by age 25.",
+      "b_roll": [
+        "Digital savings account reaching $100,000 milestone at age 22"
+      ],
+      "text_overlay": {
+        "text": "$100,000 saved at age 22"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why did reaching 100,000 dollars fail to bring peace by age 25?",
+      "b_roll": [
+        "Business Insider report by Noah Sheidlower",
+        "Interviews with two dozen Gen Z workers",
+        "Financial anxiety charts at age 25"
+      ],
+      "text_overlay": {
+        "text": "Two dozen workers interviewed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Noah Sheidlower tracked two dozen Gen Z workers facing relentless financial anxiety.",
+      "b_roll": [
+        "Persistent financial worry indicators"
+      ],
+      "text_overlay": {
+        "text": "Wealth brought constant distress"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Business Insider revealed that financial anxiety persisted through age 25 despite massive early savings. Workers reaching age 25 discovered that high account balances never eliminated chronic money panic.",
+      "b_roll": [
+        "Business Insider publication on LinkedIn",
+        "Gen Z workers discussing money panic",
+        "Account balance showing persistent anxiety"
+      ],
+      "text_overlay": {
+        "text": "Panic continued at age 25"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read Noah Sheidlower's October 2026 report on Business Insider.",
+      "b_roll": [
+        "Balanced budget planning sheet"
+      ],
+      "text_overlay": {
+        "text": "Protect your mental health"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.businessinsider.com/gen-z-financial-anxiety-money-saving-2026-10",
+    "https://africa.businessinsider.com/news/i-tried-to-stop-being-anxious-about-money-it-completely-backfired/er37fz0"
+  ]
+}

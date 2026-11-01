@@ -1,0 +1,47 @@
+{
+  "channel_id": "2",
+  "topic_slug": "eeoc-rescinds-2012-arrest-conviction-guidance",
+  "format": "shorts",
+  "hook": "Your arrest record could soon face zero protection in hiring decisions.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your arrest record could soon face zero protection in hiring decisions.",
+      "text_overlay": {
+        "text": "ARREST RECORDS UNPROTECTED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "President Trump signed Executive Order 14281 on April 23, 2025. The Equal Employment Opportunity Commission then submitted a draft final rule on October 6, 2026. Where does this leave your background check?",
+      "text_overlay": {
+        "text": "EO 14281 & EEOC RULE"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the U.S. Equal Employment Opportunity Commission seeks to rescind its 2012 guidance.",
+      "text_overlay": {
+        "text": "2012 GUIDANCE ERASED"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Executive Order 14281 eliminates disparate impact liability under the Office of Management and Budget. Employers gain total freedom regarding arrest and conviction records under Title VII. Meritocracy rules every hiring choice.",
+      "text_overlay": {
+        "text": "TITLE VII SHIFT"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the U.S. Equal Employment Opportunity Commission rule today.",
+      "text_overlay": {
+        "text": "KNOW YOUR RIGHTS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://natlawreview.com/article/eeoc-moves-revoke-long-standing-guidance-criminal-background-checks",
+    "https://www.quarles.com/newsroom/publications/eeoc-moves-to-rescind-arrest-and-conviction-records-guidance-what-employers-need-to-know"
+  ]
+}

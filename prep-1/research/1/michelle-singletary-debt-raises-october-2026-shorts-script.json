@@ -1,0 +1,65 @@
+{
+  "channel_id": "1",
+  "topic_slug": "michelle-singletary-debt-raises-october-2026",
+  "format": "shorts",
+  "hook": "Washington Post columnist Michelle Singletary reveals why your pay raise vanished.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Washington Post columnist Michelle Singletary reveals why your pay raise vanished.",
+      "b_roll": [
+        "A close-up of a paycheck showing an income increase"
+      ],
+      "text_overlay": {
+        "text": "Where did your raise go?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Washington Post published an analysis on October 10, 2026, examining why pay raises leave workers feeling broke. Debt payments consume those income gains for Washington Post readers. Where did the missing paycheck money go?",
+      "b_roll": [
+        "The Washington Post newsroom desk",
+        "A calendar marked October 10, 2026",
+        "A stack of bills next to a calculator"
+      ],
+      "text_overlay": {
+        "text": "Feeling broke?"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "CNBC journalist Sharon Epperson reported on October 16, 2026, but debt eats income.",
+      "b_roll": [
+        "A CNBC news broadcast studio"
+      ],
+      "text_overlay": {
+        "text": "Debt rises faster"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Podcast host Michelle Singletary works on the Dollars & Sense podcast.",
+      "b_roll": [
+        "Michelle Singletary recording her podcast",
+        "A microphone in a recording studio"
+      ],
+      "text_overlay": {
+        "text": "Dollars & Sense"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Singletary published her analysis in October 2026.",
+      "b_roll": [
+        "A published newspaper article on a desk"
+      ],
+      "text_overlay": {
+        "text": "October 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke",
+    "https://www.cnbc.com/2026/10/16/debt-payments-rise-more-than-income.html"
+  ]
+}

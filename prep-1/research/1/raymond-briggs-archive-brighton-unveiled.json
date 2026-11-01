@@ -1,0 +1,76 @@
+{
+  "topic_slug": "raymond-briggs-archive-brighton-unveiled",
+  "strongest_angle": "Archivist Chris Olver spent nine months cataloguing the newly unveiled personal archive of The Snowman creator Raymond Briggs at The Keep in Brighton.",
+  "key_facts": [
+    {
+      "fact": "Archivist Chris Olver spent nine months cataloguing the personal papers, work, and records of Raymond Briggs at The Keep.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cmy835y313qpo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The personal archive of Raymond Briggs is held by the East Sussex and Brighton and Hove Record Office at The Keep.",
+      "source_url": "https://www.thekeep.info/the-raymond-briggs-archive",
+      "source_name": "The Keep",
+      "confidence": "high"
+    },
+    {
+      "fact": "The cataloguing project for the Raymond Briggs archive was funded by The National Archives Archives Revealed Cataloguing Grant.",
+      "source_url": "https://www.thekeep.info/the-raymond-briggs-archive",
+      "source_name": "The Keep",
+      "confidence": "high"
+    },
+    {
+      "fact": "The cataloguing project for the Raymond Briggs archive began in January 2026 with the appointment of archivist Chris Olver.",
+      "source_url": "https://www.thekeep.info/raymond-briggs-cataloguing-project",
+      "source_name": "The Keep",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Cataloguing duration in months",
+      "value": 9,
+      "unit": "months",
+      "source_url": "https://www.bbc.co.uk/news/articles/cmy835y313qpo"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Dealing with a new archive of items belonging to The Snowman illustrator Raymond Briggs \"felt a bit like going into Tutankhamun's tomb\", according to an archivist who worked on the project.",
+      "speaker": "Chris Olver",
+      "source_name": "BBC News",
+      "source_url": "https://www.bbc.co.uk/news/articles/cmy835y313qpo"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Raymond Briggs",
+      "kind": "person"
+    },
+    {
+      "name": "Chris Olver",
+      "kind": "person"
+    },
+    {
+      "name": "The Keep",
+      "kind": "place"
+    },
+    {
+      "name": "Brighton",
+      "kind": "place"
+    },
+    {
+      "name": "The Snowman",
+      "kind": "object"
+    },
+    {
+      "name": "East Sussex and Brighton and Hove Record Office",
+      "kind": "organization"
+    },
+    {
+      "name": "The National Archives",
+      "kind": "organization"
+    }
+  ]
+}

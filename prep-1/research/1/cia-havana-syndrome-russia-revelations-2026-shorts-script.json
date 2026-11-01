@@ -1,0 +1,91 @@
+{
+  "channel_id": "1",
+  "topic_slug": "cia-havana-syndrome-russia-revelations-2026",
+  "format": "shorts",
+  "hook": "The mysterious Havana Syndrome weapon persisted for 9 years before investigators finally uncovered the truth.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "The mysterious Havana Syndrome weapon persisted for 9 years before investigators finally uncovered the truth.",
+      "visual_cue": "Close up of a classified document folder resting on a dark metal desk in an office.",
+      "sfx_cue": "Low subtle sub bass drone building tension.",
+      "b_roll": [
+        "Archival surveillance footage of government buildings in Washington"
+      ],
+      "animation_cue": "Fade in from black with a slow zoom.",
+      "transition_out": "Hard cut to intelligence briefing room.",
+      "text_overlay": {
+        "text": "9 YEARS OF SECRECY"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "In October 2026, journalists Michael Rey and Oriana Zill de Granados revealed new evidence about anomalous health incidents. Investigative partners at The Insider and 60 Minutes uncovered Russian links. Where did the secret device come from?",
+      "visual_cue": "Medium shot of a journalist reviewing investigation notes and reports.",
+      "sfx_cue": "Subtle paper shuffle and soft room tone.",
+      "b_roll": [
+        "Investigative journalism newsroom setting",
+        "Newspaper clippings wall"
+      ],
+      "animation_cue": "Smooth pan across research notes.",
+      "transition_out": "Quick cross dissolve.",
+      "text_overlay": {
+        "text": "NEW 2026 EVIDENCE UNCOVERED"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Except the Defense Department spent more than a year testing a recovered device.",
+      "visual_cue": "Close up shot of a specialized testing laboratory environment.",
+      "sfx_cue": "Electronic hum rising in pitch.",
+      "b_roll": [
+        "Pentagon exterior shot at dusk"
+      ],
+      "animation_cue": "Rapid zoom into testing equipment.",
+      "transition_out": "Sharp cut to intelligence office.",
+      "text_overlay": {
+        "text": "TESTED BY THE PENTAGON"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Homeland Security Investigations purchased the hardware in an undercover operation. Russia directed GRU Unit 29155 to deploy the directed energy weapons against diplomats. Former National Security Advisor John Bolton confirmed the failure.",
+      "visual_cue": "Wide shot of a government conference room with classified briefing monitors.",
+      "sfx_cue": "Deep bass impact on the revelation.",
+      "b_roll": [
+        "State Department press room podium",
+        "Classified intelligence briefing files"
+      ],
+      "animation_cue": "Subtle push forward on the briefing room.",
+      "transition_out": "Fade to dark.",
+      "text_overlay": {
+        "text": "GRU UNIT 29155 LINKED"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:44",
+      "voiceover": "The 9 years of mystery ended with verified state involvement.",
+      "visual_cue": "Close up of an investigative report final page being stamped classified.",
+      "sfx_cue": "Stamp sound effect ending on silence.",
+      "b_roll": [
+        "Document archival archive room"
+      ],
+      "animation_cue": "Slow fade to black.",
+      "transition_out": "Final cut to black.",
+      "text_overlay": {
+        "text": "THE TRUTH REVEALED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cbsnews.com/video/60-minutes-journalists-on-secret-weapons-a-spy-mystery-and-havana-syndrome",
+    "https://theins.press/en/inv/290088",
+    "https://www.cnn.com/2026/01/13/politics/havana-syndrome-device-pentagon-hsi",
+    "https://www.theglobeandmail.com/politics/article-canada-us-probe-allegations-russia-havana-syndrome-john-bolton-october"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "channel_id": "1",
+  "topic_slug": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative",
+  "format": "shorts",
+  "hook": "Just 19 percent of online encyclopedia biographies feature women.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Just 19 percent of online encyclopedia biographies feature women.",
+      "visual_cue": "Digital statistics display showing 19 percent on screen.",
+      "sfx_cue": "Subtle digital blip",
+      "b_roll": [
+        "Wikipedia website interface screenshot"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "19% of Biographies"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "In October 2026, Sandi Toksvig and the University of Cambridge launched the Mappa Mundi project. How can this interactive digital atlas challenge Wikipedia's overwhelming gender bias?",
+      "visual_cue": "University of Cambridge building exterior and archival map footage.",
+      "sfx_cue": "Page turn sound",
+      "b_roll": [
+        "University of Cambridge buildings",
+        "Sandi Toksvig portrait"
+      ],
+      "animation_cue": "Slide right",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "The Mappa Mundi Project"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Worse still, 18 countries even let men prohibit wives from working.",
+      "visual_cue": "Global map highlighting legal restriction zones.",
+      "sfx_cue": "Low tension drone",
+      "b_roll": [
+        "World map graphic"
+      ],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "36 Countries Restrict Inheritance"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "Pilot studies in the United Kingdom and Afghanistan spotlight 0.5 percent of history attributed to women. Cambridge researchers use the interactive atlas to challenge Wikipedia's digital gender bias.",
+      "visual_cue": "Atlas interface displaying pilot study regions.",
+      "sfx_cue": "Interface chime",
+      "b_roll": [
+        "Afghanistan landscape",
+        "United Kingdom historical documents"
+      ],
+      "animation_cue": "Pan across map",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Pilot Studies in UK and Afghanistan"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Only 19 percent remains the baseline for online biographies.",
+      "visual_cue": "Final percentage graphic on dark background.",
+      "sfx_cue": "Soft fading tone",
+      "b_roll": [
+        "Digital atlas interface close-up"
+      ],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "19% Baseline"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/technology/2026/oct/12/wikipedia-deeply-biased-sandi-toksvig-backing-rival",
+    "https://www.lcfi.ac.uk/research/project/mappa-mundi",
+    "https://www.philanthropy.cam.ac.uk/give-to-cambridge/humanities-and-social-sciences/the-mappa-mundi-project-at-cambridge"
+  ]
+}

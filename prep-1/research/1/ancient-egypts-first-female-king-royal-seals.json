@@ -1,0 +1,67 @@
+{
+  "topic_slug": "ancient-egypts-first-female-king-royal-seals",
+  "strongest_angle": "Examine the October 2026 Scientific American report on newly analyzed royal seals that unveil Ancient Egypt's first female ruler, Meretneith, shedding light on a forgotten monarch who lived more than five millennia ago.",
+  "key_facts": [
+    {
+      "fact": "More than five millennia ago, a queen named Meretneith ruled ancient Egypt according to a study published in Prague Egyptological Studies.",
+      "source_url": "https://www.smithsonianmag.com/smart-news/the-first-female-pharaoh-an-old-photo-of-ancient-hieroglyphics-highlights-the-status-of-one-of-egypts-earliest-queens-researchers-say-180989594",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "William Matthew Flinders Petrie believed he had discovered a new king named Merneit when he excavated tomb Y at Abydos.",
+      "source_url": "https://doaj.org/article/544ece399cc54a9d93f77c27ee826482",
+      "source_name": "Directory of Open Access Journals",
+      "confidence": "high"
+    },
+    {
+      "fact": "Meretneith was possibly the daughter of Djer, the third king of the First Dynasty, a period when the first kings ruled over a unified Egypt.",
+      "source_url": "https://phys.org/news/2026-09-year-royal-mystery-digital-clues.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years ago",
+      "value": 5000,
+      "unit": "years",
+      "source_url": "https://phys.org/news/2026-09-year-royal-mystery-digital-clues.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Meretneith",
+      "kind": "person"
+    },
+    {
+      "name": "Merneit",
+      "kind": "person"
+    },
+    {
+      "name": "Djer",
+      "kind": "person"
+    },
+    {
+      "name": "William Matthew Flinders Petrie",
+      "kind": "person"
+    },
+    {
+      "name": "Abydos",
+      "kind": "place"
+    },
+    {
+      "name": "Egypt",
+      "kind": "place"
+    },
+    {
+      "name": "Prague Egyptological Studies",
+      "kind": "organization"
+    },
+    {
+      "name": "Scientific American",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

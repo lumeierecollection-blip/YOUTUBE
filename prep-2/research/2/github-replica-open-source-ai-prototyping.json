@@ -1,0 +1,63 @@
+{
+  "topic_slug": "github-replica-open-source-ai-prototyping",
+  "strongest_angle": "GitHub Design has open-sourced Replica under the MIT license as an AI-powered prototyping tool that utilizes a team's own components and design systems.",
+  "key_facts": [
+    {
+      "fact": "GitHub Design has open-sourced Replica, an AI-powered prototyping tool created to help product teams turn ideas into interactive prototypes.",
+      "source_url": "https://github.blog/changelog/2026-10-28-introducing-replica-an-open-source-ai-prototyping-tool",
+      "source_name": "GitHub Changelog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nvdium reported that GitHub open-sourced Replica under the MIT license for building interactive prototypes in the Copilot app.",
+      "source_url": "https://nvdium.com/en/articles/140006649",
+      "source_name": "Nvdium Tech Editor",
+      "confidence": "high"
+    },
+    {
+      "fact": "DigIntoAI reported on October 28, 2026, that GitHub Design open-sourced Replica under the MIT license to use existing components and documentation.",
+      "source_url": "https://digintoai.com/en/articles/github-replica-ai-prototyping",
+      "source_name": "DigIntoAI Editorial",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Read time in minutes",
+      "value": 2,
+      "unit": "minute read",
+      "source_url": "https://github.blog/changelog/2026-10-28-introducing-replica-an-open-source-ai-prototyping-tool"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "GitHub",
+      "kind": "organization"
+    },
+    {
+      "name": "GitHub Design",
+      "kind": "organization"
+    },
+    {
+      "name": "Replica",
+      "kind": "object"
+    },
+    {
+      "name": "Copilot",
+      "kind": "object"
+    },
+    {
+      "name": "Nvdium",
+      "kind": "organization"
+    },
+    {
+      "name": "DigIntoAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Replica Hub",
+      "kind": "object"
+    }
+  ]
+}

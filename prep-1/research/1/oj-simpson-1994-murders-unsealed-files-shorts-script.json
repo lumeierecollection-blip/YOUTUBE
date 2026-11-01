@@ -1,0 +1,85 @@
+{
+  "channel_id": "1",
+  "topic_slug": "oj-simpson-1994-murders-unsealed-files",
+  "format": "shorts",
+  "hook": "Newly unsealed records from October 2026 reveal a secret informant helped O.J. Simpson.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Newly unsealed records from October 2026 reveal a secret informant helped O.J. Simpson.",
+      "visual_cue": "Close-up of sealed court document being opened with redacted lines visible.",
+      "sfx_cue": "Paper rustling and sharp chime",
+      "b_roll": [
+        "Sealed court records archive footage"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "SEALED RECORDS UNSEALED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:15",
+      "voiceover": "In 1994, Nicole Brown Simpson and Ron Goldman were killed outside a Los Angeles residence. The New York Times published a report detailing federal files on the case. What did this mob informant do?",
+      "visual_cue": "Historical newspaper headline from 1994 panning across the screen.",
+      "sfx_cue": "Low ambient tension drone",
+      "b_roll": [
+        "Los Angeles street archives 1994",
+        "The New York Times office exterior"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "THE 1994 CRIME SCENE"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:20",
+      "voiceover": "Fox News revealed sealed records showing how the drug smuggler aided the cover-up.",
+      "visual_cue": "Archival footage of Fox News broadcast studio monitor.",
+      "sfx_cue": "Digital glitch impact",
+      "b_roll": [
+        "Fox News broadcast archive"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "THE COVER-UP FILES"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:20-0:32",
+      "voiceover": "Simpson wrote about getting help in 'If I Did It'. He detailed a friend disposing of the weapon. That informant died in 2006.",
+      "visual_cue": "Cover of the book 'If I Did It' resting on a dark wooden desk.",
+      "sfx_cue": "Page turn sound effect",
+      "b_roll": [
+        "Book store shelf close up",
+        "Courtroom exterior archive"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "IF I DID IT BOOK REVEAL"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:32-0:36",
+      "voiceover": "Federal files revealed the plot in October 2026.",
+      "visual_cue": "Fade to black on text detailing the year 2006.",
+      "sfx_cue": "Soft fading echo",
+      "b_roll": [
+        "Darkened archive room"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "2006"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene",
+    "https://dnyuz.com/2026/10/18/o-j-simpson-a-secret-informant-and-a-decades-old-mystery",
+    "https://www.foxnews.com/us/brother-possible-oj-simpson-accomplice-claims-returned-bloody-hands-night-murders-report"
+  ]
+}

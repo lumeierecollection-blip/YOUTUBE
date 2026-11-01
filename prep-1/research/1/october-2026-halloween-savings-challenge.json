@@ -1,0 +1,86 @@
+{
+  "topic_slug": "october-2026-halloween-savings-challenge",
+  "strongest_angle": "Exploring the October 2026 savings guides from Gerald and BUDGT which show how structured pre-holiday challenges help households avoid high-interest debt.",
+  "key_facts": [
+    {
+      "fact": "According to the Gerald financial research team, Americans without emergency funds are three times more likely to go into debt for holiday spending, including Halloween.",
+      "source_url": "https://joingerald.com/learn/money-basics/low-emergency-savings-halloween-spending",
+      "source_name": "Gerald Financial Research Team",
+      "confidence": "high"
+    },
+    {
+      "fact": "BUDGT author Sebastian Flückiger noted in October 2026 that October brings Halloween budgeting, open enrollment decisions, heating season preparation, and early holiday shopping.",
+      "source_url": "https://www.budgt.ch/blog/ways-to-save-money-in-october-2026",
+      "source_name": "BUDGT",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Gerald team reported that Halloween expenses such as costumes, candy, and decorations can easily exceed $200 per household if not planned ahead.",
+      "source_url": "https://joingerald.com/learn/money-basics/halloween-decoration-budget-payday-financial-strategy",
+      "source_name": "Gerald Financial Research Team",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the Gerald financial education team, breaking seasonal expenses into small goals like $15 per month adds up to $60 by October.",
+      "source_url": "https://joingerald.com/learn/saving--investing/save-15-monthly-halloween-expenses",
+      "source_name": "Gerald Team",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "emergency fund low range",
+      "value": 500,
+      "unit": "dollars",
+      "source_url": "https://joingerald.com/learn/money-basics/low-emergency-savings-halloween-spending"
+    },
+    {
+      "label": "emergency fund high range",
+      "value": 1000,
+      "unit": "dollars",
+      "source_url": "https://joingerald.com/learn/money-basics/low-emergency-savings-halloween-spending"
+    },
+    {
+      "label": "household holiday spending threshold",
+      "value": 200,
+      "unit": "dollars",
+      "source_url": "https://joingerald.com/learn/money-basics/halloween-decoration-budget-payday-financial-strategy"
+    },
+    {
+      "label": "monthly seasonal goal",
+      "value": 15,
+      "unit": "dollars",
+      "source_url": "https://joingerald.com/learn/saving--investing/save-15-monthly-halloween-expenses"
+    },
+    {
+      "label": "accumulated seasonal savings",
+      "value": 60,
+      "unit": "dollars",
+      "source_url": "https://joingerald.com/learn/saving--investing/save-15-monthly-halloween-expenses"
+    },
+    {
+      "label": "debt multiplier for Americans without emergency funds",
+      "value": 3,
+      "unit": "times",
+      "source_url": "https://joingerald.com/learn/money-basics/low-emergency-savings-halloween-spending"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Gerald",
+      "kind": "organization"
+    },
+    {
+      "name": "BUDGT",
+      "kind": "organization"
+    },
+    {
+      "name": "Sebastian Flückiger",
+      "kind": "person"
+    },
+    {
+      "name": "October 31st",
+      "kind": "object"
+    }
+  ]
+}
