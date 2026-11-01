@@ -1,0 +1,131 @@
+{
+  "topic_slug": "ford-dearborn-headquarters-snohhetta-design",
+  "strongest_angle": "Exploring the monumental scale, spatial layout, and structural transformation of Ford Motor Company's new 2.1-million-square-foot Dearborn headquarters designed by Snøhetta, replacing the historic Glass House after 70 years.",
+  "key_facts": [
+    {
+      "fact": "Ford Motor Company's new headquarters in Dearborn, Michigan, spans 2.1 million square feet across a four-story building nicknamed The Hub, replacing the 12-story Glass House.",
+      "source_url": "https://www.cnbc.com/2025/11/16/ford-headquarters-dearborn-michigan.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new 2.1-million-square-foot building in Dearborn features seven restaurants housed within a 160,000-square-foot food hall.",
+      "source_url": "https://apnews.com/article/ford-motor-headquarters-showroom-dearborn-413a8c0876a6d2c79fdbff2b86b9090e",
+      "source_name": "AP News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Architectural firm Snøhetta designed the Central Campus Building for Ford Motor Company in Dearborn, Michigan, which features a footprint covering 14 acres.",
+      "source_url": "https://interiordesign.net/projects/inside-the-ford-headquarters-in-dearborn-michigan",
+      "source_name": "Interior Design",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ford Motor Company occupied its previous headquarters, known as the Glass House, for nearly 70 years before moving to the new campus in Dearborn.",
+      "source_url": "https://www.autonews.com/gallery/an-ford-hq-tour",
+      "source_name": "Automotive News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Square Footage",
+      "value": 2.1,
+      "unit": "million square feet",
+      "source_url": "https://www.cnbc.com/2025/11/16/ford-headquarters-dearborn-michigan.html"
+    },
+    {
+      "label": "Old Headquarters Stories",
+      "value": 12,
+      "unit": "stories",
+      "source_url": "https://www.cnbc.com/2025/11/16/ford-headquarters-dearborn-michigan.html"
+    },
+    {
+      "label": "Food Hall Size",
+      "value": 160000,
+      "unit": "square feet",
+      "source_url": "https://apnews.com/article/ford-motor-headquarters-showroom-dearborn-413a8c0876a6d2c79fdbff2b86b9090e"
+    },
+    {
+      "label": "Food Hall Size in Metric",
+      "value": 14864,
+      "unit": "square meters",
+      "source_url": "https://apnews.com/article/ford-motor-headquarters-showroom-dearborn-413a8c0876a6d2c79fdbff2b86b9090e"
+    },
+    {
+      "label": "Project Cost",
+      "value": 1.2,
+      "unit": "billion dollars",
+      "source_url": "https://www.wxyz.com/news/inside-fords-new-1-2-billion-headquarters-a-move-after-70-years-in-iconic-glass-house"
+    },
+    {
+      "label": "Building Stories",
+      "value": 4,
+      "unit": "stories",
+      "source_url": "https://workplacedesign.com/news/snohetta-designs-new-ford-headquarters-building/160473"
+    },
+    {
+      "label": "Headquarters Footprint Acreage",
+      "value": 14,
+      "unit": "acres",
+      "source_url": "https://interiordesign.net/projects/inside-the-ford-headquarters-in-dearborn-michigan"
+    },
+    {
+      "label": "Years in Glass House",
+      "value": 70,
+      "unit": "years",
+      "source_url": "https://www.autonews.com/gallery/an-ford-hq-tour"
+    },
+    {
+      "label": "Employee Capacity",
+      "value": 14000,
+      "unit": "employees",
+      "source_url": "https://www.autonews.com/gallery/an-ford-hq-tour"
+    },
+    {
+      "label": "Headquarters Generation",
+      "value": 6,
+      "unit": "headquarters",
+      "source_url": "https://www.cnbc.com/2025/11/16/ford-headquarters-dearborn-michigan.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ford Motor Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Dearborn",
+      "kind": "place"
+    },
+    {
+      "name": "Snøhetta",
+      "kind": "organization"
+    },
+    {
+      "name": "Arcadis",
+      "kind": "organization"
+    },
+    {
+      "name": "The Glass House",
+      "kind": "object"
+    },
+    {
+      "name": "The Hub",
+      "kind": "object"
+    },
+    {
+      "name": "Detroit",
+      "kind": "place"
+    },
+    {
+      "name": "Dwight Eisenhower",
+      "kind": "person"
+    },
+    {
+      "name": "Henry Ford II World Center",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}
