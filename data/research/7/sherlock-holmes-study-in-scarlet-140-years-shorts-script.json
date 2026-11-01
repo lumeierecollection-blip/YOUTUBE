@@ -1,0 +1,84 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-study-in-scarlet-140-years",
+  "format": "shorts",
+  "hook": "For just £25, Arthur Conan Doyle agreed to relinquish all rights to A Study in Scarlet.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "For just £25, Arthur Conan Doyle agreed to relinquish all rights to A Study in Scarlet.",
+      "visual_cue": "Close shot of an antique brass balance scale resting on weathered manuscript paper.",
+      "sfx_cue": "Soft paper rustle followed by a quiet metal coin clink.",
+      "b_roll": [
+        "Victorian writing desk historical illustration",
+        "19th century fountain pen writing on parchment"
+      ],
+      "text_overlay": {
+        "text": "£25 for Sherlock Holmes"
+      },
+      "transition_out": "quick-cut"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "In December 1887, Beeton's Christmas Annual published the first Sherlock Holmes tale. Where would that £25 release head?",
+      "visual_cue": "Archival engraving of Victorian London streets in winter alongside the cover of Beeton's Christmas Annual.",
+      "sfx_cue": "Subtle Victorian street sounds and soft low woodwind tone.",
+      "b_roll": [
+        "Beeton's Christmas Annual 1887 title page illustration",
+        "Victorian London gas lamps and horse carriage movement"
+      ],
+      "text_overlay": {
+        "text": "December 1887: A Study in Scarlet"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "Except that magazine release in Beeton's Christmas Annual was just the start.",
+      "visual_cue": "Camera zooms out from printing press machinery onto a stack of bound book pages.",
+      "sfx_cue": "Rhythmic mechanical printing press thud.",
+      "b_roll": [
+        "19th century printing press equipment moving",
+        "Antique book binding process detail"
+      ],
+      "text_overlay": null,
+      "transition_out": "whip-pan"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:42",
+      "voiceover": "Ward, Lock & Co. published the First British Book Edition in 1888. J.B. Lippincott Company published the First American Book Edition in 1890. That launch expanded to sixty tales featuring Sherlock Holmes.",
+      "visual_cue": "Split frame showing early book editions from Ward, Lock & Co. and J.B. Lippincott Company with historical publication dates.",
+      "sfx_cue": "Turning book pages sound and rising string swell.",
+      "b_roll": [
+        "1888 British edition title page archive image",
+        "1890 American edition publication record document"
+      ],
+      "text_overlay": {
+        "text": "1888 UK Edition • 1890 US Edition"
+      },
+      "transition_out": "dissolve"
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "For £25, Arthur Conan Doyle relinquished all story rights.",
+      "visual_cue": "Static historical portrait illustration of Sir Arthur Conan Doyle beside an original 1887 print text detail.",
+      "sfx_cue": "Final low piano note fadeout.",
+      "b_roll": [
+        "Arthur Conan Doyle historical portrait illustration"
+      ],
+      "text_overlay": {
+        "text": "60 Tales Started Here"
+      },
+      "transition_out": "fade-out"
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.17615/vds4-7x66",
+    "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf"
+  ]
+}
