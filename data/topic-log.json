@@ -605,9 +605,14 @@
           "topic": "Harry Houdini's First Newly Deciphered Red Diary Reveals Magic History",
           "slug": "harry-houdinis-first-deciphered-red-diary-magic-history",
           "reserved_at": "2026-10-31T14:40:26.653Z"
+        },
+        {
+          "topic": "Did Margaret Clitherow's 1586 Execution Shape Guy Fawkes?",
+          "slug": "margaret-clitherow-execution-guy-fawkes",
+          "reserved_at": "2026-11-01T15:15:00.865Z"
         }
       ],
-      "last_generated": "2026-10-31T14:40:26.653Z"
+      "last_generated": "2026-11-01T15:15:00.865Z"
     },
     "2": {
       "channel_name": "AI Tested",
