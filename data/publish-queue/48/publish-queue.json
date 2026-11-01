@@ -96,5 +96,17 @@
     "cancelled": true,
     "source_file": "university-of-michigan-haptic-steering-wheel-semi-autonomous-shorts-shorts-2026-10-24.mp4",
     "source_queue": "approved-review"
+  },
+  {
+    "video_id": "OQIYDYZxN-M",
+    "channel_id": "48",
+    "title": "Inside Ford's New 2.1 Million Square Foot Dearborn…",
+    "uploaded_at": "2026-11-01T15:32:34.378Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-01T16:32:34.378Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "ford-dearborn-headquarters-snohhetta-design-shorts-shorts-2026-11-01.mp4",
+    "source_queue": "approved"
   }
 ]
