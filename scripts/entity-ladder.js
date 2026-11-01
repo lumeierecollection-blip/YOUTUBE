@@ -304,9 +304,13 @@ export function ladderAll(b, plan) {
     //   ch-44 beat 1  organization "Google Scholar" -> draws plate-place
     // `kinds[0]` is the rung row[0]'s own type was given two lines above, so the
     // right rung was already computed and then discarded.
-    out.push(neighbourIsRow
-      ? { art: { kind: kinds[0] || "plate-organization", name: row[0].name }, replaces: !keeps, alongside: keeps }
-      : { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
+    // neighbourIsRow only affects whether this beat REPLACES or KEEPS the row style,
+    // NOT whether it drops entities. Two adjacent plates beats must both show all
+    // their entities; canvas-type gate rejects duplicate plates KINDS, not the
+    // fact that two beats both have a plates row. The earlier "drop entities"
+    // behaviour caused ch-1 beat 7 to lose its figure for "17" when beat 6 had a
+    // plates row (board 38285053635).
+    out.push({ art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: neighbourIsRow ? false : !keeps, alongside: keeps || neighbourIsRow });
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
   }

@@ -1448,9 +1448,13 @@ Respond ONLY with JSON: {"sequence": <number>}`);
     // variety is not a licence to un-draw a named entity — the ladder's visual
     // stands and the shot's own devices (symbol, headline) still apply.
     if (choice[i].figure) {
-      if (b.ladder_visual) console.log(`[shots] ch-${channelId} beat ${b.index}: keeping the entity the ladder drew (${b.ladder_visual.data?.value || b.ladder_visual.visual_type}) over the shot's own figure`);
+      if (b.ladder_visual) console.log(`[shots] ch-${channelId} beat ${b.index}: keeping the entity the ladder drew (${b.ladder_visual.data?.value || b.ladder_visual.visual_type || (b.ladder_visual.art ? b.ladder_visual.art.kind : "art")}) over the shot's own figure`);
       else { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
     }
+    // If the ladder gave this beat an art (plates/span/flag/map), rebuild the canvas
+    // to preserve it while applying the chosen shot (camera/depth). The ladder's art
+    // is on b.art; canvasContentFor reads it and applies the current b.shot.
+    if (b.ladder_visual?.art) b.canvas = canvasContentFor(b, {});
   });
   plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
   return { choice, problems, asked };
