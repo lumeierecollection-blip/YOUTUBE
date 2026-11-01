@@ -1,0 +1,89 @@
+{
+  "topic_slug": "spirit-of-1676-king-philips-war-350th-anniversary",
+  "strongest_angle": "Examine the 350th anniversary of King Philip's War, exploring the 14-month conflict in New England that stands as the bloodiest per capita war in colonial or US history.",
+  "key_facts": [
+    {
+      "fact": "King Philip's War, also known as Metacom's War, began in June 1675 in today's Warren, Rhode Island, and lasted for 14 months.",
+      "source_url": "https://kpw350.org",
+      "source_name": "kpw350.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "Metacom was an Indigenous leader from the Pokanoket people who led an alliance of New England tribes, including the Pokanoket, Nipmuc, and Narragansett.",
+      "source_url": "https://pipedot.org/article/79EQQ",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Indian Imprisonment Act was enacted in 1675 by the Massachusetts General Court in Boston and was not repealed until 2005.",
+      "source_url": "https://historyofboston.cssh.northeastern.edu/topics/king-philips-war-in-history-and-memory",
+      "source_name": "History of Boston",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Great Falls Massacre occurred on May 19, 1676, at Peskeompskut on the Quinnehtukqut River in the Pocumtuck Homelands.",
+      "source_url": "https://nolumbekaproject.org/350-2",
+      "source_name": "Nolumbeka Project",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Duration of the war in months",
+      "value": 14,
+      "unit": "months",
+      "source_url": "https://kpw350.org"
+    },
+    {
+      "label": "Year of the Great Falls Massacre",
+      "value": 1676,
+      "unit": "year",
+      "source_url": "https://nolumbekaproject.org/350-2"
+    },
+    {
+      "label": "Year the Indian Imprisonment Act was repealed",
+      "value": 2005,
+      "unit": "year",
+      "source_url": "https://historyofboston.cssh.northeastern.edu/topics/king-philips-war-in-history-and-memory"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Metacom",
+      "kind": "person"
+    },
+    {
+      "name": "Pokanoket",
+      "kind": "organization"
+    },
+    {
+      "name": "Nipmuc",
+      "kind": "organization"
+    },
+    {
+      "name": "Narragansett",
+      "kind": "organization"
+    },
+    {
+      "name": "Warren",
+      "kind": "place"
+    },
+    {
+      "name": "Rhode Island",
+      "kind": "place"
+    },
+    {
+      "name": "Boston",
+      "kind": "place"
+    },
+    {
+      "name": "Massachusetts General Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Peskeompskut",
+      "kind": "place"
+    }
+  ]
+}
