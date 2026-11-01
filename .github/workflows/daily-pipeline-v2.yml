@@ -1157,8 +1157,8 @@ jobs:
             exit 1
           fi
           cat "$F"
-          if [ "$(jq -r .skipped "$F")" = "true" ]; then
-            echo "::notice::Channel $CH skipped in prep ($(jq -r .reason "$F")) ΓÇö nothing to render"
+          if [ "$(jq -r .skipped "$F")" = "true" ] || [ "$(jq -r .prep "$F")" = "failure" ]; then
+            echo "::notice::Channel $CH skipped/failed in prep ($(jq -r '.reason // .prep' "$F")) — nothing to render"
             echo "skip=true" >> "$GITHUB_OUTPUT"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
