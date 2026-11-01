@@ -111,7 +111,7 @@ function directiveFor(e, g, b, replaces) {
       const orgs = g.ents.filter((x) => x.type === "organization").map((x) => x.name).slice(0, 4);
       return orgs.length >= 2 ? { art: { kind: "plates", name: orgs.join(", "), names: orgs }, replaces } : { art: { kind: "plate-organization", name: e.name }, replaces };
     }
-    case "date": return { figure: { value: e.name, label: null }, replaces };
+    case "date": return { art: { kind: "date", name: e.name, text: e.name }, replaces };
     case "span": return { art: { kind: "span", name: e.name, text: e.name, ends: e.ends || null }, replaces };
     case "number": {
       const q = quantitiesOf(sentence).find((x) => x.value.trim() === e.name);
