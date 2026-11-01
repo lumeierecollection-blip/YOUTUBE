@@ -1,0 +1,37 @@
+{
+  "channel_id": "2",
+  "topic_slug": "memdoor-qwen-team-vs-fable-5-livecodebench",
+  "format": "shorts",
+  "hook": "5 Qwen3.8-27B agents solved LiveCodeBench Hard with 9.8 score.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "5 Qwen3.8-27B agents solved LiveCodeBench Hard with 9.8 score.",
+      "visual_cue": "Show five agent icons labeled Qwen3.8-27B and a numeric overlay displaying 9.8."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Memdoor’s workflow runs five Qwen3.8-27B agents sharing files on disk. They performed five passes on ten LiveCodeBench Hard problems, scoring 9.8 of 10. Why did this file-based team outpace Claude Fable 5?",
+      "visual_cue": "Diagram of agents exchanging file icons, then a bar chart of 5 passes vs 10 problems with a 9.8 score overlay, ending with a question‑mark graphic."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Even though each agent is only 27 billion-parameter, they beat Claude Fable 5.",
+      "visual_cue": "Highlight the 27 billion‑parameter label on an agent, then a comparison arrow showing it surpassing the Claude Fable 5 logo."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The five-agent team scored a mean 9.8, beating Claude Fable 5’s benchmark. This shows file-based coordination matches the 9.8 score of top multi-model systems. Memdoor’s approach used only five passes, fewer than typical 10-pass pipelines.",
+      "visual_cue": "Display a 9.8 score badge, then a side‑by‑side comparison of 9.8 versus other systems, followed by a timeline graphic contrasting 5 passes with a 10‑pass baseline."
+    },
+    {
+      "id": "close",
+      "voiceover": "Five agents, 27 billion parameters, 9.8 score – proven.",
+      "visual_cue": "Final screen summarizing the three numbers in bold text."
+    }
+  ],
+  "sources_used": [
+    "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench",
+    "https://news.ycombinator.com/item?id=50320995"
+  ]
+}

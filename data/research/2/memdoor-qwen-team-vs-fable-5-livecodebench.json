@@ -1,0 +1,101 @@
+{
+  "topic_slug": "memdoor-qwen-team-vs-fable-5-livecodebench",
+  "strongest_angle": "Memdoor's team-solve workflow utilizing five Qwen3.8-27B agents successfully matches and beats Claude Fable 5 on LiveCodeBench Hard tasks by communicating through files on disk.",
+  "key_facts": [
+    {
+      "fact": "Memdoor's team-solve workflow runs five Qwen3.8-27B agents as planner, two ideators, solver and manager plus a repair worker, communicating only through files on disk according to AI Weekly.",
+      "source_url": "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench",
+      "source_name": "AI Weekly",
+      "confidence": "high"
+    },
+    {
+      "fact": "Memdoor's team-solve workflow scored a mean 9.8 of 10 over five passes on LiveCodeBench Hard problems, beating Fable 5 according to AI Weekly and Hacker News discussions.",
+      "source_url": "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench",
+      "source_name": "AI Weekly",
+      "confidence": "high"
+    },
+    {
+      "fact": "A Memdoor workflow reproduces a multi-agent coding method from the GVS5H paper by Lee from 2026 using the Memdoor CLI.",
+      "source_url": "https://daily.dev/posts/memdoor-a-team-of-5-qwen3-8-27b-models-beats-fable-5-on-livecodebench-hard-ghdvz1p3j",
+      "source_name": "Daily.dev",
+      "confidence": "high"
+    },
+    {
+      "fact": "Memdoor's team-solve workflow rebuilds the GVS5H method where five Qwen3.8-27B roles share files on disk and solved 9.8 on average over 10 LiveCodeBench Hard problems.",
+      "source_url": "https://ai-tldr.dev/releases/memdoor-team-solve-gvs5h-rerun",
+      "source_name": "AI/TLDR",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Qwen3.8 model size parameter count",
+      "value": 27,
+      "unit": "billion parameters",
+      "source_url": "https://news.ycombinator.com/item?id=50320995"
+    },
+    {
+      "label": "Number of Qwen3.8 agents in Memdoor's team workflow",
+      "value": 5,
+      "unit": "agents",
+      "source_url": "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench"
+    },
+    {
+      "label": "Memdoor team-solve mean score on LiveCodeBench Hard",
+      "value": 9.8,
+      "unit": "score",
+      "source_url": "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench"
+    },
+    {
+      "label": "Total number of test problems in the LiveCodeBench Hard evaluation",
+      "value": 10,
+      "unit": "problems",
+      "source_url": "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench"
+    },
+    {
+      "label": "Number of passes used in the benchmark evaluation",
+      "value": 5,
+      "unit": "passes",
+      "source_url": "https://aiweekly.co/alerts/memdoors-five-qwen38-27b-team-beats-fable-5-at-livecodebench"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Memdoor",
+      "kind": "organization"
+    },
+    {
+      "name": "Qwen3.8-27B",
+      "kind": "object"
+    },
+    {
+      "name": "Claude Fable 5",
+      "kind": "object"
+    },
+    {
+      "name": "LiveCodeBench",
+      "kind": "organization"
+    },
+    {
+      "name": "Lee",
+      "kind": "person"
+    },
+    {
+      "name": "AI Weekly",
+      "kind": "organization"
+    },
+    {
+      "name": "Daily.dev",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenRouter",
+      "kind": "organization"
+    },
+    {
+      "name": "Google Cloud Box",
+      "kind": "place"
+    }
+  ]
+}
