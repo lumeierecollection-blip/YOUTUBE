@@ -1328,6 +1328,10 @@ function tableLayout(c) {
           if (boxes.statement.w) {
             const uw = Math.min(boxes.statement.w, 360);
             boxes.underline = { ...box(Math.round(540 - uw / 2), BOTTOM - 12, uw, 4), role: "rule", anchor: "center" };
+          } else {
+            // Empty headline, no concept_visuals, no name_card: the beat has no visual content.
+            // Thicken the top rule (12px) so canvas-coverage detects ink at half-scale (6px >= 4px threshold).
+            boxes.rule = { ...boxes.rule, h: 12, keep: true };
           }
           hero = "statement";
         }
