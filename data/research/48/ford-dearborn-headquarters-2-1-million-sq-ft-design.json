@@ -1,0 +1,93 @@
+{
+  "topic_slug": "ford-dearborn-headquarters-2-1-million-sq-ft-design",
+  "strongest_angle": "Examining the architectural dimensions and layout of Ford Motor Company's 2.1-million-square-foot Dearborn headquarters, scheduled for completion in 2027 by Snøhetta, Arcadis, and Ghafari Associates.",
+  "key_facts": [
+    {
+      "fact": "Ford Motor Company's new world headquarters in Dearborn spans approximately 2.1 million square feet and is scheduled for completion in 2027.",
+      "source_url": "https://fordland.com/ford-world-headquarters",
+      "source_name": "Fordland",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new campus designed in collaboration with Snøhetta will accommodate 4,000 employees when completed in 2027, replacing the former Glass House headquarters.",
+      "source_url": "https://www.cardesignnews.com/designers/inside-fords-new-world-headquarters-with-six-design-studios/2131448",
+      "source_name": "Car Design News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arcadis served as the structural architect delivering the workspace for Ford alongside Snøhetta and Ghafari Associates, supporting 6,000 daily employees with integrated smart systems.",
+      "source_url": "https://www.arcadis.com/en-us/projects/north-america/united-states/ford-world-headquarters",
+      "source_name": "Arcadis",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new Dearborn campus features six design studios and consolidates design, engineering, and corporate leadership on the campus in Michigan.",
+      "source_url": "https://www.cardesignnews.com/designers/inside-fords-new-world-headquarters-with-six-design-studios/2131448",
+      "source_name": "Car Design News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total square footage",
+      "value": 2100000,
+      "unit": "square feet",
+      "source_url": "https://fordland.com/ford-world-headquarters"
+    },
+    {
+      "label": "Completion year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://fordland.com/ford-world-headquarters"
+    },
+    {
+      "label": "Employee capacity",
+      "value": 4000,
+      "unit": "employees",
+      "source_url": "https://www.cardesignnews.com/designers/inside-fords-new-world-headquarters-with-six-design-studios/2131448"
+    },
+    {
+      "label": "Daily employees supported",
+      "value": 6000,
+      "unit": "employees",
+      "source_url": "https://www.arcadis.com/en-us/projects/north-america/united-states/ford-world-headquarters"
+    },
+    {
+      "label": "Design studios count",
+      "value": 6,
+      "unit": "studios",
+      "source_url": "https://www.cardesignnews.com/designers/inside-fords-new-world-headquarters-with-six-design-studios/2131448"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ford Motor Company",
+      "kind": "organization"
+    },
+    {
+      "name": "Snøhetta",
+      "kind": "organization"
+    },
+    {
+      "name": "Arcadis",
+      "kind": "organization"
+    },
+    {
+      "name": "Ghafari Associates",
+      "kind": "organization"
+    },
+    {
+      "name": "Dearborn",
+      "kind": "place"
+    },
+    {
+      "name": "Michigan",
+      "kind": "place"
+    },
+    {
+      "name": "Glass House",
+      "kind": "object"
+    }
+  ]
+}
