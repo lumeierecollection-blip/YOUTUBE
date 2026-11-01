@@ -1,0 +1,70 @@
+{
+  "topic_slug": "trump-wsj-lawsuit-dismissed",
+  "strongest_angle": "Examining the federal court ruling in Miami where U.S. District Judge Darrin Gayles dismissed Donald Trump's $10 billion defamation lawsuit against The Wall Street Journal, Dow Jones, and Rupert Murdoch with prejudice.",
+  "key_facts": [
+    {
+      "fact": "U.S. District Judge Darrin Gayles in Miami dismissed Donald Trump's $10 billion defamation lawsuit against The Wall Street Journal and Rupert Murdoch on Saturday, October 31, 2026.",
+      "source_url": "https://apnews.com/article/trump-media-lawsuit-wall-street-journal-dismissed-f27c9fa832044f2f9edea9b1fbbba061",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit targeted Dow Jones and media mogul Rupert Murdoch over a July 2025 story reporting on a birthday book letter allegedly sent to Jeffrey Epstein.",
+      "source_url": "https://www.bbc.com/news/articles/cwr5yj2lj9myo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "U.S. District Judge Darrin Gayles ruled that Donald Trump failed to plausibly allege actual malice by the newspaper and other defendants.",
+      "source_url": "https://www.cnbc.com/2026/10/31/trump-murdoch-wsj-epstein-defamation-lawsuit-dismissed.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit amount",
+      "value": 10000000000,
+      "unit": "dollars",
+      "source_url": "https://apnews.com/article/trump-media-lawsuit-wall-street-journal-dismissed-f27c9fa832044f2f9edea9b1fbbba061"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Saying the president was “grasping at straws,” a federal judge on Saturday threw out Donald Trump’s $10 billion lawsuit against The Wall Street Journal and media mogul Rupert Murdoch over a story reporting on his ties to Jeffrey Epstein.",
+      "speaker": "Dave Collins",
+      "source_name": "AP News",
+      "source_url": "https://apnews.com/article/trump-media-lawsuit-wall-street-journal-dismissed-f27c9fa832044f2f9edea9b1fbbba061"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    },
+    {
+      "name": "Darrin Gayles",
+      "kind": "person"
+    },
+    {
+      "name": "Rupert Murdoch",
+      "kind": "person"
+    },
+    {
+      "name": "Jeffrey Epstein",
+      "kind": "person"
+    },
+    {
+      "name": "The Wall Street Journal",
+      "kind": "organization"
+    },
+    {
+      "name": "Dow Jones",
+      "kind": "organization"
+    },
+    {
+      "name": "Miami",
+      "kind": "place"
+    }
+  ]
+}
