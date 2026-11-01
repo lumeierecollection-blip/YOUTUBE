@@ -1,0 +1,69 @@
+{
+  "topic_slug": "worlds-oldest-bronze-age-shipwreck-turkey",
+  "strongest_angle": "Investigate the newly discovered Early Bronze Age shipwreck off the coast of Kekova Island, Turkey, dating back 4,400 to 4,700 years and sitting at a depth of 30 meters.",
+  "key_facts": [
+    {
+      "fact": "Archaeologists discovered the world's oldest known shipwreck off the coast of Kekova Island in Turkey, dating it between 4,400 and 4,700 years old.",
+      "source_url": "https://www.bbc.com/news/articles/c6gr80rk1yyko",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The ancient shipwreck was found resting at a depth of 30 meters or 100 feet near Kekova Island in Antalya, Türkiye.",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/oldest-shipwreck",
+      "source_name": "Guinness World Records",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sydney ceramics expert Karin Sowada analyzed the ancient pottery and ceramic storage pots found near the wreck to help researchers date it.",
+      "source_url": "https://www.abc.net.au/news/2026-10-15/worlds-oldest-shipwreck-found-in-turkiye-archaeologists-say/107267406",
+      "source_name": "ABC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "minimum age estimate",
+      "value": 4400,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/articles/c6gr80rk1yyko"
+    },
+    {
+      "label": "maximum age estimate",
+      "value": 4700,
+      "unit": "years",
+      "source_url": "https://www.bbc.com/news/articles/c6gr80rk1yyko"
+    },
+    {
+      "label": "depth in meters",
+      "value": 30,
+      "unit": "meters",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/oldest-shipwreck"
+    },
+    {
+      "label": "depth in feet",
+      "value": 100,
+      "unit": "feet",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/oldest-shipwreck"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Kekova Island",
+      "kind": "place"
+    },
+    {
+      "name": "Turkey",
+      "kind": "place"
+    },
+    {
+      "name": "Karin Sowada",
+      "kind": "person"
+    },
+    {
+      "name": "Antalya",
+      "kind": "place"
+    }
+  ]
+}
