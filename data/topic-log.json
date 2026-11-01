@@ -1257,9 +1257,14 @@
           "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
           "slug": "openai-servicenow-enterprise-workflow-partnership",
           "reserved_at": "2026-10-31T17:46:07.826Z"
+        },
+        {
+          "topic": "Claire Vo Conducts First Personal-Agent Benchmark Across 9 Tasks",
+          "slug": "claire-vo-personal-agent-benchmark-nine-tasks",
+          "reserved_at": "2026-11-01T04:49:09.392Z"
         }
       ],
-      "last_generated": "2026-11-01T03:53:19.925Z"
+      "last_generated": "2026-11-01T04:49:09.392Z"
     },
     "3": {
       "channel_name": "AI Tested",
