@@ -1,0 +1,107 @@
+{
+  "topic_slug": "trunk-head-contribution-angular-momentum-perturbed-condition",
+  "strongest_angle": "The October 2026 Scientific Reports study provides clear, quantified evidence that the trunk and head markedly increase their mechanical contribution to whole‑body angular momentum during unexpected postural perturbations.",
+  "key_facts": [
+    {
+      "fact": "The article titled “Amplified trunk‑head contribution to whole‑body angular momentum under perturbed conditions” was published in the peer‑reviewed journal Scientific Reports on 21 October 2026.",
+      "source_url": "https://www.nature.com/articles/s41598-026-76263-9",
+      "source_name": "Nature.com",
+      "confidence": "medium",
+      "named_entities": [
+        "Scientific Reports",
+        "Maria‑Elissavet Nikolaidou",
+        "Christos Theodorakis",
+        "Lida Mademli",
+        "Falk Mersmann",
+        "Sebastian Böhm",
+        "Adamantios Arampatzis"
+      ]
+    },
+    {
+      "fact": "A laboratory experiment with 18 healthy adult participants showed a larger share of whole‑body angular momentum originating from the trunk and head when a walking surface dropped unpredictably.",
+      "source_url": "https://eigenradar.com/en/science/briefs/2026-10-22/trunk-head-balance-surface-drop",
+      "source_name": "Eigen Radar",
+      "confidence": "medium",
+      "named_entities": [
+        "18 healthy adults",
+        "trunk",
+        "head",
+        "Eigen Radar"
+      ]
+    },
+    {
+      "fact": "A preprint of the same research was posted on the open‑access platform Research Square on 18 August 2026, making the findings publicly available before journal publication.",
+      "source_url": "https://doi.org/10.21203/rs.3.rs-10448725/v1",
+      "source_name": "Research Square",
+      "confidence": "medium",
+      "named_entities": [
+        "Research Square",
+        "Maria‑Elissavet Nikolaidou",
+        "Christos Theodorakis",
+        "Lida Mademli",
+        "Falk Mersmann",
+        "Sebastian Böhm",
+        "Adamantios Arampatzis"
+      ]
+    }
+  ],
+  "numbers": [
+    {
+      "value": 18,
+      "unit": "participants",
+      "label": "Number of participants in the perturbation experiment",
+      "source_url": "https://eigenradar.com/en/science/briefs/2026-10-22/trunk-head-balance-surface-drop"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Maria‑Elissavet Nikolaidou",
+      "kind": "person"
+    },
+    {
+      "name": "Christos Theodorakis",
+      "kind": "person"
+    },
+    {
+      "name": "Lida Mademli",
+      "kind": "person"
+    },
+    {
+      "name": "Falk Mersmann",
+      "kind": "person"
+    },
+    {
+      "name": "Sebastian Böhm",
+      "kind": "person"
+    },
+    {
+      "name": "Adamantios Arampatzis",
+      "kind": "person"
+    },
+    {
+      "name": "Scientific Reports",
+      "kind": "organization"
+    },
+    {
+      "name": "Research Square",
+      "kind": "organization"
+    },
+    {
+      "name": "Eigen Radar",
+      "kind": "organization"
+    },
+    {
+      "name": "trunk",
+      "kind": "object"
+    },
+    {
+      "name": "head",
+      "kind": "object"
+    },
+    {
+      "name": "18 healthy adults",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}

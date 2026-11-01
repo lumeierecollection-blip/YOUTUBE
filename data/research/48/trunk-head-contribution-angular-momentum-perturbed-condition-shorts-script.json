@@ -1,0 +1,29 @@
+{
+  "channel_id": "48",
+  "topic_slug": "trunk-head-contribution-angular-momentum-perturbed-condition",
+  "format": "shorts",
+  "hook": "Eighteen healthy adults saw the trunk and head dominate balance.",
+  "sections": [
+    {
+      "id": "setup",
+      "voiceover": "On 21 October 2026 Scientific Reports published a study on trunk‑head contribution. Eighteen healthy adults walked on a surface that dropped unpredictably. How much larger was the trunk‑head share of angular momentum for the 18 participants?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Even a modest 18‑person test revealed a dramatic shift."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The results showed trunk and head contributions surged during the surface drop in the 18‑person test. In the 18‑person test this shift underscores upper‑body control for balance. The work was posted on Research Square on 18 August 2026."
+    },
+    {
+      "id": "close",
+      "voiceover": "Trunk and head dominate balance in the 18‑person experiment."
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/s41598-026-76263-9",
+    "https://eigenradar.com/en/science/briefs/2026-10-22/trunk-head-balance-surface-drop",
+    "https://doi.org/10.21203/rs.3.rs-10448725/v1"
+  ]
+}
