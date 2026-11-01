@@ -615,9 +615,14 @@
           "topic": "Restoring Adelaide Herrmann’s Lost Legacy and Magic Career",
           "slug": "restoring-adelaide-herrmanns-lost-legacy",
           "reserved_at": "2026-11-01T01:01:47.778Z"
+        },
+        {
+          "topic": "Uncovering Fort Albion: The Newly Discovered War of 1812 Freedom Story",
+          "slug": "uncovering-fort-albion-war-of-1812-freedom-story",
+          "reserved_at": "2026-11-01T03:14:48.218Z"
         }
       ],
-      "last_generated": "2026-11-01T01:01:47.778Z"
+      "last_generated": "2026-11-01T03:14:48.218Z"
     },
     "2": {
       "channel_name": "AI Tested",
