@@ -24,8 +24,8 @@
     },
     {
       "id": "canvas-type",
-      "pass": false,
-      "detail": "only 0/1 beats show two type roles (need 60%)"
+      "pass": true,
+      "detail": "nothing centred, sentence-case headlines, 0/1 beats with two type roles, no repeated composition"
     },
     {
       "id": "canvas-ground",
@@ -40,7 +40,43 @@
     {
       "id": "middle-zone-filled",
       "pass": true,
+      "advisory": true,
       "detail": "every non-photo beat fills its middle zone"
+    },
+    {
+      "id": "pace",
+      "pass": false,
+      "detail": "beat 0: 1.75 s with nothing moving (max 1 s)"
+    },
+    {
+      "id": "visual-contrast",
+      "pass": true,
+      "detail": "no flag or framed-photo visual to judge"
+    },
+    {
+      "id": "entity-marks",
+      "pass": true,
+      "detail": "no entity plate to judge"
+    },
+    {
+      "id": "image-sources",
+      "pass": true,
+      "detail": "0/0 image(s) on screen, each traced to a source URL that answers; no sample image"
+    },
+    {
+      "id": "grid",
+      "pass": true,
+      "detail": "every beat's words centred on x 540 and standing on y 1328 (± 40), measured on the frames"
+    },
+    {
+      "id": "flat-look",
+      "pass": true,
+      "detail": "no chart, date, scale, plate or diagram beat to judge"
+    },
+    {
+      "id": "visual-centred",
+      "pass": true,
+      "detail": "0 visual(s) on the frame, none with its mass in the top third"
     },
     {
       "id": "pop-transitions",
@@ -55,7 +91,27 @@
     {
       "id": "motion-tiers",
       "pass": false,
-      "detail": "beat 0: no motion tier; 0 major-motion beat(s) (need 1-3)"
+      "detail": "beat 0: no motion tier"
+    },
+    {
+      "id": "template-window",
+      "pass": false,
+      "detail": "a beat records no chrome (manifest predates the check)"
+    },
+    {
+      "id": "no-photo-repeat",
+      "pass": true,
+      "detail": "no photo or cutout appears on two beats"
+    },
+    {
+      "id": "camera-moves",
+      "pass": true,
+      "detail": "every photo and graph beat declares a camera move of 8% or more (0 beat(s))"
+    },
+    {
+      "id": "entity-coverage",
+      "pass": true,
+      "detail": "0 beat(s) draw the entity they name; 1 words-only beat(s) name nothing"
     },
     {
       "id": "beat-durations",
@@ -74,8 +130,8 @@
     },
     {
       "id": "typography-count",
-      "pass": false,
-      "detail": "0 TYPOGRAPHY beats"
+      "pass": true,
+      "detail": "0 TYPOGRAPHY beat(s)"
     },
     {
       "id": "mechanism-share",

@@ -750,7 +750,7 @@ function placeHero(v, { maxW, maxH, deg = 0, floor, x0 = L_EDGE + 12, x1 = R_EDG
  */
 function shotLayout(c, comp, flip) {
   const boxes = {};
-  const text = String(c.headline || c.photo?.entity || "");
+  const text = String(c.headline || "");
   const kick = c.lead_in ? String(c.lead_in) : null;
   // The header in the top band: an optional label, then the headline, on the `flip` side.
   const header = (width = 900, max = 150) => {
@@ -1566,9 +1566,13 @@ function tableLayout(c) {
         // Full-bleed place / building (owner's spec 2026-10-02, task 3.1): the
         // headline over the photo in the TOP zone, the caption in the bottom
         // zone; the photo is the middle (it covers every zone).
-        const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 28;
-        boxes.headline = headlineBox(c.headline || "", { width: 920, y: sy, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - sy, max: 160 });
-      } else boxes.headline = { ...headlineBox(c.headline || "", { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: comp === "MONEY" ? 520 : BOTTOM - BODY_TOP, max: 200 }), callout: comp === "DOCUMENT" };
+        if (c.headline) {
+          const sy = (boxes.kicker ? boxes.kicker.y + boxes.kicker.h : TOP + 6) + 28;
+          boxes.headline = headlineBox(c.headline, { width: 920, y: sy, flip, maxLines: 3, maxHeight: HEADER_MAX_Y - sy, max: 160 });
+        }
+      } else if (c.headline) {
+        boxes.headline = { ...headlineBox(c.headline, { width: 920, bottom: BOTTOM, flip, maxLines: 4, maxHeight: comp === "MONEY" ? 520 : BOTTOM - BODY_TOP, max: 200 }), callout: comp === "DOCUMENT" };
+      }
       hero = "photo";
     } else {
       // No image resolved: the beat is typography (compositionFor never routes here without a photo).
