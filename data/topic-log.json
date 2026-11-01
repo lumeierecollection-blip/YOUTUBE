@@ -4072,9 +4072,14 @@
           "topic": "Armonii Wearable Supernumerary Robotic Arms for Ergonomic Support",
           "slug": "armonii-wearable-supernumerary-robotic-arms",
           "reserved_at": "2026-11-01T01:01:37.433Z"
+        },
+        {
+          "topic": "AI Design Tools Fail WCAG Level A Accessibility Across 15 Test Sites",
+          "slug": "ai-design-tools-fail-wcag-accessibility-radar",
+          "reserved_at": "2026-11-01T05:50:18.289Z"
         }
       ],
-      "last_generated": "2026-11-01T04:48:47.532Z"
+      "last_generated": "2026-11-01T05:50:18.289Z"
     },
     "49": {
       "channel_name": "Picture House",
