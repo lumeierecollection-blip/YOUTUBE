@@ -1,0 +1,138 @@
+{
+  "topic_slug": "bones-release-anti-aging-proteins-osteocytes-study",
+  "strongest_angle": "Mechanical bone compression releases anti‑aging proteins that extend mouse lifespan, as shown in the October 2026 AAAS‑backed Cell Metabolism study.",
+  "key_facts": [
+    {
+      "fact": "Researchers Zhimin Zhang, Zhiqing Cai, Shencai Liu, Yun Chu, and Zhengtao Jiang reported in Cell Metabolism (2026‑10‑23) that mechanical strain on bone activates osteocytes to secrete anti‑aging proteins, linking exercise‑induced bone signaling to whole‑body aging.",
+      "source_url": "https://www.cell.com/cell-metabolism/fulltext/S1550-4131(26)00433-X?rss=yes",
+      "source_name": "Cell Metabolism",
+      "confidence": "high"
+    },
+    {
+      "fact": "The AAAS Science article by Christopher G. Thomas describes that applying dynamic tibial axial loading—pressing the shinbone with 2 newtons of force at 2 cycles per second for 300 cycles twice weekly—stimulated osteocytes to release longevity‑promoting factors in 20‑month‑old mice.",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861",
+      "source_name": "CIVL",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In that loading experiment, median lifespan of treated mice increased by 9.4 % (about 79.5 days) and maximum lifespan rose by 7.6 % compared with controls, demonstrating a measurable extension of life span.",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861",
+      "source_name": "CIVL",
+      "confidence": "medium"
+    },
+    {
+      "fact": "New Scientist reported that similar bone compression in mice and pigs improved movement and cognition one week after traumatic brain injury, indicating the released bone factors have systemic neuroprotective effects.",
+      "source_url": "https://www.newscientist.com/article/2591964-compressing-bones-releases-molecules-that-ease-traumatic-brain-injuries",
+      "source_name": "New Scientist",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 2,
+      "unit": "newtons",
+      "label": "Force applied to shinbone per loading session",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861"
+    },
+    {
+      "value": 2,
+      "unit": "cycles per second",
+      "label": "Loading frequency",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861"
+    },
+    {
+      "value": 300,
+      "unit": "cycles",
+      "label": "Number of loading cycles per session",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861"
+    },
+    {
+      "value": 9.4,
+      "unit": "%",
+      "label": "Increase in median lifespan of treated mice",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861"
+    },
+    {
+      "value": 79.5,
+      "unit": "days",
+      "label": "Absolute median lifespan gain (days)",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861"
+    },
+    {
+      "value": 7.6,
+      "unit": "%",
+      "label": "Increase in maximum lifespan of treated mice",
+      "source_url": "https://civl.com/partners/a-protein-released-by-exercised-bone-slows-whole-body-aging-and-extends-life-cb22a861"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Zhimin Zhang",
+      "kind": "person"
+    },
+    {
+      "name": "Zhiqing Cai",
+      "kind": "person"
+    },
+    {
+      "name": "Shencai Liu",
+      "kind": "person"
+    },
+    {
+      "name": "Yun Chu",
+      "kind": "person"
+    },
+    {
+      "name": "Zhengtao Jiang",
+      "kind": "person"
+    },
+    {
+      "name": "Cell Metabolism",
+      "kind": "organization"
+    },
+    {
+      "name": "Christopher G. Thomas",
+      "kind": "person"
+    },
+    {
+      "name": "AAAS",
+      "kind": "organization"
+    },
+    {
+      "name": "Science (magazine)",
+      "kind": "organization"
+    },
+    {
+      "name": "dynamic tibial axial loading",
+      "kind": "object"
+    },
+    {
+      "name": "shinbone",
+      "kind": "object"
+    },
+    {
+      "name": "mice",
+      "kind": "object"
+    },
+    {
+      "name": "pigs",
+      "kind": "object"
+    },
+    {
+      "name": "New Scientist",
+      "kind": "organization"
+    },
+    {
+      "name": "Tosin Thompson",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Firmly pressing down on shin bones for just a few minutes every day drastically improved movement and cognition in mice and pigs one week after they had a traumatic brain injury.",
+      "speaker": "Tosin Thompson",
+      "source_name": "New Scientist",
+      "source_url": "https://www.newscientist.com/article/2591964-compressing-bones-releases-molecules-that-ease-traumatic-brain-injuries"
+    }
+  ]
+}
