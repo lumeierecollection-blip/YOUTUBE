@@ -1,0 +1,67 @@
+{
+  "topic_slug": "rummy-nose-tetra-fish-virtual-reality-neighbor",
+  "strongest_angle": "Explore how rummy-nose tetra fish navigate groups in a November 2026 virtual reality experiment by focusing on a single influential neighbor instead of all four surrounding entities.",
+  "key_facts": [
+    {
+      "fact": "Guy Theraulaz and his colleagues at the National Center for Scientific Research (CNRS) and the University of Toulouse in France built a virtual-reality environment to study how schooling fish coordinate their behavior.",
+      "source_url": "https://physics.aps.org/articles/v19/145",
+      "source_name": "Physics APS",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the virtual reality experiments published around October and November 2026, a rummy-nose tetra fish swam freely in a bowl while real-time images of virtual fish were projected onto the walls around it.",
+      "source_url": "https://phys.org/news/2026-10-fish-schools-sync-influential-neighbor.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research team programmed four virtual fish with different rules of interaction and ran eight one-hour trials for each setup to test how the rummy-nose tetra responds to influential neighbors.",
+      "source_url": "https://phys.org/news/2026-10-fish-schools-sync-influential-neighbor.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Virtual fish programmed in the setup",
+      "value": 4,
+      "unit": "virtual fish",
+      "source_url": "https://phys.org/news/2026-10-fish-schools-sync-influential-neighbor.html"
+    },
+    {
+      "label": "Number of one-hour trials run for each setup",
+      "value": 8,
+      "unit": "trials",
+      "source_url": "https://phys.org/news/2026-10-fish-schools-sync-influential-neighbor.html"
+    },
+    {
+      "label": "Duration of each trial",
+      "value": 1,
+      "unit": "hour",
+      "source_url": "https://phys.org/news/2026-10-fish-schools-sync-influential-neighbor.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Guy Theraulaz",
+      "kind": "person"
+    },
+    {
+      "name": "National Center for Scientific Research (CNRS)",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Toulouse",
+      "kind": "organization"
+    },
+    {
+      "name": "France",
+      "kind": "place"
+    },
+    {
+      "name": "rummy-nose tetra",
+      "kind": "object"
+    }
+  ]
+}

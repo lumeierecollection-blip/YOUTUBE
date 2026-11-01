@@ -1,0 +1,87 @@
+{
+  "channel_id": "17",
+  "topic_slug": "rummy-nose-tetra-fish-virtual-reality-neighbor",
+  "format": "shorts",
+  "hook": "Scientists put a rummy-nose tetra into virtual reality with 4 digital fish.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:05",
+      "voiceover": "Scientists put a rummy-nose tetra into virtual reality with 4 digital fish.",
+      "visual_cue": "Macro close-up shot of a rummy-nose tetra fish swimming inside a glass bowl, illuminated by glowing projection screens.",
+      "sfx_cue": "Subtle underwater ambient hum with a soft electronic chime",
+      "b_roll": [
+        "rummy-nose tetra swimming in clear water",
+        "digital projection display in physics laboratory"
+      ],
+      "transition_out": "quick whip pan right",
+      "text_overlay": {
+        "text": "VIRTUAL REALITY EXPERIMENT"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05 - 0:18",
+      "voiceover": "In France, Guy Theraulaz projected virtual fish onto bowl walls around a swimming tetra. Which neighbor guided the swimming rummy-nose tetra?",
+      "visual_cue": "Laboratory setup at CNRS showing circular projection screen surround with moving digital fish patterns.",
+      "sfx_cue": "Soft water bubbling and quiet keyboard keystrokes",
+      "b_roll": [
+        "laboratory tank with projection walls",
+        "computer screen showing fish tracking algorithms"
+      ],
+      "transition_out": "cross dissolve",
+      "text_overlay": {
+        "text": "4 VIRTUAL FISH · 8 TRIALS"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18 - 0:24",
+      "voiceover": "Instead of tracking all 4 fish, the tetra ignored almost everything.",
+      "visual_cue": "High-contrast tracking overlay isolating one specific virtual fish while dimming out the other three virtual fish on screen.",
+      "sfx_cue": "Pulsing bass pulse with high-frequency electronic shimmer",
+      "b_roll": [
+        "digital tracking vector lines on swimming fish",
+        "close-up of red nose tetra shifting direction"
+      ],
+      "transition_out": "zoom cut",
+      "text_overlay": {
+        "text": "3 NEIGHBORS IGNORED"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24 - 0:40",
+      "voiceover": "Researchers at the University of Toulouse discovered the tetra synced movement with 1 influential neighbor. This single pairing guided coordination during 8 1-hour trials.",
+      "visual_cue": "Data graphic showing trajectory line matching perfectly between the live tetra fish and a single leader virtual fish.",
+      "sfx_cue": "Rising harmonic tone resolving into warm synthesizer pad",
+      "b_roll": [
+        "trajectories diagram of fish schooling movement",
+        "macro shot of fish turning in synchronized motion"
+      ],
+      "transition_out": "fade to black",
+      "text_overlay": {
+        "text": "1 INFLUENTIAL NEIGHBOR"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40 - 0:45",
+      "voiceover": "During November 2026, researchers watched the rummy-nose tetra swim freely inside a bowl.",
+      "visual_cue": "Wide cinematic shot of a school of rummy-nose tetras moving together in perfect fluid synchronization.",
+      "sfx_cue": "Deep resonant water swell fading out",
+      "b_roll": [
+        "school of tetra fish in natural aquatic habitat",
+        "underwater sunlight rays through clear stream"
+      ],
+      "transition_out": "smooth cut to black",
+      "text_overlay": {
+        "text": "NATURE FILES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://physics.aps.org/articles/v19/145",
+    "https://phys.org/news/2026-10-fish-schools-sync-influential-neighbor.html"
+  ]
+}
