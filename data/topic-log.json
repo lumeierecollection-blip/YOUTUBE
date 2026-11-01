@@ -1247,9 +1247,14 @@
           "topic": "Gemini 4 Argon vs GPT-6.1 Sol Security Audit Benchmark Test",
           "slug": "gemini-4-argon-vs-gpt-6-security-audit",
           "reserved_at": "2026-10-29T15:23:34.032Z"
+        },
+        {
+          "topic": "Google Gemini Connected Apps Preview: Adobe and Peloton Integration",
+          "slug": "google-gemini-connected-apps-preview",
+          "reserved_at": "2026-11-01T15:14:53.209Z"
         }
       ],
-      "last_generated": "2026-10-31T15:12:08.755Z"
+      "last_generated": "2026-11-01T15:14:53.209Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
