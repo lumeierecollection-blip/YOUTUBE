@@ -1,0 +1,67 @@
+{
+  "topic_slug": "ancient-curse-tablets-athens-well",
+  "strongest_angle": "Archaeologists uncovered thirty lead curse tablets in an ancient well at the Kerameikos necropolis in Athens, revealing intense legal rivalries and personal malice in classical antiquity directed against figures like Pytheas.",
+  "key_facts": [
+    {
+      "fact": "Thirty lead tablets were recovered from the bottom of a public well at the edge of the Kerameikos necropolis in Athens, recording curses cast by Athenians against rivals.",
+      "source_url": "https://archaeology.org/issues/may-june-2020/digs-discoveries/digs-greece-curse-well",
+      "source_name": "Archaeology Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Archaeologists from the German Archaeological Institute discovered the trove of ancient curse tablets in downtown Athens while investigating a bathhouse water supply.",
+      "source_url": "https://archaeology.org/news/2020/02/11/200211-greece-well-curses",
+      "source_name": "Archaeology Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "A specific curse tablet was directed against Pytheas, ordered by his opponent in an Athenian court.",
+      "source_url": "https://greekreporter.com/2026/11/01/ancient-curse-tablets-athens-well",
+      "source_name": "GreekReporter.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of curse tablets",
+      "value": 30,
+      "unit": "tablets",
+      "source_url": "https://archaeology.org/issues/may-june-2020/digs-discoveries/digs-greece-curse-well"
+    },
+    {
+      "label": "Age of the well in years",
+      "value": 2500,
+      "unit": "years",
+      "source_url": "https://archaeology.org/news/2020/02/11/200211-greece-well-curses"
+    },
+    {
+      "label": "Age of the curses in years",
+      "value": 2300,
+      "unit": "years",
+      "source_url": "https://archaeology.org/issues/may-june-2020/digs-discoveries/digs-greece-curse-well"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Pytheas",
+      "kind": "person"
+    },
+    {
+      "name": "Kerameikos",
+      "kind": "place"
+    },
+    {
+      "name": "Athens",
+      "kind": "place"
+    },
+    {
+      "name": "German Archaeological Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "Dr. Jutta Stroszeck",
+      "kind": "person"
+    }
+  ]
+}
