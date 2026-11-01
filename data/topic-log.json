@@ -1647,9 +1647,14 @@
           "topic": "Sherlock Holmes vs Count Dracula: A Public Domain What-If Matchup",
           "slug": "sherlock-holmes-vs-count-dracula-matchup",
           "reserved_at": "2026-10-31T15:12:23.332Z"
+        },
+        {
+          "topic": "Sherlock Holmes and A Study in Scarlet at 140 Years: The 1887 Canon Origins",
+          "slug": "sherlock-holmes-study-in-scarlet-140-years",
+          "reserved_at": "2026-11-01T15:14:42.960Z"
         }
       ],
-      "last_generated": "2026-10-31T15:12:23.332Z"
+      "last_generated": "2026-11-01T15:14:42.960Z"
     },
     "8": {
       "channel_name": "Ledger",
