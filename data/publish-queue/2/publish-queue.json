@@ -154,5 +154,17 @@
     "cancelled": true,
     "source_file": "anthropic-claude-haiku-5-5-pricing-breakdown-shorts-shorts-2026-10-26.mp4",
     "source_queue": "approved-review"
+  },
+  {
+    "video_id": "95VksrqBKRs",
+    "channel_id": "2",
+    "title": "Google Gemini Connected Apps Preview: Adobe and Peloton…",
+    "uploaded_at": "2026-11-01T15:33:19.821Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-01T16:33:19.821Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "google-gemini-connected-apps-preview-shorts-shorts-2026-11-01.mp4",
+    "source_queue": "approved"
   }
 ]
