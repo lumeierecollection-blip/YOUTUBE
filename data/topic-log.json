@@ -1242,9 +1242,14 @@
           "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
           "slug": "openai-servicenow-enterprise-workflow-partnership",
           "reserved_at": "2026-10-31T17:46:07.826Z"
+        },
+        {
+          "topic": "GPT-6.1 Terra vs. Claude Opus 5.5: Head-to-Head Max Effort Benchmarks",
+          "slug": "gpt-6-1-terra-vs-claude-opus-5-5-benchmark",
+          "reserved_at": "2026-11-01T01:00:07.774Z"
         }
       ],
-      "last_generated": "2026-10-31T23:07:53.375Z"
+      "last_generated": "2026-11-01T01:00:07.774Z"
     },
     "3": {
       "channel_name": "AI Tested",
