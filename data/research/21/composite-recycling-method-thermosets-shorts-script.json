@@ -1,0 +1,88 @@
+{
+  "channel_id": "21",
+  "topic_slug": "composite-recycling-method-thermosets",
+  "format": "shorts",
+  "hook": "Recycling tough pDCPD plastics once required incineration, but 4 institutions now recover intact reinforcing fibers.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Recycling tough pDCPD plastics once required incineration, but 4 institutions now recover intact reinforcing fibers.",
+      "visual_cue": "Macro close-up shot of a dark composite plastic matrix sample resting inside a laboratory glass dish.",
+      "sfx_cue": "Low mechanical rumble followed by a subtle metallic click",
+      "b_roll": [
+        "Macro composite material sample",
+        "Laboratory glass dish display"
+      ],
+      "text_overlay": {
+        "text": "4 INSTITUTIONS\nTHERMOSET RECYCLING"
+      },
+      "transition_out": "quick-cut"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:19",
+      "voiceover": "In September 2026, author Keldy S. Could an eco-friendly solvent recover 2 intact fiber types?",
+      "visual_cue": "Digital document graphic of Science Advances journal header transitioning to high-tech research lab.",
+      "sfx_cue": "Soft paper rustle fading into ambient laboratory hum",
+      "b_roll": [
+        "Science Advances journal publication",
+        "Sandia National Laboratories research facility"
+      ],
+      "text_overlay": {
+        "text": "SCIENCE ADVANCES\nSEPTEMBER 2026"
+      },
+      "transition_out": "whip-pan"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:19-0:25",
+      "voiceover": "Instead of grinding samples, researchers tested the chemistry on a 3D-printed pufferfish.",
+      "visual_cue": "Focus pull on a detailed 3D-printed pufferfish model submerged in a glass beaker solution.",
+      "sfx_cue": "Subtle liquid bubble sound",
+      "b_roll": [
+        "3D printed pufferfish test object",
+        "Submerged beaker test setup"
+      ],
+      "text_overlay": {
+        "text": "TEST OBJECT:\n3D-PRINTED PUFFERFISH"
+      },
+      "transition_out": "flash-cut"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:39",
+      "voiceover": "At The University of Texas at Austin, a green solvent dissolved the plastic. Co-author Meghan T. The process cleanly separated 2 fiber types.",
+      "visual_cue": "Time-lapse chemical breakdown showing the resin dissolving away to expose clean woven fiber strands.",
+      "sfx_cue": "Soft chemical effervescence sound effect",
+      "b_roll": [
+        "Dissolving thermoset plastic matrix",
+        "Exposed carbon and glass fiber strands"
+      ],
+      "text_overlay": {
+        "text": "2 FIBER TYPES RECOVERED\nGLASS & CARBON"
+      },
+      "transition_out": "dissolve"
+    },
+    {
+      "id": "close",
+      "timing": "0:39-0:45",
+      "voiceover": "This breakthrough successfully recovered 2 types of intact fibers, including both glass and carbon.",
+      "visual_cue": "Clear display of isolated glass and carbon fiber bundles held side by side in laboratory tweezers.",
+      "sfx_cue": "Clean glass chime tone",
+      "b_roll": [
+        "Isolated glass fiber bundle",
+        "Isolated carbon fiber bundle"
+      ],
+      "text_overlay": {
+        "text": "INTACT RECOVERY\nGLASS & CARBON FIBERS"
+      },
+      "transition_out": "fade-to-black"
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.1126/sciadv.aef4204",
+    "https://news.utexas.edu/2026/09/14/new-low-waste-chemistry-method-breaks-down-tough-to-recycle-plastics",
+    "https://4engineers.com/conversation/new-technique-for-recycling-composite-materials-breaks-down-thermoset-to-recover-fibers-3648"
+  ]
+}
