@@ -1,0 +1,53 @@
+{
+  "topic_slug": "ai-decoded-british-maritime-history-national-archives",
+  "strongest_angle": "Researchers at the University of Southampton deployed artificial intelligence to process 100,000 pages of historical port books, revealing 461 years of British maritime trade and empire building.",
+  "key_facts": [
+    {
+      "fact": "Researchers at the University of Southampton used artificial intelligence to process about 100,000 pages of handwritten records spanning 461 years of Britain's maritime past.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The University of Southampton project created a first-of-its-kind online interactive map using data extracted from port records to chart Britain's growth into a global trading nation.",
+      "source_url": "https://www.southampton.ac.uk/news/2026/10/ai-reads-centuriesold-handwriting-to-reveal-britains-vast-historic-shipping-trade.page",
+      "source_name": "University of Southampton",
+      "confidence": "high"
+    },
+    {
+      "fact": "Smithsonian Magazine reported on the new searchable online database detailing how Britain built a global empire by trading goods like coal, wine, and wood.",
+      "source_url": "https://www.smithsonianmag.com/smart-news/a-vast-new-database-shows-how-britain-built-a-global-empire-by-trading-goods-like-coal-wine-and-wood-closer-to-home-180989717",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pages of handwritten records processed",
+      "value": 100000,
+      "unit": "pages",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo"
+    },
+    {
+      "label": "Years of maritime past uncovered",
+      "value": 461,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "University of Southampton",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Smithsonian Magazine",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "ai-decoded-british-maritime-history-national-archives",
+  "format": "shorts",
+  "hook": "One hundred thousand pages of hidden logs just unlocked Britain's empire.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "One hundred thousand pages of hidden logs just unlocked Britain's empire.",
+      "visual_cue": "Close‑up of a stack of old handwritten pages with the number 100,000 overlay."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, Southampton researchers applied AI to 100,000 port pages. The AI uncovered trade data across 461 years of Britain’s maritime history. An interactive map now visualizes the network—where can you explore?",
+      "visual_cue": "Animated timeline shows 2026, University of Southampton logo, pages turning into digital data, then a glowing interactive map."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Even BBC News calls the breakthrough a game‑changer for maritime history.",
+      "visual_cue": "BBC News logo appears with a headline banner highlighting the AI breakthrough."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The map shows Britain’s ships moving coal, wine and wood worldwide. These routes powered the growth of a global empire. All derived from AI reading 100,000 pages covering 461 years.",
+      "visual_cue": "World map lights up trade routes of coal, wine, and wood, with data points from the AI analysis."
+    },
+    {
+      "id": "close",
+      "voiceover": "A hundred thousand pages reshaped Britain's empire story.",
+      "visual_cue": "Zoom out to a globe highlighting the British empire, fading back to the stack of pages."
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/cr93z9zq5l9jo",
+    "https://www.southampton.ac.uk/news/2026/10/ai-reads-centuriesold-handwriting-to-reveal-britains-vast-historic-shipping-trade.page"
+  ]
+}
