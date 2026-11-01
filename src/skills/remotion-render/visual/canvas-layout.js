@@ -1426,7 +1426,12 @@ function tableLayout(c) {
       hero = "map";
     } else {
     Object.assign(boxes, dataHeader(c, flip));
-    if (!c?.headline && !c?.lead_in) boxes.rule = rule(flip, TOP);
+    if (!c?.headline && !c?.lead_in) {
+      // Thicker rule (12px) so it's detected by canvas-coverage at half-scale
+      // (6px >= 4px threshold). MAP-BAND uses keep:true; here we just need
+      // enough ink at the top to anchor the 60% span.
+      boxes.rule = { ...rule(flip, TOP), h: 12, keep: true };
+    }
     // Zones: the map is the middle zone (its edges still feather), not the
     // whole frame behind the header — its linework crossed the headline.
     boxes.map = box(0, BODY_TOP, FRAME.w, BOTTOM - BODY_TOP);
