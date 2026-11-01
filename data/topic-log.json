@@ -625,9 +625,14 @@
           "topic": "What World's Oldest Bronze Age Shipwreck Off Turkish Coast Reveals",
           "slug": "worlds-oldest-bronze-age-shipwreck-turkey",
           "reserved_at": "2026-11-01T03:52:53.917Z"
+        },
+        {
+          "topic": "Fingerprint Study Suggests Women and Children Helped Build Terracotta Warriors",
+          "slug": "fingerprint-study-women-children-terracotta-warriors",
+          "reserved_at": "2026-11-01T04:49:17.691Z"
         }
       ],
-      "last_generated": "2026-11-01T03:52:53.917Z"
+      "last_generated": "2026-11-01T04:49:17.691Z"
     },
     "2": {
       "channel_name": "AI Tested",
@@ -1257,9 +1262,14 @@
           "topic": "OpenAI and ServiceNow Expand Enterprise Workflow Partnership",
           "slug": "openai-servicenow-enterprise-workflow-partnership",
           "reserved_at": "2026-10-31T17:46:07.826Z"
+        },
+        {
+          "topic": "Claire Vo Conducts First Personal-Agent Benchmark Across 9 Tasks",
+          "slug": "claire-vo-personal-agent-benchmark-nine-tasks",
+          "reserved_at": "2026-11-01T04:49:09.392Z"
         }
       ],
-      "last_generated": "2026-11-01T03:53:19.925Z"
+      "last_generated": "2026-11-01T04:49:09.392Z"
     },
     "3": {
       "channel_name": "AI Tested",
@@ -4059,7 +4069,7 @@
           "reserved_at": "2026-11-01T01:01:37.433Z"
         }
       ],
-      "last_generated": "2026-11-01T03:53:07.001Z"
+      "last_generated": "2026-11-01T04:48:47.532Z"
     },
     "49": {
       "channel_name": "Picture House",
