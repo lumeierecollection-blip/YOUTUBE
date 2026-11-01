@@ -1,0 +1,32 @@
+{
+  "channel_id": "48",
+  "topic_slug": "cochrane-review-workplace-ergonomics-pain-evidence",
+  "format": "shorts",
+  "hook": "Twenty trials of office ergonomics barely eased any pain.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Twenty trials of office ergonomics barely eased any pain."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026 Cochrane reviewed 20 ergonomic trials, 16 meeting criteria. Four studies of 692 CANS workers found pain barely improved versus no treatment. Why then do firms spend on sit‑stand desks for 692 employees?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Even the single 68‑person well‑being study showed no benefit."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Cochrane’s 20‑trial review found ergonomic tools, sit‑stand desks, and training gave no pain relief. They also produced no functional, sick‑leave, or recovery gains across 20 trials. 20 trials and 692 showed the benefit was zero."
+    },
+    {
+      "id": "close",
+      "voiceover": "Zero pain relief from 20 ergonomic trials."
+    }
+  ],
+  "sources_used": [
+    "https://www.cochrane.org/about-us/news/little-evidence-common-workplace-ergonomics-help-pain",
+    "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or"
+  ]
+}
