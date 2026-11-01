@@ -1267,9 +1267,14 @@
           "topic": "Claire Vo Conducts First Personal-Agent Benchmark Across 9 Tasks",
           "slug": "claire-vo-personal-agent-benchmark-nine-tasks",
           "reserved_at": "2026-11-01T04:49:09.392Z"
+        },
+        {
+          "topic": "Anthropic Claude Sonnet 5.5 vs MoonshotAI Kimi K3 Head-to-Head Test",
+          "slug": "claude-sonnet-5-5-vs-kimi-k3-head-to-head",
+          "reserved_at": "2026-11-01T05:50:09.874Z"
         }
       ],
-      "last_generated": "2026-11-01T04:49:09.392Z"
+      "last_generated": "2026-11-01T05:50:09.874Z"
     },
     "3": {
       "channel_name": "AI Tested",
