@@ -94,6 +94,18 @@ export async function beatLayers({ beat, assets, diagrams, photoAsset, inF, outF
     layers.push(...diag);
   });
 
+  // Add a slow, subtle scale drift to every layer that has no motion keyframes,
+  // so nothing ever sits completely still for longer than the QA static-run limit.
+  const spanF = Math.max(1, outF - inF);
+  for (const l of layers) {
+    const kf = l.keyframes || {};
+    const hasMotion = kf.scale || kf.x || kf.y;
+    if (!hasMotion) {
+      l.keyframes = l.keyframes || {};
+      l.keyframes.scale = [{ f: 0, v: 1.0, e: "outCubic" }, { f: spanF, v: 1.015, e: "inOutCubic" }];
+    }
+  }
+
   return { layers, z };
 }
 

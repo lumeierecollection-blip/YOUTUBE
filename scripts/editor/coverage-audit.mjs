@@ -102,8 +102,11 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
 
   /* ── 6. Phone legibility: text layers have a scrim or dark bg, and size >= 24 ── */
   const textLayers = (timeline.layers || []).filter((l) => l.type === "text");
-  const smallText = textLayers.filter((l) => (l.style && l.style.size) && l.style.size < 24);
+  // Credit/attribution text is small by design and excluded from the content legibility floor.
+  const contentText = textLayers.filter((l) => !/credit/i.test(l.id));
+  const smallText = contentText.filter((l) => (l.style && l.style.size) && l.style.size < 24);
   checks.text_layers = textLayers.length;
+  checks.content_text_layers = contentText.length;
   checks.small_text_layers = smallText.length;
   if (smallText.length) fail("legibility", `${smallText.length} text layer(s) below the 24px phone-readability floor: ${smallText.map((l) => l.id).join(", ")}`);
 

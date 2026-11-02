@@ -122,8 +122,8 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
   // THE VIDEO'S TONE (video-tone.js): what the story is about decides how it is read. A channel's own tts_rate / tts_pitch still win.
   const tone = toneOf({ text: fullText, channelTone: settings.tone });
   console.log(`[tone] ${tone.gravity} — ${tone.emotion}${tone.hits.length ? ` (read from: ${tone.hits.slice(0, 6).join(", ")})` : ""}`);
-  const rate = settings.rate || tone.edge.rate || "+0%";
-  const pitch = settings.pitch || tone.edge.pitch || "+0Hz";
+  const rate = settings.rate || tone.edge.rate || "0%";
+  const pitch = settings.pitch || tone.edge.pitch || "0Hz";
 
   // Write text to a temp file to avoid shell escaping issues with special
   // characters (Unicode, quotes, etc.) in the inline --text argument.

@@ -118,6 +118,28 @@ if (timeline.metadata?.coverage) {
     out: outPath, contact: contactPath, frames: framesDir,
   });
   for (const f of covReport.failures) fail(f.check, f.why);
+  // Coverage path: write final report and exit; do not fall through to the legacy report
+  // (which references legacy-only variables like blackFrames / meanMotion).
+  const finalReport = {
+    editor_timeline: true,
+    coverage_qa: true,
+    pass: failures.length === 0,
+    generated_at: new Date().toISOString(),
+    id: timeline.id,
+    video: videoPath,
+    timeline: timelinePath,
+    duration_s: Number(videoDuration.toFixed(3)),
+    timeline_duration_s: Number(timelineDuration.toFixed(3)),
+    width, height, scale: Number(inferredScale.toFixed(3)),
+    checks: covReport.checks,
+    failures,
+  };
+  writeFileSync(out, JSON.stringify(finalReport, null, 2) + "\n");
+  console.log(`[editor-qa] ${finalReport.pass ? "PASS" : "FAIL"} ${timeline.id} (coverage): ${failures.length} failure(s)`);
+  for (const f of failures) console.error(`[editor-qa] ${f.check}: ${f.why}`);
+  console.log(`[editor-qa] report: ${out}`);
+  console.log(`[editor-qa] contact: ${contactPath}`);
+  process.exit(finalReport.pass ? 0 : 1);
 } else {
   const movingLayers = imageLayers.filter((layer) => {
     const m = effectMagnitude(layer, {
