@@ -1,0 +1,91 @@
+{
+  "topic_slug": "tegaza-001-martian-meteorite-sahara",
+  "strongest_angle": "Scientific analysis of the Teghaza 001 meteorite discovered in the Sahara Desert, revealing an ancient 4.1-billion-year-old igneous rock from Mars.",
+  "key_facts": [
+    {
+      "fact": "The Teghaza 001 meteorite was discovered in the Sahara Desert in 2022 and consists of eight fragments totaling 798.5 grams.",
+      "source_url": "https://www.sci.news/space/martian-meteorite-teghaza-001-15165.html",
+      "source_name": "Sci.News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists determined through mineral age-dating that the Teghaza 001 Martian meteorite formed at least 4.1 billion years ago.",
+      "source_url": "https://www.science.org/doi/10.1126/science.adz5646",
+      "source_name": "Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The largest fragment of the Teghaza 001 meteorite weighs 442 grams and measures roughly 10 centimeters in size.",
+      "source_url": "https://www.sci.news/space/martian-meteorite-teghaza-001-15165.html",
+      "source_name": "Sci.News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Mass",
+      "value": 798.5,
+      "unit": "grams",
+      "source_url": "https://www.sci.news/space/martian-meteorite-teghaza-001-15165.html"
+    },
+    {
+      "label": "Estimated Mass",
+      "value": 800,
+      "unit": "grams",
+      "source_url": "https://www.nasa.gov/solar-system/planets/mars/nasa-funded-study-details-one-of-oldest-mars-meteorites-ever-found"
+    },
+    {
+      "label": "Age",
+      "value": 4.1,
+      "unit": "billion years",
+      "source_url": "https://www.science.org/doi/10.1126/science.adz5646"
+    },
+    {
+      "label": "Largest Fragment Mass",
+      "value": 442,
+      "unit": "grams",
+      "source_url": "https://www.sci.news/space/martian-meteorite-teghaza-001-15165.html"
+    },
+    {
+      "label": "Fragment Size",
+      "value": 10,
+      "unit": "cm",
+      "source_url": "https://www.sci.news/space/martian-meteorite-teghaza-001-15165.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Teghaza 001",
+      "kind": "object"
+    },
+    {
+      "name": "Sahara Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Mars",
+      "kind": "place"
+    },
+    {
+      "name": "Mali",
+      "kind": "place"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Yang Liu",
+      "kind": "person"
+    },
+    {
+      "name": "Lee M. Saper",
+      "kind": "person"
+    }
+  ]
+}

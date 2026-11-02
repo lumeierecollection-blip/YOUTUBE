@@ -1,0 +1,85 @@
+{
+  "channel_id": "17",
+  "topic_slug": "tegaza-001-martian-meteorite-sahara",
+  "format": "shorts",
+  "hook": "A rock discovered in the Sahara Desert is 4.1 billion years old.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "A rock discovered in the Sahara Desert is 4.1 billion years old.",
+      "visual_cue": "Macro shot of a dark, pitted meteorite specimen resting on golden desert sand.",
+      "sfx_cue": "Deep sub-bass rumble sound effect",
+      "b_roll": [
+        "Sahara Desert sand dunes landscape shot",
+        "Martian meteorite fragment macro close-up"
+      ],
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "4.1 Billion Years Old"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:18",
+      "voiceover": "But what makes the Teghaza 001 meteorite, a rare rock from Mars, so incredibly special?",
+      "visual_cue": "Geological expedition graphics mapping the 8 recovered fragment locations across desert coordinates.",
+      "sfx_cue": "Digital scanning beep audio",
+      "b_roll": [
+        "Geologists examining rock specimens in field",
+        "Laboratory scale measuring meteorite mass"
+      ],
+      "transition_out": "whip-pan",
+      "text_overlay": {
+        "text": "798.5g Recovered in Sahara"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:24",
+      "voiceover": "This Martian rock from the Sahara Desert formed at least 4.1 billion years ago.",
+      "visual_cue": "Microscopic cross-section of meteorite minerals under polarized laser illumination.",
+      "sfx_cue": "High-tech synth riser",
+      "b_roll": [
+        "Electron microscope analyzing mineral crystals"
+      ],
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "Ancient Mineral Age-Dating"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:24-00:40",
+      "voiceover": "Scientists publishing in Science determined the rock formed 4.1 billion years ago. Altogether, the 8 recovered fragments weigh exactly 798.5 grams.",
+      "visual_cue": "3D visualization of ancient volcanic Mars transitioning to the Teghaza 001 fragment.",
+      "sfx_cue": "Cinematic low brass swell",
+      "b_roll": [
+        "Science journal cover display animation",
+        "Teghaza 001 main fragment close-up"
+      ],
+      "transition_out": "dissolve",
+      "text_overlay": {
+        "text": "Teghaza 001: 4.1B Years"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:40-00:45",
+      "voiceover": "NASA scientists study this 4.1 billion year old igneous rock from the planet Mars.",
+      "visual_cue": "Slow zoom out from Teghaza 001 to a view of planet Mars in deep space.",
+      "sfx_cue": "Ethereal ambient pad resolution",
+      "b_roll": [
+        "Full globe rendering of red planet Mars"
+      ],
+      "transition_out": "fade-out",
+      "text_overlay": {
+        "text": "Secrets of Early Mars"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sci.news/space/martian-meteorite-teghaza-001-15165.html",
+    "https://www.science.org/doi/10.1126/science.adz5646"
+  ]
+}
