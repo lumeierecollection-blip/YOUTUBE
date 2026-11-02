@@ -4188,9 +4188,14 @@
           "topic": "ATSB October 2026 Investigation Report on Mackay Airport Runway Incursion",
           "slug": "atsb-october-2026-mackay-airport-runway-incursion",
           "reserved_at": "2026-11-01T15:14:44.273Z"
+        },
+        {
+          "topic": "ISO 11228-3:2026: New Ergonomic Standards for Upper Limb Exertions",
+          "slug": "iso-11228-3-2026-ergonomics-upper-limb",
+          "reserved_at": "2026-11-02T19:04:57.797Z"
         }
       ],
-      "last_generated": "2026-11-02T18:29:34.694Z"
+      "last_generated": "2026-11-02T19:04:57.797Z"
     },
     "49": {
       "channel_name": "Picture House",
