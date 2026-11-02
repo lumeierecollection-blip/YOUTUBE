@@ -100,7 +100,39 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   }
   checks.duplicate_asset_overlaps = duplicateUse;
 
-  /* ── 6. Phone legibility: text layers have a scrim or dark bg, and size >= 24 ── */
+  /* ── 6. Creative: label card dominance ──
+       Label cards are honest fallbacks, but a video dominated by them is
+       generic text-on-black, not visual storytelling. Fail when more than
+       half of the beats with image content use label cards instead of real
+       photographs or diagrams. ── */
+  const labelCardAssets = Object.entries(timeline.assets || {}).filter(([, a]) => a.role === "Label card" || /github\.com\/lumeierecollection-blip\/YOUTUBE/.test(a.source_url || ""));
+  const realImageAssets = Object.entries(timeline.assets || {}).filter(([, a]) => a.file && /\.(jpe?g|png|webp)$/i.test(a.file) && a.role !== "Label card");
+  checks.label_card_assets = labelCardAssets.length;
+  checks.real_image_assets = realImageAssets.length;
+  const totalImageAssets = labelCardAssets.length + realImageAssets.length;
+  if (totalImageAssets > 0 && labelCardAssets.length / totalImageAssets > 0.5) {
+    fail("creative-label-cards", `${labelCardAssets.length} of ${totalImageAssets} image assets are label cards (>50%). Video is dominated by generic text cards instead of real photographs.`);
+  }
+
+  /* ── 7. Creative: real photos for person and place concepts ──
+       Person and place concepts should be represented by photographs where
+       available, not label cards. Fail when a person/place concept has no
+       real image asset. ── */
+  const personPlaceLayers = imageLayers.filter((l) => {
+    const a = timeline.assets?.[l.asset_id];
+    return a && (/person|place|organization/i.test(a.role || "") || /person|place/i.test((a.credit || "").toLowerCase()));
+  });
+  const personPlaceWithoutPhoto = personPlaceLayers.filter((l) => {
+    const a = timeline.assets?.[l.asset_id];
+    return a && a.role === "Label card";
+  });
+  checks.person_place_photo_layers = personPlaceLayers.length - personPlaceWithoutPhoto.length;
+  checks.person_place_label_card_layers = personPlaceWithoutPhoto.length;
+  if (personPlaceWithoutPhoto.length > 0) {
+    fail("creative-person-place-photo", `${personPlaceWithoutPhoto.length} person/place image layer(s) use a label card instead of a photograph: ${personPlaceWithoutPhoto.map((l) => l.id).join(", ")}`);
+  }
+
+  /* ── 8. Phone legibility: text layers have a scrim or dark bg, and size >= 24 ── */
   const textLayers = (timeline.layers || []).filter((l) => l.type === "text");
   // Credit/attribution text is small by design and excluded from the content legibility floor.
   const contentText = textLayers.filter((l) => !/credit/i.test(l.id));

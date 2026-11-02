@@ -284,7 +284,7 @@ test("Part 5: physical process gets sequential beats", () => {
   assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for process steps, got ${plan.report.beat_count}`);
 });
 
-test("Part 5: timeline layers include pan drift on all layers to prevent static runs", async () => {
+test("Part 5: image layers have purposeful scale motion; no unmotivated pan drift on every layer", async () => {
   const script = makeTestScript("The bridge collapsed in 1986.");
   const research = makeTestResearch([{ name: "The bridge", kind: "object" }]);
   
@@ -300,9 +300,27 @@ test("Part 5: timeline layers include pan drift on all layers to prevent static 
   const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
   const captions = buildCaptions({ script, whisper: transcriptFromWords({ words }), duration: t });
   const tl = await buildCoverageTimeline({ plan, assetsByBeat: {}, captions, audioDuration: t, channel: {} });
-  // Every layer should have tx or ty keyframes (pan drift) to prevent static runs.
+  // Image layers (when present) must have scale keyframes (purposeful settle motion).
+  // Diagram layers must have draw keyframes. Background solids and text layers
+  // do not need unmotivated pan drift — that is decorative movement the skill rejects.
+  const imageLayers = tl.layers.filter((l) => l.type === "image");
+  const diagramLayers = tl.layers.filter((l) => l.type === "svg");
+  if (imageLayers.length > 0) {
+    for (const l of imageLayers) {
+      const kf = l.keyframes || {};
+      assert.ok(kf.scale && kf.scale.length >= 2, `image layer ${l.id} has no scale motion keyframes`);
+    }
+  }
+  if (diagramLayers.length > 0) {
+    for (const l of diagramLayers) {
+      const kf = l.keyframes || {};
+      assert.ok(kf.draw && kf.draw.length >= 2, `diagram layer ${l.id} has no draw keyframes`);
+    }
+  }
+  // No layer should have unmotivated tx/ty pan drift (the old broken behavior).
   for (const l of tl.layers) {
     const kf = l.keyframes || {};
-    assert.ok(kf.tx || kf.ty || kf.scale || kf.draw, `layer ${l.id} has no motion keyframes (tx/ty/scale/draw)`);
+    assert.ok(!kf.tx, `layer ${l.id} has unmotivated tx pan drift`);
+    assert.ok(!kf.ty, `layer ${l.id} has unmotivated ty pan drift`);
   }
 });

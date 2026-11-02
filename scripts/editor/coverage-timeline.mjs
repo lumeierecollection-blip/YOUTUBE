@@ -57,56 +57,76 @@ async function resolveBeatAssets(beat, { resolveAsset, screenshot, pdftoppm, ask
   return { assets, diagrams, photoAsset };
 }
 
+/**
+ * Composition rects per visual class. Each class lays the beat out
+ * differently so consecutive beats do not look identical.
+ */
+function compRect(visualClass, hasPhoto) {
+  const portrait = { x: 130, y: 300, w: 820, h: 1000 };
+  const full = { x: 0, y: 0, w: W, h: H };
+  const labelZone = { x: 90, y: 1420, w: 900, h: 440 };
+  switch (visualClass) {
+    case "historical": // Ken Burns portrait: photo on the left, labels beneath
+      return { photo: hasPhoto ? portrait : null, labels: labelZone, diagram: { x: 90, y: 420, w: 900, h: 940 }, bg: BG };
+    case "document": // full-frame document, credit at bottom
+      return { photo: hasPhoto ? full : null, labels: { x: 90, y: 1500, w: 900, h: 340 }, diagram: null, bg: BG };
+    case "place": // full-frame place photo with pan, labels overlaid lower third
+      return { photo: hasPhoto ? full : null, labels: { x: 90, y: 1420, w: 900, h: 440 }, diagram: null, bg: BG };
+    case "entity": // portrait: person photo on the right, name label large on the left
+      return { photo: hasPhoto ? { x: 540, y: 300, w: 460, h: 1000 } : null, labels: { x: 90, y: 420, w: 420, h: 520 }, diagram: null, bg: BG };
+    case "photo": // full-frame editorial photo
+      return { photo: hasPhoto ? full : null, labels: { x: 90, y: 1500, w: 900, h: 340 }, diagram: null, bg: BG };
+    case "figure": // diagram/figure prominent, no photo
+      return { photo: null, labels: { x: 90, y: 1300, w: 900, h: 520 }, diagram: { x: 90, y: 300, w: 900, h: 940 }, bg: BG };
+    case "diagram": // diagram prominent, photo secondary if available
+      return { photo: hasPhoto ? portrait : null, labels: { x: 90, y: 1420, w: 900, h: 440 }, diagram: { x: 90, y: 300, w: 900, h: 1000 }, bg: BG };
+    default:
+      return { photo: hasPhoto ? full : null, labels: labelZone, diagram: null, bg: BG };
+  }
+}
+
 /** Build layers for one beat. */
 export async function beatLayers({ beat, assets, diagrams, photoAsset, inF, outF, zBase = 100 }) {
   const span = Math.max(1, outF - inF);
   const layers = [];
   let z = zBase;
+  const c = compRect(beat.visual_class, Boolean(photoAsset && photoAsset.file));
 
   // ── background solid (always, so nothing is ever transparent/blank)
-  layers.push(solidLayer({ id: `beat-${beat.id}-bg`, rect: { x: 0, y: 0, w: W, h: H }, background: BG, inF, outF, z: z++, opacity: 1 }));
+  layers.push(solidLayer({ id: `beat-${beat.id}-bg`, rect: { x: 0, y: 0, w: W, h: H }, background: c.bg, inF, outF, z: z++, opacity: 1 }));
 
-  // ── photo / document base layer
+  // ── photo / document base layer — one photo per beat, composed per visual class
   let photoRect = null;
-  if (photoAsset && photoAsset.file) {
-    const rect = beat.composition === "portrait" ? { x: 130, y: 300, w: 820, h: 1000 } : { x: 0, y: 0, w: W, h: H };
-    photoRect = rect;
-    layers.push(imageLayer({ id: `beat-${beat.id}-image`, assetId: photoAsset.id, rect, fit: beat.composition === "portrait" ? "contain" : "cover", inF, outF, z: z++, motion: beat.motion.type === "push_in" || beat.motion.type === "push_out" ? beat.motion.type : "settle" }));
-    // scrim behind labels so text reads at phone size
-    if (beat.composition !== "diagram") {
+  if (c.photo && photoAsset && photoAsset.file) {
+    photoRect = c.photo;
+    const fit = c.photo.w < W || c.photo.h < H ? "contain" : "cover";
+    const motion = beat.motion.type === "push_in" || beat.motion.type === "push_out" ? beat.motion.type :
+                   beat.motion.type === "pan_left" ? "pan_left" : "settle";
+    layers.push(imageLayer({ id: `beat-${beat.id}-image`, assetId: photoAsset.id, rect: c.photo, fit, inF, outF, z: z++, motion }));
+    // scrim behind labels so text reads at phone size (skip for diagram-centric layouts)
+    if (c.diagram === null) {
       layers.push(scrimLayer({ id: `beat-${beat.id}-scrim`, rect: { x: 0, y: 0, w: W, h: H }, inF, outF, z: z++ }));
     }
     // credit tag (bottom-left)
     layers.push(creditLayer({ id: `beat-${beat.id}-credit`, text: photoAsset.credit, rect: { x: 60, y: 1660, w: 960, h: 40 }, inF, outF, z: z++, size: 14 }));
   }
 
-  // ── concept labels (staggered, reading order)
-  const labels = beat.concepts.filter((c) => c.essential !== false).map((c) => c.label);
-  const labelRects = beat.concepts.filter((c) => c.essential !== false).map((c, k) => ({
-    x: 90, y: photoRect ? (beat.composition === "portrait" ? 1420 + k * 110 : 980 + k * 120) : 400 + k * 130, w: 900, h: 110,
+  // ── concept labels (staggered, reading order) — positioned per visual class
+  const essential = beat.concepts.filter((c2) => c2.essential !== false);
+  const labels = essential.map((c2) => c2.label);
+  const labelRects = essential.map((c2, k) => ({
+    x: c.labels.x, y: c.labels.y + k * 110, w: c.labels.w, h: 100,
   }));
   layers.push(...labelLayers({ idBase: `beat-${beat.id}`, labels, rects: labelRects, inF, outF, z, size: 28, delay: 6 }));
   z += labels.length * 2 + 2;
 
   // ── diagram layers (drawn by the renderer; no image file)
-  diagrams.forEach(({ concept }, d) => {
-    const diag = diagramLayersFor(concept, { id: `beat-${beat.id}-diag-${d}`, inF, outF, z: z + d * 3, rect: photoRect || { x: 90, y: 400, w: 900, h: 1000 } });
-    layers.push(...diag);
-  });
-
-  // Add a slow pan drift to every layer so nothing ever sits completely still
-  // for longer than the QA static-run limit. tx/ty are pixel translations
-  // applied as CSS transform on every layer type (including SVG diagrams),
-  // unlike scale which only affects image layers.
-  const spanF = Math.max(1, outF - inF);
-  for (const l of layers) {
-    l.keyframes = l.keyframes || {};
-    if (!l.keyframes.tx) {
-      l.keyframes.tx = [{ f: 0, v: 0, e: "outCubic" }, { f: Math.max(1, spanF / 2), v: 40, e: "inOutCubic" }, { f: spanF, v: 0, e: "inOutCubic" }];
-    }
-    if (!l.keyframes.ty) {
-      l.keyframes.ty = [{ f: 0, v: 0, e: "outCubic" }, { f: Math.max(1, spanF / 2), v: 30, e: "inOutCubic" }, { f: spanF, v: 0, e: "inOutCubic" }];
-    }
+  if (c.diagram && diagrams.length) {
+    diagrams.forEach(({ concept }, d) => {
+      const diag = diagramLayersFor(concept, { id: `beat-${beat.id}-diag-${d}`, inF, outF, z: z + d * 3, rect: c.diagram });
+      layers.push(...diag);
+    });
+    z += diagrams.length * 3 + 2;
   }
 
   return { layers, z };

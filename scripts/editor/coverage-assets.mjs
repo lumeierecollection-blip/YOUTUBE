@@ -260,15 +260,14 @@ export async function resolveAsset({ concept, research, channel, askVision, scre
     }
   }
 
-  // Named person / organization: Wikipedia lead image first.
+  // ── Person / organization ──
+  // Try Wikipedia lead image first, then Commons search for the name.
+  // Many historical and niche figures do not have a Wikipedia lead image;
+  // Commons often has portraits, engravings, or photographs of them.
   if (kind === "person" || kind === "organization") {
     const resolved = await wikipediaLeadImage({ name: label, kind, historical });
     if (resolved) return resolved;
-  }
-
-  // Named object: Commons search for a photograph.
-  if (kind === "object" || kind === "place") {
-    const found = await commonsSearch({ query: concept.query || label });
+    const found = await commonsSearch({ query: concept.query || label, limit: 6 });
     for (const rec of found) {
       const buf = await getBytes(rec.thumb);
       if (!buf) continue;
@@ -279,12 +278,42 @@ export async function resolveAsset({ concept, research, channel, askVision, scre
     }
   }
 
-  // Event / relation / state: historical depiction (Wikipedia lead of the named person/place) or label card.
+  // ── Object / place ──
+  // Commons search first (photographs of places and objects), then Wikipedia
+  // lead image as a fallback for places that have one.
+  if (kind === "object" || kind === "place") {
+    const found = await commonsSearch({ query: concept.query || label });
+    for (const rec of found) {
+      const buf = await getBytes(rec.thumb);
+      if (!buf) continue;
+      const v = await verifyAssetRelevance({ sentence: "", query: rec.title, jpeg: buf, askVision });
+      if (!v.ok) continue;
+      const staged = stageAsset(buf, `commons-${slug(rec.title)}`);
+      return { ...staged, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license, role: "Photograph" };
+    }
+    if (kind === "place") {
+      const wiki = await wikipediaLeadImage({ name: label, kind, historical });
+      if (wiki) return wiki;
+    }
+  }
+
+  // ── Event / relation / state / number / position / version / date ──
+  // Try Commons search for a related depiction, then Wikipedia lead image of
+  // the named person/place, then an honest label card.
   if (kind === "event" || kind === "relation" || kind === "state" || kind === "number" || kind === "position" || kind === "version" || kind === "date") {
     const named = research?.named_entities?.find((e) => /person|place|organization/i.test(e.kind) && label.includes(e.name.split(" ")[0]));
     if (named) {
-      const resolved = await wikipediaLeadImage({ name: named.name, kind: named.kind, historical: true });
-      if (resolved) return { ...resolved, role: "Historical depiction" };
+      const wiki = await wikipediaLeadImage({ name: named.name, kind: named.kind, historical: true });
+      if (wiki) return { ...wiki, role: "Historical depiction" };
+      const found = await commonsSearch({ query: named.name });
+      for (const rec of found) {
+        const buf = await getBytes(rec.thumb);
+        if (!buf) continue;
+        const v = await verifyAssetRelevance({ sentence: "", query: rec.title, jpeg: buf, askVision });
+        if (!v.ok) continue;
+        const staged = stageAsset(buf, `commons-${slug(rec.title)}`);
+        return { ...staged, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license, role: "Historical depiction" };
+      }
     }
   }
 
