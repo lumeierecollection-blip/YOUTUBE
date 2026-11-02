@@ -16,13 +16,16 @@ import { execFileSync } from "child_process";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import { buildAutoPlan, seededRandom } from "./auto-plan.mjs";
-import { graphicLayers, decorationLayers, sweepLayers } from "./graphics.mjs";
+import { graphicLayers } from "./graphics.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
 import { scriptSentences } from "./captions.mjs";
 import { resolveChannel } from "../lib/channel-lookup.mjs";
 import { conceptQueries, searchCommons, downloadPhoto, defaultAsk, defaultAskVision, verifyConceptPhoto } from "./concept-photo.mjs";
+import { buildCoveragePlan } from "./coverage-plan.mjs";
+import { buildCoverageTimeline } from "./coverage-timeline.mjs";
+import { resolveAsset } from "./coverage-assets.mjs";
 
 const require = createRequire(import.meta.url);
 const ROOT = resolve(fileURLToPath(new URL("../..", import.meta.url)));
@@ -100,13 +103,8 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
   plan.scenes.forEach((sc, i) => {
     const base = timeline.layers.find((l) => l.id === "scene-" + i + "-image");
     if (!base) return;
-    if (!sc.graphic) {
-      // A photo scene with no figure still moves: the accent draws itself across it (graphics.mjs decorationLayers).
-      if (/^card-/.test(sc.asset)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
-      if (/^(photo|concept)-/.test(sc.asset)) timeline.layers.push(...decorationLayers({ id: "scene-" + i + "-d", look: sc.look, palette: plan.palette, inF: base.in + (sc.stagger || 0), outF: base.out }));
-      return;
-    }
     const g = sc.graphic;
+    if (!g) return;
     const inF = base.in + (sc.stagger || 0);
     const layers = graphicLayers({ ...g, id: "scene-" + i + "-g", look: g.look, palette: plan.palette, secondary, inF, outF: base.out, rng: seededRandom(plan.id + ":" + i) });
     timeline.layers.push(...layers);
@@ -156,6 +154,69 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
   return { stem, timelinePath: rel(timelinePath), report, scenes: plan.scenes.length, frames: timeline.durationInFrames };
 }
 
+/** Coverage path (opt-in via --coverage / EDITOR_COVERAGE): sentence-level visual coverage instead of one scene per sentence. */
+export async function buildCoverageOne({ channelId, scriptPath, channel, resolve: resolver, ask, probeDuration, screenshot, pdftoppm, askVision }) {
+  const stem = basename(scriptPath, ".json");
+  const base = join(ROOT, "data", "tts", channelId, `${stem}-vo`);
+  const audio = `${base}.mp3`;
+  const wordsPath = `${base}-words.json`;
+  if (!existsSync(wordsPath)) throw new Error(`${stem}: no word timings at ${rel(wordsPath)} (the voiceover step writes them)`);
+  const script = JSON.parse(readFileSync(scriptPath, "utf8"));
+  const researchPath = scriptPath.replace(/-(shorts|longform)-script\.json$/, ".json");
+  const research = existsSync(researchPath) ? JSON.parse(readFileSync(researchPath, "utf8")) : {};
+  const words = JSON.parse(readFileSync(wordsPath, "utf8"));
+  const audioDuration = probeDuration(audio);
+
+  const dir = join(ROOT, "data", "editor", "auto", stem);
+  mkdirSync(dir, { recursive: true });
+
+  const plan = buildCoveragePlan({ script, research, words: words.words, audioDuration });
+  writeFileSync(join(dir, "coverage-plan.json"), JSON.stringify(plan, null, 2));
+  writeFileSync(join(dir, "coverage-report.json"), JSON.stringify(plan.report, null, 2));
+
+  // Resolve assets for every beat (fail closed: null asset means a label card, never a fake image).
+  const assetsByBeat = {};
+  for (const beat of plan.beats) {
+    assetsByBeat[beat.id] = await resolveBeatAssets(beat, { research, channel, screenshot, pdftoppm, askVision });
+  }
+
+  const captions = buildCaptions({ script, whisper: transcriptFromWords(words), duration: audioDuration });
+  const timeline = await buildCoverageTimeline({ plan, assetsByBeat, captions, audioDuration, channel });
+  timeline.metadata.plan = rel(join(dir, "coverage-plan.json"));
+  timeline.metadata.coverage = true;
+  timeline.metadata.audio_duration_sec = audioDuration;
+  timeline.metadata.generator = "scripts/editor/auto-timeline.mjs (coverage)";
+  const timelinePath = join(dir, "timeline.json");
+  writeFileSync(timelinePath, JSON.stringify(timeline, null, 2));
+
+  const beatsWithAssets = plan.beats.filter((b) => assetsByBeat[b.id]?.photoAsset || assetsByBeat[b.id]?.diagrams.length);
+  return {
+    stem, timelinePath: rel(timelinePath), report: plan.report,
+    scenes: plan.beats.length, frames: timeline.durationInFrames,
+    beats: plan.beats.length, uncovered: plan.report.uncovered.length,
+    photoBeats: beatsWithAssets.length,
+  };
+}
+
+async function resolveBeatAssets(beat, { research, channel, screenshot, pdftoppm, askVision }) {
+  const out = { assets: {}, diagrams: [], photoAsset: null };
+  for (const c of beat.concepts) {
+    if (c.essential === false) continue;
+    const visual = c.visual;
+    if (visual === "diagram" || visual === "annotated" || visual === "figure") {
+      out.diagrams.push({ concept: c });
+      continue;
+    }
+    const resolved = await resolveAsset({ concept: c, research, channel, screenshot, pdftoppm, askVision });
+    if (resolved) {
+      const id = `asset-${beat.id}-${c.id}`;
+      out.assets[id] = { file: resolved.file, width: resolved.width, height: resolved.height, credit: resolved.credit, source_url: resolved.source_url, license: resolved.license };
+      if (!out.photoAsset) out.photoAsset = { id, ...resolved, concept: c };
+    }
+  }
+  return out;
+}
+
 function findScripts(channelId) {
   const dir = join(ROOT, "data", "research", channelId);
   if (!existsSync(dir)) return [];
@@ -182,14 +243,22 @@ async function main() {
   // --style N / EDITOR_STYLE=N forces one look (the comparison workflow); otherwise each video chooses its own from its slug (auto-plan.mjs)
   const forced = get("style") || process.env.EDITOR_STYLE;
   const style = forced ? Number(forced) || 0 : 0;
+  const coverage = args.includes("--coverage") || process.env.EDITOR_COVERAGE === "1";
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");
-    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration });
+    let r;
+    if (coverage) {
+      r = await buildCoverageOne({ channelId, scriptPath, channel, resolve: resolver, ask, probeDuration });
+      console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.beats} beats, ${r.uncovered} uncovered, ${r.photoBeats} photo beats -> ${r.timelinePath}`);
+      console.log(`    timing=${r.report.timing} beats=${r.report.beat_count} concepts=${r.report.concept_count}`);
+    } else {
+      r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration });
+      console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (style ${r.report.style}, timing from ${r.report.spans}, ${r.report.photos} verified photo(s))`);
+      for (const s of r.report.scenes) console.log(`  [${s.sentence}] ${s.start}-${s.end}s ${s.shows}`);
+      for (const m of r.report.misses) console.log(`  [${m.sentence}] no verified photo of ${m.entity}: ${m.why}`);
+    }
     map[stem] = r.timelinePath;
-    console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (style ${r.report.style}, timing from ${r.report.spans}, ${r.report.photos} verified photo(s))`);
-    for (const s of r.report.scenes) console.log(`  [${s.sentence}] ${s.start}-${s.end}s ${s.shows}`);
-    for (const m of r.report.misses) console.log(`  [${m.sentence}] no verified photo of ${m.entity}: ${m.why}`);
   }
 
   const mapPath = join(ROOT, "data", "editor", "auto", "map.json");
