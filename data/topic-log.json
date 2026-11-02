@@ -1262,9 +1262,14 @@
           "topic": "Google Gemini Connected Apps Preview: Adobe and Peloton Integration",
           "slug": "google-gemini-connected-apps-preview",
           "reserved_at": "2026-11-01T15:14:53.209Z"
+        },
+        {
+          "topic": "Gemini 4 Carbon vs Claude Opus 5.5 GDPx Benchmark Test Results",
+          "slug": "gemini-4-carbon-vs-claude-opus-5-5-gdpx-benchmark",
+          "reserved_at": "2026-11-02T18:29:03.519Z"
         }
       ],
-      "last_generated": "2026-11-01T15:14:53.209Z"
+      "last_generated": "2026-11-02T18:29:03.519Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
