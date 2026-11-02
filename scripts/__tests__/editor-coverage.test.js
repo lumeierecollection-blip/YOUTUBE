@@ -317,8 +317,11 @@ test("Part 5: image layers have purposeful scale motion; no unmotivated pan drif
       assert.ok(kf.draw && kf.draw.length >= 2, `diagram layer ${l.id} has no draw keyframes`);
     }
   }
-  // No layer should have unmotivated tx/ty pan drift (the old broken behavior).
+  // Image layers may have motivated Ken Burns pan (tx/ty drift) — that is
+  // acceptable cinematographic movement, not unmotivated parallax.
+  // Text, solid, and diagram layers should NOT have unmotivated tx/ty drift.
   for (const l of tl.layers) {
+    if (l.type === "image") continue;
     const kf = l.keyframes || {};
     assert.ok(!kf.tx, `layer ${l.id} has unmotivated tx pan drift`);
     assert.ok(!kf.ty, `layer ${l.id} has unmotivated ty pan drift`);

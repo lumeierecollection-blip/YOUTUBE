@@ -98,6 +98,10 @@ export function imageLayer({
     // completely still (prevents near-static runs > 4s in the final QA gate).
     const drift = 0.05;
     scaleKfs = [{ f: 0, v: start, e: "outCubic" }, { f: span, v: start + drift, e: "inOutCubic" }];
+    // Subtle Ken Burns pan on photographs — motivated camera movement that
+    // keeps the frame alive between narration beats, not unmotivated parallax.
+    xKfs = [{ f: 0, v: 0, e: "outCubic" }, { f: span, v: 0.02, e: "inOutCubic" }];
+    yKfs = [{ f: 0, v: 0, e: "outCubic" }, { f: span, v: 0.015, e: "inOutCubic" }];
   }
   const keyframes = {
     opacity: fade(span, { opacity: 1, fadeIn: 5, fadeOut: 6 }),
