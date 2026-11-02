@@ -1,0 +1,69 @@
+{
+  "topic_slug": "greek-pantheon-feats-zeus-versus-poseidon-analyzed",
+  "strongest_angle": "Comparing the divine attributes, familial origins from Cronus and Rhea, and distinct cosmic realms of Zeus and Poseidon using classical mythological sources.",
+  "key_facts": [
+    {
+      "fact": "Zeus and Poseidon are brothers born to Cronus and Rhea, who worked with their siblings and the Cyclopes to overthrow Cronus and take dominion over Mount Olympus and the universe.",
+      "source_url": "https://mythnerd.com/zeus-vs-poseidon-what-is-the-difference",
+      "source_name": "Myth Nerd",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Homeric accounts referenced in Perseus Tufts, Zeus dwelt on Mount Olympus in Thessaly and held supreme sovereignty as the father of gods and men whom all immortals obey.",
+      "source_url": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.04.0104%3Aentry%3Dzeus-bio-1",
+      "source_name": "Perseus Project",
+      "confidence": "high"
+    },
+    {
+      "fact": "Poseidon is recognized as the Olympian god of the Mediterranean sea, earthquakes, floods, and drought, distinguished by his iconic three-pronged fisherman's spear known as the trident.",
+      "source_url": "https://www.theoi.com/Olympios/Poseidon.html",
+      "source_name": "Theoi Project",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the division of cosmic realms among the brothers, Zeus received the sky and weather, while Poseidon was assigned lordship over the sea and the fluid element.",
+      "source_url": "https://mythologysource.com/zeus-and-poseidon",
+      "source_name": "Mythology Source",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Olympian Brothers",
+      "value": 3,
+      "unit": "brothers",
+      "source_url": "https://mythologysource.com/zeus-and-poseidon"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Zeus",
+      "kind": "person"
+    },
+    {
+      "name": "Poseidon",
+      "kind": "person"
+    },
+    {
+      "name": "Cronus",
+      "kind": "person"
+    },
+    {
+      "name": "Rhea",
+      "kind": "person"
+    },
+    {
+      "name": "Mount Olympus",
+      "kind": "place"
+    },
+    {
+      "name": "Thessaly",
+      "kind": "place"
+    },
+    {
+      "name": "Cyclopes",
+      "kind": "organization"
+    }
+  ]
+}
