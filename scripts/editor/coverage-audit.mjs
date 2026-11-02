@@ -120,7 +120,12 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
        real image asset. ── */
   const personPlaceLayers = imageLayers.filter((l) => {
     const a = timeline.assets?.[l.asset_id];
-    return a && (/person|place|organization/i.test(a.role || "") || /person|place/i.test((a.credit || "").toLowerCase()));
+    if (!a) return false;
+    // Label card assets are fallbacks; check if their credit/label references a person or place.
+    const isLabelCard = a.role === "Label card";
+    const creditMentionsPersonPlace = /person|place|historical figure|portrait/i.test(a.credit || "");
+    const isPersonPlaceAsset = /person|place|organization/i.test(a.role || "") || creditMentionsPersonPlace;
+    return isPersonPlaceAsset;
   });
   const personPlaceWithoutPhoto = personPlaceLayers.filter((l) => {
     const a = timeline.assets?.[l.asset_id];

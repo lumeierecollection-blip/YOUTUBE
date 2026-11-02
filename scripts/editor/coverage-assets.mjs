@@ -107,8 +107,8 @@ export async function commonsSearch({ query, limit = 4 }) {
     const ii = p.imageinfo?.[0];
     if (!ii || ii.mime !== "image/jpeg") continue;
     const title = String(p.title || "").replace(/^File:/, "");
-    if (/logo|icon|map|flag|diagram|chart|graph|screenshot|poster|cover|stamp|coin|signature|banner|infographic|\bpdf\b|\bsvg\b|scan|page|book|manuscript|portrait|selfie|crowd|nude|swim|bikini|advert|billboard|ad_/i.test(title)) continue;
-    if (Math.min(ii.width || 0, ii.height || 0) < 900) continue;
+    if (/logo|icon|map|flag|diagram|chart|graph|screenshot|poster|cover|stamp|coin|signature|banner|infographic|\bpdf\b|\bsvg\b|scan|page|book|manuscript|selfie|crowd|nude|swim|bikini|advert|billboard|ad_/i.test(title)) continue;
+    if (Math.min(ii.width || 0, ii.height || 0) < 600) continue;
     const md = ii.extmetadata || {};
     const license = (strip(md.LicenseShortName) || strip(md.UsageTerms) || "");
     if (!license || /non-?free|fair use/i.test(license)) continue;
@@ -261,20 +261,26 @@ export async function resolveAsset({ concept, research, channel, askVision, scre
   }
 
   // ── Person / organization ──
-  // Try Wikipedia lead image first, then Commons search for the name.
+  // Try Wikipedia lead image first, then Commons search with multiple queries.
   // Many historical and niche figures do not have a Wikipedia lead image;
   // Commons often has portraits, engravings, or photographs of them.
   if (kind === "person" || kind === "organization") {
     const resolved = await wikipediaLeadImage({ name: label, kind, historical });
     if (resolved) return resolved;
-    const found = await commonsSearch({ query: concept.query || label, limit: 6 });
-    for (const rec of found) {
-      const buf = await getBytes(rec.thumb);
-      if (!buf) continue;
-      const v = await verifyAssetRelevance({ sentence: "", query: rec.title, jpeg: buf, askVision });
-      if (!v.ok) continue;
-      const staged = stageAsset(buf, `commons-${slug(rec.title)}`);
-      return { ...staged, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license, role: "Photograph" };
+    // Try multiple Commons queries to find a relevant depiction.
+    const queries = historical
+      ? [`${label} portrait`, `${label} historical`, `${label}`, `${label} engraving`]
+      : [concept.query || label, `${label} photograph`, `${label}`];
+    for (const query of queries) {
+      const found = await commonsSearch({ query, limit: 4 });
+      for (const rec of found) {
+        const buf = await getBytes(rec.thumb);
+        if (!buf) continue;
+        const v = await verifyAssetRelevance({ sentence: "", query: rec.title, jpeg: buf, askVision });
+        if (!v.ok) continue;
+        const staged = stageAsset(buf, `commons-${slug(rec.title)}`);
+        return { ...staged, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license, role: "Photograph" };
+      }
     }
   }
 
@@ -298,21 +304,26 @@ export async function resolveAsset({ concept, research, channel, askVision, scre
   }
 
   // ── Event / relation / state / number / position / version / date ──
-  // Try Commons search for a related depiction, then Wikipedia lead image of
-  // the named person/place, then an honest label card.
+  // Try Wikipedia lead image of the named person/place, then Commons search
+  // with multiple queries for a related depiction, then an honest label card.
   if (kind === "event" || kind === "relation" || kind === "state" || kind === "number" || kind === "position" || kind === "version" || kind === "date") {
     const named = research?.named_entities?.find((e) => /person|place|organization/i.test(e.kind) && label.includes(e.name.split(" ")[0]));
     if (named) {
       const wiki = await wikipediaLeadImage({ name: named.name, kind: named.kind, historical: true });
       if (wiki) return { ...wiki, role: "Historical depiction" };
-      const found = await commonsSearch({ query: named.name });
-      for (const rec of found) {
-        const buf = await getBytes(rec.thumb);
-        if (!buf) continue;
-        const v = await verifyAssetRelevance({ sentence: "", query: rec.title, jpeg: buf, askVision });
-        if (!v.ok) continue;
-        const staged = stageAsset(buf, `commons-${slug(rec.title)}`);
-        return { ...staged, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license, role: "Historical depiction" };
+      const queries = historical
+        ? [`${named.name} historical`, `${named.name} engraving`, `${named.name}`]
+        : [`${named.name}`, `${label}`];
+      for (const query of queries) {
+        const found = await commonsSearch({ query, limit: 4 });
+        for (const rec of found) {
+          const buf = await getBytes(rec.thumb);
+          if (!buf) continue;
+          const v = await verifyAssetRelevance({ sentence: "", query: rec.title, jpeg: buf, askVision });
+          if (!v.ok) continue;
+          const staged = stageAsset(buf, `commons-${slug(rec.title)}`);
+          return { ...staged, credit: rec.credit, source_url: rec.page || rec.url, license: rec.license, role: "Historical depiction" };
+        }
       }
     }
   }
