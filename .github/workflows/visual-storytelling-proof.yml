@@ -84,7 +84,7 @@ jobs:
 
       - name: Generate voiceover (TTS + per-word timings)
         run: |
-          node src/utils/tts.js "$CHANNEL" "$SCRIPT"
+          node src/utils/tts.js "$CHANNEL" "$SCRIPT" 2>&1
           ls -la data/tts/$CHANNEL/
 
       - name: Build coverage timeline (auto-timeline --coverage)

@@ -137,7 +137,7 @@ if (timeline.metadata?.coverage) {
   writeFileSync(outPath, JSON.stringify(finalReport, null, 2) + "\n");
   console.log(`[editor-qa] ${finalReport.pass ? "PASS" : "FAIL"} ${timeline.id} (coverage): ${failures.length} failure(s)`);
   for (const f of failures) console.error(`[editor-qa] ${f.check}: ${f.why}`);
-  console.log(`[editor-qa] report: ${out}`);
+  console.log(`[editor-qa] report: ${outPath}`);
   console.log(`[editor-qa] contact: ${contactPath}`);
   process.exit(finalReport.pass ? 0 : 1);
 } else {
