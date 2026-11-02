@@ -610,9 +610,14 @@
           "topic": "Did Margaret Clitherow's 1586 Execution Shape Guy Fawkes?",
           "slug": "margaret-clitherow-execution-guy-fawkes",
           "reserved_at": "2026-11-01T15:15:00.865Z"
+        },
+        {
+          "topic": "The 1676 King Philip's War Cataclysm and 350 Years of History",
+          "slug": "king-philips-war-350th-anniversary-cataclysm",
+          "reserved_at": "2026-11-02T18:28:49.883Z"
         }
       ],
-      "last_generated": "2026-11-01T15:15:00.865Z"
+      "last_generated": "2026-11-02T18:28:49.883Z"
     },
     "2": {
       "channel_name": "AI Tested",
