@@ -1,0 +1,85 @@
+{
+  "topic_slug": "gemini-4-carbon-vs-claude-opus-5-5-gdpx-benchmark",
+  "strongest_angle": "Anthropic's Claude Opus 5.5 leads SemiAnalysis's GDPx benchmark scoring 12.0%, while Google's Gemini 4 Carbon secures second place with a score of 10.9% at a third of the cost per task.",
+  "key_facts": [
+    {
+      "fact": "Anthropic's Claude Opus 5.5 achieved the top score of 12.0% on SemiAnalysis's GDPx benchmark released on November 2, 2026.",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon",
+      "source_name": "Robotic Guide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google's Gemini 4 Carbon placed second on the GDPx benchmark with a score of 10.9% while costing a third of the price per task.",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon",
+      "source_name": "Robotic Guide",
+      "confidence": "high"
+    },
+    {
+      "fact": "SemiAnalysis designed the GDPx benchmark to include 206 expert tasks giving AI agents up to eight hours to complete them.",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon",
+      "source_name": "Robotic Guide",
+      "confidence": "high"
+    },
+    {
+      "fact": "SemiAnalysis released the GDPx benchmark on November 2, 2026, evaluating 20 models across 11 professional agentic domains.",
+      "source_url": "https://fourweekmba.com/ai-opus-5-5-leads-semianalysiss-gdpx-agent-benchmark-at-12",
+      "source_name": "FourWeekMBA",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Claude Opus 5.5 GDPx Score",
+      "value": 12,
+      "unit": "percent",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon"
+    },
+    {
+      "label": "Gemini 4 Carbon GDPx Score",
+      "value": 10.9,
+      "unit": "percent",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon"
+    },
+    {
+      "label": "GDPx Total Expert Tasks",
+      "value": 206,
+      "unit": "tasks",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon"
+    },
+    {
+      "label": "Agent Maximum Execution Time",
+      "value": 8,
+      "unit": "hours",
+      "source_url": "https://roboticaguide.com/gdpx-benchmark-results-opus-5-5-gemini-4-carbon"
+    },
+    {
+      "label": "GDPx Benchmark Release Date Day",
+      "value": 2,
+      "unit": "day",
+      "source_url": "https://fourweekmba.com/ai-opus-5-5-leads-semianalysiss-gdpx-agent-benchmark-at-12"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Claude Opus 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "Gemini 4 Carbon",
+      "kind": "object"
+    },
+    {
+      "name": "SemiAnalysis",
+      "kind": "organization"
+    },
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    }
+  ]
+}
