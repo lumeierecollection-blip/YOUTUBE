@@ -166,5 +166,17 @@
     "cancelled": true,
     "source_file": "google-gemini-connected-apps-preview-shorts-shorts-2026-11-01.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "HI9sMf9Lan0",
+    "channel_id": "2",
+    "title": "Gemini 4 Carbon vs Claude Opus 5.5 GDPx Benchmark Test…",
+    "uploaded_at": "2026-11-02T18:48:15.311Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-02T19:48:15.311Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "gemini-4-carbon-vs-claude-opus-5-5-gdpx-benchmark-shorts-shorts-2026-11-02.mp4",
+    "source_queue": "approved"
   }
 ]
