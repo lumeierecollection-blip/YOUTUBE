@@ -1,0 +1,68 @@
+{
+  "channel_id": "9",
+  "topic_slug": "nahwa-uae-village-nested-inside-oman",
+  "format": "shorts",
+  "hook": "What if a UAE village of 302 people existed inside Oman?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if a UAE village of 302 people existed inside Oman?",
+      "b_roll": [
+        "nahwa-village-sign",
+        "oman-uae-border-map"
+      ],
+      "text_overlay": {
+        "text": "302 PEOPLE INSIDE OMAN"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Driving through the tiny village of Nahwa in Sharjah reveals architecture that's similar to the Hajar mountains. Why is Nahwa completely surrounded by Oman?",
+      "b_roll": [
+        "hajar-mountains-view",
+        "winding-road-new-madha",
+        "map-zoom-nahwa"
+      ],
+      "text_overlay": {
+        "text": "5 KM ROAD FROM NEW MADHA"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Nahwa sits inside the Omani territory of Madha, forming a rare second-order enclave.",
+      "b_roll": [
+        "nested-enclave-diagram",
+        "madha-nahwa-border"
+      ],
+      "text_overlay": {
+        "text": "ENCLAVE INSIDE AN ENCLAVE"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 2015 census recorded 302 people living in this isolated Sharjah territory. Nahwa covers a total area of 4.4 square kilometers inside the Omani territory of Madha.",
+      "b_roll": [
+        "nahwa-street-architecture",
+        "area-map-4.4-sq-km",
+        "sharjah-flag-governance"
+      ],
+      "text_overlay": {
+        "text": "4.4 SQ KM AREA"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "You'll drive along a 5 kilometer winding road from the Omani village New Madha.",
+      "b_roll": [
+        "nahwa-aerial-landscape"
+      ],
+      "text_overlay": {
+        "text": "NAHWA, SHARJAH"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Nahwa",
+    "https://www.cnn.com/travel/nahwa-sharjah-uae-counter-enclave"
+  ]
+}
