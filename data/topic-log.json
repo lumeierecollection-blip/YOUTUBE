@@ -2410,9 +2410,14 @@
           "topic": "IAC Study Measures IC 1101 Galaxy at 1.7 Million Light-Years Wide",
           "slug": "iac-study-measures-ic-1101-galaxy-size",
           "reserved_at": "2026-11-01T15:19:48.846Z"
+        },
+        {
+          "topic": "Physical Size of a Billion-Solar-Mass Black Hole Compared to the Sun",
+          "slug": "billion-solar-mass-black-hole-size",
+          "reserved_at": "2026-11-02T18:35:39.923Z"
         }
       ],
-      "last_generated": "2026-11-01T15:19:48.846Z"
+      "last_generated": "2026-11-02T18:35:39.923Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
