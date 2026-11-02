@@ -115,7 +115,7 @@ if (timeline.metadata?.coverage) {
   const coverageReport = existsSync(coverageReportPath) ? JSON.parse(readFileSync(coverageReportPath, "utf8")) : null;
   const covReport = await auditCoverage({
     timeline, coverageReport, video: videoPath,
-    out, contact: contactPath, frames: framesDir,
+    out: outPath, contact: contactPath, frames: framesDir,
   });
   for (const f of covReport.failures) fail(f.check, f.why);
 } else {

@@ -67,7 +67,7 @@ jobs:
       - name: Install system tools (ffmpeg, ffprobe, poppler-utils, Chrome, edge-tts)
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends ffmpeg poppler-utils
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg poppler-utils python-is-python3
           ffmpeg -version | head -1
           pdftoppm -v | head -1
           pip3 install edge-tts

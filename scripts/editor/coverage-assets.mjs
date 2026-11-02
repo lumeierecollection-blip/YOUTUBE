@@ -125,7 +125,8 @@ function strip(v) { return String(v?.value || "").replace(/<[^>]+>/g, "").replac
 /** ------------------------------------------------------------------ patent (PDF page render) */
 
 export async function patentPage({ number, pageNo = 1, dpi = 150 }) {
-  const pdfUrl = `https://patentimages.storage.googleapis.com/pdfs/${number}.pdf`;
+  const patentNum = number.replace(/\s+/g, "");
+  const pdfUrl = `https://patentimages.storage.googleapis.com/pdfs/${patentNum}.pdf`;
   const buf = await getBytes(pdfUrl);
   if (!buf) return null;
   // Render page `pageNo` of the PDF to PNG via pdftoppm, then stage it.
@@ -254,7 +255,7 @@ export async function resolveAsset({ concept, research, channel, askVision, scre
   if (kind === "document" && /^patent\s+US/i.test(label)) {
     const m = label.match(/US\s?\d{7,}[A-Z]\d?/i);
     if (m) {
-      const resolved = await patentPage({ number: m[1].replace(/\s+/g, ""), pageNo: 1 });
+      const resolved = await patentPage({ number: m[0].replace(/\s+/g, ""), pageNo: 1 });
       if (resolved) return resolved;
     }
   }
