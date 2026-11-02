@@ -2552,9 +2552,14 @@
           "topic": "Pentaheptite Carbon Nanoribbon Conductance and Low Scattering",
           "slug": "pentaheptite-carbon-nanoribbon-conductance",
           "reserved_at": "2026-11-01T15:20:14.065Z"
+        },
+        {
+          "topic": "Rail Accident Investigation Branch Report on Bluebell Railway Coupling Safety",
+          "slug": "bluebell-railway-coupling-safety-raib-report",
+          "reserved_at": "2026-11-02T18:36:47.309Z"
         }
       ],
-      "last_generated": "2026-11-01T15:20:14.065Z"
+      "last_generated": "2026-11-02T18:36:47.309Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
