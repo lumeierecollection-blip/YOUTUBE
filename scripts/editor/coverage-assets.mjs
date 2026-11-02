@@ -73,6 +73,9 @@ function stageCardSVG(svg, id) {
 
 /** ------------------------------------------------------------------ Wikipedia / Commons */
 
+const RASTER = (buf) => (buf[0] === 0x89 && buf[1] === 0x50)   // PNG
+  || (buf[0] === 0xff && buf[1] === 0xd8);                     // JPEG
+
 export async function wikipediaLeadImage({ name, kind, historical }) {
   const title = encodeURIComponent(String(name).replace(/ /g, "_"));
   const url = `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&piprop=original&titles=${title}&pilicense=any`;
@@ -82,7 +85,7 @@ export async function wikipediaLeadImage({ name, kind, historical }) {
   const page = Object.values(pages)[0];
   if (!page || !page.original) return null;
   const buf = await getBytes(page.original.source);
-  if (!buf) return null;
+  if (!buf || !RASTER(buf)) return null; // skip SVGs and other non-raster lead images
   const { width, height } = imageSize(buf);
   if (Math.min(width, height) < 600) return null;
   const staged = stageAsset(buf, `wiki-${slug(name)}`);

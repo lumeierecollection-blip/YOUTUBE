@@ -181,7 +181,7 @@ export async function buildCoverageOne({ channelId, scriptPath, channel, resolve
   }
 
   const captions = buildCaptions({ script, whisper: transcriptFromWords(words), duration: audioDuration });
-  const timeline = await buildCoverageTimeline({ plan, assetsByBeat, captions, audioDuration, channel });
+  const timeline = await buildCoverageTimeline({ plan, assetsByBeat, captions, audioDuration, channel, sourceScript: rel(scriptPath), sourceAudio: rel(audio) });
   timeline.metadata.plan = rel(join(dir, "coverage-plan.json"));
   timeline.metadata.coverage = true;
   timeline.metadata.audio_duration_sec = audioDuration;

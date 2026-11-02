@@ -136,7 +136,7 @@ export function beatCaptions(beat, captions) {
  * captions: caption cues from buildCaptions (one per sentence)
  * audioDuration: seconds
  */
-export async function buildCoverageTimeline({ plan, assetsByBeat, captions = [], audioDuration, channel }) {
+export async function buildCoverageTimeline({ plan, assetsByBeat, captions = [], audioDuration, channel, sourceScript, sourceAudio }) {
   const duration = Math.max(0.1, Number(audioDuration || 0));
   const durationInFrames = Math.max(1, Math.round(duration * FPS));
   const beats = plan.beats || [];
@@ -182,6 +182,8 @@ export async function buildCoverageTimeline({ plan, assetsByBeat, captions = [],
     metadata: {
       generated_at: new Date().toISOString(),
       generator: "scripts/editor/coverage-timeline.mjs",
+      source_script: sourceScript || null,
+      source_audio: sourceAudio || null,
       beat_count: beats.length,
       unique_assets: Object.keys(allAssets).length,
     },
