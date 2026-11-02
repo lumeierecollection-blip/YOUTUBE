@@ -134,7 +134,7 @@ if (timeline.metadata?.coverage) {
     checks: covReport.checks,
     failures,
   };
-  writeFileSync(out, JSON.stringify(finalReport, null, 2) + "\n");
+  writeFileSync(outPath, JSON.stringify(finalReport, null, 2) + "\n");
   console.log(`[editor-qa] ${finalReport.pass ? "PASS" : "FAIL"} ${timeline.id} (coverage): ${failures.length} failure(s)`);
   for (const f of failures) console.error(`[editor-qa] ${f.check}: ${f.why}`);
   console.log(`[editor-qa] report: ${out}`);

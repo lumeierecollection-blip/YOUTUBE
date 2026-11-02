@@ -94,7 +94,10 @@ export function imageLayer({
     scaleKfs = [{ f: 0, v: start + 0.05, e: "inOutSine" }, { f: span, v: start + 0.05 }];
     xKfs = [{ f: 0, v: -0.03, e: "inOutSine" }, { f: span, v: 0.03 }];
   } else {
-    scaleKfs = [{ f: 0, v: start, e: "outCubic" }, { f: Math.min(span, 18), v: start + 0.015 }, { f: span, v: start + 0.015 }];
+    // Continuous slow scale drift for the entire layer duration so nothing sits
+    // completely still (prevents near-static runs > 4s in the final QA gate).
+    const drift = 0.05;
+    scaleKfs = [{ f: 0, v: start, e: "outCubic" }, { f: span, v: start + drift, e: "inOutCubic" }];
   }
   const keyframes = {
     opacity: fade(span, { opacity: 1, fadeIn: 5, fadeOut: 6 }),
