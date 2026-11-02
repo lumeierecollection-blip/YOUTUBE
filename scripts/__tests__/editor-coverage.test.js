@@ -146,3 +146,163 @@ test("coverage audit fails when an asset lacks credit or source_url", async () =
   assert.equal(report.pass, false, "audit should fail on missing provenance");
   assert.ok(report.failures.some((f) => f.check === "provenance"), "expected a provenance failure");
 });
+
+/** Build a minimal synthetic script + research for focused sentence tests. */
+function makeTestScript(voiceover) {
+  return {
+    sources_used: ["https://example.com/test"],
+    sections: [{ id: "s1", voiceover }],
+  };
+}
+
+function makeTestResearch(entities = []) {
+  return { strongest_angle: "test", named_entities: entities };
+}
+
+test("Part 5: one important subject gets at least one beat", () => {
+  const script = makeTestScript("The bridge collapsed in 1986.");
+  const research = makeTestResearch([{ name: "The bridge", kind: "object" }, { name: "1986", kind: "year" }]);
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 1, `expected 1+ beat for single subject, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: two distinct subjects get at least two beats", () => {
+  const script = makeTestScript("The engineer inspected the bridge while workers evacuated residents.");
+  const research = makeTestResearch([{ name: "The engineer", kind: "person" }, { name: "the bridge", kind: "object" }, { name: "workers", kind: "person" }, { name: "residents", kind: "person" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for two subjects, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: several subjects and actions get multiple beats", () => {
+  const script = makeTestScript("The aircraft approached the runway as the control tower issued landing clearance.");
+  const research = makeTestResearch([{ name: "The aircraft", kind: "object" }, { name: "the runway", kind: "object" }, { name: "the control tower", kind: "object" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for aircraft+tower, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: before-and-after explanation gets distinct beats", () => {
+  const script = makeTestScript("Before the renovation, the hall was dark. After the renovation, it was bright.");
+  const research = makeTestResearch([{ name: "the hall", kind: "object" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for before/after, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: geographical explanation names place and event", () => {
+  const script = makeTestScript("The earthquake struck San Francisco in 1906.");
+  const research = makeTestResearch([{ name: "San Francisco", kind: "place" }, { name: "1906", kind: "year" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for place+year, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: historical person and document get coverage", () => {
+  const script = makeTestScript("Margaret Clitherow refused to enter a plea in the 1586 trial record.");
+  const research = makeTestResearch([{ name: "Margaret Clitherow", kind: "person" }, { name: "1586", kind: "year" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for person+document, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: physical process gets sequential beats", () => {
+  const script = makeTestScript("The engine burns fuel, drives the pistons, and turns the crankshaft.");
+  const research = makeTestResearch([{ name: "The engine", kind: "object" }, { name: "fuel", kind: "object" }, { name: "pistons", kind: "object" }, { name: "crankshaft", kind: "object" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  assert.equal(plan.report.uncovered.length, 0, `uncovered: ${JSON.stringify(plan.report.uncovered)}`);
+  assert.ok(plan.report.beat_count >= 2, `expected 2+ beats for process steps, got ${plan.report.beat_count}`);
+});
+
+test("Part 5: timeline layers include pan drift on all layers to prevent static runs", async () => {
+  const script = makeTestScript("The bridge collapsed in 1986.");
+  const research = makeTestResearch([{ name: "The bridge", kind: "object" }]);
+  
+  const sentences = scriptSentences(script);
+  let t = 0;
+  const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/);
+    const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); });
+    t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  const captions = buildCaptions({ script, whisper: transcriptFromWords({ words }), duration: t });
+  const tl = await buildCoverageTimeline({ plan, assetsByBeat: {}, captions, audioDuration: t, channel: {} });
+  // Every layer should have tx or ty keyframes (pan drift) to prevent static runs.
+  for (const l of tl.layers) {
+    const kf = l.keyframes || {};
+    assert.ok(kf.tx || kf.ty || kf.scale || kf.draw, `layer ${l.id} has no motion keyframes (tx/ty/scale/draw)`);
+  }
+});
