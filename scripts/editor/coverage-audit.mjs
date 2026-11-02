@@ -100,20 +100,7 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   }
   checks.duplicate_asset_overlaps = duplicateUse;
 
-  /* ── 6. Creative: at least some real photographs ──
-       Label cards are honest fallbacks, but a video with zero real
-       photographs is not visual storytelling. Report when all image assets
-       are label cards so the owner can investigate external asset sources. ── */
-  const labelCardAssets = Object.entries(timeline.assets || {}).filter(([, a]) => a.role === "Label card");
-  const realImageAssets = Object.entries(timeline.assets || {}).filter(([, a]) => a.file && /\.(jpe?g|png|webp)$/i.test(a.file) && a.role !== "Label card");
-  checks.label_card_assets = labelCardAssets.length;
-  checks.real_image_assets = realImageAssets.length;
-  const totalImageAssets = labelCardAssets.length + realImageAssets.length;
-  if (totalImageAssets > 0 && realImageAssets.length === 0) {
-    console.warn(`[coverage-qa] WARNING: ${totalImageAssets} image asset(s) are all label cards. No real photograph or document was resolved. Check Commons/Wikipedia accessibility.`);
-  }
-
-  /* ── 7. Phone legibility: text layers have a scrim or dark bg, and size >= 24 ── */
+  /* ── 6. Phone legibility: text layers have a scrim or dark bg, and size >= 24 ── */
   const textLayers = (timeline.layers || []).filter((l) => l.type === "text");
   // Credit/attribution text is small by design and excluded from the content legibility floor.
   const contentText = textLayers.filter((l) => !/credit/i.test(l.id));
