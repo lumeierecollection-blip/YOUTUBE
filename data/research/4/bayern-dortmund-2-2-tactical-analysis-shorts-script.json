@@ -1,0 +1,66 @@
+{
+  "channel_id": "4",
+  "topic_slug": "bayern-dortmund-2-2-tactical-analysis",
+  "format": "shorts",
+  "hook": "Borussia Dortmund won 57 percent of duels at Allianz Arena.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Borussia Dortmund won 57 percent of duels at Allianz Arena.",
+      "b_roll": [
+        "stadium interior during high-intensity match"
+      ],
+      "text_overlay": {
+        "text": "57% DUELS WON"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible 3-4-2-1 shape. How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Arena?",
+      "b_roll": [
+        "tactical board movement diagram",
+        "coaching staff on sideline"
+      ],
+      "text_overlay": {
+        "text": "35 TOTAL SHOTS"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Munich.",
+      "b_roll": [
+        "tactical formation shift animation"
+      ],
+      "text_overlay": {
+        "text": "4-4-2 DEFENSIVE BLOCK"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for Dortmund. Borussia Dortmund twice leveled the score against heavy territorial pressure. That intense battle ended with 2 goals for each side.",
+      "b_roll": [
+        "counter attack play breakdown",
+        "scoreboard displaying 2-2 result"
+      ],
+      "text_overlay": {
+        "text": "FINAL: 2-2"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Borussia Dortmund earned 2 goals to secure the 2-2 draw.",
+      "b_roll": [
+        "match statistic overview sheet"
+      ],
+      "text_overlay": {
+        "text": "2-2 DRAW AT ALLIANZ ARENA"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bvb.de/de/en/news/news-overview/news.html/2026/11/1/SensationalWhat-particularly-impressed-Niko-Kovac-about-the-2-2-draw-in-Munich.html",
+    "https://tacticalfootballanalysis.com/bayern-munich-borussia-dortmund-2026-2027-tactical-analysis-tactics",
+    "https://www.thepressingzone.com/bayern-vs-dortmund-tactical-analysis-2026",
+    "https://www.bundesliga.com/en/bundesliga/news/borussia-dortmund-klassiker-bayern-munich-draw-kovac-guirassy-39818"
+  ]
+}

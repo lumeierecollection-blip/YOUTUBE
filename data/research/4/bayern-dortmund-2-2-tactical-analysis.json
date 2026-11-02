@@ -1,0 +1,87 @@
+{
+  "topic_slug": "bayern-dortmund-2-2-tactical-analysis",
+  "strongest_angle": "Examining Niko Kovač's flexible 3-4-2-1 tactical setup that transitioned into a 4-4-2 block, countering Bayern Munich's territorial pressure during the 2-2 Bundesliga draw at the Allianz Arena.",
+  "key_facts": [
+    {
+      "fact": "Borussia Dortmund lined up under Niko Kovač in a flexible 3-4-2-1 formation that shifted into a 4-4-2 shape at the Allianz Arena during their 2-2 Bundesliga draw.",
+      "source_url": "https://www.thepressingzone.com/bayern-vs-dortmund-tactical-analysis-2026",
+      "source_name": "The Pressing Zone",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The match featured 35 total shots on goal with fiercely contested duels where the Borussia Dortmund players won 57 percent of the duels.",
+      "source_url": "https://www.bvb.de/de/en/news/news-overview/news.html/2026/11/1/SensationalWhat-particularly-impressed-Niko-Kovac-about-the-2-2-draw-in-Munich.html",
+      "source_name": "Borussia Dortmund Official Website",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Bayern Munich fielded acting manager Aaron Danks in a customary 4-2-3-1 base shape during the 2-2 fixture against Borussia Dortmund.",
+      "source_url": "https://tacticalfootballanalysis.com/bayern-munich-borussia-dortmund-2026-2027-tactical-analysis-tactics",
+      "source_name": "Tactical Football Analysis",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Serhou Guirassy and Fabio Silva provided the chief strike threats as Borussia Dortmund twice leveled the score in the 2-2 draw in Munich.",
+      "source_url": "https://www.bundesliga.com/en/bundesliga/news/borussia-dortmund-klassiker-bayern-munich-draw-kovac-guirassy-39818",
+      "source_name": "Bundesliga Official Website",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Final score goals for Dortmund",
+      "value": 2,
+      "unit": "goals",
+      "source_url": "https://tacticalfootballanalysis.com/bayern-munich-borussia-dortmund-2026-2027-tactical-analysis-tactics"
+    },
+    {
+      "label": "Final score goals for Bayern",
+      "value": 2,
+      "unit": "goals",
+      "source_url": "https://tacticalfootballanalysis.com/bayern-munich-borussia-dortmund-2026-2027-tactical-analysis-tactics"
+    },
+    {
+      "label": "Total shots on goal in the match",
+      "value": 35,
+      "unit": "shots",
+      "source_url": "https://www.bvb.de/de/en/news/news-overview/news.html/2026/11/1/SensationalWhat-particularly-impressed-Niko-Kovac-about-the-2-2-draw-in-Munich.html"
+    },
+    {
+      "label": "Duel win percentage by Borussia Dortmund",
+      "value": 57,
+      "unit": "percent",
+      "source_url": "https://www.bvb.de/de/en/news/news-overview/news.html/2026/11/1/SensationalWhat-particularly-impressed-Niko-Kovac-about-the-2-2-draw-in-Munich.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Niko Kovač",
+      "kind": "person"
+    },
+    {
+      "name": "Aaron Danks",
+      "kind": "person"
+    },
+    {
+      "name": "Serhou Guirassy",
+      "kind": "person"
+    },
+    {
+      "name": "Fabio Silva",
+      "kind": "person"
+    },
+    {
+      "name": "Bayern Munich",
+      "kind": "organization"
+    },
+    {
+      "name": "Borussia Dortmund",
+      "kind": "organization"
+    },
+    {
+      "name": "Allianz Arena",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}
