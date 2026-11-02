@@ -1,0 +1,76 @@
+{
+  "topic_slug": "nicki-minaj-275k-lawsuit-paused-attorney-withdrawal",
+  "strongest_angle": "Examine the court docket where New York Supreme Court Justice Leslie A. Stroth temporarily stayed proceedings in the $275,000 Jingle Ball lawsuit involving Nicki Minaj and Pink Friday Productions LLC after attorney Bruce W. Bieber stated the attorney-client relationship had irretrievably broken down.",
+  "key_facts": [
+    {
+      "fact": "New York Supreme Court Justice Leslie A. Stroth signed an October 27, 2026 order staying all proceedings in a $275,000 lawsuit involving Nicki Minaj and Pink Friday Productions LLC.",
+      "source_url": "https://radaronline.com/p/nicki-minak-judge-freezes-lawsuit-trump-press-secretary",
+      "source_name": "RadarOnline",
+      "confidence": "high"
+    },
+    {
+      "fact": "Attorney Bruce W. Bieber of Kurzman Eisenberg Corbin & Lever LLP stated in court papers filed on October 23, 2026, that the attorney-client relationship with Nicki Minaj has irretrievably broken down.",
+      "source_url": "https://www.dancehallmag.com/2026/11/01/news/judge-pauses-nicki-minajs-275k-jingle-ball-lawsuit-as-her-lawyers-seek-to-withdraw.html",
+      "source_name": "DancehallMag",
+      "confidence": "high"
+    },
+    {
+      "fact": "A New York judge paused the $275,000 Jingle Ball dispute and set a December hearing regarding the legal team's request to withdraw from representing Nicki Minaj.",
+      "source_url": "https://allhiphop.com/news/exclusive-judge-pauses-nicki-minajs-275k-jingle-ball-fight-as-lawyers-seek-exit",
+      "source_name": "AllHipHop",
+      "confidence": "high"
+    },
+    {
+      "fact": "The $275,000 lawsuit against Nicki Minaj and Pink Friday Productions LLC was filed by 24/7 Productions over her 2023 Jingle Ball run.",
+      "source_url": "https://www.dancehallmag.com/2026/11/01/news/judge-pauses-nicki-minajs-275k-jingle-ball-lawsuit-as-her-lawyers-seek-to-withdraw.html",
+      "source_name": "DancehallMag",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit dispute amount",
+      "value": 275000,
+      "unit": "dollars",
+      "source_url": "https://allhiphop.com/news/exclusive-judge-pauses-nicki-minajs-275k-jingle-ball-fight-as-lawyers-seek-exit"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "the attorney-client relationship has irretrievably broken down such that continued representation is no longer feasible or appropri",
+      "speaker": "Bruce W. Bieber",
+      "source_name": "DancehallMag",
+      "source_url": "https://www.dancehallmag.com/2026/11/01/news/judge-pauses-nicki-minajs-275k-jingle-ball-lawsuit-as-her-lawyers-seek-to-withdraw.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Nicki Minaj",
+      "kind": "person"
+    },
+    {
+      "name": "Bruce W. Bieber",
+      "kind": "person"
+    },
+    {
+      "name": "Leslie A. Stroth",
+      "kind": "person"
+    },
+    {
+      "name": "Pink Friday Productions LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Kurzman Eisenberg Corbin & Lever LLP",
+      "kind": "organization"
+    },
+    {
+      "name": "24/7 Productions",
+      "kind": "organization"
+    },
+    {
+      "name": "New York Supreme Court",
+      "kind": "organization"
+    }
+  ]
+}

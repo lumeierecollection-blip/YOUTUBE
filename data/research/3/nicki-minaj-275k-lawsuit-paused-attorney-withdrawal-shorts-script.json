@@ -1,0 +1,48 @@
+{
+  "channel_id": "3",
+  "topic_slug": "nicki-minaj-275k-lawsuit-paused-attorney-withdrawal",
+  "format": "shorts",
+  "hook": "A $275,000 lawsuit over Nicki Minaj's tour hit a sudden wall.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A $275,000 lawsuit over Nicki Minaj's tour hit a sudden wall.",
+      "text_overlay": {
+        "text": "$275,000 LAWSUIT HALTED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 27, 2026, Justice Leslie A. Stroth froze proceedings against Pink Friday Productions LLC. Company 24/7 Productions sued over her 2023 Jingle Ball tour. Why did the judge pause this $275,000 fight?",
+      "text_overlay": {
+        "text": "COURT PROCEEDINGS FROZEN"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the freeze came because her own lawyers requested to walk away.",
+      "text_overlay": {
+        "text": "ATTORNEYS SEEK EXIT"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "In court papers, Bruce W. He stated in filed papers that the attorney-client relationship with Nicki Minaj irretrievably broke down. A December hearing will resolve the attorney withdrawal.",
+      "text_overlay": {
+        "text": "RELATIONSHIP BROKEN DOWN"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The $275,000 dispute remains paused until that exit hearing.",
+      "text_overlay": {
+        "text": "HEARING SET FOR DECEMBER"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://allhiphop.com/news/exclusive-judge-pauses-nicki-minajs-275k-jingle-ball-fight-as-lawyers-seek-exit",
+    "https://www.dancehallmag.com/2026/11/01/news/judge-pauses-nicki-minajs-275k-jingle-ball-lawsuit-as-her-lawyers-seek-to-withdraw.html",
+    "https://radaronline.com/p/nicki-minak-judge-freezes-lawsuit-trump-press-secretary"
+  ]
+}
