@@ -258,7 +258,7 @@ jobs:
 
       - name: Validate Timeline
         run: |
-          TL="data/editor/auto/${{ env.STEM }}/timeline.json"
+          TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
           if [ -f "$TL" ]; then
             echo "[timeline] Timeline structure:"
             node -e "
@@ -318,7 +318,7 @@ jobs:
 
       - name: Render Video
         run: |
-          TL="data/editor/auto/${{ env.STEM }}/timeline.json"
+          TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
           AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
           OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
           
@@ -390,7 +390,7 @@ jobs:
 
       - name: Run Video QA
         run: |
-          TL="data/editor/auto/${{ env.STEM }}/timeline.json"
+          TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
           VID="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
           OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json"
           CONTACT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg"
