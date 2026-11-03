@@ -171,6 +171,36 @@ export function aiDiagram({ id, inF, outF, z, rect = { x: 90, y: 460, w: 900, h:
   return flowDiagram({ id, nodes: ["Integration workflows", "Artificial intelligence", "Enterprise agents"], link: "connect using AI", inF, outF, z, rect });
 }
 
+/** Diagram dispatcher: maps a concept's diagram kind to the appropriate diagram function. */
+export function diagramLayersFor(concept, { id, inF, outF, z, rect = { x: 90, y: 400, w: 900, h: 700 } }) {
+  const kind = concept.diagram || "label";
+  const label = concept.label;
+  switch (kind) {
+    case "date":
+      return dateDiagram({ id, value: concept.value, label, inF, outF, z, rect });
+    case "version":
+      return versionDiagram({ id, a: label, b: "", inF, outF, z, rect });
+    case "number":
+      return numberDiagram({ id, number: concept.value, label, inF, outF, z, rect });
+    case "clock":
+      return clockDiagram({ id, positions: concept.value ? [concept.value] : [10, 2], label, inF, outF, z, rect });
+    case "relation":
+      return relationDiagram({ id, a: label, b: "", link: "", inF, outF, z, rect });
+    case "causal":
+      return causalDiagram({ id, cause: label, effect: "", inF, outF, z, rect });
+    case "plea":
+      return pleaDiagram({ id, label, inF, outF, z, rect });
+    case "flow":
+      return flowDiagram({ id, nodes: [label], link: "", inF, outF, z, rect });
+    case "negotiation":
+      return negotiationDiagram({ id, inF, outF, z, rect });
+    case "ai":
+      return aiDiagram({ id, inF, outF, z, rect });
+    default:
+      return labelCard({ id, text: label, inF, outF, z, rect });
+  }
+}
+
 /** Label card: a single centred phrase on a card, used when no real image exists. */
 export function labelCard({ id, text, inF, outF, z, rect = { x: 90, y: 560, w: 900, h: 340 }, color = CARD, size = 40 }) {
   const span = Math.max(1, outF - inF);
