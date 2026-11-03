@@ -1,4 +1,4 @@
-ï»¿/**
+/**
  * Build a persisted editor timeline from a coverage-plan beat.
  *
  * Input: one beat from buildCoveragePlan (start/end seconds, concepts,
@@ -11,7 +11,7 @@
  * Every layer has a stated start frame, end frame and motion reason. Nothing
  * decorative: no dot fields, no sweeps, no corner brackets, no grid drift.
  * Motion is purposeful: push_in/push_out for historical reveals, pan_left for
- * places, draw for diagrams, settle for documents/photos â€” matching the
+ * places, draw for diagrams, settle for documents/photos — matching the
  * beat.motion from the coverage plan. No unmotivated parallax.
  */
 import { frames, textLayer, solidLayer, imageLayer, svgLayer } from "./coverage-layers.mjs";
@@ -90,9 +90,9 @@ export async function beatLayers({ beat, assets, diagrams, photoAsset, inF, outF
   let z = zBase;
 
   // Background solid (always, so nothing is ever transparent/blank)
-  layers.push(solidLayer({ id: `beat-${beat.id}-bg`, rect: { x: 0, y: 0, w: W, h: H }, background: BG, inF, outF, z: z++, opacity: 1 }));
+  layers.push(solidLayer({ id: `beat-${beat.id}-bg`, rect: { x: 0, y: 0, w: W, h: H }, background: BG, inF, outF, z: z++, opacity: 1, keyframes: { opacity: [{ f: 0, v: 1, e: "outCubic" }, { f: span, v: 1, e: "inOutCubic" }], ty: [{ f: 0, v: 0, e: "outCubic" }, { f: span * 0.5, v: 100, e: "inOutCubic" }, { f: span, v: 0, e: "inOutCubic" }], tx: [{ f: 0, v: 0, e: "outCubic" }, { f: span * 0.5, v: 50, e: "inOutCubic" }, { f: span, v: 0, e: "inOutCubic" }] }}));
 
-  // Photo / document base layer â€” composition varies by visual class
+  // Photo / document base layer — composition varies by visual class
   const comp = compRect(beat.visual_class, !!photoAsset);
   let photoRect = null;
   if (photoAsset && photoAsset.file && comp.photoRect) {
