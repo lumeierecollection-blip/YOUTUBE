@@ -78,7 +78,7 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   checks.person_place_image_layers = personPlaceImageLayers.length;
   checks.person_place_label_cards = personPlaceLabelCards.length;
   if (personPlaceLabelCards.length) {
-    fail("person-place-photo", `${personPlaceLabelCards.length} person/place image layer(s) use a label card instead of a photograph: ${personPlaceLabelCards.map(([i]) => i).join(", ")}`);
+    fail("person-place-photo", `${personPlaceLabelCards.length} person/place image layer(s) use a label card instead of a photograph: ${personPlaceLabelCards.map((l) => l.id).join(", ")}`);
   }
 
   /* ── 3. Meaningful motion on every image layer ── */

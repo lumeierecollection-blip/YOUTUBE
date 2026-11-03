@@ -314,3 +314,100 @@ test("Part 5: timeline layers include pan drift on all layers to prevent static 
     }
   }
 });
+
+/** Build a minimal coverage timeline with controllable image layers. */
+function minimalTimeline(imageLayers = [], extra = {}) {
+  return {
+    id: "coverage-test",
+    title: "Coverage test timeline",
+    width: 1080, height: 1920, fps: 30, durationInFrames: 300,
+    palette: {}, fonts: {}, caption_style: {},
+    assets: {},
+    layers: [
+      { id: "bg", type: "solid", rect: { x: 0, y: 0, w: 1080, h: 1920 }, in: 0, out: 300, z: 1, props: { opacity: 1 }, keyframes: { opacity: [{ f: 0, v: 1 }] } },
+      ...imageLayers,
+    ],
+    captions: [],
+    metadata: { coverage: true, ...extra.metadata },
+    ...extra,
+  };
+}
+
+function imageLayer(id, { role, file, asset_id = "asset-" + id, motion = "push_in", credit = "Test", source_url = "https://example.com/x" } = {}) {
+  const layer = {
+    id, type: "image", asset_id, role,
+    rect: { x: 0, y: 0, w: 1080, h: 1920 }, in: 0, out: 90, z: 10, props: { opacity: 1 },
+    keyframes: { opacity: [{ f: 0, v: 1 }, { f: 90, v: 1 }], scale: [{ f: 0, v: 1 }, { f: 90, v: 1.08 }] },
+  };
+  if (file) layer.file = file;
+  if (motion === "still") layer.keyframes = { opacity: [{ f: 0, v: 1 }, { f: 90, v: 1 }] };
+  return layer;
+}
+
+test("coverage audit regression: person/place label-card image layer no longer throws (object is not iterable)", async () => {
+  // Before the fix, line 81 ran personPlaceLabelCards.map(([i]) => i) over
+  // layer OBJECTS (not [key, value] tuples), throwing TypeError: object is not iterable.
+  const tl = minimalTimeline([
+    imageLayer("img-person-card", { role: "person", file: "margaret.label.card.png", motion: "push_in" }),
+  ]);
+  tl.assets["asset-img-person-card"] = { file: "data/editor/auto/assets/margaret.label.card.png", width: 1080, height: 1920, credit: "Test", source_url: "https://example.com/person", license: "Test" };
+  let threw = false;
+  let report = null;
+  try {
+    report = await auditCoverage({ timeline: tl, coverageReport: { uncovered: [], beat_count: 1 } });
+  } catch (e) { threw = true; console.error("unexpected throw:", e); }
+  assert.equal(threw, false, "audit must not throw on person/place label-card image layers");
+  assert.equal(report.pass, false, "audit should fail a person/place label-card layer");
+  assert.ok(report.failures.some((f) => f.check === "person-place-photo"), "expected a person-place-photo failure");
+  assert.ok(report.failures.some((f) => f.why.includes("img-person-card")), "failure should name the offending layer");
+  assert.equal(report.checks.person_place_image_layers, 1);
+  assert.equal(report.checks.person_place_label_cards, 1);
+});
+
+test("coverage audit counts moving vs still image layers and evaluates image layers", async () => {
+  const tl = minimalTimeline([
+    imageLayer("img-moving", { motion: "push_in" }),
+    imageLayer("img-still", { motion: "still" }),
+  ]);
+  tl.assets["asset-img-moving"] = { file: "a.jpg", credit: "C", source_url: "https://example.com/a", license: "T" };
+  tl.assets["asset-img-still"] = { file: "b.jpg", credit: "C", source_url: "https://example.com/b", license: "T" };
+  const report = await auditCoverage({ timeline: tl, coverageReport: { uncovered: [], beat_count: 1 } });
+  assert.equal(report.pass, false, "still image layer should fail the motion check");
+  assert.equal(report.checks.image_layers, 2);
+  assert.equal(report.checks.moving_image_layers, 1);
+  assert.equal(report.checks.still_image_layers, 1);
+  assert.ok(report.failures.some((f) => f.check === "motion" && f.why.includes("img-still")));
+});
+
+test("coverage audit handles empty image layers and missing optional fields without throwing", async () => {
+  // No image layers at all.
+  const empty = minimalTimeline([]);
+  let report = await auditCoverage({ timeline: empty, coverageReport: { uncovered: [], beat_count: 0 } });
+  assert.equal(report.pass, false, "no beats should fail");
+  assert.equal(report.checks.image_layers, 0);
+  assert.equal(report.checks.moving_image_layers, 0);
+  assert.equal(report.checks.still_image_layers, 0);
+
+  // Image layer missing optional role/file/credit/source_url fields.
+  const sparse = minimalTimeline([
+    imageLayer("img-sparse", {}), // no role, no file, default asset_id
+  ]);
+  sparse.assets = {}; // asset not registered -> no provenance entry for it
+  report = await auditCoverage({ timeline: sparse, coverageReport: { uncovered: [], beat_count: 1 } });
+  assert.equal(report.checks.image_layers, 1);
+  assert.equal(report.checks.person_place_image_layers, 0);
+  assert.equal(report.checks.person_place_label_cards, 0);
+  assert.equal(report.pass, true, "sparse but motionful layer with no person/place role should pass");
+});
+
+test("coverage audit ignores layers without asset_id as image layers (unexpected structure)", async () => {
+  const tl = minimalTimeline([
+    { id: "not-image", type: "solid", rect: { x: 0, y: 0, w: 1080, h: 1920 }, in: 0, out: 300, z: 1, props: { opacity: 1 } },
+    { id: "image-no-asset", type: "image", rect: { x: 0, y: 0, w: 1080, h: 1920 }, in: 0, out: 90, z: 10, props: { opacity: 1 }, keyframes: { scale: [{ f: 0, v: 1 }, { f: 90, v: 1.08 }] } }, // no asset_id
+    imageLayer("img-real", { motion: "push_in" }),
+  ]);
+  tl.assets["asset-img-real"] = { file: "a.jpg", credit: "C", source_url: "https://example.com/a", license: "T" };
+  const report = await auditCoverage({ timeline: tl, coverageReport: { uncovered: [], beat_count: 1 } });
+  assert.equal(report.checks.image_layers, 1, "only layers with asset_id count as image layers");
+  assert.equal(report.pass, true);
+});
