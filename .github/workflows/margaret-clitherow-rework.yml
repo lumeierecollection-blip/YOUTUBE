@@ -56,8 +56,10 @@ jobs:
 
       - name: Install System Tools
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg poppler-utils python-is-python3 curl jq
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg poppler-utils python-is-python3 curl jq
+          fi
           ffmpeg -version | head -1
 
       - name: Setup Chrome for Remotion
@@ -145,7 +147,12 @@ jobs:
           npm ci --no-audit --no-fund 2>/dev/null || npm install
 
       - name: Install FFmpeg and bc
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg bc
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg bc
+          fi
+          ffmpeg -version | head -1
 
       - name: Generate TTS
         id: tts
@@ -244,7 +251,12 @@ jobs:
           (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
 
       - name: Install FFmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          ffmpeg -version | head -1
 
       - name: Download TTS Artifacts
         uses: actions/download-artifact@v4
@@ -346,8 +358,10 @@ jobs:
 
       - name: Install System Tools
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg python-is-python3
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg python-is-python3
+          fi
           ffmpeg -version | head -1
 
       - name: Setup Chrome
@@ -464,7 +478,12 @@ jobs:
           npm ci --no-audit --no-fund 2>/dev/null || npm install
 
       - name: Install FFmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg jq
+          fi
+          ffmpeg -version | head -1
 
       - name: Run Video QA
         run: |
