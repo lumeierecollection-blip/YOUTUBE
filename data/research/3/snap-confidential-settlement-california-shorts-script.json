@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "snap-confidential-settlement-california",
+  "format": "shorts",
+  "hook": "Snap Inc. faced a high-stakes trial, then settled just 2 days before.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Snap Inc. faced a high-stakes trial, then settled just 2 days before.",
+      "text_overlay": {
+        "text": "Snap Inc. Settlement"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Los Angeles County Superior Court, Snap Inc. met teenage plaintiffs SJ and KDB. Why did the deal suddenly happen?",
+      "text_overlay": {
+        "text": "Los Angeles County Superior Court"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the terms of this settlement remain entirely confidential for Snap Inc.",
+      "text_overlay": {
+        "text": "Terms: Confidential"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This agreement resolves the legal battle for SJ and KDB in Los Angeles. Snap Inc. halted the Los Angeles County Superior Court proceedings just 2 days before opening statements.",
+      "text_overlay": {
+        "text": "2 Days Before Trial"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Now, SJ and KDB have a confidential settlement, officially ending their legal battle against the company.",
+      "text_overlay": {
+        "text": "Record Sealed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thehill.com/policy/technology/6189431-snap-settles-addictive-app-claims",
+    "https://news.bloomberglaw.com/tech-and-telecom-law/snap-reaches-settlement-to-avoid-la-trial-in-addiction-case-1"
+  ]
+}
