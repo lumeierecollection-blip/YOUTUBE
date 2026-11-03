@@ -300,7 +300,8 @@ test("Part 5: timeline layers include pan drift on all layers to prevent static 
   const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
   const captions = buildCaptions({ script, whisper: transcriptFromWords({ words }), duration: t });
   const tl = await buildCoverageTimeline({ plan, assetsByBeat: {}, captions, audioDuration: t, channel: {} });
-  // Every image layer should have scale motion; every SVG diagram layer should have draw keyframes.
+  // Every image layer should have scale keyframes (purposeful motion).
+  // Every SVG diagram layer should have draw keyframes.
   // Background solid layers are intentionally static.
   for (const l of tl.layers) {
     const kf = l.keyframes || {};

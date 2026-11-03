@@ -38,7 +38,7 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   failures.length = 0;
   const checks = {};
 
-  /* ÔöÇÔöÇ 1. Every essential concept covered ÔöÇÔöÇ */
+  /* â”€â”€ 1. Every essential concept covered â”€â”€ */
   const uncovered = (coverageReport && coverageReport.uncovered) || [];
   checks.uncovered_count = uncovered.length;
   if (uncovered.length) fail("coverage", `${uncovered.length} essential concept(s) not covered by any beat: ${uncovered.map((c) => c.label).join(", ")}`);
@@ -47,8 +47,9 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   checks.beat_count = beatCount;
   if (!beatCount) fail("coverage", "no beats in the coverage plan");
 
-  /* ÔöÇÔöÇ 2. Provenance on every image asset ÔöÇÔöÇ */
+  /* â”€â”€ 2. Provenance on every image asset â”€â”€ */
   const assets = timeline.assets || {};
+  const imageLayers = (timeline.layers || []).filter((l) => l.type === "image" && l.asset_id);
   const imageAssets = Object.entries(assets).filter(([, a]) => a.file && /\.(jpe?g|png|webp)$/i.test(a.file));
   const missingCredit = imageAssets.filter(([, a]) => !a.credit || !String(a.credit).trim());
   const missingSource = imageAssets.filter(([, a]) => !a.source_url || !/^https?:\/\//i.test(String(a.source_url)));
@@ -58,8 +59,29 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   if (missingCredit.length) fail("provenance", `image asset(s) without credit: ${missingCredit.map(([i]) => i).join(", ")}`);
   if (missingSource.length) fail("provenance", `image asset(s) without source_url: ${missingSource.map(([i]) => i).join(", ")}`);
 
-  /* ÔöÇÔöÇ 3. Meaningful motion on every image layer ÔöÇÔöÇ */
-  const imageLayers = (timeline.layers || []).filter((l) => l.type === "image" && l.asset_id);
+  /* â””â”€ 2b. Label card dominance â€” fail when >50% of image assets are label cards. */
+  const labelCardAssets = imageAssets.filter(([, a]) => /label.card/i.test(String(a.role || "")) || /label.card/i.test(String(a.file || "")));
+  checks.label_card_assets = labelCardAssets.length;
+  checks.label_card_share = imageAssets.length ? Number((labelCardAssets.length / imageAssets.length).toFixed(3)) : 0;
+  if (imageAssets.length && labelCardAssets.length / imageAssets.length > 0.5) {
+    fail("label-card-dominance", `${labelCardAssets.length} of ${imageAssets.length} image assets are label cards (${(labelCardAssets.length / imageAssets.length * 100).toFixed(0)}%), exceeding the 50% limit`);
+  }
+
+  /* â””â”€ 2c. Person/place photo check â€” person and place concepts should be
+   *  represented by real photographs, not label cards. */
+  const personPlaceImageLayers = imageLayers.filter((l) => {
+    const role = String(l.role || "");
+    const credit = String(l.credit || "");
+    return /person|place/i.test(role) || /person|place|margaret|fawkes|clitherow|york/i.test(credit);
+  });
+  const personPlaceLabelCards = personPlaceImageLayers.filter((l) => /label.card/i.test(String(l.role || "")) || /label.card/i.test(String(l.file || "")));
+  checks.person_place_image_layers = personPlaceImageLayers.length;
+  checks.person_place_label_cards = personPlaceLabelCards.length;
+  if (personPlaceLabelCards.length) {
+    fail("person-place-photo", `${personPlaceLabelCards.length} person/place image layer(s) use a label card instead of a photograph: ${personPlaceLabelCards.map(([i]) => i).join(", ")}`);
+  }
+
+  /* â”€â”€ 3. Meaningful motion on every image layer â”€â”€ */
   const moving = imageLayers.filter((l) => {
     const kf = l.keyframes || {};
     const scale = kf.scale || [];
@@ -77,21 +99,14 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   if (imageLayers.length && stillImageLayers.length) {
     fail("motion", `${stillImageLayers.length} image layer(s) declare no meaningful motion: ${stillImageLayers.map((l) => l.id).join(", ")}`);
   }
-  const personPlaceImageLayers = imageLayers.filter((l) => {
-    const role = String(l.role || "");
-    const credit = String(l.credit || "");
-    return /person|place/i.test(role) || /person|place|margaret|fawkes|clitherow|york/i.test(credit);
-  });
-  const personPlaceLabelCards = personPlaceImageLayers.filter((l) => /label.card/i.test(String(l.role || "")) || /label.card/i.test(String(l.file || "")));
 
-  /* ÔöÇÔöÇ 4. No decorative layers ÔöÇÔöÇ */
+  /* â”€â”€ 4. No decorative layers â”€â”€ */
   const decorativeLayers = (timeline.layers || []).filter((l) => DECORATIVE.test(l.id) || DECORATIVE_TYPE_KINDS.has(l.type));
   checks.decorative_layers = decorativeLayers.length;
   if (decorativeLayers.length) fail("decorative", `decorative layer(s) present: ${decorativeLayers.map((l) => l.id).join(", ")}`);
 
-  /* ÔöÇÔöÇ 5. Beat distinctness: consecutive beats must not show the same asset ÔöÇÔöÇ */
+  /* â”€â”€ 5. Beat distinctness: consecutive beats must not show the same asset â”€â”€ */
   const beats = (coverageReport && coverageReport.beats) || [];
-  // Rebuild beat order from timeline layers is complex; instead check that no asset_id is used by two overlapping image layers.
   const assetUse = new Map();
   for (const l of imageLayers) {
     if (!assetUse.has(l.asset_id)) assetUse.set(l.asset_id, []);
@@ -106,9 +121,8 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   }
   checks.duplicate_asset_overlaps = duplicateUse;
 
-  /* ÔöÇÔöÇ 6. Phone legibility: text layers have a scrim or dark bg, and size >= 24 ÔöÇÔöÇ */
+  /* â”€â”€ 6. Phone legibility: text layers have a scrim or dark bg, and size >= 24 â”€â”€ */
   const textLayers = (timeline.layers || []).filter((l) => l.type === "text");
-  // Credit/attribution text is small by design and excluded from the content legibility floor.
   const contentText = textLayers.filter((l) => !/credit/i.test(l.id));
   const smallText = contentText.filter((l) => (l.style && l.style.size) && l.style.size < 24);
   checks.text_layers = textLayers.length;
@@ -116,19 +130,19 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   checks.small_text_layers = smallText.length;
   if (smallText.length) fail("legibility", `${smallText.length} text layer(s) below the 24px phone-readability floor: ${smallText.map((l) => l.id).join(", ")}`);
 
-  /* ÔöÇÔöÇ 7. Captions within their beat span ÔöÇÔöÇ */
+  /* â”€â”€ 7. Captions within their beat span â”€â”€ */
   const cues = timeline.captions || [];
   const badCues = cues.filter((c) => c.start_f < 0 || c.end_f > (timeline.durationInFrames || 0) + 1 || c.end_f <= c.start_f);
   checks.caption_cues = cues.length;
   checks.bad_caption_cues = badCues.length;
   if (badCues.length) fail("captions", `${badCues.length} caption cue(s) outside the timeline`);
 
-  /* ÔöÇÔöÇ 8. Final-pixel checks (only when a video is provided) ÔöÇÔöÇ */
+  /* â”€â”€ 8. Final-pixel checks (only when a video is provided) â”€â”€ */
   if (video && existsSync(video)) {
     await finalPixelChecks(video, timeline, checks);
   }
 
-  /* ÔöÇÔöÇ 9. Per-beat contact sheets ÔöÇÔöÇ */
+  /* â”€â”€ 9. Per-beat contact sheets â”€â”€ */
   if (contactDir && video && existsSync(video)) {
     writeContactSheets(video, timeline, contactDir);
     checks.contact_sheets = true;
@@ -218,4 +232,3 @@ if (process.argv[1] && /coverage-audit\.mjs$/.test(process.argv[1].split("\\").j
     });
   })().catch((e) => { console.error(`::error::coverage-audit: ${e.message}`); process.exit(1); });
 }
-
