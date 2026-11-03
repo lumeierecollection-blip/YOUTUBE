@@ -1,0 +1,144 @@
+name: Visual Storytelling Proof
+
+# Proof run for the sentence-level visual-coverage pipeline (channels 1, 2, 48).
+# Runs entirely on GitHub-hosted Actions: TTS, coverage-plan, asset resolution,
+# Remotion render, final-MP4 QA, and coverage audit. Never publishes.
+on:
+  push:
+    branches:
+      - feat/visual-storytelling-proof
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: visual-storytelling-proof-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  proof:
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: [1, 2, 48]
+        include:
+          - channel: 1
+            script: data/research/1/margaret-clitherow-execution-guy-fawkes-shorts-script.json
+          - channel: 2
+            script: data/research/2/wso2-integrator-5-1-ai-workflow-release-shorts-script.json
+          - channel: 48
+            script: data/research/48/university-of-michigan-haptic-steering-wheel-semi-autonomous-shorts-script.json
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CHANNEL: ${{ matrix.channel }}
+      SCRIPT: ${{ matrix.script }}
+      EDITOR_COVERAGE: "1"
+      EDITOR_ENGINE: "1"
+      EDITOR_STRICT: "1"
+      RENDER_CONCURRENCY: "4"
+      RENDER_CRF: "20"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Cache node_modules
+        id: node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            src/skills/remotion-render/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies (cache miss only)
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+
+      - name: Install system tools (ffmpeg, ffprobe, poppler-utils, Chrome, edge-tts)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg poppler-utils python-is-python3
+          ffmpeg -version | head -1
+          pdftoppm -v | head -1
+          pip3 install edge-tts
+          python3 -c "import edge_tts; print('edge-tts OK')"
+
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Expose Chrome path to Remotion
+        run: |
+          echo "REMOTION_CHROME_PATH=/usr/bin/google-chrome" >> $GITHUB_ENV
+          /usr/bin/google-chrome --version || true
+
+      - name: Generate voiceover (TTS + per-word timings)
+        run: |
+          node src/utils/tts.js "$CHANNEL" "$SCRIPT" 2>&1
+          ls -la data/tts/$CHANNEL/
+
+      - name: Build coverage timeline (auto-timeline --coverage)
+        run: |
+          STEM=$(basename "$SCRIPT" .json)
+          node scripts/editor/auto-timeline.mjs --channel "$CHANNEL" --script "$SCRIPT" --coverage --github-env
+          echo "TIMELINE_DIR=data/editor/auto/$STEM" >> $GITHUB_ENV
+          echo "STEM=$STEM" >> $GITHUB_ENV
+          ls -la data/editor/auto/$STEM/
+
+      - name: Validate timeline structure (pre-render gate)
+        run: |
+          node -e "
+            import { resolveEditorTimeline } from './scripts/lib/editor-timeline-lookup.mjs';
+            const tl = resolveEditorTimeline(process.env.SCRIPT, {
+              env: { EDITOR_ENGINE: '1', EDITOR_STRICT: '1', EDITOR_TIMELINE_MAP: 'data/editor/auto/map.json' },
+              root: process.cwd(),
+            });
+            if (!tl) throw new Error('timeline did not resolve');
+            console.log('timeline resolves:', tl.timelinePath);
+          "
+
+      - name: Render coverage timeline to MP4
+        run: |
+          STEM=${STEM:-$(basename "$SCRIPT" .json)}
+          TL=data/editor/auto/$STEM/timeline.json
+          AUDIO=data/tts/$CHANNEL/${STEM}-vo.mp3
+          OUT=data/renders/$CHANNEL/${STEM}-coverage.mp4
+          mkdir -p data/renders/$CHANNEL
+          node --input-type=module -e "
+            import { renderEditor } from './src/skills/remotion-render/render-editor.js';
+            await renderEditor({ timelinePath: '$TL', audioPath: '$AUDIO', outputPath: '$OUT', scale: 1 });
+            console.log('Rendered: $OUT');
+          "
+
+      - name: Run coverage QA gate (final-MP4 + coverage audit)
+        run: |
+          STEM=${STEM:-$(basename "$SCRIPT" .json)}
+          TL=data/editor/auto/$STEM/timeline.json
+          VID=data/renders/$CHANNEL/${STEM}-coverage.mp4
+          OUT=data/renders/$CHANNEL/${STEM}-coverage-editor-qa.json
+          CONTACT=data/renders/$CHANNEL/${STEM}-coverage-contact.jpg
+          FRAMES=data/renders/$CHANNEL/${STEM}-coverage-frames
+          node scripts/editor/video-qa.js --video "$VID" --timeline "$TL" --out "$OUT" --contact "$CONTACT" --frames "$FRAMES"
+
+      - name: Upload proof artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-storytelling-proof-ch-${{ matrix.channel }}
+          path: |
+            data/renders/${{ matrix.channel }}/
+            data/editor/auto/*/coverage-plan.json
+            data/editor/auto/*/coverage-report.json
+            data/editor/auto/*/timeline.json
+          if-no-files-found: warn
+          retention-days: 14

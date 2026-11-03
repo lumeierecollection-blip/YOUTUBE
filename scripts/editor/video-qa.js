@@ -25,6 +25,7 @@ import {
   isVisiblyRendered,
   layersActiveAt,
 } from "../../src/skills/remotion-render/editor/layer-math.js";
+import { auditCoverage } from "./coverage-audit.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const args = Object.fromEntries(
@@ -108,112 +109,133 @@ for (const layer of sceneImages) {
 }
 if (invisibleScenes.length) fail("image-coverage", `image scene layer(s) not visibly rendered at midpoint: ${invisibleScenes.join(", ")}`);
 
-const movingLayers = imageLayers.filter((layer) => {
-  const m = effectMagnitude(layer, {
-    start_f: 0,
-    end_f: Math.max(1, layer.out - layer.in),
-    to: { scale: 1, x: 1, y: 1 },
+/** Coverage timelines replace the old pixel proxies with semantic checks. */
+if (timeline.metadata?.coverage) {
+  const coverageReportPath = join(dirname(timelinePath), "coverage-report.json");
+  const coverageReport = existsSync(coverageReportPath) ? JSON.parse(readFileSync(coverageReportPath, "utf8")) : null;
+  const covReport = await auditCoverage({
+    timeline, coverageReport, video: videoPath,
+    out: outPath, contact: contactPath, frames: framesDir,
   });
-  return Math.max(m.scale || 0, m.x || 0, m.y || 0) > 0.005;
-});
-const motionShare = imageLayers.length ? movingLayers.length / imageLayers.length : 0;
-if (motionShare < 0.8) fail("motion-keyframes", `only ${(motionShare * 100).toFixed(0)}% of image layers have scale/pan motion`);
+  for (const f of covReport.failures) fail(f.check, f.why);
+  // Coverage path: write final report and exit; do not fall through to the legacy report
+  // (which references legacy-only variables like blackFrames / meanMotion).
+  const finalReport = {
+    editor_timeline: true,
+    coverage_qa: true,
+    pass: failures.length === 0,
+    generated_at: new Date().toISOString(),
+    id: timeline.id,
+    video: videoPath,
+    timeline: timelinePath,
+    duration_s: Number(videoDuration.toFixed(3)),
+    timeline_duration_s: Number(timelineDuration.toFixed(3)),
+    width, height, scale: Number(inferredScale.toFixed(3)),
+    checks: covReport.checks,
+    failures,
+  };
+  writeFileSync(outPath, JSON.stringify(finalReport, null, 2) + "\n");
+  console.log(`[editor-qa] ${finalReport.pass ? "PASS" : "FAIL"} ${timeline.id} (coverage): ${failures.length} failure(s)`);
+  for (const f of failures) console.error(`[editor-qa] ${f.check}: ${f.why}`);
+  console.log(`[editor-qa] report: ${outPath}`);
+  console.log(`[editor-qa] contact: ${contactPath}`);
+  process.exit(finalReport.pass ? 0 : 1);
+} else {
+  const movingLayers = imageLayers.filter((layer) => {
+    const m = effectMagnitude(layer, {
+      start_f: 0,
+      end_f: Math.max(1, layer.out - layer.in),
+      to: { scale: 1, x: 1, y: 1 },
+    });
+    return Math.max(m.scale || 0, m.x || 0, m.y || 0) > 0.005;
+  });
+  const motionShare = imageLayers.length ? movingLayers.length / imageLayers.length : 0;
+  if (motionShare < 0.8) fail("motion-keyframes", `only ${(motionShare * 100).toFixed(0)}% of image layers have scale/pan motion`);
 
-const wholeSeconds = Math.max(1, Math.floor(timelineDuration));
-let imageSeconds = 0;
-let textOnlySeconds = 0;
-for (let sec = 0; sec < wholeSeconds; sec++) {
-  const frame = sec * fps;
-  const active = layersActiveAt(timeline, frame);
-  const hasImage = active.some((l) => (l.type === "image" || l.type === "svg") && isVisiblyRendered(l, frame));
-  if (hasImage) imageSeconds++;
-  else if (active.some((l) => l.type === "text")) textOnlySeconds++;
-}
-const imageShare = imageSeconds / wholeSeconds;
-if (imageShare < 0.8) fail("image-seconds", `only ${(imageShare * 100).toFixed(0)}% of seconds have a visible image/SVG`);
-if (textOnlySeconds > 1) fail("text-only", `${textOnlySeconds} second(s) are text-only`);
-
-const cues = timeline.captions || [];
-if (!cues.length) fail("captions", "no caption cues");
-const badCues = cues.filter((c) => c.start_f < 0 || c.end_f > timeline.durationInFrames + 1 || c.end_f <= c.start_f);
-if (badCues.length) fail("captions", `${badCues.length} caption cue(s) outside the timeline`);
-const st = timeline.caption_style || {};
-if ((st.x || 0) + (st.w || 0) > timeline.width + 1 || (st.y || 0) + (st.h || 0) > timeline.height + 1) {
-  fail("caption-box", `caption box ${st.x},${st.y} ${st.w}x${st.h} is outside ${timeline.width}x${timeline.height}`);
-}
-if (cues.some((c) => !Array.isArray(c.words) || c.words.length === 0)) {
-  fail("caption-words", "a caption cue has no word timings");
-}
-
-/* ── Final-pixel checks ─────────────────────────────────────────── */
-
-rmSync(framesDir, { recursive: true, force: true });
-mkdirSync(framesDir, { recursive: true });
-run("ffmpeg", [
-  "-y", "-v", "error",
-  "-i", videoPath,
-  "-vf", "fps=2,scale=270:-1",
-  "-start_number", "0",
-  "-q:v", "2",
-  join(framesDir, "f%05d.jpg"),
-]);
-const frameFiles = readdirSync(framesDir).filter((f) => /^f\d+\.jpg$/.test(f)).sort();
-if (frameFiles.length < 2) fail("frames", "could not extract frames from the video");
-
-let lumaSum = 0;
-let blackFrames = 0;
-let maxStaticRun = 0;
-let staticRun = 0;
-let motionSum = 0;
-let motionCount = 0;
-let previous = null;
-for (const file of frameFiles) {
-  const path = join(framesDir, file);
-  const { data, info } = await sharp(path).greyscale().raw().toBuffer({ resolveWithObject: true });
-  let sum = 0;
-  let max = 0;
-  for (let i = 0; i < data.length; i++) {
-    sum += data[i];
-    if (data[i] > max) max = data[i];
+  const wholeSeconds = Math.max(1, Math.floor(timelineDuration));
+  let imageSeconds = 0;
+  let textOnlySeconds = 0;
+  for (let sec = 0; sec < wholeSeconds; sec++) {
+    const frame = sec * fps;
+    const active = layersActiveAt(timeline, frame);
+    const hasImage = active.some((l) => (l.type === "image" || l.type === "svg") && isVisiblyRendered(l, frame));
+    if (hasImage) imageSeconds++;
+    else if (active.some((l) => l.type === "text")) textOnlySeconds++;
   }
-  const mean = sum / data.length;
-  lumaSum += mean;
-  if (mean < 5 && max < 30) blackFrames++;
-  if (previous && previous.length === data.length) {
-    let diff = 0;
-    for (let i = 0; i < data.length; i++) diff += Math.abs(data[i] - previous[i]);
-    const motion = diff / data.length;
-    motionSum += motion;
-    motionCount++;
-    if (motion < 0.2) {
-      staticRun += 0.5;
-      if (staticRun > maxStaticRun) maxStaticRun = staticRun;
-    } else {
-      staticRun = 0;
+  const imageShare = imageSeconds / wholeSeconds;
+  if (imageShare < 0.8) fail("image-seconds", `only ${(imageShare * 100).toFixed(0)}% of seconds have a visible image/SVG`);
+  if (textOnlySeconds > 1) fail("text-only", `${textOnlySeconds} second(s) are text-only`);
+
+  /* ── Final-pixel checks ─────────────────────────────────────────── */
+
+  rmSync(framesDir, { recursive: true, force: true });
+  mkdirSync(framesDir, { recursive: true });
+  run("ffmpeg", [
+    "-y", "-v", "error",
+    "-i", videoPath,
+    "-vf", "fps=2,scale=270:-1",
+    "-start_number", "0",
+    "-q:v", "2",
+    join(framesDir, "f%05d.jpg"),
+  ]);
+  const frameFiles = readdirSync(framesDir).filter((f) => /^f\d+\.jpg$/.test(f)).sort();
+  if (frameFiles.length < 2) fail("frames", "could not extract frames from the video");
+
+  let lumaSum = 0;
+  let blackFrames = 0;
+  let maxStaticRun = 0;
+  let staticRun = 0;
+  let motionSum = 0;
+  let motionCount = 0;
+  let previous = null;
+  for (const file of frameFiles) {
+    const path = join(framesDir, file);
+    const { data, info } = await sharp(path).greyscale().raw().toBuffer({ resolveWithObject: true });
+    let sum = 0;
+    let max = 0;
+    for (let i = 0; i < data.length; i++) {
+      sum += data[i];
+      if (data[i] > max) max = data[i];
     }
+    const mean = sum / data.length;
+    lumaSum += mean;
+    if (mean < 5 && max < 30) blackFrames++;
+    if (previous && previous.length === data.length) {
+      let diff = 0;
+      for (let i = 0; i < data.length; i++) diff += Math.abs(data[i] - previous[i]);
+      const motion = diff / data.length;
+      motionSum += motion;
+      motionCount++;
+      if (motion < 0.2) {
+        staticRun += 0.5;
+        if (staticRun > maxStaticRun) maxStaticRun = staticRun;
+      } else {
+        staticRun = 0;
+      }
+    }
+    previous = data;
   }
-  previous = data;
+  const meanLuma = frameFiles.length ? lumaSum / frameFiles.length : 0;
+  const meanMotion = motionCount ? motionSum / motionCount : 0;
+  if (blackFrames > 0) fail("black-frames", `${blackFrames} black frame(s) in the export`);
+  if (maxStaticRun > 4.0) fail("static-run", `longest near-static run is ${maxStaticRun.toFixed(1)}s (limit 4.0s)`);
+  if (meanMotion < 0.05) fail("motion", `mean frame motion is ${meanMotion.toFixed(3)} (limit 0.05)`);
+
+  /* ── Contact sheet ──────────────────────────────────────────────── */
+
+  const cols = 4;
+  const rows = 3;
+  const interval = Math.max(1, timelineDuration / (cols * rows));
+  run("ffmpeg", [
+    "-y", "-v", "error",
+    "-i", videoPath,
+    "-vf", `fps=${(1 / interval).toFixed(6)},scale=270:-1,tile=${cols}x${rows}`,
+    "-frames:v", "1",
+    "-q:v", "2",
+    contactPath,
+  ]);
+  if (!existsSync(contactPath)) fail("contact-sheet", "contact sheet was not written");
 }
-const meanLuma = frameFiles.length ? lumaSum / frameFiles.length : 0;
-const meanMotion = motionCount ? motionSum / motionCount : 0;
-if (blackFrames > 0) fail("black-frames", `${blackFrames} black frame(s) in the export`);
-if (maxStaticRun > 4.0) fail("static-run", `longest near-static run is ${maxStaticRun.toFixed(1)}s (limit 4.0s)`);
-if (meanMotion < 0.05) fail("motion", `mean frame motion is ${meanMotion.toFixed(3)} (limit 0.05)`);
-
-/* ── Contact sheet ──────────────────────────────────────────────── */
-
-const cols = 4;
-const rows = 3;
-const interval = Math.max(1, timelineDuration / (cols * rows));
-run("ffmpeg", [
-  "-y", "-v", "error",
-  "-i", videoPath,
-  "-vf", `fps=${(1 / interval).toFixed(6)},scale=270:-1,tile=${cols}x${rows}`,
-  "-frames:v", "1",
-  "-q:v", "2",
-  contactPath,
-]);
-if (!existsSync(contactPath)) fail("contact-sheet", "contact sheet was not written");
 
 const report = {
   editor_timeline: true,

@@ -5,67 +5,37 @@ description: Use to render a finished script + voiceover into video using Remoti
 
 # Remotion Render Skill
 
-## Purpose
-Turn a confirmed script + TTS voiceover into a finished video file, styled
-per the channel's configured template, using real matching imagery rather
-than generic stock or invented visuals.
+This skill is an OpenCode-specific entry point that delegates to the **authoritative video-editor specification** at `.agents/skills/remotion-render/SKILL.md`.
 
-## Step 0 — Style definition audit (run before rebuilding templates)
-Before touching the templates, search the web for how "motion graphics
-video" (mograph) and "minimalist edit" are actually defined and executed
-right now by editors/designers who do this professionally — tutorials,
-portfolio breakdowns, editing communities. Compare the current templates
-against what that research shows and adjust anything that doesn't match
-real practice. Do this as an explicit research pass, not from general
-impressions of what these terms mean.
+## Authority
 
-## Step 1 — Replace the voice-animation style
-Voice-animation is dropped. Research currently-effective, distinct
-short-form/long-form editing styles (search YouTube automation and editing
-communities, not general knowledge) and propose 2-3 real candidates with
-examples of channels/videos using them successfully, before picking one to
-implement as the replacement third style. Report the candidates and your
-recommendation before finalizing — this is a one-time decision, get it
-confirmed rather than assumed.
+The complete editor specification — covering narration understanding, visual concept extraction, sentence-level coverage, asset selection, photograph/PNG usage, visual composition, scene and beat planning, motion design, camera movement, transitions, caption synchronization, music integration, channel-specific treatment, mobile-first layout, Remotion implementation, rendering, visual inspection, technical QA, and final video acceptance — lives in:
 
-Once confirmed, update any channel currently configured with
-`voice-animation` (e.g. entertainment-01, world-news-01, and any of the 45
-that used it) to the new style, and rename the template accordingly.
+**`.agents/skills/remotion-render/SKILL.md`**
 
-## Style templates (target: 3 total, kept current)
-1. **Minimal** — kinetic typography, clean background, captions synced to
-   voiceover, minimal motion. Works for fact/list-driven niches.
-2. **Motion-graphics** — icon/scene-based animated sequences illustrating
-   each section of the script, matched to real current mograph practice
-   per the Step 0 audit.
-3. **[replacement style — name TBD from Step 1 research]**
+That document is the single source of truth. This OpenCode skill entry point exists only to surface the same procedure for OpenCode workflows. Any change to editor behavior must be made in `.agents/skills/remotion-render/SKILL.md` first; this file is kept in sync by reference only.
 
-## Real imagery sourcing (applies to minimal and motion-graphics)
-When a script names a specific real person, place, or event:
-1. Search for an actual photo of that specific person/place/event — not a
-   generic placeholder or a similar-looking substitute.
-2. Verify the photo actually matches what's named (right person, right
-   location, right event/time period) before using it — a mismatched photo
-   is worse than no photo.
-3. If no verifiably correct photo can be found, use a relevant abstract/
-   graphic representation instead of guessing with an unverified image —
-   never use a photo you're not confident is actually correct.
-4. Respect image licensing/usage rights when sourcing.
+## OpenCode-Specific Steps
 
-## Process
-1. Read `channel.style` from the channel's config to select the template.
-2. Read `format` (short vs long-form) to select aspect ratio/duration
-   (9:16 for Shorts, 16:9 or 9:16 for long-form per channel preference).
-3. Sync captions to the actual TTS audio timing, not estimated timing.
-4. For each named person/place/event in the script, run the real imagery
-   sourcing process above before falling back to graphics.
-5. Output to the channel's render folder, named with topic + date for
-   traceability back to the research that produced it.
+When invoked through OpenCode:
 
-## Rules
-- Don't invent visual content unrelated to the script's actual claims —
-  supporting imagery should illustrate what the script says.
-- Never use a photo of a person/place that doesn't actually match what's
-  named in the script, even if it "looks close enough."
-- Fail loudly (not silently) if voiceover audio is missing or the script
-  file wasn't produced by script-writer.
+1. Read `.agents/skills/remotion-render/SKILL.md` (the authoritative spec).
+2. Confirm the target channel's configuration in `config/channels.json`.
+3. Confirm TTS voiceover exists at `data/tts/<channel>/<stem>-vo.mp3` and `-vo-words.json`.
+4. Run the coverage pipeline through GitHub Actions:
+   - `node scripts/editor/auto-timeline.mjs --channel <ch> --script <path> --coverage`
+   - Render via `render-editor.js` through Remotion on the Actions runner.
+   - Run `scripts/editor/video-qa.js` for final-MP4 QA including coverage audit.
+5. Upload MP4, QA report, contact sheet, coverage plan/report, and timeline as workflow artifacts.
+6. Inspect artifacts; correct failures; repeat until acceptance criteria pass.
+
+## Rules (from authoritative spec)
+
+- Visuals must correspond to the narration; every important concept gets a beat.
+- Multiple important concepts receive multiple meaningful beats.
+- Photographs must be relevant and correctly matched.
+- PNGs must be clean and deliberately composed.
+- No meaningless particle effects or decorative motion.
+- Movement must have purpose, direction, start/end, duration, physical sense.
+- Beat timing follows narration and music.
+- No public uploads. No credentials exposed. Do not push to `main`.

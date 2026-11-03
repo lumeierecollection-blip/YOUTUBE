@@ -45,7 +45,6 @@ export function chooseKind(figs, rng, look) {
   return "count";
 }
 
-const DRIFT = 26;
 const span = (l) => Math.max(2, l.out - l.in);
 const kf = (...a) => a.map(([f, v, e]) => ({ f, v, ...(e ? { e } : {}) }));
 
@@ -59,19 +58,12 @@ function entrance(len, { slide = 36, delay = 0 } = {}) {
 }
 
 /** Build the layers for one scene's graphic. inF/outF = the frames the graphic is on screen. */
-export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, palette, secondary = "#1A1A33", inF, outF, z = 150, dy = 0, backdrop = false, rng = Math.random }) {
+export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, palette, secondary = "#1A1A33", inF, outF, z = 150, dy = 0, rng = Math.random }) {
   const len = Math.max(8, outF - inF);
   const layers = [];
   const mk = (suffix, type, rect, extra = {}) => {
     const keyframes = { ...(extra.keyframes || {}) };
     for (const k of Object.keys(keyframes)) if (keyframes[k] === undefined) delete keyframes[k];
-    // Drift: the layer keeps rising ~DRIFT px until the scene ends, so a graphic whose counter has finished is still moving (the final-MP4
-    // QA refuses a scene that is near-static for more than 4 s). Not for full-bleed layers (they would uncover an edge).
-    if (!extra.noDrift) {
-      const L = Math.max(2, outF - (inF + (extra.delay || 0)));
-      const ty = keyframes.ty && keyframes.ty.length ? keyframes.ty : [{ f: 0, v: 0 }];
-      keyframes.ty = ty.at(-1).f < L ? [...ty, { f: L, v: -DRIFT, e: "linear" }] : ty;
-    }
     const { keyframes: _k, noDrift: _nd, ...rest } = extra;
     const layer = { id: `${id}-${suffix}`, type, rect: { x: Math.round(rect.x), y: Math.round(rect.y + dy), w: Math.round(rect.w), h: Math.round(rect.h) }, in: inF + (extra.delay || 0), out: outF, z: z + layers.length, props: { opacity: 1 }, ...rest, keyframes };
     delete layer.delay;
@@ -106,12 +98,6 @@ export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, p
   const rule = (suffix, rect, color = accent) => mk(suffix, "solid", rect, { style: { background: color }, keyframes: { ...entrance(len, { slide: 0 }), clipR: kf([0, 100], [16, 0, "outCubic"]) } });
 
   const base = 900;
-  if (backdrop) {
-    const cycle = 84;
-    const pts = [];
-    for (let f = 0; f < len; f += cycle) { pts.push({ f, v: 0 }); pts.push({ f: Math.min(len, f + cycle - 1), v: 1860, e: "inOutSine" }); }
-    mk("sweep", "solid", { x: 0, y: 30 - dy, w: 1080, h: 4 }, { noDrift: true, style: { background: accent }, props: { opacity: 0.22 }, keyframes: { ty: pts, opacity: kf([0, 0], [6, 0.22], [Math.max(7, len - 6), 0.22], [len, 0]) } });
-  }
   if (kind === "year") {
     const y = Number(fig.value);
     const onPlate = look === "hallmark";
@@ -213,45 +199,4 @@ export function graphicLayers({ id, kind, figs, source, fn = "evidence", look, p
   return layers;
 }
 
-/** A flat, quiet backdrop for a scene that has no photo: the channel's background colour and a faint grid. No gradient, no glow. */
-export function backdropSvg(palette) {
-  const lines = [];
-  for (let x = 0; x <= 1080; x += 90) lines.push(`<line x1="${x}" y1="0" x2="${x}" y2="1920"/>`);
-  for (let y = 0; y <= 1920; y += 90) lines.push(`<line x1="0" y1="${y}" x2="1080" y2="${y}"/>`);
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
-  <rect width="1080" height="1920" fill="${palette.bg}"/>
-  <g stroke="${palette.accent}" stroke-opacity="0.08" stroke-width="1">${lines.join("")}</g>
-</svg>
-`;
-}
 
-/**
- * Motion for a photo scene that has no figure: the accent draws itself across the picture so a photo is never just a held still.
- *   corner brackets that draw on (vox, scene-director, mograph-critic), or a rule that wipes in along the top (anti-slop, hallmark).
- * A few frames in, held, then gone with the scene. Pure decoration in the channel's one accent colour: it states nothing.
- */
-export function decorationLayers({ id, look, palette, inF, outF, z = 150 }) {
-  const len = Math.max(8, outF - inF);
-  const out = Math.max(10, len - 8);
-  const fade = { opacity: [{ f: 0, v: 0 }, { f: 6, v: 1 }, { f: out, v: 1 }, { f: len, v: 0 }] };
-  if (look === "anti-slop" || look === "hallmark") {
-    return [{ id: `${id}-wipe`, type: "solid", rect: { x: 90, y: 150, w: 260, h: look === "hallmark" ? 6 : 10 }, in: inF, out: outF, z, props: { opacity: 1 }, style: { background: palette.accent },
-      keyframes: { ...fade, clipR: [{ f: 0, v: 100 }, { f: 18, v: 0, e: "outCubic" }] } }];
-  }
-  const L = 120, m = 60, W = 1080, H = 1920;
-  const draw = { ...fade, draw: [{ f: 0, v: 0 }, { f: 4, v: 0 }, { f: 22, v: 1, e: "outCubic" }] };
-  return [
-    { id: `${id}-tl`, type: "svg", rect: { x: m, y: m + 90, w: L, h: L }, in: inF, out: outF, z, props: { opacity: 1 }, viewBox: [0, 0, L, L], paths: [{ d: `M 0 ${L} L 0 0 L ${L} 0`, stroke: palette.accent, strokeWidth: 7 }], keyframes: draw },
-    { id: `${id}-br`, type: "svg", rect: { x: W - m - L, y: H - 560 - L, w: L, h: L }, in: inF, out: outF, z: z + 1, props: { opacity: 1 }, viewBox: [0, 0, L, L], paths: [{ d: `M ${L} 0 L ${L} ${L} L 0 ${L}`, stroke: palette.accent, strokeWidth: 7 }], keyframes: draw },
-  ];
-}
-
-/** A thin accent line that crosses the frame every ~3 s: keeps a poster (or any text-and-backdrop scene) moving for as long as it is on screen. */
-export function sweepLayers({ id, palette, inF, outF, z = 150 }) {
-  const len = Math.max(8, outF - inF);
-  const cycle = 84;
-  const pts = [];
-  for (let f = 0; f < len; f += cycle) { pts.push({ f, v: 0 }); pts.push({ f: Math.min(len, f + cycle - 1), v: 1860, e: "inOutSine" }); }
-  return [{ id: `${id}-sweep`, type: "solid", rect: { x: 0, y: 30, w: 1080, h: 4 }, in: inF, out: outF, z, props: { opacity: 0.22 }, style: { background: palette.accent },
-    keyframes: { ty: pts, opacity: [{ f: 0, v: 0 }, { f: 6, v: 0.22 }, { f: Math.max(7, len - 6), v: 0.22 }, { f: len, v: 0 }] } }];
-}

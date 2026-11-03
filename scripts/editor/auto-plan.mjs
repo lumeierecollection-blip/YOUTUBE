@@ -11,7 +11,8 @@
  */
 import { scriptSentences } from "./captions.mjs";
 import { styleFor, functionOf, keyPhrase } from "./styles.mjs";
-import { chooseKind, backdropSvg } from "./graphics.mjs";
+import { chooseKind } from "./graphics.mjs";
+import { xmlEscape } from "./cards.mjs";
 
 const clean = (s) => String(s || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").replace(/\s+/g, " ").trim();
 const KIND = { person: "person", people: "person", place: "place", location: "place", city: "place", country: "place", organization: "organization", company: "organization", agency: "organization", institution: "organization", university: "organization" };
@@ -263,7 +264,7 @@ export async function buildAutoPlan({ script, research, words, audioDuration, ch
       if (gfigs.length) {
         // A quiet flat backdrop (no gradient) with the graphic animated over it; the backdrop is an image layer with a slow push, so the
         // final-MP4 QA still sees motion on every image layer.
-        cards.push({ id, svg: backdropSvg(palette) });
+        cards.push({ id, svg: `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920" fill="${xmlEscape(palette.bg)}"/></svg>` });
         how = `figure alone ${gfigs.map((f) => f.raw).join(", ")}`;
       } else {
         // No photo for this sentence and no figure to draw: show the story's own picture again, framed differently, as an editor reuses a

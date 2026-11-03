@@ -275,7 +275,7 @@ test("plain numbers count as figures, but years, dates, ordinals and small numbe
 });
 
 // ---- animated graphics (graphics.mjs) ---------------------------------------------------------------------------------------------
-import { graphicLayers, parseFigure, chooseKind, backdropSvg, decorationLayers } from "../editor/graphics.mjs";
+import { graphicLayers, parseFigure, chooseKind } from "../editor/graphics.mjs";
 import { valueAt, formatCount } from "../../src/skills/remotion-render/editor/layer-math.js";
 
 const PAL = { accent: "#1ABC9C", bg: "#07070D", text: "#fff" };
@@ -346,7 +346,6 @@ test("the kind follows the figures, and a backdrop has no gradient", () => {
   assert.equal(chooseKind([PCT], rng, "hallmark"), "bar");
   assert.equal(chooseKind([PCT, { raw: "9%", kind: "percent", value: 9 }], rng, "vox"), "bars2");
   assert.equal(chooseKind([NUM], rng, "vox"), "count");
-  assert.ok(!/Gradient/.test(backdropSvg(PAL)));
 });
 
 test("a figure-only scene keeps an image layer with motion (the backdrop) under its graphic, so the final QA still passes", async () => {
@@ -374,25 +373,21 @@ test("a full timeline with every look's graphics validates against schemas/edito
   }
 });
 
-test("a photo scene with no figure still moves: the accent draws itself across it", () => {
+test("addGraphics adds graphic layers only for scenes that declare a graphic; no decorative layers are added", () => {
   const PAL2 = { accent: "#1ABC9C", bg: "#07070D", text: "#fff" };
-  for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
-    const ls = decorationLayers({ id: "d", look, palette: PAL2, inF: 10, outF: 100 });
-    assert.ok(ls.length >= 1 && ls.every((l) => l.in === 10 && l.out === 100), look);
-    const anim = ls.find((l) => l.keyframes.draw || l.keyframes.clipR);
-    assert.ok(anim, `${look}: something draws or wipes in`);
-    if (anim.keyframes.draw) { assert.equal(valueAt(anim, "draw", 0), 0); assert.equal(valueAt(anim, "draw", 40), 1); }
-    else { assert.equal(valueAt(anim, "clipR", 0), 100); assert.equal(valueAt(anim, "clipR", 40), 0); }
-  }
+  // A scene with no graphic gets no added layers (its motion comes from buildTimeline).
   const tl = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
   addGraphics(tl, { id: "p", palette: PAL2, scenes: [{ asset: "photo-x", look: "vox", stagger: 0 }] });
-  assert.ok(tl.layers.some((l) => l.id.startsWith("scene-0-d-")), "a photo scene without a graphic gets the decoration");
+  assert.equal(tl.layers.length, 1, "no decoration layers are added to a photo scene without a graphic");
+  // A card scene also gets nothing.
   const tl2 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
-  addGraphics(tl2, { id: "p", palette: PAL2, scenes: [{ asset: "other-x", look: "vox", stagger: 0 }] });
+  addGraphics(tl2, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
+  assert.equal(tl2.layers.length, 1, "a card scene gets no decoration layers");
+  // A scene with a graphic gets the graphic's layers.
   const tl3 = { layers: [{ id: "scene-0-image", in: 0, out: 100, z: 11 }] };
-  addGraphics(tl3, { id: "p", palette: PAL2, scenes: [{ asset: "card-1", look: "vox", stagger: 0 }] });
-  assert.ok(tl3.layers.some((l) => /-sweep$/.test(l.id)), "a poster scene gets the sweeping line so it never sits still");
-  assert.equal(tl2.layers.length, 1, "a card is not a photo scene, so it gets no decoration");
+  addGraphics(tl3, { id: "p", palette: PAL2, scenes: [{ asset: "photo-x", look: "vox", graphic: { kind: "count", figs: [{ raw: "45", kind: "number", value: 45 }] }, stagger: 0 }] });
+  assert.ok(tl3.layers.length > 1, "a scene with a graphic gets its graphic layers");
+  assert.ok(tl3.layers.some((l) => l.id.startsWith("scene-0-g-")), "graphic layers are namespaced by scene");
 });
 
 import { luminance, onFill } from "../editor/graphics.mjs";
@@ -430,21 +425,18 @@ test("the same year gets one timeline per video, and no more than three timeline
   assert.deepEqual(years, [2000, 1998, 1999], "first three distinct years only; the repeat of 2000 gets none");
 });
 
-test("graphics never sit still: every layer drifts to the end of the scene, and a figure-only scene also gets a sweeping line", async () => {
+test("graphics never sit still: every layer has entrance motion, none drift continuously, and there is no sweep layer", async () => {
   for (const look of ["anti-slop", "hallmark", "vox", "scene-director", "mograph-critic"]) {
     for (const [kind, figs] of [["bar", [PCT]], ["count", [NUM]], ["year", [{ raw: "2000", kind: "year", value: 2000 }]]]) {
-      const ls = g(look, kind, figs, { backdrop: true });
-      const moving = ls.filter((l) => !/-(flat|sweep)$/.test(l.id));
-      for (const l of moving) assert.ok(valueAt(l, "ty", l.out - l.in) <= -20, `${look}/${kind}: ${l.id} is still rising at the end`);
-      const sweep = ls.find((l) => /-sweep$/.test(l.id));
-      assert.ok(sweep, `${look}/${kind}: sweep`);
-      assert.ok(valueAt(sweep, "ty", 40) > valueAt(sweep, "ty", 10), "the sweep moves down the frame");
-      assert.ok(valueAt(sweep, "ty", 84) < valueAt(sweep, "ty", 83), "and starts again every cycle");
-      assert.equal(ls.some((l) => /-flat$/.test(l.id) && valueAt(l, "ty", 80) !== 0), false, "a full-bleed layer never drifts");
+      const ls = g(look, kind, figs, {});
+      assert.ok(!ls.find((l) => /-sweep$/.test(l.id)), `${look}/${kind}: no sweep layer`);
+      for (const l of ls) {
+        const ty = l.keyframes && l.keyframes.ty;
+        if (ty) {
+          const end = valueAt(l, "ty", l.out - l.in);
+          assert.equal(end, 0, `${look}/${kind}: ${l.id} should not drift at the end (got ${end})`);
+        }
+      }
     }
   }
-  const { plan } = await buildAutoPlan({ ...base, resolve: async () => ({ ok: false }), concept: async () => null, queries: [null, null, null, null], style: 2 });
-  const s0 = plan.scenes[0];
-  assert.equal(s0.graphic.backdrop, true);
-  assert.ok(s0.zoom >= 0.1, "the backdrop pushes harder under a figure");
 });
