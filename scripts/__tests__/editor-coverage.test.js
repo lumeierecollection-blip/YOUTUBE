@@ -411,3 +411,34 @@ test("coverage audit ignores layers without asset_id as image layers (unexpected
   assert.equal(report.checks.image_layers, 1, "only layers with asset_id count as image layers");
   assert.equal(report.pass, true);
 });
+
+test("coverage timeline does not crash when a beat's visual class has no diagram area but holds a clock diagram", async () => {
+  // compRect("organization") (and document/place/entity/photo) returns diagramX: null, so
+  // diagramLayersFor was called with rect: null and clockDiagram crashed reading rect.w.
+  // Passing undefined lets diagramLayersFor fall back to its default rect instead of crashing.
+  const clockConcept = { id: "c0", label: "10 o'clock zone", visual: "annotated", diagram: "clock", value: 10, essential: true };
+  const plan = {
+    sentences: [],
+    beats: [{
+      id: "b0.0", sentence: 0, start: 0, end: 90, covers: ["c0"], labels: ["10 o'clock zone"],
+      concepts: [clockConcept],
+      visual_class: "organization", // compRect default -> diagramX: null
+      revisit: false,
+      motion: { type: "settle", direction: "none", reason: "test", start_f: 0, end_f: 90 },
+    }],
+    concepts: [clockConcept],
+    report: { uncovered: [], beat_count: 1 },
+  };
+  const assetsByBeat = {
+    "b0.0": { assets: {}, diagrams: [{ concept: clockConcept }], photoAsset: null },
+  };
+  let threw = false;
+  let tl = null;
+  try {
+    tl = await buildCoverageTimeline({ plan, assetsByBeat, captions: [], audioDuration: 3, channel: {} });
+  } catch (e) { threw = true; console.error("unexpected throw:", e); }
+  assert.equal(threw, false, "timeline build must not throw when a diagram has no designated diagram area");
+  assert.ok(tl, "timeline was produced");
+  const diagramLayers = tl.layers.filter((l) => l.type === "svg");
+  assert.ok(diagramLayers.length > 0, "diagram layers should still be drawn");
+});

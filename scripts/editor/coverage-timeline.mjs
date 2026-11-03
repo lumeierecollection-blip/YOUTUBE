@@ -11,7 +11,7 @@
  * Every layer has a stated start frame, end frame and motion reason. Nothing
  * decorative: no dot fields, no sweeps, no corner brackets, no grid drift.
  * Motion is purposeful: push_in/push_out for historical reveals, pan_left for
- * places, draw for diagrams, settle for documents/photos — matching the
+ * places, draw for diagrams, settle for documents/photos ï¿½ matching the
  * beat.motion from the coverage plan. No unmotivated parallax.
  */
 import { frames, textLayer, solidLayer, imageLayer, svgLayer } from "./coverage-layers.mjs";
@@ -92,7 +92,7 @@ export async function beatLayers({ beat, assets, diagrams, photoAsset, inF, outF
   // Background solid (always, so nothing is ever transparent/blank)
   layers.push(solidLayer({ id: `beat-${beat.id}-bg`, rect: { x: 0, y: 0, w: W, h: H }, background: BG, inF, outF, z: z++, opacity: 1, keyframes: { opacity: [{ f: 0, v: 1, e: "outCubic" }, { f: span, v: 1, e: "inOutCubic" }], ty: [{ f: 0, v: 0, e: "outCubic" }, { f: span * 0.5, v: 100, e: "inOutCubic" }, { f: span, v: 0, e: "inOutCubic" }], tx: [{ f: 0, v: 0, e: "outCubic" }, { f: span * 0.5, v: 50, e: "inOutCubic" }, { f: span, v: 0, e: "inOutCubic" }] }}));
 
-  // Photo / document base layer — composition varies by visual class
+  // Photo / document base layer ï¿½ composition varies by visual class
   const comp = compRect(beat.visual_class, !!photoAsset);
   let photoRect = null;
   if (photoAsset && photoAsset.file && comp.photoRect) {
@@ -116,7 +116,7 @@ export async function beatLayers({ beat, assets, diagrams, photoAsset, inF, outF
 
   // Diagram layers (drawn by the renderer; no image file)
   diagrams.forEach(({ concept }, d) => {
-    const diag = diagramLayersFor(concept, { id: `beat-${beat.id}-diag-${d}`, inF, outF, z: z + d * 3, rect: comp.diagramX ? { x: comp.diagramX, y: comp.diagramY, w: 700, h: 700 } : null });
+    const diag = diagramLayersFor(concept, { id: `beat-${beat.id}-diag-${d}`, inF, outF, z: z + d * 3, rect: comp.diagramX ? { x: comp.diagramX, y: comp.diagramY, w: 700, h: 700 } : undefined });
     layers.push(...diag);
   });
 
