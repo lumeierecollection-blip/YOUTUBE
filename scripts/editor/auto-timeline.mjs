@@ -19,6 +19,7 @@ import { buildAutoPlan, seededRandom } from "./auto-plan.mjs";
 import { graphicLayers, decorationLayers, sweepLayers } from "./graphics.mjs";
 import { buildTimeline } from "./timeline.mjs";
 import { buildCaptions } from "./captions.mjs";
+import { applyVisualPack, loadVisualPack } from "./visual-pack.mjs";
 import { resolveEditorTimeline } from "../lib/editor-timeline-lookup.mjs";
 import { scriptSentences } from "./captions.mjs";
 import { resolveChannel } from "../lib/channel-lookup.mjs";
@@ -103,7 +104,7 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
     if (!sc.graphic) {
       // A photo scene with no figure still moves: the accent draws itself across it (graphics.mjs decorationLayers).
       if (/^card-/.test(sc.asset)) timeline.layers.push(...sweepLayers({ id: "scene-" + i + "-d", palette: plan.palette, inF: base.in, outF: base.out }));
-      if (/^(photo|concept)-/.test(sc.asset)) timeline.layers.push(...decorationLayers({ id: "scene-" + i + "-d", look: sc.look, palette: plan.palette, inF: base.in + (sc.stagger || 0), outF: base.out }));
+      if (/^(photo|concept|hist)-/.test(sc.asset)) timeline.layers.push(...decorationLayers({ id: "scene-" + i + "-d", look: sc.look, palette: plan.palette, inF: base.in + (sc.stagger || 0), outF: base.out }));
       return;
     }
     const g = sc.graphic;
@@ -115,7 +116,7 @@ export function addGraphics(timeline, plan, { secondary } = {}) {
   return timeline;
 }
 
-export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration }) {
+export async function buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style = 1, probeDuration, visualPack }) {
   const stem = basename(scriptPath, ".json");
   const base = join(ROOT, "data", "tts", channelId, `${stem}-vo`);
   const audio = `${base}.mp3`;
@@ -144,6 +145,10 @@ export async function buildOne({ channelId, scriptPath, channel, resolve: resolv
     writeFileSync(file, c.svg);
     plan.assets[c.id] = { file: rel(file), width: 1080, height: 1920, credit: "Graphic: automatic editor, figures from the sources", source_url: source || "https://github.com/lumeierecollection-blip/YOUTUBE", license: "Original diagram" };
   }
+  if (visualPack) {
+    applyVisualPack(plan, visualPack, { sentenceCount: scriptSentences(script).length });
+    console.log(`[auto-timeline] ${stem}: visual pack applied (${visualPack.images.length} images, ${(Number(visualPack.people_ratio) * 100).toFixed(1)}% people-focused)`);
+  }
   writeFileSync(join(dir, "plan.json"), JSON.stringify(plan, null, 2));
 
   const captions = buildCaptions({ script, whisper: transcript, duration: audioDuration });
@@ -167,7 +172,7 @@ async function main() {
   const args = process.argv.slice(2);
   const get = (k) => { const i = args.indexOf(`--${k}`); return i >= 0 ? args[i + 1] : undefined; };
   const channelId = get("channel");
-  if (!channelId) throw new Error("usage: auto-timeline.mjs --channel <id> [--script <path>] [--github-env]");
+  if (!channelId) throw new Error("usage: auto-timeline.mjs --channel <id> [--script <path>] [--visual-pack <manifest>] [--github-env]");
   const channels = JSON.parse(readFileSync(join(ROOT, "config", "channels.json"), "utf8")).channels;
   const channel = resolveChannel(channelId, channels);
   const scripts = get("script") ? [resolve(ROOT, get("script"))] : findScripts(channelId);
@@ -176,16 +181,21 @@ async function main() {
   const baseMapPath = join(ROOT, process.env.EDITOR_TIMELINE_BASE_MAP || "scripts/editor/timelines.json");
   const map = existsSync(baseMapPath) ? JSON.parse(readFileSync(baseMapPath, "utf8")) : {};
   const probeDuration = (f) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", f], { encoding: "utf8" }).trim());
-  const resolver = resolverFromEntityAssets();
-  const concept = conceptFinder();
-  const ask = defaultAsk();
+  const packPath = get("visual-pack") || process.env.EDITOR_VISUAL_PACK;
+  const visualPack = packPath ? loadVisualPack(packPath, { root: ROOT }) : null;
+  // A curated visual pack replaces entity/concept lookup entirely: every scene's
+  // image is chosen by the pack, so a broken entity resolver can no longer leave
+  // a missing photo-york asset in the plan.
+  const resolver = visualPack ? async () => ({ ok: false, why: "visual pack controls the imagery" }) : resolverFromEntityAssets();
+  const concept = visualPack ? null : conceptFinder();
+  const ask = visualPack ? null : defaultAsk();
   // --style N / EDITOR_STYLE=N forces one look (the comparison workflow); otherwise each video chooses its own from its slug (auto-plan.mjs)
   const forced = get("style") || process.env.EDITOR_STYLE;
   const style = forced ? Number(forced) || 0 : 0;
 
   for (const scriptPath of scripts) {
     const stem = basename(scriptPath, ".json");
-    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration });
+    const r = await buildOne({ channelId, scriptPath, channel, resolve: resolver, concept, ask, style, probeDuration, visualPack });
     map[stem] = r.timelinePath;
     console.log(`[auto-timeline] ch-${channelId} ${stem}: ${r.scenes} scenes, ${r.frames} frames -> ${r.timelinePath} (style ${r.report.style}, timing from ${r.report.spans}, ${r.report.photos} verified photo(s))`);
     for (const s of r.report.scenes) console.log(`  [${s.sentence}] ${s.start}-${s.end}s ${s.shows}`);

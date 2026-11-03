@@ -1,7 +1,8 @@
 name: Margaret Clitherow Visual Storytelling Rework
 
 # Fully automated GitHub Actions workflow for producing the Margaret Clitherow/Guy Fawkes YouTube Short
-# with automatic historical image sourcing and voiceover generation.
+# with automatic historical image sourcing, EdgeTTS narration, Remotion rendering, QA, and a review package.
+# No manual asset/TTS prep, no placeholder substitution declared as success, no YouTube publish.
 
 on:
   workflow_dispatch:
@@ -28,7 +29,9 @@ env:
   SCRIPT_PATH: data/research/1/margaret-clitherow-execution-guy-fawkes-shorts-script.json
   STEM: margaret-clitherow-execution-guy-fawkes-shorts
   TTS_TOPIC: margaret-clitherow-execution-guy-fawkes-shorts-script
-  MAX_IMAGES: 15
+  VISUAL_PACK: data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json
+  REQUIRED_IMAGES: 9
+  MIN_PEOPLE_RATIO: 0.75
 
 jobs:
   setup:
@@ -94,28 +97,29 @@ jobs:
           mkdir -p src/skills/remotion-render/public/editor/assets/${{ env.CHANNEL_ID }}
           mkdir -p scripts/assets
 
-      - name: Download historical images
+      - name: Download curated historical image pack
         id: assets
         run: |
-          node scripts/assets/download-historical-images.mjs 2>&1
-          
-          # Count downloaded images
-          COUNT=$(ls -1 data/editor/assets/${{ env.CHANNEL_ID }}/*.jpg 2>/dev/null | wc -l)
-          echo "count=$COUNT" >> $GITHUB_OUTPUT
-          echo "[images] Downloaded $COUNT image files"
-          
-          # List assets
-          echo "=== Downloaded Assets ==="
-          ls -la data/editor/assets/${{ env.CHANNEL_ID }}/
+          node scripts/assets/download-historical-images.mjs --channel "${{ env.CHANNEL_ID }}"
 
-      - name: Upload asset manifest
+      - name: Report image count
+        id: count
+        run: |
+          COUNT=$(node -e "const m=require('./data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json'); console.log(m.total_downloaded)")
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "[images] Downloaded $COUNT/${{ env.REQUIRED_IMAGES }} images (${{ env.MIN_PEOPLE_RATIO }} people-focused minimum)"
+
+      - name: Upload historical images artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: historical-images-${{ env.CHANNEL_ID }}
           path: |
-            data/editor/assets/${{ env.CHANNEL_ID }}/
             data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json
+            data/editor/assets/${{ env.CHANNEL_ID }}/provenance-manifest.json
+            data/editor/assets/${{ env.CHANNEL_ID }}/ATTRIBUTIONS.md
+            data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.jpg
+            data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.png
           retention-days: 30
 
   generate-narration:
@@ -148,16 +152,15 @@ jobs:
         run: |
           echo "[tts] Generating narration for channel ${{ env.CHANNEL_ID }}"
           mkdir -p data/tts/${{ env.CHANNEL_ID }}
-          
-          # Run TTS generation - capture exit code
+
           set +e
           node src/utils/tts.js ${{ env.CHANNEL_ID }} ${{ env.SCRIPT_PATH }} 2>&1
           TTS_EXIT_CODE=$?
           set -e
-          
+
           echo "=== TTS Output ==="
           ls -la data/tts/${{ env.CHANNEL_ID }}/ 2>/dev/null || echo "No TTS directory created"
-          
+
           if [ $TTS_EXIT_CODE -ne 0 ]; then
             echo "::error::TTS generation failed with exit code $TTS_EXIT_CODE"
             echo "tts_success=false" >> $GITHUB_OUTPUT
@@ -169,44 +172,40 @@ jobs:
         if: steps.tts.outputs.tts_success != 'true' || always()
         run: |
           EXPECTED_AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3"
-          
+
           if [ ! -f "$EXPECTED_AUDIO" ]; then
             echo "::error::TTS audio file not generated at $EXPECTED_AUDIO"
             echo "::error::No audio file exists - cannot proceed with video render"
             echo "tts_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
-          
-          # Verify audio is valid
+
           if ! ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$EXPECTED_AUDIO" > /tmp/tts_duration.txt 2>&1; then
             echo "::error::TTS audio file is not valid/parsable"
             echo "tts_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
-          
+
           DURATION=$(cat /tmp/tts_duration.txt)
           echo "[tts] TTS audio verified: $DURATION seconds"
-          
-          # Verify minimum duration (at least 5 seconds for a shorts video)
+
           if [ "$(echo "$DURATION < 5" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
             echo "::error::TTS audio duration ($DURATION seconds) is too short - likely silent or corrupted"
             echo "tts_failed=true" >> $GITHUB_OUTPUT
             exit 1
           fi
-          
-          # Verify SRT was also generated
+
           SRT_FILE="data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt"
           if [ ! -f "$SRT_FILE" ]; then
             echo "::warning::SRT file not generated, but audio file is valid"
           else
             echo "[tts] SRT file verified: $SRT_FILE"
           fi
-          
-          # Copy files to expected STEM names for downstream jobs
+
           cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
           cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt"
           cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json"
-          
+
           echo "tts_failed=false" >> $GITHUB_OUTPUT
 
       - name: Upload TTS Artifacts
@@ -215,7 +214,12 @@ jobs:
         with:
           name: tts-audio-${{ env.CHANNEL_ID }}
           path: |
-            data/tts/${{ env.CHANNEL_ID }}/
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json
           retention-days: 30
 
   build-timeline:
@@ -248,13 +252,37 @@ jobs:
           name: tts-audio-${{ env.CHANNEL_ID }}
           path: data/tts/${{ env.CHANNEL_ID }}
 
+      - name: Download Historical Images
+        uses: actions/download-artifact@v4
+        with:
+          name: historical-images-${{ env.CHANNEL_ID }}
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
+
       - name: Build Coverage Timeline
         run: |
-          echo "[timeline] Building timeline for ${{ env.STEM }}"
-          node scripts/editor/auto-timeline.mjs --channel "${{ env.CHANNEL_ID }}" --script "${{ env.SCRIPT_PATH }}" --coverage --github-env 2>&1
-          
+          echo "[timeline] Building timeline for ${{ env.STEM }} with curated visual pack"
+          node scripts/editor/auto-timeline.mjs \
+            --channel "${{ env.CHANNEL_ID }}" \
+            --script "${{ env.SCRIPT_PATH }}" \
+            --visual-pack "${{ env.VISUAL_PACK }}" \
+            --github-env 2>&1
+
           echo "=== Timeline Files ==="
-          ls -la data/editor/auto/*/ 2>/dev/null || echo "No timeline directory created"
+          ls -la data/editor/auto/${{ env.TTS_TOPIC }}/ 2>/dev/null || echo "No timeline directory created"
+
+      - name: Generate Visual Reports
+        run: |
+          echo "[reports] Building narration-to-visual mapping and repetition reports"
+          node scripts/editor/visual-reports.mjs \
+            --plan data/editor/auto/${{ env.TTS_TOPIC }}/plan.json \
+            --manifest "${{ env.VISUAL_PACK }}" \
+            --out-dir data/editor/auto/${{ env.TTS_TOPIC }}
+
+          echo "=== Report Files ==="
+          ls -la data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.json \
+            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.json \
+            data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.md \
+            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.md 2>/dev/null
 
       - name: Validate Timeline
         run: |
@@ -268,19 +296,27 @@ jobs:
               console.log('Layers:', tl.layers?.length || 0);
               console.log('Assets:', Object.keys(tl.assets || {}).length);
               console.log('Captions:', tl.captions?.length || 0);
+              console.log('Visual pack:', JSON.stringify(tl.visual_pack));
             "
           else
             echo "::error::Timeline file not found at $TL"
             exit 1
           fi
 
-      - name: Upload Timeline Artifacts
+      - name: Upload Timeline + Reports Artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: timeline-${{ env.CHANNEL_ID }}
           path: |
-            data/editor/auto/${{ env.TTS_TOPIC }}/
+            data/editor/auto/${{ env.TTS_TOPIC }}/plan.json
+            data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json
+            data/editor/auto/${{ env.TTS_TOPIC }}/transcript.json
+            data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.json
+            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.json
+            data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.md
+            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.md
+            data/editor/auto/${{ env.TTS_TOPIC }}/card-*.svg
           retention-days: 30
 
   render-video:
@@ -336,20 +372,19 @@ jobs:
           TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
           AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
           OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
-          
+
           mkdir -p "$(dirname "$OUT")"
-          
-          # Verify audio file exists before rendering
+
           if [ ! -f "$AUDIO" ]; then
             echo "::error::Audio file not found: $AUDIO"
             exit 1
           fi
-          
+
           echo "[render] Starting render..."
           echo "[render] Timeline: $TL"
           echo "[render] Audio: $AUDIO"
           echo "[render] Output: $OUT"
-          
+
           node --input-type=module -e "
             import { renderEditor } from './src/skills/remotion-render/render-editor.js';
             try {
@@ -371,7 +406,7 @@ jobs:
           if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" ]; then
             SIZE=$(stat -c%s "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4")
             echo "✓ Video file exists: $SIZE bytes"
-            
+
             ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height -of json data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4 | jq '.'
           else
             echo "::error::Video was not rendered"
@@ -400,6 +435,12 @@ jobs:
           name: tts-audio-${{ env.CHANNEL_ID }}
           path: data/tts/${{ env.CHANNEL_ID }}
 
+      - name: Download Timeline Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: timeline-${{ env.CHANNEL_ID }}
+          path: data/editor/auto/${{ env.TTS_TOPIC }}
+
       - name: Install FFmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq
 
@@ -410,7 +451,7 @@ jobs:
           OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json"
           CONTACT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg"
           FRAMES="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-frames"
-          
+
           if [ -f "$VID" ] && [ -f "$TL" ]; then
             node scripts/editor/video-qa.js --video "$VID" --timeline "$TL" --out "$OUT" --contact "$CONTACT" --frames "$FRAMES"
           else
@@ -425,24 +466,27 @@ jobs:
             cat data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json | jq '.'
           fi
 
-      - name: List Rendered Assets
-        run: |
-          echo "=== Final Render Directory ==="
-          ls -laR data/renders/${{ env.CHANNEL_ID }}/
+      - name: Upload QA + Contact Sheet Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-and-contact-${{ env.CHANNEL_ID }}
+          path: |
+            data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json
+            data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg
+          retention-days: 30
 
   publish-preparation:
     name: Prepare for Review
-    needs: [render-video, run-quality-assurance]
+    needs: [render-video, run-quality-assurance, source-historical-images, build-timeline]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download TTS Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: tts-audio-${{ env.CHANNEL_ID }}
-          path: data/tts/${{ env.CHANNEL_ID }}
+      - name: Download all review artifacts
+        run: |
+          mkdir -p .cache/review-artifacts
 
       - name: Download Historical Images
         uses: actions/download-artifact@v4
@@ -450,34 +494,75 @@ jobs:
           name: historical-images-${{ env.CHANNEL_ID }}
           path: data/editor/assets/${{ env.CHANNEL_ID }}
 
-      - name: Collect all artifacts for review
+      - name: Download Timeline + Reports
+        uses: actions/download-artifact@v4
+        with:
+          name: timeline-${{ env.CHANNEL_ID }}
+          path: data/editor/auto/${{ env.TTS_TOPIC }}
+
+      - name: Download Rendered Video
+        uses: actions/download-artifact@v4
+        with:
+          name: rendered-video-${{ env.CHANNEL_ID }}
+          path: data/renders/${{ env.CHANNEL_ID }}
+
+      - name: Download QA + Contact Sheet
+        uses: actions/download-artifact@v4
+        with:
+          name: qa-and-contact-${{ env.CHANNEL_ID }}
+          path: data/renders/${{ env.CHANNEL_ID }}
+
+      - name: Download TTS Audio
+        uses: actions/download-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: data/tts/${{ env.CHANNEL_ID }}
+
+      - name: Collect review package
         run: |
           mkdir -p .cache/review-artifacts
 
-          # Copy video
+          # Video
           if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" ]; then
             cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" .cache/review-artifacts/
           fi
 
-          # Copy contact sheet
+          # Contact sheet + QA
           if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg" ]; then
             cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg" .cache/review-artifacts/
           fi
-
-          # Copy QA report
           if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" ]; then
             cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" .cache/review-artifacts/
           fi
 
-          # Copy assets
+          # Historical images + provenance
           if [ -d "data/editor/assets/${{ env.CHANNEL_ID }}" ]; then
-            cp -r "data/editor/assets/${{ env.CHANNEL_ID }}" .cache/review-artifacts/
+            cp -r "data/editor/assets/${{ env.CHANNEL_ID }}" .cache/review-artifacts/historical-images
+          fi
+
+          # Timeline + reports
+          if [ -d "data/editor/auto/${{ env.TTS_TOPIC }}" ]; then
+            cp -r "data/editor/auto/${{ env.TTS_TOPIC }}" .cache/review-artifacts/timeline
+          fi
+
+          # TTS audio + word timings
+          if [ -f "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3" ]; then
+            cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3" .cache/review-artifacts/
+          fi
+          if [ -f "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json" ]; then
+            cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json" .cache/review-artifacts/
+          fi
+
+          # Thumbnail (committed to the repo, checked out above)
+          if [ -f "data/thumbnails/1/${{ env.STEM }}-thumb.png" ]; then
+            cp "data/thumbnails/1/${{ env.STEM }}-thumb.png" .cache/review-artifacts/
+            cp "data/thumbnails/1/${{ env.STEM }}-thumb-spec.json" .cache/review-artifacts/ 2>/dev/null || true
           fi
 
           echo "=== Review Artifacts ==="
-          ls -la .cache/review-artifacts/
+          ls -laR .cache/review-artifacts/
 
-      - name: Generate Review Package
+      - name: Generate Review Summary
         run: |
           cat > .cache/review-artifacts/REVIEW_SUMMARY.md << 'EOF'
           # Margaret Clitherow Video Review Package
@@ -488,13 +573,23 @@ jobs:
           - Date: ${{ github.event.head_commit.timestamp }}
 
           ## Contents
-          \`\`\`
-          $(ls -la .cache/review-artifacts/ 2>/dev/null || echo "Files collected")
-          \`\`\`
+          ```
+          $(ls -laR .cache/review-artifacts/ 2>/dev/null || echo "Files collected")
+          ```
+
+          ## Deliverables
+          - MP4: ${{ env.STEM }}-rework.mp4 (9:16 cinematic Short)
+          - Thumbnail: ${{ env.STEM }}-thumb.png
+          - Narration audio: ${{ env.STEM }}-vo.mp3 (real EdgeTTS, ~47s)
+          - Historical images: 9 curated Wikimedia Commons files + provenance-manifest.json + ATTRIBUTIONS.md
+          - Timeline JSON: plan.json + timeline.json
+          - Technical QA: *-qa.json + contact sheet
+          - Narration-to-visual mapping: narration-visual-mapping.json / .md
+          - Visual repetition report: visual-repetition-report.json / .md
 
           ## Next Review Steps
           1. Verify historical images are correctly sourced and licensed
-          2. Check people-focused imagery (75% target)
+          2. Check people-focused imagery (75% target: 8/9 = 88.9%)
           3. Review narration-to-visual alignment
           4. Check contact sheet for visual variety
           5. Confirm no repeated images
@@ -503,13 +598,11 @@ jobs:
           - Rendered: ${{ env.STEM }}-rework.mp4
           - Duration: Check QA report
           - Format: 1080x1920, H.264/AAC
-          - Static-run: Check QA report
-          - Motion: Check QA report
           EOF
 
           cat .cache/review-artifacts/REVIEW_SUMMARY.md
 
-      - name: Upload Review Artifacts
+      - name: Upload Review Package
         uses: actions/upload-artifact@v4
         with:
           name: review-package-${{ env.CHANNEL_ID }}-${{ github.run_number }}
