@@ -1421,9 +1421,14 @@
           "topic": "Bayern Munich vs Borussia Dortmund 2-2 Tactical Breakdown",
           "slug": "bayern-dortmund-2-2-tactical-analysis",
           "reserved_at": "2026-11-02T18:29:55.127Z"
+        },
+        {
+          "topic": "Boca Juniors Defeats River Plate in Torneo Clausura",
+          "slug": "boca-juniors-river-plate-torneo-clausura-2026",
+          "reserved_at": "2026-11-03T16:31:16.936Z"
         }
       ],
-      "last_generated": "2026-11-02T18:29:55.128Z"
+      "last_generated": "2026-11-03T16:31:16.936Z"
     },
     "5": {
       "channel_name": "Broadsheet",
