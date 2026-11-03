@@ -1,0 +1,93 @@
+{
+  "topic_slug": "vera-rubin-observatory-spots-new-dwarf-planet-2026-ed138",
+  "strongest_angle": "Break down the discovery of 2026 ED138 by the NSF-DOE Vera C. Rubin Observatory in Chile, examining its estimated diameter between 600 and 1,500 kilometers beyond Pluto.",
+  "key_facts": [
+    {
+      "fact": "Astronomers at the NSF-DOE Vera C. Rubin Observatory in Chile discovered a large trans-Neptunian object designated 2026 ED138 beyond the orbit of Pluto.",
+      "source_url": "https://noirlab.edu/public/news/noirlab2626",
+      "source_name": "NOIRLab",
+      "confidence": "high"
+    },
+    {
+      "fact": "Preliminary data analysis and absolute magnitude calculations indicate that 2026 ED138 has an estimated diameter between 600 and 1,500 kilometers across.",
+      "source_url": "https://www.sci.news/astronomy/vera-rubin-observatory-possible-new-dwarf-planet-15166.html",
+      "source_name": "Sci.News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The discovery of trans-Neptunian object 2026 ED138 was announced to the public by the International Astronomical Union Minor Planet Center.",
+      "source_url": "https://noirlab.edu/public/news/noirlab2626",
+      "source_name": "NOIRLab",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers including Matthew J. Holman and Mario Jurić characterized 2026 ED138 using data taken by the NSF-DOE Vera C. Rubin Observatory with the linking code pointdexter.",
+      "source_url": "https://arxiv.science/abs/2610.38693",
+      "source_name": "arXiv Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estimated minimum diameter of 2026 ED138 in kilometers",
+      "value": 600,
+      "unit": "kilometers",
+      "source_url": "https://www.sci.news/astronomy/vera-rubin-observatory-possible-new-dwarf-planet-15166.html"
+    },
+    {
+      "label": "Estimated maximum diameter of 2026 ED138 in kilometers",
+      "value": 1500,
+      "unit": "kilometers",
+      "source_url": "https://www.sci.news/astronomy/vera-rubin-observatory-possible-new-dwarf-planet-15166.html"
+    },
+    {
+      "label": "Estimated minimum diameter of 2026 ED138 in miles",
+      "value": 373,
+      "unit": "miles",
+      "source_url": "https://www.sci.news/astronomy/vera-rubin-observatory-possible-new-dwarf-planet-15166.html"
+    },
+    {
+      "label": "Estimated maximum diameter of 2026 ED138 in miles",
+      "value": 932,
+      "unit": "miles",
+      "source_url": "https://www.sci.news/astronomy/vera-rubin-observatory-possible-new-dwarf-planet-15166.html"
+    },
+    {
+      "label": "Absolute magnitude HV of 2026 ED138",
+      "value": 3.19,
+      "unit": "magnitude",
+      "source_url": "https://arxiv.science/abs/2610.38693"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Vera C. Rubin Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "2026 ED138",
+      "kind": "object"
+    },
+    {
+      "name": "Pluto",
+      "kind": "object"
+    },
+    {
+      "name": "International Astronomical Union Minor Planet Center",
+      "kind": "organization"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "Matthew J. Holman",
+      "kind": "person"
+    },
+    {
+      "name": "Mario Jurić",
+      "kind": "person"
+    }
+  ]
+}
