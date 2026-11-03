@@ -367,6 +367,12 @@ jobs:
           name: timeline-${{ env.CHANNEL_ID }}
           path: data/editor/auto/${{ env.TTS_TOPIC }}
 
+      - name: Download Historical Images
+        uses: actions/download-artifact@v4
+        with:
+          name: historical-images-${{ env.CHANNEL_ID }}
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
+
       - name: Render Video
         run: |
           TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
