@@ -209,6 +209,15 @@ jobs:
           
           echo "tts_failed=false" >> $GITHUB_OUTPUT
 
+      - name: Upload TTS Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: |
+            data/tts/${{ env.CHANNEL_ID }}/
+          retention-days: 30
+
   build-timeline:
     name: Build Visual Timeline
     needs: [setup, source-historical-images, generate-narration]
@@ -232,6 +241,12 @@ jobs:
 
       - name: Install FFmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Download TTS Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: data/tts/${{ env.CHANNEL_ID }}
 
       - name: Build Coverage Timeline
         run: |
@@ -294,6 +309,12 @@ jobs:
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
+
+      - name: Download TTS Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: data/tts/${{ env.CHANNEL_ID }}
 
       - name: Render Video
         run: |
@@ -358,6 +379,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download TTS Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: data/tts/${{ env.CHANNEL_ID }}
+
       - name: Install FFmpeg
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq
 
@@ -395,6 +422,18 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
+      - name: Download TTS Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: data/tts/${{ env.CHANNEL_ID }}
+
+      - name: Download Historical Images
+        uses: actions/download-artifact@v4
+        with:
+          name: historical-images-${{ env.CHANNEL_ID }}
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
 
       - name: Collect all artifacts for review
         run: |
