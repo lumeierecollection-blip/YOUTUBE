@@ -2445,9 +2445,14 @@
           "topic": "Physical Size of a Billion-Solar-Mass Black Hole Compared to the Sun",
           "slug": "billion-solar-mass-black-hole-size",
           "reserved_at": "2026-11-02T18:35:39.923Z"
+        },
+        {
+          "topic": "Vera C. Rubin Observatory Spots Possible New Dwarf Planet 2026 ED138",
+          "slug": "vera-rubin-observatory-spots-new-dwarf-planet-2026-ed138",
+          "reserved_at": "2026-11-03T16:38:21.486Z"
         }
       ],
-      "last_generated": "2026-11-02T18:35:39.923Z"
+      "last_generated": "2026-11-03T16:38:21.486Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
