@@ -2542,9 +2542,14 @@
           "topic": "Tegaza 001 Martian Meteorite Found in Sahara Dated to 4.1 Billion Years",
           "slug": "tegaza-001-martian-meteorite-sahara",
           "reserved_at": "2026-11-02T18:36:34.642Z"
+        },
+        {
+          "topic": "University of St Andrews Tin Deposit Formation Research",
+          "slug": "st-andrews-tin-deposit-formation-research",
+          "reserved_at": "2026-11-03T16:43:09.469Z"
         }
       ],
-      "last_generated": "2026-11-02T18:36:34.642Z"
+      "last_generated": "2026-11-03T16:43:09.470Z"
     },
     "18": {
       "channel_name": "Brief History",
