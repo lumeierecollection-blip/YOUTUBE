@@ -72,7 +72,7 @@ export async function auditCoverage({ timeline, coverageReport, video, out, cont
   const personPlaceImageLayers = imageLayers.filter((l) => {
     const role = String(l.role || "");
     const credit = String(l.credit || "");
-    return /person|place/i.test(role) || /person|place|margaret|fawkes|clitherow|york/i.test(credit);
+    return /person|place/i.test(role) || /person|place|margaret|fawkes|clitherow|york/i.test(role || credit);
   });
   const personPlaceLabelCards = personPlaceImageLayers.filter((l) => /label.card/i.test(String(l.role || "")) || /label.card/i.test(String(l.file || "")));
   checks.person_place_image_layers = personPlaceImageLayers.length;
