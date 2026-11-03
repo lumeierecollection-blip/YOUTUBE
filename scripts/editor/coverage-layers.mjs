@@ -141,6 +141,12 @@ export function svgLayer({ id, rect, paths, inF, outF, z, drawFrames = 20, opaci
         { f: Math.min(span, delay), v: 0 },
         { f: Math.min(span, delay + drawFrames), v: 1, e: "outCubic" },
       ],
+      // A slow, purposeful drift on diagram layers so an information-dense
+      // diagram that stays on screen for several seconds never sits completely
+      // still (the final static-run QA caps frozen holds at 4.0s). The drift is
+      // a translate (not a blanket scale sweep) and only moves the diagram, not
+      // the surrounding frame.
+      ty: [{ f: 0, v: 0, e: "outCubic" }, { f: span, v: 18, e: "inOutCubic" }],
     },
   };
 }

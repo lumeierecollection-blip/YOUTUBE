@@ -13,7 +13,7 @@ import { buildCoveragePlan } from "../editor/coverage-plan.mjs";
 import { buildCoverageTimeline } from "../editor/coverage-timeline.mjs";
 import { buildCaptions, scriptSentences } from "../editor/captions.mjs";
 import { auditCoverage } from "../editor/coverage-audit.mjs";
-import { solidLayer } from "../editor/coverage-layers.mjs";
+import { solidLayer, svgLayer } from "../editor/coverage-layers.mjs";
 
 function load(ch) {
   const script = JSON.parse(readFileSync(`data/research/${ch}/${ch === "1" ? "margaret-clitherow-execution-guy-fawkes" : ch === "2" ? "wso2-integrator-5-1-ai-workflow-release" : "university-of-michigan-haptic-steering-wheel-semi-autonomous"}-shorts-script.json`, "utf8"));
@@ -473,4 +473,16 @@ test("coverage timeline background solid carries ty/tx drift to prevent static h
   const bg = tl.layers.find((l) => l.id && String(l.id).endsWith("-bg"));
   assert.ok(bg, "background solid layer present");
   assert.ok(bg.keyframes.ty || bg.keyframes.tx, "background solid must declare drift motion (ty/tx) so long holds are not static");
+});
+
+test("svgLayer declares a purposeful ty drift so long diagram holds are not frozen", () => {
+  const layer = svgLayer({
+    id: "diag-wheel", rect: { x: 90, y: 400, w: 900, h: 700 },
+    inF: 0, outF: 180, z: 5, drawFrames: 30,
+    paths: [{ d: "M0 0 L100 100", stroke: "#D4A574", strokeWidth: 4 }],
+  });
+  assert.ok(layer.keyframes.ty, "svgLayer must declare a ty drift on diagrams");
+  assert.equal(layer.keyframes.ty[0].v, 0);
+  assert.equal(layer.keyframes.ty[layer.keyframes.ty.length - 1].v, 18);
+  assert.ok(layer.keyframes.draw, "svgLayer must still declare the draw-on animation");
 });
