@@ -1,0 +1,75 @@
+{
+  "topic_slug": "ai-web-search-compared-november-2026",
+  "strongest_angle": "Shunta Fujii's November 2, 2026 evaluation by Shunta Fujii compares ChatGPT, Gemini, Claude, and Microsoft Copilot web search accuracy across three sourced prompts.",
+  "key_facts": [
+    {
+      "fact": "On November 2, 2026, Shunta Fujii published an AI web search evaluation on AInformation comparing ChatGPT, Gemini, Claude, and Microsoft Copilot across three prompts.",
+      "source_url": "https://ainformation.jp/en/article/17317",
+      "source_name": "AInformation",
+      "confidence": "high"
+    },
+    {
+      "fact": "Microsoft Copilot answered the sunrise question in 20.2 seconds, making it the fastest among the four tested tools.",
+      "source_url": "https://ainformation.jp/en/article/17317",
+      "source_name": "AInformation",
+      "confidence": "high"
+    },
+    {
+      "fact": "Exa Labs published a generative AI web search overview on September 30, 2026, examining ChatGPT Search, Perplexity, and Microsoft 365 Copilot Chat.",
+      "source_url": "https://exa.ai/blog/which-ai-chatbots-can-search-the-web",
+      "source_name": "Exa Blog",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Copilot response time for sunrise question",
+      "value": 20.2,
+      "unit": "seconds",
+      "source_url": "https://ainformation.jp/en/article/17317"
+    },
+    {
+      "label": "Tested AI web search tools",
+      "value": 4,
+      "unit": "tools",
+      "source_url": "https://ainformation.jp/en/article/17317"
+    },
+    {
+      "label": "Tested prompts in Shunta Fujii evaluation",
+      "value": 3,
+      "unit": "prompts",
+      "source_url": "https://ainformation.jp/en/article/17317"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Shunta Fujii",
+      "kind": "person"
+    },
+    {
+      "name": "ChatGPT",
+      "kind": "organization"
+    },
+    {
+      "name": "Gemini",
+      "kind": "organization"
+    },
+    {
+      "name": "Claude",
+      "kind": "organization"
+    },
+    {
+      "name": "Microsoft Copilot",
+      "kind": "organization"
+    },
+    {
+      "name": "AInformation",
+      "kind": "organization"
+    },
+    {
+      "name": "Exa Labs",
+      "kind": "organization"
+    }
+  ]
+}
