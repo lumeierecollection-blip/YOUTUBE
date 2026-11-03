@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "st-helena-slave-ship-burials-dna-analysis",
+  "format": "shorts",
+  "hook": "Over 8,000 rescued captives died on one remote Atlantic island.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:05",
+      "voiceover": "Over 8,000 rescued captives died on one remote Atlantic island.",
+      "visual_cue": "Wide aerial shot of rugged ocean cliffs at St Helena with stormy waves breaking below.",
+      "sfx_cue": "Ocean waves crashing with wind ambience",
+      "b_roll": [
+        "St Helena island remote coastline footage",
+        "19th century Atlantic ocean map graphic"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "8,000 RESCUED CAPTIVES DIED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05 - 0:20",
+      "voiceover": "After 1807, the British Royal Navy brought 450 intercepted slave ships to St Helena. Why did 8,000 die on St Helena soon after rescue?",
+      "visual_cue": "Historical maritime route map tracking British Royal Navy ships arriving at St Helena island.",
+      "sfx_cue": "Wooden ship timber creaking and distant bell toll",
+      "b_roll": [
+        "Historical British Royal Navy vessel painting",
+        "St Helena island landing site illustration"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "ST HELENA: 450 INTERCEPTED SHIPS"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20 - 0:26",
+      "voiceover": "However, experts didn't know the childhood origins of 8,000 captives buried on St Helena.",
+      "visual_cue": "Archival parish record document with handwritten names slowly fading into shoreline haze.",
+      "sfx_cue": "Low bass rumble sound effect",
+      "b_roll": [
+        "19th century archival document scroll",
+        "Foggy Atlantic coastline atmosphere"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "LOST FOR 200 YEARS"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26 - 0:42",
+      "voiceover": "Researchers published a landmark study in Science analyzing ancient DNA. Scientists tested tooth isotopes from 152 liberated Africans buried on the island. Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on St Helena.",
+      "visual_cue": "Laboratory macro footage showing isotope analysis apparatus and genetic sequence diagrams.",
+      "sfx_cue": "Subtle ambient digital tone",
+      "b_roll": [
+        "Archaeological laboratory tooth isotope analysis visual",
+        "Science journal research paper layout"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "STUDY IN SCIENCE: 152 INDIVIDUALS"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42 - 0:48",
+      "voiceover": "Science finally traced origins for 152 buried individuals there.",
+      "visual_cue": "Slow cinematic move over a quiet historic burial location on St Helena looking out to sea.",
+      "sfx_cue": "Wind fading softly to silence",
+      "b_roll": [
+        "St Helena historic burial ground landscape",
+        "Atlantic ocean horizon at dusk"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "ST HELENA BURIALS TRACED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.science.org/doi/10.1126/science.aeb3661",
+    "https://www.nature.com/articles/d44148-026-00348-w",
+    "https://archaeology.ku.dk/news/new-study-traces-african-origins-of-st-helenas-liberated-africans"
+  ]
+}
