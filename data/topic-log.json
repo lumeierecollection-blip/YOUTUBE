@@ -2592,9 +2592,14 @@
           "topic": "Rail Accident Investigation Branch Report on Bluebell Railway Coupling Safety",
           "slug": "bluebell-railway-coupling-safety-raib-report",
           "reserved_at": "2026-11-02T18:36:47.309Z"
+        },
+        {
+          "topic": "Ulsan Power Plant Collapse Caused by Excessive Column Cutting",
+          "slug": "ulsan-power-plant-collapse-column-cutting",
+          "reserved_at": "2026-11-03T16:45:08.668Z"
         }
       ],
-      "last_generated": "2026-11-02T18:36:47.309Z"
+      "last_generated": "2026-11-03T16:45:08.668Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
