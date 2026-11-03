@@ -1272,9 +1272,14 @@
           "topic": "Gemini 4 Carbon vs Claude Opus 5.5 GDPx Benchmark Test Results",
           "slug": "gemini-4-carbon-vs-claude-opus-5-5-gdpx-benchmark",
           "reserved_at": "2026-11-02T18:29:03.519Z"
+        },
+        {
+          "topic": "Anthropic Releases FlashProve to Verify AI Model Outputs on CPUs",
+          "slug": "anthropic-flashprove-verify-ai-model-outputs",
+          "reserved_at": "2026-11-03T16:32:18.049Z"
         }
       ],
-      "last_generated": "2026-11-02T18:29:03.519Z"
+      "last_generated": "2026-11-03T16:32:18.049Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
