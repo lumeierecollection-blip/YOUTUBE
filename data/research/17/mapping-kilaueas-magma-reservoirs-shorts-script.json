@@ -1,0 +1,75 @@
+{
+  "channel_id": "17",
+  "topic_slug": "mapping-kilaueas-magma-reservoirs",
+  "format": "shorts",
+  "hook": "Scientists placed 1,815 sensors on Kīlauea to reveal what lies beneath.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Scientists placed 1,815 sensors on Kīlauea to reveal what lies beneath.",
+      "visual_cue": "Wide aerial view of Kīlauea summit with animated sensor points appearing across the landscape.",
+      "sfx_cue": "Low frequency rumble building into a sharp seismic ping.",
+      "b_roll": [
+        "Aerial footage of Kīlauea summit",
+        "Graphic of 1,815 sensor icons mapped on volcano terrain"
+      ],
+      "text_overlay": {
+        "text": "1,815 Sensors on Kīlauea"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How did the researchers process 192 million seismic waveforms to map the volcano's complex subsurface?",
+      "visual_cue": "Close-up of seismic sensor equipment followed by a map showing a 30km radius circle around the summit.",
+      "sfx_cue": "Rhythmic ticking sound simulating data collection.",
+      "b_roll": [
+        "Close-up of deployed seismic sensor on volcanic rock",
+        "Animated map showing 30km radius around Kīlauea"
+      ],
+      "text_overlay": {
+        "text": "35,000 Earthquakes Recorded"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the team analyzed 192 million seismic waveforms, revealing a far more complex structure.",
+      "visual_cue": "Visual representation of complex wave patterns pulsing and merging into a 3D subsurface model.",
+      "sfx_cue": "Rapid data processing digital chirping.",
+      "b_roll": [
+        "Abstract animation of 192 million waveforms"
+      ],
+      "text_overlay": {
+        "text": "192 Million Waveforms"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This deep analysis uncovered two distinct magma storage reservoirs. One reservoir sits beneath the Halemaʻumaʻu crater. A second chamber hides beneath the south caldera of Kīlauea.",
+      "visual_cue": "Cross-section 3D model of the volcano showing two glowing magma pockets labeled Halemaʻumaʻu and South Caldera.",
+      "sfx_cue": "Deep, resonant hollow sound effect.",
+      "b_roll": [
+        "3D cross-section animation of Kīlauea subsurface",
+        "Labels pointing to Halemaʻumaʻu and South Caldera"
+      ],
+      "text_overlay": {
+        "text": "Two Magma Reservoirs Found"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Study co-author Roger Denlinger confirms these two chambers hold the molten secrets beneath Kīlauea.",
+      "visual_cue": "Slow zoom out from the summit to reveal the full volcanic structure.",
+      "sfx_cue": "Fading volcanic rumble.",
+      "b_roll": [
+        "Slow aerial pull-back from Kīlauea summit"
+      ],
+      "text_overlay": {
+        "text": "Kīlauea Magma Mapping"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground",
+    "https://eos.org/research-spotlights/mapping-kilaueas-magma-reservoirs"
+  ]
+}
