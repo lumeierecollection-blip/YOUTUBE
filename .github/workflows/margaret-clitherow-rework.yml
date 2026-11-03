@@ -453,6 +453,12 @@ jobs:
           name: rendered-video-${{ env.CHANNEL_ID }}
           path: data/renders/${{ env.CHANNEL_ID }}
 
+      - name: Download Historical Images
+        uses: actions/download-artifact@v4
+        with:
+          name: historical-images-${{ env.CHANNEL_ID }}
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
+
       - name: Install Dependencies
         run: |
           npm ci --no-audit --no-fund 2>/dev/null || npm install
