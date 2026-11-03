@@ -58,7 +58,7 @@ export function textLayer({
   return layer;
 }
 
-export function solidLayer({ id, rect = { x: 0, y: 0, w: W, h: H }, background, inF, outF, z, opacity = 1 }) {
+export function solidLayer({ id, rect = { x: 0, y: 0, w: W, h: H }, background, inF, outF, z, opacity = 1, keyframes }) {
   const span = Math.max(1, outF - inF);
   return {
     id,
@@ -69,7 +69,10 @@ export function solidLayer({ id, rect = { x: 0, y: 0, w: W, h: H }, background, 
     z,
     style: { background },
     props: { opacity },
-    keyframes: { opacity: fade(span, { opacity, fadeIn: 6, fadeOut: 6 }) },
+    keyframes: {
+      ...(keyframes || {}),
+      opacity: fade(span, { opacity, fadeIn: 6, fadeOut: 6 }),
+    },
   };
 }
 

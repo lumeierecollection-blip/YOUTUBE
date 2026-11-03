@@ -13,6 +13,7 @@ import { buildCoveragePlan } from "../editor/coverage-plan.mjs";
 import { buildCoverageTimeline } from "../editor/coverage-timeline.mjs";
 import { buildCaptions, scriptSentences } from "../editor/captions.mjs";
 import { auditCoverage } from "../editor/coverage-audit.mjs";
+import { solidLayer } from "../editor/coverage-layers.mjs";
 
 function load(ch) {
   const script = JSON.parse(readFileSync(`data/research/${ch}/${ch === "1" ? "margaret-clitherow-execution-guy-fawkes" : ch === "2" ? "wso2-integrator-5-1-ai-workflow-release" : "university-of-michigan-haptic-steering-wheel-semi-autonomous"}-shorts-script.json`, "utf8"));
@@ -441,4 +442,35 @@ test("coverage timeline does not crash when a beat's visual class has no diagram
   assert.ok(tl, "timeline was produced");
   const diagramLayers = tl.layers.filter((l) => l.type === "svg");
   assert.ok(diagramLayers.length > 0, "diagram layers should still be drawn");
+});
+
+test("solidLayer forwards custom keyframes (ty/tx drift) so background solids are not held static", () => {
+  const layer = solidLayer({
+    id: "bg-drift", rect: { x: 0, y: 0, w: 1080, h: 1920 }, background: "#08090B",
+    inF: 0, outF: 90, z: 1, opacity: 1,
+    keyframes: { ty: [{ f: 0, v: 0 }, { f: 45, v: 100 }, { f: 90, v: 0 }] },
+  });
+  // The custom ty drift must be preserved alongside the opacity fade.
+  assert.ok(layer.keyframes.ty, "solidLayer must forward the ty keyframe drift");
+  assert.equal(layer.keyframes.ty.length, 3);
+  assert.equal(layer.keyframes.ty[1].v, 100);
+  // Opacity fade is still applied (authoritative).
+  assert.ok(Array.isArray(layer.keyframes.opacity) && layer.keyframes.opacity.length >= 2);
+});
+
+test("coverage timeline background solid carries ty/tx drift to prevent static holds", async () => {
+  const script = makeTestScript("The bridge collapsed in 1986.");
+  const research = makeTestResearch([{ name: "The bridge", kind: "object" }]);
+  const sentences = scriptSentences(script);
+  let t = 0; const words = [];
+  sentences.forEach((s, i) => {
+    const ws = s.split(/\s+/); const dur = Math.max(1.0, ws.length / 2.6);
+    ws.forEach((w, j) => { words.push({ text: w, word: w, sentence: i, start: t + dur * j / ws.length, end: t + dur * (j + 1) / ws.length }); }); t += dur;
+  });
+  const plan = buildCoveragePlan({ script, research, words, audioDuration: t });
+  const captions = buildCaptions({ script, whisper: transcriptFromWords({ words }), duration: t });
+  const tl = await buildCoverageTimeline({ plan, assetsByBeat: {}, captions, audioDuration: t, channel: {} });
+  const bg = tl.layers.find((l) => l.id && String(l.id).endsWith("-bg"));
+  assert.ok(bg, "background solid layer present");
+  assert.ok(bg.keyframes.ty || bg.keyframes.tx, "background solid must declare drift motion (ty/tx) so long holds are not static");
 });
