@@ -68,14 +68,20 @@ async function getAccessToken() {
       },
       (res) => {
         let data = "";
-        res.on("data", (chunk) => (data += chunk));
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
         res.on("end", () => {
           try {
             const json = JSON.parse(data);
             if (json.access_token) {
               resolve(json.access_token);
             } else {
-              reject(new Error(`Token refresh failed: ${json.error_description || json.error || data}`));
+              reject(
+                new Error(
+                  `Token refresh failed: ${json.error_description || json.error || data}`
+                )
+              );
             }
           } catch (e) {
             reject(new Error(`Failed to parse token response: ${data}`));
@@ -83,7 +89,7 @@ async function getAccessToken() {
         });
       }
     );
-    req.on("error", reject);
+    req.on("error", (e) => reject(e));
     req.write(postData);
     req.end();
   });
