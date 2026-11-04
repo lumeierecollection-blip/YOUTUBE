@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 /**
- * Source the curated, people-centred historical image pack for
- * "Margaret Clitherow / Guy Fawkes" from Wikimedia Commons.
+ * Download Historical Images from Wikimedia Commons using a curated pack.
  *
- *   node scripts/assets/download-historical-images.mjs --channel 1
+ *   node scripts/assets/download-historical-images.mjs --channel 1 --pack data/editor/visual-packs/ch1-margaret-clitherow.json
+ *   node scripts/assets/download-historical-images.mjs --channel 2 --pack data/editor/visual-packs/ch2-ai-tested.json
  *
- * This is deliberately NOT a keyword search. Every image is an exact Commons
- * file title with a known licence, so a render can never silently receive an
- * unrelated picture. The pack is all-or-nothing: if any title is missing, its
- * licence is not explicit PD/CC, or the downloaded bytes are not a valid
+ * Each image is an exact Commons file title with a known licence — no keyword
+ * search, no invented images. The pack is all-or-nothing: if any title is missing,
+ * its licence is not explicit PD/CC, or the downloaded bytes are not a valid
  * image, the manifest is still written for inspection and the process exits 1.
  *
  * Output (inside data/editor/assets/<channel>/):
@@ -27,105 +26,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..", "..");
 const API = "https://commons.wikimedia.org/w/api.php";
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; curated historical image pack)";
-
-/**
- * Nine beats, nine unique images. Eight are people/people-groups, one is the
- * place (York Minster). sentence_index is the spoken sentence the image covers,
- * so the visual is tied to the narration rather than to a generic keyword.
- */
-const PACK = [
-  {
-    sentence_index: 0,
-    kind: "person",
-    subject: "Margaret Clitherow",
-    label: "Margaret Clitherow",
-    title: "File:Saint Margaret of York Catholic Church (Loveland, Ohio) - stained glass, the Pearl of York.jpg",
-    alt: "Stained-glass window depicting Margaret Clitherow, the Pearl of York",
-    note: "A modern stained-glass depiction of Clitherow; the window is in Loveland, Ohio, not York.",
-    reason: "The hook names a pregnant mother in York; the stained glass identifies her as Margaret Clitherow, the Pearl of York.",
-  },
-  {
-    sentence_index: 1,
-    kind: "person",
-    subject: "Margaret Clitherow",
-    label: "Margaret Clitherow",
-    title: "File:St. Margaret Clitherow JS.jpg",
-    alt: "Engraving of Margaret Clitherow holding a cross",
-    note: "Eighteenth-century engraving after an older portrait.",
-    reason: "The sentence names Margaret Clitherow and the accusation against her; the engraving is a portrait of her.",
-  },
-  {
-    sentence_index: 2,
-    kind: "person",
-    subject: "Margaret Clitherow",
-    label: "Margaret Clitherow",
-    title: "File:St Margaret Clitherow, Ladyewell House, Broughton (Preston) - geograph.org.uk - 539003.jpg",
-    alt: "Statue of St Margaret Clitherow at Ladyewell House",
-    note: "A statue of Clitherow at the Ladyewell shrine; not a contemporary likeness.",
-    reason: "The sentence describes her refusal to plead while pregnant; the statue depicts her holding a cross.",
-  },
-  {
-    sentence_index: 3,
-    kind: "place",
-    subject: "York Minster",
-    label: "York",
-    title: "File:York Minster Nave.jpg",
-    alt: "The nave of York Minster",
-    note: "York Minster as it stands today; the medieval minster dominated the city in Fawkes's youth.",
-    reason: "The sentence asks what Guy Fawkes saw in York; the image shows York Minster, the city's defining landmark.",
-  },
-  {
-    sentence_index: 4,
-    kind: "people",
-    subject: "Pressing to death",
-    label: "Punishment of pressing",
-    title: "File:Engraving for the Malefactor's Register the punishment formerly inflicted on those who refused pleading to an indictment.jpg",
-    alt: "Engraving of a prisoner being pressed to death under weights",
-    note: "Generic 1780 engraving of peine forte et dure; it illustrates the method, not Clitherow herself.",
-    reason: "The sentence describes her being slowly crushed to death; the engraving depicts the press punishment itself, and is labelled as a generic depiction.",
-  },
-  {
-    sentence_index: 5,
-    kind: "person",
-    subject: "Guy Fawkes",
-    label: "Guy Fawkes",
-    title: "File:Guy Fawkes portrait.jpg",
-    alt: "Portrait of Guy Fawkes",
-    note: "Traditional portrait of Guy Fawkes (1570-1606).",
-    reason: "The sentence names Guy Fawkes and the theory that he witnessed the execution; the portrait depicts him.",
-  },
-  {
-    sentence_index: 6,
-    kind: "people",
-    subject: "Christopher and John Wright",
-    label: "Christopher & John Wright",
-    title: "File:John and christopher wright.jpg",
-    alt: "Contemporary sketch of Christopher and John Wright",
-    note: "Contemporary engraving of the Wright brothers, later Gunpowder Plot conspirators.",
-    reason: "The sentence names Christopher and John Wright; the engraving depicts both brothers together.",
-    rights_note: "Wikimedia Commons tags the file Public domain; the source institution's reproduction notice is retained here for transparency.",
-  },
-  {
-    sentence_index: 7,
-    kind: "people",
-    subject: "Gunpowder Plot conspirators",
-    label: "The 1605 conspirators",
-    title: "File:Gunpow1.jpg",
-    alt: "Engraving of the Gunpowder Plot conspirators",
-    note: "Crispijn van de Passe the Elder's group engraving of the conspirators.",
-    reason: "The sentence describes the brutal act shaping the conspirators before 1605; the group engraving depicts the plotters.",
-  },
-  {
-    sentence_index: 8,
-    kind: "people",
-    subject: "Execution of the Gunpowder Plotters",
-    label: "The plot's aftermath",
-    title: "File:Anonymous - The Gunpowder Plotters and their Execution in February 1606 - B1977.14.17890 - Yale Center for British Art.jpg",
-    alt: "Engraving of the Gunpowder Plotters and their execution in February 1606",
-    note: "A period engraving of the plotters and their February 1606 execution; it shows the plot's aftermath, not Clitherow's 1586 death.",
-    reason: "The closing sentence links Clitherow's death to the 1605 plot; the engraving shows the plotters and their 1606 execution, the plot's outcome.",
-  },
-];
 
 const MIN_PEOPLE_RATIO = 0.75;
 
@@ -234,19 +134,31 @@ function convertToJpeg(src, dst) {
 
 async function main() {
   const channel = arg("channel") || process.env.CHANNEL_ID || "1";
+  const packPath = arg("pack") || process.env.VISUAL_PACK || resolve(ROOT, `data/editor/visual-packs/ch${channel}.json`);
   const outDir = resolve(ROOT, arg("out") || join("data", "editor", "assets", channel));
   mkdirSync(outDir, { recursive: true });
 
+  if (!existsSync(packPath)) {
+    console.error(`::error::image-pack: visual pack manifest not found: ${packPath}`);
+    process.exit(1);
+  }
+  const pack = JSON.parse(readFileSync(packPath, "utf8"));
+  const images = Array.isArray(pack.images) ? pack.images : Array.isArray(pack) ? pack : [];
+  if (!images.length) {
+    console.error(`::error::image-pack: no images in pack ${packPath}`);
+    process.exit(1);
+  }
+
   const generatedAt = new Date().toISOString();
-  const images = [];
+  const downloaded = [];
   const errors = [];
   const seenTitles = new Set();
   const seenHashes = new Set();
 
-  console.log(`[image-pack] ${PACK.length} curated Commons files -> ${relative(ROOT, outDir)}`);
+  console.log(`[image-pack] ${images.length} curated Commons files from ${packPath} -> ${relative(ROOT, outDir)}`);
 
-  for (let i = 0; i < PACK.length; i++) {
-    const spec = PACK[i];
+  for (let i = 0; i < images.length; i++) {
+    const spec = images[i];
     const id = `hist-${String(i + 1).padStart(2, "0")}`;
     console.log(`[image-pack] ${id} ${spec.title}`);
     try {
@@ -318,7 +230,7 @@ async function main() {
         rights_note: rightsNote,
         downloaded_at: new Date().toISOString(),
       };
-      images.push(record);
+      downloaded.push(record);
       seenTitles.add(spec.title);
       console.log(`[image-pack]   ok ${finalSize.width}x${finalSize.height} ${info.license} ${(finalBuf.length / 1024).toFixed(0)} KB`);
     } catch (e) {
@@ -328,26 +240,27 @@ async function main() {
     }
   }
 
-  const people = images.filter((x) => x.kind === "person" || x.kind === "people").length;
-  const peopleRatio = images.length ? people / images.length : 0;
-  const uniqueFiles = new Set(images.map((x) => x.sha256)).size;
-  const ok = images.length === PACK.length && uniqueFiles === PACK.length && peopleRatio >= MIN_PEOPLE_RATIO;
+  const people = downloaded.filter((x) => x.kind === "person" || x.kind === "people").length;
+  const peopleRatio = downloaded.length ? people / downloaded.length : 0;
+  const uniqueFiles = new Set(downloaded.map((x) => x.sha256)).size;
+  const ok = downloaded.length === images.length && uniqueFiles === images.length && peopleRatio >= MIN_PEOPLE_RATIO;
 
   const manifest = {
     schema: "historical-visual-pack/v1",
     generated_at: generatedAt,
-    pack: "margaret-clitherow-people-centered",
+    pack: pack.name || "curated",
     channel_id: String(channel),
     source: "Wikimedia Commons",
     source_api: API,
+    source_pack: packPath,
     status: ok ? "ok" : "failed",
-    total_requested: PACK.length,
-    total_downloaded: images.length,
+    total_requested: images.length,
+    total_downloaded: downloaded.length,
     unique_files: uniqueFiles,
     people_focused: people,
     people_ratio: Number(peopleRatio.toFixed(4)),
     people_ratio_min: MIN_PEOPLE_RATIO,
-    total_bytes: images.reduce((a, x) => a + x.bytes, 0),
+    total_bytes: downloaded.reduce((a, x) => a + x.bytes, 0),
     images,
     errors,
   };
@@ -359,11 +272,12 @@ async function main() {
     pack: manifest.pack,
     source: manifest.source,
     source_api: API,
-    selection: "Exact Commons file titles from a curated nine-beat pack; no keyword search, no stand-ins.",
+    source_pack: packPath,
+    selection: "Exact Commons file titles from a curated pack; no keyword search, no stand-ins.",
     licence_policy: "Only explicit Public domain, CC0, CC BY or CC BY-SA files. Files with non-free/fair-use/unknown licences or trademark/personality restrictions are rejected.",
     people_focused: people,
     people_ratio: manifest.people_ratio,
-    images: images.map((x) => ({
+    images: downloaded.map((x) => ({
       id: x.id,
       sentence_index: x.sentence_index,
       subject: x.subject,
@@ -390,11 +304,11 @@ async function main() {
     `Pack: **${manifest.pack}**  `,
     `Source: Wikimedia Commons  `,
     `Generated: ${generatedAt}  `,
-    `People-focused: ${people}/${images.length} (${(peopleRatio * 100).toFixed(1)}%)`,
+    `People-focused: ${people}/${downloaded.length} (${(peopleRatio * 100).toFixed(1)}%)`,
     "",
     "All files below carry an explicit Public domain, CC0, CC BY or CC BY-SA licence on Wikimedia Commons. The exact file page is linked for verification.",
     "",
-    ...images.map((x, n) => [
+    ...downloaded.map((x, n) => [
       `${n + 1}. **${x.subject}** — ${x.attribution}`,
       `   - Image: \`${x.filename}\` (${x.width}x${x.height})`,
       `   - Licence: ${x.license}${x.license_url ? ` — ${x.license_url}` : ""}`,
@@ -406,12 +320,12 @@ async function main() {
   ];
   writeFileSync(join(outDir, "ATTRIBUTIONS.md"), attributionLines.join("\n"));
 
-  console.log(`[image-pack] ${images.length}/${PACK.length} downloaded, ${people}/${images.length} people-focused (${(peopleRatio * 100).toFixed(1)}%), ${uniqueFiles} unique`);
+  console.log(`[image-pack] ${downloaded.length}/${images.length} downloaded, ${people}/${downloaded.length} people-focused (${(peopleRatio * 100).toFixed(1)}%), ${uniqueFiles} unique`);
   if (errors.length) {
     for (const e of errors) console.error(`::error::image-pack: ${e}`);
   }
   if (!ok) {
-    console.error(`::error::image-pack: production gate failed (need ${PACK.length} unique images, >=${MIN_PEOPLE_RATIO * 100}% people-focused)`);
+    console.error(`::error::image-pack: production gate failed (need ${images.length} unique images, >=${MIN_PEOPLE_RATIO * 100}% people-focused)`);
     process.exit(1);
   }
   console.log("[image-pack] production gate passed");

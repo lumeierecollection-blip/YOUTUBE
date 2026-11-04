@@ -41,7 +41,7 @@ env:
   SCRIPT_PATH: data/research/2/ai-web-search-compared-november-2026-shorts-script.json
   STEM: ai-web-search-compared-november-2026-shorts
   TTS_TOPIC: ai-web-search-compared-november-2026-shorts-script
-  VISUAL_PACK: data/editor/assets/2/asset-manifest.json
+  VISUAL_PACK: data/editor/visual-packs/ch2-ai-tested.json
   REQUIRED_IMAGES: 9
   MIN_PEOPLE_RATIO: 0.75
 
@@ -114,7 +114,7 @@ jobs:
       - name: Download curated image pack
         id: assets
         run: |
-          node scripts/assets/download-historical-images.mjs --channel "${{ env.CHANNEL_ID }}"
+          node scripts/assets/download-historical-images.mjs --channel "${{ env.CHANNEL_ID }}" --visual-pack "${{ env.VISUAL_PACK }}"
 
       - name: Report image count
         id: count
