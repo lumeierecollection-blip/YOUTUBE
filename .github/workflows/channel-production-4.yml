@@ -694,3 +694,71 @@ jobs:
           name: review-package-${{ env.CHANNEL_ID }}-${{ github.run_number }}
           path: .cache/review-artifacts/
           retention-days: 30
+
+  publish-private:
+    name: Upload to YouTube (Private)
+    needs: publish-preparation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Rendered Video
+        uses: actions/download-artifact@v4
+        with:
+          name: rendered-video-${{ env.CHANNEL_ID }}
+          path: data/renders/${{ env.CHANNEL_ID }}
+
+      - name: Download Timeline + Reports
+        uses: actions/download-artifact@v4
+        with:
+          name: timeline-${{ env.CHANNEL_ID }}
+          path: data/editor/auto/${{ env.TTS_TOPIC }}
+
+      - name: Check Credentials and Channel Identity
+        id: creds
+        run: |
+          node -e "
+            const fs = require('fs');
+            const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
+            const id = '${{ env.CHANNEL_ID }}';
+            let ch;
+            try { ch = resolveChannel(id); } catch (e) { console.error('::error::' + e.message); process.exit(1); }
+            const own = 'config/creds/' + ch.channel_id + '.json';
+            if (!fs.existsSync(own)) {
+              console.log('::warning::No credentials for ' + ch.channel_id + ' — upload skipped, video stays in review package');
+              console.log('upload=skipped');
+              process.exit(0);
+            }
+            const creds = JSON.parse(fs.readFileSync(own, 'utf8'));
+            if (!(creds.client_id && creds.client_secret && creds.refresh_token)) {
+              console.log('::warning::Incomplete credentials for ' + ch.channel_id + ' — upload skipped');
+              console.log('upload=skipped');
+              process.exit(0);
+            }
+            console.log('Credentials verified for ' + ch.channel_name + ' (' + ch.channel_id + ')');
+            console.log('upload=ready');
+          "
+
+      - name: Upload to YouTube (Private)
+        if: steps.creds.outputs.upload == 'ready'
+        run: |
+          MP4="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
+          if [ ! -f "$MP4" ]; then
+            echo "::error::No MP4 found to upload"
+            exit 1
+          fi
+          # Read title from timeline or use stem
+          TITLE=$(node -e "const t=require('./data/editor/auto/${{ env.TTS_TOPIC }}/plan.json'); console.log(t.title||'${{ env.STEM }}')")
+          node scripts/youtube-upload.cjs --file "$MP4" --title "$TITLE" --channel ${{ env.CHANNEL_ID }}
+          echo "✓ Private upload complete for ${{ env.CHANNEL_ID }}"
+
+      - name: Record Upload Result
+        if: always()
+        run: |
+          echo "## Private Upload Status" >> $GITHUB_STEP_SUMMARY
+          echo "- Channel: ${{ env.CHANNEL_ID }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Video: ${{ env.STEM }}-rework.mp4" >> $GITHUB_STEP_SUMMARY
+          echo "- Visibility: private (owner must publish manually)" >> $GITHUB_STEP_SUMMARY
+          echo "- Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
