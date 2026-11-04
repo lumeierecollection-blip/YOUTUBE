@@ -218,7 +218,7 @@
       "google_account": "UNASSIGNED-3",
       "channel_id": "ch-03",
       "youtube_credentials_path": "config/creds/ch-03.json",
-      "paused": true,
+      "paused": false,
       "description": "Celebrity disputes, feuds and legal battles explained from court records and reputable reporting: what happened, what a judge decided, and what is still unproven.",
       "content_pillars": [
         "celebrity lawsuits and rulings explained",
@@ -350,7 +350,7 @@
       "google_account": "CH4",
       "channel_id": "ch-04",
       "youtube_credentials_path": "config/creds/ch-04.json",
-      "paused": true,
+      "paused": false,
       "description": "Why the biggest rivalries exist, why dynasties happen and how tactics work, explained with official records, timelines and diagrams.",
       "content_pillars": [
         "rivalry origins and the moments that made them",

@@ -56,8 +56,10 @@ jobs:
 
       - name: Install System Tools
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg poppler-utils python-is-python3 curl jq
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg poppler-utils python-is-python3 curl jq
+          fi
           ffmpeg -version | head -1
 
       - name: Setup Chrome for Remotion
@@ -122,9 +124,47 @@ jobs:
             data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.png
           retention-days: 30
 
+  check-script-clarity:
+    name: Script Clarity Review
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          npm ci --no-audit --no-fund 2>/dev/null || npm install
+
+      - name: Run Script Clarity Check
+        id: clarity
+        run: |
+          echo "[clarity] Reviewing script for viewer understanding"
+          node scripts/check-script-clarity.mjs "${{ env.SCRIPT_PATH }}" 2>&1 | tee /tmp/clarity-output.json
+          CLARITY_EXIT=${PIPESTATUS[0]}
+          if [ $CLARITY_EXIT -ne 0 ]; then
+            echo "::error::Script clarity check failed with exit code $CLARITY_EXIT"
+            echo "clarity_failed=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          UNCLEAR_COUNT=$(node -e "const r=require('/tmp/clarity-output.json'); console.log(r.unclear?.length||0)")
+          echo "unclear_count=$UNCLEAR_COUNT" >> $GITHUB_OUTPUT
+          echo "[clarity] Unclear sentences: $UNCLEAR_COUNT"
+
+      - name: Fail on Substantive Clarity Problems
+        if: steps.clarity.outputs.unclear_count > 0
+        run: |
+          echo "::error::Script has ${{ steps.clarity.outputs.unclear_count }} unclear sentence(s) - revise before narration"
+          exit 1
+
   generate-narration:
     name: Generate Voiceover (Free EdgeTTS)
-    needs: setup
+    needs: [setup, check-script-clarity]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -145,7 +185,12 @@ jobs:
           npm ci --no-audit --no-fund 2>/dev/null || npm install
 
       - name: Install FFmpeg and bc
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg bc
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg bc
+          fi
+          ffmpeg -version | head -1
 
       - name: Generate TTS
         id: tts
@@ -244,7 +289,12 @@ jobs:
           (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
 
       - name: Install FFmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg
+          fi
+          ffmpeg -version | head -1
 
       - name: Download TTS Artifacts
         uses: actions/download-artifact@v4
@@ -346,8 +396,10 @@ jobs:
 
       - name: Install System Tools
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg python-is-python3
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg python-is-python3
+          fi
           ffmpeg -version | head -1
 
       - name: Setup Chrome
@@ -447,8 +499,29 @@ jobs:
           name: timeline-${{ env.CHANNEL_ID }}
           path: data/editor/auto/${{ env.TTS_TOPIC }}
 
+      - name: Download Rendered Video
+        uses: actions/download-artifact@v4
+        with:
+          name: rendered-video-${{ env.CHANNEL_ID }}
+          path: data/renders/${{ env.CHANNEL_ID }}
+
+      - name: Download Historical Images
+        uses: actions/download-artifact@v4
+        with:
+          name: historical-images-${{ env.CHANNEL_ID }}
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
+
+      - name: Install Dependencies
+        run: |
+          npm ci --no-audit --no-fund 2>/dev/null || npm install
+
       - name: Install FFmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ffmpeg jq
+          fi
+          ffmpeg -version | head -1
 
       - name: Run Video QA
         run: |
