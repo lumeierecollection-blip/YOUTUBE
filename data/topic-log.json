@@ -1282,9 +1282,14 @@
           "topic": "AI Web Search Compared: ChatGPT, Gemini, Claude and Copilot in November 2026",
           "slug": "ai-web-search-compared-november-2026",
           "reserved_at": "2026-11-03T17:26:09.410Z"
+        },
+        {
+          "topic": "Adobe CX Enterprise Coworker Integration Across Major AI Platforms",
+          "slug": "adobe-cx-enterprise-coworker-ai-platforms",
+          "reserved_at": "2026-11-04T16:31:05.869Z"
         }
       ],
-      "last_generated": "2026-11-03T17:26:09.411Z"
+      "last_generated": "2026-11-04T16:31:05.869Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
