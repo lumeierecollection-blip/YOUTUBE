@@ -68,10 +68,10 @@ const TOKEN_URL = "https://oauth2.googleapis.com/token";
 
 // Channel name lookup (from channels.json — informational only)
 const CHANNEL_NAMES = {
-  1: "Money Mind",
-  2: "Legal Brief",
-  3: "AI Tested",
-  4: "Hidden Past",
+  1: "Hidden Past",
+  2: "AI Tested",
+  3: "Court & Spotlight",
+  4: "Rival Lines",
   7: "Dead Companies",
   9: "Border Lines",
   11: "Cosmic Frontiers",
