@@ -770,7 +770,7 @@ jobs:
               process.exit(0);
             }
             console.log('Credentials verified for ' + ch.channel_name + ' (' + ch.channel_id + ')');
-            console.log('upload=ready');
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'upload=ready\n');
           "
 
       - name: Upload to YouTube (Private)
