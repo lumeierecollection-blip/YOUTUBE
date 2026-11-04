@@ -203,7 +203,7 @@ async function main() {
   }
 
   // Resolve channel identity and load credentials from config/creds/ch-XX.json
-  const { resolveChannel } = require("./scripts/lib/channel-lookup.cjs");
+  const { resolveChannel } = require("./lib/channel-lookup.cjs");
   const channelId = opts.channel.replace(/^ch-?/i, "");
   let ch;
   try { ch = resolveChannel(channelId); } catch (e) { console.error(`::error::${e.message}`); process.exit(1); }
