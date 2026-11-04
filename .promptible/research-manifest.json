@@ -1,0 +1,32 @@
+{
+  "version": 3,
+  "status": "RESEARCH_READY",
+  "createdAt": "2026-11-04T22:36:10.705Z",
+  "cacheKey": "ba6405b3db466745d1f6d5f55385b0bef630fd0f057c03159573eece22d12a89",
+  "researchMode": "authentic",
+  "visualMode": "product-ui",
+  "product": "Amazon Managed Workflows for Apache Airflow",
+  "referenceId": "openmontage-claude-pipeline",
+  "brief": "C:\\Users\\info\\YOUTUBE\\ai-tested-production\\.promptible\\research-brief.md",
+  "briefSha": "6a0c75cc916a5eb679a3a27475fda627672146ef0286e94c7864d10269f418f0",
+  "sources": [
+    "https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-mwaa-ai-agent-skills",
+    "https://docs.aws.amazon.com/mwaa/latest/userguide/using-agent-skills.html"
+  ],
+  "logos": [
+    {
+      "kind": "logo",
+      "path": "C:\\Users\\info\\YOUTUBE\\ai-tested-production\\assets\\aws-logo-3.png",
+      "sha256": "e794fa14354931946566471329dc7cecee7d319c8d4a15d062902d5c918d8d93",
+      "bytes": 3596
+    }
+  ],
+  "surfaces": [
+    {
+      "kind": "surface",
+      "path": "C:\\Users\\info\\YOUTUBE\\ai-tested-production\\assets\\aws-logo-3.png",
+      "sha256": "e794fa14354931946566471329dc7cecee7d319c8d4a15d062902d5c918d8d93",
+      "bytes": 3596
+    }
+  ]
+}

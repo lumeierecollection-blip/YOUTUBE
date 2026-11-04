@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-11-04T22:59:53.130Z",
+  "video": "mwaa-ai-agent-skills-full.mp4",
+  "channel": "2",
+  "technical": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationSec": 35.05,
+    "hasAudio": true
+  },
+  "visual": {
+    "ok": false,
+    "note": "too few frames sampled"
+  },
+  "plan_compliance": {
+    "ok": false,
+    "note": "no render manifest"
+  },
+  "typography": {
+    "ok": false,
+    "note": "no render manifest"
+  },
+  "audio": {
+    "ok": true,
+    "hasAudio": true,
+    "clipping": false,
+    "longSilenceCount": 0,
+    "maxSilenceSec": 0,
+    "effectivelySilent": false
+  },
+  "channel_history": {
+    "ok": false
+  },
+  "risk": {
+    "score": 0,
+    "level": "LOW",
+    "reasons": []
+  },
+  "gemini_required": false,
+  "uncertain_beats": [],
+  "blockers": [],
+  "corrections": []
+}

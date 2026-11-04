@@ -1,0 +1,19 @@
+{
+  "videoSlug": "paramount-wbd-merger-injunction",
+  "channel": "ch-3",
+  "generatedAt": "2026-11-04T17:27:04.703Z",
+  "treatmentsUsed": [
+    "chart-data-viz",
+    "archival-document",
+    "archival-document",
+    "side-by-side",
+    "archival-document",
+    "archival-document",
+    "chart-data-viz"
+  ],
+  "distribution": {
+    "chart-data-viz": 2,
+    "archival-document": 4,
+    "side-by-side": 1
+  }
+}

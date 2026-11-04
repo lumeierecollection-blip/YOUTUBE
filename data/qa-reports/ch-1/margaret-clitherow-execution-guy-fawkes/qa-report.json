@@ -1,0 +1,19 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-1",
+  "channelName": "Channel 1",
+  "videoSlug": "margaret-clitherow-execution-guy-fawkes",
+  "generatedAt": "2026-11-04T17:18:57.788Z",
+  "sourcePlan": "data/sourcing-cache/ch-1/margaret-clitherow-execution-guy-fawkes/visual-plan.json",
+  "sourceAssets": "data/sourcing-cache/ch-1/margaret-clitherow-execution-guy-fawkes/licensed-assets/manifest.json",
+  "totalAssets": 9,
+  "uniqueAssets": 9,
+  "totalBeats": 9,
+  "findings": [],
+  "findingCount": 0,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

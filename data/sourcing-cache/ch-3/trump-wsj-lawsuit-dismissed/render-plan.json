@@ -1,0 +1,443 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-3/trump-wsj-lawsuit-dismissed/visual-plan.json",
+  "channel": "ch-3",
+  "videoSlug": "trump-wsj-lawsuit-dismissed",
+  "generatedAt": "2026-11-04T19:43:30.156Z",
+  "totalBeats": 9,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 1: \"A massive $10 billion defamation suit just vanished in federal court.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "A massive $10 billion defamation suit just vanished in federal court.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "A massive $10 billion defamation suit just vanished in federal court.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 1,
+      "_narration": "A massive $10 billion defamation suit just vanished in federal court.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Donald Trump, Darrin Gayles, Miami",
+      "reason": "Illustrative graphic for beat 2: \"On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.\"",
+      "objects": {
+        "figure": "Donald Trump, Darrin Gayles, Miami",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Mia",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Mia",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 2,
+      "_narration": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Rupert Murdoch, Jeffrey Epstein",
+      "reason": "Illustrative graphic for beat 3: \"The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.\"",
+      "objects": {
+        "figure": "Rupert Murdoch, Jeffrey Epstein",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 3,
+      "_narration": "The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 3,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 4: \"Where did the $10 billion claim fail?\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Where did the $10 billion claim fail?",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Where did the $10 billion claim fail?",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "statistic",
+      "graphicType": "Charts and data visualisations",
+      "_beatNumber": 4,
+      "_narration": "Where did the $10 billion claim fail?",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "animated counter / bar growth",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+      "reason": "Beat 5 (“Except the court found actual malice was never plausibly alleged.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+      "objects": {
+        "figure": "historical-document-ch-3-archive-6cfc3c6d.jpg",
+        "_assetFile": "historical-document-ch-3-archive-6cfc3c6d.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "historical-document-ch-3-archive-6cfc3c6d.jpg",
+          "filename": "historical-document-ch-3-archive-6cfc3c6d.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical_papers_and_addresses_of_the_Lancaster_County_Historical_Society_(1896)_(14793065683).jpg",
+          "creator": "Internet Archive Book Images",
+          "license": "No restrictions",
+          "licenseUrl": "https://www.flickr.com/commons/usage/",
+          "attribution": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+          "credit": "https://www.flickr.com/photos/internetarchivebookimages/14793065683/ Source book page: https://archive.org/stream/historicalpapersv19lanc/historicalpapersv19lanc#page/n576/mode/1up",
+          "sha256": "6cfc3c6d0dcb4c1350bf4141ee9a92b82a496fc61f71d870eed37a94a23800c0",
+          "width": 1920,
+          "height": 1551,
+          "retrievedAt": "2026-11-04T17:26:29.665Z",
+          "cacheKey": "f5420ddf7634d62c",
+          "relevance": "Beat 5 (“Except the court found actual malice was never plausibly alleged.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+          "asset": "asset-library/historical-document-ch-3-archive-6cfc3c6d.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg",
+          "license": "No restrictions"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Except the court found actual malice was never plausibly alleged.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/historical-document-ch-3-archive-6cfc3c6d.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 5,
+      "_narration": "Except the court found actual malice was never plausibly alleged.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/historical-document-ch-3-archive-6cfc3c6d.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg",
+            "license": "No restrictions"
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Donald Trump, Dow Jones",
+      "reason": "Illustrative graphic for beat 6: \"Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones.\"",
+      "objects": {
+        "figure": "Donald Trump, Dow Jones",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow J",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow J",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 6,
+      "_narration": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 6,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 7: \"Because of that failure, the judge dismissed the lawsuit with prejudice.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Because of that failure, the judge dismissed the lawsuit with prejudice.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Because of that failure, the judge dismissed the lawsuit with prejudice.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 7,
+      "_narration": "Because of that failure, the judge dismissed the lawsuit with prejudice.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 7,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 8: \"That ruling officially ended the $10 billion legal battle.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "That ruling officially ended the $10 billion legal battle.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "That ruling officially ended the $10 billion legal battle.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 8,
+      "_narration": "That ruling officially ended the $10 billion legal battle.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 8,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 9: \"The $10 billion lawsuit remains dismissed with prejudice.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The $10 billion lawsuit remains dismissed with prejudice.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The $10 billion lawsuit remains dismissed with prejudice.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 9,
+      "_narration": "The $10 billion lawsuit remains dismissed with prejudice.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

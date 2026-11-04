@@ -1,0 +1,118 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-1",
+  "videoSlug": "margaret-clitherow-execution-guy-fawkes",
+  "generatedAt": "2026-11-04T17:18:43.538Z",
+  "sourcePlan": "data/sourcing-cache/ch-1/margaret-clitherow-execution-guy-fawkes/visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 9,
+  "uniqueTreatments": 4,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.",
+      "visualIntent": "person",
+      "treatmentId": "annotated-photograph",
+      "communicates": "What matters in a real photo, labelled",
+      "example": "portrait with name and role callout",
+      "reason": "Beat communicates person; What matters in a real photo, labelled",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "England had outlawed Catholicism, so priests hid in secret rooms called priest holes — and Margaret was accused of hiding one.",
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 3,
+      "narration": "She refused to enter a legal plea while pregnant with her fourth child.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 4,
+      "narration": "Because she would not plead, they crushed her to death under heavy weights on Lady Day in March 1586.",
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 5,
+      "narration": "Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gunpowder Plot to blow up Parliament.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 6,
+      "narration": "Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 7,
+      "narration": "Christopher and John Wright also knew her story.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 8,
+      "narration": "Her brutal death may have shaped their thinking before the 1605 plot.",
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 9,
+      "narration": "Two events, nineteen years apart, both in York, both shaped by religious conflict.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    }
+  ],
+  "distribution": {
+    "annotated-photograph": 1,
+    "chronological-timeline": 3,
+    "side-by-side": 1,
+    "geographic-visualisation": 4
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

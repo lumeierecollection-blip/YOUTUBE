@@ -1,0 +1,214 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-2",
+  "channelName": "Channel 2",
+  "videoSlug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "script": "amazon-mwaa-ai-agent-skills-apache-airflow-shorts-script.json",
+  "research": "data/research/2/amazon-mwaa-ai-agent-skills-apache-airflow.json",
+  "generatedAt": "2026-11-04T17:25:50.994Z",
+  "entities": {
+    "people": [],
+    "places": [],
+    "organizations": [
+      {
+        "name": "Amazon Managed Workflows for Apache Airflow",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "AWS",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [
+      {
+        "name": "Agent Toolkit for AWS",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "AWS Data Analytics plugin",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "authoring-mwaa-workflow",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "debugging-mwaa-workflow",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "testing-mwaa-workflow",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "upgrading-mwaa-workflow",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "dates": [],
+    "statistics": [],
+    "concepts": []
+  },
+  "beatCount": 6,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Amazon Managed Workflows for Apache Airflow building headquarters",
+      "kind": "organization",
+      "narration": "Amazon Managed Workflows for Apache Airflow now includes four specific AI skills for AWS.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Amazon Managed Workflows for Apache Airflow"
+        },
+        {
+          "cat": "organizations",
+          "name": "AWS"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:25:45.897Z"
+    },
+    {
+      "beat": 2,
+      "query": "Amazon Managed Workflows for Apache Airflow building headquarters",
+      "kind": "organization",
+      "narration": "Amazon Managed Workflows for Apache Airflow integrates with the Agent Toolkit for AWS.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Amazon Managed Workflows for Apache Airflow"
+        },
+        {
+          "cat": "organizations",
+          "name": "AWS"
+        },
+        {
+          "cat": "objects",
+          "name": "Agent Toolkit for AWS"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:25:46.594Z"
+    },
+    {
+      "beat": 3,
+      "query": "historical document ch-2 archive",
+      "kind": "document",
+      "narration": "Which exact skill executes the upgrade process?",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AI-2.tif",
+          "snippet": "as part of a cooperation with Wikimedia <span class=\"searchmatch\">CH</span>. Corrections and additional information are welcome. The <span class=\"searchmatch\">document</span> is in the Public domain. It may be used without",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-AI-2.tif"
+        },
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AG-2.tif",
+          "snippet": "as part of a cooperation with Wikimedia <span class=\"searchmatch\">CH</span>. Corrections and additional information are welcome. The <span class=\"searchmatch\">document</span> is in the Public domain. It may be used without",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-AG-2.tif"
+        },
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-2-FR-276.tif",
+          "snippet": "as part of a cooperation with Wikimedia <span class=\"searchmatch\">CH</span>. Corrections and additional information are welcome. The <span class=\"searchmatch\">document</span> is in the Public domain. It may be used without",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-2-FR-276.tif"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:25:47.511Z"
+    },
+    {
+      "beat": 4,
+      "query": "Amazon MWAA enables upgrading environments using illustration",
+      "kind": "illustration",
+      "narration": "Amazon MWAA enables upgrading environments using any AI coding assistant, but the toolkit also includes authoring-mwaa-workflow and debugging-mwaa-workflow.",
+      "entitiesMentioned": [
+        {
+          "cat": "objects",
+          "name": "authoring-mwaa-workflow"
+        },
+        {
+          "cat": "objects",
+          "name": "debugging-mwaa-workflow"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:25:48.822Z"
+    },
+    {
+      "beat": 5,
+      "query": "Amazon Managed Workflows for Apache Airflow building headquarters",
+      "kind": "organization",
+      "narration": "Amazon Managed Workflows for Apache Airflow includes authoring-mwaa-workflow and debugging-mwaa-workflow skills.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Amazon Managed Workflows for Apache Airflow"
+        },
+        {
+          "cat": "objects",
+          "name": "authoring-mwaa-workflow"
+        },
+        {
+          "cat": "objects",
+          "name": "debugging-mwaa-workflow"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:25:50.351Z"
+    },
+    {
+      "beat": 6,
+      "query": "Amazon Managed Workflows for Apache Airflow building headquarters",
+      "kind": "organization",
+      "narration": "Use upgrading-mwaa-workflow in Amazon Managed Workflows for Apache Airflow.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Amazon Managed Workflows for Apache Airflow"
+        },
+        {
+          "cat": "objects",
+          "name": "upgrading-mwaa-workflow"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:25:50.994Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

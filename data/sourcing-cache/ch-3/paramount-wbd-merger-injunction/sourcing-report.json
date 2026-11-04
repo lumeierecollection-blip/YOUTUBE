@@ -1,0 +1,340 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-3",
+  "channelName": "Channel 3",
+  "videoSlug": "paramount-wbd-merger-injunction",
+  "script": "paramount-wbd-merger-injunction-shorts-script.json",
+  "research": "data/research/3/paramount-wbd-merger-injunction.json",
+  "generatedAt": "2026-11-04T17:26:54.780Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Pamela Faust",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Len Marazzo",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Lisa McCarthy",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Deborah Rubinsohn",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Gary Talewsky",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Araceli Martínez-Olguín",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [
+      {
+        "name": "Oakland",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "California",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "organizations": [
+      {
+        "name": "Skydance Corporation",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Paramount Skydance Corporation",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Skydance Media, LLC",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Warner Bros. Discovery",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "United States District Court for the Northern District of California",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [
+      {
+        "name": "Paramount+",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "HBO Max",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "dates": [],
+    "statistics": [
+      {
+        "name": "Total Merger Deal Value = 110.9 billion dollars",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Courtroom Number = 5 courtroom",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Street Address Number = 1301 street number",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 7,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Your favorite streaming apps could vanish illustration",
+      "kind": "illustration",
+      "narration": "Your favorite streaming apps could vanish after the massive $110.9 billion merger.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Castorologia, or The history and traditions of the Canadian beaver (IA castorologiaorhi00mart).pdf",
+          "snippet": "castoris,&quot; by C.V. Riley: <span class=\"searchmatch\">App</span>. c, p. [235] &quot;Systematic relations of Platypsyllus, as determined by the larva, by C.V. Riley&quot;: <span class=\"searchmatch\">App</span>. c, p. [237]-238 extracted",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACastorologia%2C%20or%20The%20history%20and%20traditions%20of%20the%20Canadian%20beaver%20(IA%20castorologiaorhi00mart).pdf"
+        },
+        {
+          "title": "File:Castorologia, or The history and traditions of the Canadian beaver (IA cu31924002886798).pdf",
+          "snippet": "castoris.&quot; By C. V. Riley: <span class=\"searchmatch\">App</span>. c, p, [235] &quot;Systematic relations of Platypsyllus,&quot; as determined by the larva. By C. V. Riley: <span class=\"searchmatch\">App</span>. c, p. [237]-238 Subjects:",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACastorologia%2C%20or%20The%20history%20and%20traditions%20of%20the%20Canadian%20beaver%20(IA%20cu31924002886798).pdf"
+        },
+        {
+          "title": "File:Birds and nature (IA birdsnature151904chic).pdf",
+          "snippet": "single volume of a multi-volume work. Are there more volumes of this that <span class=\"searchmatch\">could</span> be (or are) hosted on Commons? This applies to single volumes of a multi-volume",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABirds%20and%20nature%20(IA%20birdsnature151904chic).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:49.727Z"
+    },
+    {
+      "beat": 2,
+      "query": "California photograph view",
+      "kind": "place",
+      "narration": "On October 19, 2026, five subscribers filed a legal motion in the United States District Court for the Northern District of California.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "California"
+        },
+        {
+          "cat": "organizations",
+          "name": "United States District Court for the Northern District of California"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:California State Capitol (top), NW view up.jpg",
+          "snippet": "<span class=\"searchmatch\">Photograph</span> I, the copyright holder <span class=\"searchmatch\">of</span> this work, hereby publish it under the following license: This file is licensed under the Creative Commons Attribution-Share",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACalifornia%20State%20Capitol%20(top)%2C%20NW%20view%20up.jpg"
+        },
+        {
+          "title": "File:Amboy (California, USA), Hist. Route 66 -- 2012 -- 1.jpg",
+          "snippet": "Route 66 near Amboy, <span class=\"searchmatch\">California</span>, USA (2012) Italian La storica Route 66 vicino ad Amboy nella Contea di <span class=\"searchmatch\">San</span> Bernardino, <span class=\"searchmatch\">California</span>, Stati Uniti d’America",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAmboy%20(California%2C%20USA)%2C%20Hist.%20Route%2066%20--%202012%20--%201.jpg"
+        },
+        {
+          "title": "File:Amboy (California, USA) -- 2012 -- 4.jpg",
+          "snippet": "Motel, Amboy, <span class=\"searchmatch\">California</span>, USA (2012) German Roy’s Cafe &amp; Motel, Amboy, Kalifornien, USA (2012) Spanish Roy’s Cafe &amp; Motel, Amboy, <span class=\"searchmatch\">California</span>, Estados Unidos",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAmboy%20(California%2C%20USA)%20--%202012%20--%204.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:50.560Z"
+    },
+    {
+      "beat": 3,
+      "query": "Will these services stay independent? illustration",
+      "kind": "illustration",
+      "narration": "Will these services stay independent?",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:The Independent (1849) (14595265458).jpg",
+          "snippet": "the organization of the army. President Li went to Japan threetimes and <span class=\"searchmatch\">stayed</span> there from one monthto one year, to study fortifications andarmy organizations",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Independent%20(1849)%20(14595265458).jpg"
+        },
+        {
+          "title": "File:The Independent (1898-06-02).pdf",
+          "snippet": "The <span class=\"searchmatch\">Independent</span> 1898-06-02: Vol 50 Iss 2583    (  ) Title The <span class=\"searchmatch\">Independent</span> 1898-06-02: Vol 50 Iss 2583 Volume 50 Publisher Open Court Publishing Co Description",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Independent%20(1898-06-02).pdf"
+        },
+        {
+          "title": "File:Illustration Of Political Economy, Vol. II (IA dli.granth.37719).pdf",
+          "snippet": "<span class=\"searchmatch\">Illustration</span> Of Political Economy, Vol. II   (  ) Author Martineau, Harriet Title <span class=\"searchmatch\">Illustration</span> Of Political Economy, Vol. II Publisher Charles Fox (London)",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AIllustration%20Of%20Political%20Economy%2C%20Vol.%20II%20(IA%20dli.granth.37719).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:51.336Z"
+    },
+    {
+      "beat": 4,
+      "query": "Skydance Corporation building headquarters",
+      "kind": "organization",
+      "narration": "But the motion demands Skydance Corporation keep Paramount+ and HBO Max operating as separate services.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Skydance Corporation"
+        },
+        {
+          "cat": "objects",
+          "name": "Paramount+"
+        },
+        {
+          "cat": "objects",
+          "name": "HBO Max"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:52.066Z"
+    },
+    {
+      "beat": 5,
+      "query": "Araceli Martínez-Olguín portrait photograph",
+      "kind": "person",
+      "narration": "Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing regarding this case.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Araceli Martínez-Olguín"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Araceli Martinez-Olguin, U.S. District Court Judge.jpg",
+          "snippet": "English <span class=\"searchmatch\">Araceli</span> <span class=\"searchmatch\">Martinez</span>-<span class=\"searchmatch\">Olguin</span>, U.S. District Court Judge for the Northern District of California determination method or standard: SHA-1",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAraceli%20Martinez-Olguin%2C%20U.S.%20District%20Court%20Judge.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:52.944Z"
+    },
+    {
+      "beat": 6,
+      "query": "Skydance Corporation building headquarters",
+      "kind": "organization",
+      "narration": "The hearing at 1301 Clay Street decides if Skydance Corporation must preserve these independent services.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Skydance Corporation"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:53.553Z"
+    },
+    {
+      "beat": 7,
+      "query": "The $110.9 billion deal remains under illustration",
+      "kind": "illustration",
+      "narration": "The $110.9 billion deal remains under intense judicial scrutiny today.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:France under the Republic (IA franceunderrepub00bracrich).pdf",
+          "snippet": "France <span class=\"searchmatch\">under</span> <span class=\"searchmatch\">the</span> Republic   (  ) Author Bracq, Jean Charlemagne, 1853-1934 Title France <span class=\"searchmatch\">under</span> <span class=\"searchmatch\">the</span> Republic Publisher New York, C. Scribner&#039;s sons Description",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFrance%20under%20the%20Republic%20(IA%20franceunderrepub00bracrich).pdf"
+        },
+        {
+          "title": "File:France under the Republic (IA franceunderrepub02bracrich).pdf",
+          "snippet": "France <span class=\"searchmatch\">under</span> <span class=\"searchmatch\">the</span> Republic   (  ) Author Bracq, Jean Charlemagne, 1853-1934 Title France <span class=\"searchmatch\">under</span> <span class=\"searchmatch\">the</span> Republic Publisher New York, C. Scribner&#039;s sons Description",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFrance%20under%20the%20Republic%20(IA%20franceunderrepub02bracrich).pdf"
+        },
+        {
+          "title": "File:France under the Republic (IA cu31924028176810).pdf",
+          "snippet": "France <span class=\"searchmatch\">under</span> <span class=\"searchmatch\">the</span> Republic   (  ) Author Bracq, Jean Charlemagne, 1853-1934 Title France <span class=\"searchmatch\">under</span> <span class=\"searchmatch\">the</span> Republic Publisher New York, C. Scribner&#039;s sons Description",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFrance%20under%20the%20Republic%20(IA%20cu31924028176810).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:54.780Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

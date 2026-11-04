@@ -1,0 +1,359 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-3/paramount-wbd-merger-injunction/visual-plan.json",
+  "channel": "ch-3",
+  "videoSlug": "paramount-wbd-merger-injunction",
+  "generatedAt": "2026-11-04T19:43:30.202Z",
+  "totalBeats": 7,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 1: \"Your favorite streaming apps could vanish after the massive $110.9 billion merger.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Your favorite streaming apps could vanish after the massive $110.9 billion merge",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Your favorite streaming apps could vanish after the massive $110.9 billion merge",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "statistic",
+      "graphicType": "Charts and data visualisations",
+      "_beatNumber": 1,
+      "_narration": "Your favorite streaming apps could vanish after the massive $110.9 billion merger.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "hold",
+      "_animation": "animated counter / bar growth",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "California, United States District Court for the Northern District of California",
+      "reason": "Illustrative graphic for beat 2: \"On October 19, 2026, five subscribers filed a legal motion in the United States District Court for the Northern District of California.\"",
+      "objects": {
+        "figure": "California, United States District Court for the Northern District of California",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "On October 19, 2026, five subscribers filed a legal motion in the United States ",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "On October 19, 2026, five subscribers filed a legal motion in the United States ",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 2,
+      "_narration": "On October 19, 2026, five subscribers filed a legal motion in the United States District Court for the Northern District of California.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "File:The Independent (1849) (14595265458).jpg",
+      "reason": "Beat 3 (“Will these services stay independent?”): the organization of the army. President Li went to Japan threetimes and <span class=\"searchmatch\">stayed</span> there from one monthto one year, to study fortifications andarmy organizations",
+      "objects": {
+        "figure": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+        "_assetFile": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+          "filename": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Independent%20(1849)%20(14595265458).jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_Independent_(1849)_(14595265458).jpg",
+          "creator": "Internet Archive Book Images",
+          "license": "No restrictions",
+          "licenseUrl": "https://www.flickr.com/commons/usage/",
+          "attribution": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+          "credit": "https://www.flickr.com/photos/internetarchivebookimages/14595265458/ Source book page: https://archive.org/stream/independen89v90newy/independen89v90newy#page/n500/mode/1up",
+          "sha256": "80e530f0be04d44c31acba8b1df0de958ad480472799eddd6e41e8169390b69b",
+          "width": 1920,
+          "height": 1963,
+          "retrievedAt": "2026-11-04T17:27:03.058Z",
+          "cacheKey": "ebdfeac1f054634b",
+          "relevance": "Beat 3 (“Will these services stay independent?”): the organization of the army. President Li went to Japan threetimes and <span class=\"searchmatch\">stayed</span> there from one monthto one year, to study fortifications andarmy organizations"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:The Independent (1849) (14595265458).jpg",
+          "asset": "asset-library/will-these-services-stay-independent-illustration-80e530f0.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AThe%20Independent%20(1849)%20(14595265458).jpg",
+          "license": "No restrictions"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Will these services stay independent?",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:The Independent (1849) (14595265458).jpg",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/will-these-services-stay-independent-illustration-80e530f0.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 3,
+      "_narration": "Will these services stay independent?",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:The Independent (1849) (14595265458).jpg",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/will-these-services-stay-independent-illustration-80e530f0.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AThe%20Independent%20(1849)%20(14595265458).jpg",
+            "license": "No restrictions"
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Skydance Corporation, Paramount+, HBO Max",
+      "reason": "Illustrative graphic for beat 4: \"But the motion demands Skydance Corporation keep Paramount+ and HBO Max operating as separate services.\"",
+      "objects": {
+        "figure": "Skydance Corporation, Paramount+, HBO Max",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "But the motion demands Skydance Corporation keep Paramount+ and HBO Max operatin",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "But the motion demands Skydance Corporation keep Paramount+ and HBO Max operatin",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 4,
+      "_narration": "But the motion demands Skydance Corporation keep Paramount+ and HBO Max operating as separate services.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Araceli Martínez-Olguín",
+      "reason": "Illustrative graphic for beat 5: \"Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing regarding this case.\"",
+      "objects": {
+        "figure": "Araceli Martínez-Olguín",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing re",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing re",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 5,
+      "_narration": "Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing regarding this case.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Skydance Corporation",
+      "reason": "Illustrative graphic for beat 6: \"The hearing at 1301 Clay Street decides if Skydance Corporation must preserve these independent services.\"",
+      "objects": {
+        "figure": "Skydance Corporation",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The hearing at 1301 Clay Street decides if Skydance Corporation must preserve th",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The hearing at 1301 Clay Street decides if Skydance Corporation must preserve th",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "document",
+      "graphicType": "Archival document presentation",
+      "_beatNumber": 6,
+      "_narration": "The hearing at 1301 Clay Street decides if Skydance Corporation must preserve these independent services.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "zoom-in on detail",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 6,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 7: \"The $110.9 billion deal remains under intense judicial scrutiny today.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The $110.9 billion deal remains under intense judicial scrutiny today.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The $110.9 billion deal remains under intense judicial scrutiny today.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "statistic",
+      "graphicType": "Charts and data visualisations",
+      "_beatNumber": 7,
+      "_narration": "The $110.9 billion deal remains under intense judicial scrutiny today.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "animated counter / bar growth",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

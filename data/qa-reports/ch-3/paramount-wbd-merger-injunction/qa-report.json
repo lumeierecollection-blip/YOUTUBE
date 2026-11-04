@@ -1,0 +1,56 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-3",
+  "channelName": "Channel 3",
+  "videoSlug": "paramount-wbd-merger-injunction",
+  "generatedAt": "2026-11-04T17:27:04.803Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\paramount-wbd-merger-injunction\\visual-plan.json",
+  "sourceAssets": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\paramount-wbd-merger-injunction\\licensed-assets\\manifest.json",
+  "totalAssets": 1,
+  "uniqueAssets": 1,
+  "totalBeats": 7,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 1,
+      "detail": "Beat 1 (“Your favorite streaming apps could vanish after the massive …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 2,
+      "detail": "Beat 2 (“On October 19, 2026, five subscribers filed a legal motion i…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 4,
+      "detail": "Beat 4 (“But the motion demands Skydance Corporation keep Paramount+ …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 5,
+      "detail": "Beat 5 (“Judge Araceli Martínez-Olguín will oversee the preliminary i…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 6,
+      "detail": "Beat 6 (“The hearing at 1301 Clay Street decides if Skydance Corporat…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 7,
+      "detail": "Beat 7 (“The $110.9 billion deal remains under intense judicial scrut…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 6,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

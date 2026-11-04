@@ -1,6 +1,18 @@
 {
   "version": 1,
   "skills": {
+    "article-highlights": {
+      "source": "liamrjohnston/remotion-motion-graphics-skill",
+      "sourceType": "github",
+      "skillPath": "skills/article-highlights/SKILL.md",
+      "computedHash": "e39f5845bb3879c505bcd67ce82a759b7b3c8c6bdef9746df2b3e79e06b3de5c"
+    },
+    "cinematic-camera": {
+      "source": "liamrjohnston/remotion-motion-graphics-skill",
+      "sourceType": "github",
+      "skillPath": "skills/cinematic-camera/SKILL.md",
+      "computedHash": "1fe200991e71ce83a9e3c44a21098e3dc5cdb1c11827e3bc16eb4e59bfa95f72"
+    },
     "design-anti-slop": {
       "source": "prathameshagrawal/design-anti-slop",
       "sourceType": "github",
@@ -12,6 +24,12 @@
       "sourceType": "github",
       "skillPath": "skills/hallmark/SKILL.md",
       "computedHash": "579f86b27cdd7eb972107f7aecedd537f472891c5fd7c7c821bea15f64e0fe86"
+    },
+    "motion-graphics": {
+      "source": "liamrjohnston/remotion-motion-graphics-skill",
+      "sourceType": "github",
+      "skillPath": "skills/motion-graphics/SKILL.md",
+      "computedHash": "c4db8a31ddb162b15fa71ebf851288c581ddb5a298cc5fa8bb4bd14b789384b8"
     },
     "remotion-best-practices": {
       "source": "remotion-dev/skills",
@@ -90,6 +108,12 @@
       "sourceType": "github",
       "skillPath": "social/craft/short-video-scripter/SKILL.md",
       "computedHash": "92d93e616430378bf4b72b8a6e620d793a9c0243456f3395f3e13f997d2d8f52"
+    },
+    "terminal-inserts": {
+      "source": "liamrjohnston/remotion-motion-graphics-skill",
+      "sourceType": "github",
+      "skillPath": "skills/terminal-inserts/SKILL.md",
+      "computedHash": "a74acf762455d1846f7e91aa6f47c8022b61198d939b0be79d9982862dd87e29"
     }
   }
 }

@@ -1,0 +1,384 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-1",
+  "channelName": "Channel 1",
+  "videoSlug": "st-helena-slave-ship-burials-dna-analysis",
+  "script": "st-helena-slave-ship-burials-dna-analysis-shorts-script.json",
+  "research": "data/research/1/st-helena-slave-ship-burials-dna-analysis.json",
+  "generatedAt": "2026-11-04T17:19:36.931Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Xueye Wang",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Judy Watson",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Helena Bennett",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Andrew Pearson",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Geoff M. Nowell",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [
+      {
+        "name": "St Helena",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "organizations": [
+      {
+        "name": "British Royal Navy",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Science",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "University of Copenhagen",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Globe Institute",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "UC Santa Cruz",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [],
+    "dates": [],
+    "statistics": [
+      {
+        "name": "Liberated Africans landed on St Helena = 27000 individuals",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Africans who died and were buried on St Helena = 8000 individuals",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Liberated Africans analyzed in the genetic and isotope study = 152 individuals",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Intercepted slave ships brought to St Helena by the British = 450 ships",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 8,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Over 8,000 rescued captives died on illustration",
+      "kind": "illustration",
+      "narration": "Over 8,000 rescued captives died on one remote Atlantic island.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:1001 questions and answers on general history (IA 1001questionsans01hath).pdf",
+          "snippet": "questions and answers <span class=\"searchmatch\">on</span> general history   (  ) Author [Hathaway, Benjamin Adams], 1852- [from old catalog] Title 1001 questions and answers <span class=\"searchmatch\">on</span> general history",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A1001%20questions%20and%20answers%20on%20general%20history%20(IA%201001questionsans01hath).pdf"
+        },
+        {
+          "title": "File:The life of John Nicholson, soldier and administrator; based on private and hitherto unpublished documents (IA lifeofjohnnichol00trot).pdf",
+          "snippet": "The life of John Nicholson, soldier and administrator; based <span class=\"searchmatch\">on</span> private and hitherto unpublished documents   (  ) Author Trotter, Lionel J. (Lionel James)",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20life%20of%20John%20Nicholson%2C%20soldier%20and%20administrator%3B%20based%20on%20private%20and%20hitherto%20unpublished%20documents%20(IA%20lifeofjohnnichol00trot).pdf"
+        },
+        {
+          "title": "File:The life of John Nicholson, soldier and administrator; based on private and hitherto unpublished documents (IA lifejohnnicholso00trot).pdf",
+          "snippet": "The life of John Nicholson, soldier and administrator; based <span class=\"searchmatch\">on</span> private and hitherto unpublished documents   (  ) Author Trotter, Lionel J. (Lionel James)",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20life%20of%20John%20Nicholson%2C%20soldier%20and%20administrator%3B%20based%20on%20private%20and%20hitherto%20unpublished%20documents%20(IA%20lifejohnnicholso00trot).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:30.343Z"
+    },
+    {
+      "beat": 2,
+      "query": "St Helena photograph view",
+      "kind": "place",
+      "narration": "After 1807, the British Royal Navy brought 450 intercepted slave ships to St Helena.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "St Helena"
+        },
+        {
+          "cat": "organizations",
+          "name": "British Royal Navy"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Magdalensberg St. Helena Flügelaltar 01.jpg",
+          "snippet": "DescriptionMagdalensberg <span class=\"searchmatch\">St</span>. <span class=\"searchmatch\">Helena</span> Flügelaltar 01.jpg Deutsch: Flügelaltar der Kirche am Magdalensberg, Kärnten, Österreich. Unbekannter Meister der älteren",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg"
+        },
+        {
+          "title": "File:St Helena - geograph.org.uk - 6711020.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span> by N Chadwick You are free: to share – to copy, distribute and transmit",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg"
+        },
+        {
+          "title": "File:St Mary ^ St Helena, Elstow - geograph.org.uk - 3263704.jpg",
+          "snippet": "Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> Mary &amp; <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span>, Elstow by John Salmon You are free: to share – to copy, distribute",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:31.466Z"
+    },
+    {
+      "beat": 3,
+      "query": "St Helena photograph view",
+      "kind": "place",
+      "narration": "Why did 8,000 die on St Helena soon after rescue?",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "St Helena"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Magdalensberg St. Helena Flügelaltar 01.jpg",
+          "snippet": "DescriptionMagdalensberg <span class=\"searchmatch\">St</span>. <span class=\"searchmatch\">Helena</span> Flügelaltar 01.jpg Deutsch: Flügelaltar der Kirche am Magdalensberg, Kärnten, Österreich. Unbekannter Meister der älteren",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg"
+        },
+        {
+          "title": "File:St Helena - geograph.org.uk - 6711020.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span> by N Chadwick You are free: to share – to copy, distribute and transmit",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg"
+        },
+        {
+          "title": "File:St Mary ^ St Helena, Elstow - geograph.org.uk - 3263704.jpg",
+          "snippet": "Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> Mary &amp; <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span>, Elstow by John Salmon You are free: to share – to copy, distribute",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:31.968Z"
+    },
+    {
+      "beat": 4,
+      "query": "St Helena photograph view",
+      "kind": "place",
+      "narration": "However, experts didn't know the childhood origins of 8,000 captives buried on St Helena.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "St Helena"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Magdalensberg St. Helena Flügelaltar 01.jpg",
+          "snippet": "DescriptionMagdalensberg <span class=\"searchmatch\">St</span>. <span class=\"searchmatch\">Helena</span> Flügelaltar 01.jpg Deutsch: Flügelaltar der Kirche am Magdalensberg, Kärnten, Österreich. Unbekannter Meister der älteren",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg"
+        },
+        {
+          "title": "File:St Helena - geograph.org.uk - 6711020.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span> by N Chadwick You are free: to share – to copy, distribute and transmit",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg"
+        },
+        {
+          "title": "File:St Mary ^ St Helena, Elstow - geograph.org.uk - 3263704.jpg",
+          "snippet": "Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> Mary &amp; <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span>, Elstow by John Salmon You are free: to share – to copy, distribute",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:32.722Z"
+    },
+    {
+      "beat": 5,
+      "query": "Science building headquarters",
+      "kind": "organization",
+      "narration": "Researchers published a landmark study in Science analyzing ancient DNA.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Science"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:AAAS exterior 1 - Cambridge, MA.JPG",
+          "snippet": "English object <span class=\"searchmatch\">of</span> statement has role: photographer author name string: Daderot Wikimedia username: Daderot URL: http://commons.wikimedia.org/wiki/User:Daderot",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAAAS%20exterior%201%20-%20Cambridge%2C%20MA.JPG"
+        },
+        {
+          "title": "File:American Academy of Arts and Sciences, Cambridge, Massachusetts.JPG",
+          "snippet": "Daderot 2560×1920 (1058199 bytes) {{GFDL}}National <span class=\"searchmatch\">headquarters</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> American <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Arts</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Sciences</span>, Cambridge, Massachusetts. Photograph taken by",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAmerican%20Academy%20of%20Arts%20and%20Sciences%2C%20Cambridge%2C%20Massachusetts.JPG"
+        },
+        {
+          "title": "File:Guangzhou Science and Technology Association Headquarters Building 20220114.jpg",
+          "snippet": "Attribution-Share Alike 4.0 truetrue English Guangzhou <span class=\"searchmatch\">Science</span> <span class=\"searchmatch\">and</span> Technology Association <span class=\"searchmatch\">Headquarters</span> <span class=\"searchmatch\">Building</span> Chinese (China) 广州市科学技术协会大院 author name string:",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AGuangzhou%20Science%20and%20Technology%20Association%20Headquarters%20Building%2020220114.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:34.235Z"
+    },
+    {
+      "beat": 6,
+      "query": "Scientists tested tooth isotopes from 152 illustration",
+      "kind": "illustration",
+      "narration": "Scientists tested tooth isotopes from 152 liberated Africans buried on the island.",
+      "entitiesMentioned": [],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:35.790Z"
+    },
+    {
+      "beat": 7,
+      "query": "St Helena photograph view",
+      "kind": "place",
+      "narration": "Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on St Helena.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "St Helena"
+        },
+        {
+          "cat": "organizations",
+          "name": "UC Santa Cruz"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Magdalensberg St. Helena Flügelaltar 01.jpg",
+          "snippet": "DescriptionMagdalensberg <span class=\"searchmatch\">St</span>. <span class=\"searchmatch\">Helena</span> Flügelaltar 01.jpg Deutsch: Flügelaltar der Kirche am Magdalensberg, Kärnten, Österreich. Unbekannter Meister der älteren",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg"
+        },
+        {
+          "title": "File:St Helena - geograph.org.uk - 6711020.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span> by N Chadwick You are free: to share – to copy, distribute and transmit",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg"
+        },
+        {
+          "title": "File:St Mary ^ St Helena, Elstow - geograph.org.uk - 3263704.jpg",
+          "snippet": "Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> Mary &amp; <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span>, Elstow by John Salmon You are free: to share – to copy, distribute",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:36.271Z"
+    },
+    {
+      "beat": 8,
+      "query": "Science building headquarters",
+      "kind": "organization",
+      "narration": "Science finally traced origins for 152 buried individuals there.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Science"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:AAAS exterior 1 - Cambridge, MA.JPG",
+          "snippet": "English object <span class=\"searchmatch\">of</span> statement has role: photographer author name string: Daderot Wikimedia username: Daderot URL: http://commons.wikimedia.org/wiki/User:Daderot",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAAAS%20exterior%201%20-%20Cambridge%2C%20MA.JPG"
+        },
+        {
+          "title": "File:American Academy of Arts and Sciences, Cambridge, Massachusetts.JPG",
+          "snippet": "Daderot 2560×1920 (1058199 bytes) {{GFDL}}National <span class=\"searchmatch\">headquarters</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> American <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Arts</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Sciences</span>, Cambridge, Massachusetts. Photograph taken by",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAmerican%20Academy%20of%20Arts%20and%20Sciences%2C%20Cambridge%2C%20Massachusetts.JPG"
+        },
+        {
+          "title": "File:Guangzhou Science and Technology Association Headquarters Building 20220114.jpg",
+          "snippet": "Attribution-Share Alike 4.0 truetrue English Guangzhou <span class=\"searchmatch\">Science</span> <span class=\"searchmatch\">and</span> Technology Association <span class=\"searchmatch\">Headquarters</span> <span class=\"searchmatch\">Building</span> Chinese (China) 广州市科学技术协会大院 author name string:",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AGuangzhou%20Science%20and%20Technology%20Association%20Headquarters%20Building%2020220114.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:19:36.931Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

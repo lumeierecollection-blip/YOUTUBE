@@ -1,0 +1,68 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-3",
+  "channelName": "Channel 3",
+  "videoSlug": "trump-wsj-lawsuit-dismissed",
+  "generatedAt": "2026-11-04T17:26:32.660Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\visual-plan.json",
+  "sourceAssets": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\licensed-assets\\manifest.json",
+  "totalAssets": 1,
+  "uniqueAssets": 1,
+  "totalBeats": 9,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 1,
+      "detail": "Beat 1 (“A massive $10 billion defamation suit just vanished in feder…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 2,
+      "detail": "Beat 2 (“On October 31, 2026, Judge Darrin Gayles dismissed Donald Tr…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 3,
+      "detail": "Beat 3 (“The filing targeted Rupert Murdoch over a July 2025 story ab…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 4,
+      "detail": "Beat 4 (“Where did the $10 billion claim fail?…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 6,
+      "detail": "Beat 6 (“Judge Gayles ruled that Donald Trump failed to prove actual …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 7,
+      "detail": "Beat 7 (“Because of that failure, the judge dismissed the lawsuit wit…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 8,
+      "detail": "Beat 8 (“That ruling officially ended the $10 billion legal battle.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 9,
+      "detail": "Beat 9 (“The $10 billion lawsuit remains dismissed with prejudice.…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 8,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

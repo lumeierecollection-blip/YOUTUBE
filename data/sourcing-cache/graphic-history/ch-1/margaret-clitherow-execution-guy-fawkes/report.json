@@ -1,0 +1,22 @@
+{
+  "videoSlug": "margaret-clitherow-execution-guy-fawkes",
+  "channel": "ch-1",
+  "generatedAt": "2026-11-04T17:18:43.540Z",
+  "treatmentsUsed": [
+    "annotated-photograph",
+    "chronological-timeline",
+    "side-by-side",
+    "chronological-timeline",
+    "geographic-visualisation",
+    "geographic-visualisation",
+    "geographic-visualisation",
+    "chronological-timeline",
+    "geographic-visualisation"
+  ],
+  "distribution": {
+    "annotated-photograph": 1,
+    "chronological-timeline": 3,
+    "side-by-side": 1,
+    "geographic-visualisation": 4
+  }
+}

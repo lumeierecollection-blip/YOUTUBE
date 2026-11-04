@@ -1,0 +1,93 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-3",
+  "videoSlug": "paramount-wbd-merger-injunction",
+  "generatedAt": "2026-11-04T17:27:04.498Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\paramount-wbd-merger-injunction\\sourcing-report.json",
+  "totalRequested": 7,
+  "totalDownloaded": 1,
+  "errors": [
+    {
+      "beat": 1,
+      "title": "File:Castorologia, or The history and traditions of the Canadian beaver (IA castorologiaorhi00mart).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 1,
+      "title": "File:Castorologia, or The history and traditions of the Canadian beaver (IA cu31924002886798).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 1,
+      "title": "File:Birds and nature (IA birdsnature151904chic).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:California State Capitol (top), NW view up.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Amboy (California, USA), Hist. Route 66 -- 2012 -- 1.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Amboy (California, USA) -- 2012 -- 4.jpg",
+      "why": "restrictions: trademarked"
+    },
+    {
+      "beat": 5,
+      "title": "File:Araceli Martinez-Olguin, U.S. District Court Judge.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:France under the Republic (IA franceunderrepub00bracrich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:France under the Republic (IA franceunderrepub02bracrich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:France under the Republic (IA cu31924028176810).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-1",
+      "beat": 3,
+      "query": "Will these services stay independent? illustration",
+      "kind": "illustration",
+      "narration": "Will these services stay independent?",
+      "file": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\paramount-wbd-merger-injunction\\licensed-assets\\will-these-services-stay-independent-illustration-80e530f0.jpg",
+      "filename": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Independent%20(1849)%20(14595265458).jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_Independent_(1849)_(14595265458).jpg",
+      "originalTitle": "File:The Independent (1849) (14595265458).jpg",
+      "creator": "Internet Archive Book Images",
+      "license": "No restrictions",
+      "licenseUrl": "https://www.flickr.com/commons/usage/",
+      "attribution": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+      "credit": "https://www.flickr.com/photos/internetarchivebookimages/14595265458/ Source book page: https://archive.org/stream/independen89v90newy/independen89v90newy#page/n500/mode/1up",
+      "description": "Identifier : independen89v90newy ( find matches ) Title : The Independent Year : 1849 ( 1840s ) Authors : Subjects : Publisher : New York : S.W. Benedict Contributing Library : Robarts - University of Toronto Digitizing Sponsor : University of Toronto View Book Page : Book Viewer About This Book : Catalog Entry View All Images : All Images From Book Click here to view book online to see this illustration in context in a browseable online version of this book. Text Appearing Before Image: ained by Mr.Tong who is now on the Pek-ing Daily News. — The Editor. him in acknowledgment of his service.President Li is now fifty-three yearsold. He has held various official posi-tions from that of a non-commissionedofficer to that of governor, and dis- charged all his multifarious duties withcredit. Born in 1863, General Li is a nativeof Hupeh, possessing the true charac-teristics of his fellow provincials—great tenacity of purpose, unexampledbravery and an aptitude for military-achievements. Having naturally chosenthe military career as his profession,,coming as he did from such a martiaLprovince, young Li Yuan-hung enteredthe famous Peiyang Naval College, andafter a course of six years graduatedwith honor. He was soon assigned to acruiser as a non-commissioned officer. During the Chino-Japanese war,President Li fought bravely by theside of Admiral Ting-Shih-chang, theNelson of China. After the war, he at-tracted the attention of Viceroy ChangChih-tung, to whose Yamen at Nan- Text Appearing After Image: THE PRESIDENTS FAMILYMadame Li believes in practising democracy and in teaching it to her sons and daughters king he was subsequently transferredfor the important duty of trainingtroops. When his patron was appointedViceroy of Hunan and Hupeh, withhis headquarters at Wuchang, GeneralLi accompanied him thither to assistin the organization of the army. President Li went to Japan threetimes and stayed there from one monthto one year, to study fortifications andarmy organizations at the suggestionof his chief, and on his return, he wasappointed a major of cavalry. Whileserving in the 21st Brigade, he waspromoted to the rank of colonel. Hewas Field Marshal at the great Chang-teh maneuvers in 1905 which he or-ganized and conducted with great suc-cess. He was also general of a divisionand then of a mixed brigade, beingexceedingly popular with his fellowofficers on account of his straight-forwardness and sincerity. The outbreak of 1911 brought himforward as the supreme military com-mander of Note About Images Please note that these images are extracted from scanned page images that may have been digitally enhanced for readability - coloration and appearance of these illustrations may not perfectly resemble the original work.",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/The_Independent_%281849%29_%2814595265458%29.jpg/1920px-The_Independent_%281849%29_%2814595265458%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "mime": "image/jpeg",
+      "width": 1920,
+      "height": 1963,
+      "bytes": 1001814,
+      "sha256": "80e530f0be04d44c31acba8b1df0de958ad480472799eddd6e41e8169390b69b",
+      "relevance": "Beat 3 (“Will these services stay independent?”): the organization of the army. President Li went to Japan threetimes and <span class=\"searchmatch\">stayed</span> there from one monthto one year, to study fortifications andarmy organizations",
+      "retrievedAt": "2026-11-04T17:27:03.058Z",
+      "cacheKey": "ebdfeac1f054634b",
+      "rightsStatus": "clear"
+    }
+  ]
+}

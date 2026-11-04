@@ -1,0 +1,515 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-4/bayern-dortmund-2-2-tactical-analysis/visual-plan.json",
+  "channel": "ch-4",
+  "videoSlug": "bayern-dortmund-2-2-tactical-analysis",
+  "generatedAt": "2026-11-04T19:43:30.242Z",
+  "totalBeats": 8,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Allianz Arena, Borussia Dortmund",
+      "reason": "Beat 1 (“Borussia Dortmund won 57 percent of duels at Allianz Arena.”): Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north",
+      "objects": {
+        "amount_a": "Allianz Arena, Borussia Dortmund",
+        "amount_b": "allianz-arena-photograph-view-37346582.jpg",
+        "_assetFile": "allianz-arena-photograph-view-37346582.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "allianz-arena-photograph-view-37346582.jpg",
+          "filename": "allianz-arena-photograph-view-37346582.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz_arena_daylight_Richard_Bartz.jpg",
+          "creator": "Richard Bartz , Munich aka Makro Freak",
+          "license": "CC BY-SA 2.5",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+          "attribution": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+          "credit": "Own work",
+          "sha256": "373465826207ee074a05dad54879335d6bc6466050d58eb0e0bc27f777851602",
+          "width": 1920,
+          "height": 791,
+          "retrievedAt": "2026-11-04T17:27:25.244Z",
+          "cacheKey": "0ea028e9d346b9b5",
+          "relevance": "Beat 1 (“Borussia Dortmund won 57 percent of duels at Allianz Arena.”): Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Allianz Arena, Borussia Dortmund",
+          "asset": "asset-library/allianz-arena-photograph-view-37346582.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+          "license": "CC BY-SA 2.5"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Borussia Dortmund won 57 percent of duels at Allianz Arena.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Allianz Arena, Borussia Dortmund",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/allianz-arena-photograph-view-37346582.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 1,
+      "_narration": "Borussia Dortmund won 57 percent of duels at Allianz Arena.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Allianz Arena, Borussia Dortmund",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/allianz-arena-photograph-view-37346582.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+            "license": "CC BY-SA 2.5"
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Niko Kovač, Borussia Dortmund",
+      "reason": "Illustrative graphic for beat 2: \"During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible 3-4-2-1 shape.\"",
+      "objects": {
+        "amount_a": "Niko Kovač, Borussia Dortmund",
+        "amount_b": "Niko Kovač, Borussia Dortmund",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible ",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible ",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 2,
+      "_narration": "During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible 3-4-2-1 shape.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Allianz Arena",
+      "reason": "Beat 3 (“How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Arena?”): Commons Attribution-Share Alike 2.5 truetrue English <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> French <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> German <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> object of statement has role: photographer author",
+      "objects": {
+        "amount_a": "Allianz Arena",
+        "amount_b": "allianz-arena-photograph-view-91803ac2.jpg",
+        "_assetFile": "allianz-arena-photograph-view-91803ac2.jpg",
+        "_asset": {
+          "id": "asset-2",
+          "file": "allianz-arena-photograph-view-91803ac2.jpg",
+          "filename": "allianz-arena-photograph-view-91803ac2.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20golden%20hour%20Richard%20Bartz.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz_arena_golden_hour_Richard_Bartz.jpg",
+          "creator": "Richard Bartz , Munich aka Makro Freak",
+          "license": "CC BY-SA 2.5",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+          "attribution": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+          "credit": "Own work",
+          "sha256": "91803ac24f2804216633b81196cff293271549dd98ecc8d5bc1f2d3cb5587323",
+          "width": 1920,
+          "height": 644,
+          "retrievedAt": "2026-11-04T17:27:26.176Z",
+          "cacheKey": "0ea028e9d346b9b5",
+          "relevance": "Beat 3 (“How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Arena?”): Commons Attribution-Share Alike 2.5 truetrue English <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> French <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> German <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> object of statement has role: photographer author"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Allianz Arena",
+          "asset": "asset-library/allianz-arena-photograph-view-91803ac2.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20golden%20hour%20Richard%20Bartz.jpg",
+          "license": "CC BY-SA 2.5"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Ar",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Allianz Arena",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/allianz-arena-photograph-view-91803ac2.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 3,
+      "_narration": "How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Arena?",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Allianz Arena",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/allianz-arena-photograph-view-91803ac2.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20golden%20hour%20Richard%20Bartz.jpg",
+            "license": "CC BY-SA 2.5"
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Bayern Munich",
+      "reason": "Beat 4 (“However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Munich.”): Attribution-Share Alike 4.0 truetrue English Aerial image of the <span class=\"searchmatch\">headquarters</span> of <span class=\"searchmatch\">Munich</span> Re (view from the southeast) German Luftbild des Hauptgebäudes der",
+      "objects": {
+        "amount_a": "Bayern Munich",
+        "amount_b": "bayern-munich-building-headquarters-b9ad4132.jpg",
+        "_assetFile": "bayern-munich-building-headquarters-b9ad4132.jpg",
+        "_asset": {
+          "id": "asset-3",
+          "file": "bayern-munich-building-headquarters-b9ad4132.jpg",
+          "filename": "bayern-munich-building-headquarters-b9ad4132.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAerial%20image%20of%20the%20headquarters%20of%20Munich%20Re%20(view%20from%20the%20southeast).jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAerial_image_of_the_headquarters_of_Munich_Re_(view_from_the_southeast).jpg",
+          "creator": "Carsten Steger",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "attribution": "Carsten Steger / Wikimedia Commons, CC BY-SA 4.0",
+          "credit": "Own work",
+          "sha256": "b9ad4132e6340c54f2d6dea1242aab2f9ec0b03d38d5ddfa36d21e42c9c53433",
+          "width": 1920,
+          "height": 1280,
+          "retrievedAt": "2026-11-04T17:27:27.573Z",
+          "cacheKey": "7bd66aa317068363",
+          "relevance": "Beat 4 (“However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Munich.”): Attribution-Share Alike 4.0 truetrue English Aerial image of the <span class=\"searchmatch\">headquarters</span> of <span class=\"searchmatch\">Munich</span> Re (view from the southeast) German Luftbild des Hauptgebäudes der"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Bayern Munich",
+          "asset": "asset-library/bayern-munich-building-headquarters-b9ad4132.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Carsten Steger / Wikimedia Commons, CC BY-SA 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AAerial%20image%20of%20the%20headquarters%20of%20Munich%20Re%20(view%20from%20the%20southeast).jpg",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Muni",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Bayern Munich",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/bayern-munich-building-headquarters-b9ad4132.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 4,
+      "_narration": "However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Munich.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Bayern Munich",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/bayern-munich-building-headquarters-b9ad4132.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Carsten Steger / Wikimedia Commons, CC BY-SA 4.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AAerial%20image%20of%20the%20headquarters%20of%20Munich%20Re%20(view%20from%20the%20southeast).jpg",
+            "license": "CC BY-SA 4.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Serhou Guirassy, Fabio Silva",
+      "reason": "Illustrative graphic for beat 5: \"Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for Dortmund.\"",
+      "objects": {
+        "amount_a": "Serhou Guirassy, Fabio Silva",
+        "amount_b": "Serhou Guirassy, Fabio Silva",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for ",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for ",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 5,
+      "_narration": "Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for Dortmund.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 5,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Borussia Dortmund",
+      "reason": "Illustrative graphic for beat 6: \"Borussia Dortmund twice leveled the score against heavy territorial pressure.\"",
+      "objects": {
+        "amount_a": "Borussia Dortmund",
+        "amount_b": "Borussia Dortmund",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Borussia Dortmund twice leveled the score against heavy territorial pressure.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Borussia Dortmund twice leveled the score against heavy territorial pressure.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 6,
+      "_narration": "Borussia Dortmund twice leveled the score against heavy territorial pressure.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 6,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 7: \"That intense battle ended with 2 goals for each side.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "That intense battle ended with 2 goals for each side.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "That intense battle ended with 2 goals for each side.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 7,
+      "_narration": "That intense battle ended with 2 goals for each side.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 7,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Borussia Dortmund",
+      "reason": "Illustrative graphic for beat 8: \"Borussia Dortmund earned 2 goals to secure the 2-2 draw.\"",
+      "objects": {
+        "amount_a": "Borussia Dortmund",
+        "amount_b": "Borussia Dortmund",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Borussia Dortmund earned 2 goals to secure the 2-2 draw.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Borussia Dortmund earned 2 goals to secure the 2-2 draw.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 8,
+      "_narration": "Borussia Dortmund earned 2 goals to secure the 2-2 draw.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

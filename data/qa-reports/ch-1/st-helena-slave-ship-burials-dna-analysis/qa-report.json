@@ -1,0 +1,32 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-1",
+  "channelName": "Channel 1",
+  "videoSlug": "st-helena-slave-ship-burials-dna-analysis",
+  "generatedAt": "2026-11-04T17:20:53.891Z",
+  "sourcePlan": "data/sourcing-cache/ch-1/st-helena-slave-ship-burials-dna-analysis/visual-plan.json",
+  "sourceAssets": "data/sourcing-cache/ch-1/st-helena-slave-ship-burials-dna-analysis/licensed-assets/manifest.json",
+  "totalAssets": 6,
+  "uniqueAssets": 6,
+  "totalBeats": 8,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 6,
+      "detail": "Beat 6 (“Scientists tested tooth isotopes from 152 liberated Africans…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 7,
+      "detail": "Beat 7 (“Researchers at UC Santa Cruz analyzed ancient DNA from 152 l…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 2,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

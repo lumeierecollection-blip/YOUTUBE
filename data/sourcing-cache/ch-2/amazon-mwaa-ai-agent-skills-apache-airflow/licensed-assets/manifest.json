@@ -1,0 +1,27 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-2",
+  "videoSlug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "generatedAt": "2026-11-04T17:25:53.698Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\amazon-mwaa-ai-agent-skills-apache-airflow\\sourcing-report.json",
+  "totalRequested": 6,
+  "totalDownloaded": 0,
+  "errors": [
+    {
+      "beat": 3,
+      "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AI-2.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AG-2.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-2-FR-276.tif",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": []
+}

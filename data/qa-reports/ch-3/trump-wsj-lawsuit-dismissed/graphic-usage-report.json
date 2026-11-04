@@ -1,0 +1,116 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-3",
+  "videoSlug": "trump-wsj-lawsuit-dismissed",
+  "generatedAt": "2026-11-04T17:26:32.538Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 9,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "A massive $10 billion defamation suit just vanished in federal court.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 3,
+      "narration": "The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "Where did the $10 billion claim fail?",
+      "visualIntent": "statistic",
+      "treatmentId": "chart-data-viz",
+      "communicates": "A specific number is the information",
+      "example": "line chart of model scores over time",
+      "reason": "Beat communicates statistic; A specific number is the information",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 5,
+      "narration": "Except the court found actual malice was never plausibly alleged.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 6,
+      "narration": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 7,
+      "narration": "Because of that failure, the judge dismissed the lawsuit with prejudice.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 8,
+      "narration": "That ruling officially ended the $10 billion legal battle.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 9,
+      "narration": "The $10 billion lawsuit remains dismissed with prejudice.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "archival-document": 8,
+    "chart-data-viz": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

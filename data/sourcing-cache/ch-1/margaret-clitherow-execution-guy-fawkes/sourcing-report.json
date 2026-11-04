@@ -1,0 +1,379 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-1",
+  "channelName": "Channel 1",
+  "videoSlug": "margaret-clitherow-execution-guy-fawkes",
+  "script": "margaret-clitherow-execution-guy-fawkes-shorts-script.json",
+  "research": "data/research/1/margaret-clitherow-execution-guy-fawkes.json",
+  "generatedAt": "2026-11-04T17:16:31.879Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Margaret Clitherow",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Guy Fawkes",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Christopher Wright",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "John Wright",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [
+      {
+        "name": "York",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "organizations": [],
+    "products": [],
+    "events": [],
+    "objects": [
+      {
+        "name": "Middleton Vestment",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "dates": [
+      {
+        "name": "1586",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "statistics": [
+      {
+        "name": "Unborn child number = 4 child",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 9,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Margaret Clitherow portrait photograph",
+      "kind": "person",
+      "narration": "In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Margaret Clitherow"
+        },
+        {
+          "cat": "places",
+          "name": "York"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Magdalene College (IA magdalenecollege00purnrich).pdf",
+          "snippet": "altar\ncandlesticks were given by the Rev. W. J. Stracey, now\nStracey-<span class=\"searchmatch\">Clitherow</span>, Norfolk Fellow 1846 to 1849.\nThe windows of the hall are unchanged\nO",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalene%20College%20(IA%20magdalenecollege00purnrich).pdf"
+        },
+        {
+          "title": "File:A manual of costume as illustrated by monumental brasses (IA manualofcostumea00drui 0).pdf",
+          "snippet": "the Clopton family,\n{from <span class=\"searchmatch\">photographs</span>)\n\n*\n\nc.\n\n1470,\n\n.\n\n.\n\n270\n\n.\n\n1480, Long Melford, Suffolk\n\n.\n\n.\n\nc.\n\n.\n\n.\n\n.\n\n.\n\n<span class=\"searchmatch\">Margaret</span> {nee Nevill), wife of Sir",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20costume%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcostumea00drui%200).pdf"
+        },
+        {
+          "title": "File:A manual of custome as illustrated by monumental brasses (IA manualofcustomea00druirich).pdf",
+          "snippet": "Clopton family,\n(from <span class=\"searchmatch\">photographs</span>)\n\n*\n\n.\n\nc.\n\nxxi.\n\nc.\n\n.\n\n.\n\n1470,\n\n.270\n\n1480, Long Melford, Suffolk\n\n.\n\n.\n\n.\n\n.\n\n.\n\n<span class=\"searchmatch\">Margaret</span> (nee Nevill), wife of",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20custome%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcustomea00druirich).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:25.069Z"
+    },
+    {
+      "beat": 2,
+      "query": "historical document ch-1 archive",
+      "kind": "document",
+      "narration": "England had outlawed Catholicism, so priests hid in secret rooms called priest holes — and Margaret was accused of hiding one.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+          "snippet": "English determination method or standard: SHA-<span class=\"searchmatch\">1</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-CH-24.tif"
+        },
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-39.tif",
+          "snippet": "English determination method or standard: SHA-<span class=\"searchmatch\">1</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-CH-39.tif"
+        },
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AG-1.tif",
+          "snippet": "English determination method or standard: SHA-<span class=\"searchmatch\">1</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-AG-1.tif"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:26.368Z"
+    },
+    {
+      "beat": 3,
+      "query": "She refused to enter a legal illustration",
+      "kind": "illustration",
+      "narration": "She refused to enter a legal plea while pregnant with her fourth child.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+          "snippet": "following conditions: attribution – You must give appropriate credit, provide <span class=\"searchmatch\">a</span> link <span class=\"searchmatch\">to</span> the license, and indicate if changes were made. You may do so in any reasonable",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AEnter%20the%20imperceptible%20-%20Reading%20Die%20Antwoord.pdf"
+        },
+        {
+          "title": "File:She (1888).djvu",
+          "snippet": "H. Rider Haggard: <span class=\"searchmatch\">She</span>    (  ) Author H. Rider Haggard (1856–1925)       Alternative names Sir Henry Rider Haggard; Henry Rider Haggard; H. R. Haggard;",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AShe%20(1888).djvu"
+        },
+        {
+          "title": "File:She (1887).pdf",
+          "snippet": "H. Rider Haggard: <span class=\"searchmatch\">She</span>    (  ) Author H. Rider Haggard (1856–1925)       Alternative names Sir Henry Rider Haggard; Henry Rider Haggard; H. R. Haggard;",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AShe%20(1887).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:27.177Z"
+    },
+    {
+      "beat": 4,
+      "query": "Because she would not plead, they illustration",
+      "kind": "illustration",
+      "narration": "Because she would not plead, they crushed her to death under heavy weights on Lady Day in March 1586.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Kate Whiting Patch - Because You Are You.pdf",
+          "snippet": "org/publicdomain/mark/1.0/PDMCreative Commons Public Domain Mark 1.0falsefalse English <span class=\"searchmatch\">Because</span> You Are You described at URL: https://babel.hathitrust.org/cgi/pt?id=hvd",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKate%20Whiting%20Patch%20-%20Because%20You%20Are%20You.pdf"
+        },
+        {
+          "title": "File:She (1888).djvu",
+          "snippet": "H. Rider Haggard: <span class=\"searchmatch\">She</span>    (  ) Author H. Rider Haggard (1856–1925)       Alternative names Sir Henry Rider Haggard; Henry Rider Haggard; H. R. Haggard;",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AShe%20(1888).djvu"
+        },
+        {
+          "title": "File:She (1887).pdf",
+          "snippet": "H. Rider Haggard: <span class=\"searchmatch\">She</span>    (  ) Author H. Rider Haggard (1856–1925)       Alternative names Sir Henry Rider Haggard; Henry Rider Haggard; H. R. Haggard;",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AShe%20(1887).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:28.056Z"
+    },
+    {
+      "beat": 5,
+      "query": "Guy Fawkes portrait photograph",
+      "kind": "person",
+      "narration": "Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gunpowder Plot to blow up Parliament.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Guy Fawkes"
+        },
+        {
+          "cat": "places",
+          "name": "York"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:The execution of Guy Fawkes' (Guy Fawkes) by Claes (Nicolaes) Jansz Visscher.jpg",
+          "snippet": "DescriptionThe execution of <span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>&#039; (<span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>) by Claes (Nicolaes) Jansz Visscher.jpg The execution of <span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>&#039; (<span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>), by Claes (Nicolaes) Jansz",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20execution%20of%20Guy%20Fawkes'%20(Guy%20Fawkes)%20by%20Claes%20(Nicolaes)%20Jansz%20Visscher.jpg"
+        },
+        {
+          "title": "File:Aging Anonymous.jpg",
+          "snippet": "English: One piece of my &quot;Aging fellas&quot; <span class=\"searchmatch\">Portraits</span> series. Français : Une partie extraite de ma série de <span class=\"searchmatch\">portraits</span> &quot;Aging fellas&quot; Date 3 June 2016, 20:30:00",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAging%20Anonymous.jpg"
+        },
+        {
+          "title": "File:Anonymous Transparent.png",
+          "snippet": "Florian Belmonte, the copyright holder of this work, hereby publishes it under the following license: This file is licensed under the Creative Commons",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAnonymous%20Transparent.png"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:28.752Z"
+    },
+    {
+      "beat": 6,
+      "query": "Margaret Clitherow portrait photograph",
+      "kind": "person",
+      "narration": "Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Margaret Clitherow"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Magdalene College (IA magdalenecollege00purnrich).pdf",
+          "snippet": "altar\ncandlesticks were given by the Rev. W. J. Stracey, now\nStracey-<span class=\"searchmatch\">Clitherow</span>, Norfolk Fellow 1846 to 1849.\nThe windows of the hall are unchanged\nO",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalene%20College%20(IA%20magdalenecollege00purnrich).pdf"
+        },
+        {
+          "title": "File:A manual of costume as illustrated by monumental brasses (IA manualofcostumea00drui 0).pdf",
+          "snippet": "the Clopton family,\n{from <span class=\"searchmatch\">photographs</span>)\n\n*\n\nc.\n\n1470,\n\n.\n\n.\n\n270\n\n.\n\n1480, Long Melford, Suffolk\n\n.\n\n.\n\nc.\n\n.\n\n.\n\n.\n\n.\n\n<span class=\"searchmatch\">Margaret</span> {nee Nevill), wife of Sir",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20costume%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcostumea00drui%200).pdf"
+        },
+        {
+          "title": "File:A manual of custome as illustrated by monumental brasses (IA manualofcustomea00druirich).pdf",
+          "snippet": "Clopton family,\n(from <span class=\"searchmatch\">photographs</span>)\n\n*\n\n.\n\nc.\n\nxxi.\n\nc.\n\n.\n\n.\n\n1470,\n\n.270\n\n1480, Long Melford, Suffolk\n\n.\n\n.\n\n.\n\n.\n\n.\n\n<span class=\"searchmatch\">Margaret</span> (nee Nevill), wife of",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20custome%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcustomea00druirich).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:29.320Z"
+    },
+    {
+      "beat": 7,
+      "query": "John Wright portrait photograph",
+      "kind": "person",
+      "narration": "Christopher and John Wright also knew her story.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "John Wright"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:King Charles II by John Michael Wright or studio.jpg",
+          "snippet": "<span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span>: King Charles II    Artist <span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span> (1617–1694)     Description British <span class=\"searchmatch\">portrait</span> painter Date of birth/death 25 May 1617",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKing%20Charles%20II%20by%20John%20Michael%20Wright%20or%20studio.jpg"
+        },
+        {
+          "title": "File:Portrait of Jane Monins, Mrs John Knatchbull, 2nd Bt. (c.1640-99) (by John Michael Wright).jpg",
+          "snippet": "English <span class=\"searchmatch\">Portrait</span> of Jane Monins, Mrs <span class=\"searchmatch\">John</span> Knatchbull, 2nd Bt. (c.1640-99) (by <span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span>)",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APortrait%20of%20Jane%20Monins%2C%20Mrs%20John%20Knatchbull%2C%202nd%20Bt.%20(c.1640-99)%20(by%20John%20Michael%20Wright).jpg"
+        },
+        {
+          "title": "File:Portrait of John Atherton (d.1785) (by Joseph Wright of Derby).jpg",
+          "snippet": "English <span class=\"searchmatch\">Portrait</span> of <span class=\"searchmatch\">John</span> Atherton (d.1785) (by Joseph <span class=\"searchmatch\">Wright</span> of Derby) described at URL: https://www.sothebys.com/en/auctions/ecatalogue/2008/early-br",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APortrait%20of%20John%20Atherton%20(d.1785)%20(by%20Joseph%20Wright%20of%20Derby).jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:30.027Z"
+    },
+    {
+      "beat": 8,
+      "query": "Her brutal death may have shaped illustration",
+      "kind": "illustration",
+      "narration": "Her brutal death may have shaped their thinking before the 1605 plot.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+          "snippet": "Men who <span class=\"searchmatch\">have</span> made the Empire   (  ) Author Griffith, George Chetwynd Title Men who <span class=\"searchmatch\">have</span> made the Empire Publisher London : C. A. Pearson Description William",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMen%20who%20have%20made%20the%20Empire%20(IA%20menwhohavemadeem00grifiala).pdf"
+        },
+        {
+          "title": "File:Queen Anne and her court (IA queenannehercour02ryan).pdf",
+          "snippet": "Queen Anne and <span class=\"searchmatch\">her</span> court   (  ) Author Ryan, P. F. William Title Queen Anne and <span class=\"searchmatch\">her</span> court Volume 2 Publisher London : Hutchinson &amp; co. Description Subjects:",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AQueen%20Anne%20and%20her%20court%20(IA%20queenannehercour02ryan).pdf"
+        },
+        {
+          "title": "File:Queen Anne and her court (IA queenannehercour02ryaniala).pdf",
+          "snippet": "Queen Anne and <span class=\"searchmatch\">her</span> court   (  ) Author Ryan, P. F. William Title Queen Anne and <span class=\"searchmatch\">her</span> court Volume 2 Publisher New York : Dutton Description Subjects: Anne",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AQueen%20Anne%20and%20her%20court%20(IA%20queenannehercour02ryaniala).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:30.850Z"
+    },
+    {
+      "beat": 9,
+      "query": "York photograph view",
+      "kind": "place",
+      "narration": "Two events, nineteen years apart, both in York, both shaped by religious conflict.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "York"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Central Park New York City New York 23 cropped.jpg",
+          "snippet": "Park (<span class=\"searchmatch\">view</span> from Bridlepath looking southwest), Gothic Arch, Spanning bridlepath south of tennis courts, north of reservoir, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> City, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> County",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACentral%20Park%20New%20York%20City%20New%20York%2023%20cropped.jpg"
+        },
+        {
+          "title": "File:FEMA - 5399 - Photograph by Andrea Booher taken on 09-28-2001 in New York.jpg",
+          "snippet": "DescriptionFEMA - 5399 - <span class=\"searchmatch\">Photograph</span> by Andrea Booher taken on 09-28-2001 in <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span>.jpg English: <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span>, NY, September 28, 2001 -- Debris on surrounding",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFEMA%20-%205399%20-%20Photograph%20by%20Andrea%20Booher%20taken%20on%2009-28-2001%20in%20New%20York.jpg"
+        },
+        {
+          "title": "File:View of Empire State Building from Rockefeller Center New York City dllu.jpg",
+          "snippet": "from the original on 2022-04-30. Retrieved on 2022-04-29. English <span class=\"searchmatch\">Manhattan</span>, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> City Russian Вид на Эмпайр-стейт-билдинг в Нью-Йорке с вершины скалы",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AView%20of%20Empire%20State%20Building%20from%20Rockefeller%20Center%20New%20York%20City%20dllu.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:16:31.879Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

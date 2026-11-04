@@ -1,0 +1,20 @@
+{
+  "videoSlug": "st-helena-slave-ship-burials-dna-analysis",
+  "channel": "ch-1",
+  "generatedAt": "2026-11-04T17:20:53.858Z",
+  "treatmentsUsed": [
+    "geographic-visualisation",
+    "chronological-timeline",
+    "chronological-timeline",
+    "side-by-side",
+    "chronological-timeline",
+    "geographic-visualisation",
+    "geographic-visualisation",
+    "chronological-timeline"
+  ],
+  "distribution": {
+    "geographic-visualisation": 3,
+    "chronological-timeline": 4,
+    "side-by-side": 1
+  }
+}

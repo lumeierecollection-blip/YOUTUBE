@@ -1,0 +1,357 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-3",
+  "channelName": "Channel 3",
+  "videoSlug": "trump-wsj-lawsuit-dismissed",
+  "script": "trump-wsj-lawsuit-dismissed-shorts-script.json",
+  "research": "data/research/3/trump-wsj-lawsuit-dismissed.json",
+  "generatedAt": "2026-11-04T17:26:11.440Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Donald Trump",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Darrin Gayles",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Rupert Murdoch",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Jeffrey Epstein",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [
+      {
+        "name": "Miami",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "organizations": [
+      {
+        "name": "The Wall Street Journal",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Dow Jones",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [],
+    "dates": [],
+    "statistics": [
+      {
+        "name": "Lawsuit amount = 10000000000 dollars",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 9,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "A massive $10 billion defamation suit illustration",
+      "kind": "illustration",
+      "narration": "A massive $10 billion defamation suit just vanished in federal court.",
+      "entitiesMentioned": [],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:04.339Z"
+    },
+    {
+      "beat": 2,
+      "query": "Donald Trump portrait photograph",
+      "kind": "person",
+      "narration": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Donald Trump"
+        },
+        {
+          "cat": "people",
+          "name": "Darrin Gayles"
+        },
+        {
+          "cat": "places",
+          "name": "Miami"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Donald Trump official portrait.jpg",
+          "snippet": "Official <span class=\"searchmatch\">portrait</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Donald</span> John <span class=\"searchmatch\">Trump</span>, as the 45th President <span class=\"searchmatch\">of</span> the United States <span class=\"searchmatch\">of</span> America Swedish Officiellt porträtt av president <span class=\"searchmatch\">Donald</span> J. <span class=\"searchmatch\">Trump</span> taget",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADonald%20Trump%20official%20portrait.jpg"
+        },
+        {
+          "title": "File:Kim Jong-un and Donald Trump impersonators.jpg",
+          "snippet": "0 truetrue English Howard X and Dennis Alan, impersonators <span class=\"searchmatch\">of</span> Kim Jong-un and <span class=\"searchmatch\">Donald</span> <span class=\"searchmatch\">Trump</span> during the 2018 North Korea-United States summit in Singapore",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKim%20Jong-un%20and%20Donald%20Trump%20impersonators.jpg"
+        },
+        {
+          "title": "File:January 2025 Official Presidential Portrait of Donald J. Trump.jpg",
+          "snippet": "English Official 2025 inaugural <span class=\"searchmatch\">portrait</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Donald</span> <span class=\"searchmatch\">Trump</span>, the 45th and 47th President <span class=\"searchmatch\">of</span> the United States Russian Официальный портрет Дональда Трампа",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AJanuary%202025%20Official%20Presidential%20Portrait%20of%20Donald%20J.%20Trump.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:05.249Z"
+    },
+    {
+      "beat": 3,
+      "query": "Rupert Murdoch portrait photograph",
+      "kind": "person",
+      "narration": "The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Rupert Murdoch"
+        },
+        {
+          "cat": "people",
+          "name": "Jeffrey Epstein"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:James Murdoch.jpg",
+          "snippet": "DescriptionJames <span class=\"searchmatch\">Murdoch</span>.jpg English: James <span class=\"searchmatch\">Murdoch</span>, who is the son of <span class=\"searchmatch\">Rupert</span> <span class=\"searchmatch\">Murdoch</span>, speaking at Verge, the digital media event co-managed by Ogilvy",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AJames%20Murdoch.jpg"
+        },
+        {
+          "title": "File:Drawing (BM 1854,0628.77).jpg",
+          "snippet": "Literature: MacGregor, Arthur, The Late King’s Goods, pp. 207-8, 229 n.20; <span class=\"searchmatch\">Murdoch</span>, pp. 5-12; Griffiths, 1998, pp. 56-8. Source/Photographer https://www.britishmuseum",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADrawing%20(BM%201854%2C0628.77).jpg"
+        },
+        {
+          "title": "File:The Cochran-Inglis family of Halifax (microform) (IA cihm 09068).pdf",
+          "snippet": "50 years ago, or it was not subject to Crown copyright, and 2. it is a <span class=\"searchmatch\">photograph</span> that was created prior to January 1, 1949, or 3. the creator died prior",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Cochran-Inglis%20family%20of%20Halifax%20(microform)%20(IA%20cihm%2009068).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:06.281Z"
+    },
+    {
+      "beat": 4,
+      "query": "Where did the $10 billion claim illustration",
+      "kind": "illustration",
+      "narration": "Where did the $10 billion claim fail?",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Losses to wheat, what to look for and where to find it (IA lossestowheatwha00west).pdf",
+          "snippet": "and <span class=\"searchmatch\">where</span> to find it    Author Western adjustment &amp; inspection co., Chicago. [from old catalog] Title Losses to wheat, what to look for and <span class=\"searchmatch\">where</span> to find",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ALosses%20to%20wheat%2C%20what%20to%20look%20for%20and%20where%20to%20find%20it%20(IA%20lossestowheatwha00west).pdf"
+        },
+        {
+          "title": "File:The city of Rochester and vicinity - where to go, how to go, and what to see in and about the flower city (IA cityofrochesterv00watk).pdf",
+          "snippet": "<span class=\"searchmatch\">The</span> city of Rochester and vicinity : <span class=\"searchmatch\">where</span> to go, how to go, and what to see in and about <span class=\"searchmatch\">the</span> flower city   (  ) Author Watkyns, Charles Ketcham, 1863-",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20city%20of%20Rochester%20and%20vicinity%20-%20where%20to%20go%2C%20how%20to%20go%2C%20and%20what%20to%20see%20in%20and%20about%20the%20flower%20city%20(IA%20cityofrochesterv00watk).pdf"
+        },
+        {
+          "title": "File:The city of Rochester and vicinity - where to go, how to go, and what to see in and about the flower city (IA cityofrochesterv00inwatk).pdf",
+          "snippet": "<span class=\"searchmatch\">The</span> city of Rochester and vicinity : <span class=\"searchmatch\">where</span> to go, how to go, and what to see in and about <span class=\"searchmatch\">the</span> flower city   (  ) Author Watkyns, Charles Ketcham, 1863-",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20city%20of%20Rochester%20and%20vicinity%20-%20where%20to%20go%2C%20how%20to%20go%2C%20and%20what%20to%20see%20in%20and%20about%20the%20flower%20city%20(IA%20cityofrochesterv00inwatk).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:07.671Z"
+    },
+    {
+      "beat": 5,
+      "query": "historical document ch-3 archive",
+      "kind": "document",
+      "narration": "Except the court found actual malice was never plausibly alleged.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+          "snippet": "GND: 2079097-1 SUDOC: 080155634 WorldCat institution QS:P195,Q679141 Accession number The <span class=\"searchmatch\">document</span> on recherche.bar.admin.<span class=\"searchmatch\">ch</span> Source Swiss Federal <span class=\"searchmatch\">Archives</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADas%20Bataillon%203%20beim%20Defilee%20der%20Division%201%20-%20CH-BAR%20-%203240013.tif"
+        },
+        {
+          "title": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+          "snippet": "<span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg"
+        },
+        {
+          "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+          "snippet": "photographer determination method or standard: SHA-1 reference URL: https://www.helveticarchives.<span class=\"searchmatch\">ch</span>/detail.aspx?id=243525 retrieved: 10 December 2025",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Photoglob-Wehrli%20EAD-WEHR-6792-B.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:08.640Z"
+    },
+    {
+      "beat": 6,
+      "query": "Donald Trump portrait photograph",
+      "kind": "person",
+      "narration": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Donald Trump"
+        },
+        {
+          "cat": "organizations",
+          "name": "Dow Jones"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Donald Trump official portrait.jpg",
+          "snippet": "Official <span class=\"searchmatch\">portrait</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Donald</span> John <span class=\"searchmatch\">Trump</span>, as the 45th President <span class=\"searchmatch\">of</span> the United States <span class=\"searchmatch\">of</span> America Swedish Officiellt porträtt av president <span class=\"searchmatch\">Donald</span> J. <span class=\"searchmatch\">Trump</span> taget",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADonald%20Trump%20official%20portrait.jpg"
+        },
+        {
+          "title": "File:Kim Jong-un and Donald Trump impersonators.jpg",
+          "snippet": "0 truetrue English Howard X and Dennis Alan, impersonators <span class=\"searchmatch\">of</span> Kim Jong-un and <span class=\"searchmatch\">Donald</span> <span class=\"searchmatch\">Trump</span> during the 2018 North Korea-United States summit in Singapore",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKim%20Jong-un%20and%20Donald%20Trump%20impersonators.jpg"
+        },
+        {
+          "title": "File:January 2025 Official Presidential Portrait of Donald J. Trump.jpg",
+          "snippet": "English Official 2025 inaugural <span class=\"searchmatch\">portrait</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Donald</span> <span class=\"searchmatch\">Trump</span>, the 45th and 47th President <span class=\"searchmatch\">of</span> the United States Russian Официальный портрет Дональда Трампа",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AJanuary%202025%20Official%20Presidential%20Portrait%20of%20Donald%20J.%20Trump.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:09.240Z"
+    },
+    {
+      "beat": 7,
+      "query": "historical document ch-3 archive",
+      "kind": "document",
+      "narration": "Because of that failure, the judge dismissed the lawsuit with prejudice.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+          "snippet": "GND: 2079097-1 SUDOC: 080155634 WorldCat institution QS:P195,Q679141 Accession number The <span class=\"searchmatch\">document</span> on recherche.bar.admin.<span class=\"searchmatch\">ch</span> Source Swiss Federal <span class=\"searchmatch\">Archives</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADas%20Bataillon%203%20beim%20Defilee%20der%20Division%201%20-%20CH-BAR%20-%203240013.tif"
+        },
+        {
+          "title": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+          "snippet": "<span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg"
+        },
+        {
+          "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+          "snippet": "photographer determination method or standard: SHA-1 reference URL: https://www.helveticarchives.<span class=\"searchmatch\">ch</span>/detail.aspx?id=243525 retrieved: 10 December 2025",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Photoglob-Wehrli%20EAD-WEHR-6792-B.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:10.008Z"
+    },
+    {
+      "beat": 8,
+      "query": "historical document ch-3 archive",
+      "kind": "document",
+      "narration": "That ruling officially ended the $10 billion legal battle.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+          "snippet": "GND: 2079097-1 SUDOC: 080155634 WorldCat institution QS:P195,Q679141 Accession number The <span class=\"searchmatch\">document</span> on recherche.bar.admin.<span class=\"searchmatch\">ch</span> Source Swiss Federal <span class=\"searchmatch\">Archives</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADas%20Bataillon%203%20beim%20Defilee%20der%20Division%201%20-%20CH-BAR%20-%203240013.tif"
+        },
+        {
+          "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+          "snippet": "photographer determination method or standard: SHA-1 reference URL: https://www.helveticarchives.<span class=\"searchmatch\">ch</span>/detail.aspx?id=243525 retrieved: 10 December 2025",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Photoglob-Wehrli%20EAD-WEHR-6792-B.jpg"
+        },
+        {
+          "title": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+          "snippet": "<span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:10.700Z"
+    },
+    {
+      "beat": 9,
+      "query": "historical document ch-3 archive",
+      "kind": "document",
+      "narration": "The $10 billion lawsuit remains dismissed with prejudice.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+          "snippet": "GND: 2079097-1 SUDOC: 080155634 WorldCat institution QS:P195,Q679141 Accession number The <span class=\"searchmatch\">document</span> on recherche.bar.admin.<span class=\"searchmatch\">ch</span> Source Swiss Federal <span class=\"searchmatch\">Archives</span>",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADas%20Bataillon%203%20beim%20Defilee%20der%20Division%201%20-%20CH-BAR%20-%203240013.tif"
+        },
+        {
+          "title": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+          "snippet": "<span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg"
+        },
+        {
+          "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+          "snippet": "photographer determination method or standard: SHA-1 reference URL: https://www.helveticarchives.<span class=\"searchmatch\">ch</span>/detail.aspx?id=243525 retrieved: 10 December 2025",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Photoglob-Wehrli%20EAD-WEHR-6792-B.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:26:11.440Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

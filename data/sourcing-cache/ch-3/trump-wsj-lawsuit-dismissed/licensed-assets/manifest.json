@@ -1,0 +1,138 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-3",
+  "videoSlug": "trump-wsj-lawsuit-dismissed",
+  "generatedAt": "2026-11-04T17:26:32.306Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\sourcing-report.json",
+  "totalRequested": 9,
+  "totalDownloaded": 1,
+  "errors": [
+    {
+      "beat": 2,
+      "title": "File:Donald Trump official portrait.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Kim Jong-un and Donald Trump impersonators.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:January 2025 Official Presidential Portrait of Donald J. Trump.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:James Murdoch.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Drawing (BM 1854,0628.77).jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The Cochran-Inglis family of Halifax (microform) (IA cihm 09068).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Losses to wheat, what to look for and where to find it (IA lossestowheatwha00west).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:The city of Rochester and vicinity - where to go, how to go, and what to see in and about the flower city (IA cityofrochesterv00watk).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:The city of Rochester and vicinity - where to go, how to go, and what to see in and about the flower city (IA cityofrochesterv00inwatk).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:Donald Trump official portrait.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:Kim Jong-un and Donald Trump impersonators.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:January 2025 Official Presidential Portrait of Donald J. Trump.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 8,
+      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 8,
+      "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 9,
+      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 9,
+      "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-1",
+      "beat": 5,
+      "query": "historical document ch-3 archive",
+      "kind": "document",
+      "narration": "Except the court found actual malice was never plausibly alleged.",
+      "file": "historical-document-ch-3-archive-6cfc3c6d.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\licensed-assets\\historical-document-ch-3-archive-6cfc3c6d.jpg",
+      "filename": "historical-document-ch-3-archive-6cfc3c6d.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical%20papers%20and%20addresses%20of%20the%20Lancaster%20County%20Historical%20Society%20(1896)%20(14793065683).jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3AHistorical_papers_and_addresses_of_the_Lancaster_County_Historical_Society_(1896)_(14793065683).jpg",
+      "originalTitle": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
+      "creator": "Internet Archive Book Images",
+      "license": "No restrictions",
+      "licenseUrl": "https://www.flickr.com/commons/usage/",
+      "attribution": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
+      "credit": "https://www.flickr.com/photos/internetarchivebookimages/14793065683/ Source book page: https://archive.org/stream/historicalpapersv19lanc/historicalpapersv19lanc#page/n576/mode/1up",
+      "description": "Identifier : historicalpapersv19lanc ( find matches ) Title : Historical papers and addresses of the Lancaster County Historical Society Year : 1896 ( 1890s ) Authors : Lancaster County Historical Society (Pa.) Lancaster County Historical Society (Pa.). Papers read before the Lancaster County Historical Society Subjects : Publisher : Lancaster, Pa. : (Lancaster County Historical Society) Contributing Library : Allen County Public Library Genealogy Center Digitizing Sponsor : Internet Archive View Book Page : Book Viewer About This Book : Catalog Entry View All Images : All Images From Book Click here to view book online to see this illustration in context in a browseable online version of this book. Text Appearing Before Image: tle timewe have to sport on the subject some-times feel that this Postlethwaite fam-ily is getting too m»ch for us. One of the interesting featuresbrought about by my investigation hasbeen the fact that while the Postleth-waites were prominent in the organi-zation in 1744 of St. James Church, inLancaster,and continued their interestin this church up to the time theyleft this district, yet in coming incontact with the different branches ofthe family who have not been in touchwith each other for a generation ortwo, we find almost invariably theyare all Presbyterians. One notableexception to this was the family ofthe late Rev. William Morton Pos-tlethwaite, who was an Episcopalianminister, yet his brother, Thomas R.Postlethweite, of Chattanooga, Tenn.,is a Presbyterian. We find the family, as a rule, indus-trious, faithful and loyal and I haveyet to locate a Postlethwaite familywhowerenot able to take care of them-selves. They can be found in prac-tically every occupation or profession, Text Appearing After Image: The boulder ana tablet marking- the site of the first Lancaster County-Courts, held in 1729 at Postlethwaites, and the Postlethwaite descendants-.who attended the celebration. From left to right—standing-: Samuel OloydlPostlethwaite, of Huntingdon, Pa.; David Neal Postlethwaite, of Columbus,O.; Clarence Elmer Postlethwaite. of Pittsburgh, Pa.; Dr. John ArthurPostlethwaite, of Tarkio, Mo.; Jay Donald McLean, of Pittsburgh. Pa.; sit-ting: William Perry Postlethwaite, of Valier, Pa.; and Calvin W. Postle-thwaite, of Alexis, 111. (297) both as officials and workmen. Aslegislators, my grandfather, ThomasIrvin Postlethwaite, now deceased,represented Mifflin county, Pa., in1843, when he made the trip to andfrom Harrisburg on horseback. Dr.John Arthur Postlethwaite,who is hereto-day, was elected to the MissouriLegislature in 18S8 for two years.There have been many legislators de-scendants of John Postlethwaitethrough the feminine side of the fam-ily. I do not have a complete list butnotable Note About Images Please note that these images are extracted from scanned page images that may have been digitally enhanced for readability - coloration and appearance of these illustrations may not perfectly resemble the original work.",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Historical_papers_and_addresses_of_the_Lancaster_County_Historical_Society_%281896%29_%2814793065683%29.jpg/1920px-Historical_papers_and_addresses_of_the_Lancaster_County_Historical_Society_%281896%29_%2814793065683%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "mime": "image/jpeg",
+      "width": 1920,
+      "height": 1551,
+      "bytes": 725931,
+      "sha256": "6cfc3c6d0dcb4c1350bf4141ee9a92b82a496fc61f71d870eed37a94a23800c0",
+      "relevance": "Beat 5 (“Except the court found actual malice was never plausibly alleged.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+      "retrievedAt": "2026-11-04T17:26:29.665Z",
+      "cacheKey": "f5420ddf7634d62c",
+      "rightsStatus": "clear"
+    }
+  ]
+}

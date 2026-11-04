@@ -1,0 +1,56 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-2",
+  "channelName": "Channel 2",
+  "videoSlug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "generatedAt": "2026-11-04T17:25:53.999Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\amazon-mwaa-ai-agent-skills-apache-airflow\\visual-plan.json",
+  "sourceAssets": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\amazon-mwaa-ai-agent-skills-apache-airflow\\licensed-assets\\manifest.json",
+  "totalAssets": 0,
+  "uniqueAssets": 0,
+  "totalBeats": 6,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 1,
+      "detail": "Beat 1 (“Amazon Managed Workflows for Apache Airflow now includes fou…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 2,
+      "detail": "Beat 2 (“Amazon Managed Workflows for Apache Airflow integrates with …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 3,
+      "detail": "Beat 3 (“Which exact skill executes the upgrade process?…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 4,
+      "detail": "Beat 4 (“Amazon MWAA enables upgrading environments using any AI codi…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 5,
+      "detail": "Beat 5 (“Amazon Managed Workflows for Apache Airflow includes authori…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "beat": 6,
+      "detail": "Beat 6 (“Use upgrading-mwaa-workflow in Amazon Managed Workflows for …”) has no assigned asset"
+    }
+  ],
+  "findingCount": 6,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

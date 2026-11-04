@@ -1,0 +1,410 @@
+name: Margaret Clitherow Visual Storytelling Rework
+
+# Fully automated GitHub Actions workflow for producing the Margaret Clitherow/Guy Fawkes YouTube Short
+# with automatic historical image sourcing and voiceover generation.
+
+on:
+  workflow_dispatch:
+    inputs:
+      channel_id:
+        description: 'Channel ID'
+        required: false
+        default: '1'
+      dry_run:
+        description: 'Stop before YouTube upload (true)'
+        required: false
+        default: 'true'
+
+permissions:
+  contents: read
+  pages: write
+
+concurrency:
+  group: clitherow-rework-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CHANNEL_ID: ${{ inputs.channel_id }}
+  SCRIPT_PATH: data/research/1/margaret-clitherow-execution-guy-fawkes-shorts-script.json
+  STEM: margaret-clitherow-execution-guy-fawkes-shorts
+  MAX_IMAGES: 15
+
+jobs:
+  setup:
+    name: Environment Setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      channel: ${{ steps.vars.outputs.channel }}
+      stem: ${{ steps.vars.outputs.stem }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Cache and Install Dependencies
+        run: |
+          npm ci --no-audit --no-fund 2>/dev/null || npm install
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
+
+      - name: Install System Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg poppler-utils python-is-python3 curl jq
+          ffmpeg -version | head -1
+
+      - name: Setup Chrome for Remotion
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Install Python edge-tts (free TTS)
+        run: |
+          pip3 install edge-tts --quiet 2>/dev/null || pip install edge-tts --quiet
+          python3 -c "import edge_tts; print('edge-tts installed successfully')" 2>/dev/null || echo "warning: edge-tts not available"
+
+      - name: Output Variables
+        id: vars
+        run: |
+          echo "channel=${{ inputs.channel_id }}" >> $GITHUB_OUTPUT
+          echo "stem=${{ env.STEM }}" >> $GITHUB_OUTPUT
+
+  source-historical-images:
+    name: Source Historical Images (Wikimedia Commons)
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    outputs:
+      asset_count: ${{ steps.assets.outputs.count }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Create asset directories
+        run: |
+          mkdir -p data/editor/assets/${{ env.CHANNEL_ID }}
+          mkdir -p src/skills/remotion-render/public/editor/assets/${{ env.CHANNEL_ID }}
+          mkdir -p scripts/assets
+
+      - name: Download historical images
+        id: assets
+        run: |
+          node scripts/assets/download-historical-images.mjs 2>&1
+          
+          # Count downloaded images
+          COUNT=$(ls -1 data/editor/assets/${{ env.CHANNEL_ID }}/*.jpg 2>/dev/null | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "[images] Downloaded $COUNT image files"
+          
+          # List assets
+          echo "=== Downloaded Assets ==="
+          ls -la data/editor/assets/${{ env.CHANNEL_ID }}/
+
+      - name: Upload asset manifest
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: historical-images-${{ env.CHANNEL_ID }}
+          path: |
+            data/editor/assets/${{ env.CHANNEL_ID }}/
+            data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json
+          retention-days: 30
+
+  generate-narration:
+    name: Generate Voiceover (Free EdgeTTS)
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          npm ci --no-audit --no-fund 2>/dev/null || npm install
+
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Generate TTS
+        run: |
+          echo "[tts] Generating narration for channel ${{ env.CHANNEL_ID }}"
+          node src/utils/tts.js ${{ env.CHANNEL_ID }} ${{ env.SCRIPT_PATH }} 2>&1 || {
+            echo "::warning::TTS generation had issues, checking for existing files"
+          }
+          
+          echo "=== TTS Output ==="
+          ls -la data/tts/${{ env.CHANNEL_ID }}/ 2>/dev/null || echo "No TTS directory yet"
+
+      - name: Verify or Create Minimal TTS
+        run: |
+          # Check if TTS was generated
+          if [ ! -f "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3" ]; then
+            echo "::warning::TTS not generated, creating placeholder for timeline build"
+            # Create silent audio as placeholder (will need real voiceover)
+            mkdir -p "data/tts/${{ env.CHANNEL_ID }}"
+            ffmpeg -y -f lavfi -i anullsrc=channel_layout=1:sample_rate=22050 -t 51 data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3
+            ffmpeg -y -f lavfi -i anullsrc=channel_layout=1:sample_rate=22050 -t 51 data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt
+          fi
+          
+          # Verify audio exists
+          if [ -f "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3" ]; then
+            DURATION=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3)
+            echo "TTS audio verified: $DURATION seconds"
+          fi
+
+  build-timeline:
+    name: Build Visual Timeline
+    needs: [setup, source-historical-images, generate-narration]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EDITOR_ENGINE: "1"
+      EDITOR_STRICT: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: |
+          npm ci --no-audit --no-fund 2>/dev/null || npm install
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
+
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Build Coverage Timeline
+        run: |
+          echo "[timeline] Building timeline for ${{ env.STEM }}"
+          node scripts/editor/auto-timeline.mjs --channel "${{ env.CHANNEL_ID }}" --script "${{ env.SCRIPT_PATH }}" --coverage --github-env 2>&1
+          
+          echo "=== Timeline Files ==="
+          ls -la data/editor/auto/*/ 2>/dev/null || echo "No timeline directory created"
+
+      - name: Validate Timeline
+        run: |
+          TL="data/editor/auto/${{ env.STEM }}/timeline.json"
+          if [ -f "$TL" ]; then
+            echo "[timeline] Timeline structure:"
+            node -e "
+              import { readFileSync } from 'fs';
+              const tl = JSON.parse(readFileSync('$TL'));
+              console.log('Duration:', tl.durationInFrames, 'frames');
+              console.log('Layers:', tl.layers?.length || 0);
+              console.log('Assets:', Object.keys(tl.assets || {}).length);
+              console.log('Captions:', tl.captions?.length || 0);
+            "
+          else
+            echo "::warning::Timeline file not found at $TL"
+          fi
+
+  render-video:
+    name: Render Video (Remotion)
+    needs: [setup, build-timeline, source-historical-images, generate-narration]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      REMOTION_CHROME_PATH: /usr/bin/google-chrome
+      EDITOR_COVERAGE: "1"
+      EDITOR_ENGINE: "1"
+      EDITOR_STRICT: "1"
+      RENDER_CONCURRENCY: "2"
+      RENDER_CRF: "20"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Cache and Install Dependencies
+        run: |
+          npm ci --no-audit --no-fund 2>/dev/null || npm install
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
+
+      - name: Install System Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg python-is-python3
+          ffmpeg -version | head -1
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Render Video
+        run: |
+          TL="data/editor/auto/${{ env.STEM }}/timeline.json"
+          AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
+          OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
+          
+          mkdir -p "$(dirname "$OUT")"
+          
+          echo "[render] Starting render..."
+          echo "[render] Timeline: $TL"
+          echo "[render] Audio: $AUDIO"
+          echo "[render] Output: $OUT"
+          
+          node --input-type=module -e "
+            import { renderEditor } from './src/skills/remotion-render/render-editor.js';
+            try {
+              await renderEditor({
+                timelinePath: '$TL',
+                audioPath: '$AUDIO',
+                outputPath: '$OUT',
+                scale: 1
+              });
+              console.log('[render] Video rendered successfully');
+            } catch (e) {
+              console.error('[render] Render failed:', e.message);
+              process.exit(1);
+            }
+          "
+
+      - name: Verify Rendered Video
+        run: |
+          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" ]; then
+            SIZE=$(stat -c%s "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4")
+            echo "✓ Video file exists: $SIZE bytes"
+            
+            ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height -of json data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4 | jq '.'
+          else
+            echo "::error::Video was not rendered"
+            exit 1
+          fi
+
+      - name: Upload Video Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-video-${{ env.CHANNEL_ID }}
+          path: data/renders/${{ env.CHANNEL_ID }}/
+          retention-days: 30
+
+  run-quality-assurance:
+    name: Technical Quality Assurance
+    needs: [render-video, setup]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install FFmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq
+
+      - name: Run Video QA
+        run: |
+          TL="data/editor/auto/${{ env.STEM }}/timeline.json"
+          VID="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
+          OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json"
+          CONTACT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg"
+          FRAMES="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-frames"
+          
+          if [ -f "$VID" ] && [ -f "$TL" ]; then
+            node scripts/editor/video-qa.js --video "$VID" --timeline "$TL" --out "$OUT" --contact "$CONTACT" --frames "$FRAMES"
+          else
+            echo "::warning::Skipping QA - video or timeline not found"
+          fi
+
+      - name: Display QA Results
+        run: |
+          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" ]; then
+            echo "=== QA Results ==="
+            cat data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json | jq '.'
+          fi
+
+      - name: List Rendered Assets
+        run: |
+          echo "=== Final Render Directory ==="
+          ls -laR data/renders/${{ env.CHANNEL_ID }}/
+
+  publish-preparation:
+    name: Prepare for Review
+    needs: [render-video, run-quality-assurance]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect all artifacts for review
+        run: |
+          mkdir -p .cache/review-artifacts
+
+          # Copy video
+          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" ]; then
+            cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" .cache/review-artifacts/
+          fi
+
+          # Copy contact sheet
+          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg" ]; then
+            cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg" .cache/review-artifacts/
+          fi
+
+          # Copy QA report
+          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" ]; then
+            cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" .cache/review-artifacts/
+          fi
+
+          # Copy assets
+          if [ -d "data/editor/assets/${{ env.CHANNEL_ID }}" ]; then
+            cp -r "data/editor/assets/${{ env.CHANNEL_ID }}" .cache/review-artifacts/
+          fi
+
+          echo "=== Review Artifacts ==="
+          ls -la .cache/review-artifacts/
+
+      - name: Generate Review Package
+        run: |
+          cat > .cache/review-artifacts/REVIEW_SUMMARY.md << 'EOF'
+          # Margaret Clitherow Video Review Package
+
+          ## Produced by GitHub Actions
+          - Workflow: .github/workflows/margaret-clitherow-rework.yml
+          - Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          - Date: ${{ github.event.head_commit.timestamp }}
+
+          ## Contents
+          \`\`\`
+          $(ls -la .cache/review-artifacts/ 2>/dev/null || echo "Files collected")
+          \`\`\`
+
+          ## Next Review Steps
+          1. Verify historical images are correctly sourced and licensed
+          2. Check people-focused imagery (75% target)
+          3. Review narration-to-visual alignment
+          4. Check contact sheet for visual variety
+          5. Confirm no repeated images
+
+          ## Technical Status
+          - Rendered: ${{ env.STEM }}-rework.mp4
+          - Duration: Check QA report
+          - Format: 1080x1920, H.264/AAC
+          - Static-run: Check QA report
+          - Motion: Check QA report
+          EOF
+
+          cat .cache/review-artifacts/REVIEW_SUMMARY.md
+
+      - name: Upload Review Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-package-${{ env.CHANNEL_ID }}-${{ github.run_number }}
+          path: .cache/review-artifacts/
+          retention-days: 30

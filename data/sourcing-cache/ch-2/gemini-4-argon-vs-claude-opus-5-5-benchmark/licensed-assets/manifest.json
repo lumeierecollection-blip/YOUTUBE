@@ -1,0 +1,67 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-2",
+  "videoSlug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+  "generatedAt": "2026-11-04T17:24:13.933Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\gemini-4-argon-vs-claude-opus-5-5-benchmark\\sourcing-report.json",
+  "totalRequested": 7,
+  "totalDownloaded": 0,
+  "errors": [
+    {
+      "beat": 2,
+      "title": "File:Charlie Mills 1870.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Russell - portrait-of-an-indian.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Russell - self-portrait-1900.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Resilient Acquisition- Unlocking High-Velocity Learning with Model-Based Engineering to Deliver Capability to the Fleet Faster (IA resilientacquisi1094563181).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:A model for NARF supply support which includes both on-site spares and scheduled delivery. (IA modelfornarfsupp00berr).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The Complete Works of James Whitcomb Riley 03.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:London, historic and social (IA cu31924088006477).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:The water-colours of J. M. W. Turner; (IA watercoloursofjm00turn).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Catalog of Copyright Entries 1974 Commercial Prints and Labels 3D Ser Vol 28 Pt 11B (IA catalogofcopyri32811li).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:The Chap-book Vol. 04 (IA chapbooksemimont04chic).djvu",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:The Chap-book Vol. 04 (IA chapbooksemimont04chic).djvu",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": []
+}

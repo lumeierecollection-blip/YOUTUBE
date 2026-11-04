@@ -1,0 +1,344 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-4",
+  "channelName": "Channel 4",
+  "videoSlug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "script": "liverpool-arsenal-premier-league-tactical-analysis-shorts-script.json",
+  "research": "data/research/4/liverpool-arsenal-premier-league-tactical-analysis.json",
+  "generatedAt": "2026-11-04T17:27:46.293Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Mikel Arteta",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Kai Havertz",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Andoni Iraola",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [
+      {
+        "name": "Anfield",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "organizations": [
+      {
+        "name": "Liverpool",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Arsenal",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [],
+    "dates": [
+      {
+        "name": "14",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "2003",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "statistics": [
+      {
+        "name": "Match score = 1 goal",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Arsenal possession percentage = 44 percent",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 7,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Anfield photograph view",
+      "kind": "place",
+      "narration": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historical logic.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "Anfield"
+        },
+        {
+          "cat": "organizations",
+          "name": "Arsenal"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Woodlands, Anfield 2018.jpg",
+          "snippet": "DescriptionWoodlands, <span class=\"searchmatch\">Anfield</span> 2018.jpg English: Grade II listed house on <span class=\"searchmatch\">Anfield</span> Road, Liverpool, <span class=\"searchmatch\">view</span> from the boundary of the premises. The section to",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWoodlands%2C%20Anfield%202018.jpg"
+        },
+        {
+          "title": "File:Bob Paisley statue, Anfield 3.jpg",
+          "snippet": "license. Attribution: By Phil Nash from Wikimedia Commons CC BY-SA 4.0 &amp; GFDL <span class=\"searchmatch\">Views</span> You are free: to share – to copy, distribute and transmit the work to remix",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABob%20Paisley%20statue%2C%20Anfield%203.jpg"
+        },
+        {
+          "title": "File:South catacomb, Anfield Cemetery 3.jpg",
+          "snippet": "DescriptionSouth catacomb, <span class=\"searchmatch\">Anfield</span> Cemetery 3.jpg English: Grade II listed catacomb in <span class=\"searchmatch\">Anfield</span> Cemetery; east side. Date 12 September 2018, 11:54:55 Source",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASouth%20catacomb%2C%20Anfield%20Cemetery%203.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:41.357Z"
+    },
+    {
+      "beat": 2,
+      "query": "Anfield photograph view",
+      "kind": "place",
+      "narration": "Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the stadium.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "Anfield"
+        },
+        {
+          "cat": "organizations",
+          "name": "Arsenal"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Woodlands, Anfield 2018.jpg",
+          "snippet": "DescriptionWoodlands, <span class=\"searchmatch\">Anfield</span> 2018.jpg English: Grade II listed house on <span class=\"searchmatch\">Anfield</span> Road, Liverpool, <span class=\"searchmatch\">view</span> from the boundary of the premises. The section to",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWoodlands%2C%20Anfield%202018.jpg"
+        },
+        {
+          "title": "File:Bob Paisley statue, Anfield 3.jpg",
+          "snippet": "license. Attribution: By Phil Nash from Wikimedia Commons CC BY-SA 4.0 &amp; GFDL <span class=\"searchmatch\">Views</span> You are free: to share – to copy, distribute and transmit the work to remix",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABob%20Paisley%20statue%2C%20Anfield%203.jpg"
+        },
+        {
+          "title": "File:South catacomb, Anfield Cemetery 3.jpg",
+          "snippet": "DescriptionSouth catacomb, <span class=\"searchmatch\">Anfield</span> Cemetery 3.jpg English: Grade II listed catacomb in <span class=\"searchmatch\">Anfield</span> Cemetery; east side. Date 12 September 2018, 11:54:55 Source",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASouth%20catacomb%2C%20Anfield%20Cemetery%203.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:41.907Z"
+    },
+    {
+      "beat": 3,
+      "query": "Liverpool building headquarters",
+      "kind": "organization",
+      "narration": "How did they hold Liverpool scoreless?",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Liverpool"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Port of Liverpool Building Dome.jpg",
+          "snippet": "DescriptionPort of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> Dome.jpg The Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> (formerly Mersey Docks and Harbour Board Offices, more commonly known as",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg"
+        },
+        {
+          "title": "File:Cunard Building, Liverpool - geograph.org.uk - 1138185.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 truetrue English Cunard <span class=\"searchmatch\">Building</span>, <span class=\"searchmatch\">Liverpool</span> author name string: Eirian Evans object of statement has role: photographer",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg"
+        },
+        {
+          "title": "File:Cunard and Port of Liverpool Building. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg",
+          "snippet": "Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg Cunard and Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. Two of <span class=\"searchmatch\">Liverpool&#039;s</span> iconic waterfront",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:42.718Z"
+    },
+    {
+      "beat": 4,
+      "query": "Liverpool building headquarters",
+      "kind": "organization",
+      "narration": "Yet, Liverpool failed to register a single shot on target during the entire Premier League match.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Liverpool"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Port of Liverpool Building Dome.jpg",
+          "snippet": "DescriptionPort of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> Dome.jpg The Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> (formerly Mersey Docks and Harbour Board Offices, more commonly known as",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg"
+        },
+        {
+          "title": "File:Cunard Building, Liverpool - geograph.org.uk - 1138185.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 truetrue English Cunard <span class=\"searchmatch\">Building</span>, <span class=\"searchmatch\">Liverpool</span> author name string: Eirian Evans object of statement has role: photographer",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg"
+        },
+        {
+          "title": "File:Cunard and Port of Liverpool Building. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg",
+          "snippet": "Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg Cunard and Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. Two of <span class=\"searchmatch\">Liverpool&#039;s</span> iconic waterfront",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:44.157Z"
+    },
+    {
+      "beat": 5,
+      "query": "This lack of shots on target illustration",
+      "kind": "illustration",
+      "narration": "This lack of shots on target is a first since records began in the 2003 season.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Dr. Kane's Arctic voyage (microform) - explanatory of a pictorial illustration of the second Grinnell expedition (IA cihm 45389).pdf",
+          "snippet": "Dr. Kane&#039;s Arctic voyage [microform] : explanatory <span class=\"searchmatch\">of</span> a pictorial <span class=\"searchmatch\">illustration</span> <span class=\"searchmatch\">of</span> the second Grinnell expedition   (  ) Author Morton, William Title Dr",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADr.%20Kane's%20Arctic%20voyage%20(microform)%20-%20explanatory%20of%20a%20pictorial%20illustration%20of%20the%20second%20Grinnell%20expedition%20(IA%20cihm%2045389).pdf"
+        },
+        {
+          "title": "File:Mexico, the land of unrest; being chiefly an account of what produced the outbreak in 1910, together with the story of the revolutions down to this day (IA mexicolandofunre00baerrich).pdf",
+          "snippet": "the land <span class=\"searchmatch\">of</span> unrest; being chiefly an account <span class=\"searchmatch\">of</span> what produced the outbreak in 1910, together with the story <span class=\"searchmatch\">of</span> the revolutions down to <span class=\"searchmatch\">this</span> day   (  )",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMexico%2C%20the%20land%20of%20unrest%3B%20being%20chiefly%20an%20account%20of%20what%20produced%20the%20outbreak%20in%201910%2C%20together%20with%20the%20story%20of%20the%20revolutions%20down%20to%20this%20day%20(IA%20mexicolandofunre00baerrich).pdf"
+        },
+        {
+          "title": "File:Mexico, the land of unrest - being chiefly an account of what produced the outbreak in 1910, together with the story of the revolutions down to this day (IA mexicolandofunre00baer).pdf",
+          "snippet": "the land <span class=\"searchmatch\">of</span> unrest : being chiefly an account <span class=\"searchmatch\">of</span> what produced the outbreak in 1910, together with the story <span class=\"searchmatch\">of</span> the revolutions down to <span class=\"searchmatch\">this</span> day   (  )",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMexico%2C%20the%20land%20of%20unrest%20-%20being%20chiefly%20an%20account%20of%20what%20produced%20the%20outbreak%20in%201910%2C%20together%20with%20the%20story%20of%20the%20revolutions%20down%20to%20this%20day%20(IA%20mexicolandofunre00baer).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:45.093Z"
+    },
+    {
+      "beat": 6,
+      "query": "Liverpool building headquarters",
+      "kind": "organization",
+      "narration": "Arteta successfully neutralized the entire Liverpool attack at home.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Liverpool"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Port of Liverpool Building Dome.jpg",
+          "snippet": "DescriptionPort of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> Dome.jpg The Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> (formerly Mersey Docks and Harbour Board Offices, more commonly known as",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg"
+        },
+        {
+          "title": "File:Cunard Building, Liverpool - geograph.org.uk - 1138185.jpg",
+          "snippet": "Creative Commons Attribution-Share Alike 2.0 truetrue English Cunard <span class=\"searchmatch\">Building</span>, <span class=\"searchmatch\">Liverpool</span> author name string: Eirian Evans object of statement has role: photographer",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg"
+        },
+        {
+          "title": "File:Cunard and Port of Liverpool Building. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg",
+          "snippet": "Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg Cunard and Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. Two of <span class=\"searchmatch\">Liverpool&#039;s</span> iconic waterfront",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:45.787Z"
+    },
+    {
+      "beat": 7,
+      "query": "Anfield photograph view",
+      "kind": "place",
+      "narration": "This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in 14 years.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "Anfield"
+        },
+        {
+          "cat": "organizations",
+          "name": "Arsenal"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Woodlands, Anfield 2018.jpg",
+          "snippet": "DescriptionWoodlands, <span class=\"searchmatch\">Anfield</span> 2018.jpg English: Grade II listed house on <span class=\"searchmatch\">Anfield</span> Road, Liverpool, <span class=\"searchmatch\">view</span> from the boundary of the premises. The section to",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AWoodlands%2C%20Anfield%202018.jpg"
+        },
+        {
+          "title": "File:Bob Paisley statue, Anfield 3.jpg",
+          "snippet": "license. Attribution: By Phil Nash from Wikimedia Commons CC BY-SA 4.0 &amp; GFDL <span class=\"searchmatch\">Views</span> You are free: to share – to copy, distribute and transmit the work to remix",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ABob%20Paisley%20statue%2C%20Anfield%203.jpg"
+        },
+        {
+          "title": "File:South catacomb, Anfield Cemetery 3.jpg",
+          "snippet": "DescriptionSouth catacomb, <span class=\"searchmatch\">Anfield</span> Cemetery 3.jpg English: Grade II listed catacomb in <span class=\"searchmatch\">Anfield</span> Cemetery; east side. Date 12 September 2018, 11:54:55 Source",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASouth%20catacomb%2C%20Anfield%20Cemetery%203.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:46.293Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

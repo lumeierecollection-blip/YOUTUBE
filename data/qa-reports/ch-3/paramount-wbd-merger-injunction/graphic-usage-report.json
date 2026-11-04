@@ -1,0 +1,95 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-3",
+  "videoSlug": "paramount-wbd-merger-injunction",
+  "generatedAt": "2026-11-04T17:27:04.686Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\paramount-wbd-merger-injunction\\visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 7,
+  "uniqueTreatments": 3,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "Your favorite streaming apps could vanish after the massive $110.9 billion merger.",
+      "visualIntent": "statistic",
+      "treatmentId": "chart-data-viz",
+      "communicates": "A specific number is the information",
+      "example": "line chart of model scores over time",
+      "reason": "Beat communicates statistic; A specific number is the information",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "On October 19, 2026, five subscribers filed a legal motion in the United States District Court for the Northern District of California.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 3,
+      "narration": "Will these services stay independent?",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "But the motion demands Skydance Corporation keep Paramount+ and HBO Max operating as separate services.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 5,
+      "narration": "Judge Araceli Martínez-Olguín will oversee the preliminary injunction hearing regarding this case.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 6,
+      "narration": "The hearing at 1301 Clay Street decides if Skydance Corporation must preserve these independent services.",
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 7,
+      "narration": "The $110.9 billion deal remains under intense judicial scrutiny today.",
+      "visualIntent": "statistic",
+      "treatmentId": "chart-data-viz",
+      "communicates": "A specific number is the information",
+      "example": "line chart of model scores over time",
+      "reason": "Beat communicates statistic; A specific number is the information",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    }
+  ],
+  "distribution": {
+    "chart-data-viz": 2,
+    "archival-document": 4,
+    "side-by-side": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

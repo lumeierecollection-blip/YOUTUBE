@@ -1,0 +1,292 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-2",
+  "channelName": "Channel 2",
+  "videoSlug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+  "script": "gemini-4-argon-vs-claude-opus-5-5-benchmark-shorts-script.json",
+  "research": "data/research/2/gemini-4-argon-vs-claude-opus-5-5-benchmark.json",
+  "generatedAt": "2026-11-04T17:23:32.538Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Charlie Hills",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [],
+    "organizations": [
+      {
+        "name": "Google",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Anthropic",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [
+      {
+        "name": "Gemini 4 Argon",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Claude Opus 5.5",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Python Tablet",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "dates": [],
+    "statistics": [
+      {
+        "name": "Argon prompt cost = 4.51 US dollars",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Opus prompt cost = 9.23 US dollars",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Opus completion time = 31.7 minutes",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Argon completion time = 69.5 minutes",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Python Tablet passing tests = 382 tests",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 7,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Gemini 4 Argon costs $4.51 to illustration",
+      "kind": "illustration",
+      "narration": "Gemini 4 Argon costs $4.51 to build four motion graphics prompts while Claude Opus 5.5 charges $9.23.",
+      "entitiesMentioned": [
+        {
+          "cat": "objects",
+          "name": "Gemini 4 Argon"
+        },
+        {
+          "cat": "objects",
+          "name": "Claude Opus 5.5"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:27.658Z"
+    },
+    {
+      "beat": 2,
+      "query": "Charlie Hills portrait photograph",
+      "kind": "person",
+      "narration": "Charlie Hills tested Gemini 4 Argon and Anthropic Claude Opus 5.5 on four motion graphics prompts.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Charlie Hills"
+        },
+        {
+          "cat": "organizations",
+          "name": "Anthropic"
+        },
+        {
+          "cat": "objects",
+          "name": "Gemini 4 Argon"
+        },
+        {
+          "cat": "objects",
+          "name": "Claude Opus 5.5"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Charlie Mills 1870.jpg",
+          "snippet": "Description<span class=\"searchmatch\">Charlie</span> Mills 1870.jpg English: Photo crop of <span class=\"searchmatch\">Charlie</span> Mills of the 1870 New York Mutuals baseball club Date 1870 Source File:1870 New York",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACharlie%20Mills%201870.jpg"
+        },
+        {
+          "title": "File:Russell - portrait-of-an-indian.jpg",
+          "snippet": "Russell (1864–1926)      Alternative names Charles M. Russell, C.M. Russell, <span class=\"searchmatch\">Charlie</span> Russell, &quot;Kid&quot; Russell Description American sculptor, illustrator, painter",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ARussell%20-%20portrait-of-an-indian.jpg"
+        },
+        {
+          "title": "File:Russell - self-portrait-1900.jpg",
+          "snippet": "Russell (1864–1926)      Alternative names Charles M. Russell, C.M. Russell, <span class=\"searchmatch\">Charlie</span> Russell, &quot;Kid&quot; Russell Description American sculptor, illustrator, painter",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ARussell%20-%20self-portrait-1900.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:28.499Z"
+    },
+    {
+      "beat": 3,
+      "query": "Which model completed the task faster? illustration",
+      "kind": "illustration",
+      "narration": "Which model completed the task faster?",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Resilient Acquisition- Unlocking High-Velocity Learning with Model-Based Engineering to Deliver Capability to the Fleet Faster (IA resilientacquisi1094563181).pdf",
+          "snippet": "Acquisition: Unlocking High-Velocity Learning with <span class=\"searchmatch\">Model</span>-Based Engineering to Deliver Capability to <span class=\"searchmatch\">the</span> Fleet <span class=\"searchmatch\">Faster</span>   (  ) Author Rapp, Travis J. Title Resilient",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AResilient%20Acquisition-%20Unlocking%20High-Velocity%20Learning%20with%20Model-Based%20Engineering%20to%20Deliver%20Capability%20to%20the%20Fleet%20Faster%20(IA%20resilientacquisi1094563181).pdf"
+        },
+        {
+          "title": "File:A model for NARF supply support which includes both on-site spares and scheduled delivery. (IA modelfornarfsupp00berr).pdf",
+          "snippet": "jurisdiction: United States determination method or standard: work of <span class=\"searchmatch\">the</span> federal government of <span class=\"searchmatch\">the</span> United States determination method or standard: SHA-1",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA%20model%20for%20NARF%20supply%20support%20which%20includes%20both%20on-site%20spares%20and%20scheduled%20delivery.%20(IA%20modelfornarfsupp00berr).pdf"
+        },
+        {
+          "title": "File:The Complete Works of James Whitcomb Riley 03.pdf",
+          "snippet": "org/publicdomain/mark/1.0/PDMCreative Commons Public Domain Mark 1.0falsefalse English <span class=\"searchmatch\">The</span> <span class=\"searchmatch\">Complete</span> Works of James Whitcomb Riley described at URL: https://archive",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Complete%20Works%20of%20James%20Whitcomb%20Riley%2003.pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:29.090Z"
+    },
+    {
+      "beat": 4,
+      "query": "Yet Gemini 4 Argon takes 69.5 illustration",
+      "kind": "illustration",
+      "narration": "Yet Gemini 4 Argon takes 69.5 minutes to complete the task.",
+      "entitiesMentioned": [
+        {
+          "cat": "objects",
+          "name": "Gemini 4 Argon"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:29.747Z"
+    },
+    {
+      "beat": 5,
+      "query": "Claude Opus 5.5 finishes faster at illustration",
+      "kind": "illustration",
+      "narration": "Claude Opus 5.5 finishes faster at 31.7 minutes.",
+      "entitiesMentioned": [
+        {
+          "cat": "objects",
+          "name": "Claude Opus 5.5"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:London, historic and social (IA cu31924088006477).pdf",
+          "snippet": "London, historic and social   (  ) Author Francis, <span class=\"searchmatch\">Claude</span> de La Roche Title London, historic and social Publisher Philadelphia, H. T. Coates Description",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ALondon%2C%20historic%20and%20social%20(IA%20cu31924088006477).pdf"
+        },
+        {
+          "title": "File:The water-colours of J. M. W. Turner; (IA watercoloursofjm00turn).pdf",
+          "snippet": "Winter Exhibition of 1887 <span class=\"searchmatch\">at</span> Burlington House.\nMr. Morland Agnew’s beautiful Scarborough reproduced here\n\nwas\n\nalso\n\n<span class=\"searchmatch\">illustrations</span>,\n\n,\n\n;\n\n,\n\n(Plate VIII",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20water-colours%20of%20J.%20M.%20W.%20Turner%3B%20(IA%20watercoloursofjm00turn).pdf"
+        },
+        {
+          "title": "File:Catalog of Copyright Entries 1974 Commercial Prints and Labels 3D Ser Vol 28 Pt 11B (IA catalogofcopyri32811li).pdf",
+          "snippet": "minor, <span class=\"searchmatch\">opus</span> 63 / The Swan\nof Tuonela, <span class=\"searchmatch\">opus</span> 22.\nKK234236.\nBernstein/Tchaikovsky: Symphony number\n3 in D, <span class=\"searchmatch\">Opus</span> 29, &quot;Polish.&quot;\nKK233072.\nBe some body <span class=\"searchmatch\">at</span> a price",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACatalog%20of%20Copyright%20Entries%201974%20Commercial%20Prints%20and%20Labels%203D%20Ser%20Vol%2028%20Pt%2011B%20(IA%20catalogofcopyri32811li).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:30.931Z"
+    },
+    {
+      "beat": 6,
+      "query": "Gemini 4 Argon cuts your prompt illustration",
+      "kind": "illustration",
+      "narration": "Gemini 4 Argon cuts your prompt cost in half.",
+      "entitiesMentioned": [
+        {
+          "cat": "objects",
+          "name": "Gemini 4 Argon"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:The Chap-book Vol. 04 (IA chapbooksemimont04chic).djvu",
+          "snippet": "may also view this DjVu file in <span class=\"searchmatch\">your</span> web browser with a browser plugin/add-on, or use a desktop DjVu viewer for <span class=\"searchmatch\">your</span> operating system. You can choose",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Chap-book%20Vol.%2004%20(IA%20chapbooksemimont04chic).djvu"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:31.912Z"
+    },
+    {
+      "beat": 7,
+      "query": "Gemini 4 Argon saves money on illustration",
+      "kind": "illustration",
+      "narration": "Gemini 4 Argon saves money on your prompts.",
+      "entitiesMentioned": [
+        {
+          "cat": "objects",
+          "name": "Gemini 4 Argon"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:The Chap-book Vol. 04 (IA chapbooksemimont04chic).djvu",
+          "snippet": "Chap-book; semi-monthly    (  ) Title The Chap-book; semi-monthly Volume <span class=\"searchmatch\">4</span> Publisher Chicago : Stone and Kimball Description Title from cover Language",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Chap-book%20Vol.%2004%20(IA%20chapbooksemimont04chic).djvu"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:23:32.538Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

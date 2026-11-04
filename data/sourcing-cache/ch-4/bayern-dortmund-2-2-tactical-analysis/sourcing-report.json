@@ -1,0 +1,315 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-4",
+  "channelName": "Channel 4",
+  "videoSlug": "bayern-dortmund-2-2-tactical-analysis",
+  "script": "bayern-dortmund-2-2-tactical-analysis-shorts-script.json",
+  "research": "data/research/4/bayern-dortmund-2-2-tactical-analysis.json",
+  "generatedAt": "2026-11-04T17:27:22.913Z",
+  "entities": {
+    "people": [
+      {
+        "name": "Niko Kovač",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Aaron Danks",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Serhou Guirassy",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Fabio Silva",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "places": [
+      {
+        "name": "Allianz Arena",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "organizations": [
+      {
+        "name": "Bayern Munich",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Borussia Dortmund",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "products": [],
+    "events": [],
+    "objects": [],
+    "dates": [],
+    "statistics": [
+      {
+        "name": "Final score goals for Dortmund = 2 goals",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Final score goals for Bayern = 2 goals",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Total shots on goal in the match = 35 shots",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      },
+      {
+        "name": "Duel win percentage by Borussia Dortmund = 57 percent",
+        "source": {
+          "source_name": "research"
+        },
+        "sourceType": "research"
+      }
+    ],
+    "concepts": []
+  },
+  "beatCount": 8,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "Allianz Arena photograph view",
+      "kind": "place",
+      "narration": "Borussia Dortmund won 57 percent of duels at Allianz Arena.",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "Allianz Arena"
+        },
+        {
+          "cat": "organizations",
+          "name": "Borussia Dortmund"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Allianz arena daylight Richard Bartz.jpg",
+          "snippet": "Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg"
+        },
+        {
+          "title": "File:Allianz arena golden hour Richard Bartz.jpg",
+          "snippet": "Commons Attribution-Share Alike 2.5 truetrue English <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> French <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> German <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> object of statement has role: photographer author",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20golden%20hour%20Richard%20Bartz.jpg"
+        },
+        {
+          "title": "File:Allianz Arena zu verschiedenen Zeiten.jpg",
+          "snippet": "Description<span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> zu verschiedenen Zeiten.jpg Deutsch: Ein Zusammenstellung von Bilder der <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span>, zu unterschiedlichen Tageszeiten. Die <span class=\"searchmatch\">Allianz</span>-Arena",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20Arena%20zu%20verschiedenen%20Zeiten.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:14.744Z"
+    },
+    {
+      "beat": 2,
+      "query": "Niko Kovač portrait photograph",
+      "kind": "person",
+      "narration": "During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible 3-4-2-1 shape.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Niko Kovač"
+        },
+        {
+          "cat": "organizations",
+          "name": "Borussia Dortmund"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:15.488Z"
+    },
+    {
+      "beat": 3,
+      "query": "Allianz Arena photograph view",
+      "kind": "place",
+      "narration": "How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Arena?",
+      "entitiesMentioned": [
+        {
+          "cat": "places",
+          "name": "Allianz Arena"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Allianz arena daylight Richard Bartz.jpg",
+          "snippet": "Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg"
+        },
+        {
+          "title": "File:Allianz arena golden hour Richard Bartz.jpg",
+          "snippet": "Commons Attribution-Share Alike 2.5 truetrue English <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> French <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> German <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> object of statement has role: photographer author",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20golden%20hour%20Richard%20Bartz.jpg"
+        },
+        {
+          "title": "File:Allianz Arena zu verschiedenen Zeiten.jpg",
+          "snippet": "Description<span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> zu verschiedenen Zeiten.jpg Deutsch: Ein Zusammenstellung von Bilder der <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span>, zu unterschiedlichen Tageszeiten. Die <span class=\"searchmatch\">Allianz</span>-Arena",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20Arena%20zu%20verschiedenen%20Zeiten.jpg"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:16.159Z"
+    },
+    {
+      "beat": 4,
+      "query": "Bayern Munich building headquarters",
+      "kind": "organization",
+      "narration": "However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Munich.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Bayern Munich"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:Aerial image of the headquarters of Munich Re (view from the southeast).jpg",
+          "snippet": "Attribution-Share Alike 4.0 truetrue English Aerial image of the <span class=\"searchmatch\">headquarters</span> of <span class=\"searchmatch\">Munich</span> Re (view from the southeast) German Luftbild des Hauptgebäudes der",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAerial%20image%20of%20the%20headquarters%20of%20Munich%20Re%20(view%20from%20the%20southeast).jpg"
+        },
+        {
+          "title": "File:FCB-Gebäude Säbener Str.JPG",
+          "snippet": "DescriptionFCB-Gebäude Säbener Str.JPG English: FC <span class=\"searchmatch\">Bayern</span> München main buiding, Säbener Str. 53, München, Germany (partial view). Date Taken on 17 April",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFCB-Geb%C3%A4ude%20S%C3%A4bener%20Str.JPG"
+        },
+        {
+          "title": "File:FCB HQ-entrance.JPG",
+          "snippet": "DescriptionFCB HQ-entrance.JPG English: FC <span class=\"searchmatch\">Bayern</span> München <span class=\"searchmatch\">Headquarters</span> - Main entrance <span class=\"searchmatch\">building</span> at Säbener Str. 53, München, Germany. Date Taken on 17",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFCB%20HQ-entrance.JPG"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:17.106Z"
+    },
+    {
+      "beat": 5,
+      "query": "Serhou Guirassy portrait photograph",
+      "kind": "person",
+      "narration": "Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for Dortmund.",
+      "entitiesMentioned": [
+        {
+          "cat": "people",
+          "name": "Serhou Guirassy"
+        },
+        {
+          "cat": "people",
+          "name": "Fabio Silva"
+        }
+      ],
+      "candidates": [
+        {
+          "title": "File:France - England U19, 20150331 05.JPG",
+          "snippet": "2015 au stade Louis-Villemer de Saint-Lô le 31 mars 2015. Ici, Sehrou <span class=\"searchmatch\">Guirassy</span>. Date 31 March 2015, 19:26:08 Source Own work Author S. Plaine Permission",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFrance%20-%20England%20U19%2C%2020150331%2005.JPG"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:17.935Z"
+    },
+    {
+      "beat": 6,
+      "query": "Borussia Dortmund building headquarters",
+      "kind": "organization",
+      "narration": "Borussia Dortmund twice leveled the score against heavy territorial pressure.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Borussia Dortmund"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:19.838Z"
+    },
+    {
+      "beat": 7,
+      "query": "historical document ch-4 archive",
+      "kind": "document",
+      "narration": "That intense battle ended with 2 goals for each side.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AI-4.tif",
+          "snippet": "as part of a cooperation with Wikimedia <span class=\"searchmatch\">CH</span>. Corrections and additional information are welcome. The <span class=\"searchmatch\">document</span> is in the Public domain. It may be used without",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-AI-4.tif"
+        },
+        {
+          "title": "File:CH-NB Archive Rudolf Zinggeler EAD-ZING-13203.tif",
+          "snippet": "heuristic: died more than 70 years ago reference URL: https://www.helveticarchives.<span class=\"searchmatch\">ch</span>/detail.aspx?id=66102 retrieved: 6 July 2025 refine date: first third sourcing",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Rudolf%20Zinggeler%20EAD-ZING-13203.tif"
+        },
+        {
+          "title": "File:CH-NB Archive Rudolf Zinggeler EAD-ZING-12521.tif",
+          "snippet": "heuristic: died more than 70 years ago reference URL: https://www.helveticarchives.<span class=\"searchmatch\">ch</span>/detail.aspx?id=65344 retrieved: 6 July 2025 determination method or standard:",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Rudolf%20Zinggeler%20EAD-ZING-12521.tif"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:20.928Z"
+    },
+    {
+      "beat": 8,
+      "query": "Borussia Dortmund building headquarters",
+      "kind": "organization",
+      "narration": "Borussia Dortmund earned 2 goals to secure the 2-2 draw.",
+      "entitiesMentioned": [
+        {
+          "cat": "organizations",
+          "name": "Borussia Dortmund"
+        }
+      ],
+      "candidates": [],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-04T17:27:22.913Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}
