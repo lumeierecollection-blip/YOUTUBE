@@ -716,6 +716,39 @@ jobs:
           name: timeline-${{ env.CHANNEL_ID }}
           path: data/editor/auto/${{ env.TTS_TOPIC }}
 
+      - name: Materialize OAuth credentials from secrets
+        id: creds-materialize
+        env:
+          CHANNEL_ID_NUM: ${{ env.CHANNEL_ID }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
+            const id = process.env.CHANNEL_ID_NUM;
+            let ch;
+            try { ch = resolveChannel(id); } catch (e) { console.error('::error::' + e.message); process.exit(1); }
+            const publishSet = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf8')).channels.map(String);
+            if (!publishSet.includes(id)) {
+              console.log('::notice::channel ' + id + ' is not in config/priority-channels.json: upload skipped');
+              process.exit(0);
+            }
+            const own = 'config/creds/' + ch.channel_id + '.json';
+            const declared = ch.youtube_credentials_path || own;
+            if (declared !== own) { console.error('::error::channel ' + id + ' declares ' + declared + ', not its own credentials file ' + own); process.exit(1); }
+            const n = String(ch.channel_id).replace(/^ch-0*/, '').padStart(2, '0');
+            const clientId = process.env['CH' + n + '_CLIENT_ID'];
+            const clientSecret = process.env['CH' + n + '_CLIENT_SECRET'];
+            const refreshToken = process.env['CH' + n + '_REFRESH_TOKEN'];
+            if (!(clientId && clientSecret && refreshToken)) {
+              console.log('::warning::No credentials configured for ' + ch.channel_id + ' — upload skipped');
+              process.exit(0);
+            }
+            fs.mkdirSync('config/creds', { recursive: true });
+            fs.writeFileSync(own, JSON.stringify({client_id:clientId, client_secret:clientSecret, refresh_token:refreshToken}, null, 2));
+            console.log('Credentials materialized for ' + ch.channel_id + ' (dispatch key ' + id + ')');
+            process.exit(0);
+          "
+
       - name: Check Credentials and Channel Identity
         id: creds
         run: |
