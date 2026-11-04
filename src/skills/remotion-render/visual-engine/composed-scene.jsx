@@ -112,13 +112,20 @@ function Label({ text, rect, ed, font, m, accent }) {
   const maxW = Math.min(rect.w * 1.35, SAFE_W * 0.86);
   const fit = fitSingleLine(str, maxW, 64);
   if (!fit.text) return null;
+  // Backdrop so labels stay readable over dark photos (contrast QA: frames
+  // over dark photographs failed 4.5:1 with quiet text on dark bg).
+  const bg = accent ? "rgba(0,0,0,1)" : "rgba(255,255,255,1)";
+  const color = accent ? ed.accentText : ed.quiet;
   return (
     <div style={{
       position: "absolute",
       left: rect.x, top: rect.y + rect.h + 12,
       width: maxW,
+      padding: "6px 10px",
+      borderRadius: 4,
+      backgroundColor: bg,
       opacity: m.enter,
-      color: accent ? ed.accentText : ed.quiet,
+      color,
       font: `600 ${fit.size}px ${font}, sans-serif`,
       lineHeight: TYPO_LINE_HEIGHT,
       whiteSpace: "nowrap",

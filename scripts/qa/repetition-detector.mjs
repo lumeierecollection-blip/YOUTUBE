@@ -152,7 +152,7 @@ function main() {
   for (const b of beats) {
     if (!b.selectedAsset && !b.graphicType) { unaligned++; }
     if (!b.selectedAsset) {
-      findings.push({ type: "missing-asset-for-beat", severity: "medium", beat: b.beat, detail: `Beat ${b.beat} (“${b.narration.slice(0,60)}…”) has no assigned asset` });
+      findings.push({ type: "missing-asset-for-beat", severity: "medium", beat: b.beat, detail: `Beat ${b.beat} (“${(b.narration || b._narration || "").slice(0,60)}…”) has no assigned asset` });
     }
   }
   if (unaligned > beats.length * 0.5) {
