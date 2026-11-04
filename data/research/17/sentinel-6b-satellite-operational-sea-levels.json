@@ -1,0 +1,69 @@
+{
+  "topic_slug": "sentinel-6b-satellite-operational-sea-levels",
+  "strongest_angle": "Examine how the Copernicus Sentinel-6B high-precision altimetry satellite entered operational service on October 29, 2026, continuing a global sea-level record that began in 1992 and joining its twin Sentinel-6A in orbit.",
+  "key_facts": [
+    {
+      "fact": "On October 29, 2026, the Copernicus Sentinel-6B satellite entered operational service nearly a year after its launch on November 17, 2025.",
+      "source_url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/copernicus-sentinel-6b-enters-operational-service",
+      "source_name": "European Commission",
+      "confidence": "high"
+    },
+    {
+      "fact": "Copernicus Sentinel-6B joins its twin satellite, Copernicus Sentinel-6 Michael Freilich, which has been in orbit since November 2020.",
+      "source_url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/copernicus-sentinel-6b-enters-operational-service",
+      "source_name": "European Commission",
+      "confidence": "high"
+    },
+    {
+      "fact": "Data from Sentinel-6B continue a global sea level record that originally began in 1992 and will extend into the 2030s.",
+      "source_url": "https://www.eumetsat.int/sentinel-6b-track-rising-seas-predict-storms-and-aid-forecasts",
+      "source_name": "EUMETSAT",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "launch year",
+      "value": 1992,
+      "unit": "year",
+      "source_url": "https://www.eumetsat.int/sentinel-6b-track-rising-seas-predict-storms-and-aid-forecasts"
+    },
+    {
+      "label": "orbit start year",
+      "value": 2020,
+      "unit": "year",
+      "source_url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/copernicus-sentinel-6b-enters-operational-service"
+    },
+    {
+      "label": "launch year",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/copernicus-sentinel-6b-enters-operational-service"
+    },
+    {
+      "label": "operational service day",
+      "value": 29,
+      "unit": "day",
+      "source_url": "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/copernicus-sentinel-6b-enters-operational-service"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Copernicus Sentinel-6B",
+      "kind": "object"
+    },
+    {
+      "name": "Copernicus Sentinel-6 Michael Freilich",
+      "kind": "object"
+    },
+    {
+      "name": "European Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "EUMETSAT",
+      "kind": "organization"
+    }
+  ]
+}

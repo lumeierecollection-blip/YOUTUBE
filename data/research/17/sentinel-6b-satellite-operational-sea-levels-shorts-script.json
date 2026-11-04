@@ -1,0 +1,72 @@
+{
+  "channel_id": "17",
+  "topic_slug": "sentinel-6b-satellite-operational-sea-levels",
+  "format": "shorts",
+  "hook": "Copernicus Sentinel-6B just entered service, continuing a global sea-level record that began back in 1992.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Copernicus Sentinel-6B just entered service, continuing a global sea-level record that began back in 1992.",
+      "visual_cue": "Close-up of a satellite orbiting Earth against deep space.",
+      "sfx_cue": "Deep, resonant space hum.",
+      "b_roll": [
+        "Satellite in orbit stock footage"
+      ],
+      "text_overlay": {
+        "text": "Sea Level Record Upgrade"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, 2026, the Copernicus Sentinel-6B satellite entered operational service. Sentinel-6B launched on November 17, 2025, but will it operate through the 2030s?",
+      "visual_cue": "Graphic showing the launch date and the satellite name.",
+      "sfx_cue": "Data processing blips.",
+      "b_roll": [
+        "Copernicus Sentinel-6B launch illustration"
+      ],
+      "text_overlay": {
+        "text": "Operational: Oct 29, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "It joins Copernicus Sentinel-6 Michael Freilich, which has been in orbit since November 2020.",
+      "visual_cue": "Animation showing two satellites trailing each other in orbit.",
+      "sfx_cue": "Soft mechanical whir.",
+      "b_roll": [
+        "Satellite constellation diagram"
+      ],
+      "text_overlay": {
+        "text": "Two-Satellite Team"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "EUMETSAT confirms these twin satellites provide the precise data needed to track global sea levels. These combined missions extend our precise sea-level tracking record well into the 2030s.",
+      "visual_cue": "Timeline graphic spanning 1992 to 2030s.",
+      "sfx_cue": "Low frequency pulse.",
+      "b_roll": [
+        "Global ocean data visualization"
+      ],
+      "text_overlay": {
+        "text": "Record Since 1992"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The European Commission ensures this vital data collection continues for the next decade.",
+      "visual_cue": "The Copernicus Sentinel-6B satellite glowing above the blue Earth.",
+      "sfx_cue": "Ambient space wind.",
+      "b_roll": [
+        "Earth from space"
+      ],
+      "text_overlay": {
+        "text": "Continuous Data Stream"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://eu-space.europa.eu/components/earth-observation-copernicus/image-of-the-day/copernicus-sentinel-6b-enters-operational-service",
+    "https://www.eumetsat.int/sentinel-6b-track-rising-seas-predict-storms-and-aid-forecasts"
+  ]
+}
