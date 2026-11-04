@@ -2577,9 +2577,14 @@
           "topic": "University of St Andrews Tin Deposit Formation Research",
           "slug": "st-andrews-tin-deposit-formation-research",
           "reserved_at": "2026-11-03T16:43:09.469Z"
+        },
+        {
+          "topic": "Sentinel-6B Satellite Enters Service to Track Rising Seas and Storms",
+          "slug": "sentinel-6b-satellite-operational-sea-levels",
+          "reserved_at": "2026-11-04T16:45:33.920Z"
         }
       ],
-      "last_generated": "2026-11-03T16:43:09.470Z"
+      "last_generated": "2026-11-04T16:45:33.920Z"
     },
     "18": {
       "channel_name": "Brief History",
