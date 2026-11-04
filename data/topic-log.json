@@ -2632,9 +2632,14 @@
           "topic": "Ulsan Power Plant Collapse Caused by Excessive Column Cutting",
           "slug": "ulsan-power-plant-collapse-column-cutting",
           "reserved_at": "2026-11-03T16:45:08.668Z"
+        },
+        {
+          "topic": "Renfe 40 km/h Safety Directive Following the Urda High-Speed Rail Collision",
+          "slug": "renfe-40-kmh-safety-directive-urda-collision",
+          "reserved_at": "2026-11-04T16:47:36.746Z"
         }
       ],
-      "last_generated": "2026-11-03T16:45:08.668Z"
+      "last_generated": "2026-11-04T16:47:36.746Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
