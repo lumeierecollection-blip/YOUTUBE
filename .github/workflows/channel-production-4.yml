@@ -702,9 +702,9 @@ jobs:
     timeout-minutes: 15
     if: github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true'
     env:
-      CHANNEL_04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
-      CHANNEL_04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
-      CHANNEL_04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+      CH04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+      CH04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+      CH04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
