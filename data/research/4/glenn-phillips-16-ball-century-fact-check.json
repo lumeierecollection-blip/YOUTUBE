@@ -1,0 +1,101 @@
+{
+  "topic_slug": "glenn-phillips-16-ball-century-fact-check",
+  "strongest_angle": "Viral social media claims alleging Glenn Phillips hit a 16-ball century against India are debunked by official match records showing he actually scored 107 runs off 49 balls during New Zealand's ODI series win.",
+  "key_facts": [
+    {
+      "fact": "Fact check by iVerify confirmed viral social media claims alleging Glenn Phillips scored a 16-ball 100-run century against India were false, as Glenn Phillips actually scored 107 runs off 49 balls.",
+      "source_url": "https://tribune.com.pk/story/2638596/fact-check-glenn-phillips-did-not-score-16-ball-century-against-india",
+      "source_name": "The Express Tribune",
+      "confidence": "high"
+    },
+    {
+      "fact": "Glenn Phillips and Daryl Mitchell completed a 219-run partnership for New Zealand against India in an ODI match held in Indore.",
+      "source_url": "https://timesofindia.indiatimes.com/sports/cricket/india-vs-new-zealand/daryl-mitchell-and-glenn-phillips-219-run-partnership-seals-new-zealands-first-odi-series-win-in-india-kohli-ton-in-vain/articleshow/126669136.cms",
+      "source_name": "The Times of India",
+      "confidence": "high"
+    },
+    {
+      "fact": "India successfully chased a target of 359 runs in an ODI match, trailing only the record chase set in Johannesburg between Australia and South Africa.",
+      "source_url": "https://www.espncricinfo.com/story/india-s-fastest-odi-ton-and-a-glut-of-most-expensive-spells-680015",
+      "source_name": "ESPNcricinfo",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Claimed balls faced for century by Glenn Phillips",
+      "value": 16,
+      "unit": "balls",
+      "source_url": "https://tribune.com.pk/story/2638596/fact-check-glenn-phillips-did-not-score-16-ball-century-against-india"
+    },
+    {
+      "label": "Claimed century runs by Glenn Phillips",
+      "value": 100,
+      "unit": "runs",
+      "source_url": "https://tribune.com.pk/story/2638596/fact-check-glenn-phillips-did-not-score-16-ball-century-against-india"
+    },
+    {
+      "label": "Actual runs scored by Glenn Phillips",
+      "value": 107,
+      "unit": "runs",
+      "source_url": "https://tribune.com.pk/story/2638596/fact-check-glenn-phillips-did-not-score-16-ball-century-against-india"
+    },
+    {
+      "label": "Actual balls faced by Glenn Phillips",
+      "value": 49,
+      "unit": "balls",
+      "source_url": "https://tribune.com.pk/story/2638596/fact-check-glenn-phillips-did-not-score-16-ball-century-against-india"
+    },
+    {
+      "label": "Partnership runs between Glenn Phillips and Daryl Mitchell",
+      "value": 219,
+      "unit": "runs",
+      "source_url": "https://timesofindia.indiatimes.com/sports/cricket/india-vs-new-zealand/daryl-mitchell-and-glenn-phillips-219-run-partnership-seals-new-zealands-first-odi-series-win-in-india-kohli-ton-in-vain/articleshow/126669136.cms"
+    },
+    {
+      "label": "Target runs chased successfully by India",
+      "value": 359,
+      "unit": "runs",
+      "source_url": "https://www.espncricinfo.com/story/india-s-fastest-odi-ton-and-a-glut-of-most-expensive-spells-680015"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Glenn Phillips",
+      "kind": "person"
+    },
+    {
+      "name": "Daryl Mitchell",
+      "kind": "person"
+    },
+    {
+      "name": "iVerify",
+      "kind": "organization"
+    },
+    {
+      "name": "India",
+      "kind": "organization"
+    },
+    {
+      "name": "New Zealand",
+      "kind": "organization"
+    },
+    {
+      "name": "Australia",
+      "kind": "organization"
+    },
+    {
+      "name": "South Africa",
+      "kind": "organization"
+    },
+    {
+      "name": "Indore",
+      "kind": "place"
+    },
+    {
+      "name": "Johannesburg",
+      "kind": "place"
+    }
+  ]
+}
