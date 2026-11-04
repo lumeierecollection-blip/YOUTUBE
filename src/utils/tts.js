@@ -225,12 +225,12 @@ async function generateTTS(segments, voice, outputDir, topic, settings = {}) {
     let lastErr = null;
     for (const cmd of cmds) {
       try {
-        execSync(cmd, { stdio: "pipe", timeout: 180000 });
+        execSync(cmd + " 2>&1", { shell: true, stdio: "pipe", timeout: 180000 });
         lastErr = null;
         break;
       } catch (err) {
         // Capture stderr for diagnostics — execSync puts it in err.stderr
-        const stderr = err.stderr ? err.stderr.toString().trim() : "(no stderr)";
+        const stderr = err.stdout ? err.stdout.toString().trim() : "(no stderr)";
         console.error(`TTS command failed: ${cmd}
 stderr: ${stderr}`);
         lastErr = err;
