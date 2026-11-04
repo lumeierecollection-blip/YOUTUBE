@@ -1364,9 +1364,14 @@
           "topic": "Snap Reaches Confidential Settlement in Social Media Lawsuit",
           "slug": "snap-confidential-settlement-california",
           "reserved_at": "2026-11-03T16:31:55.882Z"
+        },
+        {
+          "topic": "Hollywood Coalitions File Amicus Brief in NYT v. OpenAI Lawsuit",
+          "slug": "hollywood-amicus-brief-nyt-openai",
+          "reserved_at": "2026-11-04T16:32:07.165Z"
         }
       ],
-      "last_generated": "2026-11-03T16:31:55.882Z"
+      "last_generated": "2026-11-04T16:32:07.166Z"
     },
     "4": {
       "channel_name": "Rival Lines",
