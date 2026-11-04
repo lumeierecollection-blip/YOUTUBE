@@ -38,6 +38,12 @@ concurrency:
 
 env:
   CHANNEL_ID: 3
+  SCRIPT_PATH: data/research/3/chris-brown-producer-sues-sony-music-royalties-shorts-script.json
+  STEM: chris-brown-producer-sues-sony-music-royalties-shorts
+  TTS_TOPIC: chris-brown-producer-sues-sony-music-royalties-shorts-script
+  VISUAL_PACK: data/editor/assets/3/asset-manifest.json
+  REQUIRED_IMAGES: 9
+  MIN_PEOPLE_RATIO: 0.75
 
 jobs:
   setup:
@@ -82,7 +88,7 @@ jobs:
         id: vars
         run: |
           echo "channel=${{ env.CHANNEL_ID }}" >> $GITHUB_OUTPUT
-          echo "stem=${{ env.STEM }}" >> $GITHUB_OUTPUT
+          echo "stem=chris-brown-producer-sues-sony-music-royalties-shorts" >> $GITHUB_OUTPUT
 
   source-historical-images:
     name: Source Historical Images (Wikimedia Commons)
@@ -702,9 +708,9 @@ jobs:
     timeout-minutes: 15
     if: github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true'
     env:
-      CH03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
-      CH03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
-      CH03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
+      CHANNEL_03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
+      CHANNEL_03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
+      CHANNEL_03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -775,7 +781,7 @@ jobs:
               process.exit(0);
             }
             console.log('Credentials verified for ' + ch.channel_name + ' (' + ch.channel_id + ')');
-            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'upload=ready\n');
+            console.log('upload=ready');
           "
 
       - name: Upload to YouTube (Private)
