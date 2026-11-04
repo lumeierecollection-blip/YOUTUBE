@@ -98,7 +98,6 @@ async function getAccessToken() {
 /* ── YouTube Upload ──────────────────────────────────────────────── */
 
 async function uploadVideo(accessToken, { file, title, description, tags }) {
-  // Read file metadata
   const fileData = readFileSync(file);
   const fileSize = fileData.length;
 
@@ -121,39 +120,43 @@ async function uploadVideo(accessToken, { file, title, description, tags }) {
     throw new Error("FATAL: privacyStatus is not 'private' — refusing to upload");
   }
 
-  // Initialize resumable upload
-  const initMetadata = JSON.stringify(metadata);
-  const initReq = https.request(
-    {
-      hostname: "www.googleapis.com",
-      path: "/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json; charset=UTF-8",
-        "X-Upload-Content-Length": fileSize,
-        "X-Upload-Content-Type": "video/mp4",
+  return new Promise((resolve, reject) => {
+    // Initialize resumable upload
+    const initMetadata = JSON.stringify(metadata);
+    const initReq = https.request(
+      {
+        hostname: "www.googleapis.com",
+        path: "/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json; charset=UTF-8",
+          "X-Upload-Content-Length": fileSize,
+          "X-Upload-Content-Type": "video/mp4",
+        },
       },
-    },
-    (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
-      res.on("end", () => {
-        if (res.statusCode === 308) {
-          // Upload URL received, now upload the file
-          const uploadUrl = res.headers.location;
-          uploadFileData(accessToken, uploadUrl, fileData, fileSize)
-            .then(resolve)
-            .catch(reject);
-        } else {
-          reject(new Error(`Init upload failed (${res.statusCode}): ${data}`));
-        }
-      });
-    }
-  );
-  initReq.on("error", reject);
-  initReq.write(initMetadata);
-  initReq.end();
+      (res) => {
+        let data = "";
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
+        res.on("end", () => {
+          if (res.statusCode === 308) {
+            // Upload URL received, now upload the file
+            const uploadUrl = res.headers.location;
+            uploadFileData(accessToken, uploadUrl, fileData, fileSize)
+              .then(resolve)
+              .catch(reject);
+          } else {
+            reject(new Error(`Init upload failed (${res.statusCode}): ${data}`));
+          }
+        });
+      }
+    );
+    initReq.on("error", (e) => reject(e));
+    initReq.write(initMetadata);
+    initReq.end();
+  });
 }
 
 function uploadFileData(accessToken, uploadUrl, fileData, fileSize) {
