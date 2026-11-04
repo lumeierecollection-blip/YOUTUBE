@@ -1,0 +1,72 @@
+{
+  "topic_slug": "renfe-40-kmh-safety-directive-urda-collision",
+  "strongest_angle": "Analysis of Renfe's emergency safety directive following the Urda high-speed rail collision, detailing the mandate for trains to halt and proceed under a 40 km/h visual supervision limit after signaling failures.",
+  "key_facts": [
+    {
+      "fact": "Renfe has introduced a new safety directive for high speed operations, requiring trains to halt and proceed at a maximum speed of 40 km/h under visual supervision after cab signalling failures following the fatal Urda collision that killed at least 69 people.",
+      "source_url": "https://www.railwaygazette.com/spain/2026/11/03/renfe-updates-safety-protocol-as-investigators-analyse-urda-collision",
+      "source_name": "Railway Gazette International",
+      "confidence": "high"
+    },
+    {
+      "fact": "The fatal accident occurred in Urda, Toledo, representing the second high-speed railway tragedy in Spain in nine months on the Madrid-Sevilla line.",
+      "source_url": "https://www.elindependiente.com/espana/2026/11/02/las-nuevas-instrucciones-de-renfe-marcha-a-la-vista-a-40-kilometros-hora-y-doble-chequeo-de-via-despejada",
+      "source_name": "El Independiente",
+      "confidence": "high"
+    },
+    {
+      "fact": "Renfe launched the new operational conditions and mandatory instructions for train drivers on the Madrid-Sevilla high-speed rail line to prevent new accidents following the disaster.",
+      "source_url": "https://elpais.com/espana/2026-10-31/renfe-eleva-sus-condiciones-de-seguridad-en-la-linea-madrid-sevilla-para-evitar-nuevos-siniestros.html",
+      "source_name": "EL PAÍS",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Maximum speed under visual supervision after signaling failures",
+      "value": 40,
+      "unit": "km/h",
+      "source_url": "https://www.railwaygazette.com/spain/2026/11/03/renfe-updates-safety-protocol-as-investigators-analyse-urda-collision"
+    },
+    {
+      "label": "Minimum number of fatalities in the Urda high-speed rail collision",
+      "value": 69,
+      "unit": "people",
+      "source_url": "https://www.railwaygazette.com/spain/2026/11/03/renfe-updates-safety-protocol-as-investigators-analyse-urda-collision"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Renfe pide a sus maquinistas no superar los 40 kilómetros por hora si cae el LZB: \"Es volver a la cultura de la seguridad\"",
+      "speaker": "La Sexta Noticias",
+      "source_name": "La Sexta",
+      "source_url": "https://www.lasexta.com/noticias/nacional/renfe-pide-sus-maquinistas-superar-40-kilometros-hora-cae-lzb-volver-cultura-seguridad_202611016ae7043ca5f83c2fb8eb515e.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Renfe",
+      "kind": "organization"
+    },
+    {
+      "name": "Urda",
+      "kind": "place"
+    },
+    {
+      "name": "Toledo",
+      "kind": "place"
+    },
+    {
+      "name": "Spain",
+      "kind": "place"
+    },
+    {
+      "name": "Madrid-Sevilla",
+      "kind": "place"
+    },
+    {
+      "name": "LZB",
+      "kind": "object"
+    }
+  ]
+}

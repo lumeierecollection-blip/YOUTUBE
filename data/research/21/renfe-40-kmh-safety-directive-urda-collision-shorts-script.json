@@ -1,0 +1,76 @@
+{
+  "channel_id": "21",
+  "topic_slug": "renfe-40-kmh-safety-directive-urda-collision",
+  "format": "shorts",
+  "hook": "A fatal high-speed train collision in Urda killed 69 people, forcing a drastic new safety mandate.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A fatal high-speed train collision in Urda killed 69 people, forcing a drastic new safety mandate.",
+      "visual_cue": "Aerial shot of the Madrid-Sevilla rail line in Toledo, Spain.",
+      "sfx_cue": "Low, ominous industrial hum.",
+      "b_roll": [
+        "Aerial footage of Spanish high-speed railway tracks",
+        "Map highlighting Urda and Toledo"
+      ],
+      "text_overlay": {
+        "text": "69 dead in Urda"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Renfe launched these emergency protocols after this tragedy followed another accident on the Madrid-Sevilla line. What specific operational changes prevent future signaling failures on the Madrid-Sevilla high-speed line?",
+      "visual_cue": "Renfe corporate logo and official safety document icon.",
+      "sfx_cue": "Sound of a train horn passing in the distance.",
+      "b_roll": [
+        "Renfe company logo",
+        "Graphic showing the Madrid-Sevilla high-speed line"
+      ],
+      "text_overlay": {
+        "text": "Renfe safety protocols"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the directive mandates that trains halt immediately if the LZB cab signaling system fails.",
+      "visual_cue": "Close-up of a train driver's cab display showing a signal error.",
+      "sfx_cue": "Sharp electronic alarm.",
+      "b_roll": [
+        "Close-up of modern train cab control panel",
+        "Warning light flashing on a console"
+      ],
+      "text_overlay": {
+        "text": "Signal failure mandate"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Drivers now proceed at a maximum speed of 40 km/h under visual supervision until clear. Renfe confirms this visual checking process is essential to prevent further tragedies in Spain.",
+      "visual_cue": "Split screen showing a train moving slowly past a signal post.",
+      "sfx_cue": "Sound of train wheels on tracks at low speed.",
+      "b_roll": [
+        "Train moving slowly through a station",
+        "Driver looking out of train window"
+      ],
+      "text_overlay": {
+        "text": "40 km/h limit"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Safety operations now require this 40 km/h visual speed limit.",
+      "visual_cue": "Wide shot of a train receding into the distance.",
+      "sfx_cue": "Fading train track noise.",
+      "b_roll": [
+        "Wide shot of high-speed train on rural track"
+      ],
+      "text_overlay": {
+        "text": "40 km/h limit"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.railwaygazette.com/spain/2026/11/03/renfe-updates-safety-protocol-as-investigators-analyse-urda-collision",
+    "https://elpais.com/espana/2026-10-31/renfe-eleva-sus-condiciones-de-seguridad-en-la-linea-madrid-sevilla-para-evitar-nuevos-siniestros.html"
+  ]
+}
