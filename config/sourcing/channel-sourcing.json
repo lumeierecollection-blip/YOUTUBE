@@ -1,0 +1,238 @@
+{
+  "$schema": "channel-sourcing.v1.json",
+  "description": "Per-channel visual sourcing rules. Each channel independently sources assets and selects visual treatments appropriate to its content. A video must not inherit another video's photographs or graphic sequence merely because they exist in a cache.",
+  "channels": {
+    "ch-01": {
+      "id": "ch-01",
+      "name": "Hidden Past",
+      "numericId": 1,
+      "niche": "History, forgotten events, historical figures, mysteries and significant moments from the past.",
+      "visualIdentity": "newspaper-collage, archival, sepia, dramatic Ken Burns photo pushes, document animations, map territory pans",
+      "preferredSources": [
+        "Wikimedia Commons",
+        "Official institutional archives",
+        "Museum collections",
+        "Government and public records",
+        "Reputable public-domain / Creative Commons collections"
+      ],
+      "assetPriorities": [
+        "Genuine historical photographs",
+        "Archival portraits",
+        "Historical maps",
+        "Original documents",
+        "Newspaper clippings",
+        "Historical illustrations",
+        "Relevant buildings and locations",
+        "Period-specific reconstructions"
+      ],
+      "graphicPreferences": [
+        "Historical maps and animated routes",
+        "Chronological timelines",
+        "Archival document presentations",
+        "Newspaper and headline layouts",
+        "Annotated photographs",
+        "Evidence boards",
+        "Cause-and-effect diagrams",
+        "Contextual typography"
+      ],
+      "forbiddenFallbacks": [
+        "Generic stock photographs of unrelated historical events",
+        "Modern photographs presented as period evidence",
+        "Unrelated courtroom / sports / tech imagery"
+      ],
+      "cacheIsolation": {
+        "namespace": "ch-01:hidden-past",
+        "subjectSuffix": true,
+        "requireTopicInKey": true
+      },
+      "qa": {
+        "maxPeopleReusePerVideo": 1,
+        "maxPlaceReusePerVideo": 2,
+        "maxGenericStockRatio": 0.15,
+        "requireAttributionOnEveryAsset": true
+      }
+    },
+    "ch-02": {
+      "id": "ch-02",
+      "name": "AI Tested",
+      "numericId": 2,
+      "niche": "Artificial intelligence tools, models, experiments, demonstrations, comparisons and practical applications.",
+      "visualIdentity": "dark mode, purple accent, clean tech aesthetic, screen captures, split-screen comparisons, output zooms, workflow diagrams",
+      "preferredSources": [
+        "Official product documentation",
+        "Manufacturer and developer websites",
+        "Reputable public-domain / Creative Commons collections",
+        "Government and public records"
+      ],
+      "assetPriorities": [
+        "Actual product interfaces",
+        "Genuine screenshots",
+        "Real demonstrations",
+        "Product-specific visual explanations",
+        "Model comparisons",
+        "Workflow diagrams",
+        "Benchmark charts",
+        "Before-and-after demonstrations"
+      ],
+      "graphicPreferences": [
+        "Product demonstrations",
+        "Interface walkthroughs",
+        "Feature comparisons",
+        "Benchmark charts",
+        "Process diagrams",
+        "Statistical comparisons",
+        "Side-by-side comparisons",
+        "Cause-and-effect diagrams"
+      ],
+      "forbiddenFallbacks": [
+        "Generic robot / brain stock imagery presented as a specific AI tool",
+        "Product screenshots from a different tool",
+        "Fabricated or unperformed demonstration imagery"
+      ],
+      "cacheIsolation": {
+        "namespace": "ch-02:ai-tested",
+        "subjectSuffix": true,
+        "requireTopicInKey": true
+      },
+      "qa": {
+        "maxPeopleReusePerVideo": 0,
+        "maxPlaceReusePerVideo": 0,
+        "maxGenericStockRatio": 0.1,
+        "requireAttributionOnEveryAsset": true,
+        "actualInterfaceRequired": true
+      }
+    },
+    "ch-03": {
+      "id": "ch-03",
+      "name": "Court & Spotlight",
+      "numericId": 3,
+      "niche": "Legal cases, trials, court proceedings, legal controversies and high-profile people involved in them.",
+      "visualIdentity": "court buildings, legal timelines, document presentations, evidence boards, public figures, official records",
+      "preferredSources": [
+        "Court documents where lawfully available",
+        "Government and public records",
+        "Official institutional archives",
+        "Reputable news sources with licensed imagery",
+        "Wikimedia Commons"
+      ],
+      "assetPriorities": [
+        "Relevant court buildings",
+        "Actual public figures involved",
+        "Court documents where lawfully available",
+        "Legal timelines",
+        "Evidence explanations",
+        "Case comparisons",
+        "Relevant locations",
+        "Legal process diagrams"
+      ],
+      "graphicPreferences": [
+        "Legal timelines",
+        "Evidence boards",
+        "Archival document presentations",
+        "Legal process diagrams",
+        "Case comparisons",
+        "Cause-and-effect diagrams",
+        "Annotated photographs",
+        "Contextual typography"
+      ],
+      "forbiddenFallbacks": [
+        "Unrelated courtroom photograph presented as case-specific",
+        "Stock gavel / scales of justice as case evidence",
+        "Unrelated person presented as a party to the case"
+      ],
+      "cacheIsolation": {
+        "namespace": "ch-03:court-spotlight",
+        "subjectSuffix": true,
+        "requireTopicInKey": true
+      },
+      "qa": {
+        "maxPeopleReusePerVideo": 1,
+        "maxPlaceReusePerVideo": 1,
+        "maxGenericStockRatio": 0.1,
+        "requireAttributionOnEveryAsset": true,
+        "distinguishAllegationVsVerdict": true
+      }
+    },
+    "ch-04": {
+      "id": "ch-04",
+      "name": "Rival Lines",
+      "numericId": 4,
+      "niche": "Sports rivalries, head-to-head comparisons, competitors, career battles and defining moments.",
+      "visualIdentity": "sports photography, scoreboards, head-to-head stats, tactical diagrams, career timelines, venue photographs",
+      "preferredSources": [
+        "Official league and federation websites",
+        "Manufacturer and developer websites",
+        "Government and public records",
+        "Wikimedia Commons",
+        "Reputable public-domain / Creative Commons collections"
+      ],
+      "assetPriorities": [
+        "Actual competitors",
+        "Relevant sporting events",
+        "Match photographs",
+        "Statistics and records",
+        "Career timelines",
+        "Head-to-head comparisons",
+        "Scoreboards",
+        "Tactical diagrams",
+        "Relevant venues and championships"
+      ],
+      "graphicPreferences": [
+        "Scoreboards and head-to-head statistics",
+        "Career progression graphics",
+        "Tactical diagrams",
+        "Statistical comparisons",
+        "Side-by-side comparisons",
+        "Geographic visualisations",
+        "Chronological timelines",
+        "Cause-and-effect diagrams"
+      ],
+      "forbiddenFallbacks": [
+        "Generic sports photographs reused for every rivalry",
+        "Unrelated athletes presented as the competitors discussed",
+        "Stock stadium imagery presented as a specific venue"
+      ],
+      "cacheIsolation": {
+        "namespace": "ch-04:rival-lines",
+        "subjectSuffix": true,
+        "requireTopicInKey": true
+      },
+      "qa": {
+        "maxPeopleReusePerVideo": 2,
+        "maxPlaceReusePerVideo": 2,
+        "maxGenericStockRatio": 0.15,
+        "requireAttributionOnEveryAsset": true
+      }
+    }
+  },
+  "cacheCategories": {
+    "brand": {
+      "description": "Logos, colours, typography, channel identity — safe to reuse across all videos on a channel.",
+      "reusableAcrossVideos": true,
+      "reusableAcrossChannels": false,
+      "example": "channel logo, primary palette, wordmark"
+    },
+    "channel": {
+      "description": "Channel-specific reusable assets that are not topic-bound (e.g. a channel's signature map style).",
+      "reusableAcrossVideos": true,
+      "reusableAcrossChannels": false,
+      "example": "channel map template, signature lower-third"
+    },
+    "video": {
+      "description": "Assets sourced for a specific video's topic. Reuse only when the same subject is genuinely relevant and documented.",
+      "reusableAcrossVideos": false,
+      "reusableAcrossChannels": false,
+      "example": "photo of Margaret Clitherow for the Clitherow video only"
+    },
+    "temp": {
+      "description": "Temporary production files (candidates, thumbnails, work-in-progress). Never reused.",
+      "reusableAcrossVideos": false,
+      "reusableAcrossChannels": false
+    }
+  },
+  "reusePolicy": {
+    "default": "No automatic reuse. A photograph of a person, event, product or location must not be reused simply because it exists in the cache.",
+    "justifiedReuse": "For repeated topics or follow-up episodes, reuse is appropriate where the same subject is genuinely relevant. The decision and reason must be recorded in the visual plan.",
+    "brandException": "Brand elements, logos and channel identity may be reused freely within a channel."
+  }
+}
