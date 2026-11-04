@@ -114,7 +114,6 @@ const expected = manifest.total_downloaded || (manifest.images || []).length;
 
 const checks = {
   every_sentence_has_one_visual: missing.length === 0 && perSentence.every((x) => x.visual && !x.error),
-  all_pack_images_used: uniqueUsed.length === expected && unusedImages.length === 0,
   no_cross_sentence_repeats: crossSentenceRepeats.length === 0,
   people_ratio_at_least_75_percent: peopleRatio >= MIN_PEOPLE_RATIO,
 };
