@@ -2470,9 +2470,14 @@
           "topic": "Vera C. Rubin Observatory Spots Possible New Dwarf Planet 2026 ED138",
           "slug": "vera-rubin-observatory-spots-new-dwarf-planet-2026-ed138",
           "reserved_at": "2026-11-03T16:38:21.486Z"
+        },
+        {
+          "topic": "Starfish Space Otter Spacecraft Fails First SSPICY Mission",
+          "slug": "starfish-space-otter-sspicy-mission-failure",
+          "reserved_at": "2026-11-04T16:44:08.043Z"
         }
       ],
-      "last_generated": "2026-11-03T16:38:21.486Z"
+      "last_generated": "2026-11-04T16:44:08.044Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
