@@ -1,0 +1,147 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-00.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-01.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.4525337809583543,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.8904761904761904,
+      "captionContrast": 17.50438535414356,
+      "headlineContrast": 17.50438535414356,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-02.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-03.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 4.848115481186729,
+      "marginForegroundFraction": 0.0011963549356004684,
+      "captionForegroundFraction": 0.012785218253968254,
+      "captionContrast": 17.312292239296244,
+      "headlineContrast": 11.039598007961024,
+      "pass": false,
+      "violations": [
+        "content leaking into margins (0.12% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-04.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 26.35283529339181,
+      "marginForegroundFraction": 0.002698162195184035,
+      "captionForegroundFraction": 0.015190972222222222,
+      "captionContrast": 15.919361526098086,
+      "headlineContrast": 11.300316719260415,
+      "pass": false,
+      "violations": [
+        "bg not flat in headline-right-margin (blurred stddev 18.2 > 14 — survives blur, looks like a real gradient, not grain)",
+        "content leaking into margins (0.27% > 0.1%)"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-05.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-06.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.022296626984126985,
+      "captionContrast": 4.380013125263275,
+      "headlineContrast": 17.785702516037645,
+      "pass": false,
+      "violations": [
+        "caption contrast 4.38:1 < 4.5:1 (glyph rgb(136,98,245) on bg rgb(20,23,26))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-07.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-08.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-09.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.021168154761904763,
+      "captionContrast": 4.3443606235141505,
+      "headlineContrast": 17.13500379350266,
+      "pass": false,
+      "violations": [
+        "caption contrast 4.34:1 < 4.5:1 (glyph rgb(135,97,246) on bg rgb(20,23,26))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-10.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 2.449489742783178,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\review\\frames\\mwaa-full-frames\\frame-11.png",
+      "bg": "rgb(20,23,26)",
+      "flatness": 4.842128119508695,
+      "marginForegroundFraction": 0.00027999796365117343,
+      "captionForegroundFraction": 0.01837797619047619,
+      "captionContrast": 15.637340286916107,
+      "headlineContrast": 10.881170567077367,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

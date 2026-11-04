@@ -1,0 +1,24 @@
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "width": 1080,
+            "height": 1920,
+            "nb_frames": "1050",
+            "side_data_list": [
+                {
+
+                }
+            ]
+        }
+    ],
+    "format": {
+        "duration": "35.050667",
+        "size": "2502955"
+    }
+}

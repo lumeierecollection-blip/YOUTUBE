@@ -1,0 +1,26 @@
+{
+  "critic": "independent",
+  "referenceId": "openmontage-claude-pipeline",
+  "verdict": "pass",
+  "scores": {
+    "research_fidelity": 9,
+    "reference_fidelity": 9,
+    "concept_specificity": 9,
+    "product_authenticity": 9,
+    "mobile_readability": 9,
+    "composition": 8,
+    "motion_causality": 8,
+    "material_restraint": 9
+  },
+  "hardFailures": [],
+  "notes": [
+    "Terminal install command matches AWS documentation exactly (/plugin install aws-data-analytics@claude-plugins-official)",
+    "Four skill names are authentic AWS MWAA agent skills (authoring-mwaa-workflow, debugging-mwaa-workflow, testing-mwaa-workflow, upgrading-mwaa-environments)",
+    "Terminal metaphor uses authentic CLI conventions: ~ $ prompt, ◇ prefix, ✓ completion, no fabricated output",
+    "No neon, glow, glassmorphism, or cyberpunk styling; flat charcoal surface with restrained accent",
+    "Camera follows causality: typing → LOADED → CLI rows → success state",
+    "Text readable at 20px monospace on 1080x1920 destination",
+    "Motion conveys causality (action → consequence), not decorative movement",
+    "Single connected world with terminal as the authentic working surface"
+  ]
+}
