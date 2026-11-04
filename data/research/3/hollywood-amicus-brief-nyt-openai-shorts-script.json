@@ -1,0 +1,48 @@
+{
+  "channel_id": "3",
+  "topic_slug": "hollywood-amicus-brief-nyt-openai",
+  "format": "shorts",
+  "hook": "A copyright lawsuit threatens how 2 tech giants train artificial intelligence.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A copyright lawsuit threatens how 2 tech giants train artificial intelligence.",
+      "text_overlay": {
+        "text": "AI Copyright Lawsuit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 30, 2026, Human Consent Foundation joined The New York Times against OpenAI. Talent agency WME filed additional papers in November 2026. Which Hollywood creators backed the filing against OpenAI?",
+      "text_overlay": {
+        "text": "New York Times vs OpenAI"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this legal challenge expanded far beyond news publishers into Hollywood.",
+      "text_overlay": {
+        "text": "Hollywood Enters the Fight"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Actors including Cate Blanchett and Steven Soderbergh supported the filing. The submission united 2 agencies, Creative Artists Agency, LLC and WME. National Association of Voice Actors and Nick Hexum also joined.",
+      "text_overlay": {
+        "text": "Hollywood Stars vs Tech Giants"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The lawsuit now threatens the future of 2 tech giants.",
+      "text_overlay": {
+        "text": "Legal Battle Ahead"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://variety.com/2026/biz/news/cate-blanchett-hollywood-stars-brief-nyt-openai-lawsuit-1236935578",
+    "https://pagesix.com/2026/11/03/hollywood/hollywoods-biggest-players-are-backing-new-york-times-massive-copyright-lawsuit-against-openai",
+    "https://deadline.com/wp-content/uploads/2026/11/caa-openai-nyt-suit.pdf"
+  ]
+}
