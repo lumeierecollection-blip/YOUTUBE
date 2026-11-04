@@ -327,7 +327,7 @@ jobs:
           node scripts/editor/auto-timeline.mjs \
             --channel "${{ env.CHANNEL_ID }}" \
             --script "${{ env.SCRIPT_PATH }}" \
-            --visual-pack "${{ env.VISUAL_PACK }}" \
+            --visual-pack "data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json" \
             --github-env 2>&1
 
           echo "=== Timeline Files ==="
