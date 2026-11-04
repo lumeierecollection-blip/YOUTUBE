@@ -55,9 +55,8 @@ export function applyVisualPack(plan, pack, { sentenceCount } = {}) {
   for (let i = 0; i < n; i++) {
     if (!bySentence.has(i)) throw new Error(`visual pack is missing an image for sentence ${i} (script has ${n} sentences)`);
   }
-  for (const idx of bySentence.keys()) {
-    if (idx >= n) throw new Error(`visual pack has an image for sentence ${idx}, but the script has only ${n} sentences`);
-  }
+    // Extra images in the pack (for sentences beyond the script length) are harmless —
+    // they just won't be used. Only missing images for existing sentences are errors.
 
   const used = new Set();
   const seenSentences = new Set();
