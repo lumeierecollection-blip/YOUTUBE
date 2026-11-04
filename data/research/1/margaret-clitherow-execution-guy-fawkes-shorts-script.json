@@ -2,11 +2,11 @@
   "channel_id": "1",
   "topic_slug": "margaret-clitherow-execution-guy-fawkes",
   "format": "shorts",
-  "hook": "In 1586, a pregnant woman named Margaret Clitherow was crushed to death in York, England. She was killed for her Catholic faith.",
+  "hook": "In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "In 1586, a pregnant woman named Margaret Clitherow was crushed to death in York, England. She was killed for her Catholic faith.",
+      "voiceover": "In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.",
       "visual_cue": "Historical illustration of 16th-century York with dramatic shadows and tense atmosphere.",
       "sfx_cue": "Heavy wooden thud followed by low ambient drone",
       "b_roll": [
@@ -20,7 +20,7 @@
     },
     {
       "id": "setup",
-      "voiceover": "At the time, England had outlawed Catholicism. Catholic priests had to hide in secret rooms called priest holes. Margaret Clitherow was accused of hiding a priest in her home. She refused to enter a legal plea — meaning she would not tell the court whether she was guilty — while pregnant with her fourth child.",
+      "voiceover": "England had outlawed Catholicism, so priests hid in secret rooms called priest holes — and Margaret was accused of hiding one.",
       "visual_cue": "Close-up of a handwritten 1586 trial record document transition to a map of York.",
       "sfx_cue": "Quill scratching paper sound effect",
       "b_roll": [
@@ -33,8 +33,22 @@
       "transition_out": "wipe"
     },
     {
-      "id": "rehook",
-      "voiceover": "Because she would not plead, authorities used a punishment called pressing. On a date known as Lady Day in March 1586, they slowly crushed her to death under heavy weights.",
+      "id": "plea",
+      "voiceover": "She refused to enter a legal plea while pregnant with her fourth child.",
+      "visual_cue": "Close-up of a historical document with wax seal, dramatic lighting.",
+      "sfx_cue": "Wax seal cracking sound",
+      "b_roll": [
+        "16th-century legal document",
+        "Court record close-up"
+      ],
+      "text_overlay": {
+        "text": "No plea"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "pressing",
+      "voiceover": "Because she would not plead, they crushed her to death under heavy weights on Lady Day in March 1586.",
       "visual_cue": "Cinematic pan across a crowd of onlookers in historic attire gathered in a cobblestone square.",
       "sfx_cue": "Subtle crowd murmur and wind swell",
       "b_roll": [
@@ -45,22 +59,62 @@
       "transition_out": "cut"
     },
     {
-      "id": "payoff",
-      "voiceover": "Nearly twenty years later, in 1605, another man named Guy Fawkes became infamous in York. He was part of the Gunpowder Plot — a conspiracy to blow up the English Parliament. Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier. Two other men, Christopher Wright and John Wright, also knew her story. Her brutal death may have shaped their thinking before the 1605 plot.",
-      "visual_cue": "Historical portraits of Guy Fawkes alongside Christopher Wright and John Wright with gunpowder plot documents.",
+      "id": "fawkes",
+      "voiceover": "Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gunpowder Plot to blow up Parliament.",
+      "visual_cue": "Historical portrait of Guy Fawkes alongside gunpowder plot documents.",
       "sfx_cue": "Low dramatic brass pulse",
       "b_roll": [
         "Guy Fawkes historical portrait",
         "1605 Gunpowder Plot manuscript detail"
       ],
       "text_overlay": {
-        "text": "1605 Gunpowder Plot"
+        "text": "Guy Fawkes"
       },
       "transition_out": "fade"
     },
     {
+      "id": "witness",
+      "voiceover": "Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier.",
+      "visual_cue": "Split image: Margaret Clitherow's execution on one side, Guy Fawkes on the other.",
+      "sfx_cue": "Low dramatic brass pulse",
+      "b_roll": [
+        "Margaret Clitherow execution artwork",
+        "Guy Fawkes historical portrait"
+      ],
+      "text_overlay": {
+        "text": "1586 → 1605"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "wrights",
+      "voiceover": "Christopher and John Wright also knew her story.",
+      "visual_cue": "Portraits of Christopher Wright and John Wright alongside historical documents.",
+      "sfx_cue": "Paper unfolding sound",
+      "b_roll": [
+        "Christopher and John Wright engraving",
+        "Gunpowder Plot conspirators document"
+      ],
+      "text_overlay": {
+        "text": "The Wright brothers"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "shaped",
+      "voiceover": "Her brutal death may have shaped their thinking before the 1605 plot.",
+      "visual_cue": "Gunpowder Plot conspirators document with dramatic shadows.",
+      "sfx_cue": "Paper unfolding sound",
+      "b_roll": [
+        "Gunpowder Plot conspirators engraving",
+        "1605 conspiracy manuscript"
+      ],
+      "text_overlay": null,
+      "transition_out": "fade"
+    },
+    {
       "id": "close",
-      "voiceover": "Margaret Clitherow's death in 1586 and the Gunpowder Plot of 1605 — two events, nineteen years apart, both in York, both shaped by religious conflict.",
+      "voiceover": "Two events, nineteen years apart, both in York, both shaped by religious conflict.",
       "visual_cue": "Slow zoom out on the historic city walls of York under a dusk sky.",
       "sfx_cue": "Deep ringing bell chime fading out",
       "b_roll": [
