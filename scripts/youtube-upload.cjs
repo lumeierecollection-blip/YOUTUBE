@@ -141,9 +141,11 @@ async function uploadVideo(accessToken, { file, title, description, tags }) {
           data += chunk;
         });
         res.on("end", () => {
-          if (res.statusCode === 308) {
-            // Upload URL received, now upload the file
-            const uploadUrl = res.headers.location;
+          // YouTube resumable upload init returns 308 with Location header.
+          // Some responses return 200; accept both and read the upload URL
+          // from the Location header.
+          const uploadUrl = res.headers.location;
+          if ((res.statusCode === 308 || res.statusCode === 200) && uploadUrl) {
             uploadFileData(accessToken, uploadUrl, fileData, fileSize)
               .then(resolve)
               .catch(reject);
