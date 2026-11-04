@@ -8,13 +8,10 @@
  * Usage:
  *   node scripts/youtube-upload.cjs --file <path> --title <string> [--description <string>] [--tags <comma-list>] [--channel <id>]
  *
- * Env vars required:
- *   YT_CLIENT_ID      — OAuth2 client ID
- *   YT_CLIENT_SECRET  — OAuth2 client secret
- *   YT_REFRESH_TOKEN  — OAuth2 refresh token
- *
- * On success: writes data/uploads/<channel>/<date>-<videoId>.json
- * On failure: exits non-zero with the API error
+ * Credentials are read from config/creds/ch-XX.json (materialized by the workflow
+ * from GitHub secrets). On success: writes data/uploads/<channel>/<date>-<videoId>.json.
+ * On failure: exits non-zero with the API error. Never exits 0 on a missing-credential
+ * or failed upload — fail closed.
  */
 
 const { readFileSync, writeFileSync, mkdirSync, existsSync } = require("node:fs");
@@ -205,18 +202,32 @@ async function main() {
     process.exit(1);
   }
 
-  // Only the deprecated V1 workflow called this uploader; the live path is
-  // src/skills/youtube-publish/run.js. Same allow-list as there (audit 2026-10-03).
-  const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
-  if (!PUBLISH_CHANNELS.includes(Number(String(opts.channel).replace(/^ch-?/i, "")))) {
-    console.error(`channel "${opts.channel}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+  // Resolve channel identity and load credentials from config/creds/ch-XX.json
+  const { resolveChannel } = require("./scripts/lib/channel-lookup.cjs");
+  const channelId = opts.channel.replace(/^ch-?/i, "");
+  let ch;
+  try { ch = resolveChannel(channelId); } catch (e) { console.error(`::error::${e.message}`); process.exit(1); }
+  const credPath = join(ROOT, "config", "creds", ch.channel_id + ".json");
+  if (!existsSync(credPath)) {
+    console.error(`::error::No credentials file at ${credPath} — cannot upload`);
+    process.exit(1);
+  }
+  const creds = JSON.parse(readFileSync(credPath, "utf8"));
+  if (!(creds.client_id && creds.client_secret && creds.refresh_token)) {
+    console.error(`::error::Incomplete credentials in ${credPath} — cannot upload`);
     process.exit(1);
   }
 
-  // Check env vars early
-  if (!process.env.YT_CLIENT_ID || !process.env.YT_CLIENT_SECRET || !process.env.YT_REFRESH_TOKEN) {
-    console.warn("WARNING: YouTube credentials not set (YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN). Skipping upload.");
-    process.exit(0);
+  // Set env vars for the OAuth flow
+  process.env.YT_CLIENT_ID = creds.client_id;
+  process.env.YT_CLIENT_SECRET = creds.client_secret;
+  process.env.YT_REFRESH_TOKEN = creds.refresh_token;
+
+  // Only channels with working OAuth may upload (same allow-list as youtube-publish)
+  const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+  if (!PUBLISH_CHANNELS.includes(Number(channelId))) {
+    console.error(`channel "${opts.channel}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+    process.exit(1);
   }
 
   try {
@@ -257,9 +268,12 @@ async function main() {
     );
     console.log(`Upload record: ${uploadPath}`);
 
-    // Output for workflow
-    console.log(`::set-output name=videoId::${videoId}`);
-    console.log(`::set-output name=videoUrl::${videoUrl}`);
+    // Output for workflow (GITHUB_OUTPUT, not deprecated ::set-output)
+    const ghOutput = process.env.GITHUB_OUTPUT;
+    if (ghOutput) {
+      require("fs").appendFileSync(ghOutput, `videoId=${videoId}\n`);
+      require("fs").appendFileSync(ghOutput, `videoUrl=${videoUrl}\n`);
+    }
   } catch (err) {
     console.error(`Upload failed: ${err.message}`);
     process.exit(1);
