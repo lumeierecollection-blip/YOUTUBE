@@ -1,0 +1,80 @@
+{
+  "channel_id": "7",
+  "topic_slug": "arthurian-legend-excalibur-sword-in-the-stone-compared",
+  "format": "shorts",
+  "hook": "Robert de Boron introduced the Sword in the Stone during the 13th century, not Excalibur.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Robert de Boron introduced the Sword in the Stone during the 13th century, not Excalibur.",
+      "visual_cue": "Close-up cinematic shot of an ancient medieval manuscript illuminated under atmospheric lighting.",
+      "sfx_cue": "Low metallic gong resonating quietly",
+      "b_roll": [
+        "12th century Latin manuscript parchment detail"
+      ],
+      "text_overlay": {
+        "text": "1136: EXCALIBUR APPEARS"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Historia Regum Britanniae, published in 1136, places the origin of Excalibur on the isle Avalon. Why did Arthur need two separate swords?",
+      "visual_cue": "Split view showing a map of Avalon alongside a 13th-century French codex depiction.",
+      "sfx_cue": "Page turn sound followed by low dramatic string drone",
+      "b_roll": [
+        "Geoffrey of Monmouth text passage",
+        "Robert de Boron medieval manuscript page"
+      ],
+      "text_overlay": {
+        "text": "TWO DIFFERENT ORIGINS"
+      },
+      "transition_out": "whip_pan"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the sword Arthur pulled from a magic stone doesn't survive his first battle.",
+      "visual_cue": "Slow motion depiction of a steel sword snapping against armor in dark medieval fog.",
+      "sfx_cue": "Sharp steel impact sound followed by blade shattering",
+      "b_roll": [
+        "Medieval combat battle sword collision"
+      ],
+      "text_overlay": {
+        "text": "THE FIRST BLADE SHATTERED"
+      },
+      "transition_out": "flash_cut"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Arthur broke his original pulled weapon during his first battle. Excalibur replaced the shattered blade as the weapon forged in Avalon. Geoffrey of Monmouth recorded Excalibur in 1136, long before the stone tale was written.",
+      "visual_cue": "Illustration of King Arthur receiving Excalibur surrounded by misty water imagery.",
+      "sfx_cue": "Ethereal shimmer building into strong horn hit",
+      "b_roll": [
+        "Avalon lake mist historical artwork",
+        "1136 historical manuscript timeline"
+      ],
+      "text_overlay": {
+        "text": "EXCALIBUR FROM AVALON"
+      },
+      "transition_out": "fade_to_black"
+    },
+    {
+      "id": "close",
+      "voiceover": "The stone sword broke, but Excalibur endures since 1136.",
+      "visual_cue": "Dramatic title card showing the shining blade of Excalibur resting against stone.",
+      "sfx_cue": "Deep resonant bell toll",
+      "b_roll": [
+        "Excalibur legendary sword detail"
+      ],
+      "text_overlay": {
+        "text": "EXCALIBUR ENDURES SINCE 1136"
+      },
+      "transition_out": "none"
+    }
+  ],
+  "sources_used": [
+    "https://arthurian.home.blog/2018/09/30/the-sword-in-the-stone-vs-excalibur",
+    "https://doi.org/10.1353/art.2025.a960017",
+    "https://www.worldhistory.org/Excalibur"
+  ]
+}
