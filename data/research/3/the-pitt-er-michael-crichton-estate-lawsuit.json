@@ -1,0 +1,75 @@
+{
+  "topic_slug": "the-pitt-er-michael-crichton-estate-lawsuit",
+  "strongest_angle": "In November 2026, a California appeals court unanimously ruled in a 33-page opinion that Warner Bros. Television must face a jury trial in L.A. Superior Court because The Pitt shares clear and numerous similarities with Michael Crichton's ER, violating a 1994 frozen rights provision.",
+  "key_facts": [
+    {
+      "fact": "In November 2026, a three-judge appeals panel issued a 33-page unanimous opinion denying an appeal from Warner Bros. Television in the Michael Crichton estate lawsuit.",
+      "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/the-pitt-michael-crichton-er-lawsuit-similarities-1235653040",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sherri Crichton filed a lawsuit arguing that the medical drama series The Pitt violates a frozen rights provision established in a 1994 agreement for ER.",
+      "source_url": "https://www.thewrap.com/creative-content/tv-shows/the-pitt-er-michael-crichton-lawsuit-jury-trial",
+      "source_name": "TheWrap",
+      "confidence": "high"
+    },
+    {
+      "fact": "The case is heading to a jury trial in L.A. Superior Court following the appeals court ruling against Warner Bros. Television and Skydance-owned entities.",
+      "source_url": "https://deadline.com/2026/11/the-pitt-michael-crichton-estate-lawsuit-trial-1237213710",
+      "source_name": "Deadline",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Opinion page count",
+      "value": 33,
+      "unit": "pages",
+      "source_url": "https://www.rollingstone.com/tv-movies/tv-movie-news/the-pitt-michael-crichton-er-lawsuit-similarities-1235653040"
+    },
+    {
+      "label": "Appeals panel judges count",
+      "value": 3,
+      "unit": "judges",
+      "source_url": "https://variety.com/2026/tv/news/the-pitt-noah-wyle-crichton-lawsuit-1236939852"
+    },
+    {
+      "label": "Agreement year",
+      "value": 1994,
+      "unit": "year",
+      "source_url": "https://www.thewrap.com/creative-content/tv-shows/the-pitt-er-michael-crichton-lawsuit-jury-trial"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Michael Crichton",
+      "kind": "person"
+    },
+    {
+      "name": "Sherri Crichton",
+      "kind": "person"
+    },
+    {
+      "name": "Noah Wyle",
+      "kind": "person"
+    },
+    {
+      "name": "The Pitt",
+      "kind": "object"
+    },
+    {
+      "name": "ER",
+      "kind": "object"
+    },
+    {
+      "name": "Warner Bros. Television",
+      "kind": "organization"
+    },
+    {
+      "name": "L.A. Superior Court",
+      "kind": "place"
+    }
+  ]
+}
