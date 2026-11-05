@@ -1,0 +1,83 @@
+{
+  "topic_slug": "aina-smart-ring-ai-agent-hardware",
+  "strongest_angle": "Examining the hardware features, pricing, and funding of the $399 Aina smart ring released on November 5, 2026, which includes a screen, joystick, microphone, and speaker for AI agent control.",
+  "key_facts": [
+    {
+      "fact": "Hardware startup Aina released a smart ring on November 5, 2026, priced at $399 with a screen, joystick, microphone, and speaker.",
+      "source_url": "https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Aina Ring is made from titanium and features a colorful OLED display, a microphone, a speaker, and an 18-hour battery.",
+      "source_url": "https://siliconangle.com/2026/11/05/ainas-smart-ai-ring-promises-a-new-way-to-interact-with-ai-agents-that-anticipate-users-needs",
+      "source_name": "SiliconANGLE",
+      "confidence": "high"
+    },
+    {
+      "fact": "The startup Aina raised $5.5 million in July to fund its hardware development for AI agent control.",
+      "source_url": "https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Price",
+      "value": 399,
+      "unit": "USD",
+      "source_url": "https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents"
+    },
+    {
+      "label": "Battery Life",
+      "value": 18,
+      "unit": "hours",
+      "source_url": "https://siliconangle.com/2026/11/05/ainas-smart-ai-ring-promises-a-new-way-to-interact-with-ai-agents-that-anticipate-users-needs"
+    },
+    {
+      "label": "Funding Amount",
+      "value": 5.5,
+      "unit": "million USD",
+      "source_url": "https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Aina",
+      "kind": "organization"
+    },
+    {
+      "name": "TechCrunch",
+      "kind": "organization"
+    },
+    {
+      "name": "SiliconANGLE",
+      "kind": "organization"
+    },
+    {
+      "name": "Julian Chokkattu",
+      "kind": "person"
+    },
+    {
+      "name": "Ivan Mehta",
+      "kind": "person"
+    },
+    {
+      "name": "Mike Wheatley",
+      "kind": "person"
+    },
+    {
+      "name": "Sandra Hinshelwood",
+      "kind": "person"
+    },
+    {
+      "name": "WIRED",
+      "kind": "organization"
+    },
+    {
+      "name": "The Next Web",
+      "kind": "organization"
+    }
+  ]
+}

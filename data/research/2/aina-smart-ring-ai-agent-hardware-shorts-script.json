@@ -1,0 +1,74 @@
+{
+  "channel_id": "2",
+  "topic_slug": "aina-smart-ring-ai-agent-hardware",
+  "format": "shorts",
+  "hook": "This $399 smart ring packs a screen and a joystick, but does it actually work?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "This $399 smart ring packs a screen and a joystick, but does it actually work?",
+      "visual_cue": "Close-up shot of the Aina smart ring on a finger showing the screen and joystick.",
+      "sfx_cue": "Soft mechanical click of a joystick.",
+      "b_roll": [
+        "Macro product shot of Aina smart ring"
+      ],
+      "text_overlay": {
+        "text": "$399 Smart Ring"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 5, 2026, the startup Aina released this titanium wearable. Aina built a colorful OLED display, joystick, microphone, and speaker into titanium. How long does Aina's ring power an OLED display, joystick, microphone, and speaker?",
+      "visual_cue": "Split screen showing the titanium ring casing and a person interacting with the OLED display.",
+      "sfx_cue": "Digital interface swoosh sound.",
+      "b_roll": [
+        "Aina ring titanium texture close-up",
+        "OLED display glowing on ring"
+      ],
+      "text_overlay": {
+        "text": "Released Nov 5, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the catch is that Aina's ring lasts just 18 hours on a single charge.",
+      "visual_cue": "Battery icon draining on a minimalist background.",
+      "sfx_cue": "Low battery alert sound.",
+      "b_roll": [
+        "Battery icon 18 hour indicator"
+      ],
+      "text_overlay": {
+        "text": "18-Hour Battery"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Aina raised 5.5 million USD in funding to develop this hardware.",
+      "visual_cue": "Graphic showing the funding amount rising on a chart next to the ring.",
+      "sfx_cue": "Upbeat synth note.",
+      "b_roll": [
+        "Funding chart animation",
+        "Person using joystick on ring"
+      ],
+      "text_overlay": {
+        "text": "$5.5 Million Raised"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Aina ring arrives with a premium $399 price tag.",
+      "visual_cue": "Wide shot of the Aina smart ring in its packaging.",
+      "sfx_cue": "Final subtle ring tone.",
+      "b_roll": [
+        "Aina ring in product box"
+      ],
+      "text_overlay": {
+        "text": "$399 Price Tag"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents",
+    "https://siliconangle.com/2026/11/05/ainas-smart-ai-ring-promises-a-new-way-to-interact-with-ai-agents-that-anticipate-users-needs"
+  ]
+}
