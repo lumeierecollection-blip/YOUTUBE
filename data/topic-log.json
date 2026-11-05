@@ -2500,9 +2500,14 @@
           "topic": "Starfish Space Otter Spacecraft Fails First SSPICY Mission",
           "slug": "starfish-space-otter-sspicy-mission-failure",
           "reserved_at": "2026-11-04T16:44:08.043Z"
+        },
+        {
+          "topic": "DESI Survey Measures Milky Way Mass Using New Survey Key Project Data",
+          "slug": "desi-survey-measures-milky-way-mass",
+          "reserved_at": "2026-11-05T16:50:04.456Z"
         }
       ],
-      "last_generated": "2026-11-04T16:44:08.044Z"
+      "last_generated": "2026-11-05T16:50:04.457Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
