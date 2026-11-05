@@ -1,0 +1,62 @@
+{
+  "channel_id": "17",
+  "topic_slug": "einsteins-gravitational-waves-meet-newtons-tides",
+  "format": "shorts",
+  "hook": "Can Einstein's general relativity hide in Earth-Moon system tides, or does Newton's gravity rule alone?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Can Einstein's general relativity hide in Earth-Moon system tides, or does Newton's gravity rule alone?",
+      "visual_cue": "A close-up of a moon-lit ocean tide rising against a rocky coastline.",
+      "sfx_cue": "Low, rhythmic deep-sea thrumming sound.",
+      "b_roll": [
+        "Moonlit ocean tide footage"
+      ],
+      "text_overlay": {
+        "text": "Einstein vs. Newton"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 5, 2026, researchers at Freie Universität Berlin published a new framework. They are investigating if relativistic traces exist within the Earth-Moon system.",
+      "visual_cue": "A diagram showing the gravitational pull between the Earth and the Moon.",
+      "sfx_cue": "Soft, scientific synthesizer pulse.",
+      "b_roll": [
+        "Freie Universität Berlin campus building",
+        "Diagram of Earth-Moon gravitational interaction"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Freie Universität Berlin researchers study the Earth-Moon system because tidal effects allow for precise measurements.",
+      "visual_cue": "Close up of a highly sensitive scientific sensor interface.",
+      "sfx_cue": "Sharp, clear ticking sound.",
+      "b_roll": [
+        "Precision scientific measuring equipment"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Christine Xuan Müller reports this framework links Einstein's gravitational waves to Newton's classical tidal forces.",
+      "visual_cue": "Side-by-side comparison of Newton and Einstein portraits.",
+      "sfx_cue": "Rising orchestral swell.",
+      "b_roll": [
+        "Portrait of Isaac Newton",
+        "Portrait of Albert Einstein"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "This November 5, 2026, framework provides a theoretical method to detect relativistic traces in tides.",
+      "visual_cue": "The Earth slowly rotating in deep space.",
+      "sfx_cue": "Fading ambient space sound.",
+      "b_roll": [
+        "NASA Earth rotation public domain footage"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://www.fu-berlin.de/en/presse/informationen/fup/2026/fup_26_135-mond-gezeiten-gravitation-modell/index.html",
+    "https://phys.org/news/2026-11-einstein-gravitational-newton-tides.html"
+  ]
+}

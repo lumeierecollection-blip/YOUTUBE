@@ -1,0 +1,48 @@
+{
+  "topic_slug": "einsteins-gravitational-waves-meet-newtons-tides",
+  "strongest_angle": "Researchers at Freie Universität Berlin published a new theoretical framework on November 5, 2026, investigating whether high-precision measurements of lunar tides in the Earth-Moon system contain relativistic traces from Einstein's general relativity alongside Newton's classical gravity.",
+  "key_facts": [
+    {
+      "fact": "Freie Universität Berlin published information on November 5, 2026, regarding a new theoretical framework developed to search lunar tides for relativistic traces.",
+      "source_url": "https://www.fu-berlin.de/en/presse/informationen/fup/2026/fup_26_135-mond-gezeiten-gravitation-modell/index.html",
+      "source_name": "Freie Universität Berlin",
+      "confidence": "high"
+    },
+    {
+      "fact": "Phys.org published an article on November 5, 2026, by Christine Xuan Müller regarding the intersection of Einstein's gravitational waves and Newton's tides at Free University of Berlin.",
+      "source_url": "https://phys.org/news/2026-11-einstein-gravitational-newton-tides.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Earth-Moon system is used by researchers at Freie Universität Berlin because tidal effects can already be described and measured very precisely.",
+      "source_url": "https://idw-online.de/en/news880305",
+      "source_name": "idw-online.de",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Freie Universität Berlin",
+      "kind": "organization"
+    },
+    {
+      "name": "Christine Xuan Müller",
+      "kind": "person"
+    },
+    {
+      "name": "Earth-Moon system",
+      "kind": "place"
+    },
+    {
+      "name": "Newton",
+      "kind": "person"
+    },
+    {
+      "name": "Einstein",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}
