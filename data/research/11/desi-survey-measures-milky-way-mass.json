@@ -1,0 +1,119 @@
+{
+  "topic_slug": "desi-survey-measures-milky-way-mass",
+  "strongest_angle": "The Dark Energy Spectroscopic Instrument Milky Way Survey working group utilized Data Release 2 stars to measure the galaxy's total mass with four dynamical modeling methods.",
+  "key_facts": [
+    {
+      "fact": "The Dark Energy Spectroscopic Instrument Milky Way Survey working group used distant halo stars selected from Data Release 2 to measure the mass of the Milky Way.",
+      "source_url": "https://www.desi.lbl.gov/2026/11/02/desi-weighs-in-on-the-milky-ways-mass",
+      "source_name": "DESI Official Website",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers applied four dynamical modeling methods to 10,036 RR Lyrae and blue horizontal branch stars spanning 10 to 95 kiloparsecs from the Galactic center.",
+      "source_url": "https://arxiv.org/abs/2611.05518",
+      "source_name": "arXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "A separate distribution-function study employed 279 blue horizontal-branch stars and 213 RR Lyrae stars at 50 to 80 kiloparsecs from the Galactic center.",
+      "source_url": "https://arcxiv.org/abs/2611.05521",
+      "source_name": "arXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Dark Energy Spectroscopic Instrument survey is conducted on the Mayall 4-meter telescope at Kitt Peak National Observatory.",
+      "source_url": "https://www.desi.lbl.gov",
+      "source_name": "DESI Official Website",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "RR Lyrae and BHB stars sample size",
+      "value": 10036,
+      "unit": "stars",
+      "source_url": "https://arxiv.org/abs/2611.05518"
+    },
+    {
+      "label": "Minimum distance from Galactic center",
+      "value": 10,
+      "unit": "kiloparsecs",
+      "source_url": "https://arxiv.org/abs/2611.05518"
+    },
+    {
+      "label": "Maximum distance from Galactic center",
+      "value": 95,
+      "unit": "kiloparsecs",
+      "source_url": "https://arxiv.org/abs/2611.05518"
+    },
+    {
+      "label": "BHB stars count in distribution-function study",
+      "value": 279,
+      "unit": "stars",
+      "source_url": "https://arcxiv.org/abs/2611.05521"
+    },
+    {
+      "label": "RR Lyrae stars count in distribution-function study",
+      "value": 213,
+      "unit": "stars",
+      "source_url": "https://arcxiv.org/abs/2611.05521"
+    },
+    {
+      "label": "Minimum distance for distribution-function study",
+      "value": 50,
+      "unit": "kiloparsecs",
+      "source_url": "https://arcxiv.org/abs/2611.05521"
+    },
+    {
+      "label": "Maximum distance for distribution-function study",
+      "value": 80,
+      "unit": "kiloparsecs",
+      "source_url": "https://arcxiv.org/abs/2611.05521"
+    },
+    {
+      "label": "Mayall telescope aperture size",
+      "value": 4,
+      "unit": "meters",
+      "source_url": "https://www.desi.lbl.gov"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Dark Energy Spectroscopic Instrument",
+      "kind": "organization"
+    },
+    {
+      "name": "Mayall 4-meter telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Kitt Peak National Observatory",
+      "kind": "place"
+    },
+    {
+      "name": "Milky Way",
+      "kind": "place"
+    },
+    {
+      "name": "Gustavo E. Medina",
+      "kind": "person"
+    },
+    {
+      "name": "Thomas M. Callingham",
+      "kind": "person"
+    },
+    {
+      "name": "Monica Valluri",
+      "kind": "person"
+    },
+    {
+      "name": "Alexander H. Riley",
+      "kind": "person"
+    },
+    {
+      "name": "Ting S. Li",
+      "kind": "person"
+    }
+  ]
+}
