@@ -2672,9 +2672,14 @@
           "topic": "Renfe 40 km/h Safety Directive Following the Urda High-Speed Rail Collision",
           "slug": "renfe-40-kmh-safety-directive-urda-collision",
           "reserved_at": "2026-11-04T16:47:36.746Z"
+        },
+        {
+          "topic": "HS2 SCS Breaks Through Into Old Oak Common Connecting Station Tunnel",
+          "slug": "hs2-scs-old-oak-common-breakthrough",
+          "reserved_at": "2026-11-05T16:51:32.421Z"
         }
       ],
-      "last_generated": "2026-11-04T16:47:36.746Z"
+      "last_generated": "2026-11-05T16:51:32.421Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
