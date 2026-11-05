@@ -190,5 +190,17 @@
     "cancelled": true,
     "source_file": "ai-web-search-compared-november-2026-shorts-shorts-2026-11-03.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "WQmVHCITbzs",
+    "channel_id": "2",
+    "title": "Aina Smart Ring $399 Hardware First Look and AI Voice Test",
+    "uploaded_at": "2026-11-05T17:17:53.608Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-05T18:17:53.607Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "aina-smart-ring-ai-agent-hardware-shorts-shorts-2026-11-05.mp4",
+    "source_queue": "approved"
   }
 ]
