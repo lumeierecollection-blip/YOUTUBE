@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "un-correct-the-map-equal-earth-mercator",
+  "format": "shorts",
+  "hook": "The Mercator map projection is officially being replaced by the more accurate Equal Earth map.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Mercator map projection is officially being replaced by the more accurate Equal Earth map.",
+      "text_overlay": {
+        "text": "Map Distortions"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 4, 2026, the United Nations General Assembly voted to ditch the 1569 Mercator projection. Why does the 1569 Mercator projection misrepresent the relative size of the African continent?",
+      "text_overlay": {
+        "text": "UN Resolution 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the truth is that Africa is actually 14 times larger than Greenland.",
+      "text_overlay": {
+        "text": "Africa vs Greenland"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Spearheaded by Togo and the African Union, the Equal Earth map is the official fix. This resolution addresses the geometric distortions created by Gerardus Mercator centuries ago.",
+      "text_overlay": {
+        "text": "Equal Earth Map"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only 1 nation voted against the resolution to adopt the new Equal Earth map.",
+      "text_overlay": {
+        "text": "1 Dissenting Vote"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.un.org/en/story/2026/09/1168284",
+    "https://www.bbc.com/news/articles/cly5r60v4mro"
+  ]
+}
