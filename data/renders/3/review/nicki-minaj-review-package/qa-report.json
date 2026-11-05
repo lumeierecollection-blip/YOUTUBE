@@ -1,0 +1,70 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-3",
+  "channelName": "Channel 3",
+  "videoSlug": "nicki-minaj-275k-lawsuit-paused-attorney-withdrawal",
+  "generatedAt": "2026-11-05T21:49:24.320Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\nicki-minaj-275k-lawsuit-paused-attorney-withdrawal\\render-plan.json",
+  "sourceAssets": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\nicki-minaj-275k-lawsuit-paused-attorney-withdrawal\\licensed-assets\\manifest.json",
+  "totalAssets": 2,
+  "uniqueAssets": 2,
+  "totalBeats": 10,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“A $275,000 lawsuit over Nicki Minaj's tour hit a sudden wall…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“On October 27, 2026, Justice Leslie A.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Stroth froze proceedings against Pink Friday Productions LLC…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Company 24/7 Productions sued over her 2023 Jingle Ball tour…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Why did the judge pause this $275,000 fight?…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Except the freeze came because her own lawyers requested to …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“In court papers, Bruce W.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“He stated in filed papers that the attorney-client relations…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“A December hearing will resolve the attorney withdrawal.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“The $275,000 dispute remains paused until that exit hearing.…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 10,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

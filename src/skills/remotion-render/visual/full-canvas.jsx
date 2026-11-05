@@ -63,7 +63,8 @@ import { dateParts } from "./date-parts.js";
 import { KineticText, rowsOf } from "./kinetic.jsx";
 import { wordPops } from "./word-sync.js";
 import { countProgress, numberPop, numberRoll, digitRoll, popState, NUMBER_POP_FRAMES } from "./kinetic.js";
-import { GROUND } from "./backgrounds.js";
+import { GROUND, luminance } from "./backgrounds.js";
+import { ensureTextContrast, TEXT_TARGET_CONTRAST } from "./scene-text.js";
 import { SWAY_X, SWAY_Y, sway } from "./sway.js";
 import { parseQuantity, rollQuantity } from "./primitives/quantity.js";
 import { PaperMap, CenteredMap } from "./primitives/map.jsx";
@@ -1480,9 +1481,13 @@ export function majorZoom(L) {
   return { k: 1.05, ox: 540, oy: 960 };
 }
 
-const themeFor = (c, onPhoto) => (onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,255,255,0.7)", mid: "#A7A7AD", track: "rgba(255,255,255,0.25)", dark: true, photo: true }
-  : c.dark ? { ink: "#F2F0EB", soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false, ground: c.ground_color || DARK_BG }
-  : { ink: INK, soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false, ground: c.ground_color || GROUND });
+const themeFor = (c, onPhoto, groundColor) => {
+  const hex = groundColor || c.ground_color || GROUND;
+  const isDark = luminance(hex) <= DARK_LUMINANCE;
+  return onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,255,255,0.7)", mid: "#A7A7AD", track: "rgba(255,255,255,0.25)", dark: true, photo: true }
+    : isDark ? { ink: ensureTextContrast("#F2F0EB", hex, TEXT_TARGET_CONTRAST), soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false, ground: hex }
+    : { ink: ensureTextContrast(INK, hex, TEXT_TARGET_CONTRAST), soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false, ground: hex };
+};
 
 export const COMPONENTS = {
   "TYPE-FULL": TypeFull, "TYPE-SPLIT": TypeFull, "NUMBER-FULL": TypeFull, "PORTRAIT": TypeFull, "DATA-FULL": DataFull, "PROCESS-FULL": ProcessFull,
@@ -1548,12 +1553,12 @@ export function keepBodyInZone(L, cam, zoom, zk, photoBeat) {
 // text pops only once the transition has landed.
 // photoShown: false while a full-bleed photo has not popped in yet (word-level sync): the
 // header is then drawn in ink on the white ground, and turns white as the photo lands.
-function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all", still = false, photoShown = true }) {
+function BeatCanvas({ beat, idx, bodyLocal, headerLocal = bodyLocal, fps, accent, hero, show = "all", still = false, photoShown = true, groundColor }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const dur = beat.duration_frames;
   const L = canvasLayout(c);
   const Comp = COMPONENTS[L.composition] || TypeFull;
-  const theme = themeFor(c, PHOTO_COMPS.includes(L.composition) && !!c.photo && photoShown);
+  const theme = themeFor(c, PHOTO_COMPS.includes(L.composition) && !!c.photo && photoShown, groundColor);
   // The accent word is drawn at 3:1 or better against THIS beat's ground (canvas-layout.js readableAccent): lighter
   // on a dark ground, darker on a light one, the channel's hue kept. (It was a fixed lift on dark beats only.)
   if (c.dark && !c.photo) accent = liftAccent(accent);
@@ -1628,7 +1633,7 @@ const settleFrame = (dur, comp) => Math.max(0, Math.min(dur - 1, ["LIST-BUILD", 
 // faded and the first entrances had not landed yet (CI run 37141128792 ch-26: pop-transitions,
 // frames 6-10 empty on three beats).
 const LIVE_HEAD_START = 12;
-function PopGroups({ beat, idx, fps, accent, state, live = null }) {
+function PopGroups({ beat, idx, fps, accent, state, live = null, groundColor }) {
   const c = normalizeCanvas(beat.scene.canvas, idx);
   const L = canvasLayout(c);
   const settled = settleFrame(beat.duration_frames, L.composition);
@@ -1652,7 +1657,7 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
               outlines its region. (Until today the compositor drew every group SETTLED.) Word
               exits are off (exitAt 9), so nothing leaves before the beat's pop-out. The
               outgoing beat is drawn at its last frame: complete. */}
-          <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
+          <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} groundColor={groundColor} />
         </div>
       </div>
     );
@@ -1713,7 +1718,7 @@ function PullPhrase({ pull, local, accent, light, onPhoto }) {
 }
 
 // ── the whole video ───────────────────────────────────────────────────
-export function CanvasVideo({ plan }) {
+export function CanvasVideo({ plan, groundColor }) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const beats = plan.beats || [];
@@ -1745,7 +1750,7 @@ export function CanvasVideo({ plan }) {
   // keeps rendering its LAST frame (live={prev.duration_frames - 1}), so holding it is a
   // complete, static frame - not a frozen or half-drawn one - and it releases as soon as the
   // incoming group is visible.
-  const inGroups = popGroups(c, cLayout);
+  const inGroups = popGroups(c, cLayout, groundColor);
   const incomingHasInk = inGroups.some((g) => popInState(local - start - g.at).o > 0.001);
   const holdingPrev = !!prev && (local <= POP.OUT || !incomingHasInk);
   // The ground changes WITH the pop, not after it. It used to be the outgoing beat's until the hold
@@ -1777,11 +1782,11 @@ export function CanvasVideo({ plan }) {
         {bg.rule ? <div style={{ position: "absolute", left: L_EDGE, top: BG_RULE.y, width: R_EDGE - L_EDGE, height: BG_RULE.h, backgroundColor: BG_RULE.color }} /> : null}
         {bg.gradient ? <div style={{ position: "absolute", inset: 0, background: BG_GRADIENT }} /> : null}
       </>); })()}
-      {holdingPrev ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} /> : null}
+      {holdingPrev ? <PopGroups key="out" beat={prev} idx={i - 1} fps={fps} accent={accent} state={() => popOutState(local)} live={prev.duration_frames - 1} groundColor={groundColor} /> : null}
       {/* Universal pace layer (see sway() above): every beat, every composition, never still for long. */}
       <div style={{ position: "absolute", inset: 0, transformOrigin: "540px 960px",
         transform: `translate(${sway(local / fps, SWAY_X).toFixed(2)}px, ${sway(local / fps, SWAY_Y).toFixed(2)}px)` }}>
-        <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} />
+        <PopGroups key="in" beat={beat} idx={i} fps={fps} accent={accent} state={(g) => popInState(local - start - g.at)} live={local} groundColor={groundColor} />
       </div>
       {/* The live word caption on every beat was the bottom-phrase device (owner, 2026-10-08):
           only the planner's pull phrase is drawn, where it put it, when it asked for one. */}

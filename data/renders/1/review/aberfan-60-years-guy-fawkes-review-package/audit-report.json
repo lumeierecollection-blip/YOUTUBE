@@ -1,0 +1,144 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-00.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-01.png",
+      "bg": "rgb(14,23,41)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9524925595238095,
+      "captionContrast": 17.89899896570386,
+      "headlineContrast": 17.89899896570386,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-02.png",
+      "bg": "rgb(14,23,41)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.952467757936508,
+      "captionContrast": 17.89899896570386,
+      "headlineContrast": 17.89899896570386,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-03.png",
+      "bg": "rgb(15,23,41)",
+      "flatness": 11.715738062763482,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9546006944444444,
+      "captionContrast": 1.0929063363308664,
+      "headlineContrast": 1.8381743887506825,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.09:1 < 4.5:1 (glyph rgb(36,0,0) on bg rgb(15,23,41))",
+        "headline contrast 1.84:1 < 4.5:1 (glyph rgb(89,61,61) on bg rgb(15,23,41))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-04.png",
+      "bg": "rgb(13,23,42)",
+      "flatness": 11.711264111742404,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9544270833333334,
+      "captionContrast": 1.0948608384748664,
+      "headlineContrast": 1.7539698388790612,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.09:1 < 4.5:1 (glyph rgb(35,0,0) on bg rgb(13,23,42))",
+        "headline contrast 1.75:1 < 4.5:1 (glyph rgb(71,63,66) on bg rgb(13,23,42))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-05.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.093359000461922,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-06.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-07.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.007068452380952381,
+      "captionContrast": 6.0281911894439215,
+      "headlineContrast": 5.90809165041398,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-08.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.007018849206349207,
+      "captionContrast": 6.233957378448853,
+      "headlineContrast": 5.950778777103844,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-09.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.901905984194816,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-10.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.901905984194816,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\aberfan-60-years-guy-fawkes-review-package\\frame-11.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.63483108909455,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

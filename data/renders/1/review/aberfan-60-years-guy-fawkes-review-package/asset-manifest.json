@@ -1,0 +1,118 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-1",
+  "videoSlug": "video",
+  "generatedAt": "2026-11-05T06:43:35.375Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-1\\aberfan-60-years-books-of-remembrance\\sourcing-report.json",
+  "totalRequested": 6,
+  "totalDownloaded": 1,
+  "errors": [
+    {
+      "beat": 1,
+      "title": "File:Early illustrated books; a history of the decoration and illustration of books in the 15th and 16th centuries (IA earlyillustrated00polliala).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 1,
+      "title": "File:Early illustrated books; a history of the decoration and illustration of books in the 15th and 16th centuries (IA earlyillustrated00pollrich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 1,
+      "title": "File:Early illustrated books; a history of the decoration and illustration of books in the 15th and 16th centuries (IA earlyillustrated00poll 1).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Commanders Digest 1966-09-21- Vol 2 Iss 76 (IA sim commanders-digest 1966-09-21 2 76).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Federal Register 1966-01-25- Vol 31 Iss 16 (IA sim federal-register-find 1966-01-25 31 16).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Development of coal resources in central Utah - draft environmental statement, v. 2 (IA developmentofcoa4669unit).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The Lives of the Saints Volume 15.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The lives of the saints (IA livesofsaints15bariiala).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The lives of the saints (IA cu31924026082622).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:The history and antiquities of Haddon Hall - illustrated by thirty-two highly finished drawings - with an account of the hall in its present state (IA historyantiquiti00rayn 0).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:The natural history of British fishes, including scientific and general descriptions of the most interesting species and an extensive selection of accurately finished coloured (IA naturalhistoryb1dono).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Catalogue of manuscripts & rare books exhibited in the great hall of the library, 1916 (IA catalogueofmanus00natirich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Prints, old, new, curious, and rare - including portraits, etchings, etc. for illustration. (IA printsoldnewcuri00henr).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Sixty years of California song (IA sixtyyearsofcali00alveiala).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Sixty years of California song (IA sixtyyearsofcali00alverich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-1",
+      "beat": 6,
+      "query": "The names live on in these illustration",
+      "kind": "illustration",
+      "narration": "The names live on in these pages, preserved for generations to come.",
+      "file": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-1\\aberfan-60-years-books-of-remembrance\\licensed-assets\\the-names-live-on-in-these-illustration-d71956f0.jpg",
+      "filename": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20continent%20we%20live%20on%20(1961)%20(Panthera%20onca).jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_continent_we_live_on_(1961)_(Panthera_onca).jpg",
+      "originalTitle": "File:The continent we live on (1961) (Panthera onca).jpg",
+      "creator": "Sanderson, Ivan Terence, 1911-1973",
+      "license": "No restrictions",
+      "licenseUrl": "https://www.flickr.com/commons/usage/",
+      "attribution": "Sanderson, Ivan Terence, 1911-1973 / Wikimedia Commons, No restrictions",
+      "credit": "https://www.flickr.com/photos/internetarchivebookimages/20498340149/ Source book page: https://archive.org/stream/continentweliveo00sandrich/#page/n290/mode/1up",
+      "description": "Title : The continent we live on Identifier : continentweliveo00sandrich ( find matches ) Year : 1961 ( 1960s ) Authors : Sanderson, Ivan Terence, 1911-1973 Subjects : Physical geography ; Natural history Publisher : New York : Random House Contributing Library : New College of California Digitizing Sponsor : Internet Archive View Book Page : Book Viewer About This Book : Catalog Entry View All Images : All Images From Book Click here to view book online to see this illustration in context in a browseable online version of this book. Text Appearing Before Image: ' Text Appearing After Image: ' Note About Images Please note that these images are extracted from scanned page images that may have been digitally enhanced for readability - coloration and appearance of these illustrations may not perfectly resemble the original work.",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/The_continent_we_live_on_%281961%29_%28Panthera_onca%29.jpg/1920px-The_continent_we_live_on_%281961%29_%28Panthera_onca%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "mime": "image/jpeg",
+      "width": 1920,
+      "height": 2525,
+      "bytes": 1157340,
+      "sha256": "d71956f072c9f2bad74b6101834d1fdeadc86438525923399dbf94b84ee92e92",
+      "relevance": "Beat 6 (“The names live on in these pages, preserved for generations to come.”): 19 August 2015 English Flickr user ID: 126377022@N07 author <span class=\"searchmatch\">name</span> string: Internet Archive Book Images URL: https://www.flickr.com/people/internetarchivebookimages/",
+      "retrievedAt": "2026-11-05T06:43:35.374Z",
+      "cacheKey": "3ed53b7094cb8dab",
+      "rightsStatus": "clear"
+    }
+  ]
+}

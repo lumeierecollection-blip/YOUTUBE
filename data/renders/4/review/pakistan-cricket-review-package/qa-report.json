@@ -1,0 +1,55 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-4",
+  "channelName": "Channel 4",
+  "videoSlug": "pakistan-breaks-51-year-odi-record-against-england",
+  "generatedAt": "2026-11-05T21:49:23.870Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\pakistan-breaks-51-year-odi-record-against-england\\render-plan.json",
+  "sourceAssets": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\pakistan-breaks-51-year-odi-record-against-england\\licensed-assets\\manifest.json",
+  "totalAssets": 0,
+  "uniqueAssets": 0,
+  "totalBeats": 7,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“A 51-year record fell when Pakistan hit 89 final-wicket runs…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“On October 25, 2026, Pakistan chased England's total of 241 …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“How's Pakistan going to chase down England's total of 241 at…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Except Shadab Khan and Haris Rauf survived 80 tense balls to…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Shadab Khan struck a superb unbeaten 113 off 96 balls.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“That epic effort delivered a stunning one-wicket victory ove…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Their 89-run 10th-wicket partnership shattered a record that…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 7,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

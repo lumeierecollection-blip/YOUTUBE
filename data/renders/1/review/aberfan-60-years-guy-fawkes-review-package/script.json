@@ -1,0 +1,79 @@
+{
+  "channel_id": 1,
+  "topic_slug": "aberfan-60-years-books-of-remembrance",
+  "format": "shorts",
+  "hook": "New books preserve 144 names after a village lost its future in seconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "New books preserve 144 names after a village lost its future in seconds.",
+      "visual_cue": "Close up shot of heavy leather bound archive pages resting on a dark wooden table in an archive room.",
+      "sfx_cue": "Subtle low ambient tone with paper rustling",
+      "b_roll": [
+        "National Library of Wales archive room overview shot"
+      ],
+      "animation_cue": "fade in from black",
+      "transition_out": "quick cut to archival still",
+      "text_overlay": {
+        "text": "144 NAMES PRESERVED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:15",
+      "voiceover": "On 21 October 1966, a coal waste tip collapsed onto Aberfan. 144 people lost their lives, including 116 children.",
+      "visual_cue": "Archival photograph of the village hillside showing the slide scar above houses.",
+      "sfx_cue": "Muffled wind sound effect",
+      "b_roll": [
+        "Aberfan historical disaster archival footage"
+      ],
+      "animation_cue": "subtle zoom in on photograph",
+      "transition_out": "smooth cross dissolve",
+      "text_overlay": {
+        "text": "21 October 1966"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:15-00:25",
+      "voiceover": "The National Library of Wales finished new copies of the Books of Remembrance ahead of July 2026. At 68 years old, Margaret Davies guards the village's memory.",
+      "visual_cue": "Modern bookbinder carefully pressing fresh gold foil lettering onto a dark memorial cover.",
+      "sfx_cue": "Foley of careful bookbinding tool work",
+      "b_roll": [
+        "National Library of Wales bindery workshop"
+      ],
+      "animation_cue": "slow push in on binder working",
+      "transition_out": "fade out",
+      "text_overlay": {
+        "text": "NEW BOOKS OF REMEMBRANCE"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:25-00:31",
+      "voiceover": "The names live on in these pages, preserved for generations to come.",
+      "visual_cue": "Close up of the finished Book of Remembrance with gold lettering on dark leather.",
+      "sfx_cue": "Soft page turn sound",
+      "b_roll": [
+        "Close up of finished memorial book"
+      ],
+      "animation_cue": "slow pan across gold lettering",
+      "transition_out": "fade to black",
+      "text_overlay": {
+        "text": "NAMES PRESERVED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.library.wales/",
+    "https://www.bbc.co.uk/news/uk-wales-36997227"
+  ],
+  "named_entities": [
+    { "name": "National Library of Wales", "kind": "organization" },
+    { "name": "Aberfan", "kind": "place" },
+    { "name": "Margaret Davies", "kind": "person" },
+    { "name": "Aberfan Memorial Charity", "kind": "organization" },
+    { "name": "Books of Remembrance", "kind": "object" }
+  ]
+}

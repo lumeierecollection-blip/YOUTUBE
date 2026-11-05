@@ -115,8 +115,8 @@ function editorialColors(colors, rawPalette, bgMode) {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
     surface: isWhite ? sorted[0] : sorted[sorted.length - 1],
-    text: isWhite ? sorted[0] : sorted[sorted.length - 1],
-    textDark: sorted[0],
+    text: ensureTextContrast(isWhite ? sorted[0] : sorted[sorted.length - 1], bgColor, TEXT_TARGET_CONTRAST),
+    textDark: ensureTextContrast(sorted[0], bgColor, TEXT_TARGET_CONTRAST),
     accent: colors.accent,
     accentText: ensureTextContrast(colors.accent, bgColor, ACCENT_TEXT_TARGET_CONTRAST),
     subdued: safeSubdued,
@@ -1370,7 +1370,7 @@ export function DirectedScene({ plan, ttsAudioPath }) {
           plan still marked paper is refused rather than drawn some other way. */}
       {plan.paper ? (() => { throw new Error("paper-style plans are no longer rendered (the paper stage was removed) — re-resolve the plan to canvas content"); })() : null}
       {/* The CLONE family (clone/CloneVideo.jsx): the reference videos' laws, staged over the same resolved beats. A plan without `clone` renders exactly as before. */}
-      {plan.clone ? <CloneVideo plan={plan} /> : plan.canvas ? <CanvasVideo plan={plan} /> : null}
+      {plan.clone ? <CloneVideo plan={plan} /> : plan.canvas ? <CanvasVideo plan={plan} groundColor={ed.bg} /> : null}
       {/* Previous beat echo — fading out during transition */}
       {!plan.canvas && showPrevEcho && (
         <div style={{ position: "absolute", left: 0, top: 0, width: CANVAS_W, height: CANVAS_H, opacity: prevEchoOpacity }}>

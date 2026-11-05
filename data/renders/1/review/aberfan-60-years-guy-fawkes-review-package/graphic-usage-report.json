@@ -1,0 +1,73 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-1",
+  "videoSlug": "ancient-egypts-first-female-king-royal-seals",
+  "generatedAt": "2026-11-05T21:16:47.151Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-1\\ancient-egypts-first-female-king-royal-seals\\render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 6,
+  "uniqueTreatments": 4,
+  "treatments": [
+    {
+      "visualIntent": "evidence",
+      "treatmentId": "evidence-board",
+      "communicates": "Facts pinned together as an investigation",
+      "example": "documents and photos connected by strings",
+      "reason": "Beat communicates evidence; Facts pinned together as an investigation",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "person",
+      "treatmentId": "annotated-photograph",
+      "communicates": "What matters in a real photo, labelled",
+      "example": "portrait with name and role callout",
+      "reason": "Beat communicates person; What matters in a real photo, labelled",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "sequence",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates sequence; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "evidence-board": 1,
+    "geographic-visualisation": 3,
+    "annotated-photograph": 1,
+    "chronological-timeline": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

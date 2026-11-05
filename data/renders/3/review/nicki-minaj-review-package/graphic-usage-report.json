@@ -1,0 +1,108 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-3",
+  "videoSlug": "nicki-minaj-275k-lawsuit-paused-attorney-withdrawal",
+  "generatedAt": "2026-11-05T21:49:24.350Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\nicki-minaj-275k-lawsuit-paused-attorney-withdrawal\\render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 10,
+  "uniqueTreatments": 3,
+  "treatments": [
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "cause-and-effect",
+      "treatmentId": "cause-effect-diagram",
+      "communicates": "One thing producing another",
+      "example": "flow from cause to consequence",
+      "reason": "Beat communicates cause-and-effect; One thing producing another",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "document",
+      "treatmentId": "archival-document",
+      "communicates": "A primary source shown and explained",
+      "example": "indictment or letter with a callout",
+      "reason": "Beat communicates document; A primary source shown and explained",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "archival-document": 7,
+    "chronological-timeline": 2,
+    "cause-effect-diagram": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

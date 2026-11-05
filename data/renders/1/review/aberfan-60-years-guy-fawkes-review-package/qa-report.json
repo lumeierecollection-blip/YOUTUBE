@@ -1,0 +1,50 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-1",
+  "channelName": "Channel 1",
+  "videoSlug": "ancient-egypts-first-female-king-royal-seals",
+  "generatedAt": "2026-11-05T21:15:30.110Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-1\\ancient-egypts-first-female-king-royal-seals\\render-plan.json",
+  "sourceAssets": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-1\\ancient-egypts-first-female-king-royal-seals\\licensed-assets\\manifest.json",
+  "totalAssets": 2,
+  "uniqueAssets": 2,
+  "totalBeats": 6,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“New evidence from royal seals reveals a forgotten female rul…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“William Matthew Flinders Petrie excavated tomb Y at Abydos a…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Was she actually the daughter of Djer, the third king of the…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Scientific American reported on those newly analyzed royal s…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Excavating tomb Y at Abydos, William Matthew Flinders Petrie…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Meretneith ruled ancient Egypt more than 5000 years ago.…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 6,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-4",
+  "videoSlug": "pakistan-breaks-51-year-odi-record-against-england",
+  "generatedAt": "2026-11-05T21:49:24.340Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\pakistan-breaks-51-year-odi-record-against-england\\render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 7,
+  "uniqueTreatments": 3,
+  "treatments": [
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    }
+  ],
+  "distribution": {
+    "chronological-timeline": 3,
+    "geographic-visualisation": 1,
+    "side-by-side": 3
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

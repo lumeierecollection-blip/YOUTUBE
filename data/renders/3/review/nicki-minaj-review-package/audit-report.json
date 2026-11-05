@@ -1,0 +1,141 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-00.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-01.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.1862957022168486,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.954327876984127,
+      "captionContrast": 19.268566812966547,
+      "headlineContrast": 18.517370388327024,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-02.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.04260136186860924,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.001388888888888889,
+      "captionContrast": 1.1810770839493048,
+      "headlineContrast": 2.0166049487216617,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.18:1 < 4.5:1 (glyph rgb(24,24,22) on bg rgb(0,0,0))",
+        "headline contrast 2.02:1 < 4.5:1 (glyph rgb(64,64,60) on bg rgb(0,0,0))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-03.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.434796511832256,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-04.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.434796511832256,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-05.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.473400093459726,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-06.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.473400093459726,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-07.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.523289370771353,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-08.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.360164293924139,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-09.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.434796511832256,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-10.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.569957555691459,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\nicki-minaj-review-package\\frame-11.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.569957555691459,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

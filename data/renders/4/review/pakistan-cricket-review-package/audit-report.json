@@ -1,0 +1,162 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-00.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-01.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0032118055555555554,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.498569293019325,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.50:1 < 4.5:1 (glyph rgb(195,157,118) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-02.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-03.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003224206349206349,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.4826435748109605,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.48:1 < 4.5:1 (glyph rgb(195,158,115) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-04.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0012524801587301588,
+      "captionContrast": 1.3845378872067404,
+      "headlineContrast": 1.3630654470170194,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.38:1 < 4.5:1 (glyph rgb(219,219,219) on bg rgb(255,255,255))",
+        "headline contrast 1.36:1 < 4.5:1 (glyph rgb(225,221,203) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-05.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0031498015873015874,
+      "captionContrast": 3.362683071052112,
+      "headlineContrast": 2.5100477062119673,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.36:1 < 4.5:1 (glyph rgb(140,140,140) on bg rgb(255,255,255))",
+        "headline contrast 2.51:1 < 4.5:1 (glyph rgb(193,157,121) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-06.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-07.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0032118055555555554,
+      "captionContrast": 3.1925153965904713,
+      "headlineContrast": 2.546024578871377,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.19:1 < 4.5:1 (glyph rgb(144,144,144) on bg rgb(255,255,255))",
+        "headline contrast 2.55:1 < 4.5:1 (glyph rgb(189,157,118) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-08.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.002455357142857143,
+      "captionContrast": 2.0278734249392305,
+      "headlineContrast": 1.8484387624020089,
+      "pass": false,
+      "violations": [
+        "caption contrast 2.03:1 < 4.5:1 (glyph rgb(182,182,182) on bg rgb(255,255,255))",
+        "headline contrast 1.85:1 < 4.5:1 (glyph rgb(212,187,152) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-09.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003125,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.4573730474793374,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.46:1 < 4.5:1 (glyph rgb(192,160,121) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-10.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003125,
+      "captionContrast": 3.362683071052112,
+      "headlineContrast": 2.5429019468542946,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.36:1 < 4.5:1 (glyph rgb(140,140,140) on bg rgb(255,255,255))",
+        "headline contrast 2.54:1 < 4.5:1 (glyph rgb(192,156,118) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\pakistan-cricket-review-package\\frame-11.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}
