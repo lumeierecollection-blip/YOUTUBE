@@ -2,54 +2,24 @@
   "schema": "licensed-assets-manifest/v1",
   "channel": "ch-3",
   "videoSlug": "trump-wsj-lawsuit-dismissed",
-  "generatedAt": "2026-11-04T17:26:32.306Z",
+  "generatedAt": "2026-11-05T07:14:49.216Z",
   "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\sourcing-report.json",
-  "totalRequested": 9,
+  "totalRequested": 6,
   "totalDownloaded": 1,
   "errors": [
     {
       "beat": 2,
-      "title": "File:Donald Trump official portrait.jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 2,
-      "title": "File:Kim Jong-un and Donald Trump impersonators.jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 2,
-      "title": "File:January 2025 Official Presidential Portrait of Donald J. Trump.jpg",
+      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
       "why": "not relevant to intended subject (rejected)"
     },
     {
       "beat": 3,
-      "title": "File:James Murdoch.jpg",
+      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
       "why": "not relevant to intended subject (rejected)"
     },
     {
       "beat": 3,
-      "title": "File:Drawing (BM 1854,0628.77).jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 3,
-      "title": "File:The Cochran-Inglis family of Halifax (microform) (IA cihm 09068).pdf",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 4,
-      "title": "File:Losses to wheat, what to look for and where to find it (IA lossestowheatwha00west).pdf",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 4,
-      "title": "File:The city of Rochester and vicinity - where to go, how to go, and what to see in and about the flower city (IA cityofrochesterv00watk).pdf",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 4,
-      "title": "File:The city of Rochester and vicinity - where to go, how to go, and what to see in and about the flower city (IA cityofrochesterv00inwatk).pdf",
+      "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
       "why": "not relevant to intended subject (rejected)"
     },
     {
@@ -58,47 +28,17 @@
       "why": "not relevant to intended subject (rejected)"
     },
     {
-      "beat": 6,
-      "title": "File:Donald Trump official portrait.jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 6,
-      "title": "File:Kim Jong-un and Donald Trump impersonators.jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 6,
-      "title": "File:January 2025 Official Presidential Portrait of Donald J. Trump.jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 7,
-      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 7,
+      "beat": 5,
       "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
       "why": "not relevant to intended subject (rejected)"
     },
     {
-      "beat": 8,
+      "beat": 6,
       "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
       "why": "not relevant to intended subject (rejected)"
     },
     {
-      "beat": 8,
-      "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 9,
-      "title": "File:Das Bataillon 3 beim Defilee der Division 1 - CH-BAR - 3240013.tif",
-      "why": "not relevant to intended subject (rejected)"
-    },
-    {
-      "beat": 9,
+      "beat": 6,
       "title": "File:CH-NB Photoglob-Wehrli EAD-WEHR-6792-B.jpg",
       "why": "not relevant to intended subject (rejected)"
     }
@@ -106,10 +46,10 @@
   "assets": [
     {
       "id": "asset-1",
-      "beat": 5,
+      "beat": 2,
       "query": "historical document ch-3 archive",
       "kind": "document",
-      "narration": "Except the court found actual malice was never plausibly alleged.",
+      "narration": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.",
       "file": "historical-document-ch-3-archive-6cfc3c6d.jpg",
       "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\licensed-assets\\historical-document-ch-3-archive-6cfc3c6d.jpg",
       "filename": "historical-document-ch-3-archive-6cfc3c6d.jpg",
@@ -129,8 +69,8 @@
       "height": 1551,
       "bytes": 725931,
       "sha256": "6cfc3c6d0dcb4c1350bf4141ee9a92b82a496fc61f71d870eed37a94a23800c0",
-      "relevance": "Beat 5 (“Except the court found actual malice was never plausibly alleged.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
-      "retrievedAt": "2026-11-04T17:26:29.665Z",
+      "relevance": "Beat 2 (“On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+      "retrievedAt": "2026-11-05T07:14:47.921Z",
       "cacheKey": "f5420ddf7634d62c",
       "rightsStatus": "clear"
     }

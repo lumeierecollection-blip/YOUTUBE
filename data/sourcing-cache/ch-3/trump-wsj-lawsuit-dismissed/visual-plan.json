@@ -3,10 +3,10 @@
   "channel": "ch-3",
   "channelName": "Channel 3",
   "videoSlug": "trump-wsj-lawsuit-dismissed",
-  "generatedAt": "2026-11-04T17:26:32.411Z",
+  "generatedAt": "2026-11-05T07:15:16.891Z",
   "sourcingReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\sourcing-report.json",
   "assetsManifest": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-3\\trump-wsj-lawsuit-dismissed\\licensed-assets\\manifest.json",
-  "totalBeats": 9,
+  "totalBeats": 6,
   "uniqueAssets": 1,
   "beats": [
     {
@@ -29,57 +29,6 @@
     {
       "beat": 2,
       "narration": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.",
-      "mainSubject": "Donald Trump, Darrin Gayles, Miami",
-      "visualIntent": "document",
-      "graphicType": "Archival document presentation",
-      "selectedAsset": null,
-      "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 2: \"On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.\"",
-      "plannedDurationSec": 5,
-      "transition": "FADE",
-      "cameraMovement": "zoom-in on detail",
-      "animation": "slow fade-in",
-      "isIllustrative": true,
-      "reuseJustified": false,
-      "reuseReason": null
-    },
-    {
-      "beat": 3,
-      "narration": "The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.",
-      "mainSubject": "Rupert Murdoch, Jeffrey Epstein",
-      "visualIntent": "document",
-      "graphicType": "Archival document presentation",
-      "selectedAsset": null,
-      "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 3: \"The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein.\"",
-      "plannedDurationSec": 5,
-      "transition": "FADE",
-      "cameraMovement": "zoom-in on detail",
-      "animation": "slow fade-in",
-      "isIllustrative": true,
-      "reuseJustified": false,
-      "reuseReason": null
-    },
-    {
-      "beat": 4,
-      "narration": "Where did the $10 billion claim fail?",
-      "mainSubject": "narration subject",
-      "visualIntent": "statistic",
-      "graphicType": "Charts and data visualisations",
-      "selectedAsset": null,
-      "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 4: \"Where did the $10 billion claim fail?\"",
-      "plannedDurationSec": 5,
-      "transition": "DISSOLVE",
-      "cameraMovement": "hold",
-      "animation": "animated counter / bar growth",
-      "isIllustrative": true,
-      "reuseJustified": false,
-      "reuseReason": null
-    },
-    {
-      "beat": 5,
-      "narration": "Except the court found actual malice was never plausibly alleged.",
       "mainSubject": "File:Historical papers and addresses of the Lancaster County Historical Society (1896) (14793065683).jpg",
       "visualIntent": "document",
       "graphicType": "Archival document presentation",
@@ -98,9 +47,9 @@
         "sha256": "6cfc3c6d0dcb4c1350bf4141ee9a92b82a496fc61f71d870eed37a94a23800c0",
         "width": 1920,
         "height": 1551,
-        "retrievedAt": "2026-11-04T17:26:29.665Z",
+        "retrievedAt": "2026-11-05T07:14:47.921Z",
         "cacheKey": "f5420ddf7634d62c",
-        "relevance": "Beat 5 (“Except the court found actual malice was never plausibly alleged.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www"
+        "relevance": "Beat 2 (“On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www"
       },
       "sourceLicensing": {
         "source": "Wikimedia Commons",
@@ -109,7 +58,7 @@
         "attribution": "Internet Archive Book Images / Wikimedia Commons, No restrictions",
         "rightsStatus": "clear"
       },
-      "relevanceExplanation": "Beat 5 (“Except the court found actual malice was never plausibly alleged.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
+      "relevanceExplanation": "Beat 2 (“On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.”): <span class=\"searchmatch\">3</span> October 2015 English object of statement has role: photographer author name string: Internet <span class=\"searchmatch\">Archive</span> Book Images Flickr user ID: 126377022@N07 URL: https://www",
       "plannedDurationSec": 5,
       "transition": "FADE",
       "cameraMovement": "zoom-in on detail",
@@ -119,14 +68,14 @@
       "reuseReason": null
     },
     {
-      "beat": 6,
-      "narration": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones.",
-      "mainSubject": "Donald Trump, Dow Jones",
+      "beat": 3,
+      "narration": "The court found actual malice was never plausibly alleged.",
+      "mainSubject": "narration subject",
       "visualIntent": "document",
       "graphicType": "Archival document presentation",
       "selectedAsset": null,
       "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 6: \"Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones.\"",
+      "relevanceExplanation": "Illustrative graphic for beat 3: \"The court found actual malice was never plausibly alleged.\"",
       "plannedDurationSec": 5,
       "transition": "FADE",
       "cameraMovement": "zoom-in on detail",
@@ -136,14 +85,14 @@
       "reuseReason": null
     },
     {
-      "beat": 7,
-      "narration": "Because of that failure, the judge dismissed the lawsuit with prejudice.",
+      "beat": 4,
+      "narration": "Judge Gayles ruled Trump failed to prove it.",
       "mainSubject": "narration subject",
       "visualIntent": "document",
       "graphicType": "Archival document presentation",
       "selectedAsset": null,
       "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 7: \"Because of that failure, the judge dismissed the lawsuit with prejudice.\"",
+      "relevanceExplanation": "Illustrative graphic for beat 4: \"Judge Gayles ruled Trump failed to prove it.\"",
       "plannedDurationSec": 5,
       "transition": "DISSOLVE",
       "cameraMovement": "zoom-in on detail",
@@ -153,14 +102,14 @@
       "reuseReason": null
     },
     {
-      "beat": 8,
-      "narration": "That ruling officially ended the $10 billion legal battle.",
+      "beat": 5,
+      "narration": "The $10 billion lawsuit is dismissed.",
       "mainSubject": "narration subject",
       "visualIntent": "document",
       "graphicType": "Archival document presentation",
       "selectedAsset": null,
       "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 8: \"That ruling officially ended the $10 billion legal battle.\"",
+      "relevanceExplanation": "Illustrative graphic for beat 5: \"The $10 billion lawsuit is dismissed.\"",
       "plannedDurationSec": 5,
       "transition": "FADE",
       "cameraMovement": "zoom-in on detail",
@@ -170,14 +119,14 @@
       "reuseReason": null
     },
     {
-      "beat": 9,
-      "narration": "The $10 billion lawsuit remains dismissed with prejudice.",
+      "beat": 6,
+      "narration": "The $10 billion lawsuit is dismissed.",
       "mainSubject": "narration subject",
       "visualIntent": "document",
       "graphicType": "Archival document presentation",
       "selectedAsset": null,
       "sourceLicensing": null,
-      "relevanceExplanation": "Illustrative graphic for beat 9: \"The $10 billion lawsuit remains dismissed with prejudice.\"",
+      "relevanceExplanation": "Illustrative graphic for beat 6: \"The $10 billion lawsuit is dismissed.\"",
       "plannedDurationSec": 5,
       "transition": "FADE",
       "cameraMovement": "zoom-in on detail",
@@ -188,8 +137,7 @@
     }
   ],
   "graphicTypesUsed": [
-    "Archival document presentation",
-    "Charts and data visualisations"
+    "Archival document presentation"
   ],
   "notes": "Plan is unique to this production. No asset is reused across videos unless justified and recorded."
 }

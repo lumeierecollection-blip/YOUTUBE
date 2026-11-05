@@ -1,0 +1,198 @@
+{
+  "schema": "video-sourcing-report/v1",
+  "channel": "ch-1",
+  "channelName": "Channel 1",
+  "videoSlug": "aberfan-60-years-books-of-remembrance",
+  "script": "aberfan-60-years-books-of-remembrance-shorts-script.json",
+  "research": null,
+  "generatedAt": "2026-11-05T06:43:18.407Z",
+  "entities": {
+    "people": [],
+    "places": [],
+    "organizations": [],
+    "products": [],
+    "events": [],
+    "objects": [],
+    "dates": [],
+    "statistics": [],
+    "concepts": []
+  },
+  "beatCount": 6,
+  "beats": [
+    {
+      "beat": 1,
+      "query": "New books preserve 144 names after illustration",
+      "kind": "illustration",
+      "narration": "New books preserve 144 names after a village lost its future in seconds.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Early illustrated books; a history of the decoration and illustration of books in the 15th and 16th centuries (IA earlyillustrated00polliala).pdf",
+          "snippet": "Early illustrated <span class=\"searchmatch\">books</span>; a history of the decoration and <span class=\"searchmatch\">illustration</span> of <span class=\"searchmatch\">books</span> in the 15th and 16th centuries   (  ) Author Pollard, Alfred W. (Alfred",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AEarly%20illustrated%20books%3B%20a%20history%20of%20the%20decoration%20and%20illustration%20of%20books%20in%20the%2015th%20and%2016th%20centuries%20(IA%20earlyillustrated00polliala).pdf"
+        },
+        {
+          "title": "File:Early illustrated books; a history of the decoration and illustration of books in the 15th and 16th centuries (IA earlyillustrated00pollrich).pdf",
+          "snippet": "Early illustrated <span class=\"searchmatch\">books</span>; a history of the decoration and <span class=\"searchmatch\">illustration</span> of <span class=\"searchmatch\">books</span> in the 15th and 16th centuries   (  ) Author Pollard, Alfred W. (Alfred",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AEarly%20illustrated%20books%3B%20a%20history%20of%20the%20decoration%20and%20illustration%20of%20books%20in%20the%2015th%20and%2016th%20centuries%20(IA%20earlyillustrated00pollrich).pdf"
+        },
+        {
+          "title": "File:Early illustrated books; a history of the decoration and illustration of books in the 15th and 16th centuries (IA earlyillustrated00poll 1).pdf",
+          "snippet": "Early illustrated <span class=\"searchmatch\">books</span>; a history of the decoration and <span class=\"searchmatch\">illustration</span> of <span class=\"searchmatch\">books</span> in the 15th and 16th centuries   (  ) Author Pollard, Alfred W. (Alfred",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AEarly%20illustrated%20books%3B%20a%20history%20of%20the%20decoration%20and%20illustration%20of%20books%20in%20the%2015th%20and%2016th%20centuries%20(IA%20earlyillustrated00poll%201).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-05T06:43:14.593Z"
+    },
+    {
+      "beat": 2,
+      "query": "On 21 October 1966, a coal illustration",
+      "kind": "illustration",
+      "narration": "On 21 October 1966, a coal waste tip collapsed onto Aberfan.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Commanders Digest 1966-09-21- Vol 2 Iss 76 (IA sim commanders-digest 1966-09-21 2 76).pdf",
+          "snippet": "Commanders Digest <span class=\"searchmatch\">1966</span>-09-<span class=\"searchmatch\">21</span>: Vol 2 Iss 76   (  ) Title Commanders Digest <span class=\"searchmatch\">1966</span>-09-<span class=\"searchmatch\">21</span>: Vol 2 Iss 76 Volume 2 Publisher Superintendent of Government Documents",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACommanders%20Digest%201966-09-21-%20Vol%202%20Iss%2076%20(IA%20sim%20commanders-digest%201966-09-21%202%2076).pdf"
+        },
+        {
+          "title": "File:Federal Register 1966-01-25- Vol 31 Iss 16 (IA sim federal-register-find 1966-01-25 31 16).pdf",
+          "snippet": "Federal Register <span class=\"searchmatch\">1966</span>-01-25: Vol 31 Iss 16   (  ) Title Federal Register <span class=\"searchmatch\">1966</span>-01-25: Vol 31 Iss 16 Volume 31 Publisher Federal Information &amp; News Dispatch",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AFederal%20Register%201966-01-25-%20Vol%2031%20Iss%2016%20(IA%20sim%20federal-register-find%201966-01-25%2031%2016).pdf"
+        },
+        {
+          "title": "File:Development of coal resources in central Utah - draft environmental statement, v. 2 (IA developmentofcoa4669unit).pdf",
+          "snippet": "Development of <span class=\"searchmatch\">coal</span> resources in central Utah : draft environmental statement, v. 2   (  ) Author United States. Dept. of the Interior Geological Survey",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ADevelopment%20of%20coal%20resources%20in%20central%20Utah%20-%20draft%20environmental%20statement%2C%20v.%202%20(IA%20developmentofcoa4669unit).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-05T06:43:15.312Z"
+    },
+    {
+      "beat": 3,
+      "query": "144 people lost their lives, including illustration",
+      "kind": "illustration",
+      "narration": "144 people lost their lives, including 116 children.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:The Lives of the Saints Volume 15.pdf",
+          "snippet": "DescriptionThe <span class=\"searchmatch\">Lives</span> of the Saints Volume 15.pdf English: published 1897 Date 12 September 2013, 17:20:48 Source archive.org Author Sabine Baring-Gould (1834–1924)    ",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20Lives%20of%20the%20Saints%20Volume%2015.pdf"
+        },
+        {
+          "title": "File:The lives of the saints (IA livesofsaints15bariiala).pdf",
+          "snippet": "The <span class=\"searchmatch\">lives</span> of the saints   (  ) Author Baring-Gould, S. (Sabine), 1834-1924 Title The <span class=\"searchmatch\">lives</span> of the saints Volume 15 Publisher Edinburgh : J. Grant Description",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20lives%20of%20the%20saints%20(IA%20livesofsaints15bariiala).pdf"
+        },
+        {
+          "title": "File:The lives of the saints (IA cu31924026082622).pdf",
+          "snippet": "The <span class=\"searchmatch\">lives</span> of the saints   (  ) Author Baring-Gould, S. (Sabine), 1834-1924 Title The <span class=\"searchmatch\">lives</span> of the saints Publisher London, Nimmo ; New York, Longmans,",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20lives%20of%20the%20saints%20(IA%20cu31924026082622).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-05T06:43:16.056Z"
+    },
+    {
+      "beat": 4,
+      "query": "The National Library of Wales finished illustration",
+      "kind": "illustration",
+      "narration": "The National Library of Wales finished new copies of the Books of Remembrance ahead of July 2026.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:The history and antiquities of Haddon Hall - illustrated by thirty-two highly finished drawings - with an account of the hall in its present state (IA historyantiquiti00rayn 0).pdf",
+          "snippet": "<span class=\"searchmatch\">The</span> history and antiquities <span class=\"searchmatch\">of</span> Haddon Hall : illustrated by thirty-two highly <span class=\"searchmatch\">finished</span> drawings : with an account <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> hall in its present state   (",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20history%20and%20antiquities%20of%20Haddon%20Hall%20-%20illustrated%20by%20thirty-two%20highly%20finished%20drawings%20-%20with%20an%20account%20of%20the%20hall%20in%20its%20present%20state%20(IA%20historyantiquiti00rayn%200).pdf"
+        },
+        {
+          "title": "File:The natural history of British fishes, including scientific and general descriptions of the most interesting species and an extensive selection of accurately finished coloured (IA naturalhistoryb1dono).pdf",
+          "snippet": "accurately <span class=\"searchmatch\">finished</span> coloured plates Volume 1 Publisher London : printed for <span class=\"searchmatch\">the</span> author and F. C. and J. Rivington Description statement <span class=\"searchmatch\">of</span> responsibility:",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20natural%20history%20of%20British%20fishes%2C%20including%20scientific%20and%20general%20descriptions%20of%20the%20most%20interesting%20species%20and%20an%20extensive%20selection%20of%20accurately%20finished%20coloured%20(IA%20naturalhistoryb1dono).pdf"
+        },
+        {
+          "title": "File:Catalogue of manuscripts & rare books exhibited in the great hall of the library, 1916 (IA catalogueofmanus00natirich).pdf",
+          "snippet": "Catalogue <span class=\"searchmatch\">of</span> manuscripts &amp; rare books exhibited in <span class=\"searchmatch\">the</span> great hall <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> <span class=\"searchmatch\">library</span>, 1916   (  ) Author <span class=\"searchmatch\">National</span> <span class=\"searchmatch\">Library</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Wales</span> Title Catalogue <span class=\"searchmatch\">of</span> manuscripts",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACatalogue%20of%20manuscripts%20%26%20rare%20books%20exhibited%20in%20the%20great%20hall%20of%20the%20library%2C%201916%20(IA%20catalogueofmanus00natirich).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-05T06:43:16.824Z"
+    },
+    {
+      "beat": 5,
+      "query": "At 68 years old, Margaret Davies illustration",
+      "kind": "illustration",
+      "narration": "At 68 years old, Margaret Davies guards the village's memory.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:Prints, old, new, curious, and rare - including portraits, etchings, etc. for illustration. (IA printsoldnewcuri00henr).pdf",
+          "snippet": "Prints, <span class=\"searchmatch\">old</span>, new, curious, and rare : including portraits, etchings, etc. for <span class=\"searchmatch\">illustration</span>.   (  ) Author Henry B. Bult (Firm) Title Prints, <span class=\"searchmatch\">old</span>, new, curious",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APrints%2C%20old%2C%20new%2C%20curious%2C%20and%20rare%20-%20including%20portraits%2C%20etchings%2C%20etc.%20for%20illustration.%20(IA%20printsoldnewcuri00henr).pdf"
+        },
+        {
+          "title": "File:Sixty years of California song (IA sixtyyearsofcali00alveiala).pdf",
+          "snippet": "Sixty <span class=\"searchmatch\">years</span> of California song   (  ) Author Alverson, Rosana <span class=\"searchmatch\">Margaret</span> Kroh Blake, 1836- Title Sixty <span class=\"searchmatch\">years</span> of California song Publisher [Oakland, Cal.] :",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASixty%20years%20of%20California%20song%20(IA%20sixtyyearsofcali00alveiala).pdf"
+        },
+        {
+          "title": "File:Sixty years of California song (IA sixtyyearsofcali00alverich).pdf",
+          "snippet": "Sixty <span class=\"searchmatch\">years</span> of California song   (  ) Author Alverson, Rosana <span class=\"searchmatch\">Margaret</span> Kroh Blake, 1836-1923 Title Sixty <span class=\"searchmatch\">years</span> of California song Publisher [San Francisco :",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASixty%20years%20of%20California%20song%20(IA%20sixtyyearsofcali00alverich).pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-05T06:43:17.598Z"
+    },
+    {
+      "beat": 6,
+      "query": "The names live on in these illustration",
+      "kind": "illustration",
+      "narration": "The names live on in these pages, preserved for generations to come.",
+      "entitiesMentioned": [],
+      "candidates": [
+        {
+          "title": "File:The continent we live on (1961) (Panthera onca).jpg",
+          "snippet": "19 August 2015 English Flickr user ID: 126377022@N07 author <span class=\"searchmatch\">name</span> string: Internet Archive Book Images URL: https://www.flickr.com/people/internetarchivebookimages/",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20continent%20we%20live%20on%20(1961)%20(Panthera%20onca).jpg"
+        },
+        {
+          "title": "File:Live 'ADC-scales' analogy on the screen.jpg",
+          "snippet": "Commons Attribution-Share Alike 4.0 truetrue English <span class=\"searchmatch\">Live</span> &#039;ADC-scales&#039; analogy <span class=\"searchmatch\">on</span> <span class=\"searchmatch\">the</span> screen author <span class=\"searchmatch\">name</span> string: Circuit-fantasist Wikimedia username: Circuit-fantasist",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ALive%20'ADC-scales'%20analogy%20on%20the%20screen.jpg"
+        },
+        {
+          "title": "File:Helen Keller - The World I Live In.pdf",
+          "snippet": "org/licenses/by-sa/4.0CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 truetrue English <span class=\"searchmatch\">The</span> World I <span class=\"searchmatch\">Live</span> <span class=\"searchmatch\">In</span> determination method or standard: SHA-1",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AHelen%20Keller%20-%20The%20World%20I%20Live%20In.pdf"
+        }
+      ],
+      "source": "Wikimedia Commons",
+      "retrievedAt": "2026-11-05T06:43:18.407Z"
+    }
+  ],
+  "sourcingNotes": "Each beat has its own topic-specific query; no shared/global image pool is consulted."
+}

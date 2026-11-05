@@ -1,0 +1,320 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-1\\aberfan-60-years-books-of-remembrance\\visual-plan.json",
+  "channel": "ch-1",
+  "videoSlug": "video",
+  "generatedAt": "2026-11-05T06:43:51.248Z",
+  "totalBeats": 6,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 1: \"New books preserve 144 names after a village lost its future in seconds.\"",
+      "objects": {
+        "label_a": "narration subject",
+        "label_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "New books preserve 144 names after a village lost its future in seconds.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "New books preserve 144 names after a village lost its future in seconds.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 1,
+      "_narration": "New books preserve 144 names after a village lost its future in seconds.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 2: \"On 21 October 1966, a coal waste tip collapsed onto Aberfan.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "On 21 October 1966, a coal waste tip collapsed onto Aberfan.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "On 21 October 1966, a coal waste tip collapsed onto Aberfan.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 2,
+      "_narration": "On 21 October 1966, a coal waste tip collapsed onto Aberfan.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 3: \"144 people lost their lives, including 116 children.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "144 people lost their lives, including 116 children.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "144 people lost their lives, including 116 children.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 3,
+      "_narration": "144 people lost their lives, including 116 children.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 3,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 4: \"The National Library of Wales finished new copies of the Books of Remembrance ahead of July 2026.\"",
+      "objects": {
+        "label_a": "narration subject",
+        "label_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The National Library of Wales finished new copies of the Books of Remembrance ah",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The National Library of Wales finished new copies of the Books of Remembrance ah",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 4,
+      "_narration": "The National Library of Wales finished new copies of the Books of Remembrance ahead of July 2026.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 5: \"At 68 years old, Margaret Davies guards the village's memory.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "At 68 years old, Margaret Davies guards the village's memory.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "At 68 years old, Margaret Davies guards the village's memory.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 5,
+      "_narration": "At 68 years old, Margaret Davies guards the village's memory.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 5,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "File:The continent we live on (1961) (Panthera onca).jpg",
+      "reason": "Beat 6 (“The names live on in these pages, preserved for generations to come.”): 19 August 2015 English Flickr user ID: 126377022@N07 author <span class=\"searchmatch\">name</span> string: Internet Archive Book Images URL: https://www.flickr.com/people/internetarchivebookimages/",
+      "objects": {
+        "label_a": "File:The continent we live on (1961) (Panthera onca).jpg",
+        "label_b": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+        "_assetFile": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+          "filename": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20continent%20we%20live%20on%20(1961)%20(Panthera%20onca).jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_continent_we_live_on_(1961)_(Panthera_onca).jpg",
+          "creator": "Sanderson, Ivan Terence, 1911-1973",
+          "license": "No restrictions",
+          "licenseUrl": "https://www.flickr.com/commons/usage/",
+          "attribution": "Sanderson, Ivan Terence, 1911-1973 / Wikimedia Commons, No restrictions",
+          "credit": "https://www.flickr.com/photos/internetarchivebookimages/20498340149/ Source book page: https://archive.org/stream/continentweliveo00sandrich/#page/n290/mode/1up",
+          "sha256": "d71956f072c9f2bad74b6101834d1fdeadc86438525923399dbf94b84ee92e92",
+          "width": 1920,
+          "height": 2525,
+          "retrievedAt": "2026-11-05T06:43:35.374Z",
+          "cacheKey": "3ed53b7094cb8dab",
+          "relevance": "Beat 6 (“The names live on in these pages, preserved for generations to come.”): 19 August 2015 English Flickr user ID: 126377022@N07 author <span class=\"searchmatch\">name</span> string: Internet Archive Book Images URL: https://www.flickr.com/people/internetarchivebookimages/"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:The continent we live on (1961) (Panthera onca).jpg",
+          "asset": "asset-library/the-names-live-on-in-these-illustration-d71956f0.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Sanderson, Ivan Terence, 1911-1973 / Wikimedia Commons, No restrictions",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AThe%20continent%20we%20live%20on%20(1961)%20(Panthera%20onca).jpg",
+          "license": "No restrictions"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The names live on in these pages, preserved for generations to come.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:The continent we live on (1961) (Panthera onca).jpg",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/the-names-live-on-in-these-illustration-d71956f0.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 6,
+      "_narration": "The names live on in these pages, preserved for generations to come.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:The continent we live on (1961) (Panthera onca).jpg",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/the-names-live-on-in-these-illustration-d71956f0.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Sanderson, Ivan Terence, 1911-1973 / Wikimedia Commons, No restrictions",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AThe%20continent%20we%20live%20on%20(1961)%20(Panthera%20onca).jpg",
+            "license": "No restrictions"
+          }
+        ]
+      }
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

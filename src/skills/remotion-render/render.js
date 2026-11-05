@@ -108,9 +108,9 @@ const WPM = {
   "motion-graphics": 155,
 };
 
-// Shorts: 15s minimum, 60s maximum (under-1-minute target).
+// Shorts: 15s minimum, 35s maximum (owner-approved cap).
 // Long-form: 2–12 minutes.
-const SHORTS_CLAMP = [15 * 30, 60 * 30]; // frames
+const SHORTS_CLAMP = [15 * 30, 35 * 30]; // frames
 const LONGFORM_CLAMP = [2 * 30 * 60, 12 * 30 * 60];
 
 // Tail padding added after the voiceover so the final word is never cut.
@@ -213,6 +213,16 @@ function getAudioDurationSeconds(audioPath) {
     const secs = parseFloat(out);
     return Number.isFinite(secs) && secs > 0 ? secs : null;
   } catch {
+    // Fallback: compute duration from word timings JSON if ffprobe unavailable
+    const wordsPath = fullPath.replace(/\.mp3$/, "-words.json");
+    try {
+      const words = JSON.parse(readFileSync(wordsPath, "utf8"));
+      if (words.length > 0) {
+        const last = words[words.length - 1];
+        const dur = last.offset + last.duration;
+        return Number.isFinite(dur) && dur > 0 ? dur : null;
+      }
+    } catch {}
     return null;
   }
 }

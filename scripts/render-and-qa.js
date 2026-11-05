@@ -515,6 +515,7 @@ async function detectSilence(videoPath, audioPath) {
 
 const MAX_DURATION_DRIFT_S = 1;
 const MIN_BEAT0_FRAME_BYTES = 15 * 1024;
+const MAX_SHORTS_DURATION_S = 35;
 
 function firstCueMidpoint(srtPath) {
   if (!existsSync(srtPath)) return null;
@@ -536,6 +537,9 @@ async function verifyRender(videoPath, audioPath, channelId) {
     console.log(`[verify] video ${video.value.toFixed(2)}s, voiceover ${audio.value.toFixed(2)}s, drift ${drift.toFixed(2)}s`);
     if (drift > MAX_DURATION_DRIFT_S) {
       problems.push(`video ${video.value.toFixed(2)}s vs voiceover ${audio.value.toFixed(2)}s drifts ${drift.toFixed(2)}s (max ${MAX_DURATION_DRIFT_S}s)`);
+    }
+    if (video.value > MAX_SHORTS_DURATION_S) {
+      problems.push(`video ${video.value.toFixed(2)}s exceeds the 35.00s Shorts maximum — must be <= 35.00s`);
     }
   }
 
