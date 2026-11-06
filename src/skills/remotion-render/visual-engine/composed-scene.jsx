@@ -115,7 +115,7 @@ function Label({ text, rect, ed, font, m, accent }) {
   // Backdrop so labels stay readable over dark photos (contrast QA: frames
   // over dark photographs failed 4.5:1 with quiet text on dark bg).
   const bg = accent ? "rgba(0,0,0,1)" : "rgba(255,255,255,1)";
-  const color = accent ? ed.accentText : ed.quiet;
+  const color = accent ? ed.accentText : "#0B0B0C";
   return (
     <div style={{
       position: "absolute",

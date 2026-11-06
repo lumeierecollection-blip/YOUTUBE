@@ -69,21 +69,42 @@ export function paletteRoles(palette) {
     return (hi + 0.05) / (lo + 0.05);
   };
 
-  const primary = palette.primary;
-  const accent = [...primary].sort((a, b) => chroma(b) - chroma(a))[0];
-  const nonAccent = primary.filter((h) => h !== accent);
-  // The ground is the channel's real backdrop: the entry furthest toward either
-  // end of the luminance range, which is what a backdrop is.
-  const ground = [...nonAccent].sort(
-    (a, b) => Math.max(lum(b), 1 - lum(b)) - Math.max(lum(a), 1 - lum(a))
-  )[0];
-  const pool = [...nonAccent, ...palette.secondary].filter((h) => h !== accent);
-  // Paper is the lightest surface the palette offers. It is NOT required to
-  // contrast with the ground: ch-01 is white sheets on a white desk, which is
-  // what a desk flatlay looks like, and the sheets read by their outline.
-  const paper = [...pool].sort((a, b) => lum(b) - lum(a))[0];
-  const ink = [...pool].sort((a, b) => ratio(b, paper) - ratio(a, paper))[0];
-  const onGround = [...pool].sort((a, b) => ratio(b, ground) - ratio(a, ground))[0];
+  // Support both palette formats:
+  // 1. Legacy: { primary: ["#hex"], secondary: ["#hex"] } (from visual-identity.json)
+  // 2. New: { bg, textPrimary, textDim, accent, ... } (from paletteFromHues in render.js)
+  let primary, accent, nonAccent, ground, pool, paper, ink, onGround;
+  if (Array.isArray(palette.primary) && Array.isArray(palette.secondary)) {
+    primary = palette.primary;
+    accent = [...primary].sort((a, b) => chroma(b) - chroma(a))[0];
+    nonAccent = primary.filter((h) => h !== accent);
+    ground = [...nonAccent].sort(
+      (a, b) => Math.max(lum(b), 1 - lum(b)) - Math.max(lum(a), 1 - lum(a))
+    )[0];
+    pool = [...nonAccent, ...palette.secondary].filter((h) => h !== accent);
+    paper = [...pool].sort((a, b) => lum(b) - lum(a))[0];
+    ink = [...pool].sort((a, b) => ratio(b, paper) - ratio(a, paper))[0];
+    onGround = [...pool].sort((a, b) => ratio(b, ground) - ratio(a, ground))[0];
+  } else if (palette.textPrimary) {
+    // paletteFromHues format
+    ground = palette.bg || "#000000";
+    paper = palette.surface || ground;
+    ink = palette.textPrimary;
+    onGround = palette.textDim || ink;
+    accent = palette.accent;
+    primary = [ink, onGround, accent].filter(Boolean);
+    nonAccent = primary.filter((h) => h !== accent);
+    pool = nonAccent;
+  } else {
+    // Fallback
+    ground = palette.bg || "#000000";
+    paper = ground;
+    ink = "#FFFFFF";
+    onGround = "#000000";
+    accent = palette.accent || "#FFFFFF";
+    primary = [ink, accent].filter(Boolean);
+    nonAccent = primary.filter((h) => h !== accent);
+    pool = nonAccent;
+  }
 
   /**
    * A palette that cannot produce a legible mark is a specification error, and
@@ -99,7 +120,7 @@ export function paletteRoles(palette) {
     if (r < MIN_RATIO) {
       throw new Error(
         `palette cannot render ${what}: ${mark} on ${surface} is ${r.toFixed(2)}:1, below WCAG AA 4.5:1.\n` +
-        `primary=[${primary.join(", ")}] secondary=[${palette.secondary.join(", ")}]\n` +
+        `primary=[${primary.join(", ")}] secondary=[${Array.isArray(palette.secondary) ? palette.secondary.join(", ") : "n/a (paletteFromHues format)"}]\n` +
         `Fix the channel's palette in config/visual-identity.json — do not relax this, an unreadable frame is worse than no frame.`
       );
     }

@@ -209,9 +209,9 @@ const backOutSmall = (t) => 1 + (BACK + 1) * Math.pow(t - 1, 3) + BACK * Math.po
  */
 export function popState(style, f) {
   const P = POP[style] || POP.POP_STANDARD;
-  if (!(f > 0)) return { s: P.from, dy: P.dy, o: 0, done: false };
+  if (!(f > 0)) return { s: P.from, dy: P.dy, o: 1, done: false };
   const t = clamp01(f / P.frames);
-  const o = clamp01(t * 2.2);
+  const o = 1;
   let s, prog;
   if (P.peak) {
     const k = 0.55;

@@ -97,15 +97,33 @@ function editorialColors(colors, rawPalette, bgMode) {
     const la = lum(a) + 0.05, lb = lum(b) + 0.05;
     return la > lb ? la / lb : lb / la;
   };
-  const all = [...rawPalette.primary, ...rawPalette.secondary];
+  // Support both palette formats:
+  // 1. Legacy: { primary: ["#hex"], secondary: ["#hex"] } (from visual-identity.json)
+  // 2. New: { bg, textPrimary, textDim, accent, ... } (from paletteFromHues in render.js)
+  let all;
+  let bgColor;
+  if (Array.isArray(rawPalette.primary) && Array.isArray(rawPalette.secondary)) {
+    all = [...rawPalette.primary, ...rawPalette.secondary];
+    const sorted = [...all].sort((a, b) => lum(a) - lum(b));
+    bgColor = (bgMode === "white") ? "#FFFFFF" : sorted[0];
+  } else if (rawPalette.textPrimary) {
+    // paletteFromHues format: use textPrimary and textDim as the color pool
+    all = [rawPalette.textPrimary, rawPalette.textDim, rawPalette.accent].filter(Boolean);
+    const sorted = [...all].sort((a, b) => lum(a) - lum(b));
+    bgColor = (bgMode === "white") ? "#FFFFFF" : rawPalette.bg || sorted[0];
+  } else {
+    // Fallback: use channel colors directly
+    all = [colors.accent, colors.ground || "#000000"].filter(Boolean);
+    const sorted = [...all].sort((a, b) => lum(a) - lum(b));
+    bgColor = (bgMode === "white") ? "#FFFFFF" : sorted[0];
+  }
   const sorted = [...all].sort((a, b) => lum(a) - lum(b));
   const isWhite = bgMode === "white";
-  const bgColor = isWhite ? "#FFFFFF" : sorted[0];
   const subdued = all.find((c) => {
     return contrastRatio(c, bgColor) >= 4.5 && lum(c) < 0.7 && c !== colors.accent;
   }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
   const safeSubdued = contrastRatio(subdued, bgColor) >= 4.5
-    ? subdued : (all.find((c) => contrastRatio(c, bgColor) >= 4.5) || sorted[sorted.length - 1]);
+    ? subdued : (all.find((c) => contrastRatio(c, bgColor) >= 4.5) || ensureTextContrast(sorted[sorted.length - 1], bgColor, TEXT_TARGET_CONTRAST));
   // ComposedScene (composed-scene.jsx) also needs accentText and quiet:
   // glyph colours raised until they clear the text-contrast targets against
   // THIS background (scene-text.js), same as main's editorialColors.
@@ -249,7 +267,7 @@ function FuelGauge({ cx, cy, r, fill, label, reading, readingOpacity, ed, font }
       {label && (
         <text x={cx} y={cy + r * 0.65} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={600}
-          fontSize={22} fill={ed.text} opacity={0.5}
+          fontSize={22} fill={ed.subdued}
           letterSpacing={4}>{label}</text>
       )}
     </g>
@@ -275,17 +293,17 @@ function ReceiptSheet({ x, y, w, h, items, total, growth, growthP, ed, font }) {
       <path d={topEdge} fill={ed.surface} opacity={0.92} />
       <text x={x + w / 2} y={y + zigH + 36} textAnchor="middle"
         fontFamily={`${font}, monospace`} fontWeight={700}
-        fontSize={18} fill={ed.textDark} opacity={0.5} letterSpacing={3}>GROCERY RECEIPT</text>
+        fontSize={18} fill={ed.subdued} letterSpacing={3}>GROCERY RECEIPT</text>
       <line x1={x + pad} y1={y + zigH + 50} x2={x + w - pad} y2={y + zigH + 50}
         stroke={ed.textDark} strokeWidth={1} opacity={0.15} strokeDasharray="3 3" />
       {(items || []).map((item, i) => (
         <g key={i} opacity={Math.min(1, (growthP || 1) * 3 - i * 0.3)}>
           <text x={x + pad} y={y + zigH + 78 + i * lineH}
             fontFamily={`${font}, monospace`} fontWeight={400}
-            fontSize={16} fill={ed.textDark} opacity={0.55}>{item.name}</text>
+            fontSize={16} fill={ed.subdued}>{item.name}</text>
           <text x={x + w - pad} y={y + zigH + 78 + i * lineH} textAnchor="end"
             fontFamily={`${font}, monospace`} fontWeight={600}
-            fontSize={16} fill={ed.textDark} opacity={0.7}>{item.price}</text>
+            fontSize={16} fill={ed.subdued}>{item.price}</text>
         </g>
       ))}
       {total && (
@@ -294,7 +312,7 @@ function ReceiptSheet({ x, y, w, h, items, total, growth, growthP, ed, font }) {
             stroke={ed.textDark} strokeWidth={1.5} opacity={0.2} />
           <text x={x + pad} y={y + h - 42}
             fontFamily={`${font}, monospace`} fontWeight={700}
-            fontSize={20} fill={ed.textDark} opacity={0.7}>TOTAL</text>
+            fontSize={20} fill={ed.subdued}>TOTAL</text>
           <text x={x + w - pad} y={y + h - 42} textAnchor="end"
             fontFamily={`${font}, monospace`} fontWeight={900}
             fontSize={26} fill={ed.accent}>{total}</text>
@@ -303,7 +321,7 @@ function ReceiptSheet({ x, y, w, h, items, total, growth, growthP, ed, font }) {
       {growth && (
         <text x={x + w - pad} y={y + h - 14} textAnchor="end"
           fontFamily={`${font}, sans-serif`} fontWeight={800}
-          fontSize={18} fill={ed.accent} opacity={0.75}>+{growth} vs 2020</text>
+          fontSize={18} fill={ed.accentText}>+{growth} vs 2020</text>
       )}
     </g>
   );
@@ -323,7 +341,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {source && (
         <text x={x + 18} y={y + 16}
           fontFamily={`${font}, monospace`} fontWeight={500}
-          fontSize={13} fill={ed.text} opacity={0.5} letterSpacing={3}>{source}</text>
+          fontSize={13} fill={ed.subdued} letterSpacing={3}>{source}</text>
       )}
       <text x={x + 18} y={valueY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
@@ -332,7 +350,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       {label && (
         <text x={x + 18} y={labelY}
           fontFamily={`${font}, sans-serif`} fontWeight={500}
-          fontSize={20} fill={ed.text} opacity={0.55}>{label}</text>
+          fontSize={20} fill={ed.subdued}>{label}</text>
       )}
     </g>
   );
@@ -364,12 +382,12 @@ function BudgetBar({ x, y, w, h, segments, broken, consumed, ed, font }) {
               <>
                 <text x={segX + (isConsumed ? growW : segW) / 2} y={y + h / 2 - 2} textAnchor="middle"
                   fontFamily={`${font}, sans-serif`} fontWeight={800}
-                  fontSize={Math.min(22, segW * 0.22)} fill={ed.text} opacity={opacity * 0.85}>
+                  fontSize={Math.min(22, segW * 0.22)} fill={ed.subdued}>
                   {seg.label}
                 </text>
                 <text x={segX + (isConsumed ? growW : segW) / 2} y={y + h / 2 + 18} textAnchor="middle"
                   fontFamily={`${font}, sans-serif`} fontWeight={600}
-                  fontSize={Math.min(16, segW * 0.16)} fill={ed.text} opacity={opacity * 0.65}>
+                  fontSize={Math.min(16, segW * 0.16)} fill={ed.subdued}>
                   {seg.pct}
                 </text>
               </>
@@ -403,7 +421,7 @@ function DocumentPage({ x, y, w, h, title, lineCount, highlight, torn, ed, font 
         <text x={x + w / 2} y={y + 44} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={700}
           fontSize={Math.min(22, w / Math.max(1, title.length * 0.55))}
-          fill={ed.textDark} opacity={0.65 * (1 - tornP * 0.4)}
+          fill={ed.subdued}
           letterSpacing={2}
           textDecoration={tornP > 0.4 ? "line-through" : "none"}>{title}</text>
       )}
@@ -433,7 +451,7 @@ function DocumentPage({ x, y, w, h, title, lineCount, highlight, torn, ed, font 
       {highlight && (
         <rect x={x + pad} y={y + 80 + Math.floor(lc * 0.3) * ((h - 100) / lc) - 8}
           width={(w - 2 * pad) * 0.65} height={24}
-          rx={2} fill={ed.accent} opacity={0.15} />
+          rx={2} fill={ed.accentText} />
       )}
       {tornP > 0.25 && (
         <>
@@ -562,13 +580,13 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
           return (
             <g key={i} opacity={catP} transform={`translate(${(1 - catP) * 40}, 0)`}>
               <rect x={SAFE_W * 0.1} y={barY} width={catBarW * barFill} height={catBarH}
-                rx={4} fill={ed.accent} opacity={0.55 + i * 0.1} />
+                rx={4} fill={ed.accentText} />
               <text x={SAFE_W * 0.1 + 14} y={barY + catBarH / 2 + 6}
                 fontFamily={`${font}, sans-serif`} fontWeight={700}
-                fontSize={20} fill={ed.text} opacity={catP * 0.9} letterSpacing={2}>{cat}</text>
+                fontSize={20} fill={ed.subdued} letterSpacing={2}>{cat}</text>
               <text x={SAFE_W * 0.1 + catBarW * barFill + 14} y={barY + catBarH / 2 + 6}
                 fontFamily={`${font}, monospace`} fontWeight={800}
-                fontSize={22} fill={ed.accent} opacity={catP}>
+                fontSize={22} fill={ed.accentText}>
                 {Math.round(barFill * 100)}%
               </text>
             </g>
@@ -577,7 +595,7 @@ function SurfaceBeneathScene({ beat, p, local, ed, font, scene }) {
         {revealP > 0.3 && (
           <text x={SAFE_W * 0.1} y={catStartY + categories.length * (catBarH + 30) + 40}
             fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={22} fill={ed.text} opacity={ease(clamp01((revealP - 0.3) / 0.3)) * 0.6}>
+            fontSize={22} fill={ed.subdued}>
             {beneathObj.label || "REALITY"}
           </text>
         )}
@@ -627,11 +645,11 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
         <g opacity={enterP}>
           {nameA && <text x={barX} y={barY1 - 16}
             fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={18} fill={ed.text} opacity={0.6} letterSpacing={2}>{nameA}</text>}
+            fontSize={18} fill={ed.subdued} letterSpacing={2}>{nameA}</text>}
           <rect x={barX} y={barY1} width={barMaxW} height={barH}
             rx={6} fill={ed.surface} opacity={0.1} />
           <rect x={barX} y={barY1} width={barMaxW * ratioA * growP} height={barH}
-            rx={6} fill={ed.accent} opacity={0.55} />
+            rx={6} fill={ed.accentText} />
           <rect x={barX} y={barY1} width={barMaxW * ratioA * growP} height={barH}
             rx={6} fill="none" stroke={ed.accent} strokeWidth={2.5} opacity={growP * 0.65} />
           {growP > 0.3 && (() => {
@@ -642,7 +660,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
                 y={barY1 + barH / 2 + szA * 0.35}
                 textAnchor={overflows ? "end" : "start"}
                 fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={szA} fill={ed.accent} opacity={growP}
+                fontSize={szA} fill={ed.accentText}
                 fontVariantNumeric="tabular-nums">{labelA}</text>
             );
           })()}
@@ -650,7 +668,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
         <g opacity={enterP}>
           {nameB && <text x={barX} y={barY2 - 16}
             fontFamily={`${font}, sans-serif`} fontWeight={600}
-            fontSize={18} fill={ed.text} opacity={0.6} letterSpacing={2}>{nameB}</text>}
+            fontSize={18} fill={ed.subdued} letterSpacing={2}>{nameB}</text>}
           <rect x={barX} y={barY2} width={barMaxW} height={barH}
             rx={6} fill={ed.surface} opacity={0.1} />
           <rect x={barX} y={barY2} width={barMaxW * ratioB * growP} height={barH}
@@ -665,7 +683,7 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
                 y={barY2 + barH / 2 + szB * 0.35}
                 textAnchor={overflows ? "end" : "start"}
                 fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={szB} fill={ed.text} opacity={growP * 0.8}
+                fontSize={szB} fill={ed.subdued}
                 fontVariantNumeric="tabular-nums">{labelB}</text>
             );
           })()}
@@ -691,11 +709,11 @@ function ProportionalScene({ beat, p, local, ed, font, scene }) {
                 rx={10} fill={ed.surface} opacity={0.06} />
               <text x={SAFE_W / 2} y={SAFE_H * 0.84} textAnchor="middle"
                 fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={56} fill={ed.accent} opacity={1}
+                fontSize={56} fill={ed.accentText}
                 fontVariantNumeric="tabular-nums">{diffLabel}</text>
               <text x={SAFE_W / 2} y={SAFE_H * 0.92} textAnchor="middle"
                 fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={13} fill={ed.text} opacity={0.5}
+                fontSize={13} fill={ed.subdued}
                 letterSpacing={4}>DIFFERENCE</text>
             </g>
           );
@@ -778,7 +796,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
         <rect x={colX} y={colY} width={colW} height={colH}
           rx={8} fill={ed.surface} opacity={0.15} />
         <rect x={colX} y={colY + colH - fillH} width={colW} height={fillH}
-          rx={8} fill={ed.accent} opacity={0.55 + growP * 0.15} />
+          rx={8} fill={ed.accentText} />
         <rect x={colX} y={colY + colH - fillH} width={colW} height={fillH}
           rx={6} fill="none" stroke={ed.accent} strokeWidth={2.5} opacity={growP * 0.65} />
         {[0.25, 0.5, 0.75, 1.0].map((t) => (
@@ -787,7 +805,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
               stroke={ed.subdued} strokeWidth={1.5} opacity={0.4} />
             <text x={colX - 22} y={colY + colH * (1 - t) + 5} textAnchor="end"
               fontFamily={`${font}, monospace`} fontWeight={500}
-              fontSize={12} fill={ed.text} opacity={0.45}>{Math.round(t * 100)}%</text>
+              fontSize={12} fill={ed.subdued}>{Math.round(t * 100)}%</text>
           </g>
         ))}
         <line x1={colX + colW} y1={colY + colH - fillH}
@@ -801,7 +819,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
         )}
         <text x={SAFE_W / 2} y={colY + colH + 48} textAnchor="middle"
           fontFamily={`${font}, sans-serif`} fontWeight={700}
-          fontSize={Math.max(subSz, 22)} fill={ed.text} opacity={growP * 0.7}
+          fontSize={Math.max(subSz, 22)} fill={ed.subdued}
           letterSpacing={3}>{subText.toUpperCase()}</text>
       </svg>
     </div>
@@ -826,7 +844,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
         <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
           <text x={SAFE_W * 0.08} y={SAFE_H * 0.1}
             fontFamily={`${font}, monospace`} fontWeight={600}
-            fontSize={16} fill={ed.text} opacity={0.5} letterSpacing={3}>50 / 30 / 20 RULE</text>
+            fontSize={16} fill={ed.subdued} letterSpacing={3}>50 / 30 / 20 RULE</text>
           <BudgetBar x={SAFE_W * 0.06} y={SAFE_H * 0.18} w={SAFE_W * 0.88} h={70}
             segments={segments} broken={breakP} ed={ed} font={font} />
           {breakP > 0.6 && (
@@ -902,12 +920,12 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
           {scene.material === "document" && (
             <text x={barX} y={SAFE_H * 0.15}
               fontFamily={`${font}, monospace`} fontWeight={500}
-              fontSize={13} fill={ed.text} opacity={0.45} letterSpacing={3}>SOURCE</text>
+              fontSize={13} fill={ed.subdued} letterSpacing={3}>SOURCE</text>
           )}
           <rect x={barX} y={barY} width={barW} height={barH}
             rx={8} fill={ed.surface} opacity={0.1} />
           <rect x={barX} y={barY} width={barW * fillRatio * enterP} height={barH}
-            rx={8} fill={ed.accent} opacity={0.6} />
+            rx={8} fill={ed.accentText} />
           <line x1={markX} y1={barY - 28} x2={markX} y2={barY + barH + 28}
             stroke={ed.accent} strokeWidth={3} opacity={enterP * 0.8} />
           <text x={markX} y={barY - 48}
@@ -917,16 +935,16 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
           {ctxLabel && (
             <text x={markX} y={barY + barH + 56}
               textAnchor="middle" fontFamily={`${font}, sans-serif`} fontWeight={500}
-              fontSize={ctxSz} fill={ed.text} opacity={0.55}>{ctxLabel}</text>
+              fontSize={ctxSz} fill={ed.subdued}>{ctxLabel}</text>
           )}
           {isPct && (
             <>
               <text x={barX} y={barY + barH + 36}
                 fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={14} fill={ed.text} opacity={0.4}>0</text>
+                fontSize={14} fill={ed.subdued}>0</text>
               <text x={barX + barW} y={barY + barH + 36}
                 textAnchor="end" fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={14} fill={ed.text} opacity={0.4}>100%</text>
+                fontSize={14} fill={ed.subdued}>100%</text>
             </>
           )}
           <rect x={barX} y={SAFE_H * 0.68} width={barW} height={SAFE_H * 0.24}
@@ -935,12 +953,12 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
             stroke={ed.subdued} strokeWidth={1} opacity={0.1} />
           <text x={SAFE_W / 2} y={SAFE_H * 0.80} textAnchor="middle"
             fontFamily={`${font}, sans-serif`} fontWeight={800}
-            fontSize={Math.round(labelSz * 0.65)} fill={ed.accent} opacity={enterP * 0.9}
+            fontSize={Math.round(labelSz * 0.65)} fill={ed.accentText}
             fontVariantNumeric="tabular-nums">{label}</text>
           {scene.subject && (
             <text x={SAFE_W / 2} y={SAFE_H * 0.88} textAnchor="middle"
               fontFamily={`${font}, monospace`} fontWeight={500}
-              fontSize={14} fill={ed.text} opacity={0.45}
+              fontSize={14} fill={ed.subdued}
               letterSpacing={3}>{(scene.subject || "").toUpperCase()}</text>
           )}
         </g>
@@ -1000,7 +1018,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
         {connectP > 0.6 && (
           <polygon
             points={`${panelX + 4},${effectY - 4} ${panelX - 6},${effectY - 16} ${panelX + 14},${effectY - 16}`}
-            fill={ed.accent} opacity={connectP * 0.7} />
+            fill={ed.accentText} />
         )}
       </svg>
 
@@ -1068,7 +1086,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
       <svg width={SAFE_W} height={SAFE_H} viewBox={`0 0 ${SAFE_W} ${SAFE_H}`}>
         <text x={SAFE_W * 0.08} y={SAFE_H * 0.14}
           fontFamily={`${font}, monospace`} fontWeight={600}
-          fontSize={16} fill={ed.text} opacity={0.5} letterSpacing={3}>HOUSEHOLD INCOME</text>
+          fontSize={16} fill={ed.subdued} letterSpacing={3}>HOUSEHOLD INCOME</text>
         <BudgetBar x={SAFE_W * 0.06} y={SAFE_H * 0.2} w={SAFE_W * 0.88} h={100}
           segments={segments} consumed={consumeP} ed={ed} font={font} />
         {consumeP > 0.5 && (
@@ -1078,7 +1096,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
               stroke={ed.subdued} strokeWidth={1.5} opacity={0.5} />
             <text x={SAFE_W * 0.8} y={SAFE_H * 0.2 + 180}
               textAnchor="middle" fontFamily={`${font}, sans-serif`} fontWeight={700}
-              fontSize={22} fill={ed.text} opacity={0.6}>
+              fontSize={22} fill={ed.subdued}>
               {`${Math.round((1 - fillRatio) * 100)}% left`}
             </text>
           </g>
@@ -1089,7 +1107,7 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
           return (
             <text x={SAFE_W * 0.08} y={SAFE_H * 0.48} textAnchor="start"
               fontFamily={`${font}, sans-serif`} fontWeight={900}
-              fontSize={cSz} fill={ed.accent} opacity={ease(clamp01((consumeP - 0.7) / 0.25))}>
+              fontSize={cSz} fill={ed.accentText}>
               {cLabel}
             </text>
           );
@@ -1107,20 +1125,20 @@ function ConsumptionScene({ beat, p, local, ed, font, scene }) {
                 stroke={ed.subdued} strokeWidth={1} opacity={0.12} />
               <text x={SAFE_W * 0.08} y={SAFE_H * 0.64}
                 fontFamily={`${font}, monospace`} fontWeight={500}
-                fontSize={12} fill={ed.text} opacity={0.5} letterSpacing={3}>BREAKDOWN</text>
+                fontSize={12} fill={ed.subdued} letterSpacing={3}>BREAKDOWN</text>
               {cats.map((c, i) => {
                 const cy = SAFE_H * 0.68 + i * 64;
                 return (
                   <g key={i}>
                     <rect x={SAFE_W * 0.08} y={cy} width={SAFE_W * 0.74 * c.ratio * dp} height={44}
-                      rx={4} fill={ed.accent} opacity={c.op} />
+                      rx={4} fill={ed.accentText} />
                     <text x={SAFE_W * 0.08 + 12} y={cy + 28}
                       fontFamily={`${font}, sans-serif`} fontWeight={700}
-                      fontSize={15} fill={ed.text} opacity={dp * 0.85}
+                      fontSize={15} fill={ed.subdued}
                       letterSpacing={2}>{c.label}</text>
                     <text x={SAFE_W * 0.08 + SAFE_W * 0.74 * c.ratio * dp + 12} y={cy + 28}
                       fontFamily={`${font}, monospace`} fontWeight={800}
-                      fontSize={16} fill={ed.accent} opacity={dp}>
+                      fontSize={16} fill={ed.accentText}>
                       {Math.round(c.ratio * fillRatio * 100)}%
                     </text>
                   </g>
@@ -1413,3 +1431,4 @@ export const compositions = [
     },
   },
 ];
+
