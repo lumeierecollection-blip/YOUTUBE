@@ -4323,9 +4323,14 @@
           "topic": "ISO 11228-3:2026: Upper Limb Ergonomics and Repetitive Tasks",
           "slug": "iso-11228-3-2026-upper-limb-ergonomics",
           "reserved_at": "2026-11-04T18:07:30.066Z"
+        },
+        {
+          "topic": "Inail Reports 325,525 Workplace Injury Claims in First Nine Months of 2026",
+          "slug": "inail-9-month-2026-workplace-injury-claims-report",
+          "reserved_at": "2026-11-06T16:04:08.128Z"
         }
       ],
-      "last_generated": "2026-11-05T17:51:26.550Z"
+      "last_generated": "2026-11-06T16:04:08.129Z"
     },
     "49": {
       "channel_name": "Picture House",
