@@ -1,0 +1,63 @@
+{
+  "topic_slug": "michael-crichton-estate-warner-bros-the-pitt",
+  "strongest_angle": "Break down the California appeals court ruling allowing the Michael Crichton estate lawsuit over 'The Pitt' and 'ER' similarities to proceed to trial against Warner Bros Television.",
+  "key_facts": [
+    {
+      "fact": "A three-judge panel from California's 2nd District Court of Appeal ruled unanimously on Wednesday to deny an appeal from Warner Bros. Television regarding the lawsuit brought by Sherri Crichton.",
+      "source_url": "https://apnews.com/article/pitt-er-lawsuit-crichton-9a6ad0b8bf685b7ac435aacf22cb5a71",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sherri Crichton controls the estate of her late husband Michael Crichton, who died in 2008 and co-created the long-running medical drama ER.",
+      "source_url": "https://www.nbcnews.com/pop-culture/tv/er-creators-estate-can-sue-pitt-similarities-appeals-court-rules-rcna607612",
+      "source_name": "NBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The HBO Max medical drama series The Pitt stars Noah Wyle, who also starred in the NBC hit series ER decades earlier.",
+      "source_url": "https://news.bloomberglaw.com/ip-law/warner-bros-cant-dodge-the-pitt-suit-over-er-similarities",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Michael Crichton",
+      "kind": "person"
+    },
+    {
+      "name": "Sherri Crichton",
+      "kind": "person"
+    },
+    {
+      "name": "Noah Wyle",
+      "kind": "person"
+    },
+    {
+      "name": "Warner Bros. Television",
+      "kind": "organization"
+    },
+    {
+      "name": "The Pitt",
+      "kind": "object"
+    },
+    {
+      "name": "ER",
+      "kind": "object"
+    },
+    {
+      "name": "California's 2nd District Court of Appeal",
+      "kind": "organization"
+    },
+    {
+      "name": "HBO Max",
+      "kind": "organization"
+    },
+    {
+      "name": "NBC",
+      "kind": "organization"
+    }
+  ]
+}
