@@ -1,0 +1,112 @@
+{
+  "topic_slug": "utah-byu-holy-war-rivalry-evolution",
+  "strongest_angle": "Examine how the historical regional matchup between the University of Utah and Brigham Young University transformed into a modern top-10 FBS showdown, analyzed through season statistics and conference implications.",
+  "key_facts": [
+    {
+      "fact": "The University of Utah and Brigham Young University football teams met for the first time in 1896, according to ESPN.",
+      "source_url": "https://www.espn.co.uk/college-football/story/_/id/42212125/byu-utah-big-12-rivalry-game-best-stories-2024",
+      "source_name": "ESPN",
+      "confidence": "high"
+    },
+    {
+      "fact": "The first ever meeting of both the University of Utah and Brigham Young University ranked in the Associated Press Top 25 poll top 10 simultaneously featured BYU at No. 2 and Utah at No. 10, as reported by Deseret News.",
+      "source_url": "https://www.deseret.com/sports/2026/10/19/byu-utah-football-in-ap-top-10-together",
+      "source_name": "Deseret News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following Utah's move from the Pac-12 to the Big 12, the conference designated the Holy War as one of four protected football rivalries, guaranteeing annual meetings according to AP News.",
+      "source_url": "https://apnews.com/article/byu-utah-rivalry-top-25-506d9db53b79cc8aaa125048dd76dd34",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The No. 3 University of Utah and No. 7 Brigham Young University scheduled their Nov. 7 matchup to take place at Rice-Eccles Stadium in Salt Lake City with a 10 a.m. local kickoff time, as reported by Student Section.",
+      "source_url": "https://www.studentsection.com/byu-vs-utah-the-holy-war-a-disputed-history-and-a-top-10-showdown",
+      "source_name": "Student Section",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "First meeting year",
+      "value": 1896,
+      "unit": "year",
+      "source_url": "https://www.espn.co.uk/college-football/story/_/id/42212125/byu-utah-big-12-rivalry-game-best-stories-2024"
+    },
+    {
+      "label": "AP Poll ranking for BYU",
+      "value": 2,
+      "unit": "rank",
+      "source_url": "https://www.deseret.com/sports/2026/10/19/byu-utah-football-in-ap-top-10-together"
+    },
+    {
+      "label": "AP Poll ranking for Utah",
+      "value": 10,
+      "unit": "rank",
+      "source_url": "https://www.deseret.com/sports/2026/10/19/byu-utah-football-in-ap-top-10-together"
+    },
+    {
+      "label": "Years apart before Big 12 reunion",
+      "value": 13,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/byu-utah-rivalry-top-25-506d9db53b79cc8aaa125048dd76dd34"
+    },
+    {
+      "label": "Protected rivalries designated by Big 12",
+      "value": 4,
+      "unit": "rivalries",
+      "source_url": "https://apnews.com/article/byu-utah-rivalry-top-25-506d9db53b79cc8aaa125048dd76dd34"
+    },
+    {
+      "label": "Utah AP rank for November matchup",
+      "value": 3,
+      "unit": "rank",
+      "source_url": "https://www.studentsection.com/byu-vs-utah-the-holy-war-a-disputed-history-and-a-top-10-showdown"
+    },
+    {
+      "label": "BYU AP rank for November matchup",
+      "value": 7,
+      "unit": "rank",
+      "source_url": "https://www.studentsection.com/byu-vs-utah-the-holy-war-a-disputed-history-and-a-top-10-showdown"
+    },
+    {
+      "label": "Local kickoff time in hours",
+      "value": 10,
+      "unit": "a.m.",
+      "source_url": "https://www.studentsection.com/byu-vs-utah-the-holy-war-a-disputed-history-and-a-top-10-showdown"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "University of Utah",
+      "kind": "organization"
+    },
+    {
+      "name": "Brigham Young University",
+      "kind": "organization"
+    },
+    {
+      "name": "Rice-Eccles Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Salt Lake City",
+      "kind": "place"
+    },
+    {
+      "name": "Associated Press",
+      "kind": "organization"
+    },
+    {
+      "name": "Big 12",
+      "kind": "organization"
+    },
+    {
+      "name": "Pac-12",
+      "kind": "organization"
+    }
+  ],
+  "topic": "Utah and BYU Holy War Football Rivalry and Top-10 Evolution"
+}
