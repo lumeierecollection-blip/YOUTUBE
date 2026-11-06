@@ -1,0 +1,37 @@
+UPLOAD STATUS — Hidden Past (channel 1 / ch-01)
+================================================
+Channel verified from config/channels.json (not guessed):
+- channel_name: Hidden Past
+- handle: @hiddenpast
+- channel_id: ch-01
+- creds_secret_prefix: CHANNEL_01
+- stay_private: true
+- In priority-channels.json (approved for upload): YES ([1, 2, 48])
+
+Upload attempted: YES — two methods tried
+
+Method 1: Local upload script
+  Command: node src/skills/youtube-publish/run.js 1 <mp4>
+  Result: BLOCKED — YouTube OAuth credentials not configured.
+  Expected: config/creds/ch-01.json (does not exist)
+
+Method 2: GitHub Actions workflow dispatch
+  Channel-production workflows exist only for ch-2, ch-3, ch-4. NO channel-production-1.yml
+  exists for Hidden Past (ch-01). There is no GitHub Actions upload path for ch-01.
+
+Root cause: OAuth credentials exist as GitHub repository secrets
+  (CHANNEL_01_CLIENT_ID, CHANNEL_01_CLIENT_SECRET, CHANNEL_01_REFRESH_TOKEN) but their
+  VALUES cannot be read locally or via the GitHub API. The local upload mechanism requires
+  credential files at config/creds/ch-01.json which cannot be created without the secret
+  values. A refresh token requires a completed OAuth user-authorization flow which was not
+  performed and cannot be fabricated.
+
+Uploaded to YouTube: NO
+YouTube video ID: none (upload not performed)
+Privacy verified as PRIVATE: N/A — upload did not occur.
+Had credentials existed, run.js sets privacyStatus: "private" and stay_private=true, so the
+video would remain private and never auto-public.
+
+The rendered MP4, metadata, thumbnail, attribution, QA report, and checksum are all complete
+in this folder and ready to upload once OAuth credentials are configured locally or a ch-01
+upload workflow is added.

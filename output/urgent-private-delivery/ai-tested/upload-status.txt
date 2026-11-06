@@ -1,0 +1,44 @@
+UPLOAD STATUS — AI Tested (channel 2 / ch-02)
+==============================================
+Channel verified from config/channels.json (not guessed):
+- channel_name: AI Tested
+- handle: @aitested
+- channel_id: ch-02
+- creds_secret_prefix: CHANNEL_02
+- stay_private: true
+- In priority-channels.json (approved for upload): YES ([1, 2, 48])
+
+Upload attempted: YES — two methods tried
+
+Method 1: Local upload script
+  Command: node src/skills/youtube-publish/run.js 2 <mp4>
+  Result: BLOCKED — YouTube OAuth credentials not configured.
+  Expected: config/creds/ch-02.json (does not exist)
+
+Method 2: GitHub Actions workflow dispatch
+  Workflow: channel-production-2.yml (Channel Production — AI Tested ch-2)
+  Run URL: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42310087776
+  Dispatch: gh workflow run channel-production-2.yml -f dry_run=false -f channel_id=2
+  Result: CANCELLED — all jobs (Environment Setup through Upload to YouTube Private)
+  were cancelled/skipped before any upload occurred. Run conclusion: cancelled.
+
+Root cause: OAuth credentials exist as GitHub repository secrets
+  (CHANNEL_02_CLIENT_ID, CHANNEL_02_CLIENT_SECRET, CHANNEL_02_REFRESH_TOKEN) but their
+  VALUES cannot be read locally or via the GitHub API. The local upload mechanism requires
+  credential files at config/creds/ch-02.json which cannot be created without the secret
+  values. A refresh token requires a completed OAuth user-authorization flow which was not
+  performed and cannot be fabricated.
+
+Note: Even if the GitHub Actions workflow had completed, it re-renders its own video
+(ai-web-search-compared-november-2026-shorts) using its own script and metadata — it does
+not upload this session's rendered MP4 (ai-tested-shorts.mp4) with this session's
+title/description/hashtags.
+
+Uploaded to YouTube: NO
+YouTube video ID: none (upload not performed)
+Privacy verified as PRIVATE: N/A — upload did not occur.
+Had credentials existed, run.js sets privacyStatus: "private" and stay_private=true, so the
+video would remain private and never auto-public.
+
+The rendered MP4, metadata, thumbnail, attribution, QA report, and checksum are all complete
+in this folder and ready to upload once OAuth credentials are configured locally.

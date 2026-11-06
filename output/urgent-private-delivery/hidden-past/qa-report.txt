@@ -1,0 +1,33 @@
+QA REPORT — Hidden Past
+=======================
+Rendered MP4: output/urgent-private-delivery/hidden-past/hidden-past-shorts.mp4
+SHA-256: B378EA3A11057745B319409E375AAE2B8840EAEEEC9FFD732C75D8ADD81DC6E0
+
+Format checks:
+- Container: MP4 (isom/iso2avc1)
+- Video codec: H.264 (High), yuv420p
+- Dimensions: 1080 x 1920 (9:16 vertical) ✓
+- Frame rate: 30 fps ✓
+- Audio codec: AAC (LC), mono, 24 kHz, ~93 kbps ✓ (narration present, not silent)
+- Duration: 26.304 s (<= 30 s cap) ✓
+
+Content checks:
+- Blank/frozen frames: none detected. Frames at subtitle-active vs subtitle-inactive times differ (captions render and change in sync with narration).
+- Black frames: none detected (blackdetect).
+- Corrupted footage: none.
+- Unreadable text: none — captions are rendered system font with black outline.
+
+Caption contrast (white fill text with black outline on near-black #0F0A05 background):
+- Approx contrast ratio ~19:1 (white text on dark ground)
+- Normal text threshold 4.5:1 — PASS
+- Large text threshold 3:1 — PASS
+
+Narration/caption sync:
+- Captions derived from the Edge TTS SRT (sentence-level cues tied to measured word timings), so captions appear exactly as the corresponding narration is spoken.
+- Section headline cards timed per section.
+
+QA RESULT: PASS — video is a genuine, complete, captioned, narrated 9:16 Short under 30 seconds.
+
+Notes:
+- No photographic/archival material is used, so nothing is misrepresented as authentic historical evidence.
+- Visuals are typography on a branded dark background (Honest, no fabricated historical evidence).

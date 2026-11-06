@@ -1,0 +1,33 @@
+QA REPORT — AI Tested
+====================
+Rendered MP4: output/urgent-private-delivery/ai-tested/ai-tested-shorts.mp4
+SHA-256: 20887B52FD9B4574D9E192E7D34DFB06296C689DC75BED30E0B35034848D9CE6
+
+Format checks:
+- Container: MP4 (isom/iso2avc1)
+- Video codec: H.264 (High), yuv420p
+- Dimensions: 1080 x 1920 (9:16 vertical) ✓
+- Frame rate: 30 fps ✓
+- Audio codec: AAC (LC), mono, 24 kHz, ~103 kbps ✓ (narration present, not silent)
+- Duration: 29.832 s (<= 30 s cap) ✓
+
+Content checks:
+- Blank/frozen frames: none detected. Captions render and change in sync with the narration across the video.
+- Black frames: none detected (blackdetect).
+- Corrupted footage: none.
+- Unreadable text: none — captions are rendered system font with black outline.
+
+Caption contrast (white fill text with black outline on near-black #0A0A1A background):
+- Approx contrast ratio ~17:1 (white text on dark ground)
+- Normal text threshold 4.5:1 — PASS
+- Large text threshold 3:1 — PASS
+
+Narration/caption sync:
+- Captions derived from the Edge TTS SRT (sentence-level cues tied to measured word timings), so captions appear exactly as the corresponding narration is spoken.
+
+Motion-graphics treatment:
+- Branded dark background (#0A0A1A) with AWS purple accent (#8B5CF6) in caption outline and typography.
+- Kinetic, sentence-synced captions; growing progress indicator; section-timed presentation.
+- No neon/glow/cyberpunk styling; no fabricated product interfaces.
+
+QA RESULT: PASS — video is a genuine, complete, captioned, narrated 9:16 motion-graphics Short under 30 seconds.

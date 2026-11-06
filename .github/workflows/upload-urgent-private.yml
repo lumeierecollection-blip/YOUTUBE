@@ -1,0 +1,102 @@
+name: Upload Urgent Private Delivery Videos
+
+on:
+  push:
+    branches: [urgent-private-delivery]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  upload-hidden-past:
+    name: Upload Hidden Past (Private)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize OAuth credentials (ch-01 Hidden Past)
+        env:
+          CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = 'config/creds/ch-01.json';
+            fs.mkdirSync('config/creds', { recursive: true });
+            if (!process.env.CH01_CLIENT_ID || !process.env.CH01_CLIENT_SECRET || !process.env.CH01_REFRESH_TOKEN) {
+              console.log('::warning::No credentials for ch-01 — upload skipped');
+              process.exit(0);
+            }
+            fs.writeFileSync(path, JSON.stringify({
+              client_id: process.env.CH01_CLIENT_ID,
+              client_secret: process.env.CH01_CLIENT_SECRET,
+              refresh_token: process.env.CH01_REFRESH_TOKEN
+            }, null, 2));
+            console.log('Credentials materialized for ch-01');
+          "
+
+      - name: Upload Hidden Past video to YouTube (Private)
+        env:
+          YT_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+        run: |
+          node scripts/youtube-upload.cjs \
+            --file "output/urgent-private-delivery/hidden-past/hidden-past-shorts.mp4" \
+            --title "The Village That Lost Its Children — And the Books That Remember Them" \
+            --description "$(cat output/urgent-private-delivery/hidden-past/description.txt)" \
+            --tags "#HiddenPast,#Aberfan,#History,#BooksOfRemembrance,#Wales" \
+            --channel 1
+
+  upload-ai-tested:
+    name: Upload AI Tested (Private)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Materialize OAuth credentials (ch-02 AI Tested)
+        env:
+          CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const path = 'config/creds/ch-02.json';
+            fs.mkdirSync('config/creds', { recursive: true });
+            if (!process.env.CH02_CLIENT_ID || !process.env.CH02_CLIENT_SECRET || !process.env.CH02_REFRESH_TOKEN) {
+              console.log('::warning::No credentials for ch-02 — upload skipped');
+              process.exit(0);
+            }
+            fs.writeFileSync(path, JSON.stringify({
+              client_id: process.env.CH02_CLIENT_ID,
+              client_secret: process.env.CH02_CLIENT_SECRET,
+              refresh_token: process.env.CH02_REFRESH_TOKEN
+            }, null, 2));
+            console.log('Credentials materialized for ch-02');
+          "
+
+      - name: Upload AI Tested video to YouTube (Private)
+        env:
+          YT_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+        run: |
+          node scripts/youtube-upload.cjs \
+            --file "output/urgent-private-delivery/ai-tested/ai-tested-shorts.mp4" \
+            --title "Amazon MWAA's New AI Agent Skills Explained" \
+            --description "$(cat output/urgent-private-delivery/ai-tested/description.txt)" \
+            --tags "#AITested,#AWS,#MWAA,#AI,#CloudAutomation" \
+            --channel 2

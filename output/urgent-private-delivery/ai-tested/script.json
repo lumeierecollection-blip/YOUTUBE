@@ -1,0 +1,86 @@
+{
+  "channel_id": 2,
+  "topic_slug": "mwaa-ai-agent-skills",
+  "format": "shorts",
+  "hook": "Amazon MWAA now includes four AI agent skills for workflow automation.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Amazon MWAA now includes four AI agent skills for workflow automation.",
+      "visual_cue": "AWS management console with code editor overlay",
+      "sfx_cue": "Digital activation chime",
+      "b_roll": ["AWS management console screen capture"],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "NEW AWS AI SKILLS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-12s",
+      "voiceover": "The Agent Toolkit integration lets any AI coding assistant author, debug, and test MWAA workflows using natural language.",
+      "visual_cue": "Terminal window with command prompt typing",
+      "sfx_cue": "Keyboard typing sounds",
+      "b_roll": ["AWS Data Analytics plugin documentation page"],
+      "animation_cue": "Slide left",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Agent Toolkit Integration"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "12-18s",
+      "voiceover": "Four skills: authoring, debugging, testing, and environment upgrades.",
+      "visual_cue": "Four skill tiles revealed in sequence",
+      "sfx_cue": "Subtle whoosh",
+      "b_roll": ["MWAA skill interface cards"],
+      "animation_cue": "Staggered reveal",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Four AI Skills"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "18-26s",
+      "voiceover": "Describe your pipeline in plain English, and the authoring skill generates a working DAG with task dependencies.",
+      "visual_cue": "Terminal showing natural language command and generated code",
+      "sfx_cue": "Confirmation beep",
+      "b_roll": ["Authoring skill interface"],
+      "animation_cue": "Zoom in on output",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Plain English to DAG"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "26-32s",
+      "voiceover": "Upgrade environments with the upgrading-mwaa-environments skill.",
+      "visual_cue": "Terminal showing successful environment upgrade",
+      "sfx_cue": "Soft success chime",
+      "b_roll": ["AWS console upgrade confirmation"],
+      "animation_cue": "Pulse highlight",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "upgrading-mwaa-environments"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-mwaa-ai-agent-skills",
+    "https://docs.aws.amazon.com/mwaa/latest/userguide/using-agent-skills.html"
+  ],
+  "named_entities": [
+    { "name": "Amazon Managed Workflows for Apache Airflow", "kind": "organization" },
+    { "name": "AWS", "kind": "organization" },
+    { "name": "Agent Toolkit for AWS", "kind": "object" },
+    { "name": "authoring-mwaa-workflow", "kind": "object" },
+    { "name": "debugging-mwaa-workflow", "kind": "object" },
+    { "name": "testing-mwaa-workflow", "kind": "object" },
+    { "name": "upgrading-mwaa-environments", "kind": "object" }
+  ]
+}

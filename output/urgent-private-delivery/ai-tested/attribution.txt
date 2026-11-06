@@ -1,0 +1,4 @@
+Amazon Web Services — AWS What's New (Oct 2026): https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-mwaa-ai-agent-skills
+AWS MWAA User Guide — Using Agent Skills: https://docs.aws.amazon.com/mwaa/latest/userguide/using-agent-skills.html
+
+All claims about MWAA AI agent skills are sourced from official AWS announcements and documentation. No product interfaces, capabilities, benchmarks, or quotations are fabricated. The video uses typography and motion-graphics treatment on a branded dark background; no mock or fake AWS console screens are presented as authentic product interfaces.

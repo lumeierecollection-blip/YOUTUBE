@@ -1,0 +1,62 @@
+{
+  "channel_id": 1,
+  "topic_slug": "aberfan-books-of-remembrance-shorts",
+  "format": "shorts",
+  "style": "cinematic-documentary",
+  "hook": "144 names, preserved in leather — after Aberfan lost its children in seconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "144 names, preserved in leather — after Aberfan lost its children in seconds.",
+      "visual_cue": "Close-up of heavy leather-bound archive pages on a dark wooden table.",
+      "sfx_cue": "Subtle paper rustle, low ambient tone",
+      "b_roll": ["National Library of Wales archive room overview shot"],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Quick cut to archival still",
+      "text_overlay": { "text": "144 NAMES PRESERVED" }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:13",
+      "voiceover": "21 October 1966: a coal tip collapsed on Aberfan, burying a school. 116 children died.",
+      "visual_cue": "Archival photograph of the hillside slide scar above the village houses.",
+      "sfx_cue": "Muffled wind, distant rumble",
+      "b_roll": ["Aberfan historical disaster archival photograph"],
+      "animation_cue": "Subtle zoom in on photograph",
+      "transition_out": "Smooth cross dissolve",
+      "text_overlay": { "text": "21 OCTOBER 1966" }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:13-00:23",
+      "voiceover": "The National Library of Wales finished new Books of Remembrance ahead of July 2026.",
+      "visual_cue": "A bookbinder pressing fresh gold-foil lettering onto a dark memorial cover.",
+      "sfx_cue": "Careful bookbinding tool work, soft foil press",
+      "b_roll": ["National Library of Wales bindery workshop"],
+      "animation_cue": "Slow push in on binder working",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "NEW BOOKS OF REMEMBRANCE" }
+    },
+    {
+      "id": "close",
+      "timing": "00:23-00:30",
+      "voiceover": "The names live on, preserved for generations.",
+      "visual_cue": "Close-up of the finished Book of Remembrance, gold lettering on dark leather.",
+      "sfx_cue": "Soft page turn, gentle fade",
+      "b_roll": ["Close-up of finished memorial book"],
+      "animation_cue": "Slow pan across gold lettering",
+      "transition_out": "Fade to black",
+      "text_overlay": { "text": "NAMES PRESERVED" }
+    }
+  ],
+  "sources_used": [
+    "https://www.library.wales/",
+    "https://www.bbc.co.uk/news/uk-wales-36997227"
+  ],
+  "named_entities": [
+    { "name": "National Library of Wales", "kind": "organization" },
+    { "name": "Aberfan", "kind": "place" },
+    { "name": "Books of Remembrance", "kind": "object" }
+  ]
+}

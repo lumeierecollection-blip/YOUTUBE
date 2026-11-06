@@ -1,0 +1,9 @@
+Amazon MWAA now includes four AI agent skills for workflow automation, integrated through the Agent Toolkit for AWS.
+
+The skills let any AI coding assistant author, debug, test, and upgrade MWAA workflows using natural language — describe your pipeline in plain English to generate a working DAG with task dependencies.
+
+Skills: authoring-mwaa-workflow, debugging-mwaa-workflow, testing-mwaa-workflow, upgrading-mwaa-environments (Provisioned environments only for upgrades).
+
+Sources: AWS What's New (Oct 2026) — amazonaws.com/about-aws/whats-new/2026/10/amazon-mwaa-ai-agent-skills; AWS MWAA User Guide — docs.aws.amazon.com/mwaa/latest/userguide/using-agent-skills.html
+
+#AITested #AWS #MWAA #AI #CloudAutomation
