@@ -1,0 +1,127 @@
+{
+  "topic_slug": "western-harbour-tunnel-cavern-excavation",
+  "strongest_angle": "Examining the civil engineering feats, giant 4400-tonne boring machines, and specialized roadheaders carving out caverns 50 metres beneath Sydney for the $7.4 billion Western Harbour Tunnel megaproject.",
+  "key_facts": [
+    {
+      "fact": "Up to 50 metres beneath Sydney's lower north shore, two giant caverns were carved out by excavation crews using specialized roadheaders to serve as reception chambers for the Western Harbour Tunnel project.",
+      "source_url": "https://tunnellingjournal.com/giant-tbm-reception-chambers-completed-beneath-sydney-harbour",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Two giant launch chambers measuring 120 metres long, 26 metres high, and 18 metres wide were completed at Birchgrove for the Western Harbour Tunnel project.",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-pinpoint-accuracy-inside-the-mission-to-finish-sydney-s-largest-tunnelling-jigsaw-20251029-p5n65o.html",
+      "source_name": "Sydney Morning Herald",
+      "confidence": "high"
+    },
+    {
+      "fact": "The second slurry tunnel boring machine, named Barangaroo and weighing 4,350 tonnes, was launched 44.7 metres below Birchgrove Oval to begin excavation on the 6.5-kilometre Western Harbour Tunnel.",
+      "source_url": "https://tunnellingjournal.com/second-giant-tbm-starts-western-harbour-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Contractors are operating two massive tunnel boring machines, each weighing 4400 tonnes, as part of the $7.4 billion Sydney harbour crossing project.",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-beneath-sydney-s-north-shore-mark-finish-line-for-new-harbour-crossing-20261103-p61anm.html",
+      "source_name": "Sydney Morning Herald",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Depth beneath Sydney's lower north shore",
+      "value": 50,
+      "unit": "metres",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-beneath-sydney-s-north-shore-mark-finish-line-for-new-harbour-crossing-20261103-p61anm.html"
+    },
+    {
+      "label": "Project cost for the Western Harbour Tunnel",
+      "value": 7.4,
+      "unit": "billion dollars",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-beneath-sydney-s-north-shore-mark-finish-line-for-new-harbour-crossing-20261103-p61anm.html"
+    },
+    {
+      "label": "Length of each launch cavern at Birchgrove",
+      "value": 120,
+      "unit": "metres",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-pinpoint-accuracy-inside-the-mission-to-finish-sydney-s-largest-tunnelling-jigsaw-20251029-p5n65o.html"
+    },
+    {
+      "label": "Height of each launch cavern at Birchgrove",
+      "value": 26,
+      "unit": "metres",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-pinpoint-accuracy-inside-the-mission-to-finish-sydney-s-largest-tunnelling-jigsaw-20251029-p5n65o.html"
+    },
+    {
+      "label": "Width of each launch cavern at Birchgrove",
+      "value": 18,
+      "unit": "metres",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-pinpoint-accuracy-inside-the-mission-to-finish-sydney-s-largest-tunnelling-jigsaw-20251029-p5n65o.html"
+    },
+    {
+      "label": "Diameter of the slurry TBMs",
+      "value": 15.7,
+      "unit": "metres",
+      "source_url": "https://tunnellingjournal.com/giant-tbm-reception-chambers-completed-beneath-sydney-harbour"
+    },
+    {
+      "label": "Weight of the Barangaroo TBM",
+      "value": 4350,
+      "unit": "tonnes",
+      "source_url": "https://tunnellingjournal.com/second-giant-tbm-starts-western-harbour-tunnel-drive"
+    },
+    {
+      "label": "Launch depth below Birchgrove Oval",
+      "value": 44.7,
+      "unit": "metres",
+      "source_url": "https://tunnellingjournal.com/second-giant-tbm-starts-western-harbour-tunnel-drive"
+    },
+    {
+      "label": "Total length of the Western Harbour Tunnel",
+      "value": 6.5,
+      "unit": "kilometres",
+      "source_url": "https://tunnellingjournal.com/second-giant-tbm-starts-western-harbour-tunnel-drive"
+    },
+    {
+      "label": "Weight of each boring machine",
+      "value": 4400,
+      "unit": "tonnes",
+      "source_url": "https://www.smh.com.au/national/nsw/giant-caverns-beneath-sydney-s-north-shore-mark-finish-line-for-new-harbour-crossing-20261103-p61anm.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sydney",
+      "kind": "place"
+    },
+    {
+      "name": "Birchgrove",
+      "kind": "place"
+    },
+    {
+      "name": "Waverton",
+      "kind": "place"
+    },
+    {
+      "name": "Barangaroo",
+      "kind": "object"
+    },
+    {
+      "name": "Patyegarang",
+      "kind": "object"
+    },
+    {
+      "name": "Western Harbour Tunnel",
+      "kind": "organization"
+    },
+    {
+      "name": "CREG",
+      "kind": "organization"
+    },
+    {
+      "name": "Birchgrove Oval",
+      "kind": "place"
+    }
+  ]
+}
