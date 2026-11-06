@@ -1,0 +1,76 @@
+{
+  "channel_id": 4,
+  "topic_slug": "bayern-dortmund-tactical-shorts",
+  "format": "shorts",
+  "hook": "Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.",
+      "visual_cue": "Allianz Arena with tactical overlay",
+      "sfx_cue": "Stadium crowd ambience",
+      "b_roll": ["Allianz Arena exterior"],
+      "animation_cue": "Fade in",
+      "transition_out": "Cut",
+      "text_overlay": { "text": "Bayern 2-2 Dortmund" }
+    },
+    {
+      "id": "setup",
+      "timing": "4-13s",
+      "voiceover": "Dortmund lined up in a flexible 3-4-2-1 under Kovac, shifting to a 4-4-2 block without the ball.",
+      "visual_cue": "Dortmund 3-4-2-1 formation diagram",
+      "sfx_cue": "Tactical board marker",
+      "b_roll": ["Dortmund formation graphic"],
+      "animation_cue": "Formation dots appear",
+      "transition_out": "Dissolve",
+      "text_overlay": { "text": "Dortmund 3-4-2-1" }
+    },
+    {
+      "id": "rehook",
+      "timing": "13-22s",
+      "voiceover": "Bayern pressed high with acting manager Aaron Danks in a 4-2-3-1 base, but Dortmund won 57 percent of duels.",
+      "visual_cue": "Bayern 4-2-3-1 pressing high, Dortmund winning duels",
+      "sfx_cue": "Whistle blow",
+      "b_roll": ["Bayern pressing diagram"],
+      "animation_cue": "Pressing arrows appear",
+      "transition_out": "Cut",
+      "text_overlay": { "text": "Dortmund Won 57% of Duels" }
+    },
+    {
+      "id": "payoff",
+      "timing": "22-29s",
+      "voiceover": "Dortmund twice leveled the score through Guirassy and Silva, ending the match at 2-2.",
+      "visual_cue": "Dortmund goals highlighted on match timeline",
+      "sfx_cue": "Goal celebration chime",
+      "b_roll": ["Dortmund goal highlights"],
+      "animation_cue": "Goal markers appear",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "2-2 Final" }
+    },
+    {
+      "id": "close",
+      "timing": "29-33s",
+      "voiceover": "A tactical battle that ended where it began - level.",
+      "visual_cue": "Final scoreboard showing 2-2",
+      "sfx_cue": "Final whistle",
+      "b_roll": ["Match scoreboard"],
+      "animation_cue": "Scoreboard settles",
+      "transition_out": "Fade to black",
+      "text_overlay": { "text": "Level at 2-2" }
+    }
+  ],
+  "sources_used": [
+    "https://www.thepressingzone.com/bayern-vs-dortmund-tactical-analysis-2026",
+    "https://www.bundesliga.com/en/bundesliga/news/borussia-dortmund-klassiker-bayern-munich-draw-kovac-guirassy-39818"
+  ],
+  "named_entities": [
+    { "name": "Bayern Munich", "kind": "organization" },
+    { "name": "Borussia Dortmund", "kind": "organization" },
+    { "name": "Niko Kovac", "kind": "person" },
+    { "name": "Aaron Danks", "kind": "person" },
+    { "name": "Serhou Guirassy", "kind": "person" },
+    { "name": "Fabio Silva", "kind": "person" },
+    { "name": "Allianz Arena", "kind": "place" }
+  ]
+}

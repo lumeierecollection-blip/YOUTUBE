@@ -1,0 +1,55 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-4",
+  "channelName": "Channel 4",
+  "videoSlug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "generatedAt": "2026-11-04T20:56:29.999Z",
+  "sourcePlan": "data/sourcing-cache/ch-4/liverpool-arsenal-premier-league-tactical-analysis/render-plan.json",
+  "sourceAssets": "data/sourcing-cache/ch-4/liverpool-arsenal-premier-league-tactical-analysis/licensed-assets/manifest.json",
+  "totalAssets": 3,
+  "uniqueAssets": 3,
+  "totalBeats": 7,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Winning at Anfield is rare for Arsenal, but this 1-0 victory…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Arsenal secured a 1-0 victory at Anfield, ending a 14-year w…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“How did they hold Liverpool scoreless?…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Yet, Liverpool failed to register a single shot on target du…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“This lack of shots on target is a first since records began …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Arteta successfully neutralized the entire Liverpool attack …”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“This 1-0 win stands as Arsenal's most significant tactical t…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 7,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

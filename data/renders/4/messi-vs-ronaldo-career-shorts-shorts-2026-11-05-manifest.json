@@ -1,0 +1,404 @@
+{
+  "video": "messi-vs-ronaldo-career-shorts-shorts-2026-11-05.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 756,
+      "beat": 9,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 822,
+  "durationSec": 27.4,
+  "generatedAt": "2026-11-05T00:26:22.741Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 124,
+      "start_sec": 0.1,
+      "duration_sec": 4.13,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "pull_back",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 127,
+      "duration_frames": 93,
+      "start_sec": 4.23,
+      "duration_sec": 3.1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Ballon d'Or",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Ballon d'Or"
+      ],
+      "camera": [
+        "slow_drift",
+        "widen",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 220,
+      "duration_frames": 70,
+      "start_sec": 7.33,
+      "duration_sec": 2.33,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "widen",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 290,
+      "duration_frames": 94,
+      "start_sec": 9.67,
+      "duration_sec": 3.13,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "pull_back",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 384,
+      "duration_frames": 72,
+      "start_sec": 12.8,
+      "duration_sec": 2.4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "slow_drift",
+        "pull_back"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 456,
+      "duration_frames": 69,
+      "start_sec": 15.2,
+      "duration_sec": 2.3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "expand",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 525,
+      "duration_frames": 87,
+      "start_sec": 17.5,
+      "duration_sec": 2.9,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "widen",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 7,
+      "beat_id": "d7",
+      "start_frame": 612,
+      "duration_frames": 89,
+      "start_sec": 20.4,
+      "duration_sec": 2.97,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 8,
+      "beat_id": "d8",
+      "start_frame": 701,
+      "duration_frames": 55,
+      "start_sec": 23.37,
+      "duration_sec": 1.83,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "expand"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 9,
+      "beat_id": "d9",
+      "start_frame": 756,
+      "duration_frames": 66,
+      "start_sec": 25.2,
+      "duration_sec": 2.2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "expand",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

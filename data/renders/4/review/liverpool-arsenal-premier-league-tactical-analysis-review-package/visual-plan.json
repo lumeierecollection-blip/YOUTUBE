@@ -1,0 +1,472 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-4/liverpool-arsenal-premier-league-tactical-analysis/visual-plan.json",
+  "channel": "ch-4",
+  "videoSlug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "generatedAt": "2026-11-04T19:43:30.328Z",
+  "totalBeats": 7,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Anfield, Arsenal",
+      "reason": "Illustrative graphic for beat 1: \"Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historical logic.\"",
+      "objects": {
+        "amount_a": "Anfield, Arsenal",
+        "amount_b": "Anfield, Arsenal",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historic",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historic",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 1,
+      "_narration": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historical logic.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Anfield, Arsenal",
+      "reason": "Illustrative graphic for beat 2: \"Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the stadium.\"",
+      "objects": {
+        "amount_a": "Anfield, Arsenal",
+        "amount_b": "Anfield, Arsenal",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 2,
+      "_narration": "Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the stadium.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Liverpool",
+      "reason": "Beat 3 (“How did they hold Liverpool scoreless?”): DescriptionPort of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> Dome.jpg The Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> (formerly Mersey Docks and Harbour Board Offices, more commonly known as",
+      "objects": {
+        "amount_a": "Liverpool",
+        "amount_b": "liverpool-building-headquarters-568c0153.jpg",
+        "_assetFile": "liverpool-building-headquarters-568c0153.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "liverpool-building-headquarters-568c0153.jpg",
+          "filename": "liverpool-building-headquarters-568c0153.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3APort_of_Liverpool_Building_Dome.jpg",
+          "creator": "David Wilmot from Wimbledon, United Kingdom",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "attribution": "David Wilmot from Wimbledon, United Kingdom / Wikimedia Commons, CC BY 2.0",
+          "credit": "Flickr",
+          "sha256": "568c01535b6a8039f27f3acc6326ee9757da42348894d830023d49b91d9c3f17",
+          "width": 1920,
+          "height": 1440,
+          "retrievedAt": "2026-11-04T17:27:50.971Z",
+          "cacheKey": "622390c6d801d900",
+          "relevance": "Beat 3 (“How did they hold Liverpool scoreless?”): DescriptionPort of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> Dome.jpg The Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> (formerly Mersey Docks and Harbour Board Offices, more commonly known as"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Liverpool",
+          "asset": "asset-library/liverpool-building-headquarters-568c0153.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "David Wilmot from Wimbledon, United Kingdom / Wikimedia Commons, CC BY 2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg",
+          "license": "CC BY 2.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "How did they hold Liverpool scoreless?",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Liverpool",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/liverpool-building-headquarters-568c0153.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 3,
+      "_narration": "How did they hold Liverpool scoreless?",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Liverpool",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/liverpool-building-headquarters-568c0153.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "David Wilmot from Wimbledon, United Kingdom / Wikimedia Commons, CC BY 2.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg",
+            "license": "CC BY 2.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Liverpool",
+      "reason": "Beat 4 (“Yet, Liverpool failed to register a single shot on target during the entire Premier League match.”): Creative Commons Attribution-Share Alike 2.0 truetrue English Cunard <span class=\"searchmatch\">Building</span>, <span class=\"searchmatch\">Liverpool</span> author name string: Eirian Evans object of statement has role: photographer",
+      "objects": {
+        "amount_a": "Liverpool",
+        "amount_b": "liverpool-building-headquarters-9ea43324.jpg",
+        "_assetFile": "liverpool-building-headquarters-9ea43324.jpg",
+        "_asset": {
+          "id": "asset-2",
+          "file": "liverpool-building-headquarters-9ea43324.jpg",
+          "filename": "liverpool-building-headquarters-9ea43324.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3ACunard_Building%2C_Liverpool_-_geograph.org.uk_-_1138185.jpg",
+          "creator": "Eirian Evans",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "attribution": "Eirian Evans / Wikimedia Commons, CC BY-SA 2.0",
+          "credit": "From geograph.org.uk",
+          "sha256": "9ea433243fa7986a3e68b1128e1515e40bffe682f8030a401189c66b775f1a01",
+          "width": 640,
+          "height": 480,
+          "retrievedAt": "2026-11-04T17:27:52.744Z",
+          "cacheKey": "622390c6d801d900",
+          "relevance": "Beat 4 (“Yet, Liverpool failed to register a single shot on target during the entire Premier League match.”): Creative Commons Attribution-Share Alike 2.0 truetrue English Cunard <span class=\"searchmatch\">Building</span>, <span class=\"searchmatch\">Liverpool</span> author name string: Eirian Evans object of statement has role: photographer"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Liverpool",
+          "asset": "asset-library/liverpool-building-headquarters-9ea43324.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Eirian Evans / Wikimedia Commons, CC BY-SA 2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg",
+          "license": "CC BY-SA 2.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Yet, Liverpool failed to register a single shot on target during the entire Prem",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Liverpool",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/liverpool-building-headquarters-9ea43324.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 4,
+      "_narration": "Yet, Liverpool failed to register a single shot on target during the entire Premier League match.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Liverpool",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/liverpool-building-headquarters-9ea43324.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Eirian Evans / Wikimedia Commons, CC BY-SA 2.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg",
+            "license": "CC BY-SA 2.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 5: \"This lack of shots on target is a first since records began in the 2003 season.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "This lack of shots on target is a first since records began in the 2003 season.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "This lack of shots on target is a first since records began in the 2003 season.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 5,
+      "_narration": "This lack of shots on target is a first since records began in the 2003 season.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 5,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Liverpool",
+      "reason": "Beat 6 (“Arteta successfully neutralized the entire Liverpool attack at home.”): Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg Cunard and Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. Two of <span class=\"searchmatch\">Liverpool&#039;s</span> iconic waterfront",
+      "objects": {
+        "amount_a": "Liverpool",
+        "amount_b": "liverpool-building-headquarters-7fc4be5e.jpg",
+        "_assetFile": "liverpool-building-headquarters-7fc4be5e.jpg",
+        "_asset": {
+          "id": "asset-3",
+          "file": "liverpool-building-headquarters-7fc4be5e.jpg",
+          "filename": "liverpool-building-headquarters-7fc4be5e.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3ACunard_and_Port_of_Liverpool_Building._(2016-01-01_17.23.42_by_Bob_Edwards_-_24083545936).jpg",
+          "creator": "Bob Edwards",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "attribution": "Bob Edwards / Wikimedia Commons, CC BY 2.0",
+          "credit": "Cunard and Port of Liverpool Building.",
+          "sha256": "7fc4be5e765a28fad136984ff8f9e15967e4b799383ce737bae3e0c9da3c5608",
+          "width": 1920,
+          "height": 1309,
+          "retrievedAt": "2026-11-04T17:27:54.902Z",
+          "cacheKey": "622390c6d801d900",
+          "relevance": "Beat 6 (“Arteta successfully neutralized the entire Liverpool attack at home.”): Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg Cunard and Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. Two of <span class=\"searchmatch\">Liverpool&#039;s</span> iconic waterfront"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Liverpool",
+          "asset": "asset-library/liverpool-building-headquarters-7fc4be5e.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Bob Edwards / Wikimedia Commons, CC BY 2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg",
+          "license": "CC BY 2.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Arteta successfully neutralized the entire Liverpool attack at home.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Liverpool",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/liverpool-building-headquarters-7fc4be5e.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 6,
+      "_narration": "Arteta successfully neutralized the entire Liverpool attack at home.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Liverpool",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/liverpool-building-headquarters-7fc4be5e.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Bob Edwards / Wikimedia Commons, CC BY 2.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg",
+            "license": "CC BY 2.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Anfield, Arsenal",
+      "reason": "Illustrative graphic for beat 7: \"This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in 14 years.\"",
+      "objects": {
+        "amount_a": "Anfield, Arsenal",
+        "amount_b": "Anfield, Arsenal",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 7,
+      "_narration": "This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in 14 years.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

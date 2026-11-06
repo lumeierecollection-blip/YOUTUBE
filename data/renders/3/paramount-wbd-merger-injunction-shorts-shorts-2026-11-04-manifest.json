@@ -1,0 +1,302 @@
+{
+  "video": "paramount-wbd-merger-injunction-shorts-shorts-2026-11-04.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 1142,
+      "beat": 6,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1325,
+  "durationSec": 44.17,
+  "generatedAt": "2026-11-04T20:08:46.662Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 186,
+      "start_sec": 0.1,
+      "duration_sec": 6.2,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "slow_zoom"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 189,
+      "duration_frames": 272,
+      "start_sec": 6.3,
+      "duration_sec": 9.07,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "California, United States District Court for the Northern District of California",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "California, United States District Court for the Northern District of California"
+      ],
+      "camera": [
+        "slow_drift",
+        "slow_zoom",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 461,
+      "duration_frames": 93,
+      "start_sec": 15.37,
+      "duration_sec": 3.1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "will-these-services-stay-independent-illustration-80e530f0.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "will-these-services-stay-independent-illustration-80e530f0.jpg"
+      ],
+      "camera": [
+        "micro_pull",
+        "slow_zoom",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 554,
+      "duration_frames": 204,
+      "start_sec": 18.47,
+      "duration_sec": 6.8,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Skydance Corporation, Paramount+, HBO Max",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Skydance Corporation, Paramount+, HBO Max"
+      ],
+      "camera": [
+        "slow_drift",
+        "drift_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 758,
+      "duration_frames": 184,
+      "start_sec": 25.27,
+      "duration_sec": 6.13,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Araceli Martínez-Olguín",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Araceli Martínez-Olguín"
+      ],
+      "camera": [
+        "slow_drift",
+        "slow_zoom",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 942,
+      "duration_frames": 200,
+      "start_sec": 31.4,
+      "duration_sec": 6.67,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Skydance Corporation",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Skydance Corporation"
+      ],
+      "camera": [
+        "micro_pull",
+        "drift_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1142,
+      "duration_frames": 183,
+      "start_sec": 38.07,
+      "duration_sec": 6.1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "push_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

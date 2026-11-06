@@ -1,0 +1,271 @@
+{
+  "generatedAt": "2026-11-04T20:53:35.386Z",
+  "video": "st-helena-slave-ship-burials-dna-analysis-shorts-shorts-2026-11-04.mp4",
+  "channel": "1",
+  "technical": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationSec": 47.68,
+    "hasAudio": true
+  },
+  "visual": {
+    "ok": false,
+    "note": "too few frames sampled"
+  },
+  "plan_compliance": {
+    "ok": true,
+    "beatCountPlan": 8,
+    "beatCountRender": 8,
+    "textForwardPct": 100,
+    "textForwardSource": "drawn",
+    "distinctMechanisms": 4,
+    "distinctCapabilities": 0,
+    "longestMechanismRun": 3,
+    "monoculture": true,
+    "mechanismDistribution": {
+      "EVIDENCE_FIGURE": 3,
+      "PROPORTIONAL_OBJECTS": 4,
+      "STATE_CHANGE": 1
+    },
+    "capabilityDistribution": {},
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "monoculture: 100% text-forward, 4 distinct mechanisms, longest run 3"
+      }
+    ]
+  },
+  "typography": {
+    "ok": true,
+    "textBeats": 1,
+    "totalBeats": 8,
+    "textBeatShare": 0.13,
+    "longestTextRun": 1,
+    "multiLineBeats": 1,
+    "wouldWrapBeats": 1,
+    "headlineLikeBeats": 0,
+    "transcriptLikeBeats": 0,
+    "repeatedPhrases": [],
+    "perBeat": [
+      {
+        "index": 0,
+        "hasText": false
+      },
+      {
+        "index": 1,
+        "hasText": false
+      },
+      {
+        "index": 2,
+        "hasText": false
+      },
+      {
+        "index": 3,
+        "hasText": false
+      },
+      {
+        "index": 4,
+        "hasText": true,
+        "phrase": "Science science-building-headquarters-bdc274b8.jpg",
+        "words": 2,
+        "chars": 50,
+        "wouldWrap": true,
+        "multiLine": true,
+        "headline": false,
+        "transcript": false
+      },
+      {
+        "index": 5,
+        "hasText": false
+      },
+      {
+        "index": 6,
+        "hasText": false
+      },
+      {
+        "index": 7,
+        "hasText": false
+      }
+    ],
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 0,
+        "problem": "\"over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg\" needs 24px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 1,
+        "problem": "\"St Helena, British Royal Navy\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 2,
+        "problem": "\"St Helena\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "\"St Helena\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "PLAN_COMPLIANCE",
+        "beat": 4,
+        "problem": "beat draws 2 narrative lines (\"Science\", \"science-building-headquarters-bdc274b8.jpg\") — one thought per beat, never a headline + supporting line"
+      },
+      {
+        "owner": "PLAN_COMPLIANCE",
+        "beat": 4,
+        "problem": "typography rendered as 2 text blocks — must be ONE line"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "phrase needs 24px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "50 chars exceeds the 48-char single-line budget"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 6,
+        "problem": "\"St Helena, UC Santa Cruz\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 7,
+        "problem": "\"Science\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      }
+    ]
+  },
+  "audio": {
+    "ok": true,
+    "hasAudio": true,
+    "clipping": false,
+    "longSilenceCount": 0,
+    "maxSilenceSec": 0,
+    "effectivelySilent": false
+  },
+  "channel_history": {
+    "ok": true,
+    "recentAvgTextForwardPct": 100,
+    "thisTextForwardPct": 100,
+    "outlier": false
+  },
+  "risk": {
+    "score": 62,
+    "level": "HIGH",
+    "reasons": [
+      "monoculture (100% text-forward)",
+      "1 multi-line typography beat(s)",
+      "1 phrase(s) too long for one readable line"
+    ]
+  },
+  "gemini_required": true,
+  "uncertain_beats": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "blockers": [],
+  "corrections": [
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "monoculture: 100% text-forward, 4 distinct mechanisms, longest run 3",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 0,
+      "scene": "beat 0",
+      "problem": "\"over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg\" needs 24px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 1,
+      "scene": "beat 1",
+      "problem": "\"St Helena, British Royal Navy\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 2,
+      "scene": "beat 2",
+      "problem": "\"St Helena\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "\"St Helena\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "PLAN_COMPLIANCE",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "beat draws 2 narrative lines (\"Science\", \"science-building-headquarters-bdc274b8.jpg\") — one thought per beat, never a headline + supporting line",
+      "fix": "The plan asked for a structure the visual language forbids. Re-plan this beat so the structure is impossible: one narrative line per beat, no section labels, no mechanism names on screen."
+    },
+    {
+      "owner": "PLAN_COMPLIANCE",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "typography rendered as 2 text blocks — must be ONE line",
+      "fix": "The plan asked for a structure the visual language forbids. Re-plan this beat so the structure is impossible: one narrative line per beat, no section labels, no mechanism names on screen."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "phrase needs 24px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "50 chars exceeds the 48-char single-line budget",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 6,
+      "scene": "beat 6",
+      "problem": "\"St Helena, UC Santa Cruz\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 7,
+      "scene": "beat 7",
+      "problem": "\"Science\" was written into the PROPORTIONAL_OBJECTS figure slot (objects.*.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    }
+  ]
+}

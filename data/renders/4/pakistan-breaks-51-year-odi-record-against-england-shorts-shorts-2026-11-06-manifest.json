@@ -1,0 +1,294 @@
+{
+  "video": "pakistan-breaks-51-year-odi-record-against-england-shorts-shorts-2026-11-06.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 1015,
+      "beat": 6,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1050,
+  "durationSec": 35,
+  "generatedAt": "2026-11-06T08:29:50.497Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 159,
+      "start_sec": 0.1,
+      "duration_sec": 5.3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "widen",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 162,
+      "duration_frames": 225,
+      "start_sec": 5.4,
+      "duration_sec": 7.5,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "expand",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 387,
+      "duration_frames": 177,
+      "start_sec": 12.9,
+      "duration_sec": 5.9,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "slow_drift",
+        "pull_back",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 564,
+      "duration_frames": 144,
+      "start_sec": 18.8,
+      "duration_sec": 4.8,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 708,
+      "duration_frames": 167,
+      "start_sec": 23.6,
+      "duration_sec": 5.57,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "pull_back",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 875,
+      "duration_frames": 140,
+      "start_sec": 29.17,
+      "duration_sec": 4.67,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "expand"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1015,
+      "duration_frames": 192,
+      "start_sec": 33.83,
+      "duration_sec": 6.4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

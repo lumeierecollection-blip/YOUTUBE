@@ -121,7 +121,7 @@ function editorialColors(colors, rawPalette, bgMode) {
   const isWhite = bgMode === "white";
   const subdued = all.find((c) => {
     return contrastRatio(c, bgColor) >= 4.5 && lum(c) < 0.7 && c !== colors.accent;
-  }) || sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))];
+  }) || ensureTextContrast(sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * 0.6))], bgColor, TEXT_TARGET_CONTRAST);
   const safeSubdued = contrastRatio(subdued, bgColor) >= 4.5
     ? subdued : (all.find((c) => contrastRatio(c, bgColor) >= 4.5) || ensureTextContrast(sorted[sorted.length - 1], bgColor, TEXT_TARGET_CONTRAST));
   // ComposedScene (composed-scene.jsx) also needs accentText and quiet:
@@ -129,17 +129,19 @@ function editorialColors(colors, rawPalette, bgMode) {
   // THIS background (scene-text.js), same as main's editorialColors.
   // On a white ground the fill roles flip to the dark end of the palette —
   // the brightest palette colour as "surface" would be invisible on white.
-  return {
+  const result = {
     bg: bgColor,
     depth: sorted[1] || sorted[0],
     surface: isWhite ? sorted[0] : sorted[sorted.length - 1],
     text: ensureTextContrast(isWhite ? sorted[0] : sorted[sorted.length - 1], bgColor, TEXT_TARGET_CONTRAST),
     textDark: ensureTextContrast(sorted[0], bgColor, TEXT_TARGET_CONTRAST),
-    accent: colors.accent,
+    accent: ensureTextContrast(colors.accent, bgColor, ACCENT_TEXT_TARGET_CONTRAST),
     accentText: ensureTextContrast(colors.accent, bgColor, ACCENT_TEXT_TARGET_CONTRAST),
     subdued: safeSubdued,
     quiet: ensureTextContrast(safeSubdued, bgColor, TEXT_TARGET_CONTRAST),
   };
+  console.log('[DEBUG editorialColors] bgColor=' + bgColor + ' colors.accent=' + colors.accent + ' result.accent=' + result.accent + ' result.text=' + result.text + ' result.subdued=' + result.subdued + ' result.accentText=' + result.accentText);
+  return result;
 }
 
 /* ── Text layout ────────────────────────────────────────────────────── */
@@ -261,7 +263,7 @@ function FuelGauge({ cx, cy, r, fill, label, reading, readingOpacity, ed, font }
       {reading && (
         <text x={cx} y={cy + r * 0.45} textAnchor="middle"
           fontFamily={`${font}, monospace`} fontWeight={900}
-          fontSize={Math.min(72, r * 0.38)} fill={ed.accent}
+          fontSize={Math.min(72, r * 0.38)} fill={ed.accentText}
           fontVariantNumeric="tabular-nums" opacity={readingOpacity ?? 1}>{reading}</text>
       )}
       {label && (
@@ -315,7 +317,7 @@ function ReceiptSheet({ x, y, w, h, items, total, growth, growthP, ed, font }) {
             fontSize={20} fill={ed.subdued}>TOTAL</text>
           <text x={x + w - pad} y={y + h - 42} textAnchor="end"
             fontFamily={`${font}, monospace`} fontWeight={900}
-            fontSize={26} fill={ed.accent}>{total}</text>
+            fontSize={26} fill={ed.accentText}>{total}</text>
         </>
       )}
       {growth && (
@@ -345,7 +347,7 @@ function StatisticCallout({ x, y, value, label, source, ed, font, highlighted, o
       )}
       <text x={x + 18} y={valueY}
         fontFamily={`${font}, sans-serif`} fontWeight={900}
-        fontSize={sz} fill={highlighted ? ed.accent : ed.text}
+        fontSize={sz} fill={highlighted ? ed.accentText : ed.text}
         fontVariantNumeric="tabular-nums">{value}</text>
       {label && (
         <text x={x + 18} y={labelY}
@@ -515,7 +517,7 @@ function TypographyScene({ beat, p, local, ed, font, scene }) {
             return (
               <span key={wi} style={{
                 display: "inline-block", marginRight: size * 0.24,
-                color: isEmph ? ed.accent : ed.text,
+                color: isEmph ? ed.accentText : ed.text,
                 transform: `scale(${emphScale})`,
                 transformOrigin: "bottom left",
               }}>{word}</span>
@@ -814,7 +816,7 @@ function GrowthScene({ beat, p, local, ed, font, scene }) {
         {labelP > 0.2 && (
           <text x={colX + colW + 20} y={colY + colH - fillH + magSz * 0.35}
             fontFamily={`${font}, sans-serif`} fontWeight={900}
-            fontSize={magSz} fill={ed.accent}
+            fontSize={magSz} fill={ed.accentText}
             fontVariantNumeric="tabular-nums" opacity={labelP}>{magText}</text>
         )}
         <text x={SAFE_W / 2} y={colY + colH + 48} textAnchor="middle"
@@ -835,7 +837,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
 
   if (isBudget) {
     const segments = [
-      { label: "NEEDS", pct: "50%", ratio: 0.5, color: ed.accent, fillOp: 0.3 },
+      { label: "NEEDS", pct: "50%", ratio: 0.5, color: ed.accentText, fillOp: 0.3 },
       { label: "WANTS", pct: "30%", ratio: 0.3, color: ed.subdued, fillOp: 0.25 },
       { label: "SAVE", pct: "20%", ratio: 0.2, color: ed.text, fillOp: 0.15 },
     ];
@@ -851,7 +853,7 @@ function BreakdownScene({ beat, p, local, ed, font, scene }) {
             <g opacity={ease(clamp01((breakP - 0.6) / 0.3)) * 0.6}>
               <text x={SAFE_W / 2} y={SAFE_H * 0.48} textAnchor="middle"
                 fontFamily={`${font}, sans-serif`} fontWeight={900}
-                fontSize={64} fill={ed.accent} letterSpacing={12}
+                fontSize={64} fill={ed.accentText} letterSpacing={12}
                 transform={`rotate(-8, ${SAFE_W / 2}, ${SAFE_H * 0.48})`}>BROKEN</text>
             </g>
           )}
@@ -930,7 +932,7 @@ function EvidenceFigureScene({ beat, p, local, ed, font, scene }) {
             stroke={ed.accent} strokeWidth={3} opacity={enterP * 0.8} />
           <text x={markX} y={barY - 48}
             textAnchor="middle" fontFamily={`${font}, sans-serif`} fontWeight={900}
-            fontSize={labelSz} fill={ed.accent}
+            fontSize={labelSz} fill={ed.accentText}
             fontVariantNumeric="tabular-nums">{label}</text>
           {ctxLabel && (
             <text x={markX} y={barY + barH + 56}
@@ -1038,7 +1040,7 @@ function ActionConsequenceScene({ beat, p, local, ed, font, scene }) {
         <div style={{
           padding: "32px 24px 32px 28px",
           fontFamily: `${font}, sans-serif`, fontWeight: 900,
-          fontSize: effectSz, lineHeight: 1.25, color: ed.accent,
+          fontSize: effectSz, lineHeight: 1.25, color: ed.accentText,
         }}>{effectLabel}</div>
       </div>
 
@@ -1188,7 +1190,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
           fontFamily: `${font}, sans-serif`, fontWeight: 700,
           fontSize: expSz, lineHeight: 1.3, color: ed.text,
           textDecoration: strikeP > 0.5 ? "line-through" : "none",
-          textDecorationColor: ed.accent,
+          textDecorationColor: ed.accentText,
           textDecorationThickness: 3,
           opacity: 1 - strikeP * 0.25,
         }}>{expLabel}</div>
@@ -1217,7 +1219,7 @@ function StateChangeScene({ beat, p, local, ed, font, scene }) {
         <div style={{
           padding: "32px 24px 32px 28px",
           fontFamily: `${font}, sans-serif`, fontWeight: 900,
-          fontSize: actSz, lineHeight: 1.3, color: ed.accent,
+          fontSize: actSz, lineHeight: 1.3, color: ed.accentText,
         }}>{actLabel}</div>
       </div>
 

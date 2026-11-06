@@ -1486,7 +1486,7 @@ const themeFor = (c, onPhoto, groundColor) => {
   const isDark = luminance(hex) <= DARK_LUMINANCE;
   return onPhoto ? { ink: "#FFFFFF", soft: "rgba(255,255,255,0.7)", mid: "#A7A7AD", track: "rgba(255,255,255,0.25)", dark: true, photo: true }
     : isDark ? { ink: ensureTextContrast("#F2F0EB", hex, TEXT_TARGET_CONTRAST), soft: "#9A9A9F", mid: "#6E6E73", track: "#2B2B2E", dark: true, photo: false, ground: hex }
-    : { ink: ensureTextContrast(INK, hex, TEXT_TARGET_CONTRAST), soft: INK_SOFT, mid: MID, track: LIGHT, dark: false, photo: false, ground: hex };
+    : { ink: ensureTextContrast(INK, hex, TEXT_TARGET_CONTRAST), soft: ensureTextContrast(INK_SOFT, hex, TEXT_TARGET_CONTRAST), mid: ensureTextContrast(MID, hex, TEXT_TARGET_CONTRAST), track: ensureTextContrast(LIGHT, hex, TEXT_TARGET_CONTRAST), dark: false, photo: false, ground: hex };
 };
 
 export const COMPONENTS = {
@@ -1795,7 +1795,7 @@ export function CanvasVideo({ plan, groundColor }) {
           image; bottom-right, 40 px in from the right and bottom edges, 20 px sans, #888,
           fading in from frame 40 of the beat (after the pops have settled). */}
       {c.source_credit ? (
-        <div style={{ position: "absolute", right: 40, bottom: 40, font: `500 20px ${SANS_STACK}`, color: "#888888", whiteSpace: "nowrap",
+        <div style={{ position: "absolute", right: 40, bottom: 40, font: `500 20px ${SANS_STACK}`, color: th.ink, whiteSpace: "nowrap",
           opacity: Math.max(0, Math.min(1, (local - 40) / 8)) }}>Source: {c.source_credit}</div>
       ) : null}
     </StudioBG>

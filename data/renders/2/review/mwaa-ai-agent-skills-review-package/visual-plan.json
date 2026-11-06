@@ -1,0 +1,222 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-2/mwaa-ai-agent-skills/visual-plan.json",
+  "channel": "ch-2",
+  "videoSlug": "mwaa-ai-agent-skills",
+  "generatedAt": "2026-11-04T23:48:54.373Z",
+  "totalBeats": 5,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 1: \"Amazon MWAA now includes four AI agent skills for workflow automation.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Amazon MWAA now includes four AI agent skills for workflow automation.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Amazon MWAA now includes four AI agent skills for workflow automation.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 1,
+      "_narration": "Amazon MWAA now includes four AI agent skills for workflow automation.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 2: \"The Agent Toolkit integration lets any AI coding assistant author, debug, and test MWAA workflows using natural language.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The Agent Toolkit integration lets any AI coding assistant author, debug, and te",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The Agent Toolkit integration lets any AI coding assistant author, debug, and te",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 2,
+      "_narration": "The Agent Toolkit integration lets any AI coding assistant author, debug, and test MWAA workflows using natural language.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 3: \"Four skills: authoring, debugging, testing, and environment upgrades.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Four skills: authoring, debugging, testing, and environment upgrades.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Four skills: authoring, debugging, testing, and environment upgrades.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 3,
+      "_narration": "Four skills: authoring, debugging, testing, and environment upgrades.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 3,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 4: \"Describe your pipeline in plain English, and the authoring skill generates a working DAG with task dependencies.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Describe your pipeline in plain English, and the authoring skill generates a wor",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Describe your pipeline in plain English, and the authoring skill generates a wor",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 4,
+      "_narration": "Describe your pipeline in plain English, and the authoring skill generates a working DAG with task dependencies.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "upgrading-mwaa-environments",
+      "reason": "Illustrative graphic for beat 5: \"Upgrade environments with the upgrading-mwaa-environments skill.\"",
+      "objects": {
+        "figure": "upgrading-mwaa-environments",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Upgrade environments with the upgrading-mwaa-environments skill.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Upgrade environments with the upgrading-mwaa-environments skill.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 5,
+      "_narration": "Upgrade environments with the upgrading-mwaa-environments skill.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

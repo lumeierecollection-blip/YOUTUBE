@@ -1,0 +1,94 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-4",
+  "videoSlug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "generatedAt": "2026-11-04T17:27:55.747Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\liverpool-arsenal-premier-league-tactical-analysis\\visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 7,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historical logic.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the stadium.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 3,
+      "narration": "How did they hold Liverpool scoreless?",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "Yet, Liverpool failed to register a single shot on target during the entire Premier League match.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 5,
+      "narration": "This lack of shots on target is a first since records began in the 2003 season.",
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 6,
+      "narration": "Arteta successfully neutralized the entire Liverpool attack at home.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 7,
+      "narration": "This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in 14 years.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "side-by-side": 6,
+    "chronological-timeline": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

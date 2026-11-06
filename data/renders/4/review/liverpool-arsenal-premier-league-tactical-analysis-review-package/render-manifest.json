@@ -1,0 +1,321 @@
+{
+  "video": "liverpool-arsenal-premier-league-tactical-analysis-shorts-shorts-2026-11-04.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 1041,
+      "beat": 6,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1265,
+  "durationSec": 42.17,
+  "generatedAt": "2026-11-04T20:51:58.003Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 210,
+      "start_sec": 0.1,
+      "duration_sec": 7,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Anfield, Arsenal",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Anfield, Arsenal"
+      ],
+      "camera": [
+        "slow_drift",
+        "widen"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 213,
+      "duration_frames": 212,
+      "start_sec": 7.1,
+      "duration_sec": 7.07,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Anfield, Arsenal",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Anfield, Arsenal"
+      ],
+      "camera": [
+        "slow_drift",
+        "widen",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 425,
+      "duration_frames": 88,
+      "start_sec": 14.17,
+      "duration_sec": 2.93,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Liverpool",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Liverpool"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 513,
+      "duration_frames": 200,
+      "start_sec": 17.1,
+      "duration_sec": 6.67,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Liverpool",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Liverpool"
+      ],
+      "camera": [
+        "hold",
+        "widen",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 713,
+      "duration_frames": 182,
+      "start_sec": 23.77,
+      "duration_sec": 6.07,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "pull_back",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 895,
+      "duration_frames": 146,
+      "start_sec": 29.83,
+      "duration_sec": 4.87,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Liverpool",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Liverpool"
+      ],
+      "camera": [
+        "micro_pull",
+        "widen",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1041,
+      "duration_frames": 224,
+      "start_sec": 34.7,
+      "duration_sec": 7.47,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Anfield, Arsenal",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Anfield, Arsenal"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

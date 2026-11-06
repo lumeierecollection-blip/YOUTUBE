@@ -1,0 +1,264 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-2/claude-haiku-5-5-pricing/visual-plan.json",
+  "channel": "ch-2",
+  "videoSlug": "claude-haiku-5-5-pricing",
+  "generatedAt": "2026-11-05T00:05:52.939Z",
+  "totalBeats": 6,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Claude Haiku 5.5",
+      "reason": "Illustrative graphic for beat 1: \"Claude Haiku 5.5 pricing changes when prompts cross 100,000 tokens.\"",
+      "objects": {
+        "figure": "Claude Haiku 5.5",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Claude Haiku 5.5 pricing changes when prompts cross 100,000 tokens.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Claude Haiku 5.5 pricing changes when prompts cross 100,000 tokens.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 1,
+      "_narration": "Claude Haiku 5.5 pricing changes when prompts cross 100,000 tokens.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 2: \"Base input price is $0.10 per million tokens.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Base input price is $0.10 per million tokens.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Base input price is $0.10 per million tokens.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "statistic",
+      "graphicType": "Charts and data visualisations",
+      "_beatNumber": 2,
+      "_narration": "Base input price is $0.10 per million tokens.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "animated counter / bar growth",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 3: \"But when prompts exceed 100,000 tokens, the rate jumps.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "But when prompts exceed 100,000 tokens, the rate jumps.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "But when prompts exceed 100,000 tokens, the rate jumps.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 3,
+      "_narration": "But when prompts exceed 100,000 tokens, the rate jumps.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 3,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 4: \"Input rises to $0.50 per million tokens.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Input rises to $0.50 per million tokens.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Input rises to $0.50 per million tokens.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "statistic",
+      "graphicType": "Charts and data visualisations",
+      "_beatNumber": 4,
+      "_narration": "Input rises to $0.50 per million tokens.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "animated counter / bar growth",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 5: \"Output jumps to $2.50 per million for large requests.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Output jumps to $2.50 per million for large requests.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Output jumps to $2.50 per million for large requests.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 5,
+      "_narration": "Output jumps to $2.50 per million for large requests.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 6: \"Crossing 100,000 tokens triggers the higher rate.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Crossing 100,000 tokens triggers the higher rate.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Crossing 100,000 tokens triggers the higher rate.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "product",
+      "graphicType": "Product demonstration / interface walkthrough",
+      "_beatNumber": 6,
+      "_narration": "Crossing 100,000 tokens triggers the higher rate.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

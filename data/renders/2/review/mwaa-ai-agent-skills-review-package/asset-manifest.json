@@ -1,0 +1,57 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-2",
+  "videoSlug": "mwaa-ai-agent-skills",
+  "generatedAt": "2026-11-04T23:48:37.244Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\mwaa-ai-agent-skills\\sourcing-report.json",
+  "totalRequested": 5,
+  "totalDownloaded": 0,
+  "errors": [
+    {
+      "beat": 2,
+      "title": "File:Modeling human and organizational behavior using a relation-centric multi-agent system design paradigm (IA modelinghumanorg00rodd).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Military critiques of the current assessment process for the human domain - an annotated bibliography - USACE-p266001coll1-6587.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Consciousness Studies.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Design and construction of a data recording and processing system for geomagnetic field coherence studies. (IA designconstructi00huel).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Automated system development and documentation criteria. (IA automatedsystemd00zebe).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Thinkapjava.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Draft environmental impact statement on MAPCO's Rocky Mountain liquid hydrocarbons pipeline (IA draftenvironmentunit 0).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Libre Graphics Magazine Volume 02, Issue 03.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Cooperative fishery unit report for the 1970-1971 school year. - DPLA - e90f53d0f928f2c36ac4a4a6848c8f07.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": []
+}

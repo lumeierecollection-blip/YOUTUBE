@@ -1,0 +1,70 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-4",
+  "channelName": "Channel 4",
+  "videoSlug": "messi-vs-ronaldo-career-comparison",
+  "generatedAt": "2026-11-05T00:23:04.778Z",
+  "sourcePlan": "data/sourcing-cache/ch-4/messi-vs-ronaldo-career-comparison/render-plan.json",
+  "sourceAssets": "data/sourcing-cache/ch-4/messi-vs-ronaldo-career-comparison/licensed-assets/manifest.json",
+  "totalAssets": 0,
+  "uniqueAssets": 0,
+  "totalBeats": 10,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Messi versus Ronaldo - two careers, two legends.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Messi won eight Ballon d'Or awards.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Ronaldo won five.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Ronaldo leads in international goals.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Messi leads in assists.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Both won the World Cup.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Both dominated the Champions League.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Different styles, same greatness.…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Who's the greatest?…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“The debate continues.…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 10,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

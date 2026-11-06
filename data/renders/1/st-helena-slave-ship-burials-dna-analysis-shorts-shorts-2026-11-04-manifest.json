@@ -1,0 +1,391 @@
+{
+  "video": "st-helena-slave-ship-burials-dna-analysis-shorts-shorts-2026-11-04.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 1268,
+      "beat": 7,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1429,
+  "durationSec": 47.63,
+  "generatedAt": "2026-11-04T19:48:10.469Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 152,
+      "start_sec": 0.1,
+      "duration_sec": 5.07,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg"
+      ],
+      "camera": [
+        "slow_drift",
+        "drift_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 155,
+      "duration_frames": 213,
+      "start_sec": 5.17,
+      "duration_sec": 7.1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "St Helena, British Royal Navy",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "St Helena, British Royal Navy"
+      ],
+      "camera": [
+        "micro_pull",
+        "widen"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 368,
+      "duration_frames": 125,
+      "start_sec": 12.27,
+      "duration_sec": 4.17,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "St Helena",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "St Helena"
+      ],
+      "camera": [
+        "micro_pull",
+        "pull_back"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 493,
+      "duration_frames": 189,
+      "start_sec": 16.43,
+      "duration_sec": 6.3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "St Helena",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "St Helena"
+      ],
+      "camera": [
+        "micro_pull",
+        "expand"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 682,
+      "duration_frames": 155,
+      "start_sec": 22.73,
+      "duration_sec": 5.17,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Science",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        },
+        {
+          "text": "science-building-headquarters-bdc274b8.jpg",
+          "role": "narrative",
+          "source": "objects.actual.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Science",
+        "science-building-headquarters-bdc274b8.jpg"
+      ],
+      "banned_text": [],
+      "objects": [
+        "Science",
+        "science-building-headquarters-bdc274b8.jpg"
+      ],
+      "camera": [
+        "hold",
+        "slow_drift",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 837,
+      "duration_frames": 202,
+      "start_sec": 27.9,
+      "duration_sec": 6.73,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "slow_zoom",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1039,
+      "duration_frames": 229,
+      "start_sec": 34.63,
+      "duration_sec": 7.63,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "St Helena, UC Santa Cruz",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "St Helena, UC Santa Cruz"
+      ],
+      "camera": [
+        "slow_drift",
+        "push_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 7,
+      "beat_id": "d7",
+      "start_frame": 1268,
+      "duration_frames": 161,
+      "start_sec": 42.27,
+      "duration_sec": 5.37,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Science",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Science"
+      ],
+      "camera": [
+        "micro_pull",
+        "widen",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    }
+  ]
+}

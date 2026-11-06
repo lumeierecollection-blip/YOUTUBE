@@ -1,0 +1,871 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-1/margaret-clitherow-execution-guy-fawkes/visual-plan.json",
+  "channel": "ch-1",
+  "videoSlug": "margaret-clitherow-execution-guy-fawkes",
+  "generatedAt": "2026-11-04T18:49:05.027Z",
+  "totalBeats": 9,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Margaret Clitherow, York",
+      "reason": "Beat 1 (“In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.”): altar\ncandlesticks were given by the Rev. W. J. Stracey, now\nStracey-<span class=\"searchmatch\">Clitherow</span>, Norfolk Fellow 1846 to 1849.\nThe windows of the hall are unchanged\nO",
+      "objects": {
+        "figure": "margaret-clitherow-portrait-photograph-60e28b93.jpg",
+        "_assetFile": "margaret-clitherow-portrait-photograph-60e28b93.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "margaret-clitherow-portrait-photograph-60e28b93.jpg",
+          "filename": "margaret-clitherow-portrait-photograph-60e28b93.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalene%20College%20(IA%20magdalenecollege00purnrich).pdf",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalene_College_(IA_magdalenecollege00purnrich).pdf",
+          "creator": "Purnell, E. K. (Edward Kelly), 1849?-1933",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Purnell, E. K. (Edward Kelly), 1849?-1933 / Wikimedia Commons, Public domain",
+          "credit": "Internet Archive identifier : magdalenecollege00purnrich https://archive.org/download/magdalenecollege00purnrich/magdalenecollege00purnrich.pdf",
+          "sha256": "60e28b9385c841b2720293253105446aba24b71389a7286df4f579b9f1eb3b97",
+          "width": 500,
+          "height": 778,
+          "retrievedAt": "2026-11-04T17:16:39.170Z",
+          "cacheKey": "faf143ed2cfbba21",
+          "relevance": "Beat 1 (“In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.”): altar\ncandlesticks were given by the Rev. W. J. Stracey, now\nStracey-<span class=\"searchmatch\">Clitherow</span>, Norfolk Fellow 1846 to 1849.\nThe windows of the hall are unchanged\nO"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Margaret Clitherow, York",
+          "asset": "asset-library/margaret-clitherow-portrait-photograph-60e28b93.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Purnell, E. K. (Edward Kelly), 1849?-1933 / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AMagdalene%20College%20(IA%20magdalenecollege00purnrich).pdf",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to d",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Margaret Clitherow, York",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/margaret-clitherow-portrait-photograph-60e28b93.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "person",
+      "graphicType": "Annotated photograph",
+      "_beatNumber": 1,
+      "_narration": "In 1586, Margaret Clitherow, a pregnant woman in York, England, was crushed to death for her Catholic faith.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "slow push-in (Ken Burns)",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Margaret Clitherow, York",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/margaret-clitherow-portrait-photograph-60e28b93.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Purnell, E. K. (Edward Kelly), 1849?-1933 / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AMagdalene%20College%20(IA%20magdalenecollege00purnrich).pdf",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+      "reason": "Beat 2 (“England had outlawed Catholicism, so priests hid in secret rooms called priest holes — and Margaret was accused of hiding one.”): English determination method or standard: SHA-<span class=\"searchmatch\">1</span>",
+      "objects": {
+        "label_a": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+        "label_b": "historical-document-ch-1-archive-58e02183.jpg",
+        "_assetFile": "historical-document-ch-1-archive-58e02183.jpg",
+        "_asset": {
+          "id": "asset-2",
+          "file": "historical-document-ch-1-archive-58e02183.jpg",
+          "filename": "historical-document-ch-1-archive-58e02183.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-CH-24.tif",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3ACH-NB_Archive_Adolf_Pochon_GS-POCHON-A-1-CH-24.tif",
+          "creator": "Adolf Pochon",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Adolf Pochon / Wikimedia Commons, Public domain",
+          "credit": "https://www.helveticarchives.ch/detail.aspx?id=1218898",
+          "sha256": "58e02183be0293820ea1fe69cbe6844aa2fa133085f1866290db9c43bae678c2",
+          "width": 1920,
+          "height": 2613,
+          "retrievedAt": "2026-11-04T17:16:42.988Z",
+          "cacheKey": "371c0e7790af7d11",
+          "relevance": "Beat 2 (“England had outlawed Catholicism, so priests hid in secret rooms called priest holes — and Margaret was accused of hiding one.”): English determination method or standard: SHA-<span class=\"searchmatch\">1</span>"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+          "asset": "asset-library/historical-document-ch-1-archive-58e02183.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Adolf Pochon / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-CH-24.tif",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "England had outlawed Catholicism, so priests hid in secret rooms called priest h",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/historical-document-ch-1-archive-58e02183.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 2,
+      "_narration": "England had outlawed Catholicism, so priests hid in secret rooms called priest holes — and Margaret was accused of hiding one.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/historical-document-ch-1-archive-58e02183.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Adolf Pochon / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3ACH-NB%20Archive%20Adolf%20Pochon%20GS-POCHON-A-1-CH-24.tif",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+      "reason": "Beat 3 (“She refused to enter a legal plea while pregnant with her fourth child.”): following conditions: attribution – You must give appropriate credit, provide <span class=\"searchmatch\">a</span> link <span class=\"searchmatch\">to</span> the license, and indicate if changes were made. You may do so in any reasonable",
+      "objects": {
+        "amount_a": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+        "amount_b": "she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+        "_assetFile": "she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+        "_asset": {
+          "id": "asset-3",
+          "file": "she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+          "filename": "she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AEnter%20the%20imperceptible%20-%20Reading%20Die%20Antwoord.pdf",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AEnter_the_imperceptible_-_Reading_Die_Antwoord.pdf",
+          "creator": "Sonja Smit",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+          "attribution": "Sonja Smit / Wikimedia Commons, CC BY 4.0",
+          "credit": "https://www.cogentoa.com/article/10.1080/23311983.2015.1064246.pdf",
+          "sha256": "fb974c3fb6d04430a6fb6242bc98d22c41644ac862ea910d132d196ead609ed5",
+          "width": 960,
+          "height": 1250,
+          "retrievedAt": "2026-11-04T17:16:44.006Z",
+          "cacheKey": "8e07c5e1367b0acd",
+          "relevance": "Beat 3 (“She refused to enter a legal plea while pregnant with her fourth child.”): following conditions: attribution – You must give appropriate credit, provide <span class=\"searchmatch\">a</span> link <span class=\"searchmatch\">to</span> the license, and indicate if changes were made. You may do so in any reasonable"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+          "asset": "asset-library/she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Sonja Smit / Wikimedia Commons, CC BY 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AEnter%20the%20imperceptible%20-%20Reading%20Die%20Antwoord.pdf",
+          "license": "CC BY 4.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "She refused to enter a legal plea while pregnant with her fourth child.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 3,
+      "_narration": "She refused to enter a legal plea while pregnant with her fourth child.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/she-refused-to-enter-a-legal-illustration-fb974c3f.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Sonja Smit / Wikimedia Commons, CC BY 4.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AEnter%20the%20imperceptible%20-%20Reading%20Die%20Antwoord.pdf",
+            "license": "CC BY 4.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "File:Kate Whiting Patch - Because You Are You.pdf",
+      "reason": "Beat 4 (“Because she would not plead, they crushed her to death under heavy weights on Lady Day in March 1586.”): org/publicdomain/mark/1.0/PDMCreative Commons Public Domain Mark 1.0falsefalse English <span class=\"searchmatch\">Because</span> You Are You described at URL: https://babel.hathitrust.org/cgi/pt?id=hvd",
+      "objects": {
+        "label_a": "File:Kate Whiting Patch - Because You Are You.pdf",
+        "label_b": "because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+        "_assetFile": "because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+        "_asset": {
+          "id": "asset-4",
+          "file": "because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+          "filename": "because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKate%20Whiting%20Patch%20-%20Because%20You%20Are%20You.pdf",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AKate_Whiting_Patch_-_Because_You_Are_You.pdf",
+          "creator": "Kate Whiting Patch",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Kate Whiting Patch / Wikimedia Commons, Public domain",
+          "credit": "https://babel.hathitrust.org/cgi/pt?id=pst.000005632411&amp;seq=10",
+          "sha256": "a755f0c0e43c51403722bd7fcd499e537384416f7a3b5305c3bfa9726f0f64bd",
+          "width": 1920,
+          "height": 2842,
+          "retrievedAt": "2026-11-04T17:16:45.148Z",
+          "cacheKey": "e9fbf7586df1ebeb",
+          "relevance": "Beat 4 (“Because she would not plead, they crushed her to death under heavy weights on Lady Day in March 1586.”): org/publicdomain/mark/1.0/PDMCreative Commons Public Domain Mark 1.0falsefalse English <span class=\"searchmatch\">Because</span> You Are You described at URL: https://babel.hathitrust.org/cgi/pt?id=hvd"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:Kate Whiting Patch - Because You Are You.pdf",
+          "asset": "asset-library/because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Kate Whiting Patch / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AKate%20Whiting%20Patch%20-%20Because%20You%20Are%20You.pdf",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Because she would not plead, they crushed her to death under heavy weights on La",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:Kate Whiting Patch - Because You Are You.pdf",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 4,
+      "_narration": "Because she would not plead, they crushed her to death under heavy weights on Lady Day in March 1586.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:Kate Whiting Patch - Because You Are You.pdf",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Kate Whiting Patch / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AKate%20Whiting%20Patch%20-%20Because%20You%20Are%20You.pdf",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Guy Fawkes, York",
+      "reason": "Beat 5 (“Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gunpowder Plot to blow up Parliament.”): DescriptionThe execution of <span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>&#039; (<span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>) by Claes (Nicolaes) Jansz Visscher.jpg The execution of <span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>&#039; (<span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>), by Claes (Nicolaes) Jansz",
+      "objects": {
+        "figure": "guy-fawkes-portrait-photograph-02e70460.jpg",
+        "_assetFile": "guy-fawkes-portrait-photograph-02e70460.jpg",
+        "_asset": {
+          "id": "asset-5",
+          "file": "guy-fawkes-portrait-photograph-02e70460.jpg",
+          "filename": "guy-fawkes-portrait-photograph-02e70460.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AThe%20execution%20of%20Guy%20Fawkes'%20(Guy%20Fawkes)%20by%20Claes%20(Nicolaes)%20Jansz%20Visscher.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AThe_execution_of_Guy_Fawkes'_(Guy_Fawkes)_by_Claes_(Nicolaes)_Jansz_Visscher.jpg",
+          "creator": "Claes (Nicolaes) Jansz Visscher",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Claes (Nicolaes) Jansz Visscher / Wikimedia Commons, Public domain",
+          "credit": "one or more third parties have made copyright claims against Wikimedia Commons in relation to the work from which this is sourced or a purely mechanical reproduction thereof . This may be due to recognition of the \" sweat of the brow \" doctrine, allowing works to be eligible for protection through skill and labour, and not purely by originality as is the case in the United States (where this website is hosted). These claims may or may not be valid in all jurisdictions. As such, use of this image in the jurisdiction of the claimant or other countries may be regarded as copyright infringement . Please see Commons:When to use the PD-Art tag for more information.",
+          "sha256": "02e704608091b2d1d4bff9a134583032e3677237f966fc019af8e17aaed81829",
+          "width": 1920,
+          "height": 1352,
+          "retrievedAt": "2026-11-04T17:16:46.177Z",
+          "cacheKey": "b40c85fd4665c2fc",
+          "relevance": "Beat 5 (“Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gunpowder Plot to blow up Parliament.”): DescriptionThe execution of <span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>&#039; (<span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>) by Claes (Nicolaes) Jansz Visscher.jpg The execution of <span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>&#039; (<span class=\"searchmatch\">Guy</span> <span class=\"searchmatch\">Fawkes</span>), by Claes (Nicolaes) Jansz"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Guy Fawkes, York",
+          "asset": "asset-library/guy-fawkes-portrait-photograph-02e70460.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Claes (Nicolaes) Jansz Visscher / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AThe%20execution%20of%20Guy%20Fawkes'%20(Guy%20Fawkes)%20by%20Claes%20(Nicolaes)%20Jansz%20Visscher.jpg",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gun",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Guy Fawkes, York",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/guy-fawkes-portrait-photograph-02e70460.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 5,
+      "_narration": "Nearly twenty years later, Guy Fawkes became infamous in York as part of the Gunpowder Plot to blow up Parliament.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Guy Fawkes, York",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/guy-fawkes-portrait-photograph-02e70460.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Claes (Nicolaes) Jansz Visscher / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AThe%20execution%20of%20Guy%20Fawkes'%20(Guy%20Fawkes)%20by%20Claes%20(Nicolaes)%20Jansz%20Visscher.jpg",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "Margaret Clitherow",
+      "reason": "Beat 6 (“Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier.”): the Clopton family,\n{from <span class=\"searchmatch\">photographs</span>)\n\n*\n\nc.\n\n1470,\n\n.\n\n.\n\n270\n\n.\n\n1480, Long Melford, Suffolk\n\n.\n\n.\n\nc.\n\n.\n\n.\n\n.\n\n.\n\n<span class=\"searchmatch\">Margaret</span> {nee Nevill), wife of Sir",
+      "objects": {
+        "figure": "margaret-clitherow-portrait-photograph-798baa69.jpg",
+        "_assetFile": "margaret-clitherow-portrait-photograph-798baa69.jpg",
+        "_asset": {
+          "id": "asset-6",
+          "file": "margaret-clitherow-portrait-photograph-798baa69.jpg",
+          "filename": "margaret-clitherow-portrait-photograph-798baa69.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20costume%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcostumea00drui%200).pdf",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AA_manual_of_costume_as_illustrated_by_monumental_brasses_(IA_manualofcostumea00drui_0).pdf",
+          "creator": "Druitt, Herbert",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Druitt, Herbert / Wikimedia Commons, Public domain",
+          "credit": "Internet Archive identifier : manualofcostumea00drui_0 https://archive.org/download/manualofcostumea00drui_0/manualofcostumea00drui_0.pdf",
+          "sha256": "798baa69fdf6b0bc5c0d890887bc946fd9d9c31f1a61b40edd3892701edf227b",
+          "width": 500,
+          "height": 758,
+          "retrievedAt": "2026-11-04T17:16:46.804Z",
+          "cacheKey": "faf143ed2cfbba21",
+          "relevance": "Beat 6 (“Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier.”): the Clopton family,\n{from <span class=\"searchmatch\">photographs</span>)\n\n*\n\nc.\n\n1470,\n\n.\n\n.\n\n270\n\n.\n\n1480, Long Melford, Suffolk\n\n.\n\n.\n\nc.\n\n.\n\n.\n\n.\n\n.\n\n<span class=\"searchmatch\">Margaret</span> {nee Nevill), wife of Sir"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Margaret Clitherow",
+          "asset": "asset-library/margaret-clitherow-portrait-photograph-798baa69.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Druitt, Herbert / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20costume%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcostumea00drui%200).pdf",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Historians theorise that Fawkes may have witnessed Margaret Clitherow's executio",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Margaret Clitherow",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/margaret-clitherow-portrait-photograph-798baa69.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 6,
+      "_narration": "Historians theorise that Fawkes may have witnessed Margaret Clitherow's execution nineteen years earlier.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Margaret Clitherow",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/margaret-clitherow-portrait-photograph-798baa69.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Druitt, Herbert / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AA%20manual%20of%20costume%20as%20illustrated%20by%20monumental%20brasses%20(IA%20manualofcostumea00drui%200).pdf",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "John Wright",
+      "reason": "Beat 7 (“Christopher and John Wright also knew her story.”): <span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span>: King Charles II    Artist <span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span> (1617–1694)     Description British <span class=\"searchmatch\">portrait</span> painter Date of birth/death 25 May 1617",
+      "objects": {
+        "figure": "john-wright-portrait-photograph-30173d31.jpg",
+        "_assetFile": "john-wright-portrait-photograph-30173d31.jpg",
+        "_asset": {
+          "id": "asset-7",
+          "file": "john-wright-portrait-photograph-30173d31.jpg",
+          "filename": "john-wright-portrait-photograph-30173d31.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AKing%20Charles%20II%20by%20John%20Michael%20Wright%20or%20studio.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AKing_Charles_II_by_John_Michael_Wright_or_studio.jpg",
+          "creator": "John Michael Wright",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "John Michael Wright / Wikimedia Commons, Public domain",
+          "credit": "one or more third parties have made copyright claims against Wikimedia Commons in relation to the work from which this is sourced or a purely mechanical reproduction thereof . This may be due to recognition of the \" sweat of the brow \" doctrine, allowing works to be eligible for protection through skill and labour, and not purely by originality as is the case in the United States (where this website is hosted). These claims may or may not be valid in all jurisdictions. As such, use of this image in the jurisdiction of the claimant or other countries may be regarded as copyright infringement . Please see Commons:When to use the PD-Art tag for more information.",
+          "sha256": "30173d314a1205f100df463d458b2144d3850961957c3d42b28fb7bd7dc731d4",
+          "width": 1920,
+          "height": 2448,
+          "retrievedAt": "2026-11-04T17:16:48.985Z",
+          "cacheKey": "ebb5484464adb7ea",
+          "relevance": "Beat 7 (“Christopher and John Wright also knew her story.”): <span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span>: King Charles II    Artist <span class=\"searchmatch\">John</span> Michael <span class=\"searchmatch\">Wright</span> (1617–1694)     Description British <span class=\"searchmatch\">portrait</span> painter Date of birth/death 25 May 1617"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "John Wright",
+          "asset": "asset-library/john-wright-portrait-photograph-30173d31.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "John Michael Wright / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AKing%20Charles%20II%20by%20John%20Michael%20Wright%20or%20studio.jpg",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Christopher and John Wright also knew her story.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "John Wright",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/john-wright-portrait-photograph-30173d31.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 7,
+      "_narration": "Christopher and John Wright also knew her story.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "John Wright",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/john-wright-portrait-photograph-30173d31.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "John Michael Wright / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AKing%20Charles%20II%20by%20John%20Michael%20Wright%20or%20studio.jpg",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+      "reason": "Beat 8 (“Her brutal death may have shaped their thinking before the 1605 plot.”): Men who <span class=\"searchmatch\">have</span> made the Empire   (  ) Author Griffith, George Chetwynd Title Men who <span class=\"searchmatch\">have</span> made the Empire Publisher London : C. A. Pearson Description William",
+      "objects": {
+        "label_a": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+        "label_b": "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+        "_assetFile": "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+        "_asset": {
+          "id": "asset-8",
+          "file": "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+          "filename": "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMen%20who%20have%20made%20the%20Empire%20(IA%20menwhohavemadeem00grifiala).pdf",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AMen_who_have_made_the_Empire_(IA_menwhohavemadeem00grifiala).pdf",
+          "creator": "Griffith, George Chetwynd",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Griffith, George Chetwynd / Wikimedia Commons, Public domain",
+          "credit": "Internet Archive identifier : menwhohavemadeem00grifiala https://archive.org/download/menwhohavemadeem00grifiala/menwhohavemadeem00grifiala.pdf",
+          "sha256": "e2d20eb1ebc51dc8691e0c6d8d1967ddd7466202c77b17f44de44fa3f1f95755",
+          "width": 500,
+          "height": 803,
+          "retrievedAt": "2026-11-04T17:16:49.702Z",
+          "cacheKey": "8a78cb671c104524",
+          "relevance": "Beat 8 (“Her brutal death may have shaped their thinking before the 1605 plot.”): Men who <span class=\"searchmatch\">have</span> made the Empire   (  ) Author Griffith, George Chetwynd Title Men who <span class=\"searchmatch\">have</span> made the Empire Publisher London : C. A. Pearson Description William"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+          "asset": "asset-library/her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Griffith, George Chetwynd / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AMen%20who%20have%20made%20the%20Empire%20(IA%20menwhohavemadeem00grifiala).pdf",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Her brutal death may have shaped their thinking before the 1605 plot.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 8,
+      "_narration": "Her brutal death may have shaped their thinking before the 1605 plot.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Griffith, George Chetwynd / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AMen%20who%20have%20made%20the%20Empire%20(IA%20menwhohavemadeem00grifiala).pdf",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "York",
+      "reason": "Beat 9 (“Two events, nineteen years apart, both in York, both shaped by religious conflict.”): Park (<span class=\"searchmatch\">view</span> from Bridlepath looking southwest), Gothic Arch, Spanning bridlepath south of tennis courts, north of reservoir, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> City, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> County",
+      "objects": {
+        "figure": "york-photograph-view-2f03069e.jpg",
+        "_assetFile": "york-photograph-view-2f03069e.jpg",
+        "_asset": {
+          "id": "asset-9",
+          "file": "york-photograph-view-2f03069e.jpg",
+          "filename": "york-photograph-view-2f03069e.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACentral%20Park%20New%20York%20City%20New%20York%2023%20cropped.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3ACentral_Park_New_York_City_New_York_23_cropped.jpg",
+          "creator": "Jet Lowe",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Jet Lowe / Wikimedia Commons, Public domain",
+          "credit": "This image is available from the United States Library of Congress 's Prints and Photographs division under the digital ID hhh.ny1586 . This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing .",
+          "sha256": "2f03069ee83176121107a9d3e6b84a6b83a8ce0959ec0ea8abc14916ea686a8e",
+          "width": 1920,
+          "height": 1342,
+          "retrievedAt": "2026-11-04T17:16:51.169Z",
+          "cacheKey": "c6e8ec08647a1ec0",
+          "relevance": "Beat 9 (“Two events, nineteen years apart, both in York, both shaped by religious conflict.”): Park (<span class=\"searchmatch\">view</span> from Bridlepath looking southwest), Gothic Arch, Spanning bridlepath south of tennis courts, north of reservoir, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> City, <span class=\"searchmatch\">New</span> <span class=\"searchmatch\">York</span> County"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "York",
+          "asset": "asset-library/york-photograph-view-2f03069e.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Jet Lowe / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3ACentral%20Park%20New%20York%20City%20New%20York%2023%20cropped.jpg",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Two events, nineteen years apart, both in York, both shaped by religious conflic",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "York",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/york-photograph-view-2f03069e.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 9,
+      "_narration": "Two events, nineteen years apart, both in York, both shaped by religious conflict.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "York",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/york-photograph-view-2f03069e.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Jet Lowe / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3ACentral%20Park%20New%20York%20City%20New%20York%2023%20cropped.jpg",
+            "license": "Public domain"
+          }
+        ]
+      }
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

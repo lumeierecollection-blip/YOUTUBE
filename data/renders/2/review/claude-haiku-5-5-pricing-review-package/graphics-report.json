@@ -1,0 +1,71 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-2",
+  "videoSlug": "claude-haiku-5-5-pricing",
+  "generatedAt": "2026-11-05T00:06:04.914Z",
+  "sourcePlan": "data/sourcing-cache/ch-2/claude-haiku-5-5-pricing/render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 6,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "statistic",
+      "treatmentId": "chart-data-viz",
+      "communicates": "A specific number is the information",
+      "example": "line chart of model scores over time",
+      "reason": "Beat communicates statistic; A specific number is the information",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "statistic",
+      "treatmentId": "chart-data-viz",
+      "communicates": "A specific number is the information",
+      "example": "line chart of model scores over time",
+      "reason": "Beat communicates statistic; A specific number is the information",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "product-demonstration": 4,
+    "chart-data-viz": 2
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

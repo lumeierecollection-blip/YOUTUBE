@@ -1,0 +1,357 @@
+{
+  "video": "bayern-dortmund-2-2-tactical-analysis-shorts-shorts-2026-11-04.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 1206,
+      "beat": 7,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1338,
+  "durationSec": 44.6,
+  "generatedAt": "2026-11-04T20:16:38.806Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 147,
+      "start_sec": 0.1,
+      "duration_sec": 4.9,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Allianz Arena, Borussia Dortmund",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Allianz Arena, Borussia Dortmund"
+      ],
+      "camera": [
+        "micro_pull",
+        "widen",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 150,
+      "duration_frames": 232,
+      "start_sec": 5,
+      "duration_sec": 7.73,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Niko Kovač, Borussia Dortmund",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Niko Kovač, Borussia Dortmund"
+      ],
+      "camera": [
+        "micro_pull",
+        "pull_back",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 382,
+      "duration_frames": 182,
+      "start_sec": 12.73,
+      "duration_sec": 6.07,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Allianz Arena",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Allianz Arena"
+      ],
+      "camera": [
+        "hold",
+        "expand",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 564,
+      "duration_frames": 189,
+      "start_sec": 18.8,
+      "duration_sec": 6.3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Bayern Munich",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Bayern Munich"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 753,
+      "duration_frames": 188,
+      "start_sec": 25.1,
+      "duration_sec": 6.27,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Serhou Guirassy, Fabio Silva",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Serhou Guirassy, Fabio Silva"
+      ],
+      "camera": [
+        "slow_drift",
+        "widen",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 941,
+      "duration_frames": 146,
+      "start_sec": 31.37,
+      "duration_sec": 4.87,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Borussia Dortmund",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Borussia Dortmund"
+      ],
+      "camera": [
+        "micro_pull",
+        "pull_back",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1087,
+      "duration_frames": 119,
+      "start_sec": 36.23,
+      "duration_sec": 3.97,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "expand"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 7,
+      "beat_id": "d7",
+      "start_frame": 1206,
+      "duration_frames": 132,
+      "start_sec": 40.2,
+      "duration_sec": 4.4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Borussia Dortmund",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Borussia Dortmund"
+      ],
+      "camera": [
+        "hold",
+        "pull_back",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "video": "gemini-4-argon-vs-claude-opus-5-5-benchmark-shorts-shorts-2026-11-04.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 997,
+      "beat": 6,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1107,
+  "durationSec": 36.9,
+  "generatedAt": "2026-11-04T19:51:45.160Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 271,
+      "start_sec": 0.1,
+      "duration_sec": 9.03,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Gemini 4 Argon, Claude Opus 5.5",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Gemini 4 Argon, Claude Opus 5.5"
+      ],
+      "camera": [
+        "hold",
+        "slow_zoom",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 274,
+      "duration_frames": 205,
+      "start_sec": 9.13,
+      "duration_sec": 6.83,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Charlie Hills, Anthropic, Gemini 4 Argon, Claude Opus 5.5",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Charlie Hills, Anthropic, Gemini 4 Argon, Claude Opus 5.5"
+      ],
+      "camera": [
+        "hold",
+        "drift_in",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 479,
+      "duration_frames": 93,
+      "start_sec": 15.97,
+      "duration_sec": 3.1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "drift_in",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 572,
+      "duration_frames": 159,
+      "start_sec": 19.07,
+      "duration_sec": 5.3,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Gemini 4 Argon",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Gemini 4 Argon"
+      ],
+      "camera": [
+        "micro_pull",
+        "push_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 731,
+      "duration_frames": 150,
+      "start_sec": 24.37,
+      "duration_sec": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Claude Opus 5.5",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Claude Opus 5.5"
+      ],
+      "camera": [
+        "micro_pull",
+        "drift_in",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 881,
+      "duration_frames": 116,
+      "start_sec": 29.37,
+      "duration_sec": 3.87,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Gemini 4 Argon",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Gemini 4 Argon"
+      ],
+      "camera": [
+        "hold",
+        "push_in",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 997,
+      "duration_frames": 110,
+      "start_sec": 33.23,
+      "duration_sec": 3.67,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Gemini 4 Argon",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Gemini 4 Argon"
+      ],
+      "camera": [
+        "micro_pull",
+        "push_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

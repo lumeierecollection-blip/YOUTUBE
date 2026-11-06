@@ -1,0 +1,144 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-00.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-01.png",
+      "bg": "rgb(12,23,44)",
+      "flatness": 11.752028338189714,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9547619047619048,
+      "captionContrast": 3.6047310682386557,
+      "headlineContrast": 3.636135327708085,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.60:1 < 4.5:1 (glyph rgb(202,61,55) on bg rgb(12,23,44))",
+        "headline contrast 3.64:1 < 4.5:1 (glyph rgb(199,66,59) on bg rgb(12,23,44))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-02.png",
+      "bg": "rgb(14,23,41)",
+      "flatness": 11.706853963766086,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9477926587301587,
+      "captionContrast": 17.682601663746496,
+      "headlineContrast": 17.89899896570386,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-03.png",
+      "bg": "rgb(13,23,42)",
+      "flatness": 11.730050565852098,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9542162698412698,
+      "captionContrast": 10.592212865110037,
+      "headlineContrast": 15.941774628091688,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-04.png",
+      "bg": "rgb(12,24,39)",
+      "flatness": 11.716571971330966,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.8233878968253968,
+      "captionContrast": 15.564414645883037,
+      "headlineContrast": 16.875431665760065,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-05.png",
+      "bg": "rgb(13,23,41)",
+      "flatness": 11.708369519470224,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.834858630952381,
+      "captionContrast": 15.527653502716516,
+      "headlineContrast": 17.468220677885988,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-06.png",
+      "bg": "rgb(14,22,44)",
+      "flatness": 11.712959476877794,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9293650793650794,
+      "captionContrast": 17.842894110556596,
+      "headlineContrast": 17.9516947185609,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-07.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.707528840284655,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-08.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-09.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.8154970886379,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-10.png",
+      "bg": "rgb(14,23,43)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9549355158730158,
+      "captionContrast": 17.8554043596306,
+      "headlineContrast": 17.696235076603255,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\st-helena-slave-ship-burials-dna-analysis-frames\\frame-11.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0025793650793650793,
+      "captionContrast": 1.2805229566790204,
+      "headlineContrast": 1.2744633265480723,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.28:1 < 4.5:1 (glyph rgb(37,44,60) on bg rgb(14,23,42))",
+        "headline contrast 1.27:1 < 4.5:1 (glyph rgb(39,43,60) on bg rgb(14,23,42))"
+      ]
+    }
+  ]
+}

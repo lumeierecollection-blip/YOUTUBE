@@ -1,0 +1,153 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-00.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-01.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0031374007936507938,
+      "captionContrast": 3.3190497783477215,
+      "headlineContrast": 2.415830984464318,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.32:1 < 4.5:1 (glyph rgb(141,141,141) on bg rgb(255,255,255))",
+        "headline contrast 2.42:1 < 4.5:1 (glyph rgb(196,161,115) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-02.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-03.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0031374007936507938,
+      "captionContrast": 3.2339802043350576,
+      "headlineContrast": 2.565719299638421,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.23:1 < 4.5:1 (glyph rgb(143,143,143) on bg rgb(255,255,255))",
+        "headline contrast 2.57:1 < 4.5:1 (glyph rgb(191,155,122) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-04.png",
+      "bg": "rgb(254,255,255)",
+      "flatness": 0.4024762368293427,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9489583333333333,
+      "captionContrast": 20.379952456629937,
+      "headlineContrast": 20.571148213175828,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-05.png",
+      "bg": "rgb(253,254,255)",
+      "flatness": 0.5934145918698059,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9547619047619048,
+      "captionContrast": 19.42209910972009,
+      "headlineContrast": 19.93743042541569,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-06.png",
+      "bg": "rgb(254,255,255)",
+      "flatness": 0.49954614387682994,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9547619047619048,
+      "captionContrast": 19.484612505044943,
+      "headlineContrast": 19.750044416407768,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-07.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0031498015873015874,
+      "captionContrast": 3.362683071052112,
+      "headlineContrast": 2.449156690453437,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.36:1 < 4.5:1 (glyph rgb(140,140,140) on bg rgb(255,255,255))",
+        "headline contrast 2.45:1 < 4.5:1 (glyph rgb(194,160,116) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-08.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0.4803467625124225,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9409226190476191,
+      "captionContrast": 21,
+      "headlineContrast": 21,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-09.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0.14745041474535633,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.8916046626984127,
+      "captionContrast": 2.784321694236367,
+      "headlineContrast": 2.907900546485247,
+      "pass": false,
+      "violations": [
+        "caption contrast 2.78:1 < 4.5:1 (glyph rgb(155,155,153) on bg rgb(255,255,255))",
+        "headline contrast 2.91:1 < 4.5:1 (glyph rgb(152,151,153) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-10.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003187003968253968,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.4251504698236714,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.43:1 < 4.5:1 (glyph rgb(197,160,117) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\liverpool-arsenal-premier-league-tactical-analysis-frames\\frame-11.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-00.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-01.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.829633636475107,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-02.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.586268352248333,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-03.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-04.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.393889528688096,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-05.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.516643179009832,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-06.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.020096695136070573,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9543526785714286,
+      "captionContrast": 20.475503761846536,
+      "headlineContrast": 20.77888494630023,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-07.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.955965151326672,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-08.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.339691175293565,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-09.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.913421762724195,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-10.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 3.123324187500239,
+      "pass": false,
+      "violations": [
+        "headline contrast 3.12:1 < 4.5:1 (glyph rgb(98,66,199) on bg rgb(0,0,0))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-11.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

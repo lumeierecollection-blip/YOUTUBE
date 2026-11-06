@@ -1,0 +1,45 @@
+{
+  "schema": "qa-repetition-report/v1",
+  "channel": "ch-4",
+  "channelName": "Channel 4",
+  "videoSlug": "bayern-dortmund-tactical-shorts",
+  "generatedAt": "2026-11-05T00:14:57.219Z",
+  "sourcePlan": "data/sourcing-cache/ch-4/bayern-dortmund-tactical-shorts/render-plan.json",
+  "sourceAssets": "data/sourcing-cache/ch-4/bayern-dortmund-tactical-shorts/licensed-assets/manifest.json",
+  "totalAssets": 1,
+  "uniqueAssets": 1,
+  "totalBeats": 5,
+  "findings": [
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Bayern and Dortmund played to a 2-2 draw at the Allianz Aren…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Dortmund lined up in a flexible 3-4-2-1 under Kovac, shiftin…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Bayern pressed high with acting manager Aaron Danks in a 4-2…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“Dortmund twice leveled the score through Guirassy and Silva,…”) has no assigned asset"
+    },
+    {
+      "type": "missing-asset-for-beat",
+      "severity": "medium",
+      "detail": "Beat undefined (“A tactical battle that ended where it began - level.…”) has no assigned asset"
+    }
+  ],
+  "findingCount": 5,
+  "highSeverity": 0,
+  "pass": true,
+  "genericStockRatio": 0,
+  "maxGenericStockRatio": 0.15,
+  "verdict": "PASS"
+}

@@ -1,0 +1,279 @@
+{
+  "video": "aberfan-60-years-books-of-remembrance-shorts-shorts-2026-11-05.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 884,
+      "beat": 5,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1022,
+  "durationSec": 34.07,
+  "generatedAt": "2026-11-05T07:05:51.268Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 183,
+      "start_sec": 0.1,
+      "duration_sec": 6.1,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "narration subject"
+      ],
+      "banned_text": [],
+      "objects": [
+        "narration subject",
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "hold",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 186,
+      "duration_frames": 175,
+      "start_sec": 6.2,
+      "duration_sec": 5.83,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "hold",
+        "slow_zoom"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 361,
+      "duration_frames": 180,
+      "start_sec": 12.03,
+      "duration_sec": 6,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "push_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 541,
+      "duration_frames": 199,
+      "start_sec": 18.03,
+      "duration_sec": 6.63,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "narration subject"
+      ],
+      "banned_text": [],
+      "objects": [
+        "narration subject",
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "slow_drift",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 740,
+      "duration_frames": 144,
+      "start_sec": 24.67,
+      "duration_sec": 4.8,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "slow_drift",
+        "drift_in",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 884,
+      "duration_frames": 138,
+      "start_sec": 29.47,
+      "duration_sec": 4.6,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "File:The continent we live on (1961) (Panthera onca).jpg",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        },
+        {
+          "text": "the-names-live-on-in-these-illustration-d71956f0.jpg",
+          "role": "narrative",
+          "source": "objects.actual.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "File:The continent we live on (1961) (Panthera onca).jpg",
+        "the-names-live-on-in-these-illustration-d71956f0.jpg"
+      ],
+      "banned_text": [],
+      "objects": [
+        "File:The continent we live on (1961) (Panthera onca).jpg",
+        "the-names-live-on-in-these-illustration-d71956f0.jpg"
+      ],
+      "camera": [
+        "hold",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    }
+  ]
+}

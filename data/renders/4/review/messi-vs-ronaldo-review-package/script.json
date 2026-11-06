@@ -1,0 +1,75 @@
+{
+  "channel_id": 4,
+  "topic_slug": "messi-vs-ronaldo-career-comparison",
+  "format": "shorts",
+  "hook": "Messi versus Ronaldo - two careers, two legends.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Messi versus Ronaldo - two careers, two legends.",
+      "visual_cue": "Side-by-side portraits of Messi and Ronaldo",
+      "sfx_cue": "Dramatic orchestral sting",
+      "b_roll": ["Messi portrait", "Ronaldo portrait"],
+      "animation_cue": "Split screen reveal",
+      "transition_out": "Cut",
+      "text_overlay": { "text": "Messi vs Ronaldo" }
+    },
+    {
+      "id": "setup",
+      "timing": "4-12s",
+      "voiceover": "Messi won eight Ballon d'Or awards. Ronaldo won five.",
+      "visual_cue": "Ballon d'Or count comparison graphic",
+      "sfx_cue": "Counter ticking up",
+      "b_roll": ["Messi with Ballon d'Or", "Ronaldo with Ballon d'Or"],
+      "animation_cue": "Numbers animate up",
+      "transition_out": "Dissolve",
+      "text_overlay": { "text": "Messi 8, Ronaldo 5" }
+    },
+    {
+      "id": "rehook",
+      "timing": "12-19s",
+      "voiceover": "Ronaldo leads in international goals. Messi leads in assists.",
+      "visual_cue": "International goals comparison chart",
+      "sfx_cue": "Chart animation",
+      "b_roll": ["Goals comparison graphic"],
+      "animation_cue": "Bars grow",
+      "transition_out": "Cut",
+      "text_overlay": { "text": "Goals vs Assists" }
+    },
+    {
+      "id": "payoff",
+      "timing": "19-27s",
+      "voiceover": "Both won the World Cup. Both dominated the Champions League. Different styles, same greatness.",
+      "visual_cue": "World Cup trophy and Champions League trophy side by side",
+      "sfx_cue": "Trophy ceremony audio",
+      "b_roll": ["World Cup trophy", "Champions League trophy"],
+      "animation_cue": "Trophies appear",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "Different Styles" }
+    },
+    {
+      "id": "close",
+      "timing": "27-33s",
+      "voiceover": "Who's the greatest? The debate continues.",
+      "visual_cue": "Messi and Ronaldo shaking hands",
+      "sfx_cue": "Soft orchestral close",
+      "b_roll": ["Messi and Ronaldo handshake"],
+      "animation_cue": "Image settles",
+      "transition_out": "Fade to black",
+      "text_overlay": { "text": "The Debate Continues" }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Lionel_Messi",
+    "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
+    "https://www.fifa.com/"
+  ],
+  "named_entities": [
+    { "name": "Lionel Messi", "kind": "person" },
+    { "name": "Cristiano Ronaldo", "kind": "person" },
+    { "name": "Ballon d'Or", "kind": "object" },
+    { "name": "FIFA World Cup", "kind": "object" },
+    { "name": "UEFA Champions League", "kind": "object" }
+  ]
+}

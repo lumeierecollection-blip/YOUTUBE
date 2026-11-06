@@ -1,0 +1,138 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-00.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-01.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.719736770750396,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-02.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-03.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.683600531702106,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-04.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.006994047619047619,
+      "captionContrast": 5.780867657613833,
+      "headlineContrast": 5.935148738522143,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-05.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.877058583310702,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-06.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.6806546507579,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-07.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.009131175541344,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-08.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.562772791453718,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-09.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-10.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.646942582905719,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\1\\review\\margaret-clitherow-frames\\frame-11.png",
+      "bg": "rgb(14,23,42)",
+      "flatness": 11.671427600018113,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

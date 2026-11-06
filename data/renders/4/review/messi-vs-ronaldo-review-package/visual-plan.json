@@ -1,0 +1,442 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-4/messi-vs-ronaldo-career-comparison/visual-plan.json",
+  "channel": "ch-4",
+  "videoSlug": "messi-vs-ronaldo-career-comparison",
+  "generatedAt": "2026-11-05T00:22:44.276Z",
+  "totalBeats": 10,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 1: \"Messi versus Ronaldo - two careers, two legends.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Messi versus Ronaldo - two careers, two legends.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Messi versus Ronaldo - two careers, two legends.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 1,
+      "_narration": "Messi versus Ronaldo - two careers, two legends.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Ballon d'Or",
+      "reason": "Illustrative graphic for beat 2: \"Messi won eight Ballon d'Or awards.\"",
+      "objects": {
+        "amount_a": "Ballon d'Or",
+        "amount_b": "Ballon d'Or",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Messi won eight Ballon d'Or awards.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Messi won eight Ballon d'Or awards.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 2,
+      "_narration": "Messi won eight Ballon d'Or awards.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 3: \"Ronaldo won five.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Ronaldo won five.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Ronaldo won five.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 3,
+      "_narration": "Ronaldo won five.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 4: \"Ronaldo leads in international goals.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Ronaldo leads in international goals.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Ronaldo leads in international goals.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 4,
+      "_narration": "Ronaldo leads in international goals.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 5: \"Messi leads in assists.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Messi leads in assists.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Messi leads in assists.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 5,
+      "_narration": "Messi leads in assists.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 5,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 6: \"Both won the World Cup.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Both won the World Cup.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Both won the World Cup.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 6,
+      "_narration": "Both won the World Cup.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 6,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 7: \"Both dominated the Champions League.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Both dominated the Champions League.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Both dominated the Champions League.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 7,
+      "_narration": "Both dominated the Champions League.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 7,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 8: \"Different styles, same greatness.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Different styles, same greatness.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Different styles, same greatness.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 8,
+      "_narration": "Different styles, same greatness.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 8,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 9: \"Who's the greatest?\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Who's the greatest?",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Who's the greatest?",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 9,
+      "_narration": "Who's the greatest?",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 9,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 10: \"The debate continues.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "The debate continues.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "The debate continues.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 10,
+      "_narration": "The debate continues.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

@@ -1,0 +1,88 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-4",
+  "videoSlug": "bayern-dortmund-tactical-shorts",
+  "generatedAt": "2026-11-05T00:14:06.771Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\bayern-dortmund-tactical-shorts\\sourcing-report.json",
+  "totalRequested": 5,
+  "totalDownloaded": 1,
+  "errors": [
+    {
+      "beat": 2,
+      "title": "File:Electricity in mining (IA electricityinmin00siemrich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:The organ of the twentieth century - a manual on all matters relating to the science and art of organ tonal appointment and divisional apportionment with compound expression (IA cu31924022263614).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:The organ of the twentieth century; a manual on all matters relating to the science and art of organ tonal appointment and divisional apportionment with compound expression (IA organoftwentieth00auds).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Niles' Weekly Register, v29.djvu",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:George Frideric Handel - his personality & his times (IA georgefridericha00flow 0).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Harper's New Monthly Magazine, Volume 44.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AI-4.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:CH-NB Archive Rudolf Zinggeler EAD-ZING-13203.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:CH-NB Archive Rudolf Zinggeler EAD-ZING-12521.tif",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-1",
+      "beat": 1,
+      "query": "Allianz Arena photograph view",
+      "kind": "place",
+      "narration": "Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.",
+      "file": "allianz-arena-photograph-view-37346582.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\bayern-dortmund-tactical-shorts\\licensed-assets\\allianz-arena-photograph-view-37346582.jpg",
+      "filename": "allianz-arena-photograph-view-37346582.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz_arena_daylight_Richard_Bartz.jpg",
+      "originalTitle": "File:Allianz arena daylight Richard Bartz.jpg",
+      "creator": "Richard Bartz , Munich aka Makro Freak",
+      "license": "CC BY-SA 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "attribution": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+      "credit": "Own work",
+      "description": "The Allianz Arena is a football stadium in the north of Munich, Germany. The two professional Munich football clubs FC Bayern München and TSV 1860 München have played their home games at Allianz Arena since the start of the 2005/06 season. Because of its shape, the stadium is nicknamed the « Schlauchboot » (inflatable boat).",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Allianz_arena_daylight_Richard_Bartz.jpg/1920px-Allianz_arena_daylight_Richard_Bartz.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "mime": "image/jpeg",
+      "width": 1920,
+      "height": 791,
+      "bytes": 378898,
+      "sha256": "373465826207ee074a05dad54879335d6bc6466050d58eb0e0bc27f777851602",
+      "relevance": "Beat 1 (“Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.”): Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north",
+      "retrievedAt": "2026-11-05T00:14:03.300Z",
+      "cacheKey": "699f6925a117b05e",
+      "rightsStatus": "clear"
+    }
+  ]
+}

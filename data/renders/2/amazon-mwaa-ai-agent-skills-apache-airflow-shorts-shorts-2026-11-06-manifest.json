@@ -1,0 +1,256 @@
+{
+  "video": "amazon-mwaa-ai-agent-skills-apache-airflow-shorts-shorts-2026-11-06.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 985,
+      "beat": 5,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1050,
+  "durationSec": 35,
+  "generatedAt": "2026-11-06T08:05:04.625Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 194,
+      "start_sec": 0.1,
+      "duration_sec": 6.47,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Amazon Managed Workflows for Apache Airflow, AWS",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Amazon Managed Workflows for Apache Airflow, AWS"
+      ],
+      "camera": [
+        "slow_drift",
+        "slow_zoom"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 197,
+      "duration_frames": 183,
+      "start_sec": 6.57,
+      "duration_sec": 6.1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Amazon Managed Workflows for Apache Airflow, AWS, Agent Toolkit for AWS",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Amazon Managed Workflows for Apache Airflow, AWS, Agent Toolkit for AWS"
+      ],
+      "camera": [
+        "hold",
+        "push_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 380,
+      "duration_frames": 111,
+      "start_sec": 12.67,
+      "duration_sec": 3.7,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "narration subject",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "narration subject"
+      ],
+      "camera": [
+        "micro_pull",
+        "drift_in",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 491,
+      "duration_frames": 295,
+      "start_sec": 16.37,
+      "duration_sec": 9.83,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "authoring-mwaa-workflow, debugging-mwaa-workflow",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "authoring-mwaa-workflow, debugging-mwaa-workflow"
+      ],
+      "camera": [
+        "slow_drift",
+        "drift_in",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 786,
+      "duration_frames": 199,
+      "start_sec": 26.2,
+      "duration_sec": 6.63,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Amazon Managed Workflows for Apache Airflow, authoring-mwaa-workflow, debugging-mwaa-workflow",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Amazon Managed Workflows for Apache Airflow, authoring-mwaa-workflow, debugging-mwaa-workflow"
+      ],
+      "camera": [
+        "micro_pull",
+        "push_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 985,
+      "duration_frames": 153,
+      "start_sec": 32.83,
+      "duration_sec": 5.1,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Amazon Managed Workflows for Apache Airflow, upgrading-mwaa-workflow",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "Amazon Managed Workflows for Apache Airflow, upgrading-mwaa-workflow"
+      ],
+      "camera": [
+        "micro_pull",
+        "drift_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

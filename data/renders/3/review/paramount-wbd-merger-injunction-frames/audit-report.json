@@ -1,0 +1,140 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-00.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-01.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.548496915814138,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-02.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.970559489413991,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-03.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.498629585864531,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-04.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.039528422348427836,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9499875992063492,
+      "captionContrast": 20.605362847396268,
+      "headlineContrast": 19.41304144170717,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-05.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.30451810042017,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-06.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.602160691996262,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-07.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.6852278220852,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-08.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 3.669250609949489,
+      "pass": false,
+      "violations": [
+        "headline contrast 3.67:1 < 4.5:1 (glyph rgb(108,82,199) on bg rgb(0,0,0))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-09.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.447387094364657,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-10.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.774883241754343,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\paramount-wbd-merger-injunction-frames\\frame-11.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

@@ -1,0 +1,472 @@
+{
+  "video": "margaret-clitherow-execution-guy-fawkes-shorts-shorts-2026-11-04.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 1,
+  "accent": null,
+  "ground": null,
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "hook",
+      "file": "impact.mp3",
+      "db": -10,
+      "at_frame": 3,
+      "beat": 0,
+      "reason": "hook",
+      "credit": null
+    },
+    {
+      "role": "cta",
+      "file": "reveal.mp3",
+      "db": -12,
+      "at_frame": 1498,
+      "beat": 8,
+      "reason": "cta",
+      "credit": null
+    }
+  ],
+  "totalFrames": 1686,
+  "durationSec": 56.2,
+  "generatedAt": "2026-11-04T19:35:33.411Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 3,
+      "duration_frames": 240,
+      "start_sec": 0.1,
+      "duration_sec": 8,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "margaret-clitherow-portrait-photograph-60e28b93.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "margaret-clitherow-portrait-photograph-60e28b93.jpg"
+      ],
+      "camera": [
+        "hold",
+        "slow_zoom",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 243,
+      "duration_frames": 249,
+      "start_sec": 8.1,
+      "duration_sec": 8.3,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        },
+        {
+          "text": "historical-document-ch-1-archive-58e02183.jpg",
+          "role": "narrative",
+          "source": "objects.actual.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+        "historical-document-ch-1-archive-58e02183.jpg"
+      ],
+      "banned_text": [],
+      "objects": [
+        "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-CH-24.tif",
+        "historical-document-ch-1-archive-58e02183.jpg"
+      ],
+      "camera": [
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 492,
+      "duration_frames": 142,
+      "start_sec": 16.4,
+      "duration_sec": 4.73,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "File:Enter the imperceptible - Reading Die Antwoord.pdf",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "File:Enter the imperceptible - Reading Die Antwoord.pdf"
+      ],
+      "camera": [
+        "slow_drift",
+        "expand",
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 634,
+      "duration_frames": 207,
+      "start_sec": 21.13,
+      "duration_sec": 6.9,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "File:Kate Whiting Patch - Because You Are You.pdf",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        },
+        {
+          "text": "because-she-would-not-plead-they-illustration-a755f0c0.jpg",
+          "role": "narrative",
+          "source": "objects.actual.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "File:Kate Whiting Patch - Because You Are You.pdf",
+        "because-she-would-not-plead-they-illustration-a755f0c0.jpg"
+      ],
+      "banned_text": [],
+      "objects": [
+        "File:Kate Whiting Patch - Because You Are You.pdf",
+        "because-she-would-not-plead-they-illustration-a755f0c0.jpg"
+      ],
+      "camera": [
+        "micro_pull",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 841,
+      "duration_frames": 212,
+      "start_sec": 28.03,
+      "duration_sec": 7.07,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "guy-fawkes-portrait-photograph-02e70460.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "guy-fawkes-portrait-photograph-02e70460.jpg"
+      ],
+      "camera": [
+        "micro_pull",
+        "drift_in",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 1053,
+      "duration_frames": 193,
+      "start_sec": 35.1,
+      "duration_sec": 6.43,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "margaret-clitherow-portrait-photograph-798baa69.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "margaret-clitherow-portrait-photograph-798baa69.jpg"
+      ],
+      "camera": [
+        "slow_drift",
+        "drift_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 1246,
+      "duration_frames": 104,
+      "start_sec": 41.53,
+      "duration_sec": 3.47,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "john-wright-portrait-photograph-30173d31.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "john-wright-portrait-photograph-30173d31.jpg"
+      ],
+      "camera": [
+        "slow_drift",
+        "push_in",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 7,
+      "beat_id": "d7",
+      "start_frame": 1350,
+      "duration_frames": 148,
+      "start_sec": 45,
+      "duration_sec": 4.93,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+          "role": "narrative",
+          "source": "objects.expected.label"
+        },
+        {
+          "text": "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg",
+          "role": "narrative",
+          "source": "objects.actual.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+        "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg"
+      ],
+      "banned_text": [],
+      "objects": [
+        "File:Men who have made the Empire (IA menwhohavemadeem00grifiala).pdf",
+        "her-brutal-death-may-have-shaped-illustration-e2d20eb1.jpg"
+      ],
+      "camera": [
+        "slow_drift",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    },
+    {
+      "index": 8,
+      "beat_id": "d8",
+      "start_frame": 1498,
+      "duration_frames": 188,
+      "start_sec": 49.93,
+      "duration_sec": 6.27,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": null,
+      "canvas": null,
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "york-photograph-view-2f03069e.jpg",
+          "role": "value",
+          "source": "objects.figure.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "york-photograph-view-2f03069e.jpg"
+      ],
+      "camera": [
+        "hold",
+        "slow_zoom",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": true,
+      "composition": [
+        {
+          "kind": "photo",
+          "count": 1,
+          "anchor": "center",
+          "motion": "appear",
+          "emphasis": true,
+          "labelled": true
+        }
+      ],
+      "coverage": 0.901
+    }
+  ]
+}

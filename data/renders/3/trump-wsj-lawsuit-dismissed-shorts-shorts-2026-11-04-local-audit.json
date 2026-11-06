@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-11-04T20:53:36.528Z",
+  "video": "trump-wsj-lawsuit-dismissed-shorts-shorts-2026-11-04.mp4",
+  "channel": "3",
+  "technical": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationSec": 44.18,
+    "hasAudio": true
+  },
+  "visual": {
+    "ok": false,
+    "note": "too few frames sampled"
+  },
+  "plan_compliance": {
+    "ok": true,
+    "beatCountPlan": 9,
+    "beatCountRender": 9,
+    "textForwardPct": 100,
+    "textForwardSource": "drawn",
+    "distinctMechanisms": 2,
+    "distinctCapabilities": 0,
+    "longestMechanismRun": 4,
+    "monoculture": true,
+    "mechanismDistribution": {
+      "EVIDENCE_FIGURE": 9
+    },
+    "capabilityDistribution": {},
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "monoculture: 100% text-forward, 2 distinct mechanisms, longest run 4"
+      }
+    ]
+  },
+  "typography": {
+    "ok": true,
+    "textBeats": 0,
+    "totalBeats": 9,
+    "textBeatShare": 0,
+    "longestTextRun": 0,
+    "multiLineBeats": 0,
+    "wouldWrapBeats": 0,
+    "headlineLikeBeats": 0,
+    "transcriptLikeBeats": 0,
+    "repeatedPhrases": [],
+    "perBeat": [
+      {
+        "index": 0,
+        "hasText": false
+      },
+      {
+        "index": 1,
+        "hasText": false
+      },
+      {
+        "index": 2,
+        "hasText": false
+      },
+      {
+        "index": 3,
+        "hasText": false
+      },
+      {
+        "index": 4,
+        "hasText": false
+      },
+      {
+        "index": 5,
+        "hasText": false
+      },
+      {
+        "index": 6,
+        "hasText": false
+      },
+      {
+        "index": 7,
+        "hasText": false
+      },
+      {
+        "index": 8,
+        "hasText": false
+      }
+    ],
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 0,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 1,
+        "problem": "\"Donald Trump, Darrin Gayles, Miami\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 2,
+        "problem": "\"Rupert Murdoch, Jeffrey Epstein\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "\"Donald Trump, Dow Jones\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 6,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 7,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 8,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      }
+    ]
+  },
+  "audio": {
+    "ok": true,
+    "hasAudio": true,
+    "clipping": false,
+    "longSilenceCount": 0,
+    "maxSilenceSec": 0,
+    "effectivelySilent": false
+  },
+  "channel_history": {
+    "ok": true,
+    "recentAvgTextForwardPct": null,
+    "thisTextForwardPct": 100,
+    "outlier": false
+  },
+  "risk": {
+    "score": 20,
+    "level": "MEDIUM",
+    "reasons": [
+      "monoculture (100% text-forward)"
+    ]
+  },
+  "gemini_required": true,
+  "uncertain_beats": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8
+  ],
+  "blockers": [],
+  "corrections": [
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "monoculture: 100% text-forward, 2 distinct mechanisms, longest run 4",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 0,
+      "scene": "beat 0",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 1,
+      "scene": "beat 1",
+      "problem": "\"Donald Trump, Darrin Gayles, Miami\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 2,
+      "scene": "beat 2",
+      "problem": "\"Rupert Murdoch, Jeffrey Epstein\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "\"Donald Trump, Dow Jones\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 6,
+      "scene": "beat 6",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 7,
+      "scene": "beat 7",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 8,
+      "scene": "beat 8",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-2",
+  "videoSlug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "generatedAt": "2026-11-05T21:34:48.100Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\amazon-mwaa-ai-agent-skills-apache-airflow\\render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 6,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    }
+  ],
+  "distribution": {
+    "product-demonstration": 5,
+    "chronological-timeline": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

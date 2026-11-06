@@ -1,0 +1,105 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-4",
+  "videoSlug": "bayern-dortmund-2-2-tactical-analysis",
+  "generatedAt": "2026-11-04T17:27:31.526Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\bayern-dortmund-2-2-tactical-analysis\\visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 8,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "Borussia Dortmund won 57 percent of duels at Allianz Arena.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "During the 2-2 draw, Borussia Dortmund's manager Niko Kovač deployed a flexible 3-4-2-1 shape.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 3,
+      "narration": "How did Dortmund navigate a match featuring 35 total shots on goal at Allianz Arena?",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "However, Kovač's team shifted into a disciplined 4-4-2 block against Bayern Munich.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 5,
+      "narration": "Up front, Serhou Guirassy and Fabio Silva provided the chief strike threats for Dortmund.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 6,
+      "narration": "Borussia Dortmund twice leveled the score against heavy territorial pressure.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 7,
+      "narration": "That intense battle ended with 2 goals for each side.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 8,
+      "narration": "Borussia Dortmund earned 2 goals to secure the 2-2 draw.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "geographic-visualisation": 2,
+    "side-by-side": 6
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

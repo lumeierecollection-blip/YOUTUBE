@@ -1,0 +1,81 @@
+{
+  "channel_id": 3,
+  "topic_slug": "trump-wsj-lawsuit-dismissed",
+  "format": "shorts",
+  "hook": "A massive $10 billion defamation suit just vanished in federal court.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "A massive $10 billion defamation suit just vanished in federal court.",
+      "visual_cue": "Miami federal courthouse exterior with graphic crossing out ten billion dollars",
+      "sfx_cue": "Dramatic gavel sound",
+      "b_roll": [
+        "Miami federal courthouse exterior with graphic crossing out ten billion dollars"
+      ],
+      "animation_cue": "Cut",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "$10 BILLION LAWSUIT DISMISSED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:12",
+      "voiceover": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami.",
+      "visual_cue": "Federal court document dated October 31, 2026",
+      "sfx_cue": "Paper shuffle",
+      "b_roll": [
+        "Federal court document dated October 31, 2026"
+      ],
+      "animation_cue": "Document fades in",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "OCTOBER 31, 2026 RULING"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:12-00:21",
+      "voiceover": "The court found actual malice was never plausibly alleged. Judge Gayles ruled Trump failed to prove it. The $10 billion lawsuit is dismissed.",
+      "visual_cue": "Legal text highlighting actual malice standard, then court order",
+      "sfx_cue": "Gavel strike",
+      "b_roll": [
+        "Official court order stating case dismissed with prejudice"
+      ],
+      "animation_cue": "Text highlights key phrases",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "DISMISSED WITH PREJUDICE"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:21-00:29",
+      "voiceover": "The $10 billion lawsuit is dismissed.",
+      "visual_cue": "Miami federal court building facade",
+      "sfx_cue": "Final gavel strike",
+      "b_roll": [
+        "Miami federal court building facade"
+      ],
+      "animation_cue": "Camera holds on building",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "CASE CLOSED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/",
+    "https://www.courtlistener.com/"
+  ],
+  "named_entities": [
+    { "name": "Donald Trump", "kind": "person" },
+    { "name": "Rupert Murdoch", "kind": "person" },
+    { "name": "Darrin Gayles", "kind": "person" },
+    { "name": "Dow Jones", "kind": "organization" },
+    { "name": "The Wall Street Journal", "kind": "organization" },
+    { "name": "Jeffrey Epstein", "kind": "person" },
+    { "name": "U.S. District Court Miami", "kind": "organization" }
+  ]
+}

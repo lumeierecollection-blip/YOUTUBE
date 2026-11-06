@@ -1,0 +1,140 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-00.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-01.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.177335780230582,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-02.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.177335780230582,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-03.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.932599356999225,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-04.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.91377776575714,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-05.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.1011132284757785,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-06.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.9522866640609235,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-07.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.147507749146352,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-08.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.28914952971913,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-09.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.08428891787467,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-10.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 3.8043952453286325,
+      "pass": false,
+      "violations": [
+        "headline contrast 3.80:1 < 4.5:1 (glyph rgb(110,110,120) on bg rgb(14,14,24))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\gemini-4-argon-vs-claude-opus-5-5-benchmark-frames\\frame-11.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

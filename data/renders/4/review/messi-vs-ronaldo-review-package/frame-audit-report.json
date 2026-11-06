@@ -1,0 +1,156 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-00.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-01.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003112599206349206,
+      "captionContrast": 3.3190497783477215,
+      "headlineContrast": 2.5354074516671568,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.32:1 < 4.5:1 (glyph rgb(141,141,141) on bg rgb(255,255,255))",
+        "headline contrast 2.54:1 < 4.5:1 (glyph rgb(192,156,123) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-02.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-03.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-04.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-05.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0024677579365079364,
+      "captionContrast": 2.2441408487273593,
+      "headlineContrast": 1.94084455735494,
+      "pass": false,
+      "violations": [
+        "caption contrast 2.24:1 < 4.5:1 (glyph rgb(173,173,173) on bg rgb(255,255,255))",
+        "headline contrast 1.94:1 < 4.5:1 (glyph rgb(208,182,151) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-06.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0016245039682539683,
+      "captionContrast": 1.6390401482622179,
+      "headlineContrast": 1.503245534726524,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.64:1 < 4.5:1 (glyph rgb(202,202,202) on bg rgb(255,255,255))",
+        "headline contrast 1.50:1 < 4.5:1 (glyph rgb(218,210,193) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-07.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-08.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003224206349206349,
+      "captionContrast": 3.4070682065725717,
+      "headlineContrast": 2.4334365697880918,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.41:1 < 4.5:1 (glyph rgb(139,139,139) on bg rgb(255,255,255))",
+        "headline contrast 2.43:1 < 4.5:1 (glyph rgb(195,160,122) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-09.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0030629960317460317,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.3987107294343537,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.40:1 < 4.5:1 (glyph rgb(211,156,111) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-10.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.001959325396825397,
+      "captionContrast": 1.7260073766123871,
+      "headlineContrast": 1.6210242821692735,
+      "pass": false,
+      "violations": [
+        "caption contrast 1.73:1 < 4.5:1 (glyph rgb(197,197,197) on bg rgb(255,255,255))",
+        "headline contrast 1.62:1 < 4.5:1 (glyph rgb(218,201,175) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\messi-vs-ronaldo-frames\\frame-11.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

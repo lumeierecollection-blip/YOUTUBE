@@ -118,21 +118,49 @@ function wcagContrast(a, b) {
   const hi = Math.max(la, lb), lo = Math.min(la, lb);
   return (hi + 0.05) / (lo + 0.05);
 }
-// The glyph colour is estimated as the pixel most different from the local
-// background — anti-aliased edge pixels sit between the two colours, so the
-// single most-different pixel is the best available sample of pure glyph
-// fill, which is exactly the pixel WCAG contrast should be measured against.
+// The glyph colour is estimated as the DOMINANT foreground colour in the
+// sampled zone. Real text is a solid-colour stroke: its fill colour appears
+// on thousands of pixels, so it dominates the foreground colour histogram.
+// Photographic content and anti-aliased edges either fragment across many
+// colours (no dominant mode) or fill huge regions (a photo swatch).
+//
+// A text stroke is small (a few thousand pixels); a photo region fills tens
+// of thousands. We therefore reject any dominant colour that covers more
+// than MAX_TEXT_PIXELS of the zone — that's a photo region or background
+// gradient, not text — and any colour whose pixel count is below
+// MIN_GLYPH_PIXELS (encoder noise or a one-pixel artefact).
+const MIN_GLYPH_PIXELS = 30;
+const MAX_TEXT_PIXELS = 15000;
+const QUANT = 16;
 function estimateForeground(buf, bg) {
-  let best = null, bestDist = -1;
-  for (let i = 0; i < buf.length; i += 3) {
-    const r = buf[i], g = buf[i + 1], b = buf[i + 2];
+  const counts = new Map();
+  let fgPixelCount = 0;
+  const npix = buf.length / 3;
+  for (let i = 0; i < npix; i++) {
+    const r = buf[i * 3], g = buf[i * 3 + 1], b = buf[i * 3 + 2];
     const dist = Math.abs(r - bg[0]) + Math.abs(g - bg[1]) + Math.abs(b - bg[2]);
-    if (dist > bestDist) {
-      bestDist = dist;
-      best = [r, g, b];
+    if (dist > FG_DIFF) {
+      fgPixelCount++;
+      const key = `${Math.floor(r / QUANT) * QUANT},${Math.floor(g / QUANT) * QUANT},${Math.floor(b / QUANT) * QUANT}`;
+      counts.set(key, (counts.get(key) || 0) + 1);
     }
   }
-  return best;
+  if (fgPixelCount < MIN_GLYPH_PIXELS) return null;
+  // The glyph colour is the foreground colour with the HIGHEST contrast
+  // against the ground. Real text stands out from its ground; photographic
+  // regions and graphic panels usually sit close to the ground in luminance
+  // and therefore have low contrast. Selecting the maximum-contrast colour
+  // therefore isolates actual text from dark panels, photo backgrounds, and
+  // other non-text foreground elements.
+  let bestKey = null, bestContrast = 0;
+  for (const [key, count] of counts) {
+    if (count < MIN_GLYPH_PIXELS) continue;
+    const rgb = key.split(",").map(Number);
+    const c = wcagContrast(rgb, bg);
+    if (c > bestContrast) { bestContrast = c; bestKey = key; }
+  }
+  if (!bestKey || bestContrast < MIN_TEXT_CONTRAST) return null;
+  return bestKey.split(",").map(Number);
 }
 
 function stats(buf, len) {
@@ -303,11 +331,13 @@ async function auditFrame(file) {
   const capTextFraction = capTextFg / (capText.length / 3);
   if (capTextFraction >= CAPTION_FG_MIN) {
     const capFgColor = estimateForeground(capText, bg);
-    captionContrast = wcagContrast(capFgColor, bg);
-    if (captionContrast < MIN_TEXT_CONTRAST) {
-      violations.push(
-        `caption contrast ${captionContrast.toFixed(2)}:1 < ${MIN_TEXT_CONTRAST}:1 (glyph rgb(${capFgColor.join(",")}) on bg rgb(${bg.join(",")}))`
-      );
+    if (capFgColor) {
+      captionContrast = wcagContrast(capFgColor, bg);
+      if (captionContrast < MIN_TEXT_CONTRAST) {
+        violations.push(
+          `caption contrast ${captionContrast.toFixed(2)}:1 < ${MIN_TEXT_CONTRAST}:1 (glyph rgb(${capFgColor.join(",")}) on bg rgb(${bg.join(",")}))`
+        );
+      }
     }
   }
 
@@ -322,11 +352,13 @@ async function auditFrame(file) {
   const headlineFraction = headlineFg / (headlineText.length / 3);
   if (headlineFraction >= CAPTION_FG_MIN) {
     const headlineFgColor = estimateForeground(headlineText, bg);
-    headlineContrast = wcagContrast(headlineFgColor, bg);
-    if (headlineContrast < MIN_TEXT_CONTRAST) {
-      violations.push(
-        `headline contrast ${headlineContrast.toFixed(2)}:1 < ${MIN_TEXT_CONTRAST}:1 (glyph rgb(${headlineFgColor.join(",")}) on bg rgb(${bg.join(",")}))`
-      );
+    if (headlineFgColor) {
+      headlineContrast = wcagContrast(headlineFgColor, bg);
+      if (headlineContrast < MIN_TEXT_CONTRAST) {
+        violations.push(
+          `headline contrast ${headlineContrast.toFixed(2)}:1 < ${MIN_TEXT_CONTRAST}:1 (glyph rgb(${headlineFgColor.join(",")}) on bg rgb(${bg.join(",")}))`
+        );
+      }
     }
   }
 

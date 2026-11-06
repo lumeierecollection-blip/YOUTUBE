@@ -1,0 +1,138 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-00.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-01.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.908244849610311,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-02.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.930953760020181,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-03.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.299853765847232,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-04.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-05.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.921533556038604,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-06.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.45003089688298,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-07.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.152048203885207,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-08.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.792417676232148,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-09.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.926550789392557,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-10.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.0992303631065745,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-11.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

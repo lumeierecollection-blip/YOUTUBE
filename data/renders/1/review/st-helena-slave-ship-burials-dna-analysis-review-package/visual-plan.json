@@ -1,0 +1,671 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-1/st-helena-slave-ship-burials-dna-analysis/visual-plan.json",
+  "channel": "ch-1",
+  "videoSlug": "st-helena-slave-ship-burials-dna-analysis",
+  "generatedAt": "2026-11-04T19:43:30.221Z",
+  "totalBeats": 8,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "File:1001 questions and answers on general history (IA 1001questionsans01hath).pdf",
+      "reason": "Beat 1 (“Over 8,000 rescued captives died on one remote Atlantic island.”): questions and answers <span class=\"searchmatch\">on</span> general history   (  ) Author [Hathaway, Benjamin Adams], 1852- [from old catalog] Title 1001 questions and answers <span class=\"searchmatch\">on</span> general history",
+      "objects": {
+        "figure": "over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+        "_assetFile": "over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+          "filename": "over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3A1001%20questions%20and%20answers%20on%20general%20history%20(IA%201001questionsans01hath).pdf",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3A1001_questions_and_answers_on_general_history_(IA_1001questionsans01hath).pdf",
+          "creator": "[Hathaway, Benjamin Adams], 1852- [from old catalog]",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "[Hathaway, Benjamin Adams], 1852- [from old catalog] / Wikimedia Commons, Public domain",
+          "credit": "Internet Archive identifier : 1001questionsans01hath https://archive.org/download/1001questionsans01hath/1001questionsans01hath.pdf",
+          "sha256": "36a90a38e55e15769be53d1cc1e30889462f71e486e6ed867ee012b4878f2e7c",
+          "width": 500,
+          "height": 744,
+          "retrievedAt": "2026-11-04T17:20:10.877Z",
+          "cacheKey": "a3d0f7bb0c3bacf7",
+          "relevance": "Beat 1 (“Over 8,000 rescued captives died on one remote Atlantic island.”): questions and answers <span class=\"searchmatch\">on</span> general history   (  ) Author [Hathaway, Benjamin Adams], 1852- [from old catalog] Title 1001 questions and answers <span class=\"searchmatch\">on</span> general history"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "File:1001 questions and answers on general history (IA 1001questionsans01hath).pdf",
+          "asset": "asset-library/over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "[Hathaway, Benjamin Adams], 1852- [from old catalog] / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3A1001%20questions%20and%20answers%20on%20general%20history%20(IA%201001questionsans01hath).pdf",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Over 8,000 rescued captives died on one remote Atlantic island.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "File:1001 questions and answers on general history (IA 1001questionsans01hath).pdf",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 1,
+      "_narration": "Over 8,000 rescued captives died on one remote Atlantic island.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "File:1001 questions and answers on general history (IA 1001questionsans01hath).pdf",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/over-8-000-rescued-captives-died-on-illustration-36a90a38.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "[Hathaway, Benjamin Adams], 1852- [from old catalog] / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3A1001%20questions%20and%20answers%20on%20general%20history%20(IA%201001questionsans01hath).pdf",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "St Helena, British Royal Navy",
+      "reason": "Beat 2 (“After 1807, the British Royal Navy brought 450 intercepted slave ships to St Helena.”): DescriptionMagdalensberg <span class=\"searchmatch\">St</span>. <span class=\"searchmatch\">Helena</span> Flügelaltar 01.jpg Deutsch: Flügelaltar der Kirche am Magdalensberg, Kärnten, Österreich. Unbekannter Meister der älteren",
+      "objects": {
+        "amount_a": "St Helena, British Royal Navy",
+        "amount_b": "st-helena-photograph-view-54d408c0.jpg",
+        "_assetFile": "st-helena-photograph-view-54d408c0.jpg",
+        "_asset": {
+          "id": "asset-2",
+          "file": "st-helena-photograph-view-54d408c0.jpg",
+          "filename": "st-helena-photograph-view-54d408c0.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg_St._Helena_Fl%C3%BCgelaltar_01.jpg",
+          "creator": "Uoaei1",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+          "attribution": "Uoaei1 / Wikimedia Commons, CC BY-SA 4.0",
+          "credit": "Own work",
+          "sha256": "54d408c075167a9bca3fe302c52fc73d73fb9342a6953f3ef1b893b39dfc7cd8",
+          "width": 1920,
+          "height": 3616,
+          "retrievedAt": "2026-11-04T17:20:14.095Z",
+          "cacheKey": "7138810d929c7c76",
+          "relevance": "Beat 2 (“After 1807, the British Royal Navy brought 450 intercepted slave ships to St Helena.”): DescriptionMagdalensberg <span class=\"searchmatch\">St</span>. <span class=\"searchmatch\">Helena</span> Flügelaltar 01.jpg Deutsch: Flügelaltar der Kirche am Magdalensberg, Kärnten, Österreich. Unbekannter Meister der älteren"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "St Helena, British Royal Navy",
+          "asset": "asset-library/st-helena-photograph-view-54d408c0.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Uoaei1 / Wikimedia Commons, CC BY-SA 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg",
+          "license": "CC BY-SA 4.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "After 1807, the British Royal Navy brought 450 intercepted slave ships to St Hel",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "St Helena, British Royal Navy",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/st-helena-photograph-view-54d408c0.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "sequence",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 2,
+      "_narration": "After 1807, the British Royal Navy brought 450 intercepted slave ships to St Helena.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "St Helena, British Royal Navy",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/st-helena-photograph-view-54d408c0.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Uoaei1 / Wikimedia Commons, CC BY-SA 4.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AMagdalensberg%20St.%20Helena%20Fl%C3%BCgelaltar%2001.jpg",
+            "license": "CC BY-SA 4.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "St Helena",
+      "reason": "Beat 3 (“Why did 8,000 die on St Helena soon after rescue?”): Creative Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span> by N Chadwick You are free: to share – to copy, distribute and transmit",
+      "objects": {
+        "amount_a": "St Helena",
+        "amount_b": "st-helena-photograph-view-1ddfb2a2.jpg",
+        "_assetFile": "st-helena-photograph-view-1ddfb2a2.jpg",
+        "_asset": {
+          "id": "asset-3",
+          "file": "st-helena-photograph-view-1ddfb2a2.jpg",
+          "filename": "st-helena-photograph-view-1ddfb2a2.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3ASt_Helena_-_geograph.org.uk_-_6711020.jpg",
+          "creator": "N Chadwick",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "attribution": "N Chadwick / Wikimedia Commons, CC BY-SA 2.0",
+          "credit": "Geograph Britain and Ireland",
+          "sha256": "1ddfb2a247e961710a2e5453b72a3e8ea7f79554978bcb54c398987c23160a0a",
+          "width": 1024,
+          "height": 684,
+          "retrievedAt": "2026-11-04T17:20:17.221Z",
+          "cacheKey": "7138810d929c7c76",
+          "relevance": "Beat 3 (“Why did 8,000 die on St Helena soon after rescue?”): Creative Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span> by N Chadwick You are free: to share – to copy, distribute and transmit"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "St Helena",
+          "asset": "asset-library/st-helena-photograph-view-1ddfb2a2.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "N Chadwick / Wikimedia Commons, CC BY-SA 2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg",
+          "license": "CC BY-SA 2.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Why did 8,000 die on St Helena soon after rescue?",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "St Helena",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/st-helena-photograph-view-1ddfb2a2.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "sequence",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 3,
+      "_narration": "Why did 8,000 die on St Helena soon after rescue?",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "St Helena",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/st-helena-photograph-view-1ddfb2a2.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "N Chadwick / Wikimedia Commons, CC BY-SA 2.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3ASt%20Helena%20-%20geograph.org.uk%20-%206711020.jpg",
+            "license": "CC BY-SA 2.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "St Helena",
+      "reason": "Beat 4 (“However, experts didn't know the childhood origins of 8,000 captives buried on St Helena.”): Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> Mary &amp; <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span>, Elstow by John Salmon You are free: to share – to copy, distribute",
+      "objects": {
+        "amount_a": "St Helena",
+        "amount_b": "st-helena-photograph-view-bb23a2bd.jpg",
+        "_assetFile": "st-helena-photograph-view-bb23a2bd.jpg",
+        "_asset": {
+          "id": "asset-4",
+          "file": "st-helena-photograph-view-bb23a2bd.jpg",
+          "filename": "st-helena-photograph-view-bb23a2bd.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3ASt_Mary_%5E_St_Helena%2C_Elstow_-_geograph.org.uk_-_3263704.jpg",
+          "creator": "John Salmon",
+          "license": "CC BY-SA 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+          "attribution": "John Salmon / Wikimedia Commons, CC BY-SA 2.0",
+          "credit": "Geograph Britain and Ireland",
+          "sha256": "bb23a2bd10d4502a1067888f94d731a834992b735c1e1123615ec32853dcb5c9",
+          "width": 706,
+          "height": 1000,
+          "retrievedAt": "2026-11-04T17:20:18.409Z",
+          "cacheKey": "7138810d929c7c76",
+          "relevance": "Beat 4 (“However, experts didn't know the childhood origins of 8,000 captives buried on St Helena.”): Commons Attribution-Share Alike 2.0 Generic license. Attribution: <span class=\"searchmatch\">St</span> Mary &amp; <span class=\"searchmatch\">St</span> <span class=\"searchmatch\">Helena</span>, Elstow by John Salmon You are free: to share – to copy, distribute"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "St Helena",
+          "asset": "asset-library/st-helena-photograph-view-bb23a2bd.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "John Salmon / Wikimedia Commons, CC BY-SA 2.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg",
+          "license": "CC BY-SA 2.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "However, experts didn't know the childhood origins of 8,000 captives buried on S",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "St Helena",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/st-helena-photograph-view-bb23a2bd.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 4,
+      "_narration": "However, experts didn't know the childhood origins of 8,000 captives buried on St Helena.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "St Helena",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/st-helena-photograph-view-bb23a2bd.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "John Salmon / Wikimedia Commons, CC BY-SA 2.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3ASt%20Mary%20%5E%20St%20Helena%2C%20Elstow%20-%20geograph.org.uk%20-%203263704.jpg",
+            "license": "CC BY-SA 2.0"
+          }
+        ]
+      }
+    },
+    {
+      "index": 4,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "Science",
+      "reason": "Beat 5 (“Researchers published a landmark study in Science analyzing ancient DNA.”): English object <span class=\"searchmatch\">of</span> statement has role: photographer author name string: Daderot Wikimedia username: Daderot URL: http://commons.wikimedia.org/wiki/User:Daderot",
+      "objects": {
+        "label_a": "Science",
+        "label_b": "science-building-headquarters-bdc274b8.jpg",
+        "_assetFile": "science-building-headquarters-bdc274b8.jpg",
+        "_asset": {
+          "id": "asset-5",
+          "file": "science-building-headquarters-bdc274b8.jpg",
+          "filename": "science-building-headquarters-bdc274b8.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAAAS%20exterior%201%20-%20Cambridge%2C%20MA.JPG",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAAAS_exterior_1_-_Cambridge%2C_MA.JPG",
+          "creator": "Daderot",
+          "license": "Public domain",
+          "licenseUrl": "",
+          "attribution": "Daderot / Wikimedia Commons, Public domain",
+          "credit": "Own work",
+          "sha256": "bdc274b887014d27d58ef5a6c73ea373a7a6727b8c376df5197659487f63c0c2",
+          "width": 1920,
+          "height": 1440,
+          "retrievedAt": "2026-11-04T17:20:23.873Z",
+          "cacheKey": "96031906ef2aa132",
+          "relevance": "Beat 5 (“Researchers published a landmark study in Science analyzing ancient DNA.”): English object <span class=\"searchmatch\">of</span> statement has role: photographer author name string: Daderot Wikimedia username: Daderot URL: http://commons.wikimedia.org/wiki/User:Daderot"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Science",
+          "asset": "asset-library/science-building-headquarters-bdc274b8.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Daderot / Wikimedia Commons, Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AAAAS%20exterior%201%20-%20Cambridge%2C%20MA.JPG",
+          "license": "Public domain"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Researchers published a landmark study in Science analyzing ancient DNA.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Science",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/science-building-headquarters-bdc274b8.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 5,
+      "_narration": "Researchers published a landmark study in Science analyzing ancient DNA.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Science",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/science-building-headquarters-bdc274b8.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Daderot / Wikimedia Commons, Public domain",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AAAAS%20exterior%201%20-%20Cambridge%2C%20MA.JPG",
+            "license": "Public domain"
+          }
+        ]
+      }
+    },
+    {
+      "index": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 6: \"Scientists tested tooth isotopes from 152 liberated Africans buried on the island.\"",
+      "objects": {
+        "figure": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Scientists tested tooth isotopes from 152 liberated Africans buried on the islan",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Scientists tested tooth isotopes from 152 liberated Africans buried on the islan",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 5,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 6,
+      "_narration": "Scientists tested tooth isotopes from 152 liberated Africans buried on the island.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 6,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "St Helena, UC Santa Cruz",
+      "reason": "Illustrative graphic for beat 7: \"Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on St Helena.\"",
+      "objects": {
+        "figure": "St Helena, UC Santa Cruz",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 7,
+      "_narration": "Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on St Helena.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 7,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Science",
+      "reason": "Beat 8 (“Science finally traced origins for 152 buried individuals there.”): Daderot 2560×1920 (1058199 bytes) {{GFDL}}National <span class=\"searchmatch\">headquarters</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> American <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Arts</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Sciences</span>, Cambridge, Massachusetts. Photograph taken by",
+      "objects": {
+        "amount_a": "Science",
+        "amount_b": "science-building-headquarters-fa807293.jpg",
+        "_assetFile": "science-building-headquarters-fa807293.jpg",
+        "_asset": {
+          "id": "asset-6",
+          "file": "science-building-headquarters-fa807293.jpg",
+          "filename": "science-building-headquarters-fa807293.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAmerican%20Academy%20of%20Arts%20and%20Sciences%2C%20Cambridge%2C%20Massachusetts.JPG",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAmerican_Academy_of_Arts_and_Sciences%2C_Cambridge%2C_Massachusetts.JPG",
+          "creator": "Daderot at en.wikipedia",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+          "attribution": "Daderot at en.wikipedia / Wikimedia Commons, CC BY-SA 3.0",
+          "credit": "Own work Transferred from en.wikipedia",
+          "sha256": "fa80729374a5652bd49ea1a3247443355b089b64cf292af81db19f0abe6cebdc",
+          "width": 1920,
+          "height": 1440,
+          "retrievedAt": "2026-11-04T17:20:25.615Z",
+          "cacheKey": "96031906ef2aa132",
+          "relevance": "Beat 8 (“Science finally traced origins for 152 buried individuals there.”): Daderot 2560×1920 (1058199 bytes) {{GFDL}}National <span class=\"searchmatch\">headquarters</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">the</span> American <span class=\"searchmatch\">Academy</span> <span class=\"searchmatch\">of</span> <span class=\"searchmatch\">Arts</span> <span class=\"searchmatch\">and</span> <span class=\"searchmatch\">Sciences</span>, Cambridge, Massachusetts. Photograph taken by"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Science",
+          "asset": "asset-library/science-building-headquarters-fa807293.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Daderot at en.wikipedia / Wikimedia Commons, CC BY-SA 3.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AAmerican%20Academy%20of%20Arts%20and%20Sciences%2C%20Cambridge%2C%20Massachusetts.JPG",
+          "license": "CC BY-SA 3.0"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Science finally traced origins for 152 buried individuals there.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Science",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/science-building-headquarters-fa807293.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "sequence",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 8,
+      "_narration": "Science finally traced origins for 152 buried individuals there.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Science",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/science-building-headquarters-fa807293.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Daderot at en.wikipedia / Wikimedia Commons, CC BY-SA 3.0",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AAmerican%20Academy%20of%20Arts%20and%20Sciences%2C%20Cambridge%2C%20Massachusetts.JPG",
+            "license": "CC BY-SA 3.0"
+          }
+        ]
+      }
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

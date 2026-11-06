@@ -1,0 +1,77 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-2",
+  "videoSlug": "claude-haiku-5-5-pricing",
+  "generatedAt": "2026-11-05T00:05:33.446Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\claude-haiku-5-5-pricing\\sourcing-report.json",
+  "totalRequested": 6,
+  "totalDownloaded": 0,
+  "errors": [
+    {
+      "beat": 2,
+      "title": "File:IMPROVING THE PRICE EFFICIENCY OF U.S. AIR FORCE BASE OPERATING SUPPORT SERVICE CONTRACTS (IA improvingthepric1094561359).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Industry output, labor input, value added, and productivity associated with food expenditures (IA industryoutputla393gale).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Effects of input temperatue and air volume on moisture removal from seed cotton (IA effectsofinputte67cock).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The life of Edward Jenner ... With illustrations of his doctrines, and selections from his correspondence (IA b33279986 0004).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:The life of Edward Jenner, M.D.... with illustrations of his doctrines, and selections from his correspondence (IA lifeofedwardjenn02baro).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Park's floral magazine (IA CAT30999385007).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Industry output, labor input, value added, and productivity associated with food expenditures (IA industryoutputla393gale).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:2022 Sea Level Rise Technical Report.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 4,
+      "title": "File:Technical appendixes to the Report and recommendations to the Secretary, U.S. Department of Health and Human Services (IA technicalappendi00unit 0).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:A contribution to computer typesetting techniques tables of coordinates for Hershey's repertory of occidental type fonts and graphic symbols - redacted.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:A contribution to computer typesetting techniques - tables of coordinates for Hershey's repertory of occidental type fonts and graphic symbols (IA contributiontoco424wolc).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Exhibitors Herald World (IA exhibitorsherald98unse).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:1975-V003-08-dem-left.pdf",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": []
+}

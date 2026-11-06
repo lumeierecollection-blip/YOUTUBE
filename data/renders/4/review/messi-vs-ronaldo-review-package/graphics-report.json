@@ -1,0 +1,107 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-4",
+  "videoSlug": "messi-vs-ronaldo-career-comparison",
+  "generatedAt": "2026-11-05T00:22:56.325Z",
+  "sourcePlan": "data/sourcing-cache/ch-4/messi-vs-ronaldo-career-comparison/render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 10,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "side-by-side": 9,
+    "chronological-timeline": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

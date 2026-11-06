@@ -1,0 +1,106 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-1",
+  "videoSlug": "st-helena-slave-ship-burials-dna-analysis",
+  "generatedAt": "2026-11-04T17:20:53.849Z",
+  "sourcePlan": "data/sourcing-cache/ch-1/st-helena-slave-ship-burials-dna-analysis/visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 8,
+  "uniqueTreatments": 3,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "Over 8,000 rescued captives died on one remote Atlantic island.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "After 1807, the British Royal Navy brought 450 intercepted slave ships to St Helena.",
+      "visualIntent": "sequence",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates sequence; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 3,
+      "narration": "Why did 8,000 die on St Helena soon after rescue?",
+      "visualIntent": "sequence",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates sequence; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "However, experts didn't know the childhood origins of 8,000 captives buried on St Helena.",
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 5,
+      "narration": "Researchers published a landmark study in Science analyzing ancient DNA.",
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 6,
+      "narration": "Scientists tested tooth isotopes from 152 liberated Africans buried on the island.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 7,
+      "narration": "Researchers at UC Santa Cruz analyzed ancient DNA from 152 liberated Africans on St Helena.",
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 8,
+      "narration": "Science finally traced origins for 152 buried individuals there.",
+      "visualIntent": "sequence",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates sequence; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    }
+  ],
+  "distribution": {
+    "geographic-visualisation": 3,
+    "chronological-timeline": 4,
+    "side-by-side": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

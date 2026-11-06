@@ -1,0 +1,280 @@
+{
+  "schema": "render-plan/v1",
+  "sourcePlan": "data/sourcing-cache/ch-4/bayern-dortmund-tactical-shorts/visual-plan.json",
+  "channel": "ch-4",
+  "videoSlug": "bayern-dortmund-tactical-shorts",
+  "generatedAt": "2026-11-05T00:14:35.891Z",
+  "totalBeats": 5,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Allianz Arena",
+      "reason": "Beat 1 (“Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.”): Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north",
+      "objects": {
+        "amount_a": "Allianz Arena",
+        "amount_b": "allianz-arena-photograph-view-37346582.jpg",
+        "_assetFile": "allianz-arena-photograph-view-37346582.jpg",
+        "_asset": {
+          "id": "asset-1",
+          "file": "allianz-arena-photograph-view-37346582.jpg",
+          "filename": "allianz-arena-photograph-view-37346582.jpg",
+          "source": "Wikimedia Commons",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+          "pageUrl": "https://commons.wikimedia.org/wiki/File%3AAllianz_arena_daylight_Richard_Bartz.jpg",
+          "creator": "Richard Bartz , Munich aka Makro Freak",
+          "license": "CC BY-SA 2.5",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+          "attribution": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+          "credit": "Own work",
+          "sha256": "373465826207ee074a05dad54879335d6bc6466050d58eb0e0bc27f777851602",
+          "width": 1920,
+          "height": 791,
+          "retrievedAt": "2026-11-05T00:14:03.300Z",
+          "cacheKey": "699f6925a117b05e",
+          "relevance": "Beat 1 (“Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.”): Fotbalový stadion <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span>, Mnichov Dansk: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> i München i Tyskland. Deutsch: <span class=\"searchmatch\">Allianz</span>-<span class=\"searchmatch\">Arena</span> in München. English: <span class=\"searchmatch\">Allianz</span> <span class=\"searchmatch\">Arena</span> in the north"
+        }
+      },
+      "capabilities": [
+        {
+          "kind": "photo",
+          "anchor": "center",
+          "motion": "appear",
+          "label": "Allianz Arena",
+          "asset": "asset-library/allianz-arena-photograph-view-37346582.jpg",
+          "variant": "photo",
+          "movement": "push",
+          "scale": 1,
+          "credit": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+          "source_url": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+          "license": "CC BY-SA 2.5"
+        },
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "appear",
+          "label": "Allianz Arena",
+          "anchor": "center",
+          "motion": "appear",
+          "scale": 1,
+          "asset": "asset-library/allianz-arena-photograph-view-37346582.jpg",
+          "variant": "photo",
+          "movement": "push"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 0,
+      "visualIntent": "place",
+      "graphicType": "Geographic visualisation",
+      "_beatNumber": 1,
+      "_narration": "Bayern and Dortmund played to a 2-2 draw at the Allianz Arena.",
+      "_plannedDurationSec": 5,
+      "_transition": "CUT",
+      "_cameraMovement": "pan across",
+      "_animation": "slow fade-in",
+      "_isIllustrative": false,
+      "_reuseJustified": false,
+      "_reuseReason": null,
+      "composition": {
+        "objects": [
+          {
+            "kind": "photo",
+            "anchor": "center",
+            "motion": "appear",
+            "label": "Allianz Arena",
+            "emphasis": true,
+            "scale": 1,
+            "asset": "asset-library/allianz-arena-photograph-view-37346582.jpg",
+            "variant": "photo",
+            "movement": "push",
+            "credit": "Richard Bartz , Munich aka Makro Freak / Wikimedia Commons, CC BY-SA 2.5",
+            "source_url": "https://commons.wikimedia.org/wiki/File%3AAllianz%20arena%20daylight%20Richard%20Bartz.jpg",
+            "license": "CC BY-SA 2.5"
+          }
+        ]
+      }
+    },
+    {
+      "index": 1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 2: \"Dortmund lined up in a flexible 3-4-2-1 under Kovac, shifting to a 4-4-2 block without the ball.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Dortmund lined up in a flexible 3-4-2-1 under Kovac, shifting to a 4-4-2 block w",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Dortmund lined up in a flexible 3-4-2-1 under Kovac, shifting to a 4-4-2 block w",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 1,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 2,
+      "_narration": "Dortmund lined up in a flexible 3-4-2-1 under Kovac, shifting to a 4-4-2 block without the ball.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 2,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Aaron Danks",
+      "reason": "Illustrative graphic for beat 3: \"Bayern pressed high with acting manager Aaron Danks in a 4-2-3-1 base, but Dortmund won 57 percent of duels.\"",
+      "objects": {
+        "amount_a": "Aaron Danks",
+        "amount_b": "Aaron Danks",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Bayern pressed high with acting manager Aaron Danks in a 4-2-3-1 base, but Dortm",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Bayern pressed high with acting manager Aaron Danks in a 4-2-3-1 base, but Dortm",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 2,
+      "visualIntent": "date",
+      "graphicType": "Chronological timeline",
+      "_beatNumber": 3,
+      "_narration": "Bayern pressed high with acting manager Aaron Danks in a 4-2-3-1 base, but Dortmund won 57 percent of duels.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "timeline marker draw-on",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 3,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 4: \"Dortmund twice leveled the score through Guirassy and Silva, ending the match at 2-2.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "Dortmund twice leveled the score through Guirassy and Silva, ending the match at",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "Dortmund twice leveled the score through Guirassy and Silva, ending the match at",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 3,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 4,
+      "_narration": "Dortmund twice leveled the score through Guirassy and Silva, ending the match at 2-2.",
+      "_plannedDurationSec": 5,
+      "_transition": "DISSOLVE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    },
+    {
+      "index": 4,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "narration subject",
+      "reason": "Illustrative graphic for beat 5: \"A tactical battle that ended where it began - level.\"",
+      "objects": {
+        "amount_a": "narration subject",
+        "amount_b": "narration subject",
+        "_assetFile": null,
+        "_asset": null
+      },
+      "capabilities": [
+        {
+          "kind": "field",
+          "anchor": "bottom",
+          "motion": "fade_in",
+          "label": "A tactical battle that ended where it began - level.",
+          "scale": 0.8
+        }
+      ],
+      "visual_events": [
+        {
+          "type": "type",
+          "label": "A tactical battle that ended where it began - level.",
+          "anchor": "bottom",
+          "motion": "fade_in"
+        }
+      ],
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "variant": 4,
+      "visualIntent": "comparison",
+      "graphicType": "Side-by-side comparison",
+      "_beatNumber": 5,
+      "_narration": "A tactical battle that ended where it began - level.",
+      "_plannedDurationSec": 5,
+      "_transition": "FADE",
+      "_cameraMovement": "hold",
+      "_animation": "side-by-side reveal",
+      "_isIllustrative": true,
+      "_reuseJustified": false,
+      "_reuseReason": null
+    }
+  ],
+  "source": "plan-to-render converter",
+  "notes": "Converted from video-specific visual plan for Remotion render pipeline. Each beat has a mechanism and capabilities for rendering the selected asset."
+}

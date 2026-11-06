@@ -1,0 +1,93 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-2",
+  "videoSlug": "gemini-4-argon-vs-claude-opus-5-5-benchmark",
+  "generatedAt": "2026-11-04T17:25:14.107Z",
+  "sourcePlan": "data/sourcing-cache/ch-2/gemini-4-argon-vs-claude-opus-5-5-benchmark/visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 7,
+  "uniqueTreatments": 1,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "Gemini 4 Argon costs $4.51 to build four motion graphics prompts while Claude Opus 5.5 charges $9.23.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "Charlie Hills tested Gemini 4 Argon and Anthropic Claude Opus 5.5 on four motion graphics prompts.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 3,
+      "narration": "Which model completed the task faster?",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "Yet Gemini 4 Argon takes 69.5 minutes to complete the task.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 5,
+      "narration": "Claude Opus 5.5 finishes faster at 31.7 minutes.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 6,
+      "narration": "Gemini 4 Argon cuts your prompt cost in half.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 7,
+      "narration": "Gemini 4 Argon saves money on your prompts.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "product-demonstration": 7
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

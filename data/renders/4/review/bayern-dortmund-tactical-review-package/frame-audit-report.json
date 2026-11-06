@@ -1,0 +1,153 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-00.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-01.png",
+      "bg": "rgb(254,255,254)",
+      "flatness": 0.3909135410547406,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9547371031746031,
+      "captionContrast": 20.949317545160373,
+      "headlineContrast": 20.949317545160373,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-02.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-03.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0031374007936507938,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.4737996895606766,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.47:1 < 4.5:1 (glyph rgb(190,160,120) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-04.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.0031374007936507938,
+      "captionContrast": 3.2761536255243473,
+      "headlineContrast": 2.4737996895606766,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.28:1 < 4.5:1 (glyph rgb(142,142,142) on bg rgb(255,255,255))",
+        "headline contrast 2.47:1 < 4.5:1 (glyph rgb(190,160,120) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-05.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-06.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003112599206349206,
+      "captionContrast": 3.362683071052112,
+      "headlineContrast": 2.532312920089541,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.36:1 < 4.5:1 (glyph rgb(140,140,140) on bg rgb(255,255,255))",
+        "headline contrast 2.53:1 < 4.5:1 (glyph rgb(192,156,125) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-07.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003112599206349206,
+      "captionContrast": 3.362683071052112,
+      "headlineContrast": 2.532312920089541,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.36:1 < 4.5:1 (glyph rgb(140,140,140) on bg rgb(255,255,255))",
+        "headline contrast 2.53:1 < 4.5:1 (glyph rgb(192,156,125) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-08.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-09.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.003187003968253968,
+      "captionContrast": 3.3190497783477215,
+      "headlineContrast": 2.403270041605017,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.32:1 < 4.5:1 (glyph rgb(141,141,141) on bg rgb(255,255,255))",
+        "headline contrast 2.40:1 < 4.5:1 (glyph rgb(194,162,121) on bg rgb(255,255,255))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-10.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\4\\review\\bayern-dortmund-tactical-frames\\frame-11.png",
+      "bg": "rgb(255,255,255)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

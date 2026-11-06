@@ -1,0 +1,83 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-2",
+  "videoSlug": "amazon-mwaa-ai-agent-skills-apache-airflow",
+  "generatedAt": "2026-11-04T17:25:53.899Z",
+  "sourcePlan": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-2\\amazon-mwaa-ai-agent-skills-apache-airflow\\visual-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 6,
+  "uniqueTreatments": 2,
+  "treatments": [
+    {
+      "beat": 1,
+      "narration": "Amazon Managed Workflows for Apache Airflow now includes four specific AI skills for AWS.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "beat": 2,
+      "narration": "Amazon Managed Workflows for Apache Airflow integrates with the Agent Toolkit for AWS.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 3,
+      "narration": "Which exact skill executes the upgrade process?",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 4,
+      "narration": "Amazon MWAA enables upgrading environments using any AI coding assistant, but the toolkit also includes authoring-mwaa-workflow and debugging-mwaa-workflow.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 5,
+      "narration": "Amazon Managed Workflows for Apache Airflow includes authoring-mwaa-workflow and debugging-mwaa-workflow skills.",
+      "visualIntent": "product",
+      "treatmentId": "product-demonstration",
+      "communicates": "What a product actually does",
+      "example": "screen recording of a tool",
+      "reason": "Beat communicates product; What a product actually does",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "beat": 6,
+      "narration": "Use upgrading-mwaa-workflow in Amazon Managed Workflows for Apache Airflow.",
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    }
+  ],
+  "distribution": {
+    "product-demonstration": 5,
+    "chronological-timeline": 1
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

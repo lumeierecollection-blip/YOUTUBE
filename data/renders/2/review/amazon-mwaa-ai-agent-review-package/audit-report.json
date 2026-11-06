@@ -20,7 +20,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 5.996928132043354,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -31,11 +31,9 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 2.524700224467537,
-      "pass": false,
-      "violations": [
-        "headline contrast 2.52:1 < 4.5:1 (glyph rgb(131,61,85) on bg rgb(14,14,24))"
-      ]
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
     },
     {
       "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-review-package\\frame-03.png",
@@ -44,7 +42,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.102779842145404,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -66,7 +64,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.040462048367969,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -77,7 +75,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 5.928518018272566,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -88,7 +86,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.036792083012922,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -99,7 +97,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.192706389859021,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -110,7 +108,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.429165203969268,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -121,7 +119,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.444682081551428,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     },
@@ -132,7 +130,7 @@
       "marginForegroundFraction": 0,
       "captionForegroundFraction": 0,
       "captionContrast": null,
-      "headlineContrast": 6.054203126997621,
+      "headlineContrast": 7.582449708246084,
       "pass": true,
       "violations": []
     }

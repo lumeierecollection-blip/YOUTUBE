@@ -1,0 +1,238 @@
+{
+  "generatedAt": "2026-11-04T20:53:36.136Z",
+  "video": "amazon-mwaa-ai-agent-skills-apache-airflow-shorts-shorts-2026-11-04.mp4",
+  "channel": "2",
+  "technical": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "durationSec": 37.99,
+    "hasAudio": true
+  },
+  "visual": {
+    "ok": false,
+    "note": "too few frames sampled"
+  },
+  "plan_compliance": {
+    "ok": true,
+    "beatCountPlan": 6,
+    "beatCountRender": 6,
+    "textForwardPct": 100,
+    "textForwardSource": "drawn",
+    "distinctMechanisms": 1,
+    "distinctCapabilities": 0,
+    "longestMechanismRun": 6,
+    "monoculture": true,
+    "mechanismDistribution": {
+      "EVIDENCE_FIGURE": 6
+    },
+    "capabilityDistribution": {},
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "monoculture: 100% text-forward, 1 distinct mechanisms, longest run 6"
+      }
+    ]
+  },
+  "typography": {
+    "ok": true,
+    "textBeats": 0,
+    "totalBeats": 6,
+    "textBeatShare": 0,
+    "longestTextRun": 0,
+    "multiLineBeats": 0,
+    "wouldWrapBeats": 0,
+    "headlineLikeBeats": 0,
+    "transcriptLikeBeats": 0,
+    "repeatedPhrases": [],
+    "perBeat": [
+      {
+        "index": 0,
+        "hasText": false
+      },
+      {
+        "index": 1,
+        "hasText": false
+      },
+      {
+        "index": 2,
+        "hasText": false
+      },
+      {
+        "index": 3,
+        "hasText": false
+      },
+      {
+        "index": 4,
+        "hasText": false
+      },
+      {
+        "index": 5,
+        "hasText": false
+      }
+    ],
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 0,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, AWS\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 1,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, AWS, Agent Toolkit for AWS\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 1,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, AWS, Agent Toolkit for AWS\" needs 20px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 2,
+        "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "\"authoring-mwaa-workflow, debugging-mwaa-workflow\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "\"authoring-mwaa-workflow, debugging-mwaa-workflow\" needs 28px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, authoring-mwaa-workflow, debugging-mwaa-workflow\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, authoring-mwaa-workflow, debugging-mwaa-workflow\" needs 15px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, upgrading-mwaa-workflow\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "\"Amazon Managed Workflows for Apache Airflow, upgrading-mwaa-workflow\" needs 20px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase"
+      }
+    ]
+  },
+  "audio": {
+    "ok": true,
+    "hasAudio": true,
+    "clipping": false,
+    "longSilenceCount": 0,
+    "maxSilenceSec": 0,
+    "effectivelySilent": false
+  },
+  "channel_history": {
+    "ok": true,
+    "recentAvgTextForwardPct": 100,
+    "thisTextForwardPct": 100,
+    "outlier": false
+  },
+  "risk": {
+    "score": 20,
+    "level": "MEDIUM",
+    "reasons": [
+      "monoculture (100% text-forward)"
+    ]
+  },
+  "gemini_required": true,
+  "uncertain_beats": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "blockers": [],
+  "corrections": [
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "monoculture: 100% text-forward, 1 distinct mechanisms, longest run 6",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 0,
+      "scene": "beat 0",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, AWS\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 1,
+      "scene": "beat 1",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, AWS, Agent Toolkit for AWS\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 1,
+      "scene": "beat 1",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, AWS, Agent Toolkit for AWS\" needs 20px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 2,
+      "scene": "beat 2",
+      "problem": "\"narration subject\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "\"authoring-mwaa-workflow, debugging-mwaa-workflow\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "\"authoring-mwaa-workflow, debugging-mwaa-workflow\" needs 28px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, authoring-mwaa-workflow, debugging-mwaa-workflow\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, authoring-mwaa-workflow, debugging-mwaa-workflow\" needs 15px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, upgrading-mwaa-workflow\" was written into the EVIDENCE_FIGURE figure slot (objects.figure.label), but it is prose, not a measured figure — that slot needs a number with an optional unit (\"$34 MILLION\", \"70%\", \"2 seconds\")",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "\"Amazon Managed Workflows for Apache Airflow, upgrading-mwaa-workflow\" needs 20px to fit its slot, below the 28px readable floor — too long to be drawn legibly, shorten the phrase",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    }
+  ]
+}

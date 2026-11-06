@@ -1,0 +1,163 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-4",
+  "videoSlug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "generatedAt": "2026-11-04T17:27:55.530Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\liverpool-arsenal-premier-league-tactical-analysis\\sourcing-report.json",
+  "totalRequested": 7,
+  "totalDownloaded": 3,
+  "errors": [
+    {
+      "beat": 1,
+      "title": "File:Woodlands, Anfield 2018.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 1,
+      "title": "File:Bob Paisley statue, Anfield 3.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 1,
+      "title": "File:South catacomb, Anfield Cemetery 3.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Woodlands, Anfield 2018.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:Bob Paisley statue, Anfield 3.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:South catacomb, Anfield Cemetery 3.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Dr. Kane's Arctic voyage (microform) - explanatory of a pictorial illustration of the second Grinnell expedition (IA cihm 45389).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Mexico, the land of unrest; being chiefly an account of what produced the outbreak in 1910, together with the story of the revolutions down to this day (IA mexicolandofunre00baerrich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Mexico, the land of unrest - being chiefly an account of what produced the outbreak in 1910, together with the story of the revolutions down to this day (IA mexicolandofunre00baer).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:Woodlands, Anfield 2018.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:Bob Paisley statue, Anfield 3.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:South catacomb, Anfield Cemetery 3.jpg",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-1",
+      "beat": 3,
+      "query": "Liverpool building headquarters",
+      "kind": "organization",
+      "narration": "How did they hold Liverpool scoreless?",
+      "file": "liverpool-building-headquarters-568c0153.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\liverpool-arsenal-premier-league-tactical-analysis\\licensed-assets\\liverpool-building-headquarters-568c0153.jpg",
+      "filename": "liverpool-building-headquarters-568c0153.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3APort%20of%20Liverpool%20Building%20Dome.jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3APort_of_Liverpool_Building_Dome.jpg",
+      "originalTitle": "File:Port of Liverpool Building Dome.jpg",
+      "creator": "David Wilmot from Wimbledon, United Kingdom",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "attribution": "David Wilmot from Wimbledon, United Kingdom / Wikimedia Commons, CC BY 2.0",
+      "credit": "Flickr",
+      "description": "The Port of Liverpool Building (formerly Mersey Docks and Harbour Board Offices, more commonly known as the 'Dock Office'), is a Grade II* listed building located at the Pier Head and along with the neighbouring Liver Building and Cunard Building is one of Liverpool's Three Graces, which line the city's waterfront. It is also part of Liverpool's UNESCO designated World Heritage Maritime Mercantile City. The building was designed by Sir Arnold Thornley and F.B. Hobbs and was developed in collaboration with Briggs and Wolstenholme. It was constructed between 1904 and 1907, with a reinforced concrete frame that is clad in Portland Stone. The building acted as the headquarters of the MDHB for 87 years, from 1907 to 1994, when the company relocated to new premises at Seaforth Dock. In 2001, it was sold to Liverpool-based property developer Downing and between 2006 and 2009 underwent a major £10m restoration that has restored many features of the building to their original glory. Today, the building contains both residential and office space and is considered one of the most prestigious locations in the city. The building is designed in Edwardian Baroque style and is noted for the large dome that sits atop it, acting as the focal point of the building. It is approximately rectangular in shape with canted corners that are topped with stone cupolas. Like the neighbouring Cunard Building, it is noted for the ornamental detail both on the inside and out, and in particular for the many maritime references and expensive decorative furnishings. w:Port of Liverpool Building",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Port_of_Liverpool_Building_Dome.jpg/1920px-Port_of_Liverpool_Building_Dome.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "mime": "image/jpeg",
+      "width": 1920,
+      "height": 1440,
+      "bytes": 564747,
+      "sha256": "568c01535b6a8039f27f3acc6326ee9757da42348894d830023d49b91d9c3f17",
+      "relevance": "Beat 3 (“How did they hold Liverpool scoreless?”): DescriptionPort of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> Dome.jpg The Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span> (formerly Mersey Docks and Harbour Board Offices, more commonly known as",
+      "retrievedAt": "2026-11-04T17:27:50.971Z",
+      "cacheKey": "622390c6d801d900",
+      "rightsStatus": "clear"
+    },
+    {
+      "id": "asset-2",
+      "beat": 4,
+      "query": "Liverpool building headquarters",
+      "kind": "organization",
+      "narration": "Yet, Liverpool failed to register a single shot on target during the entire Premier League match.",
+      "file": "liverpool-building-headquarters-9ea43324.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\liverpool-arsenal-premier-league-tactical-analysis\\licensed-assets\\liverpool-building-headquarters-9ea43324.jpg",
+      "filename": "liverpool-building-headquarters-9ea43324.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20Building%2C%20Liverpool%20-%20geograph.org.uk%20-%201138185.jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3ACunard_Building%2C_Liverpool_-_geograph.org.uk_-_1138185.jpg",
+      "originalTitle": "File:Cunard Building, Liverpool - geograph.org.uk - 1138185.jpg",
+      "creator": "Eirian Evans",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "Eirian Evans / Wikimedia Commons, CC BY-SA 2.0",
+      "credit": "From geograph.org.uk",
+      "description": "Cunard Building, Liverpool The Cunard Building at the Pier Head in Liverpool. It was built by Holland, Hannen &amp; Cubitts between 1914 and 1917 as the headquarters of Cunard Line.It is a Grade II* listed building, and is known as one of Liverpool's 'Three Graces'.It is noted for its distinctive shape; it is 30ft wider at the back than the front. It is said to have been designed like this to resemble a boat, widening from prow to stern. For many years the Cunard Building was the centre of the British trans-Atlantic ocean liner industry. It served as a passenger terminal; consisting of a booking hall, waiting rooms, luggage facilities and a currency exchange. It stayed the headquarters of Cunard until the 1960s.",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/3/30/Cunard_Building%2C_Liverpool_-_geograph.org.uk_-_1138185.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "mime": "image/jpeg",
+      "width": 640,
+      "height": 480,
+      "bytes": 93220,
+      "sha256": "9ea433243fa7986a3e68b1128e1515e40bffe682f8030a401189c66b775f1a01",
+      "relevance": "Beat 4 (“Yet, Liverpool failed to register a single shot on target during the entire Premier League match.”): Creative Commons Attribution-Share Alike 2.0 truetrue English Cunard <span class=\"searchmatch\">Building</span>, <span class=\"searchmatch\">Liverpool</span> author name string: Eirian Evans object of statement has role: photographer",
+      "retrievedAt": "2026-11-04T17:27:52.744Z",
+      "cacheKey": "622390c6d801d900",
+      "rightsStatus": "clear"
+    },
+    {
+      "id": "asset-3",
+      "beat": 6,
+      "query": "Liverpool building headquarters",
+      "kind": "organization",
+      "narration": "Arteta successfully neutralized the entire Liverpool attack at home.",
+      "file": "liverpool-building-headquarters-7fc4be5e.jpg",
+      "filePath": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\liverpool-arsenal-premier-league-tactical-analysis\\licensed-assets\\liverpool-building-headquarters-7fc4be5e.jpg",
+      "filename": "liverpool-building-headquarters-7fc4be5e.jpg",
+      "source": "Wikimedia Commons",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File%3ACunard%20and%20Port%20of%20Liverpool%20Building.%20(2016-01-01%2017.23.42%20by%20Bob%20Edwards%20-%2024083545936).jpg",
+      "pageUrl": "https://commons.wikimedia.org/wiki/File%3ACunard_and_Port_of_Liverpool_Building._(2016-01-01_17.23.42_by_Bob_Edwards_-_24083545936).jpg",
+      "originalTitle": "File:Cunard and Port of Liverpool Building. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg",
+      "creator": "Bob Edwards",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "attribution": "Bob Edwards / Wikimedia Commons, CC BY 2.0",
+      "credit": "Cunard and Port of Liverpool Building.",
+      "description": "Cunard and Port of Liverpool Building. Two of Liverpool's iconic waterfront buildings at the Pier Head, the Cunard building on the left and the Port of Liverpool building. The history of the Cunard Building dates back to 1914, when the Cunard Steamship Company commissioned the construction of new headquarters for the company. Cunard's expansion had meant that they had outgrown their previous offices, which were also located in Liverpool, and the site chosen for construction was at the former George's Dock, in between the Liver Building and Port of Liverpool Building. The building was designed by architects William Edward Willink and Philip Coldwell Thicknesse and was inspired by the grand palaces of Renaissance Italy. It was constructed by Holland, Hannen &amp;amp; Cubitts between 1914 and 1917, with Arthur J. Davis, of Mewes and Davis, acting as consultant on the project. The history of the Port of Liverpool Building dates back to 1898, when the Mersey Docks and Harbour Board (MDHB) decided to close down and infill George's Dock. The land was sold to the Liverpool Corporation in 1900, although the MDHB opted to keep the southern section, so that they could build a new central headquarters for the company, having been previously located at various sites around the city, including the Old Custom's House. It was completed in 1907 at a cost of approximately £250,000, although when the cost of furniture, fittings and professional fees was taken into account, the total cost was nearer £350,000. Staff from the MDHB headquarters officially moved into the building on 15 July 1907, with staff from departments located in other areas of the city moving in throughout the rest of the year. The building acted as the head offices of the MDHB (renamed the Mersey Docks and Harbour Company in 1972) for some 87 years.",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Cunard_and_Port_of_Liverpool_Building._%282016-01-01_17.23.42_by_Bob_Edwards_-_24083545936%29.jpg/1920px-Cunard_and_Port_of_Liverpool_Building._%282016-01-01_17.23.42_by_Bob_Edwards_-_24083545936%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "mime": "image/jpeg",
+      "width": 1920,
+      "height": 1309,
+      "bytes": 707050,
+      "sha256": "7fc4be5e765a28fad136984ff8f9e15967e4b799383ce737bae3e0c9da3c5608",
+      "relevance": "Beat 6 (“Arteta successfully neutralized the entire Liverpool attack at home.”): Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. (2016-01-01 17.23.42 by Bob Edwards - 24083545936).jpg Cunard and Port of <span class=\"searchmatch\">Liverpool</span> <span class=\"searchmatch\">Building</span>. Two of <span class=\"searchmatch\">Liverpool&#039;s</span> iconic waterfront",
+      "retrievedAt": "2026-11-04T17:27:54.902Z",
+      "cacheKey": "622390c6d801d900",
+      "rightsStatus": "clear"
+    }
+  ]
+}

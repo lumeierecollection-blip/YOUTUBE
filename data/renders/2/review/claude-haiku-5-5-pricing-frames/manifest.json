@@ -1,0 +1,73 @@
+{
+  "tool": "video-review",
+  "video": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\claude-haiku-5-5-pricing-shorts-shorts-2026-11-05.mp4",
+  "ffmpeg": "ffmpeg.exe",
+  "durationSec": 27.95,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames": [
+    {
+      "index": 0,
+      "timeSec": 0,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-00.png"
+    },
+    {
+      "index": 1,
+      "timeSec": 2.541,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-01.png"
+    },
+    {
+      "index": 2,
+      "timeSec": 5.082,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-02.png"
+    },
+    {
+      "index": 3,
+      "timeSec": 7.623,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-03.png"
+    },
+    {
+      "index": 4,
+      "timeSec": 10.164,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-04.png"
+    },
+    {
+      "index": 5,
+      "timeSec": 12.705,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-05.png"
+    },
+    {
+      "index": 6,
+      "timeSec": 15.245,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-06.png"
+    },
+    {
+      "index": 7,
+      "timeSec": 17.786,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-07.png"
+    },
+    {
+      "index": 8,
+      "timeSec": 20.327,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-08.png"
+    },
+    {
+      "index": 9,
+      "timeSec": 22.868,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-09.png"
+    },
+    {
+      "index": 10,
+      "timeSec": 25.409,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-10.png"
+    },
+    {
+      "index": 11,
+      "timeSec": 27.85,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\frame-11.png"
+    }
+  ],
+  "contactSheet": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\claude-haiku-5-5-pricing-frames\\contact-sheet.png",
+  "note": "Frames must be viewed (Read the PNGs) before the render is confirmed."
+}

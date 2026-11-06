@@ -1,0 +1,72 @@
+{
+  "channel_id": 2,
+  "topic_slug": "claude-haiku-5-5-pricing",
+  "format": "shorts",
+  "hook": "Claude Haiku 5.5 pricing changes when prompts cross 100,000 tokens.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Claude Haiku 5.5 pricing changes when prompts cross 100,000 tokens.",
+      "visual_cue": "Pricing tier dashboard showing token count metrics",
+      "sfx_cue": "Digital click",
+      "b_roll": ["API dashboard screenshot with pricing metrics"],
+      "animation_cue": "Fade in",
+      "transition_out": "Hard cut",
+      "text_overlay": { "text": "100K Token Threshold" }
+    },
+    {
+      "id": "setup",
+      "timing": "4-11s",
+      "voiceover": "Base input price is $0.10 per million tokens.",
+      "visual_cue": "Official Anthropic launch documentation",
+      "sfx_cue": "Paper rustle",
+      "b_roll": ["Anthropic launch page screenshot"],
+      "animation_cue": "Slide up",
+      "transition_out": "Slide left",
+      "text_overlay": { "text": "$0.10 per million tokens" }
+    },
+    {
+      "id": "rehook",
+      "timing": "11-17s",
+      "voiceover": "But when prompts exceed 100,000 tokens, the rate jumps.",
+      "visual_cue": "Pricing documentation details for token thresholds",
+      "sfx_cue": "Whoosh",
+      "b_roll": ["Platform documentation closeup"],
+      "animation_cue": "Zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": { "text": "Rate Changes at 100K" }
+    },
+    {
+      "id": "payoff",
+      "timing": "17-26s",
+      "voiceover": "Input rises to $0.50 per million tokens. Output jumps to $2.50 per million for large requests.",
+      "visual_cue": "Side-by-side input and output pricing tiers",
+      "sfx_cue": "Digital chime",
+      "b_roll": ["Claude Platform Docs pricing table"],
+      "animation_cue": "Fade in",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "$0.50 / $2.50 per Million" }
+    },
+    {
+      "id": "close",
+      "timing": "26-32s",
+      "voiceover": "Crossing 100,000 tokens triggers the higher rate.",
+      "visual_cue": "Token threshold counter at 100,000",
+      "sfx_cue": "Soft tone",
+      "b_roll": ["Token threshold counter graphic"],
+      "animation_cue": "Fade out",
+      "transition_out": "Fade to black",
+      "text_overlay": { "text": "100,000 Tokens" }
+    }
+  ],
+  "sources_used": [
+    "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+    "https://www.anthropic.com/claude-haiku-5-5"
+  ],
+  "named_entities": [
+    { "name": "Anthropic", "kind": "organization" },
+    { "name": "Claude Haiku 5.5", "kind": "object" },
+    { "name": "Claude Platform", "kind": "organization" }
+  ]
+}

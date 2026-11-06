@@ -1,0 +1,143 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-00.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-01.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.829633636475107,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-02.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.8007496680754285,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-03.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.026581398723231887,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.954327876984127,
+      "captionContrast": 19.524426255514246,
+      "headlineContrast": 19.780310459522052,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-04.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.03371715610842293,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9543030753968254,
+      "captionContrast": 20.277329224155356,
+      "headlineContrast": 19.35430034205694,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-05.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0.03371715610842293,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0.9523809523809523,
+      "captionContrast": 3.7013238645212176,
+      "headlineContrast": 3.611713815493448,
+      "pass": false,
+      "violations": [
+        "caption contrast 3.70:1 < 4.5:1 (glyph rgb(104,103,97) on bg rgb(0,0,0))",
+        "headline contrast 3.61:1 < 4.5:1 (glyph rgb(104,101,94) on bg rgb(0,0,0))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-06.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.434008062003102,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-07.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 4.913473724704254,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-08.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 1.4208449728424932,
+      "pass": false,
+      "violations": [
+        "headline contrast 1.42:1 < 4.5:1 (glyph rgb(44,33,73) on bg rgb(0,0,0))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-09.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.709562091461985,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-10.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.477092503127583,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-frames\\frame-11.png",
+      "bg": "rgb(0,0,0)",
+      "flatness": 0,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "graphic-usage-report/v1",
+  "channel": "ch-4",
+  "videoSlug": "bayern-dortmund-tactical-shorts",
+  "generatedAt": "2026-11-05T00:14:50.958Z",
+  "sourcePlan": "data/sourcing-cache/ch-4/bayern-dortmund-tactical-shorts/render-plan.json",
+  "recentChannelTreatments": [],
+  "treatmentCount": 5,
+  "uniqueTreatments": 3,
+  "treatments": [
+    {
+      "visualIntent": "place",
+      "treatmentId": "geographic-visualisation",
+      "communicates": "Location context",
+      "example": "venue or city map",
+      "reason": "Beat communicates place; Location context",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "date",
+      "treatmentId": "chronological-timeline",
+      "communicates": "Ordered events across dates",
+      "example": "timeline of case events with markers",
+      "reason": "Beat communicates date; Ordered events across dates",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": false
+    },
+    {
+      "visualIntent": "comparison",
+      "treatmentId": "side-by-side",
+      "communicates": "Two things shown together at honest scale",
+      "example": "two interfaces compared",
+      "reason": "Beat communicates comparison; Two things shown together at honest scale",
+      "isRepeat": false,
+      "consecutiveRepeat": true
+    }
+  ],
+  "distribution": {
+    "geographic-visualisation": 1,
+    "chronological-timeline": 2,
+    "side-by-side": 2
+  },
+  "notes": "Treatments selected by narration meaning, with repetition avoided against recent channel history."
+}

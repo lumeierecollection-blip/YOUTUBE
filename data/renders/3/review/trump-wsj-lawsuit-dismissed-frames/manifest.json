@@ -1,0 +1,73 @@
+{
+  "tool": "video-review",
+  "video": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\trump-wsj-lawsuit-dismissed-shorts-shorts-2026-11-04.mp4",
+  "ffmpeg": "ffmpeg.exe",
+  "durationSec": 44.18,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames": [
+    {
+      "index": 0,
+      "timeSec": 0,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-00.png"
+    },
+    {
+      "index": 1,
+      "timeSec": 4.016,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-01.png"
+    },
+    {
+      "index": 2,
+      "timeSec": 8.033,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-02.png"
+    },
+    {
+      "index": 3,
+      "timeSec": 12.049,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-03.png"
+    },
+    {
+      "index": 4,
+      "timeSec": 16.065,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-04.png"
+    },
+    {
+      "index": 5,
+      "timeSec": 20.082,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-05.png"
+    },
+    {
+      "index": 6,
+      "timeSec": 24.098,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-06.png"
+    },
+    {
+      "index": 7,
+      "timeSec": 28.115,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-07.png"
+    },
+    {
+      "index": 8,
+      "timeSec": 32.131,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-08.png"
+    },
+    {
+      "index": 9,
+      "timeSec": 36.147,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-09.png"
+    },
+    {
+      "index": 10,
+      "timeSec": 40.164,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-10.png"
+    },
+    {
+      "index": 11,
+      "timeSec": 44.08,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\frame-11.png"
+    }
+  ],
+  "contactSheet": "C:\\Users\\info\\YOUTUBE\\data\\renders\\3\\review\\trump-wsj-lawsuit-dismissed-frames\\contact-sheet.png",
+  "note": "Frames must be viewed (Read the PNGs) before the render is confirmed."
+}

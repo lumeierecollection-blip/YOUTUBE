@@ -1,0 +1,73 @@
+{
+  "tool": "video-review",
+  "video": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\amazon-mwaa-ai-agent-skills-apache-airflow-shorts-shorts-2026-11-04.mp4",
+  "ffmpeg": "ffmpeg.exe",
+  "durationSec": 37.99,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames": [
+    {
+      "index": 0,
+      "timeSec": 0,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-00.png"
+    },
+    {
+      "index": 1,
+      "timeSec": 3.454,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-01.png"
+    },
+    {
+      "index": 2,
+      "timeSec": 6.907,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-02.png"
+    },
+    {
+      "index": 3,
+      "timeSec": 10.361,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-03.png"
+    },
+    {
+      "index": 4,
+      "timeSec": 13.815,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-04.png"
+    },
+    {
+      "index": 5,
+      "timeSec": 17.268,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-05.png"
+    },
+    {
+      "index": 6,
+      "timeSec": 20.722,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-06.png"
+    },
+    {
+      "index": 7,
+      "timeSec": 24.175,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-07.png"
+    },
+    {
+      "index": 8,
+      "timeSec": 27.629,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-08.png"
+    },
+    {
+      "index": 9,
+      "timeSec": 31.083,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-09.png"
+    },
+    {
+      "index": 10,
+      "timeSec": 34.536,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-10.png"
+    },
+    {
+      "index": 11,
+      "timeSec": 37.89,
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\frame-11.png"
+    }
+  ],
+  "contactSheet": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\amazon-mwaa-ai-agent-skills-apache-airflow-frames\\contact-sheet.png",
+  "note": "Frames must be viewed (Read the PNGs) before the render is confirmed."
+}

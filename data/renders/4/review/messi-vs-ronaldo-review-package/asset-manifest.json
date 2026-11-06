@@ -1,0 +1,122 @@
+{
+  "schema": "licensed-assets-manifest/v1",
+  "channel": "ch-4",
+  "videoSlug": "messi-vs-ronaldo-career-comparison",
+  "generatedAt": "2026-11-05T00:22:24.694Z",
+  "sourceReport": "C:\\Users\\info\\YOUTUBE\\data\\sourcing-cache\\ch-4\\messi-vs-ronaldo-career-comparison\\sourcing-report.json",
+  "totalRequested": 10,
+  "totalDownloaded": 0,
+  "errors": [
+    {
+      "beat": 2,
+      "title": "File:CH-NB Archive Adolf Pochon GS-POCHON-A-1-AI-4.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:CH-NB Archive Rudolf Zinggeler EAD-ZING-13203.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 2,
+      "title": "File:CH-NB Archive Rudolf Zinggeler EAD-ZING-12536.tif",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 3,
+      "title": "File:Wolfe's Nursery featuring frost resistant fruit trees, nut trees, ornamentals and evergreens - Ross R. Wolfe, owner mgr. (IA CAT31342077).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Shadows of the East; or, Slight Sketches of Scenery, Persons and Customs from observations during a Tour in 1853 and 1854, in Egypt, Palestine, Syria, Turkey and Greece (IA dli.granth.77048).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Remarks on the report from the deputation of the House of Assembly of the province of New Brunswick to His Majesty's government, in the year 1836 (microform) (IA cihm 21576).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 5,
+      "title": "File:Beowulf, an epic poem (IA beowulfanepicpoe00wackuoft).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:The sports of the world, with illustrations from drawings and photographs (IA sportsofworldwit00afla).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:The America's cup. How it was won by the yacht America in 1851 and has been since defended (IA aen3680.0001.001.umich.edu).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 6,
+      "title": "File:Five thousand an hour; how Johnny Gamble won the heiress (IA cu31924022323491).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:Chronicle of the Union League of Philadelphia, 1862-1902 (IA cu31924032571378).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:Chronicle of the Union League of Philadelphia, 1862-1902 (IA chronicleofunion00unio).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 7,
+      "title": "File:Official handbook of the Athletic league of the Young men's Christian associations of North America (IA officialhandbook02athl).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 8,
+      "title": "File:The different forms of flowers on plants of the same species (IA cu31924018736938).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 8,
+      "title": "File:The different forms of flowers on plants of the same species (IA differentformsof01darw).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 8,
+      "title": "File:The different forms of flowers on plants of the same species (IA cu31924052310376).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 9,
+      "title": "File:All flew from the mountain except one bird and he was the greatest amongst them all.png",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 9,
+      "title": "File:The hundred greatest men; portraits of the one hundred greatest men of history reproduced from fine and rare steel engravings (IA hundredgreatestm00woodrich).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 9,
+      "title": "File:Story of the greatest nations Vol 6 (1914) California Digital Library (IA storyofgreatestn06elli).pdf",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 10,
+      "title": "File:Debates in the Several State Conventions, v3.djvu",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 10,
+      "title": "File:Debates in the Several State Conventions, v4.djvu",
+      "why": "not relevant to intended subject (rejected)"
+    },
+    {
+      "beat": 10,
+      "title": "File:Debates in the Several State Conventions, v2.djvu",
+      "why": "not relevant to intended subject (rejected)"
+    }
+  ],
+  "assets": []
+}

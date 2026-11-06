@@ -1,0 +1,142 @@
+{
+  "generatedBy": "frame-audit",
+  "rules": "MOTION-GRAPHICS-MANUAL A1.3/A2.1, CHECK-REGISTER COL-23 (text contrast)",
+  "results": [
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-00.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-01.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 5.9494608665153565,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-02.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 2.0998623940754655,
+      "pass": false,
+      "violations": [
+        "headline contrast 2.10:1 < 4.5:1 (glyph rgb(123,44,73) on bg rgb(14,14,24))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-03.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.1577691777512165,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-04.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.084030489383576,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-05.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 1.5328327682974656,
+      "pass": false,
+      "violations": [
+        "headline contrast 1.53:1 < 4.5:1 (glyph rgb(87,33,55) on bg rgb(14,14,24))"
+      ]
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-06.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.286474245951202,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-07.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-08.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.067963391250243,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-09.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.067963391250243,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-10.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": 6.233437495483076,
+      "pass": true,
+      "violations": []
+    },
+    {
+      "file": "C:\\Users\\info\\YOUTUBE\\data\\renders\\2\\review\\mwaa-ai-agent-skills-frames\\frame-11.png",
+      "bg": "rgb(14,14,24)",
+      "flatness": 4.714045207910781,
+      "marginForegroundFraction": 0,
+      "captionForegroundFraction": 0,
+      "captionContrast": null,
+      "headlineContrast": null,
+      "pass": true,
+      "violations": []
+    }
+  ]
+}
