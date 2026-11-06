@@ -1297,9 +1297,14 @@
           "topic": "Splice Create AI DAW First Look and Production Workflow",
           "slug": "splice-create-ai-daw-first-look-workflow",
           "reserved_at": "2026-11-05T16:37:48.947Z"
+        },
+        {
+          "topic": "Gemini 4 Argon vs GPT-6 Astra: Head-to-Head Benchmark Test",
+          "slug": "gemini-4-argon-vs-gpt-6-astra-benchmark",
+          "reserved_at": "2026-11-06T16:05:26.239Z"
         }
       ],
-      "last_generated": "2026-11-05T16:37:48.948Z"
+      "last_generated": "2026-11-06T16:05:26.239Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
