@@ -1,0 +1,89 @@
+{
+  "channel_id": "11",
+  "topic_slug": "pulsars-mass-limits-supermassive-black-holes-2026",
+  "format": "shorts",
+  "hook": "30 cosmic pulsars set mass limits on early black holes.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "30 cosmic pulsars set mass limits on early black holes.",
+      "visual_cue": "Deep space visualization showing pulsating neutron stars against a dark background.",
+      "sfx_cue": "Low atmospheric cosmic hum with rhythmic radio pulse clicks",
+      "b_roll": [
+        "NASA animation of rotating pulsar with magnetic beacon rays"
+      ],
+      "animation_cue": "Slow push-in on pulsating stellar core",
+      "transition_out": "Quick flash whip zoom",
+      "text_overlay": {
+        "text": "30 PULSARS · MASS LIMITS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:20",
+      "voiceover": "In Australia, researchers analyzed 18 years of Parkes Pulsar Timing Array data. Could signals measure black holes 900 million years after the Big Bang?",
+      "visual_cue": "Archival imagery of the Parkes Radio Telescope dish in Australia pointing towards the night sky.",
+      "sfx_cue": "Subtle telemetry data beep and mechanical dish rotatations",
+      "b_roll": [
+        "CSIRO Parkes Observatory radio telescope dish slowly swiveling under starry sky",
+        "Digital constellation map showing 30 highlighted pulsar coordinates"
+      ],
+      "animation_cue": "Pan across Australian telescope array to space map",
+      "transition_out": "Smooth cross dissolve",
+      "text_overlay": {
+        "text": "18 YEARS OF DATA"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:20-00:26",
+      "voiceover": "Physical Review Letters showed Yiqin Chen's team bounded black hole pairs in the early universe's cosmic dawn.",
+      "visual_cue": "Scientific publication graphics overlaying early universe galaxy formation models.",
+      "sfx_cue": "Rising orchestral synth accent",
+      "b_roll": [
+        "ESA illustration of early cosmic dawn galaxy evolution"
+      ],
+      "animation_cue": "Graphic title card fade-in with stellar background",
+      "transition_out": "Hard cut on beat",
+      "text_overlay": {
+        "text": "PHYSICAL REVIEW LETTERS"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:26-00:41",
+      "voiceover": "Beijing Normal University combined targeting data with an ultrabright quasar. Chen's team established the first direct mass limits on black hole pairs across two targets. Researchers set physical bounds using 30 pulsars.",
+      "visual_cue": "Artist impression of an ultrabright quasar powered by a supermassive black hole pair.",
+      "sfx_cue": "Deep resonant bass drop and cosmic reverberation",
+      "b_roll": [
+        "NASA illustration of supermassive black hole binary accretion disks",
+        "Deep field quasar visualization with gravitational wave distortion waves"
+      ],
+      "animation_cue": "Zoom out from brilliant quasar core showing binary rotation",
+      "transition_out": "Soft fade out",
+      "text_overlay": {
+        "text": "DIRECT MASS LIMITS"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:41-00:45",
+      "voiceover": "18 years of data opened this cosmic frontier.",
+      "visual_cue": "Wide panoramic view of cosmic web structure fading to deep space field.",
+      "sfx_cue": "Resolving swell fading into quiet atmospheric air sound",
+      "b_roll": [
+        "NASA Hubble Ultra Deep Field cosmic galaxy distribution view"
+      ],
+      "animation_cue": "Slow drift backwards through distant galaxy fields",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "COSMIC FRONTIERS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://orbital-wire.com/astronomy-astrophysics/first-mass-limits-early-universe-black-hole-pairs",
+    "https://phys.org/news/2026-11-pulsars-mass-limits-supermassive-black.html"
+  ]
+}
