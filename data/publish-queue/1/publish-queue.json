@@ -273,5 +273,17 @@
     "cancelled": true,
     "source_file": "frank-lloyd-wright-oral-histories-buffalo-archives-shorts-shorts-2026-11-05.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "JjsB_N1zHl8",
+    "channel_id": "1",
+    "title": "Teeth Analysis Reveals African Origins of Slaves Buried on…",
+    "uploaded_at": "2026-11-06T16:42:25.533Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-06T17:42:25.533Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "st-helena-slave-ship-teeth-dna-origins-shorts-shorts-2026-11-06.mp4",
+    "source_queue": "approved"
   }
 ]
