@@ -2707,9 +2707,14 @@
           "topic": "HS2 SCS Breaks Through Into Old Oak Common Connecting Station Tunnel",
           "slug": "hs2-scs-old-oak-common-breakthrough",
           "reserved_at": "2026-11-05T16:51:32.421Z"
+        },
+        {
+          "topic": "Western Harbour Tunnel Cavern Excavation and Sydney Project Costs",
+          "slug": "western-harbour-tunnel-cavern-excavation",
+          "reserved_at": "2026-11-06T16:12:17.462Z"
         }
       ],
-      "last_generated": "2026-11-05T16:51:32.421Z"
+      "last_generated": "2026-11-06T16:12:17.463Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
