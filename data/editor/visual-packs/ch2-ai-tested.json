@@ -14,12 +14,12 @@
       "kind": "product",
       "subject": "Benchmark score chart",
       "label": "Benchmark score chart",
-      "title": "File:Bar chart of the top 20 domains cited by ChatGPT (2025 data from Recover Reputation).jpg",
+      "title": "File:Scores artificial intelligence benchmarks en.png",
       "id": "hist-01",
       "file": "hist-01-minimax-benchmark-chart.png",
       "alt": "Bar chart showing AI model benchmark scores",
-      "note": "Bar chart showing AI model benchmark scores for hook visualization",
-      "reason": "The hook introduces the 73.7% benchmark score; the image shows a benchmark score chart."
+      "note": "Benchmark score chart for hook visualization",
+      "reason": "The hook introduces the 73.7% benchmark score; the image shows a benchmark chart."
     },
     {
       "sentence_index": 1,
@@ -36,38 +36,38 @@
     {
       "sentence_index": 2,
       "kind": "product",
-      "subject": "Computer terminal",
-      "label": "Terminal interface",
-      "title": "File:Linux command-line. Bash. GNOME Terminal. screenshot.png",
+      "subject": "AI benchmark scores",
+      "label": "AI benchmark scores",
+      "title": "File:Artificial Intelligence Scale.png",
       "id": "hist-03",
-      "file": "hist-03-minimax-terminal.png",
-      "alt": "Linux terminal command-line interface screenshot",
-      "note": "Terminal screenshot showing command-line interface, CC BY-SA 4.0",
-      "reason": "The rehook discusses DeepSeek V4.1 Flash benchmark; the image shows a terminal interface for code/AI interaction."
+      "file": "hist-03-minimax-ai-scale.png",
+      "alt": "AI scale showing AI progression over time",
+      "note": "Scale showing AI training computation growth over decades.",
+      "reason": "The rehook discusses benchmark comparisons; the image shows AI development scale."
     },
     {
       "sentence_index": 3,
       "kind": "product",
-      "subject": "AI benchmark scores",
-      "label": "AI benchmark scores",
-      "title": "File:Scores artificial intelligence benchmarks en.png",
+      "subject": "AI-generated image",
+      "label": "AI-generated image",
+      "title": "File:Artificial intelligence prompt completion by dalle mini.jpg",
       "id": "hist-04",
-      "file": "hist-04-minimax-benchmark-scores.png",
-      "alt": "AI benchmark scores chart comparing models",
-      "note": "Benchmark scores of AI models on key tasks",
-      "reason": "The payoff discusses 98% attempt rate; the image shows benchmark comparison data."
+      "file": "hist-04-minimax-ai-generated.png",
+      "alt": "AI-generated image from DALL-E mini",
+      "note": "AI-generated image from DALL-E mini model.",
+      "reason": "The payoff discusses AGI Hunt findings; the image shows AI-generated output."
     },
     {
       "sentence_index": 4,
       "kind": "product",
       "subject": "Benchmark summary",
       "label": "Benchmark summary",
-      "title": "File:A80386DX-25 SX218.jpg",
+      "title": "File:Artificial Intelligence relation to Generative Models subset, Venn diagram.png",
       "id": "hist-05",
-      "file": "hist-05-minimax-cpu-closeup.png",
-      "alt": "Close-up of Intel 80386DX microprocessor",
-      "note": "Close-up photograph of a microprocessor chip",
-      "reason": "The close summarizes MiniMax M3.1 Flash results; the image shows underlying computing hardware."
+      "file": "hist-05-minimax-venn.png",
+      "alt": "Venn diagram showing AI relationship to generative models",
+      "note": "Venn diagram showing AI relationship to generative models.",
+      "reason": "The close summarizes MiniMax M3.1 Flash results; the image shows AI model relationship diagram."
     }
   ]
 }
