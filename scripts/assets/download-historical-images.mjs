@@ -237,6 +237,51 @@ async function main() {
       const msg = `${id} ${spec.title}: ${e.message}`;
       errors.push(msg);
       console.error(`[image-pack]   FAILED ${msg}`);
+      // Create a placeholder solid-color image so loadVisualPack doesn't fail
+      // on missing files. Commons title may not exist; fall back to a placeholder.
+      const id = `hist-${String(i + 1).padStart(2, "0")}`;
+      const slug = slugify(spec.label || spec.title);
+      const filePath = join(outDir, `${id}-${slug}.jpg`);
+      try {
+        execFileSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "color=c=0x333333:s=300x300:r=30", "-frames:v", "1", filePath], { stdio: "pipe" });
+        const buf = readFileSync(filePath);
+        const hash = createHash("sha256").update(buf).digest("hex");
+        const record = {
+          id,
+          order: i,
+          sentence_index: spec.sentence_index,
+          file: relative(ROOT, filePath).split("\\").join("/"),
+          filename: `${id}-${slug}.jpg`,
+          commons_title: spec.title,
+          page_url: `https://commons.wikimedia.org/wiki/${encodeURI(spec.title.replace(/ /g, "_"))}`,
+          download_url: `https://commons.wikimedia.org/wiki/${encodeURI(spec.title.replace(/ /g, "_"))}`,
+          mime: "image/jpeg",
+          width: 300,
+          height: 300,
+          bytes: buf.length,
+          sha256: hash,
+          creator: "Placeholder (Commons file not found)",
+          license: "Public domain",
+          license_url: "",
+          attribution: "Placeholder image (Commons file not found)",
+          credit: "Placeholder image",
+          description: spec.name || spec.title,
+          kind: spec.kind,
+          subject: spec.subject,
+          label: spec.label,
+          alt: spec.alt || spec.title,
+          note: `Commons file "${spec.title}" not found; placeholder image used.`,
+          reason: spec.reason,
+          rights_status: "clear-with-source-notice",
+          rights_note: `Commons title "${spec.title}" not found; placeholder image used as fallback.`,
+          downloaded_at: new Date().toISOString(),
+        };
+        downloaded.push(record);
+        seenTitles.add(spec.title);
+        console.log(`[image-pack]   ok 300x300 placeholder ${(buf.length / 1024).toFixed(0)} KB`);
+      } catch (e2) {
+        console.error(`[image-pack]   FAILED placeholder creation for ${spec.title}: ${e2.message}`);
+      }
     }
   }
 
