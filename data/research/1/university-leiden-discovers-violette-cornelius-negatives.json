@@ -1,0 +1,79 @@
+{
+  "topic_slug": "university-leiden-discovers-violette-cornelius-negatives",
+  "strongest_angle": "Uncover the legacy of Dutch wartime photographer and resistance fighter Violette Cornelius after thousands of her lost negatives were discovered inside suitcases at Leiden University Libraries, leading to a major retrospective exhibition at the Nederlands Fotomuseum.",
+  "key_facts": [
+    {
+      "fact": "Thousands of lost negatives, slides, prints, and documents belonging to Dutch photographer and resistance fighter Violette Cornelius were discovered inside suitcases at Leiden University Libraries.",
+      "source_url": "https://www.museum.nl/en/nederlands-fotomuseum/exhibition/violette-cornelius-rediscovered",
+      "source_name": "Museum.nl",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Nederlands Fotomuseum presents the exhibition Violette Cornelius Rediscovered featuring more than 200 works running from November 20, 2026 to February 28, 2027.",
+      "source_url": "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered",
+      "source_name": "Nederlands Fotomuseum",
+      "confidence": "high"
+    },
+    {
+      "fact": "Photographer Violette Cornelius lived from 1919 to 1998 and studied at the Nieuwe Kunstschool in Amsterdam as part of the first generation of women to make a career in photography.",
+      "source_url": "https://www.museum.nl/en/nederlands-fotomuseum/exhibition/violette-cornelius-rediscovered",
+      "source_name": "Museum.nl",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total works in exhibition",
+      "value": 200,
+      "unit": "works",
+      "source_url": "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered"
+    },
+    {
+      "label": "Birth year of Violette Cornelius",
+      "value": 1919,
+      "unit": "year",
+      "source_url": "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered"
+    },
+    {
+      "label": "Death year of Violette Cornelius",
+      "value": 1998,
+      "unit": "year",
+      "source_url": "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered"
+    },
+    {
+      "label": "Exhibition start day",
+      "value": 20,
+      "unit": "day",
+      "source_url": "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered"
+    },
+    {
+      "label": "Exhibition end day",
+      "value": 28,
+      "unit": "day",
+      "source_url": "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Violette Cornelius",
+      "kind": "person"
+    },
+    {
+      "name": "Leiden University Libraries",
+      "kind": "organization"
+    },
+    {
+      "name": "Nederlands Fotomuseum",
+      "kind": "organization"
+    },
+    {
+      "name": "Nieuwe Kunstschool",
+      "kind": "organization"
+    },
+    {
+      "name": "Amsterdam",
+      "kind": "place"
+    }
+  ]
+}

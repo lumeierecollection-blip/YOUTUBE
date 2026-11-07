@@ -1,0 +1,80 @@
+{
+  "channel_id": "1",
+  "topic_slug": "university-leiden-discovers-violette-cornelius-negatives",
+  "format": "shorts",
+  "hook": "Thousands of lost negatives were found hidden inside suitcases at Leiden University Libraries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Thousands of lost negatives were found hidden inside suitcases at Leiden University Libraries.",
+      "visual_cue": "Close-up of vintage worn suitcases sitting on a library table, slightly open to reveal contents.",
+      "sfx_cue": "Soft, muffled sound of a latch clicking open.",
+      "b_roll": [
+        "Vintage leather suitcase archival footage",
+        "Leiden University Libraries exterior shot"
+      ],
+      "text_overlay": {
+        "text": "Lost Archives Discovered"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Inside those cases rested the life work of resistance fighter and photographer Violette Cornelius. Did this Nieuwe Kunstschool student in Amsterdam capture her life from 1919 to 1998?",
+      "visual_cue": "Archival black and white portraits of Violette Cornelius and shots of the Nieuwe Kunstschool.",
+      "sfx_cue": "Quiet, rhythmic sound of a film shutter clicking.",
+      "b_roll": [
+        "Portrait of Violette Cornelius",
+        "Nieuwe Kunstschool historical building"
+      ],
+      "text_overlay": {
+        "text": "Violette Cornelius: Resistance Photographer"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These negatives reveal her secret resistance work, proving she risked everything during the war.",
+      "visual_cue": "Macro shot of a stack of old photographic negatives held up to light.",
+      "sfx_cue": "Sound of paper sliding against paper.",
+      "b_roll": [
+        "Negatives on a light table"
+      ],
+      "text_overlay": {
+        "text": "Wartime Records"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Nederlands Fotomuseum now answers that question with the exhibition Violette Cornelius Rediscovered. You can view the collection from November 20, 2026, through February 28, 2027.",
+      "visual_cue": "Interior shot of the Nederlands Fotomuseum gallery walls displaying large prints.",
+      "sfx_cue": "Echoing footsteps in a quiet gallery space.",
+      "b_roll": [
+        "Nederlands Fotomuseum exhibition hall",
+        "Close up of exhibition signage"
+      ],
+      "text_overlay": {
+        "text": "200 Works Rediscovered"
+      },
+      "transition_out": "fade-to-black"
+    },
+    {
+      "id": "close",
+      "voiceover": "Visit the Nederlands Fotomuseum to see these 200 works from the suitcases.",
+      "visual_cue": "Slow zoom in on a single evocative photograph from the collection.",
+      "sfx_cue": "Soft, reflective orchestral swell.",
+      "b_roll": [
+        "Close up of a historical photograph"
+      ],
+      "text_overlay": {
+        "text": "A Legacy Preserved"
+      },
+      "transition_out": "fade-to-black"
+    }
+  ],
+  "sources_used": [
+    "https://www.museum.nl/en/nederlands-fotomuseum/exhibition/violette-cornelius-rediscovered",
+    "https://nederlandsfotomuseum.nl/en/nu-te-zien/violette-cornelius-rediscovered"
+  ]
+}
