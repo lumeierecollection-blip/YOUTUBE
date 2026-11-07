@@ -234,12 +234,12 @@ async function main() {
       seenTitles.add(spec.title);
       console.log(`[image-pack]   ok ${finalSize.width}x${finalSize.height} ${info.license} ${(finalBuf.length / 1024).toFixed(0)} KB`);
     } catch (e) {
+      const id = `hist-${String(i + 1).padStart(2, "0")}`;
       const msg = `${id} ${spec.title}: ${e.message}`;
       errors.push(msg);
       console.error(`[image-pack]   FAILED ${msg}`);
       // Create a placeholder solid-color image so loadVisualPack doesn't fail
       // on missing files. Commons title may not exist; fall back to a placeholder.
-      const id = `hist-${String(i + 1).padStart(2, "0")}`;
       const slug = slugify(spec.label || spec.title);
       const filePath = join(outDir, `${id}-${slug}.jpg`);
       try {
