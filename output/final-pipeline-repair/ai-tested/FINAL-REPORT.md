@@ -38,7 +38,8 @@ Code changes committed to the repository:
 - `src/utils/tts_gemini.py` — TTS metadata_errors fix + dependency pin.
 - `scripts/editor/build-mcp-timeline.mjs` — new: builds the MCP timeline (added for this production).
 
-Commit SHA: to be recorded after push (HEAD of the working branch).
+Commit SHA: c8b50593 (branch fix/image-download-id-duplicate; the checked-out production HEAD).
+Note: this session could not push to origin or trigger workflow_dispatch (no GitHub token), so the hosted GitHub Actions run and YouTube upload could not be executed here. They are ready to run on the next scheduled/dispatched run on main with the CHANNEL_02_* secrets populated.
 
 Deliverables under `output/final-pipeline-repair/ai-tested/`:
 - final.mp4, script.json, research-manifest.json, visual-plan.json, asset-manifest.json, narration.mp3, narration.srt, SKILL-USAGE-EVIDENCE.md, QA-REPORT.md, contact-sheet.png, upload-confirmation.md, FINAL-REPORT.md.
