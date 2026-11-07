@@ -607,7 +607,6 @@ jobs:
     timeout-minutes: 15
     if: github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true'
     env:
-      CHANNEL_ID_NUM: ${{ env.CHANNEL_ID }}
       CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
       CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
       CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
