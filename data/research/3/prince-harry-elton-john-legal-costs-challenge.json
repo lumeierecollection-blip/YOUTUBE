@@ -1,0 +1,99 @@
+{
+  "topic_slug": "prince-harry-elton-john-legal-costs-challenge",
+  "strongest_angle": "Analyzing Prince Harry and Sir Elton John's Court of Appeal challenge against Associated Newspapers Limited after an 11-week London trial resulted in a High Court dismissal and an order to pay up to £34.5 million in joint legal costs.",
+  "key_facts": [
+    {
+      "fact": "Prince Harry, Sir Elton John, and actress Elizabeth Hurley are among six public figures facing joint legal costs of up to £34.5 million following a High Court privacy ruling in favor of Associated Newspapers Limited.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The unlawful information gathering trial took place over 11 weeks in London before judge Mr Justice Nicklin dismissed all claims against the Daily Mail publisher.",
+      "source_url": "https://www.bbc.com/news/articles/c8p3gg2ex4wlo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following the High Court dismissal of the lawsuit in July 2026, Prince Harry and five other claimants submitted applications to the Court of Appeal in November 2026.",
+      "source_url": "https://www.independent.co.uk/bulletin/news/elton-john-prince-harry-appeal-court-mail-b3080711.html",
+      "source_name": "The Independent",
+      "confidence": "high"
+    },
+    {
+      "fact": "The group of six claimants filing Court of Appeal applications is challenging both the primary claim dismissal and an indemnity costs order.",
+      "source_url": "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626",
+      "source_name": "Quartz",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Joint legal costs limit",
+      "value": 34.5,
+      "unit": "million pounds",
+      "source_url": "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo"
+    },
+    {
+      "label": "Public figures facing costs order",
+      "value": 6,
+      "unit": "public figures",
+      "source_url": "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo"
+    },
+    {
+      "label": "Privacy case trial duration",
+      "value": 11,
+      "unit": "weeks",
+      "source_url": "https://www.bbc.com/news/articles/c8p3gg2ex4wlo"
+    },
+    {
+      "label": "Claimants filing Court of Appeal applications",
+      "value": 6,
+      "unit": "claimants",
+      "source_url": "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Prince Harry",
+      "kind": "person"
+    },
+    {
+      "name": "Sir Elton John",
+      "kind": "person"
+    },
+    {
+      "name": "Elizabeth Hurley",
+      "kind": "person"
+    },
+    {
+      "name": "Mr Justice Nicklin",
+      "kind": "person"
+    },
+    {
+      "name": "Associated Newspapers Limited",
+      "kind": "organization"
+    },
+    {
+      "name": "Daily Mail",
+      "kind": "organization"
+    },
+    {
+      "name": "Mail on Sunday",
+      "kind": "organization"
+    },
+    {
+      "name": "High Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Court of Appeal",
+      "kind": "organization"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    }
+  ]
+}
