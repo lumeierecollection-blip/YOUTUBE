@@ -307,7 +307,7 @@ async function main() {
     people_ratio: Number(peopleRatio.toFixed(4)),
     people_ratio_min: MIN_PEOPLE_RATIO,
     total_bytes: downloaded.reduce((a, x) => a + x.bytes, 0),
-    images,
+    images: downloaded,
     errors,
   };
 
