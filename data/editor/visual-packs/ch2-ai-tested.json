@@ -68,6 +68,18 @@
       "alt": "AI-generated image from DALL-E mini",
       "note": "AI-generated image from DALL-E mini model.",
       "reason": "The closing sentence shows the final result; the image shows AI-generated output."
+    },
+    {
+      "sentence_index": 5,
+      "kind": "product",
+      "subject": "Computer processor",
+      "label": "Microprocessor",
+      "title": "File:CPUs 20240707 HOF0369 RAW-Export.png",
+      "id": "hist-06",
+      "file": "hist-06-cpus-microprocessors.png",
+      "alt": "View of microprocessors (computer hardware)",
+      "note": "Photograph of microprocessors, CC BY 4.0",
+      "reason": "The closing sentence shows Search and Gemini integration; the image shows the underlying computing hardware."
     }
   ]
 }
