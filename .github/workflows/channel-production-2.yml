@@ -7,13 +7,17 @@ name: Channel Production — AI Tested (ch-2)
 # through script, research, assets, narration, timeline, render, QA and upload.
 #
 # Job sequence:
-#   setup -> source-visual-assets, generate-narration (parallel)
-#   build-timeline (needs setup + assets + narration)
-#   render-video (needs setup + timeline + assets + narration)
+#   setup -> generate-narration (parallel)
+#   build-timeline (needs setup + narration)
+#   render-video (needs setup + timeline + narration)
 #   run-quality-assurance (needs render-video + setup)
 #   final-acceptance (needs run-quality-assurance + setup)  <- independent gate
-#   publish-preparation (needs final-acceptance + render-video + timeline + assets + narration)
+#   publish-preparation (needs final-acceptance + render-video + setup)
 #   publish-private (needs publish-preparation)             <- upload only if gate passed
+#
+# This is a graphics-only production (original motion graphics, no downloaded
+# images), so there is no separate image-sourcing job. All visuals are drawn
+# procedurally by scripts/editor/build-mcp-timeline.mjs from the sourced script.
 #
 # All cross-job files move via actions/upload-artifact + actions/download-artifact.
 # Nothing goes public: uploads are private only; owner publishes manually.
@@ -131,54 +135,6 @@ jobs:
           done
           echo "[skills] Liam Johnston skills verified"
 
-  source-visual-assets:
-    name: Source Topic-Specific Visual Assets
-    needs: setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    outputs:
-      asset_count: ${{ steps.assets.outputs.count }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: '24', cache: 'npm' }
-      - name: Install Dependencies
-        run: npm ci --no-audit --no-fund 2>/dev/null || npm install
-      - name: Create asset directories
-        run: |
-          mkdir -p data/editor/assets/${{ needs.setup.outputs.channel }}
-          mkdir -p src/skills/remotion-render/public/editor/assets/${{ needs.setup.outputs.channel }}
-      - name: Download topic-specific visual assets
-        id: assets
-        run: |
-          node scripts/assets/download-visual-assets.mjs \
-            --channel "${{ needs.setup.outputs.channel }}" \
-            --topic "${{ needs.setup.outputs.topic_slug }}" \
-            --production-id "${{ needs.setup.outputs.production_id }}" \
-            --visual-plan data/editor/visual-plans/${{ needs.setup.outputs.topic_slug }}-visual-plan.json 2>&1 | tee /tmp/visual-assets.log
-          node -e "const m=require('./data/editor/assets/${{ needs.setup.outputs.channel }}/asset-manifest.json'); console.log(m.total_downloaded||m.assets?.length||0)" > /tmp/asset-count.txt
-      - name: Report asset count
-        id: count
-        run: |
-          COUNT=$(cat /tmp/asset-count.txt)
-          echo "count=$COUNT" >> $GITHUB_OUTPUT
-          echo "[assets] $COUNT topic-specific assets staged for ${{ needs.setup.outputs.topic_slug }}"
-      - name: Fail when no relevant assets
-        if: steps.count.outputs.count < 1
-        run: |
-          echo "::error::No topic-specific visual assets found for ${{ needs.setup.outputs.topic_slug }}"
-          echo "::error::A missing relevant photograph is not replaced by an unrelated image."
-          exit 1
-      - name: Upload visual assets artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-assets-${{ needs.setup.outputs.channel }}
-          path: |
-            data/editor/assets/${{ needs.setup.outputs.channel }}/asset-manifest.json
-            data/editor/assets/${{ needs.setup.outputs.channel }}/provenance-manifest.json
-          retention-days: 30
-          overwrite: true
-
   generate-narration:
     name: Generate Voiceover (Gemini TTS preferred, edge-tts fallback)
     needs: [setup]
@@ -278,7 +234,7 @@ jobs:
 
   build-timeline:
     name: Build Visual Timeline
-    needs: [setup, source-visual-assets, generate-narration]
+    needs: [setup, generate-narration]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -324,7 +280,7 @@ jobs:
 
   render-video:
     name: Render Video (Remotion)
-    needs: [setup, build-timeline, source-visual-assets, generate-narration]
+    needs: [setup, build-timeline, generate-narration]
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
