@@ -22,6 +22,9 @@ name: Channel Production — AI Tested (ch-2)
 # All cross-job files move via actions/upload-artifact + actions/download-artifact.
 # Nothing goes public: uploads are private only; owner publishes manually.
 # Fail closed: a missing or mismatched input stops the run; no silent fallback.
+#
+# The publish-private job is gated to refs/heads/main; trigger this workflow
+# via workflow_dispatch on main (dry_run=false) to upload.
 
 on:
   schedule:
