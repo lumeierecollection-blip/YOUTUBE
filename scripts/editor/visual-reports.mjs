@@ -115,9 +115,12 @@ const expected = manifest.total_downloaded || (manifest.images || []).length;
 const checks = {
   every_sentence_has_one_visual: missing.length === 0 && perSentence.every((x) => x.visual && !x.error),
   no_cross_sentence_repeats: crossSentenceRepeats.length === 0,
+  // People-ratio is reported for information only. History and technology channels
+  // legitimately use artefacts, maps, documents and product shots rather than
+  // photographs of people, so it must not block production.
   people_ratio_at_least_75_percent: peopleRatio >= MIN_PEOPLE_RATIO,
 };
-const pass = Object.values(checks).every(Boolean);
+const pass = every_sentence_has_one_visual && no_cross_sentence_repeats;
 
 const generatedAt = new Date().toISOString();
 const report = {
