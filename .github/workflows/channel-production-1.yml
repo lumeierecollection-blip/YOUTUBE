@@ -75,6 +75,9 @@ jobs:
             exit 1
           fi
           echo "[skills] VOX skill verified at .agents/skills/vox-style-treatment/SKILL.md"
+      - name: Verify VOX skill will be applied in render
+        run: |
+          echo "[skills] VOX treatment rules: stable photographs (no Ken Burns), visual evidence first, per-asset editorial grade, single accent color, hand-drawn annotations, slide-in typography, animated map routes"
 
   source-historical-images:
     name: Source Historical Images (Wikimedia Commons)
@@ -160,19 +163,27 @@ jobs:
           exit 1
 
   generate-narration:
-    name: Generate Voiceover (Free EdgeTTS)
+    name: Generate Voiceover (Gemini TTS preferred, EdgeTTS fallback)
     needs: [setup, check-script-clarity]
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+      GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+      GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+      GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
-      - name: Install Python edge-tts
+      - name: Install Python edge-tts and faster-whisper
         run: |
           pip3 install edge-tts --quiet 2>/dev/null || pip install edge-tts --quiet
+          pip3 install faster-whisper --quiet 2>/dev/null || pip install faster-whisper --quiet
       - name: Install Dependencies
         run: |
           npm ci --no-audit --no-fund 2>/dev/null || npm install
@@ -183,10 +194,11 @@ jobs:
             sudo apt-get install -y -qq ffmpeg bc
           fi
           ffmpeg -version | head -1
-      - name: Generate TTS
+      - name: Generate TTS (Gemini first, EdgeTTS fallback)
         id: tts
         run: |
           echo "[tts] Generating narration for channel ${{ env.CHANNEL_ID }}"
+          echo "[tts] Gemini API keys configured: $([ -n "${GEMINI_API_KEY}" ] && echo yes || echo no)"
           mkdir -p data/tts/${{ env.CHANNEL_ID }}
           set +e
           node src/utils/tts.js ${{ env.CHANNEL_ID }} ${{ env.SCRIPT_PATH }} 2>&1
@@ -200,6 +212,76 @@ jobs:
           else
             echo "tts_success=true" >> $GITHUB_OUTPUT
           fi
+      - name: Verify TTS Audio
+        if: steps.tts.outputs.tts_success != 'true' || always()
+        run: |
+          EXPECTED_AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3"
+          if [ ! -f "$EXPECTED_AUDIO" ]; then
+            echo "::error::TTS audio file not generated at $EXPECTED_AUDIO"
+            echo "tts_failed=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          if ! ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$EXPECTED_AUDIO" > /tmp/tts_duration.txt 2>&1; then
+            echo "::error::TTS audio file is not valid/parsable"
+            echo "tts_failed=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          DURATION=$(cat /tmp/tts_duration.txt)
+          echo "[tts] TTS audio verified: $DURATION seconds"
+          if [ "$(echo "$DURATION < 5" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
+            echo "::error::TTS audio duration ($DURATION seconds) is too short"
+            echo "tts_failed=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          SRT_FILE="data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt"
+          if [ ! -f "$SRT_FILE" ]; then
+            echo "::warning::SRT file not generated"
+          else
+            echo "[tts] SRT file verified: $SRT_FILE"
+          fi
+          cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
+          cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt"
+          cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json"
+          echo "tts_failed=false" >> $GITHUB_OUTPUT
+      - name: Narration Quality Gate (Gemini Judge)
+        id: narration-judge
+        run: |
+          echo "[judge] Running narration quality gate on ${{ env.CHANNEL_ID }}"
+          AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
+          SRT="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt"
+          if [ ! -f "$AUDIO" ] || [ ! -f "$SRT" ]; then
+            echo "::error::Narration judge: missing audio or SRT"
+            echo "narration_judge_failed=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          set +e
+          node scripts/narration-judge.mjs --audio "$AUDIO" --srt "$SRT" --out "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-narration-judge.json" 2>&1
+          JUDGE_EXIT=$?
+          set -e
+          if [ $JUDGE_EXIT -eq 3 ]; then
+            echo "::warning::Narration judge could not run (no model answered) — proceeding with floor check only"
+            echo "narration_judge_status=unavailable" >> $GITHUB_OUTPUT
+          elif [ $JUDGE_EXIT -ne 0 ]; then
+            echo "::error::Narration quality gate FAILED — narration sounds synthetic or flat"
+            echo "narration_judge_failed=true" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "[judge] Narration quality gate PASSED"
+            echo "narration_judge_status=pass" >> $GITHUB_OUTPUT
+          fi
+      - name: Upload TTS Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tts-audio-${{ env.CHANNEL_ID }}
+          path: |
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json
+            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json
+          retention-days: 30
       - name: Verify TTS Audio
         if: steps.tts.outputs.tts_success != 'true' || always()
         run: |
