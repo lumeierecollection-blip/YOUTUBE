@@ -38,7 +38,7 @@ concurrency:
 
 env:
   CHANNEL_ID: 2
-  TOPIC_SLUG: minimax-m3-1-flash-benchmark-analysis
+  TOPIC_SLUG: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}
   SCRIPT_PATH: data/research/2/${{ env.TOPIC_SLUG }}-shorts-script.json
   STEM: ${{ env.TOPIC_SLUG }}-shorts
   TTS_TOPIC: ${{ env.TOPIC_SLUG }}-script
