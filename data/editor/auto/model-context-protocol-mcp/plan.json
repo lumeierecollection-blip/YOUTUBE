@@ -1,0 +1,68 @@
+{
+  "id": "model-context-protocol-mcp",
+  "production_id": "pt-ai-tested-mcp-20261107",
+  "channel_id": "ch-02",
+  "title": "AI Tested — Model Context Protocol (MCP) — connecting AI assistants to your data",
+  "topic_slug": "model-context-protocol-mcp",
+  "topic": "Model Context Protocol (MCP) — connecting AI assistants to your data",
+  "duration": 26,
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "palette": {
+    "bg": "#050510",
+    "accent": "#8B5CF6",
+    "text": "#FFFFFF",
+    "muted": "#9CA3AF",
+    "surface": "#13131E",
+    "stroke": "#C8C8CB"
+  },
+  "fonts": {
+    "primary": "Space Grotesk",
+    "mono": "JetBrains Mono"
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0,
+      "end": 3.5,
+      "start_f": 0,
+      "end_f": 105,
+      "asset": null
+    },
+    {
+      "id": "setup",
+      "start": 3.5,
+      "end": 9.5,
+      "start_f": 105,
+      "end_f": 285,
+      "asset": null
+    },
+    {
+      "id": "how",
+      "start": 9.5,
+      "end": 15,
+      "start_f": 285,
+      "end_f": 450,
+      "asset": null
+    },
+    {
+      "id": "servers",
+      "start": 15,
+      "end": 21.5,
+      "start_f": 450,
+      "end_f": 645,
+      "asset": null
+    },
+    {
+      "id": "close",
+      "start": 21.5,
+      "end": 25.5,
+      "start_f": 645,
+      "end_f": 765,
+      "asset": null
+    }
+  ],
+  "script": "data/research/2/model-context-protocol-mcp-shorts-script.json",
+  "audio": "data/tts/2/model-context-protocol-mcp-vo.mp3"
+}

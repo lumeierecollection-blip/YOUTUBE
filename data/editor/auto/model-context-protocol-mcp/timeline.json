@@ -1,0 +1,3664 @@
+{
+  "version": 1,
+  "id": "model-context-protocol-mcp",
+  "title": "AI Tested — Model Context Protocol (MCP) — connecting AI assistants to your data",
+  "production_id": "pt-ai-tested-mcp-20261107",
+  "channel_id": "ch-02",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "durationInFrames": 780,
+  "palette": {
+    "bg": "#050510",
+    "accent": "#8B5CF6",
+    "text": "#FFFFFF",
+    "muted": "#9CA3AF",
+    "surface": "#13131E",
+    "stroke": "#C8C8CB"
+  },
+  "fonts": {
+    "primary": "Space Grotesk",
+    "mono": "JetBrains Mono"
+  },
+  "assets": {},
+  "layers": [
+    {
+      "id": "bg",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 0,
+      "out": 780,
+      "z": 10,
+      "style": {
+        "background": "#050510",
+        "borderRadius": 0
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 780,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "progress",
+      "type": "solid",
+      "rect": {
+        "x": 0,
+        "y": 1912,
+        "w": 1080,
+        "h": 8
+      },
+      "in": 0,
+      "out": 780,
+      "z": 11,
+      "style": {
+        "background": "#8B5CF6",
+        "borderRadius": 0
+      },
+      "props": {
+        "opacity": 0.9,
+        "clipR": 100
+      },
+      "keyframes": {
+        "clipR": [
+          {
+            "f": 0,
+            "v": 100,
+            "e": "linear"
+          },
+          {
+            "f": 780,
+            "v": 0,
+            "e": "linear"
+          }
+        ]
+      }
+    },
+    {
+      "id": "kicker",
+      "type": "text",
+      "text": "AI TESTED  ·  MCP",
+      "rect": {
+        "x": 90,
+        "y": 150,
+        "w": 900,
+        "h": 64
+      },
+      "in": 0,
+      "out": 780,
+      "z": 12,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 30,
+        "weight": 700,
+        "color": "#8B5CF6",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0.24,
+        "upper": true,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 780,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 780,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 780,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "hook-line-1",
+      "type": "text",
+      "text": "AI ASSISTANTS ARE TRAPPED",
+      "rect": {
+        "x": 90,
+        "y": 760,
+        "w": 900,
+        "h": 300
+      },
+      "in": 0,
+      "out": 105,
+      "z": 13,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 150,
+        "weight": 800,
+        "color": "#FFFFFF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 40
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 105,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 105,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 40,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 0
+          },
+          {
+            "f": 105,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "hook-line-2",
+      "type": "text",
+      "text": "BEHIND INFORMATION SILOS",
+      "rect": {
+        "x": 90,
+        "y": 940,
+        "w": 900,
+        "h": 300
+      },
+      "in": 10,
+      "out": 105,
+      "z": 14,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 150,
+        "weight": 800,
+        "color": "#8B5CF6",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 40
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 95,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 95,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 40,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 0
+          },
+          {
+            "f": 95,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-card",
+      "type": "solid",
+      "rect": {
+        "x": 60,
+        "y": 1080,
+        "w": 960,
+        "h": 420
+      },
+      "in": 105,
+      "out": 285,
+      "z": 15,
+      "style": {
+        "background": "#13131E",
+        "borderRadius": 20
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 180,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-card-border",
+      "type": "svg",
+      "rect": {
+        "x": 60,
+        "y": 1080,
+        "w": 960,
+        "h": 420
+      },
+      "in": 105,
+      "out": 285,
+      "z": 16,
+      "viewBox": [
+        0,
+        0,
+        960,
+        420
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M14 14 H1006 V1486 H14 Z",
+          "fill": "none",
+          "stroke": "#C8C8CB",
+          "strokeWidth": 2,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 180,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 180,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-head",
+      "type": "text",
+      "text": "ANTHROPIC'S MODEL CONTEXT PROTOCOL",
+      "rect": {
+        "x": 90,
+        "y": 860,
+        "w": 900,
+        "h": 112
+      },
+      "in": 105,
+      "out": 285,
+      "z": 17,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 56,
+        "weight": 800,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 180,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 180,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 180,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-phrase",
+      "type": "text",
+      "text": "ONE OPEN STANDARD",
+      "rect": {
+        "x": 90,
+        "y": 1190,
+        "w": 840,
+        "h": 168
+      },
+      "in": 113,
+      "out": 285,
+      "z": 18,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 84,
+        "weight": 800,
+        "color": "#8B5CF6",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 30
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 172,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 172,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 30,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 0
+          },
+          {
+            "f": 172,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-body",
+      "type": "text",
+      "text": "Connecting AI to your data — one open standard instead of a custom connector per source.",
+      "rect": {
+        "x": 90,
+        "y": 1330,
+        "w": 820,
+        "h": 88
+      },
+      "in": 121,
+      "out": 285,
+      "z": 19,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 44,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.3,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 164,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 164,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0
+          },
+          {
+            "f": 164,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-marker",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1
+      },
+      "in": 113,
+      "out": 129,
+      "z": 25,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M250 1242 H830",
+          "fill": "none",
+          "stroke": "#8B5CF6",
+          "strokeWidth": 7,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 16,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 16,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup-cite",
+      "type": "text",
+      "text": "Source: anthropic.com/news/model-context-protocol (Nov 25, 2024)",
+      "rect": {
+        "x": 90,
+        "y": 1420,
+        "w": 820,
+        "h": 64
+      },
+      "in": 125,
+      "out": 285,
+      "z": 20,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 28,
+        "weight": 400,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 10
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 160,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 160,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 10,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 160,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "how-head",
+      "type": "text",
+      "text": "HOW MCP WORKS",
+      "rect": {
+        "x": 90,
+        "y": 430,
+        "w": 900,
+        "h": 88
+      },
+      "in": 285,
+      "out": 450,
+      "z": 21,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 44,
+        "weight": 800,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 15
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 15,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 165,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "conn-client-server",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 289,
+      "out": 450,
+      "z": 22,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M202 1020 L498 1020",
+          "fill": "none",
+          "stroke": "#C8C8CB",
+          "strokeWidth": 5,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 161,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 18,
+            "v": 1
+          },
+          {
+            "f": 161,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "conn-server-0",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 289,
+      "out": 450,
+      "z": 23,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M582 1020 L828 820",
+          "fill": "none",
+          "stroke": "#C8C8CB",
+          "strokeWidth": 5,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 161,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 16,
+            "v": 1
+          },
+          {
+            "f": 161,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "node-source-0",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 293,
+      "out": 450,
+      "z": 24,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M870 778 A42 42 0 1 1 870 862 A42 42 0 1 1 870 778 Z",
+          "fill": "#13131E",
+          "stroke": "#9CA3AF",
+          "strokeWidth": 3,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-source-0",
+      "type": "text",
+      "text": "Google Drive",
+      "rect": {
+        "x": 90,
+        "y": 880,
+        "w": 220,
+        "h": 64
+      },
+      "in": 295,
+      "out": 450,
+      "z": 25,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 26,
+        "weight": 700,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 0
+          },
+          {
+            "f": 155,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "conn-server-1",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 295,
+      "out": 450,
+      "z": 26,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M582 1020 L828 1020",
+          "fill": "none",
+          "stroke": "#C8C8CB",
+          "strokeWidth": 5,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 16,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "node-source-1",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 299,
+      "out": 450,
+      "z": 27,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M870 978 A42 42 0 1 1 870 1062 A42 42 0 1 1 870 978 Z",
+          "fill": "#13131E",
+          "stroke": "#9CA3AF",
+          "strokeWidth": 3,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 151,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 151,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-source-1",
+      "type": "text",
+      "text": "Slack",
+      "rect": {
+        "x": 90,
+        "y": 1080,
+        "w": 220,
+        "h": 64
+      },
+      "in": 301,
+      "out": 450,
+      "z": 28,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 26,
+        "weight": 700,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 149,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 149,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 0
+          },
+          {
+            "f": 149,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "conn-server-2",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 301,
+      "out": 450,
+      "z": 29,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M582 1020 L828 1220",
+          "fill": "none",
+          "stroke": "#C8C8CB",
+          "strokeWidth": 5,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 149,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 16,
+            "v": 1
+          },
+          {
+            "f": 149,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "node-source-2",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 305,
+      "out": 450,
+      "z": 30,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M870 1178 A42 42 0 1 1 870 1262 A42 42 0 1 1 870 1178 Z",
+          "fill": "#13131E",
+          "stroke": "#9CA3AF",
+          "strokeWidth": 3,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 145,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 145,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-source-2",
+      "type": "text",
+      "text": "GitHub",
+      "rect": {
+        "x": 90,
+        "y": 1280,
+        "w": 220,
+        "h": 64
+      },
+      "in": 307,
+      "out": 450,
+      "z": 31,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 26,
+        "weight": 700,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 0
+          },
+          {
+            "f": 143,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "node-server",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 289,
+      "out": 450,
+      "z": 32,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M540 978 A42 42 0 1 1 540 1062 A42 42 0 1 1 540 978 Z",
+          "fill": "#13131E",
+          "stroke": "#8B5CF6",
+          "strokeWidth": 4,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 161,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 161,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-server",
+      "type": "text",
+      "text": "MCP SERVER",
+      "rect": {
+        "x": 90,
+        "y": 1080,
+        "w": 200,
+        "h": 64
+      },
+      "in": 295,
+      "out": 450,
+      "z": 33,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 26,
+        "weight": 800,
+        "color": "#8B5CF6",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 155,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 0
+          },
+          {
+            "f": 155,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "node-client",
+      "type": "svg",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "in": 285,
+      "out": 450,
+      "z": 34,
+      "viewBox": [
+        0,
+        0,
+        1080,
+        1920
+      ],
+      "props": {
+        "opacity": 1,
+        "draw": 0,
+        "scale": 1
+      },
+      "paths": [
+        {
+          "d": "M160 978 A42 42 0 1 1 160 1062 A42 42 0 1 1 160 978 Z",
+          "fill": "#13131E",
+          "stroke": "#FFFFFF",
+          "strokeWidth": 3,
+          "strokeLinecap": "round",
+          "strokeLinejoin": "round"
+        }
+      ],
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 1
+          }
+        ],
+        "draw": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "linear"
+          },
+          {
+            "f": 1,
+            "v": 0
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 165,
+            "v": 1
+          }
+        ],
+        "scale": [
+          {
+            "f": 0,
+            "v": 1
+          },
+          {
+            "f": 41,
+            "v": 1
+          },
+          {
+            "f": 74,
+            "v": 1.2,
+            "e": "outCubic"
+          },
+          {
+            "f": 107,
+            "v": 1,
+            "e": "inOutCubic"
+          },
+          {
+            "f": 165,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-client",
+      "type": "text",
+      "text": "CLAUDE (MCP CLIENT)",
+      "rect": {
+        "x": 90,
+        "y": 1080,
+        "w": 260,
+        "h": 64
+      },
+      "in": 291,
+      "out": 450,
+      "z": 35,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 24,
+        "weight": 700,
+        "color": "#FFFFFF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 159,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 1
+          },
+          {
+            "f": 159,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 8,
+            "v": 0
+          },
+          {
+            "f": 159,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "how-body",
+      "type": "text",
+      "text": "An MCP server exposes your data; an MCP client like Claude connects to it.",
+      "rect": {
+        "x": 90,
+        "y": 1460,
+        "w": 820,
+        "h": 80
+      },
+      "in": 307,
+      "out": 450,
+      "z": 36,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 40,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.25,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 25
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 25,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0
+          },
+          {
+            "f": 143,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-bg",
+      "type": "solid",
+      "rect": {
+        "x": 110,
+        "y": 800,
+        "w": 860,
+        "h": 560
+      },
+      "in": 450,
+      "out": 645,
+      "z": 37,
+      "style": {
+        "background": "#0A0A1A",
+        "borderRadius": 14
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-header",
+      "type": "solid",
+      "rect": {
+        "x": 110,
+        "y": 800,
+        "w": 860,
+        "h": 44
+      },
+      "in": 450,
+      "out": 645,
+      "z": 39,
+      "style": {
+        "background": "#12122A",
+        "borderRadius": 0
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-light-0",
+      "type": "solid",
+      "rect": {
+        "x": 128,
+        "y": 810,
+        "w": 12,
+        "h": 12
+      },
+      "in": 450,
+      "out": 645,
+      "z": 40,
+      "style": {
+        "background": "#FF5F56",
+        "borderRadius": 6
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-light-1",
+      "type": "solid",
+      "rect": {
+        "x": 152,
+        "y": 810,
+        "w": 12,
+        "h": 12
+      },
+      "in": 450,
+      "out": 645,
+      "z": 40,
+      "style": {
+        "background": "#FFBD2E",
+        "borderRadius": 6
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-light-2",
+      "type": "solid",
+      "rect": {
+        "x": 176,
+        "y": 810,
+        "w": 12,
+        "h": 12
+      },
+      "in": 450,
+      "out": 645,
+      "z": 40,
+      "style": {
+        "background": "#27C93F",
+        "borderRadius": 6
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-title",
+      "type": "text",
+      "text": "mcp-server.json",
+      "rect": {
+        "x": 90,
+        "y": 808,
+        "w": 300,
+        "h": 64
+      },
+      "in": 450,
+      "out": 645,
+      "z": 41,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 18,
+        "weight": 700,
+        "color": "#9CA3AF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 0
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 6,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 6,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 6,
+            "v": 0
+          },
+          {
+            "f": 195,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-0",
+      "type": "text",
+      "text": "{",
+      "rect": {
+        "x": 90,
+        "y": 866,
+        "w": 780,
+        "h": 64
+      },
+      "in": 470,
+      "out": 641,
+      "z": 48,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 171,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 171,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 171,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-1",
+      "type": "text",
+      "text": "  \"mcpServers\": {",
+      "rect": {
+        "x": 90,
+        "y": 906,
+        "w": 780,
+        "h": 64
+      },
+      "in": 484,
+      "out": 641,
+      "z": 49,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 157,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 157,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-2",
+      "type": "text",
+      "text": "    \"github\": {",
+      "rect": {
+        "x": 90,
+        "y": 946,
+        "w": 780,
+        "h": 64
+      },
+      "in": 498,
+      "out": 641,
+      "z": 50,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 143,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 143,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-3",
+      "type": "text",
+      "text": "      \"command\": \"npx\",",
+      "rect": {
+        "x": 90,
+        "y": 986,
+        "w": 780,
+        "h": 64
+      },
+      "in": 512,
+      "out": 641,
+      "z": 51,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 700,
+        "color": "#8B5CF6",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 129,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 129,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 129,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-4",
+      "type": "text",
+      "text": "      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"]",
+      "rect": {
+        "x": 90,
+        "y": 1026,
+        "w": 780,
+        "h": 64
+      },
+      "in": 526,
+      "out": 641,
+      "z": 52,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 115,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 115,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 115,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-5",
+      "type": "text",
+      "text": "    }",
+      "rect": {
+        "x": 90,
+        "y": 1066,
+        "w": 780,
+        "h": 64
+      },
+      "in": 540,
+      "out": 641,
+      "z": 53,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 101,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 101,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 101,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-6",
+      "type": "text",
+      "text": "  }",
+      "rect": {
+        "x": 90,
+        "y": 1106,
+        "w": 780,
+        "h": 64
+      },
+      "in": 554,
+      "out": 641,
+      "z": 54,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 87,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 87,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 87,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-line-7",
+      "type": "text",
+      "text": "}",
+      "rect": {
+        "x": 90,
+        "y": 1146,
+        "w": 780,
+        "h": 64
+      },
+      "in": 568,
+      "out": 641,
+      "z": 55,
+      "style": {
+        "font": "JetBrains Mono",
+        "size": 28,
+        "weight": 400,
+        "color": "#FFFFFF",
+        "align": "left",
+        "valign": "top",
+        "lineHeight": 1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 20
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 73,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 73,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 20,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 73,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "term-cursor",
+      "type": "solid",
+      "rect": {
+        "x": 912,
+        "y": 994,
+        "w": 16,
+        "h": 32
+      },
+      "in": 512,
+      "out": 645,
+      "z": 68,
+      "style": {
+        "background": "#FFFFFF",
+        "borderRadius": 0
+      },
+      "props": {
+        "opacity": 1
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 133,
+            "v": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "servers-head",
+      "type": "text",
+      "text": "PRE-BUILT MCP SERVERS",
+      "rect": {
+        "x": 90,
+        "y": 1460,
+        "w": 900,
+        "h": 80
+      },
+      "in": 450,
+      "out": 645,
+      "z": 38,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 40,
+        "weight": 800,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 15
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 195,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 15,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 195,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "servers-list",
+      "type": "text",
+      "text": "GOOGLE DRIVE  ·  SLACK  ·  GITHUB  ·  POSTGRES  ·  PUPPETEER",
+      "rect": {
+        "x": 90,
+        "y": 1560,
+        "w": 900,
+        "h": 80
+      },
+      "in": 460,
+      "out": 645,
+      "z": 39,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 40,
+        "weight": 800,
+        "color": "#8B5CF6",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0.12,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 30
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 185,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 185,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 30,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 0
+          },
+          {
+            "f": 185,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "close-big",
+      "type": "text",
+      "text": "BUILD ONCE · INTEGRATE EVERYWHERE",
+      "rect": {
+        "x": 90,
+        "y": 760,
+        "w": 900,
+        "h": 220
+      },
+      "in": 645,
+      "out": 765,
+      "z": 40,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 110,
+        "weight": 800,
+        "color": "#FFFFFF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0.08,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 40
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 120,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 1
+          },
+          {
+            "f": 120,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 40,
+            "e": "outCubic"
+          },
+          {
+            "f": 14,
+            "v": 0
+          },
+          {
+            "f": 120,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "close-small",
+      "type": "text",
+      "text": "AI finally reaches your data.",
+      "rect": {
+        "x": 90,
+        "y": 940,
+        "w": 900,
+        "h": 128
+      },
+      "in": 655,
+      "out": 765,
+      "z": 41,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 64,
+        "weight": 700,
+        "color": "#8B5CF6",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 30
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 110,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 1
+          },
+          {
+            "f": 110,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 30,
+            "e": "outCubic"
+          },
+          {
+            "f": 12,
+            "v": 0
+          },
+          {
+            "f": 110,
+            "v": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "credits",
+      "type": "text",
+      "text": "Sources: anthropic.com/news/model-context-protocol · modelcontextprotocol.io",
+      "rect": {
+        "x": 90,
+        "y": 1800,
+        "w": 960,
+        "h": 64
+      },
+      "in": 653,
+      "out": 765,
+      "z": 42,
+      "style": {
+        "font": "Space Grotesk",
+        "size": 24,
+        "weight": 400,
+        "color": "#9CA3AF",
+        "align": "center",
+        "valign": "top",
+        "lineHeight": 1.1,
+        "tracking": 0,
+        "upper": false,
+        "pad": 0
+      },
+      "props": {
+        "opacity": 1,
+        "ty": 10
+      },
+      "keyframes": {
+        "opacity": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 112,
+            "v": 1
+          }
+        ],
+        "reveal": [
+          {
+            "f": 0,
+            "v": 0,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 1
+          },
+          {
+            "f": 112,
+            "v": 1
+          }
+        ],
+        "ty": [
+          {
+            "f": 0,
+            "v": 10,
+            "e": "outCubic"
+          },
+          {
+            "f": 10,
+            "v": 0
+          },
+          {
+            "f": 112,
+            "v": 0
+          }
+        ]
+      }
+    }
+  ],
+  "captions": [
+    {
+      "start_f": 3,
+      "end_f": 92,
+      "text": "AI assistants are trapped behind information silos.",
+      "words": [
+        {
+          "text": "AI",
+          "start_f": 3,
+          "end_f": 12
+        },
+        {
+          "text": "assistants",
+          "start_f": 12,
+          "end_f": 28
+        },
+        {
+          "text": "are",
+          "start_f": 29,
+          "end_f": 33
+        },
+        {
+          "text": "trapped",
+          "start_f": 33,
+          "end_f": 46
+        },
+        {
+          "text": "behind",
+          "start_f": 46,
+          "end_f": 57
+        },
+        {
+          "text": "information",
+          "start_f": 58,
+          "end_f": 74
+        },
+        {
+          "text": "silos",
+          "start_f": 74,
+          "end_f": 92
+        }
+      ]
+    },
+    {
+      "start_f": 104,
+      "end_f": 266,
+      "text": "Anthropic's Model Context Protocol is one open standard connecting AI to your data.",
+      "words": [
+        {
+          "text": "Anthropic's",
+          "start_f": 104,
+          "end_f": 123
+        },
+        {
+          "text": "Model",
+          "start_f": 123,
+          "end_f": 132
+        },
+        {
+          "text": "Context",
+          "start_f": 133,
+          "end_f": 147
+        },
+        {
+          "text": "Protocol",
+          "start_f": 147,
+          "end_f": 165
+        },
+        {
+          "text": "is",
+          "start_f": 170,
+          "end_f": 173
+        },
+        {
+          "text": "one",
+          "start_f": 174,
+          "end_f": 182
+        },
+        {
+          "text": "open",
+          "start_f": 183,
+          "end_f": 192
+        },
+        {
+          "text": "standard",
+          "start_f": 192,
+          "end_f": 208
+        },
+        {
+          "text": "connecting",
+          "start_f": 209,
+          "end_f": 226
+        },
+        {
+          "text": "AI",
+          "start_f": 230,
+          "end_f": 241
+        },
+        {
+          "text": "to",
+          "start_f": 246,
+          "end_f": 251
+        },
+        {
+          "text": "your",
+          "start_f": 251,
+          "end_f": 255
+        },
+        {
+          "text": "data",
+          "start_f": 255,
+          "end_f": 266
+        }
+      ]
+    },
+    {
+      "start_f": 278,
+      "end_f": 431,
+      "text": "An MCP server exposes your data; an MCP client like Claude connects to it.",
+      "words": [
+        {
+          "text": "An",
+          "start_f": 278,
+          "end_f": 282
+        },
+        {
+          "text": "MCP",
+          "start_f": 283,
+          "end_f": 300
+        },
+        {
+          "text": "server",
+          "start_f": 300,
+          "end_f": 314
+        },
+        {
+          "text": "exposes",
+          "start_f": 315,
+          "end_f": 332
+        },
+        {
+          "text": "your",
+          "start_f": 332,
+          "end_f": 336
+        },
+        {
+          "text": "data",
+          "start_f": 336,
+          "end_f": 345
+        },
+        {
+          "text": "an",
+          "start_f": 357,
+          "end_f": 360
+        },
+        {
+          "text": "MCP",
+          "start_f": 361,
+          "end_f": 377
+        },
+        {
+          "text": "client",
+          "start_f": 378,
+          "end_f": 391
+        },
+        {
+          "text": "like",
+          "start_f": 392,
+          "end_f": 397
+        },
+        {
+          "text": "Claude",
+          "start_f": 397,
+          "end_f": 408
+        },
+        {
+          "text": "connects",
+          "start_f": 408,
+          "end_f": 420
+        },
+        {
+          "text": "to",
+          "start_f": 420,
+          "end_f": 426
+        },
+        {
+          "text": "it",
+          "start_f": 426,
+          "end_f": 431
+        }
+      ]
+    },
+    {
+      "start_f": 444,
+      "end_f": 626,
+      "text": "Pre-built MCP servers exist for Google Drive, Slack, GitHub, Postgres and Puppeteer.",
+      "words": [
+        {
+          "text": "Pre-built",
+          "start_f": 444,
+          "end_f": 457
+        },
+        {
+          "text": "MCP",
+          "start_f": 459,
+          "end_f": 475
+        },
+        {
+          "text": "servers",
+          "start_f": 476,
+          "end_f": 488
+        },
+        {
+          "text": "exist",
+          "start_f": 489,
+          "end_f": 501
+        },
+        {
+          "text": "for",
+          "start_f": 502,
+          "end_f": 507
+        },
+        {
+          "text": "Google Drive",
+          "start_f": 507,
+          "end_f": 528
+        },
+        {
+          "text": "Slack",
+          "start_f": 536,
+          "end_f": 549
+        },
+        {
+          "text": "GitHub",
+          "start_f": 557,
+          "end_f": 570
+        },
+        {
+          "text": "Postgres",
+          "start_f": 578,
+          "end_f": 597
+        },
+        {
+          "text": "and",
+          "start_f": 603,
+          "end_f": 606
+        },
+        {
+          "text": "Puppeteer",
+          "start_f": 607,
+          "end_f": 626
+        }
+      ]
+    },
+    {
+      "start_f": 638,
+      "end_f": 697,
+      "text": "Build once, integrate everywhere.",
+      "words": [
+        {
+          "text": "Build",
+          "start_f": 638,
+          "end_f": 644
+        },
+        {
+          "text": "once",
+          "start_f": 644,
+          "end_f": 657
+        },
+        {
+          "text": "integrate",
+          "start_f": 664,
+          "end_f": 678
+        },
+        {
+          "text": "everywhere",
+          "start_f": 681,
+          "end_f": 697
+        }
+      ]
+    },
+    {
+      "start_f": 710,
+      "end_f": 754,
+      "text": "AI finally reaches your data.",
+      "words": [
+        {
+          "text": "AI",
+          "start_f": 710,
+          "end_f": 718
+        },
+        {
+          "text": "finally",
+          "start_f": 718,
+          "end_f": 731
+        },
+        {
+          "text": "reaches",
+          "start_f": 731,
+          "end_f": 740
+        },
+        {
+          "text": "your",
+          "start_f": 740,
+          "end_f": 743
+        },
+        {
+          "text": "data",
+          "start_f": 744,
+          "end_f": 754
+        }
+      ]
+    }
+  ],
+  "caption_style": {
+    "x": 90,
+    "y": 1560,
+    "w": 900,
+    "h": 200,
+    "size": 48
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "start": 0,
+      "end": 3.5
+    },
+    {
+      "id": "setup",
+      "start": 3.5,
+      "end": 9.5
+    },
+    {
+      "id": "how",
+      "start": 9.5,
+      "end": 15
+    },
+    {
+      "id": "servers",
+      "start": 15,
+      "end": 21.5
+    },
+    {
+      "id": "close",
+      "start": 21.5,
+      "end": 25.5
+    }
+  ],
+  "metadata": {
+    "generated_at": "2026-11-07T21:43:06.940Z",
+    "topic_slug": "model-context-protocol-mcp",
+    "topic": "Model Context Protocol (MCP) — connecting AI assistants to your data",
+    "source_script": "data/research/2/model-context-protocol-mcp-shorts-script.json",
+    "source_audio": "data/tts/2/model-context-protocol-mcp-vo.mp3",
+    "scene_count": 5,
+    "duration_s": 26
+  }
+}

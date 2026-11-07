@@ -1,0 +1,90 @@
+{
+  "production_id": "pt-ai-tested-mcp-20261107",
+  "channel_id": "2",
+  "channel_name": "AI Tested",
+  "topic_slug": "model-context-protocol-mcp",
+  "topic": "Model Context Protocol (MCP) — connecting AI assistants to your data",
+  "created_at": "2026-11-07",
+  "canvas": { "width": 1080, "height": 1920, "fps": 30, "aspect": "9:16" },
+  "design_system": {
+    "bg": "#050510",
+    "accent": "#8B5CF6",
+    "text": "#FFFFFF",
+    "muted": "#9CA3AF",
+    "surface": "#13131E",
+    "stroke": "#C8C8CB",
+    "font_sans": "Space Grotesk",
+    "font_mono": "JetBrains Mono",
+    "safe_rect": { "top": 288, "right": 888, "bottom": 1248, "left": 48 },
+    "optical_centre": { "x": 468, "y": 768 }
+  },
+  "visual_rule": "Every visual is tied to a narration sentence and a sourced claim. No generic AI imagery, no stock processor photos, no unrelated robots. Where a photograph does not exist for the concept, an original animated diagram (labelled illustrative) represents the fact.",
+  "scenes": [
+    {
+      "scene_id": "hook",
+      "timing": "00:00-00:03.5",
+      "narration": "AI assistants are trapped behind information silos.",
+      "claim_id": "C-01",
+      "claim": "AI assistants are constrained by isolation from data — trapped behind information silos and legacy systems.",
+      "source": "S1 — Anthropic, Introducing the Model Context Protocol (Nov 25, 2024)",
+      "visual_requirement": "Center-screen kinetic typography stating the problem. Two phrases landing sequentially so the viewer reads in sync with the VO.",
+      "visual_treatment": "Kinetic typography: slide-up + opacity reveal, 150px w800, first phrase textPrimary, second phrase accent. Flat bg, no photograph.",
+      "asset_type": "Original kinetic typography (illustrative)",
+      "relevance": "Typeset the hook sentence itself; nothing unrelated shown."
+    },
+    {
+      "scene_id": "setup",
+      "timing": "00:03.5-00:09.5",
+      "narration": "Anthropic's Model Context Protocol is one open standard connecting AI to your data.",
+      "claim_id": "C-02",
+      "claim": "MCP is a universal, open standard for connecting AI systems with data sources.",
+      "source": "S1 — Anthropic announcement",
+      "visual_requirement": "Article-highlight card: marker stroke draws left-to-right across the key phrase as it is spoken; source URL printed on the card.",
+      "visual_treatment": "Surface panel (radius 20), headline above, key phrase 'ONE OPEN STANDARD' in accent with a 7px marker-stroke draw-on (14 frames), citation line with the official source URL at card bottom.",
+      "asset_type": "Article-highlight card + marker stroke (original)",
+      "relevance": "Visual evidence tied to the sourced claim; source URL on screen per article-highlights skill."
+    },
+    {
+      "scene_id": "how",
+      "timing": "00:09.5-00:15",
+      "narration": "An MCP server exposes your data; an MCP client like Claude connects to it.",
+      "claim_id": "C-03, C-04",
+      "claim": "Developers expose data through MCP servers or build MCP clients that connect; MCP works like USB-C for AI — one standard port.",
+      "source": "S2 — modelcontextprotocol.io",
+      "visual_requirement": "Animated diagram: client node → connector → server node → data-source nodes, connectors drawn on, client emphasized with a push-in.",
+      "visual_treatment": "Original animated diagram (labelled illustrative): three surface-filled nodes with stroke borders, 5px stroke connectors drawn via evolvePath-style stroke-dash, one camera push-in on the client node, pan across sources. No photograph zoomed (cinematic-camera rule).",
+      "asset_type": "Original animated diagram (illustrative)",
+      "relevance": "Diagrams the server/client relationship the sentence states, using the official MCP roles as the factual basis."
+    },
+    {
+      "scene_id": "servers",
+      "timing": "00:15-00:21.5",
+      "narration": "Pre-built MCP servers exist for Google Drive, Slack, GitHub, Postgres and Puppeteer.",
+      "claim_id": "C-05",
+      "claim": "Pre-built MCP servers exist for Google Drive, Slack, GitHub, Git, Postgres and Puppeteer.",
+      "source": "S1 — Anthropic announcement",
+      "visual_requirement": "Terminal insert: character-by-character typing of an MCP server stdio config block with a blinking cursor; server names listed on screen.",
+      "visual_treatment": "Dark terminal chrome (#0A0A1A), traffic lights, JetBrains Mono, lines appear sequentially (slide-in + reveal), highlighted command line in accent, blinking block cursor (500ms cycle). Below, a server-name list.",
+      "asset_type": "Terminal insert (original)",
+      "relevance": "Shows an actual MCP configuration shape the user would write; grounds the claim in a real, plausible implementation."
+    },
+    {
+      "scene_id": "close",
+      "timing": "00:21.5-00:26",
+      "narration": "Build once, integrate everywhere. AI finally reaches your data.",
+      "claim_id": "C-06",
+      "claim": "MCP enables building once and integrating everywhere, giving AI systems access to the data where it lives.",
+      "source": "S2 — modelcontextprotocol.io; S1 — Anthropic",
+      "visual_requirement": "Summary card with the diagram settling to a stable center composition; credits with both source URLs at bottom left.",
+      "visual_treatment": "Large kinetic typography 'BUILD ONCE · INTEGRATE EVERYWHERE', accent close line, final push-in to diagram center, hold. Credits cite both sources.",
+      "asset_type": "Original summary composition (illustrative)",
+      "relevance": "Restates the single coherent takeaway; both sources credited on screen."
+    }
+  ],
+  "relevance_gate": {
+    "rule": "A missing relevant photograph is NOT replaced by an unrelated image. Original motion graphics are used instead and labelled illustrative.",
+    "generic_assets_rejected": ["Generic processor photograph", "Generic AI illustration", "Unrelated robot photograph"],
+    "assets_passing_gate": 5,
+    "assets_rejected": 0
+  }
+}

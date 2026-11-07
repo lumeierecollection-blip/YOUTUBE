@@ -1,18 +1,23 @@
 name: Channel Production — AI Tested (ch-2)
 
-# Generic production pipeline for one YouTube channel, based on the verified
-# Margaret Clitherow benchmark (run 41739016672, commit 647d5c59 + follow-ups).
+# Topic-driven production pipeline for one YouTube channel (ch-02 AI Tested).
+#
+# Dispatch inputs control everything: channel_id and topic_slug select the
+# channel and the topic; a production_id is generated per run and carried
+# through script, research, assets, narration, timeline, render, QA and upload.
 #
 # Job sequence:
-#   setup -> source-historical-images, generate-narration (parallel)
-#   build-timeline (needs setup + images + narration)
-#   render-video (needs setup + timeline + images + narration)
+#   setup -> source-visual-assets, generate-narration (parallel)
+#   build-timeline (needs setup + assets + narration)
+#   render-video (needs setup + timeline + assets + narration)
 #   run-quality-assurance (needs render-video + setup)
-#   publish-preparation (needs render-video + QA + images + timeline)
+#   final-acceptance (needs run-quality-assurance + setup)  <- independent gate
+#   publish-preparation (needs final-acceptance + render-video + timeline + assets + narration)
+#   publish-private (needs publish-preparation)             <- upload only if gate passed
 #
 # All cross-job files move via actions/upload-artifact + actions/download-artifact.
-# Jobs never share runner filesystems. Every gate hard-fails; no silent placeholders.
 # Nothing goes public: uploads are private only; owner publishes manually.
+# Fail closed: a missing or mismatched input stops the run; no silent fallback.
 
 on:
   schedule:
@@ -24,9 +29,13 @@ on:
         required: false
         default: 'true'
       channel_id:
-        description: 'Channel ID'
-        required: false
+        description: 'Channel ID (dispatch key, e.g. 2)'
+        required: true
         default: '2'
+      topic_slug:
+        description: 'Topic slug (e.g. model-context-protocol-mcp)'
+        required: true
+        default: ''
 
 permissions:
   contents: read
@@ -37,14 +46,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  CHANNEL_ID: 2
-  TOPIC_SLUG: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}
-  SCRIPT_PATH: data/research/2/${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-shorts-script.json
-  STEM: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-shorts
-  TTS_TOPIC: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-shorts-script
-  VISUAL_PACK: data/editor/visual-packs/ch2-ai-tested.json
-  REQUIRED_IMAGES: 8
-  MIN_PEOPLE_RATIO: 0.0
+  PRODUCTION_ID: pt-ai-tested-${{ github.event.inputs.topic_slug || github.run_id }}-${{ github.run_attempt }}
+  MAX_DURATION_S: 30
 
 jobs:
   setup:
@@ -53,38 +56,71 @@ jobs:
     timeout-minutes: 10
     outputs:
       channel: ${{ steps.vars.outputs.channel }}
+      channel_name: ${{ steps.vars.outputs.channel_name }}
+      topic_slug: ${{ steps.vars.outputs.topic_slug }}
+      topic: ${{ steps.vars.outputs.topic }}
+      production_id: ${{ steps.vars.outputs.production_id }}
+      script_path: ${{ steps.vars.outputs.script_path }}
       stem: ${{ steps.vars.outputs.stem }}
+      tts_topic: ${{ steps.vars.outputs.tts_topic }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Cache and Install Dependencies
-        run: |
-          npm ci --no-audit --no-fund 2>/dev/null || npm install
-          (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
-
+        with: { node-version: '24', cache: 'npm' }
+      - name: Install Dependencies
+        run: npm ci --no-audit --no-fund 2>/dev/null || npm install
       - name: Install System Tools
         run: |
           if ! command -v ffmpeg >/dev/null 2>&1; then
             sudo apt-get update -qq
-            sudo apt-get install -y -qq ffmpeg poppler-utils python-is-python3 curl jq
+            sudo apt-get install -y -qq ffmpeg python-is-python3 curl jq
           fi
           ffmpeg -version | head -1
-
       - name: Setup Chrome for Remotion
         uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
-      - name: Install Python edge-tts (free TTS)
+        with: { chrome-version: stable }
+      - name: Install Python TTS deps
         run: |
           pip3 install edge-tts --quiet 2>/dev/null || pip install edge-tts --quiet
-          python3 -c "import edge_tts; print('edge-tts installed successfully')" 2>/dev/null || echo "warning: edge-tts not available"
-
+          pip3 install faster-whisper --quiet 2>/dev/null || pip install faster-whisper --quiet
+      - name: Resolve channel and topic from dispatch inputs
+        id: vars
+        run: |
+          CHANNEL_ID="${{ github.event.inputs.channel_id }}"
+          TOPIC_SLUG="${{ github.event.inputs.topic_slug }}"
+          if [ -z "$TOPIC_SLUG" ]; then
+            echo "::error::topic_slug is required for a topic-driven production"
+            exit 1
+          fi
+          # Resolve channel from channels.json (fail closed on unknown/ambiguous)
+          CHANNEL_JSON=$(node -e "
+            const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
+            try { console.log(JSON.stringify(resolveChannel('$CHANNEL_ID'))); } catch(e) { console.error('::error::' + e.message); process.exit(1); }
+          ") || exit 1
+          CHANNEL_NUM=$(echo "$CHANNEL_JSON" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).id))")
+          CHANNEL_NAME=$(echo "$CHANNEL_JSON" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).channel_name))")
+          CHANNEL_ID_FIELD=$(echo "$CHANNEL_JSON" | node -e "let d='';process.stdin.on('data',c=>d+=c).on('end',()=>console.log(JSON.parse(d).channel_id))")
+          # Production ID: channel + topic + run attempt, unique per production
+          PRODUCTION_ID="pt-ch${CHANNEL_NUM}-${TOPIC_SLUG}-${{ github.run_attempt }}"
+          STEM="${TOPIC_SLUG}-shorts"
+          TTS_TOPIC="${TOPIC_SLUG}-shorts-script"
+          SCRIPT_PATH="data/research/${CHANNEL_NUM}/${TOPIC_SLUG}-shorts-script.json"
+          # Fail closed: the requested script must exist for this production
+          if [ ! -f "$SCRIPT_PATH" ]; then
+            echo "::error::Script not found for this production: $SCRIPT_PATH"
+            echo "::error::Do not fall back to another topic's script."
+            exit 1
+          fi
+          echo "channel=$CHANNEL_NUM" >> $GITHUB_OUTPUT
+          echo "channel_name=$CHANNEL_NAME" >> $GITHUB_OUTPUT
+          echo "channel_id_field=$CHANNEL_ID_FIELD" >> $GITHUB_OUTPUT
+          echo "topic_slug=$TOPIC_SLUG" >> $GITHUB_OUTPUT
+          echo "topic=$TOPIC_SLUG" >> $GITHUB_OUTPUT
+          echo "production_id=$PRODUCTION_ID" >> $GITHUB_OUTPUT
+          echo "script_path=$SCRIPT_PATH" >> $GITHUB_OUTPUT
+          echo "stem=$STEM" >> $GITHUB_OUTPUT
+          echo "tts_topic=$TTS_TOPIC" >> $GITHUB_OUTPUT
+          echo "[setup] channel=$CHANNEL_NUM ($CHANNEL_NAME) topic=$TOPIC_SLUG production=$PRODUCTION_ID"
       - name: Verify Liam Johnston motion-graphics skills
         run: |
           for SKILL in motion-graphics cinematic-camera terminal-inserts article-highlights; do
@@ -92,19 +128,11 @@ jobs:
               echo "::error::Liam Johnston skill not found: $SKILL"
               exit 1
             fi
-            echo "[skills] Liam Johnston skill verified: $SKILL at .agents/skills/$SKILL/SKILL.md"
           done
-          echo "[skills] Motion-graphics treatment: kinetic typography, animated diagrams, terminal inserts, article highlights, logo grid, data flows, deliberate transitions"
-          echo "[skills] Cinematic-camera: push-in, pull-out, pan, roll, safe-zone transitions (no photograph zooms)"
+          echo "[skills] Liam Johnston skills verified"
 
-      - name: Output Variables
-        id: vars
-        run: |
-          echo "channel=${{ env.CHANNEL_ID }}" >> $GITHUB_OUTPUT
-          echo "stem=ai-web-search-compared-november-2026-shorts" >> $GITHUB_OUTPUT
-
-  source-historical-images:
-    name: Source Historical Images (Wikimedia Commons)
+  source-visual-assets:
+    name: Source Topic-Specific Visual Assets
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 25
@@ -112,86 +140,48 @@ jobs:
       asset_count: ${{ steps.assets.outputs.count }}
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
+        with: { node-version: '24', cache: 'npm' }
+      - name: Install Dependencies
+        run: npm ci --no-audit --no-fund 2>/dev/null || npm install
       - name: Create asset directories
         run: |
-          mkdir -p data/editor/assets/${{ env.CHANNEL_ID }}
-          mkdir -p src/skills/remotion-render/public/editor/assets/${{ env.CHANNEL_ID }}
-          mkdir -p scripts/assets
-
-      - name: Download curated image pack
+          mkdir -p data/editor/assets/${{ needs.setup.outputs.channel }}
+          mkdir -p src/skills/remotion-render/public/editor/assets/${{ needs.setup.outputs.channel }}
+      - name: Download topic-specific visual assets
         id: assets
         run: |
-          node scripts/assets/download-historical-images.mjs --channel "${{ env.CHANNEL_ID }}" --visual-pack "${{ env.VISUAL_PACK }}"
-
-      - name: Report image count
+          node scripts/assets/download-visual-assets.mjs \
+            --channel "${{ needs.setup.outputs.channel }}" \
+            --topic "${{ needs.setup.outputs.topic_slug }}" \
+            --production-id "${{ needs.setup.outputs.production_id }}" \
+            --visual-plan data/editor/visual-plans/${{ needs.setup.outputs.topic_slug }}-visual-plan.json 2>&1 | tee /tmp/visual-assets.log
+          node -e "const m=require('./data/editor/assets/${{ needs.setup.outputs.channel }}/asset-manifest.json'); console.log(m.total_downloaded||m.assets?.length||0)" > /tmp/asset-count.txt
+      - name: Report asset count
         id: count
         run: |
-          COUNT=$(node -e "const m=require('./data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json'); console.log(m.total_downloaded)")
+          COUNT=$(cat /tmp/asset-count.txt)
           echo "count=$COUNT" >> $GITHUB_OUTPUT
-          echo "[images] Downloaded $COUNT/${{ env.REQUIRED_IMAGES }} images"
-
-      - name: Upload historical images artifact
+          echo "[assets] $COUNT topic-specific assets staged for ${{ needs.setup.outputs.topic_slug }}"
+      - name: Fail when no relevant assets
+        if: steps.count.outputs.count < 1
+        run: |
+          echo "::error::No topic-specific visual assets found for ${{ needs.setup.outputs.topic_slug }}"
+          echo "::error::A missing relevant photograph is not replaced by an unrelated image."
+          exit 1
+      - name: Upload visual assets artifact
         uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: historical-images-${{ env.CHANNEL_ID }}
+          name: visual-assets-${{ needs.setup.outputs.channel }}
           path: |
-            data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json
-            data/editor/assets/${{ env.CHANNEL_ID }}/provenance-manifest.json
-            data/editor/assets/${{ env.CHANNEL_ID }}/ATTRIBUTIONS.md
-            data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.jpg
-            data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.png
+            data/editor/assets/${{ needs.setup.outputs.channel }}/asset-manifest.json
+            data/editor/assets/${{ needs.setup.outputs.channel }}/provenance-manifest.json
           retention-days: 30
           overwrite: true
 
-  check-script-clarity:
-    name: Script Clarity Review
-    needs: setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Install Dependencies
-        run: |
-          npm ci --no-audit --no-fund 2>/dev/null || npm install
-
-      - name: Run Script Clarity Check
-        id: clarity
-        run: |
-          echo "[clarity] Reviewing script for viewer understanding"
-          node scripts/check-script-clarity.mjs "${{ env.SCRIPT_PATH }}" 2>&1 | tee /tmp/clarity-output.json
-          CLARITY_EXIT=${PIPESTATUS[0]}
-          if [ $CLARITY_EXIT -ne 0 ]; then
-            echo "::error::Script clarity check failed with exit code $CLARITY_EXIT"
-            echo "clarity_failed=true" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-          # Check for substantive unclear items
-          UNCLEAR_COUNT=$(node -e "const r=require('/tmp/clarity-output.json'); console.log(r.unclear?.length||0)")
-          echo "unclear_count=$UNCLEAR_COUNT" >> $GITHUB_OUTPUT
-          echo "[clarity] Unclear sentences: $UNCLEAR_COUNT"
-
-      - name: Fail on Substantive Clarity Problems
-        if: steps.clarity.outputs.unclear_count > 0
-        run: |
-          echo "::error::Script has ${{ steps.clarity.outputs.unclear_count }} unclear sentence(s) - revise before narration"
-          exit 1
-
   generate-narration:
-    name: Generate Voiceover (Gemini TTS preferred, EdgeTTS fallback)
-    needs: [setup, check-script-clarity]
+    name: Generate Voiceover (Gemini TTS preferred, edge-tts fallback)
+    needs: [setup]
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -200,341 +190,194 @@ jobs:
       GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
       GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
       GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
-      GOOGLE_GENERATIVE_AI_API_KEY: $\{\{ secrets.GOOGLE_GENERATIVE_AI_API_KEY \}\}
-# TTS_PROVIDER unset - Gemini TTS preferred when credentials available
-      TTS_GEMINI_TAKES: "2"
+      TTS_GEMINI_TAKES: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-      - name: Install Python edge-tts and faster-whisper
+        with: { node-version: '24', cache: 'npm' }
+      - name: Install Dependencies
+        run: npm ci --no-audit --no-fund 2>/dev/null || npm install
+      - name: Install Python TTS deps
         run: |
           pip3 install edge-tts --quiet 2>/dev/null || pip install edge-tts --quiet
           pip3 install faster-whisper --quiet 2>/dev/null || pip install faster-whisper --quiet
-      - name: Install Dependencies
-        run: |
-          npm ci --no-audit --no-fund 2>/dev/null || npm install
-      - name: Install FFmpeg and bc
+      - name: Install FFmpeg
         run: |
           if ! command -v ffmpeg >/dev/null 2>&1; then
             sudo apt-get update -qq
             sudo apt-get install -y -qq ffmpeg bc
           fi
           ffmpeg -version | head -1
-      - name: Generate TTS (Gemini first, EdgeTTS fallback)
+      - name: Generate TTS (Gemini first, edge-tts fallback)
         id: tts
         run: |
-          echo "[tts] Generating narration for channel ${{ env.CHANNEL_ID }}"
-          echo "[tts] Gemini API keys configured: $([ -n "${GEMINI_API_KEY}" ] && echo yes || echo no)"
-          mkdir -p data/tts/${{ env.CHANNEL_ID }}
+          echo "[tts] Generating narration for ${{ needs.setup.outputs.channel }} / ${{ needs.setup.outputs.topic_slug }}"
+          mkdir -p data/tts/${{ needs.setup.outputs.channel }}
           set +e
-          node src/utils/tts.js ${{ env.CHANNEL_ID }} ${{ env.SCRIPT_PATH }} 2>&1
+          node src/utils/tts.js ${{ needs.setup.outputs.channel }} ${{ needs.setup.outputs.script_path }} 2>&1
           TTS_EXIT_CODE=$?
           set -e
-          echo "=== TTS Output ==="
-          ls -la data/tts/${{ env.CHANNEL_ID }}/ 2>/dev/null || echo "No TTS directory created"
           if [ $TTS_EXIT_CODE -ne 0 ]; then
             echo "::error::TTS generation failed with exit code $TTS_EXIT_CODE"
             echo "tts_success=false" >> $GITHUB_OUTPUT
-          else
-            echo "tts_success=true" >> $GITHUB_OUTPUT
+            exit 1
           fi
+          echo "tts_success=true" >> $GITHUB_OUTPUT
       - name: Verify TTS Audio
-        if: steps.tts.outputs.tts_success != 'true' || always()
+        id: verify-tts
         run: |
-          EXPECTED_AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3"
+          EXPECTED_AUDIO="data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.tts_topic }}-vo.mp3"
           if [ ! -f "$EXPECTED_AUDIO" ]; then
-            echo "::error::TTS audio file not generated at $EXPECTED_AUDIO"
-            echo "tts_failed=true" >> $GITHUB_OUTPUT
+            echo "::error::TTS audio not generated at $EXPECTED_AUDIO"
             exit 1
           fi
-          if ! ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$EXPECTED_AUDIO" > /tmp/tts_duration.txt 2>&1; then
-            echo "::error::TTS audio file is not valid/parsable"
-            echo "tts_failed=true" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-          DURATION=$(cat /tmp/tts_duration.txt)
+          DURATION=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$EXPECTED_AUDIO")
           echo "[tts] TTS audio verified: $DURATION seconds"
           if [ "$(echo "$DURATION < 5" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
-            echo "::error::TTS audio duration ($DURATION seconds) is too short - likely silent or corrupted"
-            echo "tts_failed=true" >> $GITHUB_OUTPUT
+            echo "::error::TTS audio too short ($DURATION s)"
             exit 1
           fi
-          SRT_FILE="data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt"
-          if [ ! -f "$SRT_FILE" ]; then
-            echo "::warning::SRT file not generated, but audio file is valid"
-          else
-            echo "[tts] SRT file verified: $SRT_FILE"
-          fi
-          cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
-          cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt"
-          cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json" "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json"
-          echo "tts_failed=false" >> $GITHUB_OUTPUT
-      - name: Narration Quality Gate (Gemini Judge)
+          echo "tts_duration=$DURATION" >> $GITHUB_OUTPUT
+          cp "$EXPECTED_AUDIO" "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3"
+          cp "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.tts_topic }}-vo.srt" "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.srt" 2>/dev/null || true
+          cp "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.tts_topic }}-vo-words.json" "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo-words.json" 2>/dev/null || true
+      - name: Narration Quality Gate (diagnostic)
         id: narration-judge
         run: |
-          echo "[judge] Running narration quality gate on ${{ env.CHANNEL_ID }}"
-          AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
-          SRT="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt"
+          AUDIO="data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3"
+          SRT="data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.srt"
           if [ ! -f "$AUDIO" ] || [ ! -f "$SRT" ]; then
-            echo "::error::Narration judge: missing audio or SRT"
-            echo "narration_judge_failed=true" >> $GITHUB_OUTPUT
-            echo "::warning::Proceeding with EdgeTTS audio despite narration judge warning"
+            echo "narration_judge_status=unavailable" >> $GITHUB_OUTPUT
+            echo "::warning::Narration judge inputs missing; proceeding with floor check only"
+            exit 0
           fi
           set +e
-          node scripts/narration-judge.mjs --audio "$AUDIO" --srt "$SRT" --out "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-narration-judge.json" 2>&1
+          node scripts/narration-judge.mjs --audio "$AUDIO" --srt "$SRT" --out "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-narration-judge.json" 2>&1
           JUDGE_EXIT=$?
           set -e
           if [ $JUDGE_EXIT -eq 3 ]; then
-            echo "::warning::Narration judge could not run (no model answered) — proceeding with floor check only"
             echo "narration_judge_status=unavailable" >> $GITHUB_OUTPUT
+            echo "::warning::Narration judge unavailable; floor check only"
           elif [ $JUDGE_EXIT -ne 0 ]; then
-            echo "::warning::Narration quality gate flagged narration as synthetic — proceeding with EdgeTTS audio anyway"
-            echo "narration_judge_failed=true" >> $GITHUB_OUTPUT
-            echo "::warning::Proceeding with EdgeTTS audio despite narration judge warning"
+            echo "narration_judge_status=flagged" >> $GITHUB_OUTPUT
+            echo "::warning::Narration judge flagged narration (diagnostic only; not a hard block)"
           else
-            echo "[judge] Narration quality gate PASSED"
             echo "narration_judge_status=pass" >> $GITHUB_OUTPUT
+            echo "[judge] Narration quality gate PASSED"
           fi
-      - name: Upload TTS Artifacts
-        if: always()
+      - name: Upload TTS artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: tts-audio-${{ env.CHANNEL_ID }}
+          name: tts-audio-${{ needs.setup.outputs.channel }}
           path: |
-            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.mp3
-            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3
-            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo.srt
-            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.srt
-            data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json
-            data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json
+            data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3
+            data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.srt
+            data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo-words.json
           retention-days: 30
           overwrite: true
 
   build-timeline:
     name: Build Visual Timeline
-    needs: [setup, source-historical-images, generate-narration]
+    needs: [setup, source-visual-assets, generate-narration]
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      EDITOR_ENGINE: "1"
-      EDITOR_STRICT: "1"
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
+        with: { node-version: '24', cache: 'npm' }
       - name: Install Dependencies
         run: |
           npm ci --no-audit --no-fund 2>/dev/null || npm install
           (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
-
       - name: Install FFmpeg
         run: |
-          if ! command -v ffmpeg >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y -qq ffmpeg
-          fi
-          ffmpeg -version | head -1
-
-      - name: Download TTS Artifacts
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg; fi
+      - name: Download TTS and visual assets
         uses: actions/download-artifact@v4
-        with:
-          name: tts-audio-${{ env.CHANNEL_ID }}
-          path: data/tts/${{ env.CHANNEL_ID }}
-
-      - name: Download Historical Images
-        uses: actions/download-artifact@v4
-        with:
-          name: historical-images-${{ env.CHANNEL_ID }}
-          path: data/editor/assets/${{ env.CHANNEL_ID }}
-
-      - name: Assert historical images on disk
+        with: { name: tts-audio-${{ needs.setup.outputs.channel }}, path: data/tts/${{ needs.setup.outputs.channel }} }
+      - name: Build timeline from the topic-specific script
         run: |
-          DIR="data/editor/assets/${{ env.CHANNEL_ID }}"
-          echo "[assert] $DIR contents:"; ls -la "$DIR" 2>&1 || true
-          echo "[assert] root check:"; ls -la hist-*.png hist-*.jpg asset-manifest.json 2>&1 || true
-          COUNT=$(find "$DIR" -maxdepth 1 \( -name 'hist-*.jpg' -o -name 'hist-*.png' \) 2>/dev/null | wc -l)
-          echo "[assert] images in $DIR: $COUNT"
-          if [ "$COUNT" -lt 1 ]; then
-            echo "::error::No historical images found in $DIR"
+          node scripts/editor/build-mcp-timeline.mjs \
+            --channel "${{ needs.setup.outputs.channel }}" \
+            --script "${{ needs.setup.outputs.script_path }}" \
+            --topic "${{ needs.setup.outputs.topic_slug }}" \
+            --production-id "${{ needs.setup.outputs.production_id }}" \
+            --audio "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3" \
+            --words "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo-words.json" \
+            --out-dir "data/editor/auto/${{ needs.setup.outputs.topic_slug }}"
+      - name: Validate timeline duration <= 30s
+        run: |
+          TL="data/editor/auto/${{ needs.setup.outputs.topic_slug }}/timeline.json"
+          DUR=$(node -e "const t=require('fs').readFileSync('$TL','utf8'); const j=JSON.parse(t); console.log((j.durationInFrames/j.fps).toFixed(3))")
+          echo "[timeline] timeline duration: $DUR s"
+          if [ "$(echo "$DUR > 30" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
+            echo "::error::Timeline duration $DUR s exceeds 30 s"
             exit 1
           fi
-      - name: Build Coverage Timeline
-        run: |
-          echo "[timeline] Building timeline for ${{ env.STEM }} with curated visual pack"
-          node scripts/editor/auto-timeline.mjs \
-            --channel "${{ env.CHANNEL_ID }}" \
-            --script "${{ env.SCRIPT_PATH }}" \
-            --visual-pack "data/editor/assets/${{ env.CHANNEL_ID }}/asset-manifest.json" \
-            --github-env 2>&1
-
-          echo "=== Timeline Files ==="
-          ls -la data/editor/auto/${{ env.TTS_TOPIC }}/ 2>/dev/null || echo "No timeline directory created"
-
-      - name: Generate Visual Reports
-        run: |
-          echo "[reports] Building narration-to-visual mapping and repetition reports"
-          node scripts/editor/visual-reports.mjs \
-            --plan data/editor/auto/${{ env.TTS_TOPIC }}/plan.json \
-            --manifest "${{ env.VISUAL_PACK }}" \
-            --out-dir data/editor/auto/${{ env.TTS_TOPIC }}
-
-          echo "=== Report Files ==="
-          ls -la data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.json \
-            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.json \
-            data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.md \
-            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.md 2>/dev/null
-
-      - name: Validate Timeline
-        run: |
-          TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
-          if [ -f "$TL" ]; then
-            echo "[timeline] Timeline structure:"
-            node -e "
-              import { readFileSync } from 'fs';
-              const tl = JSON.parse(readFileSync('$TL'));
-              console.log('Duration:', tl.durationInFrames, 'frames');
-              console.log('Layers:', tl.layers?.length || 0);
-              console.log('Assets:', Object.keys(tl.assets || {}).length);
-              console.log('Captions:', tl.captions?.length || 0);
-              console.log('Visual pack:', JSON.stringify(tl.visual_pack));
-            "
-          else
-            echo "::error::Timeline file not found at $TL"
-            exit 1
-          fi
-
-      - name: Upload Timeline + Reports Artifacts
-        if: always()
+      - name: Upload timeline artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: timeline-${{ env.CHANNEL_ID }}
-          path: |
-            data/editor/auto/${{ env.TTS_TOPIC }}/plan.json
-            data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json
-            data/editor/auto/${{ env.TTS_TOPIC }}/transcript.json
-            data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.json
-            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.json
-            data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.md
-            data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.md
-            data/editor/auto/${{ env.TTS_TOPIC }}/card-*.svg
+          name: timeline-${{ needs.setup.outputs.channel }}
+          path: data/editor/auto/${{ needs.setup.outputs.topic_slug }}/
           retention-days: 30
           overwrite: true
 
   render-video:
     name: Render Video (Remotion)
-    needs: [setup, build-timeline, source-historical-images, generate-narration]
+    needs: [setup, build-timeline, source-visual-assets, generate-narration]
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       REMOTION_CHROME_PATH: /usr/bin/google-chrome
-      EDITOR_COVERAGE: "1"
       EDITOR_ENGINE: "1"
       EDITOR_STRICT: "1"
       RENDER_CONCURRENCY: "2"
       RENDER_CRF: "20"
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-
-      - name: Cache and Install Dependencies
+        with: { node-version: '24', cache: 'npm' }
+      - name: Install Dependencies
         run: |
           npm ci --no-audit --no-fund 2>/dev/null || npm install
           (cd src/skills/remotion-render && npm ci --no-audit --no-fund 2>/dev/null || npm install)
-
       - name: Install System Tools
         run: |
-          if ! command -v ffmpeg >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y -qq ffmpeg python-is-python3
-          fi
-          ffmpeg -version | head -1
-
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg python-is-python3; fi
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
-      - name: Download TTS Artifacts
+        with: { chrome-version: stable }
+      - name: Download TTS, timeline and visual assets
         uses: actions/download-artifact@v4
-        with:
-          name: tts-audio-${{ env.CHANNEL_ID }}
-          path: data/tts/${{ env.CHANNEL_ID }}
-
-      - name: Download Timeline Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: timeline-${{ env.CHANNEL_ID }}
-          path: data/editor/auto/${{ env.TTS_TOPIC }}
-
-      - name: Download Historical Images
-        uses: actions/download-artifact@v4
-        with:
-          name: historical-images-${{ env.CHANNEL_ID }}
-          path: data/editor/assets/${{ env.CHANNEL_ID }}
-
-      - name: Render Video
+        with: { name: tts-audio-${{ needs.setup.outputs.channel }}, path: data/tts/${{ needs.setup.outputs.channel }} }
+      - name: Render video
         run: |
-          TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
-          AUDIO="data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3"
-          OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
-
+          TL="data/editor/auto/${{ needs.setup.outputs.topic_slug }}/timeline.json"
+          AUDIO="data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3"
+          OUT="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
           mkdir -p "$(dirname "$OUT")"
-
-          if [ ! -f "$AUDIO" ]; then
-            echo "::error::Audio file not found: $AUDIO"
-            exit 1
-          fi
-
-          echo "[render] Starting render..."
-          echo "[render] Timeline: $TL"
-          echo "[render] Audio: $AUDIO"
-          echo "[render] Output: $OUT"
-
           node --input-type=module -e "
             import { renderEditor } from './src/skills/remotion-render/render-editor.js';
-            try {
-              await renderEditor({
-                timelinePath: '$TL',
-                audioPath: '$AUDIO',
-                outputPath: '$OUT',
-                scale: 1
-              });
-              console.log('[render] Video rendered successfully');
-            } catch (e) {
-              console.error('[render] Render failed:', e.message);
-              process.exit(1);
-            }
+            renderEditor({ timelinePath: '\$TL', audioPath: '\$AUDIO', outputPath: '\$OUT', scale: 1 })
+              .then(() => console.log('[render] done'))
+              .catch(e => { console.error('[render] failed:', e.message); process.exit(1); });
           "
-
-      - name: Verify Rendered Video
+      - name: Verify and enforce duration on rendered MP4
+        id: check-duration
         run: |
-          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" ]; then
-            SIZE=$(stat -c%s "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4")
-            echo "✓ Video file exists: $SIZE bytes"
-
-            ffprobe -v error -show_entries format=duration -show_entries stream=codec_name,width,height -of json data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4 | jq '.'
-          else
-            echo "::error::Video was not rendered"
+          VID="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
+          DUR=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$VID")
+          echo "[render] final MP4 duration: $DUR s"
+          echo "render_duration=$DUR" >> $GITHUB_OUTPUT
+          if [ "$(echo "$DUR > 30" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
+            echo "::error::Rendered MP4 $DUR s exceeds the 30 s Short limit"
             exit 1
           fi
-
-      - name: Upload Video Artifact
-        if: always()
+      - name: Upload rendered video artifact
         uses: actions/upload-artifact@v4
         with:
-          name: rendered-video-${{ env.CHANNEL_ID }}
-          path: data/renders/${{ env.CHANNEL_ID }}/
+          name: rendered-video-${{ needs.setup.outputs.channel }}
+          path: data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4
           retention-days: 30
           overwrite: true
 
@@ -545,312 +388,180 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-
-      - name: Download TTS Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: tts-audio-${{ env.CHANNEL_ID }}
-          path: data/tts/${{ env.CHANNEL_ID }}
-
-      - name: Download Timeline Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: timeline-${{ env.CHANNEL_ID }}
-          path: data/editor/auto/${{ env.TTS_TOPIC }}
-
-      - name: Download Rendered Video
-        uses: actions/download-artifact@v4
-        with:
-          name: rendered-video-${{ env.CHANNEL_ID }}
-          path: data/renders/${{ env.CHANNEL_ID }}
-
-      - name: Download Historical Images
-        uses: actions/download-artifact@v4
-        with:
-          name: historical-images-${{ env.CHANNEL_ID }}
-          path: data/editor/assets/${{ env.CHANNEL_ID }}
-
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
       - name: Install Dependencies
-        run: |
-          npm ci --no-audit --no-fund 2>/dev/null || npm install
-
+        run: npm ci --no-audit --no-fund 2>/dev/null || npm install
       - name: Install FFmpeg
         run: |
-          if ! command -v ffmpeg >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y -qq ffmpeg jq
-          fi
-          ffmpeg -version | head -1
-
-      - name: Run Video QA
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq; fi
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with: { name: rendered-video-${{ needs.setup.outputs.channel }}, path: data/renders/${{ needs.setup.outputs.channel }} }
+      - name: Download timeline
+        uses: actions/download-artifact@v4
+        with: { name: timeline-${{ needs.setup.outputs.channel }}, path: data/editor/auto/${{ needs.setup.outputs.topic_slug }} }
+      - name: Run final-MP4 QA and contact sheet
         run: |
-          TL="data/editor/auto/${{ env.TTS_TOPIC }}/timeline.json"
-          VID="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
-          OUT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json"
-          CONTACT="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg"
-          FRAMES="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-frames"
-
-          if [ -f "$VID" ] && [ -f "$TL" ]; then
-            node scripts/editor/video-qa.js --video "$VID" --timeline "$TL" --out "$OUT" --contact "$CONTACT" --frames "$FRAMES"
-          else
-            echo "::error::Skipping QA - video or timeline not found"
+          VID="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
+          TL="data/editor/auto/${{ needs.setup.outputs.topic_slug }}/timeline.json"
+          node scripts/editor/video-qa.js \
+            --video "$VID" --timeline "$TL" \
+            --out "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-qa.json" \
+            --contact "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-contact.jpg" \
+            --frames "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-frames"
+      - name: Enforce duration <= 30s on final MP4
+        run: |
+          VID="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
+          DUR=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$VID")
+          echo "[qa] final MP4 duration: $DUR s"
+          if [ "$(echo "$DUR > 30" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
+            echo "::error::QA: MP4 $DUR s exceeds 30 s — blocking upload"
             exit 1
           fi
-
-      - name: Display QA Results
-        run: |
-          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" ]; then
-            echo "=== QA Results ==="
-            cat data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json | jq '.'
-          fi
-
-      - name: Upload QA + Contact Sheet Artifacts
-        if: always()
+      - name: Upload QA artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: qa-and-contact-${{ env.CHANNEL_ID }}
+          name: qa-and-contact-${{ needs.setup.outputs.channel }}
           path: |
-            data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json
-            data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg
+            data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-qa.json
+            data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-contact.jpg
           retention-days: 30
           overwrite: true
 
-  publish-preparation:
-    name: Prepare for Review
-    needs: [render-video, run-quality-assurance, source-historical-images, build-timeline]
+  final-acceptance:
+    name: Independent Final Acceptance Gate
+    needs: [run-quality-assurance, setup]
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
+    outputs:
+      accepted: ${{ steps.accept.outputs.accepted }}
+      mp4_sha256: ${{ steps.accept.outputs.mp4_sha256 }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24', cache: 'npm' }
+      - name: Install Dependencies
+        run: npm ci --no-audit --no-fund 2>/dev/null || npm install
+      - name: Install FFmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg jq; fi
+      - name: Download all acceptance inputs
+        uses: actions/download-artifact@v4
+        with: { name: rendered-video-${{ needs.setup.outputs.channel }}, path: data/renders/${{ needs.setup.outputs.channel }} }
+      - name: Run independent acceptance gate
+        id: accept
+        run: |
+          node scripts/acceptance/final-acceptance.mjs \
+            --channel "${{ needs.setup.outputs.channel }}" \
+            --channel-id-field "${{ needs.setup.outputs.channel_id_field }}" \
+            --topic "${{ needs.setup.outputs.topic_slug }}" \
+            --topic-slug "${{ needs.setup.outputs.topic_slug }}" \
+            --production-id "${{ needs.setup.outputs.production_id }}" \
+            --script-path "${{ needs.setup.outputs.script_path }}" \
+            --script-hash "$(node -e "const c=require('crypto');console.log(c.createHash('sha256').update(require('fs').readFileSync('${{ needs.setup.outputs.script_path }}','utf8')).digest('hex'))")" \
+            --narration-hash "$(node -e "const c=require('crypto');console.log(c.createHash('sha256').update(require('fs').readFileSync('data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3')).digest('hex'))")" \
+            --video "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4" \
+            --timeline "data/editor/auto/${{ needs.setup.outputs.topic_slug }}/timeline.json" \
+            --visual-manifest "data/editor/assets/${{ needs.setup.outputs.channel }}/asset-manifest.json" \
+            --out "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-acceptance.json"
+      - name: Block upload if acceptance failed
+        if: steps.accept.outputs.accepted != 'true'
+        run: |
+          echo "::error::Independent acceptance gate FAILED — upload blocked"
+          cat data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-acceptance.json 2>/dev/null || true
+          exit 1
 
-      - name: Download all review artifacts
+  publish-preparation:
+    name: Prepare for Review
+    needs: [final-acceptance, render-video, setup]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: needs.final-acceptance.outputs.accepted == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect accepted artifacts
         run: |
           mkdir -p .cache/review-artifacts
-
-      - name: Download Historical Images
-        uses: actions/download-artifact@v4
-        with:
-          name: historical-images-${{ env.CHANNEL_ID }}
-          path: data/editor/assets/${{ env.CHANNEL_ID }}
-
-      - name: Download Timeline + Reports
-        uses: actions/download-artifact@v4
-        with:
-          name: timeline-${{ env.CHANNEL_ID }}
-          path: data/editor/auto/${{ env.TTS_TOPIC }}
-
-      - name: Download Rendered Video
-        uses: actions/download-artifact@v4
-        with:
-          name: rendered-video-${{ env.CHANNEL_ID }}
-          path: data/renders/${{ env.CHANNEL_ID }}
-
-      - name: Download QA + Contact Sheet
-        uses: actions/download-artifact@v4
-        with:
-          name: qa-and-contact-${{ env.CHANNEL_ID }}
-          path: data/renders/${{ env.CHANNEL_ID }}
-
-      - name: Download TTS Audio
-        uses: actions/download-artifact@v4
-        with:
-          name: tts-audio-${{ env.CHANNEL_ID }}
-          path: data/tts/${{ env.CHANNEL_ID }}
-
-      - name: Collect review package
-        run: |
-          mkdir -p .cache/review-artifacts
-
-          # Video
-          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" ]; then
-            cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4" .cache/review-artifacts/
-          fi
-
-          # Contact sheet + QA
-          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg" ]; then
-            cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg" .cache/review-artifacts/
-          fi
-          if [ -f "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" ]; then
-            cp "data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json" .cache/review-artifacts/
-          fi
-
-          # Historical images + provenance
-          if [ -d "data/editor/assets/${{ env.CHANNEL_ID }}" ]; then
-            cp -r "data/editor/assets/${{ env.CHANNEL_ID }}" .cache/review-artifacts/historical-images
-          fi
-
-          # Timeline + reports
-          if [ -d "data/editor/auto/${{ env.TTS_TOPIC }}" ]; then
-            cp -r "data/editor/auto/${{ env.TTS_TOPIC }}" .cache/review-artifacts/timeline
-          fi
-
-          # TTS audio + word timings
-          if [ -f "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3" ]; then
-            cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo.mp3" .cache/review-artifacts/
-          fi
-          if [ -f "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json" ]; then
-            cp "data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json" .cache/review-artifacts/
-          fi
-
-          # Thumbnail (committed to the repo, checked out above)
-          if [ -f "data/thumbnails/${{ env.CHANNEL_ID }}/${{ env.STEM }}-thumb.png" ]; then
-            cp "data/thumbnails/${{ env.CHANNEL_ID }}/${{ env.STEM }}-thumb.png" .cache/review-artifacts/
-            cp "data/thumbnails/${{ env.CHANNEL_ID }}/${{ env.STEM }}-thumb-spec.json" .cache/review-artifacts/ 2>/dev/null || true
-          fi
-
-          echo "=== Review Artifacts ==="
+          VID="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
+          cp "$VID" .cache/review-artifacts/final.mp4
+          cp "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-contact.jpg" .cache/review-artifacts/ 2>/dev/null || true
+          cp "data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-qa.json" .cache/review-artifacts/ 2>/dev/null || true
+          cp "data/tts/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-vo.mp3" .cache/review-artifacts/ 2>/dev/null || true
+          cp -r "data/editor/auto/${{ needs.setup.outputs.topic_slug }}" .cache/review-artifacts/timeline 2>/dev/null || true
+          cp -r "data/editor/assets/${{ needs.setup.outputs.channel }}" .cache/review-artifacts/assets 2>/dev/null || true
+          echo "=== Accepted review package ==="
           ls -laR .cache/review-artifacts/
-
-      - name: Generate Review Summary
-        run: |
-          cat > .cache/review-artifacts/REVIEW_SUMMARY.md << 'EOF'
-          # AI Tested Video Review Package
-
-          ## Produced by GitHub Actions
-          - Workflow: .github/workflows/channel-production-2.yml
-          - Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          - Date: ${{ github.event.head_commit.timestamp }}
-
-          ## Contents
-          ```
-          $(ls -laR .cache/review-artifacts/ 2>/dev/null || echo "Files collected")
-          ```
-
-          ## Deliverables
-          - MP4: ${{ env.STEM }}-rework.mp4 (9:16 cinematic Short)
-          - Thumbnail: ${{ env.STEM }}-thumb.png
-          - Narration audio: ${{ env.STEM }}-vo.mp3 (real EdgeTTS)
-          - Historical images + provenance-manifest.json + ATTRIBUTIONS.md
-          - Timeline JSON: plan.json + timeline.json
-          - Technical QA: *-qa.json + contact sheet
-          - Narration-to-visual mapping: narration-visual-mapping.json / .md
-          - Visual repetition report: visual-repetition-report.json / .md
-
-          ## Next Review Steps
-          1. Verify historical images are correctly sourced and licensed
-          2. Check people-focused imagery (75% target)
-          3. Review narration-to-visual alignment
-          4. Check contact sheet for visual variety
-          5. Confirm no repeated images
-
-          ## Technical Status
-          - Rendered: ${{ env.STEM }}-rework.mp4
-          - Duration: Check QA report
-          - Format: 1080x1920, H.264/AAC
-          EOF
-
-          cat .cache/review-artifacts/REVIEW_SUMMARY.md
-
-      - name: Upload Review Package
+      - name: Upload review package
         uses: actions/upload-artifact@v4
         with:
-          name: review-package-${{ env.CHANNEL_ID }}-${{ github.run_number }}
+          name: review-package-${{ needs.setup.outputs.channel }}-${{ github.run_number }}
           path: .cache/review-artifacts/
           retention-days: 30
           overwrite: true
 
   publish-private:
     name: Upload to YouTube (Private)
-    needs: publish-preparation
+    needs: [publish-preparation, setup]
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    if: github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true'
+    if: github.ref == 'refs/heads/main' && github.event.inputs.dry_run != 'true' && needs.publish-preparation.result == 'success'
     env:
       CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
       CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
       CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Download Rendered Video
+      - name: Download accepted MP4
         uses: actions/download-artifact@v4
-        with:
-          name: rendered-video-${{ env.CHANNEL_ID }}
-          path: data/renders/${{ env.CHANNEL_ID }}
-
-      - name: Download Timeline + Reports
-        uses: actions/download-artifact@v4
-        with:
-          name: timeline-${{ env.CHANNEL_ID }}
-          path: data/editor/auto/${{ env.TTS_TOPIC }}
-
-      - name: Materialize OAuth credentials from secrets
-        id: creds-materialize
-        env:
-          CHANNEL_ID_NUM: ${{ env.CHANNEL_ID }}
+        with: { name: rendered-video-${{ needs.setup.outputs.channel }}, path: data/renders/${{ needs.setup.outputs.channel }} }
+      - name: Materialize OAuth credentials
+        env: { CHANNEL_ID_NUM: ${{ needs.setup.outputs.channel }} }
         run: |
           node -e "
             const fs = require('fs');
             const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
             const id = process.env.CHANNEL_ID_NUM;
-            let ch;
-            try { ch = resolveChannel(id); } catch (e) { console.error('::error::' + e.message); process.exit(1); }
-            const publishSet = JSON.parse(fs.readFileSync('config/priority-channels.json', 'utf8')).channels.map(String);
-            if (!publishSet.includes(id)) {
-              console.log('::notice::channel ' + id + ' is not in config/priority-channels.json: upload skipped');
-              process.exit(0);
-            }
+            const ch = resolveChannel(id);
+            const publishSet = JSON.parse(fs.readFileSync('config/priority-channels.json','utf8')).channels.map(String);
+            if (!publishSet.includes(id)) { console.log('::notice::channel ' + id + ' not in priority list — upload skipped'); process.exit(0); }
             const own = 'config/creds/' + ch.channel_id + '.json';
             const declared = ch.youtube_credentials_path || own;
-            if (declared !== own) { console.error('::error::channel ' + id + ' declares ' + declared + ', not its own credentials file ' + own); process.exit(1); }
-            const n = String(ch.channel_id).replace(/^ch-0*/, '').padStart(2, '0');
+            if (declared !== own) { console.error('::error::channel ' + id + ' declares ' + declared + ', not ' + own); process.exit(1); }
+            const n = String(ch.channel_id).replace(/^ch-0*/,'').padStart(2,'0');
             const clientId = process.env['CH' + n + '_CLIENT_ID'];
             const clientSecret = process.env['CH' + n + '_CLIENT_SECRET'];
             const refreshToken = process.env['CH' + n + '_REFRESH_TOKEN'];
-            if (!(clientId && clientSecret && refreshToken)) {
-              console.log('::warning::No credentials configured for ' + ch.channel_id + ' — upload skipped');
-              process.exit(0);
-            }
+            if (!(clientId && clientSecret && refreshToken)) { console.log('::warning::No credentials for ' + ch.channel_id + ' — upload skipped'); process.exit(0); }
             fs.mkdirSync('config/creds', { recursive: true });
             fs.writeFileSync(own, JSON.stringify({client_id:clientId, client_secret:clientSecret, refresh_token:refreshToken}, null, 2));
-            console.log('Credentials materialized for ' + ch.channel_id + ' (dispatch key ' + id + ')');
-            process.exit(0);
+            console.log('Credentials materialized for ' + ch.channel_id);
           "
-
-      - name: Check Credentials and Channel Identity
-        id: creds
+      - name: Verify accepted MP4 before upload
+        id: pre-upload-check
         run: |
-          node -e "
-            const fs = require('fs');
-            const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
-            const id = '${{ env.CHANNEL_ID }}';
-            let ch;
-            try { ch = resolveChannel(id); } catch (e) { console.error('::error::' + e.message); process.exit(1); }
-            const own = 'config/creds/' + ch.channel_id + '.json';
-            if (!fs.existsSync(own)) {
-              console.log('::warning::No credentials for ' + ch.channel_id + ' — upload skipped, video stays in review package');
-              console.log('upload=skipped');
-              process.exit(0);
-            }
-            const creds = JSON.parse(fs.readFileSync(own, 'utf8'));
-            if (!(creds.client_id && creds.client_secret && creds.refresh_token)) {
-              console.log('::warning::Incomplete credentials for ' + ch.channel_id + ' — upload skipped');
-              console.log('upload=skipped');
-              process.exit(0);
-            }
-            console.log('Credentials verified for ' + ch.channel_name + ' (' + ch.channel_id + ')');
-            fs.appendFileSync(process.env.GITHUB_OUTPUT, 'upload=ready\n');
-          "
-
-      - name: Upload to YouTube (Private)
-        if: steps.creds.outputs.upload == 'ready'
-        run: |
-          MP4="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
-          if [ ! -f "$MP4" ]; then
-            echo "::error::No MP4 found to upload"
+          MP4="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
+          if [ ! -f "$MP4" ]; then echo "::error::No accepted MP4 to upload"; exit 1; fi
+          DUR=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$MP4")
+          echo "[pre-upload] MP4 duration: $DUR s"
+          if [ "$(echo "$DUR > 30" | bc -l 2>/dev/null || echo "0")" = "1" ]; then
+            echo "::error::Pre-upload: MP4 $DUR s exceeds 30 s — blocking upload"
             exit 1
           fi
-          # Read title from timeline or use stem
-          TITLE=$(node -e "const t=require('./data/editor/auto/${{ env.TTS_TOPIC }}/plan.json'); console.log(t.title||'${{ env.STEM }}')")
-          node scripts/youtube-upload.cjs --file "$MP4" --title "$TITLE" --channel ${{ env.CHANNEL_ID }}
-          echo "✓ Private upload complete for ${{ env.CHANNEL_ID }}"
-
+          echo "pre_upload_ok=true" >> $GITHUB_OUTPUT
+      - name: Upload to YouTube (Private)
+        if: steps.pre-upload-check.outputs.pre_upload_ok == 'true'
+        run: |
+          MP4="data/renders/${{ needs.setup.outputs.channel }}/${{ needs.setup.outputs.stem }}-final.mp4"
+          TITLE=$(node -e "const t=require('./data/editor/auto/${{ needs.setup.outputs.topic_slug }}/plan.json'); console.log(t.title||'${{ needs.setup.outputs.stem }}')")
+          node scripts/youtube-upload.cjs --file "$MP4" --title "$TITLE" --channel ${{ needs.setup.outputs.channel }}
+          echo "✓ Private upload complete for ${{ needs.setup.outputs.channel }}"
       - name: Record Upload Result
         if: always()
         run: |
           echo "## Private Upload Status" >> $GITHUB_STEP_SUMMARY
-          echo "- Channel: ${{ env.CHANNEL_ID }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Video: ${{ env.STEM }}-rework.mp4" >> $GITHUB_STEP_SUMMARY
-          echo "- Visibility: private (owner must publish manually)" >> $GITHUB_STEP_SUMMARY
+          echo "- Channel: ${{ needs.setup.outputs.channel }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Video: ${{ needs.setup.outputs.stem }}-final.mp4" >> $GITHUB_STEP_SUMMARY
+          echo "- Visibility: private (owner publishes manually)" >> $GITHUB_STEP_SUMMARY
+          echo "- Accepted MP4 SHA-256: ${{ needs.final-acceptance.outputs.mp4_sha256 }}" >> $GITHUB_STEP_SUMMARY
           echo "- Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
-

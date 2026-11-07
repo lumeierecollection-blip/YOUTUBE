@@ -1,0 +1,325 @@
+{
+  "text": "AI assistants are trapped behind information silos Anthropic's Model Context Protocol is one open standard connecting AI to your data An MCP server exposes your data an MCP client like Claude connects to it Pre-built MCP servers exist for Google Drive Slack GitHub Postgres and Puppeteer Build once integrate everywhere AI finally reaches your data",
+  "segments": [
+    {
+      "id": 0,
+      "start": 0.1,
+      "end": 3.066666666666667,
+      "text": "AI assistants are trapped behind information silos.",
+      "words": [
+        {
+          "word": "AI",
+          "start": 0.1,
+          "end": 0.4
+        },
+        {
+          "word": "assistants",
+          "start": 0.4,
+          "end": 0.9333333333333333
+        },
+        {
+          "word": "are",
+          "start": 0.9666666666666667,
+          "end": 1.1
+        },
+        {
+          "word": "trapped",
+          "start": 1.1,
+          "end": 1.5333333333333334
+        },
+        {
+          "word": "behind",
+          "start": 1.5333333333333334,
+          "end": 1.9
+        },
+        {
+          "word": "information",
+          "start": 1.9333333333333333,
+          "end": 2.466666666666667
+        },
+        {
+          "word": "silos",
+          "start": 2.466666666666667,
+          "end": 3.066666666666667
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "start": 3.466666666666667,
+      "end": 8.866666666666667,
+      "text": "Anthropic's Model Context Protocol is one open standard connecting AI to your data.",
+      "words": [
+        {
+          "word": "Anthropic's",
+          "start": 3.466666666666667,
+          "end": 4.1
+        },
+        {
+          "word": "Model",
+          "start": 4.1,
+          "end": 4.4
+        },
+        {
+          "word": "Context",
+          "start": 4.433333333333334,
+          "end": 4.9
+        },
+        {
+          "word": "Protocol",
+          "start": 4.9,
+          "end": 5.5
+        },
+        {
+          "word": "is",
+          "start": 5.666666666666667,
+          "end": 5.766666666666667
+        },
+        {
+          "word": "one",
+          "start": 5.8,
+          "end": 6.066666666666666
+        },
+        {
+          "word": "open",
+          "start": 6.1,
+          "end": 6.4
+        },
+        {
+          "word": "standard",
+          "start": 6.4,
+          "end": 6.933333333333334
+        },
+        {
+          "word": "connecting",
+          "start": 6.966666666666667,
+          "end": 7.533333333333333
+        },
+        {
+          "word": "AI",
+          "start": 7.666666666666667,
+          "end": 8.033333333333333
+        },
+        {
+          "word": "to",
+          "start": 8.2,
+          "end": 8.366666666666667
+        },
+        {
+          "word": "your",
+          "start": 8.366666666666667,
+          "end": 8.5
+        },
+        {
+          "word": "data",
+          "start": 8.5,
+          "end": 8.866666666666667
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "start": 9.266666666666667,
+      "end": 14.366666666666667,
+      "text": "An MCP server exposes your data; an MCP client like Claude connects to it.",
+      "words": [
+        {
+          "word": "An",
+          "start": 9.266666666666667,
+          "end": 9.4
+        },
+        {
+          "word": "MCP",
+          "start": 9.433333333333334,
+          "end": 10
+        },
+        {
+          "word": "server",
+          "start": 10,
+          "end": 10.466666666666667
+        },
+        {
+          "word": "exposes",
+          "start": 10.5,
+          "end": 11.066666666666666
+        },
+        {
+          "word": "your",
+          "start": 11.066666666666666,
+          "end": 11.2
+        },
+        {
+          "word": "data",
+          "start": 11.2,
+          "end": 11.5
+        },
+        {
+          "word": "an",
+          "start": 11.9,
+          "end": 12
+        },
+        {
+          "word": "MCP",
+          "start": 12.033333333333333,
+          "end": 12.566666666666666
+        },
+        {
+          "word": "client",
+          "start": 12.6,
+          "end": 13.033333333333333
+        },
+        {
+          "word": "like",
+          "start": 13.066666666666666,
+          "end": 13.233333333333333
+        },
+        {
+          "word": "Claude",
+          "start": 13.233333333333333,
+          "end": 13.6
+        },
+        {
+          "word": "connects",
+          "start": 13.6,
+          "end": 14
+        },
+        {
+          "word": "to",
+          "start": 14,
+          "end": 14.2
+        },
+        {
+          "word": "it",
+          "start": 14.2,
+          "end": 14.366666666666667
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "start": 14.8,
+      "end": 20.866666666666667,
+      "text": "Pre-built MCP servers exist for Google Drive, Slack, GitHub, Postgres and Puppeteer.",
+      "words": [
+        {
+          "word": "Pre-built",
+          "start": 14.8,
+          "end": 15.233333333333333
+        },
+        {
+          "word": "MCP",
+          "start": 15.3,
+          "end": 15.833333333333334
+        },
+        {
+          "word": "servers",
+          "start": 15.866666666666667,
+          "end": 16.266666666666666
+        },
+        {
+          "word": "exist",
+          "start": 16.3,
+          "end": 16.7
+        },
+        {
+          "word": "for",
+          "start": 16.733333333333334,
+          "end": 16.9
+        },
+        {
+          "word": "Google Drive",
+          "start": 16.9,
+          "end": 17.6
+        },
+        {
+          "word": "Slack",
+          "start": 17.866666666666667,
+          "end": 18.3
+        },
+        {
+          "word": "GitHub",
+          "start": 18.566666666666666,
+          "end": 19
+        },
+        {
+          "word": "Postgres",
+          "start": 19.266666666666666,
+          "end": 19.9
+        },
+        {
+          "word": "and",
+          "start": 20.1,
+          "end": 20.2
+        },
+        {
+          "word": "Puppeteer",
+          "start": 20.233333333333334,
+          "end": 20.866666666666667
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "start": 21.266666666666666,
+      "end": 23.233333333333334,
+      "text": "Build once, integrate everywhere.",
+      "words": [
+        {
+          "word": "Build",
+          "start": 21.266666666666666,
+          "end": 21.466666666666665
+        },
+        {
+          "word": "once",
+          "start": 21.466666666666665,
+          "end": 21.9
+        },
+        {
+          "word": "integrate",
+          "start": 22.133333333333333,
+          "end": 22.6
+        },
+        {
+          "word": "everywhere",
+          "start": 22.7,
+          "end": 23.233333333333334
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "start": 23.666666666666668,
+      "end": 25.133333333333333,
+      "text": "AI finally reaches your data.",
+      "words": [
+        {
+          "word": "AI",
+          "start": 23.666666666666668,
+          "end": 23.933333333333334
+        },
+        {
+          "word": "finally",
+          "start": 23.933333333333334,
+          "end": 24.366666666666667
+        },
+        {
+          "word": "reaches",
+          "start": 24.366666666666667,
+          "end": 24.666666666666668
+        },
+        {
+          "word": "your",
+          "start": 24.666666666666668,
+          "end": 24.766666666666666
+        },
+        {
+          "word": "data",
+          "start": 24.8,
+          "end": 25.133333333333333
+        }
+      ]
+    }
+  ],
+  "language": "en",
+  "source": "edge-tts WordBoundary + sentence SRT"
+}
