@@ -1,0 +1,112 @@
+{
+  "topic_slug": "quantum-physicists-discover-materials-absorb-light",
+  "strongest_angle": "Theoretical quantum research by Angelo Esposito, Alberto Nicolis, and Federico Piazza demonstrates that 100 percent transparency is physically impossible because photons inevitably decay into phonons inside any material with a nontrivial index of refraction.",
+  "key_facts": [
+    {
+      "fact": "Theoretical physicists Angelo Esposito, Alberto Nicolis, and Federico Piazza published research on arXiv in 2026 showing that quantum decay of photons into phonons causes light attenuation in any material with a nontrivial index of refraction, even at 0 kelvin.",
+      "source_url": "https://arxiv.org/abs/2610.12560",
+      "source_name": "arXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "Author Matthew von Hippel and editor Clara Moskowitz reported in Scientific American in November 2026 that quantum limits prevent any material from achieving 100 percent optical transparency.",
+      "source_url": "https://www.scientificamerican.com/article/nothing-can-be-fully-transparent-physicists-discover",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mikael Rechtsman at Pennsylvania State University conducted experiments on stealthy hyperuniform materials to measure how structural disorder affects photon scattering across band linewidths.",
+      "source_url": "https://physics.aps.org/articles/v19/s59",
+      "source_name": "Physical Review Physics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers at the University of Science and Technology of China and Peking University achieved coherent perfect absorption of light within a synthetic photon-phonon lattice in August 2026.",
+      "source_url": "https://quantumzeitgeist.com/university-science-technology-china-photon-phonon",
+      "source_name": "Quantum Zeitgeist",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Absolute temperature at which photon-to-phonon attenuation persists",
+      "value": 0,
+      "unit": "kelvin",
+      "source_url": "https://arxiv.org/abs/2610.12560"
+    },
+    {
+      "label": "Theoretical maximum transparency limit proven unachievable",
+      "value": 100,
+      "unit": "percent",
+      "source_url": "https://www.scientificamerican.com/article/nothing-can-be-fully-transparent-physicists-discover"
+    },
+    {
+      "label": "Publication year of the quantum transparency limit study",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://arxiv.org/abs/2610.12560"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "We argue that no material can be made completely transparent to light as long as it has a nontrivial index of refraction.",
+      "speaker": "Angelo Esposito, Alberto Nicolis, and Federico Piazza",
+      "source_name": "arXiv",
+      "source_url": "https://arxiv.org/abs/2610.12560"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Angelo Esposito",
+      "kind": "person"
+    },
+    {
+      "name": "Alberto Nicolis",
+      "kind": "person"
+    },
+    {
+      "name": "Federico Piazza",
+      "kind": "person"
+    },
+    {
+      "name": "Matthew von Hippel",
+      "kind": "person"
+    },
+    {
+      "name": "Clara Moskowitz",
+      "kind": "person"
+    },
+    {
+      "name": "Mikael Rechtsman",
+      "kind": "person"
+    },
+    {
+      "name": "Scientific American",
+      "kind": "organization"
+    },
+    {
+      "name": "arXiv",
+      "kind": "organization"
+    },
+    {
+      "name": "Pennsylvania State University",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Science and Technology of China",
+      "kind": "organization"
+    },
+    {
+      "name": "Peking University",
+      "kind": "organization"
+    },
+    {
+      "name": "photon",
+      "kind": "object"
+    },
+    {
+      "name": "phonon",
+      "kind": "object"
+    }
+  ]
+}
