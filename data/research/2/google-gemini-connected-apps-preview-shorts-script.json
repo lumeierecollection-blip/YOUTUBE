@@ -2,75 +2,76 @@
   "channel_id": "2",
   "topic_slug": "google-gemini-connected-apps-preview",
   "format": "shorts",
-  "hook": "On October 28, 2026, Google connected 50 external apps directly into Gemini.",
+  "style": "motion-graphics",
+  "hook": "Google just connected 50 external apps directly into Gemini.",
   "sections": [
     {
       "id": "hook",
-      "voiceover": "On October 28, 2026, Google connected 50 external apps directly into Gemini.",
-      "visual_cue": "Graphic displaying the date October 28, 2026 alongside the Google logo and number 50 connected to Gemini.",
+      "timing": "00:00-00:06",
+      "voiceover": "Google just connected 50 external apps directly into Gemini.",
+      "visual_cue": "Kinetic typography: date and number animate on screen.",
       "sfx_cue": "Digital chime",
-      "b_roll": [
-        "Google logo motion graphic",
-        "Gemini interface screen"
-      ],
-      "text_overlay": {
-        "text": "50 Connected Apps"
-      }
+      "b_roll": ["Google Gemini connected apps interface"],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": { "text": "50 CONNECTED APPS" }
     },
     {
       "id": "setup",
-      "voiceover": "Google announced the Connected Apps Platform preview on October 28, 2026, for Search and Gemini. Which major external partners joined this 50 app integration?",
-      "visual_cue": "Diagram showing Connected Apps Platform hub distributing to Search, Gemini, Workspace, Photos, and YouTube Music icons.",
+      "timing": "00:06-00:13",
+      "voiceover": "On October 28, 2026, Google launched the Connected Apps Platform preview for Search and Gemini.",
+      "visual_cue": "Terminal interface: command line shows platform initialization.",
       "sfx_cue": "Swoosh transition",
-      "b_roll": [
-        "Screen capture of Connected Apps Platform dashboard",
-        "App icon montage"
-      ],
-      "text_overlay": {
-        "text": "1 Unified Platform"
-      }
+      "b_roll": ["Terminal with Connected Apps Platform dashboard"],
+      "animation_cue": "Slide left",
+      "transition_out": "Dissolve",
+      "text_overlay": { "text": "1 UNIFIED PLATFORM" }
     },
     {
       "id": "rehook",
-      "voiceover": "But TechCrunch reported on October 28, 2026, that these apps go beyond Google Workspace.",
-      "visual_cue": "Split screen dividing internal Google tools on 1 side and external partner slots on the other.",
+      "timing": "00:13-00:19",
+      "voiceover": "TechCrunch reported these apps go beyond Google Workspace.",
+      "visual_cue": "Article highlight: TechCrunch headline with key phrases marked.",
       "sfx_cue": "Subtle bass drop",
-      "b_roll": [
-        "Split screen interface graphic"
-      ],
-      "text_overlay": {
-        "text": "Beyond Google Apps"
-      }
+      "b_roll": ["TechCrunch article excerpt highlight"],
+      "animation_cue": "Staggered reveal",
+      "transition_out": "Hard cut",
+      "text_overlay": { "text": "BEYOND GOOGLE APPS" }
     },
     {
       "id": "payoff",
-      "voiceover": "Google's platform brought over 50 live apps from partners including Adobe, Experian, Localiza, and Peloton. These 4 companies gave Gemini tools beyond Google Home. That brings more than 50 live apps across 2 separate Google platforms.",
-      "visual_cue": "Grid animation displaying logos for Adobe, Experian, Localiza, and Peloton connecting to Search and Google Home.",
+      "timing": "00:19-00:26",
+      "voiceover": "Over 50 live apps from Adobe, Experian, Localiza, and Peloton bring tools beyond Google Home.",
+      "visual_cue": "Grid animation: partner logos connect to Search and Gemini icons.",
       "sfx_cue": "Data pop sound effect",
-      "b_roll": [
-        "Adobe and Peloton partner logos graphic",
-        "Gemini active apps screen"
-      ],
-      "text_overlay": {
-        "text": "Adobe, Experian, Localiza, Peloton"
-      }
+      "b_roll": ["Partner logos grid connecting to platforms"],
+      "animation_cue": "Zoom in on output",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "ADOBE EXPERIAN LOCALIZA PELOTON" }
     },
     {
       "id": "close",
+      "timing": "00:26-00:30",
       "voiceover": "Now 50 connected apps operate inside Google Search and Gemini.",
-      "visual_cue": "Summary card showing 50 live apps integrated across Google Search and Gemini platforms.",
+      "visual_cue": "Summary card: 50 apps integrated across both platforms.",
       "sfx_cue": "Outro click",
-      "b_roll": [
-        "Google Search and Gemini final hero shot"
-      ],
-      "text_overlay": {
-        "text": "50 Apps Live Now"
-      }
+      "b_roll": ["Google Search and Gemini final hero shot"],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "50 APPS LIVE NOW" }
     }
   ],
   "sources_used": [
     "https://blog.google/innovation-and-ai/technology/developers-tools/connected-apps-one-place",
     "https://www.digitbin.com/gemini-connected-apps-preview",
     "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps"
+  ],
+  "named_entities": [
+    { "name": "Google", "kind": "organization" },
+    { "name": "Gemini", "kind": "product" },
+    { "name": "Adobe", "kind": "organization" },
+    { "name": "Experian", "kind": "organization" },
+    { "name": "Localiza", "kind": "organization" },
+    { "name": "Peloton", "kind": "organization" }
   ]
 }

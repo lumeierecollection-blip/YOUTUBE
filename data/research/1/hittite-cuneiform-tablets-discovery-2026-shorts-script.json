@@ -2,88 +2,74 @@
   "channel_id": "1",
   "topic_slug": "hittite-cuneiform-tablets-discovery-2026",
   "format": "shorts",
-  "hook": "One ancient clay tablet recorded a royal tragedy buried for 3,400 years.",
+  "style": "cinematic-documentary",
+  "hook": "3,400 years ago, a clay tablet recorded a royal tragedy. Now 131 newly found tablets reveal what really happened in the Hittite court.",
   "sections": [
     {
       "id": "hook",
-      "timing": "0-4s",
-      "voiceover": "One ancient clay tablet recorded a royal tragedy buried for 3,400 years.",
-      "visual_cue": "Close-up cinematic shot of cuneiform script carved into an ancient clay tablet under dim museum lighting.",
-      "sfx_cue": "Subtle low frequency drone with a faint scraping texture.",
-      "b_roll": [
-        "Kayalıpınar archaeological site wide aerial shot"
-      ],
-      "animation_cue": "Slow zoom in on the carved wedge-shaped characters.",
-      "transition_out": "Hard cut to excavation trench.",
-      "text_overlay": {
-        "text": "3,400-Year-Old Secret"
-      }
+      "timing": "00:00-00:06",
+      "voiceover": "3,400 years ago, a clay tablet recorded a royal tragedy.",
+      "visual_cue": "Ancient clay tablet with cuneiform script, stable composition on neutral background.",
+      "sfx_cue": "Low ambient drone",
+      "b_roll": ["Hittite cuneiform tablet artifact"],
+      "animation_cue": "Fade in from black, stable frame",
+      "transition_out": "Crossfade",
+      "text_overlay": { "text": "3,400-YEAR-OLD SECRET" }
     },
     {
       "id": "setup",
-      "timing": "4-18s",
-      "voiceover": "Archaeologists working at Kayalıpınar in central Turkey discovered 131 cuneiform tablets. Turkey's Minister of Culture and Tourism Mehmet Nuri Ersoy announced the find. What secrets did King Tudhaliya II hide in the royal archive?",
-      "visual_cue": "Medium shot of archaeologists carefully brushing soil off a discovered artifact in a dusty trench at Kayalıpınar.",
-      "sfx_cue": "Soft brush scraping against stone.",
-      "b_roll": [
-        "Mehmet Nuri Ersoy speaking at a press conference",
-        "Excavation workers in central Turkey"
-      ],
-      "animation_cue": "Pan across the uncovered tablet surface.",
-      "transition_out": "Dissolve to archival room.",
-      "text_overlay": {
-        "text": "131 Tablets Unearthed"
-      }
+      "timing": "00:06-00:13",
+      "voiceover": "Archaeologists at Kayalıpınar in central Turkey discovered 131 cuneiform tablets in the royal archive.",
+      "visual_cue": "Excavation trench with archaeologists carefully working, stable medium shot.",
+      "sfx_cue": "Soft brush scraping stone",
+      "b_roll": ["Kayalıpınar excavation site wide shot"],
+      "animation_cue": "Crossfade",
+      "transition_out": "Crossfade",
+      "text_overlay": { "text": "131 TABLETS UNEARTHED" }
     },
     {
       "id": "rehook",
-      "timing": "18-24s",
-      "voiceover": "Combining the 131 tablets with 53 pieces found in 2025 at Šamuḥa makes 184 total archive pieces.",
-      "visual_cue": "Close-up tracking shot of multiple cataloged clay fragments resting on padded museum shelves.",
-      "sfx_cue": "Subtle paper shuffle and soft room tone.",
-      "b_roll": [
-        "Šamuḥa historical excavation site view"
-      ],
-      "animation_cue": "Counter incrementing up to 184.",
-      "transition_out": "Fast wipe to laboratory setting.",
-      "text_overlay": {
-        "text": "184 Total Archive Pieces"
-      }
+      "timing": "00:13-00:19",
+      "voiceover": "Combined with 53 pieces found in 2025 at Šamuḥa, that makes 184 total archive pieces.",
+      "visual_cue": "Clay fragments on padded museum shelves, stable overhead shot.",
+      "sfx_cue": "Soft paper shuffle",
+      "b_roll": ["Šamuḥa excavation site view"],
+      "animation_cue": "Crossfade",
+      "transition_out": "Crossfade",
+      "text_overlay": { "text": "184 TOTAL PIECES" }
     },
     {
       "id": "payoff",
-      "timing": "24-38s",
-      "voiceover": "The 131 newly found tablets reveal a brutal epidemic during the reign of King Tudhaliya II. These 131 cuneiform tablets from Turkey detail a deadly epidemic that killed a nursing princess.",
-      "visual_cue": "Macro close-up shot of damaged clay edges revealing detailed cuneiform markings under raking light.",
-      "sfx_cue": "Low atmospheric tension swell.",
-      "b_roll": [
-        "Hittite royal artifact display case"
-      ],
-      "animation_cue": "Highlight overlay pulsing over specific cuneiform lines.",
-      "transition_out": "Fade to black and white.",
-      "text_overlay": {
-        "text": "Royal Court Epidemic"
-      }
+      "timing": "00:19-00:26",
+      "voiceover": "The tablets reveal a deadly epidemic during King Tudhaliya II's reign — including a nursing princess who died.",
+      "visual_cue": "Damaged clay edges with cuneiform markings under raking light, stable macro shot.",
+      "sfx_cue": "Low atmospheric tension swell",
+      "b_roll": ["Hittite royal artifact display"],
+      "animation_cue": "Crossfade",
+      "transition_out": "Fade out",
+      "text_overlay": { "text": "ROYAL COURT EPIDEMIC" }
     },
     {
       "id": "close",
-      "timing": "38-45s",
+      "timing": "00:26-00:30",
       "voiceover": "131 cuneiform tablets revealed a lost royal tragedy.",
-      "visual_cue": "Static wide shot of the excavated Kayalıpınar site at dusk with shadows stretching across the trench.",
-      "sfx_cue": "Wind ambient sound fading out.",
-      "b_roll": [
-        "Kayalıpınar site landscape at sunset"
-      ],
-      "animation_cue": "Fade to dark.",
-      "transition_out": "Fade out.",
-      "text_overlay": {
-        "text": "Kayalıpınar Archive"
-      }
+      "visual_cue": "Excavated Kayalıpınar site at dusk, stable wide shot.",
+      "sfx_cue": "Wind fading out",
+      "b_roll": ["Kayalıpınar site landscape"],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": { "text": "KAYALIPINAR ARCHIVE" }
     }
   ],
   "sources_used": [
     "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
     "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive",
     "https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha"
+  ],
+  "named_entities": [
+    { "name": "King Tudhaliya II", "kind": "person" },
+    { "name": "Kayalıpınar", "kind": "place" },
+    { "name": "Šamuḥa", "kind": "place" },
+    { "name": "Hittite", "kind": "civilization" }
   ]
 }

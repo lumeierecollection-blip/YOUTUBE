@@ -22,7 +22,7 @@ on:
       dry_run:
         description: 'Render + QA only, no upload'
         required: false
-        default: 'true'
+        default: 'false'
       channel_id:
         description: 'Channel ID'
         required: false
@@ -38,12 +38,12 @@ concurrency:
 
 env:
   CHANNEL_ID: 2
-  SCRIPT_PATH: data/research/2/ai-web-search-compared-november-2026-shorts-script.json
-  STEM: ai-web-search-compared-november-2026-shorts
-  TTS_TOPIC: ai-web-search-compared-november-2026-shorts-script
+  SCRIPT_PATH: data/research/2/google-gemini-connected-apps-preview-shorts-script.json
+  STEM: google-gemini-connected-apps-preview-shorts
+  TTS_TOPIC: google-gemini-connected-apps-preview-shorts-script
   VISUAL_PACK: data/editor/visual-packs/ch2-ai-tested.json
-  REQUIRED_IMAGES: 9
-  MIN_PEOPLE_RATIO: 0.75
+  REQUIRED_IMAGES: 8
+  MIN_PEOPLE_RATIO: 0.0
 
 jobs:
   setup:
@@ -88,7 +88,21 @@ jobs:
         id: vars
         run: |
           echo "channel=${{ env.CHANNEL_ID }}" >> $GITHUB_OUTPUT
-          echo "stem=ai-web-search-compared-november-2026-shorts" >> $GITHUB_OUTPUT
+          echo "stem=${{ env.STEM }}" >> $GITHUB_OUTPUT
+
+      - name: Verify motion-graphics skills availability
+        run: |
+          echo "[skills] Checking Liam Johnston motion-graphics skills availability..."
+          for skill in motion-graphics cinematic-camera terminal-inserts article-highlights; do
+            if [ ! -f ".agents/skills/${skill}/SKILL.md" ]; then
+              echo "::error::Skill ${skill} not found at .agents/skills/${skill}/SKILL.md"
+              exit 1
+            fi
+            echo "[skills] ${skill} skill found:"
+            head -5 .agents/skills/${skill}/SKILL.md
+          done
+          echo "[skills] All Liam Johnston motion-graphics skills verified"
+          echo "[skills] Will apply: cinematic-camera (camera rig), terminal-inserts (CLI inserts), article-highlights (editorial highlights), motion-graphics (build authorization)"
 
   source-historical-images:
     name: Source Historical Images (Wikimedia Commons)

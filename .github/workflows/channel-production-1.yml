@@ -22,7 +22,7 @@ on:
       dry_run:
         description: 'Render + QA only, no upload'
         required: false
-        default: 'true'
+        default: 'false'
       channel_id:
         description: 'Channel ID'
         required: false
@@ -89,6 +89,17 @@ jobs:
         run: |
           echo "channel=${{ env.CHANNEL_ID }}" >> $GITHUB_OUTPUT
           echo "stem=${{ env.STEM }}" >> $GITHUB_OUTPUT
+
+      - name: Verify VOX skill availability
+        run: |
+          echo "[skills] Checking VOX-style-treatment skill availability..."
+          if [ ! -f ".agents/skills/vox-style-treatment/SKILL.md" ]; then
+            echo "::error::VOX skill not found at .agents/skills/vox-style-treatment/SKILL.md"
+            exit 1
+          fi
+          echo "[skills] VOX skill found:"
+          head -20 .agents/skills/vox-style-treatment/SKILL.md
+          echo "[skills] VOX skill verified - will apply documentary visual treatment to Hidden Past render"
 
   source-historical-images:
     name: Source Historical Images (Wikimedia Commons)
