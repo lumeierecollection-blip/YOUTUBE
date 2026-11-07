@@ -11,10 +11,12 @@
   "images": [
     {
       "sentence_index": 0,
-      "kind": "person",
+      "kind": "product",
       "subject": "Artificial Intelligence",
       "label": "Artificial Intelligence",
       "title": "File:DALL-E 3 - advanced artificial intelligence.png",
+      "id": "hist-01",
+      "file": "hist-01-ai-gemini-connected-apps.png",
       "alt": "AI-generated image of AI concept",
       "note": "AI-generated image depicting artificial intelligence concept",
       "reason": "The hook introduces AI; the image depicts AI-generated artwork."
@@ -25,6 +27,8 @@
       "subject": "AI Comparison",
       "label": "AI Comparison",
       "title": "File:Artificial Intelligence relation to Generative Models subset, Venn diagram.png",
+      "id": "hist-02",
+      "file": "hist-02-ai-gemini-connected-apps.png",
       "alt": "Venn diagram showing AI relationship to generative models",
       "note": "Venn diagram showing AI relationship to generative models.",
       "reason": "The sentence compares four AI tools; the diagram shows relationships between AI models."
@@ -35,6 +39,8 @@
       "subject": "AI Research",
       "label": "AI Research",
       "title": "File:Artificial Intelligence Scale.png",
+      "id": "hist-03",
+      "file": "hist-03-ai-gemini-connected-apps.png",
       "alt": "AI scale showing AI progression over time",
       "note": "Scale showing AI training computation growth over decades.",
       "reason": "The sentence references a research report; the scale shows AI development over time."
@@ -45,6 +51,8 @@
       "subject": "AI Benchmark",
       "label": "AI Benchmark",
       "title": "File:Scores artificial intelligence benchmarks en.png",
+      "id": "hist-04",
+      "file": "hist-04-ai-gemini-connected-apps.png",
       "alt": "AI benchmark scores chart comparing models",
       "note": "Benchmark scores of AI models on key tasks.",
       "reason": "The sentence describes which AI was fastest; the chart shows benchmark scores."
@@ -55,6 +63,8 @@
       "subject": "AI Result",
       "label": "AI Result",
       "title": "File:Artificial intelligence prompt completion by dalle mini.jpg",
+      "id": "hist-05",
+      "file": "hist-05-ai-gemini-connected-apps.png",
       "alt": "AI-generated image from DALL-E mini",
       "note": "AI-generated image from DALL-E mini model.",
       "reason": "The closing sentence shows the final result; the image shows AI-generated output."

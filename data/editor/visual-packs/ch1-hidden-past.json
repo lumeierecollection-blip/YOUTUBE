@@ -15,6 +15,8 @@
       "subject": "Hittite cuneiform tablet",
       "label": "Hittite cuneiform tablet",
       "title": "File:Bo 19-112 - Hittite cuneiform tablet.jpg",
+      "id": "hist-01",
+      "file": "hist-01-margaret-clitherow.jpg",
       "alt": "Ancient Hittite clay tablet with cuneiform script",
       "note": "Hittite cuneiform tablet from the royal archive",
       "reason": "The hook introduces an ancient clay tablet; the image shows an actual Hittite cuneiform tablet."
@@ -25,6 +27,8 @@
       "subject": "Kayalıpınar excavation site",
       "label": "Kayalıpınar excavation site",
       "title": "File:Kayalıpınar excavation site Turkey.jpg",
+      "id": "hist-02",
+      "file": "hist-02-margaret-clitherow.jpg",
       "alt": "Archaeological excavation trench at Kayalıpınar in central Turkey",
       "note": "Archaeologists working at the Kayalıpınar excavation site",
       "reason": "The sentence describes archaeologists at Kayalıpınar; the image shows the excavation site."
@@ -35,6 +39,8 @@
       "subject": "Hittite clay fragments",
       "label": "Hittite clay fragments",
       "title": "File:Hittite clay fragments museum shelves.jpg",
+      "id": "hist-03",
+      "file": "hist-03-margaret-clitherow.jpg",
       "alt": "Hittite clay fragments on museum storage shelves",
       "note": "Cataloged clay fragments from the royal archive",
       "reason": "The sentence describes combined archive pieces; the image shows clay fragments on shelves."
@@ -45,6 +51,8 @@
       "subject": "Damaged Hittite tablet with cuneiform",
       "label": "Damaged Hittite tablet",
       "title": "File:Damaged Hittite tablet cuneiform markings.jpg",
+      "id": "hist-04",
+      "file": "hist-04-york.jpg",
       "alt": "Damaged clay tablet with cuneiform markings under raking light",
       "note": "Tablet showing epidemic records from King Tudhaliya II's reign",
       "reason": "The sentence describes the epidemic revelation; the image shows the tablet with cuneiform markings."
@@ -55,6 +63,8 @@
       "subject": "Kayalıpınar site landscape",
       "label": "Kayalıpınar site",
       "title": "File:Kayalıpınar archaeological site landscape dusk.jpg",
+      "id": "hist-05",
+      "file": "hist-05-punishment-of-pressing.jpg",
       "alt": "Excavated Kayalıpınar site at dusk with shadows across the trench",
       "note": "The excavated archaeological site at sunset",
       "reason": "The closing sentence describes the site; the image shows the excavation landscape."
