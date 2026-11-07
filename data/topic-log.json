@@ -2747,9 +2747,14 @@
           "topic": "Western Harbour Tunnel Cavern Excavation and Sydney Project Costs",
           "slug": "western-harbour-tunnel-cavern-excavation",
           "reserved_at": "2026-11-06T16:12:17.462Z"
+        },
+        {
+          "topic": "ETH Zurich FlexiQuad Drone Ring Fuselage Impact Resistance Design",
+          "slug": "eth-zurich-flexiquad-drone-impact-design",
+          "reserved_at": "2026-11-07T15:07:52.628Z"
         }
       ],
-      "last_generated": "2026-11-06T16:12:17.463Z"
+      "last_generated": "2026-11-07T15:07:52.628Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
