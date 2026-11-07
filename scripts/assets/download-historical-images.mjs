@@ -27,7 +27,7 @@ const ROOT = resolve(__dirname, "..", "..");
 const API = "https://commons.wikimedia.org/w/api.php";
 const UA = "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; curated historical image pack)";
 
-const MIN_PEOPLE_RATIO = 0.75;
+const MIN_PEOPLE_RATIO = 0.0;
 
 const strip = (v) => String(v?.value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 const slugify = (s) =>
