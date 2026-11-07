@@ -2555,9 +2555,14 @@
           "topic": "Pulsars Set Mass Limits on Supermassive Black Hole Pairs in Early Universe",
           "slug": "pulsars-mass-limits-supermassive-black-holes-2026",
           "reserved_at": "2026-11-06T16:09:17.082Z"
+        },
+        {
+          "topic": "NASA Exoplanet Archive Adds Thirteen New Planets With TOI Designations",
+          "slug": "nasa-exoplanet-archive-adds-thirteen-planets",
+          "reserved_at": "2026-11-07T15:07:46.595Z"
         }
       ],
-      "last_generated": "2026-11-06T16:09:17.082Z"
+      "last_generated": "2026-11-07T15:07:46.595Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
