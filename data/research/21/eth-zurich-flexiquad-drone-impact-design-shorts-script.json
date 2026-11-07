@@ -1,0 +1,60 @@
+{
+  "channel_id": "21",
+  "topic_slug": "eth-zurich-flexiquad-drone-impact-design",
+  "format": "shorts",
+  "hook": "Most drones shatter on impact, but this one keeps flying at 25 km/h.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most drones shatter on impact, but this one keeps flying at 25 km/h.",
+      "visual_cue": "Close-up of the FlexiQuad drone frame deforming against a wall.",
+      "sfx_cue": "Sharp impact sound followed by the steady hum of rotors.",
+      "b_roll": [
+        "ETH Zurich laboratory footage showing the FlexiQuad collision test"
+      ],
+      "text_overlay": {
+        "text": "Survival speed: 25 km/h"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How does the FlexiQuad frame protect the 3-cell batteries while maintaining flight after impact?",
+      "visual_cue": "Diagram showing the four FR-4 fiberglass strips forming the circular drone frame.",
+      "sfx_cue": "Mechanical clicking sounds transitioning into an airy, high-tech tone.",
+      "b_roll": [
+        "Close-up technical render of the FR-4 fiberglass composite structure"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Instead, ETH Zurich places a 330 mAh 3-cell battery directly under each motor.",
+      "visual_cue": "Highlighting the battery placement under the motor mounts on the frame.",
+      "sfx_cue": "Electronic ping sound highlighting the battery locations.",
+      "b_roll": [
+        "Close-up of the battery modules attached to the FlexiQuad frame"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Luca Girardi, Gabriel Maquignaz, and Stefano Mintchev published this bioinspired study in November 2025. The FlexiQuad recovers control after collisions because of its 0.5 mm thick fiberglass strips.",
+      "visual_cue": "Side-by-side shot of the drone hitting an obstacle and immediately stabilizing.",
+      "sfx_cue": "Whoosh sound followed by the stable drone motor hum.",
+      "b_roll": [
+        "Slow-motion footage of the FlexiQuad colliding and stabilizing"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "That flexible ring frame withstands speeds of 25 km/h.",
+      "visual_cue": "Wide shot of the FlexiQuad drone hovering steadily after impact.",
+      "sfx_cue": "Fade out of the rotor hum.",
+      "b_roll": [
+        "FlexiQuad drone flying in the ETH Zurich laboratory"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://www.heise.de/en/news/Flexible-quadcopter-deforms-on-impact-and-keeps-flying-11511115.html",
+    "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision"
+  ]
+}
