@@ -1,0 +1,83 @@
+{
+  "topic_slug": "fernie-cave-breaks-records-canada-largest-cave",
+  "strongest_angle": "An expedition of 24 explorers spent two weeks mapping the Bisaro Anima cave system near Fernie, establishing its status as Canada's deepest and largest cave system.",
+  "key_facts": [
+    {
+      "fact": "A team of 24 people explored the Bisaro Anima cave system near Fernie during a two-week expedition concluding around November 2026.",
+      "source_url": "https://thefreepress.ca/2026/11/06/fernie-cave-continues-to-break-records-as-the-largest-in-canada",
+      "source_name": "The Free Press",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Bisaro Anima cave system, located beneath the mountains north of Fernie, is recognized as Canada's deepest cave and continues to break records as the largest in Canada.",
+      "source_url": "https://fernie.com/blog/tag/fernie-cave",
+      "source_name": "Fernie.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Katie Graham is a grantee for the Bisaro Anima 2026 expedition supported by the Royal Canadian Geographical Society.",
+      "source_url": "https://rcgs.org/2026-expedition-grantees",
+      "source_name": "Royal Canadian Geographical Society",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Katie Graham runs her caving apparel company Minus 90 while living in Golden, and she is featured in the documentary Subterranean.",
+      "source_url": "https://koreoutdoors.org/articles/kootenay-cave-exploration-with-katie-graham",
+      "source_name": "KORE Outdoors",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Expedition members",
+      "value": 24,
+      "unit": "people",
+      "source_url": "https://thefreepress.ca/2026/11/06/fernie-cave-continues-to-break-records-as-the-largest-in-canada"
+    },
+    {
+      "label": "Expedition duration",
+      "value": 2,
+      "unit": "weeks",
+      "source_url": "https://thefreepress.ca/2026/11/06/fernie-cave-continues-to-break-records-as-the-largest-in-canada"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Bisaro Anima",
+      "kind": "place"
+    },
+    {
+      "name": "Fernie",
+      "kind": "place"
+    },
+    {
+      "name": "Katie Graham",
+      "kind": "person"
+    },
+    {
+      "name": "Royal Canadian Geographical Society",
+      "kind": "organization"
+    },
+    {
+      "name": "Minus 90",
+      "kind": "organization"
+    },
+    {
+      "name": "Subterranean",
+      "kind": "object"
+    },
+    {
+      "name": "The Free Press",
+      "kind": "organization"
+    },
+    {
+      "name": "Fernie.com",
+      "kind": "organization"
+    },
+    {
+      "name": "KORE Outdoors",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

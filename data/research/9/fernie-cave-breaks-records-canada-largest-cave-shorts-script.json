@@ -1,0 +1,64 @@
+{
+  "channel_id": "9",
+  "topic_slug": "fernie-cave-breaks-records-canada-largest-cave",
+  "format": "shorts",
+  "hook": "You won't believe 24 explorers spent 2 weeks mapping Canada's deepest cave near Fernie.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You won't believe 24 explorers spent 2 weeks mapping Canada's deepest cave near Fernie.",
+      "b_roll": [
+        "Mountain terrain north of Fernie British Columbia"
+      ],
+      "text_overlay": {
+        "text": "Canada's Deepest Cave"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2026, explorers mapped the Bisaro Anima system. Grantee Katie Graham received support from the Royal Canadian Geographical Society. How deep did 24 explorers reach beneath Fernie?",
+      "b_roll": [
+        "Cavers entering Bisaro Anima cave system",
+        "Royal Canadian Geographical Society expedition emblem"
+      ],
+      "text_overlay": {
+        "text": "24 Explorers Expedition"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, 24 explorers didn't stop mapping the Bisaro Anima system for 2 full weeks.",
+      "b_roll": [
+        "Underground cave passages and mapping gear"
+      ],
+      "text_overlay": {
+        "text": "2 Weeks Underground"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Featured in the documentary Subterranean, Katie Graham runs her caving apparel company Minus 90.",
+      "b_roll": [
+        "Cave depth chart of Bisaro Anima system",
+        "Documentary footage shot of Subterranean expedition"
+      ],
+      "text_overlay": {
+        "text": "Canada's Largest Cave System"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These 24 explorers mapped Bisaro Anima near Fernie, establishing Canada's deepest and largest cave system.",
+      "b_roll": [
+        "Wide view of mountains above Bisaro Anima cave"
+      ],
+      "text_overlay": {
+        "text": "Bisaro Anima Record"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thefreepress.ca/2026/11/06/fernie-cave-continues-to-break-records-as-the-largest-in-canada",
+    "https://rcgs.org/2026-expedition-grantees"
+  ]
+}
