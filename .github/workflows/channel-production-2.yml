@@ -147,6 +147,7 @@ jobs:
             data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.jpg
             data/editor/assets/${{ env.CHANNEL_ID }}/hist-*.png
           retention-days: 30
+          overwrite: true
 
   check-script-clarity:
     name: Script Clarity Review
@@ -307,6 +308,7 @@ jobs:
             data/tts/${{ env.CHANNEL_ID }}/${{ env.TTS_TOPIC }}-vo-words.json
             data/tts/${{ env.CHANNEL_ID }}/${{ env.STEM }}-vo-words.json
           retention-days: 30
+          overwrite: true
 
   build-timeline:
     name: Build Visual Timeline
@@ -420,6 +422,7 @@ jobs:
             data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.md
             data/editor/auto/${{ env.TTS_TOPIC }}/card-*.svg
           retention-days: 30
+          overwrite: true
 
   render-video:
     name: Render Video (Remotion)
@@ -530,6 +533,7 @@ jobs:
           name: rendered-video-${{ env.CHANNEL_ID }}
           path: data/renders/${{ env.CHANNEL_ID }}/
           retention-days: 30
+          overwrite: true
 
   run-quality-assurance:
     name: Technical Quality Assurance
@@ -606,6 +610,7 @@ jobs:
             data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-qa.json
             data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-contact.jpg
           retention-days: 30
+          overwrite: true
 
   publish-preparation:
     name: Prepare for Review
@@ -739,6 +744,7 @@ jobs:
           name: review-package-${{ env.CHANNEL_ID }}-${{ github.run_number }}
           path: .cache/review-artifacts/
           retention-days: 30
+          overwrite: true
 
   publish-private:
     name: Upload to YouTube (Private)
