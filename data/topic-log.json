@@ -635,9 +635,14 @@
           "topic": "University at Buffalo Releases Decades of Frank Lloyd Wright Oral Histories",
           "slug": "university-buffalo-frank-lloyd-wright-oral-histories",
           "reserved_at": "2026-11-06T16:04:28.665Z"
+        },
+        {
+          "topic": "University of Leiden Discovers Violette Cornelius Negatives in Suitcase",
+          "slug": "university-leiden-discovers-violette-cornelius-negatives",
+          "reserved_at": "2026-11-07T15:30:58.121Z"
         }
       ],
-      "last_generated": "2026-11-07T14:59:18.621Z"
+      "last_generated": "2026-11-07T15:30:58.121Z"
     },
     "2": {
       "channel_name": "AI Tested",
