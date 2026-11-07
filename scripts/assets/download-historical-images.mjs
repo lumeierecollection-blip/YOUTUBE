@@ -176,8 +176,8 @@ async function main() {
       seenHashes.add(hash);
 
       let ext = size.mime === "image/png" ? ".png" : ".jpg";
-      let filename = `${id}-${slugify(spec.label)}${ext}`;
-      let filePath = join(outDir, filename);
+      const filename = spec.file || `${id}-${slugify(spec.label)}${ext}`;
+      const filePath = join(outDir, filename);
       let finalBuf = buf;
       let finalSize = size;
 
@@ -186,8 +186,6 @@ async function main() {
       if (!["image/jpeg", "image/png"].includes(size.mime)) {
         const tmp = join(outDir, `${id}-source.tmp`);
         writeFileSync(tmp, buf);
-        filename = `${id}-${slugify(spec.label)}.jpg`;
-        filePath = join(outDir, filename);
         convertToJpeg(tmp, filePath);
         finalBuf = readFileSync(filePath);
         finalSize = imageSize(finalBuf);
@@ -242,7 +240,7 @@ async function main() {
       // Create a placeholder solid-color image so loadVisualPack doesn't fail
       // on missing files. Commons title may not exist; fall back to a placeholder.
       const slug = slugify(spec.label || spec.title);
-      const filePath = join(outDir, `${id}-${slug}.jpg`);
+      const filePath = join(outDir, spec.file || `${id}-${slug}.jpg`);
       try {
         // Use different colors per placeholder so each image has a unique hash
         const colors = ["0x333333", "0x555555", "0x777777", "0x999999", "0xAAAAAA", "0xBBBBBB", "0xCCCCCC"];
