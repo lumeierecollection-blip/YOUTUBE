@@ -200,6 +200,7 @@ jobs:
       GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
       GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
       GOOGLE_GENERATIVE_AI_API_KEY: $\{\{ secrets.GOOGLE_GENERATIVE_AI_API_KEY \}\}
+      TTS_PROVIDER: edge
       TTS_GEMINI_TAKES: "2"
     steps:
       - uses: actions/checkout@v4

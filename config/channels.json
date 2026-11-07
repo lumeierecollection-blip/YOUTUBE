@@ -111,7 +111,7 @@
       "bg_mode": "black",
       "channel_name": "AI Tested",
       "handle": "@aitested",
-      "tts_voice": "en-US-GuyNeural",
+      "tts_voice": "en-US-AndrewNeural",
       "font": "Space Grotesk",
       "estimated_rpm": "8-14",
       "google_account": "CH2",
