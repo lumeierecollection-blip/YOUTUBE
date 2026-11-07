@@ -1,0 +1,63 @@
+{
+  "name": "hittite-cuneiform-tablets-discovery-2026",
+  "pack": "hittite-cuneiform-tablets-discovery-2026",
+  "source": "Wikimedia Commons",
+  "source_api": "https://commons.wikimedia.org/w/api.php",
+  "selection": "Exact Commons file titles from a curated pack; no keyword search, no stand-ins.",
+  "licence_policy": "Only explicit Public domain, CC0, CC BY or CC BY-SA files. Files with non-free/fair-use/unknown licences or trademark/personality restrictions are rejected.",
+  "people_focused": 0,
+  "people_ratio": 0,
+  "selection_method": "curated_exact_titles",
+  "images": [
+    {
+      "sentence_index": 0,
+      "kind": "artifact",
+      "subject": "Hittite cuneiform tablet",
+      "label": "Hittite cuneiform tablet",
+      "title": "File:Bo 19-112 - Hittite cuneiform tablet.jpg",
+      "alt": "Ancient Hittite clay tablet with cuneiform script",
+      "note": "Hittite cuneiform tablet from the royal archive",
+      "reason": "The hook introduces an ancient clay tablet; the image shows an actual Hittite cuneiform tablet."
+    },
+    {
+      "sentence_index": 1,
+      "kind": "place",
+      "subject": "Kayalıpınar excavation site",
+      "label": "Kayalıpınar excavation site",
+      "title": "File:Kayalıpınar excavation site Turkey.jpg",
+      "alt": "Archaeological excavation trench at Kayalıpınar in central Turkey",
+      "note": "Archaeologists working at the Kayalıpınar excavation site",
+      "reason": "The sentence describes archaeologists at Kayalıpınar; the image shows the excavation site."
+    },
+    {
+      "sentence_index": 2,
+      "kind": "artifact",
+      "subject": "Hittite clay fragments",
+      "label": "Hittite clay fragments",
+      "title": "File:Hittite clay fragments museum shelves.jpg",
+      "alt": "Hittite clay fragments on museum storage shelves",
+      "note": "Cataloged clay fragments from the royal archive",
+      "reason": "The sentence describes combined archive pieces; the image shows clay fragments on shelves."
+    },
+    {
+      "sentence_index": 3,
+      "kind": "artifact",
+      "subject": "Damaged Hittite tablet with cuneiform",
+      "label": "Damaged Hittite tablet",
+      "title": "File:Damaged Hittite tablet cuneiform markings.jpg",
+      "alt": "Damaged clay tablet with cuneiform markings under raking light",
+      "note": "Tablet showing epidemic records from King Tudhaliya II's reign",
+      "reason": "The sentence describes the epidemic revelation; the image shows the tablet with cuneiform markings."
+    },
+    {
+      "sentence_index": 4,
+      "kind": "place",
+      "subject": "Kayalıpınar site landscape",
+      "label": "Kayalıpınar site",
+      "title": "File:Kayalıpınar archaeological site landscape dusk.jpg",
+      "alt": "Excavated Kayalıpınar site at dusk with shadows across the trench",
+      "note": "The excavated archaeological site at sunset",
+      "reason": "The closing sentence describes the site; the image shows the excavation landscape."
+    }
+  ]
+}
