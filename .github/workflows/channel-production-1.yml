@@ -662,18 +662,18 @@ jobs:
             const own = 'config/creds/' + ch.channel_id + '.json';
             if (!fs.existsSync(own)) {
               console.log('::warning::No credentials for ' + ch.channel_id + ' — upload skipped, video stays in review package');
-              process.exit(2);
+              process.exit(1);
             }
             const creds = JSON.parse(fs.readFileSync(own, 'utf8'));
             if (!(creds.client_id && creds.client_secret && creds.refresh_token)) {
               console.log('::warning::Incomplete credentials for ' + ch.channel_id + ' — upload skipped');
-              process.exit(2);
+              process.exit(1);
             }
             console.log('Credentials verified for ' + ch.channel_name + ' (' + ch.channel_id + ')');
             process.exit(0);
-          " && echo "upload=ready" >> $GITHUB_OUTPUT || echo "upload=skipped" >> $GITHUB_OUTPUT
+          "
       - name: Upload to YouTube (Private)
-        if: steps.creds.outputs.upload == 'ready'
+        if: success()
         run: |
           MP4="data/renders/${{ env.CHANNEL_ID }}/${{ env.STEM }}-rework.mp4"
           if [ ! -f "$MP4" ]; then
