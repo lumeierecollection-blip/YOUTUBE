@@ -319,8 +319,19 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: historical-images-${{ env.CHANNEL_ID }}
-          path: .
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
 
+      - name: Assert historical images on disk
+        run: |
+          DIR="data/editor/assets/${{ env.CHANNEL_ID }}"
+          echo "[assert] $DIR contents:"; ls -la "$DIR" 2>&1 || true
+          echo "[assert] root check:"; ls -la hist-*.png hist-*.jpg asset-manifest.json 2>&1 || true
+          COUNT=$(find "$DIR" -maxdepth 1 \( -name 'hist-*.jpg' -o -name 'hist-*.png' \) 2>/dev/null | wc -l)
+          echo "[assert] images in $DIR: $COUNT"
+          if [ "$COUNT" -lt 1 ]; then
+            echo "::error::No historical images found in $DIR"
+            exit 1
+          fi
       - name: Build Coverage Timeline
         run: |
           echo "[timeline] Building timeline for ${{ env.STEM }} with curated visual pack"
@@ -346,18 +357,6 @@ jobs:
             data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.json \
             data/editor/auto/${{ env.TTS_TOPIC }}/visual-repetition-report.md \
             data/editor/auto/${{ env.TTS_TOPIC }}/narration-visual-mapping.md 2>/dev/null
-
-      - name: Assert historical images on disk
-        run: |
-          DIR="data/editor/assets/${{ env.CHANNEL_ID }}"
-          echo "[assert] Listing $DIR:"
-          ls -la "$DIR" 2>&1 || true
-          COUNT=$(ls "$DIR"/hist-*.jpg "$DIR"/hist-*.png 2>/dev/null | wc -l)
-          echo "[assert] Historical images on disk: $COUNT"
-          if [ "$COUNT" -lt 1 ]; then
-            echo "::error::No historical images found in $DIR (artifact restore nested them wrongly)"
-            exit 1
-          fi
 
       - name: Validate Timeline
         run: |
@@ -448,7 +447,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: historical-images-${{ env.CHANNEL_ID }}
-          path: .
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
 
       - name: Render Video
         run: |
@@ -534,7 +533,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: historical-images-${{ env.CHANNEL_ID }}
-          path: .
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
 
       - name: Install Dependencies
         run: |
@@ -596,7 +595,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: historical-images-${{ env.CHANNEL_ID }}
-          path: .
+          path: data/editor/assets/${{ env.CHANNEL_ID }}
 
       - name: Download Timeline + Reports
         uses: actions/download-artifact@v4
