@@ -1,0 +1,48 @@
+{
+  "channel_id": "9",
+  "topic_slug": "nasa-skull-antarctica-ice-melting",
+  "format": "shorts",
+  "hook": "NASA Earth Observatory satellites captured a grinning human skull on Vega Island in October 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA Earth Observatory satellites captured a grinning human skull on Vega Island in October 2026.",
+      "text_overlay": {
+        "text": "Skull Spotted in Antarctica"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 30, 2026, satellites observed this ice and rock formation in the Weddell Sea. What caused this formation to appear?",
+      "text_overlay": {
+        "text": "Vega Island, Weddell Sea"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, unusually warm winter temperatures on the Antarctic Peninsula exposed dark ice, accelerating glacial melting.",
+      "text_overlay": {
+        "text": "Record Warm Winters"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "ScienceDaily reports these rising temperatures on Vega Island are now threatening faster glacial melting. The Times of India reports this 2026 formation uses a rocky peak as an eye socket.",
+      "text_overlay": {
+        "text": "Faster Glacial Melting"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "A lateral moraine forms the jaw on Vega Island as seen in October 2026.",
+      "text_overlay": {
+        "text": "Vega Island, 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/earth/earth-observatory/vega-island-frozen-in-fright",
+    "https://www.sciencedaily.com/releases/2026/11/261101010538.htm",
+    "https://timesofindia.indiatimes.com/science/space/nasas-new-satellite-images-show-an-antarctic-island-that-looks-like-a-giant-skull-with-a-rocky-eye-socket-and-glacier-jaw-the-october-2026-view-reveals-more-bare-ice-after-an-unusually-warm-winter/articleshow/135399428.cms"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "channel_id": "48",
+  "topic_slug": "bodum-french-press-recall-5-9-million-2026",
+  "format": "shorts",
+  "hook": "5.9 million Bodum French press coffee makers are now being recalled.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "5.9 million Bodum French press coffee makers are now being recalled."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, 2026, the Consumer Product Safety Commission issued this major safety notice. Why's the Consumer Product Safety Commission recalling 5.9 million Bodum French press coffee makers?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the glass carafes break during use, causing at least 48 documented burn injuries to consumers."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Bodum USA confirmed 70 reports of glass breakage incidents. These incidents resulted in 48 documented burn injuries to consumers. In total, they've recalled 5.9 million coffee makers sold at major retailers."
+    },
+    {
+      "id": "close",
+      "voiceover": "5.9 million units remain subject to this federal safety recall."
+    }
+  ],
+  "sources_used": [
+    "https://www.cpsc.gov/Recalls/2027/Bodum-USA-Recalls-5-9-Million-French-Press-Coffee-Makers-with-Replaceable-Glass-Carafes-Due-to-Risk-of-Serious-Burn-Injury",
+    "https://www.upi.com/Top_News/US/2026/10/30/bodum-french-press-recall/1141793395702"
+  ]
+}

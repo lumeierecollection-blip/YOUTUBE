@@ -1,0 +1,48 @@
+{
+  "channel_id": "3",
+  "topic_slug": "the-pitt-er-michael-crichton-estate-lawsuit",
+  "format": "shorts",
+  "hook": "A 1994 legal agreement just forced a major television studio trial.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 1994 legal agreement just forced a major television studio trial.",
+      "text_overlay": {
+        "text": "1994 Rights Agreement Triggered Trial"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2026, a California appeals court ruled Warner Bros. Television must face a jury trial. Sherri Crichton filed the lawsuit over similarities between The Pitt and ER. Does the new show violate those protected rights?",
+      "text_overlay": {
+        "text": "The Pitt vs. ER Lawsuit"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except a three-judge panel issued a unanimous 33-page opinion against them.",
+      "text_overlay": {
+        "text": "3-Judge Panel Unanimous Ruling"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The L.A. Superior Court will now hear this case in its entirety. Warner Bros. The estate successfully argued that the 1994 rights provision was violated.",
+      "text_overlay": {
+        "text": "L.A. Superior Court Jury Trial"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 33-page court opinion confirms the case is moving forward.",
+      "text_overlay": {
+        "text": "33-Page Opinion Confirmed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.rollingstone.com/tv-movies/tv-movie-news/the-pitt-michael-crichton-er-lawsuit-similarities-1235653040",
+    "https://www.thewrap.com/creative-content/tv-shows/the-pitt-er-michael-crichton-lawsuit-jury-trial",
+    "https://deadline.com/2026/11/the-pitt-michael-crichton-estate-lawsuit-trial-1237213710"
+  ]
+}

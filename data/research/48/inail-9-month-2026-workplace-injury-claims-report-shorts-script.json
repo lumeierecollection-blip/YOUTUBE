@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "inail-9-month-2026-workplace-injury-claims-report",
+  "format": "shorts",
+  "hook": "Inail recorded 325,525 workplace injury claims across 9 months of 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Inail recorded 325,525 workplace injury claims across 9 months of 2026.",
+      "text_overlay": {
+        "text": "325,525 Injury Claims"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2026, Inail released workplace data excluding students. Commuting accidents accounted for another 75,966 recorded claims. Didn't November 2026 Inail data show where total fatal injury claims reached across categories?",
+      "text_overlay": {
+        "text": "75,966 Commuting Accidents"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, Inail recorded 810 total fatal injury claims across workplace and commuting categories.",
+      "text_overlay": {
+        "text": "810 Fatalities Recorded"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Inail registered a 16.3% increase in professional disease claims during those nine months. Inail also documented 75,966 commuting accidents excluding students during that same period.",
+      "text_overlay": {
+        "text": "+16.3% Professional Diseases"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Inail confirmed total fatal injury claims reached 810 cases.",
+      "text_overlay": {
+        "text": "810 Total Fatal Claims"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314",
+    "https://www.assicurazioninews.com/aumento-infortuni-e-malattie-professionali-nei-primi-nove-mesi"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "channel_id": "1",
+  "topic_slug": "frank-lloyd-wright-oral-histories-buffalo-archives",
+  "format": "shorts",
+  "hook": "Forgotten voices from Frank Lloyd Wright's inner circle were finally unlocked in 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Forgotten voices from Frank Lloyd Wright's inner circle were finally unlocked in 2026.",
+      "visual_cue": "Close up of a 2026 date stamp on a digital archive interface.",
+      "text_overlay": {
+        "text": "Voices Unlocked: 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "But how did these fragile recordings survive decades of storage in the University at Buffalo archives?",
+      "visual_cue": "Archive storage shelves at the University at Buffalo showing manuscript MS 22.93.",
+      "text_overlay": {
+        "text": "University at Buffalo Archives"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The collection includes firsthand accounts from Darwin R. Martin, the son of Wright's famous client. These interviews feature family members sharing rare insights into the architect's residential design process.",
+      "visual_cue": "Archival photograph of Darwin R. Martin, born in 1900.",
+      "text_overlay": {
+        "text": "Firsthand Accounts"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The University at Buffalo preserves these interviews under manuscript number MS 22.93 for public access.",
+      "visual_cue": "Historical image of the William R. Heath House in Buffalo.",
+      "text_overlay": {
+        "text": "1979 Interview"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This collection remains a vital link to Wright's work recorded between 1971 and 1980.",
+      "visual_cue": "Close up of a vintage reel-to-reel tape machine spinning.",
+      "text_overlay": {
+        "text": "1971–1980 Era"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://library.buffalo.edu/news/stories/2026/11/darwin-martin-oral-histories.html",
+    "https://library.buffalo.edu/specialcollections/archives/collections-guides/collections/detail.html?ID=30",
+    "https://digital.lib.buffalo.edu/index.php/items/show/100749"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "channel_id": "4",
+  "topic_slug": "utah-byu-holy-war-rivalry-evolution",
+  "format": "shorts",
+  "hook": "A regional football game started in 1896 became a top 10 national showdown.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A regional football game started in 1896 became a top 10 national showdown.",
+      "text_overlay": {
+        "text": "1896 TO TOP 10 SHOWDOWN"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1896, the University of Utah first played Brigham Young University. The Associated Press later ranked BYU at No. 2 and Utah at No. Where will these 2 rivals meet next?",
+      "text_overlay": {
+        "text": "HISTORIC AP RANKINGS"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Holy War doesn't end, as the Big 12 designated 4 protected rivalries.",
+      "text_overlay": {
+        "text": "PROTECTED RIVALRY"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Now, No. 3 Utah faces No. 7 BYU in Salt Lake City. They battle at Rice-Eccles Stadium on Nov. 7. Kickoff is locked in for 10 a.m. local time.",
+      "text_overlay": {
+        "text": "TOP 10 SHOWDOWN"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Big 12 doesn't stop guaranteeing annual meetings for Utah and BYU.",
+      "text_overlay": {
+        "text": "THE HOLY WAR"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.espn.co.uk/college-football/story/_/id/42212125/byu-utah-big-12-rivalry-game-best-stories-2024",
+    "https://www.deseret.com/sports/2026/10/19/byu-utah-football-in-ap-top-10-together",
+    "https://apnews.com/article/byu-utah-rivalry-top-25-506d9db53b79cc8aaa125048dd76dd34",
+    "https://www.studentsection.com/byu-vs-utah-the-holy-war-a-disputed-history-and-a-top-10-showdown"
+  ]
+}

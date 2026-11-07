@@ -1,0 +1,91 @@
+{
+  "topic_slug": "un-correct-the-map-equal-earth-mercator-2026",
+  "strongest_angle": "Examine the United Nations General Assembly 'Correct the Map' resolution abandoning the Mercator projection by a vote of 164 to 1, detailing how it distorts continents by making Africa appear equal in size to Greenland while being 14 times larger.",
+  "key_facts": [
+    {
+      "fact": "By 164 votes to one, United Nations Member States on Friday endorsed the 'Correct the Map' resolution promoting map projections that accurately reflect the true size of continents.",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small",
+      "source_name": "United Nations",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 'Correct the Map' resolution adopted by the United Nations General Assembly fixes the discrepancy with the Mercator map, in which the African continent is shown as being of similar size to Greenland even though it is about 14 times larger in reality.",
+      "source_url": "https://www.bbc.com/news/articles/cly5r60v4mro",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "The United Nations resolution to correct map distortions was sponsored by Togo and backed by members of the African Union alongside the Bahamas.",
+      "source_url": "https://apnews.com/article/un-africa-map-mercator-equal-earth-projection-b138fe9f76d7ff54cc7d5c9b1ddfa983",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Votes in favor of the UN resolution",
+      "value": 164,
+      "unit": "votes",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small"
+    },
+    {
+      "label": "Votes against the UN resolution",
+      "value": 1,
+      "unit": "votes",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small"
+    },
+    {
+      "label": "Africa size multiplier compared to Greenland on Mercator map",
+      "value": 14,
+      "unit": "times larger",
+      "source_url": "https://www.bbc.com/news/articles/cly5r60v4mro"
+    },
+    {
+      "label": "Member states voting in favor according to CNN",
+      "value": 164,
+      "unit": "member states",
+      "source_url": "https://www.cnn.com/2026/09/04/world/un-vote-new-world-map-intl-scli"
+    },
+    {
+      "label": "Member states abstaining according to CNN",
+      "value": 6,
+      "unit": "member states",
+      "source_url": "https://www.cnn.com/2026/09/04/world/un-vote-new-world-map-intl-scli"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "United Nations",
+      "kind": "organization"
+    },
+    {
+      "name": "United Nations General Assembly",
+      "kind": "organization"
+    },
+    {
+      "name": "Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Greenland",
+      "kind": "place"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Togo",
+      "kind": "place"
+    },
+    {
+      "name": "African Union",
+      "kind": "organization"
+    },
+    {
+      "name": "Bahamas",
+      "kind": "place"
+    }
+  ]
+}

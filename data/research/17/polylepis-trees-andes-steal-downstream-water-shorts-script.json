@@ -1,0 +1,52 @@
+{
+  "channel_id": "17",
+  "topic_slug": "polylepis-trees-andes-steal-downstream-water",
+  "format": "shorts",
+  "hook": "Planting native trees in the Andes might actually steal water from communities downstream.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Planting native trees in the Andes might actually steal water from communities downstream.",
+      "visual_cue": "Close-up of a Polylepis tree in a high-altitude Andean landscape.",
+      "text_overlay": {
+        "text": "Andean Tree Planting Risks"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, researchers found that these high-elevation Polylepis forests now occupy less than 10% of their original range in Peru. But how does this change the water supply?",
+      "visual_cue": "Satellite map of Peru highlighting the Andes, transitioning to a field of native grasses.",
+      "text_overlay": {
+        "text": "10% of original range remaining"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "A 2026 study shows that planting Polylepis trees in grasslands actually reduces vital aquifer recharge.",
+      "visual_cue": "Diagram showing groundwater levels beneath grassland versus forest canopy.",
+      "text_overlay": {
+        "text": "Aquifer recharge reduced"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Jasper Oshun and Margaret M. Lang found that replacing native grasslands with Polylepis forests hurts aquifers. This land use shift threatens water access for communities living throughout the Andes mountains in 2026.",
+      "visual_cue": "Split screen showing a lush Polylepis forest next to a dry mountain stream.",
+      "text_overlay": {
+        "text": "Forests consuming aquifer water"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The American Geophysical Union published this 2026 study regarding Polylepis forests in the Andes mountains.",
+      "visual_cue": "Wide shot of the Andean peaks during sunset.",
+      "text_overlay": {
+        "text": "Polylepis location matters"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.agu.org/11-5-2026-planting-native-andean-trees-in-the-wrong-places-may-steal-water-from-people-downstream",
+    "https://doi.org/10.1029/2026jg009689"
+  ]
+}

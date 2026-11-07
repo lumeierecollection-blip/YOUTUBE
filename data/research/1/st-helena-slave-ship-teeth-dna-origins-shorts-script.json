@@ -1,0 +1,92 @@
+{
+  "channel_id": "1",
+  "topic_slug": "st-helena-slave-ship-teeth-dna-origins",
+  "format": "shorts",
+  "hook": "193 tooth enamel samples revealed childhood origins of 152 liberated Africans.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "193 tooth enamel samples revealed childhood origins of 152 liberated Africans.",
+      "visual_cue": "Close-up macro shot of preserved human teeth artifacts under laboratory analysis lighting.",
+      "sfx_cue": "Low resonant bass thud",
+      "b_roll": [
+        "Archaeological laboratory teeth examination",
+        "Rupert's Valley St Helena landscape aerial"
+      ],
+      "animation_cue": "Slow push-in on tooth enamel specimen with subtle data callout graphic",
+      "transition_out": "Quick whip pan",
+      "text_overlay": {
+        "text": "193 Tooth Enamel Samples"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "Royal Navy ships brought 27,000 liberated Africans to St Helena. Could tooth enamel map where these 152 individuals grew up?",
+      "visual_cue": "Historical map of South Atlantic ocean panning to remote island of St Helena, followed by archaeological excavation site in Rupert's Valley.",
+      "sfx_cue": "Ocean wind ambiance fading into camera shutter click",
+      "b_roll": [
+        "19th century naval ship archival illustration",
+        "Archaeological excavation in Rupert's Valley"
+      ],
+      "animation_cue": "Map line tracing sea route to St Helena with key location pin",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "St Helena · 27,000 Liberated Africans"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:23",
+      "voiceover": "But the transatlantic slave trade forcibly displaced more than 12.5 million Africans, erasing their specific life histories.",
+      "visual_cue": "Wide global map showing transatlantic trade routes spanning west coast of Africa.",
+      "sfx_cue": "Heavy metallic pulse",
+      "b_roll": [
+        "Historical shipping ledger archive document",
+        "Atlantic ocean horizon"
+      ],
+      "animation_cue": "Animated trade route vectors across Atlantic basin",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "12.5 Million Displaced"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:23-0:38",
+      "voiceover": "UC Santa Cruz mapped the exact natal origins of those 152 survivors.",
+      "visual_cue": "Diagram showing tooth enamel isotope absorption alongside mass spectrometer laboratory equipment.",
+      "sfx_cue": "Subtle digital data processing audio hum",
+      "b_roll": [
+        "Mass spectrometry laboratory equipment in operation",
+        "Geochemical soil map overlay of West Africa"
+      ],
+      "animation_cue": "Isotope ratio chart matching teeth signatures to African geographic zones",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "193 Strontium Isotope Signatures"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Globe Institute researchers restored the specific geographic origins of 152 individuals buried on St Helena.",
+      "visual_cue": "Rupert's Valley memorial site on St Helena overlooking the Atlantic ocean.",
+      "sfx_cue": "Soft swell of strings",
+      "b_roll": [
+        "Rupert's Valley burial ground monument St Helena"
+      ],
+      "animation_cue": "Slow fade out on Atlantic coastline view",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Rupert's Valley · St Helena"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.science.org/doi/10.1126/science.aeb3661",
+    "https://www.nature.com/articles/d44148-026-00348-w",
+    "https://archaeology.ku.dk/news/new-study-traces-african-origins-of-st-helenas-liberated-africans"
+  ]
+}

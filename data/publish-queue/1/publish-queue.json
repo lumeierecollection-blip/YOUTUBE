@@ -249,5 +249,41 @@
     "cancelled": true,
     "source_file": "st-helena-slave-ship-burials-dna-analysis-shorts-shorts-2026-11-03.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "TrGV8uQwtGM",
+    "channel_id": "1",
+    "title": "Hungary Opens Communist-Era Secret Police Files After 47…",
+    "uploaded_at": "2026-11-04T17:18:35.226Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-04T18:18:35.226Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "hungary-secret-police-files-released-2026-shorts-shorts-2026-11-04.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "NshULBHhhqY",
+    "channel_id": "1",
+    "title": "University Archives Opens Decades of Frank Lloyd Wright…",
+    "uploaded_at": "2026-11-05T17:15:21.503Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-05T18:15:21.502Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "frank-lloyd-wright-oral-histories-buffalo-archives-shorts-shorts-2026-11-05.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "JjsB_N1zHl8",
+    "channel_id": "1",
+    "title": "Teeth Analysis Reveals African Origins of Slaves Buried on…",
+    "uploaded_at": "2026-11-06T16:42:25.533Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-06T17:42:25.533Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "st-helena-slave-ship-teeth-dna-origins-shorts-shorts-2026-11-06.mp4",
+    "source_queue": "approved"
   }
 ]

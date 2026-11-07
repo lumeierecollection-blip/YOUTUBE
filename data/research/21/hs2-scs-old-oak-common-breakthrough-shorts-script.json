@@ -1,0 +1,53 @@
+{
+  "channel_id": "21",
+  "topic_slug": "hs2-scs-old-oak-common-breakthrough",
+  "format": "shorts",
+  "hook": "Engineers just finished carving a 14km tunnel link directly under London.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Engineers just finished carving a 14km tunnel link directly under London.",
+      "visual_cue": "Top-down view of the tunnel route map connecting to the station site.",
+      "text_overlay": {
+        "text": "14km Tunnel Breakthrough"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How deep is the station box, the massive concrete structure housing the new underground platforms?",
+      "visual_cue": "Animated cross-section showing the tunnel boring machine breaking through into the station box.",
+      "text_overlay": {
+        "text": "100,000 Tonnes Excavated"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The station box at Old Oak Common reaches a massive 20 metres of underground depth.",
+      "visual_cue": "Wide shot of the deep, concrete-lined station box construction site.",
+      "text_overlay": {
+        "text": "20 Metres Deep"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "They built twin 360m mined tunnels as part of the 14km HS2 high-speed rail link. This breakthrough completes the 14km tunnel link for the Skanska Costain Strabag project.",
+      "visual_cue": "Detailed diagram highlighting the twin mined tunnel segments connecting to the station infrastructure.",
+      "text_overlay": {
+        "text": "Twin 360m Mined Tunnels"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Old Oak Common serves as the primary station for this 14km HS2 high-speed rail link.",
+      "visual_cue": "Aerial view of the completed station box structure integrated into the landscape.",
+      "text_overlay": {
+        "text": "Old Oak Common Complete"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/mined-tunnel-breakthroughs-connect-hs2-to-old-oak-common-station",
+    "https://www.newcivilengineer.com/latest/hs2-scs-breaks-through-into-old-oak-common-connecting-station-with-north-london-line-04-11-2026",
+    "https://www.hs2.org.uk/construction/stations/old-oak-common"
+  ]
+}

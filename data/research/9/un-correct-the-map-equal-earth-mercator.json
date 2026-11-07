@@ -1,0 +1,90 @@
+{
+  "topic_slug": "un-correct-the-map-equal-earth-mercator",
+  "strongest_angle": "The UN General Assembly has officially moved to phase out the 16th-century Mercator projection in favor of more accurate maps like Equal Earth, addressing long-standing geometric distortions that misrepresent the relative size of continents like Africa.",
+  "key_facts": [
+    {
+      "fact": "On September 4, 2026, the United Nations General Assembly passed a resolution by a vote of 164 to one to move away from the Mercator map projection.",
+      "source_url": "https://news.un.org/en/story/2026/09/1168284",
+      "source_name": "UN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Mercator projection, created by Flemish cartographer Gerardus Mercator in 1569, incorrectly displays the African continent as similar in size to Greenland.",
+      "source_url": "https://news.harvard.edu/gazette/story/2026/10/correcting-the-world-map",
+      "source_name": "Harvard Gazette",
+      "confidence": "high"
+    },
+    {
+      "fact": "In reality, the continent of Africa is approximately 14 times larger than the island of Greenland.",
+      "source_url": "https://www.bbc.com/news/articles/cly5r60v4mro",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 'Correct the Map' initiative was spearheaded by the nation of Togo and received formal backing from the African Union.",
+      "source_url": "https://apnews.com/article/un-africa-map-mercator-equal-earth-projection-b138fe9f76d7ff54cc7d5c9b1ddfa983",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "UN resolution vote in favor",
+      "value": 164,
+      "unit": "votes",
+      "source_url": "https://news.un.org/en/story/2026/09/1168284"
+    },
+    {
+      "label": "UN resolution vote against",
+      "value": 1,
+      "unit": "votes",
+      "source_url": "https://news.un.org/en/story/2026/09/1168284"
+    },
+    {
+      "label": "Year of Mercator projection creation",
+      "value": 1569,
+      "unit": "year",
+      "source_url": "https://news.harvard.edu/gazette/story/2026/10/correcting-the-world-map"
+    },
+    {
+      "label": "Size ratio of Africa to Greenland",
+      "value": 14,
+      "unit": "times larger",
+      "source_url": "https://www.bbc.com/news/articles/cly5r60v4mro"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "United Nations General Assembly",
+      "kind": "organization"
+    },
+    {
+      "name": "Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Greenland",
+      "kind": "place"
+    },
+    {
+      "name": "Gerardus Mercator",
+      "kind": "person"
+    },
+    {
+      "name": "Togo",
+      "kind": "place"
+    },
+    {
+      "name": "African Union",
+      "kind": "organization"
+    },
+    {
+      "name": "Mercator map",
+      "kind": "object"
+    },
+    {
+      "name": "Equal Earth",
+      "kind": "object"
+    }
+  ]
+}

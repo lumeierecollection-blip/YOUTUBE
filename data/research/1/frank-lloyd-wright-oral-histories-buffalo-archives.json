@@ -1,0 +1,141 @@
+{
+  "topic_slug": "frank-lloyd-wright-oral-histories-buffalo-archives",
+  "strongest_angle": "Newly digitized oral history recordings from the University at Buffalo offer firsthand recollections from associates and family members connected to Frank Lloyd Wright's landmark Buffalo projects like the Darwin D. Martin House.",
+  "key_facts": [
+    {
+      "fact": "On November 2, 2026, the University at Buffalo announced the public opening of oral history interviews regarding architect Frank Lloyd Wright and the Darwin D. Martin House Complex.",
+      "source_url": "https://library.buffalo.edu/news/stories/2026/11/darwin-martin-oral-histories.html",
+      "source_name": "University at Buffalo Libraries",
+      "confidence": "high"
+    },
+    {
+      "fact": "The University at Buffalo Archives holds the Darwin D. Martin Frank Lloyd Wright collection under manuscript number MS 22.93, spanning interviews recorded between 1971 and 1980.",
+      "source_url": "https://library.buffalo.edu/specialcollections/archives/collections-guides/collections/detail.html?ID=30",
+      "source_name": "University at Buffalo Special Collections",
+      "confidence": "high"
+    },
+    {
+      "fact": "Art historian Jack Quinan conducted an oral history interview with Evelyn Heath Jacobsen on January 18, 1979, focusing on the William R. Heath House in Buffalo, New York.",
+      "source_url": "https://digital.lib.buffalo.edu/index.php/items/show/100749",
+      "source_name": "University at Buffalo Digital Collections",
+      "confidence": "high"
+    },
+    {
+      "fact": "The University at Buffalo Digital Collections preserve interviews with Darwin R. Martin, son of client Darwin D. Martin who lived from 1900 to 1979, discussing Wright's residential design in Buffalo.",
+      "source_url": "https://digital.lib.buffalo.edu/index.php/items/show/100748",
+      "source_name": "University at Buffalo Digital Collections",
+      "confidence": "high"
+    },
+    {
+      "fact": "Columbia University Avery Architectural Library preserves Frank Lloyd Wright Fellowship Talk audio recordings and transcripts dating from 1948 to 1959.",
+      "source_url": "https://library.columbia.edu/libraries/avery/franklloydwright/collections.html",
+      "source_name": "Columbia University Libraries",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "announcement year for oral histories release",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://library.buffalo.edu/news/stories/2026/11/darwin-martin-oral-histories.html"
+    },
+    {
+      "label": "Buffalo archives manuscript collection number",
+      "value": 22.93,
+      "unit": "manuscript number",
+      "source_url": "https://library.buffalo.edu/specialcollections/archives/collections-guides/collections/detail.html?ID=30"
+    },
+    {
+      "label": "oral history collection start year",
+      "value": 1971,
+      "unit": "year",
+      "source_url": "https://library.buffalo.edu/specialcollections/archives/collections-guides/collections/detail.html?ID=30"
+    },
+    {
+      "label": "oral history collection end year",
+      "value": 1980,
+      "unit": "year",
+      "source_url": "https://library.buffalo.edu/specialcollections/archives/collections-guides/collections/detail.html?ID=30"
+    },
+    {
+      "label": "interview recording day of month",
+      "value": 18,
+      "unit": "day",
+      "source_url": "https://digital.lib.buffalo.edu/index.php/items/show/100749"
+    },
+    {
+      "label": "interview recording year for Evelyn Heath Jacobsen",
+      "value": 1979,
+      "unit": "year",
+      "source_url": "https://digital.lib.buffalo.edu/index.php/items/show/100749"
+    },
+    {
+      "label": "birth year of Darwin R. Martin",
+      "value": 1900,
+      "unit": "year",
+      "source_url": "https://digital.lib.buffalo.edu/index.php/items/show/100748"
+    },
+    {
+      "label": "death year of Darwin R. Martin",
+      "value": 1979,
+      "unit": "year",
+      "source_url": "https://digital.lib.buffalo.edu/index.php/items/show/100748"
+    },
+    {
+      "label": "Columbia Fellowship Talk start year",
+      "value": 1948,
+      "unit": "year",
+      "source_url": "https://library.columbia.edu/libraries/avery/franklloydwright/collections.html"
+    },
+    {
+      "label": "Columbia Fellowship Talk end year",
+      "value": 1959,
+      "unit": "year",
+      "source_url": "https://library.columbia.edu/libraries/avery/franklloydwright/collections.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Frank Lloyd Wright",
+      "kind": "person"
+    },
+    {
+      "name": "Darwin D. Martin",
+      "kind": "person"
+    },
+    {
+      "name": "Darwin R. Martin",
+      "kind": "person"
+    },
+    {
+      "name": "Evelyn Heath Jacobsen",
+      "kind": "person"
+    },
+    {
+      "name": "Jack Quinan",
+      "kind": "person"
+    },
+    {
+      "name": "University at Buffalo",
+      "kind": "organization"
+    },
+    {
+      "name": "Columbia University",
+      "kind": "organization"
+    },
+    {
+      "name": "Darwin D. Martin House",
+      "kind": "place"
+    },
+    {
+      "name": "William R. Heath House",
+      "kind": "place"
+    },
+    {
+      "name": "Buffalo",
+      "kind": "place"
+    }
+  ]
+}
