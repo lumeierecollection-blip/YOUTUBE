@@ -7,8 +7,8 @@
   "sections": [
     {
       "id": "hook",
-      "timing": "00:00-00:06",
-      "voiceover": "One clay tablet. 3,400 years. A royal secret buried—and found.",
+      "timing": "00:00-00:05",
+      "voiceover": "One clay tablet. 3,400 years. A royal secret buried and found.",
       "visual_cue": "Static shot of a Hittite cuneiform clay tablet on a neutral museum background, no camera movement.",
       "sfx_cue": "Low ambient drone with faint scraping texture",
       "b_roll": [
@@ -22,12 +22,12 @@
     },
     {
       "id": "setup",
-      "timing": "00:06-00:13",
-      "voiceover": "Archaeologists at Kayalıpınar in Turkey uncovered 131 cuneiform tablets from King Tudhaliya II's royal archive.",
-      "visual_cue": "Archaeological trench at Kayalıpınar excavation site, stable wide shot showing researchers working.",
+      "timing": "00:05-00:11",
+      "voiceover": "Archaeologists uncovered 131 cuneiform tablets from King Tudhaliya II's royal archive at Kayalipinar.",
+      "visual_cue": "Archaeological trench at Kayalipinar excavation site, stable wide shot showing researchers working.",
       "sfx_cue": "Soft brush scraping against stone",
       "b_roll": [
-        "Kayalıpınar archaeological excavation site"
+        "Kayalipinar archaeological excavation site"
       ],
       "animation_cue": "Crossfade, static frame",
       "transition_out": "Crossfade",
@@ -37,8 +37,8 @@
     },
     {
       "id": "payoff",
-      "timing": "00:13-00:22",
-      "voiceover": "The tablets reveal a deadly epidemic during King Tudhaliya II's reign—including a nursing princess who died.",
+      "timing": "00:11-00:20",
+      "voiceover": "The tablets reveal a deadly epidemic during King Tudhaliya II's reign, including a nursing princess who died.",
       "visual_cue": "Clay tablet with wedge-shaped cuneiform markings under even museum lighting, no camera movement.",
       "sfx_cue": "Low atmospheric tension swell",
       "b_roll": [
@@ -52,12 +52,12 @@
     },
     {
       "id": "close",
-      "timing": "00:22-00:29",
-      "voiceover": "131 tablets revealed a lost royal tragedy. Preserved in clay for 3,400 years.",
-      "visual_cue": "Kayalıpınar excavation site at dusk, stable wide shot with shadows across the trench.",
+      "timing": "00:20-00:28",
+      "voiceover": "131 tablets revealed a lost royal tragedy, preserved in clay for 3,400 years.",
+      "visual_cue": "Kayalipinar excavation site at dusk, stable wide shot with shadows across the trench.",
       "sfx_cue": "Wind ambient fading out",
       "b_roll": [
-        "Kayalıpınar site landscape at sunset"
+        "Kayalipinar site landscape at sunset"
       ],
       "animation_cue": "Fade to black",
       "transition_out": "Fade to black",
