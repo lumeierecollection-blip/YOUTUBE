@@ -1,9 +1,9 @@
 {
-  "name": "ai-claude-gemini-copilot-comparison",
-  "pack": "ai-claude-gemini-copilot-comparison",
+  "name": "ai-benchmark-minimax-m3-1-flash",
+  "pack": "ai-benchmark-minimax-m3-1-flash",
   "source": "Wikimedia Commons",
   "source_api": "https://commons.wikimedia.org/w/api.php",
-  "selection": "Exact Commons file titles from a curated nine-beat pack; no keyword search, no stand-ins.",
+  "selection": "Exact Commons file titles from a curated pack; no keyword search, no stand-ins.",
   "licence_policy": "Only explicit Public domain, CC0, CC BY or CC BY-SA files. Files with non-free/fair-use/unknown licences or trademark/personality restrictions are rejected.",
   "people_focused": 0,
   "people_ratio": 0,
@@ -12,74 +12,62 @@
     {
       "sentence_index": 0,
       "kind": "product",
-      "subject": "Artificial Intelligence",
-      "label": "Artificial Intelligence",
-      "title": "File:DALL-E 3 - advanced artificial intelligence.png",
+      "subject": "Benchmark score chart",
+      "label": "Benchmark score chart",
+      "title": "File:Bar chart of the top 20 domains cited by ChatGPT (2025 data from Recover Reputation).jpg",
       "id": "hist-01",
-      "file": "hist-01-ai-gemini-connected-apps.png",
-      "alt": "AI-generated image of AI concept",
-      "note": "AI-generated image depicting artificial intelligence concept",
-      "reason": "The hook introduces AI; the image depicts AI-generated artwork."
+      "file": "hist-01-minimax-benchmark-chart.png",
+      "alt": "Bar chart showing AI model benchmark scores",
+      "note": "Bar chart showing AI model benchmark scores for hook visualization",
+      "reason": "The hook introduces the 73.7% benchmark score; the image shows a benchmark score chart."
     },
     {
       "sentence_index": 1,
-      "kind": "people",
-      "subject": "AI Comparison",
-      "label": "AI Comparison",
-      "title": "File:Artificial Intelligence relation to Generative Models subset, Venn diagram.png",
-      "id": "hist-02",
-      "file": "hist-02-ai-gemini-connected-apps.png",
-      "alt": "Venn diagram showing AI relationship to generative models",
-      "note": "Venn diagram showing AI relationship to generative models.",
-      "reason": "The sentence compares four AI tools; the diagram shows relationships between AI models."
-    },
-    {
-      "sentence_index": 2,
-      "kind": "people",
-      "subject": "AI Research",
-      "label": "AI Research",
-      "title": "File:Artificial Intelligence Scale.png",
-      "id": "hist-03",
-      "file": "hist-03-ai-gemini-connected-apps.png",
-      "alt": "AI scale showing AI progression over time",
-      "note": "Scale showing AI training computation growth over decades.",
-      "reason": "The sentence references a research report; the scale shows AI development over time."
-    },
-    {
-      "sentence_index": 3,
-      "kind": "people",
-      "subject": "AI Benchmark",
-      "label": "AI Benchmark",
-      "title": "File:Scores artificial intelligence benchmarks en.png",
-      "id": "hist-04",
-      "file": "hist-04-ai-gemini-connected-apps.png",
-      "alt": "AI benchmark scores chart comparing models",
-      "note": "Benchmark scores of AI models on key tasks.",
-      "reason": "The sentence describes which AI was fastest; the chart shows benchmark scores."
-    },
-    {
-      "sentence_index": 4,
-      "kind": "people",
-      "subject": "AI Result",
-      "label": "AI Result",
-      "title": "File:Artificial intelligence prompt completion by dalle mini.jpg",
-      "id": "hist-05",
-      "file": "hist-05-ai-gemini-connected-apps.png",
-      "alt": "AI-generated image from DALL-E mini",
-      "note": "AI-generated image from DALL-E mini model.",
-      "reason": "The closing sentence shows the final result; the image shows AI-generated output."
-    },
-    {
-      "sentence_index": 5,
       "kind": "product",
       "subject": "Computer processor",
       "label": "Microprocessor",
       "title": "File:CPUs 20240707 HOF0369 RAW-Export.png",
-      "id": "hist-06",
-      "file": "hist-06-cpus-microprocessors.png",
+      "id": "hist-02",
+      "file": "hist-02-minimax-cpus.png",
       "alt": "View of microprocessors (computer hardware)",
       "note": "Photograph of microprocessors, CC BY 4.0",
-      "reason": "The closing sentence shows Search and Gemini integration; the image shows the underlying computing hardware."
+      "reason": "The setup discusses AI model performance; the image shows underlying computing hardware."
+    },
+    {
+      "sentence_index": 2,
+      "kind": "product",
+      "subject": "Computer terminal",
+      "label": "Terminal interface",
+      "title": "File:Linux command-line. Bash. GNOME Terminal. screenshot.png",
+      "id": "hist-03",
+      "file": "hist-03-minimax-terminal.png",
+      "alt": "Linux terminal command-line interface screenshot",
+      "note": "Terminal screenshot showing command-line interface, CC BY-SA 4.0",
+      "reason": "The rehook discusses DeepSeek V4.1 Flash benchmark; the image shows a terminal interface for code/AI interaction."
+    },
+    {
+      "sentence_index": 3,
+      "kind": "product",
+      "subject": "AI benchmark scores",
+      "label": "AI benchmark scores",
+      "title": "File:Scores artificial intelligence benchmarks en.png",
+      "id": "hist-04",
+      "file": "hist-04-minimax-benchmark-scores.png",
+      "alt": "AI benchmark scores chart comparing models",
+      "note": "Benchmark scores of AI models on key tasks",
+      "reason": "The payoff discusses 98% attempt rate; the image shows benchmark comparison data."
+    },
+    {
+      "sentence_index": 4,
+      "kind": "product",
+      "subject": "Benchmark summary",
+      "label": "Benchmark summary",
+      "title": "File:A80386DX-25 SX218.jpg",
+      "id": "hist-05",
+      "file": "hist-05-minimax-cpu-closeup.png",
+      "alt": "Close-up of Intel 80386DX microprocessor",
+      "note": "Close-up photograph of a microprocessor chip",
+      "reason": "The close summarizes MiniMax M3.1 Flash results; the image shows underlying computing hardware."
     }
   ]
 }

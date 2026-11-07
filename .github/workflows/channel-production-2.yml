@@ -38,9 +38,10 @@ concurrency:
 
 env:
   CHANNEL_ID: 2
-  SCRIPT_PATH: data/research/2/gemini-4-argon-first-day-projects-output-shorts-script.json
-  STEM: gemini-4-argon-first-day-projects-output-shorts
-  TTS_TOPIC: gemini-4-argon-first-day-projects-output-shorts-script
+  TOPIC_SLUG: minimax-m3-1-flash-benchmark-analysis
+  SCRIPT_PATH: data/research/2/${{ env.TOPIC_SLUG }}-shorts-script.json
+  STEM: ${{ env.TOPIC_SLUG }}-shorts
+  TTS_TOPIC: ${{ env.TOPIC_SLUG }}-script
   VISUAL_PACK: data/editor/visual-packs/ch2-ai-tested.json
   REQUIRED_IMAGES: 8
   MIN_PEOPLE_RATIO: 0.0
@@ -200,7 +201,7 @@ jobs:
       GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
       GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
       GOOGLE_GENERATIVE_AI_API_KEY: $\{\{ secrets.GOOGLE_GENERATIVE_AI_API_KEY \}\}
-# TTS_PROVIDER: edge  # Disabled - Gemini TTS preferred when credentials available
+# TTS_PROVIDER unset - Gemini TTS preferred when credentials available
       TTS_GEMINI_TAKES: "2"
     steps:
       - uses: actions/checkout@v4
