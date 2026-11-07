@@ -41,7 +41,7 @@ env:
   TOPIC_SLUG: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}
   SCRIPT_PATH: data/research/2/${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-shorts-script.json
   STEM: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-shorts
-  TTS_TOPIC: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-script
+  TTS_TOPIC: ${{ github.event.inputs.topic_slug || 'minimax-m3-1-flash-benchmark-analysis' }}-shorts-script
   VISUAL_PACK: data/editor/visual-packs/ch2-ai-tested.json
   REQUIRED_IMAGES: 8
   MIN_PEOPLE_RATIO: 0.0
