@@ -38,12 +38,12 @@ concurrency:
 
 env:
   CHANNEL_ID: 2
-  SCRIPT_PATH: data/research/2/ai-web-search-compared-november-2026-shorts-script.json
-  STEM: ai-web-search-compared-november-2026-shorts
-  TTS_TOPIC: ai-web-search-compared-november-2026-shorts-script
+  SCRIPT_PATH: data/research/2/google-gemini-connected-apps-preview-shorts-script.json
+  STEM: google-gemini-connected-apps-preview-shorts
+  TTS_TOPIC: google-gemini-connected-apps-preview-shorts-script
   VISUAL_PACK: data/editor/visual-packs/ch2-ai-tested.json
-  REQUIRED_IMAGES: 9
-  MIN_PEOPLE_RATIO: 0.75
+  REQUIRED_IMAGES: 8
+  MIN_PEOPLE_RATIO: 0.0
 
 jobs:
   setup:
