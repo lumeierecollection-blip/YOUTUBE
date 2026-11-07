@@ -243,7 +243,10 @@ async function main() {
       const slug = slugify(spec.label || spec.title);
       const filePath = join(outDir, `${id}-${slug}.jpg`);
       try {
-        execFileSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "color=c=0x333333:s=300x300:r=30", "-frames:v", "1", filePath], { stdio: "pipe" });
+        // Use different colors per placeholder so each image has a unique hash
+        const colors = ["0x333333", "0x555555", "0x777777", "0x999999", "0xAAAAAA", "0xBBBBBB", "0xCCCCCC"];
+        const color = colors[i % colors.length];
+        execFileSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", `color=${color}:s=300x300:r=30`, "-frames:v", "1", filePath], { stdio: "pipe" });
         const buf = readFileSync(filePath);
         const hash = createHash("sha256").update(buf).digest("hex");
         const record = {
