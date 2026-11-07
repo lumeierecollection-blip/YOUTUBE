@@ -1,0 +1,85 @@
+{
+  "topic_slug": "nasa-exoplanet-archive-adds-thirteen-planets",
+  "strongest_angle": "On November 5, 2026, the NASA Exoplanet Archive added thirteen newly confirmed transit planets across eleven stellar systems, featuring TOI-1355 b which orbits one of the hottest known Main Sequence planet host stars and whose transits will no longer be observable in seven years.",
+  "key_facts": [
+    {
+      "fact": "On November 5, 2026, NASA's exoplanet catalog expanded with the addition of thirteen transit-detected planets spread across eleven stellar systems, all bearing the TOI designation.",
+      "source_url": "https://www.techtimes.com/articles/330174/20261106/nasa-exoplanet-archive-adds-13-planets-hot-jupiters-transit-window-closes-permanently.htm",
+      "source_name": "Tech Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The November 5, 2026 update features TOI-1355 b, which orbits one of the hottest known Main Sequence planet host stars.",
+      "source_url": "https://exoplanetarchive.ipac.caltech.edu/docs/exonews_archive.html",
+      "source_name": "NASA Exoplanet Archive",
+      "confidence": "high"
+    },
+    {
+      "fact": "Due to changes in its orbit, the transits of TOI-1355 b will no longer be observable from our perspective in about seven years.",
+      "source_url": "https://exoplanetarchive.ipac.caltech.edu/docs/exonews_archive.html",
+      "source_name": "NASA Exoplanet Archive",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA's list of confirmed exoplanets grew by 145 planets since July 15, reaching a total of 6,464 confirmed planets.",
+      "source_url": "https://exo.vibcreates.com",
+      "source_name": "ExoDossier",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "New planets added on November 5",
+      "value": 13,
+      "unit": "planets",
+      "source_url": "https://www.techtimes.com/articles/330174/20261106/nasa-exoplanet-archive-adds-13-planets-hot-jupiters-transit-window-closes-permanently.htm"
+    },
+    {
+      "label": "Stellar systems hosting the new planets",
+      "value": 11,
+      "unit": "stellar systems",
+      "source_url": "https://www.techtimes.com/articles/330174/20261106/nasa-exoplanet-archive-adds-13-planets-hot-jupiters-transit-window-closes-permanently.htm"
+    },
+    {
+      "label": "Years until transit window closes for TOI-1355 b",
+      "value": 7,
+      "unit": "years",
+      "source_url": "https://exoplanetarchive.ipac.caltech.edu/docs/exonews_archive.html"
+    },
+    {
+      "label": "Recent growth in confirmed exoplanets since July 15",
+      "value": 145,
+      "unit": "planets",
+      "source_url": "https://exo.vibcreates.com"
+    },
+    {
+      "label": "Total confirmed exoplanets count",
+      "value": 6464,
+      "unit": "planets",
+      "source_url": "https://exo.vibcreates.com"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "NASA Exoplanet Archive",
+      "kind": "organization"
+    },
+    {
+      "name": "TOI-1355 b",
+      "kind": "object"
+    },
+    {
+      "name": "Tech Times",
+      "kind": "organization"
+    },
+    {
+      "name": "ExoDossier",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Tokyo",
+      "kind": "organization"
+    }
+  ]
+}

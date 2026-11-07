@@ -1,0 +1,93 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-exoplanet-archive-adds-thirteen-planets",
+  "format": "shorts",
+  "hook": "The exoplanet TOI-1355 b stops crossing its host star, blocking its light, in 7 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "The exoplanet TOI-1355 b stops crossing its host star, blocking its light, in 7 years.",
+      "visual_cue": "Cinematic rendering of exoplanet TOI-1355 b orbiting close to a brilliant Main Sequence star, casting a sharp transit shadow.",
+      "sfx_cue": "Low deep space drone with subtle ticking clock resonance.",
+      "b_roll": [
+        "NASA deep space animation of orbiting exoplanet",
+        "TESS telescope space rendering"
+      ],
+      "animation_cue": "Slow push-in on glowing planetary silhouette",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "TRANSIT WINDOW CLOSING: 7 YEARS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "On November 5, 2026, the NASA Exoplanet Archive cataloged 13 new planets. Why will its transit window close in 7 years?",
+      "visual_cue": "3D astronomical map visualizing 13 newly discovered planet orbits across 11 star systems, highlighting TOI-1355 b.",
+      "sfx_cue": "Digital telemetry beeps soft tone.",
+      "b_roll": [
+        "NASA Exoplanet Archive interface visualization",
+        "Main Sequence stellar flares render"
+      ],
+      "animation_cue": "Animated callout markers appearing on 11 stellar systems",
+      "transition_out": "Wipe left",
+      "text_overlay": {
+        "text": "13 NEW PLANETS CATALOGED"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "NASA confirms TOI-1355 b transits, where the planet passes in front of its star, vanish soon.",
+      "visual_cue": "Orbital mechanics diagram illustrating planetary precession shifting TOI-1355 b out of line-of-sight view from Earth.",
+      "sfx_cue": "Subtle metallic swoosh sound.",
+      "b_roll": [
+        "NASA orbital inclination trajectory diagram",
+        "Space telescope camera aperture closing view"
+      ],
+      "animation_cue": "Red trajectory arc shifting out of sight line",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "ORBITAL SHIFT"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:42",
+      "voiceover": "Scientists have only 7 years left to observe the transits of this specific planet.",
+      "visual_cue": "Data graphic showing total exoplanet count climbing past 6,464 worlds with recent batch highlighted.",
+      "sfx_cue": "Ascending digital chime pulse.",
+      "b_roll": [
+        "NASA exoplanet survey light curves data display",
+        "Exoplanet system multi-body orbit computer simulation"
+      ],
+      "animation_cue": "Counter ticking rapidly up to 6,464 total planets",
+      "transition_out": "Crossfade",
+      "text_overlay": {
+        "text": "TOTAL CONFIRMED: 6,464 EXOPLANETS"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "Now, 6,464 known worlds mark our growing cosmic map.",
+      "visual_cue": "Wide dramatic space view of starry expanse with illuminated planet orbits fading out.",
+      "sfx_cue": "Resonant swelling ambient synth pad.",
+      "b_roll": [
+        "NASA high-resolution deep field starry background",
+        "Artist concept of distant solar system"
+      ],
+      "animation_cue": "Slow zoom out into deep starfield galaxy view",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "6,464 WORLDS CONFIRMED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.techtimes.com/articles/330174/20261106/nasa-exoplanet-archive-adds-13-planets-hot-jupiters-transit-window-closes-permanently.htm",
+    "https://exoplanetarchive.ipac.caltech.edu/docs/exonews_archive.html",
+    "https://exo.vibcreates.com"
+  ]
+}
