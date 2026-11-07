@@ -9,20 +9,20 @@ Channel verified from config/channels.json (not guessed):
 - In priority-channels.json (approved for upload): YES ([1, 2, 48])
 
 Upload attempted: YES — via GitHub Actions workflow `upload-urgent-private.yml`
-Run URL: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42312900885
+Run URL: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42313286925
 Run conclusion: success
 
 Upload result: SUCCESS
-YouTube video ID: ZQ9k0Uq9aUY
-YouTube video URL: https://www.youtube.com/watch?v=ZQ9k0Uq9aUY
-Privacy: PRIVATE (confirmed)
+YouTube video ID: CVxPnz-_WQ0
+YouTube video URL: https://www.youtube.com/watch?v=CVxPnz-_WQ0
+Privacy: PRIVATE (verified)
   - Upload script (scripts/youtube-upload.cjs) hardcodes privacyStatus: "private"
   - Execution log confirms: "Privacy: private (hardcoded)"
   - YouTube oEmbed API (public videos only) returns error → video is not publicly accessible → private
   - Video will never auto-public (stay_private=true)
 
 Uploaded to YouTube: YES — as PRIVATE
-Video ID: ZQ9k0Uq9aUY
+Video ID: CVxPnz-_WQ0
 Privacy verified as PRIVATE: YES
 
 Credentials: Materialized from GitHub repository secrets (CHANNEL_01_CLIENT_ID, CHANNEL_01_CLIENT_SECRET, CHANNEL_01_REFRESH_TOKEN) into config/creds/ch-01.json at runtime by the workflow. Credential files are gitignored and not committed.
