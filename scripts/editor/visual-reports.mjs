@@ -112,9 +112,11 @@ const peopleRatio = uniqueUsed.length ? usedPeople / uniqueUsed.length : 0;
 const unusedImages = (manifest.images || []).filter((img) => !uniqueUsed.includes(img.id)).map((img) => ({ id: img.id, subject: img.subject, sentence_index: img.sentence_index }));
 const expected = manifest.total_downloaded || (manifest.images || []).length;
 
+const every_sentence_has_one_visual = missing.length === 0 && perSentence.every((x) => x.visual && !x.error);
+const no_cross_sentence_repeats = crossSentenceRepeats.length === 0;
 const checks = {
-  every_sentence_has_one_visual: missing.length === 0 && perSentence.every((x) => x.visual && !x.error),
-  no_cross_sentence_repeats: crossSentenceRepeats.length === 0,
+  every_sentence_has_one_visual,
+  no_cross_sentence_repeats,
   // People-ratio is reported for information only. History and technology channels
   // legitimately use artefacts, maps, documents and product shots rather than
   // photographs of people, so it must not block production.
