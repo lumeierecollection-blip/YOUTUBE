@@ -252,6 +252,14 @@
       "pillar": "Archaeological discoveries",
       "hook": "Archaeologists just dug up a massive lost medieval cathedral hiding in plain sight at Old Dongola.",
       "error": "2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images"
+    },
+    "kick-8dd74ac976-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42532155771",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:53:52.305Z"
     }
   },
   "uploads": [],
@@ -539,5 +547,5 @@
     "Hidden Past kick-b316df6d02-ch1 failed at assets: only 2 verified, licensed images found; need at least 3 distinct real images",
     "Hidden Past kick-b2d8d2e590-ch1 failed at assets: 2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images"
   ],
-  "last_poll_at": "2026-11-08T22:49:26.350Z"
+  "last_poll_at": "2026-11-08T22:53:52.305Z"
 }
