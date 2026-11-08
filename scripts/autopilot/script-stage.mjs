@@ -44,20 +44,12 @@ export function research({ channel, topic }) {
   return researchPath;
 }
 
+/** The 30-second brief. The repo's write-script.md is built for 58-second Shorts and overshoots this length. */
 function promptFile(feedback, dir) {
-  let p = readFileSync(join(ROOT, "prompts/write-script.md"), "utf8")
-    .replaceAll("80-98 words", "62-74 words").replace(/36-52 seconds/g, "26-30 seconds").replace(/under 80 fails exactly like over 98/g, "under 62 fails exactly like over 74").replace("about 90 words", "about 68 words")
-    .replace(/HOOK: +9–12 words/, "HOOK:     7–10 words").replace(/SETUP: +26–34 words/, "SETUP:    12–16 words").replace(/RE-HOOK: +9–14 words/, "RE-HOOK:  7–10 words").replace(/PAYOFF: +26–35 words/, "PAYOFF:   20–26 words").replace(/CLOSE: +7–11 words/, "CLOSE:    7–10 words").replace(/Total: +80–98 words/, "Total:    62–74 words")
-    .replace("That is 9-10\nsentences in all", "That is 6-7\nsentences in all").replace("under 80\nwords", "under 62\nwords");
-  if (feedback) p += `\n\n## Quality gate rejected your previous script\n\n${feedback}\n\nRewrite the FULL script JSON, fixing exactly these problems. Return only the JSON object.\n`;
+  let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8");
+  if (feedback) p += `\n\n## The quality gate rejected your previous script\n\n${feedback}\n\nRewrite the full script, fixing these. Stay within 62-74 words.\n`;
   const path = join(dir, "write-script.prompt.md");
   writeFileSync(path, p);
-  return path;
-}
-
-function contractFile(dir) {
-  const path = join(dir, "contract.md");
-  writeFileSync(path, readFileSync(join(ROOT, "prompts/style-contract.md"), "utf8") + "\n\n" + readFileSync(join(ROOT, "prompts/autopilot-retention.md"), "utf8"));
   return path;
 }
 
@@ -112,7 +104,7 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   for (let attempt = 1; attempt <= SCRIPT_ATTEMPTS; attempt++) {
     log("script", `attempt ${attempt}/${SCRIPT_ATTEMPTS}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
-    const out = agent(["--prompt-file", promptFile(feedback, dir), "--append-system-prompt-file", contractFile(dir), "--schema-file", "schemas/script.section.json",
+    const out = agent(["--prompt-file", promptFile(feedback, dir), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     writeJson(scriptPath, out);
     // A full rewrite fixes the flagged lines and breaks others, so story and claim findings are
