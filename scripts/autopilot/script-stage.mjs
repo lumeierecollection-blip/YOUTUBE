@@ -10,6 +10,7 @@ import { copyFileSync, existsSync, readFileSync, rmSync, writeFileSync } from "n
 import { join } from "node:path";
 import { ROOT, StageError, askJson, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
 import { retrievePages } from "./retrieve.mjs";
+import { channelStyle } from "./visual-common.mjs";
 
 const MAX_SECONDS = 29.8;
 const SCRIPT_PASSES = 7;
@@ -53,6 +54,10 @@ export async function research({ channel, topic, dir }) {
   writeJson(researchPath, out);
   must("research", "node", ["scripts/gate-research.js", channel.id, topic.slug]);
   log("research", `${out.key_facts.length} key facts`);
+  // The repo's own pre-screen: a strict-visual topic whose research states nothing drawable cannot pass SCR-17.
+  if (channelStyle(channel.id)?.strict_visual && run("node", ["scripts/strict-prescreen.mjs", channel.id, topic.slug]).status !== 0) {
+    throw new StageError("research", "research holds too few drawable facts for a strict-visual channel");
+  }
   return researchPath;
 }
 
@@ -63,7 +68,9 @@ function promptFile(previous, feedback, dir) {
   let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8");
   if (previous) {
     const n = wordCount(previous);
-    p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is 66. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections. Return the full JSON object.\n`;
+    p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is 66. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections.
+If a finding says a sentence grounds nothing drawable, rewrite that sentence around one of these, using facts from the research: a list written as "A, B and C"; two compared figures ("from 2 to 40", "$20 versus $200"); a percentage; a date with its event ("In March 2026, X did Y"); a named country or city; or a figure with its unit ("8 apps", "$200 a month"). Saying the same thing in other words will be rejected again.
+Return the full JSON object.\n`;
   }
   const path = join(dir, "write-script.prompt.md");
   writeFileSync(path, p);

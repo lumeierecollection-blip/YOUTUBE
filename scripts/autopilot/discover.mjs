@@ -190,7 +190,7 @@ export async function discover({ channel, ledger, dir, learned, nowMs = Date.now
     if (items.length < 8) continue;
     const scored = await scoreWave({ channel, items, ledger, learned, exclude: all.map((c) => c.topic), nowMs });
     for (const c of scored) if (!all.some((x) => similarity(x.topic, c.topic) >= 0.6)) all.push({ ...c, wave });
-    if (all.some((c) => !c.rejected.length)) break;
+    if (all.filter((c) => !c.rejected.length).length >= 3) break;
   }
   all.sort((a, b) => b.score.total - a.score.total);
   writeJson(join(dir, "candidates.json"), { generated_at: new Date(nowMs).toISOString(), waves: reports, candidates: all });
