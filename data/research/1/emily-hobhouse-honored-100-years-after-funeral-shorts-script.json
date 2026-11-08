@@ -1,0 +1,90 @@
+{
+  "channel_id": "1",
+  "topic_slug": "emily-hobhouse-honored-100-years-after-funeral",
+  "format": "shorts",
+  "hook": "Over 2,000 people in South Africa recreated a state funeral from 1926.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Over 2,000 people in South Africa recreated a state funeral from 1926.",
+      "visual_cue": "Archival imagery transitioning into a modern gathering at a monument in South Africa.",
+      "sfx_cue": "Low cinematic thunder rumble",
+      "b_roll": [
+        "Bloemfontein National Women's Monument exterior",
+        "Crowd gathering at South African historic memorial"
+      ],
+      "transition_out": "Hard cut on beat drop",
+      "text_overlay": {
+        "text": "2,000 PEOPLE RECREATE 1926 FUNERAL"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "Mourners gathered at the National Women's Monument in Bloemfontein. Girls from Eunice and Oranje schools led the procession in white. Why did thousands honour this Cornish native?",
+      "visual_cue": "Wide pan of the National Women's Monument in Bloemfontein, followed by schoolgirls marching with palm fronds.",
+      "sfx_cue": "Solemn brass horn swell",
+      "b_roll": [
+        "National Women's Monument Bloemfontein drone view",
+        "Eunice and Oranje schoolgirls marching procession",
+        "Historical memorial ceremony South Africa"
+      ],
+      "transition_out": "Slow dissolve",
+      "text_overlay": {
+        "text": "BLOEMFONTEIN, SOUTH AFRICA"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "But she'd died at age 66 in a flat at Bedford Gardens House in Kensington, London.",
+      "visual_cue": "Vintage photograph of Bedford Gardens House in Kensington, London.",
+      "sfx_cue": "Subtle clock ticking effect",
+      "b_roll": [
+        "Kensington London street vintage photograph",
+        "Bedford Gardens House historical building facade"
+      ],
+      "transition_out": "Wipe right",
+      "text_overlay": {
+        "text": "KENSINGTON, LONDON"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "Over 2,000 people joined the Emily100 commemoration in South Africa. Two hundred schoolgirls carried palm fronds in memory of Emily Hobhouse. They recreated her 1926 state funeral.",
+      "visual_cue": "Large crowd participating in the Emily100 march led by 200 schoolgirls carrying palm fronds.",
+      "sfx_cue": "Rising orchestral string swell",
+      "b_roll": [
+        "Emily100 commemoration ceremony procession",
+        "Schoolgirls carrying palm fronds historic recreation",
+        "Bloemfontein memorial crowd gathering"
+      ],
+      "transition_out": "Fade to key frame",
+      "text_overlay": {
+        "text": "EMILY100 COMMEMORATION"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:44",
+      "voiceover": "Her life ended at Bedford Gardens House on 8 June 1926.",
+      "visual_cue": "Archival portrait of Emily Hobhouse with text displaying her date of death.",
+      "sfx_cue": "Deep bass pulse lingering decay",
+      "b_roll": [
+        "Emily Hobhouse historical archival portrait",
+        "Bedford Gardens House London memorial photo"
+      ],
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "8 JUNE 1926"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c5zjxx0p19j7o",
+    "https://www.cornish-times.co.uk/news/south-africa-remembers-cornwalls-forgotten-heroine-969678",
+    "https://thestoryofemily.com/stories-of-emily/her-state-funeral-%E2%80%93-a-century-later"
+  ]
+}
