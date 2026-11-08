@@ -46,11 +46,11 @@ const getJson = async (url, opts) => {
 
 const newsSearch = async (q, days) => parseFeed(await getText(`https://news.google.com/rss/search?q=${encodeURIComponent(q)}+when:${days}d&hl=en-US&gl=US&ceid=US:en`), "news");
 
-/** Wave 2 widens the net to the channel's content pillars over 14 days. */
+/** Wave 2 widens the net to a second set of search phrases over 14 days. */
 async function collectSignals(channel, nowMs, wave = 1) {
   const report = [];
   const tasks = [];
-  const queries = wave === 1 ? channel.news_queries : channel.pillars;
+  const queries = wave === 1 ? channel.news_queries : channel.wave2_queries;
   for (const q of queries) {
     tasks.push(source(report, `google-news:${q}`, () => newsSearch(q, wave === 1 ? 7 : 14)));
   }
