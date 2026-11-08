@@ -1,0 +1,1012 @@
+{
+  "generated_at": "2026-11-08T21:10:24.191Z",
+  "sources": [
+    {
+      "source": "feed:techcrunch.com",
+      "ok": true,
+      "items": 20
+    },
+    {
+      "source": "feed:openai.com",
+      "ok": true,
+      "items": 1368
+    },
+    {
+      "source": "feed:theverge.com",
+      "ok": true,
+      "items": 10
+    },
+    {
+      "source": "reddit:OpenAI",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "reddit:artificial",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "reddit:ChatGPT",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "reddit:ClaudeAI",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "feed:blog.google",
+      "ok": true,
+      "items": 20
+    },
+    {
+      "source": "google-news:AI hallucination mistake",
+      "ok": true,
+      "items": 7
+    },
+    {
+      "source": "feed:arstechnica.com",
+      "ok": true,
+      "items": 20
+    },
+    {
+      "source": "google-news:ChatGPT new feature",
+      "ok": true,
+      "items": 27
+    },
+    {
+      "source": "google-news:Gemini AI new feature",
+      "ok": true,
+      "items": 33
+    },
+    {
+      "source": "google-news:free AI tools",
+      "ok": true,
+      "items": 55
+    },
+    {
+      "source": "google-news:AI agent uses computer",
+      "ok": true,
+      "items": 31
+    },
+    {
+      "source": "google-trends",
+      "ok": true,
+      "items": 10
+    },
+    {
+      "source": "google-news:Claude AI new feature",
+      "ok": true,
+      "items": 33
+    },
+    {
+      "source": "google-news:AI replacing jobs",
+      "ok": true,
+      "items": 43
+    },
+    {
+      "source": "google-news:viral AI tool",
+      "ok": true,
+      "items": 13
+    },
+    {
+      "source": "google-news:AI scam deepfake",
+      "ok": true,
+      "items": 19
+    },
+    {
+      "source": "hacker-news",
+      "ok": true,
+      "items": 40
+    }
+  ],
+  "item_count": 110,
+  "candidates": [
+    {
+      "topic": "Claude AI Can Now Connect Directly to Your Bank Account",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        69,
+        87,
+        89,
+        105,
+        107
+      ],
+      "hook": "Anthropic's Claude can now plug directly into your bank account to analyze your spending.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Claude (language model)",
+      "commons_query": "",
+      "youtube_query": "Claude AI personal finance bank account",
+      "evidence": [
+        {
+          "title": "Anthropic Launches Personal Finance In Claude To Connect Bank Accounts And Analyze Spending - Pulse 2.0",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPX2kxcWdHUDg0cmRNdnBQWXdxQU1MbWdMSnU3Mlpad1hmUkkxLWI2Uk5DY3g4QndBWm1mTmFvQ2d2cHN2MXhEcGVFV2hzU2c3QlFfSlllRXBYeWVUdU5yYXM1SVdsNTl5aTlYcFdIS1pmcFYwTVR2SnZhQ1ZIOEpkc3pJcDRoeDliaGl6QXNzdFdZUEhGaEpWSDJLYWk0Y1hhVU5PQklKd004S3k3M3JsUw?oc=5",
+          "domain": "pulse2.com",
+          "published_ms": 1794147972000,
+          "kind": "news",
+          "id": 69
+        },
+        {
+          "title": "Anthropic launches personal finance feature for Claude - Kalinga TV",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUmg0MExvUW9YZDBDYVpqX29mYU5VODNYenFnSV9icEVIbGZSeVBMZ3cwUXBpWnREOTI4S3JVbjdZcjlteFJFbDY4XzR1ckJRWWpLYWJpa0JIbThuOXBOUFB6QnAzYkFFOWs3NlozY1d0ay00RkNROVljSlNJZkVWSldsUUNGYXE1OHQxS1ZvRGt0QQ?oc=5",
+          "domain": "kalingatv.com",
+          "published_ms": 1794108231000,
+          "kind": "news",
+          "id": 87
+        },
+        {
+          "title": "Claude Personal Finance Vs. ChatGPT Finances: What Sets Them Apart? - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxORGNUWG9XV2JUWGNmcFAxa2V1VWp1TVVnVnd5SUh2cFFZMjg4YUFZT0NtNUh3WlR2dXVYeFpuTHlsWVpDdjN5LVVxdkpIVjl5dXppOFl3MEhXdnprdkF2YzdVTWtvX1NZdzRLWUpSSXZpTGxuejlxNjF5TDJsUHh4bmtzYkdTQQ?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1794093020000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Anthropic Launches Claude AI Personal Finance Beta for US Users - Geeky Gadgets",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1wbGoxbXFxUlFLZkZrZU9jYkNtaE1LSk5fM1hYVDVUaGVieDdkMTRfYW1Xejd4ajNQX1g3SGhPdzhWNUdjMG9SMWxmYVJ5QkhtYmZzSURWWVk?oc=5",
+          "domain": "geeky-gadgets.com",
+          "published_ms": 1794034857000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "How to Use Claude Personal Finance: Setup, Prompts and What It Can See - Fello AI",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB6dWt6d1hTdFF2SVFraXR2NTBoVjVMWFkzUV9oS1BHSkRtc2FuWjUyblpLQ0RkMllsc2dPUXRDRGJyV0xrZV9RU29lM3QyVm1US1pkN2VXWQ?oc=5",
+          "domain": "felloai.com",
+          "published_ms": 1794031805000,
+          "kind": "news",
+          "id": 107
+        }
+      ],
+      "wikipedia": {
+        "title": "Claude (language model)",
+        "daily_views": 255,
+        "ratio": 0.59
+      },
+      "youtube": {
+        "median_views": 275,
+        "competitors": [
+          {
+            "id": "UTubvRLX2j4",
+            "title": "Introducing Personal Finance in Claude",
+            "channel": "Claude",
+            "views": 621529
+          },
+          {
+            "id": "h2Z0CAemSF8",
+            "title": "Build Your First AI Finance Agent in Claude (No Coding)",
+            "channel": "Luke Finance",
+            "views": 55300
+          },
+          {
+            "id": "MFKhLshLBqI",
+            "title": "Claude Personal Finance (Watch This First 👀)",
+            "channel": "Sansser",
+            "views": 2014
+          },
+          {
+            "id": "fV7fXcavh1Y",
+            "title": "Claude Personal Finance: Ask Your Bank Accounts Anything",
+            "channel": "KiS",
+            "views": 1082
+          },
+          {
+            "id": "GidnU7YF4Ec",
+            "title": "Would You Let Claude Analyze Your Bank Account...?",
+            "channel": "AaronTheSloth",
+            "views": 275
+          },
+          {
+            "id": "nOIsuric6lg",
+            "title": "How to use Claude Personal Finance -- Connect Your Bank and Track Spending with AI",
+            "channel": "CYBER-PEEK",
+            "views": 92
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 76.8,
+        "newest_hours": 7,
+        "domains": [
+          "pulse2.com",
+          "kalingatv.com",
+          "engadget.com",
+          "geeky-gadgets.com",
+          "felloai.com"
+        ],
+        "trusted_domains": [
+          "engadget.com"
+        ]
+      },
+      "rejected": []
+    },
+    {
+      "topic": "OpenAI Adds Animated GIF Creation to Images 2.6",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        70,
+        103
+      ],
+      "hook": "OpenAI just dropped Images 2.6, letting you turn static photos and sketches into moving GIFs instantly.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "OpenAI",
+      "commons_query": "",
+      "youtube_query": "OpenAI images 2.6 GIF creation",
+      "evidence": [
+        {
+          "title": "OpenAI launches Images 2.6 with new GIF creation and saved photo reference features - ARYnews.tv",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNER0cWlhRlpBQ1psdmVDbXZSU2VjWUJTcjBPeEdJZHZJQ01BS3UyTlhmNHpoWnFhRVU2bzdXNUoyd1RNa3dGYk5LU0RLM1VyYUxoQ2Y3OXhzMElyeW9yM0F6OHNUWVFWMGlFMHhDUnluMmpWMjNHODQxYkp2Mk5KU3V5aEx5S2l6dTFqcGt2V1k1SF93NUl1TVRSUnlGYzVqaWdNNg?oc=5",
+          "domain": "arynews.tv",
+          "published_ms": 1794144576000,
+          "kind": "news",
+          "id": 70
+        },
+        {
+          "title": "ChatGPT Now Lets Users Turn Photos And Sketches Into Animated GIFs - The Hans India",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZV8yU2FRQ1UyVE5pcTM0aXFlLWFKelNFdlUxZGlpcFlQY2QxcTd0U1NiTENTZkZnbXB4WFpWSHRza2tjWUtibHJlU3FUaFh3SzQzN25mVWh3c3pYOGRVMnpPMDczNDk1cGY4ZVNMU01XeWV3S3FhT0RTUzc2cFRKZ2pWQ2J1MVhteFRfSUlESjgyNjNuTkdlTFBCS1JRc29fVDVQSlVVT08yUjVG?oc=5",
+          "domain": "thehansindia.com",
+          "published_ms": 1794036938000,
+          "kind": "news",
+          "id": 103
+        }
+      ],
+      "wikipedia": {
+        "title": "OpenAI",
+        "daily_views": 8115,
+        "ratio": 1.03
+      },
+      "youtube": {
+        "median_views": 25755,
+        "competitors": [
+          {
+            "id": "9ZxCOHkfn_8",
+            "title": "GPT-Image-2.6: Faster image generation with Flare and Sunburst",
+            "channel": "OpenAI",
+            "views": 360183
+          },
+          {
+            "id": "bJldMYfRvMQ",
+            "title": "Introducing ChatGPT Images 2.6",
+            "channel": "OpenAI",
+            "views": 135234
+          },
+          {
+            "id": "e4gNCfPZ7dE",
+            "title": "ChatGPT Images 2.6 Can Do Things We've Never Seen! (Gifs + Sprites)",
+            "channel": "Evan Burger",
+            "views": 37102
+          },
+          {
+            "id": "VRp2rVC0nEE",
+            "title": "ChatGPT’s New Image Model Is Full of Surprises...",
+            "channel": "AI Samson",
+            "views": 33411
+          },
+          {
+            "id": "5LkRDoGVook",
+            "title": "ChatGPT Images 2.6 Is Here: GIFs, Dot Upgrades & More",
+            "channel": "The AI Advantage",
+            "views": 25755
+          },
+          {
+            "id": "fQnrdr2DcqQ",
+            "title": "ChatGPT Can Make GIFs Now (Images 2.6 Tested)",
+            "channel": "MattVidPro",
+            "views": 7398
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 75,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 74.3,
+        "newest_hours": 8,
+        "domains": [
+          "arynews.tv",
+          "thehansindia.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Viral Video Claims Trump Vandalized Office After Midterms — It's AI",
+      "pillar": "Viral AI demos and experiments",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "A viral video claims Donald Trump trashed his office after the midterms—but it's entirely fake AI.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Artificial intelligence",
+      "commons_query": "",
+      "youtube_query": "fake AI Trump video midterms",
+      "evidence": [
+        {
+          "title": "The viral video claiming that Trump vandalised his office following the Republican Party's defeat in 2026 Midterms is AI-generated - FACTLY",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOMWEtMmFtdlBTZ1h6QXFsUHo2SWxOeTFmdE9NZ3FnZk0tVlpRUWdSdW9KQUM2dmxISHhOWTlFQnVUYlVJcjR1M1phTFBFem1XbnVBbC1MSWIteThyYTI2LUdKenpCNF9PdnpIdHR2QWpSbjZ0b01CeFR6UnRhTVdXS0xYczM0MFpjYXJnRWU4cERETElOeENzVjBROHl3RVdqQjRSekJITDZST2k4NjRKMWNaYXRVVUdwQXdIYnlkQzl6b2NRbWZPbERJbDRYQ294bG8wZnRvQ21sd01sM2Z2MEhR?oc=5",
+          "domain": "factly.in",
+          "published_ms": 1794052570000,
+          "kind": "news",
+          "id": 98
+        }
+      ],
+      "wikipedia": {
+        "title": "Artificial intelligence",
+        "daily_views": 14828,
+        "ratio": 0.93
+      },
+      "youtube": {
+        "median_views": 713452,
+        "competitors": [
+          {
+            "id": "b4hbrXorFqA",
+            "title": "AI researcher tells Trump 'they're lying to you\" after he calls AI fears a 'hoax'",
+            "channel": "CNN",
+            "views": 2918270
+          },
+          {
+            "id": "Cu9ZOY0GSO4",
+            "title": "Does MAGA really believe in the AI boom, or is Trump just majorly invested in it? #DailyShow #AI",
+            "channel": "The Daily Show",
+            "views": 2182505
+          },
+          {
+            "id": "PN21uDJm7Sw",
+            "title": "Trump wants to “cherish” and “watch over\" AI? He didn’t even do that for his kids! #DailyShow #Trump",
+            "channel": "The Daily Show",
+            "views": 998100
+          },
+          {
+            "id": "6XdpDQUaU3A",
+            "title": "Jimmy breaks down the midterms using #Trump’s own words. #FallonTonight",
+            "channel": "The Tonight Show Starring Jimmy Fallon",
+            "views": 961344
+          },
+          {
+            "id": "yoeG_S1af8Y",
+            "title": "Jessica Tarlov gets in heated debate on Fox: Trump is LYING about these $5k checks",
+            "channel": "The Democrats",
+            "views": 713452
+          },
+          {
+            "id": "e3OtFK3SPaA",
+            "title": "Jon Stewart gets to the bottom of why Trump is so gung-ho about AI #dailyshow",
+            "channel": "The Daily Show",
+            "views": 501982
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 60,
+          "reach": 92,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 72.4,
+        "newest_hours": 33,
+        "domains": [
+          "factly.in"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Bill Gates Warns $10-an-Hour Robots Are Coming for Jobs",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        66
+      ],
+      "hook": "Bill Gates says cheap $10-an-hour robots are about to replace human workers—and there's no plan for what's next.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Bill Gates",
+      "commons_query": "Bill Gates",
+      "youtube_query": "Bill Gates robots replace workers",
+      "evidence": [
+        {
+          "title": "Bill Gates Says A $10-an-Hour Robot Could Replace The $20-an-Hour Worker – 'There Is No Plan' For What Comes Next - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPRVBoa29nSklZX3VnS2ZkTUtMdmhOOGt2bHNvMzJSZXhTcnBNYkxidlgxN0d2OTNmRzZVcl9Ya0x1aWNzaFllU0lONDltQm5pUFJGTUNBREVqeENvVjdYeU5OYklrOXVqYXlHbnNwZXcwUVVycEtoQkFTemhMUndTRzh6eTB5VmNBb1RlSnZyeEw?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1794153608000,
+          "kind": "news",
+          "id": 66
+        }
+      ],
+      "wikipedia": {
+        "title": "Bill Gates",
+        "daily_views": 4273,
+        "ratio": 0.95
+      },
+      "youtube": {
+        "median_views": 164655,
+        "competitors": [
+          {
+            "id": "A_156w0aYtU",
+            "title": "Bill Gates: A.I. ‘Makes Nuclear Weapons Look Like Nothing’ | The Ezra Klein Show",
+            "channel": "The Ezra Klein Show",
+            "views": 1966540
+          },
+          {
+            "id": "AbMxbgIahtE",
+            "title": "Bill Gates says it’s ‘not enough to have a kill switch’ for AI: Full interview",
+            "channel": "NBC News",
+            "views": 560088
+          },
+          {
+            "id": "3zcaezFYGds",
+            "title": "Bill Gates says AI 'powerful enough' to cause 'a billion deaths'",
+            "channel": "NBC News",
+            "views": 227927
+          },
+          {
+            "id": "RADfqPXNkH4",
+            "title": "Why Bill Gates Thinks A.I. Will Take Away Jobs | The Ezra Klein Show",
+            "channel": "The Ezra Klein Show",
+            "views": 220161
+          },
+          {
+            "id": "cHRCt8YCYPM",
+            "title": "Bill Gates says we must decide which jobs to reserve for humans",
+            "channel": "CNN",
+            "views": 164655
+          },
+          {
+            "id": "s5OAHOJw_P4",
+            "title": "మనిషిని తీసేయ్‌..రోబోతో పనిచేయ్‌ | Bill Gates sensational statement on AI | ABN Digital Exclusives",
+            "channel": "ABN Digital Exclusives",
+            "views": 3696
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 81,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 0
+        },
+        "total": 71.2,
+        "newest_hours": 5,
+        "domains": [
+          "finance.yahoo.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Google Maps Integrates Gemini and 3D Immersive Navigation",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        93
+      ],
+      "hook": "Google Maps is getting a massive upgrade with Gemini AI and mind-blowing 3D immersive navigation.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Google Maps",
+      "commons_query": "",
+      "youtube_query": "Google Maps Gemini 3D navigation",
+      "evidence": [
+        {
+          "title": "Google Maps Gets Smarter: Gemini Integration and 3D Immersive Navigation - آي-فون إسلام",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNNk5RNnA2UU95Z0Zod2tGc0FFUE9lMkJxa0pXcVRYRjc5ZXlBSXR4N01SbTNHMmcxLWowZEFDVnBtSm5xVEFBQ19zTmxGb1ZNQ2FncnppemMtTzBybkhBR3hmc20wM0RYNlFfU2FNTFBmTHlaYUhfN1dwbTZabVJPYlBWTE5KMHRLNUZRN3FlVlhSMUtYSnpXT1A3TmhzZllZYVVFTmJ1VXpXekx3aGtlbHBHRjNTV01iV0w3azAwRGZZSUYzS045d3NrSlpyUQ?oc=5",
+          "domain": "iphoneislam.com",
+          "published_ms": 1794071169000,
+          "kind": "news",
+          "id": 93
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Maps",
+        "daily_views": 6358,
+        "ratio": 1.02
+      },
+      "youtube": {
+        "median_views": 10092,
+        "competitors": [
+          {
+            "id": "waFfyskCKBU",
+            "title": "Novo Google Maps com Modo Realismo - Ative Agora",
+            "channel": "PLAY android",
+            "views": 276425
+          },
+          {
+            "id": "AQxAB-KhD6U",
+            "title": "Google Maps Just Got a Massive Gemini AI Upgrade! 🤯",
+            "channel": "Nexio Core",
+            "views": 62500
+          },
+          {
+            "id": "M26SOfpJoYA",
+            "title": "Google Maps’ New Update Makes Navigation More Immersive",
+            "channel": "FuturaIgnite",
+            "views": 15956
+          },
+          {
+            "id": "Ilfi6g1hkvc",
+            "title": "Google Maps Is Getting a HUGE Redesign — Here’s What Changed",
+            "channel": "Byte-Sized Trips",
+            "views": 14156
+          },
+          {
+            "id": "eQxwL1PMQP0",
+            "title": "Google Maps 3D: come vedere in 3D con Immersive View",
+            "channel": "Vero Eroe Academy",
+            "views": 10092
+          },
+          {
+            "id": "rJ8NhLIwiE0",
+            "title": "Google Maps Immersive Navigation: Das größte Update seit über 10 Jahren",
+            "channel": "Fabians Tech Talk",
+            "views": 3015
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 61,
+          "reach": 70,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 67.9,
+        "newest_hours": 28,
+        "domains": [
+          "iphoneislam.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Job Seekers Are Shunning Companies That Use AI Interviews",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        84
+      ],
+      "hook": "Job seekers are actively rejecting companies that force them to do automated AI job interviews.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Employment interview",
+      "commons_query": "",
+      "youtube_query": "AI job interviews backlash",
+      "evidence": [
+        {
+          "title": "Employed job seekers are shunning companies which use AI interviews — and I don't blame them - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRnhOY21hdkRpMHBQVkxSRDM2OGFIVmVMNXlicWZlcmNNeTE2anZ2ajBNZlRHaXVRLXRNd3V5ckxtNzhJdHVvUlRIZkcwZUJSTHRJNk1YUGJCSmVuVk5HSWRKamF6YmxkNm9Tdk9ONFM2NHB2eDVJWVZvSmIyZEt1TWxxY25QcVJxRlc5WFEtVEZxLVZpVWJkYkUxNzc2SFlwMk1YaXBReF8xcFVwTnFWbFdfV0FyVHVuTVJB?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1794121200000,
+          "kind": "news",
+          "id": 84
+        }
+      ],
+      "wikipedia": {
+        "title": "Employment interview",
+        "daily_views": 0,
+        "ratio": 0.3
+      },
+      "youtube": {
+        "median_views": 332799,
+        "competitors": [
+          {
+            "id": "A0fECnj5sas",
+            "title": "I Sent an AI to My Job Interview. So Did the Company.",
+            "channel": "Graham Raabe",
+            "views": 6241127
+          },
+          {
+            "id": "UdDA0JOfRCY",
+            "title": "AI Interviewed Me for Real Jobs",
+            "channel": "Husk IRL",
+            "views": 942139
+          },
+          {
+            "id": "zBS3l2QB74Q",
+            "title": "AI Interviewer loses it when guy speaks to her in gibberish ",
+            "channel": "Cheesus",
+            "views": 859895
+          },
+          {
+            "id": "bhT6F0YdRbQ",
+            "title": "I Joined My Job Interview and Two AIs Were Already Interviewing Each Other",
+            "channel": "Graham Raabe",
+            "views": 365825
+          },
+          {
+            "id": "FQD7ZpDhPOo",
+            "title": "What happens when AI appears at job interview? Reports increase,what's behind？",
+            "channel": "Nippon Television News Japan",
+            "views": 332799
+          },
+          {
+            "id": "J-sMqnzHwI0",
+            "title": "AI won’t steal your job: Andrew Ng interview | The Economist",
+            "channel": "The Economist",
+            "views": 237726
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 55,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 63,
+        "newest_hours": 14,
+        "domains": [
+          "techradar.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Elderly Man Loses $450,000 to Deepfake Scam with No Bank Refund",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        75
+      ],
+      "hook": "An 88-year-old lost nearly half a million dollars to a deepfake scam, and his bank won't refund a single cent.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Deepfake",
+      "commons_query": "",
+      "youtube_query": "deepfake scam bank refund",
+      "evidence": [
+        {
+          "title": "An 88-year-old lost $450,000 to a deepfake scam — and his bank won't return a penny under Canada's current rules - Yahoo! Finance Canada",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5PLWxHVDFkSEZ6S09xSVUtdVp6b2k4dXJjQTh5eVpZUUlqYnFJODBCeFNuNjBFZEM1XzlCMVhqLXlSdjBGalVfY0RpMkRvbTV4ZkNzZ1A0YlRCR0ZfUUQtRk5vVnlTdDZ4Vk5EX292MG9EbnhiQ3k4?oc=5",
+          "domain": "ca.finance.yahoo.com",
+          "published_ms": 1794140100000,
+          "kind": "news",
+          "id": 75
+        }
+      ],
+      "wikipedia": {
+        "title": "Deepfake",
+        "daily_views": 1210,
+        "ratio": 1.15
+      },
+      "youtube": {
+        "median_views": 43,
+        "competitors": [
+          {
+            "id": "1ULKV4Qm78o",
+            "title": "South Africa's R2.4bn scam wave: 6 scams, 1 rule (and the first 10 minutes if it happens)",
+            "channel": "Verify First SA",
+            "views": 1065
+          },
+          {
+            "id": "Zp0FFSnm-lI",
+            "title": "Hemavex Gluco Capsules Scam EXPOSED, Shows AI Deepfakes of Elon Musk & Denzel Washington",
+            "channel": "Jordan Liles",
+            "views": 462
+          },
+          {
+            "id": "YeH28sZPNpY",
+            "title": "Geek Squad $449 Renewal Email? It's a Scam - Here's How the Refund Trick Works",
+            "channel": "The Con Breakdown",
+            "views": 438
+          },
+          {
+            "id": "-f1tQ8rg9WA",
+            "title": "Mobile Deposit Scam: Why \"Just Deposit This Check\" Can Cost You Everything",
+            "channel": "The Fraud Desk",
+            "views": 63
+          },
+          {
+            "id": "wFEP5A3m400",
+            "title": "The Voice Was Her Daughter’s. The Call Was a Scam.",
+            "channel": "Small Print, Big Deal",
+            "views": 43
+          },
+          {
+            "id": "HUpkDgROcZI",
+            "title": "What Happens Inside a Deepfake Video Call (Arup, $25M)",
+            "channel": "Tok Explains",
+            "views": 20
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 41,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 62.4,
+        "newest_hours": 9,
+        "domains": [
+          "ca.finance.yahoo.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Music Giants Sue Suno Over Copyright Infringement",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        64
+      ],
+      "hook": "Elvis and Eminem's rights holders are officially taking AI music generator Suno to court.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Suno AI",
+      "commons_query": "",
+      "youtube_query": "Suno AI lawsuit Elvis Eminem",
+      "evidence": [
+        {
+          "title": "Elvis and Eminem rights holders are suing Suno",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit",
+          "domain": "theverge.com",
+          "published_ms": 1794158599000,
+          "kind": "feed",
+          "id": 64
+        }
+      ],
+      "wikipedia": {
+        "title": "Suno AI",
+        "daily_views": 26,
+        "ratio": 0.28
+      },
+      "youtube": {
+        "median_views": 10,
+        "competitors": [
+          {
+            "id": "lec4b4Q1yLU",
+            "title": "AI Music News: Suno's CRAZIEST Week of 2026?",
+            "channel": "Chris Wieduwilt (The AI Musicpreneur)",
+            "views": 1168
+          },
+          {
+            "id": "OcjAz8xoikA",
+            "title": "Elvis and Eminem's Music Owners Sue AI Music App Suno #shorts",
+            "channel": "iALCHEMY",
+            "views": 667
+          },
+          {
+            "id": "QJdGEEBCS9c",
+            "title": "Elvis & Eminem Publishers Sue Suno — $200M",
+            "channel": "Ledger Notes",
+            "views": 84
+          },
+          {
+            "id": "ozyiYc1JNKQ",
+            "title": "EMINEM'S PUBLISHER SUES SUNO FOR $41M?!",
+            "channel": "Kizzle Reactz",
+            "views": 10
+          },
+          {
+            "id": "kCSIrTvKBmc",
+            "title": "Eminem's Publisher Sues AI for $41M 😳 #Shorts",
+            "channel": "Harsh Bytes",
+            "views": 10
+          },
+          {
+            "id": "1zOdqMzQAOk",
+            "title": "Elvis und Eminem verklagen Suno: KI-Stimmklone vor Gericht #Shorts",
+            "channel": "FlowStateSystems",
+            "views": 7
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 22,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 58.3,
+        "newest_hours": 4,
+        "domains": [
+          "theverge.com"
+        ],
+        "trusted_domains": [
+          "theverge.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ]
+    },
+    {
+      "topic": "US Charges Three in Massive $129 Million Deepfake Fraud Ring",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        90
+      ],
+      "hook": "The US government just busted three people running a staggering $129 million deepfake fraud scheme.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Fraud",
+      "commons_query": "",
+      "youtube_query": "deepfake fraud US charges",
+      "evidence": [
+        {
+          "title": "US Charges Three Over $129m Deepfake Fraud Routed via Greece - Greek City Times",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBiQkN4YkZkV1JwaDhSa0FjYUQ0a3laM2pnYWFuZGRWNkxnMXo0emJoV014a3QtQzZvcGJMVnFVN0dUcU5RSGlNYjM2QVVkeWVybjFiZ1ZMU0YyUzE1YUpjMUFBUQ?oc=5",
+          "domain": "greekcitytimes.com",
+          "published_ms": 1794092996000,
+          "kind": "news",
+          "id": 90
+        }
+      ],
+      "wikipedia": {
+        "title": "Fraud",
+        "daily_views": 457,
+        "ratio": 0.61
+      },
+      "youtube": {
+        "median_views": 29,
+        "competitors": [
+          {
+            "id": "LlNKtAn0XrE",
+            "title": "Everyone on the Call Was Fake: Inside the $25 Million Arup Deepfake",
+            "channel": "SkyNetReality",
+            "views": 5542
+          },
+          {
+            "id": "NaW0B5cEp2Y",
+            "title": "The War on Deepfakes: NY Seizes Major Celebrity Fraud Sites | WION",
+            "channel": "WION",
+            "views": 1076
+          },
+          {
+            "id": "IwNC9cjw8_w",
+            "title": "Everyone on This Video Call Was FAKE. It Cost $25 Million. 🤖",
+            "channel": "How Scammers Work",
+            "views": 844
+          },
+          {
+            "id": "bTmlRdQnM38",
+            "title": "Don't take the bait! TMS used in latest tech scam",
+            "channel": "TMS | Global Entertainment",
+            "views": 384
+          },
+          {
+            "id": "3C6t10vnARY",
+            "title": "The whole meeting was a deepfake and it cost $25 million #shorts",
+            "channel": "Agent Tech",
+            "views": 29
+          },
+          {
+            "id": "IN_Ob4ukhvM",
+            "title": "Lakewood Police Agent Killed on Bus + $129M AI Deepfake Fraud Charges | Crime Report Today",
+            "channel": "Crime Report Today",
+            "views": 27
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 57.7,
+        "newest_hours": 22,
+        "domains": [
+          "greekcitytimes.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    }
+  ]
+}

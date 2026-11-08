@@ -1,0 +1,137 @@
+{
+  "topic": "Claude AI Can Now Connect Directly to Your Bank Account",
+  "pillar": "Trending AI tools and apps",
+  "evidence_ids": [
+    69,
+    87,
+    89,
+    105,
+    107
+  ],
+  "hook": "Anthropic's Claude can now plug directly into your bank account to analyze your spending.",
+  "anniversary": false,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 9,
+    "relevance": 9,
+    "visual": 8
+  },
+  "wikipedia_title": "Claude (language model)",
+  "commons_query": "",
+  "youtube_query": "Claude AI personal finance bank account",
+  "evidence": [
+    {
+      "title": "Anthropic Launches Personal Finance In Claude To Connect Bank Accounts And Analyze Spending - Pulse 2.0",
+      "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPX2kxcWdHUDg0cmRNdnBQWXdxQU1MbWdMSnU3Mlpad1hmUkkxLWI2Uk5DY3g4QndBWm1mTmFvQ2d2cHN2MXhEcGVFV2hzU2c3QlFfSlllRXBYeWVUdU5yYXM1SVdsNTl5aTlYcFdIS1pmcFYwTVR2SnZhQ1ZIOEpkc3pJcDRoeDliaGl6QXNzdFdZUEhGaEpWSDJLYWk0Y1hhVU5PQklKd004S3k3M3JsUw?oc=5",
+      "domain": "pulse2.com",
+      "published_ms": 1794147972000,
+      "kind": "news",
+      "id": 69
+    },
+    {
+      "title": "Anthropic launches personal finance feature for Claude - Kalinga TV",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUmg0MExvUW9YZDBDYVpqX29mYU5VODNYenFnSV9icEVIbGZSeVBMZ3cwUXBpWnREOTI4S3JVbjdZcjlteFJFbDY4XzR1ckJRWWpLYWJpa0JIbThuOXBOUFB6QnAzYkFFOWs3NlozY1d0ay00RkNROVljSlNJZkVWSldsUUNGYXE1OHQxS1ZvRGt0QQ?oc=5",
+      "domain": "kalingatv.com",
+      "published_ms": 1794108231000,
+      "kind": "news",
+      "id": 87
+    },
+    {
+      "title": "Claude Personal Finance Vs. ChatGPT Finances: What Sets Them Apart? - Engadget",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxORGNUWG9XV2JUWGNmcFAxa2V1VWp1TVVnVnd5SUh2cFFZMjg4YUFZT0NtNUh3WlR2dXVYeFpuTHlsWVpDdjN5LVVxdkpIVjl5dXppOFl3MEhXdnprdkF2YzdVTWtvX1NZdzRLWUpSSXZpTGxuejlxNjF5TDJsUHh4bmtzYkdTQQ?oc=5",
+      "domain": "engadget.com",
+      "published_ms": 1794093020000,
+      "kind": "news",
+      "id": 89
+    },
+    {
+      "title": "Anthropic Launches Claude AI Personal Finance Beta for US Users - Geeky Gadgets",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1wbGoxbXFxUlFLZkZrZU9jYkNtaE1LSk5fM1hYVDVUaGVieDdkMTRfYW1Xejd4ajNQX1g3SGhPdzhWNUdjMG9SMWxmYVJ5QkhtYmZzSURWWVk?oc=5",
+      "domain": "geeky-gadgets.com",
+      "published_ms": 1794034857000,
+      "kind": "news",
+      "id": 105
+    },
+    {
+      "title": "How to Use Claude Personal Finance: Setup, Prompts and What It Can See - Fello AI",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB6dWt6d1hTdFF2SVFraXR2NTBoVjVMWFkzUV9oS1BHSkRtc2FuWjUyblpLQ0RkMllsc2dPUXRDRGJyV0xrZV9RU29lM3QyVm1US1pkN2VXWQ?oc=5",
+      "domain": "felloai.com",
+      "published_ms": 1794031805000,
+      "kind": "news",
+      "id": 107
+    }
+  ],
+  "wikipedia": {
+    "title": "Claude (language model)",
+    "daily_views": 255,
+    "ratio": 0.59
+  },
+  "youtube": {
+    "median_views": 275,
+    "competitors": [
+      {
+        "id": "UTubvRLX2j4",
+        "title": "Introducing Personal Finance in Claude",
+        "channel": "Claude",
+        "views": 621529
+      },
+      {
+        "id": "h2Z0CAemSF8",
+        "title": "Build Your First AI Finance Agent in Claude (No Coding)",
+        "channel": "Luke Finance",
+        "views": 55300
+      },
+      {
+        "id": "MFKhLshLBqI",
+        "title": "Claude Personal Finance (Watch This First 👀)",
+        "channel": "Sansser",
+        "views": 2014
+      },
+      {
+        "id": "fV7fXcavh1Y",
+        "title": "Claude Personal Finance: Ask Your Bank Accounts Anything",
+        "channel": "KiS",
+        "views": 1082
+      },
+      {
+        "id": "GidnU7YF4Ec",
+        "title": "Would You Let Claude Analyze Your Bank Account...?",
+        "channel": "AaronTheSloth",
+        "views": 275
+      },
+      {
+        "id": "nOIsuric6lg",
+        "title": "How to use Claude Personal Finance -- Connect Your Bank and Track Spending with AI",
+        "channel": "CYBER-PEEK",
+        "views": 92
+      }
+    ]
+  },
+  "commons_hits": null,
+  "score": {
+    "factors": {
+      "momentum": 88,
+      "reach": 44,
+      "curiosity": 90,
+      "relevance": 90,
+      "visual": 80,
+      "source_quality": 65
+    },
+    "total": 76.8,
+    "newest_hours": 7,
+    "domains": [
+      "pulse2.com",
+      "kalingatv.com",
+      "engadget.com",
+      "geeky-gadgets.com",
+      "felloai.com"
+    ],
+    "trusted_domains": [
+      "engadget.com"
+    ]
+  },
+  "rejected": [],
+  "slug": "claude-ai-can-now-connect-directly-to-your-bank-account",
+  "angle": "Highlight the severe cybersecurity and liability risks of granting an AI direct financial access, focusing on whether banks or Anthropic will cover your losses if the system hallucinates an unauthorized transaction or falls victim to a prompt injection attack.",
+  "what_others_do": "Existing videos focus primarily on tutorials for setting up the feature, building no-code finance agents, or demonstrating how to use Claude for basic budgeting and spending analysis."
+}

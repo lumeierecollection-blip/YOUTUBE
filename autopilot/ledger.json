@@ -6,8 +6,8 @@
       "attempts": 1,
       "run_id": "42523741415",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:10:34.556Z",
-      "stage": "research",
+      "updated_at": "2026-11-08T21:10:51.329Z",
+      "stage": "script",
       "topic": "Claude AI Can Now Connect Directly to Your Bank Account",
       "score": 76.8,
       "pillar": "Trending AI tools and apps",
@@ -26,5 +26,7 @@
       "pillar": "Trending AI tools and apps"
     }
   ],
-  "attention": []
+  "attention": [
+    "Telegram is not configured: add the TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID repository secrets."
+  ]
 }
