@@ -375,6 +375,14 @@
       "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
       "error": "gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"clipped_text: frame 14: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"clipped_text: frame 15: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"overlapping_text: frame 13: 131 tablets kept a royal tragedy for 3,400 years.\\n\\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"overlapping_text: frame 14: 131 tablets kept a royal tragedy for 3,400 years.\\n",
       "qa": "failed"
+    },
+    "kick-78a26c5d3b-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42536909548",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:48:28.847Z"
     }
   },
   "uploads": [],
@@ -717,5 +725,5 @@
     "AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_3",
     "Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-on"
   ],
-  "last_poll_at": "2026-11-08T23:39:50.707Z"
+  "last_poll_at": "2026-11-08T23:48:28.846Z"
 }
