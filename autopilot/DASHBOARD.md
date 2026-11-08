@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 00:31 SAST
+Updated 2026-11-09 00:35 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -20,7 +20,7 @@ Updated 2026-11-09 00:31 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Perplexity launches Teammates AI agents to run projects (80.2/100) |
+| Selected topic and score | Senior Loses $450,000 to Deepfake Scam (74.2/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -43,3 +43,4 @@ Updated 2026-11-09 00:31 SAST
 - AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:
   -
 - Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed
+- AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure
