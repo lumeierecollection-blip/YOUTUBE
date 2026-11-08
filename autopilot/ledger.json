@@ -99,12 +99,12 @@
       "attempts": 1,
       "run_id": "42527815928",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:00:19.984Z",
-      "stage": "script",
-      "topic": "OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
-      "score": 80.2,
-      "pillar": "New AI features and releases",
-      "hook": "OpenAI just dropped Images 2.6, letting you instantly turn ordinary photos and sketches into animated GIFs."
+      "updated_at": "2026-11-08T22:01:33.220Z",
+      "stage": "research",
+      "topic": "Claude's New Personal Finance Feature Lets You Connect Bank Accounts",
+      "score": 78.3,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Anthropic just gave Claude access to your bank accounts to manage your money—here is what it can see."
     }
   },
   "uploads": [],
@@ -207,6 +207,15 @@
       "at_ms": 1794175200795,
       "score": 80.2,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "Claude's New Personal Finance Feature Lets You Connect Bank Accounts",
+      "slug": "claude-s-new-personal-finance-feature-lets-you-connect-bank-",
+      "slot": "kick-4e6fd5e3e2-ch2",
+      "at_ms": 1794175293220,
+      "score": 78.3,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
