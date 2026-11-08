@@ -273,12 +273,12 @@
       "attempts": 1,
       "run_id": "42532551931",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:01:57.159Z",
-      "stage": "narration",
-      "topic": "Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird",
-      "score": 80.2,
-      "pillar": "Events that changed the modern world",
-      "hook": "Scientists thought this colossal bird went extinct thousands of years ago—until DNA proved a 150-year-old blunder."
+      "updated_at": "2026-11-08T23:02:39.203Z",
+      "stage": "research",
+      "topic": "The Tragic Kidnapping and Ransom of John Paul Getty III",
+      "score": 65.5,
+      "pillar": "Unbelievable true historical events",
+      "hook": "When kidnappers cut off John Paul Getty III's ear and mailed it to a newspaper, his billionaire grandfather finally paid up."
     }
   },
   "uploads": [],
@@ -561,6 +561,15 @@
       "at_ms": 1794178720015,
       "score": 80.2,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The Tragic Kidnapping and Ransom of John Paul Getty III",
+      "slug": "the-tragic-kidnapping-and-ransom-of-john-paul-getty-iii",
+      "slot": "kick-ac6017aec3-ch1",
+      "at_ms": 1794178959203,
+      "score": 65.5,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
