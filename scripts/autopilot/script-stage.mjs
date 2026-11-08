@@ -47,7 +47,7 @@ export function research({ channel, topic }) {
 /** The 30-second brief. The repo's write-script.md is built for 58-second Shorts and overshoots this length. */
 function promptFile(feedback, dir) {
   let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8");
-  if (feedback) p += `\n\n## The quality gate rejected your previous script\n\n${feedback}\n\nRewrite the full script, fixing these. Stay within 62-74 words.\n`;
+  if (feedback) p += `\n\n## The quality gate rejected your previous script\n\n${feedback}\n\nRewrite the full script, fixing these. Stay within 55-66 words.\n`;
   const path = join(dir, "write-script.prompt.md");
   writeFileSync(path, p);
   return path;
