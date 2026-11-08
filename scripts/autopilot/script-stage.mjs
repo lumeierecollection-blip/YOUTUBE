@@ -17,7 +17,7 @@ const SCRIPT_PASSES = 7;
 // The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
 // those two alone are logged and the whole script is judged instead. Everything else stays blocking.
 const isAdvisory = (line) => /^ {2}- (CLARITY|SPECIFICITY)/.test(line);
-const SHORT_ENV = { SHORTS_MIN_SECONDS: "26", SHORTS_MAX_SECONDS: "38" };
+const shortEnv = (channel) => ({ SHORTS_MIN_SECONDS: String(channel.script.gate_seconds.min), SHORTS_MAX_SECONDS: String(channel.script.gate_seconds.max) });
 const models = () => ({
   research: process.env.OPENCODE_MODELS_RESEARCH || "ollama-cloud/gpt-oss:120b",
   script: process.env.OPENCODE_MODELS_REASONING || "ollama-cloud/gpt-oss:120b",
@@ -64,12 +64,15 @@ export async function research({ channel, topic, dir }) {
 const wordCount = (script) => script.sections.map((x) => x.voiceover).join(" ").split(/\s+/).filter(Boolean).length;
 
 /** The 30-second brief. A revision sees its previous draft, otherwise each pass starts over and breaks what already passed. */
-function promptFile(previous, feedback, dir, drawable) {
-  let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8");
+function promptFile(previous, feedback, dir, drawable, channel) {
+  const b = channel.script;
+  let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8")
+    .replaceAll("{{MIN}}", b.min).replaceAll("{{MAX}}", b.max).replaceAll("{{REJECT}}", b.reject)
+    .replaceAll("{{HOOK}}", b.table.hook).replaceAll("{{SETUP}}", b.table.setup).replaceAll("{{REHOOK}}", b.table.rehook).replaceAll("{{PAYOFF}}", b.table.payoff).replaceAll("{{CLOSE}}", b.table.close);
   if (drawable?.length) p += `\n\n## Facts this channel can draw\n\nThis channel rejects any sentence that does not ground something drawable. These research facts qualify. Build every sentence around one of them, and keep its figure, date, place or list exactly as written:\n${drawable.map((f) => `- ${f}`).join("\n")}\n`;
   if (previous) {
     const n = wordCount(previous);
-    p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is 66. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections.
+    p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is ${b.max}. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections.
 If a finding says a sentence grounds nothing drawable, rewrite that sentence around one of these, using facts from the research: a list written as "A, B and C"; two compared figures ("from 2 to 40", "$20 versus $200"); a percentage; a date with its event ("In March 2026, X did Y"); a named country or city; or a figure with its unit ("8 apps", "$200 a month"). Saying the same thing in other words will be rejected again.
 Return the full JSON object.\n`;
   }
@@ -82,7 +85,7 @@ const issues = (text, re) => text.split("\n").filter((l) => re.test(l)).join("\n
 
 /** Returns "" when the script passes every gate, else the feedback for the writer. */
 function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
-  const gate = () => run("node", ["scripts/gate-script.js", channel.id, stem, slug], { capture: true, merge: true, env: SHORT_ENV });
+  const gate = () => run("node", ["scripts/gate-script.js", channel.id, stem, slug], { capture: true, merge: true, env: shortEnv(channel) });
   const g = gate();
   if (g.status !== 0) return issues(g.stdout, /SCR-1[0-9]|BLOCKER/) || g.stdout.slice(-1500);
   const d = run("node", ["scripts/dedupe-sentences.js", scriptPath], { capture: true, merge: true });
@@ -135,7 +138,7 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   for (let pass = 1; pass <= SCRIPT_PASSES; pass++) {
     log("script", `pass ${pass}/${SCRIPT_PASSES}${previous ? ` (revising ${wordCount(previous)} words)` : ""}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
-    const out = agent(["--prompt-file", promptFile(previous, feedback, dir, drawable), "--schema-file", "schemas/script.section.json",
+    const out = agent(["--prompt-file", promptFile(previous, feedback, dir, drawable, channel), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     writeJson(scriptPath, out);
     feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
@@ -172,7 +175,7 @@ export function narrate({ channel, topic, researchPath, script }) {
     const count = data.sections.map((s) => s.voiceover).join(" ").split(/\s+/).length;
     const ceil = Math.floor((count * MAX_SECONDS) / secs);
     if (run("node", ["scripts/fit-short.js", script.scriptPath, String(ceil)]).status !== 0) throw new StageError("tts", `cannot trim the script to ${ceil} words`);
-    const g = run("node", ["scripts/gate-script.js", channel.id, script.stem.replace(/-script$/, ""), topic.slug], { capture: true, merge: true, env: SHORT_ENV });
+    const g = run("node", ["scripts/gate-script.js", channel.id, script.stem.replace(/-script$/, ""), topic.slug], { capture: true, merge: true, env: shortEnv(channel) });
     if (g.status !== 0) throw new StageError("tts", `trimmed script failed its gate: ${issues(g.stdout, /SCR-/).slice(0, 300)}`);
   }
   throw new StageError("tts", `narration still longer than ${MAX_SECONDS} s after trimming`);

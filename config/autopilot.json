@@ -106,7 +106,24 @@
         "shipwreck found",
         "World War II secret revealed",
         "forgotten history"
-      ]
+      ],
+      "script": {
+        "min": 44,
+        "max": 50,
+        "reject": 52,
+        "table": {
+          "hook": "6-8",
+          "setup": "9-11",
+          "rehook": "7-9",
+          "payoff": "13-16",
+          "close": "7-9"
+        },
+        "gate_seconds": {
+          "min": 20,
+          "max": 27
+        },
+        "note": "Ryan neural voice measured about 107 words a minute (54 words took 30.26 s)."
+      }
     },
     "2": {
       "key": "ai-tested",
@@ -232,7 +249,24 @@
         "AI browser privacy",
         "Meta AI app",
         "AI customer service replaced"
-      ]
+      ],
+      "script": {
+        "min": 55,
+        "max": 66,
+        "reject": 72,
+        "table": {
+          "hook": "7-9",
+          "setup": "11-14",
+          "rehook": "7-9",
+          "payoff": "18-22",
+          "close": "7-9"
+        },
+        "gate_seconds": {
+          "min": 26,
+          "max": 38
+        },
+        "note": "Andrew neural voice measured about 156 words a minute."
+      }
     }
   },
   "score_weights": {
