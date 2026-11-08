@@ -120,6 +120,14 @@
       "pillar": "AI changing everyday work",
       "hook": "Bill Gates warns that $10-an-hour robots are about to replace $20-an-hour workers—and there's no plan.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most one words-only beat in three: \"You could be replaced by a ten dollar robot.\" / \"Warehouse workers currently earn thirty dollars hourly.\" / \"Will these machines take your job?\"\nScript gate FAILED (BLOCKER) for 2/bill-gates-says-10-an-hour-robots-are-coming-for-jobs-shorts:\n  - SCR-17 STRICT"
+    },
+    "kick-0a938f9c78-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42528328279",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:07:08.999Z"
     }
   },
   "uploads": [],
@@ -280,5 +288,5 @@
     "AI Tested kick-4e6fd5e3e2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-18: \"Search Gemini Notebook and Classroom\" is not named in the research artifact â€” use the research",
     "AI Tested kick-da25b9c885-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most"
   ],
-  "last_poll_at": "2026-11-08T22:04:14.319Z"
+  "last_poll_at": "2026-11-08T22:07:08.998Z"
 }
