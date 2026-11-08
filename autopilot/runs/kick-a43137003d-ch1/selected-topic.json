@@ -1,0 +1,58 @@
+{
+  "topic": "The Trent Affair: Civil War Diplomatic Crisis",
+  "pillar": "Events that changed the modern world",
+  "evidence_ids": [
+    48
+  ],
+  "hook": "During the American Civil War, a Union warship stopped a British mail packet and almost dragged the British Empire into the war.",
+  "anniversary": true,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 8
+  },
+  "wikipedia_title": "Trent Affair",
+  "commons_query": "Trent Affair cartoon",
+  "youtube_query": "trent affair american civil war",
+  "evidence": [
+    {
+      "title": "1861: American Civil War: The \"Trent Affair\": The USS San Jacinto stops the British mail ship Trent and arrests two Confederate envoys, sparking a diplomatic crisis between the UK and US.",
+      "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+      "domain": "wikipedia.org",
+      "published_ms": 1794177425423,
+      "kind": "anniversary",
+      "id": 48
+    }
+  ],
+  "wikipedia": {
+    "title": "Trent Affair",
+    "daily_views": 178,
+    "ratio": 1.22
+  },
+  "youtube": null,
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 47,
+      "reach": 45,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 90,
+      "source_quality": 35
+    },
+    "total": 61.3,
+    "newest_hours": 0,
+    "domains": [
+      "wikipedia.org"
+    ],
+    "trusted_domains": [
+      "wikipedia.org"
+    ]
+  },
+  "rejected": [],
+  "wave": 1,
+  "slug": "the-trent-affair-civil-war-diplomatic-crisis",
+  "angle": "Focus on how a rogue American naval captain's unauthorized seizure of Confederate diplomats nearly forced Lincoln into fighting a two-front war against both the Confederacy and the British Empire.",
+  "what_others_do": "Existing videos typically treat the Trent Affair as a dry, straightforward chronology of international law and maritime disputes."
+}

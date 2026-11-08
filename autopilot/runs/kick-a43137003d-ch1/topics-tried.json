@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "Maya Mercury Contamination from Red Vermilion Paint",
+      "score": 82.9,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But heavy rain washed this mineral into city reservoirs.\" — The word 'this' refers to cinnabar, but the connection between the paint mentioned in sentence 1 and the mineral in sentence 2 is not explicitly linked for the viewer.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 7 \"Look at these 250 to 920 CE env"
+    },
+    {
+      "topic": "World's First Internet Murder",
+      "score": 69.1,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, nothing_misleading, no_repetition. The script conflates an unrelated 1996 computer seizure with a completely different 1999 French murder case, creating a misleading and disjointed narrative."
+    }
+  ],
+  "selected": "The Trent Affair: Civil War Diplomatic Crisis"
+}
