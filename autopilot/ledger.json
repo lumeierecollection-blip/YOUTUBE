@@ -72,12 +72,12 @@
       "attempts": 1,
       "run_id": "42526469518",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:51:19.308Z",
-      "stage": "script",
-      "topic": "The 1957 Disappearance of Pan Am Flight 7",
-      "score": 61.8,
-      "pillar": "Historical disasters and survival stories",
-      "hook": "In 1957, a luxurious Pan Am airliner vanished mid-flight over the Pacific Ocean, leaving investigators baffled by a mysterious crash."
+      "updated_at": "2026-11-08T21:52:33.003Z",
+      "stage": "research",
+      "topic": "The French Resistance Coup in Algiers",
+      "score": 61,
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "hook": "In 1942, just 400 civilian French patriots pulled off a secret 15-hour coup against the Vichy regime to change WWII history."
     }
   },
   "uploads": [],
@@ -153,6 +153,15 @@
       "at_ms": 1794174674374,
       "score": 61.8,
       "pillar": "Historical disasters and survival stories"
+    },
+    {
+      "channel": "1",
+      "topic": "The French Resistance Coup in Algiers",
+      "slug": "the-french-resistance-coup-in-algiers",
+      "slot": "kick-1dc36982d7-ch1",
+      "at_ms": 1794174753003,
+      "score": 61,
+      "pillar": "Secret operations and evidence-backed conspiracies"
     }
   ],
   "attention": [
