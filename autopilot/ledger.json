@@ -44,7 +44,12 @@
       "attempts": 1,
       "run_id": "42525274596",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:27:27.836Z"
+      "updated_at": "2026-11-08T21:28:47.425Z",
+      "stage": "research",
+      "topic": "Rare 5th-Century Burials of Germanic Chieftains in France",
+      "score": 70.5,
+      "pillar": "Archaeological discoveries",
+      "hook": "Archaeologists in France just unearthed dazzling weapons and warhorses in the rare, untouched graves of 5th-century Germanic chieftains."
     }
   },
   "uploads": [],
@@ -66,6 +71,15 @@
       "at_ms": 1794172682445,
       "score": 65.6,
       "pillar": "Strange inventions and lost technology"
+    },
+    {
+      "channel": "1",
+      "topic": "Rare 5th-Century Burials of Germanic Chieftains in France",
+      "slug": "rare-5th-century-burials-of-germanic-chieftains-in-france",
+      "slot": "kick-f7e02ae45f-ch1",
+      "at_ms": 1794173327425,
+      "score": 70.5,
+      "pillar": "Archaeological discoveries"
     }
   ],
   "attention": [

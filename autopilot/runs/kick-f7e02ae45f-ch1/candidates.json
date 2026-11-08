@@ -1,0 +1,1238 @@
+{
+  "generated_at": "2026-11-08T21:28:34.444Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 84
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Rare 5th-Century Burials of Germanic Chieftains in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        84
+      ],
+      "hook": "Archaeologists in France just unearthed dazzling weapons and warhorses in the rare, untouched graves of 5th-century Germanic chieftains.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Germanic peoples",
+      "commons_query": "Merovingian artifacts",
+      "youtube_query": "germanic chieftains burial france archaeology",
+      "evidence": [
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 84
+        },
+        {
+          "title": "Burials of probable 5th-century Germanic chieftains found near Colmar — Live Science - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPR3I0MC12WmtPd0RWX2VweHFFQXJ6anowZi05Q1BvLTJwNlpvMXMtTXQtdW1FcFc4eFdTUGtZbDNFQy1OWjM4UUFXQVhJZXVWcHNKQkxFVkxhdW1mS3hJa0RRQ2xZWEpMZmZpYW9icWpMbXQxUjhQMVp2TlktaFZtN3BCSVRoT09Xb1RVSFJuaURzVDBMa1FlRHl1S1h3eEQweDVDX3E1bEVWbnF1bURSTkJuYmpVTC1VTUZfRFM2aEs?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794144046000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Germanic peoples",
+        "daily_views": 1004,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 100,
+        "competitors": [
+          {
+            "id": "V9Uc3iJl10A",
+            "title": "The Secret Origins and History of the British Royal Family: Part 1 of 4",
+            "channel": "Monumental Chronicles",
+            "views": 1756
+          },
+          {
+            "id": "xLmNx_ZhDX0",
+            "title": "Strange History and Powerful Myths: 9 Stories Behind Our World",
+            "channel": "What Is",
+            "views": 582
+          },
+          {
+            "id": "gcv9ZcVAzLU",
+            "title": "Aetius Trapped Attila Behind His Wagons, Then Let Him Go FREE",
+            "channel": "Romanus",
+            "views": 558
+          },
+          {
+            "id": "P5QkGQOizQo",
+            "title": "The Cruelest Slave Jobs of Ancient Rome",
+            "channel": "The Merciless",
+            "views": 368
+          },
+          {
+            "id": "Y8ZHwLoMzO0",
+            "title": "Fall Asleep to the ENTIRE Story of the Byzantine Empire — Rome's Forgotten Half",
+            "channel": "Voyage Through Ages",
+            "views": 100
+          },
+          {
+            "id": "HC903xnOkJM",
+            "title": "The Entire History of Budapest in 30 Minutes",
+            "channel": "The Forbidden Archive",
+            "views": 14
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 44,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 70.5,
+        "newest_hours": 8,
+        "domains": [
+          "livescience.com",
+          "ua.news"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "10 Mummified Crocodiles Found in a 2,500-Year-Old Egyptian Tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        76,
+        78
+      ],
+      "hook": "Why did ancient Egyptians bury ten giant mummified crocodiles inside a secret 2,500-year-old tomb as an offering to the gods?",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "Egyptian crocodile mummy",
+      "youtube_query": "ancient egyptian crocodile mummies tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 76
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 78
+        },
+        {
+          "title": "A 3,400-year-old Egyptian mummy held a secret beneath her linen wrappings. Scientists found a shell made o - The Economic Times",
+          "url": "https://news.google.com/rss/articles/CBMioAJBVV95cUxNZkVTV3VLMmZQMDZXT0ZXOHVSdlhWRjFnMUxJOVZXOURyazhOVzc1WVN4a2U2bk5UTXhUNDhSRlJnVGxGMVZNNHNGOEhKYno1ZmFSSG9nWGlObWF4NnN3YmwyOFFNWlFPTjNkWHdNMEwtUjZZNFJLSlpFTG83V0ZwbkM2VDJmQl9pLWY3VHhJVEdROVBDXzhiZVpFM1FqeC1aMUk1ejJrcTNhUklSUk5RU09URDFXQWhsSjVHeGZoN0R4cWVFdkZteUxEUW8xcDlsamUtZnhQeWxMTTIxajIxTGIwd3VMVmJreF9NVEdrRXFRMmVqcy1fWm1IU1NBanJNX2ZwMWQ5S0NiWk9TRk5mVUYxSDEyVlpRc3ZmRGFNMHLSAaYCQVVfeXFMTWt3SDBhbDFtSGxXMjZLVXRyYi02QWVqWVNNWE1fNkNTT254MDViZDc3LVZ1WXlWRjR6eDBCWUxrYk9rVWVEdTFndDJzSk55M1lFY1Z5cS1YUTNrckpUcFVJZzRrdmF5bEpic0dJNXg3UWkxUHRyamZ1SXhxZWZ4d19kb3VZMjU4WjVlaTdMaHpmUEM0aG5XVnZPMmR0bkRiUU1aRWQ4RDVpT1J3RHBMV3FpdFdsbWd3TTZaREJXeUZ5eVJHZjdXNHRTaXQxeW9QYnZpME5oV0E4RmhZYWs0T3JxSWVDVTRVX0txbUhJcVJwYW1qNFdyU0pKV2hYV3piVHNfbVlPWG1PQ1NhQmdlYVVvbkdUdWFiTWVpYVktb29iS2JuOENn?oc=5",
+          "domain": "m.economictimes.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.94
+      },
+      "youtube": {
+        "median_views": 55,
+        "competitors": [
+          {
+            "id": "4-tBqHu3iRE",
+            "title": "What did they hide inside this mummified crocodile?",
+            "channel": "AncientUFO",
+            "views": 3406
+          },
+          {
+            "id": "VO6K9Lm6PY4",
+            "title": "Half-Human, Half-Crocodile Mummy — Even Top Scientists Can’t Explain What They Found",
+            "channel": "Ancient History",
+            "views": 2989
+          },
+          {
+            "id": "L04iN3vFrkw",
+            "title": "10 Crocodile Mummies Were Found in an Ancient Egyptian Tomb… But WHY? 🐊🇪🇬 #mystery #ancientegypt",
+            "channel": "Story Line",
+            "views": 768
+          },
+          {
+            "id": "KAfu-BwxTIc",
+            "title": "Egypt’s Temple City Filled With Mummified Crocodiles",
+            "channel": "Eeriedocsgarden",
+            "views": 176
+          },
+          {
+            "id": "U7CTXoo5VrE",
+            "title": "Ten crocodiles were tied up and mummified together in one Egyptian tomb",
+            "channel": "RelicRecords",
+            "views": 55
+          },
+          {
+            "id": "MMvyMBFU57A",
+            "title": "The Dark Mystery of Egypt’s Crocodile Tombs 🐊",
+            "channel": "Enigma Echo",
+            "views": 35
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 32,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 70.2,
+        "newest_hours": 2,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com",
+          "m.economictimes.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Skeleton Confirms Discovery of Lost Viking Church in Greenland",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        63
+      ],
+      "hook": "A lone skeleton just solved a centuries-old mystery, confirming the exact location of a lost Viking Age church in Greenland.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Greenland in the Middle Ages",
+      "commons_query": "Viking ruins Greenland",
+      "youtube_query": "lost viking church greenland skeleton discovery",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 63
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 233,
+        "competitors": [
+          {
+            "id": "moZAdWn9O4Q",
+            "title": "A Skeleton Confirmed a Lost Norse Church in Greenland",
+            "channel": "Exploria World",
+            "views": 1347
+          },
+          {
+            "id": "dP8zdJu7TjQ",
+            "title": "The Skeleton That Proved a Lost Viking Church",
+            "channel": "Hidden Chapters 365 Days",
+            "views": 1054
+          },
+          {
+            "id": "NRfTrZPH3yc",
+            "title": "They Just Found a Grave From the Viking Colony That Vanished #shorts #history",
+            "channel": "Beyond The Known Universe",
+            "views": 884
+          },
+          {
+            "id": "W0PtSItKS_E",
+            "title": "Viking Church in Greenland Found Near Erik the Red's Farm",
+            "channel": "Quest For Unknown",
+            "views": 268
+          },
+          {
+            "id": "6J__X5-oEUg",
+            "title": "A Skeleton Just Proved a Lost Norse Church Exists in Greenland #history #secret #archeology #shorts",
+            "channel": "Untold Facts Vault",
+            "views": 233
+          },
+          {
+            "id": "INSOVMj3Dak",
+            "title": "Why the Vikings of Greenland Vanished",
+            "channel": "Unbelievable History",
+            "views": 66
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 39,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 65.9,
+        "newest_hours": 0,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Wilhelm Röntgen's Accidental Discovery of X-Rays",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "On this day in 1895, a physics experiment went totally wrong—and accidentally allowed a scientist to see right through solid flesh.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Röntgen",
+      "youtube_query": "wilhelm rontgen discovery of x rays",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 44
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 471,
+        "competitors": [
+          {
+            "id": "RbxYv7tLFaE",
+            "title": "Presenting Victorian Good Ideas - The X-Ray! Discovered 1895 by Wilhelm Röntgen #victorianinventions",
+            "channel": "Glanmore National Historic Site of Canada",
+            "views": 14254
+          },
+          {
+            "id": "uHGqSFL1bh0",
+            "title": "X-Ray Tubes Part I: The Early Years",
+            "channel": "Our Own Devices",
+            "views": 7585
+          },
+          {
+            "id": "X0Fa5SFTvUA",
+            "title": "The Hand That Showed the Bones | First X-Ray, 1895 #shorts",
+            "channel": "PastUntold",
+            "views": 1221
+          },
+          {
+            "id": "IbaTa907U2k",
+            "title": "The First X-Ray Terrified the Scientist's Wife",
+            "channel": "Days of Odd",
+            "views": 799
+          },
+          {
+            "id": "WbqTWTFR_aw",
+            "title": "Warum sieht man auf einem Röntgenbild nur Knochen? #Shorts",
+            "channel": "IBN SINA - Gesundheitsportal",
+            "views": 471
+          },
+          {
+            "id": "-feNlniUT60",
+            "title": "The Invisible Ray That Changed Medicine Forever | The Discovery of X-Rays",
+            "channel": "Discovery Stories Hub",
+            "views": 323
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 45,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 64.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Georg Elser's Narrow Miss: The 1939 Munich Beer Hall Bombing",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        34
+      ],
+      "hook": "Adolf Hitler walked out of a Munich beer hall just 13 minutes before a meticulously timed bomb detonated in 1939. How did he survive?",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Georg Elser",
+      "commons_query": "Georg Elser",
+      "youtube_query": "georg elser hitler assassination attempt 1939",
+      "evidence": [
+        {
+          "title": "1939: In Munich, Adolf Hitler narrowly escapes the assassination attempt of Georg Elser while celebrating the 16th anniversary of the Beer Hall Putsch.",
+          "url": "https://en.wikipedia.org/wiki/Munich",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 34
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 733,
+        "competitors": [
+          {
+            "id": "XA80DDhw3CU",
+            "title": "Hitler Escaped This Bomb by Just 13 Minutes - Nov 7#GeorgElser #Hitler #OnThisDay",
+            "channel": "Big Bang Bogan",
+            "views": 10443
+          },
+          {
+            "id": "IlFoz5A6VyY",
+            "title": "Hitler's Carpenter Hid Inside a Pillar for 30 Nights",
+            "channel": "Redrawn",
+            "views": 1293
+          },
+          {
+            "id": "U-6mwQLVqqc",
+            "title": "Hitlera dzieliło od śmierci tylko 13 minut! Zamach Georga Elsera w 1939 roku",
+            "channel": "365 Historii",
+            "views": 1260
+          },
+          {
+            "id": "-WAHS53Q3xU",
+            "title": "Georg Elser: The Lone Carpenter Who Missed Hitler by 13 Minutes | Nov 8",
+            "channel": "The Crooked Calendar",
+            "views": 800
+          },
+          {
+            "id": "i1KNa_WpL9M",
+            "title": "If You Met Hitler Will You Stop Him?",
+            "channel": "Nearside",
+            "views": 733
+          },
+          {
+            "id": "6mErqWtoGHs",
+            "title": "Georg Elser Hid a Bomb in a Pillar, Hammering Only When Toilets Flushed #Shorts",
+            "channel": "Battlecry History",
+            "views": 648
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 48,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 64.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Discovery of the Tomb of Philip II of Macedon",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "On this day in 1977, Greek archaeologist Manolis Andronikos unsealed the untouched tomb of Alexander the Great's father, Philip II.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Philip II of Macedon",
+      "commons_query": "Tomb of Philip II of Macedon",
+      "youtube_query": "tomb of philip ii vergina discovery",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 129,
+        "competitors": [
+          {
+            "id": "PdV1vs7qWn8",
+            "title": "Did This Belong To Alexander? @ponderingadventurer #ancientgreece #archeology #alexanderthegreat",
+            "channel": "Ancient Eyes Odyssey",
+            "views": 2143
+          },
+          {
+            "id": "BCML63KH-kA",
+            "title": "Manolis Andronikos descubre una tumba real en Vergina",
+            "channel": "HypatiaJT",
+            "views": 1086
+          },
+          {
+            "id": "BwNbYmFz7mg",
+            "title": "He Opened a Royal Tomb in Greece That Had Never Been Looted",
+            "channel": "Unearthed Daily",
+            "views": 565
+          },
+          {
+            "id": "tldNeDa5VuQ",
+            "title": "Inside the Unlooted Tomb of Philip II: The UNTOUCHED Macedonian Treasure",
+            "channel": "Ancient Mysteries",
+            "views": 136
+          },
+          {
+            "id": "4KpaFAcwySA",
+            "title": "Vergina: The Royal Tomb of Philip II | Treasures of Ancient Macedonia #vergina",
+            "channel": "Everlasting Wanderlust",
+            "views": 129
+          },
+          {
+            "id": "rD61Xc4jGlI",
+            "title": "A Professor Dug Into a Hill and Found an Unlooted Royal Tomb",
+            "channel": "Keystonesmg",
+            "views": 69
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 64,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Sunken Mongol Shipwreck Off Japan Yields Dice and Games",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion fleet off the coast of Japan just found ancient dice and games giving a rare glimpse into daily life.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion scrolls",
+      "youtube_query": "sunken mongol ship japan dice games",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794104610000,
+          "kind": "news",
+          "id": 95
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": {
+        "median_views": 1036,
+        "competitors": [
+          {
+            "id": "gMJrYToV10A",
+            "title": "Which version of Pupsies “Misery\" is better: Official vs No Auto-Tune! 🎶",
+            "channel": "Star Stitch",
+            "views": 578228
+          },
+          {
+            "id": "BaE18OtnrDg",
+            "title": "「元寇の船」3隻目の全容を解明　”全長30メートル”これまでで最大級か　麻雀起源の遊び道具も初発見　長崎県松浦市・鷹島沖",
+            "channel": "RKB毎日放送NEWS",
+            "views": 116207
+          },
+          {
+            "id": "W36-rXD_91c",
+            "title": "從一株沒人看得起的枯木，到根鬚纏繞寰宇、巨蔭籠罩大地的萬古神木；他俯視蒼生那刻才懂，自己守的從來不是修行，而是當年那一炷香火。# 樹神 #家族 #逆襲 #諸天",
+            "channel": "小佳剧场",
+            "views": 25245
+          },
+          {
+            "id": "O0XiLtAQ6_8",
+            "title": "🔥A Stunning Red Army Victory Shocks Zhang Xueliang | The Great Long March 伟大的长征 | iQIYI",
+            "channel": "iQIYI 爱奇艺 - Get the iQIYI APP",
+            "views": 14256
+          },
+          {
+            "id": "hwgvJ2iWWbY",
+            "title": "A Typhoon Sank Kublai Khan's Fleet in 1281. Divers Just Found the Crew's Dice #shorts",
+            "channel": "Hidden World Facts",
+            "views": 1036
+          },
+          {
+            "id": "i4NptDUNpeA",
+            "title": "745-year-old dice found in Kublai Khan's sunken fleet #shorts #japan #history",
+            "channel": "Descubriendo el Mundo con Aiden",
+            "views": 319
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 52,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 62.8,
+        "newest_hours": 19,
+        "domains": [
+          "voiceofemirates.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The First Jet-to-Jet Dogfight in History",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        30
+      ],
+      "hook": "During the Korean War in 1950, American pilot Russell Brown engaged in history's very first jet-versus-jet aerial dogfight.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Russell J. Brown",
+      "commons_query": "F-80 Shooting Star",
+      "youtube_query": "first jet dogfight korean war f80 mig15",
+      "evidence": [
+        {
+          "title": "1950: Korean War: United States Air Force Lt. Russell J. Brown, while piloting an F-80 Shooting Star, shoots down two North Korean MiG-15s in the first jet aircraft-to-jet aircraft dogfight in history.",
+          "url": "https://en.wikipedia.org/wiki/Korean_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 30
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 671,
+        "competitors": [
+          {
+            "id": "eeRJbSG5u0E",
+            "title": "Shooting Stars vs Yak-9s: Jets Meet Prop Fighters Over Korea",
+            "channel": "Showtime112",
+            "views": 155829
+          },
+          {
+            "id": "Gy6aO29y3c0",
+            "title": "F-80 Shooting Star vs North Korea: The Jet That Missed WW2",
+            "channel": "Showtime112",
+            "views": 118548
+          },
+          {
+            "id": "F1Yct6HDkYU",
+            "title": "Il-2 Korea | Mig-15 bis | Black Thursday - Bomber intercept",
+            "channel": "Taff in Exile",
+            "views": 14432
+          },
+          {
+            "id": "6x7OuflFzNY",
+            "title": "When 3 Soviet MiGs Ambushed 10 US Jets (Korean War 1950)",
+            "channel": "The Air Combat Files",
+            "views": 727
+          },
+          {
+            "id": "9cq1XVNbPUA",
+            "title": "Lockheed P-80 Shooting Star - America's First Combat Jet Fighter Sent to Korea",
+            "channel": "Military Records",
+            "views": 671
+          },
+          {
+            "id": "JMnEQwXGHxQ",
+            "title": "The First Jet Dogfight: F-80C vs MiG-15 | Korean War, 1950",
+            "channel": "The Air Combat Files",
+            "views": 115
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 47,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 61.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "2,800-Year-Old Siberian Tomb Reveals Ancient Cannabis Use",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        86,
+        90
+      ],
+      "hook": "What were ancient Siberian warriors using cannabis for 2,800 years ago? A newly uncovered tomb is revealing surprising secrets.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk artifacts",
+      "youtube_query": "ancient siberian tomb cannabis pazyryk",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 86
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Hair from a 2,800-year-old Siberian tomb points to the oldest known cannabis high - Martin Cid Magazine",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNdnpDMU1PVWlxMWRNLW9RMTZTN0dGMi0yOHFTRTJDdEN3YVltRHVHNzRGVDBOYzVGeDctT2xRbTMtRTRlWVBvQVRCUjNMNlFYUWNxeXpoWTJOV3gwZFM2WF9fWkpzTldFd2NzYXR5a2gxak5UejdWWEhES1UwLXRybWxCOERaYTBQR2h5enZVX3d1OUZiVjR3?oc=5",
+          "domain": "martincid.com",
+          "published_ms": 1794144020000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 15,
+        "competitors": [
+          {
+            "id": "foY0k4YoC94",
+            "title": "Who Was the Siberian Ice Maiden? #IceMaiden #History #Shorts",
+            "channel": "Curious Case of The World",
+            "views": 1287
+          },
+          {
+            "id": "LbYgZ_pPTFc",
+            "title": "The 2,500-Year-Old Secret of Ancient Cannabis Smokers.”",
+            "channel": "SketchExplainer",
+            "views": 168
+          },
+          {
+            "id": "2b3UGNQS0YM",
+            "title": "What They Were Smoking 2,500 Years Ago",
+            "channel": "Haze Academy with Dr. Haze",
+            "views": 53
+          },
+          {
+            "id": "i3QzKAxbrUA",
+            "title": "12,000 Years of Weed: How Humans Used Cannabis Before It Was Illegal",
+            "channel": "StickSapiens",
+            "views": 21
+          },
+          {
+            "id": "QAZ6h-_R6Jc",
+            "title": "How Ancient Humans Used Cannabis for 12,000 Years",
+            "channel": "Explain Why",
+            "views": 15
+          },
+          {
+            "id": "8uF4xEeRM3s",
+            "title": "Who Were the First People to Inhale Cannabis? (Archaeological Documentary)",
+            "channel": "Strata Maps",
+            "views": 13
+          }
+        ]
+      },
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 28,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 41,
+          "source_quality": 30
+        },
+        "total": 59.1,
+        "newest_hours": 8,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "martincid.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Trent Affair: How a Civil War Sea Seizure Sparked an International Crisis",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        48
+      ],
+      "hook": "On this day in 1861, a US warship boarded a British mail packet and arrested Confederate envoys, almost causing Britain to enter the Civil War.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Trent Affair",
+      "commons_query": "Trent Affair",
+      "youtube_query": "trent affair american civil war history",
+      "evidence": [
+        {
+          "title": "1861: American Civil War: The \"Trent Affair\": The USS San Jacinto stops the British mail ship Trent and arrests two Confederate envoys, sparking a diplomatic crisis between the UK and US.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 48
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 84,
+        "competitors": [
+          {
+            "id": "i7tvyrfRvEk",
+            "title": "When the U.S. Navy Boarded a British Ship | The Trent Affair",
+            "channel": "Holistic History Pod",
+            "views": 603
+          },
+          {
+            "id": "Uuzf1lN5sj4",
+            "title": "How Britain could have entered the Civil War – The Trent Affair",
+            "channel": "History Federation",
+            "views": 308
+          },
+          {
+            "id": "EdSfvElSbAM",
+            "title": "The Trent Affair Hidden Footnote",
+            "channel": "hidden stories in history",
+            "views": 237
+          },
+          {
+            "id": "Abz6B8P5_0E",
+            "title": "The Trent Affair Explained on a Map #Shorts",
+            "channel": "Forgotten Chapter USA",
+            "views": 109
+          },
+          {
+            "id": "XRIrIMTJNEA",
+            "title": "The 1861 Trent Affair Almost Forced the US into a War with Britain During the Civil War",
+            "channel": "Javier Senquiz",
+            "views": 84
+          },
+          {
+            "id": "cCcSfGKZ9-k",
+            "title": "The Trent affair, 1861. Britain nearly went to war. #history #civilwar #britain #truestory #power",
+            "channel": "WizVault",
+            "views": 78
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 32,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 58.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The World's First Internet Murder: Sharee and Bruce Miller",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a Michigan junkyard owner became the victim of the world's very first 'Internet murder' orchestrated via chatroom.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Internet murder",
+      "commons_query": "",
+      "youtube_query": "first internet murder sharee miller case",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 9
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 60,
+        "competitors": [
+          {
+            "id": "QeyIj8HCAn4",
+            "title": "Michigan's 9 Most Dangerous Prisons And Their Worst Inmates",
+            "channel": "CrimeMotiveUS",
+            "views": 56520
+          },
+          {
+            "id": "TW7zgJwM1VI",
+            "title": "Nobody Suspected the Grieving Wife - Until Her Online Lover Left a Letter From the Grave",
+            "channel": "njihaovocalara",
+            "views": 60
+          },
+          {
+            "id": "2VNzDAaoh7M",
+            "title": "The First Internet Murder: How a Chat Room Lie Ended in Death",
+            "channel": "Cold Archives",
+            "views": 16
+          },
+          {
+            "id": "4aATAbra3yo",
+            "title": "She Said Her Husband Was Abusive – Then a Former Detective Drove 800 Miles to Kill Him",
+            "channel": "Case Bound",
+            "views": 5
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 30,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 58.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1939 Venlo Incident: British Agents Captured by Nazis",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "On this day in 1939, two top British secret service agents walked straight into a brilliant Nazi trap on the Dutch border.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Venlo Incident",
+      "commons_query": "British Secret Intelligence Service",
+      "youtube_query": "venlo incident world war ii intelligence",
+      "evidence": [
+        {
+          "title": "1939: Venlo Incident: Two British agents of SIS are captured by the Germans.",
+          "url": "https://en.wikipedia.org/wiki/Venlo_incident",
+          "domain": "wikipedia.org",
+          "published_ms": 1794173314444,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 58,
+        "competitors": [
+          {
+            "id": "00z6BzFMAUU",
+            "title": "Two British Spies Went To Meet A General Who Wanted Hitler Gone And Walked Into A Trap",
+            "channel": "World as History",
+            "views": 1696
+          },
+          {
+            "id": "l80PzO9WcQw",
+            "title": "The Venlo Incident: How Two British Spies Fell For a Fake N*zi Trap #WW2 #HistoryFacts #shorts",
+            "channel": "Ages & Empires",
+            "views": 437
+          },
+          {
+            "id": "DvupneWyk6I",
+            "title": "The Venlo Border Trap",
+            "channel": "Blocked History",
+            "views": 301
+          },
+          {
+            "id": "jeZKjbI0eU0",
+            "title": "Why Did Venlo Capture British Agents in 1939? #Shorts",
+            "channel": "Declassified Ledger",
+            "views": 119
+          },
+          {
+            "id": "qycZyl-qUMI",
+            "title": "Germany's Hero, Britain's Spy | The Secret War Inside Hitler's Germany",
+            "channel": "WarMap Chronicles",
+            "views": 58
+          },
+          {
+            "id": "h1NiOHGaCIE",
+            "title": "The Venlo Incident: How the SS Destroyed Britain’s Spy Network in 1 Hour",
+            "channel": "PastHistorii",
+            "views": 39
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 30,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 57.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    }
+  ]
+}
