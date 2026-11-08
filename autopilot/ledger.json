@@ -144,6 +144,14 @@
       "updated_at": "2026-11-08T22:17:42.297Z",
       "stage": "autopilot-discover",
       "error": "model answer was not JSON: {\"content\":\"```json\\n{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"topic\\\": \\\"Claude AI can now connect to your bank account for personal finance\\\",\\n      \\\"pillar\\\": \\\"AI tools ordinary people can use\\\",\\n"
+    },
+    "kick-52129c5e87-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42529623655",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:19:18.425Z"
     }
   },
   "uploads": [],
@@ -324,5 +332,5 @@
     "Hidden Past kick-0a938f9c78-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 \"Could his plan stop Adolf Hitler?\" — The narration has not yet explained what the 'p",
     "AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {\"content\":\"```json\\n{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"topic\\\": \\\"Claude AI can now connect to your bank account for personal finance\\\",\\n      \\\"pillar\\\": \\\"AI tools o"
   ],
-  "last_poll_at": "2026-11-08T22:16:33.723Z"
+  "last_poll_at": "2026-11-08T22:19:18.424Z"
 }
