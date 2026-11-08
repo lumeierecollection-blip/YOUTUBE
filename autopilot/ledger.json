@@ -280,6 +280,14 @@
       "pillar": "Unbelievable true historical events",
       "hook": "When kidnappers cut off John Paul Getty III's ear and mailed it to a newspaper, his billionaire grandfather finally paid up.",
       "error": "2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively repeats the exact phrase '3.2 million dollars' multiple times, making the payoff and close feel redundant and clunky."
+    },
+    "kick-de81cb430b-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42533421775",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:05:31.754Z"
     }
   },
   "uploads": [],
@@ -596,5 +604,5 @@
     "AI Tested kick-8dd74ac976-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts",
     "Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively"
   ],
-  "last_poll_at": "2026-11-08T22:56:49.049Z"
+  "last_poll_at": "2026-11-08T23:05:31.754Z"
 }
