@@ -9,8 +9,9 @@
 import { appendFileSync, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { CONFIG, ROOT, STATE_DIR, StageError, channelConfig, log, readJson, run, sha256File, workDir, writeJson } from "./lib.mjs";
-import { loadLedger, pickDueSlot, saveLedger } from "./schedule.mjs";
+import { loadLedger, pickDueSlot, reapStale, saveLedger } from "./schedule.mjs";
 
+const MAX_TOPICS_PER_RUN = 3;
 const output = (k, v) => { if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `${k}=${v}\n`); log("output", `${k}=${v}`); };
 const git = (args, opts) => run("git", ["-C", STATE_DIR, ...args], { capture: true, ...opts });
 
@@ -21,7 +22,7 @@ function commitState(message) {
   if (git(["commit", "-m", message]).status !== 0) return false;
   for (let i = 0; i < 3; i++) {
     if (git(["push", "origin", "HEAD:automation/state"]).status === 0) return true;
-    if (git(["pull", "--rebase", "origin", "automation/state"]).status !== 0) return false;
+    if (git(["pull", "--rebase", "origin", "automation/state"]).status !== 0) { git(["rebase", "--abort"]); return false; }
   }
   return false;
 }
@@ -36,6 +37,9 @@ function kickRequest() {
 
 function select() {
   const ledger = loadLedger();
+  ledger.last_poll_at = new Date().toISOString();
+  const reaped = reapStale(ledger, Date.now());
+  if (reaped.length) log("select", `recovered abandoned slots: ${reaped.join(", ")}`);
   const kick = kickRequest();
   let slot;
   if (kick && kick.channel !== "due") {
@@ -44,7 +48,7 @@ function select() {
   } else {
     slot = pickDueSlot(ledger, Date.now());
   }
-  if (!slot) { output("slot", ""); log("select", "no production is due"); return; }
+  if (!slot) { saveLedger(ledger); commitState("poll"); output("slot", ""); log("select", "no production is due"); return; }
   const attempts = (ledger.slots[slot.id]?.attempts || 0) + 1;
   update(ledger, slot.id, { channel: slot.channel, status: "running", attempts, run_id: process.env.GITHUB_RUN_ID, trigger: process.env.GITHUB_EVENT_NAME });
   saveLedger(ledger);
@@ -66,20 +70,42 @@ async function produce(slotId, channelId) {
   let stage = "discover";
   const mark = (s, patch = {}) => { stage = s; update(ledger, slotId, { stage: s, ...patch }); saveLedger(ledger); commitState(`${slotId}: ${s}`); };
   try {
-    const topic = await discover({ channel, ledger, dir, learned: learnedSummary(ledger, channel.id) });
-    ledger.topics.push({ channel: channel.id, topic: topic.topic, slug: topic.slug, slot: slotId, at_ms: Date.now(), score: topic.score.total, pillar: topic.pillar });
-    mark("research", { topic: topic.topic, score: topic.score.total, pillar: topic.pillar, hook: topic.hook });
-    mkdirSync(join(STATE_DIR, "autopilot/runs", slotId), { recursive: true });
-    writeJson(join(STATE_DIR, "autopilot/runs", slotId, "selected-topic.json"), topic);
-    writeJson(join(STATE_DIR, "autopilot/runs", slotId, "candidates.json"), readJson(join(dir, "candidates.json")));
-    await notify(ledger, `${channel.name}: topic selected\n${topic.topic}\nScore ${topic.score.total}/100`);
+    // Fails here, before any quota is spent, if this channel's YouTube login no longer works.
+    const { verifyChannelAccess } = await import("./deliver.mjs");
+    await verifyChannelAccess(channel);
 
+    const { eligible, withAngle } = await discover({ channel, ledger, dir, learned: learnedSummary(ledger, channel.id) });
+    const runState = join(STATE_DIR, "autopilot/runs", slotId);
+    mkdirSync(runState, { recursive: true });
+    writeJson(join(runState, "candidates.json"), readJson(join(dir, "candidates.json")));
     mkdirSync(join(ROOT, "data/research", channel.id), { recursive: true });
-    const researchPath = research({ channel, topic });
-    mark("script");
-    const script = writeScript({ channel, topic, researchPath, dir });
-    mark("narration");
-    const narration = narrate({ channel, topic, researchPath, script });
+
+    // Topics that cannot be grounded or scripted hand over to the next candidate. A topic tried
+    // here stays in the history, so it is never picked again just to get a run through.
+    const tried = [];
+    let topic, researchPath, script, narration, lastErr;
+    for (const candidate of eligible.slice(0, MAX_TOPICS_PER_RUN)) {
+      const current = await withAngle(candidate);
+      ledger.topics.push({ channel: channel.id, topic: current.topic, slug: current.slug, slot: slotId, at_ms: Date.now(), score: current.score.total, pillar: current.pillar });
+      mark("research", { topic: current.topic, score: current.score.total, pillar: current.pillar, hook: current.hook });
+      try {
+        researchPath = research({ channel, topic: current });
+        mark("script");
+        script = writeScript({ channel, topic: current, researchPath, dir });
+        mark("narration");
+        narration = narrate({ channel, topic: current, researchPath, script });
+        topic = current;
+        break;
+      } catch (e) {
+        lastErr = e;
+        tried.push({ topic: current.topic, score: current.score.total, stage: e.stage || stage, reason: String(e.message).slice(0, 500) });
+        log("produce", `topic abandoned at ${e.stage || stage}: ${current.topic}`);
+      }
+    }
+    writeJson(join(runState, "topics-tried.json"), { tried, selected: topic?.topic || null });
+    if (!topic) throw new StageError(lastErr?.stage || "script", `${tried.length} topic(s) tried, none produced an accepted script. Last: ${String(lastErr?.message).slice(0, 500)}`);
+    writeJson(join(runState, "selected-topic.json"), topic);
+    await notify(ledger, `${channel.name}: topic selected\n${topic.topic}\nScore ${topic.score.total}/100`);
 
     mark("visuals");
     const builder = channel.treatment === "vox" ? (await import("./hidden-past.mjs")).buildHiddenPast : (await import("./ai-tested.mjs")).buildAiTested;
@@ -161,7 +187,9 @@ async function deliverStep(slotId, channelId) {
     output("video_id", ev.video_id);
   } catch (e) {
     const uploaded = ledger.uploads.some((u) => u.slot === slotId);
-    update(ledger, slotId, { status: "failed-final", stage: e.stage || "upload", error: String(e.message).slice(0, 900) });
+    // With no video on YouTube this is an ordinary failure, so the slot may try again.
+    const attempts = ledger.slots[slotId].attempts;
+    update(ledger, slotId, { status: !uploaded && attempts < CONFIG.max_attempts_per_slot && !slotId.startsWith("kick-") ? "failed" : "failed-final", stage: e.stage || "upload", error: String(e.message).slice(0, 900) });
     addAttention(ledger, `${channel.name} ${slotId}: ${e.message}${uploaded ? " (the video exists on YouTube; check it by hand)" : ""}`);
     await notify(ledger, `${channel.name}: upload problem\n${String(e.message).slice(0, 300)}`);
     saveLedger(ledger); commitState(`${slotId}: delivery failed`);

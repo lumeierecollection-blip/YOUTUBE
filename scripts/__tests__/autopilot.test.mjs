@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { CONFIG } from "../autopilot/lib.mjs";
-import { pickDueSlot, slotsBetween } from "../autopilot/schedule.mjs";
+import { pickDueSlot, reapStale, slotsBetween } from "../autopilot/schedule.mjs";
 import { rejections, scoreCandidate, similarity } from "../autopilot/score.mjs";
 import { fit, layoutCheck, text } from "../autopilot/visual-common.mjs";
 
@@ -112,4 +112,25 @@ test("layout check catches overlap and leaving the safe area, ignoring layers no
   assert.throws(() => layoutCheck([a, b], "t"), /overlaps/);
   assert.throws(() => layoutCheck([off], "t"), /safe area/);
   assert.doesNotThrow(() => layoutCheck([a, later], "t"));
+});
+
+test("an abandoned running slot becomes retryable; at the limit it ends", () => {
+  const l = empty();
+  const old = new Date(MON - 5 * HOUR).toISOString();
+  l.slots.a = { status: "running", attempts: 1, updated_at: old, run_id: 1 };
+  l.slots.b = { status: "running", attempts: CONFIG.max_attempts_per_slot, updated_at: old, run_id: 2 };
+  l.slots.c = { status: "running", attempts: 1, updated_at: new Date(MON - HOUR).toISOString(), run_id: 3 };
+  assert.deepEqual(reapStale(l, MON).sort(), ["a", "b"]);
+  assert.equal(l.slots.a.status, "failed");
+  assert.equal(l.slots.b.status, "failed-final");
+  assert.equal(l.slots.c.status, "running");
+});
+
+test("a slot that passed QA but lost its upload result is never re-produced automatically", () => {
+  const l = empty();
+  l.slots["2026-11-09-ch2"] = { status: "qa-passed", attempts: 1, updated_at: new Date(MON - 5 * HOUR).toISOString() };
+  reapStale(l, MON + HOUR);
+  assert.equal(l.slots["2026-11-09-ch2"].status, "failed-final");
+  assert.equal(pickDueSlot(l, MON + HOUR), null);
+  assert.equal(l.attention.length, 1);
 });

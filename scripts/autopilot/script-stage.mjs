@@ -11,7 +11,8 @@ import { join } from "node:path";
 import { ROOT, StageError, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
 
 const MAX_SECONDS = 29.8;
-const SCRIPT_ATTEMPTS = 4;
+const SCRIPT_ATTEMPTS = 3;
+const REPAIRS_PER_DRAFT = 4;
 const SHORT_ENV = { SHORTS_MIN_SECONDS: "26", SHORTS_MAX_SECONDS: "38" };
 const models = () => ({
   research: process.env.OPENCODE_MODELS_RESEARCH || "ollama-cloud/gpt-oss:120b",
@@ -91,9 +92,17 @@ export function writeScript({ channel, topic, researchPath, dir }) {
     const out = agent(["--prompt-file", promptFile(feedback, dir), "--append-system-prompt-file", contractFile(dir), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     writeJson(scriptPath, out);
-    feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
-    if (!feedback) return { scriptPath, scriptRel, stem: scriptStem };
-    log("script", `gate rejected:\n${feedback}`);
+    // A full rewrite fixes the flagged lines and breaks others, so story and claim findings are
+    // repaired sentence by sentence first. The gates re-judge every repair.
+    for (let repair = 0; repair <= REPAIRS_PER_DRAFT; repair++) {
+      feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
+      if (!feedback) return { scriptPath, scriptRel, stem: scriptStem };
+      log("script", `gate rejected (repair ${repair}/${REPAIRS_PER_DRAFT}):\n${feedback}`);
+      if (repair === REPAIRS_PER_DRAFT || !/^ {2}- (CLAIM|NARRATIVE|SPECIFICITY|CLARITY)/m.test(feedback)) break;
+      const fbFile = join(dir, "repair-feedback.txt");
+      writeFileSync(fbFile, feedback + "\n");
+      if (run("node", ["scripts/repair-sentences.mjs", scriptPath, researchPath, fbFile], { timeoutS: 300 }).status !== 0) break;
+    }
   }
   throw new StageError("script", `script failed its gates ${SCRIPT_ATTEMPTS} times: ${feedback.slice(0, 400)}`);
 }

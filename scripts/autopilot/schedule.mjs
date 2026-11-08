@@ -52,6 +52,31 @@ export function pickDueSlot(ledger, nowMs, config = CONFIG) {
   return runnable[0] || null;
 }
 
+const STALE_MS = 3 * HOUR;
+
+/**
+ * A job killed by GitHub never reports back, so its slot would stay "running" forever and quietly
+ * stop that channel. Abandoned slots become ordinary failures and use the normal attempt limit.
+ * A slot that passed QA but never reported an upload is not retried: the video may exist.
+ */
+export function reapStale(ledger, nowMs, config = CONFIG) {
+  const reaped = [];
+  for (const [id, rec] of Object.entries(ledger.slots)) {
+    if (!["running", "qa-passed"].includes(rec.status)) continue;
+    if (nowMs - Date.parse(rec.updated_at || 0) < STALE_MS) continue;
+    if (rec.status === "qa-passed") {
+      rec.status = "failed-final";
+      rec.error = "passed QA but no upload result was recorded; check the channel before re-producing";
+      if (!ledger.attention.includes(`${id}: ${rec.error}`)) ledger.attention.push(`${id}: ${rec.error}`);
+    } else {
+      rec.status = (rec.attempts || 0) >= config.max_attempts_per_slot ? "failed-final" : "failed";
+      rec.error = `run ${rec.run_id} ended without reporting a result (last stage: ${rec.stage || "start"})`;
+    }
+    reaped.push(id);
+  }
+  return reaped;
+}
+
 export function nextSlots(nowMs, count = 3, config = CONFIG) {
   return slotsBetween(nowMs, nowMs + 8 * 24 * HOUR, config).slice(0, count);
 }
