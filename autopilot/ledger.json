@@ -304,6 +304,14 @@
       "updated_at": "2026-11-08T23:16:47.869Z",
       "stage": "discover",
       "error": "discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
+    },
+    "kick-eef307180f-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42534503957",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:18:20.637Z"
     }
   },
   "uploads": [],
@@ -631,5 +639,5 @@
     "Hidden Past kick-de81cb430b-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But this church links to 1 leader, Erik the Red.\" — It is unclear how or why ",
     "AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
   ],
-  "last_poll_at": "2026-11-08T23:12:58.863Z"
+  "last_poll_at": "2026-11-08T23:18:20.637Z"
 }
