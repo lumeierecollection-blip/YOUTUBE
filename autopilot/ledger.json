@@ -354,13 +354,15 @@
     },
     "kick-dae3e0e226-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42535670563",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:39:23.127Z",
-      "stage": "metadata",
-      "topic": "Model Context Protocol connects AI apps to your data"
+      "updated_at": "2026-11-08T23:39:25.345Z",
+      "stage": "qa",
+      "topic": "Model Context Protocol connects AI apps to your data",
+      "error": "gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -699,7 +701,8 @@
     "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script",
     "Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named i",
     "AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json",
-    "Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image"
+    "Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image",
+    "AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_3"
   ],
   "last_poll_at": "2026-11-08T23:36:07.429Z"
 }

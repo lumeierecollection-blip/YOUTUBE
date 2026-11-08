@@ -1,0 +1,68 @@
+{
+  "production_id": "ap-kick-dae3e0e226-ch2",
+  "sha256": "064fc0533639a90c76a40e94bb43f3051a6bbd4ff0472b7860646057b65f9658",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 27,
+    "mean_volume_db": -19.9,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": []
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The 15 frames are visually consistent and free of layout errors, text overlaps, clipping, or corrupted assets."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-dae3e0e226-ch2/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": false,
+    "failures": [
+      {
+        "check": "stale-reuse",
+        "why": "script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2"
+      }
+    ]
+  },
+  "vox": null,
+  "seo": {
+    "title": "How Anthropic's Model Context Protocol connects AI to your data",
+    "description": "Anthropic's Model Context Protocol is an open standard that connects AI assistants to your data across platforms like Slack, GitHub, and Google Drive. By using servers to expose data and clients to connect, developers can build once and integrate everywhere.\n\n#AI #Anthropic #ModelContextProtocol #TechNews\n\nSources:\n- https://www.anthropic.com/news/model-context-protocol\n- https://modelcontextprotocol.io\n- https://github.com/modelcontextprotocol\n\nImage credits:\n- https://www.anthropic.com/news/model-context-protocol\n- https://modelcontextprotocol.io",
+    "tags": [
+      "AI Tested",
+      "Model Context Protocol",
+      "Anthropic",
+      "MCP server",
+      "AI assistants",
+      "developer tools",
+      "Claude AI"
+    ],
+    "hashtags": [
+      "#AI",
+      "#Anthropic",
+      "#ModelContextProtocol",
+      "#TechNews"
+    ]
+  }
+}
