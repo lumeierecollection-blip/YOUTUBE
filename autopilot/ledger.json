@@ -207,12 +207,12 @@
       "attempts": 1,
       "run_id": "42531024037",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:38:18.766Z",
-      "stage": "script",
-      "topic": "World's First Internet Murder",
-      "score": 69.1,
-      "pillar": "Unbelievable true historical events",
-      "hook": "In 1999, a chatroom romance turned deadly in what became recorded as the world's first internet murder."
+      "updated_at": "2026-11-08T22:39:12.542Z",
+      "stage": "research",
+      "topic": "The Trent Affair: Civil War Diplomatic Crisis",
+      "score": 61.3,
+      "pillar": "Events that changed the modern world",
+      "hook": "During the American Civil War, a Union warship stopped a British mail packet and almost dragged the British Empire into the war."
     }
   },
   "uploads": [],
@@ -441,6 +441,15 @@
       "at_ms": 1794177493723,
       "score": 69.1,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "The Trent Affair: Civil War Diplomatic Crisis",
+      "slug": "the-trent-affair-civil-war-diplomatic-crisis",
+      "slot": "kick-a43137003d-ch1",
+      "at_ms": 1794177552542,
+      "score": 61.3,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
