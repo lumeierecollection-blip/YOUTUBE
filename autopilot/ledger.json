@@ -227,16 +227,17 @@
     },
     "kick-b316df6d02-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42531583051",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:46:45.663Z",
-      "stage": "visuals",
+      "updated_at": "2026-11-08T22:47:52.397Z",
+      "stage": "assets",
       "topic": "How Maya Civilisation Poisoned Its Own Water with Mercury",
       "score": 76.2,
       "pillar": "Historical facts that challenge common assumptions",
-      "hook": "The ancient Maya used so much bright red cinnabar paint that they accidentally poisoned their own water supply."
+      "hook": "The ancient Maya used so much bright red cinnabar paint that they accidentally poisoned their own water supply.",
+      "error": "only 2 verified, licensed images found; need at least 3 distinct real images"
     }
   },
   "uploads": [],
@@ -502,7 +503,8 @@
     "Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed",
     "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
     "Hidden Past kick-a43137003d-ch1 failed at vox-bake: PhotoTreatment did not produce every still",
-    "AI Tested kick-4d5babe164-ch2 failed at discover: discovery failure: 19 candidates, none eligible. Best \"Anthropic's new personal finance feature lets Claude connect to your bank\" (84.1): too similar to recent topic: Claude AI Can Now Connect Directl"
+    "AI Tested kick-4d5babe164-ch2 failed at discover: discovery failure: 19 candidates, none eligible. Best \"Anthropic's new personal finance feature lets Claude connect to your bank\" (84.1): too similar to recent topic: Claude AI Can Now Connect Directl",
+    "Hidden Past kick-b316df6d02-ch1 failed at assets: only 2 verified, licensed images found; need at least 3 distinct real images"
   ],
   "last_poll_at": "2026-11-08T22:43:24.256Z"
 }
