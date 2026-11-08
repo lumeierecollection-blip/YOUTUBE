@@ -79,6 +79,14 @@
       "pillar": "Secret operations and evidence-backed conspiracies",
       "hook": "In 1942, just 400 civilian French patriots pulled off a secret 15-hour coup against the Vichy regime to change WWII history.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact same date and the fact about 400 fighters seizing Algiers word-for-word."
+    },
+    "kick-830ba6105e-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42526505018",
+      "trigger": "push",
+      "updated_at": "2026-11-08T21:56:09.574Z"
     }
   },
   "uploads": [],
@@ -174,5 +182,5 @@
     "AI Tested kick-231df8257a-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewr",
     "Hidden Past kick-1dc36982d7-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact "
   ],
-  "last_poll_at": "2026-11-08T21:41:51.507Z"
+  "last_poll_at": "2026-11-08T21:56:09.574Z"
 }
