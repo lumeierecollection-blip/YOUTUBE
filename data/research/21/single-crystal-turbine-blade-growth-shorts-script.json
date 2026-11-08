@@ -1,0 +1,68 @@
+{
+  "channel_id": "21",
+  "topic_slug": "single-crystal-turbine-blade-growth",
+  "format": "shorts",
+  "hook": "Conventional turbine blades melt at 2,200 degrees Fahrenheit, yet modern jet engines run even hotter.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Conventional turbine blades melt at 2,200 degrees Fahrenheit, yet modern jet engines run even hotter.",
+      "visual_cue": "Close-up of a glowing hot turbine blade in a darkened vacuum furnace.",
+      "sfx_cue": "Low industrial hum and the sound of gas rushing.",
+      "b_roll": [
+        "Public domain footage of a vacuum casting furnace interior"
+      ],
+      "text_overlay": {
+        "text": "Melting Point: 2,200°F"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Engineers solve this by using single-crystal nickel superalloy blades. How do these blades survive inside an F-22 Raptor?",
+      "visual_cue": "Microscopic view of a metal crystal structure transitioning to a clean, single-crystal view.",
+      "sfx_cue": "Mechanical clicking transitioning into a steady hum.",
+      "b_roll": [
+        "Micrograph of nickel superalloy microstructure",
+        "Stock footage of an F-22 Raptor engine nozzle"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the real challenge is keeping the g' phase, a heat-resistant microstructure, stable at 1150 degrees Celsius.",
+      "visual_cue": "Graphic showing a temperature gauge hitting 1,150 degrees Celsius.",
+      "sfx_cue": "Sharp, high-pitched electronic data ping.",
+      "b_roll": [
+        "Animated temperature gauge overlay"
+      ],
+      "text_overlay": {
+        "text": "1,150°C Stability"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CMSX-4 castings also maintain this g' phase stability during the intense heat of engine operation.",
+      "visual_cue": "Bar chart comparing alloy strength retention at high temperatures.",
+      "sfx_cue": "Rhythmic pulsing sound.",
+      "b_roll": [
+        "Technical chart showing g' phase percentage",
+        "Close up of a turbine blade casting"
+      ],
+      "text_overlay": {
+        "text": "55% Residual Phase"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Researchers evaluated CMSX-4 castings on February 20, 2025, to confirm their extreme heat resistance.",
+      "visual_cue": "Wide shot of an F-22 Raptor engine turbine assembly.",
+      "sfx_cue": "Jet engine whine fading out.",
+      "b_roll": [
+        "High-definition shot of a gas turbine engine"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://aerospacelab.onera.fr/sites/default/files/2024-01/AL3-02_0.pdf",
+    "https://magazine.asme.org/issues/january-2025/history-singular-sensation"
+  ]
+}

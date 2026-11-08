@@ -1,0 +1,79 @@
+{
+  "topic_slug": "single-crystal-turbine-blade-growth",
+  "strongest_angle": "Examine how single-crystal nickel superalloy turbine blades grown in vacuum furnaces withstand extreme temperatures exceeding 2,200 degrees Fahrenheit.",
+  "key_facts": [
+    {
+      "fact": "At 1150 degrees Celsius, the residual amount of the g' phase remains more than 55 percent in the MC544 and MC653 alloys evaluated by Onera.",
+      "source_url": "https://aerospacelab.onera.fr/sites/default/files/2024-01/AL3-02_0.pdf",
+      "source_name": "Onera",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers published a study on February 20, 2025, evaluating crystal structure perfection in CMSX-4 nickel superalloy turbine blade castings.",
+      "source_url": "https://doi.org/10.3390/ma18050919",
+      "source_name": "MDPI",
+      "confidence": "high"
+    },
+    {
+      "fact": "Conventional vacuum-cast superalloy blades and vanes soften and melt at temperatures between 2,200 degrees Fahrenheit and 2,500 degrees Fahrenheit.",
+      "source_url": "https://magazine.asme.org/issues/january-2025/history-singular-sensation",
+      "source_name": "ASME",
+      "confidence": "high"
+    },
+    {
+      "fact": "Single-crystal turbine blades are utilized in high-performance gas engines including the ones powering the F-22 Raptor.",
+      "source_url": "https://www.machinedesign.com/mechanical-motion-systems/article/21836518/single-crystal-turbine-blades-earn-asme-milestone-status",
+      "source_name": "Machine Design",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Residual g' phase percentage for MC544 and MC653 alloys at high temperature",
+      "value": 55,
+      "unit": "percent",
+      "source_url": "https://aerospacelab.onera.fr/sites/default/files/2024-01/AL3-02_0.pdf"
+    },
+    {
+      "label": "Temperature test point for alloy microstructure evaluation",
+      "value": 1150,
+      "unit": "degrees Celsius",
+      "source_url": "https://aerospacelab.onera.fr/sites/default/files/2024-01/AL3-02_0.pdf"
+    },
+    {
+      "label": "Lower bound of conventional superalloy melting temperature range",
+      "value": 2200,
+      "unit": "degrees Fahrenheit",
+      "source_url": "https://magazine.asme.org/issues/january-2025/history-singular-sensation"
+    },
+    {
+      "label": "Upper bound of conventional superalloy melting temperature range",
+      "value": 2500,
+      "unit": "degrees Fahrenheit",
+      "source_url": "https://magazine.asme.org/issues/january-2025/history-singular-sensation"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Onera",
+      "kind": "organization"
+    },
+    {
+      "name": "MC544",
+      "kind": "object"
+    },
+    {
+      "name": "MC653",
+      "kind": "object"
+    },
+    {
+      "name": "CMSX-4",
+      "kind": "object"
+    },
+    {
+      "name": "F-22 Raptor",
+      "kind": "object"
+    }
+  ]
+}
