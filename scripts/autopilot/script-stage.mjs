@@ -11,8 +11,7 @@ import { join } from "node:path";
 import { ROOT, StageError, askJson, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
 
 const MAX_SECONDS = 29.8;
-const SCRIPT_ATTEMPTS = 3;
-const REPAIRS_PER_DRAFT = 3;
+const SCRIPT_PASSES = 7;
 // The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
 // those two alone are logged and the whole script is judged instead. Everything else stays blocking.
 const isAdvisory = (line) => /^ {2}- (CLARITY|SPECIFICITY)/.test(line);
@@ -44,10 +43,15 @@ export function research({ channel, topic }) {
   return researchPath;
 }
 
-/** The 30-second brief. The repo's write-script.md is built for 58-second Shorts and overshoots this length. */
-function promptFile(feedback, dir) {
+const wordCount = (script) => script.sections.map((x) => x.voiceover).join(" ").split(/\s+/).filter(Boolean).length;
+
+/** The 30-second brief. A revision sees its previous draft, otherwise each pass starts over and breaks what already passed. */
+function promptFile(previous, feedback, dir) {
   let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8");
-  if (feedback) p += `\n\n## The quality gate rejected your previous script\n\n${feedback}\n\nRewrite the full script, fixing these. Stay within 55-66 words.\n`;
+  if (previous) {
+    const n = wordCount(previous);
+    p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is 66. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections. Return the full JSON object.\n`;
+  }
   const path = join(dir, "write-script.prompt.md");
   writeFileSync(path, p);
   return path;
@@ -58,12 +62,8 @@ const issues = (text, re) => text.split("\n").filter((l) => re.test(l)).join("\n
 /** Returns "" when the script passes every gate, else the feedback for the writer. */
 function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
   const gate = () => run("node", ["scripts/gate-script.js", channel.id, stem, slug], { capture: true, merge: true, env: SHORT_ENV });
-  let g = gate();
-  if (g.status !== 0 && /SCR-16:.*CUT at least/.test(g.stdout)) {
-    const ceil = (g.stdout.match(/needs \d+-(\d+) words/) || [])[1];
-    if (ceil && run("node", ["scripts/fit-short.js", scriptPath, ceil]).status === 0) g = gate();
-  }
-  if (g.status !== 0) return issues(g.stdout, /SCR-|BLOCKER/) || g.stdout.slice(-1500);
+  const g = gate();
+  if (g.status !== 0) return issues(g.stdout, /SCR-1[0-9]|BLOCKER/) || g.stdout.slice(-1500);
   const d = run("node", ["scripts/dedupe-sentences.js", scriptPath], { capture: true, merge: true });
   if (/^\[dedupe\] removed/m.test(d.stdout)) {
     const again = gate();
@@ -100,34 +100,27 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   const scriptPath = join(ROOT, "data/research", channel.id, `${stem}-script.json`);
   const scriptRel = `data/research/${channel.id}/${stem}-script.json`;
   const scriptStem = `${stem}-script`;
-  let feedback = "";
-  for (let attempt = 1; attempt <= SCRIPT_ATTEMPTS; attempt++) {
-    log("script", `attempt ${attempt}/${SCRIPT_ATTEMPTS}`);
+  let feedback = "", previous = null;
+  for (let pass = 1; pass <= SCRIPT_PASSES; pass++) {
+    log("script", `pass ${pass}/${SCRIPT_PASSES}${previous ? ` (revising ${wordCount(previous)} words)` : ""}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
-    const out = agent(["--prompt-file", promptFile(feedback, dir), "--schema-file", "schemas/script.section.json",
+    const out = agent(["--prompt-file", promptFile(previous, feedback, dir), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     writeJson(scriptPath, out);
-    // A full rewrite fixes the flagged lines and breaks others, so story and claim findings are
-    // repaired sentence by sentence first. The gates re-judge every repair.
-    for (let repair = 0; repair <= REPAIRS_PER_DRAFT; repair++) {
-      feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
-      const onlyAdvisory = feedback && feedback.split("\n").filter((l) => l.trim()).every(isAdvisory);
-      if (!feedback || (onlyAdvisory && repair >= 2)) {
-        const verdict = await editorialVerdict(scriptPath, topic, researchPath);
-        writeJson(join(dir, "script-editorial.json"), { verdict, advisory_findings: feedback ? feedback.split("\n") : [] });
-        log("script", `editorial verdict: ${verdict.pass ? "pass" : "fail"} (${verdict.why})`);
-        if (verdict.pass) return { scriptPath, scriptRel, stem: scriptStem };
-        feedback = `The final editor rejected the script. Failed: ${verdict.failed.join(", ")}. ${verdict.why}`;
-        break;
-      }
-      log("script", `gate rejected (repair ${repair}/${REPAIRS_PER_DRAFT}):\n${feedback}`);
-      if (repair === REPAIRS_PER_DRAFT || !/^ {2}- (CLAIM|NARRATIVE|SPECIFICITY|CLARITY)/m.test(feedback)) break;
-      const fbFile = join(dir, "repair-feedback.txt");
-      writeFileSync(fbFile, feedback + "\n");
-      if (run("node", ["scripts/repair-sentences.mjs", scriptPath, researchPath, fbFile], { timeoutS: 300 }).status !== 0) break;
+    feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
+    previous = readJson(scriptPath);
+    const onlyAdvisory = feedback && feedback.split("\n").filter((l) => l.trim()).every(isAdvisory);
+    if (!feedback || (onlyAdvisory && pass >= 3)) {
+      const verdict = await editorialVerdict(scriptPath, topic, researchPath);
+      writeJson(join(dir, "script-editorial.json"), { verdict, advisory_findings: feedback ? feedback.split("\n") : [], passes: pass });
+      log("script", `editorial verdict: ${verdict.pass ? "pass" : "fail"} (${verdict.why})`);
+      if (verdict.pass) return { scriptPath, scriptRel, stem: scriptStem };
+      feedback = `The final editor rejected the script. Failed: ${verdict.failed.join(", ")}. ${verdict.why}`;
+      continue;
     }
+    log("script", `gate findings:\n${feedback}`);
   }
-  throw new StageError("script", `script failed its gates ${SCRIPT_ATTEMPTS} times: ${feedback.slice(0, 400)}`);
+  throw new StageError("script", `script failed its gates after ${SCRIPT_PASSES} passes: ${feedback.slice(0, 500)}`);
 }
 
 /** Narration under 30 s. An over-long script loses whole sentences (fit-short) and is re-gated. */

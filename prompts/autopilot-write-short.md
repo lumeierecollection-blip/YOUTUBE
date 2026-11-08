@@ -17,6 +17,7 @@ The INPUT section holds the frozen research, the channel and its style. Use only
 ## Rules
 
 - Each section's voiceover is at least 40 characters.
+- Write every number as digits ($10, 30, 1977), never as words.
 - Sound like someone telling a friend. Short everyday words. No greeting, no "today", no "did you know", no "in this video".
 - Every sentence adds something new. The hook and the payoff must not share a phrase; the payoff reveals a fact the hook did not give away.
 - The first time a person or place appears, say in a few words who or what it is.
