@@ -2792,9 +2792,14 @@
           "topic": "ETH Zurich FlexiQuad Drone Ring Fuselage Impact Resistance Design",
           "slug": "eth-zurich-flexiquad-drone-impact-design",
           "reserved_at": "2026-11-07T15:07:52.628Z"
+        },
+        {
+          "topic": "Single-Crystal Turbine Blade Growth and High-Temperature Stress Resistance",
+          "slug": "single-crystal-turbine-blade-growth",
+          "reserved_at": "2026-11-08T15:24:06.212Z"
         }
       ],
-      "last_generated": "2026-11-07T15:07:52.628Z"
+      "last_generated": "2026-11-08T15:24:06.213Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
