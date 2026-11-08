@@ -127,12 +127,12 @@
       "attempts": 1,
       "run_id": "42528328279",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:08:55.216Z",
-      "stage": "script",
-      "topic": "Discovery of a rare gold bear ornament in an ancient Saka burial mound in Kazakhstan",
-      "score": 73,
-      "pillar": "Archaeological discoveries",
-      "hook": "In an ancient Saka burial mound in Kazakhstan, archaeologists uncovered a stunning and rare gold bear ornament frozen in time."
+      "updated_at": "2026-11-08T22:10:36.208Z",
+      "stage": "research",
+      "topic": "Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler",
+      "score": 64.1,
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "hook": "Adolf Hitler narrowly escaped a meticulously planned bomb blast in a Munich beer hall in 1939—leaving just minutes before the explosion."
     }
   },
   "uploads": [],
@@ -289,6 +289,15 @@
       "at_ms": 1794175729994,
       "score": 73,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler",
+      "slug": "georg-elser-s-narrow-miss-in-the-1939-assassination-attempt-",
+      "slot": "kick-0a938f9c78-ch1",
+      "at_ms": 1794175836208,
+      "score": 64.1,
+      "pillar": "Secret operations and evidence-backed conspiracies"
     }
   ],
   "attention": [
