@@ -307,16 +307,17 @@
     },
     "kick-eef307180f-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42534503957",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:19:57.484Z",
+      "updated_at": "2026-11-08T23:24:02.938Z",
       "stage": "script",
       "topic": "The Venlo Incident: How the Nazis Kidnapped British Secret Agents",
       "score": 56.6,
       "pillar": "Secret operations and evidence-backed conspiracies",
-      "hook": "On this day in 1939, Nazi intelligence successfully lured and captured two top British SIS agents in broad daylight on the Dutch border."
+      "hook": "On this day in 1939, Nazi intelligence successfully lured and captured two top British SIS agents in broad daylight on the Dutch border.",
+      "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script introduces the collapse of the network before explaining how it happened, creating a confusing narrative order for a first-time viewer."
     }
   },
   "uploads": [],
@@ -651,7 +652,8 @@
     "AI Tested kick-8dd74ac976-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts",
     "Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively",
     "Hidden Past kick-de81cb430b-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But this church links to 1 leader, Erik the Red.\" — It is unclear how or why ",
-    "AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
+    "AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI",
+    "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script"
   ],
   "last_poll_at": "2026-11-08T23:18:20.637Z"
 }

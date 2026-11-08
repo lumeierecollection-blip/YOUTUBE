@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "The Venlo Incident: How the Nazis Kidnapped British Secret Agents",
+      "score": 56.6,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script introduces the collapse of the network before explaining how it happened, creating a confusing narrative order for a first-time viewer."
+    }
+  ],
+  "selected": null
+}
