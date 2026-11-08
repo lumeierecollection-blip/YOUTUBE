@@ -1,0 +1,88 @@
+{
+  "channel_id": "11",
+  "topic_slug": "webb-space-telescope-dust-water-milky-way-center",
+  "format": "shorts",
+  "hook": "The James Webb Space Telescope detected water and cosmic dust just 0.55 light-years from Sagittarius A*.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "voiceover": "The James Webb Space Telescope detected water and cosmic dust just 0.55 light-years from Sagittarius A*.",
+      "visual_cue": "Cinematic deep space visualization zooming into the bright galactic core of the Milky Way towards supermassive black hole Sagittarius A*.",
+      "sfx_cue": "Deep space hum with low bass swell",
+      "b_roll": [
+        "James Webb Space Telescope rendering",
+        "Milky Way galactic center visualization"
+      ],
+      "transition_out": "whip-zoom",
+      "text_overlay": {
+        "text": "WATER NEAR SAGITTARIUS A*"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:06-0:20",
+      "voiceover": "Astronomers observed star IRS 3 located 26,000 light-years from Earth. That star sits 0.55 light-years from supermassive black hole Sagittarius A*. How can molecules survive near Sagittarius A*?",
+      "visual_cue": "Telescope view of star IRS 3 near the center of the Milky Way, displaying orbital distance measurement markers.",
+      "sfx_cue": "Digital telemetry beeps",
+      "b_roll": [
+        "Star IRS 3 astronomical observation graphic",
+        "Sagittarius A* orbital map"
+      ],
+      "transition_out": "cross-dissolve",
+      "text_overlay": {
+        "text": "IRS 3: 0.55 LIGHT-YEARS FROM BLACK HOLE"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "However, studies at Universität zu Köln reveal star IRS 3 maintains an exceptionally large envelope.",
+      "visual_cue": "Detailed scientific diagram of star IRS 3 expanding a massive gas shell near the central galactic environment.",
+      "sfx_cue": "Subtle riser accent",
+      "b_roll": [
+        "Gas envelope simulation around IRS 3",
+        "Universität zu Köln research graphic"
+      ],
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "STELLAR ENVELOPE DISCOVERY"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:42",
+      "voiceover": "Universität zu Köln researchers found star IRS 3 actively emits gas and dust.",
+      "visual_cue": "Infrared animation of gas emissions shielding water vapor surrounding IRS 3 from intense central black hole radiation.",
+      "sfx_cue": "Resonant synth chime",
+      "b_roll": [
+        "Water vapor molecular structure graphic",
+        "Space.com publication headline view"
+      ],
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "WATER MOLECULES PROTECTED"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Researchers used the James Webb Space Telescope to detect water around aging star IRS 3.",
+      "visual_cue": "Wide view of the James Webb Space Telescope facing the glowing center of the Milky Way galaxy.",
+      "sfx_cue": "Warm orchestral chord resolve",
+      "b_roll": [
+        "James Webb Space Telescope in orbit",
+        "Milky Way galaxy wide shot"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "JAMES WEBB SPACE TELESCOPE"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.space.com/astronomy/james-webb-space-telescope/water-can-survive-surprisingly-close-to-the-milky-ways-supermassive-black-hole-james-webb-space-telescope-finds",
+    "https://uni-koeln.de/en/research/research-news/detail-forschungsmeldung-en/a-stellar-envelope-near-the-black-hole-sgr-a-contains-water",
+    "https://www.livescience.com/space/black-holes/astronomers-find-water-in-the-harsh-environment-near-the-milky-ways-black-hole-space-photo-of-the-week"
+  ]
+}
