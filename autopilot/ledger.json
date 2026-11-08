@@ -370,7 +370,9 @@
       "attempts": 1,
       "run_id": "42536036993",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:39:50.708Z"
+      "updated_at": "2026-11-08T23:41:01.130Z",
+      "stage": "narration",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
     }
   },
   "uploads": [],
