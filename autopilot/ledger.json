@@ -321,13 +321,14 @@
     },
     "kick-d1498cd98b-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42535125191",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:27:20.453Z",
-      "stage": "narration",
-      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
+      "updated_at": "2026-11-08T23:27:56.372Z",
+      "stage": "tts",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
+      "error": "trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"KAYALIPINAR ARCHIVE\" is not named in the res"
     }
   },
   "uploads": [],
@@ -663,7 +664,8 @@
     "Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively",
     "Hidden Past kick-de81cb430b-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But this church links to 1 leader, Erik the Red.\" — It is unclear how or why ",
     "AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI",
-    "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script"
+    "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script",
+    "Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named i"
   ],
   "last_poll_at": "2026-11-08T23:26:04.145Z"
 }
