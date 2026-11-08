@@ -207,7 +207,12 @@
       "attempts": 1,
       "run_id": "42531024037",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:36:00.546Z"
+      "updated_at": "2026-11-08T22:37:17.363Z",
+      "stage": "research",
+      "topic": "Maya Mercury Contamination from Red Vermilion Paint",
+      "score": 82.9,
+      "pillar": "Historical facts that challenge common assumptions",
+      "hook": "The ancient Maya used so much bright red mercury-based paint that they accidentally poisoned their own water supply."
     }
   },
   "uploads": [],
@@ -418,6 +423,15 @@
       "at_ms": 1794177231895,
       "score": 74.2,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "1",
+      "topic": "Maya Mercury Contamination from Red Vermilion Paint",
+      "slug": "maya-mercury-contamination-from-red-vermilion-paint",
+      "slot": "kick-a43137003d-ch1",
+      "at_ms": 1794177437363,
+      "score": 82.9,
+      "pillar": "Historical facts that challenge common assumptions"
     }
   ],
   "attention": [

@@ -1,0 +1,787 @@
+{
+  "generated_at": "2026-11-08T22:37:05.423Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 88
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Maya Mercury Contamination from Red Vermilion Paint",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        105
+      ],
+      "hook": "The ancient Maya used so much bright red mercury-based paint that they accidentally poisoned their own water supply.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya red pigment cinnabar",
+      "youtube_query": "maya mercury contamination red paint",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 105
+        },
+        {
+          "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794080776000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities leaked into Yucatán lakes at toxic levels for centuries, study finds - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQVFB6clUtQ2p4YWhpZGVidlhia0I0TFZLd0pZakFVbTNjQ0VKU211MG5zZFF4OEZ5dnhHMW9Ud3RWcE5tZ2ZhMWdtOGFRdjcyaEdYT0UtQXZqeEhLNnBoLWEwanp4X2txZ0kzVHMxdVdJSm9PUzgwY3EwOV9FMHgtYlVKUHQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793983013000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury contamination found at more ancient Maya sites - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxON25USmlNRWdmVVhDZkpoTUxDTi1CbG5PQ2JaeG55NTNEVDJvd1Vtb2pCa1dSVDRldXl5d0NsdjNnaEc2ZVNVUUo4V01PTVpNelNXNVg1d203NDVBTjlMd2Q0LTUxRTN3ZFpnLUp3Wm9tVC1ETU9ULUdHdk9WQ3JmdDhfdkVyQUZiWUFBTkdreVRPcXp3TWZUQUhFcDRFYjR1?oc=5",
+          "domain": "yahoo.com",
+          "published_ms": 1793971753000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities left Coba and Xcach lakes toxic for centuries - Mix Vale",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPa01YTnkyMkl4MFdFYi1fcTYxQU1rN0xmZFNYUXdYMUtrVlFleTdLb2Q1Mmt1eDZkeUhONkMwQ0M5SmVoZm0ta0VyNGVtZmJZMDJWcGRSaVQwczI5TjVrUzlTMkpXT0ppQlVYTXVtNmc1aW9LazBZZlhVQ3lKYjZBWnYtNGZ4M3RtX3VvWGJkQ1oybzdDcklSVW9IcFJxZWlpUFBXWGtldnBRSE1vOHc?oc=5",
+          "domain": "mixvale.com.br",
+          "published_ms": 1794061751000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 7,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 66,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 79,
+          "source_quality": 100
+        },
+        "total": 82.9,
+        "newest_hours": 27,
+        "domains": [
+          "livescience.com",
+          "aroundprague.cz",
+          "archaeologymag.com",
+          "yahoo.com",
+          "mixvale.com.br"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "archaeologymag.com",
+          "yahoo.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Ancient Siberian Cannabis Use Revealed in Monument",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        90,
+        94
+      ],
+      "hook": "An ancient Siberian tomb recently revealed surprising chemical evidence of how people used cannabis 2,800 years ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk burial mound",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+          "domain": "cannabisaficionado.com",
+          "published_ms": 1793990475000,
+          "kind": "news"
+        },
+        {
+          "title": "Cannabis Seeds and CBN Discovered Together in Ancient Siberian Tomb: The Oldest Direct Evidence - 재경일보",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1wMW5QWWpWYnNOZzNIaWFTYldpVUtIaVk0R1Bmak1XaGUzUzNyQ3VpbzRQTzZYNHQxRGhLaFdvZTlFWG1feG9OcTZrN21OcFZVa0lQTzFEV0FVMEhrdE9za1dR?oc=5",
+          "domain": "news.jkn.co.kr",
+          "published_ms": 1793919900000,
+          "kind": "news"
+        },
+        {
+          "title": "Evidence of Cannabis Use for Psychoactive Purposes Found in Ancient Siberian Tomb - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZklLdTlSbzVzckpJcGVHWFlheEQ4YjUyeG8tZ0VVa3oxVkQ1RWtVcm5EUVN1STlZWFR4ME1SWFUxbHRHX2xRcFZZbS1OQ2JrcDlkeXNCUHJ5dkJieldaYkhvZGxNVWhaRERuS3luN3FZNzV6SEFVLWV4SXlFV0Z6ZG0yeHRYa093QzctU2hnR05HaXBOZ1hoX2xTSDlKOXBISFA3UmhjMWhqYWJs?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794051016000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Siberian Tomb Yields Earliest Evidence of Cannabis Use for Intoxication - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOc0dKdnhfb3Z6RlpHOXlwZ0JZQktheG5kZjZFbV9VQ1hpUlJvUndJSVRzTGZXRXc5TTZSYjB5THp6a2NfRDljS0tJYnhvY1kzNVl0NWM5cGpUS2psekNOS1N0VktVM040WDN5dGRfNFIwSmdpampLdnZhZ2NSMVh3aVBCMkltWVZ5ZnBvX0IyXzkwMWltSTFVWXl3djRLTGtpME10VDk5VG1NZw?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794139336000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 8,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 76.6,
+        "newest_hours": 11,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "edition.cnn.com",
+          "cannabisaficionado.com",
+          "news.jkn.co.kr",
+          "news.ssbcrack.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Exceptional 5th-Century Germanic Chieftain Burials in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        63,
+        88
+      ],
+      "hook": "Archaeologists in France just unearthed dazzling fifth-century warrior graves complete with high-status weapons and warhorses.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Migration Period",
+      "commons_query": "Merovingian weapon burial",
+      "youtube_query": "5th century warrior burials france",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 63
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 88
+        }
+      ],
+      "wikipedia": {
+        "title": "Migration Period",
+        "daily_views": 521,
+        "ratio": 0.88
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 76,
+        "newest_hours": 0,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World's First Internet Murder",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a chatroom romance turned deadly in what became recorded as the world's first internet murder.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Sharee Miller",
+      "commons_query": "",
+      "youtube_query": "first internet murder case history",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177425423,
+          "kind": "anniversary",
+          "id": 9
+        },
+        {
+          "title": "Internet searches revealed on Day 13 of Naresh Bhatt murder trial - FOX 5 DC",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQbER4SEFoc2cyaUp6RnBiSE04R0VzX1JXOFhPVHh3YUJtMEx6dmU2TzVtNm53WVc4OHNGMVhSQzZiYWJxSTl5T292WVkyUFAyOUphTVduZ2c3UHE1SDNQYWU3enpVMVNQQjQ3c3BkdF9BQXZoWU5BTVJyZXl6X2FLRl80NnlMbnM2dnBXWFpYOWZXVng5RndDUUdGenRhME1qYjU0djMwdjY?oc=5",
+          "domain": "fox5dc.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "'America’s first wrongful conviction': The 1819 Boorn murder trial - Bennington banner",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQaTNOMEZqRDVjSjVjUFlKdW9fOXFLMDBSRk56a0tnTkVCLWhXd2NrSlVjSW96U21ueFFKaE1JbEl1TmJ2Z1NUYTI3RmdlcmlRcW1oZVU0NFRxUlY3eTVKbzFhemdmZjRHX2JJd3JBNUNHaGZ2Z1I4Vmx0MnJMSEhTNjkzeUlLa0hJT3NsZm9kenZFUnlTMWNIY1RoOVlBWnh4SEJYZEpWdHd0clhBNkdwMUxzVmlPSjhaVUE?oc=5",
+          "domain": "benningtonbanner.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Miguel Salguero Olivares files appeal after first-degree murder conviction in the 2012 Faith Hedgepeth death - ABC7 New York",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQThpYjV2Z29rRlVQUlNVTmFnZ0Zta2hkbDhNelRXYmRPV21BeWhjUmJLUVhCNWpYZ0F1blM1VkczM19wd2VubHhXQVJRR0JvQ2laOWxaWG93MTltUmlZUWdQbFhxT2QtdGZMMWI1UmFCUW9tWnRXNXkyNzF4VmQxdDZ1VUhyUmM3bmdIMnJGVVBCZE55ck5DT1hndGNGbXgxNE0tWmt5LTNfVngyRFlSUjgwc0Rvd9IBuwFBVV95cUxNbkFURGY4Nkt2ZnUtR1RIRElqQkF0V0pabTh1VXlBVWdKQlVIRUk3ZXNGc1BXbE05N01ZMU9MQy15bGt0eVQtc0hScDA2dlcxUnFIbmk0TzhPVDhjTjFMSUtHRGRxTW8ycWQ0QU9zSDIzRC1FMXZRX2h5MGt3TzBGUElTbkJZSDl5RHBtRnJBMk5zTXVMWk82VGRxUnJraWFRa3FuaElTdmFVMVNOUFV0cFlRbmpmeWtOX3JB?oc=5",
+          "domain": "abc7ny.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Sharee Miller",
+        "daily_views": 76,
+        "ratio": 0.57
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 38,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 69.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "fox5dc.com",
+          "benningtonbanner.com",
+          "abc7ny.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of 2,500-Year-Old Mummified Crocodiles in Egypt",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        80,
+        82
+      ],
+      "hook": "Archaeologists recently opened an ancient Egyptian tomb and found ten perfectly preserved mummified crocodiles sacrificed to the gods.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "mummified crocodile Egypt",
+      "youtube_query": "mummified crocodiles egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 80
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 82
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.94
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 68.7,
+        "newest_hours": 3,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Wilhelm Röntgen's Accidental Discovery of X-Rays",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "In 1895, a glowing screen across the room revealed a totally invisible ray that could photograph human bones.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Röntgen X-ray apparatus",
+      "youtube_query": "how wilhelm rontgen discovered x rays",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177425423,
+          "kind": "anniversary",
+          "id": 44
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilhelm Röntgen",
+        "daily_views": 487,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 66.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Trent Affair: Civil War Diplomatic Crisis",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        48
+      ],
+      "hook": "During the American Civil War, a Union warship stopped a British mail packet and almost dragged the British Empire into the war.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Trent Affair",
+      "commons_query": "Trent Affair cartoon",
+      "youtube_query": "trent affair american civil war",
+      "evidence": [
+        {
+          "title": "1861: American Civil War: The \"Trent Affair\": The USS San Jacinto stops the British mail ship Trent and arrests two Confederate envoys, sparking a diplomatic crisis between the UK and US.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177425423,
+          "kind": "anniversary",
+          "id": 48
+        }
+      ],
+      "wikipedia": {
+        "title": "Trent Affair",
+        "daily_views": 178,
+        "ratio": 1.22
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 61.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of the Tomb of Philip II of Macedon",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "In 1977, an archaeologist unsealed a royal Macedonian tomb packed with gold—and the remains of Alexander the Great's father.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Vergina",
+      "commons_query": "Vergina archaeological site gold",
+      "youtube_query": "tomb of philip ii of macedon vergina",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177425423,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Vergina",
+        "daily_views": 126,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 45,
+          "source_quality": 35
+        },
+        "total": 59.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Sunken Mongol Invasion Fleet Dice and Games",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion ship off Japan found ancient dice and gaming pieces revealing sailors' daily lives.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion fleet shipwreck artifact",
+      "youtube_query": "sunken mongol ship japan dice games",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 98
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 53,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 40,
+          "source_quality": 0
+        },
+        "total": 58.1,
+        "newest_hours": 18,
+        "domains": [
+          "voiceofemirates.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "First Jet-to-Jet Dogfight in History",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        30
+      ],
+      "hook": "In 1950 over Korea, two American F-80s locked horns with Soviet-built MiGs in history's very first jet fighter dogfight.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Russell J. Brown",
+      "commons_query": "F-80 Shooting Star Mig-15",
+      "youtube_query": "first jet to jet dogfight korean war",
+      "evidence": [
+        {
+          "title": "1950: Korean War: United States Air Force Lt. Russell J. Brown, while piloting an F-80 Shooting Star, shoots down two North Korean MiG-15s in the first jet aircraft-to-jet aircraft dogfight in history.",
+          "url": "https://en.wikipedia.org/wiki/Korean_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177425423,
+          "kind": "anniversary",
+          "id": 30
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 53.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}
