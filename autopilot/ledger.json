@@ -113,12 +113,12 @@
       "attempts": 1,
       "run_id": "42528289488",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:05:56.910Z",
-      "stage": "script",
-      "topic": "OpenAI's New Update Turns Your Photos Into GIFs Instantly",
-      "score": 79.6,
-      "pillar": "New AI features and releases",
-      "hook": "OpenAI just dropped an update that turns static sketches and photos into moving GIFs."
+      "updated_at": "2026-11-08T22:06:07.576Z",
+      "stage": "research",
+      "topic": "US Air Traffic Control Is Finally Removing Floppy Disks",
+      "score": 78.9,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "Believe it or not, US air traffic control is only now phasing out floppy disks—with a target year of 2028."
     }
   },
   "uploads": [],
@@ -248,6 +248,15 @@
       "at_ms": 1794175540275,
       "score": 79.6,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "US Air Traffic Control Is Finally Removing Floppy Disks",
+      "slug": "us-air-traffic-control-is-finally-removing-floppy-disks",
+      "slot": "kick-da25b9c885-ch2",
+      "at_ms": 1794175567576,
+      "score": 78.9,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
