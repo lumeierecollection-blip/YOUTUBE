@@ -30,7 +30,12 @@
       "attempts": 1,
       "run_id": "42524289021",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:16:45.750Z"
+      "updated_at": "2026-11-08T21:18:02.445Z",
+      "stage": "research",
+      "topic": "Wilhelm Röntgen's accidental discovery of X-rays",
+      "score": 65.6,
+      "pillar": "Strange inventions and lost technology",
+      "hook": "While experimenting with glowing cathode rays on this day in 1895, Wilhelm Röntgen accidentally discovered a ray that could see right through human flesh."
     }
   },
   "uploads": [],
@@ -43,6 +48,15 @@
       "at_ms": 1794172234556,
       "score": 76.8,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "1",
+      "topic": "Wilhelm Röntgen's accidental discovery of X-rays",
+      "slug": "wilhelm-ro-ntgen-s-accidental-discovery-of-x-rays",
+      "slot": "kick-22917e108d-ch1",
+      "at_ms": 1794172682445,
+      "score": 65.6,
+      "pillar": "Strange inventions and lost technology"
     }
   ],
   "attention": [
