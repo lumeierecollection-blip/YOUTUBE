@@ -92,6 +92,14 @@
       "score": 80.8,
       "pillar": "AI changing everyday work",
       "hook": "Job seekers are actively rejecting companies that force them to interview with AI."
+    },
+    "kick-4e6fd5e3e2-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42527815928",
+      "trigger": "push",
+      "updated_at": "2026-11-08T21:58:31.332Z"
     }
   },
   "uploads": [],
@@ -196,5 +204,5 @@
     "AI Tested kick-231df8257a-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewr",
     "Hidden Past kick-1dc36982d7-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact "
   ],
-  "last_poll_at": "2026-11-08T21:56:09.574Z"
+  "last_poll_at": "2026-11-08T21:58:31.332Z"
 }
