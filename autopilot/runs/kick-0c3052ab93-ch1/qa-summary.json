@@ -1,0 +1,123 @@
+{
+  "production_id": "ap-kick-0c3052ab93-ch1",
+  "sha256": "1af5db8c334282446d49d621686050e5ee09fa7926a476c077de0128321b5a9d",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 30,
+    "mean_volume_db": -21.8,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": false,
+    "blocking": [
+      {
+        "check": "static-run",
+        "why": "longest near-static run is 6.0s (limit 4.0s)"
+      }
+    ],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": false,
+    "problems": [
+      "clipped_text: frame 13: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+      "clipped_text: frame 14: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+      "clipped_text: frame 15: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+      "overlapping_text: frame 13: 131 tablets kept a royal tragedy for 3,400 years.\n\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+      "overlapping_text: frame 14: 131 tablets kept a royal tragedy for 3,400 years.\n\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+      "overlapping_text: frame 15: 131 tablets kept a royal tragedy for 3,400 years.\n\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years"
+    ],
+    "verdict": {
+      "clipped_text": [
+        "frame 13: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+        "frame 14: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+        "frame 15: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years"
+      ],
+      "overlapping_text": [
+        "frame 13: 131 tablets kept a royal tragedy for 3,400 years.\n\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+        "frame 14: 131 tablets kept a royal tragedy for 3,400 years.\n\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years",
+        "frame 15: 131 tablets kept a royal tragedy for 3,400 years.\n\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years"
+      ],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The video maintains a consistent historical editorial aesthetic with desaturated images and gold accents, but frames 13, 14, and 15 exhibit redundant and overlapping subtitle text."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-0c3052ab93-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": false,
+    "failures": [
+      {
+        "check": "static-run",
+        "why": "longest near-static run 6.0 s"
+      }
+    ]
+  },
+  "vox": {
+    "pass": false,
+    "failures": [
+      {
+        "scene": 0,
+        "check": "grade",
+        "why": "saturation 0.744 not reduced from 0.526"
+      },
+      {
+        "scene": 0,
+        "check": "vignette",
+        "why": "corners/centre 2.447 vs source 2.259"
+      },
+      {
+        "scene": 1,
+        "check": "grade",
+        "why": "saturation 0.719 not reduced from 0.516"
+      },
+      {
+        "scene": 3,
+        "check": "grade",
+        "why": "saturation 0.662 not reduced from 0.446"
+      }
+    ],
+    "counts": {
+      "photos": 3,
+      "annotations": 1,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "A 3,400-Year-Old Royal Secret Unearthed on Clay Tablets",
+    "description": "Archaeologists uncovered 131 cuneiform tablets revealing a deadly epidemic and a nursing princess who died during King Tudhaliya II's reign. This royal tragedy remained buried for 3,400 years until now.\n\n#Archaeology #History #AncientHistory #Cuneiform\n\nSources:\n- https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery\n- https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive\n- https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha\n\nImage credits:\n- An ancient cuneiform clay tablet covered in wedge-shaped script.: Mx. Granger / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Cultic_Festival_Script.jpg\n- An archaeological excavation trench showing unearthed ancient stone foundations.: Mx. Granger / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Legal_Deposition(?).jpg\n- An ancient Near Eastern stone relief depicting historical figures.: Osama Shukir Muhammed Amin FRCP(Glasg) / Wikimedia Commons, CC BY-SA 4.0 (CC BY-SA 4.0) https://commons.wikimedia.org/wiki/File:Relief_orthostat_showing_a_doe,_a_winged_lion,_and_a_man_holding_an_axe._From_Sam'al_citadel._9th_century_BC._Museum_of_the_Ancient_Orient,_Istanbul.jpg",
+    "tags": [
+      "ancient history",
+      "archaeological discovery",
+      "cuneiform tablets",
+      "King Tudhaliya II",
+      "kayalipinar",
+      "ancient royal secret",
+      "historical mystery",
+      "archaeology news"
+    ],
+    "hashtags": [
+      "#Archaeology",
+      "#History",
+      "#AncientHistory",
+      "#Cuneiform"
+    ]
+  }
+}

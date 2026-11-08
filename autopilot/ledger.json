@@ -366,13 +366,15 @@
     },
     "kick-0c3052ab93-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42536036993",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:44:55.741Z",
-      "stage": "metadata",
-      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
+      "updated_at": "2026-11-08T23:45:00.145Z",
+      "stage": "qa",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
+      "error": "gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"clipped_text: frame 14: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"clipped_text: frame 15: one hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"overlapping_text: frame 13: 131 tablets kept a royal tragedy for 3,400 years.\\n\\none hundred thirty-one tablets kept a royal tragedy for three thousand four hundred years\",\"overlapping_text: frame 14: 131 tablets kept a royal tragedy for 3,400 years.\\n",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -712,7 +714,8 @@
     "Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named i",
     "AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json",
     "Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image",
-    "AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_3"
+    "AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_3",
+    "Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-on"
   ],
   "last_poll_at": "2026-11-08T23:39:50.707Z"
 }
