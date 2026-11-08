@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-08 23:55 SAST
+Updated 2026-11-08 23:57 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-08 23:55 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Elvis and Eminem Rightsholders Sue Suno AI (67.9/100) |
+| Latest production | running at research, attempts 1 |
+| Selected topic and score | Job Seekers Are Shunning Companies That Use AI Interviews (80.8/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
