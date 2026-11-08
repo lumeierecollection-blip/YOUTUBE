@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:39 SAST
+Updated 2026-11-09 01:45 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,9 +8,9 @@ Updated 2026-11-09 01:39 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at vox-annotation, attempts 1 |
+| Latest production | failed-final at qa, attempts 1 |
 | Selected topic and score | Hittite cuneiform tablets discovered at Kayalipinar (undefined/100) |
-| QA | n/a |
+| QA | failed |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -58,3 +58,4 @@ Updated 2026-11-09 01:39 SAST
 - AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json
 - Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image
 - AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {"blocking":[],"frame":[],"acceptance":[{"check":"stale-reuse","why":"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2"}],"technical":{"duration_le_3
+- Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {"blocking":[{"check":"static-run","why":"longest near-static run is 6.0s (limit 4.0s)"}],"frame":["clipped_text: frame 13: one hundred thirty-on
