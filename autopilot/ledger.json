@@ -6,10 +6,25 @@
       "attempts": 1,
       "run_id": "42523741415",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:09:26.833Z"
+      "updated_at": "2026-11-08T21:10:34.556Z",
+      "stage": "research",
+      "topic": "Claude AI Can Now Connect Directly to Your Bank Account",
+      "score": 76.8,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Anthropic's Claude can now plug directly into your bank account to analyze your spending."
     }
   },
   "uploads": [],
-  "topics": [],
+  "topics": [
+    {
+      "channel": "2",
+      "topic": "Claude AI Can Now Connect Directly to Your Bank Account",
+      "slug": "claude-ai-can-now-connect-directly-to-your-bank-account",
+      "slot": "kick-bebf4cb2f8-ch2",
+      "at_ms": 1794172234556,
+      "score": 76.8,
+      "pillar": "Trending AI tools and apps"
+    }
+  ],
   "attention": []
 }
