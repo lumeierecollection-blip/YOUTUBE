@@ -139,7 +139,7 @@ function candidatePrompt(channel, items, learned, exclude = []) {
 Audience: ${channel.audience_note}
 Content pillars: ${channel.pillars.join("; ")}.
 ${learned ? `What this channel's own data shows so far: ${learned}\n` : ""}
-${exclude.length ? `Already considered and not usable, do not propose these again:\n${exclude.map((t) => `- ${t}`).join("\n")}\n\n` : ""}Below are real items fetched today (id | kind | domain | age | title). Propose up to 14 candidate video topics.
+${exclude.length ? `Already considered and not usable, do not propose these again:\n${exclude.map((t) => `- ${t}`).join("\n")}\n\n` : ""}Below are real items fetched today (id | kind | domain | age | title). Propose up to 12 candidate video topics. Keep each field short.
 
 Rules:
 - Each candidate must be grounded in the listed items. Put their ids in evidence_ids, and only group items that report the same story.
