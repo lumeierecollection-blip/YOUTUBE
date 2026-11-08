@@ -214,6 +214,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "During the American Civil War, a Union warship stopped a British mail packet and almost dragged the British Empire into the war.",
       "error": "PhotoTreatment did not produce every still"
+    },
+    "kick-4d5babe164-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42531061310",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:41:47.310Z"
     }
   },
   "uploads": [],
@@ -471,5 +479,5 @@
     "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
     "Hidden Past kick-a43137003d-ch1 failed at vox-bake: PhotoTreatment did not produce every still"
   ],
-  "last_poll_at": "2026-11-08T22:36:00.546Z"
+  "last_poll_at": "2026-11-08T22:41:47.310Z"
 }
