@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 00:21 SAST
+Updated 2026-11-09 00:26 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 00:21 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at research, attempts 1 |
-| Selected topic and score | Elderly Lose $450k to Deepfake Scams (83.2/100) |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | Perplexity launches Teammates AI agents to run projects (80.2/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -40,3 +40,5 @@ Updated 2026-11-09 00:21 SAST
 - Hidden Past kick-0a938f9c78-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 "Could his plan stop Adolf Hitler?" — The narration has not yet explained what the 'p
 - AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {"content":"```json\n{\n  \"candidates\": [\n    {\n      \"topic\": \"Claude AI can now connect to your bank account for personal finance\",\n      \"pillar\": \"AI tools o
 - AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1
+- AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:
+  -
