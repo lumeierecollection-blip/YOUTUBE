@@ -99,7 +99,12 @@
       "attempts": 1,
       "run_id": "42527815928",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:58:31.332Z"
+      "updated_at": "2026-11-08T22:00:00.795Z",
+      "stage": "research",
+      "topic": "OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
+      "score": 80.2,
+      "pillar": "New AI features and releases",
+      "hook": "OpenAI just dropped Images 2.6, letting you instantly turn ordinary photos and sketches into animated GIFs."
     }
   },
   "uploads": [],
@@ -193,6 +198,15 @@
       "at_ms": 1794175046325,
       "score": 80.8,
       "pillar": "AI changing everyday work"
+    },
+    {
+      "channel": "2",
+      "topic": "OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
+      "slug": "openai-s-images-2-6-update-adds-quick-gif-creation-from-phot",
+      "slot": "kick-4e6fd5e3e2-ch2",
+      "at_ms": 1794175200795,
+      "score": 80.2,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
