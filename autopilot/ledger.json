@@ -203,16 +203,17 @@
     },
     "kick-a43137003d-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42531024037",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:40:49.408Z",
-      "stage": "visuals",
+      "updated_at": "2026-11-08T22:41:26.933Z",
+      "stage": "vox-bake",
       "topic": "The Trent Affair: Civil War Diplomatic Crisis",
       "score": 61.3,
       "pillar": "Events that changed the modern world",
-      "hook": "During the American Civil War, a Union warship stopped a British mail packet and almost dragged the British Empire into the war."
+      "hook": "During the American Civil War, a Union warship stopped a British mail packet and almost dragged the British Empire into the war.",
+      "error": "PhotoTreatment did not produce every still"
     }
   },
   "uploads": [],
@@ -467,7 +468,8 @@
     "AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1",
     "AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:\n  -",
     "Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed",
-    "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure"
+    "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
+    "Hidden Past kick-a43137003d-ch1 failed at vox-bake: PhotoTreatment did not produce every still"
   ],
   "last_poll_at": "2026-11-08T22:36:00.546Z"
 }
