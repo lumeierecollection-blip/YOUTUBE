@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-08 23:21 SAST
+Updated 2026-11-08 23:35 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-08 23:21 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Wilhelm Röntgen's accidental discovery of X-rays (65.6/100) |
+| Selected topic and score | The Discovery of the Tomb of Philip II of Macedon (64/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -32,3 +32,4 @@ Updated 2026-11-08 23:21 SAST
 
 - AI Tested kick-02fc5a5242-ch2 failed at discover: no candidate qualified; best was "Claude AI Can Now Connect to Your Bank Account" (80.3): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account
 - Hidden Past kick-22917e108d-ch1 failed at script: script failed its gates 4 times:   - CLAIM: sentence 5 "However, his wife panicked after seeing 1 hand X-ray." — the claim "Röntgen | had a | wife" is not in the research (Research names Anna Bertha R
+- Hidden Past kick-f7e02ae45f-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 3 "Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends 
