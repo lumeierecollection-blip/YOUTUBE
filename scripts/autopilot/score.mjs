@@ -56,7 +56,7 @@ export function scoreCandidate(c, { channel, weights, nowMs = Date.now() }) {
 }
 
 /** Reasons a scored candidate must not be produced. Empty means eligible. */
-export function rejections(c, score, { history, minScore, nowMs = Date.now(), windowDays }) {
+export function rejections(c, score, { history, minScore, nowMs = Date.now(), windowDays, requireImages = false }) {
   const out = [];
   if (!c.anniversary && (score.newest_hours === null || score.newest_hours > 14 * 24)) out.push("stale: no evidence from the last 14 days");
   if (score.domains.length < 2 && !c.anniversary) out.push("fewer than 2 independent source domains");
@@ -64,6 +64,7 @@ export function rejections(c, score, { history, minScore, nowMs = Date.now(), wi
   if (c.explainable_30s === false) out.push("cannot be explained in 30 seconds");
   if (score.factors.reach === 0) out.push("no reach evidence (too obscure or unmeasured)");
   if (score.factors.visual < 40) out.push("visually weak");
+  if (requireImages && !(c.commons_hits >= 6)) out.push(`too few freely licensed images (${c.commons_hits ?? 0} on Wikimedia Commons)`);
   if (score.total < minScore) out.push(`score ${score.total} below ${minScore}`);
   const cutoff = nowMs - windowDays * 86400e3;
   for (const h of history) {

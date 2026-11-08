@@ -206,6 +206,18 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     const img = await pickImage({ ...p, text: s.text }, used);
     if (img) picks.push({ scene: s, plan: p, img });
   }
+  // Sentences with no image of their own may use a real image of the story's wider subject.
+  if (picks.length < 4) {
+    const topicQueries = [topic.commons_query, topic.wikipedia_title].filter(Boolean);
+    for (const s of scenes) {
+      if (picks.length >= 5) break;
+      if (picks.some((x) => x.scene.index === s.index) || Number(plan.map?.scene_index) === s.index) continue;
+      const p = plan.scenes.find((x) => Number(x.index) === s.index) || {};
+      const img = await pickImage({ ...p, text: s.text, subject: topic.topic, commons_queries: topicQueries }, used);
+      if (img) picks.push({ scene: s, plan: { ...p, subject: p.subject || topic.topic }, img });
+    }
+    picks.sort((a, b) => a.scene.index - b.scene.index);
+  }
   if (picks.length < 3) throw new StageError("assets", `only ${picks.length} verified, licensed images found; need at least 3 distinct real images`);
 
   const pack = { name: topic.slug, pack: topic.slug, source: "Wikimedia Commons", selection: "Searched by the VOX plan; each file checked by vision against its sentence", images: picks.map((x, i) => ({ sentence_index: x.scene.index, kind: "artifact", subject: x.plan.subject, label: x.plan.subject, title: x.img.title, id: `hist-${String(i + 1).padStart(2, "0")}`, alt: x.plan.subject, note: x.plan.subject, reason: `Sentence: ${x.scene.text}` })) };
