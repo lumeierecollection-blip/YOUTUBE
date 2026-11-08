@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:27 SAST
+Updated 2026-11-09 01:30 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 01:27 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at discover, attempts 1 |
-| Selected topic and score | n/a |
+| Latest production | failed-final at visuals, attempts 1 |
+| Selected topic and score | Model Context Protocol connects AI apps to your data (undefined/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -55,3 +55,4 @@ Updated 2026-11-09 01:27 SAST
 - Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script
 - Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.
   - SCR-18: "TABLETS UNEARTHED" is not named i
+- AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json
