@@ -214,5 +214,17 @@
     "cancelled": true,
     "source_file": "gemini-4-argon-vs-gpt-6-astra-benchmark-shorts-shorts-2026-11-06.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "bve8-6r-he8",
+    "channel_id": "2",
+    "title": "Google Gemini 4 Argon vs Meta Muse Spark Open Head-to-Head",
+    "uploaded_at": "2026-11-08T15:55:33.413Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-08T16:55:33.413Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "gemini-4-argon-vs-muse-spark-open-head-to-head-shorts-shorts-2026-11-08.mp4",
+    "source_queue": "approved"
   }
 ]
