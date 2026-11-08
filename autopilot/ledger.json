@@ -389,13 +389,14 @@
     },
     "kick-60ab4e94f8-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42537245538",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:54:21.839Z",
-      "stage": "visuals",
-      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
+      "updated_at": "2026-11-08T23:54:36.314Z",
+      "stage": "assets",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
+      "error": "node scripts/assets/download-historical-images.mjs --channel exited 1"
     }
   },
   "uploads": [],
@@ -737,7 +738,8 @@
     "Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image",
     "AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_3",
     "Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-on",
-    "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1"
+    "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1",
+    "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1"
   ],
   "last_poll_at": "2026-11-08T23:52:41.411Z"
 }
