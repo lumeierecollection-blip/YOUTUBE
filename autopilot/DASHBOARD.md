@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:16 SAST
+Updated 2026-11-09 01:24 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 01:16 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Skeleton confirms lost Viking church in Greenland (68.6/100) |
+| Selected topic and score | The Venlo Incident: How the Nazis Kidnapped British Secret Agents (56.6/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -52,3 +52,4 @@ Updated 2026-11-09 01:16 SAST
 - Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively
 - Hidden Past kick-de81cb430b-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 "But this church links to 1 leader, Erik the Red." — It is unclear how or why 
 - AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best "Google forces schools to accept AI or lose search" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI
+- Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script
