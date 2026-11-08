@@ -53,13 +53,28 @@ ok=true only if this genuinely shows the wanted subject or a directly related hi
   return null;
 }
 
-async function locateDetail(target, jpeg) {
-  const loc = await askVision(`Find this exact detail in the image: "${target}".
-Reply JSON {"found":boolean,"x0":0,"y0":0,"x1":1,"y1":1} with a tight box as fractions of the image. found=false if it is not clearly visible.`, jpeg, "autopilot-locate");
-  if (!loc?.found) return null;
-  const x0 = Math.max(0, Number(loc.x0)), y0 = Math.max(0, Number(loc.y0)), x1 = Math.min(1, Number(loc.x1)), y1 = Math.min(1, Number(loc.y1));
-  if (!(x1 - x0 > 0.04 && y1 - y0 > 0.04 && x1 - x0 < 0.8 && y1 - y0 < 0.8)) return null;
-  return { x0, y0, x1, y1 };
+/** Vision models report boxes as fractions or on a 0-1000 grid; accepts either. */
+function toBox(v) {
+  if (!v) return null;
+  const raw = [v.x0, v.y0, v.x1, v.y1].map(Number);
+  if (raw.some((n) => !Number.isFinite(n))) return null;
+  const k = Math.max(...raw) > 1.5 ? 1000 : 1;
+  const [x0, y0, x1, y1] = raw.map((n) => Math.min(1, Math.max(0, n / k)));
+  return x1 - x0 > 0.04 && y1 - y0 > 0.04 && x1 - x0 < 0.8 && y1 - y0 < 0.8 ? { x0, y0, x1, y1 } : null;
+}
+
+/** Finds the planned detail; if the image doesn't clearly show it, asks what specific detail it does show. */
+async function locateDetail(target, jpeg, subject) {
+  const found = await askVision(`Find this exact detail in the image: "${target}".
+Reply JSON {"found":boolean,"x0":0.1,"y0":0.1,"x1":0.5,"y1":0.5} with a tight box as fractions of the image width and height. found=false if it is not clearly visible.`, jpeg, "autopilot-locate");
+  log("annotate", `locate "${target}": ${JSON.stringify(found)?.slice(0, 160)}`);
+  const box = found?.found ? toBox(found) : null;
+  if (box) return { box, target };
+  const offered = await askVision(`This image shows: ${subject}. Choose the single most informative specific physical detail clearly visible in it (for example an inscription, a seal, a carved figure, a damaged edge).
+Reply JSON {"label":"2-4 word name of the detail","x0":0.1,"y0":0.1,"x1":0.5,"y1":0.5} with a tight box as fractions of the image width and height.`, jpeg, "autopilot-locate");
+  log("annotate", `offered: ${JSON.stringify(offered)?.slice(0, 160)}`);
+  const offeredBox = toBox(offered);
+  return offeredBox && offered.label ? { box: offeredBox, target: String(offered.label), offered: true } : null;
 }
 
 /** The located box is only trusted if a separate look at that crop alone confirms the detail. */
@@ -243,14 +258,14 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
 
   const sourceJpeg = (it, n) => { const o = join(dir, `src-${n}.jpg`); must("annotate", "ffmpeg", ["-y", "-v", "error", "-i", it.file, "-vf", `scale=${it.w}:${it.h}`, "-q:v", "3", o]); return o; };
   for (const [n, it] of items.entries()) {
-    const target = it.plan.annotation_target;
-    if (!target) { it.annotationException = "no specific detail chosen by the plan"; continue; }
     const src = sourceJpeg(it, n);
-    const box = await locateDetail(target, readFileSync(src));
-    if (!box) { it.annotationException = `detail not located: ${target}`; continue; }
-    const what = await confirmDetail(target, src, box, it.w, it.h, dir, n);
-    if (!what) { it.annotationException = `located box not confirmed: ${target}`; continue; }
-    it.annotation = { box, what, target, label: it.plan.annotation_label || "" };
+    const planned = it.plan.annotation_target || "the most important visible detail";
+    const located = await locateDetail(planned, readFileSync(src), it.plan.subject || "a historical subject");
+    if (!located) { it.annotationException = `no detail could be located (${planned})`; continue; }
+    const what = await confirmDetail(located.target, src, located.box, it.w, it.h, dir, n);
+    log("annotate", `confirm "${located.target}": ${what || "not confirmed"}`);
+    if (!what) { it.annotationException = `located box not confirmed: ${located.target}`; continue; }
+    it.annotation = { box: located.box, what, target: located.target, label: located.offered ? located.target : it.plan.annotation_label || "" };
   }
   if (items.filter((i) => i.annotation).length < VOX.min_annotations) throw new StageError("vox-annotation", "no annotation could be tied to a confirmed detail in a real image");
 
