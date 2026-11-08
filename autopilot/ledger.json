@@ -16,11 +16,13 @@
     },
     "kick-02fc5a5242-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42524247104",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:15:19.852Z"
+      "updated_at": "2026-11-08T21:16:24.552Z",
+      "stage": "discover",
+      "error": "no candidate qualified; best was \"Claude AI Can Now Connect to Your Bank Account\" (80.3): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
     }
   },
   "uploads": [],
@@ -37,6 +39,7 @@
   ],
   "attention": [
     "Telegram is not configured: add the TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID repository secrets.",
-    "AI Tested kick-bebf4cb2f8-ch2 failed at script: script failed its gates 4 times: [vocab] library_shape exposes 114 drawings to the planner\n"
+    "AI Tested kick-bebf4cb2f8-ch2 failed at script: script failed its gates 4 times: [vocab] library_shape exposes 114 drawings to the planner\n",
+    "AI Tested kick-02fc5a5242-ch2 failed at discover: no candidate qualified; best was \"Claude AI Can Now Connect to Your Bank Account\" (80.3): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
   ]
 }
