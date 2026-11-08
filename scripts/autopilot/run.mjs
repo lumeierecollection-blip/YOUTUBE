@@ -7,7 +7,7 @@
  *   finish    performance, dashboard, final state commit
  */
 import { appendFileSync, existsSync, mkdirSync } from "node:fs";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 import { CONFIG, ROOT, STATE_DIR, StageError, channelConfig, log, readJson, run, sha256File, workDir, writeJson } from "./lib.mjs";
 import { loadLedger, pickDueSlot, reapStale, saveLedger } from "./schedule.mjs";
 
@@ -77,17 +77,29 @@ async function produce(slotId, channelId) {
     const { verifyChannelAccess } = await import("./deliver.mjs");
     await verifyChannelAccess(channel);
 
-    const { eligible, withAngle } = await discover({ channel, ledger, dir, learned: learnedSummary(ledger, channel.id) });
+    // A dry run feeds an existing accepted script through every later stage and never uploads.
+    const dry = kickRequest()?.dry;
+    const builder = channel.treatment === "vox" ? (await import("./hidden-past.mjs")).buildHiddenPast : (await import("./ai-tested.mjs")).buildAiTested;
     const runState = join(STATE_DIR, "autopilot/runs", slotId);
     mkdirSync(runState, { recursive: true });
-    writeJson(join(runState, "candidates.json"), readJson(join(dir, "candidates.json")));
     mkdirSync(join(ROOT, "data/research", channel.id), { recursive: true });
+    let topic, researchPath, script, narration, built, lastErr;
+
+    if (dry) {
+      topic = { topic: dry.topic, slug: dry.slug, evidence: [], commons_query: dry.commons_query, wikipedia_title: dry.wikipedia_title, pillar: "dry-run", hook: "", score: { total: 0 } };
+      researchPath = join(ROOT, dry.research);
+      script = { scriptPath: join(ROOT, dry.script), scriptRel: dry.script, stem: basename(dry.script, ".json") };
+      mark("narration", { topic: topic.topic });
+      narration = narrate({ channel, topic, researchPath, script });
+      mark("visuals");
+      built = await builder({ channel, topic, script, narration, research: researchPath, dir, productionId });
+    } else {
+    const { eligible, withAngle } = await discover({ channel, ledger, dir, learned: learnedSummary(ledger, channel.id) });
+    writeJson(join(runState, "candidates.json"), readJson(join(dir, "candidates.json")));
 
     // Topics that cannot be grounded or scripted hand over to the next candidate. A topic tried
     // here stays in the history, so it is never picked again just to get a run through.
     const tried = [];
-    const builder = channel.treatment === "vox" ? (await import("./hidden-past.mjs")).buildHiddenPast : (await import("./ai-tested.mjs")).buildAiTested;
-    let topic, researchPath, script, narration, built, lastErr;
     for (const candidate of eligible.slice(0, MAX_TOPICS_PER_RUN)) {
       const current = await withAngle(candidate);
       ledger.topics.push({ channel: channel.id, topic: current.topic, slug: current.slug, slot: slotId, at_ms: Date.now(), score: current.score.total, pillar: current.pillar });
@@ -114,6 +126,7 @@ async function produce(slotId, channelId) {
     if (!topic) throw new StageError(lastErr?.stage || "script", `${tried.length} topic(s) tried, none produced an accepted script. Last: ${String(lastErr?.message).slice(0, 500)}`);
     writeJson(join(runState, "selected-topic.json"), topic);
     await notify(ledger, `${channel.name}: topic selected\n${topic.topic}\nScore ${topic.score.total}/100`);
+    }
 
 
     mark("render");
@@ -154,7 +167,8 @@ async function produce(slotId, channelId) {
     mark("qa-passed", { status: "qa-passed", qa: "all gates passed", sha256: summary.sha256 });
     await notify(ledger, `${channel.name}: passed QA\n${seo.title}\nPreview: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`);
     saveLedger(ledger); commitState(`${slotId}: qa passed`);
-    output("ready", "true");
+    output("ready", dry ? "false" : "true");
+    if (dry) { update(ledger, slotId, { status: "dry-run-passed" }); saveLedger(ledger); commitState(`${slotId}: dry run passed every gate`); }
   } catch (e) {
     const failedStage = e.stage || stage;
     const attempts = ledger.slots[slotId].attempts;
