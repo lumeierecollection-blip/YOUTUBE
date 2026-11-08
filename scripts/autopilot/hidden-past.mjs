@@ -9,7 +9,7 @@
  * those claims against pixels in the final MP4.
  */
 import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, extname, join } from "node:path";
 import { CONFIG, ROOT, StageError, askJson, askVision, fetchWithTimeout, log, must, readJson, run, sha256File, writeJson } from "./lib.mjs";
 import { FPS, H, W, captions, channelStyle, fit, layoutCheck, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
 
@@ -177,8 +177,8 @@ for (const j of jobs) {
 process.exit(0);`;
   const runner = join(REMOTION_DIR, ".bake-stills.mjs");
   const jobs = items.map((it) => {
-    const name = basename(it.file);
-    copyFileSync(it.file, join(pubDir, name));
+    const name = `${basename(it.file, extname(it.file))}-base.jpg`;
+    must("vox-bake", "ffmpeg", ["-y", "-v", "error", "-i", it.file, "-vf", `eq=saturation=${VOX.base_saturation}`, "-q:v", "2", join(pubDir, name)]);
     return { src: `vox-src/${name}`, width: it.w, height: it.h, halftone: VOX.halftone_opacity, out: it.baked };
   });
   const jobsFile = join(dir, "bake-jobs.json");
@@ -282,6 +282,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
   layers.push(solid("bg", { x: 0, y: 0, w: W, h: H, background: P.bg, inF: 0, outF: durationF, z: z++, keyframes: { opacity: [{ f: 0, v: 1 }, { f: durationF, v: 1 }] } }));
   layers.push({ id: "progress", type: "solid", rect: { x: 0, y: H - 6, w: W, h: 6 }, in: 0, out: durationF, z: z++, style: { background: P.accent }, props: { opacity: 0.8, clipR: 100 }, keyframes: { clipR: [{ f: 0, v: 100, e: "linear" }, { f: durationF, v: 0, e: "linear" }] } });
 
+  let pendingStart = null;
   // Chapter openers cut in after the cold open and on the last turn, never over the hook's evidence.
   const chapterAt = new Set([1]);
   if (scenes.length >= 5) chapterAt.add(scenes.length - 2);
@@ -293,7 +294,29 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     return f;
   };
 
-  for (const scene of scenes) {
+  // A sentence without its own verified image keeps the previous image on screen: never a filler
+  // picture, and never the narration repeated as on-screen text above its own captions.
+  const shown = [];
+  for (const s of scenes) {
+    const hasVisual = items.some((it) => it.scene.index === s.index) || mapScene?.scene.index === s.index;
+    if (hasVisual) { shown.push({ ...s, merged: [] }); continue; }
+    if (shown.length) { shown.at(-1).to = s.to; shown.at(-1).merged.push(s.index); }
+    else pendingStart = s.from;
+  }
+  if (shown.length && pendingStart !== null) shown[0].from = pendingStart;
+
+  /** Movement inside a long hold comes from small typographic notes, never from the photograph. */
+  const holdNotes = (scene, startF, endF, notes, placement) => {
+    const every = 100;
+    let i = 0;
+    for (let f = startF + 72; f < endF - 28 && i < notes.length; f += every, i++) {
+      const out = Math.min(f + every, endF);
+      const nf = fit(notes[i], { maxW: placement.w, maxLines: 1, max: 32, min: 22 });
+      if (nf) layers.push(text(`s${scene.index}-note${i}`, nf.text, { x: placement.x, w: placement.w, y: placement.y, size: nf.size, weight: 500, align: "left", color: P.muted, inF: f, outF: out, z: z++, font: SERIF, slideX: -36, slide: 0 }));
+    }
+  };
+
+  for (const scene of shown) {
     const { inF, outF } = bounds(scene);
     const span = outF - inF;
     const p = plan.scenes.find((x) => Number(x.index) === scene.index) || {};
@@ -336,21 +359,14 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
         const lf = fit(q.name, { maxW: 340, maxLines: 1, max: 40, min: 28 });
         if (lf) layers.push(text(`s${scene.index}-place${i}`, lf.text, { x: Math.min(x + 26, 660), w: 360, y: y - 22, size: lf.size, weight: 700, align: "left", color: P.text, inF: labelIn, outF, z: z++, font: SERIF, slideX: -30, slide: 0 }));
       });
+      holdNotes(scene, bodyIn, outF, ["Map: Natural Earth", "Location: Wikipedia", ...pts.map((q) => q.name)], { x: 60, w: 960, y: 1450 });
       rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:110m; coordinates from Wikipedia" });
       voxRecord.push(rec);
       continue;
     }
 
     const item = items.find((it) => it.scene.index === scene.index);
-    if (!item) {
-      // No verified image for this sentence: hold the page with the words, never a filler picture.
-      const body = fit(scene.text, { maxW: 860, maxLines: 6, max: 66, min: 44 });
-      layers.push(stroke(`s${scene.index}-margin`, `M110 500 L110 1300`, { color: P.accent, width: 4, inF: bodyIn, outF, z: z++ }));
-      if (body) layers.push(text(`s${scene.index}-body`, body.text, { x: 150, w: 840, y: 620, size: body.size, weight: 700, align: "left", color: P.text, inF: bodyIn, outF, z: z++, font: SERIF, slideX: -40, slide: 0 }));
-      rec.exceptions.push({ treatment: "photo", reason: "no verified, licensed image for this sentence; typography used instead of a filler image" });
-      voxRecord.push(rec);
-      continue;
-    }
+    if (scene.merged.length) rec.exceptions.push({ treatment: "own image", reason: `no verified image for sentence(s) ${scene.merged.join(", ")}, so this image stays on screen` });
 
     const assetId = item.id;
     assets[assetId] = { file: item.baked.slice(ROOT.length + 1).replace(/\\/g, "/"), width: item.w, height: item.h, credit: item.asset.attribution, source_url: item.asset.page_url, license: item.asset.license };
@@ -369,16 +385,17 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       layers.push(stroke(`s${scene.index}-circle`, handCircle(Math.round(cx), Math.round(cy), Math.round(rx), Math.round(ry), scene.index * 37 + 11), { color: P.accent, width: 8, inF: photoIn, outF, z: z++, delay, drawFrames: 18 }));
       sfxCues.push({ sound: "impact", at: (photoIn + delay) / FPS });
       const photoBottom = item.y + item.h;
-      const lf = label ? fit(label, { maxW: 700, maxLines: 1, max: 42, min: 30 }) : null;
+      const lf = label ? fit(label, { maxW: 460, maxLines: 1, max: 42, min: 30 }) : null;
       if (lf && photoBottom < 1450) {
         const ly = photoBottom + 40;
         layers.push(stroke(`s${scene.index}-connector`, `M${Math.round(cx)} ${Math.round(cy + ry)} L${Math.round(cx)} ${ly - 6}`, { color: P.accent, width: 4, inF: photoIn, outF, z: z++, delay: delay + 14, drawFrames: 10 }));
-        layers.push(text(`s${scene.index}-label`, lf.text, { y: ly, size: lf.size, weight: 700, color: P.accent, inF: photoIn + delay + 18, outF, z: z++, font: SERIF, slideX: 30, slide: 0 }));
+        layers.push(text(`s${scene.index}-label`, lf.text, { x: 540, w: 480, y: ly, size: lf.size, weight: 700, align: "left", color: P.accent, inF: photoIn + delay + 18, outF, z: z++, font: SERIF, slideX: 30, slide: 0 }));
       }
       rec.treatments.push({ type: "annotation", target, confirmed_as: what, box, screen: { cx: Math.round(cx), cy: Math.round(cy), rx: Math.round(rx), ry: Math.round(ry) }, draw_start_f: photoIn + delay, draw_end_f: photoIn + delay + 18 });
     } else {
       rec.exceptions.push({ treatment: "annotation", reason: item.annotationException || "not planned" });
     }
+    holdNotes(scene, photoIn, outF, ["Image: Wikimedia Commons", `Licence: ${item.asset.license}`, String(item.plan.subject || "").slice(0, 44)], { x: 60, w: 460, y: Math.min(item.y + item.h + 24, 1490) });
     voxRecord.push(rec);
   }
   layoutCheck(layers, "vox-layout");
