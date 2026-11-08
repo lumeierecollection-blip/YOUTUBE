@@ -318,6 +318,14 @@
       "pillar": "Secret operations and evidence-backed conspiracies",
       "hook": "On this day in 1939, Nazi intelligence successfully lured and captured two top British SIS agents in broad daylight on the Dutch border.",
       "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script introduces the collapse of the network before explaining how it happened, creating a confusing narrative order for a first-time viewer."
+    },
+    "kick-d1498cd98b-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42535125191",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:26:04.145Z"
     }
   },
   "uploads": [],
@@ -655,5 +663,5 @@
     "AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI",
     "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script"
   ],
-  "last_poll_at": "2026-11-08T23:18:20.637Z"
+  "last_poll_at": "2026-11-08T23:26:04.145Z"
 }
