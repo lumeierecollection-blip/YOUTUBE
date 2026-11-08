@@ -172,6 +172,14 @@
       "pillar": "Trending AI tools and apps",
       "hook": "Perplexity just launched autonomous AI teammates to handle complex business projects.",
       "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can dra"
+    },
+    "kick-d13b9717ed-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42530381637",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:28:25.905Z"
     }
   },
   "uploads": [],
@@ -372,5 +380,5 @@
     "AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1",
     "AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:\n  -"
   ],
-  "last_poll_at": "2026-11-08T22:23:50.661Z"
+  "last_poll_at": "2026-11-08T22:28:25.905Z"
 }
