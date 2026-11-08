@@ -1,0 +1,76 @@
+{
+  "topic_slug": "lancaster-highway-leafy-oasis-urban-design",
+  "strongest_angle": "The city of Lancaster, California, successfully repurposed a five-lane highway into a nine-block pedestrian-friendly urban center, demonstrating the economic and social impact of smart streetscape investment in the Mojave Desert.",
+  "key_facts": [
+    {
+      "fact": "The City of Lancaster, California, completed a nine-block makeover of Lancaster Boulevard, transforming a former highway section into a pedestrian-friendly center.",
+      "source_url": "https://www.cnu.org/what-we-do/build-great-places/lancaster-boulevard",
+      "source_name": "CNU",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prior to the 2010 reconstruction, Lancaster Boulevard featured five lanes of traffic and measured 72 feet from curb-to-curb while carrying 15,000 cars per day.",
+      "source_url": "https://www.cnu.org/publicsquare/2017/12/14/car-oriented-thoroughfare-community-center",
+      "source_name": "CNU",
+      "confidence": "high"
+    },
+    {
+      "fact": "Passing through the Mojave Desert on State Route 14, there are nine beautiful, leafy blocks on West Lancaster Boulevard that used to be part of Highway 14.",
+      "source_url": "https://www.theguardian.com/environment/2026/nov/05/lancaster-california-transformed-highway-leafy-oasis",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of blocks redesigned",
+      "value": 9,
+      "unit": "blocks",
+      "source_url": "https://www.cnu.org/what-we-do/build-great-places/lancaster-boulevard"
+    },
+    {
+      "label": "Pre-reconstruction traffic lanes",
+      "value": 5,
+      "unit": "lanes",
+      "source_url": "https://www.cnu.org/publicsquare/2017/12/14/car-oriented-thoroughfare-community-center"
+    },
+    {
+      "label": "Pre-reconstruction street width",
+      "value": 72,
+      "unit": "feet",
+      "source_url": "https://www.cnu.org/publicsquare/2017/12/14/car-oriented-thoroughfare-community-center"
+    },
+    {
+      "label": "Pre-reconstruction daily car volume",
+      "value": 15000,
+      "unit": "cars per day",
+      "source_url": "https://www.cnu.org/publicsquare/2017/12/14/car-oriented-thoroughfare-community-center"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Lancaster",
+      "kind": "place"
+    },
+    {
+      "name": "California",
+      "kind": "place"
+    },
+    {
+      "name": "State Route 14",
+      "kind": "object"
+    },
+    {
+      "name": "Mojave Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Lancaster Boulevard",
+      "kind": "place"
+    },
+    {
+      "name": "Highway 14",
+      "kind": "object"
+    }
+  ]
+}
