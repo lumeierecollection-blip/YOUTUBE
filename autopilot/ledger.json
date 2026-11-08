@@ -26,16 +26,17 @@
     },
     "kick-22917e108d-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42524289021",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:18:26.781Z",
+      "updated_at": "2026-11-08T21:21:38.387Z",
       "stage": "script",
       "topic": "Wilhelm Röntgen's accidental discovery of X-rays",
       "score": 65.6,
       "pillar": "Strange inventions and lost technology",
-      "hook": "While experimenting with glowing cathode rays on this day in 1895, Wilhelm Röntgen accidentally discovered a ray that could see right through human flesh."
+      "hook": "While experimenting with glowing cathode rays on this day in 1895, Wilhelm Röntgen accidentally discovered a ray that could see right through human flesh.",
+      "error": "script failed its gates 4 times:   - CLAIM: sentence 5 \"However, his wife panicked after seeing 1 hand X-ray.\" — the claim \"Röntgen | had a | wife\" is not in the research (Research names Anna Bertha Röntgen but does not state she was his wife). Rewrite the sentence using only what the research states, or cut it.\n  - CLAIM: sentence 9 \"His 1895 secret changed modern science forever.\" — the claim \"1895 secret | changed | modern sci"
     }
   },
   "uploads": [],
@@ -62,6 +63,7 @@
   "attention": [
     "Telegram is not configured: add the TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID repository secrets.",
     "AI Tested kick-bebf4cb2f8-ch2 failed at script: script failed its gates 4 times: [vocab] library_shape exposes 114 drawings to the planner\n",
-    "AI Tested kick-02fc5a5242-ch2 failed at discover: no candidate qualified; best was \"Claude AI Can Now Connect to Your Bank Account\" (80.3): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
+    "AI Tested kick-02fc5a5242-ch2 failed at discover: no candidate qualified; best was \"Claude AI Can Now Connect to Your Bank Account\" (80.3): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account",
+    "Hidden Past kick-22917e108d-ch1 failed at script: script failed its gates 4 times:   - CLAIM: sentence 5 \"However, his wife panicked after seeing 1 hand X-ray.\" — the claim \"Röntgen | had a | wife\" is not in the research (Research names Anna Bertha R"
   ]
 }
