@@ -4,15 +4,15 @@ The INPUT section holds the frozen research, the channel and its style. Use only
 
 ## Hard limit
 
-**The five voiceovers together: 55 to 66 words. Count them before you answer.** A script over 72 words is rejected, and drafts usually run long, so write tight. Seven short sentences at most. One fact each.
+**The five voiceovers together: {{MIN}} to {{MAX}} words. Count them before you answer.** A script over {{REJECT}} words is rejected, and drafts usually run long, so write tight. Seven short sentences at most. One fact each.
 
 | id | words | sentences | job |
 |---|---|---|---|
-| hook | 7-9 | 1 | The most surprising true thing. Contains a number, a shock or the word "you". Never starts with a person's name. |
-| setup | 11-14 | 2 | Who or what this is, in plain words. The last sentence is a question that ends with "?" and that the research can answer. |
-| rehook | 7-9 | 1 | **Starts with the word "But".** A turn that raises the stakes. |
-| payoff | 18-22 | 2 | The first sentence answers the setup's question directly, using the question's key words. It holds a specific number and the name of a person, place or organisation. No "maybe", "perhaps", "might" or "could". |
-| close | 7-9 | 1 | Starts with an action verb (Ask, Look, Check, Picture, Remember) or holds a number. A memorable last line. |
+| hook | {{HOOK}} | 1 | The most surprising true thing. Contains a number, a shock or the word "you". Never starts with a person's name. |
+| setup | {{SETUP}} | 2 | Who or what this is, in plain words. The last sentence is a question that ends with "?" and that the research can answer. |
+| rehook | {{REHOOK}} | 1 | **Starts with the word "But".** A turn that raises the stakes. |
+| payoff | {{PAYOFF}} | 2 | The first sentence answers the setup's question directly, using the question's key words. It holds a specific number and the name of a person, place or organisation. No "maybe", "perhaps", "might" or "could". |
+| close | {{CLOSE}} | 1 | Starts with an action verb (Ask, Look, Check, Picture, Remember) or holds a number. A memorable last line. |
 
 ## Rules
 

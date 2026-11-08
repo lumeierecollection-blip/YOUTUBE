@@ -1,0 +1,92 @@
+{
+  "channel_id": "1",
+  "topic_slug": "hittite-cuneiform-tablets-discovery-2026",
+  "format": "shorts",
+  "style": "cinematic-documentary",
+  "hook": "One clay tablet. 3,400 years. A royal secret buried and found.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "One clay tablet. 3,400 years. A royal secret buried and found.",
+      "visual_cue": "Static shot of a Hittite cuneiform clay tablet on a neutral museum background, no camera movement.",
+      "sfx_cue": "Low ambient drone with faint scraping texture",
+      "b_roll": [
+        "Hittite cuneiform tablet close-up"
+      ],
+      "animation_cue": "Fade in from black, stable frame",
+      "transition_out": "Crossfade",
+      "text_overlay": {
+        "text": "3,400-YEAR-OLD SECRET"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:11",
+      "voiceover": "Archaeologists uncovered 131 cuneiform tablets from King Tudhaliya II's royal archive at Kayalipinar.",
+      "visual_cue": "Archaeological trench at Kayalipinar excavation site, stable wide shot showing researchers working.",
+      "sfx_cue": "Soft brush scraping against stone",
+      "b_roll": [
+        "Kayalipinar archaeological excavation site"
+      ],
+      "animation_cue": "Crossfade, static frame",
+      "transition_out": "Crossfade",
+      "text_overlay": {
+        "text": "131 TABLETS UNEARTHED"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:11-00:20",
+      "voiceover": "The tablets reveal a deadly epidemic during King Tudhaliya II's reign, including a nursing princess who died.",
+      "visual_cue": "Clay tablet with wedge-shaped cuneiform markings under even museum lighting, no camera movement.",
+      "sfx_cue": "Low atmospheric tension swell",
+      "b_roll": [
+        "Hittite cuneiform tablet detail"
+      ],
+      "animation_cue": "Crossfade, static frame",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "ROYAL COURT EPIDEMIC"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:20-00:28",
+      "voiceover": "131 tablets kept a royal tragedy for 3,400 years.",
+      "visual_cue": "Kayalipinar excavation site at dusk, stable wide shot with shadows across the trench.",
+      "sfx_cue": "Wind ambient fading out",
+      "b_roll": [
+        "Kayalipinar site landscape at sunset"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "KAYALIPINAR ARCHIVE"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
+    "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive",
+    "https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha"
+  ],
+  "named_entities": [
+    {
+      "name": "King Tudhaliya II",
+      "kind": "person"
+    },
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Šamuḥa",
+      "kind": "place"
+    },
+    {
+      "name": "Hittite",
+      "kind": "civilization"
+    }
+  ]
+}
