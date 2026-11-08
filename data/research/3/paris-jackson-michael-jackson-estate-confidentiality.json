@@ -1,0 +1,75 @@
+{
+  "topic_slug": "paris-jackson-michael-jackson-estate-confidentiality",
+  "strongest_angle": "In November 2026, a Los Angeles judge allowed estate executor John Branca to keep financial records confidential during Paris Jackson's petition to move $600 million into the Michael Jackson Family Trust.",
+  "key_facts": [
+    {
+      "fact": "On October 29, 2026, Paris Jackson filed a petition in a Los Angeles court demanding $600 million from Michael Jackson's estate be moved into the Michael Jackson Family Trust.",
+      "source_url": "https://rollingout.com/2026/11/07/michael-jackson-estate-paris-demands",
+      "source_name": "Rolling Out",
+      "confidence": "high"
+    },
+    {
+      "fact": "In November 2026, a Los Angeles judge ruled that Michael Jackson estate executor John Branca can keep key financial documents confidential and sealed in the ongoing litigation.",
+      "source_url": "https://pagesix.com/2026/11/05/celebrity-news/paris-jacksons-nasty-600m-battle-over-dad-michael-jacksons-fortune-takes-shocking-new-turn",
+      "source_name": "Page Six",
+      "confidence": "high"
+    },
+    {
+      "fact": "The court set a December 4, 2026 hearing date regarding the $600 million trust petition involving beneficiaries Prince Jackson and Bigi Jackson.",
+      "source_url": "https://rollingout.com/2026/11/07/michael-jackson-estate-paris-demands",
+      "source_name": "Rolling Out",
+      "confidence": "high"
+    },
+    {
+      "fact": "Estate executor John Branca requested to seal portions of court filings in the $600 million dispute with Paris Jackson.",
+      "source_url": "https://timesofindia.indiatimes.com/entertainment/english/hollywood/news/paris-jacksons-usd-600-million-case-against-michael-jacksons-estate-executor-judge-allows-john-branca-to-seal-certain-portions-of-the-filing/articleshow/135595612.cms",
+      "source_name": "The Times of India",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estate amount requested for family trust transfer",
+      "value": 600,
+      "unit": "million dollars",
+      "source_url": "https://rollingout.com/2026/11/07/michael-jackson-estate-paris-demands"
+    },
+    {
+      "label": "December court hearing day",
+      "value": 4,
+      "unit": "day of month",
+      "source_url": "https://rollingout.com/2026/11/07/michael-jackson-estate-paris-demands"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Paris Jackson",
+      "kind": "person"
+    },
+    {
+      "name": "Michael Jackson",
+      "kind": "person"
+    },
+    {
+      "name": "John Branca",
+      "kind": "person"
+    },
+    {
+      "name": "Prince Jackson",
+      "kind": "person"
+    },
+    {
+      "name": "Bigi Jackson",
+      "kind": "person"
+    },
+    {
+      "name": "Los Angeles",
+      "kind": "place"
+    },
+    {
+      "name": "Michael Jackson Family Trust",
+      "kind": "organization"
+    }
+  ]
+}
