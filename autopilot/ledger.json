@@ -1,0 +1,15 @@
+{
+  "slots": {
+    "kick-bebf4cb2f8-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42523741415",
+      "trigger": "push",
+      "updated_at": "2026-11-08T21:09:26.833Z"
+    }
+  },
+  "uploads": [],
+  "topics": [],
+  "attention": []
+}
