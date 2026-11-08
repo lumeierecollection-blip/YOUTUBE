@@ -7,46 +7,6 @@
   "min_topic_score": 50,
   "similarity_window_days": 120,
   "channels": {
-    "2": {
-      "key": "ai-tested",
-      "name": "AI Tested",
-      "youtube_channel_id": "UCZY_vlCgnK839ZJjhCCWuyg",
-      "treatment": "motion-graphics",
-      "share": 0.7,
-      "slots": [
-        { "day": "Mon", "time": "11:00" },
-        { "day": "Tue", "time": "11:00" },
-        { "day": "Wed", "time": "11:00" },
-        { "day": "Thu", "time": "11:00" },
-        { "day": "Fri", "time": "11:00" }
-      ],
-      "pillars": [
-        "Trending AI tools and apps",
-        "ChatGPT, Claude, Gemini and other major AI comparisons",
-        "New AI features and releases",
-        "AI tools ordinary people can use",
-        "AI productivity and money-saving uses",
-        "Viral AI demos and experiments",
-        "AI changing everyday work",
-        "AI failures, hallucinations, security problems and scams",
-        "Free versus paid AI tools",
-        "Unexpected AI abilities and limits"
-      ],
-      "audience_note": "Curious non-developers. Explain in everyday language. Avoid topics that are only about protocols, APIs, SDKs or infrastructure.",
-      "news_queries": ["viral AI tool", "ChatGPT new feature", "Claude AI new feature", "Gemini AI new feature", "AI agent uses computer", "free AI tools", "AI scam deepfake", "AI hallucination mistake", "AI replacing jobs"],
-      "feeds": [
-        "https://openai.com/news/rss.xml",
-        "https://blog.google/technology/ai/rss/",
-        "https://techcrunch.com/category/artificial-intelligence/feed/",
-        "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-        "https://arstechnica.com/ai/feed/"
-      ],
-      "reddit": ["ChatGPT", "artificial", "OpenAI", "ClaudeAI"],
-      "hn_query": "AI",
-      "youtube_query_suffix": "AI",
-      "trusted_domains": ["openai.com", "anthropic.com", "blog.google", "google.com", "microsoft.com", "meta.com", "techcrunch.com", "theverge.com", "arstechnica.com", "wired.com", "reuters.com", "apnews.com", "bbc.com", "bbc.co.uk", "nytimes.com", "theguardian.com", "bloomberg.com", "cnbc.com", "engadget.com", "zdnet.com", "venturebeat.com", "technologyreview.com"],
-      "acceptance_skills": "motion-graphics"
-    },
     "1": {
       "key": "hidden-past",
       "name": "Hidden Past",
@@ -54,8 +14,14 @@
       "treatment": "vox",
       "share": 0.3,
       "slots": [
-        { "day": "Wed", "time": "16:00" },
-        { "day": "Sat", "time": "11:00" }
+        {
+          "day": "Wed",
+          "time": "16:00"
+        },
+        {
+          "day": "Sat",
+          "time": "11:00"
+        }
       ],
       "pillars": [
         "Unbelievable true historical events",
@@ -70,21 +36,182 @@
         "Historical facts that challenge common assumptions"
       ],
       "audience_note": "General history fans. Never invent a mystery and never present an unsupported conspiracy as fact.",
-      "news_queries": ["archaeologists discovered", "ancient tomb discovered", "shipwreck discovered history", "lost city found archaeology", "historians reveal new evidence", "declassified archives history"],
+      "news_queries": [
+        "archaeologists discovered",
+        "ancient tomb discovered",
+        "shipwreck discovered history",
+        "lost city found archaeology",
+        "historians reveal new evidence",
+        "declassified archives history"
+      ],
       "feeds": [
         "https://www.smithsonianmag.com/rss/history/",
         "https://www.heritagedaily.com/feed",
         "https://arkeonews.net/feed/",
         "https://www.livescience.com/feeds/tag/archaeology"
       ],
-      "reddit": ["history", "AskHistorians", "archaeology"],
+      "reddit": [
+        "history",
+        "AskHistorians",
+        "archaeology"
+      ],
       "hn_query": "archaeology",
       "youtube_query_suffix": "history",
-      "trusted_domains": ["smithsonianmag.com", "nationalgeographic.com", "bbc.com", "bbc.co.uk", "history.com", "britannica.com", "reuters.com", "apnews.com", "theguardian.com", "nytimes.com", "livescience.com", "heritagedaily.com", "arkeonews.net", "nature.com", "science.org", "phys.org", "archaeology.org", "wikipedia.org", "museum.org", "britishmuseum.org", "metmuseum.org"],
+      "trusted_domains": [
+        "smithsonianmag.com",
+        "nationalgeographic.com",
+        "bbc.com",
+        "bbc.co.uk",
+        "history.com",
+        "britannica.com",
+        "reuters.com",
+        "apnews.com",
+        "theguardian.com",
+        "nytimes.com",
+        "livescience.com",
+        "heritagedaily.com",
+        "arkeonews.net",
+        "nature.com",
+        "science.org",
+        "phys.org",
+        "archaeology.org",
+        "wikipedia.org",
+        "museum.org",
+        "britishmuseum.org",
+        "metmuseum.org",
+        "cnn.com",
+        "washingtonpost.com",
+        "independent.co.uk",
+        "scientificamerican.com",
+        "newscientist.com",
+        "dw.com",
+        "archaeologymag.com",
+        "artnews.com",
+        "npr.org",
+        "cbsnews.com",
+        "nbcnews.com",
+        "yahoo.com"
+      ],
       "acceptance_skills": "vox"
+    },
+    "2": {
+      "key": "ai-tested",
+      "name": "AI Tested",
+      "youtube_channel_id": "UCZY_vlCgnK839ZJjhCCWuyg",
+      "treatment": "motion-graphics",
+      "share": 0.7,
+      "slots": [
+        {
+          "day": "Mon",
+          "time": "11:00"
+        },
+        {
+          "day": "Tue",
+          "time": "11:00"
+        },
+        {
+          "day": "Wed",
+          "time": "11:00"
+        },
+        {
+          "day": "Thu",
+          "time": "11:00"
+        },
+        {
+          "day": "Fri",
+          "time": "11:00"
+        }
+      ],
+      "pillars": [
+        "Trending AI tools and apps",
+        "ChatGPT, Claude, Gemini and other major AI comparisons",
+        "New AI features and releases",
+        "AI tools ordinary people can use",
+        "AI productivity and money-saving uses",
+        "Viral AI demos and experiments",
+        "AI changing everyday work",
+        "AI failures, hallucinations, security problems and scams",
+        "Free versus paid AI tools",
+        "Unexpected AI abilities and limits"
+      ],
+      "audience_note": "Curious non-developers. Explain in everyday language. Avoid topics that are only about protocols, APIs, SDKs or infrastructure.",
+      "news_queries": [
+        "viral AI tool",
+        "ChatGPT new feature",
+        "Claude AI new feature",
+        "Gemini AI new feature",
+        "AI agent uses computer",
+        "free AI tools",
+        "AI scam deepfake",
+        "AI hallucination mistake",
+        "AI replacing jobs"
+      ],
+      "feeds": [
+        "https://openai.com/news/rss.xml",
+        "https://blog.google/technology/ai/rss/",
+        "https://techcrunch.com/category/artificial-intelligence/feed/",
+        "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+        "https://arstechnica.com/ai/feed/"
+      ],
+      "reddit": [
+        "ChatGPT",
+        "artificial",
+        "OpenAI",
+        "ClaudeAI"
+      ],
+      "hn_query": "AI",
+      "youtube_query_suffix": "AI",
+      "trusted_domains": [
+        "openai.com",
+        "anthropic.com",
+        "blog.google",
+        "google.com",
+        "microsoft.com",
+        "meta.com",
+        "techcrunch.com",
+        "theverge.com",
+        "arstechnica.com",
+        "wired.com",
+        "reuters.com",
+        "apnews.com",
+        "bbc.com",
+        "bbc.co.uk",
+        "nytimes.com",
+        "theguardian.com",
+        "bloomberg.com",
+        "cnbc.com",
+        "engadget.com",
+        "zdnet.com",
+        "venturebeat.com",
+        "technologyreview.com",
+        "finance.yahoo.com",
+        "techradar.com",
+        "mashable.com",
+        "cnet.com",
+        "pcmag.com",
+        "tomsguide.com",
+        "gizmodo.com",
+        "businessinsider.com",
+        "forbes.com",
+        "fortune.com",
+        "cnn.com",
+        "nbcnews.com",
+        "washingtonpost.com",
+        "wsj.com",
+        "variety.com",
+        "billboard.com"
+      ],
+      "acceptance_skills": "motion-graphics"
     }
   },
-  "score_weights": { "momentum": 25, "reach": 20, "curiosity": 20, "relevance": 15, "visual": 10, "source_quality": 10 },
+  "score_weights": {
+    "momentum": 25,
+    "reach": 20,
+    "curiosity": 20,
+    "relevance": 15,
+    "visual": 10,
+    "source_quality": 10
+  },
   "vox": {
     "halftone_opacity": 0.1,
     "photo_width": 960,
