@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 00:14 SAST
+Updated 2026-11-09 00:17 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 00:14 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Bill Gates Says $10-an-Hour Robots Are Coming for Jobs (76.7/100) |
+| Latest production | failed-final at autopilot-discover, attempts 1 |
+| Selected topic and score | n/a |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -38,3 +38,4 @@ Updated 2026-11-09 00:14 SAST
 - AI Tested kick-4e6fd5e3e2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-18: "Search Gemini Notebook and Classroom" is not named in the research artifact â€” use the research
 - AI Tested kick-da25b9c885-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most
 - Hidden Past kick-0a938f9c78-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 "Could his plan stop Adolf Hitler?" — The narration has not yet explained what the 'p
+- AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {"content":"```json\n{\n  \"candidates\": [\n    {\n      \"topic\": \"Claude AI can now connect to your bank account for personal finance\",\n      \"pillar\": \"AI tools o
