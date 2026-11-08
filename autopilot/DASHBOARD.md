@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 00:26 SAST
+Updated 2026-11-09 00:31 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-09 00:26 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler (64.1/100) |
+| Latest production | failed-final at visuals, attempts 1 |
+| Selected topic and score | Cannabis Use in a 2,800-Year-Old Siberian Monument (75.9/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -42,3 +42,4 @@ Updated 2026-11-09 00:26 SAST
 - AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1
 - AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:
   -
+- Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed
