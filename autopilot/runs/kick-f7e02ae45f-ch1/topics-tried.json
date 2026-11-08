@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Rare 5th-Century Burials of Germanic Chieftains in France",
+      "score": 70.5,
+      "stage": "tts",
+      "reason": "trimmed script failed its gate:   - SCR-18: \"Near the Rhine River\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"Collapse of Rome\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-16: 53 words implies ~26s duration â€” outside t"
+    },
+    {
+      "topic": "Georg Elser's Narrow Miss: The 1939 Munich Beer Hall Bombing",
+      "score": 64.1,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - CLARITY: sentence 3 \"However, he spent months preparing, hiding explosives inside a pillar at the Bürgerbräukeller beer hall.\" — The word 'However' creates a logical jump because the previous sentence was a question, not a statement that needed contradicting.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an ear"
+    },
+    {
+      "topic": "The Discovery of the Tomb of Philip II of Macedon",
+      "score": 64,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - CLARITY: sentence 3 \"Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends failed him entirely.\" — The viewer does not know what 'local legends' refers to or why they would be expected to help.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence."
+    }
+  ],
+  "selected": null
+}
