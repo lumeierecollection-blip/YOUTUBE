@@ -44,12 +44,12 @@
       "attempts": 1,
       "run_id": "42525274596",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:29:54.517Z",
-      "stage": "narration",
-      "topic": "Rare 5th-Century Burials of Germanic Chieftains in France",
-      "score": 70.5,
-      "pillar": "Archaeological discoveries",
-      "hook": "Archaeologists in France just unearthed dazzling weapons and warhorses in the rare, untouched graves of 5th-century Germanic chieftains."
+      "updated_at": "2026-11-08T21:30:42.279Z",
+      "stage": "research",
+      "topic": "Georg Elser's Narrow Miss: The 1939 Munich Beer Hall Bombing",
+      "score": 64.1,
+      "pillar": "Unbelievable true historical events",
+      "hook": "Adolf Hitler walked out of a Munich beer hall just 13 minutes before a meticulously timed bomb detonated in 1939. How did he survive?"
     }
   },
   "uploads": [],
@@ -80,6 +80,15 @@
       "at_ms": 1794173327425,
       "score": 70.5,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "Georg Elser's Narrow Miss: The 1939 Munich Beer Hall Bombing",
+      "slug": "georg-elser-s-narrow-miss-the-1939-munich-beer-hall-bombing",
+      "slot": "kick-f7e02ae45f-ch1",
+      "at_ms": 1794173442279,
+      "score": 64.1,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
