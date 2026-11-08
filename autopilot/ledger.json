@@ -329,6 +329,14 @@
       "stage": "tts",
       "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
       "error": "trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"KAYALIPINAR ARCHIVE\" is not named in the res"
+    },
+    "kick-def9d910e5-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42535162528",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:28:16.346Z"
     }
   },
   "uploads": [],
@@ -667,5 +675,5 @@
     "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script",
     "Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named i"
   ],
-  "last_poll_at": "2026-11-08T23:26:04.145Z"
+  "last_poll_at": "2026-11-08T23:28:16.345Z"
 }
