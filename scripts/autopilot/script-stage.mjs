@@ -8,11 +8,14 @@
  */
 import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { ROOT, StageError, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
+import { ROOT, StageError, askJson, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
 
 const MAX_SECONDS = 29.8;
 const SCRIPT_ATTEMPTS = 3;
-const REPAIRS_PER_DRAFT = 4;
+const REPAIRS_PER_DRAFT = 3;
+// The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
+// those two alone are logged and the whole script is judged instead. Everything else stays blocking.
+const isAdvisory = (line) => /^ {2}- (CLARITY|SPECIFICITY)/.test(line);
 const SHORT_ENV = { SHORTS_MIN_SECONDS: "26", SHORTS_MAX_SECONDS: "38" };
 const models = () => ({
   research: process.env.OPENCODE_MODELS_RESEARCH || "ollama-cloud/gpt-oss:120b",
@@ -43,7 +46,9 @@ export function research({ channel, topic }) {
 
 function promptFile(feedback, dir) {
   let p = readFileSync(join(ROOT, "prompts/write-script.md"), "utf8")
-    .replaceAll("80-98 words", "62-74 words").replace(/36-52 seconds/g, "26-30 seconds").replace(/under 80 fails exactly like over 98/g, "under 62 fails exactly like over 74").replace("about 90 words", "about 68 words");
+    .replaceAll("80-98 words", "62-74 words").replace(/36-52 seconds/g, "26-30 seconds").replace(/under 80 fails exactly like over 98/g, "under 62 fails exactly like over 74").replace("about 90 words", "about 68 words")
+    .replace(/HOOK: +9–12 words/, "HOOK:     7–10 words").replace(/SETUP: +26–34 words/, "SETUP:    12–16 words").replace(/RE-HOOK: +9–14 words/, "RE-HOOK:  7–10 words").replace(/PAYOFF: +26–35 words/, "PAYOFF:   20–26 words").replace(/CLOSE: +7–11 words/, "CLOSE:    7–10 words").replace(/Total: +80–98 words/, "Total:    62–74 words")
+    .replace("That is 9-10\nsentences in all", "That is 6-7\nsentences in all").replace("under 80\nwords", "under 62\nwords");
   if (feedback) p += `\n\n## Quality gate rejected your previous script\n\n${feedback}\n\nRewrite the FULL script JSON, fixing exactly these problems. Return only the JSON object.\n`;
   const path = join(dir, "write-script.prompt.md");
   writeFileSync(path, p);
@@ -73,14 +78,32 @@ function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
     if (again.status !== 0) return issues(again.stdout, /SCR-|BLOCKER/);
   }
   const story = run("node", ["scripts/validate-script-story.cjs", channel.id, scriptPath, researchPath], { capture: true, merge: true });
-  if (story.status !== 0 && story.status !== 3) return issues(story.stdout, /^ {2}- /) || "story checks failed";
   const claims = run("node", ["scripts/validate-script-claims.cjs", channel.id, scriptPath, researchPath], { capture: true, merge: true });
   if (claims.status === 4) throw new StageError("script", "claim verification was unavailable; not producing unverified claims");
-  if (claims.status !== 0) return issues(claims.stdout, /^ {2}- CLAIM/) || "claims check failed";
-  return "";
+  const found = [];
+  if (story.status !== 0 && story.status !== 3) found.push(issues(story.stdout, /^ {2}- /) || "story checks failed");
+  if (claims.status !== 0) found.push(issues(claims.stdout, /^ {2}- CLAIM/) || "claims check failed");
+  return found.join("\n");
 }
 
-export function writeScript({ channel, topic, researchPath, dir }) {
+/** One reading of the finished narration as a whole. If no model can answer, the script is held. */
+async function editorialVerdict(scriptPath, topic, researchPath) {
+  const data = readJson(scriptPath);
+  const v = await askJson(`You are the final editor of a 30-second YouTube Short about: "${topic.topic}".
+
+Narration, in order:
+${data.sections.map((s) => `[${s.id}] ${s.voiceover}`).join("\n")}
+
+Research it must stay within:
+${JSON.stringify(readJson(researchPath).key_facts || []).slice(0, 4000)}
+
+Judge the whole script as a viewer who knows nothing about this subject.
+Return JSON: {"one_coherent_topic":boolean,"strong_opening_hook":boolean,"followable":boolean,"satisfying_ending":boolean,"nothing_misleading":boolean,"no_repetition":boolean,"why":"one sentence on the weakest point"}`, "autopilot-editorial");
+  const checks = ["one_coherent_topic", "strong_opening_hook", "followable", "satisfying_ending", "nothing_misleading", "no_repetition"];
+  return { pass: checks.every((k) => v[k] === true), failed: checks.filter((k) => v[k] !== true), why: v.why };
+}
+
+export async function writeScript({ channel, topic, researchPath, dir }) {
   const stem = `${topic.slug}-shorts`;
   const scriptPath = join(ROOT, "data/research", channel.id, `${stem}-script.json`);
   const scriptRel = `data/research/${channel.id}/${stem}-script.json`;
@@ -96,7 +119,15 @@ export function writeScript({ channel, topic, researchPath, dir }) {
     // repaired sentence by sentence first. The gates re-judge every repair.
     for (let repair = 0; repair <= REPAIRS_PER_DRAFT; repair++) {
       feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
-      if (!feedback) return { scriptPath, scriptRel, stem: scriptStem };
+      const onlyAdvisory = feedback && feedback.split("\n").filter((l) => l.trim()).every(isAdvisory);
+      if (!feedback || (onlyAdvisory && repair >= 2)) {
+        const verdict = await editorialVerdict(scriptPath, topic, researchPath);
+        writeJson(join(dir, "script-editorial.json"), { verdict, advisory_findings: feedback ? feedback.split("\n") : [] });
+        log("script", `editorial verdict: ${verdict.pass ? "pass" : "fail"} (${verdict.why})`);
+        if (verdict.pass) return { scriptPath, scriptRel, stem: scriptStem };
+        feedback = `The final editor rejected the script. Failed: ${verdict.failed.join(", ")}. ${verdict.why}`;
+        break;
+      }
       log("script", `gate rejected (repair ${repair}/${REPAIRS_PER_DRAFT}):\n${feedback}`);
       if (repair === REPAIRS_PER_DRAFT || !/^ {2}- (CLAIM|NARRATIVE|SPECIFICITY|CLARITY)/m.test(feedback)) break;
       const fbFile = join(dir, "repair-feedback.txt");

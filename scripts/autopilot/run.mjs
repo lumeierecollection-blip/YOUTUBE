@@ -91,7 +91,7 @@ async function produce(slotId, channelId) {
       try {
         researchPath = research({ channel, topic: current });
         mark("script");
-        script = writeScript({ channel, topic: current, researchPath, dir });
+        script = await writeScript({ channel, topic: current, researchPath, dir });
         mark("narration");
         narration = narrate({ channel, topic: current, researchPath, script });
         topic = current;
