@@ -86,7 +86,12 @@
       "attempts": 1,
       "run_id": "42526505018",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:56:09.574Z"
+      "updated_at": "2026-11-08T21:57:26.325Z",
+      "stage": "research",
+      "topic": "Job Seekers Are Shunning Companies That Use AI Interviews",
+      "score": 80.8,
+      "pillar": "AI changing everyday work",
+      "hook": "Job seekers are actively rejecting companies that force them to interview with AI."
     }
   },
   "uploads": [],
@@ -171,6 +176,15 @@
       "at_ms": 1794174753003,
       "score": 61,
       "pillar": "Secret operations and evidence-backed conspiracies"
+    },
+    {
+      "channel": "2",
+      "topic": "Job Seekers Are Shunning Companies That Use AI Interviews",
+      "slug": "job-seekers-are-shunning-companies-that-use-ai-interviews",
+      "slot": "kick-830ba6105e-ch2",
+      "at_ms": 1794175046325,
+      "score": 80.8,
+      "pillar": "AI changing everyday work"
     }
   ],
   "attention": [
