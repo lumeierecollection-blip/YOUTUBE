@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 00:35 SAST
+Updated 2026-11-09 00:41 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-09 00:35 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at visuals, attempts 1 |
-| Selected topic and score | Cannabis Use in a 2,800-Year-Old Siberian Monument (75.9/100) |
+| Latest production | failed-final at vox-bake, attempts 1 |
+| Selected topic and score | The Trent Affair: Civil War Diplomatic Crisis (61.3/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -44,3 +44,4 @@ Updated 2026-11-09 00:35 SAST
   -
 - Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed
 - AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure
+- Hidden Past kick-a43137003d-ch1 failed at vox-bake: PhotoTreatment did not produce every still
