@@ -259,7 +259,12 @@
       "attempts": 1,
       "run_id": "42532155771",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:53:52.305Z"
+      "updated_at": "2026-11-08T22:55:12.195Z",
+      "stage": "research",
+      "topic": "NYT Cooking AI assistant makes wild ingredient substitution mistakes",
+      "score": 74.8,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Can you trust an AI cooking assistant with your dinner? NYT Cooking just failed the test."
     }
   },
   "uploads": [],
@@ -524,6 +529,15 @@
       "at_ms": 1794178310498,
       "score": 72.6,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "2",
+      "topic": "NYT Cooking AI assistant makes wild ingredient substitution mistakes",
+      "slug": "nyt-cooking-ai-assistant-makes-wild-ingredient-substitution-",
+      "slot": "kick-8dd74ac976-ch2",
+      "at_ms": 1794178512195,
+      "score": 74.8,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
