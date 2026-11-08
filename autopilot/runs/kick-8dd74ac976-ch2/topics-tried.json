@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "NYT Cooking AI assistant makes wild ingredient substitution mistakes",
+      "score": 74.8,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts:\n  - SCR-17 STRICT (strict_visual channel): 4 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame ca"
+    }
+  ],
+  "selected": null
+}
