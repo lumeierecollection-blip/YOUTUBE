@@ -4,6 +4,7 @@ import { compositions as minimal } from "./compositions/minimal.jsx";
 import { compositions as motionGraphics } from "./compositions/motion-graphics.jsx";
 import { compositions as directedScene } from "./visual-engine/directed-scene.jsx";
 import { compositions as editorTimeline } from "./editor/EditorTimeline.jsx";
+import { compositions as voxStill } from "./effects/VoxStill.jsx";
 
 function RemotionRoot() {
   return (
@@ -13,6 +14,7 @@ function RemotionRoot() {
       {motionGraphics.map(c => <Composition key={c.id} {...c} />)}
       {directedScene.map(c => <Composition key={c.id} {...c} />)}
       {editorTimeline.map(c => <Composition key={c.id} {...c} />)}
+      {voxStill.map(c => <Composition key={c.id} {...c} />)}
     </>
   );
 }

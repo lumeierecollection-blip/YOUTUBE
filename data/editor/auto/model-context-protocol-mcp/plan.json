@@ -57,9 +57,9 @@
     {
       "id": "close",
       "start": 21.5,
-      "end": 25.5,
+      "end": 26,
       "start_f": 645,
-      "end_f": 765,
+      "end_f": 780,
       "asset": null
     }
   ],

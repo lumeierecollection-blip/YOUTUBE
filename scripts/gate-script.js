@@ -42,7 +42,11 @@ const FORMAT_MIDPOINT_MINUTES = { shorts: 44 / 60, longform: (2 + 12) / 2 };
 // gate's effective rate, (superseded 2026-10-10: 80-98 words at the Gemini voice's pace) (scripts/test-word-budget.mjs).
 // Measured the same day the narrator speaks 1.8-2.5 words/s, so ~100 words is 40-55 s of
 // real voiceover; the workflow still trims anything over 58 s (scripts/fit-short.js).
-export const DURATION_RANGE_SECONDS = { shorts: { min: 36, max: 52 }, longform: { min: 30, max: 45 } };
+export const DURATION_RANGE_SECONDS = {
+  // The autopilot makes 30-second Shorts, so it sets a tighter window; the daily pipeline leaves these unset.
+  shorts: { min: Number(process.env.SHORTS_MIN_SECONDS) || 36, max: Number(process.env.SHORTS_MAX_SECONDS) || 52 },
+  longform: { min: 30, max: 45 },
+};
 
 /**
  * EdgeTTS speaks slower than the nominal WPM, so the nominal figure

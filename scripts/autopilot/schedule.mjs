@@ -1,0 +1,63 @@
+/**
+ * Slot arithmetic and the ledger. Pure functions apart from the two ledger file helpers,
+ * so the scheduling rules are unit-tested without git or GitHub.
+ *
+ * A slot id is <SAST date>-ch<channel>. It is the idempotency key: a slot claimed in the
+ * ledger is never produced again, however many triggers fire.
+ */
+import { join } from "node:path";
+import { CONFIG, STATE_DIR, readJson, writeJson } from "./lib.mjs";
+
+const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const HOUR = 3600e3;
+
+/** The UTC instant of a slot on the SAST date `day` (Date at SAST midnight expressed in UTC ms). */
+const slotInstant = (sastMidnightMs, time) => {
+  const [h, m] = time.split(":").map(Number);
+  return sastMidnightMs + (h * HOUR) + m * 60e3 - CONFIG.timezone_offset_hours * HOUR;
+};
+
+/** Every configured slot whose instant falls in [fromMs, toMs]. */
+export function slotsBetween(fromMs, toMs, config = CONFIG) {
+  const out = [];
+  const offset = config.timezone_offset_hours * HOUR;
+  const firstDay = Math.floor((fromMs + offset) / (24 * HOUR)) - 1;
+  const lastDay = Math.floor((toMs + offset) / (24 * HOUR)) + 1;
+  for (let d = firstDay; d <= lastDay; d++) {
+    const date = new Date(d * 24 * HOUR);
+    const dayName = DAYS[date.getUTCDay()];
+    for (const [channel, c] of Object.entries(config.channels)) {
+      for (const s of c.slots) {
+        if (s.day !== dayName) continue;
+        const at = slotInstant(d * 24 * HOUR, s.time);
+        if (at >= fromMs && at <= toMs) out.push({ id: `${date.toISOString().slice(0, 10)}-ch${channel}`, channel, at, day: s.day, time: s.time });
+      }
+    }
+  }
+  return out.sort((a, b) => a.at - b.at);
+}
+
+/**
+ * The slot this run should produce, or null. Retries are ordered after fresh slots of any
+ * channel, so a failing production never holds up the other channel.
+ */
+export function pickDueSlot(ledger, nowMs, config = CONFIG) {
+  const slots = slotsBetween(nowMs - config.slot_window_hours * HOUR, nowMs, config);
+  const runnable = slots.filter((s) => {
+    const rec = ledger.slots[s.id];
+    if (!rec) return true;
+    return rec.status === "failed" && (rec.attempts || 0) < config.max_attempts_per_slot;
+  });
+  runnable.sort((a, b) => (ledger.slots[a.id]?.attempts || 0) - (ledger.slots[b.id]?.attempts || 0) || a.at - b.at);
+  return runnable[0] || null;
+}
+
+export function nextSlots(nowMs, count = 3, config = CONFIG) {
+  return slotsBetween(nowMs, nowMs + 8 * 24 * HOUR, config).slice(0, count);
+}
+
+export const formatSast = (ms) => new Date(ms + CONFIG.timezone_offset_hours * HOUR).toISOString().replace("T", " ").slice(0, 16) + " SAST";
+
+const ledgerPath = () => join(STATE_DIR, "autopilot", "ledger.json");
+export const loadLedger = () => readJson(ledgerPath(), { slots: {}, uploads: [], topics: [], attention: [] });
+export const saveLedger = (l) => writeJson(ledgerPath(), l);

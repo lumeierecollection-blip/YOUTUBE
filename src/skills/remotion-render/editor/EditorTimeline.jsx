@@ -101,7 +101,7 @@ function SvgLayer({ layer, s }) {
 
 function SolidLayer({ layer }) {
   const st = layer.style || {};
-  return <div style={{ position: "absolute", inset: 0, background: st.background || "#000", borderRadius: layer.radius || 0 }} />;
+  return <div style={{ position: "absolute", inset: 0, background: st.background || "#000", borderRadius: layer.radius || 0, boxShadow: st.boxShadow }} />;
 }
 
 function Layer({ layer, frame, tl }) {

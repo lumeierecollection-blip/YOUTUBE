@@ -1,0 +1,190 @@
+#!/usr/bin/env node
+/**
+ * Autopilot entry point, called once per step by .github/workflows/autopilot.yml:
+ *   select    decide which slot this run produces and claim it (atomic git push)
+ *   produce   topic -> research -> script -> narration -> visuals -> render -> gates
+ *   deliver   private upload and YouTube read-back, only after every gate passed
+ *   finish    performance, dashboard, final state commit
+ */
+import { appendFileSync, existsSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
+import { CONFIG, ROOT, STATE_DIR, StageError, channelConfig, log, readJson, run, sha256File, workDir, writeJson } from "./lib.mjs";
+import { loadLedger, pickDueSlot, saveLedger } from "./schedule.mjs";
+
+const output = (k, v) => { if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `${k}=${v}\n`); log("output", `${k}=${v}`); };
+const git = (args, opts) => run("git", ["-C", STATE_DIR, ...args], { capture: true, ...opts });
+
+/** Commits the state branch. Rebase-and-retry handles a concurrent writer. Returns false if the push never landed. */
+function commitState(message) {
+  git(["add", "-A"]);
+  if (git(["diff", "--cached", "--quiet"]).status === 0) return true;
+  if (git(["commit", "-m", message]).status !== 0) return false;
+  for (let i = 0; i < 3; i++) {
+    if (git(["push", "origin", "HEAD:automation/state"]).status === 0) return true;
+    if (git(["pull", "--rebase", "origin", "automation/state"]).status !== 0) return false;
+  }
+  return false;
+}
+
+const update = (ledger, slotId, patch) => { ledger.slots[slotId] = { ...ledger.slots[slotId], ...patch, updated_at: new Date().toISOString() }; };
+
+function kickRequest() {
+  if (process.env.GITHUB_EVENT_NAME !== "push") return null;
+  const p = join(ROOT, "config/autopilot-kick.json");
+  return existsSync(p) ? readJson(p) : { channel: "due" };
+}
+
+function select() {
+  const ledger = loadLedger();
+  const kick = kickRequest();
+  let slot;
+  if (kick && kick.channel !== "due") {
+    slot = { id: `kick-${String(process.env.GITHUB_SHA).slice(0, 10)}-ch${kick.channel}`, channel: String(kick.channel) };
+    if (ledger.slots[slot.id]) { log("select", `${slot.id} already handled`); slot = null; }
+  } else {
+    slot = pickDueSlot(ledger, Date.now());
+  }
+  if (!slot) { output("slot", ""); log("select", "no production is due"); return; }
+  const attempts = (ledger.slots[slot.id]?.attempts || 0) + 1;
+  update(ledger, slot.id, { channel: slot.channel, status: "running", attempts, run_id: process.env.GITHUB_RUN_ID, trigger: process.env.GITHUB_EVENT_NAME });
+  saveLedger(ledger);
+  if (!commitState(`claim ${slot.id} (attempt ${attempts})`)) throw new Error(`could not claim ${slot.id}: another run holds the state branch`);
+  output("slot", slot.id);
+  output("channel", slot.channel);
+  output("attempts", attempts);
+}
+
+async function produce(slotId, channelId) {
+  const channel = channelConfig(channelId);
+  const dir = workDir(slotId);
+  const ledger = loadLedger();
+  const { notify, learnedSummary } = await import("./report.mjs");
+  const { discover } = await import("./discover.mjs");
+  const { research, writeScript, narrate } = await import("./script-stage.mjs");
+  const qa = await import("./qa.mjs");
+  const productionId = `ap-${slotId}`;
+  let stage = "discover";
+  const mark = (s, patch = {}) => { stage = s; update(ledger, slotId, { stage: s, ...patch }); saveLedger(ledger); commitState(`${slotId}: ${s}`); };
+  try {
+    const topic = await discover({ channel, ledger, dir, learned: learnedSummary(ledger, channel.id) });
+    ledger.topics.push({ channel: channel.id, topic: topic.topic, slug: topic.slug, slot: slotId, at_ms: Date.now(), score: topic.score.total, pillar: topic.pillar });
+    mark("research", { topic: topic.topic, score: topic.score.total, pillar: topic.pillar, hook: topic.hook });
+    mkdirSync(join(STATE_DIR, "autopilot/runs", slotId), { recursive: true });
+    writeJson(join(STATE_DIR, "autopilot/runs", slotId, "selected-topic.json"), topic);
+    writeJson(join(STATE_DIR, "autopilot/runs", slotId, "candidates.json"), readJson(join(dir, "candidates.json")));
+    await notify(ledger, `${channel.name}: topic selected\n${topic.topic}\nScore ${topic.score.total}/100`);
+
+    mkdirSync(join(ROOT, "data/research", channel.id), { recursive: true });
+    const researchPath = research({ channel, topic });
+    mark("script");
+    const script = writeScript({ channel, topic, researchPath, dir });
+    mark("narration");
+    const narration = narrate({ channel, topic, researchPath, script });
+
+    mark("visuals");
+    const builder = channel.treatment === "vox" ? (await import("./hidden-past.mjs")).buildHiddenPast : (await import("./ai-tested.mjs")).buildAiTested;
+    const built = await builder({ channel, topic, script, narration, research: researchPath, dir, productionId });
+
+    mark("render");
+    const { renderEditor } = await import("../../src/skills/remotion-render/render-editor.js");
+    const mp4Rel = `data/autopilot-runs/${slotId}/final.mp4`;
+    let renderErr;
+    for (let i = 1; i <= CONFIG.max_render_attempts; i++) {
+      try { await renderEditor({ timelinePath: built.timelinePath, audioPath: built.audioPath, outputPath: mp4Rel, scale: 1 }); renderErr = null; break; }
+      catch (e) { renderErr = e; log("render", `attempt ${i} failed: ${e.message}`); }
+    }
+    if (renderErr) throw new StageError("render", renderErr.message);
+    const mp4 = join(ROOT, mp4Rel);
+
+    let voxReport = null;
+    if (channel.treatment === "vox") {
+      mark("vox-inspection");
+      const { voxGate } = await import("./vox-gate.mjs");
+      voxReport = await voxGate({ mp4, dir, outDir: join(dir, "vox-frames"), productionId });
+    }
+    mark("technical-qa");
+    const technical = qa.technicalChecks(mp4);
+    const videoQa = qa.runVideoQa({ mp4, timelinePath: built.timelinePath, dir, treatment: channel.treatment });
+    const frame = await qa.frameReview({ mp4, dir, channelName: channel.name, treatment: channel.treatment, duration: technical.duration });
+    const acceptance = qa.acceptance({ channel, topic, script, narration, mp4, timelinePath: built.timelinePath, manifestPath: built.manifestPath, dir, productionId });
+
+    mark("metadata");
+    const meta = await import("./metadata.mjs");
+    const seo = await meta.buildMetadata({ channel, topic, script, attributions: built.attributions || built.credits || [] });
+    const summary = { production_id: productionId, sha256: sha256File(mp4), technical, video_qa: { pass: videoQa.pass, blocking: videoQa.blocking, superseded_for_vox: videoQa.superseded }, frame_review: frame, acceptance: { pass: acceptance.pass, failures: acceptance.report.failures }, vox: voxReport ? { pass: voxReport.pass, failures: voxReport.failures, counts: voxReport.counts } : null, seo };
+    writeJson(join(dir, "qa-summary.json"), summary);
+    writeJson(join(STATE_DIR, "autopilot/runs", slotId, "qa-summary.json"), summary);
+    await qa.proofPackage({ channel, dir, mp4, voxReport, frame, video: technical, attributions: built.attributions, manifestPath: built.manifestPath, title: seo.title });
+
+    const gates = { vox: voxReport ? voxReport.pass : true, technical: technical.pass, video_qa: videoQa.pass, frame_review: frame.pass, acceptance: acceptance.pass };
+    const failed = Object.entries(gates).filter(([, ok]) => !ok).map(([k]) => k);
+    if (failed.length) throw new StageError("qa", `gates failed: ${failed.join(", ")}. ${JSON.stringify({ blocking: videoQa.blocking, frame: frame.problems || frame.why, acceptance: acceptance.report.failures, vox: voxReport?.failures, technical: technical.checks }).slice(0, 700)}`);
+    writeJson(join(dir, "deliver.json"), { title: seo.title, description: seo.description, tags: seo.tags, mp4: mp4Rel, production_id: productionId, pillar: topic.pillar, hook: topic.hook });
+    mark("qa-passed", { status: "qa-passed", qa: "all gates passed", sha256: summary.sha256 });
+    await notify(ledger, `${channel.name}: passed QA\n${seo.title}\nPreview: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`);
+    saveLedger(ledger); commitState(`${slotId}: qa passed`);
+    output("ready", "true");
+  } catch (e) {
+    const failedStage = e.stage || stage;
+    const attempts = ledger.slots[slotId].attempts;
+    const final = attempts >= CONFIG.max_attempts_per_slot || slotId.startsWith("kick-");
+    update(ledger, slotId, { status: final ? "failed-final" : "failed", stage: failedStage, error: String(e.message).slice(0, 900), qa: failedStage === "qa" ? "failed" : ledger.slots[slotId].qa });
+    if (final) {
+      await notify(ledger, `${channel.name}: production failed after ${attempts} attempt(s)\nStage: ${failedStage}\n${String(e.message).slice(0, 300)}`);
+      const { addAttention } = await import("./report.mjs");
+      addAttention(ledger, `${channel.name} ${slotId} failed at ${failedStage}: ${String(e.message).slice(0, 200)}`);
+    }
+    saveLedger(ledger); commitState(`${slotId}: failed at ${failedStage}`);
+    log("produce", `FAILED at ${failedStage}: ${e.stack || e.message}`);
+    output("ready", "false");
+  }
+}
+
+async function deliverStep(slotId, channelId) {
+  const channel = channelConfig(channelId);
+  const dir = workDir(slotId);
+  const ledger = loadLedger();
+  const { notify, addAttention } = await import("./report.mjs");
+  const { deliver } = await import("./deliver.mjs");
+  const d = readJson(join(dir, "deliver.json"));
+  const mp4 = join(ROOT, d.mp4);
+  try {
+    const ev = await deliver({ channel, mp4, title: d.title, description: d.description, tags: d.tags, productionId: d.production_id, ledger });
+    // Recorded before the verdict: once a video exists it must never be uploaded again by a retry.
+    ledger.uploads.push({ channel: channel.id, slot: slotId, video_id: ev.video_id, url: ev.url, title: d.title, sha256: ev.sha256, production_id: d.production_id, privacy_status: ev.privacy_status, uploaded_at: new Date().toISOString(), pillar: d.pillar, hook: d.hook, run_id: process.env.GITHUB_RUN_ID });
+    writeJson(join(STATE_DIR, "autopilot/runs", slotId, "upload-evidence.json"), ev);
+    if (!ev.verified) throw new StageError("verify", `YouTube read-back did not match: ${JSON.stringify(ev.checks)}`);
+    update(ledger, slotId, { status: "delivered", stage: "delivered", video_id: ev.video_id, privacy_status: ev.privacy_status });
+    saveLedger(ledger); commitState(`${slotId}: delivered ${ev.video_id}`);
+    await notify(ledger, `${channel.name}: private upload verified\n${d.title}\n${ev.url}`);
+    saveLedger(ledger); commitState(`${slotId}: notified`);
+    output("video_id", ev.video_id);
+  } catch (e) {
+    const uploaded = ledger.uploads.some((u) => u.slot === slotId);
+    update(ledger, slotId, { status: "failed-final", stage: e.stage || "upload", error: String(e.message).slice(0, 900) });
+    addAttention(ledger, `${channel.name} ${slotId}: ${e.message}${uploaded ? " (the video exists on YouTube; check it by hand)" : ""}`);
+    await notify(ledger, `${channel.name}: upload problem\n${String(e.message).slice(0, 300)}`);
+    saveLedger(ledger); commitState(`${slotId}: delivery failed`);
+    log("deliver", `FAILED: ${e.stack || e.message}`);
+    process.exitCode = 1;
+  }
+}
+
+async function finish() {
+  const ledger = loadLedger();
+  const { collectPerformance, writeDashboard } = await import("./report.mjs");
+  let perf = readJson(join(STATE_DIR, "autopilot/performance.json"), { videos: {}, analytics_status: {} });
+  try { perf = await collectPerformance(ledger); } catch (e) { log("finish", `performance: ${e.message}`); }
+  const md = writeDashboard(ledger, perf);
+  saveLedger(ledger);
+  commitState("dashboard");
+  if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md);
+}
+
+const [mode, slotId, channelId] = process.argv.slice(2);
+mkdirSync(join(STATE_DIR, "autopilot"), { recursive: true });
+if (mode === "select") select();
+else if (mode === "produce") await produce(slotId, channelId);
+else if (mode === "deliver") await deliverStep(slotId, channelId);
+else if (mode === "finish") await finish();
+else { console.error(`unknown mode ${mode}`); process.exit(2); }

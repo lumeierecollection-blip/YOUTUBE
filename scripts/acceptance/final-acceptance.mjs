@@ -33,6 +33,7 @@ const args = Object.fromEntries(
   process.argv.slice(2).reduce((a, x, i, arr) => { if (x.startsWith("--")) a.push([x.slice(2), arr[i + 1]]); return a; }, []),
 );
 const need = (k) => { if (!args[k]) throw new Error(`missing --${k}`); return args[k]; };
+const optional = (k) => args[k];
 
 const channel = need("channel");
 const channelIdField = need("channel-id-field");
@@ -96,8 +97,10 @@ if (tlProd !== productionId) fail("production-id", `timeline ${tlProd} !== expec
 const tlTopicSlug = timeline && timeline.metadata?.topic_slug;
 const tlTopicTitle = timeline && timeline.metadata?.topic;
 if (tlTopicSlug && tlTopicSlug !== topicSlug) fail("topic", `timeline.topic_slug "${tlTopicSlug}" !== "${topicSlug}"`);
-if (tlTopicTitle && String(tlTopicTitle).toLowerCase().indexOf("model context protocol") < 0) {
-  fail("topic", `timeline topic title "${tlTopicTitle}" is not about the Model Context Protocol`);
+const topicPhrase = (optional("topic-phrase") || "model context protocol").toLowerCase();
+const phraseWords = topicPhrase.split(/s+/);
+if (tlTopicTitle && !phraseWords.some((w) => String(tlTopicTitle).toLowerCase().replace(/[^a-z0-9]+/g, " ").includes(w))) {
+  fail("topic", `timeline topic title "${tlTopicTitle}" does not match the production topic "${topicPhrase}"`);
 }
 if (script && script.topic_slug !== topicSlug) fail("topic", `script.topic_slug "${script.topic_slug}" !== "${topicSlug}"`);
 
@@ -147,7 +150,7 @@ if (manifest && manifest.relevance_gate_result && manifest.relevance_gate_result
 }
 
 // ── 7. Skill application evidence ────────────────────────────────────
-const requiredSkills = ["motion-graphics", "cinematic-camera", "terminal-inserts", "article-highlights"];
+const requiredSkills = optional("skill-set") === "vox" ? ["vox-style-treatment"] : ["motion-graphics", "cinematic-camera", "terminal-inserts", "article-highlights"];
 const missingSkills = [];
 for (const s of requiredSkills) {
   const p = join(ROOT, ".agents", "skills", s, "SKILL.md");

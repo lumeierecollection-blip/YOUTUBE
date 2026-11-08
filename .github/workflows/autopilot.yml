@@ -1,0 +1,130 @@
+name: Two-Channel Autopilot
+
+# Polls every 4 hours. Which video to make is decided by config/autopilot.json and the
+# ledger on the automation/state branch, so a late or repeated trigger cannot lose a slot or
+# produce a slot twice. Polls with nothing due finish in under a minute.
+#
+# Pushing to automation/kick is the fallback when GitHub's schedule stops firing. It does not
+# depend on the default branch or on workflow_dispatch.
+on:
+  schedule:
+    - cron: "23 1,5,9,13,17,21 * * *"
+  push:
+    branches:
+      - automation/kick
+
+# One production at a time across both channels.
+concurrency:
+  group: autopilot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  autopilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      AUTOPILOT_STATE_DIR: ${{ github.workspace }}/.autopilot-state
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Open the state branch
+        run: |
+          git config --global user.name "autopilot-bot"
+          git config --global user.email "autopilot-bot@users.noreply.github.com"
+          if git fetch --depth=50 origin automation/state 2>/dev/null; then
+            git worktree add -B automation/state .autopilot-state FETCH_HEAD
+          else
+            git worktree add --orphan -b automation/state .autopilot-state
+          fi
+
+      - name: Choose and claim a slot
+        id: select
+        run: node scripts/autopilot/run.mjs select
+
+      - name: Install production tools
+        if: steps.select.outputs.slot != ''
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+          (cd src/skills/remotion-render && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund))
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg bc jq
+          pip3 install --quiet edge-tts faster-whisper
+
+      - uses: browser-actions/setup-chrome@v1
+        if: steps.select.outputs.slot != ''
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Produce and run every gate
+        id: produce
+        if: steps.select.outputs.slot != ''
+        timeout-minutes: 90
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          EDITOR_ENGINE: "1"
+          RENDER_CONCURRENCY: "2"
+          RENDER_CRF: "18"
+          OPENCODE_ENABLE_EXA: "1"
+          OPENCODE_MODELS_RESEARCH: "ollama-cloud/gpt-oss:120b"
+          OPENCODE_MODELS_REASONING: "ollama-cloud/gpt-oss:120b"
+          SCRIPT_GEMINI_MODEL: gemini-3.5-flash
+          PREP_CALL_TIMEOUT_S: "300"
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/autopilot/run.mjs produce "${{ steps.select.outputs.slot }}" "${{ steps.select.outputs.channel }}"
+
+      - name: Keep the finished video and its evidence
+        if: always() && steps.select.outputs.slot != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-${{ steps.select.outputs.slot }}-attempt-${{ steps.select.outputs.attempts }}
+          retention-days: 90
+          if-no-files-found: warn
+          path: |
+            output/autopilot/
+            output/github-final-production/hidden-past/
+            data/autopilot-runs/${{ steps.select.outputs.slot }}/*.json
+            data/autopilot-runs/${{ steps.select.outputs.slot }}/*.jpg
+
+      - name: Upload privately and verify
+        if: steps.produce.outputs.ready == 'true'
+        env:
+          CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CHANNEL_01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CHANNEL_01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node scripts/autopilot/run.mjs deliver "${{ steps.select.outputs.slot }}" "${{ steps.select.outputs.channel }}"
+
+      - name: Update performance and the dashboard
+        if: always() && steps.select.outcome == 'success'
+        env:
+          CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CHANNEL_01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CHANNEL_01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+        run: node scripts/autopilot/run.mjs finish

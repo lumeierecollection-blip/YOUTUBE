@@ -57,22 +57,25 @@ const X = 90;      // text left margin (inside safe rect left=48)
 const TEXT_W = W - 180;
 
 /** Text layer with a slide-up + opacity reveal kinetic entrance. */
-function textLayer(id, text, { y, w = TEXT_W, size = 72, weight = 700, color = P.text,
+// The renderer's wipe clips to the layer rect, so a wiped text that wraps past
+// rect.h loses its lower lines until the wipe ends: multi-line text uses wipe: false.
+function textLayer(id, text, { x = X, y, w = TEXT_W, size = 72, weight = 700, color = P.text,
   align = "center", valign = "top", inF, outF, z, revealFrames = 12, slide = 34,
-  lineHeight = 1.1, tracking = 0, font = FONT_SANS, upper = false }) {
+  lineHeight = 1.1, tracking = 0, font = FONT_SANS, upper = false, wipe = true }) {
   const span = Math.max(1, outF - inF);
   const reveal = Math.min(revealFrames, Math.max(4, Math.floor(span / 3)));
+  const keyframes = {
+    opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: reveal, v: 1 }, { f: span, v: 1 }],
+    ty: [{ f: 0, v: slide, e: "outCubic" }, { f: reveal, v: 0 }, { f: span, v: 0 }],
+  };
+  if (wipe) keyframes.reveal = [{ f: 0, v: 0, e: "outCubic" }, { f: reveal, v: 1 }, { f: span, v: 1 }];
   return {
     id, type: "text", text,
-    rect: { x: X, y, w, h: Math.max(64, size * 2) },
+    rect: { x, y, w, h: Math.max(64, size * 2) },
     in: inF, out: outF, z,
     style: { font, size, weight, color, align, valign, lineHeight, tracking, upper, pad: 0 },
     props: { opacity: 1, ty: slide },
-    keyframes: {
-      opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: reveal, v: 1 }, { f: span, v: 1 }],
-      reveal: [{ f: 0, v: 0, e: "outCubic" }, { f: reveal, v: 1 }, { f: span, v: 1 }],
-      ty: [{ f: 0, v: slide, e: "outCubic" }, { f: reveal, v: 0 }, { f: span, v: 0 }],
-    },
+    keyframes,
   };
 }
 
@@ -111,7 +114,7 @@ const scenes = [
   { id: "setup", start: 3.5, end: 9.5 },
   { id: "how", start: 9.5, end: 15.0 },
   { id: "servers", start: 15.0, end: 21.5 },
-  { id: "close", start: 21.5, end: 25.5 },
+  { id: "close", start: 21.5, end: 26 },
 ];
 
 const layers = [];
@@ -141,51 +144,51 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
 // ── Scene: hook ───────────────────────────────────────────────────────────
 {
   const s = scenes[0]; const inF = sec(s.start), outF = sec(s.end);
-  layers.push(textLayer("hook-line-1", "AI ASSISTANTS ARE TRAPPED", {
-    y: 760, size: 150, weight: 800, color: P.text, inF, outF: outF, z: z++, revealFrames: 14, slide: 40,
+  layers.push(textLayer("hook-line-1", "AI ASSISTANTS\nARE TRAPPED", {
+    y: 560, size: 104, weight: 800, color: P.text, inF, outF: outF, z: z++, revealFrames: 14, slide: 40, wipe: false,
   }));
-  layers.push(textLayer("hook-line-2", "BEHIND INFORMATION SILOS", {
-    y: 940, size: 150, weight: 800, color: P.accent, inF: inF + 10, outF: outF, z: z++, revealFrames: 14, slide: 40,
+  layers.push(textLayer("hook-line-2", "BEHIND\nINFORMATION\nSILOS", {
+    y: 823, size: 104, weight: 800, color: P.accent, inF: inF + 10, outF: outF, z: z++, revealFrames: 14, slide: 40, wipe: false,
   }));
 }
 
 // ── Scene: setup (article highlight) ──────────────────────────────────────
 {
   const s = scenes[1]; const inF = sec(s.start), outF = sec(s.end);
-  const cardY = 1080, cardH = 420;
+  const cardY = 760, cardW = W - 120, cardH = 620;
   // Highlight card surface panel
   layers.push(solidLayer("setup-card", {
-    x: 60, y: cardY, w: W - 120, h: cardH, background: P.surface,
+    x: 60, y: cardY, w: cardW, h: cardH, background: P.surface,
     inF, outF, z: z++, opacity: 1, radius: 20,
   }));
-  // Card border stroke (svg rect)
-  layers.push(svgLayer("setup-card-border", `M14 14 H${W - 74} V${cardY + cardH - 14} H14 Z`, {
-    x: 60, y: cardY, w: W - 120, h: cardH, stroke: P.stroke, strokeWidth: 2, fill: "none",
+  // Card border stroke (svg rect, in the layer's own coordinates)
+  layers.push(svgLayer("setup-card-border", `M4 4 H${cardW - 4} V${cardH - 4} H4 Z`, {
+    x: 60, y: cardY, w: cardW, h: cardH, stroke: P.stroke, strokeWidth: 2, fill: "none",
     inF, outF, z: z++, drawFrames: 12,
   }));
   // Headline above card
-  layers.push(textLayer("setup-head", "ANTHROPIC'S MODEL CONTEXT PROTOCOL", {
-    y: 860, size: 56, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 20,
+  layers.push(textLayer("setup-head", "ANTHROPIC'S MODEL CONTEXT\nPROTOCOL", {
+    y: 590, size: 56, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 20, wipe: false,
   }));
   // Highlight phrase inside card
   layers.push(textLayer("setup-phrase", "ONE OPEN STANDARD", {
-    y: cardY + 110, w: W - 240, size: 84, weight: 800, color: P.accent, align: "center",
-    inF: inF + 8, outF, z: z++, revealFrames: 14, slide: 30,
+    x: 100, y: cardY + 60, w: 880, size: 84, weight: 800, color: P.accent, align: "center",
+    inF: inF + 8, outF, z: z++, revealFrames: 14, slide: 30, wipe: false,
   }));
   // Body text inside card
   layers.push(textLayer("setup-body", "Connecting AI to your data — one open standard instead of a custom connector per source.", {
-    y: cardY + 250, w: W - 260, size: 44, weight: 400, color: P.text, align: "center", lineHeight: 1.3,
-    inF: inF + 16, outF, z: z++, revealFrames: 12, slide: 20,
+    x: 120, y: cardY + 215, w: 840, size: 44, weight: 400, color: P.text, align: "center", lineHeight: 1.3,
+    inF: inF + 16, outF, z: z++, revealFrames: 12, slide: 20, wipe: false,
   }));
-  // Marker stroke: draws across "ONE OPEN STANDARD"
-  layers.push(svgLayer("setup-marker", `M250 ${cardY + 110 + 52} H${W - 250}`, {
+  // Marker stroke: underlines "ONE OPEN STANDARD" once the phrase has landed
+  layers.push(svgLayer("setup-marker", `M130 ${cardY + 175} H${W - 130}`, {
     x: 0, y: 0, w: W, h: 1, stroke: P.accent, strokeWidth: 7, fill: "none",
-    inF: inF + 8, outF: inF + 24, z: z + 5, drawFrames: 14, drawStart: 0,
+    inF: inF + 20, outF, z: z + 5, drawFrames: 14, drawStart: 0,
   }));
   // Source citation on card
-  layers.push(textLayer("setup-cite", "Source: anthropic.com/news/model-context-protocol (Nov 25, 2024)", {
-    y: cardY + 340, w: W - 260, size: 28, weight: 400, color: P.muted, align: "center",
-    inF: inF + 20, outF, z: z++, revealFrames: 10, slide: 10,
+  layers.push(textLayer("setup-cite", "Source: anthropic.com/news/model-context-protocol\n(Nov 25, 2024)", {
+    x: 120, y: cardY + 510, w: 840, size: 28, weight: 400, color: P.muted, align: "center",
+    inF: inF + 20, outF, z: z++, revealFrames: 10, slide: 10, wipe: false,
   }));
 }
 
@@ -203,7 +206,7 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
     { name: "GitHub", x: cx + 330, y: 1220 },
   ];
   const server = { x: cx, y: 1020 };
-  const client = { x: cx - 380, y: 1020 };
+  const client = { x: cx - 350, y: 1020 };
   // connectors: client -> server -> sources
   const connCS = `M${client.x + nodeR} ${client.y} L${server.x - nodeR} ${server.y}`;
   layers.push(svgLayer("conn-client-server", connCS, { x: 0, y: 0, w: W, h: H, stroke: P.stroke, strokeWidth: 5, inF: inF + 4, outF, z: z++, drawFrames: 18, drawStart: 0, viewBox: [0, 0, W, H] }));
@@ -249,9 +252,9 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
 // ── Scene: servers (terminal insert) ──────────────────────────────────────
 {
   const s = scenes[3]; const inF = sec(s.start), outF = sec(s.end);
-  const tx = 110, ty = 800, tw = W - 220;
+  const tx = 110, ty = 620, tw = W - 220, lineStep = 46, charW = 16.8;
   // Terminal chrome
-  layers.push(solidLayer("term-bg", { x: tx, y: ty, w: tw, h: 560, background: "#0A0A1A", inF, outF, z: z++, opacity: 1, radius: 14 }));
+  layers.push(solidLayer("term-bg", { x: tx, y: ty, w: tw, h: 510, background: "#0A0A1A", inF, outF, z: z++, opacity: 1, radius: 14 }));
   layers.push(solidLayer("term-header", { x: tx, y: ty, w: tw, h: 44, background: "#12122A", inF, outF, z: z + 1, opacity: 1, radius: 0 }));
   // traffic lights
   const lights = ["#FF5F56", "#FFBD2E", "#27C93F"];
@@ -264,7 +267,8 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
     "  \"mcpServers\": {",
     "    \"github\": {",
     "      \"command\": \"npx\",",
-    "      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"]",
+    "      \"args\": [\"-y\",",
+    "        \"@modelcontextprotocol/server-github\"]",
     "    }",
     "  }",
     "}",
@@ -274,35 +278,36 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
     const showF = lineF + i * 14;
     const hideF = outF - 4;
     layers.push(textLayer(`term-line-${i}`, t, {
-      x: tx + 44, y: ty + 66 + i * 40, w: tw - 80, size: 28, weight: i === 3 ? 700 : 400,
+      x: tx + 44, y: ty + 66 + i * lineStep, w: tw - 80, size: 28, weight: i === 3 ? 700 : 400,
       color: i === 3 ? P.accent : P.text, font: FONT_MONO, align: "left", valign: "top",
       inF: showF, outF: hideF, z: z + 10 + i, revealFrames: 10, slide: 20, lineHeight: 1.0,
     }));
   });
   // blinking cursor at end of highlighted line (line index 3)
   const curLine = 3;
-  const cy = ty + 66 + curLine * 40 + 8;
-  layers.push(solidLayer("term-cursor", { x: tx + 44 + (tw - 80) - 22, y: cy, w: 16, h: 32, background: P.text, inF: inF + 20 + curLine * 14, outF, z: z + 30, opacity: 1,
+  const cy = ty + 66 + curLine * lineStep - 2;
+  layers.push(solidLayer("term-cursor", { x: tx + 44 + Math.ceil(lines[curLine].length * charW) + 8, y: cy, w: 16, h: 32, background: P.text, inF: inF + 30 + curLine * 14, outF, z: z + 30, opacity: 1,
     keyframes: { opacity: [{ f: 0, v: 1, e: "linear" }, { f: 15, v: 0 }, { f: 30, v: 1 }, { f: 45, v: 0 }, { f: 60, v: 1 }, { f: Math.max(1, outF - inF), v: 1 }] } }));
-  layers.push(textLayer("servers-head", "PRE-BUILT MCP SERVERS", { y: 1460, size: 40, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 15 }));
-  layers.push(textLayer("servers-list", "GOOGLE DRIVE  ·  SLACK  ·  GITHUB  ·  POSTGRES  ·  PUPPETEER", {
-    y: 1560, size: 40, weight: 800, color: P.accent, align: "center", tracking: 0.12, inF: inF + 10, outF, z: z++, revealFrames: 14, slide: 30,
+  layers.push(textLayer("servers-head", "PRE-BUILT MCP SERVERS", { y: 1190, size: 40, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 15, wipe: false }));
+  layers.push(textLayer("servers-list", "GOOGLE DRIVE  ·  SLACK  ·  GITHUB\nPOSTGRES  ·  PUPPETEER", {
+    y: 1270, size: 40, weight: 800, color: P.accent, align: "center", tracking: 0.12, inF: inF + 10, outF, z: z++, revealFrames: 14, slide: 30, wipe: false,
   }));
 }
 
 // ── Scene: close (summary) ────────────────────────────────────────────────
 {
   const s = scenes[4]; const inF = sec(s.start), outF = sec(s.end);
-  layers.push(textLayer("close-big", "BUILD ONCE · INTEGRATE EVERYWHERE", {
-    y: 760, size: 110, weight: 800, color: P.text, align: "center", tracking: 0.08, inF, outF, z: z++, revealFrames: 14, slide: 40,
+  layers.push(textLayer("close-big", "BUILD ONCE\nINTEGRATE\nEVERYWHERE", {
+    y: 560, size: 110, weight: 800, color: P.text, align: "center", tracking: 0.04, inF, outF, z: z++, revealFrames: 14, slide: 40, wipe: false,
   }));
+  // Lands on the spoken "AI finally reaches your data" (narration cue 6, 23.65 s)
   layers.push(textLayer("close-small", "AI finally reaches your data.", {
-    y: 940, size: 64, weight: 700, color: P.accent, align: "center", inF: inF + 10, outF, z: z++, revealFrames: 12, slide: 30,
+    y: 1010, size: 60, weight: 700, color: P.accent, align: "center", inF: sec(23.4), outF, z: z++, revealFrames: 12, slide: 30, wipe: false,
   }));
-  // Credits
-  layers.push(textLayer("credits", "Sources: anthropic.com/news/model-context-protocol · modelcontextprotocol.io", {
-    y: H - 120, w: W - 120, size: 24, weight: 400, color: P.muted, align: "center",
-    inF: inF + 8, outF, z: z++, revealFrames: 10, slide: 10,
+  // Credits sit above the caption band, clear of the Shorts bottom UI
+  layers.push(textLayer("credits", "Sources: anthropic.com/news/model-context-protocol\nmodelcontextprotocol.io", {
+    y: 1400, size: 28, weight: 400, color: P.muted, align: "center", lineHeight: 1.3,
+    inF: inF + 8, outF, z: z++, revealFrames: 10, slide: 10, wipe: false,
   }));
 }
 
