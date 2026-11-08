@@ -59,21 +59,21 @@ const issues = (text, re) => text.split("\n").filter((l) => re.test(l)).join("\n
 
 /** Returns "" when the script passes every gate, else the feedback for the writer. */
 function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
-  const gate = () => run("node", ["scripts/gate-script.js", channel.id, stem, slug], { capture: true, env: SHORT_ENV });
+  const gate = () => run("node", ["scripts/gate-script.js", channel.id, stem, slug], { capture: true, merge: true, env: SHORT_ENV });
   let g = gate();
   if (g.status !== 0 && /SCR-16:.*CUT at least/.test(g.stdout)) {
     const ceil = (g.stdout.match(/needs \d+-(\d+) words/) || [])[1];
     if (ceil && run("node", ["scripts/fit-short.js", scriptPath, ceil]).status === 0) g = gate();
   }
   if (g.status !== 0) return issues(g.stdout, /SCR-|BLOCKER/) || g.stdout.slice(-1500);
-  const d = run("node", ["scripts/dedupe-sentences.js", scriptPath], { capture: true });
+  const d = run("node", ["scripts/dedupe-sentences.js", scriptPath], { capture: true, merge: true });
   if (/^\[dedupe\] removed/m.test(d.stdout)) {
     const again = gate();
     if (again.status !== 0) return issues(again.stdout, /SCR-|BLOCKER/);
   }
-  const story = run("node", ["scripts/validate-script-story.cjs", channel.id, scriptPath, researchPath], { capture: true });
+  const story = run("node", ["scripts/validate-script-story.cjs", channel.id, scriptPath, researchPath], { capture: true, merge: true });
   if (story.status !== 0 && story.status !== 3) return issues(story.stdout, /^ {2}- /) || "story checks failed";
-  const claims = run("node", ["scripts/validate-script-claims.cjs", channel.id, scriptPath, researchPath], { capture: true });
+  const claims = run("node", ["scripts/validate-script-claims.cjs", channel.id, scriptPath, researchPath], { capture: true, merge: true });
   if (claims.status === 4) throw new StageError("script", "claim verification was unavailable; not producing unverified claims");
   if (claims.status !== 0) return issues(claims.stdout, /^ {2}- CLAIM/) || "claims check failed";
   return "";
@@ -91,7 +91,7 @@ export function writeScript({ channel, topic, researchPath, dir }) {
     const out = agent(["--prompt-file", promptFile(feedback, dir), "--append-system-prompt-file", contractFile(dir), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     writeJson(scriptPath, out);
-    feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem: scriptStem });
+    feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
     if (!feedback) return { scriptPath, scriptRel, stem: scriptStem };
     log("script", `gate rejected:\n${feedback}`);
   }
@@ -116,7 +116,7 @@ export function narrate({ channel, topic, researchPath, script }) {
     const count = data.sections.map((s) => s.voiceover).join(" ").split(/\s+/).length;
     const ceil = Math.floor((count * MAX_SECONDS) / secs);
     if (run("node", ["scripts/fit-short.js", script.scriptPath, String(ceil)]).status !== 0) throw new StageError("tts", `cannot trim the script to ${ceil} words`);
-    const g = run("node", ["scripts/gate-script.js", channel.id, script.stem, topic.slug], { capture: true, env: SHORT_ENV });
+    const g = run("node", ["scripts/gate-script.js", channel.id, script.stem.replace(/-script$/, ""), topic.slug], { capture: true, merge: true, env: SHORT_ENV });
     if (g.status !== 0) throw new StageError("tts", `trimmed script failed its gate: ${issues(g.stdout, /SCR-/).slice(0, 300)}`);
   }
   throw new StageError("tts", `narration still longer than ${MAX_SECONDS} s after trimming`);

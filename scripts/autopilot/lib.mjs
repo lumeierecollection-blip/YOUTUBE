@@ -25,13 +25,15 @@ export class StageError extends Error {
 }
 
 /** Runs a command, streaming output. Returns { status, stdout } and never throws on a non-zero exit. */
-export function run(cmd, args, { input, env, timeoutS = 900, cwd = ROOT, capture = false } = {}) {
+export function run(cmd, args, { input, env, timeoutS = 900, cwd = ROOT, capture = false, merge = false } = {}) {
   const r = spawnSync(cmd, args, {
     cwd, input, env: { ...process.env, ...env }, timeout: timeoutS * 1000, encoding: "utf8", maxBuffer: 256 * 1024 * 1024,
-    stdio: [input === undefined ? "ignore" : "pipe", capture ? "pipe" : "inherit", "inherit"],
+    stdio: [input === undefined ? "ignore" : "pipe", capture ? "pipe" : "inherit", merge ? "pipe" : "inherit"],
   });
   if (r.error && r.error.code === "ETIMEDOUT") return { status: 124, stdout: r.stdout || "" };
-  return { status: r.status ?? 1, stdout: r.stdout || "" };
+  if (merge && r.stderr) process.stderr.write(r.stderr);
+  return { status: r.status ?? 1, stdout: merge ? `${r.stdout || ""}
+${r.stderr || ""}` : r.stdout || "" };
 }
 
 export function must(stage, cmd, args, opts) {
