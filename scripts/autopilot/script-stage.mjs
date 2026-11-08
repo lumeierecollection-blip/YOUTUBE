@@ -64,8 +64,9 @@ export async function research({ channel, topic, dir }) {
 const wordCount = (script) => script.sections.map((x) => x.voiceover).join(" ").split(/\s+/).filter(Boolean).length;
 
 /** The 30-second brief. A revision sees its previous draft, otherwise each pass starts over and breaks what already passed. */
-function promptFile(previous, feedback, dir) {
+function promptFile(previous, feedback, dir, drawable) {
   let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8");
+  if (drawable?.length) p += `\n\n## Facts this channel can draw\n\nThis channel rejects any sentence that does not ground something drawable. These research facts qualify. Build every sentence around one of them, and keep its figure, date, place or list exactly as written:\n${drawable.map((f) => `- ${f}`).join("\n")}\n`;
   if (previous) {
     const n = wordCount(previous);
     p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is 66. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections.
@@ -98,6 +99,15 @@ function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
   return found.join("\n");
 }
 
+/** The research facts that the channel's own strict-visual check accepts as drawable. */
+async function drawableFacts(channel, researchPath) {
+  if (!channelStyle(channel.id)?.strict_visual) return [];
+  const { groundedVisualFor } = await import("../strict-visual.mjs");
+  const r = readJson(researchPath);
+  const texts = [...(r.key_facts || []).map((f) => f.fact || f.claim || f.text), ...(r.numbers || []).map((n) => n.context || n.claim || n.text)].filter((t) => typeof t === "string");
+  return [...new Set(texts)].filter((t) => groundedVisualFor(t)).slice(0, 12);
+}
+
 /** One reading of the finished narration as a whole. If no model can answer, the script is held. */
 async function editorialVerdict(scriptPath, topic, researchPath) {
   const data = readJson(scriptPath);
@@ -121,10 +131,11 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   const scriptRel = `data/research/${channel.id}/${stem}-script.json`;
   const scriptStem = `${stem}-script`;
   let feedback = "", previous = null;
+  const drawable = await drawableFacts(channel, researchPath);
   for (let pass = 1; pass <= SCRIPT_PASSES; pass++) {
     log("script", `pass ${pass}/${SCRIPT_PASSES}${previous ? ` (revising ${wordCount(previous)} words)` : ""}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
-    const out = agent(["--prompt-file", promptFile(previous, feedback, dir), "--schema-file", "schemas/script.section.json",
+    const out = agent(["--prompt-file", promptFile(previous, feedback, dir, drawable), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     writeJson(scriptPath, out);
     feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
