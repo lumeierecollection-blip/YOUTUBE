@@ -1,0 +1,1070 @@
+{
+  "generated_at": "2026-11-08T22:08:37.160Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 85
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Cannabis use in an ancient 2,800-year-old Siberian monument and tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        88,
+        92
+      ],
+      "hook": "An ancient 2,800-year-old Siberian tomb just revealed surprising secrets about the widespread ritual use of cannabis by ancient nomadic cultures.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk artifacts",
+      "youtube_query": "Siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 92
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+          "domain": "cannabisaficionado.com",
+          "published_ms": 1793990475000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 41,
+          "source_quality": 100
+        },
+        "total": 74.2,
+        "newest_hours": 12,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "popsci.com",
+          "sciencealert.com",
+          "edition.cnn.com",
+          "404media.co",
+          "allthatsinteresting.com",
+          "hightimes.com",
+          "cannabisaficionado.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of a rare gold bear ornament in an ancient Saka burial mound in Kazakhstan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95
+      ],
+      "hook": "In an ancient Saka burial mound in Kazakhstan, archaeologists uncovered a stunning and rare gold bear ornament frozen in time.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Saka",
+      "commons_query": "Saka gold artifacts Kazakhstan",
+      "youtube_query": "gold bear ornament Saka burial mound Kazakhstan",
+      "evidence": [
+        {
+          "title": "Archaeologists discover rare gold bear ornament in ancient Saka burial mound in Kazakhstan, alongside hum - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMizAJBVV95cUxQTnZTYUFqRENpcThzeVA5bTE4MWxyRzloTC1kMVRQQVBPVHhOdUo3aE9mUThrYWNxYWREdXdPUlVEZUp5c2t4cWt1M3J0eGhfd2NTYk1ybkdpSTFoWF83eG1pc28wajJiQmlhX0JlNEl3Vkg0X1Jpdk5xX21JbDlXaDhUeFFXNTZ4NXp5cEpGY1ZzMEloaWpvVGV4a1A3dXRyVDFyNHJJYXhhNGdzRzV1V1ptZ0tTT3VxbDlLQ2k2OHFUU2NfUDF4czJIQkM4bEM0TlNjNm9Rc211UE15ZV9Bb0kyN1hqWlN4R05RbmE2b2R5RmtxOEJ6UHdXc09iQ2hId3laenpvYzRMSHBERDNiUWlmNTJlLWN3RGhJYzl0OHlMdTRYcU92eGNwQ21UMGZleF9wcEZQWW5SUk5XaHpYRDloRlRDb3JsQlJNbNIB0gJBVV95cUxNa1JUTXAzVzR0RTV4d3gxaHBacV9CT242QmRMLXFwM0RZQUd1b0FSWFAwemloTzlTTnlUQkxpTEthcTN3SU1qUU1tSnNDTFZEcV9wenU0TGJxQTVCaVpab0FOQk5IcUttajVjRzZ2Wm9PTXE5VE4yVGMtbVJlcUUxcENjM2xXYjNFMVFHbFVxcUJMbkIxRnFNV3dCUWI5Rk9lRUdPVDBheWFwRGl1b3YyZlp4Vzl5em9zczlHVEhoS2ZQd1k1R3NzVFc3WUdOazNTSWJjdTN4UUs4RHlyN0gxdzdsWlZnazNVSm1JTzBZM0FsYzZqaUhFUmdYZktlZ3J2SkxYU3pueDRSU0xlUnBLc0ZjeEZqMmNwUkNUeF9jRjktc1B2VTJKQlpiZ2NVU2JzNFA1UmVVRExSejB5V2g1cFlsXzc4SU0zRlFYTHRBTVdXdw?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794115800000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Rare Saka-period gold bear figurine from ceremonial headdress discovered in Kazakhstan - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPc0ZxNkNnbDJzeEk4N3dUdFVHZ21ra183aFRxcE94YmZmNkdSb1hNSElIcmpFTFVvUEMwRm45YzdRMlVmcnVEb3NnZy1iUHhsSGVBT3BLMnBiaFc0QWVaQVgyLVNDb1IzNW9Sa01GMWh1d1BLWnpnTk9DR0JCWjltUC13WkxoMXFHT09BNlFTZTZ3Qi02b25NUzlCRzE4RW5faUFaQ184S2NMYlUyYTZ3VlV3UGRoLVVfVUhabkxFbmdfcUhDNXNuZF9iRQ?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794000394000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Thieves Missed This Gold Bear in a Burial Mound That May Hold 7 People - Discover Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQWFBIcGpPdGlCMDBPS0I3cUgyT2RfN1RGR2hBcXJlTTJhVm52MXl0TjJxM3F2UDJ2cW1xZG43OENwdXhxa3VKWGhUZkxSUGRzeGFSOXplTjc1UDFRNUlTQk0xTlFXbVUxbEFia0h3d1E2dXh6MFBrRlA1UGlrVGhRU1pWMWg1Wi1uM1BlQmtDeWFvdUVERkhEYXMzc2F2X2ctc3lVRFNZaWVPU3hucHZZckpoZlpDVzZf?oc=5",
+          "domain": "discovermagazine.com",
+          "published_ms": 1794004504000,
+          "kind": "news"
+        },
+        {
+          "title": "Rare Saka-era gold bear ornament unearthed in Almaty burial mound - Kazakhstan Today",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOdzBFSEZ4ZnMtQXhOSExCanJSa2Y3ZFo5by1FajJnZkdpR3A5VlVWM1JHY2wtcG9PZTJNZV81NUdUY1RxMVhWMzBEb0w0V1o0a0NLNGM0MGh6N2JpN3dxcENkTzZ6V2Y4N3Blb2lMWGJOd2NSQUMyenoydzN6QXI5UHh2Tkd3dTNxbWF1SmpQbWlFVk9ZQkpORFUyQkxmSjA?oc=5",
+          "domain": "kt.kz",
+          "published_ms": 1793882346000,
+          "kind": "news"
+        },
+        {
+          "title": "Rare Saka-Era Gold Bear Ornament Discovered in Kazakhstan's Almaty - 24.kz",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA2QXF6eG9WYmNlbnk5SmswVmlLaExyc1hIaE5QaVgwVmtvRTJaME9rbFlvbzhvRGtvOXNvandQallpUmRIVkJ0REdhaGZDQ3FJSVhyREZxNXE3RzRCRE1ORmVtT3daT1ZYQXhXRF9OTzBZa2x1NS1Zek1PUEl1ejg?oc=5",
+          "domain": "24.kz",
+          "published_ms": 1793962841000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Saka",
+        "daily_views": 387,
+        "ratio": 0.89
+      },
+      "youtube": {
+        "median_views": 7696,
+        "competitors": [
+          {
+            "id": "-GzuY0SQXEw",
+            "title": "Золотого медведя и останки семи человек обнаружили в сакском кургане в Алматы",
+            "channel": "Седьмой канал | NEWS",
+            "views": 24135
+          },
+          {
+            "id": "sCBlgyT0Bpc",
+            "title": "Золотого медведя и останки семи человек обнаружили в сакском кургане в Алматы",
+            "channel": "Седьмой канал | NEWS",
+            "views": 11113
+          },
+          {
+            "id": "_OlQG1pNb2M",
+            "title": "Уникальное золотое украшение сакской эпохи обнаружили в Алматы",
+            "channel": "Телеканал 24kz",
+            "views": 7696
+          },
+          {
+            "id": "k-fncCSftF8",
+            "title": "Золотую фигурку медведя возрастом более 2 тысяч лет нашли в Алматы",
+            "channel": "Khabar NEWS ",
+            "views": 724
+          },
+          {
+            "id": "FIYoWyTqYRs",
+            "title": "A Rare Gold Bear Just Emerged From A Kazakhstan Tomb 🐻 #Shorts",
+            "channel": "Unsolved & Untold",
+            "views": 47
+          },
+          {
+            "id": "MgcjWwaLdvg",
+            "title": "2,400-Year-Old GOLDEN BEAR Discovered in Kazakhstan! 😱#shorts ",
+            "channel": "Untold History World",
+            "views": 7
+          }
+        ]
+      },
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 60,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 45,
+          "source_quality": 65
+        },
+        "total": 73,
+        "newest_hours": 17,
+        "domains": [
+          "timesofindia.indiatimes.com",
+          "heritagedaily.com",
+          "discovermagazine.com",
+          "kt.kz",
+          "24.kz"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of 2,500-year-old mummified crocodiles sacrificed in an Egyptian tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        78,
+        80
+      ],
+      "hook": "Archaeologists just opened a 2,500-year-old Egyptian tomb and found something entirely unexpected: ten perfectly mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "Egyptian crocodile mummies",
+      "youtube_query": "mummified crocodiles Egypt tomb",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 78
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 80
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.94
+      },
+      "youtube": {
+        "median_views": 55,
+        "competitors": [
+          {
+            "id": "4-tBqHu3iRE",
+            "title": "What did they hide inside this mummified crocodile?",
+            "channel": "AncientUFO",
+            "views": 3406
+          },
+          {
+            "id": "VO6K9Lm6PY4",
+            "title": "Half-Human, Half-Crocodile Mummy — Even Top Scientists Can’t Explain What They Found",
+            "channel": "Ancient History",
+            "views": 2989
+          },
+          {
+            "id": "L04iN3vFrkw",
+            "title": "10 Crocodile Mummies Were Found in an Ancient Egyptian Tomb… But WHY? 🐊🇪🇬 #mystery #ancientegypt",
+            "channel": "Story Line",
+            "views": 768
+          },
+          {
+            "id": "KAfu-BwxTIc",
+            "title": "Egypt’s Temple City Filled With Mummified Crocodiles",
+            "channel": "Eeriedocsgarden",
+            "views": 176
+          },
+          {
+            "id": "U7CTXoo5VrE",
+            "title": "Ten crocodiles were tied up and mummified together in one Egyptian tomb",
+            "channel": "RelicRecords",
+            "views": 55
+          },
+          {
+            "id": "MMvyMBFU57A",
+            "title": "The Dark Mystery of Egypt’s Crocodile Tombs 🐊",
+            "channel": "Enigma Echo",
+            "views": 35
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 32,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 68,
+        "newest_hours": 3,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "How the Maya poisoned their own water supply with mercury from heavy red paint use",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        103
+      ],
+      "hook": "Mud sediment analysis reveals that the ancient Maya used so much bright red mercury-based paint that they accidentally poisoned their own water.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya cinnabar pigment",
+      "youtube_query": "Maya red paint mercury poisoning water",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 103
+        },
+        {
+          "title": "Ancient Maya unknowingly poisoned Yucatán water with mercury - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNDY4bVBSZ3AzLWd6NVVwSlpTSHpmYmxhb1ZKdkxPajZiajZfUV9IWWlxWGVVSndubEZLYVlxQ1pnR3NpRnAtMUNXSjY1NWt0YlFhbGVTUFhhZGhzei1KYkhTRWIxVU5McUltU052NDlWN1dubTNaR1RYU3BTd0ZOQjBlaEljdHdlTGo0SEZwZDU3cDRHbGpmbUlraUdFYlZudVBDanJrbmVEaGQ4dTFnRUtiM0RFSTkxbUp2QVUxUmNkaklwRlU2Z1Q2UkVER1hGNkQ3QTVtSW9XeWRLelE?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 53,
+        "competitors": [
+          {
+            "id": "wFs9zy7JXfY",
+            "title": "How Did Humans Discover Mercury?",
+            "channel": "Neon Rush",
+            "views": 318032
+          },
+          {
+            "id": "pTg1xzbySjs",
+            "title": "One Reservoir Was Poisoned by Its Own Temples. The Other Had a Filter, 2,000 Years Ago.",
+            "channel": "FlipTheProblem",
+            "views": 69504
+          },
+          {
+            "id": "jk52Jy3SRbA",
+            "title": "El lodo que reveló el veneno de los mayas",
+            "channel": "CosmosOcultoEsp",
+            "views": 1210
+          },
+          {
+            "id": "NaB6cAGBYqI",
+            "title": "The Ancient Maya Built a Water Filter 2,000 Years Ago",
+            "channel": "Corvin wade",
+            "views": 323
+          },
+          {
+            "id": "w0taJtb98N4",
+            "title": "Why Did the Maya Poison Their Own Water? Blame the Red Paint",
+            "channel": "Cosmic cat",
+            "views": 53
+          },
+          {
+            "id": "ct5EUIIA1L8",
+            "title": "How the Ancient Maya Filtered Water at Tikal",
+            "channel": "Daily Life in the Past",
+            "views": 51
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 69,
+          "reach": 29,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 65.1,
+        "newest_hours": 28,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        34
+      ],
+      "hook": "Adolf Hitler narrowly escaped a meticulously planned bomb blast in a Munich beer hall in 1939—leaving just minutes before the explosion.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Georg Elser",
+      "commons_query": "Georg Elser monument Munich",
+      "youtube_query": "Georg Elser Hitler assassination attempt 1939",
+      "evidence": [
+        {
+          "title": "1939: In Munich, Adolf Hitler narrowly escapes the assassination attempt of Georg Elser while celebrating the 16th anniversary of the Beer Hall Putsch.",
+          "url": "https://en.wikipedia.org/wiki/Munich",
+          "domain": "wikipedia.org",
+          "published_ms": 1794175717160,
+          "kind": "anniversary",
+          "id": 34
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 733,
+        "competitors": [
+          {
+            "id": "XA80DDhw3CU",
+            "title": "Hitler Escaped This Bomb by Just 13 Minutes - Nov 7#GeorgElser #Hitler #OnThisDay",
+            "channel": "Big Bang Bogan",
+            "views": 10758
+          },
+          {
+            "id": "IlFoz5A6VyY",
+            "title": "Hitler's Carpenter Hid Inside a Pillar for 30 Nights",
+            "channel": "Redrawn",
+            "views": 1293
+          },
+          {
+            "id": "U-6mwQLVqqc",
+            "title": "Hitlera dzieliło od śmierci tylko 13 minut! Zamach Georga Elsera w 1939 roku",
+            "channel": "365 Historii",
+            "views": 1263
+          },
+          {
+            "id": "3HsoNTq7sRg",
+            "title": "Georg Elser: El carpintero que desafió a Hitler",
+            "channel": "Historia en 60",
+            "views": 760
+          },
+          {
+            "id": "i1KNa_WpL9M",
+            "title": "If You Met Hitler Will You Stop Him?",
+            "channel": "Nearside",
+            "views": 733
+          },
+          {
+            "id": "6mErqWtoGHs",
+            "title": "Georg Elser Hid a Bomb in a Pillar, Hammering Only When Toilets Flushed #Shorts",
+            "channel": "Battlecry History",
+            "views": 649
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 48,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 64.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of rare fifth-century burials of Germanic chieftains with warhorses in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        86
+      ],
+      "hook": "Archaeologists in France unearthed the dazzling, high-status graves of fifth-century Germanic chieftains buried alongside their fully geared warhorses.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Germanic peoples",
+      "commons_query": "Merovingian burial weapons",
+      "youtube_query": "Germanic chieftains burials France warhorses",
+      "evidence": [
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 86
+        }
+      ],
+      "wikipedia": {
+        "title": "Germanic peoples",
+        "daily_views": 1004,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 8,
+        "competitors": [
+          {
+            "id": "TJvagoNbrAE",
+            "title": "CHIEFTAIN GRAVES DISCOVERED | Rare fifth-century burials of Germanic chieftains with dazzli #Shorts",
+            "channel": "Hotsciencenews",
+            "views": 8
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 34,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.2,
+        "newest_hours": 9,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Sunken Mongol invasion ship off Japan preserving everyday gaming dice",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        96
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion ship off the coast of Japan found intact dice and games, giving a rare glimpse into medieval daily life.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Takashima underwater archaeology",
+      "youtube_query": "sunken Mongol ship Japan dice",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 96
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 53,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 63.1,
+        "newest_hours": 18,
+        "domains": [
+          "voiceofemirates.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Wilhelm Röntgen's accidental discovery of the X-ray",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "While experimenting with electrical currents in 1895, Wilhelm Röntgen noticed a strange glowing screen that changed medicine forever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Röntgen laboratory",
+      "youtube_query": "Wilhelm Rontgen discovery of X-ray",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794175717160,
+          "kind": "anniversary",
+          "id": 44
+        },
+        {
+          "title": "Today in History November 8 | 1895, X-Ray, & Wilhelm Conrad Röntgen - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNUVFqMFh3MW9RaEdVTWo3ZGpnWU03eU9oSzlzSmQtV29DaFpmUlVReXVIeTQyV0NoTnpqY1ZvTVJhUTFuN1Y5OEM0ZWlCSUV2bk1kVkE2Z0Z1TlpjZGVodW1RallEYzExVW03eDJVRWhseG5nam9SWGo5dXNRNkxkNDE0SG43RVJsdmNNd2piU19lNXRaWU1wSDZzaFR5ZHIxdEE?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 63,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of a 1,500-year-old unique statuette of a priestess in Japan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        83
+      ],
+      "hook": "Near an ancient burial mound in Japan, researchers unearthed a mysterious 1,500-year-old statuette of a priestess with unique features.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Kofun period",
+      "commons_query": "Kofun period haniwa",
+      "youtube_query": "1500 year old statuette priestess Japan",
+      "evidence": [
+        {
+          "title": "A 1,500-year-old statuette of a priestess was discovered near a burial mound in Japan: what makes the find unique - Українські Національні Новини (УНН)",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNSnUzYXBodnBQYkFaY1k5WEpBZmRfV0szSTVjSVJrY0pTZC16NWZEaDZsV3hxcm11YUpTZEpRN0JkMWRTNTNJZUNQSFRfekQ0MUV5d0VqNUxrSjZjVjF1TlVvb3VaYXFyTGdCQkFVQTJTS3FTNFNfbHBtbGxxQXltMFRFQ3RKU1h5UmNzTjl6RVRjR2FzdlNaUHYySTM4RWloRVRROUpDVWg0VHNZTk5CTDk5R3d5UHpZQkY4MTRleTZuZGFQMzg0ZkFsRk9iZ3PSAc4BQVVfeXFMUEx4eHF4VW96aHI0UlNjQmd4aTlBX0FLOHVCcUI1RmdFb0xQWko2S0xzV3U2emVTWlZyTldTTVFuMHV1YWtSQ1dETDR4TUkxQ19rMzhNNjBfekM3M19hc1FUUmJ5d1ZmM0ltR0YzWHg4M0ttQnNmRUVaWU9YYmN2Z2VtMkdpdlVhRzlaYmRGcDlUYkJMZHE5Y1lUSExQSlZ0Ti0tYi1kS2ZVRnJrTVpsZ3RELXliMWlHZW1kVF80bnR6R2k4RmpkbGJKU0laeHc?oc=5",
+          "domain": "unn.ua",
+          "published_ms": 1794144632000,
+          "kind": "news",
+          "id": 83
+        },
+        {
+          "title": "A 1,500-year-old statuette of a priestess was discovered near a burial mound in Japan: what makes the find unique - Українські Національні Новини (УНН)",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQTHh4cXhVb3pocjRSU2NCZ3hpOUFfQUs4dUJxQjVGZ0VvTFBaSjZLTHNXdTZ6ZVNaVnJOV1NNUW4wdXVha1JDV0RMNHhNSTFDX2szOE02MF96QzczX2FzUVRSYnl3VmYzSW1HRjNYeDgzS21Cc2ZFRVpZT1hiY3ZnZW0yR2l2VWFHOVpiZEZwOVRiQkxkcTljWVRITFBKVnROLS1iLWRLZlVGcmtNWmxndEQteWIxaUdlbWRUXzRudHpHaThGamRsYkpTSVp4d9IBzgFBVV95cUxQTHh4cXhVb3pocjRSU2NCZ3hpOUFfQUs4dUJxQjVGZ0VvTFBaSjZLTHNXdTZ6ZVNaVnJOV1NNUW4wdXVha1JDV0RMNHhNSTFDX2szOE02MF96QzczX2FzUVRSYnl3VmYzSW1HRjNYeDgzS21Cc2ZFRVpZT1hiY3ZnZW0yR2l2VWFHOVpiZEZwOVRiQkxkcTljWVRITFBKVnROLS1iLWRLZlVGcmtNWmxndEQteWIxaUdlbWRUXzRudHpHaThGamRsYkpTSVp4dw?oc=5",
+          "domain": "unn.ua",
+          "published_ms": 1794144632000,
+          "kind": "news"
+        },
+        {
+          "title": "1,500-year-old figurine of a possible priestess found in Japan — Live Science - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNUjJ3MkdaUmFDNFZlangtS00yODBWLTh3ZDNBajZOVjhZSDlUTFFNV3VYRThIRW8ydjZNcXptOVpuZHo1VDI2cDYzOHNnbGJJejJuMkFkVDFyTXpOVW9xVVV1OEx3TGdsTFZnSlFJZnFodUVhbzJocXgyTzc5ZzhUY0RtWDJ1Vy1fOUZIRGdfMHczSUVKMkd1YUd6OUtfYXRnSlM1dnBuMA?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1793452690000,
+          "kind": "news"
+        },
+        {
+          "title": "Japan Archaeologists Uncover 1,500-Year-Old Statue of Possible Priestess - ColombiaOne.com",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBZWDRwalVNd3FjLWtSZTlFMG1FQjZaanptbDF2ZHdoOVJGTE0wQXEzVUxXbkhTQTZsYlFpMjI2dG9xMHlBdzNETmdUcDdyN1hfVmFjZWxwMVhVc1JweXNtWkZacDlTUjR1RnBqQkJQbVk?oc=5",
+          "domain": "colombiaone.com",
+          "published_ms": 1794078900000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 90,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 61.5,
+        "newest_hours": 9,
+        "domains": [
+          "unn.ua",
+          "ua.news",
+          "colombiaone.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of the tomb of Philip II of Macedon at Vergina by Manolis Andronikos",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "In 1977, Greek archaeologist Manolis Andronikos made the discovery of a lifetime: the untouched tomb of Alexander the Great's father, Philip II.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Vergina",
+      "commons_query": "Tomb of Philip II of Macedon",
+      "youtube_query": "tomb of Philip II of Macedon Vergina",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794175717160,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 57,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The world's first Internet murder: Sharee Miller and Jerry Cassaday",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a Michigan junkyard owner was killed by his wife's online lover in what became recorded as the world's very first Internet murder.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Cyberstalking",
+      "commons_query": "",
+      "youtube_query": "world's first internet murder Sharee Miller",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794175717160,
+          "kind": "anniversary",
+          "id": 9
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 52.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Trent Affair: American Civil War diplomatic crisis between US and UK",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        48
+      ],
+      "hook": "During the American Civil War, a US warship stopped a British mail packet and seized two Confederate diplomats, almost sparking war with Britain.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Trent Affair",
+      "commons_query": "Trent Affair",
+      "youtube_query": "Trent Affair American Civil War",
+      "evidence": [
+        {
+          "title": "1861: American Civil War: The \"Trent Affair\": The USS San Jacinto stops the British mail ship Trent and arrests two Confederate envoys, sparking a diplomatic crisis between the UK and US.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794175717160,
+          "kind": "anniversary",
+          "id": 48
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 52.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}

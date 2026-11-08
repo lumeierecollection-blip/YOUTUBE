@@ -127,7 +127,12 @@
       "attempts": 1,
       "run_id": "42528328279",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:07:08.999Z"
+      "updated_at": "2026-11-08T22:08:49.994Z",
+      "stage": "research",
+      "topic": "Discovery of a rare gold bear ornament in an ancient Saka burial mound in Kazakhstan",
+      "score": 73,
+      "pillar": "Archaeological discoveries",
+      "hook": "In an ancient Saka burial mound in Kazakhstan, archaeologists uncovered a stunning and rare gold bear ornament frozen in time."
     }
   },
   "uploads": [],
@@ -275,6 +280,15 @@
       "at_ms": 1794175586756,
       "score": 76.7,
       "pillar": "AI changing everyday work"
+    },
+    {
+      "channel": "1",
+      "topic": "Discovery of a rare gold bear ornament in an ancient Saka burial mound in Kazakhstan",
+      "slug": "discovery-of-a-rare-gold-bear-ornament-in-an-ancient-saka-bu",
+      "slot": "kick-0a938f9c78-ch1",
+      "at_ms": 1794175729994,
+      "score": 73,
+      "pillar": "Archaeological discoveries"
     }
   ],
   "attention": [
