@@ -165,7 +165,12 @@
       "attempts": 1,
       "run_id": "42530013485",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:23:50.661Z"
+      "updated_at": "2026-11-08T22:25:07.384Z",
+      "stage": "research",
+      "topic": "Perplexity launches Teammates AI agents to run projects",
+      "score": 80.2,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Perplexity just launched autonomous AI teammates to handle complex business projects."
     }
   },
   "uploads": [],
@@ -340,6 +345,15 @@
       "at_ms": 1794176434058,
       "score": 83.2,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "Perplexity launches Teammates AI agents to run projects",
+      "slug": "perplexity-launches-teammates-ai-agents-to-run-projects",
+      "slot": "kick-6239f74c01-ch2",
+      "at_ms": 1794176707384,
+      "score": 80.2,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
