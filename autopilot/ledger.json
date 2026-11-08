@@ -193,7 +193,12 @@
       "attempts": 1,
       "run_id": "42530416539",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:32:17.041Z"
+      "updated_at": "2026-11-08T22:33:44.553Z",
+      "stage": "research",
+      "topic": "Geoffrey Hinton Says We Might Be Better Off Without AI",
+      "score": 80.3,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "The Godfather of AI admits humanity might have been better off without it."
     }
   },
   "uploads": [],
@@ -386,6 +391,15 @@
       "at_ms": 1794176975870,
       "score": 75.9,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "2",
+      "topic": "Geoffrey Hinton Says We Might Be Better Off Without AI",
+      "slug": "geoffrey-hinton-says-we-might-be-better-off-without-ai",
+      "slot": "kick-b8a06b55bc-ch2",
+      "at_ms": 1794177224553,
+      "score": 80.3,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
