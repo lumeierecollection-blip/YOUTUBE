@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:51 SAST
+Updated 2026-11-09 01:54 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,7 +8,7 @@ Updated 2026-11-09 01:51 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at vox-layout, attempts 1 |
+| Latest production | failed-final at assets, attempts 1 |
 | Selected topic and score | Hittite cuneiform tablets discovered at Kayalipinar (undefined/100) |
 | QA | n/a |
 | Upload | n/a |
@@ -60,3 +60,4 @@ Updated 2026-11-09 01:51 SAST
 - AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {"blocking":[],"frame":[],"acceptance":[{"check":"stale-reuse","why":"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2"}],"technical":{"duration_le_3
 - Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {"blocking":[{"check":"static-run","why":"longest near-static run is 6.0s (limit 4.0s)"}],"frame":["clipped_text: frame 13: one hundred thirty-on
 - Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1
+- Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1
