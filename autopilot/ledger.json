@@ -343,13 +343,14 @@
     },
     "kick-0ed0e1ddb3-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42535631566",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:34:30.886Z",
-      "stage": "visuals",
-      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
+      "updated_at": "2026-11-08T23:35:40.878Z",
+      "stage": "vox-annotation",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
+      "error": "no annotation could be tied to a confirmed detail in a real image"
     }
   },
   "uploads": [],
@@ -687,7 +688,8 @@
     "AI Tested kick-5e7a666ddd-ch2 failed at discover: discovery failure: 18 candidates, none eligible. Best \"Google forces schools to accept AI or lose search\" (78.9): too similar to recent topic: Google Turning Off Search for Schools Rejecting AI",
     "Hidden Past kick-eef307180f-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending, no_repetition. The script",
     "Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"TABLETS UNEARTHED\" is not named i",
-    "AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json"
+    "AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json",
+    "Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image"
   ],
   "last_poll_at": "2026-11-08T23:32:39.659Z"
 }
