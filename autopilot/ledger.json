@@ -179,7 +179,12 @@
       "attempts": 1,
       "run_id": "42530381637",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:28:25.905Z"
+      "updated_at": "2026-11-08T22:29:35.870Z",
+      "stage": "research",
+      "topic": "Cannabis Use in a 2,800-Year-Old Siberian Monument",
+      "score": 75.9,
+      "pillar": "Unbelievable true historical events",
+      "hook": "An ancient Siberian tomb just revealed surprising secrets about how people used cannabis 2,800 years ago."
     }
   },
   "uploads": [],
@@ -363,6 +368,15 @@
       "at_ms": 1794176707384,
       "score": 80.2,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "1",
+      "topic": "Cannabis Use in a 2,800-Year-Old Siberian Monument",
+      "slug": "cannabis-use-in-a-2-800-year-old-siberian-monument",
+      "slot": "kick-d13b9717ed-ch1",
+      "at_ms": 1794176975870,
+      "score": 75.9,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [

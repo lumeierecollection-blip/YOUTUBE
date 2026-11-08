@@ -1,0 +1,877 @@
+{
+  "generated_at": "2026-11-08T22:29:22.305Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 88
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Cannabis Use in a 2,800-Year-Old Siberian Monument",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        90,
+        94
+      ],
+      "hook": "An ancient Siberian tomb just revealed surprising secrets about how people used cannabis 2,800 years ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+          "domain": "cannabisaficionado.com",
+          "published_ms": 1793990475000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 110,
+        "competitors": [
+          {
+            "id": "scPIiYfCZ-s",
+            "title": "Scientists Found Cannabis in a 2,800-Year-Old Tomb",
+            "channel": "BlitzFacts",
+            "views": 1118
+          },
+          {
+            "id": "ySc0VbFpFlg",
+            "title": "2,800-Year-Old Scythian Tomb Reveals Ancient Cannabis Use in Siberia #Shorts",
+            "channel": "TimeWhizBros",
+            "views": 998
+          },
+          {
+            "id": "YsZuoz6Mgoc",
+            "title": "Ancient Royals Got High: A Tomb's Secret",
+            "channel": "Info Scroll",
+            "views": 992
+          },
+          {
+            "id": "KhorMv0C4sg",
+            "title": "HISTORIC: Scientists Discover 2,800-Year-Old Evidence of Cannabis Use in Ancient Siberian Tomb| RA1Z",
+            "channel": "News Central",
+            "views": 125
+          },
+          {
+            "id": "L9z932YXFRg",
+            "title": "2,800-Year-Old Siberian Tomb Reveals Evidence of Cannabis Use | Geo News English",
+            "channel": "Geo News English",
+            "views": 110
+          },
+          {
+            "id": "qePkp8kYmRw",
+            "title": "How Old Is Weed? The Oldest Evidence Is a 2,800-Year-Old Tomb",
+            "channel": "Cosmic cat",
+            "views": 107
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 37,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 75.9,
+        "newest_hours": 12,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "allthatsinteresting.com",
+          "404media.co",
+          "hightimes.com",
+          "cannabisaficionado.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "X-Ray Discovery by Wilhelm Röntgen",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "While experimenting with a Crookes tube in 1895, Wilhelm Röntgen accidentally discovered rays that could see right through human flesh.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Conrad Röntgen",
+      "youtube_query": "wilhelm rontgen discovery x ray 1895",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794176962305,
+          "kind": "anniversary",
+          "id": 44
+        },
+        {
+          "title": "Today in History November 8 | 1895, X-Ray, & Wilhelm Conrad Röntgen - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNUVFqMFh3MW9RaEdVTWo3ZGpnWU03eU9oSzlzSmQtV29DaFpmUlVReXVIeTQyV0NoTnpqY1ZvTVJhUTFuN1Y5OEM0ZWlCSUV2bk1kVkE2Z0Z1TlpjZGVodW1RallEYzExVW03eDJVRWhseG5nam9SWGo5dXNRNkxkNDE0SG43RVJsdmNNd2piU19lNXRaWU1wSDZzaFR5ZHIxdEE?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilhelm Röntgen",
+        "daily_views": 487,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 71.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5th-Century Germanic Chieftain Burials in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        63,
+        88
+      ],
+      "hook": "Archaeologists in France just uncovered dazzling 5th-century warrior tombs complete with warhorses and pristine weapons.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Merovingian art archaeology",
+      "youtube_query": "fifth century warrior burials France archaeology",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 63
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 88
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 71,
+        "newest_hours": 0,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "2,500-Year-Old Mummified Crocodile Tomb in Egypt",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        80,
+        82
+      ],
+      "hook": "Deep inside a 2,500-year-old Egyptian tomb, archaeologists found a horrifying offering: ten perfectly mummified crocodiles sacrificed to the gods.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "Ancient Egyptian mummified crocodiles",
+      "youtube_query": "mummified crocodiles Egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 80
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 82
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.94
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 68.2,
+        "newest_hours": 3,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Maya Mercury Poisoning from Vermilion Paint",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        105
+      ],
+      "hook": "The ancient Maya used so much bright red mercury-based paint that they accidentally poisoned their own water reservoirs.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya red pigment",
+      "youtube_query": "Maya red paint mercury poisoning",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 105
+        },
+        {
+          "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794080776000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities left Coba and Xcach lakes toxic for centuries - Mix Vale",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPa01YTnkyMkl4MFdFYi1fcTYxQU1rN0xmZFNYUXdYMUtrVlFleTdLb2Q1Mmt1eDZkeUhONkMwQ0M5SmVoZm0ta0VyNGVtZmJZMDJWcGRSaVQwczI5TjVrUzlTMkpXT0ppQlVYTXVtNmc1aW9LazBZZlhVQ3lKYjZBWnYtNGZ4M3RtX3VvWGJkQ1oybzdDcklSVW9IcFJxZWlpUFBXWGtldnBRSE1vOHc?oc=5",
+          "domain": "mixvale.com.br",
+          "published_ms": 1794061751000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 89,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 66.9,
+        "newest_hours": 27,
+        "domains": [
+          "livescience.com",
+          "aroundprague.cz",
+          "mixvale.com.br"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of Philip II of Macedon's Tomb at Vergina",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "In 1977, archaeologist Manolis Andronikos unearthed the untouched tomb of Alexander the Great's father, Philip II of Macedon.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Vergina",
+      "commons_query": "Tombs of Vergina",
+      "youtube_query": "tomb of philip ii of macedon vergina",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794176962305,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Vergina",
+        "daily_views": 126,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 64.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Sunken Mongol Shipwreck and Gaming Dice off Japan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion fleet off the coast of Japan found everyday gaming dice left behind by sailors.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion scrolls",
+      "youtube_query": "sunken mongol shipwreck japan dice",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 98
+        },
+        {
+          "title": "Dice and Game Tiles Found Aboard a Mongol Warship Sunk Off Japan in 1281 - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZ3ZYUVkxc2U4MDhfRmxYVE5UNDEyVDJpTlJ3ZVExbmNoODMwNXZFeUEwdjlBSjNGdUFVbndPXzYyZlZPbnpCLWhFUEdaSkNWRVc1eXNoczdLaUxTcnlzVU00ZGEta2dNVmhsWl9yY1haSHhabFFIbjVrMWFjckxqRGg5bHl4OWdackIxQTlmRndtam1UXzNNTEN1ZWFjeWZCcjFxMVFMd01DaFRNZTZTYw?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1793898815000,
+          "kind": "news"
+        },
+        {
+          "title": "Dice, mahjong precursor cards found in 1281 Mongol invasion shipwreck off Nagasaki Pref. - 毎日新聞",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBESXhsaUt0Tmg2SG9qSWZqYUhSRWhWZ1FDQ3VsWnpvcnBfR0FwbFNGVXVDQlA3M2pQY1FwWExmdEdCRmdQX0JPVjdkeHVjdEZmSWVMTjd3STRrOGxCYllxSG1XeHYyZWszM19SeVdXS29pODg?oc=5",
+          "domain": "mainichi.jp",
+          "published_ms": 1793779074000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 90,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 61.5,
+        "newest_hours": 18,
+        "domains": [
+          "voiceofemirates.com",
+          "ancient-origins.net",
+          "mainichi.jp"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World's First Internet Murder (Sharee and Bruce Miller)",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a Michigan wife convinced her online lover to kill her husband, creating a chilling world first: the internet murder.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 5
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "first internet murder sharee bruce miller",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794176962305,
+          "kind": "anniversary",
+          "id": 9
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 61,
+        "competitors": [
+          {
+            "id": "wi17DR4xMdU",
+            "title": "She Was Faking The Whole Thing",
+            "channel": "Ray William Johnson",
+            "views": 313595
+          },
+          {
+            "id": "TW7zgJwM1VI",
+            "title": "Nobody Suspected the Grieving Wife - Until Her Online Lover Left a Letter From the Grave",
+            "channel": "njihaovocalara",
+            "views": 61
+          },
+          {
+            "id": "2VNzDAaoh7M",
+            "title": "The First Internet Murder: How a Chat Room Lie Ended in Death",
+            "channel": "Cold Archives",
+            "views": 16
+          },
+          {
+            "id": "4aATAbra3yo",
+            "title": "She Said Her Husband Was Abusive – Then a Former Detective Drove 800 Miles to Kill Him",
+            "channel": "Case Bound",
+            "views": 5
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 30,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 50,
+          "source_quality": 35
+        },
+        "total": 57.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1939 Venlo Incident",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1939, two British secret service agents walked straight into a Gestapo trap on the Dutch border, compromising entire spy networks.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Venlo Incident",
+      "commons_query": "Venlo Incident",
+      "youtube_query": "Venlo Incident 1939 intelligence",
+      "evidence": [
+        {
+          "title": "1939: Venlo Incident: Two British agents of SIS are captured by the Germans.",
+          "url": "https://en.wikipedia.org/wiki/Venlo_incident",
+          "domain": "wikipedia.org",
+          "published_ms": 1794176962305,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 119,
+        "competitors": [
+          {
+            "id": "52zsqGdAzPs",
+            "title": "🕵️ 1939: il Ratto di Venlo, la trappola nazista contro l’MI6",
+            "channel": "Dentro La Storia",
+            "views": 4651
+          },
+          {
+            "id": "00z6BzFMAUU",
+            "title": "Two British Spies Went To Meet A General Who Wanted Hitler Gone And Walked Into A Trap",
+            "channel": "World as History",
+            "views": 1696
+          },
+          {
+            "id": "l80PzO9WcQw",
+            "title": "The Venlo Incident: How Two British Spies Fell For a Fake N*zi Trap #WW2 #HistoryFacts #shorts",
+            "channel": "Ages & Empires",
+            "views": 437
+          },
+          {
+            "id": "DvupneWyk6I",
+            "title": "The Venlo Border Trap",
+            "channel": "Blocked History",
+            "views": 301
+          },
+          {
+            "id": "jeZKjbI0eU0",
+            "title": "Why Did Venlo Capture British Agents in 1939? #Shorts",
+            "channel": "Declassified Ledger",
+            "views": 119
+          },
+          {
+            "id": "h1NiOHGaCIE",
+            "title": "The Venlo Incident: How the SS Destroyed Britain’s Spy Network in 1 Hour",
+            "channel": "PastHistorii",
+            "views": 39
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 35,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 57.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Georg Elser's Narrow Miss Assassination of Hitler",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        34
+      ],
+      "hook": "In 1939, Adolf Hitler left a Munich beer hall just 13 minutes before a meticulously crafted time bomb tore the building apart.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Georg Elser",
+      "commons_query": "Georg Elser",
+      "youtube_query": "Georg Elser Hitler assassination attempt 1939",
+      "evidence": [
+        {
+          "title": "1939: In Munich, Adolf Hitler narrowly escapes the assassination attempt of Georg Elser while celebrating the 16th anniversary of the Beer Hall Putsch.",
+          "url": "https://en.wikipedia.org/wiki/Munich",
+          "domain": "wikipedia.org",
+          "published_ms": 1794176962305,
+          "kind": "anniversary",
+          "id": 34
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 55,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Georg Elser's Narrow Miss: The 1939 Munich Beer Hall Bombing"
+      ],
+      "wave": 1
+    }
+  ]
+}
