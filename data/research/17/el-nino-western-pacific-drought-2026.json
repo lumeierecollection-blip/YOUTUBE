@@ -1,0 +1,90 @@
+{
+  "topic_slug": "el-nino-western-pacific-drought-2026",
+  "strongest_angle": "The World Meteorological Organization and regional Pacific forums report that the strengthening 2026 El Niño event is causing severe below-normal rainfall from Palau to the Marshall Islands, with Fiji reporting critical water shortages affecting thousands of people.",
+  "key_facts": [
+    {
+      "fact": "The World Meteorological Organization announced in November 2026 that a strengthening El Niño is causing below-normal rainfall from Palau to the Marshall Islands.",
+      "source_url": "https://wmo.int/media/news/western-pacific-faces-drier-months-el-nino-strengthens",
+      "source_name": "World Meteorological Organization",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fiji's Minister for Meteorological Services Ro Filipe Tuisawau reported in Parliament that 19 of the 44 monitored water sources are at critical levels.",
+      "source_url": "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip",
+      "source_name": "Pacific Media Network",
+      "confidence": "high"
+    },
+    {
+      "fact": "About 24,600 people in Fiji are on intermittent water supply or relying on water carting due to the deepening El Niño drought.",
+      "source_url": "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip",
+      "source_name": "Pacific Media Network",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 19th Pacific Islands Climate and Ocean Forum stated that the 2026 El Niño is likely to exceed the strength of all previous events recorded since 1950.",
+      "source_url": "https://www.pacificrcc.net/sites/default/files/2026-10/PICOF_19-Regional_Statement_final.pdf",
+      "source_name": "Pacific Islands Climate and Ocean Forum",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Monitored water sources at critical levels in Fiji",
+      "value": 19,
+      "unit": "sources",
+      "source_url": "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip"
+    },
+    {
+      "label": "Total monitored water sources in Fiji",
+      "value": 44,
+      "unit": "sources",
+      "source_url": "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip"
+    },
+    {
+      "label": "People on intermittent supply or water carting in Fiji",
+      "value": 24600,
+      "unit": "people",
+      "source_url": "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip"
+    },
+    {
+      "label": "Start year for historical El Niño records",
+      "value": 1950,
+      "unit": "year",
+      "source_url": "https://www.pacificrcc.net/sites/default/files/2026-10/PICOF_19-Regional_Statement_final.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Fijian Parliament has been told 19 of the 44 monitored water sources are now at critical levels, and about 24,600 people are on intermittent supply or relying on water carting.",
+      "speaker": "Elenoa Turagaiviu",
+      "source_name": "Pacific Media Network",
+      "source_url": "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "World Meteorological Organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Palau",
+      "kind": "place"
+    },
+    {
+      "name": "Marshall Islands",
+      "kind": "place"
+    },
+    {
+      "name": "Fiji",
+      "kind": "place"
+    },
+    {
+      "name": "Ro Filipe Tuisawau",
+      "kind": "person"
+    },
+    {
+      "name": "Secretariat of the Pacific Regional Environment Programme",
+      "kind": "organization"
+    }
+  ]
+}
