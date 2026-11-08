@@ -273,7 +273,12 @@
       "attempts": 1,
       "run_id": "42532551931",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:56:49.049Z"
+      "updated_at": "2026-11-08T22:58:40.015Z",
+      "stage": "research",
+      "topic": "Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird",
+      "score": 80.2,
+      "pillar": "Events that changed the modern world",
+      "hook": "Scientists thought this colossal bird went extinct thousands of years ago—until DNA proved a 150-year-old blunder."
     }
   },
   "uploads": [],
@@ -547,6 +552,15 @@
       "at_ms": 1794178512195,
       "score": 74.8,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "1",
+      "topic": "Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird",
+      "slug": "ancient-dna-exposes-150-year-old-mistake-about-extinct-giant",
+      "slot": "kick-ac6017aec3-ch1",
+      "at_ms": 1794178720015,
+      "score": 80.2,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
