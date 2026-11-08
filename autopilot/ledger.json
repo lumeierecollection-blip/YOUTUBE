@@ -51,6 +51,14 @@
       "pillar": "Archaeological discoveries",
       "hook": "On this day in 1977, Greek archaeologist Manolis Andronikos unsealed the untouched tomb of Alexander the Great's father, Philip II.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 3 \"Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends failed him entirely.\" — The viewer does not know what 'local legends' refers to or why they would be expected to help.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence."
+    },
+    "kick-231df8257a-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42525314744",
+      "trigger": "push",
+      "updated_at": "2026-11-08T21:35:34.904Z"
     }
   },
   "uploads": [],
@@ -108,5 +116,5 @@
     "Hidden Past kick-22917e108d-ch1 failed at script: script failed its gates 4 times:   - CLAIM: sentence 5 \"However, his wife panicked after seeing 1 hand X-ray.\" — the claim \"Röntgen | had a | wife\" is not in the research (Research names Anna Bertha R",
     "Hidden Past kick-f7e02ae45f-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 3 \"Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends "
   ],
-  "last_poll_at": "2026-11-08T21:27:27.836Z"
+  "last_poll_at": "2026-11-08T21:35:34.904Z"
 }
