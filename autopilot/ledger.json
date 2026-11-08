@@ -245,12 +245,12 @@
       "attempts": 1,
       "run_id": "42532120062",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:50:57.175Z",
-      "stage": "script",
-      "topic": "2,000-year-old Roman settlement and secret jewelry workshop found under Welsh housing estate",
-      "score": 81.8,
+      "updated_at": "2026-11-08T22:51:50.498Z",
+      "stage": "research",
+      "topic": "Monumental medieval cathedral uncovered at Old Dongola in Sudan",
+      "score": 72.6,
       "pillar": "Archaeological discoveries",
-      "hook": "Homeowners had no idea an ancient Roman jewelry workshop was buried right beneath their houses."
+      "hook": "Archaeologists just dug up a massive lost medieval cathedral hiding in plain sight at Old Dongola."
     }
   },
   "uploads": [],
@@ -505,6 +505,15 @@
       "slot": "kick-b2d8d2e590-ch1",
       "at_ms": 1794178251193,
       "score": 81.8,
+      "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "Monumental medieval cathedral uncovered at Old Dongola in Sudan",
+      "slug": "monumental-medieval-cathedral-uncovered-at-old-dongola-in-su",
+      "slot": "kick-b2d8d2e590-ch1",
+      "at_ms": 1794178310498,
+      "score": 72.6,
       "pillar": "Archaeological discoveries"
     }
   ],
