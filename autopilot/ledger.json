@@ -151,7 +151,12 @@
       "attempts": 1,
       "run_id": "42529623655",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:19:18.425Z"
+      "updated_at": "2026-11-08T22:20:34.058Z",
+      "stage": "research",
+      "topic": "Elderly Lose $450k to Deepfake Scams",
+      "score": 83.2,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "An 88-year-old lost $450,000 to an AI deepfake scam—and his bank won't refund a cent."
     }
   },
   "uploads": [],
@@ -317,6 +322,15 @@
       "at_ms": 1794175836208,
       "score": 64.1,
       "pillar": "Secret operations and evidence-backed conspiracies"
+    },
+    {
+      "channel": "2",
+      "topic": "Elderly Lose $450k to Deepfake Scams",
+      "slug": "elderly-lose-450k-to-deepfake-scams",
+      "slot": "kick-52129c5e87-ch2",
+      "at_ms": 1794176434058,
+      "score": 83.2,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
