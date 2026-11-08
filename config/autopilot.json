@@ -279,6 +279,7 @@
   },
   "vox": {
     "halftone_opacity": 0.1,
+    "base_saturation": 0.45,
     "photo_width": 960,
     "photo_height": 1120,
     "photo_x": 60,

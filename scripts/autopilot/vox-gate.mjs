@@ -125,7 +125,7 @@ async function colourStats(file, rect) {
   // Fine detail energy: the difference from a local average, which grain and halftone both raise.
   let hf = 0, hc = 0;
   for (let y = 2; y < H - 2; y += 5) for (let x = 2; x < W - 2; x += 5) { hf += Math.abs(lumAt(x, y) - (lumAt(x - 2, y) + lumAt(x + 2, y) + lumAt(x, y - 2) + lumAt(x, y + 2)) / 4); hc++; }
-  return { saturation: Math.round((sat / n) * 1000) / 1000, corner_over_center: Math.round((corners / Math.max(1, center)) * 1000) / 1000, fine_detail: Math.round((hf / hc) * 100) / 100 };
+  return { saturation: Math.round((sat / n) * 1000) / 1000, corners, center, fine_detail: Math.round((hf / hc) * 100) / 100 };
 }
 
 async function accentPixels(file, box, rgb) {
@@ -166,11 +166,14 @@ export async function voxGate({ mp4, dir, outDir, productionId }) {
       const sourceLuma = await luma(srcResized);
       const htTreated = halftonePeak(treatedLuma), htSource = halftonePeak(sourceLuma);
       r.measured.grade = { treated: treated.saturation, source: source.saturation };
-      r.measured.vignette = { treated: treated.corner_over_center, source: source.corner_over_center };
+      // Corners must lose more light than the centre did. A ratio of ratios, so a bright-backed photo cannot read as "no vignette".
+      const cornerLoss = treated.corners / Math.max(1, source.corners), centerLoss = treated.center / Math.max(1, source.center);
+      const vignetteRatio = Math.round((cornerLoss / Math.max(0.01, centerLoss)) * 1000) / 1000;
+      r.measured.vignette = { corner_light_kept: Math.round(cornerLoss * 1000) / 1000, centre_light_kept: Math.round(centerLoss * 1000) / 1000, ratio: vignetteRatio };
       r.measured.halftone = { treated: htTreated, source: htSource };
       r.measured.grain = { treated: treated.fine_detail, source: source.fine_detail };
       if (source.saturation > 0.12 && treated.saturation > source.saturation * 0.92) fail(s.scene, "grade", `saturation ${treated.saturation} not reduced from ${source.saturation}`);
-      if (treated.corner_over_center > source.corner_over_center * 0.97) fail(s.scene, "vignette", `corners/centre ${treated.corner_over_center} vs source ${source.corner_over_center}`);
+      if (vignetteRatio > 0.95) fail(s.scene, "vignette", `corners kept ${r.measured.vignette.corner_light_kept} of their light, centre ${r.measured.vignette.centre_light_kept}`);
       if (htTreated.peak_over_median < Math.max(40, htSource.peak_over_median * 1.3)) fail(s.scene, "halftone", `dot-screen peak ${htTreated.peak_over_median} vs source ${htSource.peak_over_median}`);
       if (treated.fine_detail < source.fine_detail * 1.05) fail(s.scene, "grain", `fine detail ${treated.fine_detail} vs source ${source.fine_detail}`);
       if (annotation) {
