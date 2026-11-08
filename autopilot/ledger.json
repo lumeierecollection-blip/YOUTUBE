@@ -266,6 +266,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "Can you trust an AI cooking assistant with your dinner? NYT Cooking just failed the test.",
       "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts:\n  - SCR-17 STRICT (strict_visual channel): 4 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame ca"
+    },
+    "kick-ac6017aec3-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42532551931",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:56:49.049Z"
     }
   },
   "uploads": [],
@@ -563,5 +571,5 @@
     "Hidden Past kick-b2d8d2e590-ch1 failed at assets: 2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images",
     "AI Tested kick-8dd74ac976-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts"
   ],
-  "last_poll_at": "2026-11-08T22:53:52.305Z"
+  "last_poll_at": "2026-11-08T22:56:49.049Z"
 }
