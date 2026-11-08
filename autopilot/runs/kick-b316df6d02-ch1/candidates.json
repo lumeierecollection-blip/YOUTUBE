@@ -1,0 +1,1632 @@
+{
+  "generated_at": "2026-11-08T22:44:32.880Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 88
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "google-news:Strange inventions and lost technology",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:Historical disasters and survival stories",
+          "ok": true,
+          "items": 6
+        },
+        {
+          "source": "google-news:Ancient civilisations and discoveries",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:Unbelievable true historical events",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "google-news:Unsolved historical mysteries",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:Secret operations and evidence-backed conspiracies",
+          "ok": true,
+          "items": 4
+        },
+        {
+          "source": "google-news:Events that changed the modern world",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:Archaeological discoveries",
+          "ok": true,
+          "items": 52
+        },
+        {
+          "source": "google-news:Forgotten historical figures",
+          "ok": true,
+          "items": 29
+        },
+        {
+          "source": "google-news:Historical facts that challenge common assumptions",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "How Maya Civilisation Poisoned Its Own Water with Mercury",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        105
+      ],
+      "hook": "The ancient Maya used so much bright red cinnabar paint that they accidentally poisoned their own water supply.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya red paint cinnabar",
+      "youtube_query": "maya mercury water poisoning red paint",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 105
+        },
+        {
+          "title": "Ancient Maya unknowingly poisoned Yucatán water with mercury - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNDY4bVBSZ3AzLWd6NVVwSlpTSHpmYmxhb1ZKdkxPajZiajZfUV9IWWlxWGVVSndubEZLYVlxQ1pnR3NpRnAtMUNXSjY1NWt0YlFhbGVTUFhhZGhzei1KYkhTRWIxVU5McUltU052NDlWN1dubTNaR1RYU3BTd0ZOQjBlaEljdHdlTGo0SEZwZDU3cDRHbGpmbUlraUdFYlZudVBDanJrbmVEaGQ4dTFnRUtiM0RFSTkxbUp2QVUxUmNkaklwRlU2Z1Q2UkVER1hGNkQ3QTVtSW9XeWRLelE?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794080776000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 11,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 66,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 76.2,
+        "newest_hours": 27,
+        "domains": [
+          "livescience.com",
+          "aroundprague.cz"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Rare 5th-Century Germanic Chieftain Burials in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        71,
+        88
+      ],
+      "hook": "Dazzling weapons and sacrificed warhorses reveal the forgotten power of 5th-century Germanic chieftains.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Germanic peoples",
+      "commons_query": "Germanic warrior burial",
+      "youtube_query": "5th century warrior burials france",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 71
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 88
+        }
+      ],
+      "wikipedia": {
+        "title": "Germanic peoples",
+        "daily_views": 1004,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 934,
+        "competitors": [
+          {
+            "id": "RviKrPdMNhQ",
+            "title": "2,500-Year-Old Warrior Helmet Discovered in Croatia",
+            "channel": "This is Ancient",
+            "views": 228909
+          },
+          {
+            "id": "5DaeHFDz3IA",
+            "title": "Inside Indonesia: Islam, Power and Democracy 🕌⚡",
+            "channel": "Best Documentary",
+            "views": 115089
+          },
+          {
+            "id": "VDaVwfbMtpI",
+            "title": "Could You Survive as an Anglo-Saxon Warrior? Life in the Dark Ages",
+            "channel": "Odyssey - Ancient History Documentaries",
+            "views": 17844
+          },
+          {
+            "id": "6dnVec73uR8",
+            "title": "History Mysteries #8: Buried With Swords and Horses — Who Were They? #shorts ⚔️",
+            "channel": "True Science Daily",
+            "views": 1170
+          },
+          {
+            "id": "-G2ihljlcRo",
+            "title": "Scientists Compared Anglo-Saxon DNA To Modern English DNA — One Result Shocked Everyone",
+            "channel": "The Secret Archive",
+            "views": 934
+          },
+          {
+            "id": "WAK319gCU10",
+            "title": "DNA Reveals the IRISH Weren’t Who We Thought",
+            "channel": "Untold History",
+            "views": 891
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.9,
+        "newest_hours": 0,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Cannabis Use in 2,800-Year-Old Siberian Monument",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        90,
+        94
+      ],
+      "hook": "Ancient leaders in Siberia left behind ritual cannabis use that rewrites what we know about their society.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "",
+      "youtube_query": "cannabis siberian monument ancient tomb",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - ABC17NEWS",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMW5sa0E1ZzJmeC04Y3NSZ2VHMnFDT0ZfZE5aTUtUdlVOQlQtRk5Cbl9mQ3BpMmotX21veG5nZmZwUTFRTTB6MnVZMllfUlZuVmRFRXNQandPZHhQNFpyRmZ3c2RHX1NGNWpWQ0QyRmRVOTBsZVRFdWxyWlpQWnNHc0ZHVkZwUWFRN1llOWxBSTZ0cDJ6cW51d1Exd19BenZFdnhCNjNTNUNpV0pi?oc=5",
+          "domain": "abc17news.com",
+          "published_ms": 1793906342000,
+          "kind": "news"
+        },
+        {
+          "title": "Human Hair in a 2,800-Year-Old Tomb Points to What May Be the Earliest Known Cannabis High - Discover Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNS1A5VVVDY1JteVBsZjNKNkpEQzc1N3ZkeXp5X1BOSzJOWFNUakU2WG41SUxrdVdFMEg4SVM0YS1LemZobHI5dE5zalM0eWRLYTNjZm9pd28tZXRtSWg1NGdPZjMwYy1YZDhuWmFuRFJXRWxiMENTc0RQSmQ1dzJaNWVTS21HWTVxbURObTdEdFM2YjVELU1HcDBZeFo5X21wdXhNTkdjeWxZNDZrdFNfelk1clZ6UXYzQV9Ic001U1pmTnhRUEFDMg?oc=5",
+          "domain": "discovermagazine.com",
+          "published_ms": 1793919808000,
+          "kind": "news"
+        },
+        {
+          "title": "In a 2,800-year-old Siberian tomb, researchers found about 1,000 cannabis seeds and chemical traces in hu - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMingNBVV95cUxQc1k2QnF2bC1BcjU0dngwZVkwWEtLcHVRQndOUmF4ZWpSRURUU3FrWFpMaG12cTZxU1hjaVZXZnMydVRWb25YVGNpTGFXWDVPT01uVGNkenZBbHVmRklPTllVb01heUxQTThFSVlRNU1PUDJtYlhfMWpWVVQ2UXBNNEJFaC0tTGxxVkswU1VoRHhjN3JVc2I5VGVLZ1B5dlpjQWNvYU5ZNHRlTFNMRVl4cDJPbDZRdThzbnNFVFp3R2pmS1Vla3ZuWnYxSDNnc3pUMm5wa0NxWVJyMm1rM1hZUzMxRVdUUjVqMHR0dTcySnhtbTA5RHBXaUZfUVFlczVlTkdPWE9lS2hzX0lUaTdtMlRwRDgwRy1lQ1dia2dHUzI0eHZvSUdHSGlGUXdGc2tubXV3RlhielJDZmZEWS14SHZ0WHFwTnY0UkVMbnVCVWROSmZnX0NHcWlLaExIU2NjckVWMDdEYTdrdE5EaVhBNE9KUjdfMmU3VEt4WGhpSWxqVVl6WlVnV3c3VGZTOHNnTV9kZkNQR19OX0s0TUHSAaMDQVVfeXFMTXBfWTNhZU9uMFZVUFJBTm8xbDAyeldVRVJaMjZwXzVJb0h2anRZdU90bUtmQXNRc0hVR0hMaDgxemtRUERscXNxcXNtMG5lcDluNnBOdm1PMGZ5akd3MGM3SFlabmdITlYteTR3WXphenJYSHJVUG1LUkljQUE3WTRIM3luT2dsSjhVcTFVR2p0N2VwZXpxOV9ZM2FpMkdpbFdfREI4Wk1QVTlxQWUzUVkzQUpuZWNteGpzM1FaVHV0V2hPX3UyVGFRd3dnMmdjQ3ZBQ29kZUtzLWlBMW1sWV91czJTbW55UVBuS2VJMU9MT1A3TExuakJ2S3RQdFhZTkpqeWp4akx2NXA1amltcmJYSGpNM1c0XzZkS2VJOERxVzdJODVLNzR4aG96Z2p4SkNLMXA5VFdmTE5aWUZsQmNfNXljc1dSVmZxNENHbEZIQ0tZalBvUUtEeFZMQ09taW01WThJTmthdWhFZFZmRjQta0FlU2RyN09uc3paQUNnOG9LdER0N1FJSHZrU1NNQ3dxdnJqSjM2QUF2SkRWeWFOaVE?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794165840000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists uncover cannabis from 2,800-year-old Siberian tomb, may have ritual ties - Interesting Engineering",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQTWttcTU5TU9WS2pDVjcyb0w0ejBScm5KcXZrd1U5cE1QSUg1cmR4bGtGM2V3UGdZR2F5MUx4UWUtRHZscHh2RUlpLUszTjlOeGtPaDB2S3FkazhucVV6Y0NpSFVKTVFFZ1h3SlU3eXNMZWtrWG4ySDM3a0ZwSmtXNGpocDk2bWNTWVYyRFE4dlVBZ0U?oc=5",
+          "domain": "interestingengineering.com",
+          "published_ms": 1794149580000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Scythian Tomb Reveals Evidence of Ancient Cannabis Use in Siberia - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQaWJzYkpJRS1RdVBfakd2ZFZkWDZUQTJnbjZUN1l0d25FZWpzSy1VdFUza21MLTJVcG1WaFRNQnNhLW1sekV5QlU5dDZyc19BbEZ6Mk9FdUhEcm8xT3dhUWRQT21UWjlZSUE1WnFGNHlobWJvYzYtbjVoSTc0ZkNtVmFFQkgzYXd5WGV4R080bmhTc2xOZV9ZbXliSEtHaUZVQXk0Uw?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793914798000,
+          "kind": "news"
+        },
+        {
+          "title": "Seeds and Hair Suggest Cannabis Use in a 2,800-Year-Old Scythian Tomb - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQVlJGZU5BOV9McHA4Y2RFY0ZvVkxnaFQ1N1lheFYzOG9uY1N6SGY5NkNJNzBibFBCbkN0ZnNjUTNQdW9xTE5DY3EtaXhueTZ6THRKLTI2R2tlM1lsNHJ5QzU0VzU4clk4MG1SUVQtY2xjenBHMWNXeWxVZXVncXBfdVlwWTR1bHBXbDRWazViSkxHSzZQOWNpc19XVWp5NHk2VGlqMlhlM3pBdw?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1793985216000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 71.6,
+        "newest_hours": 3,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "sciencealert.com",
+          "popsci.com",
+          "abc17news.com",
+          "discovermagazine.com",
+          "timesofindia.indiatimes.com",
+          "interestingengineering.com",
+          "arkeonews.net",
+          "ancient-origins.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Georg Elser's Narrows Miss: The Clockwork Bomb That Almost Killed Hitler in 1939",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        34
+      ],
+      "hook": "Adolf Hitler narrowly escaped death by just 13 minutes in 1939 after a lone German carpenter spent a year secretly building a bomb into a pillar in Munich.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Georg Elser",
+      "commons_query": "Georg Elser",
+      "youtube_query": "Georg Elser bomb Hitler 1939",
+      "evidence": [
+        {
+          "title": "1939: In Munich, Adolf Hitler narrowly escapes the assassination attempt of Georg Elser while celebrating the 16th anniversary of the Beer Hall Putsch.",
+          "url": "https://en.wikipedia.org/wiki/Munich",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 34
+        }
+      ],
+      "wikipedia": {
+        "title": "Georg Elser",
+        "daily_views": 232,
+        "ratio": 1.19
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 47,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 69.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Battle of Hayes Pond: How Armed Lumbee Native Americans Rout the Ku Klux Klan",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        86
+      ],
+      "hook": "When hundreds of Ku Klux Klan members gathered for a rally in North Carolina, they didn't expect an armed community of Lumbee Native Americans to fight back and chase them off.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Battle of Hayes Pond",
+      "commons_query": "Battle of Hayes Pond",
+      "youtube_query": "Battle of Hayes Pond KKK defeat",
+      "evidence": [
+        {
+          "title": "Why Is the Battle of Hayes Pond a Forgotten Civil Rights Triumph? - TheCollector",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5qdXZYa1hsR1Uyc1MxcGF5Z0FJWnFmdjNuZUJrSEFjM2lWdUVnUlBxRGNLN2V2R2dqNk5Ba1g4QzJnNFpBY0R1UGxCTjE3N1lDNFVFbGE4Mnk4ZU04eUZuYWFBN0t2RGVOWUdRMFJqOHEyRmFrd0lN?oc=5",
+          "domain": "thecollector.com",
+          "published_ms": 1794072508000,
+          "kind": "news",
+          "id": 86
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of Hayes Pond",
+        "daily_views": 79,
+        "ratio": 1.03
+      },
+      "youtube": {
+        "median_views": 118796,
+        "competitors": [
+          {
+            "id": "p9fHs9GfHL0",
+            "title": "Honoring all our Native American Marines #usmc #usmarines #veteran  #marinecorps",
+            "channel": "USMC Power",
+            "views": 344299
+          },
+          {
+            "id": "hp_QpR80GHI",
+            "title": "⚡¡Otros luchan por sobrevivir! Él obtiene armas míticas con su móvil y conquista a bellas jugadoras!",
+            "channel": "Leyendas en Drama",
+            "views": 118796
+          },
+          {
+            "id": "62kiroHQK9k",
+            "title": "Day One in This Dynasty, I Woke Up Framed for Murder. One Brush of Powder and the Real Killer Knelt.",
+            "channel": "Flipside Cinema",
+            "views": 389
+          },
+          {
+            "id": "PKgp3Te1uC0",
+            "title": "The Night 500 Lumbee Men Chased the KKK Out of a Field",
+            "channel": "Factsvids",
+            "views": 161
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 61,
+          "reach": 66,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 0
+        },
+        "total": 68.5,
+        "newest_hours": 29,
+        "domains": [
+          "thecollector.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "World's Oldest Gold Treasure Discovered in Europe",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        75
+      ],
+      "hook": "Archaeologists uncovered the oldest gold treasure in human history, and its origins will shock you.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Varna Necropolis",
+      "commons_query": "Varna gold treasure",
+      "youtube_query": "oldest gold treasure europe varna",
+      "evidence": [
+        {
+          "title": "World’s Oldest Gold Treasure Discovered in Europe - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRWlpvU0Z0V0hJMHA0QWRRUDZzcU4yM0t1ejY5RlN6V1I4UzRBRjJaVFBFbTRSRjZLckEybm9rR1ZURURSSTM1NEEtdm51VW1oN0VvM2NZN2I3Q1dfS25uRk4xX3RMQ0NtZmM1cHRhdFlIV0FjeW9KNFQtTQ?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794174221000,
+          "kind": "news",
+          "id": 75
+        }
+      ],
+      "wikipedia": {
+        "title": "Varna Necropolis",
+        "daily_views": 159,
+        "ratio": 1.24
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 67.6,
+        "newest_hours": 1,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Discovery of the Tomb of Philip II of Macedon",
+      "pillar": "Anniversary of historic discovery",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "How one Greek archaeologist stumbled upon the untouched tomb of Alexander the Great's father.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Vergina",
+      "commons_query": "Tomb of Philip II of Macedon",
+      "youtube_query": "tomb of philip ii of macedon vergina",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Vergina",
+        "daily_views": 126,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 64.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 10,500-Year-Old Submerged Wooden Settlement Discovered in a German Lake",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        94
+      ],
+      "hook": "Deep beneath the waters of a German lake, archaeologists uncovered remarkably preserved wooden remains dating back 10,500 years to a forgotten prehistoric settlement.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "submerged prehistoric settlement Germany lake",
+      "evidence": [
+        {
+          "title": "10,500-year-old wooden remains in German lake points to submerged prehistoric settlement - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOYlBiLW14UmJqVDBhdmpaTWcxUU9jN1lLYlFpSlJtUVJuZ0thM3pYanZYTmFUOGt5dlluOG9PRGU4TjFwSWZEWmNLaVlpdVhWeDlURzIwdS05YVliZ0tuZEVEMzlwOEk4aXh2SWZZTGxnYXl1VjJsSmxQVXR0ZGJTSjVOWXhVVGtaOGhBSmVwalRYcWJYTVUxazFFdmV6TDdSRmlaQndiTTEyQWhhcWFPNmpkakdZb0ZLU0VhenFzLXNhR2xrZmNNU0lrZ2w?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794005779000,
+          "kind": "news",
+          "id": 94
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 106,
+        "competitors": [
+          {
+            "id": "u-kRdHPWxoA",
+            "title": "Scientists dive into this German lake. THEN something UNBELIEVABLE happens!",
+            "channel": "AstroTim Universe",
+            "views": 61689
+          },
+          {
+            "id": "v68aKr5K_6w",
+            "title": "Why Are 170 Giant Stone Mounds Lined Up Beneath a Lake Lake Constance",
+            "channel": "Life Beyond Seen",
+            "views": 1437
+          },
+          {
+            "id": "0PTnSpyKk7o",
+            "title": "The Prehistoric Underwater Lakes That Kill Everything They Touch",
+            "channel": "Wild Sparks",
+            "views": 403
+          },
+          {
+            "id": "xVj2gRT4W7s",
+            "title": "Britain Wasn't Always an Island: The Lost Land Under the North Sea",
+            "channel": "Terra Trivia",
+            "views": 165
+          },
+          {
+            "id": "PrH2lmRI9w8",
+            "title": "Archaeologists Found Something 10,500 Years Old Beneath a German Lake",
+            "channel": "HISTORICAL ",
+            "views": 106
+          },
+          {
+            "id": "KURy8PWdDMI",
+            "title": "10,500 Year Old Wood May Rewrite the History of Early Homes",
+            "channel": "Key Update News",
+            "views": 90
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 65,
+          "reach": 34,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 64.1,
+        "newest_hours": 48,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Stock Market Crash of 1929 and the Start of the Great Depression",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        37,
+        38
+      ],
+      "hook": "When the US stock market collapsed in 1929, it triggered a decade of economic despair that completely reshaped American society and politics.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Wall Street Crash of 1929",
+      "commons_query": "Wall Street Crash of 1929",
+      "youtube_query": "Wall Street Crash 1929 Great Depression",
+      "evidence": [
+        {
+          "title": "1933: Great Depression: New Deal: US President Franklin D. Roosevelt unveils the Civil Works Administration, an organization designed to create jobs for more than four million unemployed.",
+          "url": "https://en.wikipedia.org/wiki/Great_Depression",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 37
+        },
+        {
+          "title": "1932: Franklin D. Roosevelt is elected as the 32nd President of the United States, defeating incumbent president Herbert Hoover.",
+          "url": "https://en.wikipedia.org/wiki/Franklin_D._Roosevelt",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 38
+        }
+      ],
+      "wikipedia": {
+        "title": "Wall Street Crash of 1929",
+        "daily_views": 251,
+        "ratio": 0.83
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 48,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 63.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Wilhelm Röntgen and the Accidental Discovery of X-Rays",
+      "pillar": "Anniversary of historic discovery",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "A glowing chemical plate in a dark lab accidentally revealed the skeleton inside a living human hand.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Röntgen",
+      "youtube_query": "wilhelm roentgen discovery x ray",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 44
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilhelm Röntgen",
+        "daily_views": 487,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 62.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "10 Mummified Crocodiles Found in a 2,500-Year-Old Egyptian Tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        80,
+        82
+      ],
+      "hook": "Why did ancient Egyptians mummify massive crocodiles and hide them in a secret tomb?",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile in ancient Egypt",
+      "commons_query": "Mummified crocodile",
+      "youtube_query": "mummified crocodiles egypt tomb",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 80
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 82
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 62.5,
+        "newest_hours": 3,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Sunken Mongol Invasion Fleet Yields Ancient Dice and Games",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "Divers found dice and gaming pieces inside a sunken Mongol invasion fleet off the coast of Japan.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion of Japan shipwreck",
+      "youtube_query": "sunken mongol ship japan dice",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 98
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": {
+        "median_views": 319,
+        "competitors": [
+          {
+            "id": "BaE18OtnrDg",
+            "title": "「元寇の船」3隻目の全容を解明　”全長30メートル”これまでで最大級か　麻雀起源の遊び道具も初発見　長崎県松浦市・鷹島沖",
+            "channel": "RKB毎日放送NEWS",
+            "views": 116207
+          },
+          {
+            "id": "O0XiLtAQ6_8",
+            "title": "🔥A Stunning Red Army Victory Shocks Zhang Xueliang | The Great Long March 伟大的长征 | iQIYI",
+            "channel": "iQIYI 爱奇艺 - Get the iQIYI APP",
+            "views": 14421
+          },
+          {
+            "id": "f0zgnv4o4LE",
+            "title": "Samuráis vs. Mongoles: La Verdad Sobre Por Qué Los Mongoles No Conquistaron Japón",
+            "channel": "Rastros de la Humanidad",
+            "views": 4207
+          },
+          {
+            "id": "hwgvJ2iWWbY",
+            "title": "A Typhoon Sank Kublai Khan's Fleet in 1281. Divers Just Found the Crew's Dice #shorts",
+            "channel": "Hidden World Facts",
+            "views": 1036
+          },
+          {
+            "id": "i4NptDUNpeA",
+            "title": "745-year-old dice found in Kublai Khan's sunken fleet #shorts #japan #history",
+            "channel": "Descubriendo el Mundo con Aiden",
+            "views": 319
+          },
+          {
+            "id": "uO2RKhnBCeU",
+            "title": "Un tifón hundió la flota de KUBLAI KAN… y el mar reveló que MUCHOS barcos eran de río 🇯🇵🌊",
+            "channel": "Historia Raíz ",
+            "views": 233
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 46,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 61.7,
+        "newest_hours": 18,
+        "domains": [
+          "voiceofemirates.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Trent Affair: Nearly Causing a Civil War and British Intervention",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        48
+      ],
+      "hook": "When a US warship boarded a British mail packet, it nearly dragged the British Empire into the American Civil War.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Trent Affair",
+      "commons_query": "Trent Affair",
+      "youtube_query": "trent affair american civil war",
+      "evidence": [
+        {
+          "title": "1861: American Civil War: The \"Trent Affair\": The USS San Jacinto stops the British mail ship Trent and arrests two Confederate envoys, sparking a diplomatic crisis between the UK and US.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 48
+        }
+      ],
+      "wikipedia": {
+        "title": "Trent Affair",
+        "daily_views": 178,
+        "ratio": 1.22
+      },
+      "youtube": {
+        "median_views": 109,
+        "competitors": [
+          {
+            "id": "i7tvyrfRvEk",
+            "title": "When the U.S. Navy Boarded a British Ship | The Trent Affair",
+            "channel": "Holistic History Pod",
+            "views": 603
+          },
+          {
+            "id": "Uuzf1lN5sj4",
+            "title": "How Britain could have entered the Civil War – The Trent Affair",
+            "channel": "History Federation",
+            "views": 308
+          },
+          {
+            "id": "EdSfvElSbAM",
+            "title": "The Trent Affair Hidden Footnote",
+            "channel": "hidden stories in history",
+            "views": 237
+          },
+          {
+            "id": "zaoxbpmBQvY",
+            "title": "America Nearly Went to War With Britain Over This Ship 🚢",
+            "channel": " Curio Scope 143",
+            "views": 177
+          },
+          {
+            "id": "Abz6B8P5_0E",
+            "title": "The Trent Affair Explained on a Map #Shorts",
+            "channel": "Forgotten Chapter USA",
+            "views": 109
+          },
+          {
+            "id": "XRIrIMTJNEA",
+            "title": "The 1861 Trent Affair Almost Forced the US into a War with Britain During the Civil War",
+            "channel": "Javier Senquiz",
+            "views": 84
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 38,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 59.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Trent Affair: Civil War Diplomatic Crisis"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1939 Venlo Incident: When Nazi Agents Kidnapped British Intelligence Officers",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1939, German secret agents successfully tricked and captured two top British intelligence officers right across the Dutch border in a daring operation.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Venlo Incident",
+      "commons_query": "",
+      "youtube_query": "Venlo Incident 1939 intelligence capture",
+      "evidence": [
+        {
+          "title": "1939: Venlo Incident: Two British agents of SIS are captured by the Germans.",
+          "url": "https://en.wikipedia.org/wiki/Venlo_incident",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Venlo Incident",
+        "daily_views": 18,
+        "ratio": 0.99
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 26,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 59.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Wych Elm Mystery: The Unsolved 1943 Murder That Left 'Who put Bella in the Wych Elm?' Graffitied for Decades",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        100
+      ],
+      "hook": "In 1943, four boys found a human skeleton stuffed inside a hollow tree in England—sparking an eerie decades-long mystery asking 'Who put Bella in the Wych Elm?'",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Who put Bella in the Wych Elm?",
+      "commons_query": "",
+      "youtube_query": "Who put Bella in the Wych Elm mystery",
+      "evidence": [
+        {
+          "title": "Wych Elm mystery continues to inspire fiction more than 80 years after discovery - Substack",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxORGMxZ2lMREIzUzNsWFFHbmRkdUlBbEtabWJmV0VJb1E3OFdQY2paaHhad3J5MFVjVk1BUDRUS0dVUHh3dWRHdGpKNUJTM0ZId2MzcjU0UUNxZXNGb1F2Q2dmV2ZSN1gyU2ZhN05QVUpNbVFNdzYwZlczeWZuc3FBUWxtZw?oc=5",
+          "domain": "worcestercitizen.substack.com",
+          "published_ms": 1793971288000,
+          "kind": "news",
+          "id": 100
+        }
+      ],
+      "wikipedia": {
+        "title": "Who put Bella in the Wych Elm?",
+        "daily_views": 32,
+        "ratio": 0.97
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 56,
+          "reach": 30,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 57.1,
+        "newest_hours": 57,
+        "domains": [
+          "worcestercitizen.substack.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Half of the 165 Skulls Found in a Mysterious Mexican Cave Belonged to Women",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        108
+      ],
+      "hook": "Archaeologists analyzing 165 ancient skulls found deep inside a Mexican cave made a startling discovery: half of them belonged to women, challenging previous assumptions.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "skulls in Mexican cave archaeology",
+      "evidence": [
+        {
+          "title": "Half of 165 Skulls Found in a Mexican Cave Belonged to Women - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNndrVHIxTXlmSEdkazk5Tk82R1dBemR2c21Iak94RW9idHlrLVpldFFDajhrWkNqNktwbnVsRDR0cl9NaUtlOUtzN29MTzRjendfQ2NVTXhsTktYRjZDM2JjTEVSZ1N4U1BrOEFXSTQzNlFLeExLUV9zQkZ4NlVzd0F1a1BEMGh0eFA4?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793931599000,
+          "kind": "news",
+          "id": 108
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 61,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 56.9,
+        "newest_hours": 68,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 504 Sit-In: The Longest Peaceful Occupation of a Federal Building for Disability Rights",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        101
+      ],
+      "hook": "For nearly a month, disabled activists staged the longest peaceful occupation of a federal building in U.S. history to demand basic civil rights.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Section 504 sit-in",
+      "commons_query": "Section 504 sit-in",
+      "youtube_query": "504 Sit In disability rights history",
+      "evidence": [
+        {
+          "title": "The Real Story Behind the 504 Sit-In for Disability Rights, the Longest Peaceful Occupation of a Federal Building in American History",
+          "url": "https://www.smithsonianmag.com/history/the-real-story-behind-the-504-sit-in-for-disability-rights-the-longest-peaceful-occupation-of-a-federal-building-in-american-history-180989814/",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793969100000,
+          "kind": "feed",
+          "id": 101
+        },
+        {
+          "title": "The Real Story Behind the 504 Sit-In for Disability Rights, the Longest Peaceful Occupation of a Federal Building in American History - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQRzFPS0Y3ajg0eFp1YVY5TE5hMThaNHFKZUQyYjllU0FUcXZoQ3VhVFk3d05LSFVIRmZSMDFNRE1FeWc2RUE4QWNlZG1jUnRmQ1NmR1ZRaWJtUVFmeEJ6SnoxM1BYeGd6T0FvR0RmcmxTVUtPalpzbGRSVVJDUWxJT3dSSFFiRFZ0N3d1eng2QXZhS0J0M0NsdUs5c0ppOVhXM0xmSjd4T1dZNW9WdWcycDg5YkpHeTNKMUNELW5sQ25nNGo4NWhDNUZJQlV4NWExY3kxbkE0eVhCYnlWck9heHowYjZHZXNLRW5hSVh2UFJkQ2ZIbl94ZmdJZ0VDUXdub0lsVHpCczQ2U0lXR2xJ?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793969100000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 56.4,
+        "newest_hours": 58,
+        "domains": [
+          "smithsonianmag.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The French Resistance Coup in Algiers That Made Operation Torch a Success",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        31
+      ],
+      "hook": "Just 400 civilian French patriots armed with rusty weapons managed to neutralize an entire Vichy army corps in a 15-hour uprising to help Allied forces.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Putsch of 8 November 1942",
+      "commons_query": "",
+      "youtube_query": "Algiers French resistance coup 1942",
+      "evidence": [
+        {
+          "title": "1942: World War II: French Resistance coup in Algiers, in which 400 civilian French patriots neutralize Vichyist XIXth Army Corps after 15 hours of fighting, and arrest several Vichyist generals, allowing the immediate success of Operation Torch in Algiers.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 31
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 56,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: The French Resistance Coup in Algiers"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "280 Ancient Rock Engravings of Animals Discovered in Catalonia's Cova de la Font Major",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        97
+      ],
+      "hook": "Inside Catalonia's Cova de la Font Major, explorers found 280 stunning prehistoric rock engravings depicting animals that had remained hidden in the dark for millennia.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Cova de la Font Major",
+      "youtube_query": "Cova de la Font Major rock engravings",
+      "evidence": [
+        {
+          "title": "280 Ancient Rock Engravings Depicting Animals Discovered in Catalonia’s Cova de la Font Major - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNSjY0Sm9lRHE5RUFka19temI5TGtNYWRsbVhmd283MkxjUF9ReFhfZnJzRkpqWHBwUnZ6SjRBVEJIUXQ4bkJpT3NRQTRxbkwwY0lPRU5PZHZvNVpDSzRsMV8wX2V3UzAxeEs4WU1EbHFyWjhGQk5PbjBreGNreXVzaGVlUUFjbEpwckNza3ZISGZvX3hvTFRDZlFJaGZiTC1nSG9YekNEdjlRWXktS3RLYm9Wd0xQUlB3SU03Y1l0Y1J5TDdQZHgxbEI3Tjc4d9IBzgFBVV95cUxNSjY0Sm9lRHE5RUFka19temI5TGtNYWRsbVhmd283MkxjUF9ReFhfZnJzRkpqWHBwUnZ6SjRBVEJIUXQ4bkJpT3NRQTRxbkwwY0lPRU5PZHZvNVpDSzRsMV8wX2V3UzAxeEs4WU1EbHFyWjhGQk5PbjBreGNreXVzaGVlUUFjbEpwckNza3ZISGZvX3hvTFRDZlFJaGZiTC1nSG9YekNEdjlRWXktS3RLYm9Wd0xQUlB3SU03Y1l0Y1J5TDdQZHgxbEI3Tjc4dw?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1793979159000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "280 Ancient Rock Engravings Depicting Animals Discovered in Catalonia’s Cova de la Font Major - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOMU5vUWFWcm44Vm9IWnlMOVZtQUFCOVBRUGxLcFJZS2VBYlJDLWlfbHJZcTIzdzc5RHZLN3VUVzhtbEpidzFmWGN0NDJGM2paUUZ0MGJxT2tzSnZjaUJUeTU3OFNrSzlNN1NIZHRRQkJoVTR1dEhkSDl0M2xXYlRsMHVrTm5SMGJ0Q2d0ZnVfRVA2ckloTEVkMnBsWEE5UE5SYXBldDl1RXJSb0g5QjFIRGctUUk2MTFMemV6M3lwb084OXByOXBpNNIBzgFBVV95cUxNSjY0Sm9lRHE5RUFka19temI5TGtNYWRsbVhmd283MkxjUF9ReFhfZnJzRkpqWHBwUnZ6SjRBVEJIUXQ4bkJpT3NRQTRxbkwwY0lPRU5PZHZvNVpDSzRsMV8wX2V3UzAxeEs4WU1EbHFyWjhGQk5PbjBreGNreXVzaGVlUUFjbEpwckNza3ZISGZvX3hvTFRDZlFJaGZiTC1nSG9YekNEdjlRWXktS3RLYm9Wd0xQUlB3SU03Y1l0Y1J5TDdQZHgxbEI3Tjc4dw?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1793979159000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 53.5,
+        "newest_hours": 55,
+        "domains": [
+          "inkorr.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The World's First Internet Murder: Sharee and Bruce Miller",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a love triangle turned lethal in what officially became history's very first internet murder.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "first internet murder sharee bruce miller",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794177872880,
+          "kind": "anniversary",
+          "id": 9
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 51,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    }
+  ]
+}

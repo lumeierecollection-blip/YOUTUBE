@@ -231,7 +231,12 @@
       "attempts": 1,
       "run_id": "42531583051",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:43:24.257Z"
+      "updated_at": "2026-11-08T22:45:06.653Z",
+      "stage": "research",
+      "topic": "How Maya Civilisation Poisoned Its Own Water with Mercury",
+      "score": 76.2,
+      "pillar": "Historical facts that challenge common assumptions",
+      "hook": "The ancient Maya used so much bright red cinnabar paint that they accidentally poisoned their own water supply."
     }
   },
   "uploads": [],
@@ -469,6 +474,15 @@
       "at_ms": 1794177552542,
       "score": 61.3,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "How Maya Civilisation Poisoned Its Own Water with Mercury",
+      "slug": "how-maya-civilisation-poisoned-its-own-water-with-mercury",
+      "slot": "kick-b316df6d02-ch1",
+      "at_ms": 1794177906653,
+      "score": 76.2,
+      "pillar": "Historical facts that challenge common assumptions"
     }
   ],
   "attention": [
