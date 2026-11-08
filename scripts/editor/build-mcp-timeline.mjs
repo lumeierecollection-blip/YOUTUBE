@@ -165,7 +165,7 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
   }));
   // Headline above card
   layers.push(textLayer("setup-head", "ANTHROPIC'S MODEL CONTEXT PROTOCOL", {
-    y: 860, size: 56, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 20,
+    y: 860, size: 36, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 20,
   }));
   // Highlight phrase inside card
   layers.push(textLayer("setup-phrase", "ONE OPEN STANDARD", {
@@ -274,14 +274,14 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
     const showF = lineF + i * 14;
     const hideF = outF - 4;
     layers.push(textLayer(`term-line-${i}`, t, {
-      x: tx + 44, y: ty + 66 + i * 40, w: tw - 80, size: 28, weight: i === 3 ? 700 : 400,
+      x: tx + 44, y: ty + 66 + i * 44, w: tw - 80, size: 22, weight: i === 3 ? 700 : 400,
       color: i === 3 ? P.accent : P.text, font: FONT_MONO, align: "left", valign: "top",
       inF: showF, outF: hideF, z: z + 10 + i, revealFrames: 10, slide: 20, lineHeight: 1.0,
     }));
   });
   // blinking cursor at end of highlighted line (line index 3)
   const curLine = 3;
-  const cy = ty + 66 + curLine * 40 + 8;
+  const cy = ty + 66 + curLine * 44 + 8;
   layers.push(solidLayer("term-cursor", { x: tx + 44 + (tw - 80) - 22, y: cy, w: 16, h: 32, background: P.text, inF: inF + 20 + curLine * 14, outF, z: z + 30, opacity: 1,
     keyframes: { opacity: [{ f: 0, v: 1, e: "linear" }, { f: 15, v: 0 }, { f: 30, v: 1 }, { f: 45, v: 0 }, { f: 60, v: 1 }, { f: Math.max(1, outF - inF), v: 1 }] } }));
   layers.push(textLayer("servers-head", "PRE-BUILT MCP SERVERS", { y: 1460, size: 40, weight: 800, color: P.muted, inF, outF, z: z++, revealFrames: 10, slide: 15 }));
@@ -294,14 +294,14 @@ layers.push(textLayer("kicker", "AI TESTED  ·  MCP", {
 {
   const s = scenes[4]; const inF = sec(s.start), outF = sec(s.end);
   layers.push(textLayer("close-big", "BUILD ONCE · INTEGRATE EVERYWHERE", {
-    y: 760, size: 110, weight: 800, color: P.text, align: "center", tracking: 0.08, inF, outF, z: z++, revealFrames: 14, slide: 40,
+    y: 760, size: 80, weight: 800, color: P.text, align: "center", tracking: 0.08, inF, outF, z: z++, revealFrames: 14, slide: 40,
   }));
   layers.push(textLayer("close-small", "AI finally reaches your data.", {
-    y: 940, size: 64, weight: 700, color: P.accent, align: "center", inF: inF + 10, outF, z: z++, revealFrames: 12, slide: 30,
+    y: 940, size: 48, weight: 700, color: P.accent, align: "center", inF: inF + 10, outF, z: z++, revealFrames: 12, slide: 30,
   }));
   // Credits
-  layers.push(textLayer("credits", "Sources: anthropic.com/news/model-context-protocol · modelcontextprotocol.io", {
-    y: H - 120, w: W - 120, size: 24, weight: 400, color: P.muted, align: "center",
+  layers.push(textLayer("credits", "Sources: anthropic.com/model-context-protocol · modelcontextprotocol.io", {
+    y: H - 120, w: W - 120, size: 16, weight: 400, color: P.muted, align: "center",
     inF: inF + 8, outF, z: z++, revealFrames: 10, slide: 10,
   }));
 }
