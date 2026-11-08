@@ -1,0 +1,84 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gemini-4-argon-gpt-6-1-november-benchmarks",
+  "format": "shorts",
+  "hook": "Google's Gemini 4 Argon matched GPT-6.1 Sol with a 76% pass rate.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:04",
+      "voiceover": "Google's Gemini 4 Argon matched GPT-6.1 Sol with a 76% pass rate.",
+      "visual_cue": "Side-by-side bar chart showing Gemini 4 Argon and GPT-6.1 Sol tied at 76% benchmark score.",
+      "sfx_cue": "ui chime",
+      "b_roll": [
+        "AI benchmark dashboard showing model accuracy scores"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "76% Pass Rate"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04 - 0:18",
+      "voiceover": "Google released Gemini 4 Argon on October 13, 2026, before November 8 LLMBenchmark Index results. Where does computer control rank against GPT-6.1 Sol's 71.4%?",
+      "visual_cue": "Calendar graphic marking October 13, 2026, morphing into a counter showing 150 test conversations and 71.4% comparison metric.",
+      "sfx_cue": "digital sweep",
+      "b_roll": [
+        "Automated website agent interface processing incoming customer prompts"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "150 Test Conversations"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18 - 0:23",
+      "voiceover": "However, Gemini 4 Argon didn't win OS World tests, scoring 69% in computer environments.",
+      "visual_cue": "OS environment benchmark graphic highlighting the 69% score for desktop control performance.",
+      "sfx_cue": "subtle bass drop",
+      "b_roll": [
+        "Screen recording of automated computer interface navigation test"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "OS Control: 69%"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:23 - 0:38",
+      "voiceover": "The index ranked Gemini 4 Argon #4 out of 114 models. Both systems charge identical rates at $4.00 per 1M tokens. The evaluation scored Argon at 66 points versus Sol's 67.2 points.",
+      "visual_cue": "Leaderboard graphics showing rank #4 among 114 models, followed by a price tag icon at $4.00 per 1M tokens.",
+      "sfx_cue": "data tick",
+      "b_roll": [
+        "LLM index ranking chart scrolling through tested models"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Rank #4 / 114 Models"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38 - 0:43",
+      "voiceover": "That matches GPT-6.1 Sol at $4.00 per 1M tokens.",
+      "visual_cue": "Final comparison summary graphic lockup showing $4.00 per 1M tokens rate for both models.",
+      "sfx_cue": "tone hit",
+      "b_roll": [
+        "Split screen overview of model performance specs"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "$4.00 per 1M Tokens"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://caacgo.cresclab.com/benchmark/november-2026",
+    "https://llmbenchmark.ai/launches/gemini-4-argon",
+    "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks",
+    "https://www.benchleader.com/compare/gemini-4-argon-vs-gpt-6-1-sol"
+  ]
+}

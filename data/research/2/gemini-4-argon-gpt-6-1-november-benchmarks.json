@@ -1,0 +1,123 @@
+{
+  "topic_slug": "gemini-4-argon-gpt-6-1-november-benchmarks",
+  "strongest_angle": "Gemini 4 Argon matches GPT-6.1 Sol with a 76% pass rate across 150 customer conversations on the CAAC Go platform while outperforming previous versions and GPT models in lead saving.",
+  "key_facts": [
+    {
+      "fact": "Gemini 4 Argon passed 76% of cases across 150 customer conversations tested inside the CAAC Go website agent, matching GPT-6.1 Sol.",
+      "source_url": "https://caacgo.cresclab.com/benchmark/november-2026",
+      "source_name": "CAAC Go",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google released Gemini 4 Argon on October 13, 2026, ranking #4 on the LLMBenchmark Index by November 8, 2026.",
+      "source_url": "https://llmbenchmark.ai/launches/gemini-4-argon",
+      "source_name": "LLMBenchmark Index",
+      "confidence": "high"
+    },
+    {
+      "fact": "On OS World, Gemini 4 Argon scores 69% against GPT-6.1 Sol's 71.4% in controlling computer environments.",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks",
+      "source_name": "MindStudio",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Gemini 4 Argon and GPT-6.1 Sol cost about the same at $4.00 vs $4.00 per 1M tokens blended according to BenchLeader as of November 8, 2026.",
+      "source_url": "https://www.benchleader.com/compare/gemini-4-argon-vs-gpt-6-1-sol",
+      "source_name": "BenchLeader",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "CAAC Go Test Cases Passed by Gemini 4 Argon",
+      "value": 76,
+      "unit": "percent",
+      "source_url": "https://caacgo.cresclab.com/benchmark/november-2026"
+    },
+    {
+      "label": "CAAC Go Customer Conversations Tested",
+      "value": 150,
+      "unit": "conversations",
+      "source_url": "https://caacgo.cresclab.com/benchmark/november-2026"
+    },
+    {
+      "label": "LLMBenchmark Index Ranking for Gemini 4 Argon",
+      "value": 4,
+      "unit": "rank",
+      "source_url": "https://llmbenchmark.ai/launches/gemini-4-argon"
+    },
+    {
+      "label": "LLMBenchmark Total Models Evaluated",
+      "value": 114,
+      "unit": "models",
+      "source_url": "https://llmbenchmark.ai/launches/gemini-4-argon"
+    },
+    {
+      "label": "OS World Score for Gemini 4 Argon",
+      "value": 69,
+      "unit": "percent",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks"
+    },
+    {
+      "label": "OS World Score for GPT-6.1 Sol",
+      "value": 71.4,
+      "unit": "percent",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks"
+    },
+    {
+      "label": "BenchLeader Score for Gemini 4 Argon",
+      "value": 66,
+      "unit": "points",
+      "source_url": "https://www.benchleader.com/compare/gemini-4-argon-vs-gpt-6-1-sol"
+    },
+    {
+      "label": "BenchLeader Score for GPT-6.1 Sol",
+      "value": 67.2,
+      "unit": "points",
+      "source_url": "https://www.benchleader.com/compare/gemini-4-argon-vs-gpt-6-1-sol"
+    },
+    {
+      "label": "Blended Token Cost for Gemini 4 Argon",
+      "value": 4,
+      "unit": "USD per 1M tokens",
+      "source_url": "https://www.benchleader.com/compare/gemini-4-argon-vs-gpt-6-1-sol"
+    },
+    {
+      "label": "Blended Token Cost for GPT-6.1 Sol",
+      "value": 4,
+      "unit": "USD per 1M tokens",
+      "source_url": "https://www.benchleader.com/compare/gemini-4-argon-vs-gpt-6-1-sol"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "GPT-6.1 Sol",
+      "kind": "object"
+    },
+    {
+      "name": "Claude Opus 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "CAAC Go",
+      "kind": "organization"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Anthropic",
+      "kind": "organization"
+    }
+  ]
+}
