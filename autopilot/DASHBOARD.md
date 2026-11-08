@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:03 SAST
+Updated 2026-11-09 01:12 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 01:03 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | The Tragic Kidnapping and Ransom of John Paul Getty III (65.5/100) |
+| Selected topic and score | Skeleton confirms lost Viking church in Greenland (68.6/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -50,3 +50,4 @@ Updated 2026-11-09 01:03 SAST
 - Hidden Past kick-b2d8d2e590-ch1 failed at assets: 2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images
 - AI Tested kick-8dd74ac976-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts
 - Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively
+- Hidden Past kick-de81cb430b-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 "But this church links to 1 leader, Erik the Red." — It is unclear how or why 
