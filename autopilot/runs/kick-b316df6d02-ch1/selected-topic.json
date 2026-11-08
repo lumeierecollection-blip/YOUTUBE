@@ -1,0 +1,73 @@
+{
+  "topic": "How Maya Civilisation Poisoned Its Own Water with Mercury",
+  "pillar": "Historical facts that challenge common assumptions",
+  "evidence_ids": [
+    105
+  ],
+  "hook": "The ancient Maya used so much bright red cinnabar paint that they accidentally poisoned their own water supply.",
+  "anniversary": false,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 9,
+    "relevance": 8,
+    "visual": 8
+  },
+  "wikipedia_title": "Maya civilization",
+  "commons_query": "Maya red paint cinnabar",
+  "youtube_query": "maya mercury water poisoning red paint",
+  "evidence": [
+    {
+      "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+      "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+      "domain": "livescience.com",
+      "published_ms": 1794074400000,
+      "kind": "feed",
+      "id": 105
+    },
+    {
+      "title": "Ancient Maya unknowingly poisoned Yucatán water with mercury - Live Science",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNDY4bVBSZ3AzLWd6NVVwSlpTSHpmYmxhb1ZKdkxPajZiajZfUV9IWWlxWGVVSndubEZLYVlxQ1pnR3NpRnAtMUNXSjY1NWt0YlFhbGVTUFhhZGhzei1KYkhTRWIxVU5McUltU052NDlWN1dubTNaR1RYU3BTd0ZOQjBlaEljdHdlTGo0SEZwZDU3cDRHbGpmbUlraUdFYlZudVBDanJrbmVEaGQ4dTFnRUtiM0RFSTkxbUp2QVUxUmNkaklwRlU2Z1Q2UkVER1hGNkQ3QTVtSW9XeWRLelE?oc=5",
+      "domain": "livescience.com",
+      "published_ms": 1794074400000,
+      "kind": "news"
+    },
+    {
+      "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+      "domain": "aroundprague.cz",
+      "published_ms": 1794080776000,
+      "kind": "news"
+    }
+  ],
+  "wikipedia": {
+    "title": "Maya civilization",
+    "daily_views": 1921,
+    "ratio": 0.96
+  },
+  "youtube": null,
+  "commons_hits": 11,
+  "score": {
+    "factors": {
+      "momentum": 70,
+      "reach": 66,
+      "curiosity": 90,
+      "relevance": 80,
+      "visual": 90,
+      "source_quality": 65
+    },
+    "total": 76.2,
+    "newest_hours": 27,
+    "domains": [
+      "livescience.com",
+      "aroundprague.cz"
+    ],
+    "trusted_domains": [
+      "livescience.com"
+    ]
+  },
+  "rejected": [],
+  "wave": 1,
+  "slug": "how-maya-civilisation-poisoned-its-own-water-with-mercury",
+  "angle": "Examine how the very sacred rituals meant to appease Maya rain gods ironically deposited toxic mercury into the reservoirs that sustained their largest cities.",
+  "what_others_do": "Existing discussions typically focus broadly on archaeological discoveries of heavy metals in ruins without exploring the specific religious practices that caused the contamination."
+}
