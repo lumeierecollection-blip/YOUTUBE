@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "OpenAI's New Update Turns Your Photos Into GIFs Instantly",
+      "score": 79.6,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - SCR-18: \"ChatGPT All\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/openai-s-new-update-turns-your-photos-into-gifs-instantly-shorts:\n  - SCR-17 STRICT (strict_visual channel): 4 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual,"
+    },
+    {
+      "topic": "US Air Traffic Control Is Finally Removing Floppy Disks",
+      "score": 78.9,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - SCR-18: \"Enterprise Information Display System This\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"United States\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/us-air-traffic-control-is-finally-removing-floppy-disks-shorts:\n  - SCR-17 STRICT (strict_visual chann"
+    },
+    {
+      "topic": "Bill Gates Says $10-an-Hour Robots Are Coming for Jobs",
+      "score": 76.7,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most one words-only beat in three: \"You could be replaced by a ten dollar robot.\" / \"Warehouse workers currently earn thirty dollars hourly.\" / \"Will these machines take your job?\"\nScript gate FAILED (BLOCKER) for 2/bill-gates-says-10-an-hour-robots-are-coming-for-jobs-shorts:\n  - SCR-17 STRICT"
+    }
+  ],
+  "selected": null
+}
