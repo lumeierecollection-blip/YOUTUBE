@@ -397,6 +397,14 @@
       "stage": "assets",
       "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
       "error": "node scripts/assets/download-historical-images.mjs --channel exited 1"
+    },
+    "kick-803cc08c1f-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42537527942",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:56:16.625Z"
     }
   },
   "uploads": [],
@@ -741,5 +749,5 @@
     "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1",
     "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1"
   ],
-  "last_poll_at": "2026-11-08T23:52:41.411Z"
+  "last_poll_at": "2026-11-08T23:56:16.625Z"
 }
