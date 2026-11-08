@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:30 SAST
+Updated 2026-11-09 01:35 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,7 +8,7 @@ Updated 2026-11-09 01:30 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at tts, attempts 1 |
+| Latest production | failed-final at vox-annotation, attempts 1 |
 | Selected topic and score | Hittite cuneiform tablets discovered at Kayalipinar (undefined/100) |
 | QA | n/a |
 | Upload | n/a |
@@ -56,3 +56,4 @@ Updated 2026-11-09 01:30 SAST
 - Hidden Past kick-d1498cd98b-ch1 failed at tts: trimmed script failed its gate:   - SCR-08: 37 words implies ~50 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.
   - SCR-18: "TABLETS UNEARTHED" is not named i
 - AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json
+- Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image
