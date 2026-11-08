@@ -352,12 +352,21 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
         layers.push(stroke(`s${scene.index}-route`, "M" + pts.map((q) => q.xy.join(" ")).join(" L"), { color: P.accent, width: 7, inF: bodyIn, outF, z: z++, delay: 8, drawFrames: Math.min(45, span - 16) }));
         rec.treatments.push({ type: "map_route", points: pts.map((q) => q.name), in_f: bodyIn + 8, end_f: bodyIn + 8 + Math.min(45, span - 16) });
       }
+      const placed = [];
       pts.forEach((q, i) => {
         const [x, y] = q.xy, m = 14;
         const labelIn = bodyIn + 8 + i * 14;
         layers.push(stroke(`s${scene.index}-pin${i}`, `M${x} ${y - m} A${m} ${m} 0 1 1 ${x} ${y + m} A${m} ${m} 0 1 1 ${x} ${y - m} Z`, { color: P.accent, width: 5, fill: P.accent, inF: labelIn, outF, z: z++, drawFrames: 8 }));
         const lf = fit(q.name, { maxW: 340, maxLines: 1, max: 40, min: 28 });
-        if (lf) layers.push(text(`s${scene.index}-place${i}`, lf.text, { x: Math.min(x + 26, 660), w: 360, y: y - 22, size: lf.size, weight: 700, align: "left", color: P.text, inF: labelIn, outF, z: z++, font: SERIF, slideX: -30, slide: 0 }));
+        if (!lf) return;
+        // Right of the pin first, then left, above and below; a label with no free spot is dropped.
+        const options = [[x + 26, y - 22, "left"], [x - 386, y - 22, "right"], [x - 180, y - 70, "center"], [x - 180, y + 26, "center"]];
+        for (const [lx, ly, align] of options) {
+          const candidate = text(`s${scene.index}-place${i}`, lf.text, { x: Math.round(lx), w: 360, y: Math.round(ly), size: lf.size, weight: 700, align, color: P.text, inF: labelIn, outF, z: z + 1, font: SERIF, slideX: -30, slide: 0 });
+          const b = candidate.box;
+          const fits = b.x0 >= 48 && b.x1 <= 1032 && b.y0 >= 120 && b.y1 <= 1540 && !placed.some((o) => b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1);
+          if (fits) { candidate.z = z++; layers.push(candidate); placed.push(b); break; }
+        }
       });
       holdNotes(scene, bodyIn, outF, ["Map: Natural Earth", "Location: Wikipedia", ...pts.map((q) => q.name)], { x: 60, w: 960, y: 1450 });
       rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:110m; coordinates from Wikipedia" });
