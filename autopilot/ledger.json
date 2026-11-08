@@ -44,12 +44,12 @@
       "attempts": 1,
       "run_id": "42525274596",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:31:04.795Z",
-      "stage": "script",
-      "topic": "Georg Elser's Narrow Miss: The 1939 Munich Beer Hall Bombing",
-      "score": 64.1,
-      "pillar": "Unbelievable true historical events",
-      "hook": "Adolf Hitler walked out of a Munich beer hall just 13 minutes before a meticulously timed bomb detonated in 1939. How did he survive?"
+      "updated_at": "2026-11-08T21:33:14.080Z",
+      "stage": "research",
+      "topic": "The Discovery of the Tomb of Philip II of Macedon",
+      "score": 64,
+      "pillar": "Archaeological discoveries",
+      "hook": "On this day in 1977, Greek archaeologist Manolis Andronikos unsealed the untouched tomb of Alexander the Great's father, Philip II."
     }
   },
   "uploads": [],
@@ -89,6 +89,15 @@
       "at_ms": 1794173442279,
       "score": 64.1,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "The Discovery of the Tomb of Philip II of Macedon",
+      "slug": "the-discovery-of-the-tomb-of-philip-ii-of-macedon",
+      "slot": "kick-f7e02ae45f-ch1",
+      "at_ms": 1794173594080,
+      "score": 64,
+      "pillar": "Archaeological discoveries"
     }
   ],
   "attention": [
