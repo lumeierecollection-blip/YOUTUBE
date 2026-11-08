@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 00:47 SAST
+Updated 2026-11-09 00:53 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 00:47 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at assets, attempts 1 |
-| Selected topic and score | How Maya Civilisation Poisoned Its Own Water with Mercury (76.2/100) |
+| Selected topic and score | Monumental medieval cathedral uncovered at Old Dongola in Sudan (72.6/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -47,3 +47,4 @@ Updated 2026-11-09 00:47 SAST
 - Hidden Past kick-a43137003d-ch1 failed at vox-bake: PhotoTreatment did not produce every still
 - AI Tested kick-4d5babe164-ch2 failed at discover: discovery failure: 19 candidates, none eligible. Best "Anthropic's new personal finance feature lets Claude connect to your bank" (84.1): too similar to recent topic: Claude AI Can Now Connect Directl
 - Hidden Past kick-b316df6d02-ch1 failed at assets: only 2 verified, licensed images found; need at least 3 distinct real images
+- Hidden Past kick-b2d8d2e590-ch1 failed at assets: 2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images
