@@ -89,7 +89,7 @@ async function produce(slotId, channelId) {
       ledger.topics.push({ channel: channel.id, topic: current.topic, slug: current.slug, slot: slotId, at_ms: Date.now(), score: current.score.total, pillar: current.pillar });
       mark("research", { topic: current.topic, score: current.score.total, pillar: current.pillar, hook: current.hook });
       try {
-        researchPath = research({ channel, topic: current });
+        researchPath = await research({ channel, topic: current, dir });
         mark("script");
         script = await writeScript({ channel, topic: current, researchPath, dir });
         mark("narration");
@@ -97,6 +97,7 @@ async function produce(slotId, channelId) {
         topic = current;
         break;
       } catch (e) {
+        if (e.stage === "outage") { ledger.topics.pop(); throw e; } // a service outage must not burn the topic
         lastErr = e;
         tried.push({ topic: current.topic, score: current.score.total, stage: e.stage || stage, reason: String(e.message).slice(0, 500) });
         log("produce", `topic abandoned at ${e.stage || stage}: ${current.topic}`);
