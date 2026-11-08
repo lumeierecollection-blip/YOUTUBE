@@ -287,7 +287,12 @@
       "attempts": 1,
       "run_id": "42533421775",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:05:31.754Z"
+      "updated_at": "2026-11-08T23:07:15.497Z",
+      "stage": "research",
+      "topic": "Skeleton confirms lost Viking church in Greenland",
+      "score": 68.6,
+      "pillar": "Ancient civilisations and discoveries",
+      "hook": "A single medieval skeleton just solved the century-old mystery of Greenland's lost Viking church."
     }
   },
   "uploads": [],
@@ -579,6 +584,15 @@
       "at_ms": 1794178959203,
       "score": 65.5,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "Skeleton confirms lost Viking church in Greenland",
+      "slug": "skeleton-confirms-lost-viking-church-in-greenland",
+      "slot": "kick-de81cb430b-ch1",
+      "at_ms": 1794179235497,
+      "score": 68.6,
+      "pillar": "Ancient civilisations and discoveries"
     }
   ],
   "attention": [

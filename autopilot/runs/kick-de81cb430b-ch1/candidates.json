@@ -1,0 +1,1410 @@
+{
+  "generated_at": "2026-11-08T23:06:45.043Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 87
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 51
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 42
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Maya Mercury Poisoning from Red Paint",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        106
+      ],
+      "hook": "The ancient Maya used so much bright red paint that they accidentally poisoned their own water supply with mercury.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya red pigment cinnabar",
+      "youtube_query": "maya red paint mercury poisoning",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 106
+        },
+        {
+          "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794080776000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities left Coba and Xcach lakes toxic for centuries - Mix Vale",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPa01YTnkyMkl4MFdFYi1fcTYxQU1rN0xmZFNYUXdYMUtrVlFleTdLb2Q1Mmt1eDZkeUhONkMwQ0M5SmVoZm0ta0VyNGVtZmJZMDJWcGRSaVQwczI5TjVrUzlTMkpXT0ppQlVYTXVtNmc1aW9LazBZZlhVQ3lKYjZBWnYtNGZ4M3RtX3VvWGJkQ1oybzdDcklSVW9IcFJxZWlpUFBXWGtldnBRSE1vOHc?oc=5",
+          "domain": "mixvale.com.br",
+          "published_ms": 1794061751000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 7,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 66,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 79,
+          "source_quality": 65
+        },
+        "total": 78.7,
+        "newest_hours": 27,
+        "domains": [
+          "livescience.com",
+          "aroundprague.cz",
+          "mixvale.com.br"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Maya Mercury Contamination from Red Vermilion Paint"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Cruise ship pianist survives 20 hours treading water",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        77,
+        80,
+        85,
+        87
+      ],
+      "hook": "How did a cruise ship pianist survive 20 hours alone in the open Pacific Ocean?",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "cruise ship worker rescued Pacific ocean",
+      "evidence": [
+        {
+          "title": "Cruise ship employee found by fishermen treading water 20 miles off the California coast - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWlhCd1pjRGNBdVphRmZydGVMZGVJSFZVZXFyZmp4SThHRmVuNl82emY2OU55YS1yT0xZUU85Y3plcTZIS3o3OVNjV2FLeVI3SzZGdmY4TjhDbkxxTWk0cWVYMU1qc0YtaV9aVzd4R1RGZTN0dHBrOXBRbzZ6QVhwWFM0ODVVdVZDYXgwZFRNSU5Mb1Z5VUVpT1NSaGV6cW0xdFFKWVdQZU9YX0xSN3ZOV2g4R1Z6WDJUaGhhOQ?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1794167880000,
+          "kind": "news",
+          "id": 77
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - People.com",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQaWxzZWhVdDhGTVRENTdHN3NIZ0I1eWV5NmRtNDY1OUI0dGhUb0Z2SDc2OUdudlNQNkNZaFY1UjZ5WWtxQ1FyUy1UYkpnOG1hYmpqTmlHNGFVRzF5SXVWSzBkRXhYOEdLdVZrOE1Rdl9NdGdRb2NhRXpDb0ZySkYwbmZCZjNKdS1mQnBHQXZ5bkk0RXNSTGdtYVJtU0cxejVx?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794163936000,
+          "kind": "news",
+          "id": 80
+        },
+        {
+          "title": "Pianist who plunged from Royal Caribbean cruise ship is found on brink of death 20 miles from coast by fishermen - Daily Mail",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZHJoT0t4bUpXNlFSUkx1dEZvWTROLWJuVDhveVVEcXctSEZDUi00SkF2S2ZraWoxZEZfbTl2bEJzVXo2UEdMdzVUV3VCWmhmM2VIUmlIVEthMG12bUpneDRmd21wXy1oVktkRi1DbWEzS0YyQUh1SWNOaW5MRXhubXkxUy1pVm1ZYWpqYS1hOG50UjIyTGhmUEpvMzVRU0V5djdzRWliZGMxS29GZ2fSAbMBQVVfeXFMTVg5Tmg2T2k1LWxJUGliaUVraGZVWEd2ZnFuSVpGckJ5eWc5WEZ5YUJ1elBYRXVGYzcxS1ZnSWdLN0NITDFiYzc3MFU3elNtOGpPcEhpanEtWDBUQXRrTGh1RGp0SjJTWXFBbGp3dWF5WUt2b09YcVd4X01DRkp0d2NCcGgxWDdlNjZ2eTBKMGNoWktid3RFNW01TlhpbGNMa3dUblVja1RSUDRJckMwc3kybzA?oc=5",
+          "domain": "dailymail.com",
+          "published_ms": 1794157150000,
+          "kind": "news",
+          "id": 85
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - 9News",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQX0FVaGRjejRjSnpqLU92dlhBc29hYVNWVXhLTmR2UHc3ZURBazNjMlFac0hwTzNMOEtNemVjeXE1TzRzNTJoc1RHYTNlME9iYTBGOXlsRFRnZTYwZ29UR09RU2RLUGpvcDR3UDdueGk4X1p6QVVvTFBzVWVtV1BYOVFpaDBYd2dqcjNPM0Z1M1hET1lZQUwySmdXYjA1UTc4T0k5UEsyTDU3Zk56V3diZGU3TmtMWTZqRGlQbDctaEV1enV5aUFOZ1B1RG9Fdk5MbzVibzk4RjE0cXc?oc=5",
+          "domain": "9news.com",
+          "published_ms": 1794153480000,
+          "kind": "news",
+          "id": 87
+        },
+        {
+          "title": "Newport Beach fishermen find Royal Caribbean cruise ship employee treading water 20 miles off coast - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZE5YVXhVSmtQWGhrZ05Cd01kckhIRWZma05yck9aMzc3ZmRBQlBvbm9mUExwTXF5Z0pTUTljY0VxQ0h6RGZDX01waXR0aFdzdHlDZHJJZWYtTTBQR1pqY0JzYkN3UE9wQ2d6Z1JzcEpZYmF6SlFHd1N0OU9pMnd1enkxeXliVTVnWkVhUEZHVFN1OEFoMnlxTm5JZ2pYTHVsUXVDY28tZDZoZS1DUFU4clVidVZ2clB5bVVHYXkxdmVZX3c?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1794116160000,
+          "kind": "news"
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - KVUE",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxONTdTaE12ak5keHA5YXBHQVEtUGZBVXlIaWtlT2MzSVNwWVBzeGVVRDRYSlhKX2Z5ZzYtYzNCNF9pd3JyejVaTUh6UlpkUkh2YnZFY1BDTk84ZEloMDhQLV9FVHZmQWp4UEh5azJWYXRrZWVkYjZSdm4yVnBLOWc4SzZWVjctcUNmNVVaTzdZN2thREUzNVZHOE84Q2dsSDZ1MVZLbDVIaFNFZXVOblZJUEI5TDhFeE90a3JVSkhnWTdJM2tHUTZ4ZkxJdjZ3a2I3NGo2RjQ3elV3QQ?oc=5",
+          "domain": "kvue.com",
+          "published_ms": 1794153841000,
+          "kind": "news"
+        },
+        {
+          "title": "Cruise ship pianist rescued after nine hours treading water miles from shore - The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOT2VWdU9WZFR4eGRmTzVNeTV6Wmc5VFEwSlVzWTdZd2NVM2piS1l5M04weUp6TEVPMFhVQWNTbHp5WXMwS2F2Z0RORGxuXzljcG5XMHpZYlRzUGpPZ2hlaE9GYUMtMFNtcW4yZVA5eldraXQzWE0zbDB3X3lxa3Y1dGp1SWRxN0dIeG9xN2g2WUdSR04z?oc=5",
+          "domain": "theguardian.com",
+          "published_ms": 1794168900000,
+          "kind": "news"
+        },
+        {
+          "title": "Royal Caribbean cruise ship pianist incredibly survives after plunging overboard 20 miles off California coast - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPWk02RE5hTVp2eWtaeUpoWWNfWDJJVktGZ3hidmpaSTBJUkZiN09LdENrZDJ6TV9SUWJtZGNpVGRTZVlWcVQ2R2dmYW00cERXamNRRlNwYlV1UXZWcXY3WWpFN0FPUTZRMUpWeFBMbDQ4bTdOYnNoSFlyWHhVUlVkbGFVWjAyc2tvY0pUT1MwNC1kSDdrWk1HM3Nsa25lVzhoa0FNYUtnZFI2UGZid19JYnYwbw?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1794162060000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 72,
+        "newest_hours": 3,
+        "domains": [
+          "independent.co.uk",
+          "people.com",
+          "dailymail.com",
+          "9news.com",
+          "cbsnews.com",
+          "kvue.com",
+          "theguardian.com",
+          "nypost.com"
+        ],
+        "trusted_domains": [
+          "independent.co.uk",
+          "cbsnews.com",
+          "theguardian.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Monumental medieval cathedral uncovered at Old Dongola",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        74
+      ],
+      "hook": "Archaeologists just dug up a massive lost medieval cathedral hidden in the desert.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "Old Dongola ruins",
+      "youtube_query": "Old Dongola medieval cathedral excavation",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 74
+        },
+        {
+          "title": "Archaeologist Artur Obłuski and a Sudanese-Polish team reached the original floor of the Great Church of Jesus in Old Dongola, a medieval cathedral 47 metres wide and about 21 metres tall that he says was bigger than the White House - CPG Click Oil and Gas",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWXVEa2tXbzljajIzanNvSVE5RzZSSzRudEZvQzJOaXc0Wng1d1BldG84dnZUQ1B0b2FyTVlUT1NOX2JaVkl4LUZUdDYtTGFtLWNUMWNNelJjaFlueGxFeVZTTlVYVnEzX013ekxpMXBrVUdxMW4ycEJfam5XdTVqd19aOTU2Z2EzVVNTN0Q3THBwcGxiMHU0THc1QjU3VV9mSC1VbVd3?oc=5",
+          "domain": "en.clickpetroleoegas.com.br",
+          "published_ms": 1793885700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 70.4,
+        "newest_hours": 1,
+        "domains": [
+          "heritagedaily.com",
+          "en.clickpetroleoegas.com.br"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Cannabis Use in an Ancient Siberian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        91,
+        95
+      ],
+      "hook": "A 2,800-year-old Siberian monument just revealed surprising secrets about ancient cannabis rituals.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk burial mound artifacts",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 91
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient humans were using cannabis far earlier in history than we thought - Scientific American",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUEtpYkFzdVhUOHQ5UlJQcTZJUDhEWUwyS2ZQbFZDdjBTUWpwdXBDUHlUaEdMeDZZQTA3cEpUSHVzTlBOOUt6RndqQV9KZjMyZDJRdkI5V2hnOVlKeHo3OWxFQXVsYThpd3QxMHA1MkhEbUV1bXF6UlRIMjByZlNEd01FSEctTHcwcW5CUFROckxOZHNvRndXSGVhN2dBdFRtT0E4SHhjVDBjQQ?oc=5",
+          "domain": "scientificamerican.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 30,
+          "source_quality": 100
+        },
+        "total": 69.6,
+        "newest_hours": 13,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "allthatsinteresting.com",
+          "404media.co",
+          "hightimes.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "scientificamerican.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "visually weak",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Skeleton confirms lost Viking church in Greenland",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        76
+      ],
+      "hook": "A single medieval skeleton just solved the century-old mystery of Greenland's lost Viking church.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Eastern Settlement",
+      "commons_query": "Norse Greenland ruins",
+      "youtube_query": "Viking church Greenland skeleton discovery",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 76
+        },
+        {
+          "title": "Archaeologists In Greenland Just Uncovered The Ruins Of A Medieval Norse Church With A Skeleton Buried On The Grounds - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5Uc2ZXVjEtR3VndjVpejlJQk1mMEp0Y1QtTEpRZTdQclJCUUxUeW9OODhnMnNnS0l6aUZHaXphMHlXdmpLWDNWdGtCTnF3UFZuZHNkQjI0WlVrTXdvVGRUaFl1djlTOVVPbjNsWG15X0o?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1793919027000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Eastern Settlement",
+        "daily_views": 40,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 32,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 68.6,
+        "newest_hours": 2,
+        "domains": [
+          "heritagedaily.com",
+          "allthatsinteresting.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "World's Oldest Gold Treasure in Bulgaria",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        76
+      ],
+      "hook": "Buried in Europe over 6,000 years ago, this is the oldest gold treasure ever crafted by human hands.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Varna Necropolis",
+      "commons_query": "Varna Necropolis gold",
+      "youtube_query": "worlds oldest gold treasure varna",
+      "evidence": [
+        {
+          "title": "World’s Oldest Gold Treasure Discovered in Europe - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRWlpvU0Z0V0hJMHA0QWRRUDZzcU4yM0t1ejY5RlN6V1I4UzRBRjJaVFBFbTRSRjZLckEybm9rR1ZURURSSTM1NEEtdm51VW1oN0VvM2NZN2I3Q1dfS25uRk4xX3RMQ0NtZmM1cHRhdFlIV0FjeW9KNFQtTQ?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794174221000,
+          "kind": "news",
+          "id": 76
+        }
+      ],
+      "wikipedia": {
+        "title": "Varna Necropolis",
+        "daily_views": 159,
+        "ratio": 1.24
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 67.6,
+        "newest_hours": 1,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World's First Internet Murder",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a chatroom romance turned into the world's first convicted 'Internet murder'.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 5
+      },
+      "wikipedia_title": "Sharee Miller",
+      "commons_query": "",
+      "youtube_query": "first internet murder case history",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794179205043,
+          "kind": "anniversary",
+          "id": 9
+        },
+        {
+          "title": "Internet searches revealed on Day 13 of Naresh Bhatt murder trial - FOX 5 DC",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQbER4SEFoc2cyaUp6RnBiSE04R0VzX1JXOFhPVHh3YUJtMEx6dmU2TzVtNm53WVc4OHNGMVhSQzZiYWJxSTl5T292WVkyUFAyOUphTVduZ2c3UHE1SDNQYWU3enpVMVNQQjQ3c3BkdF9BQXZoWU5BTVJyZXl6X2FLRl80NnlMbnM2dnBXWFpYOWZXVng5RndDUUdGenRhME1qYjU0djMwdjY?oc=5",
+          "domain": "fox5dc.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "'America’s first wrongful conviction': The 1819 Boorn murder trial - Bennington banner",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQaTNOMEZqRDVjSjVjUFlKdW9fOXFLMDBSRk56a0tnTkVCLWhXd2NrSlVjSW96U21ueFFKaE1JbEl1TmJ2Z1NUYTI3RmdlcmlRcW1oZVU0NFRxUlY3eTVKbzFhemdmZjRHX2JJd3JBNUNHaGZ2Z1I4Vmx0MnJMSEhTNjkzeUlLa0hJT3NsZm9kenZFUnlTMWNIY1RoOVlBWnh4SEJYZEpWdHd0clhBNkdwMUxzVmlPSjhaVUE?oc=5",
+          "domain": "benningtonbanner.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Miguel Salguero Olivares files appeal after first-degree murder conviction in the 2012 Faith Hedgepeth death - ABC7 New York",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQQThpYjV2Z29rRlVQUlNVTmFnZ0Zta2hkbDhNelRXYmRPV21BeWhjUmJLUVhCNWpYZ0F1blM1VkczM19wd2VubHhXQVJRR0JvQ2laOWxaWG93MTltUmlZUWdQbFhxT2QtdGZMMWI1UmFCUW9tWnRXNXkyNzF4VmQxdDZ1VUhyUmM3bmdIMnJGVVBCZE55ck5DT1hndGNGbXgxNE0tWmt5LTNfVngyRFlSUjgwc0Rvd9IBuwFBVV95cUxNbkFURGY4Nkt2ZnUtR1RIRElqQkF0V0pabTh1VXlBVWdKQlVIRUk3ZXNGc1BXbE05N01ZMU9MQy15bGt0eVQtc0hScDA2dlcxUnFIbmk0TzhPVDhjTjFMSUtHRGRxTW8ycWQ0QU9zSDIzRC1FMXZRX2h5MGt3TzBGUElTbkJZSDl5RHBtRnJBMk5zTXVMWk82VGRxUnJraWFRa3FuaElTdmFVMVNOUFV0cFlRbmpmeWtOX3JB?oc=5",
+          "domain": "abc7ny.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Sharee Miller",
+        "daily_views": 76,
+        "ratio": 0.57
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 38,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 50,
+          "source_quality": 65
+        },
+        "total": 67.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "fox5dc.com",
+          "benningtonbanner.com",
+          "abc7ny.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Wilhelm Röntgen's Accidental Discovery of X-Rays",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "A glowing screen across the room accidentally revealed a hidden view inside the human hand in 1895.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Röntgen x-ray",
+      "youtube_query": "how wilhelm rontgen discovered x-rays",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794179205043,
+          "kind": "anniversary",
+          "id": 44
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilhelm Röntgen",
+        "daily_views": 487,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 66.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "DNA exposes 150-year-old mistake about giant extinct bird",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        97
+      ],
+      "hook": "Scientists thought this colossal bird went extinct millennia ago—until DNA proved a massive 19th-century blunder.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "extinct giant bird DNA discovery",
+      "evidence": [
+        {
+          "title": "Scientists Thought This Giant Bird Had Been Extinct for Thousands of Years, but Ancient DNA Just Exposed a 150-Year-Old Mistake - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE53Uk9ZcXBQMDFsRGRFVElySXR6YWszX21WWXplYmczZGh1RzQwMW1GZXdFVWJqQzNnUzBsWHhZQzhDMEtNRlBJV2Z2d3BrRk1DWlQxeEFaUGlfSGw1LWtnQ0twWkdoRjJNM3RkWEdfLXc?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794140100000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "150-year-old mystery about the identity of an 'extinct' giant crane solved - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBITnlwcEFBOHRvQ1lsYzF3bHliNlpNS0JmWmlaSUhIeld3STVLdWFzTE1wbUh0cmhJU3MxRTdEN3k2TDVmTFp4MUpHckNuakhiWldUWERyQlJxWV9qUzNPQUhoQUFFTG9pUXRIeXhoaE51Nms2YXpzOURR?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Solve 150-Year-Old Mystery of Giant Bird Believed to Be Extinct. Turns Out, It’s Still Alive Today - People.com",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNVkZELXdFcEFKX2FyVlJ4aER4cHYtUzhMalFtVjh2bUx6NWpZSnhFS0VwaHBNV29ubWRqVmpwY2dtdjBlRlAtS0xwM3huMl9SWFA3LXhGT2t5VnR2UVY1RHhYcnA1ODNib244RzVEUDRoSUpzNmxiNmkwR2UyYWJScEhwWE5nRUlYOVVDN1hZakJGLWxFSURkTnpkTnZHVDR5VWdudWJIT3VDbUdhUEl4dExlUUpxYW53OFZINEIzZ3FIUlNsZUFTWTJHV2YyVHZm?oc=5",
+          "domain": "people.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 90,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 66,
+        "newest_hours": 11,
+        "domains": [
+          "dailygalaxy.com",
+          "phys.org",
+          "people.com"
+        ],
+        "trusted_domains": [
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "19th-century shipwreck and camp discovered near Tierra del Fuego",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        83
+      ],
+      "hook": "At the treacherous edge of South America, explorers just found the frozen campsite of a doomed 19th-century shipwreck.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Tierra del Fuego",
+      "commons_query": "Tierra del Fuego shipwreck",
+      "youtube_query": "19th century shipwreck Tierra del Fuego",
+      "evidence": [
+        {
+          "title": "19th-Century Shipwreck and Camp Discovered on Estados Island near Tierra del Fuego - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPdW9wMzdaaFFwTThLYXRHRmdxU3hBd3B2TUxyYWZOQnlnTXZLWjFfbDJCaU5FM2NTUExYS2FoUVEzTV8zcG45NVVHYzBNRUN5T0RPc3lNbk5UNGx1QWFTNHh6NmF2ZkZsT2U3REp1LXdsRXRtMGx0QVUzZEdBRVktcW9Idm1OYWY5Zi1zbXhfT1RiNWJPRjhLQlpoVkxnWjBWbTZEUlhXQlVEeWVkVkM4ZEtnX3JwcktqU2VZ0gHAAUFVX3lxTE5aNW13dmtiVWlROThkWXFwREhGQVVuNlZaZXB6QmNtMEZMdjF2SnlLNTNSc3hITGIxR1RfaG5TU29Mb1VSTDlmMUhPTjFwWG5mZlFxSS05ZTkxQ1RlaUIwdUpMRmpTU0JKV2twaE5WRU5MZnNpNC1KblAwZGdmS1dfQl9CRUR3UTRsZXQ4dllvY1VyOFdLcW1mTXZUaFBMWjNUeC1SRzNwcGFKcjgxakxfZFBDYTd2VjJUb0NXbFpJRQ?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1794159165000,
+          "kind": "news",
+          "id": 83
+        }
+      ],
+      "wikipedia": {
+        "title": "Tierra del Fuego",
+        "daily_views": 924,
+        "ratio": 1.65
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 66,
+          "reach": 59,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 65.3,
+        "newest_hours": 6,
+        "domains": [
+          "inkorr.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Discovery of the Tomb of Philip II of Macedon",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "When archaeologists opened this untouched royal tomb in Greece, they found Alexander the Great's father.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Vergina",
+      "commons_query": "Tomb of Philip II of Macedon Vergina",
+      "youtube_query": "tomb of philip ii of macedon vergina",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794179205043,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Vergina",
+        "daily_views": 126,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 64.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Rare 5th-Century Germanic Chieftain Burials in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        74,
+        89
+      ],
+      "hook": "Dazzling weapons and warhorses unearthed in France reveal the lavish graves of 5th-century Germanic chieftains.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Merovingian art",
+      "commons_query": "Merovingian warrior grave artifacts",
+      "youtube_query": "germanic chieftain burials france archaeology",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 74
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Burials of probable 5th-century Germanic chieftains found near Colmar — Live Science - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPR3I0MC12WmtPd0RWX2VweHFFQXJ6anowZi05Q1BvLTJwNlpvMXMtTXQtdW1FcFc4eFdTUGtZbDNFQy1OWjM4UUFXQVhJZXVWcHNKQkxFVkxhdW1mS3hJa0RRQ2xZWEpMZmZpYW9icWpMbXQxUjhQMVp2TlktaFZtN3BCSVRoT09Xb1RVSFJuaURzVDBMa1FlRHl1S1h3eEQweDVDX3E1bEVWbnF1bURSTkJuYmpVTC1VTUZfRFM2aEs?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794144046000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Merovingian art",
+        "daily_views": 1,
+        "ratio": 0.52
+      },
+      "youtube": null,
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 6,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 51,
+          "source_quality": 100
+        },
+        "total": 64.2,
+        "newest_hours": 1,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com",
+          "ua.news"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (1 on Wikimedia Commons)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Metal detectorist finds richest Roman treasure in Britain",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        105
+      ],
+      "hook": "He was just looking for his dropped hammer when he accidentally unearthed the most valuable Roman hoard in British history.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Roman Britain hoard gold silver",
+      "youtube_query": "Roman treasure hoard metal detectorist England",
+      "evidence": [
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQWjlpQ3Z0Q21KZUhyVjZ1Qk1pUzhJUFlQTFRhd0Fpa0JnbGRyNW1salRnOGNjVFNCc2NzcGJPQnNuVDh3VU1hWms1MVFTdG11eUpWU2VkelFBSzI1d01TTWM5YzZuMjQwZDRPbWZiQm44N0JoZS1DNHFwUTBIbkQ1VFpwMA?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794123420000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - Earth.com",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa013Qm10VjJySzZUV0pGLTZhOWUxSnNReUJqNnoyOG5JZzAxZVA0Uk5rdC1EVVdRUG10dmw1aUFtT2Q3elU2bTZDTE5MbEhNU0JKQWNFd3ZyRHhqRkxDdDRNWVlmcVc4VkItTHVtZVFqYXRYOHJhd0lYOXY0MmwwTjhsZUtKendXOGNCbWlkZW9aRjYwVXVGNlFubmgwSVgyTTktUkktRDRyTUltRkE?oc=5",
+          "domain": "earth.com",
+          "published_ms": 1794122520000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 64,
+        "newest_hours": 15,
+        "domains": [
+          "aol.com",
+          "earth.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "2,500-Year-Old Mummified Crocodiles in Egypt",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        81,
+        83
+      ],
+      "hook": "Archaeologists exploring an ancient Egyptian tomb just uncovered a terrifying offering: ten mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile mummies",
+      "commons_query": "crocodile mummies Egypt",
+      "youtube_query": "mummified crocodiles egypt discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 81
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 83
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 62.5,
+        "newest_hours": 4,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "2,000-year-old Roman jewelry workshop found in Wales",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        75
+      ],
+      "hook": "Homeowners in Wales uncovered an ancient Roman luxury workshop right beneath their street.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "Roman jewelry ancient artifacts",
+      "youtube_query": "Roman settlement jewelry workshop Wales",
+      "evidence": [
+        {
+          "title": "2,000-year-old Roman settlement and jewellery workshop discovered beneath Welsh housing estate - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd1NUQ1JpNWw1bG9CMWlLZ201NWtsN2xfcm52SEd3ekZTTmNZd1pRb29pOVNMLVNnSERtRHY4aGV2eFBwV2ZoVlNXYUtXQzhDanpPVjEwbGIyV0xPb2ZEM2pwbkQ1RlBYYV92Q0pYNlhmRU5sV1ZpN3loUnEyTTYxUXNDVURHbU43aFNiNzRSRk9fQ0VUWDc5cHRmRnlxTnJWdFFBMXVmM2wtVlpjOW96WWc0aG0zb0htSEt6MkdGLXFfeTU1SlNFaVNyYW5GZllnaHA4Yg?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794173488000,
+          "kind": "news",
+          "id": 75
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 16,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 58,
+        "newest_hours": 2,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: 2,000-year-old Roman settlement and secret jewelry workshop found under Welsh housing estate"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Modi-script letters reveal forgotten social history of 18th-century Maharashtra",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        104
+      ],
+      "hook": "Thousands of forgotten letters written in a secret script reveal the untold everyday lives of 18th-century Indians.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Modi script",
+      "commons_query": "Modi script document",
+      "youtube_query": "Modi script letters Maharashtra history",
+      "evidence": [
+        {
+          "title": "Modi-script letters reveal forgotten social history of 18th-century Maharashtra - The Indian Express",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQaENBQ3JJcVVOMnlSSVFBY1R3VjVZSEE1N2p3Y25DdV9udWd3MHBJeXdiMTRQUENfX0t4Q1ZUeUxHTmhUVFg5TXd5azRHMWNCTGdhN0hIUmRnMEpvaEp3YkNZVjJxdVU0clJZYnRyS0JBc3p3SF90NGFFWFoxOEp5R3BJOUtFczZJUHhqOXJqUnMwRXY3aXZWajhfLWNMZ0J0Q2ZYUdIBqwFBVV95cUxOMDVRVGd1eGduOGxnUkdOR3dyb2ZyLUNrZjQ0VEMzdVhJWkN4Y0lhV1dHRzhBU0hBRFdsWWJISlE4ZGUyc3dsd3ZuMkhUYURZUXZaNFRxUW1PMTkyOXpweFZxODlHeXl0S2VEY3RHZzM1dHNRMDBHTFEyWHFQMlNYSHF1X1JCX25ReERuXzd4M1Flcl82QjVDNXVnRVJoaVJ6cU1aa2RnRm10dlU?oc=5",
+          "domain": "indianexpress.com",
+          "published_ms": 1794124806000,
+          "kind": "news",
+          "id": 104
+        }
+      ],
+      "wikipedia": {
+        "title": "Modi script",
+        "daily_views": 83,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 38,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 0
+        },
+        "total": 57.1,
+        "newest_hours": 15,
+        "domains": [
+          "indianexpress.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Ming Dynasty tomb with 5,000 rare artifacts",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        106
+      ],
+      "hook": "Workers cracked open a partially ruined Ming Dynasty tomb and found over 5,000 untouched treasures inside.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Ming dynasty tombs",
+      "commons_query": "Ming dynasty artifacts",
+      "youtube_query": "Ming Dynasty tomb 5000 artifacts",
+      "evidence": [
+        {
+          "title": "A Ming Dynasty tomb, with only half of its entrance remaining, reveals over 5,000 rare artifacts. - Vietnam.vn",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQYURLVWUtYUtEQU5fWDhVQXE4UU12bkYzMzl6Q2F2elAxVno0SUE5Z0FQN2RUeUdrSjBlQkNXOXF4Vzl3QThnVHVKNFVLWEluS2ZwZDlsR2thaHp3LUp1c2FtV0hRODA2V2FxMm5jUklfUXFLSWdKTWNXelY0QmExRmYxdG1KUHp1NFpWcWpiOVdERXMxaGsyNk5OQzhBZw?oc=5",
+          "domain": "vietnam.vn",
+          "published_ms": 1794122992000,
+          "kind": "news",
+          "id": 106
+        }
+      ],
+      "wikipedia": {
+        "title": "Ming dynasty tombs",
+        "daily_views": 0,
+        "ratio": 0.08
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 56.4,
+        "newest_hours": 16,
+        "domains": [
+          "vietnam.vn"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    }
+  ]
+}
