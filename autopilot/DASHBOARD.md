@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 01:35 SAST
+Updated 2026-11-09 01:39 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,9 +19,9 @@ Updated 2026-11-09 01:35 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at visuals, attempts 1 |
+| Latest production | failed-final at qa, attempts 1 |
 | Selected topic and score | Model Context Protocol connects AI apps to your data (undefined/100) |
-| QA | n/a |
+| QA | failed |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -57,3 +57,4 @@ Updated 2026-11-09 01:35 SAST
   - SCR-18: "TABLETS UNEARTHED" is not named i
 - AI Tested kick-def9d910e5-ch2 failed at visuals: cannot read /home/runner/work/YOUTUBE/YOUTUBE/data/research/2/model-context-protocol-mcp.json
 - Hidden Past kick-0ed0e1ddb3-ch1 failed at vox-annotation: no annotation could be tied to a confirmed detail in a real image
+- AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {"blocking":[],"frame":[],"acceptance":[{"check":"stale-reuse","why":"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2"}],"technical":{"duration_le_3
