@@ -1,0 +1,79 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gemini-4-argon-vs-muse-spark-open-head-to-head",
+  "format": "shorts",
+  "hook": "Google's Gemini 4 Argon scored 99.4 points to beat Meta's 94.2.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "voiceover": "Google's Gemini 4 Argon scored 99.4 points to beat Meta's 94.2.",
+      "visual_cue": "Split frame displaying Google Gemini 4 Argon score of 99.4 alongside Meta Muse Spark Open score of 94.2.",
+      "sfx_cue": "whoosh",
+      "b_roll": [],
+      "animation_cue": "fade_in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "99.4 VS 94.2"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:06-0:18",
+      "voiceover": "On October 13, 2026, Google launched Gemini 4 Argon. Meta responded on October 15, 2026, releasing Muse Spark Open. Where did Meta's model rank against rating 1645?",
+      "visual_cue": "Timeline marking release dates of October 13, 2026 for Gemini 4 Argon and October 15, 2026 for Muse Spark Open.",
+      "sfx_cue": "click",
+      "b_roll": [],
+      "animation_cue": "slide_left",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "OCTOBER 2026 LAUNCHES"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "Except Meta's model clocked in at 7.4 seconds per sample.",
+      "visual_cue": "Digital stopwatch metric displaying 7.4 seconds speed test result.",
+      "sfx_cue": "beep",
+      "b_roll": [],
+      "animation_cue": "zoom_in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "7.4 SECONDS PER SAMPLE"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:40",
+      "voiceover": "Vision speed favored Meta at 7.4 seconds versus 13.4 seconds. Yet Gemini 4 Argon captured rank 4 with a rating of 1645. Meta settled for rank 10 with a score of 1517.",
+      "visual_cue": "Horizontal bar chart comparing 7.4 seconds against 13.4 seconds, followed by leaderboard rows showing rank 4 rating 1645 and rank 10 rating 1517.",
+      "sfx_cue": "pop",
+      "b_roll": [],
+      "animation_cue": "bar_grow",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "RANK 4 VS RANK 10"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "Google's 99.4 aggregate score secured the ultimate victory.",
+      "visual_cue": "Final scoreboard graphic emphasizing 99.4 aggregate score.",
+      "sfx_cue": "chime",
+      "b_roll": [],
+      "animation_cue": "fade_out",
+      "transition_out": "none",
+      "text_overlay": {
+        "text": "99.4 AGGREGATE WINNER"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://runtimewire.com/head-to-head/head-to-head-google-gemini-4-argon-vs-meta-muse-spark-open",
+    "https://fmrt.ai/compare/gemini-4-argon-vs-muse-spark-open",
+    "https://techpilot.ai/muse-spark-open-vs-gemini-4-argon",
+    "https://playground.roboflow.com/models/compare/gemini-4-argon-vs-muse-spark-open"
+  ]
+}
