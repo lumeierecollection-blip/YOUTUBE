@@ -175,16 +175,17 @@
     },
     "kick-d13b9717ed-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42530381637",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:31:50.224Z",
+      "updated_at": "2026-11-08T22:31:53.919Z",
       "stage": "visuals",
       "topic": "Cannabis Use in a 2,800-Year-Old Siberian Monument",
       "score": 75.9,
       "pillar": "Unbelievable true historical events",
-      "hook": "An ancient Siberian tomb just revealed surprising secrets about how people used cannabis 2,800 years ago."
+      "hook": "An ancient Siberian tomb just revealed surprising secrets about how people used cannabis 2,800 years ago.",
+      "error": "fetch failed"
     }
   },
   "uploads": [],
@@ -392,7 +393,8 @@
     "Hidden Past kick-0a938f9c78-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 \"Could his plan stop Adolf Hitler?\" — The narration has not yet explained what the 'p",
     "AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {\"content\":\"```json\\n{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"topic\\\": \\\"Claude AI can now connect to your bank account for personal finance\\\",\\n      \\\"pillar\\\": \\\"AI tools o",
     "AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1",
-    "AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:\n  -"
+    "AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:\n  -",
+    "Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed"
   ],
   "last_poll_at": "2026-11-08T22:28:25.905Z"
 }
