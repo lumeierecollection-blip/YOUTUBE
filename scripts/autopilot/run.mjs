@@ -61,6 +61,7 @@ function select() {
 }
 
 async function produce(slotId, channelId) {
+  if (kickRequest()?.ollama_first) process.env.OLLAMA_FIRST = "1";
   const channel = channelConfig(channelId);
   const dir = workDir(slotId);
   const ledger = loadLedger();
