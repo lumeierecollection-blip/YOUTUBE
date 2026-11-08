@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Cannabis Use in an Ancient Siberian Tomb",
+      "score": 73.4,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewrite the rehook beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this video's research."
+    },
+    {
+      "topic": "The 1957 Disappearance of Pan Am Flight 7",
+      "score": 61.8,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewrite the rehook beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why did the Boeing 377 Stratocruiser crash?\"). The payoff must state the answer plainly, from the research; if the research does "
+    },
+    {
+      "topic": "The French Resistance Coup in Algiers",
+      "score": 61,
+      "stage": "script",
+      "reason": "script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact same date and the fact about 400 fighters seizing Algiers word-for-word."
+    }
+  ],
+  "selected": null
+}
