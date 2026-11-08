@@ -358,8 +358,8 @@
       "attempts": 1,
       "run_id": "42535670563",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:39:09.910Z",
-      "stage": "technical-qa",
+      "updated_at": "2026-11-08T23:39:23.127Z",
+      "stage": "metadata",
       "topic": "Model Context Protocol connects AI apps to your data"
     }
   },
