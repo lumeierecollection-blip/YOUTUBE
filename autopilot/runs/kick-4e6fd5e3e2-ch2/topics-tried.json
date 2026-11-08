@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
+      "score": 80.2,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - SCR-18: \"Demonstration of ChatGPT Codex and\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/openai-s-images-2-6-update-adds-quick-gif-creation-from-phot-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every bea"
+    },
+    {
+      "topic": "Claude's New Personal Finance Feature Lets You Connect Bank Accounts",
+      "score": 78.3,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - SCR-17: 3/6 sentences name no figure, date or proper noun (longest run 2) â€” the renderer allows at most one words-only beat in three: \"Is your private data safe inside these chat logs?\" / \"But your sensitive history stays stored even after you unlink accounts.\" / \"Check your chat history settings to manage your saved financial data.\"\nScript gate FAILED (BLOCKER) for 2/claude-s-new-personal-f"
+    },
+    {
+      "topic": "Google Turning Off Search for Schools Rejecting AI",
+      "score": 77.6,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - SCR-18: \"Search Gemini Notebook and Classroom\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/google-turning-off-search-for-schools-rejecting-ai-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must d"
+    }
+  ],
+  "selected": null
+}

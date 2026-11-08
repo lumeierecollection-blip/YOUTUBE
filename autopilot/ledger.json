@@ -95,16 +95,17 @@
     },
     "kick-4e6fd5e3e2-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42527815928",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:02:03.037Z",
+      "updated_at": "2026-11-08T22:02:11.791Z",
       "stage": "script",
       "topic": "Google Turning Off Search for Schools Rejecting AI",
       "score": 77.6,
       "pillar": "New AI features and releases",
-      "hook": "Google is reportedly planning to cut off search engine access for schools that ban or reject AI tools."
+      "hook": "Google is reportedly planning to cut off search engine access for schools that ban or reject AI tools.",
+      "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-18: \"Search Gemini Notebook and Classroom\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/google-turning-off-search-for-schools-rejecting-ai-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must d"
     }
   },
   "uploads": [],
@@ -234,7 +235,8 @@
     "Hidden Past kick-22917e108d-ch1 failed at script: script failed its gates 4 times:   - CLAIM: sentence 5 \"However, his wife panicked after seeing 1 hand X-ray.\" — the claim \"Röntgen | had a | wife\" is not in the research (Research names Anna Bertha R",
     "Hidden Past kick-f7e02ae45f-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 3 \"Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends ",
     "AI Tested kick-231df8257a-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewr",
-    "Hidden Past kick-1dc36982d7-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact "
+    "Hidden Past kick-1dc36982d7-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact ",
+    "AI Tested kick-4e6fd5e3e2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-18: \"Search Gemini Notebook and Classroom\" is not named in the research artifact â€” use the research"
   ],
   "last_poll_at": "2026-11-08T21:58:31.332Z"
 }
