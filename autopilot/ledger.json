@@ -54,16 +54,17 @@
     },
     "kick-231df8257a-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42525314744",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:36:53.032Z",
+      "updated_at": "2026-11-08T21:39:20.603Z",
       "stage": "script",
       "topic": "Elvis and Eminem Rightsholders Sue Suno AI",
       "score": 67.9,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "The estates of Elvis and Eminem are taking AI music generator Suno to court over copyright infringement."
+      "hook": "The estates of Elvis and Eminem are taking AI music generator Suno to court over copyright infringement.",
+      "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewrite the rehook beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script"
     }
   },
   "uploads": [],
@@ -128,7 +129,8 @@
     "AI Tested kick-bebf4cb2f8-ch2 failed at script: script failed its gates 4 times: [vocab] library_shape exposes 114 drawings to the planner\n",
     "AI Tested kick-02fc5a5242-ch2 failed at discover: no candidate qualified; best was \"Claude AI Can Now Connect to Your Bank Account\" (80.3): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account",
     "Hidden Past kick-22917e108d-ch1 failed at script: script failed its gates 4 times:   - CLAIM: sentence 5 \"However, his wife panicked after seeing 1 hand X-ray.\" — the claim \"Röntgen | had a | wife\" is not in the research (Research names Anna Bertha R",
-    "Hidden Past kick-f7e02ae45f-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 3 \"Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends "
+    "Hidden Past kick-f7e02ae45f-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 3 \"Archaeologist Manolis Andronikos spent 40 years digging at Aigai, yet local legends ",
+    "AI Tested kick-231df8257a-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewr"
   ],
   "last_poll_at": "2026-11-08T21:35:34.904Z"
 }

@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Elvis and Eminem Rightsholders Sue Suno AI",
+      "score": 67.9,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewrite the rehook beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script"
+    }
+  ],
+  "selected": null
+}
