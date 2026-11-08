@@ -1,0 +1,173 @@
+{
+  "topic": "Cannabis Use in a 2,800-Year-Old Siberian Monument",
+  "pillar": "Unbelievable true historical events",
+  "evidence_ids": [
+    90,
+    94
+  ],
+  "hook": "An ancient Siberian tomb just revealed surprising secrets about how people used cannabis 2,800 years ago.",
+  "anniversary": false,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 7
+  },
+  "wikipedia_title": "Pazyryk culture",
+  "commons_query": "Pazyryk",
+  "youtube_query": "ancient siberian tomb cannabis discovery",
+  "evidence": [
+    {
+      "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+      "domain": "arkansasonline.com",
+      "published_ms": 1794132000000,
+      "kind": "news",
+      "id": 90
+    },
+    {
+      "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+      "domain": "sciencedaily.com",
+      "published_ms": 1794125758000,
+      "kind": "news",
+      "id": 94
+    },
+    {
+      "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+      "domain": "reuters.com",
+      "published_ms": 1793993807000,
+      "kind": "news"
+    },
+    {
+      "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+      "domain": "popsci.com",
+      "published_ms": 1793905200000,
+      "kind": "news"
+    },
+    {
+      "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+      "domain": "edition.cnn.com",
+      "published_ms": 1793905215000,
+      "kind": "news"
+    },
+    {
+      "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+      "domain": "sciencealert.com",
+      "published_ms": 1793905395000,
+      "kind": "news"
+    },
+    {
+      "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+      "domain": "allthatsinteresting.com",
+      "published_ms": 1794023805000,
+      "kind": "news"
+    },
+    {
+      "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+      "domain": "404media.co",
+      "published_ms": 1793905501000,
+      "kind": "news"
+    },
+    {
+      "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+      "domain": "hightimes.com",
+      "published_ms": 1793987233000,
+      "kind": "news"
+    },
+    {
+      "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+      "domain": "cannabisaficionado.com",
+      "published_ms": 1793990475000,
+      "kind": "news"
+    }
+  ],
+  "wikipedia": {
+    "title": "Pazyryk culture",
+    "daily_views": 102,
+    "ratio": 0.91
+  },
+  "youtube": {
+    "median_views": 110,
+    "competitors": [
+      {
+        "id": "scPIiYfCZ-s",
+        "title": "Scientists Found Cannabis in a 2,800-Year-Old Tomb",
+        "channel": "BlitzFacts",
+        "views": 1118
+      },
+      {
+        "id": "ySc0VbFpFlg",
+        "title": "2,800-Year-Old Scythian Tomb Reveals Ancient Cannabis Use in Siberia #Shorts",
+        "channel": "TimeWhizBros",
+        "views": 998
+      },
+      {
+        "id": "YsZuoz6Mgoc",
+        "title": "Ancient Royals Got High: A Tomb's Secret",
+        "channel": "Info Scroll",
+        "views": 992
+      },
+      {
+        "id": "KhorMv0C4sg",
+        "title": "HISTORIC: Scientists Discover 2,800-Year-Old Evidence of Cannabis Use in Ancient Siberian Tomb| RA1Z",
+        "channel": "News Central",
+        "views": 125
+      },
+      {
+        "id": "L9z932YXFRg",
+        "title": "2,800-Year-Old Siberian Tomb Reveals Evidence of Cannabis Use | Geo News English",
+        "channel": "Geo News English",
+        "views": 110
+      },
+      {
+        "id": "qePkp8kYmRw",
+        "title": "How Old Is Weed? The Oldest Evidence Is a 2,800-Year-Old Tomb",
+        "channel": "Cosmic cat",
+        "views": 107
+      }
+    ]
+  },
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 88,
+      "reach": 37,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 85,
+      "source_quality": 100
+    },
+    "total": 75.9,
+    "newest_hours": 12,
+    "domains": [
+      "arkansasonline.com",
+      "sciencedaily.com",
+      "reuters.com",
+      "popsci.com",
+      "edition.cnn.com",
+      "sciencealert.com",
+      "allthatsinteresting.com",
+      "404media.co",
+      "hightimes.com",
+      "cannabisaficionado.com"
+    ],
+    "trusted_domains": [
+      "reuters.com",
+      "edition.cnn.com"
+    ]
+  },
+  "rejected": [],
+  "wave": 1,
+  "slug": "cannabis-use-in-a-2-800-year-old-siberian-monument",
+  "angle": "Focus on the elite 'spa day' aspect by highlighting how Siberian chieftains used cannabis steam tents for communal rituals long before modern wellness trends.",
+  "what_others_do": "The existing videos focus purely on the archaeological discovery, the tomb's age, and the general historical fact of ancient cannabis use."
+}
