@@ -269,16 +269,17 @@
     },
     "kick-ac6017aec3-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42532551931",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:02:44.638Z",
+      "updated_at": "2026-11-08T23:03:47.130Z",
       "stage": "script",
       "topic": "The Tragic Kidnapping and Ransom of John Paul Getty III",
       "score": 65.5,
       "pillar": "Unbelievable true historical events",
-      "hook": "When kidnappers cut off John Paul Getty III's ear and mailed it to a newspaper, his billionaire grandfather finally paid up."
+      "hook": "When kidnappers cut off John Paul Getty III's ear and mailed it to a newspaper, his billionaire grandfather finally paid up.",
+      "error": "2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively repeats the exact phrase '3.2 million dollars' multiple times, making the payoff and close feel redundant and clunky."
     }
   },
   "uploads": [],
@@ -592,7 +593,8 @@
     "AI Tested kick-4d5babe164-ch2 failed at discover: discovery failure: 19 candidates, none eligible. Best \"Anthropic's new personal finance feature lets Claude connect to your bank\" (84.1): too similar to recent topic: Claude AI Can Now Connect Directl",
     "Hidden Past kick-b316df6d02-ch1 failed at assets: only 2 verified, licensed images found; need at least 3 distinct real images",
     "Hidden Past kick-b2d8d2e590-ch1 failed at assets: 2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images",
-    "AI Tested kick-8dd74ac976-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts"
+    "AI Tested kick-8dd74ac976-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-makes-wild-ingredient-substitution--shorts",
+    "Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively"
   ],
   "last_poll_at": "2026-11-08T22:56:49.049Z"
 }

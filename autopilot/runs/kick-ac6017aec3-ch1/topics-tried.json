@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird",
+      "score": 80.2,
+      "stage": "tts",
+      "reason": "trimmed script failed its gate:   - SCR-08: 47 words implies ~64 WPM at the shorts midpoint duration, vs. this channel's 135 WPM target â€” check pacing.\n  - SCR-18: \"Portrait of Alphonse Milne-Edwards\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-16: 47 words implies ~23s durati"
+    },
+    {
+      "topic": "The Tragic Kidnapping and Ransom of John Paul Getty III",
+      "score": 65.5,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively repeats the exact phrase '3.2 million dollars' multiple times, making the payoff and close feel redundant and clunky."
+    }
+  ],
+  "selected": null
+}
