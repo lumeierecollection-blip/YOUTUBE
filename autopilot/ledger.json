@@ -207,12 +207,12 @@
       "attempts": 1,
       "run_id": "42531024037",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:37:22.984Z",
-      "stage": "script",
-      "topic": "Maya Mercury Contamination from Red Vermilion Paint",
-      "score": 82.9,
-      "pillar": "Historical facts that challenge common assumptions",
-      "hook": "The ancient Maya used so much bright red mercury-based paint that they accidentally poisoned their own water supply."
+      "updated_at": "2026-11-08T22:38:13.723Z",
+      "stage": "research",
+      "topic": "World's First Internet Murder",
+      "score": 69.1,
+      "pillar": "Unbelievable true historical events",
+      "hook": "In 1999, a chatroom romance turned deadly in what became recorded as the world's first internet murder."
     }
   },
   "uploads": [],
@@ -432,6 +432,15 @@
       "at_ms": 1794177437363,
       "score": 82.9,
       "pillar": "Historical facts that challenge common assumptions"
+    },
+    {
+      "channel": "1",
+      "topic": "World's First Internet Murder",
+      "slug": "world-s-first-internet-murder",
+      "slot": "kick-a43137003d-ch1",
+      "at_ms": 1794177493723,
+      "score": 69.1,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
