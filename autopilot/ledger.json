@@ -113,12 +113,12 @@
       "attempts": 1,
       "run_id": "42528289488",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:06:12.413Z",
-      "stage": "script",
-      "topic": "US Air Traffic Control Is Finally Removing Floppy Disks",
-      "score": 78.9,
-      "pillar": "Unexpected AI abilities and limits",
-      "hook": "Believe it or not, US air traffic control is only now phasing out floppy disks—with a target year of 2028."
+      "updated_at": "2026-11-08T22:06:26.756Z",
+      "stage": "research",
+      "topic": "Bill Gates Says $10-an-Hour Robots Are Coming for Jobs",
+      "score": 76.7,
+      "pillar": "AI changing everyday work",
+      "hook": "Bill Gates warns that $10-an-hour robots are about to replace $20-an-hour workers—and there's no plan."
     }
   },
   "uploads": [],
@@ -257,6 +257,15 @@
       "at_ms": 1794175567576,
       "score": 78.9,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "2",
+      "topic": "Bill Gates Says $10-an-Hour Robots Are Coming for Jobs",
+      "slug": "bill-gates-says-10-an-hour-robots-are-coming-for-jobs",
+      "slot": "kick-da25b9c885-ch2",
+      "at_ms": 1794175586756,
+      "score": 76.7,
+      "pillar": "AI changing everyday work"
     }
   ],
   "attention": [
