@@ -311,7 +311,12 @@
       "attempts": 1,
       "run_id": "42534503957",
       "trigger": "push",
-      "updated_at": "2026-11-08T23:18:20.637Z"
+      "updated_at": "2026-11-08T23:19:51.980Z",
+      "stage": "research",
+      "topic": "The Venlo Incident: How the Nazis Kidnapped British Secret Agents",
+      "score": 56.6,
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "hook": "On this day in 1939, Nazi intelligence successfully lured and captured two top British SIS agents in broad daylight on the Dutch border."
     }
   },
   "uploads": [],
@@ -612,6 +617,15 @@
       "at_ms": 1794179235497,
       "score": 68.6,
       "pillar": "Ancient civilisations and discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "The Venlo Incident: How the Nazis Kidnapped British Secret Agents",
+      "slug": "the-venlo-incident-how-the-nazis-kidnapped-british-secret-ag",
+      "slot": "kick-eef307180f-ch1",
+      "at_ms": 1794179991980,
+      "score": 56.6,
+      "pillar": "Secret operations and evidence-backed conspiracies"
     }
   ],
   "attention": [
