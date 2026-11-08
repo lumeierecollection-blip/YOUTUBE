@@ -58,7 +58,12 @@
       "attempts": 1,
       "run_id": "42525314744",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:35:34.904Z"
+      "updated_at": "2026-11-08T21:36:34.441Z",
+      "stage": "research",
+      "topic": "Elvis and Eminem Rightsholders Sue Suno AI",
+      "score": 67.9,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "The estates of Elvis and Eminem are taking AI music generator Suno to court over copyright infringement."
     }
   },
   "uploads": [],
@@ -107,6 +112,15 @@
       "at_ms": 1794173594080,
       "score": 64,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "2",
+      "topic": "Elvis and Eminem Rightsholders Sue Suno AI",
+      "slug": "elvis-and-eminem-rightsholders-sue-suno-ai",
+      "slot": "kick-231df8257a-ch2",
+      "at_ms": 1794173794441,
+      "score": 67.9,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
