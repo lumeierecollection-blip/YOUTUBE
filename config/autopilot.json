@@ -92,7 +92,21 @@
         "nbcnews.com",
         "yahoo.com"
       ],
-      "acceptance_skills": "vox"
+      "acceptance_skills": "vox",
+      "wave2_queries": [
+        "archaeology discovery",
+        "ancient DNA study",
+        "unearthed ancient",
+        "medieval discovery",
+        "museum reveals artifact",
+        "mystery solved historians",
+        "Roman discovery",
+        "Viking discovery",
+        "Egypt discovery",
+        "shipwreck found",
+        "World War II secret revealed",
+        "forgotten history"
+      ]
     },
     "2": {
       "key": "ai-tested",
@@ -201,7 +215,24 @@
         "variety.com",
         "billboard.com"
       ],
-      "acceptance_skills": "motion-graphics"
+      "acceptance_skills": "motion-graphics",
+      "wave2_queries": [
+        "ChatGPT vs Claude test",
+        "Gemini vs ChatGPT comparison",
+        "free AI app launch",
+        "AI tool saves money",
+        "AI voice clone",
+        "AI agent mistake",
+        "AI chatbot wrong answer",
+        "AI phone feature new",
+        "students using AI",
+        "AI photo editing app",
+        "AI video generator viral",
+        "Copilot new feature",
+        "AI browser privacy",
+        "Meta AI app",
+        "AI customer service replaced"
+      ]
     }
   },
   "score_weights": {

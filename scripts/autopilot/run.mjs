@@ -12,6 +12,8 @@ import { CONFIG, ROOT, STATE_DIR, StageError, channelConfig, log, readJson, run,
 import { loadLedger, pickDueSlot, reapStale, saveLedger } from "./schedule.mjs";
 
 const MAX_TOPICS_PER_RUN = 3;
+// Failures that are about the topic itself, so the next candidate may succeed.
+const TOPIC_LEVEL_STAGES = new Set(["research", "script", "tts", "assets", "vox-annotation"]);
 const output = (k, v) => { if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `${k}=${v}\n`); log("output", `${k}=${v}`); };
 const git = (args, opts) => run("git", ["-C", STATE_DIR, ...args], { capture: true, ...opts });
 
@@ -83,7 +85,8 @@ async function produce(slotId, channelId) {
     // Topics that cannot be grounded or scripted hand over to the next candidate. A topic tried
     // here stays in the history, so it is never picked again just to get a run through.
     const tried = [];
-    let topic, researchPath, script, narration, lastErr;
+    const builder = channel.treatment === "vox" ? (await import("./hidden-past.mjs")).buildHiddenPast : (await import("./ai-tested.mjs")).buildAiTested;
+    let topic, researchPath, script, narration, built, lastErr;
     for (const candidate of eligible.slice(0, MAX_TOPICS_PER_RUN)) {
       const current = await withAngle(candidate);
       ledger.topics.push({ channel: channel.id, topic: current.topic, slug: current.slug, slot: slotId, at_ms: Date.now(), score: current.score.total, pillar: current.pillar });
@@ -94,10 +97,13 @@ async function produce(slotId, channelId) {
         script = await writeScript({ channel, topic: current, researchPath, dir });
         mark("narration");
         narration = narrate({ channel, topic: current, researchPath, script });
+        mark("visuals");
+        built = await builder({ channel, topic: current, script, narration, research: researchPath, dir, productionId });
         topic = current;
         break;
       } catch (e) {
         if (e.stage === "outage") { ledger.topics.pop(); throw e; } // a service outage must not burn the topic
+        if (!TOPIC_LEVEL_STAGES.has(e.stage)) throw e; // a broken tool will not be fixed by another topic
         lastErr = e;
         tried.push({ topic: current.topic, score: current.score.total, stage: e.stage || stage, reason: String(e.message).slice(0, 500) });
         log("produce", `topic abandoned at ${e.stage || stage}: ${current.topic}`);
@@ -108,9 +114,6 @@ async function produce(slotId, channelId) {
     writeJson(join(runState, "selected-topic.json"), topic);
     await notify(ledger, `${channel.name}: topic selected\n${topic.topic}\nScore ${topic.score.total}/100`);
 
-    mark("visuals");
-    const builder = channel.treatment === "vox" ? (await import("./hidden-past.mjs")).buildHiddenPast : (await import("./ai-tested.mjs")).buildAiTested;
-    const built = await builder({ channel, topic, script, narration, research: researchPath, dir, productionId });
 
     mark("render");
     const { renderEditor } = await import("../../src/skills/remotion-render/render-editor.js");
