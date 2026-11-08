@@ -294,6 +294,14 @@
       "pillar": "Ancient civilisations and discoveries",
       "hook": "A single medieval skeleton just solved the century-old mystery of Greenland's lost Viking church.",
       "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But this church links to 1 leader, Erik the Red.\" — It is unclear how or why the church links to him.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 7 \"Look at the 1300 era, when this history finally ended.\" — It is unclear what 'this history' refers to or why it ended.. Rewrite it so a viewer who knows noth"
+    },
+    "kick-5e7a666ddd-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42533461856",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:12:58.864Z"
     }
   },
   "uploads": [],
@@ -620,5 +628,5 @@
     "Hidden Past kick-ac6017aec3-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: satisfying_ending, no_repetition. The script excessively",
     "Hidden Past kick-de81cb430b-ch1 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But this church links to 1 leader, Erik the Red.\" — It is unclear how or why "
   ],
-  "last_poll_at": "2026-11-08T23:05:31.754Z"
+  "last_poll_at": "2026-11-08T23:12:58.863Z"
 }
