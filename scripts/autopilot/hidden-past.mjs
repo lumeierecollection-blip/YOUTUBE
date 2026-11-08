@@ -27,13 +27,14 @@ async function commonsSearch(query) {
     const ii = p.imageinfo?.[0];
     if (!ii || !/^image\/(jpeg|png)$/.test(ii.mime)) return null;
     const lic = ii.extmetadata?.LicenseShortName?.value || "";
-    if (!/public domain|^pd|cc0|cc by/i.test(lic) || /\bnc\b|\bnd\b/i.test(lic)) return null;
+    // The same licence rule as scripts/assets/download-historical-images.mjs, which rejects the whole pack otherwise.
+    if (!/^public domain$|^pd(-|$)|^cc0(\s|$)|^cc by(-sa)?(\s+\d+(\.\d+)?)?$|^no restrictions$/i.test(lic.trim())) return null;
     if (Math.min(ii.width, ii.height) < 700) return null;
     return { title: p.title, thumb: ii.thumburl, width: ii.width, height: ii.height, license: lic };
   }).filter(Boolean);
 }
 
-async function pickImage(scene, used) {
+async function pickImage(scene, used, story) {
   for (const q of scene.commons_queries || []) {
     let results = [];
     try { results = await commonsSearch(q); } catch (e) { log("assets", `Commons search failed for "${q}": ${e.message}`); }
@@ -43,9 +44,9 @@ async function pickImage(scene, used) {
       try { img = await fetchWithTimeout(c.thumb); } catch { continue; }
       if (!img.ok) continue;
       const buf = Buffer.from(await img.arrayBuffer());
-      const v = await askVision(`Narration: "${scene.text}". Wanted subject: "${scene.subject}". Commons file: ${c.title}.
+      const v = await askVision(`Story: "${story}". Narration: "${scene.text}". Wanted subject: "${scene.subject}". Commons file: ${c.title}.
 Reply JSON {"ok":boolean,"kind":"photograph|portrait|document|artefact|illustration|map|other","why":"..."}.
-ok=true only if this genuinely shows the wanted subject or a directly related historical object, place or person. ok=false for logos, AI-generated art, modern stock images, or anything merely similar.`, buf, "autopilot-commons");
+ok=true only if this genuinely shows the wanted subject or an object, place or person from this exact story. ok=false for a different culture, site or period than the story, logos, AI-generated art, modern stock images, or anything merely similar.`, buf, "autopilot-commons");
       log("assets", `${c.title}: ${v?.ok ? "accepted" : "rejected"} (${v?.why || "no answer"})`);
       if (v?.ok) { used.add(c.title); return { ...c, kind: v.kind || "photograph", thumbBuf: buf }; }
     }
@@ -218,7 +219,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
   for (const s of scenes) {
     const p = plan.scenes.find((x) => Number(x.index) === s.index) || {};
     if (Number(plan.map?.scene_index) === s.index && plan.map?.places?.length) continue;
-    const img = await pickImage({ ...p, text: s.text }, used);
+    const img = await pickImage({ ...p, text: s.text }, used, topic.topic);
     if (img) picks.push({ scene: s, plan: p, img });
   }
   // Sentences with no image of their own may use a real image of the story's wider subject.
@@ -228,7 +229,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       if (picks.length >= 5) break;
       if (picks.some((x) => x.scene.index === s.index) || Number(plan.map?.scene_index) === s.index) continue;
       const p = plan.scenes.find((x) => Number(x.index) === s.index) || {};
-      const img = await pickImage({ ...p, text: s.text, subject: topic.topic, commons_queries: topicQueries }, used);
+      const img = await pickImage({ ...p, text: s.text, subject: topic.topic, commons_queries: topicQueries }, used, topic.topic);
       if (img) picks.push({ scene: s, plan: { ...p, subject: p.subject || topic.topic }, img });
     }
     picks.sort((a, b) => a.scene.index - b.scene.index);
