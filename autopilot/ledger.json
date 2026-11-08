@@ -386,6 +386,14 @@
       "stage": "vox-layout",
       "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
       "error": "layout check failed: s2-place0 overlaps s2-place1"
+    },
+    "kick-60ab4e94f8-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42537245538",
+      "trigger": "push",
+      "updated_at": "2026-11-08T23:52:41.411Z"
     }
   },
   "uploads": [],
@@ -729,5 +737,5 @@
     "Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-on",
     "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1"
   ],
-  "last_poll_at": "2026-11-08T23:48:28.846Z"
+  "last_poll_at": "2026-11-08T23:52:41.411Z"
 }
