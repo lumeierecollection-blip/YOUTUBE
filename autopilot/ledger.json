@@ -189,16 +189,17 @@
     },
     "kick-b8a06b55bc-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42530416539",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:34:05.974Z",
+      "updated_at": "2026-11-08T22:35:02.891Z",
       "stage": "script",
       "topic": "Senior Loses $450,000 to Deepfake Scam",
       "score": 74.2,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "An 88-year-old lost nearly half a million dollars to a deepfake—and his bank won't refund a dime."
+      "hook": "An 88-year-old lost nearly half a million dollars to a deepfake—and his bank won't refund a dime.",
+      "error": "2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLARITY: sentence 4 \"But scammers groomed him for 10 months of contact.\" — \"him\" — no person has been named yet, so the viewer cannot tell who this is. Name the person (full name the first time).\n  - CLARITY: sentence 5 \"He made 450,000 dollars in in-person branch transfers.\" — \"He\" — no person ha"
     }
   },
   "uploads": [],
@@ -425,7 +426,8 @@
     "AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {\"content\":\"```json\\n{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"topic\\\": \\\"Claude AI can now connect to your bank account for personal finance\\\",\\n      \\\"pillar\\\": \\\"AI tools o",
     "AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1",
     "AI Tested kick-6239f74c01-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/perplexity-launches-teammates-ai-agents-to-run-projects-shorts:\n  -",
-    "Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed"
+    "Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed",
+    "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure"
   ],
   "last_poll_at": "2026-11-08T22:32:17.041Z"
 }
