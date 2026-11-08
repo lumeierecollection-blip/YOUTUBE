@@ -200,6 +200,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "An 88-year-old lost nearly half a million dollars to a deepfake—and his bank won't refund a dime.",
       "error": "2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLARITY: sentence 4 \"But scammers groomed him for 10 months of contact.\" — \"him\" — no person has been named yet, so the viewer cannot tell who this is. Name the person (full name the first time).\n  - CLARITY: sentence 5 \"He made 450,000 dollars in in-person branch transfers.\" — \"He\" — no person ha"
+    },
+    "kick-a43137003d-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42531024037",
+      "trigger": "push",
+      "updated_at": "2026-11-08T22:36:00.546Z"
     }
   },
   "uploads": [],
@@ -429,5 +437,5 @@
     "Hidden Past kick-d13b9717ed-ch1 failed at visuals: fetch failed",
     "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure"
   ],
-  "last_poll_at": "2026-11-08T22:32:17.041Z"
+  "last_poll_at": "2026-11-08T22:36:00.546Z"
 }
