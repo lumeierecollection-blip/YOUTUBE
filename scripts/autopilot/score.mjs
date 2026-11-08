@@ -68,7 +68,7 @@ export function rejections(c, score, { history, minScore, nowMs = Date.now(), wi
   const cutoff = nowMs - windowDays * 86400e3;
   for (const h of history) {
     if (h.at_ms < cutoff) continue;
-    if (similarity(c.topic, h.topic) >= 0.6) { out.push(`too similar to recent topic: ${h.topic}`); break; }
+    if (similarity(c.topic, h.topic) >= 0.5) { out.push(`too similar to recent topic: ${h.topic}`); break; }
   }
   return out;
 }

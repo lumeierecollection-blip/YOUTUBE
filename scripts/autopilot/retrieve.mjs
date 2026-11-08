@@ -21,7 +21,7 @@ async function bingNews(query) {
 
 async function pageText(url) {
   try {
-    const r = await fetchWithTimeout(url, { headers: { accept: "text/html" } }, 15000);
+    const r = await fetchWithTimeout(url, { headers: { accept: "text/html" } }, 15000, 0);
     if (!r.ok || !/html/.test(r.headers.get("content-type") || "")) return null;
     const html = (await r.text()).replace(/<(script|style|nav|footer|aside)[\s\S]*?<\/\1>/gi, " ");
     const title = clean((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || "");

@@ -45,12 +45,21 @@ export function must(stage, cmd, args, opts) {
 export const ffprobeJson = (file) => JSON.parse(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration:stream=codec_name,codec_type,width,height,r_frame_rate", "-of", "json", file], { encoding: "utf8" }));
 export const durationOf = (file) => Number(ffprobeJson(file).format.duration);
 
-export async function fetchWithTimeout(url, opts = {}, timeoutMs = 20000) {
-  const ctl = new AbortController();
-  const t = setTimeout(() => ctl.abort(), timeoutMs);
-  try {
-    return await fetch(url, { redirect: "follow", ...opts, signal: ctl.signal, headers: { "user-agent": "Mozilla/5.0 (compatible; youtube-autopilot/1.0)", ...(opts.headers || {}) } });
-  } finally { clearTimeout(t); }
+// Wikimedia asks automated clients to identify themselves and throttles ones that do not.
+const USER_AGENT = (url) => /wiki(pedia|media)\.org/.test(url) ? "YOUTUBE-pipeline/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE)" : "Mozilla/5.0 (compatible; youtube-autopilot/1.0)";
+
+/** Network errors and timeouts are retried with backoff; an HTTP error status is returned to the caller. */
+export async function fetchWithTimeout(url, opts = {}, timeoutMs = 20000, retries = 2) {
+  for (let attempt = 0; ; attempt++) {
+    const ctl = new AbortController();
+    const t = setTimeout(() => ctl.abort(), timeoutMs);
+    try {
+      return await fetch(url, { redirect: "follow", ...opts, signal: ctl.signal, headers: { "user-agent": USER_AGENT(String(url)), ...(opts.headers || {}) } });
+    } catch (e) {
+      if (attempt >= retries) throw e;
+      await sleep(2000 * (attempt + 1));
+    } finally { clearTimeout(t); }
+  }
 }
 
 /** Slot id -> working directory for one production. Nothing is shared between productions. */

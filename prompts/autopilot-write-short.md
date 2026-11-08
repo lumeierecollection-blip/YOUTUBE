@@ -21,6 +21,7 @@ The INPUT section holds the frozen research, the channel and its style. Use only
 - Sound like someone telling a friend. Short everyday words. No greeting, no "today", no "did you know", no "in this video".
 - Every sentence adds something new. The hook and the payoff must not share a phrase; the payoff reveals a fact the hook did not give away.
 - The first time a person or place appears, say in a few words who or what it is.
+- Never write he, she, him or her unless that person is already named. If the research gives no name, repeat the description ("the 88-year-old").
 - One topic only. A viewer who knows nothing must be able to follow it.
 - Never claim more than the research says. Avoid sweeping words like "forever", "everything" or "changed the world" unless the research says so.
 - **Every sentence must state something that can be drawn: a sourced number, date, place, a list of two or more things, a comparison, a document, an amount of money, or a cause ("because", "so").** Naming a company or person alone does not count.

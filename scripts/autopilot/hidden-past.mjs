@@ -35,9 +35,12 @@ async function commonsSearch(query) {
 
 async function pickImage(scene, used) {
   for (const q of scene.commons_queries || []) {
-    for (const c of (await commonsSearch(q)).slice(0, 5)) {
+    let results = [];
+    try { results = await commonsSearch(q); } catch (e) { log("assets", `Commons search failed for "${q}": ${e.message}`); }
+    for (const c of results.slice(0, 5)) {
       if (used.has(c.title)) continue;
-      const img = await fetchWithTimeout(c.thumb);
+      let img;
+      try { img = await fetchWithTimeout(c.thumb); } catch { continue; }
       if (!img.ok) continue;
       const buf = Buffer.from(await img.arrayBuffer());
       const v = await askVision(`Narration: "${scene.text}". Wanted subject: "${scene.subject}". Commons file: ${c.title}.
@@ -91,11 +94,13 @@ Return JSON: {"scenes":[{"index":0,"commons_queries":[],"subject":"","headline":
 }
 
 async function coordinates(place) {
-  const r = await fetchWithTimeout(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=coordinates&redirects=1&titles=${encodeURIComponent(place)}`);
-  if (!r.ok) return null;
-  const p = Object.values((await r.json()).query?.pages || {})[0];
-  const c = p?.coordinates?.[0];
-  return c ? { name: place, lat: c.lat, lon: c.lon } : null;
+  try {
+    const r = await fetchWithTimeout(`https://en.wikipedia.org/w/api.php?action=query&format=json&prop=coordinates&redirects=1&titles=${encodeURIComponent(place)}`);
+    if (!r.ok) return null;
+    const p = Object.values((await r.json()).query?.pages || {})[0];
+    const c = p?.coordinates?.[0];
+    return c ? { name: place, lat: c.lat, lon: c.lon } : null;
+  } catch { return null; }
 }
 
 /** Vector map from the repo's Natural Earth data, framed on the places. Returns paths and a projector. */
