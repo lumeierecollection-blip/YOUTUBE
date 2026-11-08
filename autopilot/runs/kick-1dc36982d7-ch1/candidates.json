@@ -1,0 +1,1463 @@
+{
+  "generated_at": "2026-11-08T21:42:52.562Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 63
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 84
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Cannabis Use in an Ancient Siberian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        87,
+        91
+      ],
+      "hook": "New archaeological findings inside an ancient Siberian monument reveal the surprising ways cannabis was used 2,800 years ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk artifact",
+      "youtube_query": "ancient cannabis Siberian tomb discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 87
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 91
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient humans were using cannabis far earlier in history than we thought - Scientific American",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUEtpYkFzdVhUOHQ5UlJQcTZJUDhEWUwyS2ZQbFZDdjBTUWpwdXBDUHlUaEdMeDZZQTA3cEpUSHVzTlBOOUt6RndqQV9KZjMyZDJRdkI5V2hnOVlKeHo3OWxFQXVsYThpd3QxMHA1MkhEbUV1bXF6UlRIMjByZlNEd01FSEctTHcwcW5CUFROckxOZHNvRndXSGVhN2dBdFRtT0E4SHhjVDBjQQ?oc=5",
+          "domain": "scientificamerican.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Seeds and preserved hair in tomb point to oldest signs of cannabis high 2,800 years ago, study suggests - PBS",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOSTZFT3F0emw3SVZLdmU2RV9LeVpZU3hMUk0zUWtubFFOd2w2YjhraEIxenNsczcweTRoVUtTN2NzTzhSUXFLcjBoR2I0SkNuMFBiemtJMi13R19GMmc3RUFfSXk3VHotVjQyWDkzdjcwcE9sTXBJT1dOaEgtdVVsRTM4OWl0ZDFybjBZbnV5UDlpRXRCTmpHUDRubGxod01fOElwbU55VUlMSTktYVVyankzRkJ0NUJqbk9BQ2JGTTViWTN3RzktZmhoZ05lTVRnalBRSg?oc=5",
+          "domain": "pbs.org",
+          "published_ms": 1794003599000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Were These Ancient Siberian Nomads the First Stoners? - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdTliSjVGVTNnWXZMYlJkMnhHcDRGaWo5Wk4yV3RielVxWEhtVy1KcmJiYjFjMGFEUHdsTjkwcWF1MUlWbDdMWVAxdkptel9LVEJrYjNwUFIzTnU5WUdqX19Md1FiYUVpenRSMVZsUGxVTkY0ZTJmbDBJWHVCajJiTndHc0R5dmdDNHFuQUhPRTZ5V3ZlOGh3RW1DWVIxSTZiOWQtdUdn?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1793905209000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 991,
+        "competitors": [
+          {
+            "id": "o-UdROjxPHw",
+            "title": "Siberian burial site reveals ancient use of cannabis",
+            "channel": "Reuters",
+            "views": 8471
+          },
+          {
+            "id": "uLBy2FVJw4g",
+            "title": "Scientists find cannabisin 2,800-year-old tomb",
+            "channel": "Straight Arrow",
+            "views": 3161
+          },
+          {
+            "id": "scPIiYfCZ-s",
+            "title": "Scientists Found Cannabis in a 2,800-Year-Old Tomb",
+            "channel": "BlitzFacts",
+            "views": 1118
+          },
+          {
+            "id": "ySc0VbFpFlg",
+            "title": "2,800-Year-Old Scythian Tomb Reveals Ancient Cannabis Use in Siberia #Shorts",
+            "channel": "TimeWhizBros",
+            "views": 998
+          },
+          {
+            "id": "YsZuoz6Mgoc",
+            "title": "Ancient Royals Got High: A Tomb's Secret",
+            "channel": "Info Scroll",
+            "views": 991
+          },
+          {
+            "id": "eV96XJ72WWI",
+            "title": "2,800-Year-Old Human Hair Reveals Ancient Cannabis Use in Remarkable Archaeological Discovery | RA1N",
+            "channel": "DRM News",
+            "views": 706
+          }
+        ]
+      },
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 46,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 41,
+          "source_quality": 100
+        },
+        "total": 73.4,
+        "newest_hours": 12,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "pbs.org",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "nytimes.com",
+          "allthatsinteresting.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "scientificamerican.com",
+          "edition.cnn.com",
+          "nytimes.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 2,500-Year-Old Mummified Crocodile Tomb in Egypt",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        77,
+        79
+      ],
+      "hook": "Archaeologists in Egypt opened a 2,500-year-old tomb only to find it packed with ten perfectly preserved mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile in ancient Egypt",
+      "commons_query": "Mummified crocodile Egypt",
+      "youtube_query": "mummified crocodiles Egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 77
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 79
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 55,
+        "competitors": [
+          {
+            "id": "1lnqmQmao0g",
+            "title": "Did You Know Ancient Egyptians Mummified Crocodiles? 🐊",
+            "channel": "History with Kara",
+            "views": 5350
+          },
+          {
+            "id": "4-tBqHu3iRE",
+            "title": "What did they hide inside this mummified crocodile?",
+            "channel": "AncientUFO",
+            "views": 3406
+          },
+          {
+            "id": "VO6K9Lm6PY4",
+            "title": "Half-Human, Half-Crocodile Mummy — Even Top Scientists Can’t Explain What They Found",
+            "channel": "Ancient History",
+            "views": 2989
+          },
+          {
+            "id": "KAfu-BwxTIc",
+            "title": "Egypt’s Temple City Filled With Mummified Crocodiles",
+            "channel": "Eeriedocsgarden",
+            "views": 176
+          },
+          {
+            "id": "U7CTXoo5VrE",
+            "title": "Ten crocodiles were tied up and mummified together in one Egyptian tomb",
+            "channel": "RelicRecords",
+            "views": 55
+          },
+          {
+            "id": "hzgRw-RnRxE",
+            "title": "This Tomb Was Sealed for Thousands of Years… But Something Got Inside",
+            "channel": "Real Wonders Of The Earth",
+            "views": 31
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 29,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 69.8,
+        "newest_hours": 2,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Wilhelm Röntgen's Accidental Discovery of X-Rays",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "While experimenting with invisible cathode rays in 1895, a physicist accidentally captured a picture of his own living bones.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Röntgen",
+      "youtube_query": "Wilhelm Rontgen discovery of X rays history",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 44
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilhelm Röntgen",
+        "daily_views": 487,
+        "ratio": 1.01
+      },
+      "youtube": {
+        "median_views": 459,
+        "competitors": [
+          {
+            "id": "uHGqSFL1bh0",
+            "title": "X-Ray Tubes Part I: The Early Years",
+            "channel": "Our Own Devices",
+            "views": 7794
+          },
+          {
+            "id": "7tzO_CVId_A",
+            "title": "Discovery of X-Rays in 1895 | Wilhelm Conrad Röntgen’s Experiment Explained",
+            "channel": "Xplainia",
+            "views": 5356
+          },
+          {
+            "id": "X0Fa5SFTvUA",
+            "title": "The Hand That Showed the Bones | First X-Ray, 1895 #shorts",
+            "channel": "PastUntold",
+            "views": 1221
+          },
+          {
+            "id": "IbaTa907U2k",
+            "title": "The First X-Ray Terrified the Scientist's Wife",
+            "channel": "Days of Odd",
+            "views": 860
+          },
+          {
+            "id": "Wq9XPyhrO0g",
+            "title": "Röntgen Found X-Rays by Accident (1895)",
+            "channel": "The Unsolved Archive",
+            "views": 459
+          },
+          {
+            "id": "-feNlniUT60",
+            "title": "The Invisible Ray That Changed Medicine Forever | The Discovery of X-Rays",
+            "channel": "Discovery Stories Hub",
+            "views": 323
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 48,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 65.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Discovery of a Lost Viking Church in Greenland",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        72
+      ],
+      "hook": "Excavations in Greenland have finally confirmed the exact location of a long-lost Viking Age church through remarkable skeletal remains.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Eastern Settlement",
+      "commons_query": "Viking ruins Greenland",
+      "youtube_query": "lost Viking church Greenland archaeological discovery",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 72
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 233,
+        "competitors": [
+          {
+            "id": "-wRGDkomaxw",
+            "title": "New Norse church found in Greenland | How Christianity shaped Viking society",
+            "channel": "Shield of Skuld",
+            "views": 19288
+          },
+          {
+            "id": "moZAdWn9O4Q",
+            "title": "A Skeleton Confirmed a Lost Norse Church in Greenland",
+            "channel": "Exploria World",
+            "views": 1347
+          },
+          {
+            "id": "CwOIJJUfO3o",
+            "title": "​Archaeologists Just Found a Lost Viking Church in Greenland! 😱 #shorts",
+            "channel": "PAST UNLOCKED",
+            "views": 342
+          },
+          {
+            "id": "W0PtSItKS_E",
+            "title": "Viking Church in Greenland Found Near Erik the Red's Farm",
+            "channel": "Quest For Unknown",
+            "views": 268
+          },
+          {
+            "id": "6J__X5-oEUg",
+            "title": "A Skeleton Just Proved a Lost Norse Church Exists in Greenland #history #secret #archeology #shorts",
+            "channel": "Untold Facts Vault",
+            "views": 233
+          },
+          {
+            "id": "QbFVluVxvf4",
+            "title": "A Lost Viking Church Was Just Found in Greenland #ancienthistory #ancient #historyfacts #history",
+            "channel": "Know-lix",
+            "views": 166
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 39,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 64.9,
+        "newest_hours": 0,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Discovery of the Tomb of Philip II of Macedon",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "In 1977, an archaeologist unsealed a royal Macedonian tomb—and came face to face with the father of Alexander the Great.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Vergina",
+      "commons_query": "Tomb of Philip II Vergina",
+      "youtube_query": "Tomb of Philip II of Macedon discovery Vergina",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Vergina",
+        "daily_views": 126,
+        "ratio": 0.84
+      },
+      "youtube": {
+        "median_views": 128,
+        "competitors": [
+          {
+            "id": "PdV1vs7qWn8",
+            "title": "Did This Belong To Alexander? @ponderingadventurer #ancientgreece #archeology #alexanderthegreat",
+            "channel": "Ancient Eyes Odyssey",
+            "views": 2143
+          },
+          {
+            "id": "BwNbYmFz7mg",
+            "title": "He Opened a Royal Tomb in Greece That Had Never Been Looted",
+            "channel": "Unearthed Daily",
+            "views": 565
+          },
+          {
+            "id": "ANl7bADGwbc",
+            "title": "The Royal Shield of Ancient Macedonia 👑 #shorts",
+            "channel": "Everlasting Wanderlust",
+            "views": 376
+          },
+          {
+            "id": "tldNeDa5VuQ",
+            "title": "Inside the Unlooted Tomb of Philip II: The UNTOUCHED Macedonian Treasure",
+            "channel": "Ancient Mysteries",
+            "views": 136
+          },
+          {
+            "id": "4KpaFAcwySA",
+            "title": "Vergina: The Royal Tomb of Philip II | Treasures of Ancient Macedonia #vergina",
+            "channel": "Everlasting Wanderlust",
+            "views": 128
+          },
+          {
+            "id": "rD61Xc4jGlI",
+            "title": "A Professor Dug Into a Hill and Found an Unlooted Royal Tomb",
+            "channel": "Keystonesmg",
+            "views": 69
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 38,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Real Atlantis Discovered Off Greece",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        104
+      ],
+      "hook": "Marine archaeologists exploring the waters off Greece have uncovered a remarkably preserved ancient site dubbed a real-life Atlantis.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Pavlopetri",
+      "commons_query": "Underwater archaeology Greece",
+      "youtube_query": "lost city Atlantis discovered Greece archaeology",
+      "evidence": [
+        {
+          "title": "'The real Atlantis' discovered off the coast of Greece - NewsBreak: Local News & Alerts",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPdzRleWM1R1ozTTdqMDNtQUtQbWxRQnhJMmZzbEVOU2hreVRVWEZOUGJmLWJJeFYxay00Q1htcEJSeWlrT0U3UDJQRGhvMFc5WUJUU2I5eU80STRZZ2dDMFNDY0Zqa1kxQkFlMktjbjhJRDJZMW1QMHg1M1lZUk9Yc21ZeHRIaGllVllnRWtXVUk1LTJoZXRxZnlOWmtLNHpzVTVydGlMWkpOdzBG?oc=5",
+          "domain": "newsbreak.com",
+          "published_ms": 1794072292000,
+          "kind": "news",
+          "id": 104
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 72,
+        "competitors": [
+          {
+            "id": "33tvgKahhb8",
+            "title": "The Lost City of Atlantis — Myth or Reality? | The Mystery That Never Died #ancientone",
+            "channel": "History tales",
+            "views": 1267
+          },
+          {
+            "id": "_rMXlxITa6Q",
+            "title": "The Lost City of Atlantis: Ancient Mystery Explained",
+            "channel": "GeoHistory — History on the Map",
+            "views": 1084
+          },
+          {
+            "id": "KRsiB4M-fWU",
+            "title": "The Lost City of Atlantis: Did It Really Exist? 😳🌊",
+            "channel": "The History Stickman ",
+            "views": 107
+          },
+          {
+            "id": "6AKSPZQXbfI",
+            "title": "The Lost City of Atlantis: The Mystery Begins | Part 1 🌊",
+            "channel": "Hidden Dimensions",
+            "views": 82
+          },
+          {
+            "id": "t0XvIrKqn10",
+            "title": "The Entire History of Atlantis | Was the Lost City of Atlantis Real?",
+            "channel": "Echoes Of History Back",
+            "views": 72
+          },
+          {
+            "id": "i-asS6f0x3A",
+            "title": "Atlantis Found? The Truth Behind the World’s Greatest Lost Civilization",
+            "channel": "History the Forgotten",
+            "views": 49
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 69,
+          "reach": 31,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 62.5,
+        "newest_hours": 28,
+        "domains": [
+          "newsbreak.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1957 Disappearance of Pan Am Flight 7",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        28
+      ],
+      "hook": "In 1957, a luxurious Pan Am airliner vanished mid-flight over the Pacific Ocean, leaving investigators baffled by a mysterious crash.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pan Am Flight 7",
+      "commons_query": "Pan Am Boeing 377",
+      "youtube_query": "Pan Am Flight 7 disappearance 1957 mystery",
+      "evidence": [
+        {
+          "title": "1957: Pan Am Flight 7 disappears between San Francisco and Honolulu. Wreckage and bodies are discovered a week later.",
+          "url": "https://en.wikipedia.org/wiki/Pan_Am_Flight_7",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 28
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 1269,
+        "competitors": [
+          {
+            "id": "B7JTpjSl5Vs",
+            "title": "Finding the Plane that Vanished for 74 Years",
+            "channel": "ProjectTomorrow",
+            "views": 10880380
+          },
+          {
+            "id": "cmt1mQewbm4",
+            "title": "The 1957 Airliner That Vanished Without a Single Distress Call",
+            "channel": "The Unsolved Bureau",
+            "views": 31587
+          },
+          {
+            "id": "qkuVwAvopKQ",
+            "title": "Pan Am Flight 7 — Hilang Tanpa Panggilan Darurat",
+            "channel": "GelapVoxa",
+            "views": 1789
+          },
+          {
+            "id": "SJKy3gID28w",
+            "title": "Why Did Pan Am Flight 7 Vanish? #AviationMystery #PanAmFlight7",
+            "channel": "Vanished Skies",
+            "views": 1783
+          },
+          {
+            "id": "Iyd-TZOfnrw",
+            "title": "What Really Happened to Pan Am Flight 7?",
+            "channel": "DARK THEORY ",
+            "views": 1269
+          },
+          {
+            "id": "_jxQbeRsOq8",
+            "title": "Pan Am Flight 7: The Airliner That Vanished Over the Pacific",
+            "channel": "Air Case Files",
+            "views": 260
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 52,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 61.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The French Resistance Coup in Algiers",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        31
+      ],
+      "hook": "In 1942, just 400 civilian French patriots pulled off a secret 15-hour coup against the Vichy regime to change WWII history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "The 8th of November 1942 in Algiers",
+      "commons_query": "Operation Torch Algiers",
+      "youtube_query": "French resistance coup Algiers Operation Torch",
+      "evidence": [
+        {
+          "title": "1942: World War II: French Resistance coup in Algiers, in which 400 civilian French patriots neutralize Vichyist XIXth Army Corps after 15 hours of fighting, and arrest several Vichyist generals, allowing the immediate success of Operation Torch in Algiers.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 31
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 252,
+        "competitors": [
+          {
+            "id": "3dCVoZIQ11k",
+            "title": "BARBAROSSA: The Ottoman Lion Who Conquered the Mediterranean Sea",
+            "channel": "Riyo Fulana",
+            "views": 284357
+          },
+          {
+            "id": "ECmy9IpXufM",
+            "title": "⚠️ 90 JOURS : COMMENT SE PRÉPARER ? LES CONSEILS DE LUZ DE MARÍA | Xavier & Monique",
+            "channel": "O CRUX AVE Media - Xavier Ayral & Monique T",
+            "views": 20036
+          },
+          {
+            "id": "8ggOl4XRSHE",
+            "title": "El Alamein to Tunis: Rommel vs Montgomery and Operation Torch",
+            "channel": "Progress - Science Documentaries",
+            "views": 2271
+          },
+          {
+            "id": "lNWLlgmP2Jc",
+            "title": "November’s Hidden Turning Points | OTD",
+            "channel": "OTD",
+            "views": 1067
+          },
+          {
+            "id": "n3O4kcsDZL8",
+            "title": "The Entire Second World War on the Map 1919–1945 | Countryball Documentary",
+            "channel": "Civilizations in Motion",
+            "views": 252
+          },
+          {
+            "id": "raptttzndcA",
+            "title": "Operation Torch: The Invasion America Fought Against France",
+            "channel": "Armory Declassified ",
+            "views": 12
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 61,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Discovery of Murano's Isolated Glassmaking Island",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        60
+      ],
+      "hook": "In 1291, the Republic of Venice banished every glassmaker to a single secret island under penalty of death.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Murano",
+      "commons_query": "Murano glass",
+      "youtube_query": "history of Murano glassmaking Venice",
+      "evidence": [
+        {
+          "title": "1291: The Republic of Venice enacts a law confining most of Venice's glassmaking industry to the \"island of Murano\".",
+          "url": "https://en.wikipedia.org/wiki/Republic_of_Venice",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 60
+        }
+      ],
+      "wikipedia": {
+        "title": "Murano",
+        "daily_views": 94,
+        "ratio": 0.83
+      },
+      "youtube": {
+        "median_views": 62,
+        "competitors": [
+          {
+            "id": "cxNmNriuBxI",
+            "title": "Venices Secret Weapon: How Murano Became the Glassmaking Capital (13th Century)",
+            "channel": "ELP",
+            "views": 1034
+          },
+          {
+            "id": "DM7trvwsN-Q",
+            "title": "Why Venice Locked Its Glassmakers on an Island",
+            "channel": "Eramisty",
+            "views": 424
+          },
+          {
+            "id": "4gI2fNNPcYg",
+            "title": "Should you do a Murano Glass Factory Tour from Venice?",
+            "channel": "Venice Travel Tips",
+            "views": 333
+          },
+          {
+            "id": "6XXjeqLTusM",
+            "title": "Murano Glass: The Most Guarded Monopoly in History",
+            "channel": "BizMotion",
+            "views": 276
+          },
+          {
+            "id": "OB9KPbLj298",
+            "title": "Why Venice Made Leaving With Glass a Death Sentence",
+            "channel": "Objects Explained",
+            "views": 62
+          },
+          {
+            "id": "IL2x1qfIFUY",
+            "title": "The Golden Cage: Life in Medieval Venice",
+            "channel": "Chronoburg Mysteries",
+            "views": 39
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 34,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 58.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The World's First Internet Murder",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a Michigan junkyard killing became the world's first recorded murder orchestrated entirely through an online chatroom.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 5
+      },
+      "wikipedia_title": "Sharee Miller",
+      "commons_query": "",
+      "youtube_query": "Sharee Miller first internet murder true crime",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 9
+        }
+      ],
+      "wikipedia": {
+        "title": "Sharee Miller",
+        "daily_views": 76,
+        "ratio": 0.57
+      },
+      "youtube": {
+        "median_views": 233,
+        "competitors": [
+          {
+            "id": "wi17DR4xMdU",
+            "title": "She Was Faking The Whole Thing",
+            "channel": "Ray William Johnson",
+            "views": 313526
+          },
+          {
+            "id": "QeyIj8HCAn4",
+            "title": "Michigan's 9 Most Dangerous Prisons And Their Worst Inmates",
+            "channel": "CrimeMotiveUS",
+            "views": 56520
+          },
+          {
+            "id": "ZWcVX3C9rV4",
+            "title": "LIES AND  AOL CHAT-ROOMS.",
+            "channel": "WONDER CHRONICLES TV",
+            "views": 233
+          },
+          {
+            "id": "TW7zgJwM1VI",
+            "title": "Nobody Suspected the Grieving Wife - Until Her Online Lover Left a Letter From the Grave",
+            "channel": "njihaovocalara",
+            "views": 61
+          },
+          {
+            "id": "2VNzDAaoh7M",
+            "title": "The First Internet Murder: How a Chat Room Lie Ended in Death",
+            "channel": "Cold Archives",
+            "views": 16
+          },
+          {
+            "id": "VtsDiik4wCs",
+            "title": "The first internet murder happened on this day. A woman used online deception to lure her hu #Shorts",
+            "channel": "Lin",
+            "views": 0
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 39,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 50,
+          "source_quality": 35
+        },
+        "total": 57.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1939 Venlo Incident",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1939, British secret service agents walked straight into a Nazi trap on the Dutch border, altering Europe's intelligence war.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Venlo Incident",
+      "commons_query": "",
+      "youtube_query": "Venlo Incident 1939 British intelligence WWII",
+      "evidence": [
+        {
+          "title": "1939: Venlo Incident: Two British agents of SIS are captured by the Germans.",
+          "url": "https://en.wikipedia.org/wiki/Venlo_incident",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 58,
+        "competitors": [
+          {
+            "id": "f0Wa-xCXy4c",
+            "title": "How Fritz Kolbe Became America's Best Spy From Inside Nazi Berlin",
+            "channel": "History Storyhouse",
+            "views": 544
+          },
+          {
+            "id": "oyf9BR62Alg",
+            "title": "Sitzkrieg Secrets: Gamelin's Missed Strike, Oslo Report, and the Ardennes Trap",
+            "channel": "World War 2 Vault",
+            "views": 439
+          },
+          {
+            "id": "l80PzO9WcQw",
+            "title": "The Venlo Incident: How Two British Spies Fell For a Fake N*zi Trap #WW2 #HistoryFacts #shorts",
+            "channel": "Ages & Empires",
+            "views": 437
+          },
+          {
+            "id": "jeZKjbI0eU0",
+            "title": "Why Did Venlo Capture British Agents in 1939? #Shorts",
+            "channel": "Declassified Ledger",
+            "views": 119
+          },
+          {
+            "id": "qycZyl-qUMI",
+            "title": "Germany's Hero, Britain's Spy | The Secret War Inside Hitler's Germany",
+            "channel": "WarMap Chronicles",
+            "views": 58
+          },
+          {
+            "id": "h1NiOHGaCIE",
+            "title": "The Venlo Incident: How the SS Destroyed Britain’s Spy Network in 1 Hour",
+            "channel": "PastHistorii",
+            "views": 39
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 30,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 56.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Battle of White Mountain's Lightning Victory",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        53
+      ],
+      "hook": "In 1620, a massive Catholic army completely crushed a Protestant rebellion near Prague in just two short hours.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Battle of White Mountain",
+      "commons_query": "Battle of White Mountain",
+      "youtube_query": "Battle of White Mountain 1620 history",
+      "evidence": [
+        {
+          "title": "1620: The Battle of White Mountain takes place near Prague, ending in a decisive Catholic victory in only two hours.",
+          "url": "https://en.wikipedia.org/wiki/Battle_of_White_Mountain",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 53
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 201,
+        "competitors": [
+          {
+            "id": "ifajSqxX_Xg",
+            "title": "The Battle of White Mountain: A Turning Point in History 🚩 #warfare #bohemia",
+            "channel": "Animated History Blueprint",
+            "views": 1263
+          },
+          {
+            "id": "0d1zaO6N2fg",
+            "title": "The Battle of White Mountain: When Two Hours Decided Prague",
+            "channel": "Ashes of Empires",
+            "views": 1043
+          },
+          {
+            "id": "bSljiscVLPU",
+            "title": "Nobody tells you what really happened in the Battle of White Mountain #Shorts",
+            "channel": "EraVault",
+            "views": 771
+          },
+          {
+            "id": "j5Vfwt7J-WQ",
+            "title": "Battle of White Mountain #shorts #history",
+            "channel": "Bygone Files TV",
+            "views": 211
+          },
+          {
+            "id": "TE6C7_7X1eE",
+            "title": "The Battle That Changed Czech History Forever | White Mountain, 1620",
+            "channel": "Random Fact World",
+            "views": 201
+          },
+          {
+            "id": "l3jruF541E8",
+            "title": "ONE HOUR. On 8 November 1620, the Bohemian army broke in about an hour on White Mountain",
+            "channel": "War Monster",
+            "views": 192
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 38,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 55.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1892 New Orleans General Strike",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        45
+      ],
+      "hook": "In 1892, black and white American trade unionists achieved the unthinkable by uniting for a massive four-day general strike.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "1892 New Orleans general strike",
+      "commons_query": "New Orleans 1892",
+      "youtube_query": "1892 New Orleans general strike history",
+      "evidence": [
+        {
+          "title": "1892: The New Orleans general strike begins, uniting black and white American trade unionists in a successful four-day general strike action for the first time.",
+          "url": "https://en.wikipedia.org/wiki/1892_New_Orleans_general_strike",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 45
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 85,
+        "competitors": [
+          {
+            "id": "oPM-p2c_Vv4",
+            "title": "THE VAMPIRES OF NEW ORLEANS",
+            "channel": "Atun-Shei Films",
+            "views": 116327
+          },
+          {
+            "id": "sub9OuRSQRQ",
+            "title": "The Cruelest Punishments of Cotton Plantations",
+            "channel": "The Merciless",
+            "views": 37334
+          },
+          {
+            "id": "JpIWexyvvI8",
+            "title": "He Sat Down on Purpose. Segregation Won for 58 Years — Plessy v. Ferguson ⚖️",
+            "channel": "The Trial Tapes",
+            "views": 398
+          },
+          {
+            "id": "Q6SBlGEVVDk",
+            "title": "The History Of Italians In The USA",
+            "channel": "Jika",
+            "views": 85
+          },
+          {
+            "id": "mYOYH079kqQ",
+            "title": "History of America in 23 Minutes: From 13 Colonies to Superpower",
+            "channel": "Course of Nations",
+            "views": 54
+          },
+          {
+            "id": "24yWO2Dysiw",
+            "title": "The 1892 New Orleans General Strike: A Moment of Unity",
+            "channel": "PastPulse",
+            "views": 43
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 32,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 54.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Battle of Andrassos",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        62
+      ],
+      "hook": "In 960 AD, Byzantine commander Leo Phokas pulled off a devastating winter mountain ambush against the Emir of Aleppo.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Battle of Andrassos",
+      "commons_query": "Byzantine military history manuscript",
+      "youtube_query": "Battle of Andrassos 960 Byzantine history",
+      "evidence": [
+        {
+          "title": "960: Battle of Andrassos: Byzantines under Leo Phokas the Younger score a crushing victory over the Hamdanid Emir of Aleppo, Sayf al-Dawla.",
+          "url": "https://en.wikipedia.org/wiki/Battle_of_Andrassos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794174172562,
+          "kind": "anniversary",
+          "id": 62
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 14,
+        "competitors": [
+          {
+            "id": "IyiYRN534EY",
+            "title": "Battle of Andrassos – November 8 960 – Arab-Byzantine Wars",
+            "channel": "WarScholar",
+            "views": 99
+          },
+          {
+            "id": "GoqUt68L_h4",
+            "title": "The Ambush That Broke the Lion of Aleppo — 8 Nov 960",
+            "channel": "Islamic History Vault",
+            "views": 14
+          },
+          {
+            "id": "ERXdqlwnV48",
+            "title": "The Battle of Andrassos (960 CE) | Muslim History",
+            "channel": "Malumat ki Jagah",
+            "views": 0
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 20,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 50.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    }
+  ]
+}
