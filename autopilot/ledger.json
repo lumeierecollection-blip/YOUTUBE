@@ -72,12 +72,12 @@
       "attempts": 1,
       "run_id": "42526469518",
       "trigger": "push",
-      "updated_at": "2026-11-08T21:43:26.436Z",
-      "stage": "script",
-      "topic": "Cannabis Use in an Ancient Siberian Tomb",
-      "score": 73.4,
-      "pillar": "Ancient civilisations and discoveries",
-      "hook": "New archaeological findings inside an ancient Siberian monument reveal the surprising ways cannabis was used 2,800 years ago."
+      "updated_at": "2026-11-08T21:51:14.374Z",
+      "stage": "research",
+      "topic": "The 1957 Disappearance of Pan Am Flight 7",
+      "score": 61.8,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "In 1957, a luxurious Pan Am airliner vanished mid-flight over the Pacific Ocean, leaving investigators baffled by a mysterious crash."
     }
   },
   "uploads": [],
@@ -144,6 +144,15 @@
       "at_ms": 1794174186471,
       "score": 73.4,
       "pillar": "Ancient civilisations and discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1957 Disappearance of Pan Am Flight 7",
+      "slug": "the-1957-disappearance-of-pan-am-flight-7",
+      "slot": "kick-1dc36982d7-ch1",
+      "at_ms": 1794174674374,
+      "score": 61.8,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [
