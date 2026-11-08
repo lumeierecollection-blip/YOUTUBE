@@ -5,7 +5,7 @@
  */
 import { join } from "node:path";
 import { CONFIG, StageError, askJson, fetchWithTimeout, log, slugify, writeJson } from "./lib.mjs";
-import { rejections, scoreCandidate } from "./score.mjs";
+import { rejections, scoreCandidate, similarity } from "./score.mjs";
 
 const decode = (s) => String(s || "").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/<[^>]+>/g, " ").replace(/&amp;/g, "&").replace(/&#0?39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ").trim();
 const tag = (xml, name) => (xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)</${name}>`, "i")) || [])[1];
@@ -44,11 +44,15 @@ const getJson = async (url, opts) => {
   return r.json();
 };
 
-async function collectSignals(channel, nowMs) {
+const newsSearch = async (q, days) => parseFeed(await getText(`https://news.google.com/rss/search?q=${encodeURIComponent(q)}+when:${days}d&hl=en-US&gl=US&ceid=US:en`), "news");
+
+/** Wave 2 widens the net to the channel's content pillars over 14 days. */
+async function collectSignals(channel, nowMs, wave = 1) {
   const report = [];
   const tasks = [];
-  for (const q of channel.news_queries) {
-    tasks.push(source(report, `google-news:${q}`, async () => parseFeed(await getText(`https://news.google.com/rss/search?q=${encodeURIComponent(q)}+when:7d&hl=en-US&gl=US&ceid=US:en`), "news")));
+  const queries = wave === 1 ? channel.news_queries : channel.pillars;
+  for (const q of queries) {
+    tasks.push(source(report, `google-news:${q}`, () => newsSearch(q, wave === 1 ? 7 : 14)));
   }
   for (const f of channel.feeds) tasks.push(source(report, `feed:${hostOf(f)}`, async () => parseFeed(await getText(f), "feed")));
   for (const sub of channel.reddit) {
@@ -77,6 +81,19 @@ async function collectSignals(channel, nowMs) {
     .sort((a, b) => (b.points || 0) - (a.points || 0) || b.published_ms - a.published_ms).slice(0, 110)
     .map((x, i) => ({ ...x, id: i }));
   return { items, report };
+}
+
+/**
+ * Looks for independent reporting of a proposed story. A headline counts only if it shares most
+ * of the topic's significant words, so a merely related article cannot inflate the source count.
+ */
+async function corroborate(c, nowMs) {
+  try {
+    const found = await newsSearch(c.youtube_query || c.topic, 14);
+    const known = new Set(c.evidence.map((e) => e.url));
+    const extra = found.filter((x) => !known.has(x.url) && similarity(x.title, c.topic) >= 0.5 && nowMs - x.published_ms < 14 * 86400e3).slice(0, 8);
+    return [...c.evidence, ...extra];
+  } catch { return c.evidence; }
 }
 
 async function wikipediaSignal(title, nowMs) {
@@ -116,13 +133,13 @@ async function commonsHits(query) {
   } catch { return null; }
 }
 
-function candidatePrompt(channel, items, learned) {
+function candidatePrompt(channel, items, learned, exclude = []) {
   const list = items.map((x) => `${x.id} | ${x.kind} | ${x.domain} | ${Math.round((Date.now() - x.published_ms) / 3600e3)}h ago${x.points ? ` | ${x.points} pts` : ""} | ${x.title}`).join("\n");
   return `You pick stories for the YouTube Shorts channel "${channel.name}".
 Audience: ${channel.audience_note}
 Content pillars: ${channel.pillars.join("; ")}.
 ${learned ? `What this channel's own data shows so far: ${learned}\n` : ""}
-Below are real items fetched today (id | kind | domain | age | title). Propose up to 10 candidate video topics.
+${exclude.length ? `Already considered and not usable, do not propose these again:\n${exclude.map((t) => `- ${t}`).join("\n")}\n\n` : ""}Below are real items fetched today (id | kind | domain | age | title). Propose up to 14 candidate video topics.
 
 Rules:
 - Each candidate must be grounded in the listed items. Put their ids in evidence_ids, and only group items that report the same story.
@@ -139,44 +156,60 @@ ${list}
 Return JSON: {"candidates":[{"topic":"...","pillar":"...","evidence_ids":[1,2],"hook":"one line","anniversary":false,"explainable_30s":true,"ratings":{"curiosity":0,"relevance":0,"visual":0},"wikipedia_title":"","commons_query":"","youtube_query":"short search phrase"}]}`;
 }
 
-/** Writes candidates.json and returns the selected topic. Throws when nothing qualifies. */
-export async function discover({ channel, ledger, dir, learned, nowMs = Date.now() }) {
-  const { items, report } = await collectSignals(channel, nowMs);
-  const okSources = report.filter((r) => r.ok).length;
-  log("discover", `${items.length} items from ${okSources}/${report.length} sources`);
-  if (items.length < 8) throw new StageError("discover", `only ${items.length} real items fetched; refusing to choose from so little`);
-
-  const raw = await askJson(candidatePrompt(channel, items, learned), "autopilot-discover");
+async function scoreWave({ channel, items, ledger, learned, exclude, nowMs }) {
+  const raw = await askJson(candidatePrompt(channel, items, learned, exclude), "autopilot-discover");
   const byId = new Map(items.map((x) => [x.id, x]));
   const history = ledger.topics.filter((t) => t.channel === channel.id);
   const proposals = (raw.candidates || []).map((c) => ({ ...c, evidence: (c.evidence_ids || []).map((id) => byId.get(Number(id))).filter(Boolean) })).filter((c) => c.topic && c.evidence.length);
-  if (!proposals.length) throw new StageError("discover", "the model returned no candidate tied to fetched evidence");
-
   const scored = [];
   for (const c of proposals) {
-    const [wikipedia, youtube, hits] = await Promise.all([
+    const [evidence, wikipedia, youtube, hits] = await Promise.all([
+      corroborate(c, nowMs),
       wikipediaSignal(c.wikipedia_title, nowMs),
       youtubeSignal(c.youtube_query || c.topic, nowMs),
       channel.treatment === "vox" && c.commons_query ? commonsHits(c.commons_query) : null,
     ]);
-    const cand = { ...c, wikipedia, youtube: youtube?.error ? null : youtube, commons_hits: hits };
+    const cand = { ...c, evidence, wikipedia, youtube: youtube?.error ? null : youtube, commons_hits: hits };
     const score = scoreCandidate(cand, { channel, weights: CONFIG.score_weights, nowMs });
-    const reject = rejections(cand, score, { history, minScore: CONFIG.min_topic_score, nowMs, windowDays: CONFIG.similarity_window_days });
-    scored.push({ ...cand, score, rejected: reject });
+    const rejected = rejections(cand, score, { history, minScore: CONFIG.min_topic_score, nowMs, windowDays: CONFIG.similarity_window_days });
+    scored.push({ ...cand, score, rejected });
   }
-  scored.sort((a, b) => b.score.total - a.score.total);
-  writeJson(join(dir, "candidates.json"), { generated_at: new Date(nowMs).toISOString(), sources: report, item_count: items.length, candidates: scored });
+  return scored;
+}
 
-  const winner = scored.find((c) => !c.rejected.length);
-  if (!winner) throw new StageError("discover", `no candidate qualified; best was "${scored[0].topic}" (${scored[0].score.total}): ${scored[0].rejected.join("; ")}`);
+/**
+ * Returns every eligible candidate, best first. Fails only after two discovery waves found
+ * nothing eligible, with each candidate's rejection reasons recorded in candidates.json.
+ */
+export async function discover({ channel, ledger, dir, learned, nowMs = Date.now() }) {
+  const all = [], reports = [];
+  for (const wave of [1, 2]) {
+    const { items, report } = await collectSignals(channel, nowMs, wave);
+    reports.push({ wave, item_count: items.length, sources: report });
+    log("discover", `wave ${wave}: ${items.length} items from ${report.filter((r) => r.ok).length}/${report.length} sources`);
+    if (items.length < 8) continue;
+    const scored = await scoreWave({ channel, items, ledger, learned, exclude: all.map((c) => c.topic), nowMs });
+    for (const c of scored) if (!all.some((x) => similarity(x.topic, c.topic) >= 0.6)) all.push({ ...c, wave });
+    if (all.some((c) => !c.rejected.length)) break;
+  }
+  all.sort((a, b) => b.score.total - a.score.total);
+  writeJson(join(dir, "candidates.json"), { generated_at: new Date(nowMs).toISOString(), waves: reports, candidates: all });
+  const eligible = all.filter((c) => !c.rejected.length);
+  if (!eligible.length) {
+    const best = all[0];
+    throw new StageError("discover", best ? `discovery failure: ${all.length} candidates, none eligible. Best "${best.topic}" (${best.score.total}): ${best.rejected.join("; ")}` : "discovery failure: no candidate could be tied to fetched evidence");
+  }
+  log("discover", `${eligible.length} eligible of ${all.length}; top "${eligible[0].topic}" ${eligible[0].score.total}`);
 
-  const angle = await askJson(`A Short is being made about: "${winner.topic}".
+  const withAngle = async (winner) => {
+    const angle = await askJson(`A Short is being made about: "${winner.topic}".
 Existing popular videos on it:
 ${(winner.youtube?.competitors || []).map((v) => `- ${v.title} (${v.views} views)`).join("\n") || "(none found)"}
 Find one distinctive angle that none of those titles takes. It must be supportable by news reporting, and must not copy their titles or structure.
 Return JSON: {"angle":"one sentence","what_others_do":"one sentence"}`, "autopilot-angle");
-  const selected = { ...winner, slug: slugify(winner.topic), angle: angle.angle, what_others_do: angle.what_others_do };
-  writeJson(join(dir, "selected-topic.json"), selected);
-  log("discover", `selected "${selected.topic}" score ${selected.score.total}`);
-  return selected;
+    const selected = { ...winner, slug: slugify(winner.topic), angle: angle.angle, what_others_do: angle.what_others_do };
+    writeJson(join(dir, "selected-topic.json"), selected);
+    return selected;
+  };
+  return { eligible, withAngle };
 }

@@ -90,6 +90,12 @@ jobs:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CHANNEL_01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CHANNEL_01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
         run: node scripts/autopilot/run.mjs produce "${{ steps.select.outputs.slot }}" "${{ steps.select.outputs.channel }}"
 
       - name: Keep the finished video and its evidence
@@ -106,6 +112,7 @@ jobs:
             data/autopilot-runs/${{ steps.select.outputs.slot }}/*.jpg
 
       - name: Upload privately and verify
+        id: deliver
         if: steps.produce.outputs.ready == 'true'
         env:
           CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
@@ -128,3 +135,10 @@ jobs:
           CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
           CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
         run: node scripts/autopilot/run.mjs finish
+
+      # A production that made no accepted video must show red, even though the job handled it cleanly.
+      - name: Report a failed production as a failed run
+        if: always() && steps.select.outputs.slot != '' && (steps.produce.outputs.ready != 'true' || steps.deliver.outcome != 'success')
+        run: |
+          echo "::error::No accepted, uploaded video from slot ${{ steps.select.outputs.slot }}. See autopilot/ledger.json on automation/state."
+          exit 1
