@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "2,000-year-old Roman settlement and secret jewelry workshop found under Welsh housing estate",
+      "score": 81.8,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: no_repetition. The script mentions the 2,000-year-old age of the ruins in both the hook and the close, resulting in slight redundancy for a 30-second runtime."
+    },
+    {
+      "topic": "Monumental medieval cathedral uncovered at Old Dongola in Sudan",
+      "score": 72.6,
+      "stage": "assets",
+      "reason": "only 1 verified, licensed images found; need at least 3 distinct real images"
+    }
+  ],
+  "selected": null
+}

@@ -241,16 +241,17 @@
     },
     "kick-b2d8d2e590-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42532120062",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:53:12.575Z",
-      "stage": "visuals",
+      "updated_at": "2026-11-08T22:53:33.557Z",
+      "stage": "assets",
       "topic": "Monumental medieval cathedral uncovered at Old Dongola in Sudan",
       "score": 72.6,
       "pillar": "Archaeological discoveries",
-      "hook": "Archaeologists just dug up a massive lost medieval cathedral hiding in plain sight at Old Dongola."
+      "hook": "Archaeologists just dug up a massive lost medieval cathedral hiding in plain sight at Old Dongola.",
+      "error": "2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images"
     }
   },
   "uploads": [],
@@ -535,7 +536,8 @@
     "AI Tested kick-b8a06b55bc-ch2 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
     "Hidden Past kick-a43137003d-ch1 failed at vox-bake: PhotoTreatment did not produce every still",
     "AI Tested kick-4d5babe164-ch2 failed at discover: discovery failure: 19 candidates, none eligible. Best \"Anthropic's new personal finance feature lets Claude connect to your bank\" (84.1): too similar to recent topic: Claude AI Can Now Connect Directl",
-    "Hidden Past kick-b316df6d02-ch1 failed at assets: only 2 verified, licensed images found; need at least 3 distinct real images"
+    "Hidden Past kick-b316df6d02-ch1 failed at assets: only 2 verified, licensed images found; need at least 3 distinct real images",
+    "Hidden Past kick-b2d8d2e590-ch1 failed at assets: 2 topic(s) tried, none produced an accepted script. Last: only 1 verified, licensed images found; need at least 3 distinct real images"
   ],
   "last_poll_at": "2026-11-08T22:49:26.350Z"
 }
