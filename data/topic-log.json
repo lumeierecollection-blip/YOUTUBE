@@ -2590,9 +2590,14 @@
           "topic": "NASA Exoplanet Archive Adds Thirteen New Planets With TOI Designations",
           "slug": "nasa-exoplanet-archive-adds-thirteen-planets",
           "reserved_at": "2026-11-07T15:07:46.595Z"
+        },
+        {
+          "topic": "Webb Space Telescope Spots Dust and Water Near Milky Way Center",
+          "slug": "webb-space-telescope-dust-water-milky-way-center",
+          "reserved_at": "2026-11-08T15:21:24.275Z"
         }
       ],
-      "last_generated": "2026-11-07T15:07:46.595Z"
+      "last_generated": "2026-11-08T15:21:24.276Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
