@@ -1,0 +1,107 @@
+{
+  "topic_slug": "utah-byu-holy-war-top-10-showdown",
+  "strongest_angle": "The historic Holy War rivalry between Utah and BYU reached a monumental milestone as both teams met as top-ten ranked opponents for the first time in the 104-game history of the series.",
+  "key_facts": [
+    {
+      "fact": "The BYU Cougars played the Utah Utes for the 104th time in the history of the Holy War, marking the first time both teams entered the game as top ten ranked teams nationally.",
+      "source_url": "https://roundtable.io/sports/ncaa/byu/news/eight-things-to-remember-before-the-top-ten-holy-war-between-byu-and-utah",
+      "source_name": "Roundtable",
+      "confidence": "high"
+    },
+    {
+      "fact": "Third-ranked Utah remained undefeated with a 28-20 victory over No. 7 BYU on Saturday at Rice-Eccles Stadium in Salt Lake City.",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup",
+      "source_name": "KUTV",
+      "confidence": "high"
+    },
+    {
+      "fact": "Devon Dampier accounted for four touchdowns and finished with 264 yards of offense while Utah intercepted four passes against BYU.",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup",
+      "source_name": "KUTV",
+      "confidence": "high"
+    },
+    {
+      "fact": "No. 3 Utah hosted No. 7 BYU in Salt Lake City as part of the Big 12 conference schedule.",
+      "source_url": "https://apnews.com/article/byu-utah-rivalry-de917c8ebb1992e276a7b618e4d6da34",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total meetings",
+      "value": 104,
+      "unit": "games",
+      "source_url": "https://roundtable.io/sports/ncaa/byu/news/eight-things-to-remember-before-the-top-ten-holy-war-between-byu-and-utah"
+    },
+    {
+      "label": "Utah ranking",
+      "value": 3,
+      "unit": "ranking",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    },
+    {
+      "label": "BYU ranking",
+      "value": 7,
+      "unit": "ranking",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    },
+    {
+      "label": "Utah score",
+      "value": 28,
+      "unit": "points",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    },
+    {
+      "label": "BYU score",
+      "value": 20,
+      "unit": "points",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    },
+    {
+      "label": "Total offense yards",
+      "value": 264,
+      "unit": "yards",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    },
+    {
+      "label": "Touchdowns",
+      "value": 4,
+      "unit": "touchdowns",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    },
+    {
+      "label": "Interceptions",
+      "value": 4,
+      "unit": "interceptions",
+      "source_url": "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Utah Utes",
+      "kind": "organization"
+    },
+    {
+      "name": "BYU Cougars",
+      "kind": "organization"
+    },
+    {
+      "name": "Devon Dampier",
+      "kind": "person"
+    },
+    {
+      "name": "Salt Lake City",
+      "kind": "place"
+    },
+    {
+      "name": "Rice-Eccles Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Big 12",
+      "kind": "organization"
+    }
+  ]
+}
