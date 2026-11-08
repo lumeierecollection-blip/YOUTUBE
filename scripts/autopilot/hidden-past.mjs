@@ -138,7 +138,9 @@ function handCircle(cx, cy, rx, ry, seed) {
 }
 
 /** One render of the real PhotoTreatment per image. */
-async function bakeStills(items, dir) {
+async function bakeStills(items, dir, voMp3) {
+  // The Remotion bundle imports vo.mp3, which only exists once a narration is staged.
+  copyFileSync(join(ROOT, voMp3), join(REMOTION_DIR, "vo.mp3"));
   const pubDir = join(REMOTION_DIR, "public", "vox-src");
   mkdirSync(pubDir, { recursive: true });
   const script = `
@@ -225,7 +227,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     w -= w % 2; h -= h % 2;
     return { ...picks[i], asset: a, id: im.id, file, w, h, x: Math.round((W - w) / 2), y: VOX.photo_y + Math.round((VOX.photo_height - h) / 2), baked: join(dir, `${im.id}-vox.png`) };
   });
-  await bakeStills(items, dir);
+  await bakeStills(items, dir, narration.mp3);
 
   const sourceJpeg = (it, n) => { const o = join(dir, `src-${n}.jpg`); must("annotate", "ffmpeg", ["-y", "-v", "error", "-i", it.file, "-vf", `scale=${it.w}:${it.h}`, "-q:v", "3", o]); return o; };
   for (const [n, it] of items.entries()) {
