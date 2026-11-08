@@ -6,9 +6,10 @@
  * Difference from the daily pipeline, on purpose: a claims check that cannot run (exit 4)
  * blocks this production instead of proceeding without it.
  */
-import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, StageError, askJson, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
+import { retrievePages } from "./retrieve.mjs";
 
 const MAX_SECONDS = 29.8;
 const SCRIPT_PASSES = 7;
@@ -21,8 +22,8 @@ const models = () => ({
   script: process.env.OPENCODE_MODELS_REASONING || "ollama-cloud/gpt-oss:120b",
 });
 
-function agent(args, input, label) {
-  const r = run("node", ["scripts/ollama-agent.js", ...args], { input, capture: true, timeoutS: 900 });
+function agent(args, input, label, env) {
+  const r = run("node", ["scripts/ollama-agent.js", ...args], { input, capture: true, timeoutS: 900, env });
   if (r.status !== 0) throw new StageError(label, `model runner exited ${r.status}`);
   const line = r.stdout.trim().split("\n").at(-1);
   const out = JSON.parse(line).structured_output;
@@ -30,12 +31,24 @@ function agent(args, input, label) {
   return out;
 }
 
-export function research({ channel, topic }) {
+export async function research({ channel, topic, dir }) {
   const researchPath = join(ROOT, "data/research", channel.id, `${topic.slug}.json`);
+  const fallback = join(dir, `fallback-pages-${topic.slug}.txt`);
+  const pages = await retrievePages(topic);
+  if (pages) writeFileSync(fallback, pages);
+  const searchOut = join(ROOT, "data/research", channel.id, `${topic.slug}-search.json`);
+  rmSync(searchOut, { force: true });
   const input = JSON.stringify({ topic: topic.topic, angle: topic.angle, slug: topic.slug, channel_id: channel.id, trending_entities: null });
-  const out = agent(["--prompt-file", "prompts/research.md", "--schema-file", "schemas/research.json", "--agent", "pipeline-research", "--model", models().research,
-    "--task-label", "research", "--max-retries", "4", "--min-source-domains", "2", "--channel-id", channel.id, "--video-id", topic.slug,
-    "--search-out", `data/research/${channel.id}/${topic.slug}-search.json`], input, "research");
+  let out;
+  try {
+    out = agent(["--prompt-file", "prompts/research.md", "--schema-file", "schemas/research.json", "--agent", "pipeline-research", "--model", models().research,
+      "--task-label", "research", "--max-retries", "4", "--min-source-domains", "2", "--channel-id", channel.id, "--video-id", topic.slug,
+      "--search-out", `data/research/${channel.id}/${topic.slug}-search.json`], input, "research", { SEARCH_FALLBACK_FILE: pages ? fallback : "" });
+  } catch (e) {
+    // No search text means the service failed, which says nothing about this topic.
+    if (!existsSync(searchOut)) throw new StageError("outage", "web search and publisher-page retrieval both failed");
+    throw e;
+  }
   if (!(out.key_facts?.length >= 3)) throw new StageError("research", `only ${out.key_facts?.length || 0} key facts`);
   writeJson(researchPath, out);
   must("research", "node", ["scripts/gate-research.js", channel.id, topic.slug]);

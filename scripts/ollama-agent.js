@@ -30,7 +30,7 @@
  * fed back and retried up to --max-retries. Nothing is padded or defaulted.
  */
 
-import { readFileSync, appendFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, appendFileSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import Ajv from "ajv";
@@ -505,6 +505,12 @@ async function main() {
       }
       for (const q of queries) {
         try { searches.push(await exaSearch(q)); } catch (e) { log(`[exa] "${q}" failed: ${e.message}`); }
+      }
+      // Only set by the autopilot: pages it really fetched, for when the search service is down.
+      if (!searches.length && process.env.SEARCH_FALLBACK_FILE && existsSync(process.env.SEARCH_FALLBACK_FILE)) {
+        const text = readFileSync(process.env.SEARCH_FALLBACK_FILE, "utf8");
+        const urls = [...text.matchAll(/^\s*URL:\s*(\S+)/gim)].map((m) => normUrl(m[1]));
+        if (urls.length) { searches.push({ query: "publisher pages (search unavailable)", text, urls: [...new Set(urls)] }); log(`[search] using ${urls.length} fetched publisher pages`); }
       }
       if (!searches.length) {
         lastError = `[${spec}] every web search failed — cannot ground this stage`;
