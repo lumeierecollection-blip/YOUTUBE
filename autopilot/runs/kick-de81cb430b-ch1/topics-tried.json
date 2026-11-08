@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Skeleton confirms lost Viking church in Greenland",
+      "score": 68.6,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But this church links to 1 leader, Erik the Red.\" — It is unclear how or why the church links to him.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 7 \"Look at the 1300 era, when this history finally ended.\" — It is unclear what 'this history' refers to or why it ended.. Rewrite it so a viewer who knows noth"
+    }
+  ],
+  "selected": null
+}
