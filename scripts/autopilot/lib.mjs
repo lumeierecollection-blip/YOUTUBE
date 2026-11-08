@@ -71,13 +71,22 @@ export async function askVision(prompt, jpegBuffers, tag = "autopilot-vision") {
   return parseJsonAnswer(r);
 }
 
+/** A truncated or malformed answer is retried; only repeated failure stops the stage. */
 export async function askJson(prompt, tag = "autopilot") {
   const { callLLM, isProviderError } = await import("../../src/lib/llm.js");
-  const r = await callLLM([{ role: "user", content: prompt }], { maxTokens: 6000, temperature: 0.4, keepAlive: 0 }, tag);
-  if (!r || isProviderError(r)) throw new StageError(tag, `no model answered: ${JSON.stringify(r).slice(0, 200)}`);
-  const parsed = parseJsonAnswer(r);
-  if (!parsed) throw new StageError(tag, `model answer was not JSON: ${JSON.stringify(r).slice(0, 200)}`);
-  return parsed;
+  let last = "no answer";
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const r = await callLLM([{ role: "user", content: prompt }], { maxTokens: 14000, temperature: 0.4, keepAlive: 0, noCache: attempt > 1 }, tag);
+    if (!r || isProviderError(r)) last = `no model answered: ${JSON.stringify(r).slice(0, 200)}`;
+    else {
+      const parsed = parseJsonAnswer(r);
+      if (parsed) return parsed;
+      last = `model answer was not valid JSON (${JSON.stringify(r).length} characters)`;
+    }
+    log(tag, `attempt ${attempt}/3 failed: ${last}`);
+    await sleep(attempt * 8000);
+  }
+  throw new StageError(tag, last);
 }
 
 function parseJsonAnswer(r) {
