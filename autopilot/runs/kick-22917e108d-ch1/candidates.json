@@ -1,0 +1,848 @@
+{
+  "generated_at": "2026-11-08T21:17:51.483Z",
+  "sources": [
+    {
+      "source": "feed:arkeonews.net",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "feed:smithsonianmag.com",
+      "ok": true,
+      "items": 15
+    },
+    {
+      "source": "reddit:history",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "reddit:AskHistorians",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "reddit:archaeology",
+      "ok": false,
+      "error": "HTTP 403"
+    },
+    {
+      "source": "wikipedia-on-this-day",
+      "ok": true,
+      "items": 63
+    },
+    {
+      "source": "google-news:shipwreck discovered history",
+      "ok": true,
+      "items": 27
+    },
+    {
+      "source": "google-news:declassified archives history",
+      "ok": true,
+      "items": 10
+    },
+    {
+      "source": "google-trends",
+      "ok": true,
+      "items": 10
+    },
+    {
+      "source": "feed:livescience.com",
+      "ok": true,
+      "items": 50
+    },
+    {
+      "source": "google-news:ancient tomb discovered",
+      "ok": true,
+      "items": 39
+    },
+    {
+      "source": "hacker-news",
+      "ok": true,
+      "items": 0
+    },
+    {
+      "source": "google-news:historians reveal new evidence",
+      "ok": true,
+      "items": 24
+    },
+    {
+      "source": "google-news:lost city found archaeology",
+      "ok": true,
+      "items": 22
+    },
+    {
+      "source": "google-news:archaeologists discovered",
+      "ok": true,
+      "items": 84
+    },
+    {
+      "source": "feed:heritagedaily.com",
+      "ok": false,
+      "error": "fetch failed"
+    }
+  ],
+  "item_count": 110,
+  "candidates": [
+    {
+      "topic": "Discovery of 10 mummified crocodiles in an ancient Egyptian tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        75,
+        77
+      ],
+      "hook": "Archaeologists opened a 2,500-year-old Egyptian tomb and found something scaly waiting inside.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "Egyptian mummified crocodile",
+      "youtube_query": "mummified crocodiles Egypt archaeology",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 75
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 77
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.94
+      },
+      "youtube": {
+        "median_views": 109,
+        "competitors": [
+          {
+            "id": "IejvV1DED8c",
+            "title": "3000 years old mummified crocodiles🤯#ancient#history#egypt#trending#technology#kltalks#shorts#facts",
+            "channel": "KL TALKS TELUGU",
+            "views": 16063
+          },
+          {
+            "id": "4-tBqHu3iRE",
+            "title": "What did they hide inside this mummified crocodile?",
+            "channel": "AncientUFO",
+            "views": 3403
+          },
+          {
+            "id": "VO6K9Lm6PY4",
+            "title": "Half-Human, Half-Crocodile Mummy — Even Top Scientists Can’t Explain What They Found",
+            "channel": "Ancient History",
+            "views": 2989
+          },
+          {
+            "id": "aMYyX0Z-ajc",
+            "title": "This Egyptian Crocodile Mummy Had NO Crocodile Inside",
+            "channel": "MirZary",
+            "views": 1548
+          },
+          {
+            "id": "wBG7lE0Djuc",
+            "title": "Ancient Egyptians Mummified CROCODILES… Here’s Why! 🤯🐊",
+            "channel": "     History story",
+            "views": 109
+          },
+          {
+            "id": "ski9bFPl8IM",
+            "title": "2,300-Year-Old Crocodile Mummies Found in Egypt | Ancient Egyptian Mystery",
+            "channel": "The History Unlocked ",
+            "views": 107
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 68.6,
+        "newest_hours": 2,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Rare fifth-century Germanic chieftain burials in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        83
+      ],
+      "hook": "Archaeologists in France uncovered ultra-rare fifth-century graves of Germanic chieftains buried with dazzling weapons and warhorses.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Germanic peoples",
+      "commons_query": "Merovingian weapons artifact",
+      "youtube_query": "germanic chieftains burials france archaeology",
+      "evidence": [
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 83
+        }
+      ],
+      "wikipedia": {
+        "title": "Germanic peoples",
+        "daily_views": 1004,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 305,
+        "competitors": [
+          {
+            "id": "V9Uc3iJl10A",
+            "title": "The Secret Origins and History of the British Royal Family: Part 1 of 4",
+            "channel": "Monumental Chronicles",
+            "views": 1756
+          },
+          {
+            "id": "xLmNx_ZhDX0",
+            "title": "Strange History and Powerful Myths: 9 Stories Behind Our World",
+            "channel": "What Is",
+            "views": 582
+          },
+          {
+            "id": "gcv9ZcVAzLU",
+            "title": "Aetius Trapped Attila Behind His Wagons, Then Let Him Go FREE",
+            "channel": "Romanus",
+            "views": 558
+          },
+          {
+            "id": "P5QkGQOizQo",
+            "title": "The Cruelest Slave Jobs of Ancient Rome",
+            "channel": "The Merciless",
+            "views": 305
+          },
+          {
+            "id": "Y8ZHwLoMzO0",
+            "title": "Fall Asleep to the ENTIRE Story of the Byzantine Empire — Rome's Forgotten Half",
+            "channel": "Voyage Through Ages",
+            "views": 100
+          },
+          {
+            "id": "N80GTExm7jA",
+            "title": "The ENTIRE History of FRANCE in 17 Minutes",
+            "channel": "Country Files",
+            "views": 1
+          }
+        ]
+      },
+      "commons_hits": 18,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 49,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 66.2,
+        "newest_hours": 8,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ]
+    },
+    {
+      "topic": "Wilhelm Röntgen's accidental discovery of X-rays",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "While experimenting with glowing cathode rays on this day in 1895, Wilhelm Röntgen accidentally discovered a ray that could see right through human flesh.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilhelm Röntgen",
+      "commons_query": "Wilhelm Roentgen",
+      "youtube_query": "wilhelm rontgen discovery x ray history",
+      "evidence": [
+        {
+          "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+          "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+          "domain": "wikipedia.org",
+          "published_ms": 1794172671483,
+          "kind": "anniversary",
+          "id": 44
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilhelm Röntgen",
+        "daily_views": 487,
+        "ratio": 1.01
+      },
+      "youtube": {
+        "median_views": 795,
+        "competitors": [
+          {
+            "id": "RbxYv7tLFaE",
+            "title": "Presenting Victorian Good Ideas - The X-Ray! Discovered 1895 by Wilhelm Röntgen #victorianinventions",
+            "channel": "Glanmore National Historic Site of Canada",
+            "views": 14254
+          },
+          {
+            "id": "uHGqSFL1bh0",
+            "title": "X-Ray Tubes Part I: The Early Years",
+            "channel": "Our Own Devices",
+            "views": 7222
+          },
+          {
+            "id": "7tzO_CVId_A",
+            "title": "Discovery of X-Rays in 1895 | Wilhelm Conrad Röntgen’s Experiment Explained",
+            "channel": "Xplainia",
+            "views": 5356
+          },
+          {
+            "id": "EpXZvqbesVU",
+            "title": "WILHELM RÖNTGEN: THE MAN WHO REVEALED X-RAYS",
+            "channel": "ArchivesCivilization",
+            "views": 1982
+          },
+          {
+            "id": "IbaTa907U2k",
+            "title": "The First X-Ray Terrified the Scientist's Wife",
+            "channel": "Days of Odd",
+            "views": 795
+          },
+          {
+            "id": "2edl1loMBRk",
+            "title": "Wilhelm Conrad Roentgen: The Man WhoUnveiled X-Rays #science",
+            "channel": "GREAT MINDS DAILY",
+            "views": 731
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 51,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 65.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": []
+    },
+    {
+      "topic": "Discovery of the tomb of Philip II of Macedon at Vergina",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "On this day in 1977, Greek archaeologist Manolis Andronikos unearthed the untouched tomb of Alexander the Great's father, Philip II.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Philip II of Macedon",
+      "commons_query": "Vergina tomb Philip II",
+      "youtube_query": "tomb of philip ii vergina discovery",
+      "evidence": [
+        {
+          "title": "1977: Manolis Andronikos, a Greek archaeologist and professor at the Aristotle University of Thessaloniki, discovers the tomb of Philip II of Macedon at Vergina.",
+          "url": "https://en.wikipedia.org/wiki/Manolis_Andronikos",
+          "domain": "wikipedia.org",
+          "published_ms": 1794172671483,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Philip II of Macedon",
+        "daily_views": 819,
+        "ratio": 0.87
+      },
+      "youtube": {
+        "median_views": 129,
+        "competitors": [
+          {
+            "id": "PdV1vs7qWn8",
+            "title": "Did This Belong To Alexander? @ponderingadventurer #ancientgreece #archeology #alexanderthegreat",
+            "channel": "Ancient Eyes Odyssey",
+            "views": 2143
+          },
+          {
+            "id": "BCML63KH-kA",
+            "title": "Manolis Andronikos descubre una tumba real en Vergina",
+            "channel": "HypatiaJT",
+            "views": 1084
+          },
+          {
+            "id": "BwNbYmFz7mg",
+            "title": "He Opened a Royal Tomb in Greece That Had Never Been Looted",
+            "channel": "Unearthed Daily",
+            "views": 565
+          },
+          {
+            "id": "tldNeDa5VuQ",
+            "title": "Inside the Unlooted Tomb of Philip II: The UNTOUCHED Macedonian Treasure",
+            "channel": "Ancient Mysteries",
+            "views": 136
+          },
+          {
+            "id": "4KpaFAcwySA",
+            "title": "Vergina: The Royal Tomb of Philip II | Treasures of Ancient Macedonia #vergina",
+            "channel": "Everlasting Wanderlust",
+            "views": 129
+          },
+          {
+            "id": "rD61Xc4jGlI",
+            "title": "A Professor Dug Into a Hill and Found an Unlooted Royal Tomb",
+            "channel": "Keystonesmg",
+            "views": 69
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 64.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": []
+    },
+    {
+      "topic": "Sunken Mongol ship off Japan yields ancient dice and games",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        93
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion ship off Japan found ancient dice, offering a rare glimpse into daily gaming life centuries ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion scrolls",
+      "youtube_query": "mongol ship wreck japan dice games",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794104610000,
+          "kind": "news",
+          "id": 93
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": {
+        "median_views": 851,
+        "competitors": [
+          {
+            "id": "jz2S_AMmIRE",
+            "title": "𝕄𝔼𝕆𝕎 𝔹𝕆𝕊𝕊 | 𝕊𝕌ℙ𝔼ℝ 𝕊𝕃𝕆𝕎𝔼𝔻 | 𝔾𝕋𝔸 𝕍𝕀 𝕍𝕊 𝔾𝕋𝔸 𝕍 𝔼𝔻𝕀𝕋",
+            "channel": "FREYU",
+            "views": 12762008
+          },
+          {
+            "id": "PN-AgyebY_s",
+            "title": "THEY FOUND GAME PIECES INSIDE A 745-YEAR-OLD WARSHIP",
+            "channel": "Areha Hub",
+            "views": 17480
+          },
+          {
+            "id": "hwgvJ2iWWbY",
+            "title": "A Typhoon Sank Kublai Khan's Fleet in 1281. Divers Just Found the Crew's Dice #shorts",
+            "channel": "Hidden World Facts",
+            "views": 1036
+          },
+          {
+            "id": "sJ4UpbBipik",
+            "title": "What Were Kublai Khan's Sailors Doing? #shorts",
+            "channel": "Hypothetical Human",
+            "views": 1031
+          },
+          {
+            "id": "U1PaVKNRrHE",
+            "title": "窮小夥被村霸打傷，竟意外覺醒黃金瞳！一雙神眼能透視古董，連真假和價格都看得清！祖墳旁挖出傳家瓷瓶，窮小夥從此闖進古玩圈！💰👁️ #黃金瞳 #透視鑑寶 #古玩撿漏 #賭石暴富 #男頻爽劇 #短劇全集",
+            "channel": "剧迷大猫",
+            "views": 851
+          },
+          {
+            "id": "poexZyYUjWk",
+            "title": "700-Year-Old Dice & Game Cards Found in Mongol Invasion Shipwreck Off Japan #Shorts",
+            "channel": "TimeWhizBros",
+            "views": 456
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 51,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 62.6,
+        "newest_hours": 19,
+        "domains": [
+          "voiceofemirates.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "Ancient Siberian tomb reveals 2,800-year-old cannabis use",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        85,
+        88
+      ],
+      "hook": "An ancient Siberian monument just revealed surprising secrets about cannabis use 2,800 years ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk artifacts",
+      "anniversary_date": "",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 85
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 88
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 125,
+        "competitors": [
+          {
+            "id": "scPIiYfCZ-s",
+            "title": "Scientists Found Cannabis in a 2,800-Year-Old Tomb",
+            "channel": "BlitzFacts",
+            "views": 1118
+          },
+          {
+            "id": "ySc0VbFpFlg",
+            "title": "2,800-Year-Old Scythian Tomb Reveals Ancient Cannabis Use in Siberia #Shorts",
+            "channel": "TimeWhizBros",
+            "views": 998
+          },
+          {
+            "id": "YsZuoz6Mgoc",
+            "title": "Ancient Royals Got High: A Tomb's Secret",
+            "channel": "Info Scroll",
+            "views": 991
+          },
+          {
+            "id": "eV96XJ72WWI",
+            "title": "2,800-Year-Old Human Hair Reveals Ancient Cannabis Use in Remarkable Archaeological Discovery | RA1N",
+            "channel": "DRM News",
+            "views": 706
+          },
+          {
+            "id": "KhorMv0C4sg",
+            "title": "HISTORIC: Scientists Discover 2,800-Year-Old Evidence of Cannabis Use in Ancient Siberian Tomb| RA1Z",
+            "channel": "News Central",
+            "views": 125
+          },
+          {
+            "id": "L9z932YXFRg",
+            "title": "2,800-Year-Old Siberian Tomb Reveals Evidence of Cannabis Use | Geo News English",
+            "channel": "Geo News English",
+            "views": 106
+          }
+        ]
+      },
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 37,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 41,
+          "source_quality": 30
+        },
+        "total": 62.2,
+        "newest_hours": 11,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ]
+    },
+    {
+      "topic": "The 1837 Trent Affair diplomatic crisis",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        48
+      ],
+      "hook": "During the American Civil War, a US warship stopped a British mail packet and seized Confederate diplomats, nearly triggering a war between Britain and the Union.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Trent Affair",
+      "commons_query": "Trent Affair",
+      "youtube_query": "trent affair american civil war explained",
+      "evidence": [
+        {
+          "title": "1861: American Civil War: The \"Trent Affair\": The USS San Jacinto stops the British mail ship Trent and arrests two Confederate envoys, sparking a diplomatic crisis between the UK and US.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794172671483,
+          "kind": "anniversary",
+          "id": 48
+        }
+      ],
+      "wikipedia": {
+        "title": "Trent Affair",
+        "daily_views": 178,
+        "ratio": 1.22
+      },
+      "youtube": {
+        "median_views": 89,
+        "competitors": [
+          {
+            "id": "B3InFU_jq3U",
+            "title": "How Europe Viewed the American Civil War",
+            "channel": "Threads from the National Tapestry",
+            "views": 13448
+          },
+          {
+            "id": "I-D27M_xH9U",
+            "title": "What If the South Had Won the Civil War?",
+            "channel": "Forks of War",
+            "views": 2670
+          },
+          {
+            "id": "mBfK35FOXBY",
+            "title": "What Caused the American Civil War? Full History Explained?",
+            "channel": "The History Ledger",
+            "views": 358
+          },
+          {
+            "id": "Abz6B8P5_0E",
+            "title": "The Trent Affair Explained on a Map #Shorts",
+            "channel": "Forgotten Chapter USA",
+            "views": 109
+          },
+          {
+            "id": "h4vD5vqO3m0",
+            "title": "Abraham Lincoln's 10 Hardest Decisions: How He Saved the Union (On Maps)",
+            "channel": "Forgotten Chapter USA",
+            "views": 89
+          },
+          {
+            "id": "ezdbfWcpLRs",
+            "title": "Why Did Britain and America Stop Hating Each Other?",
+            "channel": "D HIDDEN REALITIES ",
+            "views": 18
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 38,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 59.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": []
+    },
+    {
+      "topic": "World's first Internet murder conviction of Sharee Miller",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "In 1999, a Michigan wife convinced her online lover to kill her husband, creating the world's first documented Internet murder case.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 5
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "first internet murder case sharee miller",
+      "evidence": [
+        {
+          "title": "1999: Bruce Miller is killed at his junkyard near Flint, Michigan. His wife Sharee Miller, who convinced her online lover Jerry Cassaday to kill him (before later killing himself) was convicted of the crime, in what became the world's first Internet murder.",
+          "url": "https://en.wikipedia.org/wiki/Sharee_Miller",
+          "domain": "wikipedia.org",
+          "published_ms": 1794172671483,
+          "kind": "anniversary",
+          "id": 9
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 61,
+        "competitors": [
+          {
+            "id": "QeyIj8HCAn4",
+            "title": "Michigan's 9 Most Dangerous Prisons And Their Worst Inmates",
+            "channel": "CrimeMotiveUS",
+            "views": 56520
+          },
+          {
+            "id": "TW7zgJwM1VI",
+            "title": "Nobody Suspected the Grieving Wife - Until Her Online Lover Left a Letter From the Grave",
+            "channel": "njihaovocalara",
+            "views": 61
+          },
+          {
+            "id": "2VNzDAaoh7M",
+            "title": "The First Internet Murder: How a Chat Room Lie Ended in Death",
+            "channel": "Cold Archives",
+            "views": 16
+          },
+          {
+            "id": "4aATAbra3yo",
+            "title": "She Said Her Husband Was Abusive – Then a Former Detective Drove 800 Miles to Kill Him",
+            "channel": "Case Bound",
+            "views": 5
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 30,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 50,
+          "source_quality": 35
+        },
+        "total": 57.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": []
+    }
+  ]
+}

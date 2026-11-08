@@ -1,0 +1,97 @@
+{
+  "topic": "Wilhelm Röntgen's accidental discovery of X-rays",
+  "pillar": "Strange inventions and lost technology",
+  "evidence_ids": [
+    44
+  ],
+  "hook": "While experimenting with glowing cathode rays on this day in 1895, Wilhelm Röntgen accidentally discovered a ray that could see right through human flesh.",
+  "anniversary": true,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 9,
+    "relevance": 9,
+    "visual": 8
+  },
+  "wikipedia_title": "Wilhelm Röntgen",
+  "commons_query": "Wilhelm Roentgen",
+  "youtube_query": "wilhelm rontgen discovery x ray history",
+  "evidence": [
+    {
+      "title": "1895: While experimenting with electricity, Wilhelm Röntgen discovers the X-ray.",
+      "url": "https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen",
+      "domain": "wikipedia.org",
+      "published_ms": 1794172671483,
+      "kind": "anniversary",
+      "id": 44
+    }
+  ],
+  "wikipedia": {
+    "title": "Wilhelm Röntgen",
+    "daily_views": 487,
+    "ratio": 1.01
+  },
+  "youtube": {
+    "median_views": 795,
+    "competitors": [
+      {
+        "id": "RbxYv7tLFaE",
+        "title": "Presenting Victorian Good Ideas - The X-Ray! Discovered 1895 by Wilhelm Röntgen #victorianinventions",
+        "channel": "Glanmore National Historic Site of Canada",
+        "views": 14254
+      },
+      {
+        "id": "uHGqSFL1bh0",
+        "title": "X-Ray Tubes Part I: The Early Years",
+        "channel": "Our Own Devices",
+        "views": 7222
+      },
+      {
+        "id": "7tzO_CVId_A",
+        "title": "Discovery of X-Rays in 1895 | Wilhelm Conrad Röntgen’s Experiment Explained",
+        "channel": "Xplainia",
+        "views": 5356
+      },
+      {
+        "id": "EpXZvqbesVU",
+        "title": "WILHELM RÖNTGEN: THE MAN WHO REVEALED X-RAYS",
+        "channel": "ArchivesCivilization",
+        "views": 1982
+      },
+      {
+        "id": "IbaTa907U2k",
+        "title": "The First X-Ray Terrified the Scientist's Wife",
+        "channel": "Days of Odd",
+        "views": 795
+      },
+      {
+        "id": "2edl1loMBRk",
+        "title": "Wilhelm Conrad Roentgen: The Man WhoUnveiled X-Rays #science",
+        "channel": "GREAT MINDS DAILY",
+        "views": 731
+      }
+    ]
+  },
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 46,
+      "reach": 51,
+      "curiosity": 90,
+      "relevance": 90,
+      "visual": 90,
+      "source_quality": 35
+    },
+    "total": 65.6,
+    "newest_hours": 0,
+    "domains": [
+      "wikipedia.org"
+    ],
+    "trusted_domains": [
+      "wikipedia.org"
+    ]
+  },
+  "rejected": [],
+  "slug": "wilhelm-ro-ntgen-s-accidental-discovery-of-x-rays",
+  "angle": "Focus on the immediate panic and folklore sparked by the invention, such as New Jersey lawmakers trying to ban X-rays in opera glasses to protect women's privacy.",
+  "what_others_do": "Existing videos focus on biographical overviews of Wilhelm Röntgen, the physics of the 1895 cathode-ray tube experiment, or the mild shock of his wife seeing her skeletal hand."
+}
