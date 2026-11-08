@@ -147,16 +147,17 @@
     },
     "kick-52129c5e87-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42529623655",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:20:34.058Z",
+      "updated_at": "2026-11-08T22:21:33.576Z",
       "stage": "research",
       "topic": "Elderly Lose $450k to Deepfake Scams",
       "score": 83.2,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "An 88-year-old lost $450,000 to an AI deepfake scam—and his bank won't refund a cent."
+      "hook": "An 88-year-old lost $450,000 to an AI deepfake scam—and his bank won't refund a cent.",
+      "error": "1 topic(s) tried, none produced an accepted script. Last: model runner exited 1"
     }
   },
   "uploads": [],
@@ -344,7 +345,8 @@
     "AI Tested kick-4e6fd5e3e2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-18: \"Search Gemini Notebook and Classroom\" is not named in the research artifact â€” use the research",
     "AI Tested kick-da25b9c885-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most",
     "Hidden Past kick-0a938f9c78-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 \"Could his plan stop Adolf Hitler?\" — The narration has not yet explained what the 'p",
-    "AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {\"content\":\"```json\\n{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"topic\\\": \\\"Claude AI can now connect to your bank account for personal finance\\\",\\n      \\\"pillar\\\": \\\"AI tools o"
+    "AI Tested kick-94a1e04c23-ch2 failed at autopilot-discover: model answer was not JSON: {\"content\":\"```json\\n{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"topic\\\": \\\"Claude AI can now connect to your bank account for personal finance\\\",\\n      \\\"pillar\\\": \\\"AI tools o",
+    "AI Tested kick-52129c5e87-ch2 failed at research: 1 topic(s) tried, none produced an accepted script. Last: model runner exited 1"
   ],
   "last_poll_at": "2026-11-08T22:19:18.424Z"
 }

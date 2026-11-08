@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Elderly Lose $450k to Deepfake Scams",
+      "score": 83.2,
+      "stage": "research",
+      "reason": "model runner exited 1"
+    }
+  ],
+  "selected": null
+}
