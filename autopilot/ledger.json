@@ -123,16 +123,17 @@
     },
     "kick-0a938f9c78-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42528328279",
       "trigger": "push",
-      "updated_at": "2026-11-08T22:10:41.101Z",
+      "updated_at": "2026-11-08T22:14:36.186Z",
       "stage": "script",
       "topic": "Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler",
       "score": 64.1,
       "pillar": "Secret operations and evidence-backed conspiracies",
-      "hook": "Adolf Hitler narrowly escaped a meticulously planned bomb blast in a Munich beer hall in 1939—leaving just minutes before the explosion."
+      "hook": "Adolf Hitler narrowly escaped a meticulously planned bomb blast in a Munich beer hall in 1939—leaving just minutes before the explosion.",
+      "error": "2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 \"Could his plan stop Adolf Hitler?\" — The narration has not yet explained what the 'plan' is or how it works.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"Georg Elser built his explosive device while residing at Türkenstrasse 94 during his time "
     }
   },
   "uploads": [],
@@ -309,7 +310,8 @@
     "AI Tested kick-231df8257a-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewr",
     "Hidden Past kick-1dc36982d7-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times: The final editor rejected the script. Failed: no_repetition. The hook and the payoff nearly repeat the exact ",
     "AI Tested kick-4e6fd5e3e2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-18: \"Search Gemini Notebook and Classroom\" is not named in the research artifact â€” use the research",
-    "AI Tested kick-da25b9c885-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most"
+    "AI Tested kick-da25b9c885-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - SCR-17: 6/7 sentences name no figure, date or proper noun (longest run 3) â€” the renderer allows at most",
+    "Hidden Past kick-0a938f9c78-ch1 failed at script: 2 topic(s) tried, none produced an accepted script. Last: script failed its gates 3 times:   - CLARITY: sentence 2 \"Could his plan stop Adolf Hitler?\" — The narration has not yet explained what the 'p"
   ],
   "last_poll_at": "2026-11-08T22:07:08.998Z"
 }

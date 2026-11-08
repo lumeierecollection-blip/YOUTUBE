@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "Discovery of a rare gold bear ornament in an ancient Saka burial mound in Kazakhstan",
+      "score": 73,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Does the Karagaily burial mound hold even more ancient Saka-era artifacts?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 3 \"However, the gold bear figurine reveals the rare, intricate cr"
+    },
+    {
+      "topic": "Georg Elser's narrow miss in the 1939 assassination attempt on Adolf Hitler",
+      "score": 64.1,
+      "stage": "script",
+      "reason": "script failed its gates 3 times:   - CLARITY: sentence 2 \"Could his plan stop Adolf Hitler?\" — The narration has not yet explained what the 'plan' is or how it works.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"Georg Elser built his explosive device while residing at Türkenstrasse 94 during his time "
+    }
+  ],
+  "selected": null
+}
