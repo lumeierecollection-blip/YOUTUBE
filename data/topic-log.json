@@ -1317,9 +1317,14 @@
           "topic": "Gemini 4 Argon Catches GPT-6.1 in November 2026 Agent Benchmarks",
           "slug": "gemini-4-argon-gpt-6-1-november-benchmarks",
           "reserved_at": "2026-11-08T15:17:46.336Z"
+        },
+        {
+          "topic": "Google Gemini 4 Argon vs Meta Muse Spark Open Head-to-Head",
+          "slug": "gemini-4-argon-vs-muse-spark-open-head-to-head",
+          "reserved_at": "2026-11-08T15:47:24.260Z"
         }
       ],
-      "last_generated": "2026-11-08T15:17:46.336Z"
+      "last_generated": "2026-11-08T15:47:24.260Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
