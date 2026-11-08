@@ -171,7 +171,7 @@ async function scoreWave({ channel, items, ledger, learned, exclude, nowMs }) {
     ]);
     const cand = { ...c, evidence, wikipedia, youtube: youtube?.error ? null : youtube, commons_hits: hits };
     const score = scoreCandidate(cand, { channel, weights: CONFIG.score_weights, nowMs });
-    const rejected = rejections(cand, score, { history, minScore: CONFIG.min_topic_score, nowMs, windowDays: CONFIG.similarity_window_days });
+    const rejected = rejections(cand, score, { history, minScore: CONFIG.min_topic_score, nowMs, windowDays: CONFIG.similarity_window_days, requireImages: channel.treatment === "vox" });
     scored.push({ ...cand, score, rejected });
   }
   return scored;
