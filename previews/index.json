@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T12:49:09.743Z",
+  "rebuilt_at": "2026-11-09T12:51:56.344Z",
   "channels": [
     {
       "key": "_smoke",
@@ -23,21 +23,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "finished",
-      "status": "ok",
-      "at": "2026-11-09T12:47:31.447Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T12:51:55.327Z",
       "branch": "preview/ai-tested",
-      "commit": "be864fc0",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619234061#artifacts)",
-      "sheet": "[contact-sheet.jpg](ai-tested/run-42619234061-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](ai-tested/run-42619234061-1/scene-s1.jpg) [scene-s2.jpg](ai-tested/run-42619234061-1/scene-s2.jpg) [scene-s3.jpg](ai-tested/run-42619234061-1/scene-s3.jpg) [scene-s4.jpg](ai-tested/run-42619234061-1/scene-s4.jpg)",
-      "voice": "[voice-preview.mp3](ai-tested/run-42619234061-1/voice-preview.mp3)",
-      "script": "[script-draft.md](ai-tested/run-42619234061-1/script-draft.md)",
-      "plan": "[scene-plan.json](ai-tested/run-42619234061-1/scene-plan.json)",
-      "qa": "[qa-report.json](ai-tested/run-42619234061-1/qa-report.json)",
+      "commit": "7f066359",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42620364952#artifacts)",
+      "sheet": "",
+      "scenes": "",
+      "voice": "",
+      "script": "",
+      "plan": "",
+      "qa": "",
       "blocker": "",
       "lastOk": "2026-11-09T12:47:31.447Z",
-      "run": "run-42619234061-1"
+      "run": "run-42620364952-1"
     },
     {
       "key": "gray-matter",
