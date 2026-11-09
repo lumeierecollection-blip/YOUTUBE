@@ -6,14 +6,13 @@
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-09T05:16:59.917Z"
+      "collected_at": "2026-11-09T07:08:38.367Z"
     }
   },
   "analytics_status": {
     "1": {
-      "available": false,
-      "reason": "403 YouTube Analytics API has not been used in project 42862040335 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/youtubeanalytics.googleapis.com/overvi",
-      "checked_at": "2026-11-09T05:17:00.051Z"
+      "available": true,
+      "checked_at": "2026-11-09T07:08:38.486Z"
     }
   }
 }
