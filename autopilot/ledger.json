@@ -670,6 +670,14 @@
       "pillar": "Unbelievable true historical events",
       "hook": "This is the forgotten story of the only time a local American government was violently overthrown in a coup.",
       "error": "layout check failed: s2-head overlaps s2-context"
+    },
+    "kick-b4086ba5c1-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42546702761",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:46:53.343Z"
     }
   },
   "uploads": [],
@@ -1286,5 +1294,5 @@
     "AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor t",
     "Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context"
   ],
-  "last_poll_at": "2026-11-09T01:39:07.582Z"
+  "last_poll_at": "2026-11-09T01:46:53.342Z"
 }
