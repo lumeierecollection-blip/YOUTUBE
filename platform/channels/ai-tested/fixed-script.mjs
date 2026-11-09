@@ -5,13 +5,13 @@
  */
 export const USE_FIXED = true;
 export const SENTENCES = [
-  { text: "Can AI actually count letters?", kind: "hook", claim_ids: [] },
-  { text: "We gave two models twenty counting questions.", kind: "setup", claim_ids: ["design"] },
+  { text: "Can AI count letters?", kind: "hook", claim_ids: [] },
+  { text: "We gave two models twenty questions.", kind: "setup", claim_ids: ["design"] },
   { text: "Both got strawberry right.", kind: "terminal", claim_ids: ["example"] },
-  { text: "OpenAI's GPT-OSS then scored twenty out of twenty.", kind: "score", claim_ids: ["score0"] },
+  { text: "OpenAI's GPT-OSS got all twenty.", kind: "score", claim_ids: ["score0"] },
   { text: "Google's Flash-Lite got eleven.", kind: "score", claim_ids: ["score1"] },
-  { text: "On random letters, it got just three of ten.", kind: "split", claim_ids: ["split_random1"] },
-  { text: "It even found five Os in onomatopoeia.", kind: "miss", claim_ids: ["miss"] },
+  { text: "On random letters, just three of ten.", kind: "split", claim_ids: ["split_random1"] },
+  { text: "It found five Os in onomatopoeia.", kind: "miss", claim_ids: ["miss"] },
   { text: "There are four.", kind: "miss", claim_ids: ["miss"] },
   { text: "So AI can count, just not every model.", kind: "close", claim_ids: [], on_screen_text: "AI can count. Just not every model." },
 ];
