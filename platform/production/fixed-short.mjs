@@ -5,6 +5,7 @@
  * engine's independent critic. It never speeds the voice up; a take that runs long is voiced again.
  */
 import { buildTimeline, FPS, narrate, publishFrames, technicalQa } from "./index.mjs";
+import { mixMusic } from "./mix.mjs";
 
 export async function runFixedShort({ key, runId, tools, spec }) {
   const { topic, claims, sources = [], sentences, scenes, compositionId, makeProps, edgeVoice, style, metadata, minSeconds = 20, maxSeconds = 30, writtenBy = "written directly on the owner's instruction from fetched sources" } = spec;
@@ -40,7 +41,9 @@ export async function runFixedShort({ key, runId, tools, spec }) {
   tools.stage("visual_complete", "ok");
 
   const extra = makeProps ? await makeProps({ timeline, narration }) : {};
-  const video = tools.renderComposition({ id: compositionId, props: { durationInFrames: timeline.durationInFrames, scenes: timeline.scenes, captions: timeline.captions, ...extra }, audio: narration.mp3, durationInFrames: timeline.durationInFrames });
+  // Optional original music, ducked under the voice. The voice track stays the timing authority.
+  const mixed = spec.music ? mixMusic({ narration, timeline, outDir: tools.outDir, mood: spec.music.mood, level: spec.music.level }) : null;
+  const video = tools.renderComposition({ id: compositionId, props: { durationInFrames: timeline.durationInFrames, scenes: timeline.scenes, captions: timeline.captions, ...extra }, audio: mixed ? mixed.file : narration.mp3, durationInFrames: timeline.durationInFrames });
   tools.stage("render_complete", "ok");
   await publishFrames({ tools, video, timeline, objectiveOf: (s) => s.objective });
 
