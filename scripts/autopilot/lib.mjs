@@ -104,6 +104,7 @@ export async function factCheck(text, researchPath, tag = "autopilot-fact-check"
   const v = await askStrongJson(`You are a strict fact checker. Check every factual claim in TEXT against RESEARCH only. Do not use outside knowledge to approve a claim.
 
 A claim fails if the research does not state it, or if its verb or number is stronger than the research. "Targeted" does not support "hit". "Hit" does not support "sank". "Damaged" does not support "destroyed". "Some" does not support "all".
+A question asserts nothing, so never list a question as a claim. Judge any fact stated inside it (a date, a number, a name) as a claim instead.
 
 TEXT:
 ${text}

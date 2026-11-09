@@ -51,7 +51,7 @@ Return only this JSON object:
   "format": "shorts",
   "hook": "the same text as the hook section's voiceover",
   "sections": [
-    { "id": "hook", "voiceover": "...", "visual_cue": "what is on screen, at least 10 characters", "text_overlay": null },
+    { "id": "hook", "voiceover": "...", "visual_cue": "what is on screen, at least 10 characters, naming only people and places the research names", "text_overlay": null },
     { "id": "setup", "voiceover": "...", "visual_cue": "...", "text_overlay": null },
     { "id": "rehook", "voiceover": "...", "visual_cue": "...", "text_overlay": null },
     { "id": "payoff", "voiceover": "...", "visual_cue": "...", "text_overlay": null },
