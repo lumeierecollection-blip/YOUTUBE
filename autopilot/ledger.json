@@ -1095,11 +1095,13 @@
     },
     "kick-aebd86ec0c-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42596694782",
       "trigger": "push",
-      "updated_at": "2026-11-09T10:00:15.746Z"
+      "updated_at": "2026-11-09T10:01:40.739Z",
+      "stage": "discover",
+      "error": "discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
     }
   },
   "uploads": [
@@ -2133,7 +2135,8 @@
     "Hidden Past kick-4d0ab7875c-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:\n  - SCR-16: 41 words implies ~20s durati",
     "AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:\n  - SCR-17 STRICT ",
     "Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€”",
-    "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so "
+    "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so ",
+    "Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
   ],
   "last_poll_at": "2026-11-09T10:00:15.745Z"
 }
