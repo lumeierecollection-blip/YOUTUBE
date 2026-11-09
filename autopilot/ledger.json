@@ -803,6 +803,14 @@
       "updated_at": "2026-11-09T04:46:13.835Z",
       "stage": "discover",
       "error": "discovery failure: 15 candidates, none eligible. Best \"Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker\" (78.7): too similar to recent topic: Bill Gates Says $10-an-Hour Robots Are Coming for Jobs"
+    },
+    "kick-a3cad14f13-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42563510288",
+      "trigger": "push",
+      "updated_at": "2026-11-09T04:46:33.431Z"
     }
   },
   "uploads": [
@@ -1552,5 +1560,5 @@
     "YouTube Analytics is unavailable for channel 1: re-authorising with the yt-analytics.readonly scope would enable retention data.",
     "AI Tested kick-aab00134a5-ch2 failed at discover: discovery failure: 15 candidates, none eligible. Best \"Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker\" (78.7): too similar to recent topic: Bill Gates Says $10-an-Hour Robots"
   ],
-  "last_poll_at": "2026-11-09T04:44:55.079Z"
+  "last_poll_at": "2026-11-09T04:46:33.430Z"
 }
