@@ -1,0 +1,694 @@
+{
+  "date": "2026-11-09",
+  "reused_from": "previews/ai-tested/run-42677020129-1/experiment.json",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+  "total": 20,
+  "models": [
+    {
+      "name": "GPT-OSS 120B",
+      "id": "openai/gpt-oss-120b",
+      "correct": 20,
+      "real": 10,
+      "random": 10,
+      "answers": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "o",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "committee",
+          "letter": "t",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "onomatopoeia",
+          "letter": "o",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "assessment",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "bubblegum",
+          "letter": "b",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "dottmbdgrddodndpnianlels",
+          "letter": "d",
+          "group": "random",
+          "correct": 6,
+          "reply": "6",
+          "answer": 6,
+          "ok": true
+        },
+        {
+          "word": "ohpmbiosrelptrohsaaithnd",
+          "letter": "l",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "iileneeignrsasgsigsnmghr",
+          "letter": "g",
+          "group": "random",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "abdlopgbrhgtltpnresoglca",
+          "letter": "d",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "nhmgsamchcpomapmrbrssmdh",
+          "letter": "c",
+          "group": "random",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "ldealmsclhctrgohaceirsts",
+          "letter": "e",
+          "group": "random",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "mbtdscbodnrdhcbebmaaorim",
+          "letter": "r",
+          "group": "random",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "semiobnlrogpoilspmredces",
+          "letter": "e",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "elilciacrdhtronnoshctaoe",
+          "letter": "c",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "poblbamcrshgdimotnortahn",
+          "letter": "o",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        }
+      ],
+      "speak": "OpenAI's GPT-OSS"
+    },
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "id": "gemini-3.5-flash-lite",
+      "correct": 11,
+      "real": 8,
+      "random": 3,
+      "answers": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "o",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "committee",
+          "letter": "t",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "onomatopoeia",
+          "letter": "o",
+          "group": "real",
+          "correct": 4,
+          "reply": "5",
+          "answer": 5,
+          "ok": false
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "group": "real",
+          "correct": 3,
+          "reply": "4",
+          "answer": 4,
+          "ok": false
+        },
+        {
+          "word": "assessment",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "bubblegum",
+          "letter": "b",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "dottmbdgrddodndpnianlels",
+          "letter": "d",
+          "group": "random",
+          "correct": 6,
+          "reply": "5",
+          "answer": 5,
+          "ok": false
+        },
+        {
+          "word": "ohpmbiosrelptrohsaaithnd",
+          "letter": "l",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "iileneeignrsasgsigsnmghr",
+          "letter": "g",
+          "group": "random",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "abdlopgbrhgtltpnresoglca",
+          "letter": "d",
+          "group": "random",
+          "correct": 1,
+          "reply": "2",
+          "answer": 2,
+          "ok": false
+        },
+        {
+          "word": "nhmgsamchcpomapmrbrssmdh",
+          "letter": "c",
+          "group": "random",
+          "correct": 2,
+          "reply": "3",
+          "answer": 3,
+          "ok": false
+        },
+        {
+          "word": "ldealmsclhctrgohaceirsts",
+          "letter": "e",
+          "group": "random",
+          "correct": 2,
+          "reply": "3",
+          "answer": 3,
+          "ok": false
+        },
+        {
+          "word": "mbtdscbodnrdhcbebmaaorim",
+          "letter": "r",
+          "group": "random",
+          "correct": 2,
+          "reply": "3",
+          "answer": 3,
+          "ok": false
+        },
+        {
+          "word": "semiobnlrogpoilspmredces",
+          "letter": "e",
+          "group": "random",
+          "correct": 3,
+          "reply": "4",
+          "answer": 4,
+          "ok": false
+        },
+        {
+          "word": "elilciacrdhtronnoshctaoe",
+          "letter": "c",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "poblbamcrshgdimotnortahn",
+          "letter": "o",
+          "group": "random",
+          "correct": 3,
+          "reply": "4",
+          "answer": 4,
+          "ok": false
+        }
+      ],
+      "speak": "Google's Flash-Lite"
+    }
+  ],
+  "questions": [
+    {
+      "group": "real",
+      "word": "strawberry",
+      "letter": "r",
+      "correct": 3,
+      "prompt": "How many times does the letter \"r\" appear in \"strawberry\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "mississippi",
+      "letter": "s",
+      "correct": 4,
+      "prompt": "How many times does the letter \"s\" appear in \"mississippi\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "banana",
+      "letter": "a",
+      "correct": 3,
+      "prompt": "How many times does the letter \"a\" appear in \"banana\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "bookkeeper",
+      "letter": "o",
+      "correct": 2,
+      "prompt": "How many times does the letter \"o\" appear in \"bookkeeper\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "committee",
+      "letter": "t",
+      "correct": 2,
+      "prompt": "How many times does the letter \"t\" appear in \"committee\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "onomatopoeia",
+      "letter": "o",
+      "correct": 4,
+      "prompt": "How many times does the letter \"o\" appear in \"onomatopoeia\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "raspberry",
+      "letter": "r",
+      "correct": 3,
+      "prompt": "How many times does the letter \"r\" appear in \"raspberry\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "occurrence",
+      "letter": "c",
+      "correct": 3,
+      "prompt": "How many times does the letter \"c\" appear in \"occurrence\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "assessment",
+      "letter": "s",
+      "correct": 4,
+      "prompt": "How many times does the letter \"s\" appear in \"assessment\"? Reply with only the number."
+    },
+    {
+      "group": "real",
+      "word": "bubblegum",
+      "letter": "b",
+      "correct": 3,
+      "prompt": "How many times does the letter \"b\" appear in \"bubblegum\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "dottmbdgrddodndpnianlels",
+      "letter": "d",
+      "correct": 6,
+      "prompt": "How many times does the letter \"d\" appear in \"dottmbdgrddodndpnianlels\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "ohpmbiosrelptrohsaaithnd",
+      "letter": "l",
+      "correct": 1,
+      "prompt": "How many times does the letter \"l\" appear in \"ohpmbiosrelptrohsaaithnd\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "iileneeignrsasgsigsnmghr",
+      "letter": "g",
+      "correct": 4,
+      "prompt": "How many times does the letter \"g\" appear in \"iileneeignrsasgsigsnmghr\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "abdlopgbrhgtltpnresoglca",
+      "letter": "d",
+      "correct": 1,
+      "prompt": "How many times does the letter \"d\" appear in \"abdlopgbrhgtltpnresoglca\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "nhmgsamchcpomapmrbrssmdh",
+      "letter": "c",
+      "correct": 2,
+      "prompt": "How many times does the letter \"c\" appear in \"nhmgsamchcpomapmrbrssmdh\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "ldealmsclhctrgohaceirsts",
+      "letter": "e",
+      "correct": 2,
+      "prompt": "How many times does the letter \"e\" appear in \"ldealmsclhctrgohaceirsts\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "mbtdscbodnrdhcbebmaaorim",
+      "letter": "r",
+      "correct": 2,
+      "prompt": "How many times does the letter \"r\" appear in \"mbtdscbodnrdhcbebmaaorim\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "semiobnlrogpoilspmredces",
+      "letter": "e",
+      "correct": 3,
+      "prompt": "How many times does the letter \"e\" appear in \"semiobnlrogpoilspmredces\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "elilciacrdhtronnoshctaoe",
+      "letter": "c",
+      "correct": 3,
+      "prompt": "How many times does the letter \"c\" appear in \"elilciacrdhtronnoshctaoe\"? Reply with only the number."
+    },
+    {
+      "group": "random",
+      "word": "poblbamcrshgdimotnortahn",
+      "letter": "o",
+      "correct": 3,
+      "prompt": "How many times does the letter \"o\" appear in \"poblbamcrshgdimotnortahn\"? Reply with only the number."
+    }
+  ],
+  "example": {
+    "group": "real",
+    "word": "strawberry",
+    "letter": "r",
+    "correct": 3,
+    "prompt": "How many times does the letter \"r\" appear in \"strawberry\"? Reply with only the number.",
+    "replies": [
+      {
+        "model": "GPT-OSS 120B",
+        "reply": "3",
+        "answer": 3,
+        "ok": true
+      },
+      {
+        "model": "Gemini 3.5 Flash-Lite",
+        "reply": "3",
+        "answer": 3,
+        "ok": true
+      }
+    ]
+  },
+  "miss": {
+    "word": "onomatopoeia",
+    "letter": "o",
+    "group": "real",
+    "correct": 4,
+    "reply": "5",
+    "answer": 5,
+    "ok": false,
+    "model": "Gemini 3.5 Flash-Lite",
+    "error": 1
+  },
+  "report_text": "The test sent 20 letter-counting questions to two AI models.\n\nHalf used real English words, and half used random strings of letters.\n\nEach model had to reply with only a number, and code that counted the letters marked every reply.\n\nEvery model counted 3 Rs in strawberry, which is correct.\n\nOpenAI's GPT-OSS got 20 of 20 right.\n\nGoogle's Flash-Lite got 11 of 20 right.\n\nOn real words, OpenAI's GPT-OSS got 10 of 10.\n\nOn real words, Google's Flash-Lite got 8 of 10.\n\nOn random letters, OpenAI's GPT-OSS got 10 of 10.\n\nOn random letters, Google's Flash-Lite got 3 of 10.\n\nGoogle's Flash-Lite counted 5 Os in onomatopoeia, when the answer was 4.",
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "The test sent 20 letter-counting questions to two AI models.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "The test sent 20 letter-counting questions to two AI models.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "design_groups",
+      "claim": "Half used real English words, and half used random strings of letters.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Half used real English words, and half used random strings of letters.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "check",
+      "claim": "Each model had to reply with only a number, and code that counted the letters marked every reply.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Each model had to reply with only a number, and code that counted the letters marked every reply.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "example",
+      "claim": "Every model counted 3 Rs in strawberry, which is correct.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Every model counted 3 Rs in strawberry, which is correct.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "score0",
+      "claim": "OpenAI's GPT-OSS got 20 of 20 right.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "OpenAI's GPT-OSS got 20 of 20 right.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "score1",
+      "claim": "Google's Flash-Lite got 11 of 20 right.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Google's Flash-Lite got 11 of 20 right.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_real0",
+      "claim": "On real words, OpenAI's GPT-OSS got 10 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On real words, OpenAI's GPT-OSS got 10 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_real1",
+      "claim": "On real words, Google's Flash-Lite got 8 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On real words, Google's Flash-Lite got 8 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_random0",
+      "claim": "On random letters, OpenAI's GPT-OSS got 10 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On random letters, OpenAI's GPT-OSS got 10 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_random1",
+      "claim": "On random letters, Google's Flash-Lite got 3 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On random letters, Google's Flash-Lite got 3 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "miss",
+      "claim": "Google's Flash-Lite counted 5 Os in onomatopoeia, when the answer was 4.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Google's Flash-Lite counted 5 Os in onomatopoeia, when the answer was 4.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "title": "AI Tested letter-count test run"
+    }
+  ]
+}
