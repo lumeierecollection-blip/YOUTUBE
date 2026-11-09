@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T19:24:00.794Z",
+  "rebuilt_at": "2026-11-09T19:26:16.350Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,21 +61,21 @@
     {
       "key": "gray-matter",
       "agent": "agent-gray-matter",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-09T19:24:00.385Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T19:26:11.761Z",
       "branch": "preview/gray-matter-2",
-      "commit": "1df1b054",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42682679104#artifacts)",
+      "commit": "b7ba921d",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42683112423#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
-      "script": "[script-draft.md](gray-matter/run-42682679104-1/script-draft.md)",
+      "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "narration is 30.05s at natural speed, over the 30s limit; the script must be shortened, the voice is never sped up",
+      "blocker": "",
       "lastOk": "2026-11-09T13:04:41.688Z",
-      "run": "run-42682679104-1"
+      "run": "run-42683112423-1"
     },
     {
       "key": "hidden-past",
