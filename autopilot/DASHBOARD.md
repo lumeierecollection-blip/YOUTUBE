@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:23 SAST
+Updated 2026-11-09 03:25 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-09 03:23 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at assets, attempts 1 |
-| Selected topic and score | Ancient Mosaic Discovered After 90 Years in North Macedonia (64.4/100) |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | n/a |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -76,3 +76,4 @@ Updated 2026-11-09 03:23 SAST
 - AI Tested kick-3dfcfe63bb-ch2 failed at discover: discovery failure: 14 candidates, none eligible. Best "Claude AI can now connect to your bank account" (86.1): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account
 - Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead
 - AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script
+- Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined
