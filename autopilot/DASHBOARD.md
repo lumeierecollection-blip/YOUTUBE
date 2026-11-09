@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:25 SAST
+Updated 2026-11-09 03:28 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 03:25 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at research, attempts 1 |
-| Selected topic and score | Accenture Accused of AI Hallucinations in Research (72.6/100) |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | Why experts say giving your AI assistant too much independence leads to silly mistakes (67.2/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -77,3 +77,4 @@ Updated 2026-11-09 03:25 SAST
 - Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead
 - AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script
 - Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined
+- AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure
