@@ -8,7 +8,7 @@ software run by GitHub Actions; no interactive session is involved in making a v
 | Owner | Paths |
 |---|---|
 | Lead architect | `config/channel-registry.json`, `platform/contracts/`, `platform/preview/`, `.github/workflows/channel-preview.yml`, `src/skills/remotion-render/Root.jsx`, `src/skills/remotion-render/render-channel-composition.mjs`, `scripts/autopilot/` |
-| Script engine agent | `platform/script-engine/`, `prompts/script-engine/` |
+| Script engine agent | `platform/script-engine/`, `prompts/script-engine/`, `platform/channels/_script-engine/` |
 | Channel agent `<key>` | `platform/channels/<key>/`, `src/skills/remotion-render/channels/<key>/` |
 
 A channel agent that needs a change in someone else's path reports it. It does not make it.

@@ -7,7 +7,7 @@ import { ROOT, channelEntry, makeTools } from "./lib.mjs";
 import { publish } from "./publish.mjs";
 
 const key = process.argv[2];
-const entry = key === "_smoke" ? { agent: "lead-architect" } : channelEntry(key);
+const entry = key.startsWith("_") ? { agent: key === "_smoke" ? "lead-architect" : "agent-script-engine" } : channelEntry(key);
 const runId = `run-${process.env.GITHUB_RUN_ID || Date.now()}-${process.env.GITHUB_RUN_ATTEMPT || 1}`;
 const outDir = join(ROOT, "output/previews", key, runId);
 const tools = makeTools({ key, runId, outDir, agent: entry.agent, publish: () => publish({ key, runId, outDir }) });

@@ -29,7 +29,7 @@ jobs:
         run: |
           key=$(node -e "
             const b = process.env.GITHUB_REF_NAME.replace(/^preview\//, '').replace(/^claude\/preview-/, '');
-            const keys = [...require('./config/channel-registry.json').channels.map((c) => c.key), '_smoke'];
+            const keys = [...require('./config/channel-registry.json').channels.map((c) => c.key), '_smoke', '_script-engine'];
             const k = keys.find((x) => b === x || b.startsWith(x + '-') || b.startsWith(x + '/'));
             if (!k) { console.error('no channel in branch ' + b); process.exit(1); }
             console.log(k);
