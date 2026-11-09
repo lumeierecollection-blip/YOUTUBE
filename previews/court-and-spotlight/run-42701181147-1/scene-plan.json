@@ -1,0 +1,79 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42701181147-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "In one night, Beyoncé became the most-awarded artist in Grammy history.",
+      "main_point": "Open on a magazine cover with the real, licensed photograph, the headline and the credit",
+      "visual_objective": "Open on a magazine cover with the real, licensed photograph, the headline and the credit",
+      "treatment": "magazine-cover",
+      "background": "cream page with full-bleed photo",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 0,
+      "end_s": 5.866666666666666
+    },
+    {
+      "scene_id": "s2",
+      "narration": "She arrived with nine nominations.",
+      "main_point": "Show nine nominations as nine marks filling in on a magazine page",
+      "visual_objective": "Show nine nominations as nine marks filling in on a magazine page",
+      "treatment": "big-number-nominations",
+      "background": "cream page",
+      "skill": "remotion",
+      "claim_ids": [
+        "M3"
+      ],
+      "start_s": 5.866666666666666,
+      "end_s": 8.333333333333334
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Her fourth win was best dance and electronic music album, for Renaissance. On stage she said she was just trying to receive the night.",
+      "main_point": "Name the win: the album, the category and that it was her fourth of the night",
+      "visual_objective": "Name the win: the album, the category and that it was her fourth of the night",
+      "treatment": "pull-quote-win-card",
+      "background": "cream page with photo crop",
+      "skill": "remotion",
+      "claim_ids": [
+        "M2",
+        "M1",
+        "M4"
+      ],
+      "start_s": 8.333333333333334,
+      "end_s": 16.766666666666666
+    },
+    {
+      "scene_id": "s4",
+      "narration": "That made thirty-two Grammys in her career.",
+      "main_point": "Show the career total counting up to thirty-two",
+      "visual_objective": "Show the career total counting up to thirty-two",
+      "treatment": "giant-number-counter",
+      "background": "cream page, gold accent",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 16.766666666666666,
+      "end_s": 19.333333333333332
+    },
+    {
+      "scene_id": "s5",
+      "narration": "More than any other artist in the awards' history.",
+      "main_point": "Close on the record, with the photograph and the sixty-five-year span",
+      "visual_objective": "Close on the record, with the photograph and the sixty-five-year span",
+      "treatment": "record-ribbon",
+      "background": "cream page with photo crop",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 19.333333333333332,
+      "end_s": 22.8
+    }
+  ]
+}
