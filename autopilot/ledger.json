@@ -691,7 +691,12 @@
       "attempts": 1,
       "run_id": "42547452603",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:49:53.202Z"
+      "updated_at": "2026-11-09T01:52:13.694Z",
+      "stage": "research",
+      "topic": "The Catastrophic Nevado del Ruiz Volcanic Mudslide",
+      "score": 64.2,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "In 1985, a volcanic eruption melted the ice cap of Nevado del Ruiz, unleashing a massive mudslide that buried an entire Colombian town in minutes."
     }
   },
   "uploads": [],
@@ -1271,6 +1276,15 @@
       "at_ms": 1794188965005,
       "score": 74.2,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "1",
+      "topic": "The Catastrophic Nevado del Ruiz Volcanic Mudslide",
+      "slug": "the-catastrophic-nevado-del-ruiz-volcanic-mudslide",
+      "slot": "kick-2f19a628f0-ch1",
+      "at_ms": 1794189133694,
+      "score": 64.2,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [

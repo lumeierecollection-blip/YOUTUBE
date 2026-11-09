@@ -1,0 +1,1251 @@
+{
+  "generated_at": "2026-11-09T01:51:05.709Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 37
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 84
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Maya Mercury Poisoning from Red Paint",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        128
+      ],
+      "hook": "The ancient Maya used so much bright red mercury-based paint on their buildings and tombs that they inadvertently poisoned their own water supply.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya ruins red pigment",
+      "youtube_query": "Maya red paint mercury poisoning water",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 128
+        },
+        {
+          "title": "The Maya's Prized Red Pigment Contaminated Lakes for Centuries - Discover Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxORlFKYmczV0p1c3g2N0lzT1ZCZDBFTWhxcHRHTFZMWC1iY1NPd3YxZFEwV29OQUpJTEFZaWNlbGdkand6c3VwT1pFU2FwZGxNTUpKZFJLNmJjWnhOQkluWGt1VDdJTWlwWXBuTDM4VzdkMmhjRUoxN29GbHJxVWJwNGRXdHZDb1JBWTVKcHVRZHlVdDl0WE1TWDBudHFSVTZUNi1F?oc=5",
+          "domain": "discovermagazine.com",
+          "published_ms": 1794007864000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794080776000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities leaked into Yucatán lakes at toxic levels for centuries, study finds - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQVFB6clUtQ2p4YWhpZGVidlhia0I0TFZLd0pZakFVbTNjQ0VKU211MG5zZFF4OEZ5dnhHMW9Ud3RWcE5tZ2ZhMWdtOGFRdjcyaEdYT0UtQXZqeEhLNnBoLWEwanp4X2txZ0kzVHMxdVdJSm9PUzgwY3EwOV9FMHgtYlVKUHQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793983013000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities left Coba and Xcach lakes toxic for centuries - Mix Vale",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPa01YTnkyMkl4MFdFYi1fcTYxQU1rN0xmZFNYUXdYMUtrVlFleTdLb2Q1Mmt1eDZkeUhONkMwQ0M5SmVoZm0ta0VyNGVtZmJZMDJWcGRSaVQwczI5TjVrUzlTMkpXT0ppQlVYTXVtNmc1aW9LazBZZlhVQ3lKYjZBWnYtNGZ4M3RtX3VvWGJkQ1oybzdDcklSVW9IcFJxZWlpUFBXWGtldnBRSE1vOHc?oc=5",
+          "domain": "mixvale.com.br",
+          "published_ms": 1794061751000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 87,
+          "reach": 66,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 81.4,
+        "newest_hours": 30,
+        "domains": [
+          "livescience.com",
+          "discovermagazine.com",
+          "aroundprague.cz",
+          "archaeologymag.com",
+          "mixvale.com.br"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "archaeologymag.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Maya Mercury Contamination from Red Vermilion Paint"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Tragic Sinking of the SS Edmund Fitzgerald",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "In November 1975, the massive freighter SS Edmund Fitzgerald vanished into a violent Lake Superior storm without a single survivor.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "SS Edmund Fitzgerald",
+      "commons_query": "SS Edmund Fitzgerald",
+      "youtube_query": "SS Edmund Fitzgerald sinking history",
+      "evidence": [
+        {
+          "title": "1975, 11-10: SS Edmund Fitzgerald sank in Lake Superior, claiming all 29 of her crew's lives.",
+          "url": "https://en.wikipedia.org/wiki/SS_Edmund_Fitzgerald",
+          "domain": "wikipedia.org",
+          "published_ms": 1794189065709,
+          "kind": "anniversary",
+          "id": 17
+        },
+        {
+          "title": "Remembering the Edmund Fitzgerald: Watch our special on the Great Lakes tragedy - WPBN",
+          "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxQZlVORVZ5LVlDS2RkeGRqVUx4YmQzalVGR2V5d0pvSkdQUkhxRlBGZFk1eXd1U2hLZHUyZC1KTWdqYmh5aVoySjVwY3JNeEoyMEtSX25GTGJPcXZuaU5TbmdGQlVia1E4bm9Gc0RxTW96aDVwOF9SRGM2QThpRFpRa2NsekQzaEZPejk3ZHhCNVotaHJsdnF1OVp2Y2ZGTmpPb01ZRHZhUGQ1LXRTRVpXMWJXbTBqYng3cm1kTUxFYjhyaktRMVloLXVxV2RBbmRHQ2lGQjV3NmZTTWNZY1VRQnJSeVVJN3ZndFpaMFNGcnBySmZDcnVCb3BqdmZ4RmVUeDJSUzJxSnZNMVFTd3JjdXZyTFR5QWhwMnhvZ2JhMDhSdGwwcFFWVA?oc=5",
+          "domain": "upnorthlive.com",
+          "published_ms": 1793904978000,
+          "kind": "news"
+        },
+        {
+          "title": "INTERACTIVE: Detroit remembers the Edmund Fitzgerald — 51 years later - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNMmRuM3FTMnh5VXpVaktCRy1udXN2M05uYmlFWDdLVVNhaW1LVUVnZ1B3WWQzXzRzcUxxUkdPUnF5NlJYSDUyZkRsMmk2b29mVDhBTHFOOFVDTWFqS2h0cjNTWFpsXzB0b014OTVvWWlMYXVVMTVBVkZYOHd5UXRTY1owM1FsX3dCeDI5d051bG5CWlBERzFv?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Edmund Fitzgerald’s lost crew to be remembered at Great Lakes Memorial service - MLive.com",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPQXA5Q0lWXzZmU3RxcV9UZjdZZ0RVdm93MnRYQnpjWDctTlI0SU5OQlhxcTJhdlpEeHJKSlMxSy1RSmJ0OVJ2QmxrVmJWQnRGMnE0ZHdjZEZJLXZwOUZKbWlkT195ZGFNNURycDFObDdIS05PbnJsYkp4YzRnRS1jbTFUQ1VBa3E0WU9NWnNJTEZnSUFEXy1HRG9pem9COEtGbklWdjkta1JEN3VuX0tSdDhmNUx2ZF9w?oc=5",
+          "domain": "mlive.com",
+          "published_ms": 1794096180000,
+          "kind": "news"
+        },
+        {
+          "title": "New Edmund Fitzgerald film to be released on anniversary of the shipwreck - WMTV 15 NEWS",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQSEM3WUg4eS1NTmNsV3oxN2tiZXBnVE1BbU13MFg1V3J2YUVZTTB4S050RTNobF9xY0tmaDA5YldLWGVPRzJoMXo4ZVlsNUoyUkpaMXllemtaa1hESjQteW1wOFFXUzJrdnRSVE0xUG5vSURqZHU4bUNGYkFQajk2bzNvS0dxRWpKUjNIejF2TDZnNGxtaVIwQksxUjN0Mkxt0gG0AUFVX3lxTFBWbmtaWGZyb0ZoZ1c5ODRCYmpCRjVmSFlUeTVraFJHd3BJQUtfMEd5cjl3ajdCNUNtanlBYXlMdnByQXFNYi1Uem5EdWtLZFZNcm5FYWN5UzNwMjlNUnlPcWd6MkFsZHdzVk5zNzNUNDdveGRyZ1NjaEtzdU13VFdMY0cxNEg1TE9qN2tCV0hIc2ZXaGRpMU9LWEVaamJKOE9RNExfejllUWg5NklBTW9QYko1bA?oc=5",
+          "domain": "wmtv15news.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        },
+        {
+          "title": "The Edmund Fitzgerald Had A Troubled Beginning Before Its Final Voyage - Duluth Country Radio",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5xemV0WnlHbFNWcS1IX05PZ0xaWmZrR2hFTEVtZVNINVFQOTFLaHo1RUJDUEVIRXgtaWhBZWN3U0QyZ0RlN2JHYm1RbHkyUTlxMlU4QWhVQ2ZaQTNwR1QtSDRJOXhIcW42d3c?oc=5",
+          "domain": "b105country.com",
+          "published_ms": 1793807701000,
+          "kind": "news"
+        },
+        {
+          "title": "The Real Story Behind “The Wreck of the Edmund Fitzgerald” by Gordon Lightfoot - Songfacts",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPVHh4dExHeWRhZzgwbkg4SndXVnBkU3pNRFp0MDBINVN0eDRsYkNRYUlzWHBEMk0xM2lqNlRHejgwWTJsQUNnNVZzN2xBLUdHMmYyX3kwZ21Kd0NSX1lIa1Y2cmRXbFZ4b3FaMEN2LVRJcjRSRTJneUdvM25mQXhTek1Ka3VGRU9hcDBlcGo0RXRGcXZwVHdndlRVVnpNTkJRdjFpTkUtX0MxdkNFek9OSEVn?oc=5",
+          "domain": "songfacts.com",
+          "published_ms": 1793912672000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "SS Edmund Fitzgerald",
+        "daily_views": 11497,
+        "ratio": 2.87
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 83,
+          "reach": 81,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 80.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "upnorthlive.com",
+          "wxyz.com",
+          "mlive.com",
+          "wmtv15news.com",
+          "b105country.com",
+          "songfacts.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "400-Year-Old Shipwreck Padlock Finally Picked",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        138,
+        163,
+        167
+      ],
+      "hook": "Experts finally unlocked a 400-year-old padlock from a sunken shipwreck—only to find the contents are still a complete mystery.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Shipwreck",
+      "commons_query": "historic padlock shipwreck",
+      "youtube_query": "400 year old shipwreck padlock opened",
+      "evidence": [
+        {
+          "title": "Welsh experts solve 400-year-old lock recovered from 16th century shipwreck - The Jerusalem Post",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE02WDBMbjI0VFo4QTdyZTBjZnc2dXU1ZWVYX3VDLTI3blVCN2ZwSnlfRE9TbnJDa0xRd1dzTGdPVHB6NWRSMW5RTi1BdUxuMW5aVmNCTWtaay1KX0JX?oc=5",
+          "domain": "jpost.com",
+          "published_ms": 1794052372000,
+          "kind": "news",
+          "id": 138
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened ‪—‬ but it leaves a mystery",
+          "url": "https://www.livescience.com/archaeology/cryptic-padlock-from-a-400-year-old-shipwreck-finally-opened-but-it-leaves-a-mystery",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "feed",
+          "id": 163
+        },
+        {
+          "title": "Scientists Cracked the Code on a 400-Year-Old Padlock. What It Was Protecting Is Still a Mystery. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQT2xDYWdXMnRVOEd6OVpIN19zSTA2VXA1ZlRFdU5Vb3o4YmYzYlNTdFdRY3hkcDNZOFUzYlB4amt1TWY1TldqN3FHTWtUMFJPcF8zUUpDNm9pUHcwU3BreHJwSktPNnF2U2J3M1FqVUoyallUYk9IN0xNWHhfZ0Z5OGNsdlZxN29jTFktSFQweFBXRFNMUUNTZ3k2T3BZT1NhWlBOeDRPRENfc014WUE5bGxyTC0tcU10RmtZRUhkUVl6TEtTRnJOaDdBQ3ByWUFMeGUxZ3FGSUlYM1dkelNremdtbXgxMzhEa0ZqQlVBUnk?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793885400000,
+          "kind": "news",
+          "id": 167
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened — but it leaves a mystery - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSkxVSTJVUWVnM3dsUDhXTG90MEMwX2pnYTk3dFkzMXQ0bUFQZWhpVGJqNUVSNzVGV0pJdDNMcXd5ZXRKWWMzSkZuclMzVUE4Z2ozUHBlZ0t3bDRDd3BiQzBBbmVUcjlnZEl3RGVONGNSeWVab0kweFAwVllRdmkxdHZFc0lKYzRaa3g2Nm5uT3U4ajZhTm81SkFNVzRMMW5WbXdYVGxIaVZqVWRxTE5XOWdEVU1KUV85a25Ia085R3RmZw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "news"
+        },
+        {
+          "title": "Code cracked for shipwreck padlock solving 400-year-old mystery - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zMDlnZ05qT3hmaUFTaHZtWFZTWjNkY1N3dVFuVi1WeTF5Q2gtbmtDdWJaaGFrblNwMjhLN3BBNVo2Y082a0g1LWpVTnJ1S2ZHOHhUYTF2XzgwNm8?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1793772772000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Used CT and Finally Opened a 400-Year-Old Lock From a Welsh Shipwreck - ZME Science",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOVF9NMFpNcVZEblB4SW1McG5HOE93NHNWSXJyWFhrbGZOMVRqUy1sR1hUc0dJMTlyZUVjUUplb3dXRzBtekF2bDFSbmtfbDc0cXh2UlhlRGpzUGNTNlkya0VpbXV2TUYxMmF4M3NLUXZpYlIwSkZsNFFVWXk2UzEzZzhXd05PaUFjQkl6bGlUUTBlVHNuandDOUhTTHppeDVNMGx4ZWFNcUx5bE5MaGN4YTVQOU9nQ1JuNEtldmhWVDNjSzRGeVdNWg?oc=5",
+          "domain": "zmescience.com",
+          "published_ms": 1793909712000,
+          "kind": "news"
+        },
+        {
+          "title": "400-Year-Old Shipwreck Padlock Unlocked Using CT Scans - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUmlQZ1B2bENZWjZQWEZVdjNoc2EyVnBhajNicFZDM3FJcWQwY1ktQUxCbGlCUEJnSDF4a05hRVlBZ0wzUG9meEY5Sm5SVWJ2Q0d1cnNvZ3UzOXpMWC1KdkRNRnhNYTh1SnJZSjF6THdRaGdjRGp4eTY1VkJUaVR3STlockFjelBLdlk3R3ByLTJZYkl1aEh4emY2TnYzWmNJeE9FbEszUmItMzhiRzZfWFJYSWEzZw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793896859000,
+          "kind": "news"
+        },
+        {
+          "title": "CT Scans Crack the Code of a 400-Year-Old Shipwreck Lock - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMjhXT2c1SXFQQ003ZjV2cVJXTzgwNFVNZ0xNdkxaNFllaVFJak42aldkRF9GbXhsRUlBWU4zZ1ZrLV9vZFpoaDZFak9PYXBZc1lwdHlESUh5RTJVcjl2Q1p6UE5CSmR2bWpEcnM1SDU3czFhRXZoMnEzQU1kX1dTZFJiSjdQdw?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793796996000,
+          "kind": "news"
+        },
+        {
+          "title": "Code cracked for 400-year-old shipwreck padlock - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9GMXNUUm1SZlBzMDNla1pFNFlLWndVQXctMGljdGhBdnNxOGFDYl9LOXpJVlBTUmRFNkE2LS1Neno2Qm9kcHlzRmhac3dad0ZHZ3BzVVo3aDc?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1793808282000,
+          "kind": "news"
+        },
+        {
+          "title": "A 443-year-old shipwreck mystery finally solved; scientists use CT scans to crack the four-letter code on - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxNV0k5OXhHaFloQjZBQzVLLWRuNXVMT2QzMDNRRDVSd1d6RDUyaWl4NlZEbVFRMVVHOG00TlRybXhfMVJzeFZObUp6WXFoaE1VdE53MndXVFNIV3ZtZUhHT0pPeWxsN01kaWRGeDY2WGhMWE40MklJVEVvVDVkWFQ4eGJEMi1sLU5rS3pTM25WREdRV1MtenJBeXdTSVJCZEdvZ21qTEx5WktrRjBOUDlLQUZPX2U4bUtXNFhGa3BwcHZHZ0l6UXQ1dHdnMjI3bDZjWEEyT1ZYVFZIam9Nd2pQRWRxZ0R6REx2d1N6b2NMdVlRVk1hNmpxeWg3SGlqcWcwWmRfWmRqNy1CQXUwaEdxbWw0aWdrTS1OcFhrZ0V5NktldGFSR0E0WEdienIzVHI50gG2AkFVX3lxTE9PVElLYjJJNnNjZDlBOVlzano0RnRVemZ2ZFVPQmpCQzFfcFJzdlpDUUU1M3ptSUJyVFA3SVdzM2l5WG93R25kOFEyNVlTaG9YemtRRVo1OVl6bnpueENOd1RvT0pkOXBpek1JUGtkRlZhUkVTVE9Gdzh3TnI4bktGMzNaRGs0RzBUZllUVlB2WkRFaFp0N184am82ZUVYWXUxSmJnYmJNU0I5Slg3SGFSNmJwV3ZxM3ZsbzFJT2dDNUF0RHdweGRYUm8xNTBvdk4tX0pIVlRDUzZoWXJ6elJaNXRZYm1CeFZMZi1iZDN2YzNxQmRVSF9QMkZtdUJXVnFrZkRsbktEYzdlVTk0MkppTk5NVno2U24wOFl6LVBXdURhU0dQRF92bHhCaC1EVHRibDRKLUE?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794045240000,
+          "kind": "news"
+        },
+        {
+          "title": "X-Ray Scans Crack Four-Letter Code on 1583 Shipwreck Padlock - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxORmRKb3FNZE0xcjE3dzRDTER5S2hTNmwxZWY5TERLdjFpeURUZE1FQjlxTjA5RXBfLVVvRGZIcUFxNjhWVmdlQk5vOEoxTzBPWjV3LWxRaVZBLWlEVWdCaG5UWjFJMDg4bkViREJDWEM3MjVoaXJPN2ZCR1paYmlVbjlMUzZTX0VhNTV0R2dFU25zMHFkQWZwSDNZOE4wRzFGZVE?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1793954759000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Shipwreck",
+        "daily_views": 215,
+        "ratio": 0.76
+      },
+      "youtube": null,
+      "commons_hits": 18,
+      "score": {
+        "factors": {
+          "momentum": 86,
+          "reach": 47,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 79.3,
+        "newest_hours": 38,
+        "domains": [
+          "jpost.com",
+          "livescience.com",
+          "popularmechanics.com",
+          "bbc.com",
+          "zmescience.com",
+          "gizmodo.com",
+          "arkeonews.net",
+          "timesofindia.indiatimes.com",
+          "aroundprague.cz"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "bbc.com",
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1989 Fall of the Berlin Wall via Mistaken Announcement",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        4
+      ],
+      "hook": "The iconic Berlin Wall fell not from a military invasion, but because a single East German official stuttered and mistakenly announced immediate border openings live on TV.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Fall of the Berlin Wall 1989",
+      "youtube_query": "Fall of the Berlin Wall Günter Schabowski announcement",
+      "evidence": [
+        {
+          "title": "1989, 11-09: East German official Günter Schabowski mistakenly announced the immediate opening of the inner German border, resulting in the fall of the Berlin Wall that night (border crossing pictured).",
+          "url": "https://en.wikipedia.org/wiki/G%C3%BCnter_Schabowski",
+          "domain": "wikipedia.org",
+          "published_ms": 1794189065709,
+          "kind": "anniversary",
+          "id": 4
+        },
+        {
+          "title": "Germany - Reunification, Berlin Wall, Cold War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1kWU00ekdKOGxiVHhLZnIxM1ZhZVZEWG5JT1ByNEd4MTMtWnFJazN2RUk1WjQtb1dxUVdQQXpFb1FwQktnTHZUOUhGS0ItR191a2JabmJFSXM1WGZSdnd2d2RDRGpPc0plX0J2ZExBWWw4WldTbXNicg?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793865600000,
+          "kind": "news"
+        },
+        {
+          "title": "On This Day: The night the Berlin Wall came down - Starts at 60",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQakxGeUFEY2FKRGJHTGM4dkg3ejhROXBJcC1Cc3pMbDU1dnVXRDJ2ZzZPNzdNMXFFTThneWxlcWdwaHhEM2dzOXRfVUpoWDczUlBCSHRfRExDeGM1R2RMaUxHZmd1ejVVajNURmtxTkZEdnU4NFMxd3Y3Z0VkeDR4WlpLTE9xaGFn?oc=5",
+          "domain": "startsat60.com",
+          "published_ms": 1794162320000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 59,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 78.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "startsat60.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Night the Berlin Wall Fell"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Earliest Evidence of Cannabis Use in Ancient Siberian Tomb",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        117,
+        139,
+        145,
+        155,
+        159,
+        162,
+        168,
+        169
+      ],
+      "hook": "Archaeologists analyzing a 2,800-year-old Siberian tomb discovered the oldest physical evidence of cannabis used for psychoactive highs—possibly to calm human sacrifice victims.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Siberian ancient burial mound",
+      "youtube_query": "ancient siberian tomb cannabis use",
+      "evidence": [
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 117
+        },
+        {
+          "title": "Evidence of Cannabis Use for Psychoactive Purposes Found in Ancient Siberian Tomb - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZklLdTlSbzVzckpJcGVHWFlheEQ4YjUyeG8tZ0VVa3oxVkQ1RWtVcm5EUVN1STlZWFR4ME1SWFUxbHRHX2xRcFZZbS1OQ2JrcDlkeXNCUHJ5dkJieldaYkhvZGxNVWhaRERuS3luN3FZNzV6SEFVLWV4SXlFV0Z6ZG0yeHRYa093QzctU2hnR05HaXBOZ1hoX2xTSDlKOXBISFA3UmhjMWhqYWJs?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794051016000,
+          "kind": "news",
+          "id": 139
+        },
+        {
+          "title": "Russia: Oldest evidence of cannabis use discovered in ancient Siberian tomb",
+          "url": "https://note.com/kawasemi3/n/n1909e699f5f5?hl=en",
+          "domain": "note.com",
+          "published_ms": 1794009540000,
+          "kind": "news",
+          "id": 145
+        },
+        {
+          "title": "Ancient tomb discovery suggests oldest evidence of person getting high — 2,800 years ago",
+          "url": "https://www.yahoo.com/news/science/articles/ancient-tomb-discovery-suggests-oldest-204202854.html",
+          "domain": "yahoo.com",
+          "published_ms": 1793968980000,
+          "kind": "news",
+          "id": 155
+        },
+        {
+          "title": "Ancient tomb contains evidence of earliest known cannabis high",
+          "url": "https://www.msn.com/en-us/news/other/ancient-tomb-contains-evidence-of-earliest-known-cannabis-high/ar-AA2gQVeJ",
+          "domain": "msn.com",
+          "published_ms": 1793948315000,
+          "kind": "news",
+          "id": 159
+        },
+        {
+          "title": "2,800-year-old tomb in Siberia has evidence of the earliest use of cannabis — possibly as a way to calm human sacrifice victims",
+          "url": "https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "feed",
+          "id": 162
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant",
+          "url": "https://www.msn.com/en-us/news/other/siberian-burial-site-reveals-ancient-use-of-cannabis-as-an-intoxicant/ar-AA2gQ6w9",
+          "domain": "msn.com",
+          "published_ms": 1793876580000,
+          "kind": "news",
+          "id": 168
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb",
+          "url": "https://www.msn.com/en-us/news/other/earliest-evidence-of-cannabis-use-found-in-ancient-siberian-tomb/ar-AA2gPKgf",
+          "domain": "msn.com",
+          "published_ms": 1793876415000,
+          "kind": "news",
+          "id": 169
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use reveals a disturbing connection to human sacrifice victims - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxPNU80cElHQlVaNjc3WV9FaFBSbW1wVGdVRTF0SVpnQVh4OEROSHpvWVdNVjdSNVpxVUY1Q1JXQnRsSC1Cc3BtcFB2b2RyaHRVQ1dSM19hSkJJV1d0VkxTVkQ2WHJtbFY4dm9JaUpGLXVGODQ5TFRJaVlwa2VsdXJ3Q2lTdEZyVFFKS1NHbkRFTUphSWxZYnNXbmh3eVcwMDBsbFMtRE13N1JZcm1BNDlxdjBmbnlHdUthWVpPNzJsS2Z2U3NjckRlWVdyQUpEbGZJbFZpbnFHQ2tnSGVKTDlNSi1SNi1nYzk4SXNoZW9LcnUyV0s4dHdiZg?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "news"
+        },
+        {
+          "title": "New evidence for ancient cannabis use - STAT",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNYmlEbnFGWDJGSHAyWEdhTzdSWW94RnZsUHMzd3FfS3hsNmxRd2lzUXY3ZkNrMlZfYkkwMUtDdW9yeGtLbUthbFlCSnhwQ3hIcVlxcUt3S1ZhbEVzcjY3RWFGUDlRN0k3S3EyMkliSGk3UExLbkpIbGxGOHdCMHk3T0h0VFd0V0FPbVNpUGVwSQ?oc=5",
+          "domain": "statnews.com",
+          "published_ms": 1793977609000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 77.1,
+        "newest_hours": 18,
+        "domains": [
+          "sciencedaily.com",
+          "news.ssbcrack.com",
+          "note.com",
+          "yahoo.com",
+          "msn.com",
+          "livescience.com",
+          "reuters.com",
+          "edition.cnn.com",
+          "popsci.com",
+          "sciencealert.com",
+          "statnews.com",
+          "hightimes.com",
+          "allthatsinteresting.com"
+        ],
+        "trusted_domains": [
+          "yahoo.com",
+          "livescience.com",
+          "reuters.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "WWII Shipwreck Sunk by Nazi Spy Sub Discovered Off Maine",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        114,
+        122,
+        149,
+        160
+      ],
+      "hook": "Divers off the coast of Maine miraculously located a long-lost Canadian WWII ship torpedoed by a Nazi spy submarine.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Battle of the St. Lawrence",
+      "commons_query": "WWII shipwreck underwater exploration",
+      "youtube_query": "WWII ship sunk by Nazi spy sub Maine",
+      "evidence": [
+        {
+          "title": "Divers find long-lost WW II shipwreck headed for Saint John - CBC",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQQkZZTDU1bFRCWFN5ZE1jWktUNzMzc3RlZWxTNUJlSHRSRmhBbHpOS3k0aUR3Rk41TTluT3Rfc2tPa1pYWk1Ob1JXSWs5SlhWemlKSEVCNnk5eE1FNjN0RFRLRjhWMHVWVXRWMVZOS0ozbnoyd1lJVWRhU3RKYS14NGdxYUVyNVgwd2lEbFpjOGRERWNNelEyVmZKS3BOZTFNZE1n?oc=5",
+          "domain": "cbc.ca",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 114
+        },
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news",
+          "id": 122
+        },
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 149
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 160
+        },
+        {
+          "title": "An infamous Nazi sub sank a ship in 1944, days after landing spies in Maine. The wreckage has now been found. - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9ibG1ySnU0eEVBNlBoSHNNMWRaYXF2U2NhNlhSN1pNNU1VOWEwSW1MMnBRRDdCc3ctTHJ1clRtTG54Wk91VVNuRl9VMGdwY2ZYWEk0dWdQTWdyTnJwazI0NzZOSXdsWl9ORXphbzJYalo4Z0JjZnpOOA?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "A Nazi Submarine Torpedoed a Merchant Ship Just Off the Coast of Maine in 1944. Divers Have Finally Located the Wreckage, 400 Feet Below the Surface - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxNYjVYMXRWNFUxdVlpTnJRS1VKY04tRE8wNG9kNnl1cC1lZHpwOE9uTEVqU2hxNWFKd3ByMHBqaVo0R3RRRXgwMnNYdUYtT21PUGNkZ2RKY3ljS00wd3JiemRjM3huemtZUUloNUZuTC1BRUs3R01IVnJIUzk5Tjg4WVJkNE5hRWhWZUx5b3pCNjE2ak9DX0tEcEFmelVOZGp1X1Y4SjVwMVFkX1ozZ1JadXdyeGs3Z3ZubllfOG5zUnhVSlhhQzNnSnZ5NWM2ZXN2MmZtaFcxWnRSejJ5TExPUW1LLVlxdEQ5RUtYVWtkbDIxN184Qk1RX2ZtN2d1cTkxNUxPTU5hNGl4Wks1RXdmRDdNRDBUbFlRRDhLLUxhY2l2akxOVGc?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793918400000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Spent 7 Years Hunting a Ghost Ship Linked to a Nazi Spy Plot. They Just Found It. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNVko0TEcwYlZEbG1pY1d0UmwzZFZ2eXJlS0dLLThNZGRaWWNDZFREbUxlSk1PRFZlNzVuNnhFbmFtNkZBeGI0aDdOakxjUHg4MzBOcnhRLWhKVjA2Uk91SDc5MnhNS2h6U25odEhEdzlEZEZxd3RBMFRSV0JfcTJpb2tZMmdVRUNfUloxLTZBN2xMaGEw?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793716200000,
+          "kind": "news"
+        },
+        {
+          "title": "Nazi spies landed on US soil days before a German U-boat sank a Canadian ship off Maine in 1944; 82 years - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi4gJBVV95cUxPOFd1cGk0Q2RuRWMzRFJSZjlLeG1FOFJIOGtuMkJSRnduQlR3VnlCeE1ZM0tLVE5BLWk3TjdMb2cwSTVYS2IyQVpRUDVZdENsVW53MHpEdkxNcHRlOHQzNTM2Yjg1YkpJb2RwS3hmUzcyaE9rTk8xQXlWMEJSUkJPRnd5M1Eydm5GcDZPM2lwNFNhOEJnRFRYYmlac1dPcHpYdjlTZ3E1cjdVUk5CRVc5M3pFelNiWFQzanYwYU1zb2ZCemR1ZFpLU3VvX05DTTRMekRmTVNvS0luVnEtVXRNLUlyOC1wbEI0TXBFVGdRZzNhZllGOWRRTUE0UlNYeDkxeHNmTlZzY2RVTkNhVThBdl9RaDNiZXZKaTdCLU5wa1pER2lnUDdLQkFUOWlrM3FJQ0Fhb1M4MWJLMDR0bzVfTlRjanpXMXBtdFBtMHdVMFgteHc3ZWQ2aWo2QzBWRGF1aHfSAecCQVVfeXFMTm1WT1kzWnNyOWhMdFVOX0JxV1VXaFhtbkppYUwzeGVsQ3hfQ3oxVEJ4WHpWbzVVY2tvUGRRcjFkUUNKQzlXVHdMLXNfaHJEUEt5cWpISjVuQWlpQTFHNWdTVXlDNHVMY05JS2VfZE5hMU5RdFRlLTNnamppaGEybjVDa1Z1V01HVUxWRTVhczZGZ3UtUnVlellPV3BESkZjUjdjLUxvYUU1ZzQ2SnN6aU9CdzZCTzNuWXNUdU9lNWFJd0ctY3lKYl9NVy1fWE1LUUhXZjNiM2hjblc3cXJvdlhPVGhsWGcxSTBsc0E3UFJHSmJBSVEyd3BEa2pGN18wUXBGTS00OFk4MkNnYk1xcWR3SjE4ZGRyWGdWMi1EUjZhcHJSRjctdVR0M2xHQXZOaUhoOWFZcVVwT2lCdWVyakZsRHlnclVxdHNqd2h3SXlsWWhYRHRPbWxJOXBvTTFhMlJWWWdIYWc?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794060180000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of the St. Lawrence",
+        "daily_views": 67,
+        "ratio": 0.78
+      },
+      "youtube": null,
+      "commons_hits": 2,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 37,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 53,
+          "source_quality": 100
+        },
+        "total": 74.1,
+        "newest_hours": 16,
+        "domains": [
+          "cbc.ca",
+          "ua-stena.info",
+          "gizmodo.com",
+          "bostonglobe.com",
+          "cbsnews.com",
+          "smithsonianmag.com",
+          "popularmechanics.com",
+          "timesofindia.indiatimes.com"
+        ],
+        "trusted_domains": [
+          "cbsnews.com",
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (2 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5,300-Year-Old Grave Reveals Horrifying Ancient Practice",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        105
+      ],
+      "hook": "When archaeologists opened a 5,300-year-old grave, they uncovered bone evidence of a shockingly grim ancient burial ritual.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Archaeology",
+      "commons_query": "ancient human burial excavation",
+      "youtube_query": "5300 year old grave archaeological discovery",
+      "evidence": [
+        {
+          "title": "Archaeologists Just Found Something Horrifying in a 5,300-Year-Old Grave - VICE",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPbEh2OExVa0dnM1NIVkc0dlZDd0V1bGVsazdpY2RRellVRkFUZ3ZWR2VWY25uY1hZVHBzWkljUmEzWURVSU5UQ1BlUjdHWlUxTmJWdzQ2R09NYzZHTXRxNF93SnZXcThhNFlQaUUtWEZPckE3aVd2WkhUVU5PdUNYdGYwUnNVRkJ0TXJva2l3aS14NFRRNElrRUlaRHFHQnk3OThQcnlxUQ?oc=5",
+          "domain": "vice.com",
+          "published_ms": 1794147804000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "News - Kidney Stone Recovered From 5,300-Year-Old Russian Grave - Archaeology Magazine",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOZHp2Wmw2ME1jN3BRWDFXYTExVm5FX3V2ZTBPb0RKRlNLemZpcURIZ1JNMVZNdjAtSVRNSWpSSVQ3ZTF2a0E5eklVNHJUa1l5TVlzRmJ6MEVMbUhMMndwbW8teFB0b3pNcFlFQXJWdml2ay1kQUlTdWhhS0RvZW1JR205am4tdS1Gb3NZZHpudkVsZFBtdGdGVFFBR0k?oc=5",
+          "domain": "archaeology.org",
+          "published_ms": 1793828914000,
+          "kind": "news"
+        },
+        {
+          "title": "A Grape-Size Urinary Stone in a 5,300-Year-Old Steppe Grave Points to a Man's Chronic Infection - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSVh5ME5sbFgyZlpSdGxYczZubkZXUlFIYU9mZThpYzdySTNDdmpnM2hkYlNCVThJbDV2bHBJanZ2SzZlUmJ1bk55NzdyU05KMHJLZWVsSzdzSXlIWmlzMnozVW0zVzNuaEVKaU5IS0pibjZEVnh2QktYQkdLMllMNGVwQ2t4ejNhaEtOZllzVzAybFZlUEV0OXVtaEZSZTNVeFlraXdhM1hMZmxYR1ZRaXFjcklOQk5tWkpfNlFn?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1794150850000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Archaeology",
+        "daily_views": 550,
+        "ratio": 1.14
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 55,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 74,
+        "newest_hours": 11,
+        "domains": [
+          "vice.com",
+          "archaeology.org",
+          "ancient-origins.net"
+        ],
+        "trusted_domains": [
+          "archaeology.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Gaming Pieces Found on Kublai Khan's Sunken Fleet",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        120,
+        148,
+        150
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion fleet belonging to Kublai Khan's grandson uncovered ancient dice and gaming pieces, offering a rare glimpse into soldiers' daily lives.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol shipwreck artifacts",
+      "youtube_query": "gaming pieces Mongol invasion shipwreck Japan",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 120
+        },
+        {
+          "title": "Gaming Pieces Found on Sunken Ship of Genghis Khan’s Grandson Who Conquered China - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNX29INHBYeWVPZF9nWGVxb0NCWEJkOW5BVVlabGtDRW5fQUx2LW52WDNteGVJX2Nwek5pVWdFOVpMS3J4TlZZVUhsdkNGRVdib1NkNkhiXy0tbGtVOXB5Y2pkN3Jsa0hMTUhReS15QW1zN0JjdXFKazh0U2gta0I3M0JWZ09waFRPSm56bjBmdVlaTW9iT0hMeHJMdlVfQm5pSHEwQmxR?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793995812000,
+          "kind": "news",
+          "id": 148
+        },
+        {
+          "title": "News - Playing Cards Found in Mongol Invasion Shipwreck Off Japan - Archaeology Magazine",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcXBPZ25fOF9NaF9pVGRNVWZxWmd6T1prdnVIRVBFYUlOVVhEQm5SNUxQcjR4d0lDMXZKUmpjTDBMY25YSnpPRExFeTlxS2UwTWEzYzBYWW9oejJtOVhTcFl6RUtNZ1JQOTJuMnZLUTNFREhVc0VWamNrdjNwVjZVQW85WDBDSmU4QVNvM3lGX2RCX0FGR2FvRFdNdHAtcEt2?oc=5",
+          "domain": "archaeology.org",
+          "published_ms": 1793994330000,
+          "kind": "news",
+          "id": 150
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 53,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 40,
+          "source_quality": 100
+        },
+        "total": 72.5,
+        "newest_hours": 21,
+        "domains": [
+          "voiceofemirates.com",
+          "arkeonews.net",
+          "archaeology.org"
+        ],
+        "trusted_domains": [
+          "arkeonews.net",
+          "archaeology.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Wilmington Massacre: When a US City Government Was Overthrown",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        23
+      ],
+      "hook": "In 1898, white supremacists violently overthrew the municipal government of Wilmington, North Carolina—the only successful coup in American history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Wilmington massacre",
+      "commons_query": "Wilmington massacre 1898",
+      "youtube_query": "Wilmington massacre 1898 history",
+      "evidence": [
+        {
+          "title": "1898, 11-10: White supremacists seized power and massacred black Americans during the Wilmington massacre (newspaper headline pictured), the only instance of a municipal government being overthrown in United States history.",
+          "url": "https://en.wikipedia.org/wiki/White_supremacy",
+          "domain": "wikipedia.org",
+          "published_ms": 1794189065709,
+          "kind": "anniversary",
+          "id": 23
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilmington massacre",
+        "daily_views": 465,
+        "ratio": 1.42
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 64.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Wilmington massacre of 1898, the only municipal government overthrow in US history"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Catastrophic Nevado del Ruiz Volcanic Mudslide",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        50
+      ],
+      "hook": "In 1985, a volcanic eruption melted the ice cap of Nevado del Ruiz, unleashing a massive mudslide that buried an entire Colombian town in minutes.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Nevado del Ruiz",
+      "commons_query": "Nevado del Ruiz 1985 eruption",
+      "youtube_query": "Nevado del Ruiz Armero disaster 1985",
+      "evidence": [
+        {
+          "title": "1985, 11-13: The volcano Nevado del Ruiz (pictured) erupted, causing a volcanic mudslide that buried the town of Armero, Colombia, killing approximately 23,000 people.",
+          "url": "https://en.wikipedia.org/wiki/Nevado_del_Ruiz",
+          "domain": "wikipedia.org",
+          "published_ms": 1794189065709,
+          "kind": "anniversary",
+          "id": 50
+        },
+        {
+          "title": "Nevado del Ruiz - Volcano Discovery",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1SYWl1REd2X05pdUpTNElkNHQ2dXZ2dXdTcjdCYlRVb3VqQkdaWFNwWk1CbVRvUDF0ai1rY25NdmRtSElKTjNxcmhwNDh4YVNXMDNYWC00cUZhcFozRkFmbEgybw?oc=5",
+          "domain": "volcanodiscovery.com",
+          "published_ms": 1793715201000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Nevado del Ruiz",
+        "daily_views": 98,
+        "ratio": 0.97
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 64.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "volcanodiscovery.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Daring RAF Raid That Sank the Battleship Tirpitz",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        46
+      ],
+      "hook": "During WWII, the Royal Air Force launched Operation Catechism, finally destroying Nazi Germany's most feared floating fortress, the battleship Tirpitz.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "German battleship Tirpitz",
+      "commons_query": "German battleship Tirpitz",
+      "youtube_query": "Operation Catechism sinking battleship Tirpitz",
+      "evidence": [
+        {
+          "title": "1944, 11-12: Second World War: In Operation Catechism, the Royal Air Force sank the German battleship Tirpitz  (video featured) near Tromsø, Norway, killing about 1,000 sailors on board.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794189065709,
+          "kind": "anniversary",
+          "id": 46
+        }
+      ],
+      "wikipedia": {
+        "title": "German battleship Tirpitz",
+        "daily_views": 681,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 57,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Philae Lander Makes History on Comet 67P",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        36
+      ],
+      "hook": "In 2014, humanity achieved the impossible for the first time: landing a robotic spacecraft onto the surface of a fast-moving comet.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Philae (spacecraft)",
+      "commons_query": "Philae spacecraft comet 67P",
+      "youtube_query": "Philae lander comet landing 2014",
+      "evidence": [
+        {
+          "title": "2014, 11-12: The European Space Agency's lander Philae  touched down on 67P/Churyumov–Gerasimenko, becoming the first spacecraft to land on a comet.",
+          "url": "https://en.wikipedia.org/wiki/European_Space_Agency",
+          "domain": "wikipedia.org",
+          "published_ms": 1794189065709,
+          "kind": "anniversary",
+          "id": 36
+        }
+      ],
+      "wikipedia": {
+        "title": "Philae (spacecraft)",
+        "daily_views": 60,
+        "ratio": 0.87
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 58.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    }
+  ]
+}
