@@ -1,0 +1,479 @@
+{
+  "channel": "gray-matter",
+  "format": "short",
+  "topic": "Sleep and memory",
+  "angle": "what the brain does with new memories during sleep, separating what is linked from what is shown to cause",
+  "status": "rejected",
+  "wpm": {
+    "wpm": 170.7,
+    "source": "measured",
+    "voice": "en-US-JennyNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "writer_provider": "gemini",
+      "words": 54,
+      "deterministic": {
+        "critical": 0,
+        "major": 7,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s1",
+              "s2"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "No real transition: the sentence does not say why it follows the previous one (\"chronology\").",
+            "fix": "State what this sentence answers, explains or follows from."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "No real transition: the sentence does not say why it follows the previous one (\"explanation\").",
+            "fix": "State what this sentence answers, explains or follows from."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s5"
+            ],
+            "problem": "No real transition: the sentence does not say why it follows the previous one (\"consequence\").",
+            "fix": "State what this sentence answers, explains or follows from."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s4",
+              "s5"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s5"
+            ],
+            "problem": "The ending brings in something the listener has not heard (active, reorganiz, connection, lock).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          },
+          {
+            "rule": "GM-3",
+            "severity": "major",
+            "category": "unexplained_term",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"synapses\" is used without being defined.",
+            "fix": "Define it in a few plain words where it first appears."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 7,
+        "minor": 0
+      }
+    },
+    {
+      "round": 2,
+      "writer_provider": "gemini",
+      "words": 72,
+      "deterministic": {
+        "critical": 0,
+        "major": 3,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s1",
+              "s2"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s5"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s5"
+            ],
+            "problem": "The ending brings in something the listener has not heard (feel, like, simple, downtime).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          },
+          {
+            "rule": "CON-12",
+            "severity": "major",
+            "category": "unfulfilled_hook",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "The payoff shares almost nothing with the hook and the central question: the promise is not delivered.",
+            "fix": "Make the payoff answer the hook's question in the hook's terms."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 3,
+        "minor": 0
+      }
+    },
+    {
+      "round": 3,
+      "writer_provider": "gemini",
+      "words": 52,
+      "deterministic": {
+        "critical": 0,
+        "major": 3,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-03",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"these memory\" refers to something never mentioned before this point.",
+            "fix": "Say what \"memory\" is, or mention it earlier."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The ending brings in something the listener has not heard (active, reorganiz, connection, lock).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          },
+          {
+            "rule": "DUR-01",
+            "sentence_ids": [],
+            "severity": "major",
+            "category": "unrealistic_duration",
+            "problem": "the script is estimated at 14.4s; the minimum is 18s",
+            "fix": "Add a beat that serves the question."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 3,
+        "minor": 0
+      }
+    }
+  ],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 10,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+        "published": "2026-10-04"
+      }
+    ]
+  },
+  "blueprint": {
+    "attempts": 2,
+    "removed_beats": [],
+    "checks": {
+      "max_beats": 5,
+      "deterministic": "pass",
+      "model": {
+        "answers_question": true,
+        "fits_length": true,
+        "beats": [
+          {
+            "beat_id": "b1",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Establishes that memory creation relies on physical brain plasticity."
+          },
+          {
+            "beat_id": "b2",
+            "serves": true,
+            "link_true": false,
+            "correct_link": "chronology",
+            "reason": "Sleep consolidation occurs chronologically after initial memory formation rather than serving as its explanation."
+          },
+          {
+            "beat_id": "b3",
+            "serves": true,
+            "link_true": false,
+            "correct_link": "explanation",
+            "reason": "Hippocampal activity explains the mechanism behind sleep consolidation rather than being caused by it."
+          },
+          {
+            "beat_id": "b4",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Summarizes the main takeaway as a logical consequence of the physiological process."
+          }
+        ],
+        "relinked_by_checker": [
+          {
+            "beat_id": "b2",
+            "from": "explanation",
+            "to": "chronology",
+            "reason": "Sleep consolidation occurs chronologically after initial memory formation rather than serving as its explanation."
+          },
+          {
+            "beat_id": "b3",
+            "from": "cause",
+            "to": "explanation",
+            "reason": "Hippocampal activity explains the mechanism behind sleep consolidation rather than being caused by it."
+          }
+        ]
+      }
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "deterministic",
+        "issues": [
+          {
+            "severity": "critical",
+            "code": "order",
+            "message": "exactly one beat must be the payoff",
+            "beat_id": null
+          }
+        ]
+      }
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 3639,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1664,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1537,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 14473,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "the answer was not valid JSON"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 2,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 21421,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 2050,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 2498,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 2164,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "ok": true,
+      "chars": 61450,
+      "sha256": "0bf0231e93aa2dc0",
+      "title": "Sleep and memory",
+      "published": "2026-10-04",
+      "fetched_at": "2026-11-09T13:19:15.377Z"
+    }
+  ],
+  "open_findings": [
+    {
+      "rule": "CON-03",
+      "severity": "major",
+      "category": "missing_context",
+      "sentence_ids": [
+        "s2"
+      ],
+      "problem": "\"these memory\" refers to something never mentioned before this point.",
+      "fix": "Say what \"memory\" is, or mention it earlier."
+    },
+    {
+      "rule": "CON-04",
+      "severity": "major",
+      "category": "missing_context",
+      "sentence_ids": [
+        "s4"
+      ],
+      "problem": "The ending brings in something the listener has not heard (active, reorganiz, connection, lock).",
+      "fix": "End on what the script already established; move new material earlier and explain it."
+    },
+    {
+      "rule": "DUR-01",
+      "sentence_ids": [],
+      "severity": "major",
+      "category": "unrealistic_duration",
+      "problem": "the script is estimated at 14.4s; the minimum is 18s",
+      "fix": "Add a beat that serves the question."
+    }
+  ]
+}

@@ -2,11 +2,11 @@
   "channel": "gray-matter",
   "production_run": "run-42623336334-1",
   "agent": "agent-script-engine",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:20:03.906Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:20:10.173Z",
   "branch": "preview/_script-engine",
   "commit": "ddf327a8eacf3b2dd103c0065d9a85ca8cc14cca",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts",
-  "round": 1
+  "issues": "rejected: CON-03: \"these memory\" refers to something never mentioned before this point. | CON-04: The ending brings in something the listener has not heard (active, reorganiz, connection, lock). | DUR-01: the script is estimated at 14.4s; the minimum is 18s"
 }

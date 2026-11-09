@@ -31,3 +31,12 @@ Why not approved: CON-02: These two sentences share no subject, name or fact: th
 
 Last draft (NOT APPROVED):
 > Why does an old song pull you into a bittersweet longing for the past? Music acts as a strong trigger for that bittersweet longing. Sound passes through sensory processing, how the brain interprets sound, straight into the amygdala, the brain's emotional processing center. Why does an old song pull you into the past?
+
+## gray-matter - REJECTED
+Topic: Sleep and memory (short)
+Writer providers: gemini; critic providers: none; model calls: 8; rounds: 3; narrowings: 0
+Words per minute: 170.7 (measured, voice en-US-JennyNeural)
+Why not approved: CON-03: "these memory" refers to something never mentioned before this point. | CON-04: The ending brings in something the listener has not heard (active, reorganiz, connection, lock). | DUR-01: the script is estimated at 14.4s; the minimum is 18s
+
+Last draft (NOT APPROVED):
+> How does sleep actually process our memories? Nocturnal sleep and daytime naps stabilize and enhance these memory processes. Hippocampus activity, the brain structure for memory, directly causes plastic changes and better performance. Sleep actively reorganizes brain connections to lock in memories.

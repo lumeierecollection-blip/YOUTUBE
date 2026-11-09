@@ -156,5 +156,40 @@
     "caveats": [],
     "notApproved": true,
     "reason": "CON-02: These two sentences share no subject, name or fact: the narration jumps. | CON-02: These two sentences share no subject, name or fact: the narration jumps. | DUR-01: the script is estimated at 17s; the minimum is 18s"
+  },
+  {
+    "channel": "gray-matter",
+    "topic": "Sleep and memory",
+    "format": "short",
+    "status": "rejected",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+        "ok": true,
+        "chars": 61450,
+        "sha256": "0bf0231e93aa2dc0",
+        "title": "Sleep and memory",
+        "published": "2026-10-04",
+        "fetched_at": "2026-11-09T13:19:15.377Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 170.7,
+      "source": "measured",
+      "voice": "en-US-JennyNeural"
+    },
+    "rounds": 3,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 8,
+    "caveats": [],
+    "notApproved": true,
+    "reason": "CON-03: \"these memory\" refers to something never mentioned before this point. | CON-04: The ending brings in something the listener has not heard (active, reorganiz, connection, lock). | DUR-01: the script is estimated at 14.4s; the minimum is 18s"
   }
 ]
