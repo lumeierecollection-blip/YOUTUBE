@@ -110,6 +110,8 @@ jobs:
             output/github-final-production/hidden-past/
             data/autopilot-runs/${{ steps.select.outputs.slot }}/*.json
             data/autopilot-runs/${{ steps.select.outputs.slot }}/*.jpg
+            data/autopilot-runs/${{ steps.select.outputs.slot }}/*.md
+            data/research/${{ steps.select.outputs.channel }}/*.json
 
       - name: Upload privately and verify
         id: deliver
