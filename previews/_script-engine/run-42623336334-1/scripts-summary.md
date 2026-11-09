@@ -16,3 +16,9 @@ Why not approved: CON-05: "Olympic Games" appears with no word saying what or wh
 
 Last draft (NOT APPROVED):
 > What did the gears of the Antikythera mechanism actually do? To support complex counting, the largest gear measures thirteen centimetres and originally had two hundred twenty-three teeth. This twenty-three tooth eclipse cycle link enabled predictions of astronomical positions, plus athletic game cycles like the ancient Olympic Games. Physical evidence from 1901 proves the Antikythera mechanism could predict eclipses and track athletic cycles.
+
+## red-space-facts - BLOCKED_MODEL
+Topic: Why Mars looks red (short)
+Writer providers: gemini; critic providers: none; model calls: 4; rounds: 0; narrowings: 0
+Words per minute: 176.8 (measured, voice en-US-GuyNeural)
+Why not approved: judge gave unusable output: the answer was not valid JSON

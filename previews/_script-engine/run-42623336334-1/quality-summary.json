@@ -77,5 +77,49 @@
     "caveats": [],
     "notApproved": true,
     "reason": "CON-05: \"Olympic Games\" appears with no word saying what or who it is. | CON-04: The sentence states a figure or a name but cites no claim. | CON-04: The ending brings in something the listener has not heard (figure 1901)."
+  },
+  {
+    "channel": "red-space-facts",
+    "topic": "Why Mars looks red",
+    "format": "short",
+    "status": "blocked_model",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Mars",
+        "ok": true,
+        "chars": 56524,
+        "sha256": "ee6533026063728a",
+        "title": "Mars",
+        "published": "2026-11-08",
+        "fetched_at": "2026-11-09T13:16:25.061Z"
+      },
+      {
+        "source_id": "s2",
+        "url": "https://science.nasa.gov/mars/facts/",
+        "ok": true,
+        "chars": 15861,
+        "sha256": "83de285f9f62f174",
+        "title": "Mars: Facts - NASA Science",
+        "published": "2017-11-10",
+        "fetched_at": "2026-11-09T13:16:25.094Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 176.8,
+      "source": "measured",
+      "voice": "en-US-GuyNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 4,
+    "caveats": [],
+    "reason": "judge gave unusable output: the answer was not valid JSON"
   }
 ]
