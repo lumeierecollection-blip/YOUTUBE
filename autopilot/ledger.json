@@ -583,7 +583,12 @@
       "attempts": 1,
       "run_id": "42544463028",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:17:59.575Z"
+      "updated_at": "2026-11-09T01:19:12.387Z",
+      "stage": "research",
+      "topic": "Wife Uses ChatGPT to Plan Murder Lawsuit",
+      "score": 86.6,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "A man is suing after discovering his wife used ChatGPT to help plan his murder."
     }
   },
   "uploads": [],
@@ -1064,6 +1069,15 @@
       "at_ms": 1794186918296,
       "score": 64.4,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "2",
+      "topic": "Wife Uses ChatGPT to Plan Murder Lawsuit",
+      "slug": "wife-uses-chatgpt-to-plan-murder-lawsuit",
+      "slot": "kick-93a82c98a4-ch2",
+      "at_ms": 1794187152387,
+      "score": 86.6,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
