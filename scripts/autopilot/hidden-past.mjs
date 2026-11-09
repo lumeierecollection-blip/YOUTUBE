@@ -11,12 +11,18 @@
 import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
 import { basename, extname, join } from "node:path";
 import { CONFIG, ROOT, StageError, askJson, askVision, fetchWithTimeout, log, must, readJson, run, sha256File, writeJson } from "./lib.mjs";
-import { FPS, H, W, captions, channelStyle, fit, layoutCheck, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
+import { FPS, H, W, captions, channelStyle, fit, layoutCheck, paletteFor, paperBackground, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
+import { buildMapLayers } from "./map-vox.mjs";
+import { BUILDERS, PURPOSES, PURPOSE_GUIDE, factList, inventoryRow, makeContext, numberedFacts, validateScene, varietyReport, vocabularyGuide } from "./visual-vocabulary.mjs";
 
 const VOX = CONFIG.vox;
 const SERIF = "Cormorant Garamond";
 const REMOTION_DIR = join(ROOT, "src/skills/remotion-render");
 const ROMAN = ["I", "II", "III", "IV"];
+// Historical explanation only: no terminals, stacks of software layers or product-style panels.
+const VOX_VISUALS = ["timeline", "counter", "before_after", "cause", "hub", "bars", "conclusion"];
+const ALLOWED = new Set(["photo", ...VOX_VISUALS]);
+const PHOTO_LAYOUTS = ["card", "ledger"];
 
 async function commonsSearch(query) {
   const u = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrnamespace=6&gsrlimit=14&gsrsearch=${encodeURIComponent(query)}&prop=imageinfo&iiprop=url|mime|size|extmetadata&iiurlwidth=900`;
@@ -98,26 +104,33 @@ async function confirmDetail(target, file, box, width, height, dir, i) {
   return v?.match ? v.what : null;
 }
 
-function planPrompt(scenes, researchData) {
-  return `You direct a Vox-style historical documentary Short. Each narration sentence needs real visual evidence, shown before it is explained.
+function planPrompt(scenes, facts, feedback) {
+  return `You direct a Vox-style historical documentary Short printed on light archival paper. Each narration sentence needs real visual evidence, shown before it is explained.
 
 Sentences:
 ${scenes.map((s) => `${s.index}. ${s.text}`).join("\n")}
 
-Research: ${JSON.stringify(researchData.key_facts || []).slice(0, 3000)}
+FACTS:
+${numberedFacts(facts)}
 
-For each sentence return:
+${PURPOSE_GUIDE}
+
+Most scenes stay "photo": real archival evidence is this channel's identity, and sentence 0 must be "photo". Use one or two other templates only where they explain the history better than a picture would:
+- photo: {} an annotated archival image. Needs the image fields below.
+${vocabularyGuide(VOX_VISUALS)}
+
+For each sentence return "purpose" (one of ${PURPOSES.join(", ")}), "template", the template's own fields, and:
 - commons_queries: 2-3 short Wikimedia Commons searches for a real historical photo, artefact, document or painting of what the sentence is about
 - subject: what the image must show
 - headline: 2-5 word title in tight editorial style, using only facts from the sentence
 - annotation_target: one specific visible physical detail likely to be in that image (e.g. "the inscription on the stone"), or ""
 - annotation_label: 1-3 word label for it, or ""
 
-Also return:
+${feedback ? `Your previous plan was rejected. Fix these:\n${feedback}\n\n` : ""}Also return:
 - chapter_titles: two short book-section style titles for the story's turning points, no invented facts
 - map: {"places":["exact place names from the sentences or research, in travel order"],"scene_index":N} if geography matters, else {"places":[],"scene_index":null}
 
-Return JSON: {"scenes":[{"index":0,"commons_queries":[],"subject":"","headline":"","annotation_target":"","annotation_label":""}],"chapter_titles":["",""],"map":{"places":[],"scene_index":null}}`;
+Return JSON: {"scenes":[{"index":0,"purpose":"evidence","template":"photo","commons_queries":[],"subject":"","headline":"","annotation_target":"","annotation_label":""}],"chapter_titles":["",""],"map":{"places":[],"scene_index":null}}`;
 }
 
 async function coordinates(place) {
@@ -128,29 +141,6 @@ async function coordinates(place) {
     const c = p?.coordinates?.[0];
     return c ? { name: place, lat: c.lat, lon: c.lon } : null;
   } catch { return null; }
-}
-
-/** Vector map from the repo's Natural Earth data, framed on the places. Returns paths and a projector. */
-function mapGeometry(points) {
-  const geo = readJson(join(REMOTION_DIR, "public/geo/ne_110m_admin_0_countries.geojson"));
-  const lats = points.map((p) => p.lat), lons = points.map((p) => p.lon);
-  const pad = Math.max(8, (Math.max(...lons) - Math.min(...lons)) * 0.35, (Math.max(...lats) - Math.min(...lats)) * 0.35);
-  const box = { w: Math.min(...lons) - pad, e: Math.max(...lons) + pad, s: Math.min(...lats) - pad, n: Math.max(...lats) + pad };
-  const area = { x: 60, y: 300, w: 960, h: 1120 };
-  const k = Math.min(area.w / (box.e - box.w), area.h / (box.n - box.s));
-  const ox = area.x + (area.w - (box.e - box.w) * k) / 2, oy = area.y + (area.h - (box.n - box.s) * k) / 2;
-  const project = ([lon, lat]) => [Math.round(ox + (lon - box.w) * k), Math.round(oy + (box.n - lat) * k)];
-  const inBox = ([lon, lat]) => lon >= box.w && lon <= box.e && lat >= box.s && lat <= box.n;
-  const ds = [];
-  for (const f of geo.features) {
-    const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
-    for (const poly of polys) {
-      const ring = poly[0];
-      if (!ring.some(inBox)) continue;
-      ds.push("M" + ring.map((c) => project(c).join(" ")).join(" L") + " Z");
-    }
-  }
-  return { d: ds.join(" "), project };
 }
 
 function handCircle(cx, cy, rx, ry, seed) {
@@ -228,15 +218,38 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
   const durationF = sec(durationS);
   const ch = channelStyle(channel.id);
   const researchData = readJson(research);
-  const P = { bg: ch.colors.bg, accent: ch.colors.accent, text: "#F5EFE6", muted: "#B8AB98", surface: ch.colors.secondary, stroke: ch.colors.accent };
-  const plan = await askJson(planPrompt(scenes, researchData), "autopilot-vox-plan");
-  writeJson(join(dir, "visual-plan.json"), plan);
+  const P = paletteFor(ch);
+  const facts = factList(researchData), corpus = JSON.stringify(researchData);
+  // Scenes are judged before any image is fetched; the planner gets its own repetition back to fix.
+  let plan, visuals, feedback = "";
+  for (let attempt = 1; ; attempt++) {
+    plan = await askJson(planPrompt(scenes, facts, feedback), "autopilot-vox-plan");
+    writeJson(join(dir, "visual-plan.json"), plan);
+    visuals = new Map(scenes.map((s) => {
+      const raw = plan.scenes?.find((x) => Number(x.index) === s.index) || { index: s.index };
+      const v = validateScene({ ...raw, template: s.index === 0 ? "photo" : raw.template || "photo" }, { facts, corpus, allowed: ALLOWED, fallback: "photo" });
+      return [s.index, v];
+    }));
+    let photoNo = 0;
+    const provisional = scenes.map((s) => {
+      const v = visuals.get(s.index), isMap = Number(plan.map?.scene_index) === s.index && plan.map?.places?.length;
+      const template = isMap ? "map" : v.template;
+      return inventoryRow({ scene: s.index, purpose: isMap ? "geography" : v.purpose, template, composition: template === "photo" ? `photo:${PHOTO_LAYOUTS[photoNo++ % 2]}` : template, repeat_reason: v.repeat_reason });
+    });
+    const report = varietyReport(provisional);
+    if (report.pass) break;
+    feedback = report.violations.join("\n");
+    log("visual-plan", `attempt ${attempt} rejected: ${feedback.slice(0, 300)}`);
+    if (attempt >= 3) throw new StageError("visual-variety", `no acceptable visual plan after 3 attempts: ${feedback.slice(0, 400)}`);
+  }
+  const isDiagram = (index) => visuals.get(index)?.template !== "photo";
 
   const used = new Set();
   const picks = [];
   for (const s of scenes) {
     const p = plan.scenes.find((x) => Number(x.index) === s.index) || {};
     if (Number(plan.map?.scene_index) === s.index && plan.map?.places?.length) continue;
+    if (isDiagram(s.index)) continue;
     const img = await pickImage({ ...p, text: s.text }, used, topic.topic);
     if (img) picks.push({ scene: s, plan: p, img });
   }
@@ -245,7 +258,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     const topicQueries = [topic.commons_query, topic.wikipedia_title].filter(Boolean);
     for (const s of scenes) {
       if (picks.length >= 5) break;
-      if (picks.some((x) => x.scene.index === s.index) || Number(plan.map?.scene_index) === s.index) continue;
+      if (picks.some((x) => x.scene.index === s.index) || Number(plan.map?.scene_index) === s.index || isDiagram(s.index)) continue;
       const p = plan.scenes.find((x) => Number(x.index) === s.index) || {};
       const img = await pickImage({ ...p, text: s.text, subject: topic.topic, commons_queries: topicQueries }, used, topic.topic);
       if (img) picks.push({ scene: s, plan: { ...p, subject: p.subject || topic.topic }, img });
@@ -274,10 +287,13 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     if (!a) throw new StageError("assets", `${im.id} missing from the downloaded pack`);
     const file = join(ROOT, "data/editor/assets", channel.id, a.filename || a.file);
     const aspect = a.width / a.height;
-    let w = VOX.photo_width, h = Math.round(w / aspect);
-    if (h > VOX.photo_height) { h = VOX.photo_height; w = Math.round(h * aspect); }
+    // Two ways to hang the same print. Placement varies; the photograph itself still never moves.
+    const layout = PHOTO_LAYOUTS[i % PHOTO_LAYOUTS.length], ledger = layout === "ledger";
+    const maxW = ledger ? VOX.ledger_width : VOX.photo_width, maxH = ledger ? VOX.ledger_height : VOX.photo_height;
+    let w = maxW, h = Math.round(w / aspect);
+    if (h > maxH) { h = maxH; w = Math.round(h * aspect); }
     w -= w % 2; h -= h % 2;
-    return { ...picks[i], asset: a, id: im.id, file, w, h, x: Math.round((W - w) / 2), y: VOX.photo_y + Math.round((VOX.photo_height - h) / 2), baked: join(dir, `${im.id}-vox.png`) };
+    return { ...picks[i], asset: a, id: im.id, file, w, h, layout, x: ledger ? VOX.ledger_x : Math.round((W - w) / 2), y: ledger ? VOX.photo_y : VOX.photo_y + Math.round((VOX.photo_height - h) / 2), baked: join(dir, `${im.id}-vox.png`) };
   });
   await bakeStills(items, dir, narration.mp3);
 
@@ -301,10 +317,11 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     if (coords.length && sc) mapScene = { scene: sc, coords };
   }
 
-  const layers = [], assets = {}, voxRecord = [], sfxCues = [];
+  const layers = [], assets = {}, voxRecord = [], sfxCues = [], inventory = [];
   let z = 10;
+  const addRow = (scene, row) => inventory.push(inventoryRow({ scene: scene.index, start_s: scene.from, end_s: scene.to ?? durationS, ...row }));
   const bounds = (s) => ({ inF: sec(s.from), outF: s.to === null ? durationF : sec(s.to) });
-  layers.push(solid("bg", { x: 0, y: 0, w: W, h: H, background: P.bg, inF: 0, outF: durationF, z: z++, keyframes: { opacity: [{ f: 0, v: 1 }, { f: durationF, v: 1 }] } }));
+  layers.push(solid("bg", { x: 0, y: 0, w: W, h: H, background: paperBackground(P), inF: 0, outF: durationF, z: z++, keyframes: { opacity: [{ f: 0, v: 1 }, { f: durationF, v: 1 }] } }));
   layers.push({ id: "progress", type: "solid", rect: { x: 0, y: H - 6, w: W, h: 6 }, in: 0, out: durationF, z: z++, style: { background: P.accent }, props: { opacity: 0.8, clipR: 100 }, keyframes: { clipR: [{ f: 0, v: 100, e: "linear" }, { f: durationF, v: 0, e: "linear" }] } });
 
   let pendingStart = null;
@@ -323,7 +340,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
   // picture, and never the narration repeated as on-screen text above its own captions.
   const shown = [];
   for (const s of scenes) {
-    const hasVisual = items.some((it) => it.scene.index === s.index) || mapScene?.scene.index === s.index;
+    const hasVisual = items.some((it) => it.scene.index === s.index) || mapScene?.scene.index === s.index || isDiagram(s.index);
     if (hasVisual) { shown.push({ ...s, merged: [] }); continue; }
     if (shown.length) { shown.at(-1).to = s.to; shown.at(-1).merged.push(s.index); }
     else pendingStart = s.from;
@@ -332,9 +349,9 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
 
   /** Movement inside a long hold comes from small typographic notes, never from the photograph. */
   const holdNotes = (scene, startF, endF, notes, placement) => {
-    const every = 84;
+    const every = 60;
     let i = 0;
-    for (let f = startF + 66; f < endF - 24 && i < notes.length; f += every, i++) {
+    for (let f = startF + 42; f < endF - 18 && i < notes.length; f += every, i++) {
       const out = Math.min(f + every, endF);
       const nf = fit(notes[i], { maxW: placement.w, maxLines: 1, max: 44, min: 30 });
       if (!nf) continue;
@@ -358,7 +375,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       const f = fit(title, { maxW: 840, maxLines: 3, max: 88, min: 52 });
       if (f) {
         const cz = 500;
-        layers.push(solid(`ch${chapterNo}-page`, { x: 0, y: 0, w: W, h: H, background: P.surface, inF, outF: cOut, z: cz, keyframes: { opacity: [{ f: 0, v: 1 }, { f: 34, v: 1 }] } }));
+        layers.push(solid(`ch${chapterNo}-page`, { x: 0, y: 0, w: W, h: H, background: paperBackground(P, P.surface), inF, outF: cOut, z: cz, keyframes: { opacity: [{ f: 0, v: 1 }, { f: 34, v: 1 }] } }));
         layers.push(text(`ch${chapterNo}-num`, `CHAPTER ${ROMAN[chapterNo - 1]}`, { y: 640, size: 40, weight: 700, color: P.accent, inF, outF: cOut, z: cz + 1, font: SERIF, tracking: 0.3, slideX: -60, slide: 0 }));
         layers.push(stroke(`ch${chapterNo}-rule`, `M300 716 L780 716`, { color: P.accent, width: 3, inF, outF: cOut, z: cz + 1, delay: 4, drawFrames: 14 }));
         layers.push(text(`ch${chapterNo}-title`, f.text, { y: 770, size: f.size, weight: 700, color: P.text, inF: inF + 4, outF: cOut, z: cz + 1, font: SERIF, slideX: 60, slide: 0 }));
@@ -368,36 +385,33 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       }
     }
 
+    const vis = visuals.get(scene.index);
+    const isMapScene = mapScene && mapScene.scene.index === scene.index;
+    if (!isMapScene && vis.template === "conclusion") {
+      BUILDERS.conclusion(makeContext({ id: `s${scene.index}`, inF: bodyIn, outF, top: 300, P, font: SERIF, nextZ: () => z++, layers, vox: true }), vis);
+      rec.treatments.push({ type: "visual_conclusion" });
+      addRow(scene, { purpose: vis.purpose, template: "conclusion", background: "archival paper, halftone and grain", repeat_reason: vis.repeat_reason, downgraded_from: vis.downgraded_from });
+      voxRecord.push(rec);
+      continue;
+    }
     const hf = headlineFor(scene, p);
     layers.push(text(`s${scene.index}-head`, hf.text, { y: 150, size: hf.size, weight: 700, color: P.text, inF: bodyIn, outF, z: 400, font: SERIF, slideX: -50, slide: 0, tracking: -0.01 }));
     rec.treatments.push({ type: "slide_in_typography", layer: `s${scene.index}-head` });
 
-    if (mapScene && mapScene.scene.index === scene.index) {
-      const { d, project } = mapGeometry(mapScene.coords);
-      layers.push({ id: `s${scene.index}-map`, type: "svg", rect: { x: 0, y: 0, w: W, h: H }, in: bodyIn, out: outF, z: z++, viewBox: [0, 0, W, H], props: { opacity: 1, draw: 1, clipT: (300 / H) * 100, clipB: ((H - 1420) / H) * 100 }, paths: [{ d, fill: P.surface, stroke: P.muted, strokeWidth: 1.5 }] });
-      const pts = mapScene.coords.map((c) => ({ ...c, xy: project([c.lon, c.lat]) }));
-      if (pts.length >= 2) {
-        layers.push(stroke(`s${scene.index}-route`, "M" + pts.map((q) => q.xy.join(" ")).join(" L"), { color: P.accent, width: 7, inF: bodyIn, outF, z: z++, delay: 8, drawFrames: Math.min(45, span - 16) }));
-        rec.treatments.push({ type: "map_route", points: pts.map((q) => q.name), in_f: bodyIn + 8, end_f: bodyIn + 8 + Math.min(45, span - 16) });
-      }
-      const placed = [];
-      pts.forEach((q, i) => {
-        const [x, y] = q.xy, m = 14;
-        const labelIn = bodyIn + 8 + i * 14;
-        layers.push(stroke(`s${scene.index}-pin${i}`, `M${x} ${y - m} A${m} ${m} 0 1 1 ${x} ${y + m} A${m} ${m} 0 1 1 ${x} ${y - m} Z`, { color: P.accent, width: 5, fill: P.accent, inF: labelIn, outF, z: z++, drawFrames: 8 }));
-        const lf = fit(q.name, { maxW: 340, maxLines: 1, max: 40, min: 28 });
-        if (!lf) return;
-        // Right of the pin first, then left, above and below; a label with no free spot is dropped.
-        const options = [[x + 26, y - 22, "left"], [x - 386, y - 22, "right"], [x - 180, y - 70, "center"], [x - 180, y + 26, "center"]];
-        for (const [lx, ly, align] of options) {
-          const candidate = text(`s${scene.index}-place${i}`, lf.text, { x: Math.round(lx), w: 360, y: Math.round(ly), size: lf.size, weight: 700, align, color: P.text, inF: labelIn, outF, z: z + 1, font: SERIF, slideX: -30, slide: 0 });
-          const b = candidate.box;
-          const fits = b.x0 >= 48 && b.x1 <= 1032 && b.y0 >= 120 && b.y1 <= 1540 && !placed.some((o) => b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1);
-          if (fits) { candidate.z = z++; layers.push(candidate); placed.push(b); break; }
-        }
-      });
+    if (!isMapScene && vis.template !== "photo") {
+      BUILDERS[vis.template](makeContext({ id: `s${scene.index}`, inF: bodyIn, outF, top: 320, P, font: SERIF, nextZ: () => z++, layers, vox: true }), vis);
+      rec.treatments.push({ type: `visual_${vis.template}`, sources: vis.sources });
+      addRow(scene, { purpose: vis.purpose, template: vis.template, background: "archival paper, halftone and grain", sources: vis.sources, repeat_reason: vis.repeat_reason, downgraded_from: vis.downgraded_from });
+      voxRecord.push(rec);
+      continue;
+    }
+
+    if (isMapScene) {
+      const { pts, focus, route } = buildMapLayers({ id: `s${scene.index}`, inF: bodyIn, outF, points: mapScene.coords, P, font: SERIF, nextZ: () => z++, layers, handCircle });
+      if (route) rec.treatments.push({ type: "map_route", points: pts.map((q) => q.name), ...route });
       holdNotes(scene, bodyIn, outF, ["Map: Natural Earth", "Location: Wikipedia", ...pts.map((q) => q.name)], { x: 60, w: 500, y: 1436 });
-      rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:110m; coordinates from Wikipedia" });
+      rec.treatments.push({ type: "map", places: pts.map((q) => q.name), countries: focus, source: "Natural Earth 1:50m; coordinates from Wikipedia" });
+      addRow(scene, { purpose: "geography", template: "map", background: "archival paper, halftone and grain", sources: ["Natural Earth 1:50m", "Wikipedia coordinates"], repeat_reason: "" });
       voxRecord.push(rec);
       continue;
     }
@@ -408,10 +422,12 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     const assetId = item.id;
     assets[assetId] = { file: item.baked.slice(ROOT.length + 1).replace(/\\/g, "/"), width: item.w, height: item.h, credit: item.asset.attribution, source_url: item.asset.page_url, license: item.asset.license };
     const photoIn = bodyIn;
-    layers.push(solid(`s${scene.index}-shadow`, { x: item.x, y: item.y, w: item.w, h: item.h, background: P.bg, boxShadow: "0 22px 60px rgba(0,0,0,0.75)", inF: photoIn, outF, z: z++ }));
+    layers.push(solid(`s${scene.index}-shadow`, { x: item.x, y: item.y, w: item.w, h: item.h, background: P.bg, boxShadow: P.shadow, inF: photoIn, outF, z: z++ }));
     layers.push({ id: `scene-${scene.index}-image`, type: "image", asset_id: assetId, rect: { x: item.x, y: item.y, w: item.w, h: item.h }, in: photoIn, out: outF, z: z++, props: { opacity: 1 }, keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: 6, v: 1 }, { f: Math.max(7, outF - photoIn), v: 1 }] } });
     const photoRec = { asset_id: assetId, source_url: item.asset.page_url, source_file: item.file.slice(ROOT.length + 1).replace(/\\/g, "/"), baked_file: assets[assetId].file, rect: { x: item.x, y: item.y, w: item.w, h: item.h }, in_f: photoIn, out_f: outF, kind: item.img.kind, license: item.asset.license };
     rec.photo = { ...photoRec, relation: item.img.relation };
+    addRow(scene, { purpose: vis.purpose, template: "photo", composition: `photo:${item.layout}`, background: "archival paper, halftone and grain", sources: [item.asset.page_url], repeat_reason: vis.repeat_reason });
+    if (item.layout === "ledger") layers.push(stroke(`s${scene.index}-margin`, `M${item.x + item.w + 34} ${item.y} L${item.x + item.w + 34} ${item.y + item.h}`, { color: P.accent, width: 4, inF: photoIn, outF, z: z++, delay: 6, drawFrames: Math.min(40, outF - photoIn - 6) }));
     if (item.img.relation === "context") {
       layers.push(solid(`s${scene.index}-context-band`, { x: item.x, y: item.y, w: 280, h: 56, background: P.bg, inF: photoIn, outF, z: 400, opacity: 0.82 }));
       layers.push(text(`s${scene.index}-context`, "Related image", { x: item.x + 18, w: 250, y: item.y + 10, size: 30, weight: 600, align: "left", color: P.accent, inF: photoIn, outF, z: 401, font: SERIF, slide: 0, slideX: -30 }));
@@ -423,7 +439,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       const { box, label, what, target } = item.annotation;
       const cx = item.x + ((box.x0 + box.x1) / 2) * item.w, cy = item.y + ((box.y0 + box.y1) / 2) * item.h;
       const rx = Math.max(46, ((box.x1 - box.x0) / 2) * item.w * 1.15), ry = Math.max(46, ((box.y1 - box.y0) / 2) * item.h * 1.15);
-      const delay = Math.min(14, Math.floor((outF - photoIn) / 4));
+      const delay = Math.min(8, Math.floor((outF - photoIn) / 4));
       layers.push(stroke(`s${scene.index}-circle`, handCircle(Math.round(cx), Math.round(cy), Math.round(rx), Math.round(ry), scene.index * 37 + 11), { color: P.accent, width: 8, inF: photoIn, outF, z: z++, delay, drawFrames: 18 }));
       sfxCues.push({ sound: "impact", at: (photoIn + delay) / FPS });
       const photoBottom = item.y + item.h;
@@ -441,6 +457,10 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     voxRecord.push(rec);
   }
   layoutCheck(layers, "vox-layout");
+  // Images can drop out after planning, so what was actually built is judged again here.
+  const variety = varietyReport(inventory);
+  writeJson(join(dir, "visual-inventory.json"), { variety, scenes: inventory });
+  if (!variety.pass) throw new StageError("visual-variety", variety.violations.join("; ").slice(0, 500));
 
   const audioPath = sfxCues.length ? mixSoundDesign(narration.mp3, sfxCues.slice(0, 6), dir) : join(ROOT, narration.mp3);
   const timeline = {
@@ -460,6 +480,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       return { asset_id: it.id, source_url: it.asset.page_url, sha256: sha256File(it.file), bytes: statSync(it.file).size, creator: pr?.creator, license: pr?.license, attribution: it.asset.attribution, scene_beat_assignment: `scene ${it.scene.index}`, reason_relevant: `Shows ${it.plan.subject}, named in: ${it.scene.text}`, subject: it.plan.subject, label: it.plan.subject };
     }),
     relevance_gate_result: { missing_photo_replaced_by_unrelated_image: false },
+    composition_inventory: inventory,
   });
-  return { timelinePath, audioPath, manifestPath: join(dir, "asset-manifest.json"), attributions: items.map((it) => `${it.plan.subject}: ${it.asset.attribution} (${it.asset.license}) ${it.asset.page_url}`) };
+  return { inventory, palette: P, timelinePath, audioPath, manifestPath: join(dir, "asset-manifest.json"), attributions: items.map((it) => `${it.plan.subject}: ${it.asset.attribution} (${it.asset.license}) ${it.asset.page_url}`) };
 }

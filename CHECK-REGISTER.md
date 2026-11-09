@@ -3347,3 +3347,14 @@ and those citations are themselves subject to `CROSSCHECK-PROTOCOL` Phase 1
 re-verification.** A check is not exempt from being wrong because it is
 written down here.
 
+
+## Two-channel autopilot visual checks
+
+Added with the white-background and scene-variety work. Scripts live in `scripts/autopilot/`.
+
+| ID | Check | Method | Threshold | Sev |
+|---|---|---|---|---|
+| COL-AP1 | The background colour dominates the finished frames, with no purple or dark frames | `visual-gate.mjs` on scene frames of the MP4 | median background share >= 0.30, any scene >= 0.15, purple <= 2%, dark <= 60% | BLOCKER |
+| VIS-AP1 | No layout carries the video | `visual-vocabulary.mjs` `varietyReport`, on the composition inventory | 3 compositions (4 from 6 scenes), no consecutive repeat without a stated reason, none above 40% | BLOCKER |
+| VIS-AP2 | Adjacent scenes differ on screen | `visual-gate.mjs` `layoutChange` on the MP4 | >= 0.06 of grid cells change | BLOCKER |
+| ENC-AP1 | Every charted value is written in the fact it cites; unlike units are never charted together; bars, lines and rings start from zero | `visual-vocabulary.mjs` `validateScene` and builders | a failure removes the chart from the scene | BLOCKER |

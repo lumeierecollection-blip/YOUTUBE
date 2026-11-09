@@ -49,8 +49,8 @@ export async function frameReview({ mp4, dir, channelName, treatment, duration }
   }
   const sheet = join(dir, "full-contact-sheet.jpg");
   must("frame-review", "ffmpeg", ["-y", "-v", "error", "-framerate", "1", "-i", join(framesDir, "f%02d.jpg"), "-vf", "tile=5x3", "-frames:v", "1", "-q:v", "3", sheet]);
-  const style = treatment === "vox" ? "Historical editorial look: desaturated photos, printed texture, gold accent. Photos must look real, not AI-generated."
-    : "Motion graphics about AI: text, diagrams, panels, screenshots.";
+  const style = treatment === "vox" ? "Historical editorial look on light archival paper: desaturated photos, printed texture, one rust accent. Photos must look real, not AI-generated."
+    : "Motion graphics about AI on a white background: text, charts, diagrams, panels, screenshots.";
   const verdict = await askVision(`These are 15 frames in order from the finished Short for "${channelName}", left to right, top to bottom. ${style}
 Captions in the lower part of the frame are expected. A frame mid-transition can look partial; report only problems that persist.
 Reply JSON {"clipped_text":["frame: what"],"overlapping_text":["frame: what"],"blank_or_corrupt":["frame"],"unrelated_or_broken_images":["frame: what"],"overall":"one sentence"}.`, readFileSync(sheet), "autopilot-frame-review");
@@ -147,7 +147,7 @@ export async function proofPackage({ channel, dir, mp4, voxReport, frame, video,
   mkdirSync(out, { recursive: true });
   copyFileSync(mp4, join(out, "final.mp4"));
   writeFileSync(join(out, "SHA256.txt"), `${sha256File(mp4)}  final.mp4\n`);
-  for (const f of ["full-contact-sheet.jpg", "contact-sheet.jpg", "video-qa.json", "acceptance.json", "visual-plan.json", "candidates.json", "selected-topic.json", "qa-summary.json"]) if (existsSync(join(dir, f))) copyFileSync(join(dir, f), join(out, f));
+  for (const f of ["full-contact-sheet.jpg", "contact-sheet.jpg", "video-qa.json", "acceptance.json", "visual-plan.json", "visual-inventory.json", "visual-gate.json", "candidates.json", "selected-topic.json", "qa-summary.json"]) if (existsSync(join(dir, f))) copyFileSync(join(dir, f), join(out, f));
   copyFileSync(manifestPath, join(out, "asset-manifest.json"));
   const prov = join(ROOT, "data/editor/assets", channel.id);
   if (channel.treatment === "vox" && voxReport) {

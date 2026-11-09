@@ -108,6 +108,7 @@
         "forgotten history"
       ],
       "script": {
+        "tempo": 1.12,
         "min": 39,
         "max": 44,
         "reject": 50,
@@ -251,6 +252,7 @@
         "AI customer service replaced"
       ],
       "script": {
+        "tempo": 1.06,
         "min": 55,
         "max": 66,
         "reject": 72,
@@ -285,6 +287,9 @@
     "photo_height": 1120,
     "photo_x": 60,
     "photo_y": 300,
+    "ledger_width": 760,
+    "ledger_height": 820,
+    "ledger_x": 60,
     "min_annotations": 1,
     "min_chapter_openers": 1
   }

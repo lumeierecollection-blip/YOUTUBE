@@ -96,6 +96,23 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_01",
+      "autopilot_palette": {
+        "bg": "#F6F1E6",
+        "panel": "#FBF8F1",
+        "surface": "#E9E0CF",
+        "text": "#1F1A13",
+        "muted": "#5F5445",
+        "stroke": "#8A7B66",
+        "accent": "#A64B14",
+        "on_accent": "#FBF8F1",
+        "shadow": "0 18px 46px rgba(58,40,20,0.38)",
+        "grain": "rgba(60,44,24,0.09)",
+        "halftone": "rgba(60,44,24,0.055)",
+        "vignette": "rgba(96,68,36,0.12)",
+        "sea": "#D3DCDC",
+        "land": "#F4EEE2",
+        "focus": "#E7C9A2"
+      },
       "editor_look": 3,
       "niche_rules": [
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
@@ -193,6 +210,21 @@
         ]
       },
       "creds_secret_prefix": "CHANNEL_02",
+      "autopilot_palette": {
+        "bg": "#FFFFFF",
+        "panel": "#FFFFFF",
+        "surface": "#EEF1F5",
+        "text": "#111827",
+        "muted": "#4B5563",
+        "stroke": "#94A3B8",
+        "accent": "#2563EB",
+        "on_accent": "#FFFFFF",
+        "shadow": "0 14px 38px rgba(17,24,39,0.16)",
+        "terminal": "#111827",
+        "terminal_head": "#374151",
+        "terminal_text": "#F9FAFB",
+        "terminal_accent": "#93C5FD"
+      },
       "editor_look": 1,
       "niche_rules": [
         "Every claim comes from the research and is attributed to its source in the narration where it is contested.",
