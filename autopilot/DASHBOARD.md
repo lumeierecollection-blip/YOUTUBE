@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 09:10 SAST
+Updated 2026-11-09 10:01 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-09 09:10 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | The Unveiling of the London Cenotaph (70.2/100) |
+| Latest production | running, attempts 1 |
+| Selected topic and score | n/a |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
