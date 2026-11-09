@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:02:46.339Z",
+  "rebuilt_at": "2026-11-09T13:02:59.416Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-09T13:02:45.998Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-09T13:02:59.051Z",
       "branch": "preview/_script-engine",
       "commit": "21f68815",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-09T13:02:45.998Z",
+      "blocker": "blocked_model: writer gave unusable output: story-blueprint.beats: needs at least 3 items, has 2",
+      "lastOk": "none",
       "run": "run-42621438393-1"
     },
     {

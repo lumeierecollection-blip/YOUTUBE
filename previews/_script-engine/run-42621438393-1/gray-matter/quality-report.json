@@ -1,0 +1,96 @@
+{
+  "channel": "gray-matter",
+  "format": "short",
+  "topic": "Sleep and memory",
+  "angle": "what the brain does with new memories during sleep, separating what is linked from what is shown to cause",
+  "status": "blocked_model",
+  "wpm": {
+    "wpm": 170.7,
+    "source": "measured",
+    "voice": "en-US-JennyNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 11,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+        "published": "2026-10-04"
+      }
+    ]
+  },
+  "blocked": {
+    "role": "writer",
+    "detail": "story-blueprint.beats: needs at least 3 items, has 2"
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 3617,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 2566,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "gemini",
+      "ms": 8688,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "ok": true,
+      "chars": 61450,
+      "sha256": "0bf0231e93aa2dc0",
+      "title": "Sleep and memory",
+      "published": "2026-10-04",
+      "fetched_at": "2026-11-09T13:02:39.374Z"
+    }
+  ],
+  "error": "writer gave unusable output: story-blueprint.beats: needs at least 3 items, has 2",
+  "open_findings": []
+}

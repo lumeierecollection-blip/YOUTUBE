@@ -154,5 +154,39 @@
     "calls": 7,
     "caveats": [],
     "reason": "writer gave unusable output: story-blueprint.beats[0]: missing \"role\"; story-blueprint.beats[1]: missing \"role\"; story-blueprint.beats[2]: missing \"role\"; story-blueprint.beats[3]: missing \"role\""
+  },
+  {
+    "channel": "gray-matter",
+    "topic": "Sleep and memory",
+    "format": "short",
+    "status": "blocked_model",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+        "ok": true,
+        "chars": 61450,
+        "sha256": "0bf0231e93aa2dc0",
+        "title": "Sleep and memory",
+        "published": "2026-10-04",
+        "fetched_at": "2026-11-09T13:02:39.374Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 170.7,
+      "source": "measured",
+      "voice": "en-US-JennyNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 3,
+    "caveats": [],
+    "reason": "writer gave unusable output: story-blueprint.beats: needs at least 3 items, has 2"
   }
 ]

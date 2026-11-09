@@ -25,3 +25,9 @@ Topic: Nostalgia (short)
 Writer providers: gemini; critic providers: none; model calls: 7; rounds: 0; narrowings: 0
 Words per minute: 187 (measured, voice en-US-EmmaNeural)
 Why not approved: writer gave unusable output: story-blueprint.beats[0]: missing "role"; story-blueprint.beats[1]: missing "role"; story-blueprint.beats[2]: missing "role"; story-blueprint.beats[3]: missing "role"
+
+## gray-matter - BLOCKED_MODEL
+Topic: Sleep and memory (short)
+Writer providers: gemini; critic providers: none; model calls: 3; rounds: 0; narrowings: 0
+Words per minute: 170.7 (measured, voice en-US-JennyNeural)
+Why not approved: writer gave unusable output: story-blueprint.beats: needs at least 3 items, has 2
