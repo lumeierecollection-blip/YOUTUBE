@@ -140,6 +140,31 @@ async function writeWithGroq(briefPath, ctx, channel, topic) {
   } catch (e) { log("script", `groq error: ${e.message}`); return null; } finally { delete process.env.FORCE_PROVIDER; }
 }
 
+/**
+ * Writers overshoot a tight word limit and asking again rarely fixes it. A separate pass whose only
+ * job is cutting does, and the gates still judge the result. A cut that loses a section is thrown away.
+ */
+async function enforceWordBudget(out, channel) {
+  const b = channel.script;
+  for (let i = 1; i <= 3 && wordCount(out) > b.max; i++) {
+    const limits = Object.entries(b.table).map(([id, range]) => `${id}: at most ${String(range).split("-").pop()} words`).join(", ");
+    const cut = await askJson(`Shorten this YouTube Short narration to at most ${b.max} words in total. It is ${wordCount(out)} words now.
+Limits per section: ${limits}.
+Cut words and clauses, and rewrite for flow. Keep every section, its first word, its job in the story, every "?" and every figure that remains exactly as written. Add no new fact, name or number. Keep it sounding like one person talking.
+
+${JSON.stringify(out.sections.map((s) => ({ id: s.id, voiceover: s.voiceover })))}
+
+Return JSON: {"sections":[{"id":"hook","voiceover":"..."}]}`, "autopilot-word-budget");
+    const byId = new Map((cut.sections || []).map((s) => [s.id, String(s.voiceover || "").trim()]));
+    if (!out.sections.every((s) => byId.get(s.id))) { log("script", "word budget pass dropped a section; keeping the draft"); return; }
+    const shorter = { ...out, sections: out.sections.map((s) => ({ ...s, voiceover: byId.get(s.id) })) };
+    if (wordCount(shorter) >= wordCount(out)) return;
+    log("script", `word budget: ${wordCount(out)} -> ${wordCount(shorter)} words`);
+    out.sections = shorter.sections;
+    out.hook = out.sections.find((s) => s.id === "hook")?.voiceover || out.hook;
+  }
+}
+
 /** One reading of the finished narration as a whole. If no model can answer, the script is held. */
 async function editorialVerdict(scriptPath, topic, researchPath) {
   const data = readJson(scriptPath);
@@ -179,6 +204,7 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
     const brief = promptFile(previous, feedback, dir, drawable, channel);
     const out = (await writeWithGroq(brief, ctx, channel, topic)) || agent(["--prompt-file", brief, "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
+    await enforceWordBudget(out, channel);
     // Sources come from the research itself, so a script can never cite a URL the research does not hold.
     out.sources_used = [...new Set((readJson(researchPath).key_facts || []).map((f) => f.source_url).filter(Boolean))].slice(0, 6);
     writeJson(scriptPath, out);
