@@ -68,14 +68,16 @@ async function collectSignals(channel, nowMs, wave = 1) {
   }));
   tasks.push(source(report, "google-trends", async () => parseFeed(await getText("https://trends.google.com/trending/rss?geo=US"), "trends").map((x) => ({ ...x, domain: "trends.google.com" }))));
   if (channel.treatment === "vox") {
-    const d = new Date(nowMs);
-    const mm = String(d.getUTCMonth() + 1).padStart(2, "0"), dd = String(d.getUTCDate()).padStart(2, "0");
-    tasks.push(source(report, "wikipedia-on-this-day", async () => {
-      const j = await getJson(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${mm}/${dd}`);
-      return j.events.map((e) => ({ title: `${e.year}: ${e.text}`, url: e.pages?.[0]?.content_urls?.desktop?.page || "https://en.wikipedia.org", domain: "wikipedia.org", published_ms: nowMs, kind: "anniversary" }));
-    }));
+    // Anniversaries from today through the coming week.
+    for (let offset = 0; offset < 7; offset++) {
+      const d = new Date(nowMs + offset * 86400e3);
+      const mm = String(d.getUTCMonth() + 1).padStart(2, "0"), dd = String(d.getUTCDate()).padStart(2, "0");
+      tasks.push(source(report, , async () => {
+        const j = await getJson();
+        return (j.selected || []).map((e) => ({ title: , url: e.pages?.[0]?.content_urls?.desktop?.page || "https://en.wikipedia.org", domain: "wikipedia.org", published_ms: nowMs, kind: "anniversary" }));
+      }));
+    }
   }
-  // The freshest items from every source, so no single busy feed crowds out the rest.
   const perSource = (await Promise.all(tasks)).map((list) => [...list].sort((a, b) => b.published_ms - a.published_ms).slice(0, 12));
   const seen = new Set();
   const items = perSource.flat().filter((x) => { const k = x.title.toLowerCase().slice(0, 70); if (seen.has(k)) return false; seen.add(k); return true; })
