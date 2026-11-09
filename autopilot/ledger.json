@@ -1054,12 +1054,12 @@
       "attempts": 1,
       "run_id": "42594197282",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:35:48.810Z",
-      "stage": "script",
-      "topic": "Pelé's Milestone 1,000th Career Goal",
-      "score": 66.6,
-      "pillar": "Unbelievable true historical events",
-      "hook": "When soccer legend Pelé stepped up to take a penalty kick at the Maracanã Stadium in 1969, 100,000 screaming fans fell completely silent."
+      "updated_at": "2026-11-09T09:38:20.757Z",
+      "stage": "research",
+      "topic": "The Discovery of the Hoxne Hoard",
+      "score": 60.2,
+      "pillar": "Archaeological discoveries",
+      "hook": "A metal detectorist searching for a lost hammer in a Suffolk field accidentally uncovered Britain's largest ever hoard of Roman gold and silver."
     }
   },
   "uploads": [
@@ -1951,6 +1951,15 @@
       "at_ms": 1794216935124,
       "score": 66.6,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "The Discovery of the Hoxne Hoard",
+      "slug": "the-discovery-of-the-hoxne-hoard",
+      "slot": "kick-8f65f6a536-ch1",
+      "at_ms": 1794217100757,
+      "score": 60.2,
+      "pillar": "Archaeological discoveries"
     }
   ],
   "attention": [
