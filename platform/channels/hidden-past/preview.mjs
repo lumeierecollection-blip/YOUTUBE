@@ -92,8 +92,10 @@ async function treatDocument(src, out, { crop, paper, greyscale, width }) {
   let p = img;
   if (greyscale) p = p.greyscale().normalise({ lower: 3, upper: 97 }).gamma(1.1);
   else p = p.modulate({ saturation: 0.75 });
-  const base = await p.toBuffer();
-  const out2 = await sharp(base).composite([{ input: { create: { width: m2.width, height: m2.height, channels: 3, background: paper } }, blend: "multiply" }]).resize({ width }).sharpen({ sigma: 0.8 }).jpeg({ quality: 93 }).toBuffer();
+  // Resize first: sharp applies resize before composite, so the overlay must already match.
+  const base = await p.resize({ width }).toBuffer();
+  const bm = await sharp(base).metadata();
+  const out2 = await sharp(base).composite([{ input: { create: { width: bm.width, height: bm.height, channels: 3, background: paper } }, blend: "multiply" }]).sharpen({ sigma: 0.8 }).jpeg({ quality: 93 }).toBuffer();
   writeFileSync(out, out2);
   const m3 = await sharp(out2).metadata();
   return { w: m3.width, h: m3.height };
@@ -179,8 +181,8 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     channel: key, topic: TOPIC, format: "short", target_seconds: 28, blueprint,
     hook_options: [{ text: SENTENCES[0].text, family: "evidence-first cold open", honest: true }, { text: "A famous photograph. A caption scholars dispute.", family: "contradiction", honest: true }],
     selected_hook: SENTENCES[0].text,
-    sentences: SENTENCES.map((s, i) => ({ sentence_id: s.id, beat_id: ["b1", "b2", "b2", "b3", "b4", "b4", "b4"][i], text: s.text, role: ["evidence", "context", "context", "primary report", "later interpretation", "later interpretation", "later interpretation"][i], claim_ids: s.claim_ids, link_from_previous: i ? "chronology" : "none" })),
-    payoff: SENTENCES[5].text, ending: SENTENCES[6].text, cta: null,
+    sentences: SENTENCES.map((s, i) => ({ sentence_id: s.id, beat_id: ["b1", "b2", "b2", "b3", "b4", "b4"][i], text: s.text, role: ["evidence", "context", "context", "primary report", "later interpretation", "later interpretation"][i], claim_ids: s.claim_ids, link_from_previous: i ? "chronology" : "none" })),
+    payoff: SENTENCES[4].text, ending: SENTENCES[5].text, cta: null,
     sources: [{ source_id: "src-couple", url: FILES.couple.page_url }, { source_id: "src-wiki", url: WIKI_ARTICLE }, { source_id: "src-wiki-sarajevo", url: "https://en.wikipedia.org/wiki/Sarajevo" }, { source_id: "src-map", url: FILES.map1914.page_url }, { source_id: "src-nyt", url: FILES.nyt.page_url, published: "1914-06-29" }, { source_id: "src-behr", url: FILES.behr.page_url }],
     claims: claimsOut, duration_estimate_s: 24, quality_report: { note: "not produced by the script engine; claims were string-checked against fetched sources" },
   };
@@ -193,9 +195,12 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   // 3. Voice: one take per sentence, so scene timing comes from the audio itself.
   let timing, narration;
   for (const rate of ["+0%", "+6%", "+12%", "+18%"]) {
-    const files = SENTENCES.map((s, i) => tools.voice({ text: s.text, voice: entry.tts_voice, output: `.s${i}.mp3`, rate }));
+    const raw = SENTENCES.map((s, i) => tools.voice({ text: s.text, voice: entry.tts_voice, output: `.s${i}.mp3`, rate }));
+    // The engine leaves a quarter second or so of silence at both ends of every take; trimmed, the pauses are ours.
+    const trim = "silenceremove=start_periods=1:start_threshold=-50dB:detection=peak,areverse,silenceremove=start_periods=1:start_threshold=-50dB:detection=peak,areverse";
+    const files = raw.map((f, i) => { const o = join(work, `t${i}.mp3`); sh("ffmpeg", ["-y", "-v", "error", "-i", f, "-af", trim, o]); rmSync(f, { force: true }); return o; });
     const durs = files.map((f) => tools.durationOf(f));
-    const GAP = 0.12;
+    const GAP = 0.2;
     narration = join(work, "narration.mp3");
     const filt = durs.map((d, i) => `[${i}:a]apad=pad_dur=${GAP},atrim=0:${(d + GAP).toFixed(3)},asetpts=PTS-STARTPTS[a${i}]`).join(";") + `;${durs.map((_, i) => `[a${i}]`).join("")}concat=n=${durs.length}:v=0:a=1[out]`;
     sh("ffmpeg", ["-y", "-v", "error", ...files.flatMap((f) => ["-i", f]), "-filter_complex", filt, "-map", "[out]", "-b:a", "160k", narration]);
@@ -222,7 +227,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
 
   // 4. Images: photographs through PhotoTreatment as they are; documents get the document treatment first.
   const paperTone = { r: 244, g: 236, b: 220 };
-  const nytCrop = { x: 0.49, y: 0.113, w: 0.505, h: 0.292 };
+  const nytCrop = { x: 0.503, y: 0.116, w: 0.478, h: 0.279 };
   const items = {};
   const mkItem = async (k, { layout, maxW, maxH, docOpts, saturation, halftone }) => {
     let input = src[k].file, aspect;
