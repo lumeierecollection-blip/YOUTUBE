@@ -108,7 +108,9 @@ async function drawableFacts(channel, researchPath) {
   if (!channelStyle(channel.id)?.strict_visual) return [];
   const { groundedVisualFor } = await import("../strict-visual.mjs");
   const r = readJson(researchPath);
-  const texts = [...(r.key_facts || []).map((f) => f.fact || f.claim || f.text), ...(r.numbers || []).map((n) => n.context || n.claim || n.text)].filter((t) => typeof t === "string");
+  // A stated figure can be drawn even when the sentence around it could not.
+  const figures = (r.numbers || []).map((n) => (n.value != null && n.unit ? `${n.value} ${n.unit}: ${n.label}` : null));
+  const texts = [...(r.key_facts || []).map((f) => f.fact || f.claim || f.text), ...figures].filter((t) => typeof t === "string");
   return [...new Set(texts)].filter((t) => groundedVisualFor(t)).slice(0, 12);
 }
 
