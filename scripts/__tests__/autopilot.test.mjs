@@ -233,3 +233,40 @@ test("a purple or dark frame is measured as such", async () => {
   assert.equal(frameStats(frame(5, 5, 16), [255, 255, 255]).dark_share, 1);
   assert.equal(layoutChange(white.grid, purple.grid), 1);
 });
+
+test("a map frames and names the country the place is in", async () => {
+  const { frameMap } = await import("../autopilot/map-vox.mjs");
+  const m = frameMap([{ name: "Ankara", lat: 39.93, lon: 32.86 }]);
+  assert.deepEqual(m.focus, ["Turkey"]);
+  assert.ok(m.box.w < 26 && m.box.e > 44, "the whole country is in view");
+  assert.deepEqual(frameMap([{ name: "Rio de Janeiro", lat: -22.9, lon: -43.2 }]).focus, ["Brazil"], "a coastal city finds its country");
+  const nowhere = frameMap([{ name: "Open sea", lat: 0, lon: -30 }]);
+  assert.deepEqual(nowhere.focus, []);
+});
+
+test("a logo is used only if the file names the company", async () => {
+  const { logoColor, parseLogo } = await import("../autopilot/logos.mjs");
+  const svg = '<svg fill="#FA520F" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mistral AI</title><path d="M1 1h2"/></svg>';
+  assert.equal(parseLogo(svg, "Mistral AI").paths[0].fill, "#FA520F");
+  assert.equal(parseLogo(svg, "OpenAI"), null);
+  assert.equal(parseLogo(svg.replace("<path", '<image href="x"/><path'), "Mistral AI"), null);
+  assert.equal(parseLogo(svg.replace(/<title>.*<\/title>/, ""), "Mistral AI"), null);
+  assert.equal(logoColor("#FA520F", "#111111"), "#FA520F");
+  assert.equal(logoColor("#FFE000", "#111111"), "#111111");
+  assert.equal(logoColor("currentColor", "#111111"), "#111111");
+});
+
+test("faster narration moves every caption time with it", async () => {
+  const { scaleSrt, scaleTimes } = await import("../autopilot/script-stage.mjs");
+  assert.deepEqual(scaleTimes({ words: [{ text: "a", start: 2, end: 4, sentence: 0 }] }, 2), { words: [{ text: "a", start: 1, end: 2, sentence: 0 }] });
+  assert.equal(scaleSrt("00:00:02,000 --> 00:01:00,000", 2), "00:00:01,000 --> 00:00:30,000");
+});
+
+test("the name check does not run across a sentence ending", async () => {
+  const { nameFidelityProblems } = await import("../gate-script.js");
+  const research = { named_entities: [{ name: "Rio de Janeiro" }], key_facts: [{ fact: "It reached Rio de Janeiro." }] };
+  const clean = nameFidelityProblems({ sections: [{ voiceover: "They sailed to Rio de Janeiro. How did it end?" }] }, research);
+  assert.deepEqual(clean.majors, []);
+  const invented = nameFidelityProblems({ sections: [{ voiceover: "They met Harold Finch Wembley in the port." }] }, research);
+  assert.equal(invented.majors.length, 1, "an unknown name inside one sentence is still flagged");
+});

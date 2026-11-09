@@ -15,6 +15,8 @@ import { channelStyle } from "./visual-common.mjs";
 const MAX_SECONDS = 29.8;
 const SCRIPT_PASSES = 10;
 const MIN_DRAWABLE_FACTS = 5;
+const MAX_SENTENCE_WORDS = 16;
+const BANNED_PHRASING = /\b(here'?s (the thing|the kicker|the twist|what)|the result\?|turns out|what if i told you|in a world where|not gonna lie|let me be honest|game[- ]changer|like and subscribe|smash that)\b/i;
 // The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
 // those two alone are logged and the whole script is judged instead. Everything else stays blocking.
 const isAdvisory = (line) => /^ {2}- (CLARITY|SPECIFICITY)/.test(line);
@@ -98,6 +100,12 @@ function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
   const claims = run("node", ["scripts/validate-script-claims.cjs", channel.id, scriptPath, researchPath], { capture: true, merge: true });
   if (claims.status === 4) throw new StageError("script", "claim verification was unavailable; not producing unverified claims");
   const found = [];
+  const narration = readJson(scriptPath).sections.map((s) => s.voiceover).join(" ");
+  const bridge = narration.match(BANNED_PHRASING);
+  if (bridge) found.push(`  - NARRATIVE: "${bridge[0]}" is stock phrasing a viewer swipes past. State the fact itself.`);
+  const sentencesOf = narration.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const longOnes = sentencesOf.filter((s) => s.split(/\s+/).length > MAX_SENTENCE_WORDS);
+  if (longOnes.length) found.push(longOnes.map((s) => `  - NARRATIVE: "${s}" is over ${MAX_SENTENCE_WORDS} words, too long to follow by ear. Split it or cut it.`).join("\n"));
   const filler = readJson(scriptPath).sections.flatMap((s) => s.voiceover.match(/[^.!?]*\b1\s+[a-zA-Z][^.!?]*[.!?]/g) || []);
   if (filler.length) found.push(filler.map((x) => `  - NARRATIVE: "${x.trim()}" uses "1" as a filler count. Rewrite it with a real figure from the research.`).join("\n"));
   if (story.status !== 0 && story.status !== 3) found.push(issues(story.stdout, /^ {2}- /) || "story checks failed");
@@ -143,9 +151,15 @@ ${data.sections.map((s) => `[${s.id}] ${s.voiceover}`).join("\n")}
 Research it must stay within:
 ${JSON.stringify(readJson(researchPath).key_facts || []).slice(0, 4000)}
 
-Judge the whole script as a viewer who knows nothing about this subject.
-Return JSON: {"one_coherent_topic":boolean,"strong_opening_hook":boolean,"followable":boolean,"satisfying_ending":boolean,"nothing_misleading":boolean,"no_repetition":boolean,"why":"one sentence on the weakest point"}`, "autopilot-editorial");
-  const checks = ["one_coherent_topic", "strong_opening_hook", "followable", "satisfying_ending", "nothing_misleading", "no_repetition"];
+Judge the whole script as a viewer who knows nothing about this subject and is about to swipe away.
+strong_opening_hook: the first sentence alone would stop a scroll.
+hook_is_confirmed: the next sentence proves the hook is real rather than moving on.
+each_line_needs_the_last: every sentence follows from the one before; "but", "so" or "because" could join them. Fail it if any sentence feels random or could be deleted without loss.
+answer_held_back: the payoff is not given away before the payoff section.
+satisfying_ending: the last line resolves the story and connects back to the opening.
+sounds_spoken: it reads like one person telling another, not like a summary.
+Return JSON: {"one_coherent_topic":boolean,"strong_opening_hook":boolean,"hook_is_confirmed":boolean,"each_line_needs_the_last":boolean,"answer_held_back":boolean,"followable":boolean,"satisfying_ending":boolean,"sounds_spoken":boolean,"nothing_misleading":boolean,"no_repetition":boolean,"why":"name the weakest sentence and say what would fix it"}`, "autopilot-editorial");
+  const checks = ["one_coherent_topic", "strong_opening_hook", "hook_is_confirmed", "each_line_needs_the_last", "answer_held_back", "followable", "satisfying_ending", "sounds_spoken", "nothing_misleading", "no_repetition"];
   return { pass: checks.every((k) => v[k] === true), failed: checks.filter((k) => v[k] !== true), why: v.why };
 }
 
@@ -192,12 +206,30 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   throw new StageError("script", `script failed its gates after ${SCRIPT_PASSES} passes: ${feedback.slice(0, 500)}`);
 }
 
+const srtTime = (s) => { const ms = Math.round(s * 1000); return `${String(Math.floor(ms / 3600000)).padStart(2, "0")}:${String(Math.floor(ms / 60000) % 60).padStart(2, "0")}:${String(Math.floor(ms / 1000) % 60).padStart(2, "0")},${String(ms % 1000).padStart(3, "0")}`; };
+
+/** Every word and sentence time, moved to match narration played faster. */
+export const scaleTimes = (o, tempo) => Array.isArray(o) ? o.map((x) => scaleTimes(x, tempo))
+  : o && typeof o === "object" ? Object.fromEntries(Object.entries(o).map(([k, v]) => [k, (k === "start" || k === "end") && typeof v === "number" ? v / tempo : scaleTimes(v, tempo)])) : o;
+export const scaleSrt = (srt, tempo) => srt.replace(/(\d\d):(\d\d):(\d\d),(\d{3})/g, (_, h, m, s, ms) => srtTime((Number(h) * 3600 + Number(m) * 60 + Number(s) + Number(ms) / 1000) / tempo));
+
+/** Brisker delivery on every voice engine, with pitch preserved and captions kept in step. */
+function applyTempo(base, stem, tempo) {
+  if (!tempo || tempo === 1) return;
+  const mp3 = join(base, `${stem}-vo.mp3`), srt = join(base, `${stem}-vo.srt`), words = join(base, `${stem}-vo-words.json`), tmp = `${mp3}.tempo.mp3`;
+  must("tts", "ffmpeg", ["-y", "-v", "error", "-i", mp3, "-filter:a", `atempo=${tempo}`, "-b:a", "192k", tmp]);
+  copyFileSync(tmp, mp3); rmSync(tmp, { force: true });
+  writeFileSync(srt, scaleSrt(readFileSync(srt, "utf8"), tempo));
+  writeJson(words, scaleTimes(readJson(words), tempo));
+}
+
 /** Narration under 30 s. An over-long script loses whole sentences (fit-short) and is re-gated. */
 export function narrate({ channel, topic, researchPath, script }) {
   for (let i = 1; i <= 3; i++) {
     must("tts", "node", ["src/utils/tts.js", channel.id, script.scriptRel], { timeoutS: 600 });
     const base = join(ROOT, "data/tts", channel.id);
     const mp3 = join(base, `${script.stem}-vo.mp3`);
+    applyTempo(base, script.stem, channel.script.tempo);
     const secs = durationOf(mp3);
     log("tts", `narration ${secs.toFixed(2)} s`);
     if (secs < 12) throw new StageError("tts", `narration is only ${secs.toFixed(1)} s`);
