@@ -607,12 +607,12 @@
       "attempts": 1,
       "run_id": "42545368796",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:26:52.478Z",
+      "updated_at": "2026-11-09T01:27:04.273Z",
       "stage": "research",
-      "topic": "Instagram launches free desktop video editor to take on CapCut",
-      "score": 83.3,
-      "pillar": "AI tools ordinary people can use",
-      "hook": "Instagram just dropped a brand-new free video editing app for your desktop to rival CapCut."
+      "topic": "Security expert warns against letting Meta's new AI manage your passwords and money",
+      "score": 81,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Meta's new personal AI assistant wants to handle your daily life, but top security pros say giving it your passwords is insane."
     }
   },
   "uploads": [],
@@ -1129,6 +1129,15 @@
       "at_ms": 1794187612478,
       "score": 83.3,
       "pillar": "AI tools ordinary people can use"
+    },
+    {
+      "channel": "2",
+      "topic": "Security expert warns against letting Meta's new AI manage your passwords and money",
+      "slug": "security-expert-warns-against-letting-meta-s-new-ai-manage-y",
+      "slot": "kick-27cf7d6f25-ch2",
+      "at_ms": 1794187624273,
+      "score": 81,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
