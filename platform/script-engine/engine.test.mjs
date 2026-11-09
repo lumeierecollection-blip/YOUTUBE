@@ -320,6 +320,14 @@ test("blueprint: what a first-time viewer would not know becomes a note for the 
   await assert.rejects(buildBlueprint({ llm: scriptedLLM({ blueprint: structuredClone(BLUEPRINT), "blueprint-check": none }), calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", claims, capacityWords: 76, targetSeconds: 27 }), BlueprintRejected);
 });
 
+test("a draft the writer cannot get into shape costs a round; it does not end the channel", async () => {
+  const BAD = { hook_options: HOOKS, sentences: SENTENCES.map((s, i) => (i === 2 ? { ...s, text: Array(30).fill("word").join(" ") + "." } : s)) };
+  const llm = scriptedLLM(base({ writer: [BAD, BAD, WRITER] }));
+  const r = await runEngine({ channelKey: "ai-tested", topic: "Quill Router", angle: "x", sources: SOURCES, llm, wpm: WPM });
+  assert.equal(r.status, "approved");
+  assert.equal(r.report.rounds[0].writer_format_error.includes("limit is 20"), true);
+});
+
 test("blueprint: an answer that is not a valid plan costs an attempt, it does not end the channel", async () => {
   const claims = (await extractClaims({ llm: scriptedLLM({ claims: GOOD_CLAIMS }), calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", sources: SOURCES })).claims;
   const noRole = { ...BLUEPRINT, beats: BLUEPRINT.beats.map(({ role, ...b }) => b) };

@@ -80,7 +80,17 @@ export async function runEngine({ channelKey, format = "short", topic, angle, so
       // 3. one draft, then every gate on that draft
       const claimsOf = (s) => (s.claim_ids || []).map((id) => claims.find((c) => c.claim_id === id)).filter(Boolean);
       const hookReject = (h) => CHANNEL_RULES[channelKey]?.script?.({ sentences: [{ sentence_id: "hook", text: h.text, claim_ids: h.claim_ids || [] }], claimsOf, claims, blueprint }).some((x) => x.severity === "critical" && x.sentence_ids.includes("hook"));
-      const w = await writeScript(ctx, { channel, topic, blueprint, claims, wpm, previous, issues, targetSeconds, hookReject });
+      let w;
+      try { w = await writeScript(ctx, { channel, topic, blueprint, claims, wpm, previous, issues, targetSeconds, hookReject }); }
+      catch (e) {
+        // A draft the writer could not get into shape (after the in-call retry) is a failed round, not the end of the channel.
+        if (!(e instanceof BadModelOutput)) throw e;
+        rounds++;
+        report.rounds.push({ round: rounds, writer_format_error: e.detail });
+        if (rounds > maxRevisions) throw e;
+        issues = [{ sentence_ids: [], problem: `The previous answer was unusable: ${e.detail}`, fix: "Follow the output shape and the limits exactly." }];
+        continue;
+      }
       writerProvider = w.provider; writerModel = w.model ?? null;
       rounds++;
       const round = { round: rounds, writer_provider: w.provider, words: w.words ?? null };
