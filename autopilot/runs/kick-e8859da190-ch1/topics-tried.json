@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Edwin Hubble proves the Andromeda Nebula is another galaxy",
+      "score": 74.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/edwin-hubble-proves-the-andromeda-nebula-is-another-galaxy-shorts:\n  - SCR-16: 63 words implies ~30s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 8 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    {
+      "topic": "Albert Hofmann's accidental synthesis of LSD in Basel",
+      "score": 72.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why did 250 micrograms change him?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 1 \"A 1938 lab experiment in Basel created 25 versions of a drug you fear.\" — The drug is never named, making 'a drug you fear' confusing.. Rewrite it so a viewer wh"
+    },
+    {
+      "topic": "D.B. Cooper's legendary 1971 airplane hijacking and parachute escape",
+      "score": 71.7,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 words implies ~31s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 10 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    }
+  ],
+  "selected": null
+}
