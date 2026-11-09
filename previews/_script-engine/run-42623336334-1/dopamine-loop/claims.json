@@ -1,0 +1,144 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "ok": true,
+      "chars": 26726,
+      "sha256": "d1032e6fe76954f1",
+      "title": "Nostalgia",
+      "published": "2026-10-31",
+      "fetched_at": "2026-11-09T13:17:18.361Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Nostalgia is an emotion described as a bittersweet longing for the past.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Nostalgia is an emotion which is often described as a bittersweet longing for the past, typically for a period of time accompanied by happy memories or emotions.",
+      "confidence": "high",
+      "context": "The definition describes nostalgia as a bittersweet longing for past periods associated with happy memories.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "The word nostalgia is a neoclassical compound derived from Greek.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "The word nostalgia is a neoclassical compound derived from Greek, consisting of νόστος (nóstos), a Homeric word meaning \"homecoming\", and ἄλγος (álgos), meaning \"pain\"",
+      "confidence": "high",
+      "context": "The etymology of the word nostalgia comes from Greek roots meaning homecoming and pain.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Emotion is a strong provoker of nostalgia due to stimulus processing passing through the amygdala.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Emotion is a strong provoker of nostalgia due to the processing of these stimuli first passing through the amygdala, the emotional seat of the brain.",
+      "confidence": "high",
+      "context": "Emotion triggers nostalgia because stimuli pass through the amygdala, identified as the emotional seat of the brain.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Cultural phenomena such as music and movies can be strong triggers of nostalgia.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Cultural phenomena such as music, movies, television shows, and video games, as well as natural phenomena such as weather and environment, can also be strong triggers of nostalgia.",
+      "confidence": "high",
+      "context": "Music and movies act as cultural phenomena that can strongly trigger nostalgia.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Nostalgia has been found to have psychological functions such as to improve mood.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Nostalgia has been found to have important psychological functions, such as to improve mood, increase social connectedness, enhance positive self-regard, and provide existential meaning.",
+      "confidence": "high",
+      "context": "Research indicates nostalgia serves psychological functions like improving mood and social connectedness.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "The nostalgia effect is classified as a cognitive bias where individuals perceive the past more favorably.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Nostalgia can lead individuals to perceive the past more favorably than the present, a phenomenon known as the \"nostalgia effect,\" which is classified as a cognitive bias.",
+      "confidence": "high",
+      "context": "The nostalgia effect causes people to view the past more favorably than the present.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Baldwin and Landau found that nostalgia leads people to rate themselves higher on items like embracing unfamiliar people.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Baldwin and Landau (2014) found that nostalgia leads people to rate themselves higher on items like \"I am the kind of person who embraces unfamiliar people, events, and places.\"",
+      "confidence": "high",
+      "context": "Researchers Baldwin and Landau studied how nostalgia influences self-ratings regarding unfamiliar experiences.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "A person can deliberately trigger feelings of nostalgia by listening to familiar music.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "A person can deliberately trigger feelings of nostalgia by listening to familiar music, looking at old photos, or visiting comforting environments of the past.",
+      "confidence": "high",
+      "context": "Individuals can actively evoke nostalgia through familiar music, old photos, or comforting past environments.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "Scientific studies have shown that cold weather makes people more nostalgic.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Scientific studies have shown that cold weather makes people more nostalgic, while nostalgia causes people to feel warmer.",
+      "confidence": "high",
+      "context": "Research demonstrates a connection between temperature and nostalgia, where cold weather increases nostalgic feelings.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c10",
+      "claim": "In 2016, Chaney said that a twenty-year nostalgia cycle did not appear to apply.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "In 2016, Chaney said that this had not happened, and that a twenty-year nostalgia cycle did not appear to apply.",
+      "confidence": "high",
+      "context": "Chaney commented in 2016 on the debated existence of a twenty-year nostalgia cycle.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31"
+    }
+  ]
+}
