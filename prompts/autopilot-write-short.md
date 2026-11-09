@@ -9,8 +9,8 @@ The INPUT section holds the frozen research, the channel and its style. Use only
 | id | words | sentences | job |
 |---|---|---|---|
 | hook | {{HOOK}} | 1 | Stops the swipe in two seconds. Open on the most surprising true detail, mid-story, with the strange part in the first few words. Contains a number, a shock or the word "you". Never starts with a person's name. |
-| setup | {{SETUP}} | 2 | The first sentence proves the hook is real with one concrete detail: who, where or when. The last sentence is the question the hook made the viewer ask. It ends with "?" and the research can answer it. |
-| rehook | {{REHOOK}} | 1 | **Starts with the word "But".** A turn that raises the stakes. |
+| setup | {{SETUP}} | 2 | The first sentence proves the hook is real with one concrete detail: who, where or when. The last sentence is the question the hook made the viewer ask, worded the way a curious person would say it, never like a quiz. It ends with "?" and the research can answer it. |
+| rehook | {{REHOOK}} | 1 | **Starts with the word "But".** A turn that raises the stakes. It does not answer the setup's question; it makes the answer matter more. |
 | payoff | {{PAYOFF}} | 2 | The first sentence answers the setup's question directly, using the question's key words. It holds a specific number and the name of a person, place or organisation. No "maybe", "perhaps", "might" or "could". |
 | close | {{CLOSE}} | 1 | Starts with an action verb (Ask, Look, Check, Picture, Remember) or holds a number. Comes back to the hook's image in new words, so the first line lands differently on a rewatch. |
 
