@@ -1,0 +1,18 @@
+{
+  "rebuilt_at": "2026-11-09T10:33:44.922Z",
+  "channels": [
+    {
+      "key": "_smoke",
+      "agent": "lead-architect",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T10:33:44.251Z",
+      "sheet": "",
+      "script": "",
+      "plan": "",
+      "blocker": "",
+      "lastOk": "none",
+      "run": "run-42601575588-1"
+    }
+  ]
+}
