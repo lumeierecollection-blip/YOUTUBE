@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Apple testing 3 new AI features for the iPhone Photos app",
+      "score": 83,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/apple-testing-3-new-ai-features-for-the-iphone-photos-app-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a na"
+    }
+  ],
+  "selected": null
+}

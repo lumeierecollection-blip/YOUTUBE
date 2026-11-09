@@ -764,16 +764,17 @@
     },
     "kick-25e02450db-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42560725532",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:27:48.503Z",
+      "updated_at": "2026-11-09T04:29:56.269Z",
       "stage": "script",
       "topic": "Apple testing 3 new AI features for the iPhone Photos app",
       "score": 83,
       "pillar": "New AI features and releases",
-      "hook": "Apple is reportedly planning a massive overhaul to the iPhone Photos app with three powerful new AI capabilities."
+      "hook": "Apple is reportedly planning a massive overhaul to the iPhone Photos app with three powerful new AI capabilities.",
+      "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/apple-testing-3-new-ai-features-for-the-iphone-photos-app-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a na"
     }
   },
   "uploads": [],
@@ -1476,7 +1477,8 @@
     "Hidden Past kick-583105d332-ch1 failed at discover: 3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "AI Tested kick-a76e0da8ee-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script",
     "Hidden Past kick-df87d44ce0-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:\n  - SCR-16: 60 words implies ~29s duration â€",
-    "Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the "
+    "Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the ",
+    "AI Tested kick-25e02450db-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or d"
   ],
   "last_poll_at": "2026-11-09T04:26:21.968Z"
 }
