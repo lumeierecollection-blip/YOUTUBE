@@ -930,7 +930,12 @@
       "attempts": 1,
       "run_id": "42585400604",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:22:05.948Z"
+      "updated_at": "2026-11-09T08:23:39.553Z",
+      "stage": "research",
+      "topic": "The 1988 Launch of Soviet Space Shuttle Buran",
+      "score": 75.2,
+      "pillar": "Strange inventions and lost technology",
+      "hook": "The Soviet space shuttle that flew completely uncrewed before being locked away forever."
     }
   },
   "uploads": [
@@ -1687,6 +1692,15 @@
       "at_ms": 1794211775987,
       "score": 86.9,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1988 Launch of Soviet Space Shuttle Buran",
+      "slug": "the-1988-launch-of-soviet-space-shuttle-buran",
+      "slot": "kick-f805ebbae6-ch1",
+      "at_ms": 1794212619553,
+      "score": 75.2,
+      "pillar": "Strange inventions and lost technology"
     }
   ],
   "attention": [

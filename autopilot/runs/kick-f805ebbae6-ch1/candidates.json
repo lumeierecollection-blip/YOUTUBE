@@ -1,0 +1,2903 @@
+{
+  "generated_at": "2026-11-09T08:23:10.394Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 37
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 88
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:Egypt discovery",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:forgotten history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:shipwreck found",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:museum reveals artifact",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:World War II secret revealed",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:Viking discovery",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:mystery solved historians",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:ancient DNA study",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:unearthed ancient",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:Roman discovery",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:medieval discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 49
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 41
+        },
+        {
+          "source": "bing-news:archaeology discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Surviving 9 Hours Treading Water 20 Miles Off California",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        100,
+        112,
+        119
+      ],
+      "hook": "A cruise ship employee fell overboard in the middle of the night and survived against all odds.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "cruise ship worker survives overboard ocean rescue",
+      "evidence": [
+        {
+          "title": "Cruise ship employee found by fishermen treading water 20 miles off the California coast - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWlhCd1pjRGNBdVphRmZydGVMZGVJSFZVZXFyZmp4SThHRmVuNl82emY2OU55YS1yT0xZUU85Y3plcTZIS3o3OVNjV2FLeVI3SzZGdmY4TjhDbkxxTWk0cWVYMU1qc0YtaV9aVzd4R1RGZTN0dHBrOXBRbzZ6QVhwWFM0ODVVdVZDYXgwZFRNSU5Mb1Z5VUVpT1NSaGV6cW0xdFFKWVdQZU9YX0xSN3ZOV2g4R1Z6WDJUaGhhOQ?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1794185280000,
+          "kind": "news",
+          "id": 100
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - People.com",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQaWxzZWhVdDhGTVRENTdHN3NIZ0I1eWV5NmRtNDY1OUI0dGhUb0Z2SDc2OUdudlNQNkNZaFY1UjZ5WWtxQ1FyUy1UYkpnOG1hYmpqTmlHNGFVRzF5SXVWSzBkRXhYOEdLdVZrOE1Rdl9NdGdRb2NhRXpDb0ZySkYwbmZCZjNKdS1mQnBHQXZ5bkk0RXNSTGdtYVJtU0cxejVx?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794163936000,
+          "kind": "news",
+          "id": 112
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - 9NEWS",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQX0FVaGRjejRjSnpqLU92dlhBc29hYVNWVXhLTmR2UHc3ZURBazNjMlFac0hwTzNMOEtNemVjeXE1TzRzNTJoc1RHYTNlME9iYTBGOXlsRFRnZTYwZ29UR09RU2RLUGpvcDR3UDdueGk4X1p6QVVvTFBzVWVtV1BYOVFpaDBYd2dqcjNPM0Z1M1hET1lZQUwySmdXYjA1UTc4T0k5UEsyTDU3Zk56V3diZGU3TmtMWTZqRGlQbDctaEV1enV5aUFOZ1B1RG9Fdk5MbzVibzk4RjE0cXc?oc=5",
+          "domain": "9news.com",
+          "published_ms": 1794153480000,
+          "kind": "news",
+          "id": 119
+        },
+        {
+          "title": "Newport Beach fishermen find Royal Caribbean cruise ship employee treading water 20 miles off coast - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZE5YVXhVSmtQWGhrZ05Cd01kckhIRWZma05yck9aMzc3ZmRBQlBvbm9mUExwTXF5Z0pTUTljY0VxQ0h6RGZDX01waXR0aFdzdHlDZHJJZWYtTTBQR1pqY0JzYkN3UE9wQ2d6Z1JzcEpZYmF6SlFHd1N0OU9pMnd1enkxeXliVTVnWkVhUEZHVFN1OEFoMnlxTm5JZ2pYTHVsUXVDY28tZDZoZS1DUFU4clVidVZ2clB5bVVHYXkxdmVZX3c?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1794116160000,
+          "kind": "news"
+        },
+        {
+          "title": "Cruise ship pianist rescued after nine hours treading water miles from shore | California - The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOT2VWdU9WZFR4eGRmTzVNeTV6Wmc5VFEwSlVzWTdZd2NVM2piS1l5M04weUp6TEVPMFhVQWNTbHp5WXMwS2F2Z0RORGxuXzljcG5XMHpZYlRzUGpPZ2hlaE9GYUMtMFNtcW4yZVA5eldraXQzWE0zbDB3X3lxa3Y1dGp1SWRxN0dIeG9xN2g2WUdSR04z?oc=5",
+          "domain": "theguardian.com",
+          "published_ms": 1794174960000,
+          "kind": "news"
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - KVUE",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxONTdTaE12ak5keHA5YXBHQVEtUGZBVXlIaWtlT2MzSVNwWVBzeGVVRDRYSlhKX2Z5ZzYtYzNCNF9pd3JyejVaTUh6UlpkUkh2YnZFY1BDTk84ZEloMDhQLV9FVHZmQWp4UEh5azJWYXRrZWVkYjZSdm4yVnBLOWc4SzZWVjctcUNmNVVaTzdZN2thREUzNVZHOE84Q2dsSDZ1MVZLbDVIaFNFZXVOblZJUEI5TDhFeE90a3JVSkhnWTdJM2tHUTZ4ZkxJdjZ3a2I3NGo2RjQ3elV3QQ?oc=5",
+          "domain": "kvue.com",
+          "published_ms": 1794153841000,
+          "kind": "news"
+        },
+        {
+          "title": "Royal Caribbean cruise ship pianist incredibly survives after plunging overboard 20 miles off California coast - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPWk02RE5hTVp2eWtaeUpoWWNfWDJJVktGZ3hidmpaSTBJUkZiN09LdENrZDJ6TV9SUWJtZGNpVGRTZVlWcVQ2R2dmYW00cERXamNRRlNwYlV1UXZWcXY3WWpFN0FPUTZRMUpWeFBMbDQ4bTdOYnNoSFlyWHhVUlVkbGFVWjAyc2tvY0pUT1MwNC1kSDdrWk1HM3Nsa25lVzhoa0FNYUtnZFI2UGZid19JYnYwbw?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1794162060000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 15336,
+        "competitors": [
+          {
+            "id": "vq0qOdFe7Fw",
+            "title": "Royal Caribbean Cruise Passenger Found ALIVE 24 Hours After Going Overboard",
+            "channel": "New York Post",
+            "views": 410494
+          },
+          {
+            "id": "WJw2iWD4Cr8",
+            "title": "CRUISE NEWS: Passenger Overboard — Found ALIVE!",
+            "channel": "The Travel Scouts",
+            "views": 78040
+          },
+          {
+            "id": "Vo0QoCvXENw",
+            "title": "Woman found floating in sea after going overboard from Royal Caribbean ship",
+            "channel": "FOX 32 Chicago",
+            "views": 44572
+          },
+          {
+            "id": "Y1lhobFSjpg",
+            "title": "Greek coast guard rescues cruise ship passenger",
+            "channel": "ABC News",
+            "views": 34069
+          },
+          {
+            "id": "jY3YS3bALK4",
+            "title": "Woman found floating in sea after going overboard from Royal Caribbean ship",
+            "channel": "FOX 5 Washington DC",
+            "views": 15336
+          },
+          {
+            "id": "ZiGkzmEnbkM",
+            "title": "Cruise ship passenger who went overboard found alive after nearly 24 hours at sea",
+            "channel": "WFLA News Channel 8",
+            "views": 10283
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 70,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 86,
+        "newest_hours": 8,
+        "domains": [
+          "independent.co.uk",
+          "people.com",
+          "9news.com",
+          "cbsnews.com",
+          "theguardian.com",
+          "kvue.com",
+          "nypost.com"
+        ],
+        "trusted_domains": [
+          "independent.co.uk",
+          "cbsnews.com",
+          "theguardian.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Sinking of the SS Edmund Fitzgerald",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "Why did the mighty Edmund Fitzgerald vanish into Lake Superior without a single distress call?",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "SS Edmund Fitzgerald",
+      "commons_query": "SS Edmund Fitzgerald",
+      "youtube_query": "ss edmund fitzgerald story",
+      "evidence": [
+        {
+          "title": "1975, 11-10: SS Edmund Fitzgerald sank in Lake Superior, claiming all 29 of her crew's lives.",
+          "url": "https://en.wikipedia.org/wiki/SS_Edmund_Fitzgerald",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 17
+        },
+        {
+          "title": "INTERACTIVE: Detroit remembers the Edmund Fitzgerald — 51 years later - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNMmRuM3FTMnh5VXpVaktCRy1udXN2M05uYmlFWDdLVVNhaW1LVUVnZ1B3WWQzXzRzcUxxUkdPUnF5NlJYSDUyZkRsMmk2b29mVDhBTHFOOFVDTWFqS2h0cjNTWFpsXzB0b014OTVvWWlMYXVVMTVBVkZYOHd5UXRTY1owM1FsX3dCeDI5d051bG5CWlBERzFv?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Remembering the Edmund Fitzgerald: Watch our special on the Great Lakes tragedy - WPBN",
+          "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxQZlVORVZ5LVlDS2RkeGRqVUx4YmQzalVGR2V5d0pvSkdQUkhxRlBGZFk1eXd1U2hLZHUyZC1KTWdqYmh5aVoySjVwY3JNeEoyMEtSX25GTGJPcXZuaU5TbmdGQlVia1E4bm9Gc0RxTW96aDVwOF9SRGM2QThpRFpRa2NsekQzaEZPejk3ZHhCNVotaHJsdnF1OVp2Y2ZGTmpPb01ZRHZhUGQ1LXRTRVpXMWJXbTBqYng3cm1kTUxFYjhyaktRMVloLXVxV2RBbmRHQ2lGQjV3NmZTTWNZY1VRQnJSeVVJN3ZndFpaMFNGcnBySmZDcnVCb3BqdmZ4RmVUeDJSUzJxSnZNMVFTd3JjdXZyTFR5QWhwMnhvZ2JhMDhSdGwwcFFWVA?oc=5",
+          "domain": "upnorthlive.com",
+          "published_ms": 1793904978000,
+          "kind": "news"
+        },
+        {
+          "title": "Documentary chronicling 411-Mile Edmund Fitzgerald Memorial Swim set for Nov. 10 release - 9and10News.com",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQckZCaTJydzc1QWV3d0JRRzlwQV9vWXh2bXBFckVMbjM5eW9rMjdMNlJEdlhPOHJBNEdRTlNMTG5TdjdacUhvQXlhN3Z4ekQ1Wmtva19fSm51Njl1TE1PZHh3VzlEMWtpaWNDZ1ZLOG1ZQ2tMNjVUXzJRclpkOEFINUZqWFNOb3BMSktYU3NSUXdnY21JdzY0bG1JMURhVXhTWk5CY3l1d29SUGpIQXBSN0h6Z1F1TmwyRlBTMFdiY0kwNlNP?oc=5",
+          "domain": "9and10news.com",
+          "published_ms": 1793887260000,
+          "kind": "news"
+        },
+        {
+          "title": "A Powerful New Documentary Honors The Legacy Of The Edmund Fitzgerald - KROC-AM",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92UFNxOUdYcERKTmk0eExTVnJHd2I3RURXbXhWVE5JUFVBNGZqTDhWLTl2aTEySGMzMnlyZG9Ec2VzdmFiY3FETWRPX2RBRGpORVFWc2JvcXpzdmxXUXZITU80SFFMMGhhUGJrVmlQX0hvQQ?oc=5",
+          "domain": "krocnews.com",
+          "published_ms": 1794185815000,
+          "kind": "news"
+        },
+        {
+          "title": "New documentary highlights memorial swim completing Edmund Fitzgerald's journey - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQR3R1V01wMlk2dDlPeUswcVBURWliVlpXdzJGNERSYkZHaDBNUnlUdUZnaVBsZjdwUGdkM3N0Y2RSd3FBU3hNTV9qcktleWpNZl9QakYwMFI4V01LN2VyY0ZBdmhCTmZ6YWUxY3NiS2ZUWC10RGFHVWhfR0hkaDkyRDc5UkZpcWVpRVNLZ3FwQWRud3lheWRZbjhoeGd2SUNjdllWb1NLUQ?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Meet Harold, the First Grader Who Became the Edmund Fitzgerald for Halloween - 97.9 WGRD",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBjc2RyWkszRlpoVk5wSGZ2b041M3RENFppaDd0bjlXWGgwOHpQVlBnV3ktenQyUV9FblF2aHJPRnRES0llemhLWmNPU2U1dXprTjlpS0ZqZnJXS0NtS0pPOW1QNA?oc=5",
+          "domain": "wgrd.com",
+          "published_ms": 1793995902000,
+          "kind": "news"
+        },
+        {
+          "title": "Dossin Great Lakes Museum to commemorate sinking of Edmund Fitzgerald with events from Nov. 7-10 - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPdXNsdExmUWljVlBkWVMtNFEwR2YzRllSV0ZVWm9TWnVxdDFxZjV4RUJLSXNvbzM3bmtHUGgxRTRIbjJLU3lWMG9SajBNZ1EtdlBrTXVWUzRhX3lXMlZfcS00dVpHNmdmWXJLbEozbHhtQjhINGxSREF5VFNQWG40amx3Rmh5aGtLUFJ2d3premNiRkZkTXE1cVpKa09VVVVmMzYtdGxtdUZaSm5nSjFsTUx0ZjZOMk53SkdVWEJB?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Set of letters from cadet on Edmund Fitzgerald hits auction in Detroit - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSmcwYjBNNzMwRlByUlZOdkFZT1BUdWJZbU1FZl9pSHBGUE1aMmdOTGhwRDItVDE4bHduQVozTUNCLXNEMlNkSUtwN3RSbWpYNGxPYWNLOFp0c3JacTNKaVdJQ0Zxa04wajhQUFk2Z3lPSi1zVXpfNmVtOElSQ1NuV2hDUEN6TVZKTm5nYUxzbFd1WWsxLTN5SlN1N1I?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793976290000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "SS Edmund Fitzgerald",
+        "daily_views": 11497,
+        "ratio": 2.87
+      },
+      "youtube": {
+        "median_views": 87292,
+        "competitors": [
+          {
+            "id": "aNaN0nXzweQ",
+            "title": "Underwater Drone Explored the SS Edmund Fitzgerald — What It Captured No One Expected",
+            "channel": "Ambrose Discovery",
+            "views": 466498
+          },
+          {
+            "id": "f4q-KdkbE9s",
+            "title": "After 14 Years, an Underwater Robot Explored the Edmund Fitzgerald — What It Captured Was Chilling",
+            "channel": "Explorer Vault",
+            "views": 354012
+          },
+          {
+            "id": "5DsegEQfrJo",
+            "title": "Evolution of the SS Edmund Fitzgerald",
+            "channel": "Baltic ship spotter ",
+            "views": 120931
+          },
+          {
+            "id": "_EX_WV54xXA",
+            "title": "Inside the SS Edmund Fitzgerald's Bridge, an IMPOSSIBLE Anomaly Has Just Been Found!",
+            "channel": "Hannah Dicovery",
+            "views": 93836
+          },
+          {
+            "id": "jPwU4ZGlH1g",
+            "title": "The Edmund Fitzgerald: What Really Happened That Night?",
+            "channel": "FORGOTTEN HISTORY",
+            "views": 87292
+          },
+          {
+            "id": "X7lnl-aZpDM",
+            "title": "The Tragic Story Behind Gordon Lightfoot’s “Edmund Fitzgerald” #History #GordonLightfoot",
+            "channel": "ArchivePulse",
+            "views": 2009
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 83,
+          "reach": 82,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 82.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "wxyz.com",
+          "upnorthlive.com",
+          "9and10news.com",
+          "krocnews.com",
+          "wgrd.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Nazi U-Boat Wreck Found Off Maine",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        126,
+        152,
+        159,
+        161
+      ],
+      "hook": "Divers finally solved a 1944 WWII mystery by locating a sunken merchant ship torpedoed just off the US coast.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "wwii shipwreck maine coast nazi submarine",
+      "evidence": [
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news",
+          "id": 126
+        },
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 152
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 159
+        },
+        {
+          "title": "A Nazi Submarine Torpedoed a Merchant Ship Just Off the Coast of Maine in 1944. Divers Have Finally Located the Wreckage, 400 Feet Below the Surface - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxNYjVYMXRWNFUxdVlpTnJRS1VKY04tRE8wNG9kNnl1cC1lZHpwOE9uTEVqU2hxNWFKd3ByMHBqaVo0R3RRRXgwMnNYdUYtT21PUGNkZ2RKY3ljS00wd3JiemRjM3huemtZUUloNUZuTC1BRUs3R01IVnJIUzk5Tjg4WVJkNE5hRWhWZUx5b3pCNjE2ak9DX0tEcEFmelVOZGp1X1Y4SjVwMVFkX1ozZ1JadXdyeGs3Z3ZubllfOG5zUnhVSlhhQzNnSnZ5NWM2ZXN2MmZtaFcxWnRSejJ5TExPUW1LLVlxdEQ5RUtYVWtkbDIxN184Qk1RX2ZtN2d1cTkxNUxPTU5hNGl4Wks1RXdmRDdNRDBUbFlRRDhLLUxhY2l2akxOVGc?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793918400000,
+          "kind": "news",
+          "id": 161
+        },
+        {
+          "title": "An infamous Nazi sub sank a ship in 1944, days after landing spies in Maine. The wreckage has now been found. - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9ibG1ySnU0eEVBNlBoSHNNMWRaYXF2U2NhNlhSN1pNNU1VOWEwSW1MMnBRRDdCc3ctTHJ1clRtTG54Wk91VVNuRl9VMGdwY2ZYWEk0dWdQTWdyTnJwazI0NzZOSXdsWl9ORXphbzJYalo4Z0JjZnpOOA?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Spent 7 Years Hunting a Ghost Ship Linked to a Nazi Spy Plot. They Just Found It. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNVko0TEcwYlZEbG1pY1d0UmwzZFZ2eXJlS0dLLThNZGRaWWNDZFREbUxlSk1PRFZlNzVuNnhFbmFtNkZBeGI0aDdOakxjUHg4MzBOcnhRLWhKVjA2Uk91SDc5MnhNS2h6U25odEhEdzlEZEZxd3RBMFRSV0JfcTJpb2tZMmdVRUNfUloxLTZBN2xMaGEw?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793716200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 107,
+        "competitors": [
+          {
+            "id": "rvKdRFNCjLk",
+            "title": "Nomad Exploration Team Finds the SS Cornwallis, Lost for More Than 80 Years Off the Maine Coast",
+            "channel": "Lindell Yachts",
+            "views": 3496
+          },
+          {
+            "id": "5b37Y5HZYso",
+            "title": "A U boat sank this ship TWICE #shorts",
+            "channel": "The Historian Search for Meaning",
+            "views": 1654
+          },
+          {
+            "id": "U4D4wFjOGuM",
+            "title": "The Nazi Spy Sub’s Only Victim Was Just Found Off Maine",
+            "channel": "StellarInsights42",
+            "views": 1443
+          },
+          {
+            "id": "Ug4PDe6VbY0",
+            "title": "A Nazi U-Boat Landed Two Spies in Maine. Then It Sank a Ship",
+            "channel": "Evidence After Midnight",
+            "views": 144
+          },
+          {
+            "id": "N4KyGQYQzoc",
+            "title": "Two Nazi Spies Rowed Ashore in Maine in 1944  Four Days Later, Their U Boat Sank a Ship Offshore",
+            "channel": "Lantern Accounts",
+            "views": 107
+          },
+          {
+            "id": "S4kpBjnnM2o",
+            "title": "A Nazi U-Boat Dropped Spies in Maine With 99 Diamonds. Then It Sank This Ship.",
+            "channel": "The Cold Case Files: History",
+            "views": 81
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 98,
+          "reach": 34,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 80.8,
+        "newest_hours": 34,
+        "domains": [
+          "ua-stena.info",
+          "gizmodo.com",
+          "bostonglobe.com",
+          "smithsonianmag.com",
+          "cbsnews.com",
+          "popularmechanics.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com",
+          "cbsnews.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Playing Cards from a Mongol Invasion Shipwreck",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        123,
+        151,
+        153
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion fleet discovered remarkably preserved gaming pieces and dice.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "mongol invasion shipwreck dice gaming pieces",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 123
+        },
+        {
+          "title": "Gaming Pieces Found on Sunken Ship of Genghis Khan’s Grandson Who Conquered China - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNX29INHBYeWVPZF9nWGVxb0NCWEJkOW5BVVlabGtDRW5fQUx2LW52WDNteGVJX2Nwek5pVWdFOVpMS3J4TlZZVUhsdkNGRVdib1NkNkhiXy0tbGtVOXB5Y2pkN3Jsa0hMTUhReS15QW1zN0JjdXFKazh0U2gta0I3M0JWZ09waFRPSm56bjBmdVlaTW9iT0hMeHJMdlVfQm5pSHEwQmxR?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793995812000,
+          "kind": "news",
+          "id": 151
+        },
+        {
+          "title": "News - Playing Cards Found in Mongol Invasion Shipwreck Off Japan - Archaeology Magazine",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcXBPZ25fOF9NaF9pVGRNVWZxWmd6T1prdnVIRVBFYUlOVVhEQm5SNUxQcjR4d0lDMXZKUmpjTDBMY25YSnpPRExFeTlxS2UwTWEzYzBYWW9oejJtOVhTcFl6RUtNZ1JQOTJuMnZLUTNFREhVc0VWamNrdjNwVjZVQW85WDBDSmU4QVNvM3lGX2RCX0FGR2FvRFdNdHAtcEt2?oc=5",
+          "domain": "archaeology.org",
+          "published_ms": 1793994330000,
+          "kind": "news",
+          "id": 153
+        },
+        {
+          "title": "Dice and Game Tiles Found Aboard a Mongol Warship Sunk Off Japan in 1281 - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZ3ZYUVkxc2U4MDhfRmxYVE5UNDEyVDJpTlJ3ZVExbmNoODMwNXZFeUEwdjlBSjNGdUFVbndPXzYyZlZPbnpCLWhFUEdaSkNWRVc1eXNoczdLaUxTcnlzVU00ZGEta2dNVmhsWl9yY1haSHhabFFIbjVrMWFjckxqRGg5bHl4OWdackIxQTlmRndtam1UXzNNTEN1ZWFjeWZCcjFxMVFMd01DaFRNZTZTYw?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1793898815000,
+          "kind": "news"
+        },
+        {
+          "title": "Dice, mahjong precursor cards found in 1281 Mongol invasion shipwreck off Nagasaki Pref. - 毎日新聞",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBESXhsaUt0Tmg2SG9qSWZqYUhSRWhWZ1FDQ3VsWnpvcnBfR0FwbFNGVXVDQlA3M2pQY1FwWExmdEdCRmdQX0JPVjdkeHVjdEZmSWVMTjd3STRrOGxCYllxSG1XeHYyZWszM19SeVdXS29pODg?oc=5",
+          "domain": "mainichi.jp",
+          "published_ms": 1793779074000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 679,
+        "competitors": [
+          {
+            "id": "PN-AgyebY_s",
+            "title": "THEY FOUND GAME PIECES INSIDE A 745-YEAR-OLD WARSHIP",
+            "channel": "Areha Hub",
+            "views": 17518
+          },
+          {
+            "id": "hwgvJ2iWWbY",
+            "title": "A Typhoon Sank Kublai Khan's Fleet in 1281. Divers Just Found the Crew's Dice #shorts",
+            "channel": "Hidden World Facts",
+            "views": 1036
+          },
+          {
+            "id": "uMmU3n0aZR8",
+            "title": "「元寇」沈没船からマージャンの祖先とされる遊び道具「天九牌」初出土 長崎・松浦市の鷹島海底遺跡",
+            "channel": "NBC長崎放送",
+            "views": 679
+          },
+          {
+            "id": "poexZyYUjWk",
+            "title": "700-Year-Old Dice & Game Cards Found in Mongol Invasion Shipwreck Off Japan #Shorts",
+            "channel": "TimeWhizBros",
+            "views": 452
+          },
+          {
+            "id": "DQc1mMkjuiY",
+            "title": "Takashima Mongol Ship Dice Found After 745 Years #Shorts",
+            "channel": "Echoes of history daily",
+            "views": 22
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 99,
+          "reach": 47,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 80.3,
+        "newest_hours": 28,
+        "domains": [
+          "voiceofemirates.com",
+          "arkeonews.net",
+          "archaeology.org",
+          "ancient-origins.net",
+          "mainichi.jp"
+        ],
+        "trusted_domains": [
+          "arkeonews.net",
+          "archaeology.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Fall of the Berlin Wall",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        4
+      ],
+      "hook": "A single mistaken press conference accidentally tore down the Berlin Wall overnight.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 10,
+        "visual": 9
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Fall of the Berlin Wall",
+      "youtube_query": "fall of the berlin wall 1989",
+      "evidence": [
+        {
+          "title": "1989, 11-09: East German official Günter Schabowski mistakenly announced the immediate opening of the inner German border, resulting in the fall of the Berlin Wall that night (border crossing pictured).",
+          "url": "https://en.wikipedia.org/wiki/G%C3%BCnter_Schabowski",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 4
+        },
+        {
+          "title": "From the Front Page: The Berlin Wall Falls on Nov. 9, 1989 - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNOHBuQXN1UXl3Wm9UT3cydU9ZVGJ0SnlpVzh0VkcxYmxJZkFRMVhjNXpMaV9waHRUbTlEdnV1S0IwMW43QkljZHl1MXVxdEVod0lqOWVrUTJxUjlCcU9TR21Zc3V4Z3lFYkNxekEzNm5udFVBcWlLclNlTHBlem1jZjZxdktuTW5vTTJkQXVyaW83LURoTWZpVm8zb24wLXY4YVRpZlVIUQ?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1794200402000,
+          "kind": "news"
+        },
+        {
+          "title": "Trump’s empire is crumbling, much like the Berlin Wall in 1989 - The Forward",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQU19OZXprYWZ4UjJMQlNlQk1Hbjh0OXp3Wm9yLUVqeUkxSmIwTXFxdmRDS0lCZHZKUzg4UnJqQ2hBWUw2RFhfc0dJVVk4XzloeHJYd21EakpWLXpBTEZ3ZDAtRHF3aHJVOVFhdjBZR3ViWE9razVHanRDZDRFV1BwSDRvZGI?oc=5",
+          "domain": "forward.com",
+          "published_ms": 1794060238000,
+          "kind": "news"
+        },
+        {
+          "title": "Germany - Reunification, Berlin Wall, Cold War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1kWU00ekdKOGxiVHhLZnIxM1ZhZVZEWG5JT1ByNEd4MTMtWnFJazN2RUk1WjQtb1dxUVdQQXpFb1FwQktnTHZUOUhGS0ItR191a2JabmJFSXM1WGZSdnd2d2RDRGpPc0plX0J2ZExBWWw4WldTbXNicg?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793865600000,
+          "kind": "news"
+        },
+        {
+          "title": "Today in History: 1989, Berlin Wall falls after 28 years - The Mining Journal",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNNGpscDJqMFFPMjJUVXdIUjdFMWZUdXYtN0dkMGxUV3E5eEw5SFBvaEpsM1RaQjJPdHRaV2xKenI3eTVKNHpPd2UxMm80eHZaLWZHMzNkQ0tQbHlzcVhibTg1T3AtTC0xV3VVMi1jX2NHaGM5N3RkU3lnTmJYc21uLUlONzBSeXRQM0ZEMENaZUNjMFpwc19CNjRxNmg2Q3IzSzRHbk9kejNOQQ?oc=5",
+          "domain": "miningjournal.net",
+          "published_ms": 1794211507000,
+          "kind": "news"
+        },
+        {
+          "title": "Why Did the Berlin Wall Fall? - The Imaginative Conservative",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNeVJ1c3I3X2FwZWpuRkRHaHdUWlFqQXRqQWFzT2tCdmg3c25hRnhTU2xBV2JpVlI4RW51ek83MkhjWnFVTFdJS1JjQW01OTVvLS1RbmY0LWFLRTRaOFdRLURkbV8wOEY1cmNPTHd2T0JPV3hYeWJaUzI0VTJXVWt3U0xvSENybDdkWXJJ?oc=5",
+          "domain": "theimaginativeconservative.org",
+          "published_ms": 1794192281000,
+          "kind": "news"
+        },
+        {
+          "title": "Germans relive Berlin Wall memories 37 years after its fall - Türkiye Today",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNdmtIMlBEbHptMmlmaTVmWUdpSHp6Tlo5cDRNSHh6SUo4cFQ4SGU5OGE5SWVFdm93VThxR1prNDVmTEE0TzVDcHpibi13QXBXbDNxQ2hOOXc2ZmJVTFo5c3JFc0R5c19uWktCbEkzUDZucHVlejN3MWo0YnFCc2tDbmZmMTJneV9ub3RIWXdKMVFDMDBHejRWaVNaSTFKMEhmcGRXTTJ3?oc=5",
+          "domain": "turkiyetoday.com",
+          "published_ms": 1794135594000,
+          "kind": "news"
+        },
+        {
+          "title": "How Israel’s separation wall compares with the Berlin Wall - Al Jazeera",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNdWlQcXpTZ1FuTktOd0s4YjNxVW5fZjlMOUhBVVQ5ajUxa3JxVDAzSEFhS1FRSTJlVFp0eU5PazlYOGZXRUVaRGNVNi1zWlJXWlNLT25GcmlJOHVjdXM1cmNZTkhWTmdsWEE5LUNZcDV6dFlOQXUyODhzY0VNSnM0OGJrNG1xZ3RPRXlKd2tFeHExSjFJTV9iQTJ6WmNneHfSAaQBQVVfeXFMTS1GWlFfclBuMkpEYnhmOXdCYUZCcXBLZFdxVDBCb0FHYjlKajczcFVOZ1l4cnpxOEEwNWxpaFBUendqMnJTMG9QaXVwNEJUN09Sb1JoYkY2ZDJSQzE1MF9IWjkxRUhGUVZDSURJeFFGczZRUlFXeVZCX0tscW4xcm5OeEVvbE9JOERjX2NwdE1nTXVkblN2S2NCbHR5MXJCMW9sVUY?oc=5",
+          "domain": "aljazeera.com",
+          "published_ms": 1794206093000,
+          "kind": "news"
+        },
+        {
+          "title": "Silly's 'Februar' Predicted The Fall Of The Berlin Wall, And The New 33 1/3 Book Reveals How East German Rock Challenged A Regime - That Eric Alper",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxORG9WejZNNmJCbFdQZWdsMXZaaUpDVENFdnhLQ2I4MVczSEdsYlRxSzVXcTZJUzBsTlpHWVlwaWF4M3J1cU5FMWZOYWhJYVVvdERWcGw4Z3VjajJzTjRQM20zYUhFRGp5cXByRUNKc0lxb0FObFUxRDczVW02YlhZWnlwVVFpak4xUURmLVBqLUJwd3Vha0E2d3FxSEsybkRfLUd1LXQxbGhVVGkyYXo0NzhjY28wRnhuYUVvanVNZ0ZZZFJWYmwtM0J0SGlvUHVuNEJ3aFgxOGt2MUd2ZVlFZjg0dUNreDZhQzFGMHdTSTZnVHlERURyRy1SUQ?oc=5",
+          "domain": "thatericalper.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": {
+        "median_views": 157,
+        "competitors": [
+          {
+            "id": "9HKG2YN24gs",
+            "title": "How Did the Berlin Wall Collapse So Suddenly, Overnight? (1989 and Today)",
+            "channel": "Bufira History",
+            "views": 1352
+          },
+          {
+            "id": "zpg6y9Acv1o",
+            "title": "Berlin Wall Documentary: The Fall of the Berlin Wall (1989)",
+            "channel": "Historia",
+            "views": 261
+          },
+          {
+            "id": "dLtXv0TlBbc",
+            "title": "🎬 The Night the Berlin Wall Fell — What Happened in 1989? #shorts",
+            "channel": "Past & Empire ",
+            "views": 216
+          },
+          {
+            "id": "gFn38k5VRak",
+            "title": "The Night the Berlin Wall Fell 🌍🇺🇸 | 1989",
+            "channel": "Gro history ",
+            "views": 183
+          },
+          {
+            "id": "x9R6iVR72Kg",
+            "title": "The Fall of the Berlin Wall (1989) | American Chronicle",
+            "channel": "American Chronicle",
+            "views": 157
+          },
+          {
+            "id": "bIqFngVM7dE",
+            "title": "THE FALL OF THE BERLIN WALL – 1989 | The Night That Changed Europe Forever",
+            "channel": "WHEN THE WORLD CHANGED",
+            "views": 49
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 46,
+          "curiosity": 90,
+          "relevance": 100,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 79.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "nytimes.com",
+          "forward.com",
+          "britannica.com",
+          "miningjournal.net",
+          "theimaginativeconservative.org",
+          "turkiyetoday.com",
+          "aljazeera.com",
+          "thatericalper.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "nytimes.com",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Night the Berlin Wall Fell"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Cannabis Use in an Ancient Siberian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        95,
+        99,
+        121,
+        142,
+        146,
+        149,
+        156,
+        162
+      ],
+      "hook": "Archaeologists found 2,800-year-old evidence of cannabis burned in a royal tomb.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Secrets of Scythian rituals 2,800 years ago: An ancient tomb reveals the use of cannabis in ancient practices - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPbmtYNU1LLTl4d3NJQWxwVmFpeE5rS2x1QXZOcE56c09aUGg5T2poU283RzhCUDZua2UxNy11dmUyWXJ1YThYc2tBcXVYaXZ4QmhZa3E3bnNsTWJXRF81dk5UQ2otU3ZRaUdkc0NNTXhzY2hTTEp3dnVNV21FNGdaVkdWOF9hWEJQZVBDRHp0dUVKaTI3cWdiaWpxWi1vR2R6cWV5UlUzbll4MU43c0xNLWtYZDYtRmRUcDN3ZEtpTElSWURGZERqS0RiMHJ1bGwtdnFIWHRwSVVCUGtKdWdzZjJpbkF6bFpsaEdfaFo3YkQ5c0lhckM0?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794201875000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Ancient Siberian tomb reveals 2,800-year-old evidence of cannabis use",
+          "url": "https://www.msn.com/en-in/news/other/ancient-siberian-tomb-reveals-2800-year-old-evidence-of-cannabis-use/ar-AA2h3iRo",
+          "domain": "msn.com",
+          "published_ms": 1794181097000,
+          "kind": "news",
+          "id": 99
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 121
+        },
+        {
+          "title": "Evidence of Cannabis Use for Psychoactive Purposes Found in Ancient Siberian Tomb - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZklLdTlSbzVzckpJcGVHWFlheEQ4YjUyeG8tZ0VVa3oxVkQ1RWtVcm5EUVN1STlZWFR4ME1SWFUxbHRHX2xRcFZZbS1OQ2JrcDlkeXNCUHJ5dkJieldaYkhvZGxNVWhaRERuS3luN3FZNzV6SEFVLWV4SXlFV0Z6ZG0yeHRYa093QzctU2hnR05HaXBOZ1hoX2xTSDlKOXBISFA3UmhjMWhqYWJs?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794051016000,
+          "kind": "news",
+          "id": 142
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news",
+          "id": 146
+        },
+        {
+          "title": "Russia: Oldest evidence of cannabis use discovered in ancient Siberian tomb",
+          "url": "https://note.com/kawasemi3/n/n1909e699f5f5?hl=en",
+          "domain": "note.com",
+          "published_ms": 1794009540000,
+          "kind": "news",
+          "id": 149
+        },
+        {
+          "title": "Ancient tomb discovery suggests oldest evidence of person getting high — 2,800 years ago",
+          "url": "https://www.yahoo.com/news/science/articles/ancient-tomb-discovery-suggests-oldest-204202854.html",
+          "domain": "yahoo.com",
+          "published_ms": 1793968980000,
+          "kind": "news",
+          "id": 156
+        },
+        {
+          "title": "2,800-year-old tomb in Siberia has evidence of the earliest use of cannabis — possibly as a way to calm human sacrifice victims",
+          "url": "https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "feed",
+          "id": 162
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient humans were using cannabis far earlier in history than we thought - Scientific American",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUEtpYkFzdVhUOHQ5UlJQcTZJUDhEWUwyS2ZQbFZDdjBTUWpwdXBDUHlUaEdMeDZZQTA3cEpUSHVzTlBOOUt6RndqQV9KZjMyZDJRdkI5V2hnOVlKeHo3OWxFQXVsYThpd3QxMHA1MkhEbUV1bXF6UlRIMjByZlNEd01FSEctTHcwcW5CUFROckxOZHNvRndXSGVhN2dBdFRtT0E4SHhjVDBjQQ?oc=5",
+          "domain": "scientificamerican.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient tomb discovery suggests oldest evidence of person getting high — 2,800 years ago - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQZWFaVHVJdXVqUmZZdThsajhJeExXbzRncTBHVWlOdEdNOGUtZDBBQWo3c2tOeDVfSjUxRUF2cEZybGF4SXJ6SHgzejZ6bXUzYmxQek9QUmNxejNtTWlOUlo5QlNBU1ozaGtwTU9HRnVVYW0tSExTZUdheldDNFNNcUQ4SWVXemdiWUJiUlBPcnBBWTJFWG16clR4VW5KQ0Y0cE1RVDgtZXgzZG40TFpqUTFBX3ktb0EzVDZTUVU4WXA3RDFC?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1793997720000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 116,
+        "competitors": [
+          {
+            "id": "scPIiYfCZ-s",
+            "title": "Scientists Found Cannabis in a 2,800-Year-Old Tomb",
+            "channel": "BlitzFacts",
+            "views": 1123
+          },
+          {
+            "id": "ySc0VbFpFlg",
+            "title": "2,800-Year-Old Scythian Tomb Reveals Ancient Cannabis Use in Siberia #Shorts",
+            "channel": "TimeWhizBros",
+            "views": 1007
+          },
+          {
+            "id": "YsZuoz6Mgoc",
+            "title": "Ancient Royals Got High: A Tomb's Secret",
+            "channel": "Info Scroll",
+            "views": 1001
+          },
+          {
+            "id": "KhorMv0C4sg",
+            "title": "HISTORIC: Scientists Discover 2,800-Year-Old Evidence of Cannabis Use in Ancient Siberian Tomb| RA1Z",
+            "channel": "News Central",
+            "views": 134
+          },
+          {
+            "id": "L9z932YXFRg",
+            "title": "2,800-Year-Old Siberian Tomb Reveals Evidence of Cannabis Use | Geo News English",
+            "channel": "Geo News English",
+            "views": 116
+          },
+          {
+            "id": "qePkp8kYmRw",
+            "title": "How Old Is Weed? The Oldest Evidence Is a 2,800-Year-Old Tomb",
+            "channel": "Cosmic cat",
+            "views": 108
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 34,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 78.9,
+        "newest_hours": 3,
+        "domains": [
+          "voiceofemirates.com",
+          "msn.com",
+          "sciencedaily.com",
+          "news.ssbcrack.com",
+          "allthatsinteresting.com",
+          "note.com",
+          "yahoo.com",
+          "livescience.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "404media.co",
+          "hightimes.com",
+          "nypost.com"
+        ],
+        "trusted_domains": [
+          "yahoo.com",
+          "livescience.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1970 Exploding Whale of Oregon",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        44
+      ],
+      "hook": "When local officials thought dynamiting a beached sperm whale was a good idea.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Oregon exploding whale",
+      "commons_query": "Florence Oregon whale explosion",
+      "youtube_query": "Oregon exploding whale 1970 footage",
+      "evidence": [
+        {
+          "title": "1970, 11-12: The Oregon Highway Division unsuccessfully attempted to destroy a rotting beached sperm whale near Florence, Oregon, with dynamite.",
+          "url": "https://en.wikipedia.org/wiki/Oregon_Department_of_Transportation",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 44
+        },
+        {
+          "title": "Oregon coast town celebrating 56th anniversary of the exploding whale this month - OregonLive.com",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOdG5NckJJbjd3WlQyNHBRek5DVUFhbHFGc3BlZG1wYkozc3ZSaDJkaFBTcVNIUlVUNzdJWU9QZU14QkNBZlRIX3dpTExKWmdrOFpGRWw0OHIxRndDMUFFQjJQc2FPSmpBcWsyVTNhTGw0YkYtY0lPVkM1Yzd4SHJXZmhVQVRMdVF3eVZ4Z19tTEs4TEttS2pNTU5XWExzZUNmZ1FpMEY5NXI3NnlqRWxrMmdmLVFOUThuVmNQOERHRGhoanhQOFE?oc=5",
+          "domain": "oregonlive.com",
+          "published_ms": 1793641920000,
+          "kind": "news"
+        },
+        {
+          "title": "The Enduring Lesson of the Exploding Whale - The New Yorker",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNZjRqWjM5Zng1aW51NGRHTFZXYnI2QVhnb0dNbjk0T2p1SjlYQ2V6SEE2alJ0N29rWW52VExqQ2ZRUUxKM002TDVqbUFhMFBySjRza25lRGhka1ZXTHE5aVcyUTFiMlJJQUNybDhpTnpiOXJRNjA4RkJUNjdMZExSamlaZDA5RWpqNmFvb2kxSTNRcWM1ZU91ZXRWdVlvYTZFcUNmS2V2cHRhN0k?oc=5",
+          "domain": "newyorker.com",
+          "published_ms": 1793779200000,
+          "kind": "news"
+        },
+        {
+          "title": "Florence celebrates 'exploding whale' anniversary with documentary screening - The Register-Guard",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQUmQxXy14Y0t6UjExRzdNWHFDWm9rblczNUllWlJRM2NiaVhRd2k1MWtYdW5Zcm5MVUV6VGVlQ044MVcxVnBwcWVXMEJmcVRySkJ2bzZtMzJLYnpKeFFtWkRGZEdDNzJpQTdUaDBHbllHVFhqblZVd1JTYURRZ0tnUHJuMjZrWEN2UWF6cDVmby1mZ3l3UWR5N2xzYnhVZmRNdjdpdU9ETTRGQXlkXzY1VjN2RkRlN1g2dUFQQ3M1TlhMZw?oc=5",
+          "domain": "registerguard.com",
+          "published_ms": 1793621100000,
+          "kind": "news"
+        },
+        {
+          "title": "56 Years: Annual Exploding Whale Celebration Again Blows Up In Oregon Coast Town - Oregon Coast Beach Connection",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPTW8wcmxrZTRjN29YbTN2UTVlZVEwanFPWlN5OEdVLWppbk1KT0FRTDhCWGJ3WGhxeDFaSFI2ZGRSVlQzalNnVEhDY3d3Q3NRaThwbFM0cnJUSGJsUXQwMm9pVGtBa2xBNExwU19XM2kzaUhvdjh6dzdpSGlFbnJxQ2dHaU9vaE4xVk9WaEFJM29xMzNBLURiMFY1ZWNNUVREcVE?oc=5",
+          "domain": "beachconnection.net",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 2518,
+        "competitors": [
+          {
+            "id": "_EDVJrsQ4tM",
+            "title": "They Blew Up A Whale With Dynamite",
+            "channel": "PolySoldier",
+            "views": 58116
+          },
+          {
+            "id": "bdYqncSj5wI",
+            "title": "The 1970 Exploding Whale: Oregon’s Infamous Disposal Disaster",
+            "channel": "Historia Highlights ",
+            "views": 43989
+          },
+          {
+            "id": "HZiNJY-c7TY",
+            "title": "They Blew Up a Whale  Huge Mistake",
+            "channel": "Abis",
+            "views": 8248
+          },
+          {
+            "id": "zi_2KwYIYbU",
+            "title": "They Blew Up a Whale… It Did Not Go Well",
+            "channel": "Interestick",
+            "views": 2569
+          },
+          {
+            "id": "vtUxeCs6dVk",
+            "title": "Oregon Blew Up A Dead Whale With Dynamite 🐋💥",
+            "channel": "Historical Wall",
+            "views": 2518
+          },
+          {
+            "id": "BnlA16THZHM",
+            "title": "They Blew Up a Whale… It Went HORRIBLY Wrong 💀🐋",
+            "channel": "HistorysAlibi",
+            "views": 1504
+          }
+        ]
+      },
+      "commons_hits": 12,
+      "score": {
+        "factors": {
+          "momentum": 82,
+          "reach": 57,
+          "curiosity": 100,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 78.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "oregonlive.com",
+          "newyorker.com",
+          "registerguard.com",
+          "beachconnection.net"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 504 Sit-In for Disability Rights",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        155
+      ],
+      "hook": "The historic 28-day federal building occupation that completely revolutionized American disability rights.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Section 504 sit-in",
+      "commons_query": "",
+      "youtube_query": "504 sit in disability rights history",
+      "evidence": [
+        {
+          "title": "The Real Story Behind the 504 Sit-In for Disability Rights, the Longest Peaceful Occupation of a Federal Building in American History",
+          "url": "https://www.smithsonianmag.com/history/the-real-story-behind-the-504-sit-in-for-disability-rights-the-longest-peaceful-occupation-of-a-federal-building-in-american-history-180989814/",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793969100000,
+          "kind": "feed",
+          "id": 155
+        },
+        {
+          "title": "The Real Story Behind the 504 Sit-In for Disability Rights, the Longest Peaceful Occupation of a Federal Building in American History - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQRzFPS0Y3ajg0eFp1YVY5TE5hMThaNHFKZUQyYjllU0FUcXZoQ3VhVFk3d05LSFVIRmZSMDFNRE1FeWc2RUE4QWNlZG1jUnRmQ1NmR1ZRaWJtUVFmeEJ6SnoxM1BYeGd6T0FvR0RmcmxTVUtPalpzbGRSVVJDUWxJT3dSSFFiRFZ0N3d1eng2QXZhS0J0M0NsdUs5c0ppOVhXM0xmSjd4T1dZNW9WdWcycDg5YkpHeTNKMUNELW5sQ25nNGo4NWhDNUZJQlV4NWExY3kxbkE0eVhCYnlWck9heHowYjZHZXNLRW5hSVh2UFJkQ2ZIbl94ZmdJZ0VDUXdub0lsVHpCczQ2U0lXR2xJ?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793969100000,
+          "kind": "news"
+        },
+        {
+          "title": "Judith Heumann | Biography, Disability Rights Movement, Activism, & Facts - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9HOEU5bnRMTWxFVzVkeUVrbnhPVUV5aWFpOUF5R19BTS1fQVo0U0hJWmRKSG94b1lYZi1nMFpMNUVqRlh2Wnl0SmhhWTRPQkNySkNXeHlES1VydEtGRmtHaA?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Being Heumann’ Tells a Disability Rights Story Packed With Real-Life Drama - KQED",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZ05rYjBoUGlsRTdFanQySWpuazBTbHFISjZyMnZNLVUyVFEtSWNOWlJVQmZmaXFZSkVSZ3RzLWJDdC0weGkyaEVWd0E1eWtaWV85a2Y2R1RYcFBLZmNjQVFEeU90Z3hmbVJDZklKeS1LNXg2OE1TRTd5S0JySHg0aUdnOGR3aklnQS1LYlgxNlhZT1h4TzRCSXFpNUZzbzJ4OGVIbS1WZDV0Zw?oc=5",
+          "domain": "kqed.org",
+          "published_ms": 1793751110000,
+          "kind": "news"
+        },
+        {
+          "title": "Being Heumann Is The Film The Disability Rights Movement Needs Right Now - Forbes",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOREtheEpWS0hXU2pESGVHbEgxay04UDFvMHNubUR2YmRtZFJqdnBPMVJUYlBFNE5feTg4cTB4N2g5TUpRZFJkUjhxNk5waGx4bU9vdjF4NVR3V0lzbHBoY293RVRGU0ZPLXQ3NWpiczFfRnFmM1NNVmdsb0dtdEdUQmVVbmdfckZaU0NyMHRUeDh5RHVrVThqN3UwMWlqbUtxM1d6U1dIMVo4YXg4RU96S0UyMzBXWWNqZHVhZW84UVREWXUwRXc?oc=5",
+          "domain": "forbes.com",
+          "published_ms": 1793475786000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 707,
+        "competitors": [
+          {
+            "id": "6BoygKdpGFE",
+            "title": "Section 504 Changed on Sept. 23 — Here's What Disabled People Should Know #disabilityrights",
+            "channel": "Carly's Club | Life With Disabilities",
+            "views": 1426
+          },
+          {
+            "id": "1dhNZkQplOY",
+            "title": "Whats happening to Section 504? #disability #disabilityadvocacy",
+            "channel": "Restorative Healing Haven",
+            "views": 1226
+          },
+          {
+            "id": "Dobj100IxEA",
+            "title": "The 504 Sit In: 25 days That Changed Disability Rights #disability #disabilityadvocacy",
+            "channel": "Restorative Healing Haven",
+            "views": 1161
+          },
+          {
+            "id": "7flEQM4oD8U",
+            "title": "The Disability History I was Never Taught #disabilityhistory",
+            "channel": "Restorative Healing Haven",
+            "views": 1105
+          },
+          {
+            "id": "5R2Qtu9cIqg",
+            "title": "The trump administration is restricting section 504 protections #disabilityadvocacy",
+            "channel": "Restorative Healing Haven",
+            "views": 707
+          },
+          {
+            "id": "x6Bw7XaOXQc",
+            "title": "Sleeping on Office Floors for Disability Rights",
+            "channel": "The Annals of Time",
+            "views": 156
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 92,
+          "reach": 48,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 78.4,
+        "newest_hours": 68,
+        "domains": [
+          "smithsonianmag.com",
+          "britannica.com",
+          "kqed.org",
+          "forbes.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Maya Mercury Pollution Mystery",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        150
+      ],
+      "hook": "How the ancient Maya unknowingly poisoned their own water supply with red paint.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya ruins red pigment cinnabar",
+      "youtube_query": "Maya red paint mercury water contamination",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 150
+        },
+        {
+          "title": "Ancient Maya unknowingly poisoned Yucatán water with mercury - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNDY4bVBSZ3AzLWd6NVVwSlpTSHpmYmxhb1ZKdkxPajZiajZfUV9IWWlxWGVVSndubEZLYVlxQ1pnR3NpRnAtMUNXSjY1NWt0YlFhbGVTUFhhZGhzei1KYkhTRWIxVU5McUltU052NDlWN1dubTNaR1RYU3BTd0ZOQjBlaEljdHdlTGo0SEZwZDU3cDRHbGpmbUlraUdFYlZudVBDanJrbmVEaGQ4dTFnRUtiM0RFSTkxbUp2QVUxUmNkaklwRlU2Z1Q2UkVER1hGNkQ3QTVtSW9XeWRLelE?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury from Maya cities leaked into Yucatán lakes at toxic levels for centuries, study finds - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQVFB6clUtQ2p4YWhpZGVidlhia0I0TFZLd0pZakFVbTNjQ0VKU211MG5zZFF4OEZ5dnhHMW9Ud3RWcE5tZ2ZhMWdtOGFRdjcyaEdYT0UtQXZqeEhLNnBoLWEwanp4X2txZ0kzVHMxdVdJSm9PUzgwY3EwOV9FMHgtYlVKUHQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793983013000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Maya Red Paint Polluted Lakes With Mercury for Centuries - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWFI5ZW4yR2hDckFpT0F3UkVDQUtJSmJHN2tfWDJVUlZtQkZ1NHNhZFRQeGUwSk5kdDZzNG91Mnk2X1dnMmxrN2R5OElvUV9qMFFSQ3QyeXFzQm1wTjN4dU1Fc01ZZ3ZlM1N4QWc0ZVRyeUwtMExhTXJlWGRfTEJ6U2lxbUhFdFdkdDRkSkZwUEJJRGZQN0ZZYkF5ZmJpdFdVQ2hxdldndw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794080776000,
+          "kind": "news"
+        },
+        {
+          "title": "Mercury contamination found at more ancient Maya sites - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxON25USmlNRWdmVVhDZkpoTUxDTi1CbG5PQ2JaeG55NTNEVDJvd1Vtb2pCa1dSVDRldXl5d0NsdjNnaEc2ZVNVUUo4V01PTVpNelNXNVg1d203NDVBTjlMd2Q0LTUxRTN3ZFpnLUp3Wm9tVC1ETU9ULUdHdk9WQ3JmdDhfdkVyQUZiWUFBTkdreVRPcXp3TWZUQUhFcDRFYjR1?oc=5",
+          "domain": "yahoo.com",
+          "published_ms": 1793971753000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": {
+        "median_views": 64,
+        "competitors": [
+          {
+            "id": "pTg1xzbySjs",
+            "title": "One Reservoir Was Poisoned by Its Own Temples. The Other Had a Filter, 2,000 Years Ago.",
+            "channel": "FlipTheProblem",
+            "views": 69506
+          },
+          {
+            "id": "ekpjwoGuxg0",
+            "title": "被便宜老媽坑上戀綜，開啟系統，天后反倒貼我這個擺爛仔！ #搞笑 #甜劇",
+            "channel": "欣欣看剧",
+            "views": 30911
+          },
+          {
+            "id": "gE8DJS-nxsw",
+            "title": "Ancient Maya red paint likely left extreme mercury in Yucatán sediments",
+            "channel": "Science Overnight",
+            "views": 1010
+          },
+          {
+            "id": "NaB6cAGBYqI",
+            "title": "The Ancient Maya Built a Water Filter 2,000 Years Ago",
+            "channel": "Corvin wade",
+            "views": 324
+          },
+          {
+            "id": "w0taJtb98N4",
+            "title": "Why Did the Maya Poison Their Own Water? Blame the Red Paint",
+            "channel": "Cosmic cat",
+            "views": 64
+          },
+          {
+            "id": "U6rWT3i0WYc",
+            "title": "Mercury in Maya Lakes: A 300-Year Warning Sign",
+            "channel": "Vanished kingdom ",
+            "views": 63
+          }
+        ]
+      },
+      "commons_hits": 5,
+      "score": {
+        "factors": {
+          "momentum": 86,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 66,
+          "source_quality": 100
+        },
+        "total": 77,
+        "newest_hours": 37,
+        "domains": [
+          "livescience.com",
+          "archaeologymag.com",
+          "aroundprague.cz",
+          "yahoo.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "archaeologymag.com",
+          "yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (5 on Wikimedia Commons)",
+        "too similar to recent topic: Maya Mercury Contamination from Red Vermilion Paint"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1988 Launch of Soviet Space Shuttle Buran",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        74
+      ],
+      "hook": "The Soviet space shuttle that flew completely uncrewed before being locked away forever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Buran (spacecraft)",
+      "commons_query": "Buran spacecraft launch",
+      "youtube_query": "Soviet Buran space shuttle launch",
+      "evidence": [
+        {
+          "title": "1988, 11-15: The Soviet spacecraft Buran (pictured), a reusable vehicle built in response to NASA's Space Shuttle program, was launched, uncrewed, on its only flight.",
+          "url": "https://en.wikipedia.org/wiki/Buran_(spacecraft)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 74
+        },
+        {
+          "title": "Buran | Space Shuttle, Reusable Launch Vehicle, Soviet Union - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1tNy1XVklWbkRMRUZ2emdTZWdpVjNNamF0aGNDWFg0bWZTaE5HSGdaaDlGYU1qUzdvY1RWOFdpTlNhME9mVXd6VUIxU2Jac1pMdEY2Zzc3YkJ1MDFXQndqVlNydHFWcEp6?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793779200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Buran (spacecraft)",
+        "daily_views": 434,
+        "ratio": 1
+      },
+      "youtube": {
+        "median_views": 1495,
+        "competitors": [
+          {
+            "id": "7qHiXMub8AE",
+            "title": "Why the Soviet Space Shuttle Only Flew Once",
+            "channel": "Once Upon An Engine",
+            "views": 452189
+          },
+          {
+            "id": "-xRelOczyPs",
+            "title": "WESZLIŚMY DO TAJNEGO HANGARU ZSRR! Radziecki prom kosmiczny BURAN",
+            "channel": "Urbex History",
+            "views": 236748
+          },
+          {
+            "id": "YScjwGnETeU",
+            "title": "Buran: A Better Space Shuttle?? (But too late)",
+            "channel": "flaps 10",
+            "views": 42125
+          },
+          {
+            "id": "ABtH9cIgMzs",
+            "title": "🇺🇸 Space Shuttle vs 🇷🇺 Buran — America vs Soviet Space Technology",
+            "channel": "DIPSY TV",
+            "views": 3468
+          },
+          {
+            "id": "pxw6NYXNtRM",
+            "title": "Buran: Why the Soviet Space Shuttle Flew Only Once",
+            "channel": "Hehe University",
+            "views": 1495
+          },
+          {
+            "id": "07CIVlKz2fQ",
+            "title": "Buran Did What NASA's Shuttle Never Did",
+            "channel": "Forgotten Machines",
+            "views": 1378
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Sherman's March to the Sea",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        81
+      ],
+      "hook": "The brutal scorched-earth campaign that cut a 60-mile path of total destruction through Georgia.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Sherman's March to the Sea",
+      "commons_query": "Sherman's March to the Sea",
+      "youtube_query": "shermans march to the sea explained",
+      "evidence": [
+        {
+          "title": "1864, 11-15: American Civil War: Union army general William Tecumseh Sherman (pictured) began his March to the Sea, inflicting significant damage to property and infrastructure using scorched-earth tactics on his way from Atlanta to Savannah, Georgia.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 81
+        },
+        {
+          "title": "Sherman’s March to the Sea | Significance, Map, Casualties, & The Civil War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBvU25wMGNvY3k2Zi1YM1YyOElWS3BIa2k1c3dKY1ZRUUxXQk1EOUI2ZVFWeWU5RmUyYmFReDFCZGRXMGVhNElIY01IZ1JDRXRVYnhtZUxTMk9hRVpvNmxhRjBvTmJhX2c2MFE?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Sherman's March to the Sea",
+        "daily_views": 730,
+        "ratio": 1.2
+      },
+      "youtube": {
+        "median_views": 512,
+        "competitors": [
+          {
+            "id": "8lJmxS7WyGA",
+            "title": "Why Sherman Is the Opposite of Every Other Civil War General",
+            "channel": "History Home Central ",
+            "views": 141577
+          },
+          {
+            "id": "la7GedNmQ_s",
+            "title": "We’ve Just Figured Out Why Sherman Was Right Along",
+            "channel": "Hidden Civil War Flash",
+            "views": 10222
+          },
+          {
+            "id": "m_0LvwniFxo",
+            "title": "How Did Sherman’s March Break the Confederacy?",
+            "channel": "Atlas Explained",
+            "views": 1509
+          },
+          {
+            "id": "Mt1B1NmXLDY",
+            "title": "Sherman Ran a Military School for the South. Then He Emptied Atlanta.",
+            "channel": "The Margin of Error",
+            "views": 550
+          },
+          {
+            "id": "Nhzb7ZSMeLU",
+            "title": "The March That Broke the South | Sherman's March to the Sea Explained #HistoryShorts #shorts",
+            "channel": "History Atlas",
+            "views": 512
+          },
+          {
+            "id": "Gl5UPhpp-JM",
+            "title": "Why the South Lost: The American Civil War on the Map",
+            "channel": "ATLAS of Change",
+            "views": 118
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 56,
+          "reach": 50,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 71,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Sherman's March to the Sea"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Accidental Discovery of Britain's Richest Roman Treasure",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        138
+      ],
+      "hook": "A man searching for his lost hammer in England stumbled upon a massive Roman hoard.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Hoxne Hoard",
+      "commons_query": "Roman treasure hoard Britain",
+      "youtube_query": "lost hammer Roman treasure discovery England",
+      "evidence": [
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQWjlpQ3Z0Q21KZUhyVjZ1Qk1pUzhJUFlQTFRhd0Fpa0JnbGRyNW1salRnOGNjVFNCc2NzcGJPQnNuVDh3VU1hWms1MVFTdG11eUpWU2VkelFBSzI1d01TTWM5YzZuMjQwZDRPbWZiQm44N0JoZS1DNHFwUTBIbkQ1VFpwMA?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794123420000,
+          "kind": "news",
+          "id": 138
+        },
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - Earth.com",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa013Qm10VjJySzZUV0pGLTZhOWUxSnNReUJqNnoyOG5JZzAxZVA0Uk5rdC1EVVdRUG10dmw1aUFtT2Q3elU2bTZDTE5MbEhNU0JKQWNFd3ZyRHhqRkxDdDRNWVlmcVc4VkItTHVtZVFqYXRYOHJhd0lYOXY0MmwwTjhsZUtKendXOGNCbWlkZW9aRjYwVXVGNlFubmgwSVgyTTktUkktRDRyTUltRkE?oc=5",
+          "domain": "earth.com",
+          "published_ms": 1794122520000,
+          "kind": "news"
+        },
+        {
+          "title": "Treasure Hunter Discovers 1,000-Year-Old Gold Pendant Linked to ‘Hand of God’ Near “Downton Abbey” Film Set - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxObG1BUWNDZVNaM0V0ZUxaWkt6c1d2YkpCMFg0UElwdmVxY2JybHlRamdscUVXSEhEXzBTbUdTOFR6VFJLRGxIV3ktVTdZaGhMal90ZTdiUzJMZHRfaDdNR3FxbkV5NzAyODZTUlBhRm1Kal9ZMzZJVkh2NTZwWFlhRA?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1793699012000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Hoxne Hoard",
+        "daily_views": 46,
+        "ratio": 0.84
+      },
+      "youtube": {
+        "median_views": 359,
+        "competitors": [
+          {
+            "id": "bGadY96Gbns",
+            "title": "He Went Looking for a Lost Hammer… and Found Britain's Biggest Roman Treasure",
+            "channel": "The Vanished Past ",
+            "views": 2052
+          },
+          {
+            "id": "zMSUfZXV10I",
+            "title": "Lost Hammer, Found Roman Gold #shorts",
+            "channel": "SIGILO",
+            "views": 1522
+          },
+          {
+            "id": "K5SswGTvjbY",
+            "title": "He Was Looking for a Lost Hammer and Found Roman Treasure",
+            "channel": "Unearthed Daily",
+            "views": 1229
+          },
+          {
+            "id": "vwanBnsWVbY",
+            "title": "He lost a hammer in a field and found a Roman treasure instead 🔨",
+            "channel": "Arthur's Sleepy History",
+            "views": 725
+          },
+          {
+            "id": "3G6HMzNwJp4",
+            "title": "A Lost Hammer Led to Britain's Biggest Roman Treasure #shorts",
+            "channel": "TinyReels",
+            "views": 359
+          },
+          {
+            "id": "cfCkyOt_b1k",
+            "title": "He Was Looking for a Lost Hammer… Then He Found a Roman Fortune",
+            "channel": "Gold Rush Atlas",
+            "views": 350
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 39,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 67.4,
+        "newest_hours": 25,
+        "domains": [
+          "aol.com",
+          "earth.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Mummified Crocodiles in a 2,500-Year-Old Egyptian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        108,
+        110
+      ],
+      "hook": "Inside an untouched Egyptian tomb, archaeologists uncovered ten perfectly preserved mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "mummified crocodiles egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 108
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 110
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 55,
+        "competitors": [
+          {
+            "id": "1lnqmQmao0g",
+            "title": "Did You Know Ancient Egyptians Mummified Crocodiles? 🐊",
+            "channel": "History with Kara",
+            "views": 5350
+          },
+          {
+            "id": "4-tBqHu3iRE",
+            "title": "What did they hide inside this mummified crocodile?",
+            "channel": "AncientUFO",
+            "views": 3407
+          },
+          {
+            "id": "VO6K9Lm6PY4",
+            "title": "Half-Human, Half-Crocodile Mummy — Even Top Scientists Can’t Explain What They Found",
+            "channel": "Ancient History",
+            "views": 2989
+          },
+          {
+            "id": "KAfu-BwxTIc",
+            "title": "Egypt’s Temple City Filled With Mummified Crocodiles",
+            "channel": "Eeriedocsgarden",
+            "views": 176
+          },
+          {
+            "id": "U7CTXoo5VrE",
+            "title": "Ten crocodiles were tied up and mummified together in one Egyptian tomb",
+            "channel": "RelicRecords",
+            "views": 55
+          },
+          {
+            "id": "hzgRw-RnRxE",
+            "title": "This Tomb Was Sealed for Thousands of Years… But Something Got Inside",
+            "channel": "Real Wonders Of The Earth",
+            "views": 33
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 29,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 66.8,
+        "newest_hours": 13,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1898 Wilmington Massacre",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        23
+      ],
+      "hook": "The only successful violent coup of a municipal government in American history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Wilmington massacre",
+      "commons_query": "Wilmington massacre 1898",
+      "youtube_query": "Wilmington massacre 1898 overthrow",
+      "evidence": [
+        {
+          "title": "1898, 11-10: White supremacists seized power and massacred black Americans during the Wilmington massacre (newspaper headline pictured), the only instance of a municipal government being overthrown in United States history.",
+          "url": "https://en.wikipedia.org/wiki/White_supremacy",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 23
+        },
+        {
+          "title": "Residents remember 1898 massacre with film screening, community discussions - WWAYTV3",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOS0Q3Y04yZnJKSkxIWE1RS2paUUxqV1FVS3JpVE9neGNzLXpudjE2eTNDMkRxeGhFcllDZkpkcU1MekJSQ19FRnUxZ3lKeVZlNEFFN216M0RWUC1hRUNSX04xdE9qQXB1ZEFWMzA0NDZ2ZG5KZ1BLa2VJQ05SR3NvZ0VkeFlNVzRPYkVScjZyVEhhTWNlX21lVnVvTVlmcTAt?oc=5",
+          "domain": "wwaytv3.com",
+          "published_ms": 1793682864000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilmington massacre",
+        "daily_views": 465,
+        "ratio": 1.42
+      },
+      "youtube": {
+        "median_views": 16,
+        "competitors": [
+          {
+            "id": "HbE4H968PX4",
+            "title": "Wilmington 1898: The Only Successful Coup on American Soil",
+            "channel": "Silence Is Complicity",
+            "views": 1282
+          },
+          {
+            "id": "CuqkY9Ah9Yk",
+            "title": "The Only Successful Coup in American History #history #blackhistory #1898",
+            "channel": "Ghosts of the Maps",
+            "views": 173
+          },
+          {
+            "id": "rV90wBaqexg",
+            "title": "The 1898 Coup That Overthrew an American City",
+            "channel": "Dr. Gavin Harrell, Historian",
+            "views": 155
+          },
+          {
+            "id": "Cr0dZFi4FBA",
+            "title": "The Wilmington Coup of 1898: America's Forgotten Overthrow #wilmington1898 #history #reconstruction",
+            "channel": "The Hidden Archive ",
+            "views": 24
+          },
+          {
+            "id": "Ax-dbbJcveI",
+            "title": "Rewriting History: Aycock and the Wilmington Massacre",
+            "channel": "Cait Johnson",
+            "views": 16
+          },
+          {
+            "id": "dkTp5O9KMYM",
+            "title": "They Overthrew a U.S. City. History Called It a Riot",
+            "channel": "AIHISTORYSLOP",
+            "views": 15
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 57,
+          "reach": 34,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 66.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "wwaytv3.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Wilmington massacre of 1898, the only municipal government overthrow in US history"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1940 Battle of Taranto",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        29
+      ],
+      "hook": "How a handful of obsolete biplanes changed naval warfare forever overnight.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Battle of Taranto",
+      "commons_query": "Battle of Taranto 1940",
+      "youtube_query": "Battle of Taranto 1940 aircraft carrier attack",
+      "evidence": [
+        {
+          "title": "1940, 11-11: Second World War: The Royal Navy launched the first all-aircraft ship-to-ship naval attack in history against the Italians in the Battle of Taranto.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 29
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of Taranto",
+        "daily_views": 183,
+        "ratio": 0.78
+      },
+      "youtube": {
+        "median_views": 572,
+        "competitors": [
+          {
+            "id": "5gMWF6Hztuo",
+            "title": "21 Biplanes vs 6 Battleships: The Night Raid on Taranto (Battle of Taranto, 1940)",
+            "channel": "The Battle Blueprint",
+            "views": 9631
+          },
+          {
+            "id": "1maS7nVc4MM",
+            "title": "The Biplanes That Struck a Battle Fleet | Taranto 1940",
+            "channel": "The Creative Learning Channel",
+            "views": 1297
+          },
+          {
+            "id": "XvKBWlXeoDQ",
+            "title": "The 1940 Taranto Raid: The First Carrier Airstrike",
+            "channel": "Ashes of Empires",
+            "views": 1218
+          },
+          {
+            "id": "C4L893sj2Fo",
+            "title": "Britain Knocked Out Half Of Italy's Battleships In One Night",
+            "channel": "Never Printed",
+            "views": 759
+          },
+          {
+            "id": "az1Hc6Og22U",
+            "title": "How 21 British Biplanes Used a 2-Foot Gap to Strike 3 Italian Battleships in One Night",
+            "channel": "British WarBrief",
+            "views": 572
+          },
+          {
+            "id": "5Ir8nG15NaE",
+            "title": "The 'Outdated' Biplanes That Crippled Mussolini's Battle Fleet In a Single Night At Taranto",
+            "channel": "US Naval History with Rasheed ",
+            "views": 320
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 46,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 65.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Armistice of 1918 in the Compiègne Forest",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "World War I didn't end on a battlefield—it ended inside a secret railway carriage.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Armistice of 11 November 1918",
+      "commons_query": "Compiegne railway carriage armistice",
+      "youtube_query": "armistice wagon compiegne 1918",
+      "evidence": [
+        {
+          "title": "1918, 11-11: The armistice between the German Empire and the Allies was signed in a railway carriage in the Forest of Compiègne of France (signatories pictured).",
+          "url": "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Armistice of 11 November 1918",
+        "daily_views": 989,
+        "ratio": 1.42
+      },
+      "youtube": {
+        "median_views": 129,
+        "competitors": [
+          {
+            "id": "bRk8lfUIKLQ",
+            "title": "Hitler’s Revenge: The Train Car Where France Surrendered in 1940",
+            "channel": "Historia Highlights ",
+            "views": 6852
+          },
+          {
+            "id": "GdffYMh0YgQ",
+            "title": "The Last Minute of World War I, on Real Film (1918)",
+            "channel": "Yesterdays America TV",
+            "views": 1453
+          },
+          {
+            "id": "ZNYvHmUIZ38",
+            "title": "One Railway Carriage, Two Surrenders: The Compiègne Wagon #history #ww2 #shorts",
+            "channel": "History With Mrinal",
+            "views": 1070
+          },
+          {
+            "id": "iaSj6QY2ElE",
+            "title": "The Carriage That Hid WWII's Biggest Secret | WW2 in 10 Minutes",
+            "channel": "Easify-Ed",
+            "views": 308
+          },
+          {
+            "id": "Bx5yi4ogJ2Y",
+            "title": "The Railway Carriage That Hosted Two Reversed Defeats",
+            "channel": "Odd Past Files",
+            "views": 129
+          },
+          {
+            "id": "qMVD4YeEcAo",
+            "title": "Armistice of 11 November: Signed at 5 A.M., Fought Until 11",
+            "channel": "Hourglass Atlas",
+            "views": 127
+          }
+        ]
+      },
+      "commons_hits": 18,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Armistice in the Compiègne Forest Railway Carriage"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Sinking of the German Battleship Tirpitz",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        46
+      ],
+      "hook": "How British bombers finally cracked Hitler's 'unsinkable' floating fortress in a Norwegian fjord.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "German battleship Tirpitz",
+      "commons_query": "German battleship Tirpitz",
+      "youtube_query": "sinking of battleship tirpitz",
+      "evidence": [
+        {
+          "title": "1944, 11-12: Second World War: In Operation Catechism, the Royal Air Force sank the German battleship Tirpitz  (video featured) near Tromsø, Norway, killing about 1,000 sailors on board.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 46
+        }
+      ],
+      "wikipedia": {
+        "title": "German battleship Tirpitz",
+        "daily_views": 681,
+        "ratio": 1.05
+      },
+      "youtube": {
+        "median_views": 813,
+        "competitors": [
+          {
+            "id": "e1D8w-46joo",
+            "title": "The Earthquake Bombs That Killed the Tirpitz in Minutes",
+            "channel": "Cordite",
+            "views": 149426
+          },
+          {
+            "id": "FRsqGVacmrI",
+            "title": "Midget Submarine X-7 Wreckage - Damaged by the German Battleship, Tirpitz",
+            "channel": "The Wade’s Adventures",
+            "views": 22802
+          },
+          {
+            "id": "hsx-d_1vFMk",
+            "title": "The Lancaster Raid That Finally Sank the Tirpitz #aviationhistory #history #militaryaviation",
+            "channel": "Military Assets",
+            "views": 1682
+          },
+          {
+            "id": "0ktdD-zz9TE",
+            "title": "A 700-Ton Turret Blown Off the Tirpitz",
+            "channel": "The Steel Record",
+            "views": 1323
+          },
+          {
+            "id": "oozYCC8G-PM",
+            "title": "IT SANK THE TIRPITZ / THE EARTHQUAKE BOMBS · 1944, the capsized Tirpitz. #epicmachines #history",
+            "channel": "The Progress Archive",
+            "views": 813
+          },
+          {
+            "id": "UOmpNNoOfG0",
+            "title": "RAF Sinks the Battleship Tirpitz, 1944 #shorts",
+            "channel": "Asclepion",
+            "views": 634
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 52,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 62.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Daring RAF Raid That Sank the Battleship Tirpitz"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "A Medieval Tunnel Dug Directly into a 6,000-Year-Old Tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        156
+      ],
+      "hook": "Archaeologists thought they found an ancient tomb—until they realized medieval monks dug a secret tunnel straight through it.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "medieval tunnel dug into ancient tomb Germany",
+      "evidence": [
+        {
+          "title": "Archaeologists in Germany thought they had found a 6,000-year-old tomb. It was a medieval tunnel about 3 feet high, dug right into it - Futura, le média qui explore le monde",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPdTgwSHRUYUMzYi1yOWM5ZWhtQWItZm5pMlEzWDVQdGMwZXFsc3FsNExlYkViWWl5QW42MDZ2ZW5Cc3c1dlUyamptTlBmNmxjTXR3aHVTWWtfNDFNRWJOZlEybVByT3dHMTB5UjNTRGw3MUc2X25ZQ19rdDAxZEJIYWVXd3NVczVDSXJrQ20zX3hyaEVnbnhKMzNCUF9yRmVjd3VjaXE4MHpLYjYtRmtOaW5JX3M1RnFQZ3dYRU42eDNQaWt1UEJzdFJQT2E5VXl6eXhtdzVQMko1elc1SE81Vng5T0hOOGkyenlFbW9WZlo1UlFmcXFQVVc1a3AxS1Z0c3FZ?oc=5",
+          "domain": "futura-sciences.com",
+          "published_ms": 1794061347000,
+          "kind": "news",
+          "id": 156
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 152,
+        "competitors": [
+          {
+            "id": "kmQOANMo8X4",
+            "title": "Cleopatra: What Divers Really Found in Cleopatra’s Sunken Palace.",
+            "channel": "THE MISSING CHAPTER",
+            "views": 7332
+          },
+          {
+            "id": "urcBiISfoZA",
+            "title": "Las 13 huellas más misteriosas de quienes estuvieron aquí antes que nosotros",
+            "channel": "HORIZON ",
+            "views": 3366
+          },
+          {
+            "id": "dkXI5PGsIzU",
+            "title": "Les 13 traces les plus mystérieuses de ceux venus avant nous, et ce qu'elles prouvent",
+            "channel": "Horizon Frances",
+            "views": 3079
+          },
+          {
+            "id": "hiUxRKmcStQ",
+            "title": "He Broke a Wall in His House and Found a Lost City Underground",
+            "channel": "The Unanswered Chapter",
+            "views": 455
+          },
+          {
+            "id": "B1xYW2mkTC0",
+            "title": "The Deeper We Dig Into Ancient Rome… The Stranger It Gets | History for Sleep",
+            "channel": "Drift into History",
+            "views": 152
+          },
+          {
+            "id": "Xv3Vfb8X0lI",
+            "title": "The Entire History of Jerusalem (5,000 Years in 45 Minutes)",
+            "channel": "Chronicle Minutes",
+            "views": 87
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 67,
+          "reach": 36,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 60.9,
+        "newest_hours": 42,
+        "domains": [
+          "futura-sciences.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: The Opening of the Holland Tunnel"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Ned Kelly's Last Stand",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        35
+      ],
+      "hook": "Australia’s most infamous outlaw wore a homemade suit of armor into a bloody final shootout.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Ned Kelly",
+      "commons_query": "Ned Kelly armor",
+      "youtube_query": "ned kelly last stand armor",
+      "evidence": [
+        {
+          "title": "1880, 11-11: Australian bushranger and outlaw Ned Kelly was hanged in Melbourne, in spite of sympathizers holding rallies for his reprieve.",
+          "url": "https://en.wikipedia.org/wiki/Bushranger",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 35
+        }
+      ],
+      "wikipedia": {
+        "title": "Ned Kelly",
+        "daily_views": 1218,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 34,
+        "competitors": [
+          {
+            "id": "Iwvmd1i212Q",
+            "title": "Ned Kelly's armour stopped the bullets. So how did they catch him?",
+            "channel": "Ezra's Footnotes",
+            "views": 2594
+          },
+          {
+            "id": "b_AVGQn9pzg",
+            "title": "Ned Kelly: The Outlaw Who Fought in Iron Armour",
+            "channel": "The Last Stand",
+            "views": 1288
+          },
+          {
+            "id": "o7MEdJ_45Ds",
+            "title": "Why Ned Kelly's bulletproof armour failed him",
+            "channel": "Incidental History",
+            "views": 516
+          },
+          {
+            "id": "B-OdYw4bTn4",
+            "title": "Ned Kelly's Last Stand: What Really Happened at Glenrowan",
+            "channel": "How The Outback Actually Was",
+            "views": 100
+          },
+          {
+            "id": "0b2Zpm63cn8",
+            "title": "Australia's bulletproof outlaw Ned Kelly",
+            "channel": "LIFE IN FIVE",
+            "views": 34
+          },
+          {
+            "id": "v45u3Y5sbpw",
+            "title": "Ned Kelly's Iron Armor: The Bank Robber's Final Stand 🏇",
+            "channel": "GhostPlayId",
+            "views": 31
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 60.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Ned Kelly's Last Stand and Execution"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1937 Estado Novo Coup in Brazil",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        22
+      ],
+      "hook": "The bizarre dictator who staged a military coup against his own government.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Estado Novo (Brazil)",
+      "commons_query": "Getulio Vargas Estado Novo",
+      "youtube_query": "Getulio Vargas Brazil Estado Novo",
+      "evidence": [
+        {
+          "title": "1937, 11-10: Brazilian president Getúlio Vargas led a coup against his own constitutional government, establishing the dictatorial Estado Novo regime.",
+          "url": "https://en.wikipedia.org/wiki/Get%C3%BAlio_Vargas",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 22
+        }
+      ],
+      "wikipedia": {
+        "title": "Estado Novo (Brazil)",
+        "daily_views": 241,
+        "ratio": 0.72
+      },
+      "youtube": {
+        "median_views": 1012,
+        "competitors": [
+          {
+            "id": "9eCD68Yq09c",
+            "title": "Estado Novo: A Ditadura de Getúlio Vargas (1937–1945)",
+            "channel": "O Diário de Titus Valério",
+            "views": 51897
+          },
+          {
+            "id": "UdzznKjKJHo",
+            "title": "Getúlio Vargas Foi um Ditador? Entenda o Estado Novo",
+            "channel": "Batalhas Reveladas",
+            "views": 9069
+          },
+          {
+            "id": "AYLRAL6NaLM",
+            "title": "Era Vargas e Ditadura Militar no ENEM 2026: Estado Novo, AI-5 e questões | Bruna Rodrigues",
+            "channel": "Descomplica",
+            "views": 6282
+          },
+          {
+            "id": "9jfsFTJ-9ME",
+            "title": "Getúlio Vargas e o Estado Novo: Ditadura e Censura",
+            "channel": "Curiosa Moda - Gracy",
+            "views": 1333
+          },
+          {
+            "id": "zFvA9aDShVw",
+            "title": "Getúlio Vargas e o Estado Novo_ Como a Democracia Foi Interrompida #politicalnews",
+            "channel": "MB NEWS",
+            "views": 1012
+          },
+          {
+            "id": "pryxU7Uel08",
+            "title": "Getúlio Vargas  - Legado e Propaganda do Estado Novo",
+            "channel": "GUARDIÃO DO TEMPO I Prof. Schuab",
+            "views": 773
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 49,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 59.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1975 Australian Constitutional Crisis",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        26
+      ],
+      "hook": "The day a representative of the British Crown fired an elected Australian Prime Minister.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "1975 Australian constitutional crisis",
+      "commons_query": "John Kerr Gough Whitlam 1975",
+      "youtube_query": "1975 Australian constitutional crisis dismissed",
+      "evidence": [
+        {
+          "title": "1975, 11-11: During a constitutional crisis, Governor-General Sir John Kerr (pictured) dismissed Prime Minister Gough Whitlam's government and dissolved the Parliament of Australia for a double-dissolution election.",
+          "url": "https://en.wikipedia.org/wiki/1975_Australian_constitutional_crisis",
+          "domain": "wikipedia.org",
+          "published_ms": 1794212590394,
+          "kind": "anniversary",
+          "id": 26
+        }
+      ],
+      "wikipedia": {
+        "title": "1975 Australian constitutional crisis",
+        "daily_views": 214,
+        "ratio": 1.09
+      },
+      "youtube": {
+        "median_views": 34,
+        "competitors": [
+          {
+            "id": "Tp42CuDnKDY",
+            "title": "The Dismissal That Removed Australia's Prime Minister",
+            "channel": " insight news (GN)",
+            "views": 447
+          },
+          {
+            "id": "AxckJoNHm0U",
+            "title": "The 1975 Dismissal: The Day Australia’s PM Was Fired 🇦🇺 | EP 44 #australia #australiarealitytv",
+            "channel": "Australia Reality TV",
+            "views": 298
+          },
+          {
+            "id": "QI11Q_0F7NQ",
+            "title": "He Walked In as Prime Minister… Then This Happened 😳 🇦🇺 #shorts #history #australia #money  #movie",
+            "channel": "Chronicles of Past",
+            "views": 88
+          },
+          {
+            "id": "nDaEjLNEr44",
+            "title": "When The Governor-General Sacked Australia's Government! 🏛️",
+            "channel": "Australia Explained",
+            "views": 39
+          },
+          {
+            "id": "2NhUrk0c6io",
+            "title": "Australia's Prime Minister Was Sacked by the Queen's Man. Why Do They Still Have a King?",
+            "channel": "Stickman Time Machine",
+            "views": 34
+          },
+          {
+            "id": "U4V21hpM3eM",
+            "title": "The Queen's Biggest Secret: The Letters Hidden for Decades",
+            "channel": "History Revisited",
+            "views": 18
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 34,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 57.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Trent Affair: Civil War Diplomatic Crisis"
+      ],
+      "wave": 2
+    }
+  ]
+}
