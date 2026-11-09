@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42618793581-1",
   "agent": "agent-ai-tested",
-  "stage": "research_complete",
-  "status": "page captured",
-  "timestamp": "2026-11-09T12:40:37.202Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-09T12:40:55.464Z",
   "branch": "preview/ai-tested",
   "commit": "aa283e104bfafcf303401ce4adcd06171e60efb5",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618793581#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618793581#artifacts",
+  "error": "edge-tts --voice en-US-AndrewNeural --rate=+5% failed (exit 1)"
 }

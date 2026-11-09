@@ -1,0 +1,5 @@
+Error: edge-tts --voice en-US-AndrewNeural --rate=+5% failed (exit 1)
+    at run (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:21:29)
+    at Object.voice (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:71:7)
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/preview.mjs:55:23)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
