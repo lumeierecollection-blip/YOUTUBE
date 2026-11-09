@@ -1,0 +1,4 @@
+Error: narration is 34.272s; cannot fit a 30 s Short
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/preview.mjs:210:32)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

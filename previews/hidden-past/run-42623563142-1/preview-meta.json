@@ -2,10 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42623563142-1",
   "agent": "agent-hidden-past",
-  "stage": "script_complete",
-  "status": "provisional",
-  "timestamp": "2026-11-09T13:14:34.974Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:15:21.311Z",
   "branch": "preview/hidden-past",
   "commit": "719a77952a13ede5bf7393dfc332bb1e2d39ca9b",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623563142#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623563142#artifacts",
+  "error": "narration is 34.272s; cannot fit a 30 s Short"
 }
