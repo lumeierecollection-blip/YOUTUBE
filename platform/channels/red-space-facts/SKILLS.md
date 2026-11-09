@@ -17,7 +17,7 @@ Owner must confirm this is the intended repository before any of it is run.
 
 Three.js through `@remotion/three`, clearly a provisional implementation, listed in `deps.json`:
 
-- `@remotion/three@4.0.507`, pinned to the Remotion version in `src/skills/remotion-render/package.json` (4.0.507), with `three@0.185.1` (the repo's `^0.185.1`) and `@react-three/fiber@9.7.0` (peer dependency).
+- `@remotion/three@4.0.507`, pinned to the Remotion version in `src/skills/remotion-render/package.json` (4.0.507), with `three@0.185.1` (the repo's `^0.185.1`) and `@react-three/fiber@9.8.2` (peer dependency; 9.7.0 was rejected by npm because it needs React below 19.3 and the repo resolves 19.3.1).
 - Render: `gl: swangle` is already set in `render-channel-composition.mjs`.
 - Code: `src/skills/remotion-render/channels/red-space-facts/{compositions,three-kit}.jsx`. The orbits, field lines and ring strip are computed from `figures.json`; they are not SOLSYS output.
 
