@@ -1,0 +1,130 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "ok": true,
+      "chars": 8751,
+      "sha256": "83d45b37a3396048",
+      "title": "Model Context Protocol",
+      "published": "2026-11-09",
+      "fetched_at": "2026-11-09T13:13:01.948Z"
+    },
+    {
+      "source_id": "s2",
+      "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+      "ok": true,
+      "chars": 42649,
+      "sha256": "b7dcbe6c040da933",
+      "title": "What is the Model Context Protocol (MCP)? - Model Context Protocol",
+      "published": null,
+      "fetched_at": "2026-11-09T13:13:02.284Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Anthropic introduced the Model Context Protocol in November 2024.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "The Model Context Protocol (MCP) is an open standard and open-source framework introduced by Anthropic in November 2024 to standardize the way artificial intelligence (AI) systems like large language models (LLMs) integrate and share data with external tools, systems, and data sources.",
+      "confidence": "high",
+      "context": "Anthropic is the creator that introduced the Model Context Protocol in November 2024.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "David Soria Parra and Justin Spahr-Summers created the protocol at Anthropic.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "The protocol was created at Anthropic by engineers David Soria Parra and Justin Spahr-Summers.",
+      "confidence": "high",
+      "context": "Engineers David Soria Parra and Justin Spahr-Summers built the protocol at Anthropic.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Anthropic donated MCP to the Agentic AI Foundation in December 2025.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "In December 2025, Anthropic donated MCP to the Agentic AI Foundation, a fund under the Linux Foundation.",
+      "confidence": "high",
+      "context": "Anthropic transferred the protocol to the Agentic AI Foundation under the Linux Foundation in December 2025.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "MCP provides a standardized interface for reading files, executing functions, and handling contextual prompts.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "MCP provides a standardized interface for reading files, executing functions, and handling contextual prompts.",
+      "confidence": "high",
+      "context": "The Model Context Protocol provides specific interface capabilities for files, functions, and prompts.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "An MCP host creates a dedicated MCP client that communicates with each server.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "For each of these MCP servers, the MCP host will create a dedicated MCP client that communicates with that server.",
+      "confidence": "high",
+      "context": "The protocol establishes a relationship where an MCP host creates a dedicated client for every MCP server.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Client and host typically run on the same machine.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "Client and host will typically run on the same machine, while the MCP servers may be local or remote.",
+      "confidence": "high",
+      "context": "The deployment architecture places the client and host on the same machine while servers can be local or remote.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "The protocol was released with software development kits in Python, TypeScript, C# and Java.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "The protocol was released with software development kits (SDKs) in programming languages including Python, TypeScript, C# and Java and examples of MCP server implementations.",
+      "confidence": "high",
+      "context": "Software development kits for the protocol were released in Python, TypeScript, C#, and Java.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Invariant Labs described tool poisoning attacks in April 2025.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "In April 2025, Invariant Labs described \"tool poisoning attacks\" in which malicious instructions are hidden in MCP tool descriptions that the AI model can read but users cannot see.",
+      "confidence": "high",
+      "context": "Invariant Labs identified security vulnerabilities involving malicious instructions hidden in MCP tool descriptions.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09"
+    }
+  ]
+}
