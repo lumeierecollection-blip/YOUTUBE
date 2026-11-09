@@ -1,0 +1,393 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (56/59 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Saturn",
+   "start": 0.0,
+   "end": 0.5,
+   "sentence": 0
+  },
+  {
+   "text": "is",
+   "start": 0.5,
+   "end": 0.84,
+   "sentence": 0
+  },
+  {
+   "text": "raining",
+   "start": 0.84,
+   "end": 1.26,
+   "sentence": 0
+  },
+  {
+   "text": "its",
+   "start": 1.26,
+   "end": 1.58,
+   "sentence": 0
+  },
+  {
+   "text": "rings",
+   "start": 1.58,
+   "end": 1.86,
+   "sentence": 0
+  },
+  {
+   "text": "away",
+   "start": 1.86,
+   "end": 2.24,
+   "sentence": 0
+  },
+  {
+   "text": "It",
+   "start": 2.86,
+   "end": 2.91,
+   "sentence": 1
+  },
+  {
+   "text": "orbits",
+   "start": 2.88,
+   "end": 3.1,
+   "sentence": 1
+  },
+  {
+   "text": "nearly",
+   "start": 3.1,
+   "end": 3.36,
+   "sentence": 1
+  },
+  {
+   "text": "ten",
+   "start": 3.36,
+   "end": 3.61,
+   "sentence": 1
+  },
+  {
+   "text": "times",
+   "start": 3.86,
+   "end": 4.2,
+   "sentence": 1
+  },
+  {
+   "text": "farther",
+   "start": 4.2,
+   "end": 4.52,
+   "sentence": 1
+  },
+  {
+   "text": "from",
+   "start": 4.52,
+   "end": 4.84,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 4.84,
+   "end": 4.92,
+   "sentence": 1
+  },
+  {
+   "text": "Sun",
+   "start": 4.92,
+   "end": 5.12,
+   "sentence": 1
+  },
+  {
+   "text": "than",
+   "start": 5.12,
+   "end": 5.32,
+   "sentence": 1
+  },
+  {
+   "text": "Earth",
+   "start": 5.32,
+   "end": 5.58,
+   "sentence": 1
+  },
+  {
+   "text": "Dark",
+   "start": 6.12,
+   "end": 6.24,
+   "sentence": 2
+  },
+  {
+   "text": "bands",
+   "start": 6.24,
+   "end": 6.6,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 6.6,
+   "end": 6.82,
+   "sentence": 2
+  },
+  {
+   "text": "its",
+   "start": 6.82,
+   "end": 6.96,
+   "sentence": 2
+  },
+  {
+   "text": "glow",
+   "start": 6.96,
+   "end": 7.14,
+   "sentence": 2
+  },
+  {
+   "text": "suggest",
+   "start": 7.14,
+   "end": 7.56,
+   "sentence": 2
+  },
+  {
+   "text": "ring",
+   "start": 7.56,
+   "end": 8.08,
+   "sentence": 2
+  },
+  {
+   "text": "rain",
+   "start": 8.08,
+   "end": 8.52,
+   "sentence": 2
+  },
+  {
+   "text": "charged",
+   "start": 8.88,
+   "end": 9.16,
+   "sentence": 2
+  },
+  {
+   "text": "ice",
+   "start": 9.16,
+   "end": 9.56,
+   "sentence": 2
+  },
+  {
+   "text": "falling",
+   "start": 9.56,
+   "end": 9.9,
+   "sentence": 2
+  },
+  {
+   "text": "along",
+   "start": 9.9,
+   "end": 10.24,
+   "sentence": 2
+  },
+  {
+   "text": "magnetic",
+   "start": 10.24,
+   "end": 10.6,
+   "sentence": 2
+  },
+  {
+   "text": "field",
+   "start": 10.6,
+   "end": 10.92,
+   "sentence": 2
+  },
+  {
+   "text": "lines",
+   "start": 10.92,
+   "end": 11.18,
+   "sentence": 2
+  },
+  {
+   "text": "One",
+   "start": 11.86,
+   "end": 11.91,
+   "sentence": 3
+  },
+  {
+   "text": "estimate",
+   "start": 11.9,
+   "end": 12.18,
+   "sentence": 3
+  },
+  {
+   "text": "an",
+   "start": 12.18,
+   "end": 12.6,
+   "sentence": 3
+  },
+  {
+   "text": "Olympic",
+   "start": 12.6,
+   "end": 12.96,
+   "sentence": 3
+  },
+  {
+   "text": "pool",
+   "start": 12.96,
+   "end": 13.34,
+   "sentence": 3
+  },
+  {
+   "text": "every",
+   "start": 13.34,
+   "end": 13.76,
+   "sentence": 3
+  },
+  {
+   "text": "half",
+   "start": 13.76,
+   "end": 14.1,
+   "sentence": 3
+  },
+  {
+   "text": "hour",
+   "start": 14.1,
+   "end": 14.56,
+   "sentence": 3
+  },
+  {
+   "text": "One",
+   "start": 15.12,
+   "end": 15.22,
+   "sentence": 4
+  },
+  {
+   "text": "model",
+   "start": 15.22,
+   "end": 15.5,
+   "sentence": 4
+  },
+  {
+   "text": "leaves",
+   "start": 15.5,
+   "end": 15.7,
+   "sentence": 4
+  },
+  {
+   "text": "under",
+   "start": 15.7,
+   "end": 15.98,
+   "sentence": 4
+  },
+  {
+   "text": "a",
+   "start": 15.98,
+   "end": 16.1,
+   "sentence": 4
+  },
+  {
+   "text": "hundred",
+   "start": 16.1,
+   "end": 16.22,
+   "sentence": 4
+  },
+  {
+   "text": "million",
+   "start": 16.34,
+   "end": 16.68,
+   "sentence": 4
+  },
+  {
+   "text": "years",
+   "start": 16.68,
+   "end": 17.1,
+   "sentence": 4
+  },
+  {
+   "text": "a",
+   "start": 17.52,
+   "end": 17.57,
+   "sentence": 4
+  },
+  {
+   "text": "2024",
+   "start": 17.54,
+   "end": 17.72,
+   "sentence": 4
+  },
+  {
+   "text": "simulation",
+   "start": 17.72,
+   "end": 18.58,
+   "sentence": 4
+  },
+  {
+   "text": "says",
+   "start": 18.58,
+   "end": 19.0,
+   "sentence": 4
+  },
+  {
+   "text": "billions",
+   "start": 19.0,
+   "end": 19.4,
+   "sentence": 4
+  },
+  {
+   "text": "A",
+   "start": 20.22,
+   "end": 20.27,
+   "sentence": 5
+  },
+  {
+   "text": "ringless",
+   "start": 20.24,
+   "end": 20.62,
+   "sentence": 5
+  },
+  {
+   "text": "Saturn",
+   "start": 20.62,
+   "end": 20.94,
+   "sentence": 5
+  },
+  {
+   "text": "is",
+   "start": 20.94,
+   "end": 21.2,
+   "sentence": 5
+  },
+  {
+   "text": "only",
+   "start": 21.2,
+   "end": 21.54,
+   "sentence": 5
+  },
+  {
+   "text": "hypothetical",
+   "start": 21.54,
+   "end": 21.96,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Saturn is raining its rings away.",
+   "start": 0.0,
+   "end": 2.24
+  },
+  {
+   "text": "It orbits nearly ten times farther from the Sun than Earth.",
+   "start": 2.86,
+   "end": 5.58
+  },
+  {
+   "text": "Dark bands in its glow suggest ring rain: charged ice falling along magnetic field lines.",
+   "start": 6.12,
+   "end": 11.18
+  },
+  {
+   "text": "One estimate: an Olympic pool every half hour.",
+   "start": 11.86,
+   "end": 14.56
+  },
+  {
+   "text": "One model leaves under a hundred million years; a 2024 simulation says billions.",
+   "start": 15.12,
+   "end": 19.4
+  },
+  {
+   "text": "A ringless Saturn is only hypothetical.",
+   "start": 20.22,
+   "end": 21.96
+  }
+ ]
+}
