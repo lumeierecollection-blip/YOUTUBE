@@ -530,7 +530,12 @@
       "attempts": 1,
       "run_id": "42542848945",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:57:57.806Z"
+      "updated_at": "2026-11-09T00:59:27.563Z",
+      "stage": "research",
+      "topic": "7,000-Year-Old Leather DNA Links to Modern Goats",
+      "score": 80,
+      "pillar": "Ancient civilisations and discoveries",
+      "hook": "Scientists just pulled intact DNA from 7,000-year-old leather—and it matches goats alive today."
     }
   },
   "uploads": [],
@@ -966,6 +971,15 @@
       "at_ms": 1794185808915,
       "score": 76.3,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "1",
+      "topic": "7,000-Year-Old Leather DNA Links to Modern Goats",
+      "slug": "7-000-year-old-leather-dna-links-to-modern-goats",
+      "slot": "kick-5d4ed935bc-ch1",
+      "at_ms": 1794185967563,
+      "score": 80,
+      "pillar": "Ancient civilisations and discoveries"
     }
   ],
   "attention": [

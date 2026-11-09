@@ -1,0 +1,1645 @@
+{
+  "generated_at": "2026-11-09T00:58:52.278Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 85
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 51
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "7,000-Year-Old Leather DNA Links to Modern Goats",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        80
+      ],
+      "hook": "Scientists just pulled intact DNA from 7,000-year-old leather—and it matches goats alive today.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Ancient DNA",
+      "commons_query": "leather artifact ancient",
+      "youtube_query": "7000 year old leather dna goats",
+      "evidence": [
+        {
+          "title": "Researchers Recover DNA from 7,000-Year-Old Leather, Revealing a Link to Goats Alive Today - SciTechDaily",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOblE0NGpPcTVGNlUybVo4eHZ1MGp4ZWtWVmFHMjJnaVpiZzV4RVlTeE5fQnZDRHRJenRGR044UlBHaERycGlzbGJNdHBjMkNxbENIRXpkVjBIT3gwUndLYVJLdkQ5RGJwSEFDX1d0OVM4aHU2MGJ2MzRvV1hQSHE2RWJpSUZsVTJBWDBoZzVFVnZ2ajdDUjFRVk1Tckt6aElFYWNWbHgxcEs0UHdjWVd3WXR1WDc?oc=5",
+          "domain": "scitechdaily.com",
+          "published_ms": 1794184608000,
+          "kind": "news",
+          "id": 80
+        },
+        {
+          "title": "7,000-year-old goat leather from Spain reveals DNA link to modern Iberian goats - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdmpTWk5WeUYzZ05wSnp4b1ZsaWV3YVZmX2k1aVlCUGtySzBTaE5rQmozakU2T2FBRVREeDQtN1p5elRybzN0WU8tMlBCYUtQalBXUUpaeW5PemNxYkRFRU1MOTdpTm1pY3pXS1BTdXlxcXhKMDRtNm04U1hRRWxKT3AyRQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793987217000,
+          "kind": "news"
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - EurekAlert!",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ldVI1ak9vMFZsMWNWdXJHNFdNMVdzWHZKS2RQS0JEeUMzZE1fcmdwSWhKck1uX1lNdnZhZDA2bW04bmJyVmU1RW0xWmlHX0NsRzYzOW1aNTJNbE10?oc=5",
+          "domain": "eurekalert.org",
+          "published_ms": 1793820815000,
+          "kind": "news"
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCWFlmdmpESHNXcUlHWjRWcTN0NUV0REsyMFJsWU9fQk9LUFc4aTdGcnVwcmxuZW9TeWRSTWtPc2tnamhwbHdZMkc1RzNMZWpIMGZZb0ZleHVKcjB3dF9ndDFvcjZLcGFRQ2lMS3JzN2NfOVE4?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793818816000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Ancient DNA",
+        "daily_views": 88,
+        "ratio": 1.12
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 89,
+          "reach": 39,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 80,
+        "newest_hours": 0,
+        "domains": [
+          "scitechdaily.com",
+          "archaeologymag.com",
+          "eurekalert.org",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "archaeologymag.com",
+          "phys.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "2,600-Year-Old Buried Structure in the Nile Delta",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        100,
+        108
+      ],
+      "hook": "Archaeologists in Egypt just unearthed a massive, untouched 2,600-year-old structure buried beneath the Nile Delta.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Ancient Egypt",
+      "commons_query": "archaeological excavation Egypt Nile Delta",
+      "youtube_query": "2600 year old structure nile delta egypt",
+      "evidence": [
+        {
+          "title": "Egypt uncovers 2,600-year-old buried structure - News of Bahrain",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQVnFOT3k1OGFvdy00UEp6ZG1oaGRiOGlaRGlSVUpIRERiVWJpaU1JR0dseWF5VzVjUm9vY1pDN29CLTlOX1lPZkVKLTBCSUpFaXlkTzFCUEh1bEJyVmhUNWZqYm9QcVV4a3NxbEhKVEN3QTNEZS1yTUE4b1lJM01laXRLSGxoOWpHS3JMWHV6cw?oc=5",
+          "domain": "newsofbahrain.com",
+          "published_ms": 1794158697000,
+          "kind": "news",
+          "id": 100
+        },
+        {
+          "title": "Egypt unearths 2,600-year-old structure buried beneath Nile Delta - Gulf News",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOQl9LRkRISmRoM05ncXQzNE9BRlcwVkxzYmloRUlCTDlWSHdOSUFNbjFwSGgwTHJJVmJuUVBlTkZyZHZRc1pvNm9ra3RyQ0M5RFh6MGFINjVoejJEcTdlc3BJZGdseVRqMkg1TGt0YTdvUkU4ZktQS25PNDM1YmdMMTZ3dXR4ZmFhOXVzcko4V3ZtMmZidlc0RHNEbXIwb291YWpnZ2V3SEcyWVZn0gG_AUFVX3lxTFBoa3R4a2Y4VndZc0hfanExX2xtQm5WLW14SGtySG91WVZaSXZwVWR3UjlRUFhTRkpzNWlVbWtVdmNwZ2RIdWhNa1lBcWhJamVVZlYzZ0dPTnhvSkJLMVEtX045V0Q3VzhvSHRRbUpneVZiZ1djMlhSNl9kU2JiRjZqTk90OWZFVU5KeGN3WUxycl85TDhTRjcwZXR2MTl2OG9JdWFrdDRZT3Bra1VybXdSUmt5ekdwUlk3bHpBY29R?oc=5",
+          "domain": "gulfnews.com",
+          "published_ms": 1794144345000,
+          "kind": "news",
+          "id": 108
+        },
+        {
+          "title": "Satellites Found a 2,600-Year-Old Egyptian Structure Buried Under Nile Mud, and the Real Surprise Was What Lay Beneath It - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPaV81bmVyc3YyMWNubS1qM1gtMExwXzUteTlMZlhJSlh0c3U0SGZEVURDdHBVblYxU05RWjMzUkp3VEk1NDFIdkZUSW5fT1BkOHBJUWJrTVFaNnpnM3hKcHVfN1NvWUk0bXhYdGJoTXFKYl9PWFJWbUtjLXBHaG0tRjZZaV9uZw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1793979900000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Ancient Egypt",
+        "daily_views": 2552,
+        "ratio": 0.98
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 68,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 77,
+        "newest_hours": 8,
+        "domains": [
+          "newsofbahrain.com",
+          "gulfnews.com",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Cruise Employee Survives 9 Hours Treading Water",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        93,
+        96,
+        101,
+        103
+      ],
+      "hook": "After falling off a cruise ship in the middle of the night, a crew member miraculously survived 9 hours alone at sea.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Man overboard",
+      "commons_query": "",
+      "youtube_query": "cruise worker survives 9 hours in ocean",
+      "evidence": [
+        {
+          "title": "Cruise ship employee found by fishermen treading water 20 miles off the California coast - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWlhCd1pjRGNBdVphRmZydGVMZGVJSFZVZXFyZmp4SThHRmVuNl82emY2OU55YS1yT0xZUU85Y3plcTZIS3o3OVNjV2FLeVI3SzZGdmY4TjhDbkxxTWk0cWVYMU1qc0YtaV9aVzd4R1RGZTN0dHBrOXBRbzZ6QVhwWFM0ODVVdVZDYXgwZFRNSU5Mb1Z5VUVpT1NSaGV6cW0xdFFKWVdQZU9YX0xSN3ZOV2g4R1Z6WDJUaGhhOQ?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1794167880000,
+          "kind": "news",
+          "id": 93
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - People.com",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQaWxzZWhVdDhGTVRENTdHN3NIZ0I1eWV5NmRtNDY1OUI0dGhUb0Z2SDc2OUdudlNQNkNZaFY1UjZ5WWtxQ1FyUy1UYkpnOG1hYmpqTmlHNGFVRzF5SXVWSzBkRXhYOEdLdVZrOE1Rdl9NdGdRb2NhRXpDb0ZySkYwbmZCZjNKdS1mQnBHQXZ5bkk0RXNSTGdtYVJtU0cxejVx?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794163936000,
+          "kind": "news",
+          "id": 96
+        },
+        {
+          "title": "Pianist who plunged from Royal Caribbean cruise ship is found on brink of death 20 miles from coast by fishermen - Daily Mail",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZHJoT0t4bUpXNlFSUkx1dEZvWTROLWJuVDhveVVEcXctSEZDUi00SkF2S2ZraWoxZEZfbTl2bEJzVXo2UEdMdzVUV3VCWmhmM2VIUmlIVEthMG12bUpneDRmd21wXy1oVktkRi1DbWEzS0YyQUh1SWNOaW5MRXhubXkxUy1pVm1ZYWpqYS1hOG50UjIyTGhmUEpvMzVRU0V5djdzRWliZGMxS29GZ2fSAbMBQVVfeXFMTVg5Tmg2T2k1LWxJUGliaUVraGZVWEd2ZnFuSVpGckJ5eWc5WEZ5YUJ1elBYRXVGYzcxS1ZnSWdLN0NITDFiYzc3MFU3elNtOGpPcEhpanEtWDBUQXRrTGh1RGp0SjJTWXFBbGp3dWF5WUt2b09YcVd4X01DRkp0d2NCcGgxWDdlNjZ2eTBKMGNoWktid3RFNW01TlhpbGNMa3dUblVja1RSUDRJckMwc3kybzA?oc=5",
+          "domain": "dailymail.com",
+          "published_ms": 1794157150000,
+          "kind": "news",
+          "id": 101
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - 9NEWS",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQX0FVaGRjejRjSnpqLU92dlhBc29hYVNWVXhLTmR2UHc3ZURBazNjMlFac0hwTzNMOEtNemVjeXE1TzRzNTJoc1RHYTNlME9iYTBGOXlsRFRnZTYwZ29UR09RU2RLUGpvcDR3UDdueGk4X1p6QVVvTFBzVWVtV1BYOVFpaDBYd2dqcjNPM0Z1M1hET1lZQUwySmdXYjA1UTc4T0k5UEsyTDU3Zk56V3diZGU3TmtMWTZqRGlQbDctaEV1enV5aUFOZ1B1RG9Fdk5MbzVibzk4RjE0cXc?oc=5",
+          "domain": "9news.com",
+          "published_ms": 1794153480000,
+          "kind": "news",
+          "id": 103
+        },
+        {
+          "title": "Newport Beach fishermen find Royal Caribbean cruise ship employee treading water 20 miles off coast - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZE5YVXhVSmtQWGhrZ05Cd01kckhIRWZma05yck9aMzc3ZmRBQlBvbm9mUExwTXF5Z0pTUTljY0VxQ0h6RGZDX01waXR0aFdzdHlDZHJJZWYtTTBQR1pqY0JzYkN3UE9wQ2d6Z1JzcEpZYmF6SlFHd1N0OU9pMnd1enkxeXliVTVnWkVhUEZHVFN1OEFoMnlxTm5JZ2pYTHVsUXVDY28tZDZoZS1DUFU4clVidVZ2clB5bVVHYXkxdmVZX3c?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1794116160000,
+          "kind": "news"
+        },
+        {
+          "title": "Cruise ship pianist rescued after nine hours treading water miles from shore - The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOT2VWdU9WZFR4eGRmTzVNeTV6Wmc5VFEwSlVzWTdZd2NVM2piS1l5M04weUp6TEVPMFhVQWNTbHp5WXMwS2F2Z0RORGxuXzljcG5XMHpZYlRzUGpPZ2hlaE9GYUMtMFNtcW4yZVA5eldraXQzWE0zbDB3X3lxa3Y1dGp1SWRxN0dIeG9xN2g2WUdSR04z?oc=5",
+          "domain": "theguardian.com",
+          "published_ms": 1794174960000,
+          "kind": "news"
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQRU9sOTFtMTF0a04yM2NpcW5TV2xyV2QxWlNyc3o1bjF5ZlVfT1IyUzlPNk0xU3FWT3RGZnBoVERvbTdGV2Y4VDRwNXVidkRUMGpMb3VpQVNnMUo1Q0hSWW9Obk9OQ3NkSXdTNTlzRElQdUozOU5pZ2hKM0VjYjRhVzNvc1o?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794163936000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Man overboard",
+        "daily_views": 33,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 31,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 100
+        },
+        "total": 74.2,
+        "newest_hours": 3,
+        "domains": [
+          "independent.co.uk",
+          "people.com",
+          "dailymail.com",
+          "9news.com",
+          "cbsnews.com",
+          "theguardian.com",
+          "aol.com"
+        ],
+        "trusted_domains": [
+          "independent.co.uk",
+          "cbsnews.com",
+          "theguardian.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Garry Kasparov becomes the youngest World Chess Champion in 1985",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "At just 22 years old, Garry Kasparov shattered chess history by defeating Anatoly Karpov to become the youngest world champion ever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Garry Kasparov",
+      "commons_query": "Garry Kasparov 1985",
+      "youtube_query": "Garry Kasparov youngest world chess champion 1985",
+      "evidence": [
+        {
+          "title": "1985: Garry Kasparov, 22, of the Soviet Union, becomes the youngest World Chess Champion by beating fellow Soviet Anatoly Karpov.",
+          "url": "https://en.wikipedia.org/wiki/Garry_Kasparov",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 16
+        },
+        {
+          "title": "Garry Kasparov is a Champion for Chess and Global Change - Muscle & Fitness",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOc253elJoWHIxaXNtM296cUFHS202Z3VWQXk0Y0tJb0FKdHFCLXNGVEItanVUWUpSeFBKdVQtWG1sdzA2a2NRdTRYcGVDelVwRDhqR2FxRG5ZYWY3MDlkNThCWjRPUGhWQVZ2YUdTUHRsaEpuLVNrNUFablB4WWhucU44WjBQNVRnR29ZR0ppZ1AyS2szSlpLSkh5bEh4ajBpZ2dua0s2OEh6bGprNE0xYXRKRnc1YWtqTm1Xcw?oc=5",
+          "domain": "muscleandfitness.com",
+          "published_ms": 1793888177000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Garry Kasparov",
+        "daily_views": 1642,
+        "ratio": 0.67
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 64,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 70,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "muscleandfitness.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Garry Kasparov Becomes World Chess Champion at 22"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Fall of the Berlin Wall on November 9, 1989",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        15
+      ],
+      "hook": "On this day in 1989, border guards in East Berlin suddenly opened the gates—and the Berlin Wall came tumbling down.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 10,
+        "visual": 10
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Fall of the Berlin Wall 1989",
+      "youtube_query": "Fall of the Berlin Wall 1989 archival footage",
+      "evidence": [
+        {
+          "title": "1989: Cold War: Fall of the Berlin Wall: East Germany opens checkpoints in the Berlin Wall, allowing its citizens to travel to West Berlin.",
+          "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 15
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 59,
+          "curiosity": 90,
+          "relevance": 100,
+          "visual": 100,
+          "source_quality": 35
+        },
+        "total": 69.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Night the Berlin Wall Fell"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5th-century Germanic chieftain graves unearthed in France with dazzling weapons and warhorses",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        88,
+        103,
+        104
+      ],
+      "hook": "Archaeologists in France just uncovered luxury 5th-century warrior tombs complete with sacrificed warhorses and glittering weapons.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Merovingian art",
+      "commons_query": "Merovingian weapons archaeology",
+      "youtube_query": "5th century chieftain graves France archaeology",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "1,600-year-old chieftain burials with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 103
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France",
+          "url": "https://www.livescience.com/archaeology/rare-fifth-century-burials-of-germanic-chieftains-with-dazzling-weapons-and-warhorses-discovered-in-france",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "feed",
+          "id": 104
+        }
+      ],
+      "wikipedia": {
+        "title": "Merovingian art",
+        "daily_views": 1,
+        "ratio": 0.5
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 6,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 69.4,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Monumental Medieval Cathedral Uncovered at Old Dongola",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        89
+      ],
+      "hook": "Archaeologists uncovered a massive, forgotten medieval cathedral hidden beneath the sands of Sudan.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "Old Dongola ruins",
+      "youtube_query": "Old Dongola medieval cathedral excavation",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Archaeologist Artur Obłuski and a Sudanese-Polish team reached the original floor of the Great Church of Jesus in Old Dongola, a medieval cathedral 47 metres wide and about 21 metres tall that he says was bigger than the White House - CPG Click Oil and Gas",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWXVEa2tXbzljajIzanNvSVE5RzZSSzRudEZvQzJOaXc0Wng1d1BldG84dnZUQ1B0b2FyTVlUT1NOX2JaVkl4LUZUdDYtTGFtLWNUMWNNelJjaFlueGxFeVZTTlVYVnEzX013ekxpMXBrVUdxMW4ycEJfam5XdTVqd19aOTU2Z2EzVVNTN0Q3THBwcGxiMHU0THc1QjU3VV9mSC1VbVd3?oc=5",
+          "domain": "en.clickpetroleoegas.com.br",
+          "published_ms": 1793885700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 69.4,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "en.clickpetroleoegas.com.br"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Discovery of 10 mummified crocodiles in a 2,500-year-old Egyptian tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95,
+        97
+      ],
+      "hook": "Deep inside a 2,500-year-old Egyptian tomb, archaeologists found a horrifying offering: ten perfectly preserved mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "crocodile mummy Egypt",
+      "youtube_query": "mummified crocodiles Egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 97
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 67.2,
+        "newest_hours": 5,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Lost Viking Church Confirmed in Greenland",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        91
+      ],
+      "hook": "A lone skeleton finally proved the location of a legendary, long-lost Viking Age church in Greenland.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Greenlandic Norse",
+      "commons_query": "Norse ruins Greenland",
+      "youtube_query": "lost viking age church greenland skeleton",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 91
+        }
+      ],
+      "wikipedia": {
+        "title": "Greenlandic Norse",
+        "daily_views": 42,
+        "ratio": 0.86
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 33,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 66,
+        "newest_hours": 4,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Skeleton confirms lost Viking church in Greenland"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Great Lakes Storm of 1913",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        41
+      ],
+      "hook": "The deadliest natural disaster in Great Lakes history swallowed 19 ships and over 250 lives without warning.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Great Lakes storm of 1913",
+      "commons_query": "Great Lakes storm 1913 wreck",
+      "youtube_query": "Great Lakes storm of 1913",
+      "evidence": [
+        {
+          "title": "1913: The Great Lakes Storm of 1913, the most destructive natural disaster ever to hit the lakes, reaches its greatest intensity after beginning two days earlier. The storm destroys 19 ships and kills more than 250 people.",
+          "url": "https://en.wikipedia.org/wiki/Great_Lakes_Storm_of_1913",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 41
+        },
+        {
+          "title": "Why November Is The Deadliest Month On The Great Lakes - WorldAtlas",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPQ1RqYV8yZG13S0JvUFZ0dE05Sl9vQUN6RXZuUThQYlhHSnlTdENzOXdNZFZCZnZYNFFWYWVQb3R3by14bjFRY3pDMWlYOVo2RlV2WkIxb1plbzRZcHhqLUplZW9mS3ZOVDlLZVNRbU9rOWtWUENIbG5HTFRoSTJUV2NVZDJvRUpaRTBRbXNmZ2xfdFVHdThr?oc=5",
+          "domain": "worldatlas.com",
+          "published_ms": 1793559600000,
+          "kind": "news"
+        },
+        {
+          "title": "November Winds, Great Lakes Storms, and a Look at Door County's Changing Climate - Door County Daily News",
+          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1rYTJ5UnhieDhGVlNsVGc5MTF3R1pwdzNORUplbDRidlZtZW4zVFo1MFFRTGRUalI0RGYxZnJqMG42dnhpY1hQb2JRT2kwSzNKLXotZmJB?oc=5",
+          "domain": "doorcountydailynews.com",
+          "published_ms": 1794148179000,
+          "kind": "news"
+        },
+        {
+          "title": "The White Hurricane of 1913: The Day the Great Lakes Swallowed a Fleet - Vocal",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNc1pkeGdBSXB1d3lIVUN4cDB0Z1QzYUhBRHh0dXpzajBOeV95Q2ZLTHdmR08yT09FVVJCZUJtd1o2WDZRNDZpNHhwRTQwQXI3SjJhUGZqckVJSUY2RjBnLXJBUVZoVUJqNFg4MVRZQmRJRXZ4NGtVOHh3TnNHNllBbUczYTRvdl9aX21WbnJHaTI2M0lPVXVocTVtQXhDZw?oc=5",
+          "domain": "vocal.media",
+          "published_ms": 1793085540000,
+          "kind": "news"
+        },
+        {
+          "title": "Ric Mixter brings Great Lakes shipwreck stories to Port Sanilac - Times Herald",
+          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPd3pXY3RzZVRFVGJKMXI5Vkh3clVRNTNBQ09JOXhvVUl1VUtIODZicXlNUk1fU1JzcXRRTFRRM1J4RTY2Q0ZhNktoZXJVNGozV1I5OVNlWE5NYjFjUzJJM0VCVGdrZFV4aEhFMW1GcGN4LWRfaGxnM0VWQmkwckxYeGtaQzc0T3RxSld0STRJRVFtLW1vNzktamlSX1ZNc2xCSHlMYjJCYzllZmM4QmN1SFpLWjdhUWh0bVNPblJlSHNZN0ZUT3lncVFsTEg0ak5jWWxFVkRCdUJUaXNQM0kxUXY1SDZoWm8?oc=5",
+          "domain": "thetimesherald.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Great Lakes storm of 1913",
+        "daily_views": 2,
+        "ratio": 1.14
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 10,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 65.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "worldatlas.com",
+          "doorcountydailynews.com",
+          "vocal.media",
+          "thetimesherald.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Ancient Mosaic Discovered After 90 Years",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "Lost for nearly a century, a stunning ancient mosaic has finally been re-excavated in North Macedonia.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 10
+      },
+      "wikipedia_title": "Roman mosaic",
+      "commons_query": "ancient Roman mosaic",
+      "youtube_query": "ancient mosaic discovered north macedonia",
+      "evidence": [
+        {
+          "title": "Ancient Mosaic Discovered After 90 Years in North Macedonia - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTzRpVHpRemRVblhucnBONXFyWnR1UTlyZEYyVnZOZ19maTlnOWR0QVp5QzU5VEhPOUtMekdIT2NnNTFacGdvMXR6cmVOa0VkY0NpaHVmNWg4MnNZRmVOQlNhTm1uSnZEdEpOVzN6Q1paLVRhcjNUWjgwcVhySDQ1OGJoaUtCSWhFLUE?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794170021000,
+          "kind": "news",
+          "id": 92
+        }
+      ],
+      "wikipedia": {
+        "title": "Roman mosaic",
+        "daily_views": 70,
+        "ratio": 0.94
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 37,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 100,
+          "source_quality": 35
+        },
+        "total": 64.3,
+        "newest_hours": 4,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "19th-Century Shipwreck Found on Estados Island",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        99
+      ],
+      "hook": "At the edge of South America, explorers just found a haunting 19th-century shipwreck and basecamp.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Estados Island",
+      "commons_query": "shipwreck Patagonia",
+      "youtube_query": "19th century shipwreck estados island",
+      "evidence": [
+        {
+          "title": "19th-Century Shipwreck and Camp Discovered on Estados Island near Tierra del Fuego - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPdW9wMzdaaFFwTThLYXRHRmdxU3hBd3B2TUxyYWZOQnlnTXZLWjFfbDJCaU5FM2NTUExYS2FoUVEzTV8zcG45NVVHYzBNRUN5T0RPc3lNbk5UNGx1QWFTNHh6NmF2ZkZsT2U3REp1LXdsRXRtMGx0QVUzZEdBRVktcW9Idm1OYWY5Zi1zbXhfT1RiNWJPRjhLQlpoVkxnWjBWbTZEUlhXQlVEeWVkVkM4ZEtnX3JwcktqU2VZ0gHAAUFVX3lxTE5aNW13dmtiVWlROThkWXFwREhGQVVuNlZaZXB6QmNtMEZMdjF2SnlLNTNSc3hITGIxR1RfaG5TU29Mb1VSTDlmMUhPTjFwWG5mZlFxSS05ZTkxQ1RlaUIwdUpMRmpTU0JKV2twaE5WRU5MZnNpNC1KblAwZGdmS1dfQl9CRUR3UTRsZXQ4dllvY1VyOFdLcW1mTXZUaFBMWjNUeC1SRzNwcGFKcjgxakxfZFBDYTd2VjJUb0NXbFpJRQ?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1794159165000,
+          "kind": "news",
+          "id": 99
+        },
+        {
+          "title": "Archaeologists uncover possible 19th-century castaway camp on island 'at the end of the world' - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOdEV6Qmc4eHNWcDdGbGE1S1RhTTlqcmxCSEVzYVBEU2tNaGl0cktqejBvbkVTclljVEJ0WlhvOUZfNFpWUjBXdjlTZUR6aW15bHJ3eTNvLXNuc3hpTFh4YlFwT2JsbHR1ZXEtVENlaW5JM1NPa1RLNVVxQ2R6c3lmNGxmcko0dw?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793894438000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 63.5,
+        "newest_hours": 7,
+        "domains": [
+          "inkorr.com",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Napoleon Bonaparte's Coup of 18 Brumaire in 1799",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        56
+      ],
+      "hook": "On this day in 1799, Napoleon staged a bold coup that ended the French Revolution and made him absolute dictator of France.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Coup of 18 Brumaire",
+      "commons_query": "Napoleon Bonaparte 1799",
+      "youtube_query": "Napoleon Coup of 18 Brumaire 1799",
+      "evidence": [
+        {
+          "title": "1799: Napoleon Bonaparte leads the Coup of 18 Brumaire ending the Directory government, and becoming First Consul of the successor Consulate Government.",
+          "url": "https://en.wikipedia.org/wiki/Coup_of_18_Brumaire",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 56
+        }
+      ],
+      "wikipedia": {
+        "title": "Coup of 18 Brumaire",
+        "daily_views": 523,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Cullinan Diamond Presented to King Edward VII",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        42
+      ],
+      "hook": "How the largest gem-quality diamond ever found was shipped across the world in a fake package to fool thieves.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Cullinan Diamond",
+      "commons_query": "Cullinan Diamond",
+      "youtube_query": "Cullinan Diamond history",
+      "evidence": [
+        {
+          "title": "1907: The Cullinan Diamond is presented to King Edward VII on his birthday.",
+          "url": "https://en.wikipedia.org/wiki/Cullinan_Diamond",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 42
+        }
+      ],
+      "wikipedia": {
+        "title": "Cullinan Diamond",
+        "daily_views": 519,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Cullinan Diamond"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Sinking of SMS Emden",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        40
+      ],
+      "hook": "The lone German cruiser that terrorized Allied shipping lanes in WWI before meeting its dramatic end at the Cocos Islands.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "SMS Emden",
+      "commons_query": "SMS Emden",
+      "youtube_query": "SMS Emden battle of cocos",
+      "evidence": [
+        {
+          "title": "1914: SMS Emden is sunk by HMAS Sydney in the Battle of Cocos.",
+          "url": "https://en.wikipedia.org/wiki/SMS_Emden",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 40
+        }
+      ],
+      "wikipedia": {
+        "title": "SMS Emden",
+        "daily_views": 110,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 60.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Discovery of cannabis in a 2,500-year-old Siberian monument",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        106
+      ],
+      "hook": "Archaeologists analyzing a 2,500-year-old Siberian monument made a surprising organic discovery hidden inside ancient ritual artifacts.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk artifacts Siberia",
+      "youtube_query": "cannabis discovered Siberian monument archaeology",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 106
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "In a 2,800-year-old Siberian tomb, researchers found about 1,000 cannabis seeds and chemical traces in hu - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMingNBVV95cUxQc1k2QnF2bC1BcjU0dngwZVkwWEtLcHVRQndOUmF4ZWpSRURUU3FrWFpMaG12cTZxU1hjaVZXZnMydVRWb25YVGNpTGFXWDVPT01uVGNkenZBbHVmRklPTllVb01heUxQTThFSVlRNU1PUDJtYlhfMWpWVVQ2UXBNNEJFaC0tTGxxVkswU1VoRHhjN3JVc2I5VGVLZ1B5dlpjQWNvYU5ZNHRlTFNMRVl4cDJPbDZRdThzbnNFVFp3R2pmS1Vla3ZuWnYxSDNnc3pUMm5wa0NxWVJyMm1rM1hZUzMxRVdUUjVqMHR0dTcySnhtbTA5RHBXaUZfUVFlczVlTkdPWE9lS2hzX0lUaTdtMlRwRDgwRy1lQ1dia2dHUzI0eHZvSUdHSGlGUXdGc2tubXV3RlhielJDZmZEWS14SHZ0WHFwTnY0UkVMbnVCVWROSmZnX0NHcWlLaExIU2NjckVWMDdEYTdrdE5EaVhBNE9KUjdfMmU3VEt4WGhpSWxqVVl6WlVnV3c3VGZTOHNnTV9kZkNQR19OX0s0TUHSAaMDQVVfeXFMTXBfWTNhZU9uMFZVUFJBTm8xbDAyeldVRVJaMjZwXzVJb0h2anRZdU90bUtmQXNRc0hVR0hMaDgxemtRUERscXNxcXNtMG5lcDluNnBOdm1PMGZ5akd3MGM3SFlabmdITlYteTR3WXphenJYSHJVUG1LUkljQUE3WTRIM3luT2dsSjhVcTFVR2p0N2VwZXpxOV9ZM2FpMkdpbFdfREI4Wk1QVTlxQWUzUVkzQUpuZWNteGpzM1FaVHV0V2hPX3UyVGFRd3dnMmdjQ3ZBQ29kZUtzLWlBMW1sWV91czJTbW55UVBuS2VJMU9MT1A3TExuakJ2S3RQdFhZTkpqeWp4akx2NXA1amltcmJYSGpNM1c0XzZkS2VJOERxVzdJODVLNzR4aG96Z2p4SkNLMXA5VFdmTE5aWUZsQmNfNXljc1dSVmZxNENHbEZIQ0tZalBvUUtEeFZMQ09taW01WThJTmthdWhFZFZmRjQta0FlU2RyN09uc3paQUNnOG9LdER0N1FJSHZrU1NNQ3dxdnJqSjM2QUF2SkRWeWFOaVE?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794165840000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 30,
+          "source_quality": 30
+        },
+        "total": 60.4,
+        "newest_hours": 6,
+        "domains": [
+          "arkansasonline.com",
+          "sciencealert.com",
+          "timesofindia.indiatimes.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "visually weak",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1965 Northeast Blackout plunging North America into darkness",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        21
+      ],
+      "hook": "In 1965, millions of people across the US and Canada were suddenly plunged into darkness as the massive Northeast Blackout struck without warning.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Northeast blackout of 1965",
+      "commons_query": "Northeast blackout of 1965",
+      "youtube_query": "Northeast blackout of 1965 history",
+      "evidence": [
+        {
+          "title": "1965: Several U.S. states and parts of Canada are hit by a series of blackouts lasting up to 13 hours in the Northeast blackout of 1965.",
+          "url": "https://en.wikipedia.org/wiki/Power_outage",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 21
+        }
+      ],
+      "wikipedia": {
+        "title": "Northeast blackout of 1965",
+        "daily_views": 134,
+        "ratio": 1.16
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 43,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 60.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The 1965 Northeast blackout plunging North America into darkness"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The collapse of the historic Stari Most bridge in Mostar during the 1993 war",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        14
+      ],
+      "hook": "Built in 1566 to stand forever, Bosnia's iconic stone bridge Stari Most survived centuries—until targeted bombardment destroyed it in 1993.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Stari Most",
+      "commons_query": "Stari Most Mostar",
+      "youtube_query": "Stari Most bridge collapse 1993",
+      "evidence": [
+        {
+          "title": "1993: Stari Most, the \"old bridge\" in the Bosnian city of Mostar, built in 1566, collapses after several days of bombing by Croat forces during the Croat–Bosniak War.",
+          "url": "https://en.wikipedia.org/wiki/Stari_Most",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 14
+        }
+      ],
+      "wikipedia": {
+        "title": "Stari Most",
+        "daily_views": 164,
+        "ratio": 0.8
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 44,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 59.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The collapse of the historic Stari Most bridge in Mostar"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1872 Great Boston Fire",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        51
+      ],
+      "hook": "A devastating fire leveled downtown Boston in 1872—stopped only because firefighters ran out of buildings to burn.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Great Boston Fire of 1872",
+      "commons_query": "Great Boston Fire of 1872",
+      "youtube_query": "Great Boston Fire of 1872",
+      "evidence": [
+        {
+          "title": "1872: The Great Boston Fire of 1872.",
+          "url": "https://en.wikipedia.org/wiki/Great_Boston_Fire_of_1872",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 51
+        }
+      ],
+      "wikipedia": {
+        "title": "Great Boston Fire of 1872",
+        "daily_views": 44,
+        "ratio": 0.81
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 33,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 59.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Stockholm Bloodbath of 1520",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        65
+      ],
+      "hook": "Under the guise of a peace summit, a Danish king invited Swedish nobles to a banquet—and executed them all.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Stockholm Bloodbath",
+      "commons_query": "Stockholm Bloodbath painting",
+      "youtube_query": "Stockholm Bloodbath 1520 history",
+      "evidence": [
+        {
+          "title": "1520: More than 50 people are sentenced and executed in the Stockholm Bloodbath.",
+          "url": "https://en.wikipedia.org/wiki/Stockholm_Bloodbath",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 65
+        }
+      ],
+      "wikipedia": {
+        "title": "Stockholm Bloodbath",
+        "daily_views": 162,
+        "ratio": 0.97
+      },
+      "youtube": null,
+      "commons_hits": 2,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 53,
+          "source_quality": 35
+        },
+        "total": 59.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (2 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Ruth Harkness captures and brings the first live giant panda to the US in 1936",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1936, an American socialite-turned-explorer smuggled a tiny live panda cub out of China inside a coat basket.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Ruth Harkness",
+      "commons_query": "Su Lin giant panda",
+      "youtube_query": "Ruth Harkness first giant panda US 1936",
+      "evidence": [
+        {
+          "title": "1936: American fashion designer Ruth Harkness seeks and captures a nine-week-old panda cub in Sichuan; named Su Lin, he becomes the first live giant panda to enter the United States.",
+          "url": "https://en.wikipedia.org/wiki/Ruth_Harkness",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Ruth Harkness",
+        "daily_views": 15,
+        "ratio": 0.92
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 24,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 58.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Ruth Harkness capturing and smuggling the first live giant panda to America"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1979 nuclear false alarm that almost triggered World War III",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "In 1979, NORAD computers suddenly signaled a massive, full-scale Soviet nuclear strike. They had minutes to decide the fate of the world.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "1979 Soviet nuclear false alarm incident",
+      "commons_query": "NORAD Cheyenne Mountain",
+      "youtube_query": "1979 nuclear false alarm NORAD",
+      "evidence": [
+        {
+          "title": "1979: Cold War: Nuclear false alarm: The NORAD computers and the Alternate National Military Command Center in Fort Ritchie, Maryland, detect a purported massive Soviet nuclear strike. After reviewing the raw data from satellites and checking the early-warning radars, the alert is cancelled.",
+          "url": "https://en.wikipedia.org/wiki/Cold_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185932278,
+          "kind": "anniversary",
+          "id": 17
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 58.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}
