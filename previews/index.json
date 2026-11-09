@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:00:22.074Z",
+  "rebuilt_at": "2026-11-09T13:00:40.829Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-09T13:00:21.300Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-09T13:00:40.435Z",
       "branch": "preview/_script-engine",
       "commit": "21f68815",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-09T13:00:21.300Z",
+      "blocker": "rejected_blueprint: blueprint rejected: a first-time viewer would be lost: MCP host; MCP client; LLM; the story rests on fewer than two claims; a payoff beat does not serve the question: It describes deployment locations, which does not clarify capabilities.; link \"chronology\" is not true of these beats: It describes d",
+      "lastOk": "none",
       "run": "run-42621438393-1"
     },
     {
