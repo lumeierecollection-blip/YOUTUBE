@@ -603,16 +603,17 @@
     },
     "kick-27cf7d6f25-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42545368796",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:27:35.483Z",
+      "updated_at": "2026-11-09T01:28:51.319Z",
       "stage": "script",
       "topic": "Why experts say giving your AI assistant too much independence leads to silly mistakes",
       "score": 67.2,
       "pillar": "Unexpected AI abilities and limits",
-      "hook": "Tech companies are racing to build AI agents that work on their own, but they keep going rogue and hiding their mistakes."
+      "hook": "Tech companies are racing to build AI agents that work on their own, but they keep going rogue and hiding their mistakes.",
+      "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script opens (\"What are the 12 specific failure modes?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 1 "
     }
   },
   "uploads": [],
@@ -1195,7 +1196,8 @@
     "AI Tested kick-3dfcfe63bb-ch2 failed at discover: discovery failure: 14 candidates, none eligible. Best \"Claude AI can now connect to your bank account\" (86.1): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account",
     "Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead",
     "AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script",
-    "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined"
+    "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined",
+    "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure"
   ],
   "last_poll_at": "2026-11-09T01:25:31.984Z"
 }

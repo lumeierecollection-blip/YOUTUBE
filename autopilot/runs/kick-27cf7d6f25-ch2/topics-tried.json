@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Instagram launches free desktop video editor to take on CapCut",
+      "score": 83.3,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Security expert warns against letting Meta's new AI manage your passwords and money",
+      "score": 81,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Why experts say giving your AI assistant too much independence leads to silly mistakes",
+      "score": 67.2,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script opens (\"What are the 12 specific failure modes?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 1 "
+    }
+  ],
+  "selected": null
+}
