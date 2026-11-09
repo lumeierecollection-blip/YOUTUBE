@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "The Opening of the Holland Tunnel",
+      "score": 61.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"New York City and Jersey\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"President Coolidge\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/the-opening-of-the-holland-tunnel-shorts:\n  - SCR-16: 59 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): "
+    },
+    {
+      "topic": "The Fall of the Brazilian Empire",
+      "score": 59.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Rio de Janeiro How\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"Dom Pedro II That\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/the-fall-of-the-brazilian-empire-shorts:\n  - SCR-16: 56 words implies ~27s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at l"
+    }
+  ],
+  "selected": null
+}
