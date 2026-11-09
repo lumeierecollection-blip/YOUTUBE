@@ -1,0 +1,439 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "left-out",
+      "treatment": "figure-stands-apart-hand-lowers",
+      "objective": "Show a figure standing apart while two others talk together, one hand lifting to join and then lowering",
+      "background": "dark soft-lit room",
+      "from": 0,
+      "to": 158,
+      "start_s": 0,
+      "end_s": 5.266666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "quiet-chat",
+      "treatment": "figure-with-phone-chat-goes-quiet",
+      "objective": "Show a seated figure watching a phone as chat bubbles stop appearing and the screen goes still",
+      "background": "dark soft-lit room",
+      "from": 158,
+      "to": 319,
+      "start_s": 5.266666666666667,
+      "end_s": 10.633333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "screen",
+      "treatment": "figure-watching-virtual-game",
+      "objective": "Show the virtual ball game with two avatars passing to each other, the figure watching, and one small bar rising with distress",
+      "background": "dark soft-lit room",
+      "from": 319,
+      "to": 502,
+      "start_s": 10.633333333333333,
+      "end_s": 16.733333333333334
+    },
+    {
+      "id": "s4",
+      "kind": "regulate",
+      "treatment": "scribble-loosens-ring-forms",
+      "objective": "Show the tangle loosening and a soft ring forming around the head",
+      "background": "dark soft-lit room",
+      "from": 502,
+      "to": 626,
+      "start_s": 16.733333333333334,
+      "end_s": 20.866666666666667
+    },
+    {
+      "id": "s5",
+      "kind": "comfort",
+      "treatment": "second-figure-sits-beside",
+      "objective": "Show another figure sitting down beside, a hand on the shoulder, the room warming and the heart mending",
+      "background": "dark soft-lit room, warming",
+      "from": 626,
+      "to": 789,
+      "start_s": 20.866666666666667,
+      "end_s": 26.3
+    }
+  ],
+  "captions": [
+    {
+      "text": "Being left out may feel",
+      "from": 0,
+      "to": 61,
+      "words": [
+        {
+          "text": "Being",
+          "from": 0
+        },
+        {
+          "text": "left",
+          "from": 13
+        },
+        {
+          "text": "out",
+          "from": 21
+        },
+        {
+          "text": "may",
+          "from": 32
+        },
+        {
+          "text": "feel",
+          "from": 45
+        }
+      ]
+    },
+    {
+      "text": "to your brain a lot",
+      "from": 61,
+      "to": 110,
+      "words": [
+        {
+          "text": "to",
+          "from": 61
+        },
+        {
+          "text": "your",
+          "from": 71
+        },
+        {
+          "text": "brain",
+          "from": 75
+        },
+        {
+          "text": "a",
+          "from": 86
+        },
+        {
+          "text": "lot",
+          "from": 100
+        }
+      ]
+    },
+    {
+      "text": "like physical pain",
+      "from": 110,
+      "to": 149,
+      "words": [
+        {
+          "text": "like",
+          "from": 110
+        },
+        {
+          "text": "physical",
+          "from": 119
+        },
+        {
+          "text": "pain",
+          "from": 133
+        }
+      ]
+    },
+    {
+      "text": "So that sting when the",
+      "from": 158,
+      "to": 208,
+      "words": [
+        {
+          "text": "So",
+          "from": 158
+        },
+        {
+          "text": "that",
+          "from": 168
+        },
+        {
+          "text": "sting",
+          "from": 177
+        },
+        {
+          "text": "when",
+          "from": 193
+        },
+        {
+          "text": "the",
+          "from": 204
+        }
+      ]
+    },
+    {
+      "text": "group goes quiet is not",
+      "from": 208,
+      "to": 265,
+      "words": [
+        {
+          "text": "group",
+          "from": 208
+        },
+        {
+          "text": "goes",
+          "from": 217
+        },
+        {
+          "text": "quiet",
+          "from": 224
+        },
+        {
+          "text": "is",
+          "from": 236
+        },
+        {
+          "text": "not",
+          "from": 253
+        }
+      ]
+    },
+    {
+      "text": "you being dramatic",
+      "from": 265,
+      "to": 292,
+      "words": [
+        {
+          "text": "you",
+          "from": 265
+        },
+        {
+          "text": "being",
+          "from": 275
+        },
+        {
+          "text": "dramatic",
+          "from": 281
+        }
+      ]
+    },
+    {
+      "text": "In one study people left",
+      "from": 319,
+      "to": 368,
+      "words": [
+        {
+          "text": "In",
+          "from": 319
+        },
+        {
+          "text": "one",
+          "from": 322
+        },
+        {
+          "text": "study",
+          "from": 328
+        },
+        {
+          "text": "people",
+          "from": 347
+        },
+        {
+          "text": "left",
+          "from": 357
+        }
+      ]
+    },
+    {
+      "text": "out of a game showed",
+      "from": 368,
+      "to": 402,
+      "words": [
+        {
+          "text": "out",
+          "from": 368
+        },
+        {
+          "text": "of",
+          "from": 376
+        },
+        {
+          "text": "a",
+          "from": 379
+        },
+        {
+          "text": "game",
+          "from": 381
+        },
+        {
+          "text": "showed",
+          "from": 389
+        }
+      ]
+    },
+    {
+      "text": "brain activity that rose with",
+      "from": 402,
+      "to": 460,
+      "words": [
+        {
+          "text": "brain",
+          "from": 402
+        },
+        {
+          "text": "activity",
+          "from": 412
+        },
+        {
+          "text": "that",
+          "from": 425
+        },
+        {
+          "text": "rose",
+          "from": 436
+        },
+        {
+          "text": "with",
+          "from": 446
+        }
+      ]
+    },
+    {
+      "text": "their distress",
+      "from": 460,
+      "to": 477,
+      "words": [
+        {
+          "text": "their",
+          "from": 460
+        },
+        {
+          "text": "distress",
+          "from": 465
+        }
+      ]
+    },
+    {
+      "text": "Another region was active too",
+      "from": 502,
+      "to": 547,
+      "words": [
+        {
+          "text": "Another",
+          "from": 502
+        },
+        {
+          "text": "region",
+          "from": 509
+        },
+        {
+          "text": "was",
+          "from": 520
+        },
+        {
+          "text": "active",
+          "from": 527
+        },
+        {
+          "text": "too",
+          "from": 539
+        }
+      ]
+    },
+    {
+      "text": "and linked to less distress",
+      "from": 553,
+      "to": 595,
+      "words": [
+        {
+          "text": "and",
+          "from": 553
+        },
+        {
+          "text": "linked",
+          "from": 558
+        },
+        {
+          "text": "to",
+          "from": 565
+        },
+        {
+          "text": "less",
+          "from": 572
+        },
+        {
+          "text": "distress",
+          "from": 580
+        }
+      ]
+    },
+    {
+      "text": "Feeling it doesn't mean something",
+      "from": 626,
+      "to": 670,
+      "words": [
+        {
+          "text": "Feeling",
+          "from": 626
+        },
+        {
+          "text": "it",
+          "from": 628
+        },
+        {
+          "text": "doesn't",
+          "from": 635
+        },
+        {
+          "text": "mean",
+          "from": 653
+        },
+        {
+          "text": "something",
+          "from": 661
+        }
+      ]
+    },
+    {
+      "text": "is wrong",
+      "from": 670,
+      "to": 686,
+      "words": [
+        {
+          "text": "is",
+          "from": 670
+        },
+        {
+          "text": "wrong",
+          "from": 676
+        }
+      ]
+    },
+    {
+      "text": "it means people matter to",
+      "from": 702,
+      "to": 751,
+      "words": [
+        {
+          "text": "it",
+          "from": 702
+        },
+        {
+          "text": "means",
+          "from": 706
+        },
+        {
+          "text": "people",
+          "from": 711
+        },
+        {
+          "text": "matter",
+          "from": 730
+        },
+        {
+          "text": "to",
+          "from": 740
+        }
+      ]
+    },
+    {
+      "text": "you",
+      "from": 751,
+      "to": 760,
+      "words": [
+        {
+          "text": "you",
+          "from": 751
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 789,
+  "duration_s": 26.3
+}
