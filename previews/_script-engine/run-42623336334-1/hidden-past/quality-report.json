@@ -1,0 +1,388 @@
+{
+  "channel": "hidden-past",
+  "format": "short",
+  "topic": "The Antikythera mechanism",
+  "angle": "what the physical evidence shows the device could do, kept apart from what later researchers made of it",
+  "status": "rejected",
+  "wpm": {
+    "wpm": 171.4,
+    "source": "measured",
+    "voice": "en-GB-RyanNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "writer_format_error": "sentence 3: 21 words; the limit is 20"
+    },
+    {
+      "round": 2,
+      "writer_provider": "gemini",
+      "words": 52,
+      "deterministic": {
+        "critical": 0,
+        "major": 7,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-01",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "No real transition: the sentence does not say why it follows the previous one (\"evidence\").",
+            "fix": "State what this sentence answers, explains or follows from."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "No real transition: the sentence does not say why it follows the previous one (\"explanation\").",
+            "fix": "State what this sentence answers, explains or follows from."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s2",
+              "s3"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"Saros\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Saros\" is."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "No real transition: the sentence does not say why it follows the previous one (\"consequence\").",
+            "fix": "State what this sentence answers, explains or follows from."
+          },
+          {
+            "rule": "CON-12",
+            "severity": "major",
+            "category": "unfulfilled_hook",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "The hook says 1901 and the rest of the script never returns to it.",
+            "fix": "Deliver that figure in the payoff or take it out of the hook."
+          },
+          {
+            "rule": "TRC-04",
+            "severity": "major",
+            "category": "unsupported_claim",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "The name \"Saros\" is in none of this sentence's claims.",
+            "fix": "Remove it or cite a claim that names it."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 7,
+        "minor": 0
+      }
+    },
+    {
+      "round": 3,
+      "writer_provider": "gemini",
+      "words": 69,
+      "deterministic": {
+        "critical": 1,
+        "major": 2,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"Olympic Games\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Olympic Games\" is."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "critical",
+            "category": "unsupported_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The sentence states a figure or a name but cites no claim.",
+            "fix": "Cite a claim or remove the figure or name."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The ending brings in something the listener has not heard (figure 1901).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 1,
+        "major": 2,
+        "minor": 0
+      }
+    }
+  ],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 10,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+        "published": "2026-11-05"
+      }
+    ]
+  },
+  "blueprint": {
+    "attempts": 1,
+    "removed_beats": [],
+    "checks": {
+      "max_beats": 5,
+      "deterministic": "pass",
+      "model": {
+        "answers_question": true,
+        "fits_length": true,
+        "beats": [
+          {
+            "beat_id": "b1",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Establishes the physical presence of gears and inscriptions on the surviving fragments."
+          },
+          {
+            "beat_id": "b2",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Provides specific physical gear evidence illustrating the complex mechanical construction."
+          },
+          {
+            "beat_id": "b3",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Explains the specific astronomical and tracking functions performed by the gear mechanism."
+          },
+          {
+            "beat_id": "b4",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Summarizes the overall consequences of what the physical evidence demonstrates."
+          }
+        ],
+        "relinked_by_checker": []
+      }
+    },
+    "history": []
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 3259,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1760,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 54297,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "the answer was not valid JSON"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 2,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 45010,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1647,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "sentence 2: 22 words; the limit is 20"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 2,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1930,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "sentence 3: 21 words; the limit is 20"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1600,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1915,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "ok": true,
+      "chars": 56158,
+      "sha256": "e20232b87757ca50",
+      "title": "Antikythera mechanism",
+      "published": "2026-11-05",
+      "fetched_at": "2026-11-09T13:14:24.264Z"
+    }
+  ],
+  "open_findings": [
+    {
+      "rule": "CON-05",
+      "severity": "major",
+      "category": "unexplained_name",
+      "sentence_ids": [
+        "s3"
+      ],
+      "problem": "\"Olympic Games\" appears with no word saying what or who it is.",
+      "fix": "Introduce it: say what or who \"Olympic Games\" is."
+    },
+    {
+      "rule": "CON-04",
+      "severity": "critical",
+      "category": "unsupported_claim",
+      "sentence_ids": [
+        "s4"
+      ],
+      "problem": "The sentence states a figure or a name but cites no claim.",
+      "fix": "Cite a claim or remove the figure or name."
+    },
+    {
+      "rule": "CON-04",
+      "severity": "major",
+      "category": "missing_context",
+      "sentence_ids": [
+        "s4"
+      ],
+      "problem": "The ending brings in something the listener has not heard (figure 1901).",
+      "fix": "End on what the script already established; move new material earlier and explain it."
+    }
+  ]
+}

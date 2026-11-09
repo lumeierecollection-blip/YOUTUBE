@@ -2,11 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42623336334-1",
   "agent": "agent-script-engine",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:16:17.455Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:16:20.672Z",
   "branch": "preview/_script-engine",
   "commit": "ddf327a8eacf3b2dd103c0065d9a85ca8cc14cca",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts",
-  "round": 2
+  "issues": "rejected: CON-05: \"Olympic Games\" appears with no word saying what or who it is. | CON-04: The sentence states a figure or a name but cites no claim. | CON-04: The ending brings in something the listener has not heard (figure 1901)."
 }

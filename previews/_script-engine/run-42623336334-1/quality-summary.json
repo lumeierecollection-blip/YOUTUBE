@@ -42,5 +42,40 @@
     "calls": 4,
     "caveats": [],
     "reason": "judge gave unusable output: the answer was not valid JSON"
+  },
+  {
+    "channel": "hidden-past",
+    "topic": "The Antikythera mechanism",
+    "format": "short",
+    "status": "rejected",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+        "ok": true,
+        "chars": 56158,
+        "sha256": "e20232b87757ca50",
+        "title": "Antikythera mechanism",
+        "published": "2026-11-05",
+        "fetched_at": "2026-11-09T13:14:24.264Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 171.4,
+      "source": "measured",
+      "voice": "en-GB-RyanNeural"
+    },
+    "rounds": 3,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 8,
+    "caveats": [],
+    "notApproved": true,
+    "reason": "CON-05: \"Olympic Games\" appears with no word saying what or who it is. | CON-04: The sentence states a figure or a name but cites no claim. | CON-04: The ending brings in something the listener has not heard (figure 1901)."
   }
 ]

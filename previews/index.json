@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:16:17.718Z",
+  "rebuilt_at": "2026-11-09T13:16:20.918Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "script_complete",
-      "status": "ok",
-      "at": "2026-11-09T13:16:17.455Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-09T13:16:20.672Z",
       "branch": "preview/_script-engine",
       "commit": "ddf327a8",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-09T13:16:17.455Z",
+      "blocker": "rejected: CON-05: \"Olympic Games\" appears with no word saying what or who it is. | CON-04: The sentence states a figure or a name but cites no claim. | CON-04: The ending brings in something the listener has not heard (figure 1901).",
+      "lastOk": "2026-11-09T13:04:34.302Z",
       "run": "run-42623336334-1"
     },
     {
