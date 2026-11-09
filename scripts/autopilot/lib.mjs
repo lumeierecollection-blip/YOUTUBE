@@ -98,7 +98,7 @@ export async function askJson(prompt, tag = "autopilot") {
   throw new StageError(tag, last);
 }
 
-function parseJsonAnswer(r) {
+export function parseJsonAnswer(r) {
   if (r && typeof r === "object" && !("content" in r)) return r;
   const text = typeof r === "string" ? r : r?.content;
   if (typeof text !== "string") return typeof text === "object" ? text : null;
