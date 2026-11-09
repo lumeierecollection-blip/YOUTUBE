@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "400-Year-Old Shipwreck Padlock Finally Picked",
+      "score": 79.3,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "5,300-Year-Old Grave Reveals Horrifying Ancient Practice",
+      "score": 74,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The Catastrophic Nevado del Ruiz Volcanic Mudslide",
+      "score": 64.2,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Armero sat 2.5 kilometers from the canyon.\" — The narration never explains which canyon or why it is significant.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"But local leaders ignored 1.75 hours of warning.\" — It is unclear where this warning came from or what specific event it refers to.. Rewrite it "
+    }
+  ],
+  "selected": "The Daring RAF Raid That Sank the Battleship Tirpitz"
+}
