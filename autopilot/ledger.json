@@ -482,16 +482,17 @@
     },
     "kick-7ea01591b2-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42540589445",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:44:29.241Z",
+      "updated_at": "2026-11-09T00:45:54.738Z",
       "stage": "script",
       "topic": "Adobe gives startups 12 months free AI tools – design for free",
       "score": 66.7,
       "pillar": "AI tools ordinary people can use",
-      "hook": "Launch a startup with free access to Adobe’s AI design suite for a whole year."
+      "hook": "Launch a startup with free access to Adobe’s AI design suite for a whole year.",
+      "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame ca"
     }
   },
   "uploads": [],
@@ -939,7 +940,8 @@
     "Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"p",
     "AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, o",
     "Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts",
-    "Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"halftone\",\"why\":\"dot-screen peak 3784 vs source 69240\"},{\"scene\":2,\"check\":\"grain\",\"why\":\"fine detail 20.9 vs so"
+    "Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"halftone\",\"why\":\"dot-screen peak 3784 vs source 69240\"},{\"scene\":2,\"check\":\"grain\",\"why\":\"fine detail 20.9 vs so",
+    "AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts"
   ],
   "last_poll_at": "2026-11-09T00:38:24.852Z"
 }
