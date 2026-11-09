@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 11:18 SAST
+Updated 2026-11-09 11:27 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 11:18 SAST
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | D.B. Cooper's legendary 1971 airplane hijacking and parachute escape (71.7/100) |
+| Selected topic and score | Jocelyn Bell Burnell Discovers Pulsars (66.6/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
@@ -112,3 +112,5 @@ Updated 2026-11-09 11:18 SAST
 - Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:
   - SCR-16: 65 wor
 - AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
+- Hidden Past kick-4d0ab7875c-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:
+  - SCR-16: 41 words implies ~20s durati
