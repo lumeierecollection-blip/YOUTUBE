@@ -1,5 +1,5 @@
-Is the arrest of assassin Gavrilo Princip captured in a famous 1914 photograph?
-Public belief holds that this image shows the arrest of Gavrilo Princip, the Bosnian youth.
-Author David James Smith, a researcher, notes that no photograph of Princip's arrest exists.
-He identifies the man as Ferdinand Behr, a bystander who was detained that day.
-The 1914 photograph shows Ferdinand Behr, not Gavrilo Princip, as no arrest photo of Princip exists.
+Is the arrest of the assassin Gavrilo Princip captured in a famous 1914 photograph?
+Public belief holds that this 1914 photograph shows Gavrilo Princip, a Bosnian youth who killed the Archduke.
+Researcher David James Smith writes that there is no known photograph of the arrest of Gavrilo Princip.
+Smith identifies the man in the image as Ferdinand Behr, a bystander detained that day.
+Scholars conclude the image shows Ferdinand Behr, as no arrest photograph of Gavrilo Princip exists.
