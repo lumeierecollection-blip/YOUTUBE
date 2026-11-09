@@ -1,0 +1,58 @@
+{
+  "topic": "Stalingrad’s Turning Point: German Troops Reach the Volga",
+  "pillar": "Events that changed the modern world",
+  "evidence_ids": [
+    29
+  ],
+  "hook": "When the Nazis finally hit the Volga, the battle for Stalingrad intensified.",
+  "anniversary": true,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 7
+  },
+  "wikipedia_title": "Battle of Stalingrad",
+  "commons_query": "Stalingrad 1942 Volga",
+  "youtube_query": "Stalingrad Volga 1942 short",
+  "evidence": [
+    {
+      "title": "1942: Battle of Stalingrad: German forces of the 6th Army under general Friedrich Paulus reach the river bank of the Volga, capturing 90% of the ruined city of Stalingrad and splitting the remaining Soviet forces into two narrow pockets.",
+      "url": "https://en.wikipedia.org/wiki/Battle_of_Stalingrad",
+      "domain": "wikipedia.org",
+      "published_ms": 1794185247222,
+      "kind": "anniversary",
+      "id": 29
+    }
+  ],
+  "wikipedia": {
+    "title": "Battle of Stalingrad",
+    "daily_views": 3167,
+    "ratio": 0.97
+  },
+  "youtube": null,
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 46,
+      "reach": 70,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 85,
+      "source_quality": 35
+    },
+    "total": 65.5,
+    "newest_hours": 0,
+    "domains": [
+      "wikipedia.org"
+    ],
+    "trusted_domains": [
+      "wikipedia.org"
+    ]
+  },
+  "rejected": [],
+  "wave": 2,
+  "slug": "stalingrad-s-turning-point-german-troops-reach-the-volga",
+  "angle": "Focus on the surreal, psychological paralysis of the German high command as front-line soldiers first glimpsed the Volga, realizing their supply lines were fatally overextended before a shot even bridged the river.",
+  "what_others_do": "Existing videos typically focus on the broad tactical combat, the sheer scale of the city's destruction, or Hitler's personal obsession with capturing the city bearing Stalin's name."
+}
