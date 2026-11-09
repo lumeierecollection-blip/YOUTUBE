@@ -1,8 +1,45 @@
 {
   "key": "dopamine-loop",
-  "palette": { "bg": "#FFFFFF", "surface": "#F6F3FA", "ink": "#16121F", "dim": "#5C566B", "stroke": "#D9D3E6", "warm": "#E4572E", "cool": "#2D5BD0", "warmSoft": "#FDEDE7", "coolSoft": "#E8EEFC" },
-  "type": { "sans": "Space Grotesk", "mono": "JetBrains Mono" },
-  "voice": { "tts": "en-US-EmmaNeural", "direction": "Warm, curious, intimate, with a lively pace. Never diagnoses the viewer.", "style": "Warm, curious and intimate, lively and a little quicker than conversational, with clear articulation." },
-  "rules": ["white background for explanatory scenes", "picture the experience, not only the mind", "never diagnose or advise the viewer", "every claim traces to a fetched source", "expressive Rive characters are NOT used in this sample: no Rive runtime or asset was fetched and vetted"],
-  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 }
+  "palette": {
+    "bg": "#0A0A0B",
+    "ink": "#050505",
+    "rim": "#A5A5AB",
+    "text": "#F2F2F4",
+    "dim": "#9A9AA2",
+    "heart": "#FF2B2B",
+    "heartSoft": "#FF8A7A",
+    "cool": "#9CC0E0"
+  },
+  "type": {
+    "sans": "Space Grotesk",
+    "mono": "JetBrains Mono"
+  },
+  "voice": {
+    "tts": "en-US-EmmaNeural",
+    "direction": "Natural, warm, conversational and engaging. Never slowed for sadness, never sped up to fit. Never diagnoses the viewer.",
+    "style": "Warm, natural and conversational, lively and engaging, with clear articulation and no sleepy or theatrical delivery."
+  },
+  "visual_identity": {
+    "reference": "owner's reference image (black round head, white crescent eyes, scribbled thoughts, glowing heart, soft dark room)",
+    "character": "reusable code-driven rig in src/skills/remotion-render/channels/dopamine-loop/rig.jsx",
+    "rive": "NOT USED in this sample: no .riv asset exists in the repository and a .riv must be authored in Rive's editor. The rig exposes the same inputs (mood, lean, tilt, thought, heart) so a .riv drawn to these proportions can replace it. Owner decision needed.",
+    "graphics": "restrained evidence graphics only where the research needs them"
+  },
+  "music": {
+    "status": "none in this sample: no licensed track has been fetched and vetted, so none is mixed in. Source and licence must be recorded for any track."
+  },
+  "rules": [
+    "show the feeling through the character and situation, not text",
+    "restrained, deliberate animation",
+    "graphs only when they add real value",
+    "never diagnose or advise the viewer",
+    "every claim traces to a fetched source",
+    "natural voice speed, never altered"
+  ],
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "max_seconds": 30
+  }
 }
