@@ -1,0 +1,281 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (41/42 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.0,
+   "end": 0.42,
+   "sentence": 0
+  },
+  {
+   "text": "report",
+   "start": 0.42,
+   "end": 0.76,
+   "sentence": 0
+  },
+  {
+   "text": "was",
+   "start": 0.76,
+   "end": 1.52,
+   "sentence": 0
+  },
+  {
+   "text": "published",
+   "start": 1.52,
+   "end": 2.02,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 2.02,
+   "end": 2.36,
+   "sentence": 0
+  },
+  {
+   "text": "March",
+   "start": 2.36,
+   "end": 2.74,
+   "sentence": 0
+  },
+  {
+   "text": "It",
+   "start": 3.64,
+   "end": 3.82,
+   "sentence": 1
+  },
+  {
+   "text": "listed",
+   "start": 3.82,
+   "end": 4.06,
+   "sentence": 1
+  },
+  {
+   "text": "three",
+   "start": 4.06,
+   "end": 4.72,
+   "sentence": 1
+  },
+  {
+   "text": "findings",
+   "start": 4.72,
+   "end": 5.4,
+   "sentence": 1
+  },
+  {
+   "text": "The",
+   "start": 6.4,
+   "end": 6.45,
+   "sentence": 2
+  },
+  {
+   "text": "first",
+   "start": 6.42,
+   "end": 6.78,
+   "sentence": 2
+  },
+  {
+   "text": "concerned",
+   "start": 6.78,
+   "end": 7.46,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 7.46,
+   "end": 8.0,
+   "sentence": 2
+  },
+  {
+   "text": "cost",
+   "start": 8.0,
+   "end": 8.54,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 8.54,
+   "end": 8.98,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 8.98,
+   "end": 9.1,
+   "sentence": 2
+  },
+  {
+   "text": "programme",
+   "start": 9.1,
+   "end": 9.54,
+   "sentence": 2
+  },
+  {
+   "text": "which",
+   "start": 9.98,
+   "end": 10.12,
+   "sentence": 2
+  },
+  {
+   "text": "rose",
+   "start": 10.12,
+   "end": 10.36,
+   "sentence": 2
+  },
+  {
+   "text": "by",
+   "start": 10.36,
+   "end": 10.68,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 10.68,
+   "end": 10.88,
+   "sentence": 2
+  },
+  {
+   "text": "fifth",
+   "start": 10.88,
+   "end": 11.26,
+   "sentence": 2
+  },
+  {
+   "text": "over",
+   "start": 11.26,
+   "end": 11.86,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 11.86,
+   "end": 12.18,
+   "sentence": 2
+  },
+  {
+   "text": "years",
+   "start": 12.18,
+   "end": 12.56,
+   "sentence": 2
+  },
+  {
+   "text": "The",
+   "start": 13.42,
+   "end": 13.6,
+   "sentence": 3
+  },
+  {
+   "text": "second",
+   "start": 13.6,
+   "end": 13.96,
+   "sentence": 3
+  },
+  {
+   "text": "looked",
+   "start": 13.96,
+   "end": 14.56,
+   "sentence": 3
+  },
+  {
+   "text": "at",
+   "start": 14.56,
+   "end": 14.72,
+   "sentence": 3
+  },
+  {
+   "text": "who",
+   "start": 14.72,
+   "end": 14.96,
+   "sentence": 3
+  },
+  {
+   "text": "paid",
+   "start": 14.96,
+   "end": 15.26,
+   "sentence": 3
+  },
+  {
+   "text": "for",
+   "start": 15.26,
+   "end": 15.66,
+   "sentence": 3
+  },
+  {
+   "text": "it",
+   "start": 15.66,
+   "end": 15.8,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 16.34,
+   "end": 16.56,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 16.56,
+   "end": 16.66,
+   "sentence": 3
+  },
+  {
+   "text": "third",
+   "start": 16.66,
+   "end": 17.0,
+   "sentence": 3
+  },
+  {
+   "text": "asked",
+   "start": 17.0,
+   "end": 17.84,
+   "sentence": 3
+  },
+  {
+   "text": "whether",
+   "start": 17.84,
+   "end": 18.26,
+   "sentence": 3
+  },
+  {
+   "text": "anyone",
+   "start": 18.26,
+   "end": 18.68,
+   "sentence": 3
+  },
+  {
+   "text": "had",
+   "start": 18.68,
+   "end": 19.38,
+   "sentence": 3
+  },
+  {
+   "text": "checked",
+   "start": 19.38,
+   "end": 19.78,
+   "sentence": 3
+  }
+ ],
+ "sentences": [
+  {
+   "text": "The report was published in March.",
+   "start": 0.0,
+   "end": 2.74
+  },
+  {
+   "text": "It listed three findings.",
+   "start": 3.64,
+   "end": 5.4
+  },
+  {
+   "text": "The first concerned the cost of the programme, which rose by a fifth over two years.",
+   "start": 6.4,
+   "end": 12.56
+  },
+  {
+   "text": "The second looked at who paid for it, and the third asked whether anyone had checked.",
+   "start": 13.42,
+   "end": 19.78
+  }
+ ]
+}

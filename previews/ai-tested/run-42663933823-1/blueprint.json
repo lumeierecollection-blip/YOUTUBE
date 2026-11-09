@@ -1,0 +1,51 @@
+{
+  "central_question": "Can AI models accurately count letters?",
+  "thesis": "In a direct test, GPT‑OSS 120B answered every letter‑counting question correctly, while Gemini 3.5 Flash‑Lite got only 11 of 20 right, especially struggling with random strings.",
+  "why_it_matters": "Knowing which models handle even simple counting tasks reliably helps set realistic expectations for their use in more complex reasoning.",
+  "viewer_start": "You assume AI can count letters but aren’t sure how reliable they are.",
+  "viewer_end": "You see that performance varies widely—some models are flawless, others miss many counts, particularly on nonsense strings.",
+  "key_evidence": [
+    "score0",
+    "score1"
+  ],
+  "beats": [
+    {
+      "beat_id": "b1",
+      "role": "opening",
+      "purpose": "Introduce the viewer’s question and the test setup",
+      "claim_ids": [
+        "design"
+      ],
+      "link_from_previous": "none"
+    },
+    {
+      "beat_id": "b2",
+      "role": "payoff",
+      "purpose": "Present the measured results that answer the question",
+      "claim_ids": [
+        "score0",
+        "score1"
+      ],
+      "link_from_previous": "consequence"
+    },
+    {
+      "beat_id": "b3",
+      "role": "ending",
+      "purpose": "Summarize the takeaway and close the story",
+      "claim_ids": [],
+      "link_from_previous": "consequence"
+    }
+  ],
+  "questions_raised": [
+    {
+      "question": "Can AI models accurately count letters?",
+      "raised_in": "b1",
+      "answered_in": "b2"
+    }
+  ],
+  "conclusion": "GPT‑OSS 120B counts letters perfectly, while Gemini 3.5 Flash‑Lite falls short, so not all AI models are reliable at basic counting tasks.",
+  "explain_in_script": [
+    "GPT-OSS 120B",
+    "Gemini 3.5 Flash-Lite"
+  ]
+}
