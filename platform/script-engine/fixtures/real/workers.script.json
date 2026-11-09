@@ -1,0 +1,39 @@
+{
+  "channel_id": "2",
+  "topic_slug": "nearly-20-of-workers-replaced-by-ai-are-being-asked-back",
+  "format": "shorts",
+  "hook": "You might be shocked that 19 percent of replaced workers are getting asked back.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You might be shocked that 19 percent of replaced workers are getting asked back.",
+      "visual_cue": "A digital clock ticking backwards rapidly on a dark background."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Research polled 1000 workers in the United States. Why do they return to work?",
+      "visual_cue": "A professional survey document being filled out on a wooden desk."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But companies also see a 13 percent U.K. return rate.",
+      "visual_cue": "A map of the United Kingdom with a glowing 13 percent icon."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 19 percent of U.S. workers demand higher pay. They also secure 33 percent transparency.",
+      "visual_cue": "A firm handshake between a manager and an employee in an office."
+    },
+    {
+      "id": "close",
+      "voiceover": "Remember the 16 percent combined return rate across both nations.",
+      "visual_cue": "A bar chart comparing the two nations with a 16 percent bar."
+    }
+  ],
+  "sources_used": [
+    "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back",
+    "https://www.cnbc.com/make-it/2026/10/30/ai-rebounding-employees.html",
+    "https://www.shl.com/about/news-and-events/press-releases/workers-replaced-by-ai-would-demand-higher-pay-and-greater-job-security-to-return-shl-research-finds",
+    "https://fortune.com/2026/11/09/ai-rebounding-20-us-workers-replaced-higher-pay-job-security"
+  ]
+}

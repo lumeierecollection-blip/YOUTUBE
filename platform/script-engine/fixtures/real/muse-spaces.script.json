@@ -1,0 +1,45 @@
+{
+  "channel_id": "2",
+  "topic_slug": "meta-s-muse-ai-app-adds-custom-spaces-to-organize-everyday-t",
+  "format": "shorts",
+  "hook": "You build shopping hubs and trivia games inside Muse.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You build shopping hubs and trivia games inside Muse.",
+      "visual_cue": "A mobile interface displaying custom shopping hubs and trivia game modules inside the app.",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "Meta launched Spaces on November 6, 2026. Who reported this feature live from Hyderabad?",
+      "visual_cue": "A digital calendar marking November 6, 2026 transitioning to a news map pin over Hyderabad.",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But chats self-update because topics get breakout conversations.",
+      "visual_cue": "An animated diagram showing topic chats automatically splitting into breakout conversation cards.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "News outlet ETV Bharat reported from Hyderabad on day 7. Gadgets 360 noted this update followed Muse Voice on day 9.",
+      "visual_cue": "An ETV Bharat news graphic datelined November 7 alongside a Gadgets 360 timeline referencing day 9.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Check pinning custom spaces to main tabs.",
+      "visual_cue": "A close-up screen animation pinning custom space icons onto the main app navigation bar.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app",
+    "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces",
+    "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent",
+    "https://www.gadgets360.com/ai/news/meta-launches-spaces-feature-custom-muse-ai-app-experiences-12302566",
+    "https://www.etvbharat.com/en/technology/muse-spaces-muse-ai-agents-muse-voice-meta-enn26110701496"
+  ]
+}

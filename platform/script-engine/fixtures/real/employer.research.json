@@ -1,0 +1,84 @@
+{
+  "topic_slug": "employer-cheat-sheet-workplace-laws-october-2026",
+  "strongest_angle": "New workplace legislation taking effect in October 2026 across over a dozen states and the District of Columbia introduces critical compliance mandates regarding pay transparency, mandatory captive audience meetings, and employment rules.",
+  "key_facts": [
+    {
+      "fact": "A dozen states and the District of Columbia put new workplace laws on the books this October 2026, covering issues such as pay transparency in Connecticut and captive audience meetings in Maryland.",
+      "source_url": "https://usabackground.com/new-workplace-laws-october-2026",
+      "source_name": "USA Background",
+      "confidence": "high"
+    },
+    {
+      "fact": "Effective October 1, 2026, a major expansion of pay transparency under Sub. HB 5003 requires all Connecticut employers to disclose wage or wage ranges in internal and public job postings.",
+      "source_url": "https://usabackground.com/new-workplace-laws-october-2026",
+      "source_name": "USA Background",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fisher Phillips LLP published an employer cheat sheet on September 18, 2026, outlining new legislation taking effect in October regarding pay transparency, captive audience meetings, and immigration-related notices.",
+      "source_url": "https://www.fisherphillips.com/en/insights/insights/employer-cheat-sheet-for-workplace-laws-taking-effect-in-october-2026",
+      "source_name": "Fisher Phillips LLP",
+      "confidence": "high"
+    },
+    {
+      "fact": "The ADP SPARK Blog reported on September 24, 2026, that Connecticut employers face a new pay transparency law taking effect on October 1, 2026.",
+      "source_url": "https://www.adp.com/spark/articles/2026/09/october-2026-employer-compliance-calendar-key-hr-payroll-benefits-and-workforce-management-deadlines.aspx",
+      "source_name": "ADP SPARK Blog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "States passing new workplace laws for October",
+      "value": 12,
+      "unit": "states",
+      "source_url": "https://usabackground.com/new-workplace-laws-october-2026"
+    },
+    {
+      "label": "Effective month",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://usabackground.com/new-workplace-laws-october-2026"
+    },
+    {
+      "label": "Effective day",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://usabackground.com/new-workplace-laws-october-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Connecticut",
+      "kind": "place"
+    },
+    {
+      "name": "Maryland",
+      "kind": "place"
+    },
+    {
+      "name": "Washington state",
+      "kind": "place"
+    },
+    {
+      "name": "District of Columbia",
+      "kind": "place"
+    },
+    {
+      "name": "Fisher Phillips LLP",
+      "kind": "organization"
+    },
+    {
+      "name": "ADP",
+      "kind": "organization"
+    },
+    {
+      "name": "USA Background",
+      "kind": "organization"
+    },
+    {
+      "name": "Sub. HB 5003",
+      "kind": "object"
+    }
+  ]
+}
