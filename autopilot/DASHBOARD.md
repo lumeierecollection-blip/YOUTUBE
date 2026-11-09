@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:18 SAST
+Updated 2026-11-09 02:21 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,9 +19,9 @@ Updated 2026-11-09 02:18 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | Model Context Protocol connects AI apps to your data (undefined/100) |
-| QA | failed |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | Meta Ray-Ban smart glasses hacked to run unauthorized apps (65.9/100) |
+| QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -64,3 +64,4 @@ Updated 2026-11-09 02:18 SAST
 - Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {"blocking":[{"check":"static-run","why":"longest near-static run is 5.0s (limit 4.0s)"}],"frame":[],"acceptance":[{"check":"static-run","why":"longest near-st
 - Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":3,"check":"vignette","why":"corners kept 1.567 of their light, centre 1.38"}],"technical":{"duration_le_30":true,"resolutio
 - Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":2,"check":"vignette","why":"corners kept 1.687 of their light, centre 1.187"},{"scene":3,"check":"photo-stability","why":"p
+- AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: "Close-up of DAT" is not named in the research artifact â€” use the research's own name, o
