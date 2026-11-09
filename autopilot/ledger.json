@@ -428,12 +428,12 @@
       "attempts": 1,
       "run_id": "42538745489",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:12:32.100Z",
-      "stage": "script",
-      "topic": "Garry Kasparov Becomes World Chess Champion at 22",
-      "score": 66,
-      "pillar": "Forgotten historical figures",
-      "hook": "At just 22 years old, Garry Kasparov shattered chess history by dethroning Anatoly Karpov to become the youngest world champion ever."
+      "updated_at": "2026-11-09T00:13:06.879Z",
+      "stage": "research",
+      "topic": "The Discovery of the Cullinan Diamond",
+      "score": 63.3,
+      "pillar": "Unbelievable true historical events",
+      "hook": "The story of the Cullinan Diamond: the largest gem-quality rough diamond ever found, weighing a staggering 3,106 carats."
     }
   },
   "uploads": [],
@@ -752,6 +752,15 @@
       "at_ms": 1794183145545,
       "score": 66,
       "pillar": "Forgotten historical figures"
+    },
+    {
+      "channel": "1",
+      "topic": "The Discovery of the Cullinan Diamond",
+      "slug": "the-discovery-of-the-cullinan-diamond",
+      "slot": "kick-7d271be20d-ch1",
+      "at_ms": 1794183186879,
+      "score": 63.3,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
