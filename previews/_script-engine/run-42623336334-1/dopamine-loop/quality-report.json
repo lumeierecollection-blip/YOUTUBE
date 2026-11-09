@@ -1,0 +1,437 @@
+{
+  "channel": "dopamine-loop",
+  "format": "short",
+  "topic": "Nostalgia",
+  "angle": "the feeling of being pulled into the past by a smell or a song, then what research says about it",
+  "status": "rejected",
+  "wpm": {
+    "wpm": 187,
+    "source": "measured",
+    "voice": "en-US-EmmaNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "writer_provider": "gemini",
+      "words": 62,
+      "deterministic": {
+        "critical": 0,
+        "major": 4,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s1",
+              "s2"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-03",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"such as\" refers to something never mentioned before this point.",
+            "fix": "Say what \"as\" is, or mention it earlier."
+          },
+          {
+            "rule": "CON-03",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"this emotion\" refers to something never mentioned before this point.",
+            "fix": "Say what \"emotion\" is, or mention it earlier."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s2",
+              "s3"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 4,
+        "minor": 0
+      }
+    },
+    {
+      "round": 2,
+      "writer_provider": "gemini",
+      "words": 63,
+      "deterministic": {
+        "critical": 0,
+        "major": 2,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s2",
+              "s3"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The ending brings in something the listener has not heard (familiar, because, emotion, provoker).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 2,
+        "minor": 0
+      }
+    },
+    {
+      "round": 3,
+      "writer_provider": "gemini",
+      "words": 53,
+      "deterministic": {
+        "critical": 0,
+        "major": 3,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s2",
+              "s3"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s3",
+              "s4"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "DUR-01",
+            "sentence_ids": [],
+            "severity": "major",
+            "category": "unrealistic_duration",
+            "problem": "the script is estimated at 17s; the minimum is 18s",
+            "fix": "Add a beat that serves the question."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 3,
+        "minor": 0
+      }
+    }
+  ],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 10,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Nostalgia",
+        "published": "2026-10-31"
+      }
+    ]
+  },
+  "blueprint": {
+    "attempts": 2,
+    "removed_beats": [],
+    "checks": {
+      "max_beats": 5,
+      "deterministic": "pass",
+      "model": {
+        "answers_question": true,
+        "fits_length": true,
+        "beats": [
+          {
+            "beat_id": "b1",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "It establishes the emotional baseline required to address the central question."
+          },
+          {
+            "beat_id": "b2",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "It identifies music as the specific catalyst for the emotion introduced in b1."
+          },
+          {
+            "beat_id": "b3",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "It provides the neurological mechanism that explains why the trigger in b2 works."
+          },
+          {
+            "beat_id": "b4",
+            "serves": true,
+            "link_true": false,
+            "correct_link": "consequence",
+            "reason": "The ending is a consequence of the neurological explanation provided in the previous beat."
+          }
+        ],
+        "relinked_by_checker": [
+          {
+            "beat_id": "b4",
+            "from": "evidence",
+            "to": "consequence",
+            "reason": "The ending is a consequence of the neurological explanation provided in the previous beat."
+          }
+        ]
+      }
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "deterministic",
+        "issues": [
+          {
+            "severity": "critical",
+            "code": "claim",
+            "message": "a beat that is not the ending must carry at least one claim",
+            "beat_id": "b1"
+          }
+        ]
+      }
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 3007,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1970,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1542,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 64916,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "the answer was not valid JSON"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 2,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 26089,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 6500,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1943,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1425,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "ok": true,
+      "chars": 26726,
+      "sha256": "d1032e6fe76954f1",
+      "title": "Nostalgia",
+      "published": "2026-10-31",
+      "fetched_at": "2026-11-09T13:17:18.361Z"
+    }
+  ],
+  "open_findings": [
+    {
+      "rule": "CON-02",
+      "severity": "major",
+      "category": "abrupt_topic_change",
+      "sentence_ids": [
+        "s2",
+        "s3"
+      ],
+      "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+      "fix": "Add the missing step that connects them, or reorder, or remove one."
+    },
+    {
+      "rule": "CON-02",
+      "severity": "major",
+      "category": "abrupt_topic_change",
+      "sentence_ids": [
+        "s3",
+        "s4"
+      ],
+      "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+      "fix": "Add the missing step that connects them, or reorder, or remove one."
+    },
+    {
+      "rule": "DUR-01",
+      "sentence_ids": [],
+      "severity": "major",
+      "category": "unrealistic_duration",
+      "problem": "the script is estimated at 17s; the minimum is 18s",
+      "fix": "Add a beat that serves the question."
+    }
+  ]
+}

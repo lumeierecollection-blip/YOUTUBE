@@ -22,3 +22,12 @@ Topic: Why Mars looks red (short)
 Writer providers: gemini; critic providers: none; model calls: 4; rounds: 0; narrowings: 0
 Words per minute: 176.8 (measured, voice en-US-GuyNeural)
 Why not approved: judge gave unusable output: the answer was not valid JSON
+
+## dopamine-loop - REJECTED
+Topic: Nostalgia (short)
+Writer providers: gemini; critic providers: none; model calls: 8; rounds: 3; narrowings: 0
+Words per minute: 187 (measured, voice en-US-EmmaNeural)
+Why not approved: CON-02: These two sentences share no subject, name or fact: the narration jumps. | CON-02: These two sentences share no subject, name or fact: the narration jumps. | DUR-01: the script is estimated at 17s; the minimum is 18s
+
+Last draft (NOT APPROVED):
+> Why does an old song pull you into a bittersweet longing for the past? Music acts as a strong trigger for that bittersweet longing. Sound passes through sensory processing, how the brain interprets sound, straight into the amygdala, the brain's emotional processing center. Why does an old song pull you into the past?

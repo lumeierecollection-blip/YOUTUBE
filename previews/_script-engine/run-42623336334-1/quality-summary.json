@@ -121,5 +121,40 @@
     "calls": 4,
     "caveats": [],
     "reason": "judge gave unusable output: the answer was not valid JSON"
+  },
+  {
+    "channel": "dopamine-loop",
+    "topic": "Nostalgia",
+    "format": "short",
+    "status": "rejected",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Nostalgia",
+        "ok": true,
+        "chars": 26726,
+        "sha256": "d1032e6fe76954f1",
+        "title": "Nostalgia",
+        "published": "2026-10-31",
+        "fetched_at": "2026-11-09T13:17:18.361Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 187,
+      "source": "measured",
+      "voice": "en-US-EmmaNeural"
+    },
+    "rounds": 3,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 8,
+    "caveats": [],
+    "notApproved": true,
+    "reason": "CON-02: These two sentences share no subject, name or fact: the narration jumps. | CON-02: These two sentences share no subject, name or fact: the narration jumps. | DUR-01: the script is estimated at 17s; the minimum is 18s"
   }
 ]
