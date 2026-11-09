@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:19:11.264Z",
+  "rebuilt_at": "2026-11-09T13:19:20.296Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "blocked",
-      "status": "failed",
-      "at": "2026-11-09T13:19:11.034Z",
+      "stage": "research_complete",
+      "status": "ok",
+      "at": "2026-11-09T13:19:20.055Z",
       "branch": "preview/_script-engine",
       "commit": "ddf327a8",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "rejected: CON-02: These two sentences share no subject, name or fact: the narration jumps. | CON-02: These two sentences share no subject, name or fact: the narration jumps. | DUR-01: the script is estimated at 17s; the minimum is 18s",
-      "lastOk": "2026-11-09T13:04:34.302Z",
+      "blocker": "",
+      "lastOk": "2026-11-09T13:19:20.055Z",
       "run": "run-42623336334-1"
     },
     {

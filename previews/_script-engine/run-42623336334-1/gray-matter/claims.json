@@ -1,0 +1,144 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "ok": true,
+      "chars": 61450,
+      "sha256": "0bf0231e93aa2dc0",
+      "title": "Sleep and memory",
+      "published": "2026-10-04",
+      "fetched_at": "2026-11-09T13:19:15.377Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Memory is a product of brain plasticity, which involves structural changes within synapses that create associations between stimuli.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Memory, the cognitive process of storing and retrieving past experiences, learning and recognition, is a product of brain plasticity, the structural changes within synapses that create associations between stimuli.",
+      "confidence": "high",
+      "context": "Brain plasticity refers to structural changes within synapses that create associations between stimuli during memory processes.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Memory processes have been shown to be stabilized and enhanced, and memories better consolidated by nocturnal sleep and daytime naps.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Memory processes have been shown to be stabilized and enhanced (sped up and/or integrated) and memories better consolidated by nocturnal sleep and daytime naps.",
+      "confidence": "high",
+      "context": "Nocturnal sleep and daytime naps help stabilize, enhance, and consolidate memory processes.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Certain sleep stages have been demonstrated as improving an individual's memory, though this is task-specific.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Certain sleep stages have been demonstrated as improving an individual's memory, though this is task-specific.",
+      "confidence": "high",
+      "context": "The improvement of an individual's memory by certain sleep stages depends on the specific task.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Declarative memories are believed to be enhanced by slow-wave sleep.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Generally, declarative memories are believed to be enhanced by slow-wave sleep, while non-declarative memories are enhanced by rapid eye movement (REM) sleep, although there are some inconsistencies among experimental results.",
+      "confidence": "medium",
+      "context": "Slow-wave sleep is believed to enhance declarative memories, while REM sleep enhances non-declarative memories.",
+      "contradictory_evidence": [],
+      "editorial_status": "hypothesis"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "There is a proposed dual-step memory hypothesis suggesting that optimal learning occurs when the memory trace is initially processed in SWS and then REM sleep.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "There is also a proposed dual-step memory hypothesis suggesting that optimal learning occurs when the memory trace is initially processed in SWS and then REM sleep.",
+      "confidence": "medium",
+      "context": "The dual-step memory hypothesis proposes that optimal learning happens when a memory trace is processed first in slow-wave sleep and then in REM sleep.",
+      "contradictory_evidence": [],
+      "editorial_status": "hypothesis"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Slow wave sleep has often been associated with successful performance in declarative memory recall tasks.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Slow wave sleep (SWS) has often been associated with successful performance in declarative memory recall tasks.",
+      "confidence": "medium",
+      "context": "Slow wave sleep is linked with successful performance in declarative memory recall tasks.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "The amount of hippocampal activation during slow-wave sleep positively correlated to the improvement on the virtual tour task the following day.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "The finding noted that the amount of hippocampal activation during slow-wave sleep positively correlated to the improvement on the virtual tour task the following day, which indicates that hippocampal activity during sleep correlates with the improvement in memory performance.",
+      "confidence": "high",
+      "context": "A study by Peigneux et al. examined hippocampal activation during slow-wave sleep and its correlation with performance improvement on a virtual tour task.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Learning-dependent modulation in hippocampal activity while sleeping shows processing of the previously learned episodic and spatial memory traces.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "These findings prove that learning-dependent modulation in hippocampal activity while sleeping shows processing of the previously learned episodic and spatial memory traces.",
+      "confidence": "high",
+      "context": "Modulation in hippocampal activity during sleep demonstrates the processing of previously learned episodic and spatial memory traces.",
+      "contradictory_evidence": [],
+      "editorial_status": "causation"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "This modulation of the hippocampus leads to plastic changes in the brain and ultimately an improvement in performance.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "This modulation of the hippocampus leads to plastic changes in the brain and ultimately an improvement in performance.",
+      "confidence": "high",
+      "context": "Modulation of the hippocampus during sleep results in brain plastic changes and improved performance.",
+      "contradictory_evidence": [],
+      "editorial_status": "causation"
+    },
+    {
+      "claim_id": "c10",
+      "claim": "High levels of ACh would promote information attained during wakefulness to be stored in the hippocampus.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "High levels of ACh would promote information attained during wakefulness to be stored in the hippocampus.",
+      "confidence": "medium",
+      "context": "Acetylcholine (ACh) levels affect how information attained during wakefulness is stored in the hippocampus.",
+      "contradictory_evidence": [],
+      "editorial_status": "hypothesis"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04"
+    }
+  ]
+}
