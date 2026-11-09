@@ -1054,7 +1054,12 @@
       "attempts": 1,
       "run_id": "42594197282",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:32:33.070Z"
+      "updated_at": "2026-11-09T09:35:35.124Z",
+      "stage": "research",
+      "topic": "Pelé's Milestone 1,000th Career Goal",
+      "score": 66.6,
+      "pillar": "Unbelievable true historical events",
+      "hook": "When soccer legend Pelé stepped up to take a penalty kick at the Maracanã Stadium in 1969, 100,000 screaming fans fell completely silent."
     }
   },
   "uploads": [
@@ -1937,6 +1942,15 @@
       "at_ms": 1794216533392,
       "score": 64.3,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "1",
+      "topic": "Pelé's Milestone 1,000th Career Goal",
+      "slug": "pele-s-milestone-1-000th-career-goal",
+      "slot": "kick-8f65f6a536-ch1",
+      "at_ms": 1794216935124,
+      "score": 66.6,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
