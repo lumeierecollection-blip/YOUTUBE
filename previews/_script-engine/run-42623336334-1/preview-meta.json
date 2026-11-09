@@ -2,11 +2,10 @@
   "channel": "_script-engine",
   "production_run": "run-42623336334-1",
   "agent": "agent-script-engine",
-  "stage": "preview_ready",
+  "stage": "finished",
   "status": "ok",
-  "timestamp": "2026-11-09T13:27:04.825Z",
+  "timestamp": "2026-11-09T13:27:06.261Z",
   "branch": "preview/_script-engine",
   "commit": "ddf327a8eacf3b2dd103c0065d9a85ca8cc14cca",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts",
-  "issues": "0 of 8 channels approved"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts"
 }
