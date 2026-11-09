@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T18:39:30.274Z",
+  "rebuilt_at": "2026-11-09T18:39:43.057Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -80,21 +80,21 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-09T18:21:48.465Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T18:39:41.265Z",
       "branch": "preview/hidden-past",
-      "commit": "7e52df8c",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42672760670#artifacts)",
+      "commit": "39ba13e6",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42675599926#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
-      "script": "[script-draft.md](hidden-past/run-42672760670-1/script-draft.md)",
+      "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "script engine: rejected: [\"CON-05: \\\"Bosnian\\\" appears with no word saying what or who it is.\",\"CON-05: \\\"Archduke\\\" appears with no word saying what or who it is.\",\"HP-1: A later interpretation is told as established fact.\",\"HP-1: A later interpretation is told as established fact.\",\"DUR-01: the script is estimated at 29.8s; the limit is 29s\"] ",
+      "blocker": "",
       "lastOk": "2026-11-09T13:26:52.352Z",
-      "run": "run-42672760670-1"
+      "run": "run-42675599926-1"
     },
     {
       "key": "red-space-facts",
