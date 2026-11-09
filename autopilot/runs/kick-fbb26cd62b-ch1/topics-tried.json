@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "The Armistice in the Compiègne Forest Railway Carriage",
+      "score": 66.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Rethondes On\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/the-armistice-in-the-compie-gne-forest-railway-carriage-shorts:\n  - SCR-16: 59 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 4 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, "
+    },
+    {
+      "topic": "Ned Kelly's Last Stand and Execution",
+      "score": 66.3,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/ned-kelly-s-last-stand-and-execution-shorts:\n  - SCR-16: 58 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 3 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 4"
+    }
+  ],
+  "selected": null
+}
