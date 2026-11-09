@@ -1,0 +1,137 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "ok": true,
+      "chars": 61303,
+      "sha256": "b31f2338bb1357d8",
+      "title": "Suez Crisis",
+      "published": "2026-11-04",
+      "fetched_at": "2026-11-09T13:25:55.927Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The primary objective of the Israeli invasion was to re-open the Straits of Tiran and the Gulf of Aqaba.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "Israel invaded on 29 October, with the primary objective of re-opening the Straits of Tiran and the Gulf of Aqaba as the recent tightening of the eight-year-long Egyptian blockade prevented Israeli passage.",
+      "confidence": "high",
+      "context": "The Straits of Tiran and the Gulf of Aqaba were blocked by an Egyptian blockade before the invasion.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "The United Kingdom and France joined the Israelis on 31 October.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "After issuing a joint ultimatum for a ceasefire, the United Kingdom and France joined the Israelis on 31 October in an attempt to depose Egyptian President Gamal Abdel Nasser and regain control of the Suez Canal (which Nasser had nationalised earlier that year).",
+      "confidence": "high",
+      "context": "The United Kingdom and France entered the conflict following a joint ultimatum for a ceasefire.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Gamal Abdel Nasser nationalised the Suez Canal earlier that year.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "After issuing a joint ultimatum for a ceasefire, the United Kingdom and France joined the Israelis on 31 October in an attempt to depose Egyptian President Gamal Abdel Nasser and regain control of the Suez Canal (which Nasser had nationalised earlier that year).",
+      "confidence": "high",
+      "context": "Gamal Abdel Nasser was the Egyptian President whose nationalisation of the Suez Canal preceded the military intervention.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "American historian Donald Neff wrote that Eden's views of Nasser reflected amphetamine addiction.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "American historian Donald Neff wrote that Eden's hysterical, overwrought views of Nasser reflected the amphetamines to which he became addicted after a botched 1953 operation in 1953 and sustained sleep deprivation; Eden slept an average of about five hours per night in early 1956.",
+      "confidence": "high",
+      "context": "Donald Neff is an American historian analyzing political figures involved in the Suez Crisis.",
+      "contradictory_evidence": [],
+      "editorial_status": "historical_interpretation"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Eisenhower withdrew American financial aid for the Aswan Dam project on 19 July.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "This move, and his impression that the project was beyond Egypt's economic capabilities, caused Eisenhower to withdraw American financial aid for the Aswan Dam project on 19 July.",
+      "confidence": "high",
+      "context": "Eisenhower acted after Nasser recognized the People's Republic of China and amidst concerns over Egypt's economic capabilities.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Australian prime minister Robert Menzies and New Zealand Prime Minister Sidney Holland supported Britain in the first weeks after the seizure.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "Australian prime minister Robert Menzies and New Zealand Prime Minister Sidney Holland supported Britain in the first weeks after the seizure.",
+      "confidence": "high",
+      "context": "Robert Menzies and Sidney Holland were the prime ministers of Australia and New Zealand respectively during the crisis.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Khrushchev saw the Suez crisis as a triumph for Soviet nuclear brinkmanship.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "Khrushchev saw the Suez crisis as a triumph for Soviet nuclear brinkmanship, saying that his threat to use nuclear weapons saved Egypt.",
+      "confidence": "high",
+      "context": "Khrushchev was a Soviet leader interpreting the outcome of the Suez Crisis.",
+      "contradictory_evidence": [],
+      "editorial_status": "historical_interpretation"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "British historian D. R. Thorpe wrote that the outcome gave Nasser an inflated view of his own power.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "British historian D. R. Thorpe wrote that the outcome gave Nasser \"an inflated view of his own power\", thinking that he had overcome the combined forces of the United Kingdom, France and Israel and failing to attribute their withdrawal to pressure from the superpowers.",
+      "confidence": "high",
+      "context": "D. R. Thorpe is a British historian analyzing the psychological and political aftermath of the crisis for Egypt.",
+      "contradictory_evidence": [],
+      "editorial_status": "historical_interpretation"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "From General Charles de Gaulle's point of view, the Suez events demonstrated that France could not rely on its allies.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04",
+      "excerpt": "From General Charles de Gaulle's point of view, the Suez events demonstrated that France could not rely on its allies; the British initiated a ceasefire without consulting the French, and the Americans opposed Paris politically.",
+      "confidence": "high",
+      "context": "General Charles de Gaulle was a French political figure evaluating the actions of Britain and the United States during the crisis.",
+      "contradictory_evidence": [],
+      "editorial_status": "historical_interpretation"
+    }
+  ],
+  "dropped_by_code": [
+    {
+      "claim": "Israel invaded Egypt on 29 October 1956.",
+      "reason": "claim has number(s) the excerpt does not hold: 1956"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "published": "2026-11-04"
+    }
+  ]
+}
