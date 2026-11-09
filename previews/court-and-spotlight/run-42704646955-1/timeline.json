@@ -1,0 +1,449 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "cover",
+      "treatment": "case-file-cover-with-cutout",
+      "objective": "Open with the real subject as a large torn-paper cut-out and the outcome in one line",
+      "background": "dark desk",
+      "from": 0,
+      "to": 155,
+      "start_s": 0,
+      "end_s": 5.166666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "doj",
+      "treatment": "document-extract-highlight",
+      "objective": "Show the Justice Department release text with the sentence and the jury verdict highlighted as they are read",
+      "background": "dark desk, paper card",
+      "from": 155,
+      "to": 278,
+      "start_s": 5.166666666666667,
+      "end_s": 9.266666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "timeline",
+      "treatment": "verdict-timeline-stamps",
+      "objective": "Lay the verdict out on a timeline: convicted on failure to file, acquitted on five other charges, then sentencing",
+      "background": "dark desk",
+      "from": 278,
+      "to": 412,
+      "start_s": 9.266666666666667,
+      "end_s": 13.733333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "alleged",
+      "treatment": "allegation-card-amber",
+      "objective": "Show the government's figure on its own amber card, stamped ALLEGED and marked as not a finding",
+      "background": "dark desk, amber card",
+      "from": 412,
+      "to": 535,
+      "start_s": 13.733333333333333,
+      "end_s": 17.833333333333332
+    },
+    {
+      "id": "s5",
+      "kind": "sought",
+      "treatment": "sought-versus-given-bars",
+      "objective": "Show what prosecutors sought against the three years the judge gave, beside the subject",
+      "background": "dark desk",
+      "from": 535,
+      "to": 653,
+      "start_s": 17.833333333333332,
+      "end_s": 21.766666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "booking",
+      "treatment": "booking-photo-record",
+      "objective": "Show the genuine, public-domain US Marshals booking photograph with its date circled and its source stated",
+      "background": "dark desk, taped card",
+      "from": 653,
+      "to": 768,
+      "start_s": 21.766666666666666,
+      "end_s": 25.6
+    }
+  ],
+  "captions": [
+    {
+      "text": "Wesley Snipes got three years",
+      "from": 0,
+      "to": 67,
+      "words": [
+        {
+          "text": "Wesley",
+          "from": 0
+        },
+        {
+          "text": "Snipes",
+          "from": 15
+        },
+        {
+          "text": "got",
+          "from": 33
+        },
+        {
+          "text": "three",
+          "from": 43
+        },
+        {
+          "text": "years",
+          "from": 55
+        }
+      ]
+    },
+    {
+      "text": "in prison for not filing",
+      "from": 67,
+      "to": 111,
+      "words": [
+        {
+          "text": "in",
+          "from": 67
+        },
+        {
+          "text": "prison",
+          "from": 73
+        },
+        {
+          "text": "for",
+          "from": 83
+        },
+        {
+          "text": "not",
+          "from": 93
+        },
+        {
+          "text": "filing",
+          "from": 100
+        }
+      ]
+    },
+    {
+      "text": "tax returns",
+      "from": 111,
+      "to": 137,
+      "words": [
+        {
+          "text": "tax",
+          "from": 111
+        },
+        {
+          "text": "returns",
+          "from": 119
+        }
+      ]
+    },
+    {
+      "text": "A jury found him guilty",
+      "from": 155,
+      "to": 182,
+      "words": [
+        {
+          "text": "A",
+          "from": 155
+        },
+        {
+          "text": "jury",
+          "from": 155
+        },
+        {
+          "text": "found",
+          "from": 160
+        },
+        {
+          "text": "him",
+          "from": 170
+        },
+        {
+          "text": "guilty",
+          "from": 175
+        }
+      ]
+    },
+    {
+      "text": "in February on failure-to-file",
+      "from": 182,
+      "to": 233,
+      "words": [
+        {
+          "text": "in",
+          "from": 182
+        },
+        {
+          "text": "February",
+          "from": 191
+        },
+        {
+          "text": "on",
+          "from": 203
+        },
+        {
+          "text": "failure-to-file",
+          "from": 217
+        }
+      ]
+    },
+    {
+      "text": "charges",
+      "from": 243,
+      "to": 259,
+      "words": [
+        {
+          "text": "charges",
+          "from": 243
+        }
+      ]
+    },
+    {
+      "text": "It acquitted him of five",
+      "from": 278,
+      "to": 308,
+      "words": [
+        {
+          "text": "It",
+          "from": 278
+        },
+        {
+          "text": "acquitted",
+          "from": 279
+        },
+        {
+          "text": "him",
+          "from": 287
+        },
+        {
+          "text": "of",
+          "from": 295
+        },
+        {
+          "text": "five",
+          "from": 299
+        }
+      ]
+    },
+    {
+      "text": "other charges including felony tax",
+      "from": 308,
+      "to": 371,
+      "words": [
+        {
+          "text": "other",
+          "from": 308
+        },
+        {
+          "text": "charges",
+          "from": 317
+        },
+        {
+          "text": "including",
+          "from": 340
+        },
+        {
+          "text": "felony",
+          "from": 346
+        },
+        {
+          "text": "tax",
+          "from": 356
+        }
+      ]
+    },
+    {
+      "text": "fraud",
+      "from": 371,
+      "to": 383,
+      "words": [
+        {
+          "text": "fraud",
+          "from": 371
+        }
+      ]
+    },
+    {
+      "text": "Prosecutors alleged he earned at",
+      "from": 412,
+      "to": 444,
+      "words": [
+        {
+          "text": "Prosecutors",
+          "from": 412
+        },
+        {
+          "text": "alleged",
+          "from": 412
+        },
+        {
+          "text": "he",
+          "from": 422
+        },
+        {
+          "text": "earned",
+          "from": 432
+        },
+        {
+          "text": "at",
+          "from": 438
+        }
+      ]
+    },
+    {
+      "text": "least thirteen point eight million",
+      "from": 444,
+      "to": 501,
+      "words": [
+        {
+          "text": "least",
+          "from": 444
+        },
+        {
+          "text": "thirteen",
+          "from": 449
+        },
+        {
+          "text": "point",
+          "from": 459
+        },
+        {
+          "text": "eight",
+          "from": 469
+        },
+        {
+          "text": "million",
+          "from": 489
+        }
+      ]
+    },
+    {
+      "text": "dollars",
+      "from": 501,
+      "to": 521,
+      "words": [
+        {
+          "text": "dollars",
+          "from": 501
+        }
+      ]
+    },
+    {
+      "text": "Prosecutors sought the maximum",
+      "from": 535,
+      "to": 580,
+      "words": [
+        {
+          "text": "Prosecutors",
+          "from": 535
+        },
+        {
+          "text": "sought",
+          "from": 542
+        },
+        {
+          "text": "the",
+          "from": 560
+        },
+        {
+          "text": "maximum",
+          "from": 565
+        }
+      ]
+    },
+    {
+      "text": "and the judge gave three",
+      "from": 590,
+      "to": 619,
+      "words": [
+        {
+          "text": "and",
+          "from": 590
+        },
+        {
+          "text": "the",
+          "from": 592
+        },
+        {
+          "text": "judge",
+          "from": 596
+        },
+        {
+          "text": "gave",
+          "from": 601
+        },
+        {
+          "text": "three",
+          "from": 609
+        }
+      ]
+    },
+    {
+      "text": "years",
+      "from": 619,
+      "to": 633,
+      "words": [
+        {
+          "text": "years",
+          "from": 619
+        }
+      ]
+    },
+    {
+      "text": "A US Marshals booking photo",
+      "from": 653,
+      "to": 697,
+      "words": [
+        {
+          "text": "A",
+          "from": 653
+        },
+        {
+          "text": "US",
+          "from": 656
+        },
+        {
+          "text": "Marshals",
+          "from": 664
+        },
+        {
+          "text": "booking",
+          "from": 679
+        },
+        {
+          "text": "photo",
+          "from": 686
+        }
+      ]
+    },
+    {
+      "text": "is dated that same day",
+      "from": 697,
+      "to": 741,
+      "words": [
+        {
+          "text": "is",
+          "from": 697
+        },
+        {
+          "text": "dated",
+          "from": 706
+        },
+        {
+          "text": "that",
+          "from": 712
+        },
+        {
+          "text": "same",
+          "from": 719
+        },
+        {
+          "text": "day",
+          "from": 729
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 768,
+  "duration_s": 25.6
+}
