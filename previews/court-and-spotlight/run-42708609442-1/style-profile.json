@@ -1,0 +1,52 @@
+{
+  "id": "entertainment_magazine",
+  "name": "Celebrity Profile / Glossy Entertainment Magazine",
+  "composition": "CourtMagazineShort",
+  "visual_language": "Premium entertainment publication: cream pages, large serif type, full-bleed and cut-out portraits at different scales, gold and red accents, pull quotes, achievement counters, career timeline.",
+  "image_strategy": "Many different real photographs of the subject across eras, red-carpet and performance images with a recorded licence, clean cut-outs where they improve the layout. Never one portrait repeated through the video.",
+  "composition_rules": [
+    "the subject is the star in every scene",
+    "vary scale: full-bleed, circle crop, cut-out over type",
+    "at least one achievement or milestone graphic",
+    "chapter-opener scenes with large type",
+    "photo dates are shown when they show a career progression"
+  ],
+  "typography": {
+    "display": "Playfair Display 700 italic",
+    "body": "DM Sans",
+    "label": "DM Sans 800 tracked"
+  },
+  "palette": {
+    "page": "#F7F1E6",
+    "ink": "#15110D",
+    "gold": "#B8892B",
+    "red": "#B3202A",
+    "dim": "#6E6558"
+  },
+  "transitions": "smooth image fades and slides, a ribbon sweep for the record",
+  "motion": "slow push on full-bleed photos, counters that climb, stars that light in turn",
+  "evidence_requirements": [
+    "every photograph has a recorded source, author and licence, and is credited on screen",
+    "facts come from a fetched report",
+    "photo dates are the Commons record dates"
+  ],
+  "music": {
+    "mood": "glam",
+    "direction": "premium, celebratory, energetic without hiding the voice",
+    "licence": "original, synthesised by platform/production/music.py"
+  },
+  "story_structure": [
+    "the achievement in one line",
+    "the build-up",
+    "the moment",
+    "the number",
+    "why it matters"
+  ],
+  "qa_checks": [
+    "the subject is recognisable and well photographed",
+    "photograph quality and variety",
+    "achievement and timeline accuracy",
+    "editorial polish",
+    "narration matches the image"
+  ]
+}
