@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T20:19:06.236Z",
+  "rebuilt_at": "2026-11-09T20:22:05.025Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -99,21 +99,21 @@
     {
       "key": "red-space-facts",
       "agent": "agent-red-space-facts",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-09T20:19:05.800Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T20:22:00.824Z",
       "branch": "preview/red-space-facts-2",
-      "commit": "0617362e",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42691019921#artifacts)",
-      "sheet": "[contact-sheet.jpg](red-space-facts/run-42691019921-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](red-space-facts/run-42691019921-1/scene-s1.jpg) [scene-s2.jpg](red-space-facts/run-42691019921-1/scene-s2.jpg) [scene-s3.jpg](red-space-facts/run-42691019921-1/scene-s3.jpg) [scene-s4.jpg](red-space-facts/run-42691019921-1/scene-s4.jpg)",
-      "voice": "[voice-preview.mp3](red-space-facts/run-42691019921-1/voice-preview.mp3)",
-      "script": "[script-draft.md](red-space-facts/run-42691019921-1/script-draft.md)",
-      "plan": "[scene-plan.json](red-space-facts/run-42691019921-1/scene-plan.json)",
-      "qa": "[qa-report.json](red-space-facts/run-42691019921-1/qa-report.json)",
-      "blocker": "QA failed: s6: looks static (mean abs diff 0.15 over 0.4 s)",
+      "commit": "6a143010",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42691996544#artifacts)",
+      "sheet": "",
+      "scenes": "",
+      "voice": "",
+      "script": "",
+      "plan": "",
+      "qa": "",
+      "blocker": "",
       "lastOk": "2026-11-09T20:11:40.095Z",
-      "run": "run-42691019921-1"
+      "run": "run-42691996544-1"
     }
   ]
 }
