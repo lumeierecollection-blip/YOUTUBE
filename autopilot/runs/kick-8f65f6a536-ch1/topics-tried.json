@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The Whale That Sunk the Whaleship Essex",
+      "score": 68.2,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Pelé's Milestone 1,000th Career Goal",
+      "score": 66.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/pele-s-milestone-1-000th-career-goal-shorts:\n  - SCR-16: 61 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 6 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    {
+      "topic": "The Discovery of the Hoxne Hoard",
+      "score": 60.2,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    }
+  ],
+  "selected": null
+}

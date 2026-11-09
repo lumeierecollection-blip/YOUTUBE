@@ -1050,16 +1050,17 @@
     },
     "kick-8f65f6a536-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42594197282",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:38:26.584Z",
+      "updated_at": "2026-11-09T09:39:33.364Z",
       "stage": "script",
       "topic": "The Discovery of the Hoxne Hoard",
       "score": 60.2,
       "pillar": "Archaeological discoveries",
-      "hook": "A metal detectorist searching for a lost hammer in a Suffolk field accidentally uncovered Britain's largest ever hoard of Roman gold and silver."
+      "hook": "A metal detectorist searching for a lost hammer in a Suffolk field accidentally uncovered Britain's largest ever hoard of Roman gold and silver.",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
     }
   },
   "uploads": [
@@ -2041,7 +2042,8 @@
     "Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 wor",
     "AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
     "Hidden Past kick-4d0ab7875c-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:\n  - SCR-16: 41 words implies ~20s durati",
-    "AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:\n  - SCR-17 STRICT "
+    "AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:\n  - SCR-17 STRICT ",
+    "Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€”"
   ],
   "last_poll_at": "2026-11-09T09:32:33.070Z"
 }
