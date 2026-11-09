@@ -940,16 +940,17 @@
     },
     "kick-4d6c9e0e00-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42585427400",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:56:01.370Z",
+      "updated_at": "2026-11-09T08:56:38.140Z",
       "stage": "script",
       "topic": "Nearly 20% of workers replaced by AI are being asked back",
       "score": 75.9,
       "pillar": "AI changing everyday work",
-      "hook": "Companies are backtracking after replacing workers with AI, asking nearly 20% of them to come back."
+      "hook": "Companies are backtracking after replacing workers with AI, asking nearly 20% of them to come back.",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can d"
     }
   },
   "uploads": [
@@ -1823,7 +1824,8 @@
     "AI Tested kick-41d2ea90c6-ch2 failed at discover: discovery failure: 17 candidates, none eligible. Best \"Is Giving Your Passwords to AI Financial Agents 'Totally Insane'?\" (79.4): too similar to recent topic: Claude AI Can Now Connect Directly to You",
     "Hidden Past kick-8e5a668775-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior\" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Pa",
     "AI Tested kick-e09b48c0d5-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"In Washington DC November\" is not named in the research artifact â€” use the research's own name, or drop the",
-    "Hidden Past kick-f805ebbae6-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to c"
+    "Hidden Past kick-f805ebbae6-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to c",
+    "AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (str"
   ],
   "last_poll_at": "2026-11-09T08:40:52.480Z"
 }

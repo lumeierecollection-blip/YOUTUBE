@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Meta's Muse AI app adds custom 'Spaces' to organize everyday tasks",
+      "score": 89.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/meta-s-muse-ai-app-adds-custom-spaces-to-organize-everyday-t-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+    },
+    {
+      "topic": "Meta's new Muse Voice brings real-time conversational avatars and voice chat",
+      "score": 84.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/meta-s-new-muse-voice-brings-real-time-conversational-avatar-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+    },
+    {
+      "topic": "Nearly 20% of workers replaced by AI are being asked back",
+      "score": 75.9,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can d"
+    }
+  ],
+  "selected": null
+}
