@@ -1,0 +1,16 @@
+{
+  "mood": "suspense",
+  "file": "voice-and-music.mp3",
+  "generator": "platform/production/music.py",
+  "third_party_material": "none",
+  "licence": "original to this repository, synthesised by its own code",
+  "ducking": "ffmpeg sidechaincompress keyed by the narration",
+  "music_level": 0.5,
+  "hit_times_s": [
+    5.3,
+    9.4,
+    13.7,
+    17.83,
+    21.6
+  ]
+}
