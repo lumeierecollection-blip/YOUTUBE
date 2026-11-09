@@ -1,0 +1,199 @@
+{
+  "channel": "hidden-past",
+  "run": "run-42675599926-1",
+  "script": {
+    "status": "written_directly",
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction",
+    "independent_provider": false
+  },
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 29.133,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -21.8,
+    "max_volume_db": -2.5,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Rasalgethi",
+      "seconds": 28.656,
+      "words": 65,
+      "wpm": 136.1,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  },
+  "alignment_findings": [
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s0"
+      ],
+      "problem": "On-screen name \"Circled\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s2"
+      ],
+      "problem": "On-screen name \"BASE\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s2"
+      ],
+      "problem": "On-screen name \"BORDER IN RED\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "critical",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s3"
+      ],
+      "problem": "On-screen \"1\": the figure 1 is in neither the narration nor the claims.",
+      "fix": "Show only established figures."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s4"
+      ],
+      "problem": "On-screen name \"CHAPTER I\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s4"
+      ],
+      "problem": "On-screen name \"LATER INTERPRETATION\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    }
+  ],
+  "duration_s": 29.133333,
+  "max_s": 30,
+  "size": "1080x1920",
+  "fps": 30,
+  "vox_gate": {
+    "pass": true,
+    "failures": [],
+    "counts": {
+      "photos": 2,
+      "annotations": 2,
+      "chapter_openers": 1
+    },
+    "report_file": "vox-compliance-report.json",
+    "mp4_sha256": "5d3ead4b01feae7ce3c7f8d876b83662e504b12364f6414f41b948e0499bdb08"
+  },
+  "photo_stability": [
+    {
+      "scene": 0,
+      "asset": "photograph",
+      "pass": true,
+      "frames_compared": 49,
+      "blocks_used": 8,
+      "moved_frames": []
+    },
+    {
+      "scene": 4,
+      "asset": "photograph",
+      "pass": true,
+      "frames_compared": 48,
+      "blocks_used": 6,
+      "moved_frames": []
+    }
+  ],
+  "still_layers_with_non_opacity_keyframes": [],
+  "stability_scope": "voxGate measures the two archival photographs in the final MP4. The newspaper and the historical map are documents, not photographs: the gate does not measure them, and their layers are asserted static above (no keyframe other than opacity).",
+  "licences": [
+    {
+      "file": "File:Archduke Franz Ferdinand in Sarajevo, June 1914 Q91848.jpg",
+      "licence": "Public domain",
+      "creator": "Unknown authorUnknown author",
+      "url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Archduke_Franz_Ferdinand_in_Sarajevo%2C_June_1914_Q91848.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "file": "File:Austria-Hungary (ethnic 1890, with red 1914 and blue 1920 borders).jpg",
+      "licence": "Public domain",
+      "creator": "Richard Andree",
+      "url": "https://commons.wikimedia.org/wiki/File:Austria-Hungary_(ethnic_1890,_with_red_1914_and_blue_1920_borders).jpg",
+      "source_file_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Austria-Hungary_%28ethnic_1890%2C_with_red_1914_and_blue_1920_borders%29.jpg/3840px-Austria-Hungary_%28ethnic_1890%2C_with_red_1914_and_blue_1920_borders%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    },
+    {
+      "file": "File:The New York Times 1914-06-29- Vol 63 Iss 20610 (IA per new-york-times-magazine the-new-york-times 1914-06-29 63 20610).pdf",
+      "licence": "Public domain",
+      "creator": "Unknown author",
+      "url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf",
+      "source_file_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_%28IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610%29.pdf/page1-1920px-The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_%28IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610%29.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    },
+    {
+      "file": "File:Ferdinand Behr arrested in Sarajevo 1914.jpg",
+      "licence": "Public domain",
+      "creator": "Unknown authorUnknown author",
+      "url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "editorial_status": "primary_source",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "c2",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "c3",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "c4",
+      "editorial_status": "primary_source",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "c5",
+      "editorial_status": "later_interpretation",
+      "confidence": "medium"
+    },
+    {
+      "claim_id": "c6",
+      "editorial_status": "later_interpretation",
+      "confidence": "medium"
+    }
+  ],
+  "frames": [
+    "scene-00.jpg",
+    "scene-01.jpg",
+    "scene-02.jpg",
+    "scene-03.jpg",
+    "scene-04.jpg",
+    "scene-chapter-1.jpg"
+  ]
+}
