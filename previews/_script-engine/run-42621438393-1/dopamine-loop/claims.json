@@ -1,0 +1,132 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "ok": true,
+      "chars": 26726,
+      "sha256": "d1032e6fe76954f1",
+      "title": "Nostalgia",
+      "published": "2026-10-31",
+      "fetched_at": "2026-11-09T13:02:10.092Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Nostalgia is often described as a bittersweet longing for the past, typically for a period of time accompanied by happy memories or emotions.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Nostalgia is an emotion which is often described as a bittersweet longing for the past, typically for a period of time accompanied by happy memories or emotions.",
+      "confidence": "high",
+      "context": "Nostalgia is defined as a bittersweet longing typically tied to happy memories or emotions of the past.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Emotion is a strong provoker of nostalgia due to the processing of these stimuli first passing through the amygdala.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Emotion is a strong provoker of nostalgia due to the processing of these stimuli first passing through the amygdala, the emotional seat of the brain.",
+      "confidence": "high",
+      "context": "The amygdala is identified as the emotional seat of the brain where stimuli are processed.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Cultural phenomena such as music can be strong triggers of nostalgia.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Cultural phenomena such as music, movies, television shows, and video games, as well as natural phenomena such as weather and environment, can also be strong triggers of nostalgia.",
+      "confidence": "high",
+      "context": "Music is one of several cultural phenomena that can trigger nostalgia.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "A person can deliberately trigger feelings of nostalgia by listening to familiar music or looking at old photos.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "A person can deliberately trigger feelings of nostalgia by listening to familiar music, looking at old photos, or visiting comforting environments of the past.",
+      "confidence": "high",
+      "context": "Individuals can intentionally cause nostalgia through actions like listening to familiar music.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Scientific studies have shown that cold weather makes people more nostalgic, while nostalgia causes people to feel warmer.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Scientific studies have shown that cold weather makes people more nostalgic, while nostalgia causes people to feel warmer.",
+      "confidence": "high",
+      "context": "Temperature and weather interact with feelings of nostalgia according to scientific studies.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Nostalgia has been found to have important psychological functions, such as to improve mood and increase social connectedness.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "The modern view is that nostalgia is an independent, and even positive, emotion that many people experience often. Nostalgia has been found to have important psychological functions, such as to improve mood, increase social connectedness, enhance positive self-regard, and provide existential meaning.",
+      "confidence": "high",
+      "context": "Nostalgia serves multiple psychological functions for those who experience it.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Nostalgia can lead individuals to perceive the past more favorably than the present, a phenomenon known as the nostalgia effect.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Nostalgia can lead individuals to perceive the past more favorably than the present, a phenomenon known as the \"nostalgia effect,\" which is classified as a cognitive bias.",
+      "confidence": "high",
+      "context": "The nostalgia effect is a cognitive bias where the past is viewed more favorably than the present.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Baldwin and Landau found that nostalgia leads people to rate themselves higher on items like I am the kind of person who embraces unfamiliar people, events, and places.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "Baldwin and Landau (2014) found that nostalgia leads people to rate themselves higher on items like \"I am the kind of person who embraces unfamiliar people, events, and places.\"",
+      "confidence": "high",
+      "context": "Baldwin and Landau conducted research in 2014 regarding how nostalgia affects self-ratings on growth-oriented behaviors.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "One recent study critiques the idea of nostalgia, which in some forms can become a defense mechanism by which people avoid the historical facts.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31",
+      "excerpt": "One recent study critiques the idea of nostalgia, which in some forms can become a defense mechanism by which people avoid the historical facts.",
+      "confidence": "high",
+      "context": "A recent study argues that certain forms of nostalgia can act as a defense mechanism to avoid historical facts.",
+      "contradictory_evidence": [],
+      "editorial_status": "interpretation"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "published": "2026-10-31"
+    }
+  ]
+}
