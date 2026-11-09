@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The Release of Michael Jackson's Thriller",
+      "score": 81.2,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 1 \"MTV refused Black artists until one 42-minute album changed things.\" — The album is not named.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 2 \"This 1982 record challenged norms.\" — The record is not named.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few wo"
+    },
+    {
+      "topic": "The Brink's-Mat Gold Heist",
+      "score": 66.4,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The Invention of Atari's Pong",
+      "score": 63.5,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    }
+  ],
+  "selected": null
+}

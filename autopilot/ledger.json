@@ -1115,16 +1115,17 @@
     },
     "kick-c67a596d45-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42598471838",
       "trigger": "push",
-      "updated_at": "2026-11-09T10:11:29.553Z",
+      "updated_at": "2026-11-09T10:13:23.183Z",
       "stage": "script",
       "topic": "The Invention of Atari's Pong",
       "score": 63.5,
       "pillar": "Strange inventions and lost technology",
-      "hook": "When Atari released Pong in 1972, the arcade machine was so popular that coins literally jammed the coin slots from sheer overuse."
+      "hook": "When Atari released Pong in 1972, the arcade machine was so popular that coins literally jammed the coin slots from sheer overuse.",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
     }
   },
   "uploads": [
@@ -2178,7 +2179,8 @@
     "Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€”",
     "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so ",
     "Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
-    "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
+    "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
+    "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou"
   ],
   "last_poll_at": "2026-11-09T10:07:04.890Z"
 }
