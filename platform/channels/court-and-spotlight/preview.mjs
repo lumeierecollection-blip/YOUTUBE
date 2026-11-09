@@ -21,7 +21,7 @@ const readJson = (f) => JSON.parse(readFileSync(join(here, f), "utf8"));
 
 /** Fetches every real photograph (licence enforced), makes cut-outs where asked, and returns props plus manifest entries. */
 async function prepareAssets({ tools, ASSETS = [] }) {
-  const dir = join(tools.outDir, "assets"), entries = [], images = {}, credits = {};
+  const dir = join(tools.outDir, "assets"), entries = [], images = {}, credits = {}, dates = {};
   const py = process.platform === "win32" ? "python" : "python3";
   for (const a of ASSETS) {
     const { file, entry } = await commonsAsset({ title: a.title, dir, id: a.id, claim: a.claim, role: a.role });
@@ -35,9 +35,10 @@ async function prepareAssets({ tools, ASSETS = [] }) {
     }
     images[a.key || a.id] = await dataUri(used);
     credits[a.key || a.id] = entry.credit_line;
+    dates[a.key || a.id] = (entry.date_taken.match(/[0-9]{4}/) || [""])[0];
     entries.push(entry);
   }
-  return { images, credits, entries };
+  return { images, credits, dates, entries };
 }
 
 export default async function preview({ key, runId, tools }) {
@@ -54,10 +55,10 @@ export default async function preview({ key, runId, tools }) {
   tools.write("story-blueprint.json", { ...proof.blueprint, style: guess, style_reasoning: classification.reasoning });
 
   // 2. Real, licensed photographs, then cut-outs.
-  const { images, credits, entries } = await prepareAssets({ tools, ASSETS: proof.ASSETS });
+  const { images, credits, dates, entries } = await prepareAssets({ tools, ASSETS: proof.ASSETS });
   tools.write("asset-manifest.json", { note: "Every photograph is a real image from Wikimedia Commons with its licence recorded. Nothing here is AI-generated. Documents are typeset excerpts of fetched text.", assets: entries, documents: proof.DOCUMENTS || [], music: "see music-manifest.json" });
 
   // 3. Script, voice, music, render, frames and QA through the shared path.
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: proof.metadata.title, claims: proof.claims, sources: proof.sources, sentences: proof.sentences, scenes: proof.scenes, compositionId: style.composition, edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: proof.metadata, minSeconds: 20, music: { mood: style.music.mood }, makeProps: () => ({ images, credits, ...(proof.extraProps ? proof.extraProps() : {}) }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: proof.metadata.title, claims: proof.claims, sources: proof.sources, sentences: proof.sentences, scenes: proof.scenes, compositionId: style.composition, edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: proof.metadata, minSeconds: 20, music: { mood: style.music.mood }, makeProps: () => ({ images, credits, dates, ...(proof.extraProps ? proof.extraProps() : {}) }) } });
   tools.write("quality-report.json", { format: guess, style_checks: style.qa_checks, technical: result.qa, note: "Style checks are reviewed on the contact sheet and frames; the technical block is measured on the MP4." });
 }

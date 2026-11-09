@@ -64,10 +64,10 @@ function Cover({ dur, images, credits }) {
     <Scene dur={dur}>
       <Desk />
       <From delay={2} dy={16} style={abs(50, 190, 980, 80, { display: "flex" })}><div style={{ background: C.red, color: "#fff", fontFamily: MONO, fontWeight: 800, fontSize: 28, letterSpacing: "0.14em", padding: "12px 24px" }}>FEDERAL TAX CASE · OCALA, FLA.</div></From>
-      <Sticker src={images.portrait} x={300} y={330} w={800} push dur={dur} />
+      <Sticker src={images.portrait} x={330} y={300} w={780} push dur={dur} />
       <From delay={6} dy={50} style={abs(40, 360, 560, 520, { fontFamily: SERIF, fontWeight: 700, fontSize: 440, lineHeight: 0.9, color: C.red, textShadow: "0 8px 30px rgba(0,0,0,0.6)" })}>3</From>
       <From delay={10} dy={40} style={abs(40, 780, 620, 240, { fontFamily: SERIF, fontWeight: 700, fontSize: 168, lineHeight: 0.95, color: C.text, textShadow: "0 8px 30px rgba(0,0,0,0.7)" })}>YEARS</From>
-      <From delay={16} dy={20} style={abs(40, 1010, 520, 200, { fontFamily: SANS, fontWeight: 700, fontSize: 52, lineHeight: 1.12, color: C.text })}>in federal prison, for not filing tax returns</From>
+      <From delay={16} dy={20} style={abs(40, 1020, 400, 260, { fontFamily: SANS, fontWeight: 700, fontSize: 46, lineHeight: 1.14, color: C.text, textShadow: "0 4px 18px rgba(0,0,0,0.9)" })}>in federal prison,<br />for not filing<br />tax returns</From>
       <Credit>{credits.portrait}</Credit>
     </Scene>
   );
@@ -78,17 +78,17 @@ function Doj({ dur, images, credits }) {
   return (
     <Scene dur={dur}>
       <Desk />
-      <Card x={70} y={260} w={940} h={930} rot={-1.1} delay={2}>
+      <Card x={70} y={250} w={940} h={1010} rot={-1.1} delay={2}>
         <Label>US DEPARTMENT OF JUSTICE · RELEASE · 25 APR 2008</Label>
-        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 52, lineHeight: 1.34, color: C.ink, marginTop: 34 }}>
+        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 46, lineHeight: 1.32, color: C.ink, marginTop: 30 }}>
           OCALA, Fla. — U.S. District Judge Wm. Terrell Hodges <Hi from={12}>sentenced Wesley Trent Snipes to three years imprisonment</Hi> Thursday for charges of <Hi from={30}>failing to file income tax returns.</Hi>
         </div>
-        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 52, lineHeight: 1.34, color: C.ink, marginTop: 36, opacity: t(f, Math.round(dur * 0.38), Math.round(dur * 0.38) + 10) }}>
+        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 46, lineHeight: 1.32, color: C.ink, marginTop: 34, opacity: t(f, Math.round(dur * 0.38), Math.round(dur * 0.38) + 10) }}>
           Snipes was <Hi from={Math.round(dur * 0.42)} color="#F4A9A0">found guilty by a jury on February 1.</Hi>
         </div>
         <Label size={21} style={{ position: "absolute", left: 44, bottom: 24 }}>EXCERPT · REPUBLISHED TEXT, BLAST MAGAZINE</Label>
       </Card>
-      <Sticker src={images.portrait} x={650} y={1040} w={440} rot={2} delay={14} />
+      <Sticker src={images.portrait} x={660} y={1090} w={400} rot={2} delay={14} />
       <Credit>{credits.portrait}</Credit>
     </Scene>
   );
@@ -103,7 +103,7 @@ function Timeline({ dur }) {
       <Desk />
       <div style={abs(76, 300, 6, 1000 * line, { background: C.mute })} />
       {node(280, "FEB 1 · THE JURY'S VERDICT", 1)}
-      <div style={abs(130, 380, 880, 250, { transform: `translateX(${(1 - guilty) * 60}px)`, background: C.paper, borderLeft: `14px solid ${C.red}`, padding: "28px 36px", boxSizing: "border-box", opacity: guilty * 0.55 })}>
+      <div style={abs(130, 380, 880, 250, { transform: `translateX(${(1 - guilty) * 60}px)`, background: C.paper, borderLeft: `14px solid ${C.red}`, padding: "28px 36px", boxSizing: "border-box", opacity: guilty * 0.85 })}>
         <Label color={C.red} size={24}>GUILTY</Label><div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 56, lineHeight: 1.08, color: C.ink, marginTop: 8 }}>Failing to file income tax returns</div>
       </div>
       <div style={abs(130, 690, 880, 330, { opacity: acq, transform: `translateX(${(1 - acq) * 60}px)`, background: C.paper, borderLeft: `14px solid ${C.green}`, padding: "28px 36px", boxSizing: "border-box", boxShadow: "0 0 0 4px rgba(46,125,50,0.5)" })}>
@@ -124,13 +124,13 @@ function Alleged({ dur }) {
   return (
     <Scene dur={dur}>
       <Desk warm />
-      <Card x={90} y={300} w={900} h={1060} rot={0.9} delay={2} border={C.amber} style={{ background: "#F6E7C2" }}>
+      <Card x={90} y={280} w={900} h={1150} rot={0.9} delay={2} border={C.amber} style={{ background: "#F6E7C2" }}>
         <Label color={C.amber} size={28}>THE GOVERNMENT'S CLAIM · NOT A FINDING</Label>
         <div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 210, lineHeight: 1, color: C.ink, marginTop: 80 }}>${n.toFixed(1)}M+</div>
-        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 50, lineHeight: 1.28, color: C.ink, marginTop: 36 }}>The government <Hi from={16} color="#F0B84A">alleged</Hi> Snipes made at least $13.8 million for the years in question and owed $2.7 million in back taxes.</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 44, lineHeight: 1.28, color: C.ink, marginTop: 30 }}>The government <Hi from={16} color="#F0B84A">alleged</Hi> Snipes made at least $13.8 million for the years in question and owed $2.7 million in back taxes.</div>
         <Label size={21} style={{ position: "absolute", left: 44, bottom: 24 }}>AS REPORTED BY CBS NEWS · 25 APR 2008</Label>
       </Card>
-      <Stamp text="ALLEGED" color={C.amber} x={600} y={1210} delay={20} size={76} />
+      <Stamp text="ALLEGED" color={C.amber} x={600} y={1250} delay={20} size={76} />
     </Scene>
   );
 }
@@ -138,7 +138,7 @@ function Alleged({ dur }) {
 function Sought({ dur, images, credits }) {
   const f = useCurrentFrame(), a = t(f, 6, 22), b = t(f, 28, 46);
   const bar = (top, label, value, color, fill, shown) => (
-    <div style={abs(70, top, 640, 230, { opacity: shown })}>
+    <div style={abs(70, top, 760, 230, { opacity: shown })}>
       <Label color={C.text} size={26}>{label}</Label>
       <div style={{ marginTop: 16, height: 70, borderRadius: 8, background: "#241F1A" }}><div style={{ width: `${fill * shown * 100}%`, height: 70, borderRadius: 8, background: color }} /></div>
       <div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 70, color: C.text, marginTop: 12, lineHeight: 1 }}>{value}</div>
@@ -147,11 +147,11 @@ function Sought({ dur, images, credits }) {
   return (
     <Scene dur={dur}>
       <Desk />
-      <Sticker src={images.portrait} x={560} y={560} w={600} rot={-1} delay={4} />
+      <Sticker src={images.portrait} x={600} y={820} w={520} rot={-1} delay={4} />
       <From style={abs(70, 330, 600, 80, {})}><Label color={C.amber} size={30}>SENTENCING · APRIL 2008</Label></From>
-      {bar(430, "PROSECUTORS SOUGHT", "The maximum", C.amber, 1, a)}
-      {bar(780, "THE JUDGE GAVE", "3 years", C.red, 0.9, b)}
-      <Stamp text="SENTENCED" color={C.red} x={80} y={1150} delay={48} size={58} />
+      {bar(440, "PROSECUTORS SOUGHT", "The maximum", C.amber, 1, a)}
+      {bar(790, "THE JUDGE GAVE", "3 years", C.red, 0.9, b)}
+      <Stamp text="SENTENCED" color={C.red} x={80} y={1190} delay={48} size={58} />
       <Credit>{credits.portrait}</Credit>
     </Scene>
   );
@@ -163,19 +163,19 @@ function Booking({ dur, images, credits }) {
   return (
     <Scene dur={dur}>
       <Desk />
-      <Card x={110} y={250} w={520} h={760} rot={-2} delay={2} style={{ padding: 22 }}>
-        <img src={images.booking} style={{ width: "100%", height: 600, objectFit: "cover", objectPosition: "center top", filter: "grayscale(0.2)" }} />
+      <Card x={80} y={240} w={650} h={1020} rot={-2} delay={2} style={{ padding: 24 }}>
+        <img src={images.booking} style={{ width: "100%", height: 800, objectFit: "cover", objectPosition: "center top", filter: "grayscale(0.2)" }} />
         <Label color={C.ink} size={24} style={{ marginTop: 20 }}>US MARSHALS SERVICE</Label>
         <div style={{ position: "relative", marginTop: 6 }}>
           <Label color={C.ink} size={30}>DATED 2008-04-24</Label>
-          <svg width={330} height={70} style={{ position: "absolute", left: -18, top: -16 }}><ellipse cx={165} cy={35} rx={158} ry={27} fill="none" stroke={C.red} strokeWidth={6} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - circle} /></svg>
+          <svg width={420} height={76} style={{ position: "absolute", left: -20, top: -20 }}><ellipse cx={210} cy={38} rx={204} ry={30} fill="none" stroke={C.red} strokeWidth={6} pathLength={1} strokeDasharray={1} strokeDashoffset={1 - circle} /></svg>
         </div>
       </Card>
-      <div style={abs(680, 360, 340, 520, { opacity: note })}>
+      <div style={abs(770, 380, 270, 560, { opacity: note })}>
         <Label color={C.red} size={28}>THE DATE MATCHES THE SENTENCING</Label>
-        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 40, lineHeight: 1.25, color: C.text, marginTop: 24 }}>The photo's date does not say when, or why, it was taken.</div>
+        <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 36, lineHeight: 1.25, color: C.text, marginTop: 24 }}>The photo's date does not say when, or why, it was taken.</div>
       </div>
-      <Label size={22} color={C.mute} style={{ position: "absolute", left: 50, top: 1100, width: 980, lineHeight: 1.4 }}>Public domain (US federal government work), via Wikimedia Commons. {credits.booking}</Label>
+      <Label size={22} color={C.mute} style={{ position: "absolute", left: 50, top: 1300, width: 980, lineHeight: 1.4 }}>Public domain (US federal government work), via Wikimedia Commons. {credits.booking}</Label>
     </Scene>
   );
 }
