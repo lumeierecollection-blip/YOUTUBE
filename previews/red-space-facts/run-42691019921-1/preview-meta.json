@@ -2,9 +2,9 @@
   "channel": "red-space-facts",
   "production_run": "run-42691019921-1",
   "agent": "agent-red-space-facts",
-  "stage": "visual_complete",
+  "stage": "render_complete",
   "status": "ok",
-  "timestamp": "2026-11-09T20:16:06.304Z",
+  "timestamp": "2026-11-09T20:18:53.113Z",
   "branch": "preview/red-space-facts-2",
   "commit": "0617362ea8840c5a259cd3932321fada65b3c2b6",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42691019921#artifacts"
