@@ -141,7 +141,7 @@ function LutLayer() {
  * @param {number} props.width      container box width, px
  * @param {number} props.height     container box height, px
  */
-export function PhotoTreatment({ src, treatment, width, height, halftoneOpacity }) {
+export function PhotoTreatment({ src, treatment, width, height, halftoneOpacity, grainOpacity }) {
   const orthoCamera = useMemo(
     () => ({ left: -width / 2, right: width / 2, top: height / 2, bottom: -height / 2, near: -1000, far: 1000, position: [0, 0, 10] }),
     [width, height]
@@ -162,7 +162,7 @@ export function PhotoTreatment({ src, treatment, width, height, halftoneOpacity 
       <EffectComposer ref={composerRef} enableNormalPass={false} autoClear={false}>
         <Vignette {...VIGNETTE_PROPS} />
         <DotScreen {...DOT_SCREEN_PROPS} opacity={halftoneOpacity ?? DOT_SCREEN_PROPS.opacity} />
-        <Noise {...NOISE_PROPS} />
+        <Noise {...NOISE_PROPS} opacity={grainOpacity ?? NOISE_PROPS.opacity} />
         <ChromaticAberration {...CHROMATIC_ABERRATION_PROPS} />
         <LutLayer />
       </EffectComposer>
