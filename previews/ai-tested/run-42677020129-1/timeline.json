@@ -1,0 +1,388 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "kinetic-question",
+      "sentenceIds": [
+        "f1"
+      ],
+      "from": 0,
+      "to": 95,
+      "start_s": 0,
+      "end_s": 3.1666666666666665
+    },
+    {
+      "id": "s2",
+      "kind": "setup",
+      "treatment": "process-diagram",
+      "sentenceIds": [
+        "f2"
+      ],
+      "from": 95,
+      "to": 201,
+      "start_s": 3.1666666666666665,
+      "end_s": 6.7
+    },
+    {
+      "id": "s3",
+      "kind": "terminal",
+      "treatment": "terminal-demo",
+      "sentenceIds": [
+        "f3"
+      ],
+      "from": 201,
+      "to": 271,
+      "start_s": 6.7,
+      "end_s": 9.033333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "score",
+      "treatment": "bar-chart",
+      "sentenceIds": [
+        "f4",
+        "f5"
+      ],
+      "from": 271,
+      "to": 488,
+      "start_s": 9.033333333333333,
+      "end_s": 16.266666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "split",
+      "treatment": "split-comparison",
+      "sentenceIds": [
+        "f6"
+      ],
+      "from": 488,
+      "to": 602,
+      "start_s": 16.266666666666666,
+      "end_s": 20.066666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "miss",
+      "treatment": "before-after-numbers",
+      "sentenceIds": [
+        "f7",
+        "f8"
+      ],
+      "from": 602,
+      "to": 751,
+      "start_s": 20.066666666666666,
+      "end_s": 25.033333333333335
+    },
+    {
+      "id": "s7",
+      "kind": "close",
+      "treatment": "verdict-panel",
+      "sentenceIds": [
+        "f9"
+      ],
+      "headline": "AI can count. Just not every model.",
+      "from": 751,
+      "to": 890,
+      "start_s": 25.033333333333335,
+      "end_s": 29.666666666666668
+    }
+  ],
+  "captions": [
+    {
+      "text": "Can AI count letters",
+      "from": 0,
+      "to": 69,
+      "words": [
+        {
+          "text": "Can",
+          "from": 0
+        },
+        {
+          "text": "AI",
+          "from": 11
+        },
+        {
+          "text": "count",
+          "from": 22
+        },
+        {
+          "text": "letters",
+          "from": 50
+        }
+      ]
+    },
+    {
+      "text": "We gave two models twenty",
+      "from": 95,
+      "to": 145,
+      "words": [
+        {
+          "text": "We",
+          "from": 95
+        },
+        {
+          "text": "gave",
+          "from": 102
+        },
+        {
+          "text": "two",
+          "from": 109
+        },
+        {
+          "text": "models",
+          "from": 119
+        },
+        {
+          "text": "twenty",
+          "from": 134
+        }
+      ]
+    },
+    {
+      "text": "questions",
+      "from": 150,
+      "to": 173,
+      "words": [
+        {
+          "text": "questions",
+          "from": 150
+        }
+      ]
+    },
+    {
+      "text": "Both got strawberry",
+      "from": 201,
+      "to": 226,
+      "words": [
+        {
+          "text": "Both",
+          "from": 201
+        },
+        {
+          "text": "got",
+          "from": 201
+        },
+        {
+          "text": "strawberry",
+          "from": 209
+        }
+      ]
+    },
+    {
+      "text": "right",
+      "from": 246,
+      "to": 251,
+      "words": [
+        {
+          "text": "right",
+          "from": 246
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 271,
+      "to": 320,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 271
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 296
+        }
+      ]
+    },
+    {
+      "text": "got all twenty",
+      "from": 338,
+      "to": 392,
+      "words": [
+        {
+          "text": "got",
+          "from": 338
+        },
+        {
+          "text": "all",
+          "from": 352
+        },
+        {
+          "text": "twenty",
+          "from": 367
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite got eleven",
+      "from": 412,
+      "to": 472,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 412
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 418
+        },
+        {
+          "text": "got",
+          "from": 428
+        },
+        {
+          "text": "eleven",
+          "from": 450
+        }
+      ]
+    },
+    {
+      "text": "On random letters",
+      "from": 488,
+      "to": 520,
+      "words": [
+        {
+          "text": "On",
+          "from": 488
+        },
+        {
+          "text": "random",
+          "from": 496
+        },
+        {
+          "text": "letters",
+          "from": 505
+        }
+      ]
+    },
+    {
+      "text": "just three of ten",
+      "from": 538,
+      "to": 586,
+      "words": [
+        {
+          "text": "just",
+          "from": 538
+        },
+        {
+          "text": "three",
+          "from": 539
+        },
+        {
+          "text": "of",
+          "from": 554
+        },
+        {
+          "text": "ten",
+          "from": 564
+        }
+      ]
+    },
+    {
+      "text": "It found five Os",
+      "from": 602,
+      "to": 642,
+      "words": [
+        {
+          "text": "It",
+          "from": 602
+        },
+        {
+          "text": "found",
+          "from": 606
+        },
+        {
+          "text": "five",
+          "from": 612
+        },
+        {
+          "text": "Os",
+          "from": 626
+        }
+      ]
+    },
+    {
+      "text": "in onomatopoeia",
+      "from": 653,
+      "to": 696,
+      "words": [
+        {
+          "text": "in",
+          "from": 653
+        },
+        {
+          "text": "onomatopoeia",
+          "from": 659
+        }
+      ]
+    },
+    {
+      "text": "There are four",
+      "from": 711,
+      "to": 732,
+      "words": [
+        {
+          "text": "There",
+          "from": 711
+        },
+        {
+          "text": "are",
+          "from": 712
+        },
+        {
+          "text": "four",
+          "from": 715
+        }
+      ]
+    },
+    {
+      "text": "So AI can count just",
+      "from": 751,
+      "to": 830,
+      "words": [
+        {
+          "text": "So",
+          "from": 751
+        },
+        {
+          "text": "AI",
+          "from": 757
+        },
+        {
+          "text": "can",
+          "from": 767
+        },
+        {
+          "text": "count",
+          "from": 791
+        },
+        {
+          "text": "just",
+          "from": 805
+        }
+      ]
+    },
+    {
+      "text": "not every model",
+      "from": 830,
+      "to": 862,
+      "words": [
+        {
+          "text": "not",
+          "from": 830
+        },
+        {
+          "text": "every",
+          "from": 842
+        },
+        {
+          "text": "model",
+          "from": 850
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 890,
+  "duration_s": 29.666666666666668
+}

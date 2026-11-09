@@ -1,0 +1,195 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42677020129-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Can AI count letters?",
+      "main_point": "Pose the question on a real test word, with its matching letters lighting up",
+      "visual_objective": "Pose the question on a real test word, with its matching letters lighting up",
+      "treatment": "kinetic-question",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "hook",
+      "on_screen_text": [],
+      "claim_ids": [],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 0,
+      "end_s": 3.1666666666666665
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We gave two models twenty questions.",
+      "main_point": "Show how the test was run, step by step",
+      "visual_objective": "Show how the test was run, step by step",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "setup",
+      "on_screen_text": [],
+      "claim_ids": [
+        "design"
+      ],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 3.1666666666666665,
+      "end_s": 6.7
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Both got strawberry right.",
+      "main_point": "Show the real prompt and each model's real reply",
+      "visual_objective": "Show the real prompt and each model's real reply",
+      "treatment": "terminal-demo",
+      "background": "white",
+      "skill": "terminal-inserts",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "terminal",
+      "on_screen_text": [],
+      "claim_ids": [
+        "example"
+      ],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 6.7,
+      "end_s": 9.033333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "OpenAI's GPT-OSS got all twenty. Google's Flash-Lite got eleven.",
+      "main_point": "Show each model's measured score out of the total",
+      "visual_objective": "Show each model's measured score out of the total",
+      "treatment": "bar-chart",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "score",
+      "on_screen_text": [],
+      "claim_ids": [
+        "score0",
+        "score1"
+      ],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 9.033333333333333,
+      "end_s": 16.266666666666666
+    },
+    {
+      "scene_id": "s5",
+      "narration": "On random letters, just three of ten.",
+      "main_point": "Compare scores on real words and random letter strings",
+      "visual_objective": "Compare scores on real words and random letter strings",
+      "treatment": "split-comparison",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "split",
+      "on_screen_text": [],
+      "claim_ids": [
+        "split_random1"
+      ],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 16.266666666666666,
+      "end_s": 20.066666666666666
+    },
+    {
+      "scene_id": "s6",
+      "narration": "It found five Os in onomatopoeia. There are four.",
+      "main_point": "Show the widest real miss: the correct count against the answer given",
+      "visual_objective": "Show the widest real miss: the correct count against the answer given",
+      "treatment": "before-after-numbers",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "miss",
+      "on_screen_text": [],
+      "claim_ids": [
+        "miss"
+      ],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 20.066666666666666,
+      "end_s": 25.033333333333335
+    },
+    {
+      "scene_id": "s7",
+      "narration": "So AI can count, just not every model.",
+      "main_point": "Answer the opening question, with the final scores",
+      "visual_objective": "Answer the opening question, with the final scores",
+      "treatment": "verdict-panel",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [
+        {
+          "id": "experiment",
+          "origin": "test run during this render",
+          "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+        }
+      ],
+      "animation": "close",
+      "on_screen_text": [
+        "AI can count. Just not every model."
+      ],
+      "claim_ids": [],
+      "data_sources": [
+        "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129"
+      ],
+      "transition": "fade",
+      "start_s": 25.033333333333335,
+      "end_s": 29.666666666666668
+    }
+  ]
+}
