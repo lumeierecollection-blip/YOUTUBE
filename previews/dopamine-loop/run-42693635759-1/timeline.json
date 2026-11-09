@@ -1,0 +1,330 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "waveform-anticipation",
+      "objective": "Show a song building toward its best part, with a reward signal starting before the peak",
+      "from": 0,
+      "to": 143,
+      "start_s": 0,
+      "end_s": 4.766666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "scan",
+      "treatment": "scanner-and-arousal-curve",
+      "objective": "Show listeners scanned while hearing music, and dopamine marked at peak arousal",
+      "from": 143,
+      "to": 288,
+      "start_s": 4.766666666666667,
+      "end_s": 9.6
+    },
+    {
+      "id": "s3",
+      "kind": "phase-caudate",
+      "treatment": "phase-timeline-highlight",
+      "objective": "Name the anticipation phase and the caudate, which was more involved in it",
+      "from": 288,
+      "to": 387,
+      "start_s": 9.6,
+      "end_s": 12.9
+    },
+    {
+      "id": "s4",
+      "kind": "phase-accumbens",
+      "treatment": "phase-timeline-highlight",
+      "objective": "Name the peak phase and the nucleus accumbens, which was more involved in it",
+      "from": 387,
+      "to": 484,
+      "start_s": 12.9,
+      "end_s": 16.133333333333333
+    },
+    {
+      "id": "s5",
+      "kind": "distinct",
+      "treatment": "two-pathways-summary",
+      "objective": "Set both phases and both regions side by side, marked as one human study",
+      "from": 484,
+      "to": 617,
+      "start_s": 16.133333333333333,
+      "end_s": 20.566666666666666
+    }
+  ],
+  "captions": [
+    {
+      "text": "Your brain can start rewarding",
+      "from": 0,
+      "to": 58,
+      "words": [
+        {
+          "text": "Your",
+          "from": 0
+        },
+        {
+          "text": "brain",
+          "from": 13
+        },
+        {
+          "text": "can",
+          "from": 28
+        },
+        {
+          "text": "start",
+          "from": 37
+        },
+        {
+          "text": "rewarding",
+          "from": 45
+        }
+      ]
+    },
+    {
+      "text": "you before a song's best",
+      "from": 58,
+      "to": 114,
+      "words": [
+        {
+          "text": "you",
+          "from": 58
+        },
+        {
+          "text": "before",
+          "from": 71
+        },
+        {
+          "text": "a",
+          "from": 83
+        },
+        {
+          "text": "song's",
+          "from": 97
+        },
+        {
+          "text": "best",
+          "from": 107
+        }
+      ]
+    },
+    {
+      "text": "part",
+      "from": 114,
+      "to": 125,
+      "words": [
+        {
+          "text": "part",
+          "from": 114
+        }
+      ]
+    },
+    {
+      "text": "In scans of listeners",
+      "from": 143,
+      "to": 173,
+      "words": [
+        {
+          "text": "In",
+          "from": 143
+        },
+        {
+          "text": "scans",
+          "from": 144
+        },
+        {
+          "text": "of",
+          "from": 151
+        },
+        {
+          "text": "listeners",
+          "from": 160
+        }
+      ]
+    },
+    {
+      "text": "dopamine was released at peak",
+      "from": 190,
+      "to": 235,
+      "words": [
+        {
+          "text": "dopamine",
+          "from": 190
+        },
+        {
+          "text": "was",
+          "from": 191
+        },
+        {
+          "text": "released",
+          "from": 207
+        },
+        {
+          "text": "at",
+          "from": 216
+        },
+        {
+          "text": "peak",
+          "from": 224
+        }
+      ]
+    },
+    {
+      "text": "emotional arousal",
+      "from": 235,
+      "to": 268,
+      "words": [
+        {
+          "text": "emotional",
+          "from": 235
+        },
+        {
+          "text": "arousal",
+          "from": 250
+        }
+      ]
+    },
+    {
+      "text": "The caudate was more involved",
+      "from": 288,
+      "to": 328,
+      "words": [
+        {
+          "text": "The",
+          "from": 288
+        },
+        {
+          "text": "caudate",
+          "from": 288
+        },
+        {
+          "text": "was",
+          "from": 302
+        },
+        {
+          "text": "more",
+          "from": 308
+        },
+        {
+          "text": "involved",
+          "from": 316
+        }
+      ]
+    },
+    {
+      "text": "during anticipation",
+      "from": 328,
+      "to": 357,
+      "words": [
+        {
+          "text": "during",
+          "from": 328
+        },
+        {
+          "text": "anticipation",
+          "from": 337
+        }
+      ]
+    },
+    {
+      "text": "The nucleus accumbens was more",
+      "from": 387,
+      "to": 428,
+      "words": [
+        {
+          "text": "The",
+          "from": 387
+        },
+        {
+          "text": "nucleus",
+          "from": 388
+        },
+        {
+          "text": "accumbens",
+          "from": 395
+        },
+        {
+          "text": "was",
+          "from": 417
+        },
+        {
+          "text": "more",
+          "from": 422
+        }
+      ]
+    },
+    {
+      "text": "involved at the peak",
+      "from": 428,
+      "to": 460,
+      "words": [
+        {
+          "text": "involved",
+          "from": 428
+        },
+        {
+          "text": "at",
+          "from": 438
+        },
+        {
+          "text": "the",
+          "from": 443
+        },
+        {
+          "text": "peak",
+          "from": 447
+        }
+      ]
+    },
+    {
+      "text": "Anticipation can use a pathway",
+      "from": 484,
+      "to": 535,
+      "words": [
+        {
+          "text": "Anticipation",
+          "from": 484
+        },
+        {
+          "text": "can",
+          "from": 505
+        },
+        {
+          "text": "use",
+          "from": 512
+        },
+        {
+          "text": "a",
+          "from": 518
+        },
+        {
+          "text": "pathway",
+          "from": 521
+        }
+      ]
+    },
+    {
+      "text": "distinct from peak pleasure",
+      "from": 535,
+      "to": 587,
+      "words": [
+        {
+          "text": "distinct",
+          "from": 535
+        },
+        {
+          "text": "from",
+          "from": 551
+        },
+        {
+          "text": "peak",
+          "from": 565
+        },
+        {
+          "text": "pleasure",
+          "from": 572
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 617,
+  "duration_s": 20.566666666666666
+}

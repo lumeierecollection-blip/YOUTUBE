@@ -1,0 +1,77 @@
+{
+  "channel": "dopamine-loop",
+  "production_run": "run-42693635759-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Your brain can start rewarding you before a song's best part.",
+      "main_point": "Show a song building toward its best part, with a reward signal starting before the peak",
+      "visual_objective": "Show a song building toward its best part, with a reward signal starting before the peak",
+      "treatment": "waveform-anticipation",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "D4"
+      ],
+      "start_s": 0,
+      "end_s": 4.766666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "In scans of listeners, dopamine was released at peak emotional arousal.",
+      "main_point": "Show listeners scanned while hearing music, and dopamine marked at peak arousal",
+      "visual_objective": "Show listeners scanned while hearing music, and dopamine marked at peak arousal",
+      "treatment": "scanner-and-arousal-curve",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "D2"
+      ],
+      "start_s": 4.766666666666667,
+      "end_s": 9.6
+    },
+    {
+      "scene_id": "s3",
+      "narration": "The caudate was more involved during anticipation.",
+      "main_point": "Name the anticipation phase and the caudate, which was more involved in it",
+      "visual_objective": "Name the anticipation phase and the caudate, which was more involved in it",
+      "treatment": "phase-timeline-highlight",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "D3"
+      ],
+      "start_s": 9.6,
+      "end_s": 12.9
+    },
+    {
+      "scene_id": "s4",
+      "narration": "The nucleus accumbens was more involved at the peak.",
+      "main_point": "Name the peak phase and the nucleus accumbens, which was more involved in it",
+      "visual_objective": "Name the peak phase and the nucleus accumbens, which was more involved in it",
+      "treatment": "phase-timeline-highlight",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "D3"
+      ],
+      "start_s": 12.9,
+      "end_s": 16.133333333333333
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Anticipation can use a pathway distinct from peak pleasure.",
+      "main_point": "Set both phases and both regions side by side, marked as one human study",
+      "visual_objective": "Set both phases and both regions side by side, marked as one human study",
+      "treatment": "two-pathways-summary",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "D4"
+      ],
+      "start_s": 16.133333333333333,
+      "end_s": 20.566666666666666
+    }
+  ]
+}
