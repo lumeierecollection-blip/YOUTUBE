@@ -663,7 +663,12 @@
       "attempts": 1,
       "run_id": "42546665711",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:39:07.582Z"
+      "updated_at": "2026-11-09T01:40:47.186Z",
+      "stage": "research",
+      "topic": "The sinking of the SS Edmund Fitzgerald on Lake Superior",
+      "score": 80.6,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "In November 1975, the legendary freighter SS Edmund Fitzgerald vanished into Lake Superior, taking all 29 crew with it."
     }
   },
   "uploads": [],
@@ -1207,6 +1212,15 @@
       "at_ms": 1794187861284,
       "score": 75.5,
       "pillar": "Strange inventions and lost technology"
+    },
+    {
+      "channel": "1",
+      "topic": "The sinking of the SS Edmund Fitzgerald on Lake Superior",
+      "slug": "the-sinking-of-the-ss-edmund-fitzgerald-on-lake-superior",
+      "slot": "kick-9eefa2545a-ch1",
+      "at_ms": 1794188447186,
+      "score": 80.6,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [
