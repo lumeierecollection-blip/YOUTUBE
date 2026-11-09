@@ -1,0 +1,124 @@
+{
+  "blueprint": {
+    "central_question": "Why does an old song pull you back into the past?",
+    "thesis": "A song acts as a cultural trigger that routes sensory processing through the amygdala, provoking a bittersweet longing for the past.",
+    "why_it_matters": "Understanding what happens in your brain when a familiar melody plays explains why memories hit with sudden, vivid force.",
+    "viewer_start": "The viewer feels the sudden, bittersweet pull of a past era upon hearing an old song, but does not know the neural mechanism behind it.",
+    "viewer_end": "The viewer understands that cultural triggers like music route emotional processing through the amygdala to create this bittersweet longing.",
+    "key_evidence": [
+      "c1",
+      "c3",
+      "c4"
+    ],
+    "beats": [
+      {
+        "beat_id": "b1",
+        "role": "opening",
+        "purpose": "Give the viewer the feeling of bittersweet longing for the past before any explanation.",
+        "claim_ids": [
+          "c1"
+        ],
+        "link_from_previous": "none"
+      },
+      {
+        "beat_id": "b2",
+        "role": "development",
+        "purpose": "Explain how music acts as a trigger to provoke this emotion.",
+        "claim_ids": [
+          "c4"
+        ],
+        "link_from_previous": "cause"
+      },
+      {
+        "beat_id": "b3",
+        "role": "payoff",
+        "purpose": "Answer why music triggers this reaction by showing stimulus processing passes through the amygdala.",
+        "claim_ids": [
+          "c3"
+        ],
+        "link_from_previous": "explanation"
+      },
+      {
+        "beat_id": "b4",
+        "role": "ending",
+        "purpose": "Deliver the one-sentence takeaway to conclude the video.",
+        "claim_ids": [],
+        "link_from_previous": "consequence"
+      }
+    ],
+    "questions_raised": [
+      {
+        "question": "Why does music pull you into the past?",
+        "raised_in": "b1",
+        "answered_in": "b3"
+      }
+    ],
+    "conclusion": "A familiar song pulls you into the past because emotional stimuli pass directly through the amygdala, sparking a bittersweet longing.",
+    "explain_in_script": [
+      "Amygdala: the brain's emotional processing center",
+      "Sensory processing: how the brain interprets sound"
+    ]
+  },
+  "attempts": 2,
+  "removed_beats": [],
+  "checks": {
+    "max_beats": 5,
+    "deterministic": "pass",
+    "model": {
+      "answers_question": true,
+      "fits_length": true,
+      "beats": [
+        {
+          "beat_id": "b1",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "It establishes the emotional baseline required to address the central question."
+        },
+        {
+          "beat_id": "b2",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "It identifies music as the specific catalyst for the emotion introduced in b1."
+        },
+        {
+          "beat_id": "b3",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "It provides the neurological mechanism that explains why the trigger in b2 works."
+        },
+        {
+          "beat_id": "b4",
+          "serves": true,
+          "link_true": false,
+          "correct_link": "consequence",
+          "reason": "The ending is a consequence of the neurological explanation provided in the previous beat."
+        }
+      ],
+      "relinked_by_checker": [
+        {
+          "beat_id": "b4",
+          "from": "evidence",
+          "to": "consequence",
+          "reason": "The ending is a consequence of the neurological explanation provided in the previous beat."
+        }
+      ]
+    }
+  },
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "deterministic",
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "claim",
+          "message": "a beat that is not the ending must carry at least one claim",
+          "beat_id": "b1"
+        }
+      ]
+    }
+  ]
+}
