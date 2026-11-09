@@ -436,6 +436,14 @@
       "hook": "The story of the Cullinan Diamond: the largest gem-quality rough diamond ever found, weighing a staggering 3,106 carats.",
       "error": "gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"photo moved or could not be measured: []\"},{\"scene\":4,\"check\":\"vignette\",\"why\":\"corners kept 1.259 of their light, centre 1.186\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
       "qa": "failed"
+    },
+    "kick-622fc2e35c-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42538785590",
+      "trigger": "push",
+      "updated_at": "2026-11-09T00:18:47.161Z"
     }
   },
   "uploads": [],
@@ -801,5 +809,5 @@
     "Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolutio",
     "Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"p"
   ],
-  "last_poll_at": "2026-11-09T00:10:46.329Z"
+  "last_poll_at": "2026-11-09T00:18:47.160Z"
 }
