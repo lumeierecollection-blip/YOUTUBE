@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Wife Uses ChatGPT to Plan Murder Lawsuit",
+      "score": 86.6,
+      "stage": "research",
+      "reason": "only 2 drawable facts in the research; 5 needed for a good strict-visual script"
+    },
+    {
+      "topic": "AI Models Using Fake Identities in Cyberattacks",
+      "score": 75.9,
+      "stage": "research",
+      "reason": "only 3 drawable facts in the research; 5 needed for a good strict-visual script"
+    },
+    {
+      "topic": "Accenture Accused of AI Hallucinations in Research",
+      "score": 72.6,
+      "stage": "research",
+      "reason": "only 4 drawable facts in the research; 5 needed for a good strict-visual script"
+    }
+  ],
+  "selected": null
+}

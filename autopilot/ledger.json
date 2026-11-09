@@ -579,16 +579,17 @@
     },
     "kick-93a82c98a4-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42544463028",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:23:01.234Z",
-      "stage": "script",
+      "updated_at": "2026-11-09T01:23:02.440Z",
+      "stage": "research",
       "topic": "Accenture Accused of AI Hallucinations in Research",
       "score": 72.6,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "A major global consulting firm just got busted publishing a research paper full of fake AI hallucinations."
+      "hook": "A major global consulting firm just got busted publishing a research paper full of fake AI hallucinations.",
+      "error": "3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script"
     }
   },
   "uploads": [],
@@ -1142,7 +1143,8 @@
     "Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: fr",
     "Hidden Past kick-2c4bd9126b-ch1 failed at assets: 3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead",
     "AI Tested kick-3dfcfe63bb-ch2 failed at discover: discovery failure: 14 candidates, none eligible. Best \"Claude AI can now connect to your bank account\" (86.1): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account",
-    "Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead"
+    "Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead",
+    "AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script"
   ],
   "last_poll_at": "2026-11-09T01:17:59.575Z"
 }
