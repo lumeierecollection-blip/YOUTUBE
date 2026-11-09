@@ -443,7 +443,12 @@
       "attempts": 1,
       "run_id": "42538785590",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:18:47.161Z"
+      "updated_at": "2026-11-09T00:20:23.279Z",
+      "stage": "research",
+      "topic": "Meta Ray-Ban smart glasses hacked to run unauthorized apps",
+      "score": 65.9,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Researchers just hacked Meta's popular smart glasses to bypass security restrictions."
     }
   },
   "uploads": [],
@@ -771,6 +776,15 @@
       "at_ms": 1794183186879,
       "score": 63.3,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "2",
+      "topic": "Meta Ray-Ban smart glasses hacked to run unauthorized apps",
+      "slug": "meta-ray-ban-smart-glasses-hacked-to-run-unauthorized-apps",
+      "slot": "kick-622fc2e35c-ch2",
+      "at_ms": 1794183623278,
+      "score": 65.9,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
