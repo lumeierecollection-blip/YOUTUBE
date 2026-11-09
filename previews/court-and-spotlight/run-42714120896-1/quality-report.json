@@ -1,0 +1,35 @@
+{
+  "format": "investigation",
+  "style_checks": [
+    "authentic photographs only and all sourced",
+    "evidence traces to a claim",
+    "allegation vs fact labels correct",
+    "no fabricated mugshot, document or headline",
+    "no misleading implication of guilt",
+    "narration matches the evidence on screen",
+    "photographic variety"
+  ],
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 25.088,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -23,
+    "max_volume_db": -5.8,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Charon",
+      "seconds": 24.576,
+      "words": 64,
+      "wpm": 156.3,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  },
+  "note": "Style checks are reviewed on the contact sheet and frames; the technical block is measured on the MP4."
+}
