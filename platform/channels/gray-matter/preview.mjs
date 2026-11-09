@@ -69,7 +69,13 @@ async function platePayload() {
 
 /** The whole script is voiced once at the voice's own pace (no rate change); each sentence's timing is read from the measured words. */
 async function synthesise(outDir) {
-  const narration = await narrate({ text: sentences.map((s) => s.text).join(" "), edgeVoice: channel.voice.tts_voice, outDir, name: "voice-track" });
+  // Gemini's pace on identical text varies by a second or more, so a take that runs long is voiced again. The speed is never changed.
+  let narration = null;
+  for (let take = 1; take <= 3; take++) {
+    narration = await narrate({ text: sentences.map((s) => s.text).join(" "), edgeVoice: channel.voice.tts_voice, outDir, name: "voice-track" });
+    console.log(`voice take ${take}: ${narration.seconds.toFixed(2)}s, ${narration.wpm} wpm`);
+    if (narration.seconds + TAIL_S <= LIMIT - 0.2) break;
+  }
   if (narration.sentences.length !== sentences.length) throw new Error(`voice produced ${narration.sentences.length} sentences for ${sentences.length} script sentences`);
   if (narration.seconds + TAIL_S > LIMIT - 0.2) throw new Error(`narration is ${narration.seconds.toFixed(2)}s at natural speed, over the ${LIMIT}s limit; the script must be shortened, the voice is never sped up`);
   const timed = narration.sentences.map((s, i) => ({ sentence_id: sentences[i].sentence_id, index: i, start: s.start, end: s.end, duration: s.end - s.start }));
