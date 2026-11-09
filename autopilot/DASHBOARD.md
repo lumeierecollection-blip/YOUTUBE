@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 11:12 SAST
+Updated 2026-11-09 11:18 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 11:12 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at discover, attempts 1 |
-| Selected topic and score | n/a |
+| Latest production | failed-final at research, attempts 1 |
+| Selected topic and score | Law professor accidentally deletes entire year of lecture notes using Claude (75.2/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -111,3 +111,4 @@ Updated 2026-11-09 11:12 SAST
 - AI Tested kick-b7dd86b5f6-ch2 failed at discover: discovery failure: 22 candidates, none eligible. Best "WhatsApp rolls out AI photo expansion tool for iPhone users" (80.2): no trusted source
 - Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:
   - SCR-16: 65 wor
+- AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
