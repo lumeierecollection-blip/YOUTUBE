@@ -1,4 +1,4 @@
-On 28 June 1914, Archduke Franz Ferdinand and Sophie were photographed before their assassination in Sarajevo.
+Is the arrest of assassin Gavrilo Princip captured in a famous 1914 photograph?
 An arrest photograph from that day is often said to show Gavrilo Princip, though scholars dispute it.
-Writer David James Smith states no arrest photograph of Princip exists; it depicts bystander Ferdinand Behr.
-So the photograph from 28 June 1914 shows bystander Ferdinand Behr, not assassin Gavrilo Princip.
+Historian David James Smith states no arrest photo of Princip exists; it shows bystander Ferdinand Behr.
+The photograph does not show Gavrilo Princip; it shows Ferdinand Behr, and no arrest photo exists.
