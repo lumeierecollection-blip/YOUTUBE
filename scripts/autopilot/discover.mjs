@@ -154,6 +154,7 @@ ${exclude.length ? `Already considered and not usable, do not propose these agai
 Rules:
 - Each candidate must be grounded in the listed items. Put their ids in evidence_ids, and only group items that report the same story.
 - Prefer stories an ordinary person would stop scrolling for, and that fit a 30-second Short.
+${channel.treatment === "vox" ? '- At least 6 candidates must come from "anniversary" items: famous, well-documented events or people that were photographed or painted, and that have many public-domain images. A brand-new find rarely has a free photo of the object itself.\n' : ""}
 - Do not invent anything that is not implied by the items.
 - anniversary=true only when the story rests on a "anniversary" item.
 - ratings are your editorial judgement, 0-10: curiosity (strength of the opening hook), relevance (fit to this audience), visual (can it be shown, not just told).
