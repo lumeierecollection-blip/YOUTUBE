@@ -1,0 +1,70 @@
+{
+  "production_id": "ap-kick-a4d2f98db6-ch2",
+  "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 27,
+    "mean_volume_db": -20.3,
+    "black": 0,
+    "freeze": 0
+  },
+  "visual": {
+    "pass": true,
+    "failures": [],
+    "median_background_share": 0.898
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": []
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "dismissed_after_full_resolution_check": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The video is clean, well-produced, and free of visual flaws."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-a4d2f98db6-ch2/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": null,
+  "seo": {
+    "title": "Four Students Caught Using AI Glasses on Tests",
+    "description": "Four students were caught using AI glasses during exams in South Korea, prompting nationwide school inspections. Officials checked 5,679 schools for hidden devices after finding glasses capable of solving complex tests.\n\n#Shorts #AITech #SouthKorea #TechNews #Education\n\nSources:\n- https://en.yna.co.kr/view/AEN20261109005800315\n- https://news.sbs.co.kr/english/article.do?news_id=N1008837666\n- https://www.koreajoongangdaily.com/korea/schools-panic-after-youtuber-aces-math-test-in-just-18-minutes-with-ai-glassesnbsp/12740331\n- https://www.qqi.ie/sites/default/files/2026-10/academic-integrity-ai-glasses-and-wearables.pdf\n\nImage credits:\n- https://en.yna.co.kr/view/AEN20261109005800315\n- https://news.sbs.co.kr/english/article.do?news_id=N1008837666",
+    "tags": [
+      "AI glasses",
+      "cheating scandal",
+      "South Korea education",
+      "AI test solving",
+      "exam cheating",
+      "smart glasses",
+      "AI technology"
+    ],
+    "hashtags": [
+      "#Shorts",
+      "#AITech",
+      "#SouthKorea",
+      "#TechNews",
+      "#Education"
+    ]
+  }
+}

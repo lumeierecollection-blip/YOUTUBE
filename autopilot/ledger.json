@@ -1078,16 +1078,18 @@
     },
     "kick-a4d2f98db6-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "qa-passed",
       "attempts": 1,
       "run_id": "42595289544",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:59:45.123Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T09:59:52.415Z",
+      "stage": "qa-passed",
       "topic": "AI-Powered Smart Glasses Used for School Exam Cheating",
       "score": 72.2,
       "pillar": "AI tools ordinary people can use",
-      "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams."
+      "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams.",
+      "qa": "all gates passed",
+      "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9"
     }
   },
   "uploads": [
