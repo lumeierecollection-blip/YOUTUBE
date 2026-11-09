@@ -15,5 +15,22 @@
       "World War I",
       "historical photographs"
     ]
+  },
+  "ai-tested": {
+    "run_id": 42678477700,
+    "artifact": "preview-ai-tested-42678477700-1",
+    "sha256": "adce1ed3841bdac8c9b0144c60d036a8ed10a2702e717889b1046be0af213ae7",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Can AI Count Letters? We Tested Two Models",
+    "description": "We gave OpenAI's GPT-OSS and Google's Gemini Flash-Lite the same 20 letter-counting questions, and code marked every reply. One test, run on 9 November 2026. Results can change between runs and as models update.\n\n#Shorts #AI #AITested #Gemini #TechNews",
+    "tags": [
+      "AI test",
+      "letter counting",
+      "GPT-OSS",
+      "Gemini Flash-Lite",
+      "AI models",
+      "strawberry test"
+    ]
   }
 }
