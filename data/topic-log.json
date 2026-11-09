@@ -2625,9 +2625,14 @@
           "topic": "Webb Space Telescope Spots Dust and Water Near Milky Way Center",
           "slug": "webb-space-telescope-dust-water-milky-way-center",
           "reserved_at": "2026-11-08T15:21:24.275Z"
+        },
+        {
+          "topic": "Hubble Space Telescope Detects First Secondary Eclipse of Rocky Exoplanet",
+          "slug": "hubble-first-secondary-eclipse-rocky-exoplanet",
+          "reserved_at": "2026-11-09T18:59:45.688Z"
         }
       ],
-      "last_generated": "2026-11-08T15:21:24.276Z"
+      "last_generated": "2026-11-09T18:59:45.689Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
