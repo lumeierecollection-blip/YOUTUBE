@@ -11,9 +11,8 @@ export const SENTENCES = [
   { text: "OpenAI's GPT-OSS got all twenty.", kind: "score", claim_ids: ["score0"] },
   { text: "Google's Flash-Lite got eleven.", kind: "score", claim_ids: ["score1"] },
   { text: "On random letters, just three of ten.", kind: "split", claim_ids: ["split_random1"] },
-  { text: "It found five Os in onomatopoeia.", kind: "miss", claim_ids: ["miss"] },
-  { text: "There are four.", kind: "miss", claim_ids: ["miss"] },
-  { text: "So AI can count, just not every model.", kind: "close", claim_ids: [], on_screen_text: "AI can count. Just not every model." },
+  { text: "It found five Os in onomatopoeia, not four.", kind: "miss", claim_ids: ["miss"] },
+  { text: "AI can count, just not every model.", kind: "close", claim_ids: [], on_screen_text: "AI can count. Just not every model." },
 ];
 export const METADATA = {
   title: "Can AI Count Letters? We Tested Two Models",
