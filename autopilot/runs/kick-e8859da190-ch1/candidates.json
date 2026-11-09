@@ -1,0 +1,1712 @@
+{
+  "generated_at": "2026-11-09T09:06:26.388Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 37
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 88
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:museum reveals artifact",
+          "ok": true,
+          "items": 3
+        },
+        {
+          "source": "bing-news:mystery solved historians",
+          "ok": true,
+          "items": 3
+        },
+        {
+          "source": "bing-news:medieval discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:Roman discovery",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:Viking discovery",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:Egypt discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:ancient DNA study",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:archaeology discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:World War II secret revealed",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "bing-news:unearthed ancient",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:shipwreck found",
+          "ok": true,
+          "items": 6
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:forgotten history",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 37
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 41
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-23",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-27",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:11-17",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:12-07",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-08",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-09",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-05",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-25",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-12",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:12-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-06",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "wikipedia-on-this-day:12-04",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:11-30",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:12-01",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-02",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-10",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-03",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-21",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-16",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-26",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-28",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-24",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-19",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-22",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:11-29",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-18",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-20",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-13",
+          "ok": true,
+          "items": 16
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "The Sinking of the SS Edmund Fitzgerald",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "All 29 crew members vanished into the freezing depths of Lake Superior in 1975—and nobody knows why.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "SS Edmund Fitzgerald",
+      "commons_query": "SS Edmund Fitzgerald",
+      "youtube_query": "SS Edmund Fitzgerald shipwreck story",
+      "evidence": [
+        {
+          "title": "1975, 11-10: SS Edmund Fitzgerald sank in Lake Superior, claiming all 29 of her crew's lives.",
+          "url": "https://en.wikipedia.org/wiki/SS_Edmund_Fitzgerald",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 17
+        },
+        {
+          "title": "New documentary highlights memorial swim completing Edmund Fitzgerald's journey - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQR3R1V01wMlk2dDlPeUswcVBURWliVlpXdzJGNERSYkZHaDBNUnlUdUZnaVBsZjdwUGdkM3N0Y2RSd3FBU3hNTV9qcktleWpNZl9QakYwMFI4V01LN2VyY0ZBdmhCTmZ6YWUxY3NiS2ZUWC10RGFHVWhfR0hkaDkyRDc5UkZpcWVpRVNLZ3FwQWRud3lheWRZbjhoeGd2SUNjdllWb1NLUQ?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Remembering the Edmund Fitzgerald: Watch our special on the Great Lakes tragedy - WPBN",
+          "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxQZlVORVZ5LVlDS2RkeGRqVUx4YmQzalVGR2V5d0pvSkdQUkhxRlBGZFk1eXd1U2hLZHUyZC1KTWdqYmh5aVoySjVwY3JNeEoyMEtSX25GTGJPcXZuaU5TbmdGQlVia1E4bm9Gc0RxTW96aDVwOF9SRGM2QThpRFpRa2NsekQzaEZPejk3ZHhCNVotaHJsdnF1OVp2Y2ZGTmpPb01ZRHZhUGQ1LXRTRVpXMWJXbTBqYng3cm1kTUxFYjhyaktRMVloLXVxV2RBbmRHQ2lGQjV3NmZTTWNZY1VRQnJSeVVJN3ZndFpaMFNGcnBySmZDcnVCb3BqdmZ4RmVUeDJSUzJxSnZNMVFTd3JjdXZyTFR5QWhwMnhvZ2JhMDhSdGwwcFFWVA?oc=5",
+          "domain": "upnorthlive.com",
+          "published_ms": 1793904978000,
+          "kind": "news"
+        },
+        {
+          "title": "A Powerful New Documentary Honors The Legacy Of The Edmund Fitzgerald - KROC-AM",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92UFNxOUdYcERKTmk0eExTVnJHd2I3RURXbXhWVE5JUFVBNGZqTDhWLTl2aTEySGMzMnlyZG9Ec2VzdmFiY3FETWRPX2RBRGpORVFWc2JvcXpzdmxXUXZITU80SFFMMGhhUGJrVmlQX0hvQQ?oc=5",
+          "domain": "krocnews.com",
+          "published_ms": 1794185815000,
+          "kind": "news"
+        },
+        {
+          "title": "Documentary chronicling 411-Mile Edmund Fitzgerald Memorial Swim set for Nov. 10 release - 9and10News.com",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQckZCaTJydzc1QWV3d0JRRzlwQV9vWXh2bXBFckVMbjM5eW9rMjdMNlJEdlhPOHJBNEdRTlNMTG5TdjdacUhvQXlhN3Z4ekQ1Wmtva19fSm51Njl1TE1PZHh3VzlEMWtpaWNDZ1ZLOG1ZQ2tMNjVUXzJRclpkOEFINUZqWFNOb3BMSktYU3NSUXdnY21JdzY0bG1JMURhVXhTWk5CY3l1d29SUGpIQXBSN0h6Z1F1TmwyRlBTMFdiY0kwNlNP?oc=5",
+          "domain": "9and10news.com",
+          "published_ms": 1793887260000,
+          "kind": "news"
+        },
+        {
+          "title": "Meet Harold, the First Grader Who Became the Edmund Fitzgerald for Halloween - 97.9 WGRD",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBjc2RyWkszRlpoVk5wSGZ2b041M3RENFppaDd0bjlXWGgwOHpQVlBnV3ktenQyUV9FblF2aHJPRnRES0llemhLWmNPU2U1dXprTjlpS0ZqZnJXS0NtS0pPOW1QNA?oc=5",
+          "domain": "wgrd.com",
+          "published_ms": 1793995902000,
+          "kind": "news"
+        },
+        {
+          "title": "INTERACTIVE: Detroit remembers the Edmund Fitzgerald — 51 years later - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNMmRuM3FTMnh5VXpVaktCRy1udXN2M05uYmlFWDdLVVNhaW1LVUVnZ1B3WWQzXzRzcUxxUkdPUnF5NlJYSDUyZkRsMmk2b29mVDhBTHFOOFVDTWFqS2h0cjNTWFpsXzB0b014OTVvWWlMYXVVMTVBVkZYOHd5UXRTY1owM1FsX3dCeDI5d051bG5CWlBERzFv?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Dossin Great Lakes Museum to commemorate sinking of Edmund Fitzgerald with events from Nov. 7-10 - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPdXNsdExmUWljVlBkWVMtNFEwR2YzRllSV0ZVWm9TWnVxdDFxZjV4RUJLSXNvbzM3bmtHUGgxRTRIbjJLU3lWMG9SajBNZ1EtdlBrTXVWUzRhX3lXMlZfcS00dVpHNmdmWXJLbEozbHhtQjhINGxSREF5VFNQWG40amx3Rmh5aGtLUFJ2d3premNiRkZkTXE1cVpKa09VVVVmMzYtdGxtdUZaSm5nSjFsTUx0ZjZOMk53SkdVWEJB?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "The Real Story Behind “The Wreck of the Edmund Fitzgerald” by Gordon Lightfoot - Songfacts",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPVHh4dExHeWRhZzgwbkg4SndXVnBkU3pNRFp0MDBINVN0eDRsYkNRYUlzWHBEMk0xM2lqNlRHejgwWTJsQUNnNVZzN2xBLUdHMmYyX3kwZ21Kd0NSX1lIa1Y2cmRXbFZ4b3FaMEN2LVRJcjRSRTJneUdvM25mQXhTek1Ka3VGRU9hcDBlcGo0RXRGcXZwVHdndlRVVnpNTkJRdjFpTkUtX0MxdkNFek9OSEVn?oc=5",
+          "domain": "songfacts.com",
+          "published_ms": 1793912672000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "SS Edmund Fitzgerald",
+        "daily_views": 11497,
+        "ratio": 2.87
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 83,
+          "reach": 81,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 84.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "wxyz.com",
+          "upnorthlive.com",
+          "krocnews.com",
+          "9and10news.com",
+          "wgrd.com",
+          "songfacts.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Sherman's March to the Sea",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        81
+      ],
+      "hook": "In 1864, a Union general cut a 60-mile-wide path of total destruction straight through Georgia.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Sherman's March to the Sea",
+      "commons_query": "Sherman's March to the Sea",
+      "youtube_query": "Shermans March to the Sea history",
+      "evidence": [
+        {
+          "title": "1864, 11-15: American Civil War: Union army general William Tecumseh Sherman (pictured) began his March to the Sea, inflicting significant damage to property and infrastructure using scorched-earth tactics on his way from Atlanta to Savannah, Georgia.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 81
+        },
+        {
+          "title": "Sherman’s March to the Sea | Significance, Map, Casualties, & The Civil War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBvU25wMGNvY3k2Zi1YM1YyOElWS3BIa2k1c3dKY1ZRUUxXQk1EOUI2ZVFWeWU5RmUyYmFReDFCZGRXMGVhNElIY01IZ1JDRXRVYnhtZUxTMk9hRVpvNmxhRjBvTmJhX2c2MFE?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Georgia Stories | How General Sherman Crippled the Confederacy - PBS",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQME9wN281VnNxSEc1Zk1tOFhNdGxHdVZPaWhZWFowRFNmSTZrdkM1ZFI5c2lNT0VGZWxQeHptS0toelJ6UlhSYy1yVlB0VVdMOUM3U2JMbmU3ZzVSN3hURDBZNWdpeU5qaW0xY2d5NGEyVy1CTUZVZ1dCdXZOREtXdlJONlQ?oc=5",
+          "domain": "pbs.org",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "William Tecumseh Sherman - Civil War, March, Memoirs - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5ZYm5BQUM4MWtoMVBNanJydWtHc2VkX1VCVXpxbnFaOWVyUHAyNnZQNTRpeXdNQVllcFhtTWFTdk95aTM2Smh5aGZoZkNuME11bm5lVkFwRWxHc19jbjkzdXNBZlFEa2pfQW9BaExpV2huS1diVE0tWmdfbGs?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Sherman's March to the Sea",
+        "daily_views": 730,
+        "ratio": 1.2
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 65,
+          "reach": 57,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "pbs.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Sherman's March to the Sea"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Edwin Hubble proves the Andromeda Nebula is another galaxy",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        91
+      ],
+      "hook": "In one newspaper announcement, humanity's entire perspective of the universe expanded infinitely.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Edwin Hubble",
+      "commons_query": "Edwin Hubble",
+      "youtube_query": "Edwin Hubble Andromeda galaxy discovery",
+      "evidence": [
+        {
+          "title": "1924, 11-23: The New York Times published evidence from Edwin Hubble (pictured) stating that the Andromeda Nebula, previously believed to be part of the Milky Way, is in fact another galaxy.",
+          "url": "https://en.wikipedia.org/wiki/The_New_York_Times",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 91
+        },
+        {
+          "title": "How did Edwin Hubble prove that the Andromeda Galaxy lies outside the Milky Way? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQRmdPSFNyZGh3WUVHZFN0N3Jza1doVjhCa01IM1RpX0cxamdBenlfRjk3VjFhdXEzRGVNVFFQNUlELU5rYjFla09aWXFBYnplMk9QYVFRNVIxSmJJNXlkV05fenhwMkRmSXB4VmpSQXNWRU9maTVNaEtWZzAyV29NQzZPVmNmRng2d0pyNUxIb05IcWN0UFJ3Q05ieGxHWGpoZFZRNUtTR0lqS0t3aXBPbU04OGs?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793788769000,
+          "kind": "news"
+        },
+        {
+          "title": "Hubble reveals a stunning twist in how the universe emerged from darkness - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8wbXZ0OXRMMG9zUlNhUFR4YVduLUZabElFdENJSUwtWTNKV3p5SHJzTGxyalhrNjc5bXpVV2FEZ25oakczNE1zQklwRmpwQlZaWDRqdnJMajlxNEFWMTFvM1V0dXFYNGtsNldHdlJIVQ?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Edwin Hubble",
+        "daily_views": 352,
+        "ratio": 0.8
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 51,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 74.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "sciencedaily.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Albert Hofmann's accidental synthesis of LSD in Basel",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        9
+      ],
+      "hook": "A routine pharmaceutical experiment in 1938 accidentally birthed history's most notorious mind-altering chemical.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Albert Hofmann",
+      "commons_query": "Albert Hofmann",
+      "youtube_query": "Albert Hofmann synthesis of LSD 1938",
+      "evidence": [
+        {
+          "title": "1938, 11-16: Swiss chemist Albert Hofmann first synthesized the psychedelic drug LSD in Basel, Switzerland.",
+          "url": "https://en.wikipedia.org/wiki/Albert_Hofmann",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 9
+        },
+        {
+          "title": "Albert Hofmann - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE81OVNHVm5xQ2ZiV1NZcWw0b3B0M0NYQmlHQVV3WFVIVGtwOWVoNXBvMEgxSU1uMEFQQWhKcnRzUjhFUENzdjFjdzdRSl9jNjE4azdjeGdCeGhmWHBmMENjOQ?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "Today in History April 19 | 1943, Albert Hofmann, LSD, Acid, Bike Ride, & First Trip - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPUWgzTEJ2bnd1VmhXVnd3bHcxWkdQUkt0a19TZ1Mxck1pc3A4cHZjdk1SNHl0T3RySF9UV2ZxOVZIUkxKRTRkb3pYRWlLTjU4SER2aWRGOGYxamNrSnZ5ZjdPZUtsdkRIWjJKaktfM1hTbGozOWpiLWpIU3pvUmRKbGk3WjZnLV9xUGljODNYdDNpdw?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Albert Hofmann",
+        "daily_views": 303,
+        "ratio": 0.88
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 50,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 72.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "D.B. Cooper's legendary 1971 airplane hijacking and parachute escape",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        100
+      ],
+      "hook": "He extorted $200,000, jumped out of a Boeing 727 into a freezing thunderstorm, and vanished forever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "D. B. Cooper",
+      "commons_query": "DB Cooper",
+      "youtube_query": "DB Cooper hijacking mystery unsolved",
+      "evidence": [
+        {
+          "title": "1971, 11-24: After collecting a ransom payout of $200,000, D. B. Cooper (depicted) parachuted out of the rear stairway of the airplane he had hijacked over the Pacific Northwest and disappeared.",
+          "url": "https://en.wikipedia.org/wiki/D._B._Cooper",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 100
+        }
+      ],
+      "wikipedia": {
+        "title": "D. B. Cooper",
+        "daily_views": 3512,
+        "ratio": 0.97
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 71,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 71.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Jocelyn Bell Burnell's accidental discovery of the universe's first pulsar",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        147
+      ],
+      "hook": "A graduate student noticed a tiny 'bit of scruff' on her telescope readout—and accidentally picked up signals from an alien-like dead star.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Jocelyn Bell Burnell",
+      "commons_query": "Jocelyn Bell Burnell",
+      "youtube_query": "Jocelyn Bell Burnell pulsar discovery",
+      "evidence": [
+        {
+          "title": "1967, 11-28: Jocelyn Bell Burnell noticed a \"bit of scruff\" in data from a radio telescope, which turned out to be from PSR B1919+21, the first discovered pulsar.",
+          "url": "https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 147
+        },
+        {
+          "title": "Astrophysicist Jocelyn Bell Burnell awarded UCD Ulysses Medal - Silicon Republic",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQbTFzX0F2LUtiTHMyQ0FMbkQxRldEQkg2cHVZdlFGeWtlN21JZGVwczNCWHdHVXNuYzNaMmRjdGN4bHNWazFiT1l3SG1QMTVWcC1YVkV3VldqSUZJLXQyaWNuNGNHa21uTThFenJJSXBhbTdnZUROcGdzdDhrN3l2UzNZd3dWM0hfLVJJa0Rud3UzMTdQWnRUQWNYSXNfUGNMcVdubzFlck5fSGZp?oc=5",
+          "domain": "siliconrepublic.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Jocelyn Bell Burnell",
+        "daily_views": 294,
+        "ratio": 0.92
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 49,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 70.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "siliconrepublic.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "WWII Shipwreck Discovered Off Maine Coast",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        153,
+        160,
+        162
+      ],
+      "hook": "Divers just solved an 80-year-old WWII mystery, finding a Canadian merchant ship torpedoed just off the coast of Maine.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "WWII shipwreck Maine coast discovered",
+      "evidence": [
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 153
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 160
+        },
+        {
+          "title": "A Nazi Submarine Torpedoed a Merchant Ship Just Off the Coast of Maine in 1944. Divers Have Finally Located the Wreckage, 400 Feet Below the Surface - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxNYjVYMXRWNFUxdVlpTnJRS1VKY04tRE8wNG9kNnl1cC1lZHpwOE9uTEVqU2hxNWFKd3ByMHBqaVo0R3RRRXgwMnNYdUYtT21PUGNkZ2RKY3ljS00wd3JiemRjM3huemtZUUloNUZuTC1BRUs3R01IVnJIUzk5Tjg4WVJkNE5hRWhWZUx5b3pCNjE2ak9DX0tEcEFmelVOZGp1X1Y4SjVwMVFkX1ozZ1JadXdyeGs3Z3ZubllfOG5zUnhVSlhhQzNnSnZ5NWM2ZXN2MmZtaFcxWnRSejJ5TExPUW1LLVlxdEQ5RUtYVWtkbDIxN184Qk1RX2ZtN2d1cTkxNUxPTU5hNGl4Wks1RXdmRDdNRDBUbFlRRDhLLUxhY2l2akxOVGc?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793918400000,
+          "kind": "news",
+          "id": 162
+        },
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 98,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 70,
+        "newest_hours": 35,
+        "domains": [
+          "gizmodo.com",
+          "bostonglobe.com",
+          "smithsonianmag.com",
+          "ua-stena.info"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Brink's-Mat warehouse heist of £26 million in gold and diamonds",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        123
+      ],
+      "hook": "What started as a routine robbery led to a multi-ton fortune of stolen gold that cursed everyone who touched it.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Brink's-Mat robbery",
+      "commons_query": "Brinks Mat robbery",
+      "youtube_query": "Brinks Mat robbery gold heist true story",
+      "evidence": [
+        {
+          "title": "1983, 11-26: Six robbers broke into a Brink's-Mat warehouse at Heathrow Airport in London and stole £26 million in gold, diamonds and cash.",
+          "url": "https://en.wikipedia.org/wiki/Brink's",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 123
+        }
+      ],
+      "wikipedia": {
+        "title": "Brink's-Mat robbery",
+        "daily_views": 1463,
+        "ratio": 1.18
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 63,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 66.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 14th Dalai Lama assumes absolute temporal power at age 15",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        18
+      ],
+      "hook": "Thrust onto the world stage amidst looming invasion, a teenage monk took command of Tibet.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "14th Dalai Lama",
+      "commons_query": "Dalai Lama 1950",
+      "youtube_query": "14th Dalai Lama assumes power 1950",
+      "evidence": [
+        {
+          "title": "1950, 11-17: The 14th Dalai Lama (pictured) assumed full temporal power as ruler of Tibet at the age of 15.",
+          "url": "https://en.wikipedia.org/wiki/14th_Dalai_Lama",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 18
+        }
+      ],
+      "wikipedia": {
+        "title": "14th Dalai Lama",
+        "daily_views": 3196,
+        "ratio": 0.74
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 70,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 66.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The attack on the American whaling ship Essex by a sperm whale",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        58
+      ],
+      "hook": "Long before Moby-Dick, a massive bull whale deliberately rammed and sank an American whaling ship in the open Pacific.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Essex (whaleship)",
+      "commons_query": "Essex whaleship sinking",
+      "youtube_query": "Essex whaling ship whale attack true story",
+      "evidence": [
+        {
+          "title": "1820, 11-20: The American whaleship Essex sank 2,000 nautical miles (3,700 km) west of the western coast of South America after it was attacked by a sperm whale, an event which inspired the novel Moby-Dick by Herman Melville (pictured).",
+          "url": "https://en.wikipedia.org/wiki/Essex_(whaleship)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 58
+        }
+      ],
+      "wikipedia": {
+        "title": "Essex (whaleship)",
+        "daily_views": 470,
+        "ratio": 1.04
+      },
+      "youtube": null,
+      "commons_hits": 4,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 53,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 65,
+          "source_quality": 35
+        },
+        "total": 65.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (4 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The founding of the Royal Society by Wren, Boyle, and Wilkins",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        155
+      ],
+      "hook": "When Britain's greatest minds gathered in a London college room, modern science was officially born.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Royal Society",
+      "commons_query": "Royal Society coat of arms founders",
+      "youtube_query": "history of the Royal Society founding London",
+      "evidence": [
+        {
+          "title": "1660, 11-28: Robert Boyle, John Wilkins, Christopher Wren and other leading scientists met at Gresham College in London to found a learned society, now known as the Royal Society (coat of arms pictured).",
+          "url": "https://en.wikipedia.org/wiki/Robert_Boyle",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 155
+        },
+        {
+          "title": "Dr. Denise Joseph and Dr. Louis Joseph Elected Fellows of the Linnean Society of London - USA Today",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPdHRVVUNncmVyaTZYSlNFMXViTUE5c3ZWbGc1MEoxTmhqSDJxbVp0eEJ1SFRpbzI5VDFEY0dxNmp3MktPYy1QdFJESE90S2VIakY1TGI4UW10RXFZYWhvcXIzZHJZalpYSEd5VHM3MXluaDkwTHlfbkFTaVBDSlhiMnpxeXBzLWdDZ1lzbUExUFFSOHhBS2VqUGVUVXNTQXQ5YWo0YU9NZkkwNFFrVktyZzMzOExnQ2dnWHVELTVhbVJaYXFrYmlSRnhYTl9RWHhTR3ByeHdB?oc=5",
+          "domain": "usatoday.com",
+          "published_ms": 1793415790000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Royal Society",
+        "daily_views": 432,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 53,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 65.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "usatoday.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The discovery of the largest hoard of Roman silver and gold in Britain",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        3
+      ],
+      "hook": "How a metal detectorist stumbled upon Britain's greatest Roman treasure buried in a Suffolk field.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Hoxne Hoard",
+      "commons_query": "Hoxne Hoard",
+      "youtube_query": "Hoxne Hoard Roman treasure discovery",
+      "evidence": [
+        {
+          "title": "1992, 11-16: The largest hoard of Roman silver and gold in Britain was found in Suffolk, England.",
+          "url": "https://en.wikipedia.org/wiki/Hoxne_Hoard",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 3
+        },
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - Earth.com",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa013Qm10VjJySzZUV0pGLTZhOWUxSnNReUJqNnoyOG5JZzAxZVA0Uk5rdC1EVVdRUG10dmw1aUFtT2Q3elU2bTZDTE5MbEhNU0JKQWNFd3ZyRHhqRkxDdDRNWVlmcVc4VkItTHVtZVFqYXRYOHJhd0lYOXY0MmwwTjhsZUtKendXOGNCbWlkZW9aRjYwVXVGNlFubmgwSVgyTTktUkktRDRyTUltRkE?oc=5",
+          "domain": "earth.com",
+          "published_ms": 1794122520000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Hoxne Hoard",
+        "daily_views": 46,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 33,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 65.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "earth.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Opening of the Holland Tunnel",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        57
+      ],
+      "hook": "Before this underwater marvel opened in 1927, driving under the Hudson River was considered suicide.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "Holland Tunnel",
+      "commons_query": "Holland Tunnel opening",
+      "youtube_query": "Holland Tunnel history construction",
+      "evidence": [
+        {
+          "title": "1927, 11-13: The Holland Tunnel opened, connecting Manhattan with Jersey City under the Hudson River.",
+          "url": "https://en.wikipedia.org/wiki/Holland_Tunnel",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 57
+        },
+        {
+          "title": "Tunnel works - Victoria’s Big Build",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNGVYQzZyYzdHa0ZJMFpPQlUxOXRFUmNPT3hjY2xsQUx3ejdDZkxUeHBpZWtqWG9Qb1FMbjkyc2xaLUhBN0dOVzNmU1lmdEM4MVBSZzdUQ1RWQ0s2WUZscEdKNUVJOUFMdDVYXzltajBFbldJaERRbDBQUjZnaUNnb0NzVFI2NGIwYlVrQXpB?oc=5",
+          "domain": "bigbuild.vic.gov.au",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Holland Tunnel",
+        "daily_views": 190,
+        "ratio": 0.77
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 46,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 64.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "bigbuild.vic.gov.au"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Opening of the Holland Tunnel"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Unveiling of the Cenotaph and Burial of the Unknown Warrior",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        32
+      ],
+      "hook": "In 1920, millions wept in London as an empty tomb and an unidentified soldier gave a voice to the lost of WWI.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "The Cenotaph, London",
+      "commons_query": "The Cenotaph London 1920",
+      "youtube_query": "Unknown Warrior Westminster Abbey Cenotaph",
+      "evidence": [
+        {
+          "title": "1920, 11-11: In London, the Cenotaph was unveiled and the Unknown Warrior was buried in Westminster Abbey in remembrance of the First World War.",
+          "url": "https://en.wikipedia.org/wiki/The_Cenotaph",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 32
+        },
+        {
+          "title": "Royal Pearls and Badges on Remembrance Sunday at the Cenotaph - The Court Jeweller",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNVEEtRGVkVWY3R3RYdllCd295Q3ZNMlZDcjVVaVdKR3haQ0x4VlVINGViWnhOS2VIOUE1OE94QklzY1F6bFRjX2g3S09sYzVkMHR1RXpIX3hqalRFblFwN3EwV2lSQm56YUx1cUk5T05wdmkxbng0MVZaM281VnZreUI4RVRqbUdHdV9ndFFwc2hfbWlpVGJFQ1NaUzFtbE9Xb3d6MXp0cGwyZjA?oc=5",
+          "domain": "thecourtjeweller.com",
+          "published_ms": 1794141468000,
+          "kind": "news"
+        },
+        {
+          "title": "The Veterans Charity creates Remembrance tribute to retrace the Unknown Warrior’s journey from France to Westminster Abbey in a moving event dedicated to the fallen - Cobseo - The Confederation of Service Charities",
+          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPVnFuU0xWdGluTGhlZG5hT1ZDTDlZRTc0bWF3SU5hOVVnMHBUY2h5M3hEM0REc3RHNklkZEo2NThwZGtwNlJER3kyajNPVUhjMVJ0UllZQXAwQVdiUGQwM1J3eVhfM2JsVG9vYUtZZVVyMFIzc3E1Q0xJdmRmNWZhNkpPWWMxbzBFaF9LM2E2aHc1cGtJT0d4Z2oyTzl0NnNnNGJaN3BGdUw3WGpjWXMxRXRHbVBhbUxMa2pTdEk0V2RNd0laU2xSOTNqY2w3QVJIOVBmRTVSQXRWOGVTU2psSHl3UENkdF9raTRhdDZyUnkwMzlPUEl2NmNOWW9LeE93ekRndzNDNlNIQ1RHeUJFS2VHRnFpTVJtS1E?oc=5",
+          "domain": "cobseo.org.uk",
+          "published_ms": 1793898733000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 63.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "thecourtjeweller.com",
+          "cobseo.org.uk"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: The Burial of the Unknown Warrior"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Battle of Taranto: History's First All-Aircraft Ship-to-Ship Attack",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        29
+      ],
+      "hook": "In 1940, a handful of obsolete British biplanes shattered naval history in a single night.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Battle of Taranto",
+      "commons_query": "Battle of Taranto 1940",
+      "youtube_query": "Battle of Taranto 1940 aircraft attack",
+      "evidence": [
+        {
+          "title": "1940, 11-11: Second World War: The Royal Navy launched the first all-aircraft ship-to-ship naval attack in history against the Italians in the Battle of Taranto.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 29
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of Taranto",
+        "daily_views": 183,
+        "ratio": 0.78
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 45,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 63,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Operation Catechism: Sinking the Battleship Tirpitz",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        46
+      ],
+      "hook": "How the RAF finally destroyed Hitler's 'Lonely Queen of the North' hidden in a Norwegian fjord.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Operation Catechism",
+      "commons_query": "German battleship Tirpitz",
+      "youtube_query": "Operation Catechism sinking Tirpitz",
+      "evidence": [
+        {
+          "title": "1944, 11-12: Second World War: In Operation Catechism, the Royal Air Force sank the German battleship Tirpitz  (video featured) near Tromsø, Norway, killing about 1,000 sailors on board.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 46
+        }
+      ],
+      "wikipedia": {
+        "title": "Operation Catechism",
+        "daily_views": 73,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 37,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 62,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Daring RAF Raid That Sank the Battleship Tirpitz"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The tragic suicide and sacrifice of the Mirabal sisters against Trujillo",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        113
+      ],
+      "hook": "Their brutal assassination sparked an underground outrage that ultimately toppled a Caribbean dictatorship.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mirabal sisters",
+      "commons_query": "Mirabal sisters",
+      "youtube_query": "Mirabal sisters Dominican Republic history",
+      "evidence": [
+        {
+          "title": "1960, 11-25: Three of the four Mirabal sisters, who opposed the dictatorship of military strongman Rafael Trujillo in the Dominican Republic, were beaten and strangled to death.",
+          "url": "https://en.wikipedia.org/wiki/Mirabal_sisters",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 113
+        }
+      ],
+      "wikipedia": {
+        "title": "Mirabal sisters",
+        "daily_views": 284,
+        "ratio": 1.1
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 49,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 61.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The execution of Canadian Métis leader Louis Riel",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        11
+      ],
+      "hook": "He founded the province of Manitoba, led a rebellion, and was ultimately hanged for high treason.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Louis Riel",
+      "commons_query": "Louis Riel",
+      "youtube_query": "Louis Riel trial and execution history",
+      "evidence": [
+        {
+          "title": "1885, 11-16: After a five-day trial following the North-West Rebellion, Louis Riel, a Canadian Métis leader and \"Father of Manitoba\", was hanged for high treason.",
+          "url": "https://en.wikipedia.org/wiki/Trial_of_Louis_Riel",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 11
+        }
+      ],
+      "wikipedia": {
+        "title": "Louis Riel",
+        "daily_views": 456,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 53,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 60.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Aztec gold serpent labret with an articulated tongue",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        77
+      ],
+      "hook": "This masterwork of Aztec gold features a terrifying articulated tongue that actually moves.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Serpent labret",
+      "commons_query": "Serpent labret Aztec",
+      "youtube_query": "Aztec serpent labret gold ornament",
+      "evidence": [
+        {
+          "title": "1978, 11-22: The serpent labret with articulated tongue (pictured articulating between positions), \"perhaps the finest Aztec gold ornament to survive the crucibles of the sixteenth century\", was sold at Sotheby's.",
+          "url": "https://en.wikipedia.org/wiki/Serpent_labret_with_articulated_tongue",
+          "domain": "wikipedia.org",
+          "published_ms": 1794215186388,
+          "kind": "anniversary",
+          "id": 77
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 56,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    }
+  ]
+}
