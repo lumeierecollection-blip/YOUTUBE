@@ -754,7 +754,12 @@
       "attempts": 1,
       "run_id": "42560683899",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:14:31.779Z"
+      "updated_at": "2026-11-09T04:16:11.905Z",
+      "stage": "research",
+      "topic": "The Armistice in the Compiègne Forest Railway Carriage",
+      "score": 66.6,
+      "pillar": "Events that changed the modern world",
+      "hook": "World War I didn't end on a battlefield—it ended inside a secret railway carriage."
     }
   },
   "uploads": [],
@@ -1370,6 +1375,15 @@
       "at_ms": 1794197469727,
       "score": 67.8,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "The Armistice in the Compiègne Forest Railway Carriage",
+      "slug": "the-armistice-in-the-compie-gne-forest-railway-carriage",
+      "slot": "kick-fbb26cd62b-ch1",
+      "at_ms": 1794197771905,
+      "score": 66.6,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
