@@ -1012,12 +1012,12 @@
       "attempts": 1,
       "run_id": "42590890284",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:14:11.291Z",
-      "stage": "script",
-      "topic": "WhatsApp rolls out AI photo expansion tool on iPhone",
-      "score": 82.7,
-      "pillar": "Trending AI tools and apps",
-      "hook": "You can now expand your photos using built-in AI directly inside WhatsApp on your iPhone."
+      "updated_at": "2026-11-09T09:17:54.865Z",
+      "stage": "research",
+      "topic": "Law professor accidentally deletes entire year of lecture notes using Claude",
+      "score": 75.2,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "A law professor asked Claude to renumber pages, and the AI accidentally deleted a whole year of lecture notes."
     }
   },
   "uploads": [
@@ -1855,6 +1855,15 @@
       "at_ms": 1794215628847,
       "score": 82.7,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Law professor accidentally deletes entire year of lecture notes using Claude",
+      "slug": "law-professor-accidentally-deletes-entire-year-of-lecture-no",
+      "slot": "kick-08d0af4b3f-ch2",
+      "at_ms": 1794215874865,
+      "score": 75.2,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
