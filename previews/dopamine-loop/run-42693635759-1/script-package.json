@@ -1,0 +1,109 @@
+{
+  "channel": "dopamine-loop",
+  "production_run": "run-42693635759-1",
+  "topic": "Why the brain can reward you before a song's best part",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Your brain can start rewarding you before a song's best part.",
+      "scene": 0,
+      "claim_ids": [
+        "D4"
+      ]
+    },
+    {
+      "text": "In scans of listeners, dopamine was released at peak emotional arousal.",
+      "scene": 1,
+      "claim_ids": [
+        "D2"
+      ]
+    },
+    {
+      "text": "The caudate was more involved during anticipation.",
+      "scene": 2,
+      "claim_ids": [
+        "D3"
+      ]
+    },
+    {
+      "text": "The nucleus accumbens was more involved at the peak.",
+      "scene": 3,
+      "claim_ids": [
+        "D3"
+      ]
+    },
+    {
+      "text": "Anticipation can use a pathway distinct from peak pleasure.",
+      "scene": 4,
+      "claim_ids": [
+        "D4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "salimpoor2011",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21217764&retmode=text&rettype=abstract",
+      "published": "2011-02",
+      "doi": "10.1038/nn.2726",
+      "title": "Anatomically distinct dopamine release during anticipation and experience of peak emotion to music",
+      "journal": "Nature Neuroscience",
+      "licence": "abstract only, facts only, no text or figure reused"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "D1",
+      "claim": "Music can arouse feelings of euphoria and craving, similar to tangible rewards that involve the striatal dopaminergic system.",
+      "source_id": "salimpoor2011",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21217764&retmode=text&rettype=abstract",
+      "published": "2011-02",
+      "excerpt": "Music, an abstract stimulus, can arouse feelings of euphoria and craving, similar to tangible rewards that involve the striatal dopaminergic system.",
+      "confidence": "medium",
+      "context": "Framing sentence of the abstract.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "D2",
+      "claim": "In listeners, endogenous dopamine release was found in the striatum at peak emotional arousal during music listening.",
+      "source_id": "salimpoor2011",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21217764&retmode=text&rettype=abstract",
+      "published": "2011-02",
+      "excerpt": "we found endogenous dopamine release in the striatum at peak emotional arousal during music listening.",
+      "confidence": "medium",
+      "context": "PET scanning with [11C]raclopride in human listeners. Release at peak arousal is a measured association.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "D3",
+      "claim": "In fMRI of the same listeners, the caudate was more involved during anticipation and the nucleus accumbens during the experience of peak emotional responses.",
+      "source_id": "salimpoor2011",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21217764&retmode=text&rettype=abstract",
+      "published": "2011-02",
+      "excerpt": "the caudate was more involved during the anticipation and the nucleus accumbens was more involved during the experience of peak emotional responses to music.",
+      "confidence": "medium",
+      "context": "fMRI with the same stimuli and listeners. 'More involved' is the abstract's wording; it is activity, not a dopamine measurement.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "D4",
+      "claim": "Anticipation of an abstract reward can result in dopamine release in an anatomical pathway distinct from the one associated with peak pleasure.",
+      "source_id": "salimpoor2011",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=21217764&retmode=text&rettype=abstract",
+      "published": "2011-02",
+      "excerpt": "the anticipation of an abstract reward can result in dopamine release in an anatomical pathway distinct from that associated with the peak pleasure itself.",
+      "confidence": "medium",
+      "context": "One study. The abstract says 'can result in'; it does not say it always does.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
