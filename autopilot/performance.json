@@ -3,16 +3,16 @@
     "ZFhtdVwK2zQ": {
       "channel": "1",
       "privacy": "private",
-      "views": 1,
+      "views": 0,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-09T09:03:30.839Z"
+      "collected_at": "2026-11-09T09:05:11.400Z"
     }
   },
   "analytics_status": {
     "1": {
       "available": true,
-      "checked_at": "2026-11-09T09:03:31.015Z"
+      "checked_at": "2026-11-09T09:05:11.549Z"
     }
   }
 }
