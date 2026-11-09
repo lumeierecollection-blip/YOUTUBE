@@ -3,10 +3,10 @@
   "topic": "Saturn is losing its rings to ring rain",
   "format": "short",
   "target_seconds": 27,
-  "selected_hook": "Saturn is losing its rings, right now.",
+  "selected_hook": "Saturn is raining its rings away.",
   "hook_options": [
     {
-      "text": "Saturn is losing its rings, right now.",
+      "text": "Saturn is raining its rings away.",
       "family": "present-tense stakes",
       "honest": true
     },
@@ -273,7 +273,7 @@
       "beat_id": "b1",
       "treatment": "saturn-ring-plane-flyover",
       "role": "hook",
-      "narration": "Saturn is losing its rings, right now.",
+      "narration": "Saturn is raining its rings away.",
       "main_point": "The rings are draining.",
       "visual_objective": "Skim the real ring plane toward the lit planet so the rings read as a physical place.",
       "claim_ids": [
@@ -296,7 +296,7 @@
       "beat_id": "b2",
       "treatment": "orbital-scale-pullout",
       "role": "context",
-      "narration": "It orbits nearly ten times farther from the Sun than Earth.",
+      "narration": "It orbits nearly ten times farther out than Earth.",
       "main_point": "Saturn is 9.6 times farther out than Earth, yet its signal was caught from here.",
       "visual_objective": "Pull out from Earth's orbit to Saturn's on true-scale orbits with the ratio counting up.",
       "claim_ids": [
@@ -321,7 +321,7 @@
       "beat_id": "b3",
       "treatment": "ring-rain-labelled-3d",
       "role": "mechanism",
-      "narration": "Dark bands in its glow suggest ring rain: charged ice falling along magnetic field lines.",
+      "narration": "Dark bands in its glow suggest charged ice falling along field lines.",
       "main_point": "Bands are observed; falling ice along field lines is the explanation.",
       "visual_objective": "A labelled 3D Saturn: dark bands at their observed latitudes, ice grains moving along field lines from named rings.",
       "claim_ids": [
@@ -355,7 +355,7 @@
       "beat_id": "b4",
       "treatment": "pool-fill-estimate",
       "role": "scale",
-      "narration": "One estimate: an Olympic pool of water, every half hour.",
+      "narration": "One estimate: an Olympic pool every half hour.",
       "main_point": "The loss rate in human terms.",
       "visual_objective": "A pool filling in 3D while a 30-minute clock runs, so the rate is visible with the sound off.",
       "claim_ids": [
@@ -379,7 +379,7 @@
       "beat_id": "b5",
       "treatment": "ring-fade-disputed-models",
       "role": "payoff",
-      "narration": "By one model, under a hundred million years left. A 2024 simulation says they may be billions of years old.",
+      "narration": "Models disagree: under a hundred million years left, or billions old.",
       "main_point": "The timescale is a model, and the rings' age is disputed.",
       "visual_objective": "The rings thin while two sourced model cards sit side by side as competing claims.",
       "claim_ids": [
@@ -403,7 +403,7 @@
       "beat_id": "b6",
       "treatment": "ringless-hypothetical",
       "role": "ending",
-      "narration": "A bare Saturn? Only a hypothetical.",
+      "narration": "A ringless Saturn is only hypothetical.",
       "main_point": "A ringless Saturn is imagined, not seen.",
       "visual_objective": "The planet alone, with the hypothetical status filling the frame's top so it cannot be mistaken for an image.",
       "claim_ids": [

@@ -32,6 +32,9 @@ export async function runQa({ tools, video, timing, sample, rate, maxRate, maxSe
   if (Math.abs(fps - 30) > 0.01) failures.push(`fps ${fps}, expected 30`);
   if (!a) failures.push("no audio stream in the MP4");
   if (rate > maxRate) failures.push(`voice rate +${rate}% exceeds +${maxRate}%`);
+  const vol = execFileSync("ffmpeg", ["-i", video, "-af", "volumedetect", "-vn", "-f", "null", "-"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+  const mean = Number(((vol.match(/mean_volume: (-?[0-9.]+)/) || [])[1]));
+  if (!(mean > -40)) failures.push(`voice is not audible in the MP4 (mean ${mean} dB; silence is about -91 dB)`);
 
   const scenes = [];
   for (const [i, t] of timing.entries()) {
@@ -63,13 +66,13 @@ export async function runQa({ tools, video, timing, sample, rate, maxRate, maxSe
   if (sample.narration_provisional !== true) failures.push("narration not marked provisional");
   const hyp = sample.claims.filter((c) => c.editorial_status === "hypothetical").map((c) => c.claim_id);
   notes.push(`hypothetical claims: ${hyp.join(", ")} (shown only in s5/s6 under HYPOTHETICAL labels)`);
-  notes.push("Narration is provisional (hand-planned, not from the script engine). Voice is edge-tts neural speech, not a human recording.");
+  notes.push("Narration is provisional (hand-planned, not from the script engine). Voice is generated speech, not a human recording.");
   notes.push("Checks here are mechanical. A person must still look at the frames: label overlaps, orbit proportions and texture look are not machine-verified.");
 
   const report = {
     passed: failures.length === 0, failures, notes,
     duration_s: +duration.toFixed(3), width: v.width, height: v.height, fps, frames_expected: expectedFrames, has_audio: !!a,
-    voice: { tts_voice: "en-US-GuyNeural", rate: `+${rate}%`, max_rate: `+${maxRate}%`, provisional_narration: true },
+    voice: { engine: "Gemini TTS, natural pace", playback_speed: 1, mean_volume_db: mean, provisional_narration: true },
     sources_fetched: sample.sources.map((s) => s.url),
     claims: sample.claims.map((c) => ({ claim_id: c.claim_id, editorial_status: c.editorial_status, source_url: c.source_url })),
     scenes,

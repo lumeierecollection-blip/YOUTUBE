@@ -1,26 +1,33 @@
 // Red Space Facts preview: "Saturn is losing its rings". Runs on GitHub (channel-preview.yml), never locally.
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { copyFileSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { narrate } from "../../production/index.mjs";
 import { runQa } from "./qa.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const sample = JSON.parse(readFileSync(join(here, "sample.json"), "utf8"));
 const channel = JSON.parse(readFileSync(join(here, "channel.json"), "utf8"));
-const FPS = 30, MAX_S = 30, GAP_S = 0.22, LEAD_S = 0.12, TAIL_S = 0.5, MIN_SCENE_S = 2.2, MAX_RATE = 8;
+const FPS = 30, MAX_S = 30, GAP_S = 0.22, LEAD_S = 0.12, TAIL_S = 0.5, MAX_RATE = 0;
 const SCENE_IDS = ["s1", "s2", "s3", "s4", "s5", "s6"];
 
 const ff = (args) => execFileSync("ffmpeg", ["-y", "-v", "error", ...args], { stdio: "inherit" });
 
-/** Voice every scene at one rate. The voice is never sped past +MAX_RATE%: words get cut instead. */
-function voiceAll(tools, rate) {
-  const files = SCENE_IDS.map((id) => {
-    const sc = sample.scenes.find((s) => s.scene_id === id);
-    return { id, file: tools.voice({ text: sc.narration, voice: channel.voice.tts_voice, output: `vo-${id}.mp3`, rate: `+${rate}%` }), text: sc.narration };
-  });
-  files.forEach((f) => { f.dur = tools.durationOf(f.file); });
-  return files;
+const STYLE = "Brisk, energetic, confident documentary narration for a YouTube Short. Keep it moving, with no long pauses.";
+
+/** The whole script is voiced once at the voice's own pace. A take that runs long is voiced again; the speed is never changed. */
+async function voiceAll(outDir) {
+  const text = SCENE_IDS.map((id) => sample.scenes.find((s) => s.scene_id === id).narration).join(" ");
+  let n = null;
+  for (let take = 1; take <= 3; take++) {
+    n = await narrate({ text, edgeVoice: channel.voice.tts_voice, outDir, name: "voice-track", style: STYLE });
+    console.log(`voice take ${take}: ${n.seconds.toFixed(2)}s, ${n.wpm} wpm`);
+    if (n.seconds + TAIL_S <= MAX_S - 0.3) break;
+  }
+  if (n.sentences.length !== SCENE_IDS.length) throw new Error(`voice produced ${n.sentences.length} sentences for ${SCENE_IDS.length} scenes`);
+  if (n.seconds + TAIL_S > MAX_S - 0.3) throw new Error(`narration is ${n.seconds.toFixed(2)}s at natural speed; cut words, never speed the voice`);
+  return n;
 }
 
 export default async function preview({ key, runId, tools }) {
@@ -28,44 +35,22 @@ export default async function preview({ key, runId, tools }) {
   tools.stage("research_complete", "ok", { sources: sample.sources.length });
   tools.stage("blueprint_complete", "ok");
 
-  let rate = 0, voices;
-  for (const r of [0, 4, 8]) {
-    rate = r;
-    voices = voiceAll(tools, r);
-    const total = LEAD_S + voices.reduce((a, v) => a + Math.max(MIN_SCENE_S, v.dur + GAP_S), 0) + TAIL_S;
-    console.log(`rate +${r}%: voice ${voices.map((v) => v.dur.toFixed(2)).join(" ")} total ${total.toFixed(2)}s`);
-    if (total <= MAX_S - 0.4) break;
-    if (r === MAX_RATE) {
-      tools.stage("blocked", "failed", { reason: `narration does not fit ${MAX_S}s at +${MAX_RATE}%; cut words` });
-      throw new Error("narration too long: cut words, do not speed past +8%");
-    }
-  }
-  tools.write("script-draft.md", `# Script draft (PROVISIONAL narration, hand-planned, not from the script engine)\n\nVoice: ${channel.voice.tts_voice}, rate +${rate}% (limit +${MAX_RATE}%).\n\n${sample.scenes.map((s) => `**${s.scene_id}** (${s.treatment}): ${s.narration}`).join("\n\n")}\n`);
+  const narr = await voiceAll(tools.outDir);
+  const rate = 0;
+  const voices = narr.sentences.map((s, i) => ({ id: SCENE_IDS[i], dur: s.end - s.start, text: sample.scenes.find((x) => x.scene_id === SCENE_IDS[i]).narration, start: s.start }));
+  tools.write("script-draft.md", `# Script draft (PROVISIONAL narration, hand-planned, not from the script engine)\n\nVoice: ${narr.engine}, natural pace ${narr.wpm} wpm, playback speed ${narr.playback_speed}.\n\n${sample.scenes.map((s) => `**${s.scene_id}** (${s.treatment}): ${s.narration}`).join("\n\n")}\n`);
   tools.stage("script_complete", "ok");
   tools.stage("script_approved", "pending", { note: "provisional narration awaiting the script engine" });
 
-  // Scene i starts when its narration starts.
-  let cursor = LEAD_S;
-  const timing = voices.map((v) => {
-    const len = Math.max(MIN_SCENE_S, v.dur + GAP_S);
-    const t = { id: v.id, start_s: cursor, end_s: cursor + len, voice_s: v.dur, text: v.text };
-    cursor += len;
-    return t;
-  });
-  const totalS = cursor + TAIL_S;
-  timing[0].start_s = 0;
-  timing[timing.length - 1].end_s = totalS;
+  // Scene i starts when its narration starts, read from the measured words.
+  const totalS = Math.ceil((narr.seconds + TAIL_S) * FPS) / FPS;
+  const timing = voices.map((v, i) => ({ id: v.id, start_s: i === 0 ? 0 : v.start, end_s: i + 1 < voices.length ? voices[i + 1].start : totalS, voice_s: v.dur, text: v.text }));
   const frames = Math.round(totalS * FPS);
-  const sceneFrames = timing.map((t) => ({ id: t.id, from: Math.round(t.start_s * FPS), dur: 0 }));
-  sceneFrames.forEach((s, i) => { const end = i + 1 < sceneFrames.length ? sceneFrames[i + 1].from : frames; s.dur = end - s.from; });
-
-  // One audio track: each clip padded to its scene length; the first carries the short lead.
-  const inputs = voices.flatMap((v) => ["-i", v.file]);
-  const lead = Math.round(LEAD_S * 1000);
-  const filt = voices.map((v, i) => `[${i}:a]${i === 0 ? `adelay=${lead}|${lead},` : ""}apad=whole_dur=${(sceneFrames[i].dur / FPS).toFixed(3)}[a${i}]`).join(";") + ";" + voices.map((_, i) => `[a${i}]`).join("") + `concat=n=${voices.length}:v=0:a=1[out]`;
+  const sceneFrames = timing.map((t, i) => ({ id: t.id, from: Math.round(t.start_s * FPS), dur: Math.round(t.end_s * FPS) - Math.round(t.start_s * FPS) }));
   const audio = join(tools.outDir, "voice-preview.mp3");
-  ff([...inputs, "-filter_complex", filt, "-map", "[out]", "-ar", "44100", "-b:a", "128k", audio]);
-  tools.stage("voice_complete", "ok", { rate: `+${rate}%` });
+  copyFileSync(narr.mp3, audio);
+  tools.write("narration.json", { engine: narr.engine, seconds: narr.seconds, wpm: narr.wpm, playback_speed: narr.playback_speed, notes: narr.notes });
+  tools.stage("voice_complete", "ok", { engine: narr.engine, wpm: narr.wpm });
 
   const narration = Object.fromEntries(timing.map((t) => [t.id, t.text]));
   const planScenes = sample.scenes.map((s, i) => ({
