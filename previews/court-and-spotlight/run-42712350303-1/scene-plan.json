@@ -1,0 +1,91 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42712350303-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "A billion-dollar tour just beat a record Elton John spent five years setting.",
+      "main_point": "State the question with both artists as large cut-outs beside their two numbers",
+      "visual_objective": "State the question with both artists as large cut-outs beside their two numbers",
+      "treatment": "two-cutouts-and-two-numbers",
+      "background": "light editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "T1",
+        "T2",
+        "T3"
+      ],
+      "start_s": 0,
+      "end_s": 5.2
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Pollstar says Taylor Swift's Eras Tour passed one billion dollars.",
+      "main_point": "Compare the two totals on one zero-based axis in US dollars, the Eras bar open-topped because the figure was reported as 'more than'",
+      "visual_objective": "Compare the two totals on one zero-based axis in US dollars, the Eras bar open-topped because the figure was reported as 'more than'",
+      "treatment": "zero-baseline-bar-chart",
+      "background": "light editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "T1"
+      ],
+      "start_s": 5.2,
+      "end_s": 10.633333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Elton John's farewell tour held the old record: nine hundred thirty-nine million dollars.",
+      "main_point": "Name the old record holder, the tour and the figure beside a large cut-out portrait",
+      "visual_objective": "Name the old record holder, the tour and the figure beside a large cut-out portrait",
+      "treatment": "record-card-with-cutout",
+      "background": "light editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "T2"
+      ],
+      "start_s": 10.633333333333333,
+      "end_s": 16.266666666666666
+    },
+    {
+      "scene_id": "s4",
+      "narration": "His total was built over five years, with pandemic delays.",
+      "main_point": "Show the old record's span as a five-year ruler filling in, labelled with the reason for the length",
+      "visual_objective": "Show the old record's span as a five-year ruler filling in, labelled with the reason for the length",
+      "treatment": "five-year-ruler",
+      "background": "light editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "T3"
+      ],
+      "start_s": 16.266666666666666,
+      "end_s": 20.566666666666666
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Earlier record tours also played many more shows.",
+      "main_point": "Compare earlier record tours (many more performances) with the Eras Tour (a bigger gross) in two labelled columns",
+      "visual_objective": "Compare earlier record tours (many more performances) with the Eras Tour (a bigger gross) in two labelled columns",
+      "treatment": "two-column-comparison",
+      "background": "light editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "T4"
+      ],
+      "start_s": 20.566666666666666,
+      "end_s": 22.866666666666667
+    },
+    {
+      "scene_id": "s6",
+      "narration": "Same record, very different routes to get there.",
+      "main_point": "Close the argument with both artists side by side: the same record, reached by different routes",
+      "visual_objective": "Close the argument with both artists side by side: the same record, reached by different routes",
+      "treatment": "split-answer",
+      "background": "light editorial page",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 22.866666666666667,
+      "end_s": 26.9
+    }
+  ]
+}
