@@ -176,8 +176,8 @@ export function nameFidelityProblems(script, research) {
   };
 
   const seen = new Set();
-  // Per sentence: "...Rio de Janeiro. How..." is a name followed by a question word, not the name "Rio de Janeiro How".
-  for (const text of collect(script).flatMap((t) => String(t).split(/(?<=[.!?])\s+/))) {
+  // Per clause: "...Rio de Janeiro. How..." and "In Washington DC, November..." are a name beside another word, not one long name.
+  for (const text of collect(script).flatMap((t) => String(t).split(/(?<=[.!?])\s+|[,;:]\s+/))) {
     const toks = nameTokens(String(text));
     const runs = [];
     let cur = [];
@@ -198,6 +198,8 @@ export function nameFidelityProblems(script, research) {
       if (!key || seen.has(key)) continue;
       seen.add(key);
       if (present(core)) continue;
+      // "Check November" is a capitalised opening verb beside a name the research has. Every later word must still be researched.
+      if (run[0] === toks[0] && core.length >= 2 && present(core.slice(1))) continue;
 
       const near = nearMissOfWindow(core) || (core.length === 1 ? nearMissOfToken(core[0]) : null);
       if (near) {

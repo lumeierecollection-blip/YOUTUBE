@@ -17,7 +17,11 @@ export const tokens = (s) => new Set(String(s).toLowerCase().replace(/[^a-z0-9 ]
 
 // Words that open or fill many headlines, so sharing them says nothing about the story.
 const GENERIC = /^(new|first|ancient|lost|secret|hidden|how|why|what|the|chatgpt|openai|google|gemini|claude|anthropic|history|years?|battle|discovery|discovered|great|world|royal|empire|kingdom|mystery|story|naval|attack|tomb|city|american|british|german|french|roman|egyptian|meta|apple|microsoft|amazon)$/i;
-const names = (s) => new Set((String(s).match(/\b[A-Z][a-zA-Z0-9]+/g) || []).filter((w) => !GENERIC.test(w)).map((w) => w.toLowerCase()));
+// Headlines are in Title Case, so a capital letter alone does not make a name. These never count as one.
+const TITLE_WORDS = /^(a|an|and|are|as|at|be|been|but|by|can|could|did|do|does|for|from|had|has|have|her|his|if|in|into|is|it|its|may|might|must|my|no|not|now|of|on|or|our|over|she|their|these|they|this|those|to|under|us|was|we|were|when|where|who|will|with|would|you|your|ai|one|two|three|about|after|against|almost|before|behind|between|during|every|inside|never|really|should|without|tragic|deadly|strange|forgotten|famous|bloody|brutal|final|greatest|largest|biggest|people|money|power|artificial|intelligence|agents?|models?|tools?|users?|prices?|assistant|robots?|banks?|account|passwords?|security|update|release|launch|report|review|million|billion|ransom)$/i;
+// Only the one-shared-name shortcut uses this. A rare real name it catches (Reading, Flanders) still faces the word-overlap check.
+const COMMON_ENDING = /(ing|ed|tion|sion|ment|ness|ous|ive|ful|ally|ial|ical|ers|ly)$/i;
+const names = (s) => new Set((String(s).match(/\b[A-Z][a-zA-Z0-9]+/g) || []).filter((w) => !GENERIC.test(w) && !TITLE_WORDS.test(w)).map((w) => w.toLowerCase()));
 
 export function similarity(a, b) {
   const x = tokens(a), y = tokens(b);
@@ -30,7 +34,7 @@ export function similarity(a, b) {
   // Two shared proper names mean the same story even when the rest of the headline differs.
   if (sharedNames >= 2) return Math.max(0.75, shared / Math.min(x.size, y.size));
   // One distinctive proper name is enough: "Battle of Taranto" and "The 1940 Taranto Raid" are one story.
-  if ([...names(a)].some((w) => ny.has(w) && w.length >= 6)) return Math.max(0.6, shared / Math.min(x.size, y.size));
+  if ([...names(a)].some((w) => ny.has(w) && w.length >= 6 && !COMMON_ENDING.test(w))) return Math.max(0.6, shared / Math.min(x.size, y.size));
   return shared / Math.min(x.size, y.size);
 }
 
