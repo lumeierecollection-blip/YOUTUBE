@@ -1,0 +1,53 @@
+{
+  "channel_id": "7",
+  "topic_slug": "arthurian-legend-camelot-architecture",
+  "format": "shorts",
+  "hook": "In 1155, one architectural change in Arthurian legend forever altered how nobility sat.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1155, one architectural change in Arthurian legend forever altered how nobility sat.",
+      "visual_cue": "Close up of a medieval manuscript illustration showing a circular table.",
+      "text_overlay": {
+        "text": "The 1155 Architectural Shift"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Wace wrote the Roman de Brut, introducing the Round Table to the literature. This design ensured all noble barons held equal status at the table. Why did this arrangement matter for Camelot?",
+      "visual_cue": "Map showing the progression from a long table to a circular one.",
+      "b_roll": [
+        "Historical parchment texture background",
+        "Animated circle diagram"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the geography of the legend extends far beyond that single, famous Round Table.",
+      "visual_cue": "Graphic showing multiple locations connected by lines.",
+      "b_roll": [
+        "Map of Arthurian sites"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Molly Martin identifies that Camelot, Tintagel, Joyous Gard, and Dover serve as the crucial backdrops for Morte Darthur. These four locations defined the physical reach of the court. Each site anchors the narrative geography.",
+      "visual_cue": "Text list of the four locations appearing on screen.",
+      "b_roll": [
+        "Parchment list overlay",
+        "Stylized landscape icons"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "The 1155 design choices ultimately redefined the entire royal court.",
+      "visual_cue": "Wide shot of a stylized castle silhouette.",
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://d.lib.rochester.edu/camelot/theme/round-table.html",
+    "https://doi.org/10.1017/9781805432319.003",
+    "https://www.degruyterbrill.com/document/doi/10.1515/9781787445178/html"
+  ]
+}
