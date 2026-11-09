@@ -1,27 +1,63 @@
-// Court & Spotlight preview. The format is chosen from the branch name (preview/court-and-spotlight-<format>) and defaults to the
-// investigation format, mirroring how the real pipeline routes a story to one of three formats.
+// Court & Spotlight preview. The format is chosen by classifying the story (classify.mjs) and the preview branch must agree with it:
+// preview/court-and-spotlight-<format>. Each format has its own style profile, composition, evidence rules and music mood.
+// Real photographs come from Wikimedia Commons with their licences recorded; cut-outs are made on the runner with rembg.
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runFixedShort } from "../../production/fixed-short.mjs";
+import { commonsAsset, dataUri } from "../../production/commons.mjs";
+import { classifyStory } from "./classify.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
+const ROOT = join(here, "../../..");
 const channel = JSON.parse(readFileSync(join(here, "channel.json"), "utf8"));
-const FORMATS = { investigation: "./sample-investigation.mjs", entertainment_magazine: "./sample-magazine.mjs" };
+const FORMATS = {
+  investigation: { module: "./proof-investigation.mjs", style: "styles/investigation.json" },
+  entertainment_magazine: { module: "./proof-magazine.mjs", style: "styles/magazine.json" },
+  vox_explainer: { module: "./proof-vox.mjs", style: "styles/vox.json" },
+};
+const readJson = (f) => JSON.parse(readFileSync(join(here, f), "utf8"));
 
-/** A real, licensed photograph, fetched at render time and passed in as a data URI. Its licence and author were read from the Commons API. */
-async function photoProps(p) {
-  const r = await fetch(p.url, { headers: { "User-Agent": "YouTubeAutomationPreview/1.0 (preview render; Wikimedia Commons image, CC BY 2.0)" } });
-  if (!r.ok) throw new Error(`photo fetch failed: ${r.status}`);
-  const buf = Buffer.from(await r.arrayBuffer());
-  if (buf.length < 20000) throw new Error("photo is implausibly small");
-  return { photo: `data:image/jpeg;base64,${buf.toString("base64")}`, credit: p.credit_line };
+/** Fetches every real photograph (licence enforced), makes cut-outs where asked, and returns props plus manifest entries. */
+async function prepareAssets({ tools, ASSETS = [] }) {
+  const dir = join(tools.outDir, "assets"), entries = [], images = {}, credits = {};
+  const py = process.platform === "win32" ? "python" : "python3";
+  for (const a of ASSETS) {
+    const { file, entry } = await commonsAsset({ title: a.title, dir, id: a.id, claim: a.claim, role: a.role });
+    let used = file;
+    if (a.cutout) {
+      used = join(dir, `${a.id}-cutout.png`);
+      const args = [join(ROOT, "platform/production/cutout.py"), file, used, "--seed", String(a.cutout.seed || 1), ...(a.cutout.paper ? ["--paper", String(a.cutout.paper)] : []), ...(a.cutout.bw ? ["--bw"] : []), ...(a.cutout.model ? ["--model", a.cutout.model] : [])];
+      const r = spawnSync(py, args, { encoding: "utf8", timeout: 900000 });
+      if (r.status !== 0) throw new Error(`cut-out failed for ${a.id}: ${String(r.stderr).split("\n").slice(-6).join(" ").slice(0, 500)}`);
+      entry.treatment = `photographic cut-out (rembg, ${a.cutout.model || "u2net_human_seg"})${a.cutout.paper ? ", torn-paper edge" : ""}${a.cutout.bw ? ", monochrome" : ""}. No pixel of the subject is generated.`;
+    }
+    images[a.key || a.id] = await dataUri(used);
+    credits[a.key || a.id] = entry.credit_line;
+    entries.push(entry);
+  }
+  return { images, credits, entries };
 }
 
 export default async function preview({ key, runId, tools }) {
   const branch = process.env.GITHUB_REF_NAME || "";
-  const format = Object.keys(FORMATS).find((f) => branch.includes(f.replace(/_/g, "-")) || branch.includes(f) || (f === "entertainment_magazine" && branch.includes("magazine"))) || "investigation";
-  const sample = await import(FORMATS[format]);
-  tools.write("format-routing.json", { branch, format, composition: channel.formats[format].composition, when: channel.formats[format].when });
-  await runFixedShort({ key, runId, tools, spec: { topic: sample.metadata.title, claims: sample.claims, sources: sample.sources, sentences: sample.sentences, scenes: sample.scenes, compositionId: channel.formats[format].composition, edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: sample.metadata, minSeconds: 20, makeProps: sample.PHOTO ? () => photoProps(sample.PHOTO) : undefined } });
+  const guess = Object.keys(FORMATS).find((f) => branch.includes(f.replace(/_/g, "-")) || branch.includes(f)) || (branch.includes("magazine") ? "entertainment_magazine" : branch.includes("vox") ? "vox_explainer" : "investigation");
+  const proof = await import(FORMATS[guess].module);
+
+  // 1. Classify the story before anything is produced, and keep the reasoning.
+  const classification = classifyStory({ topic: proof.topic, central_question: proof.central_question, category: proof.category, evidence: (proof.ASSETS || []).map((a) => a.id) });
+  tools.write("story-classification.json", { ...classification, branch, expected_for_branch: guess });
+  if (classification.format !== guess) throw new Error(`classifier chose ${classification.format} but this proof is the ${guess} format: ${classification.reasoning}`);
+  const style = readJson(FORMATS[guess].style);
+  tools.write("style-profile.json", style);
+  tools.write("story-blueprint.json", { ...proof.blueprint, style: guess, style_reasoning: classification.reasoning });
+
+  // 2. Real, licensed photographs, then cut-outs.
+  const { images, credits, entries } = await prepareAssets({ tools, ASSETS: proof.ASSETS });
+  tools.write("asset-manifest.json", { note: "Every photograph is a real image from Wikimedia Commons with its licence recorded. Nothing here is AI-generated. Documents are typeset excerpts of fetched text.", assets: entries, documents: proof.DOCUMENTS || [], music: "see music-manifest.json" });
+
+  // 3. Script, voice, music, render, frames and QA through the shared path.
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: proof.metadata.title, claims: proof.claims, sources: proof.sources, sentences: proof.sentences, scenes: proof.scenes, compositionId: style.composition, edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: proof.metadata, minSeconds: 20, music: { mood: style.music.mood }, makeProps: () => ({ images, credits, ...(proof.extraProps ? proof.extraProps() : {}) }) } });
+  tools.write("quality-report.json", { format: guess, style_checks: style.qa_checks, technical: result.qa, note: "Style checks are reviewed on the contact sheet and frames; the technical block is measured on the MP4." });
 }
