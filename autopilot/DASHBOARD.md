@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:04 SAST
+Updated 2026-11-09 03:11 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,9 +8,9 @@ Updated 2026-11-09 03:04 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | 7,000-Year-Old Leather DNA Links to Modern Goats (80/100) |
-| QA | failed |
+| Latest production | failed-final at assets, attempts 1 |
+| Selected topic and score | The sinking of SMS Emden by HMAS Sydney in the Battle of Cocos (60.2/100) |
+| QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -72,3 +72,4 @@ Updated 2026-11-09 03:04 SAST
 - AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:
   - SCR-17 STRI
 - Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {"blocking":[],"frame":["clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.","clipped_text: fr
+- Hidden Past kick-2c4bd9126b-ch1 failed at assets: 3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead
