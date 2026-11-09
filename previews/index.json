@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:01:43.146Z",
+  "rebuilt_at": "2026-11-09T13:02:05.628Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-09T13:01:42.797Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-09T13:02:05.256Z",
       "branch": "preview/_script-engine",
       "commit": "21f68815",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-09T13:01:42.797Z",
+      "blocker": "rejected_blueprint: blueprint rejected: link \"explanation\" is not true of these beats: Introduces dust as a key environmental factor.; link \"cause\" is not true of these beats: Provides the scientific explanation linking iron oxidation to the red color.; link \"chronology\" is not true of these beats: Summarizes the obser",
+      "lastOk": "none",
       "run": "run-42621438393-1"
     },
     {

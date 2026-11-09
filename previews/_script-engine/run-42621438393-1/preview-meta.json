@@ -2,11 +2,11 @@
   "channel": "red-space-facts",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:01:42.797Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:02:05.256Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",
-  "claims": 6
+  "issues": "rejected_blueprint: blueprint rejected: link \"explanation\" is not true of these beats: Introduces dust as a key environmental factor.; link \"cause\" is not true of these beats: Provides the scientific explanation linking iron oxidation to the red color.; link \"chronology\" is not true of these beats: Summarizes the obser"
 }

@@ -13,3 +13,9 @@ Topic: The Antikythera mechanism (short)
 Writer providers: gemini; critic providers: none; model calls: 8; rounds: 0; narrowings: 0
 Words per minute: 171.4 (measured, voice en-GB-RyanNeural)
 Why not approved: blueprint rejected: a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.; link "explanation" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.; a ending beat does not serve the question: Provides a closing statement without adding new factual content.; a first-time viewer would be lost: The term "orrery" is never defined for viewers unfamiliar with it.; The purpose of the gears and inscriptions (what they calculate) is not explained.; No context is given for why the 13 cm gear with 223 teeth is significant.
+
+## red-space-facts - REJECTED_BLUEPRINT
+Topic: Why Mars looks red (short)
+Writer providers: gemini; critic providers: none; model calls: 8; rounds: 0; narrowings: 0
+Words per minute: 176.8 (measured, voice en-US-GuyNeural)
+Why not approved: blueprint rejected: link "explanation" is not true of these beats: Introduces dust as a key environmental factor.; link "cause" is not true of these beats: Provides the scientific explanation linking iron oxidation to the red color.; link "chronology" is not true of these beats: Summarizes the observation and explanation to close.; a first-time viewer would be lost: oxidization or rusting process not explained; regolith term not defined; how fine dust contributes to the red appearance

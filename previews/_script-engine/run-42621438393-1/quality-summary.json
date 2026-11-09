@@ -76,5 +76,49 @@
     "calls": 8,
     "caveats": [],
     "reason": "blueprint rejected: a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.; link \"explanation\" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.; a ending beat does not serve the question: Provides a closing statement without adding new factual content.; a first-time viewer would be lost: The term \"orrery\" is never defined for viewers unfamiliar with it.; The purpose of the gears and inscriptions (what they calculate) is not explained.; No context is given for why the 13 cm gear with 223 teeth is significant."
+  },
+  {
+    "channel": "red-space-facts",
+    "topic": "Why Mars looks red",
+    "format": "short",
+    "status": "rejected_blueprint",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Mars",
+        "ok": true,
+        "chars": 56524,
+        "sha256": "ee6533026063728a",
+        "title": "Mars",
+        "published": "2026-11-08",
+        "fetched_at": "2026-11-09T13:01:36.944Z"
+      },
+      {
+        "source_id": "s2",
+        "url": "https://science.nasa.gov/mars/facts/",
+        "ok": true,
+        "chars": 15861,
+        "sha256": "83de285f9f62f174",
+        "title": "Mars: Facts - NASA Science",
+        "published": "2017-11-10",
+        "fetched_at": "2026-11-09T13:01:37.026Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 176.8,
+      "source": "measured",
+      "voice": "en-US-GuyNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 8,
+    "caveats": [],
+    "reason": "blueprint rejected: link \"explanation\" is not true of these beats: Introduces dust as a key environmental factor.; link \"cause\" is not true of these beats: Provides the scientific explanation linking iron oxidation to the red color.; link \"chronology\" is not true of these beats: Summarizes the observation and explanation to close.; a first-time viewer would be lost: oxidization or rusting process not explained; regolith term not defined; how fine dust contributes to the red appearance"
   }
 ]
