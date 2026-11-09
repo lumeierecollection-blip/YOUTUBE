@@ -1,0 +1,48 @@
+{
+  "key": "gray-matter",
+  "name": "Gray Matter",
+  "question": "What is happening inside my brain?",
+  "distinct_from": "Dopamine Loop asks why an experience feels the way it does. Gray Matter asks what is physically happening in the brain.",
+  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 },
+  "palette": {
+    "paper": "#FFFFFF",
+    "ink": "#16181D",
+    "muted": "#55606C",
+    "soft": "#F1F4F7",
+    "rule": "#D5DBE2",
+    "region": "#0E9AAD",
+    "regionText": "#0A7687",
+    "loss": "#C93F27",
+    "transmitter": "#D98A0B",
+    "anatomyMid": "#7A8794",
+    "status": {
+      "established_fact": "#1B7446",
+      "correlation": "#99590A",
+      "causation": "#2A55C9",
+      "hypothesis": "#7345AD"
+    }
+  },
+  "type": {
+    "display": { "family": "DM Sans", "files": { "400": "fonts/DMSans-400.woff2", "700": "fonts/DMSans-700.woff2" } },
+    "label": { "family": "JetBrains Mono", "files": { "700": "fonts/JetBrainsMono-700.woff2" } }
+  },
+  "voice": {
+    "direction": "Clear, educational, accessible.",
+    "tts_voice": "en-US-JennyNeural",
+    "rates_to_try": ["+6%", "+10%", "+14%", "+18%"],
+    "gap_seconds": 0.16,
+    "generated_speech_notice": "Neural text to speech. Never presented as a human recording."
+  },
+  "status_labels": {
+    "established_fact": "ESTABLISHED",
+    "correlation": "ASSOCIATION",
+    "causation": "CAUSAL TEST",
+    "hypothesis": "UNCERTAIN"
+  },
+  "scene_library": ["everyday-to-biology", "region-highlight", "activity-compare", "neuron-to-spines", "mechanism-rescue", "evidence-ledger"],
+  "anima": {
+    "repository": "https://github.com/Garinmckayl/anima",
+    "commit": "f0249c4fdc94cc854abcff8bf34a087e37145714",
+    "licence": "MIT"
+  }
+}
