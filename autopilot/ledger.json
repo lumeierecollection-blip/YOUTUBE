@@ -641,11 +641,13 @@
     },
     "kick-9b1b055c41-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42546290259",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:36:10.133Z"
+      "updated_at": "2026-11-09T01:37:26.325Z",
+      "stage": "discover",
+      "error": "discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor to take on CapCut"
     }
   },
   "uploads": [],
@@ -1240,7 +1242,8 @@
     "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined",
     "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
     "Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent",
-    "Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best \"400-year-old shipwreck padlock decoded\" (79.5): too few freely licensed images (0 on Wikimedia Commons)"
+    "Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best \"400-year-old shipwreck padlock decoded\" (79.5): too few freely licensed images (0 on Wikimedia Commons)",
+    "AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor t"
   ],
   "last_poll_at": "2026-11-09T01:36:10.133Z"
 }
