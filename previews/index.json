@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T22:43:30.327Z",
+  "rebuilt_at": "2026-11-09T22:44:02.034Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,12 +61,12 @@
     {
       "key": "court-and-spotlight",
       "agent": "agent-court-and-spotlight",
-      "stage": "started",
-      "status": "running",
-      "at": "2026-11-09T22:43:21.877Z",
-      "branch": "preview/court-and-spotlight-vox-2",
+      "stage": "research_complete",
+      "status": "ok",
+      "at": "2026-11-09T22:44:01.672Z",
+      "branch": "preview/court-and-spotlight-magazine-4",
       "commit": "dc3058ee",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42714143347#artifacts)",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42714127739#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
@@ -74,8 +74,8 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-09T22:36:32.346Z",
-      "run": "run-42714143347-1"
+      "lastOk": "2026-11-09T22:44:01.672Z",
+      "run": "run-42714127739-1"
     },
     {
       "key": "dopamine-loop",
