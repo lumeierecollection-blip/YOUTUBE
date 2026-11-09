@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Susan B. Anthony Arrested for Voting",
+      "score": 76.5,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/susan-b-anthony-arrested-for-voting-shorts:\n  - SCR-16: 40 words implies ~19s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): ADD at least 2 more words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    {
+      "topic": "The First Robotic Rover on Mars",
+      "score": 67.9,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: SETUP last sentence \"NASA launched Sojourner on December 4, 1996.\" does not leave a question open. Rewrite the setup beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: REHOOK no flip or raised stake (but / except / however / the catch / the trap / worse …). Rewrite the rehook beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: CLOSE no specific action or number"
+    },
+    {
+      "topic": "Jocelyn Bell Burnell Discovers Pulsars",
+      "score": 66.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:\n  - SCR-16: 41 words implies ~20s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): ADD at least 1 more words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    }
+  ],
+  "selected": null
+}
