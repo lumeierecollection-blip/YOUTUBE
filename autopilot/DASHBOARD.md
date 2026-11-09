@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 05:58 SAST
+Updated 2026-11-09 06:08 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 05:58 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at research, attempts 1 |
-| Selected topic and score | Amazon Lets Users Text Alexa to Help Them Shop (74.2/100) |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | Comparing ChatGPT Plus and Google AI Pro $20 subscription perks (80.7/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -86,3 +86,4 @@ Updated 2026-11-09 05:58 SAST
 - Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {"blocking":[],"frame":["clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom","clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo
 - Hidden Past kick-13aa60d8d9-ch1 failed at discover: 4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject
 - Hidden Past kick-583105d332-ch1 failed at discover: 3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject
+- AI Tested kick-a76e0da8ee-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script
