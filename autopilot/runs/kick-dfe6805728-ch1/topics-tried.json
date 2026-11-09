@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Philae Lander's Historic First Touchdown on a Comet",
+      "score": 63.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface refers to, as the comet has not been described as a surface yet.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"European Space Agency staff in Darmstadt endured a 7 hour descent.\" — It is unclear why staff on Ea"
+    }
+  ],
+  "selected": null
+}

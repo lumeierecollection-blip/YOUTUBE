@@ -848,16 +848,17 @@
     },
     "kick-dfe6805728-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42565431207",
       "trigger": "push",
-      "updated_at": "2026-11-09T05:13:01.352Z",
+      "updated_at": "2026-11-09T05:16:56.946Z",
       "stage": "script",
       "topic": "Philae Lander's Historic First Touchdown on a Comet",
       "score": 63.1,
       "pillar": "Events that changed the modern world",
-      "hook": "Humanity successfully landed a spacecraft on a speeding comet 300 million miles from Earth."
+      "hook": "Humanity successfully landed a spacecraft on a speeding comet 300 million miles from Earth.",
+      "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface refers to, as the comet has not been described as a surface yet.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"European Space Agency staff in Darmstadt endured a 7 hour descent.\" — It is unclear why staff on Ea"
     }
   },
   "uploads": [
@@ -1662,7 +1663,8 @@
     "AI Tested kick-aab00134a5-ch2 failed at discover: discovery failure: 15 candidates, none eligible. Best \"Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker\" (78.7): too similar to recent topic: Bill Gates Says $10-an-Hour Robots",
     "Hidden Past kick-a3cad14f13-ch1 failed at assets: 2 topic(s) tried, none usable. Last: no image shows the story's actual subject; context images alone would mislead",
     "Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Rio de Janeiro How\" is not named in the research artifact â€” use the research's own name, or drop the name.\n",
-    "AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\")"
+    "AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\")",
+    "Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface ref"
   ],
   "last_poll_at": "2026-11-09T05:11:21.401Z"
 }
