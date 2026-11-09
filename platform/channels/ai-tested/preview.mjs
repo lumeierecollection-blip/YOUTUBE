@@ -50,7 +50,7 @@ export default async function preview({ key, runId, outDir, tools }) {
     const g = (...a) => spawnSync("git", a, { encoding: "utf8", maxBuffer: 2e8 });
     if (g("fetch", "--depth=1", "origin", "automation/previews").status !== 0) return null;
     const files = g("ls-tree", "-r", "--name-only", "FETCH_HEAD", "previews/ai-tested").stdout.split("\n").filter((f) => f.endsWith("/experiment.json")).sort().reverse();
-    for (const f of files) { try { const j = JSON.parse(g("show", `FETCH_HEAD:${f}`).stdout); if (j.date === today && j.models?.length >= 2) return { date: j.date, run_url: j.run_url || `https://github.com/${repo}/actions/runs/${f.match(/run-(d+)-/)[1]}`, models: j.models, reused_from: f }; } catch {} }
+    for (const f of files) { try { const j = JSON.parse(g("show", `FETCH_HEAD:${f}`).stdout); if (j.date === today && j.models?.length >= 2) return { date: j.date, run_url: j.run_url || `https://github.com/${repo}/actions/runs/${f.match(/run-([0-9]+)-/)[1]}`, models: j.models, reused_from: f }; } catch {} }
     return null;
   })();
   const exp = assemble(earlier || await measure({ runUrl }));
