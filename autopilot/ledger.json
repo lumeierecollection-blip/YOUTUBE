@@ -1033,6 +1033,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "In 1967, a graduate student noticed a tiny bit of 'scruff' in her telescope data that turned out to be the universe's first discovered pulsar.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:\n  - SCR-16: 41 words implies ~20s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): ADD at least 1 more words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    "kick-a558298fac-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42592429322",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:27:30.860Z"
     }
   },
   "uploads": [
@@ -1988,5 +1996,5 @@
     "AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
     "Hidden Past kick-4d0ab7875c-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:\n  - SCR-16: 41 words implies ~20s durati"
   ],
-  "last_poll_at": "2026-11-09T09:19:06.035Z"
+  "last_poll_at": "2026-11-09T09:27:30.860Z"
 }
