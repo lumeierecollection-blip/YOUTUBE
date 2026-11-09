@@ -1,0 +1,8 @@
+{
+  "anima_commit": "f0249c4fdc94cc854abcff8bf34a087e37145714",
+  "anima_bio_audit": {
+    "ok": true,
+    "errors": []
+  },
+  "note": "Audits membrane intersection and that labels point at real parts. It does not validate biological accuracy; the claim records do that."
+}
