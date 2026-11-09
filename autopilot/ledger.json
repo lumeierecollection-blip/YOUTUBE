@@ -486,12 +486,12 @@
       "attempts": 1,
       "run_id": "42540589445",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:42:48.250Z",
+      "updated_at": "2026-11-09T00:44:23.511Z",
       "stage": "research",
-      "topic": "Bill Gates warns a $10‑hour robot could replace $20‑hour workers",
-      "score": 68.3,
-      "pillar": "AI productivity and money‑saving uses",
-      "hook": "A cheap robot could steal your job – Gates explains why we need a plan."
+      "topic": "Adobe gives startups 12 months free AI tools – design for free",
+      "score": 66.7,
+      "pillar": "AI tools ordinary people can use",
+      "hook": "Launch a startup with free access to Adobe’s AI design suite for a whole year."
     }
   },
   "uploads": [],
@@ -891,6 +891,15 @@
       "at_ms": 1794184968250,
       "score": 68.3,
       "pillar": "AI productivity and money‑saving uses"
+    },
+    {
+      "channel": "2",
+      "topic": "Adobe gives startups 12 months free AI tools – design for free",
+      "slug": "adobe-gives-startups-12-months-free-ai-tools-design-for-free",
+      "slot": "kick-7ea01591b2-ch2",
+      "at_ms": 1794185063511,
+      "score": 66.7,
+      "pillar": "AI tools ordinary people can use"
     }
   ],
   "attention": [
