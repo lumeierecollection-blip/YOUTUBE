@@ -7,6 +7,7 @@ import { readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, StageError, askJson, askVision, log, must, readJson, run, sha256File, writeJson } from "./lib.mjs";
 import { FPS, H, W, captions, channelStyle, fit, layoutCheck, paletteFor, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
+import { logoLayers, logosForScenes } from "./logos.mjs";
 import { BUILDERS, PURPOSES, PURPOSE_GUIDE, factList, groundedNumbers, inventoryRow, makeContext, numberedFacts, validateScene, varietyReport, vocabularyGuide } from "./visual-vocabulary.mjs";
 
 const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
@@ -58,10 +59,11 @@ ${hasShots ? '- article: {} shows a real screenshot of the source article. Use o
 
 The first sentence is the hook: use kinetic, counter or compare. The last sentence usually suits conclusion.
 ${feedback ? `\nYour previous plan was rejected. Fix these:\n${feedback}\n` : ""}
-Return JSON: {"scenes":[{"index":0,"purpose":"hook","template":"kinetic","headline":"...","accent":"..."}]} with one object per sentence. "purpose" is one of: ${PURPOSES.join(", ")}.`;
+Every scene also takes "company": the name of the company spoken in that sentence, spelled as the company spells it, or "" if none. Products alone do not count; give the company that makes them only if the sentence names it.
+Return JSON: {"scenes":[{"index":0,"purpose":"hook","template":"kinetic","headline":"...","accent":"...","company":""}]} with one object per sentence. "purpose" is one of: ${PURPOSES.join(", ")}.`;
 }
 
-function buildLayers(plan, scenes, durationF, P, shots, corpus) {
+function buildLayers(plan, scenes, durationF, P, shots, corpus, logos) {
   const layers = [], assets = {}, inventory = [];
   let z = 10;
   const sectionF = (s) => ({ inF: sec(s.from), outF: s.to === null ? durationF : sec(s.to) });
@@ -77,6 +79,8 @@ function buildLayers(plan, scenes, durationF, P, shots, corpus) {
     const id = `s${scene.index}`;
     if (template === "article" && !shots[shotIdx]) template = "kinetic";
     inventory.push(inventoryRow({ scene: scene.index, start_s: scene.from, end_s: scene.to ?? durationF / FPS, purpose: p.purpose, template, background: BACKGROUND[template] || "white", sources: template === "article" ? [shots[shotIdx].url] : p.sources, repeat_reason: p.repeat_reason, downgraded_from: p.downgraded_from }));
+    const sceneLogos = template === "conclusion" ? [] : logos.get(scene.index) || [];
+    if (sceneLogos.length) { layers.push(...logoLayers(id, sceneLogos, { inF, outF, P, nextZ: () => z++ })); inventory.at(-1).logos = sceneLogos.map((l) => ({ company: l.company, source: l.source, url: l.url })); }
     if (template === "conclusion") { BUILDERS.conclusion(makeContext({ id, inF, outF, top: 330, P, font: SANS, nextZ: () => z++, layers }), p); continue; }
     let headlineText = p.headline && groundedNumbers(p.headline, corpus) ? p.headline : scene.text.split(/\s+/).slice(0, 5).join(" ");
     headlineText = headlineText.toUpperCase();
@@ -163,6 +167,7 @@ export async function buildAiTested({ channel, topic, script, narration, researc
   const facts = factList(researchData);
   // The planner gets its own mistakes back: a plan that repeats a layout or breaks the layout check is redone.
   let feedback = "", layers, assets, inventory, variety;
+  const logoCache = new Map();
   for (let attempt = 1; ; attempt++) {
     const plan = await askJson(planPrompt(scenes, facts, true, feedback), "autopilot-visual-plan");
     writeJson(join(dir, "visual-plan.json"), plan);
@@ -172,8 +177,9 @@ export async function buildAiTested({ channel, topic, script, narration, researc
       const s = planned.find((x) => Number(x.index) > 0 && x.template === "kinetic") || planned.find((x) => Number(x.index) > 0);
       if (s) { s.template = "article"; s.sources = []; }
     }
+    const logos = await logosForScenes(planned, scenes, researchData, logoCache);
     try {
-      ({ layers, assets, inventory } = buildLayers(planned, scenes, durationF, P, shots, corpus));
+      ({ layers, assets, inventory } = buildLayers(planned, scenes, durationF, P, shots, corpus, logos));
       layoutCheck(layers, "layout");
       variety = varietyReport(inventory);
       if (variety.pass) break;

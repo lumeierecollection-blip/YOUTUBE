@@ -176,7 +176,8 @@ export function nameFidelityProblems(script, research) {
   };
 
   const seen = new Set();
-  for (const text of collect(script)) {
+  // Per sentence: "...Rio de Janeiro. How..." is a name followed by a question word, not the name "Rio de Janeiro How".
+  for (const text of collect(script).flatMap((t) => String(t).split(/(?<=[.!?])\s+/))) {
     const toks = nameTokens(String(text));
     const runs = [];
     let cur = [];

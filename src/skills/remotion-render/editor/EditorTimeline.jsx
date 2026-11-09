@@ -86,6 +86,7 @@ function SvgLayer({ layer, s }) {
           d={p.d}
           pathLength={1}
           fill={p.fill || "none"}
+          fillRule={p.fillRule}
           stroke={p.stroke || "none"}
           strokeWidth={p.strokeWidth || 3}
           strokeLinecap="round"

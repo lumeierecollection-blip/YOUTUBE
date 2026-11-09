@@ -42,6 +42,7 @@
         },
         {
           "index": 2,
+          "company": "Mistral AI",
           "purpose": "comparison",
           "template": "before_after",
           "headline": "MISTRAL LARGE 4",
@@ -60,6 +61,7 @@
         },
         {
           "index": 3,
+          "company": "Qwen",
           "purpose": "statistic",
           "template": "proportion",
           "headline": "QWEN3 VL OUTPUT",

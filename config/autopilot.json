@@ -108,6 +108,7 @@
         "forgotten history"
       ],
       "script": {
+        "tempo": 1.12,
         "min": 39,
         "max": 44,
         "reject": 50,
@@ -251,6 +252,7 @@
         "AI customer service replaced"
       ],
       "script": {
+        "tempo": 1.06,
         "min": 55,
         "max": 66,
         "reject": 72,

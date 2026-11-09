@@ -12,6 +12,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync } from "nod
 import { basename, extname, join } from "node:path";
 import { CONFIG, ROOT, StageError, askJson, askVision, fetchWithTimeout, log, must, readJson, run, sha256File, writeJson } from "./lib.mjs";
 import { FPS, H, W, captions, channelStyle, fit, layoutCheck, paletteFor, paperBackground, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
+import { buildMapLayers } from "./map-vox.mjs";
 import { BUILDERS, PURPOSES, PURPOSE_GUIDE, factList, inventoryRow, makeContext, numberedFacts, validateScene, varietyReport, vocabularyGuide } from "./visual-vocabulary.mjs";
 
 const VOX = CONFIG.vox;
@@ -140,29 +141,6 @@ async function coordinates(place) {
     const c = p?.coordinates?.[0];
     return c ? { name: place, lat: c.lat, lon: c.lon } : null;
   } catch { return null; }
-}
-
-/** Vector map from the repo's Natural Earth data, framed on the places. Returns paths and a projector. */
-function mapGeometry(points) {
-  const geo = readJson(join(REMOTION_DIR, "public/geo/ne_110m_admin_0_countries.geojson"));
-  const lats = points.map((p) => p.lat), lons = points.map((p) => p.lon);
-  const pad = Math.max(8, (Math.max(...lons) - Math.min(...lons)) * 0.35, (Math.max(...lats) - Math.min(...lats)) * 0.35);
-  const box = { w: Math.min(...lons) - pad, e: Math.max(...lons) + pad, s: Math.min(...lats) - pad, n: Math.max(...lats) + pad };
-  const area = { x: 60, y: 300, w: 960, h: 1120 };
-  const k = Math.min(area.w / (box.e - box.w), area.h / (box.n - box.s));
-  const ox = area.x + (area.w - (box.e - box.w) * k) / 2, oy = area.y + (area.h - (box.n - box.s) * k) / 2;
-  const project = ([lon, lat]) => [Math.round(ox + (lon - box.w) * k), Math.round(oy + (box.n - lat) * k)];
-  const inBox = ([lon, lat]) => lon >= box.w && lon <= box.e && lat >= box.s && lat <= box.n;
-  const ds = [];
-  for (const f of geo.features) {
-    const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
-    for (const poly of polys) {
-      const ring = poly[0];
-      if (!ring.some(inBox)) continue;
-      ds.push("M" + ring.map((c) => project(c).join(" ")).join(" L") + " Z");
-    }
-  }
-  return { d: ds.join(" "), project };
 }
 
 function handCircle(cx, cy, rx, ry, seed) {
@@ -371,9 +349,9 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
 
   /** Movement inside a long hold comes from small typographic notes, never from the photograph. */
   const holdNotes = (scene, startF, endF, notes, placement) => {
-    const every = 84;
+    const every = 60;
     let i = 0;
-    for (let f = startF + 66; f < endF - 24 && i < notes.length; f += every, i++) {
+    for (let f = startF + 42; f < endF - 18 && i < notes.length; f += every, i++) {
       const out = Math.min(f + every, endF);
       const nf = fit(notes[i], { maxW: placement.w, maxLines: 1, max: 44, min: 30 });
       if (!nf) continue;
@@ -429,32 +407,11 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     }
 
     if (isMapScene) {
-      const { d, project } = mapGeometry(mapScene.coords);
-      layers.push({ id: `s${scene.index}-map`, type: "svg", rect: { x: 0, y: 0, w: W, h: H }, in: bodyIn, out: outF, z: z++, viewBox: [0, 0, W, H], props: { opacity: 1, draw: 1, clipT: (300 / H) * 100, clipB: ((H - 1420) / H) * 100 }, paths: [{ d, fill: P.surface, stroke: P.muted, strokeWidth: 1.5 }] });
-      const pts = mapScene.coords.map((c) => ({ ...c, xy: project([c.lon, c.lat]) }));
-      if (pts.length >= 2) {
-        layers.push(stroke(`s${scene.index}-route`, "M" + pts.map((q) => q.xy.join(" ")).join(" L"), { color: P.accent, width: 7, inF: bodyIn, outF, z: z++, delay: 8, drawFrames: Math.min(45, span - 16) }));
-        rec.treatments.push({ type: "map_route", points: pts.map((q) => q.name), in_f: bodyIn + 8, end_f: bodyIn + 8 + Math.min(45, span - 16) });
-      }
-      const placed = [];
-      pts.forEach((q, i) => {
-        const [x, y] = q.xy, m = 14;
-        const labelIn = bodyIn + 8 + i * 14;
-        layers.push(stroke(`s${scene.index}-pin${i}`, `M${x} ${y - m} A${m} ${m} 0 1 1 ${x} ${y + m} A${m} ${m} 0 1 1 ${x} ${y - m} Z`, { color: P.accent, width: 5, fill: P.accent, inF: labelIn, outF, z: z++, drawFrames: 8 }));
-        const lf = fit(q.name, { maxW: 340, maxLines: 1, max: 40, min: 28 });
-        if (!lf) return;
-        // Right of the pin first, then left, above and below; a label with no free spot is dropped.
-        const options = [[x + 26, y - 22, "left"], [x - 386, y - 22, "right"], [x - 180, y - 70, "center"], [x - 180, y + 26, "center"]];
-        for (const [lx, ly, align] of options) {
-          const candidate = text(`s${scene.index}-place${i}`, lf.text, { x: Math.round(lx), w: 360, y: Math.round(ly), size: lf.size, weight: 700, align, color: P.text, inF: labelIn, outF, z: z + 1, font: SERIF, slideX: -30, slide: 0 });
-          const b = candidate.box;
-          const fits = b.x0 >= 48 && b.x1 <= 1032 && b.y0 >= 120 && b.y1 <= 1540 && !placed.some((o) => b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1);
-          if (fits) { candidate.z = z++; layers.push(candidate); placed.push(b); break; }
-        }
-      });
+      const { pts, focus, route } = buildMapLayers({ id: `s${scene.index}`, inF: bodyIn, outF, points: mapScene.coords, P, font: SERIF, nextZ: () => z++, layers, handCircle });
+      if (route) rec.treatments.push({ type: "map_route", points: pts.map((q) => q.name), ...route });
       holdNotes(scene, bodyIn, outF, ["Map: Natural Earth", "Location: Wikipedia", ...pts.map((q) => q.name)], { x: 60, w: 500, y: 1436 });
-      rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:110m; coordinates from Wikipedia" });
-      addRow(scene, { purpose: "geography", template: "map", background: "archival paper, halftone and grain", sources: ["Natural Earth 1:110m", "Wikipedia coordinates"], repeat_reason: "" });
+      rec.treatments.push({ type: "map", places: pts.map((q) => q.name), countries: focus, source: "Natural Earth 1:50m; coordinates from Wikipedia" });
+      addRow(scene, { purpose: "geography", template: "map", background: "archival paper, halftone and grain", sources: ["Natural Earth 1:50m", "Wikipedia coordinates"], repeat_reason: "" });
       voxRecord.push(rec);
       continue;
     }
@@ -482,7 +439,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       const { box, label, what, target } = item.annotation;
       const cx = item.x + ((box.x0 + box.x1) / 2) * item.w, cy = item.y + ((box.y0 + box.y1) / 2) * item.h;
       const rx = Math.max(46, ((box.x1 - box.x0) / 2) * item.w * 1.15), ry = Math.max(46, ((box.y1 - box.y0) / 2) * item.h * 1.15);
-      const delay = Math.min(14, Math.floor((outF - photoIn) / 4));
+      const delay = Math.min(8, Math.floor((outF - photoIn) / 4));
       layers.push(stroke(`s${scene.index}-circle`, handCircle(Math.round(cx), Math.round(cy), Math.round(rx), Math.round(ry), scene.index * 37 + 11), { color: P.accent, width: 8, inF: photoIn, outF, z: z++, delay, drawFrames: 18 }));
       sfxCues.push({ sound: "impact", at: (photoIn + delay) / FPS });
       const photoBottom = item.y + item.h;

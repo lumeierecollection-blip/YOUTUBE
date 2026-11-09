@@ -18,7 +18,8 @@ Return JSON: {"title":"","description":"","hashtags":["#One"],"tags":[""]}`, "au
     if (attempt === 3) throw new StageError("metadata", `title or description failed the fact check: ${feedback}`);
   }
   if (!seo.title || seo.title.length > 100) throw new StageError("metadata", `unusable title: ${seo.title}`);
-  const hashtags = (seo.hashtags || []).map((h) => `#${String(h).replace(/[^\p{L}\p{N}]/gu, "")}`).filter((h) => h.length > 1).slice(0, 5);
+  const planned = (seo.hashtags || []).map((h) => `#${String(h).replace(/[^\p{L}\p{N}]/gu, "")}`).filter((h) => h.length > 1 && h.toLowerCase() !== "#shorts");
+  const hashtags = ["#Shorts", ...new Set(planned)].slice(0, 5);
   if (hashtags.length < 2) throw new StageError("metadata", "fewer than 2 usable hashtags");
   const sources = (data.sources_used || []).slice(0, 5).map((s) => `- ${s}`).join("\n");
   const credits = (attributions || []).length ? `\n\nImage credits:\n${attributions.map((a) => `- ${a}`).join("\n")}` : "";
