@@ -1,0 +1,2937 @@
+{
+  "generated_at": "2026-11-09T08:09:16.852Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1368
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:viral AI tool",
+          "ok": true,
+          "items": 5
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:ChatGPT new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:AI scam deepfake",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:Gemini AI new feature",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI agent uses computer",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI replacing jobs",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI hallucination mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:Claude AI new feature",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "bing-news:free AI tools",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 48
+        },
+        {
+          "source": "google-news:ChatGPT new feature",
+          "ok": true,
+          "items": 27
+        },
+        {
+          "source": "google-news:Gemini AI new feature",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:Claude AI new feature",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 44
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1368
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "bing-news:AI agent mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI phone feature new",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:AI customer service replaced",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:free AI app launch",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:AI photo editing app",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "bing-news:students using AI",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI phone feature new",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:AI voice clone",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI video generator viral",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "google-news:AI agent mistake",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "bing-news:AI browser privacy",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:AI video generator viral",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI photo editing app",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "bing-news:Meta AI app",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI tool saves money",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:free AI app launch",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:AI browser privacy",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "bing-news:AI tool saves money",
+          "ok": true,
+          "items": 6
+        },
+        {
+          "source": "google-news:AI voice clone",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:Meta AI app",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:Copilot new feature",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "bing-news:Copilot new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI customer service replaced",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:students using AI",
+          "ok": true,
+          "items": 100
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "ChatGPT Images 2.6 Adds Instant GIF Creation",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        61,
+        91,
+        106,
+        136,
+        149,
+        151,
+        154,
+        158
+      ],
+      "hook": "OpenAI just dropped ChatGPT Images 2.6, letting you turn photos and sketches into animated GIFs instantly.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "ChatGPT",
+      "commons_query": "",
+      "youtube_query": "ChatGPT Images 2.6 GIF creation",
+      "evidence": [
+        {
+          "title": "OpenAI launches Images 2.6 with new GIF creation and saved photo reference features - ARYnews.tv",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNER0cWlhRlpBQ1psdmVDbXZSU2VjWUJTcjBPeEdJZHZJQ01BS3UyTlhmNHpoWnFhRVU2bzdXNUoyd1RNa3dGYk5LU0RLM1VyYUxoQ2Y3OXhzMElyeW9yM0F6OHNUWVFWMGlFMHhDUnluMmpWMjNHODQxYkp2Mk5KU3V5aEx5S2l6dTFqcGt2V1k1SF93NUl1TVRSUnlGYzVqaWdNNg?oc=5",
+          "domain": "arynews.tv",
+          "published_ms": 1794144576000,
+          "kind": "news",
+          "id": 61
+        },
+        {
+          "title": "ChatGPT Now Lets Users Turn Photos And Sketches Into Animated GIFs - The Hans India",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZV8yU2FRQ1UyVE5pcTM0aXFlLWFKelNFdlUxZGlpcFlQY2QxcTd0U1NiTENTZkZnbXB4WFpWSHRza2tjWUtibHJlU3FUaFh3SzQzN25mVWh3c3pYOGRVMnpPMDczNDk1cGY4ZVNMU01XeWV3S3FhT0RTUzc2cFRKZ2pWQ2J1MVhteFRfSUlESjgyNjNuTkdlTFBCS1JRc29fVDVQSlVVT08yUjVG?oc=5",
+          "domain": "thehansindia.com",
+          "published_ms": 1794036938000,
+          "kind": "news",
+          "id": 91
+        },
+        {
+          "title": "What is ChatGPT Images 2.6? Explaining the new features: 50% faster image generation and GIF creation",
+          "url": "https://note.com/yohaku_hikidashi/n/n989ed350990c?hl=en",
+          "domain": "note.com",
+          "published_ms": 1794014700000,
+          "kind": "news",
+          "id": 106
+        },
+        {
+          "title": "ChatGPT's New GIF Generator Is Fun, but Won't Replace Us Humans (Yet) - Lifehacker",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPaTBEeWtsc2MzR2ZHUS1NODJ5RGt5a01IVEZzbFFMWHVEZkVLMlVFc1JfWmZEVW42VEdaZjctTldwaWtGWWlVS2lNbDN6ZHoyMHBQSkxGOFA2Z2NidlFNdHBqY2lnekFFQnAxQndTMTRXTmJJVkNuVU5ja092dmswQUlKVFJWUkMyaGFuZ09FS1dSUQ?oc=5",
+          "domain": "lifehacker.com",
+          "published_ms": 1793977200000,
+          "kind": "news",
+          "id": 136
+        },
+        {
+          "title": "ChatGPT's new GIF generator is fun, but won't replace us humans (yet)",
+          "url": "https://www.msn.com/en-us/news/other/chatgpts-new-gif-generator-is-fun-but-wont-replace-us-humans-yet/ar-AA2gVDAl",
+          "domain": "msn.com",
+          "published_ms": 1793948400000,
+          "kind": "news",
+          "id": 149
+        },
+        {
+          "title": "How to Turn Your Photos, Sketches and Ideas Into Animated GIFs Using ChatGPT: Prompts Inside - Mashable India",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPSVdtVjNHUXQ3aGdFQ0xYNkpUbTVQVHNXV2xPR0dtWnZaR0ZHaEl1eV9mbGYwdElhNlQwWTBvTlpOM2EyUnUxNHFzZmJuMVpoLURCcXNaeGxqMUdFQjU2RzZZTFpUUVhHT3JEMjVoelJqQmQ3V0gyczl2ancxeUowRW1ITjNocGR1ODBPZG9mV1hzQnd4SjJPYTk3VUUzUTAzN2pwcHpvQzNzTElPOEdZdHFnd0FDVXBNYnp5T09xaUJETWNQ?oc=5",
+          "domain": "in.mashable.com",
+          "published_ms": 1793943632000,
+          "kind": "news",
+          "id": 151
+        },
+        {
+          "title": "ChatGPT Images 2.6 brings GIF creation, faster image generation, and more editing controls - Craving Tech",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPT2J0ZTlPaHdXdU1XMzM4ZmJzcVZ1YWlnSkxPYzdILW52NUNmaXV0Qnh4a3dodHlXSi1faklueVJhMEhpdW5pZnpWRmJDUlpfZkVXTzYwZURSTnRZYWQ5STVramJubjBMMjE1dHJuUzVhaV9QVkxFX1h3eU12NmMwXzgyQjR5bktwdktXQ0F5VkhlNEtvRHZDYmJYak0yWDBjTzZBcWFxR2JOekl3cV9rZ29FWVJmWGFKT0F6X0V3?oc=5",
+          "domain": "cravingtech.com",
+          "published_ms": 1793934188000,
+          "kind": "news",
+          "id": 154
+        },
+        {
+          "title": "ChatGPT Images 2.6: GIFs, Saved Reference Images and Two Faster API Models - Fello AI",
+          "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE0wREUzTENoWlIxVDFsYXFVc0twWnNTLVl0S2xaRUV6Vnp2cjM5a2xOUi16Nnk2NDJlQVpvcVI4OFo5ckpiN21ESkR4RFJKRlpJ?oc=5",
+          "domain": "felloai.com",
+          "published_ms": 1793915300000,
+          "kind": "news",
+          "id": 158
+        },
+        {
+          "title": "ChatGPT Rolls Out Images 2.6 Model With Support for GIF Creation - PCMag",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQTlVndjY3b2dWM09ITU9mNmdKNFFzT1JDMHdLNWNzNmJuNE5NN0cwYUV4RjZib095U0ZhdmxEcDZsWVZHWWgyQXZmNnVoQlJWRFhOc1ljaDhfN2RBbkYxakZ5SFhua01UWWtKbDJnVk9SQUNQaWRLd0ZaSGJUMlJCRDBXYVc0LUlPZDNuSm5zYjRYcGxZ?oc=5",
+          "domain": "pcmag.com",
+          "published_ms": 1793894360000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Adds Animated GIF Creation and Editing with Images 2.6 - Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPdGJLOFZpanh4UGhGTjA1My15MjcxS3l0M3BjQUdPMENMZkNFT2ptYXVVT2RJTzZQZ3ZpN3hJUE0zMUFSS3ZzVVJWWjl1eVY1Z3BGTzhMTnBkckhMWURoSUNuRXJwNFFVZGZUeXVKQU93TlpGS3RWekhZLTBnaFBUd1ZreEM0SHpVbzgtag?oc=5",
+          "domain": "unite.ai",
+          "published_ms": 1793816583000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Images 2.6 Adds GIF Creation and Faster Editing - TechRepublic",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1VYUFlNUdZZ3VMeUFDUm13Vy1vMTRBazNiNmZJTTNVNmdsMEJkbzVKMlpwYzZqcGtocnIxRFhIVkZSWEVCM0k5NGk0QVMzem5RVGs5NGplaGFsTnI1TDhodFBqQ2dvVWxHV1RkaFZ0YmFweVNMbDRwdnREQUpIZ3c?oc=5",
+          "domain": "techrepublic.com",
+          "published_ms": 1793887762000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Is Getting a GIF Maker Powered by OpenAI's Unannounced Images 2.6 Model - Decrypt",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQNWpDTGxkT3gyQmJRVERHZE5pcXJuTS1PZGdSSjIxOTlQVzlvbnVDTk1TYlItdnB5VmRSLU5Xak5LRHZqSk11bTQxTmZsZTZiekxsYWhxMWVwMnpYZVpJN0F6TnlBNVdRWUhMZ3hmY0Rlc19LVHIySlBXNUdPMmxDb1FSbkVnZw?oc=5",
+          "domain": "decrypt.co",
+          "published_ms": 1793830565000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI launches ChatGPT Images 2.6 with GIFs, reference images and faster API models - RuntimeWire",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPTzR6TllhWUNuTjFpSWVwYW9UTGFyelpmdGpVamhidzFpR2w4N1FHdmg4R3RvQkVVTXY1QUcxME9KRlBpWWNNMVZGQXo2NkJUQlhLWGVNcDJmUFhPbmIwWTU4VEdpZldDUlFNa29DM0xLZjdKSmY2THJkaHhjNVRsWXF4blV6V3kx?oc=5",
+          "domain": "runtimewire.com",
+          "published_ms": 1793835489000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Unveils Images 2.6 With 50% Speed Gain and Built-In GIF Animation - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1IcWVYQnFVdzJnVkdEcWZZeElxSmU2emxGMDVGSU5yeFRDRWN1QnRnd1NjSHpwa2txdGhwMFAzOUY5TDRfWHdRNGhsVE1HQ25VcUNTcmlYdV82bGFzemp4LWpBT1daM0huZTZfMlE4RjZ4NGZ2MFE?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1793846100000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Gets Native Animated GIF Generator Powered by Images 2.6 - Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQcW5adnhXZ2R1X3lOV2lYeGt3ZllhV2N0VS05Q0s0aEtGX3Z3bjVxaHdNTDE4dFhWTjNORGFrM2V4bkNsOEJuUmh1MmNMck9sSmhFYm1HU1YzVDBCTFBQeTFXMVFLc3pBcHBVSEJ6NTBtOE5HNDBMLTlfb1VrQi1JVk5IdlU?oc=5",
+          "domain": "androidheadlines.com",
+          "published_ms": 1793837325000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI launches Images 2.6 with GIFs and image reference - TestingCatalog AI News",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOX3dIb0FWWHhMdTVNVENaWnBKWFV5d1NmYXA5ZU5NN3VjVWJsSnNXRklqcF95alVZaHRHSUhxSWcyRUxDVWthcVVKRk8zOS02OFo0WG94TDhOaENYSkRITFl0eFRDdzFBUHVRMFRDVU9VeVY3LURzY1Rwb0xaSkZ5eFZvc2xwSGZ3MjVXNEwxMmpSQQ?oc=5",
+          "domain": "testingcatalog.com",
+          "published_ms": 1793839472000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "ChatGPT",
+        "daily_views": 85000,
+        "ratio": 0.88
+      },
+      "youtube": {
+        "median_views": 27449,
+        "competitors": [
+          {
+            "id": "9ZxCOHkfn_8",
+            "title": "GPT-Image-2.6: Faster image generation with Flare and Sunburst",
+            "channel": "OpenAI",
+            "views": 364285
+          },
+          {
+            "id": "bJldMYfRvMQ",
+            "title": "Introducing ChatGPT Images 2.6",
+            "channel": "OpenAI",
+            "views": 138575
+          },
+          {
+            "id": "e4gNCfPZ7dE",
+            "title": "ChatGPT Images 2.6 Can Do Things We've Never Seen! (Gifs + Sprites)",
+            "channel": "Evan Burger",
+            "views": 38068
+          },
+          {
+            "id": "VRp2rVC0nEE",
+            "title": "ChatGPT’s New Image Model Is Full of Surprises...",
+            "channel": "AI Samson",
+            "views": 37773
+          },
+          {
+            "id": "5LkRDoGVook",
+            "title": "ChatGPT Images 2.6 Is Here: GIFs, Dot Upgrades & More",
+            "channel": "The AI Advantage",
+            "views": 27449
+          },
+          {
+            "id": "fQnrdr2DcqQ",
+            "title": "ChatGPT Can Make GIFs Now (Images 2.6 Tested)",
+            "channel": "MattVidPro",
+            "views": 8033
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 84,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 87.3,
+        "newest_hours": 19,
+        "domains": [
+          "arynews.tv",
+          "thehansindia.com",
+          "note.com",
+          "lifehacker.com",
+          "msn.com",
+          "in.mashable.com",
+          "cravingtech.com",
+          "felloai.com",
+          "pcmag.com",
+          "unite.ai",
+          "techrepublic.com",
+          "decrypt.co",
+          "runtimewire.com",
+          "finance.biggo.com",
+          "androidheadlines.com",
+          "testingcatalog.com"
+        ],
+        "trusted_domains": [
+          "in.mashable.com",
+          "pcmag.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Viral Video Falsely Claims Trump Vandalized Office After Midterms",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        88,
+        166
+      ],
+      "hook": "This viral video of Donald Trump supposedly destroying his office after the midterms is completely AI-generated.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Deepfake",
+      "commons_query": "",
+      "youtube_query": "Trump fake video midterms AI",
+      "evidence": [
+        {
+          "title": "The viral video claiming that Trump vandalised his office following the Republican Party's defeat in 2026 Midterms is AI-generated - FACTLY",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOMWEtMmFtdlBTZ1h6QXFsUHo2SWxOeTFmdE9NZ3FnZk0tVlpRUWdSdW9KQUM2dmxISHhOWTlFQnVUYlVJcjR1M1phTFBFem1XbnVBbC1MSWIteThyYTI2LUdKenpCNF9PdnpIdHR2QWpSbjZ0b01CeFR6UnRhTVdXS0xYczM0MFpjYXJnRWU4cERETElOeENzVjBROHl3RVdqQjRSekJITDZST2k4NjRKMWNaYXRVVUdwQXdIYnlkQzl6b2NRbWZPbERJbDRYQ294bG8wZnRvQ21sd01sM2Z2MEhR?oc=5",
+          "domain": "factly.in",
+          "published_ms": 1794052570000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "AI-Generated Video Goes Viral As Showing Trump Destroying Office After US Midterms Setback - Newschecker",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdWE1ZEMxTV9Mck5tb3VpQkR6T1hGMHFQRXVlN3FHSzFSQ2MwZXpNR2VGb19BZlJwMWVsaU5yVVBIUkJGZWV1QmlFQmlOaFUzb2xURjVFUnRmNGtFWjdmWWJYcXpiZjhwaFZYcWN1c3R5NE4ybGFfcXV2ZVRvMjRERTBlWWRWYmlmX3c4MUdsb3ZESTFQTm5PdVdqVzR2Szh1TWxLQ1NaUm9sU3Q0dUpBN2lyVXBJSHVuTGdNZGNBYXR3dw?oc=5",
+          "domain": "newschecker.in",
+          "published_ms": 1793886623000,
+          "kind": "news",
+          "id": 166
+        },
+        {
+          "title": "How Trump Might Challenge Midterms Results—From Declaring Emergency To Seizing Ballots - Forbes",
+          "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQa2xESHRYeW4tZDVtVU0wMWQwS1U3cWh2Yy11SnBpYndGSVo3LVowYUJualVJZ29leTlWSDRuSGNlNEwyXzBucUx3WEtOa1ZUYjBmN3pyQ3ZNOVQxckNHYUJRM1BxSEo2RXdGR1BNeWpHZGZRQ0lzRWl5UjduR043aUFGSnJTRk9zbzhxTmhINl9KR0tTVm9KTlVKRmx5TUNCZjhOaEs2bTFGOEVKOVFhamN4aHNNQVhIRUwwYl80ejhKNEZtVkJRWGh6T3dvUm1GYkdyX0RrdXktdDhIODdPdzRtM0QzOExIUC1MLUZTbw?oc=5",
+          "domain": "forbes.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "An Unpredictable President, a Grim White House: Trump Faces Down the Midterms - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQQzJNZHdTZGhwMksxUnFLN1cxTXNhNXpBRHlPWkc2NGZrdWpDUElkb3Z2dTNVdjNYWDJmWV9Zem9zWjhsNmh4UFNiQTNHT09EWEVOdm1XT2VzOU82RDVTdGU1UFlDSFJ6TmdHa2t4bkstTUtYNDNEMFY1M3hKRUdWWGw0M1E2TzFQS0tN?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "VIDEO: Three rallies in three days: Inside Trump’s midterm blitz - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOQ0ZrZ09abndVMHZXczRGTGw4SVZ6dnNmUGxVNXU1aldPcDdUTDV2VkRQdlJSclVRUF85a0hZVUdIQnp2Q2NZODh2SnJZZTc4bDNpcXd4dUNOaWxDeHhNYmhGbDlKeUZsc0ZMOUJVLVNHajc3bmtoS3F5QVB5VGkwNEJMMUloV2JvclhDVGNqWDBnTW5MM3lCcWZWU0pzRFZJQ0NCQU1n?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793650604000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Trump has cost us’: After midterm losses, MAGA asks if it’s over - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQaTdYU2RDRkZwOVM0SXV4d2VCdExubk1wWngyTG5LOFNRVC1MWUU5NnVkS1FseU0zTlhwRXBRdW1OR2haNHNZcFM5cmVzNWI4cEhadmpDVzdVM2h4YmtuTU1TWFdtRTNMbjdnWGRQaGh2QTZrcnd6U0phWENkTVVNbFJUSWhEZXV2WVU4RWMtV0Vwc2dzQy05Ylp1cjFTZkhoZFVtY3pSTms?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1794135960000,
+          "kind": "news"
+        },
+        {
+          "title": "Midterms upended Congress but Trump still commands foreign policy - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPaFdhWXVRZDFtNThlVzMtcUs4eU9nTlVZZHJHZzAxbUhKNVBYN3FoR0lSMHJNSzVkQVJQdXlaWTZQZXNwUzEwSkhxRjBwQ1dRZzIyMFV5QkhTaWRmWHVKWEdSQmhyR1NHaUhyMlpnV09GVkxPbmh5MTlUZEphbVE1OENqSXlNTmdEejZPbUlNdmdzRTBiRnVYTHNuWHVQUEo0VXFvODJTaElxQQ?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793953777000,
+          "kind": "news"
+        },
+        {
+          "title": "Midterms: A Maga PostMortem, Europe’s ‘Shape Shifting’ Protests - The World This Week - France 24",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPVHB0dFdJeTlwSm83eGFaRC1jMlFQTHRZQTBNX25UWjdNb2pzV0c5T05RaUhoSDlZVDlUOEdCMlBtTmtYUVhEemVVVjBFSkl5b3ExbG1XMHAtNlJIcTlqMlVBdGVMclZObkk2T1BSMmYyeFEtcjdhaW55aHM1akFia3FIMkhTVEdEazVtdG9jOF94ZWVOajhxb3Zyb005eDg4Qkw2cUJrYzBicU5tclN0SElPbGl5Q0owaTJtQmVYSTVYOGc?oc=5",
+          "domain": "france24.com",
+          "published_ms": 1793995712000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Deepfake",
+        "daily_views": 1210,
+        "ratio": 1.15
+      },
+      "youtube": {
+        "median_views": 395087,
+        "competitors": [
+          {
+            "id": "Cu9ZOY0GSO4",
+            "title": "Does MAGA really believe in the AI boom, or is Trump just majorly invested in it? #DailyShow #AI",
+            "channel": "The Daily Show",
+            "views": 2187038
+          },
+          {
+            "id": "MInhQMX9q6Q",
+            "title": "Pissed off by Trump’s new promotional ad? Don’t worry, you also paid for it! #dailyshow",
+            "channel": "The Daily Show",
+            "views": 1104813
+          },
+          {
+            "id": "6XdpDQUaU3A",
+            "title": "Jimmy breaks down the midterms using #Trump’s own words. #FallonTonight",
+            "channel": "The Tonight Show Starring Jimmy Fallon",
+            "views": 966819
+          },
+          {
+            "id": "yoeG_S1af8Y",
+            "title": "Jessica Tarlov gets in heated debate on Fox: Trump is LYING about these $5k checks",
+            "channel": "The Democrats",
+            "views": 716334
+          },
+          {
+            "id": "ZJuJuPn2c3E",
+            "title": "Iran Stages Mock Execution of Trump on Tehran Streets Following US Midterm Election Results | AC1N",
+            "channel": "DRM News",
+            "views": 395087
+          },
+          {
+            "id": "UkhivcBykAo",
+            "title": "Iran mocks Trump in AI-generated garbage video",
+            "channel": "Roya News English",
+            "views": 366889
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 89,
+          "reach": 81,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 86.9,
+        "newest_hours": 21,
+        "domains": [
+          "factly.in",
+          "newschecker.in",
+          "forbes.com",
+          "nytimes.com",
+          "reuters.com",
+          "france24.com"
+        ],
+        "trusted_domains": [
+          "forbes.com",
+          "nytimes.com",
+          "reuters.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Claude AI Can Now Connect Directly to Your Bank Account",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        59,
+        73,
+        94,
+        98,
+        125,
+        135,
+        142,
+        162,
+        165
+      ],
+      "hook": "Claude just gained the ability to link to your bank account and track your spending—here is how it works.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 10,
+        "visual": 7
+      },
+      "wikipedia_title": "Anthropic",
+      "commons_query": "",
+      "youtube_query": "Claude AI personal finance bank account",
+      "evidence": [
+        {
+          "title": "Anthropic Launches Personal Finance In Claude To Connect Bank Accounts And Analyze Spending - Pulse 2.0",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPX2kxcWdHUDg0cmRNdnBQWXdxQU1MbWdMSnU3Mlpad1hmUkkxLWI2Uk5DY3g4QndBWm1mTmFvQ2d2cHN2MXhEcGVFV2hzU2c3QlFfSlllRXBYeWVUdU5yYXM1SVdsNTl5aTlYcFdIS1pmcFYwTVR2SnZhQ1ZIOEpkc3pJcDRoeDliaGl6QXNzdFdZUEhGaEpWSDJLYWk0Y1hhVU5PQklKd004S3k3M3JsUw?oc=5",
+          "domain": "pulse2.com",
+          "published_ms": 1794147972000,
+          "kind": "news",
+          "id": 59
+        },
+        {
+          "title": "Anthropic launches personal finance feature for Claude - Kalinga TV",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUmg0MExvUW9YZDBDYVpqX29mYU5VODNYenFnSV9icEVIbGZSeVBMZ3cwUXBpWnREOTI4S3JVbjdZcjlteFJFbDY4XzR1ckJRWWpLYWJpa0JIbThuOXBOUFB6QnAzYkFFOWs3NlozY1d0ay00RkNROVljSlNJZkVWSldsUUNGYXE1OHQxS1ZvRGt0QQ?oc=5",
+          "domain": "kalingatv.com",
+          "published_ms": 1794108231000,
+          "kind": "news",
+          "id": 73
+        },
+        {
+          "title": "Anthropic Launches Claude AI Personal Finance Beta for US Users - Geeky Gadgets",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1wbGoxbXFxUlFLZkZrZU9jYkNtaE1LSk5fM1hYVDVUaGVieDdkMTRfYW1Xejd4ajNQX1g3SGhPdzhWNUdjMG9SMWxmYVJ5QkhtYmZzSURWWVk?oc=5",
+          "domain": "geeky-gadgets.com",
+          "published_ms": 1794034857000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "Claude AI will now connect directly to bank accounts and credit cards—how will it handle users' money?",
+          "url": "https://www.msn.com/en-in/news/other/claude-ai-will-now-connect-directly-to-bank-accounts-and-credit-cards-how-will-it-handle-users-money/ar-AA2gXcMb",
+          "domain": "msn.com",
+          "published_ms": 1794027808000,
+          "kind": "news",
+          "id": 98
+        },
+        {
+          "title": "Claude connects to bank accounts for spending analysis - News Karnataka",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNbnJvdWp6aXpFOXFJdktXUkl5aDRlQlM1QU8zNnJ2WUlzZlA2NERlNktadkozbjhQRlJLakJpaDdUX1VhNlloMHFYa2RhdlR0VHRCU3p6UGNGdVdvTzQxOWlaVzlzV1FhYngzZTJibnUtbGNQOU9aTEVUS3FsdWtESVVIRUxTUzNhbDZYWTQyUjJnRkhWNjRMX1R4U245MTA3X3pB?oc=5",
+          "domain": "newskarnataka.com",
+          "published_ms": 1793990109000,
+          "kind": "news",
+          "id": 125
+        },
+        {
+          "title": "Anthropic adds Plaid integration to Claude AI for Personal Finance - Digital Watch Observatory",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAteC1vakJ6QjRVQXVTeFJfdWk0TUVGMm1URENFV3ZFNDZ0YmFwbXpTaXpDZW5jNWx1TXdqZjVkdDFzNlF6VmpMS1djWWVGZzhtR2tKTVl3NVRPaWx0QXFWRUhQRXVMOGJTTGlF?oc=5",
+          "domain": "dig.watch",
+          "published_ms": 1793978180000,
+          "kind": "news",
+          "id": 135
+        },
+        {
+          "title": "Claude Gets New Finance Feature To Track Spending And Manage Money - Mashable India",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNek45RVdqZVdJbWphS3U2UzlfdExXNDVlWjVhUnc0bEtYdzB5dkIwMFNWMG9oUUJHMjdnTVhGM1hlN3htcWlDUXpES2hZZXNwc0Y2cXFqdjFqbXRqZUFXRzJrVk9hUlMzRF9FY29zYmxTRUdsT1NfRU1XY3hjeGdXOWY3Q25DZ2liUGlidldQVUFjU3BMSXktN1BhSE8wVXVpZnBuZA?oc=5",
+          "domain": "in.mashable.com",
+          "published_ms": 1793966392000,
+          "kind": "news",
+          "id": 142
+        },
+        {
+          "title": "Claude's new Personal Finance tool aims to help analyze your spending - read-only, of course - ZDNET",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1pMU1xVHcxb1VUUWtPaExlTzYyenlqalBZWjVHUmw5Z0pvTTNVUFRGSXFCSG1UcmxGMWRhZzM4eW9Eb1g5b2Z0bW82aC1VODhNWndERkMyTjRwd1loYS0yR2hyU1JQSGp4cmFrVFNFbkptY0tnTnc?oc=5",
+          "domain": "zdnet.com",
+          "published_ms": 1793901611000,
+          "kind": "news",
+          "id": 162
+        },
+        {
+          "title": "Claude connects directly to bank accounts; Anthropic announces household budget analysis feature. Conditions for introducing data-connected AI as shown by read-only AI",
+          "url": "https://note.com/daigo_miyoshi/n/nc78eba1d47f5?hl=en",
+          "domain": "note.com",
+          "published_ms": 1793895900000,
+          "kind": "news",
+          "id": 165
+        },
+        {
+          "title": "Claude AI can plug directly into your bank account - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQX3lQLVFKMlNaVkNiczJpdi1IZ1pjWWpSQVhjQTV0X3FHWnhIVklqX2swZFZHT1JJSzFkWEVsN002WGhOalpRSXBrT3Nzc09DU3RnS2VoZzUwMVFkTHlVb1ItME1QYmoyWGpmaFBwX2ZhTUY2V3Zid0M5OTg2d3kyam1pR3l5MXh6ZWpEZWJYVG8wY3EwOTNIN3BJd3NkVHZo?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1793901600000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic’s Claude Can Now Read Your Bank Accounts - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMWgyS0t1LW4xMndzblFOYmpYb2tmM0l3SUpfV1poZWV5VF9DQU5hcHk0NmpCWk5MdEZqWDFSVnlQMk1WcExKWWR2M05sa3lnYmMyWUVtLUJjcHR5TFdBampXTHEtU29OSWhVZklOblpqR3l5dHhJRzNITlUyeEVlZkh3anV4TGtsWTFzc1U2Q3hLY3ZqaU9WdUNn?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1793996860000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Gets Personal Finance Feature With Bank Account Linking - MacRumors",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBFaDM1NklBalNQcXdLVURxM1RUSEVzZGRvZkVWeVExWmVjTV9kTDlOZUhhTTNqdk5aak1tWWlYLTdyUnVlWTh2RktSenBWbmpRV3BLak43Z0hyWTFLem5ya214MnVEYnU1QWF5ZUp3?oc=5",
+          "domain": "macrumors.com",
+          "published_ms": 1793918828000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic’s new Personal Finance feature connects Claude to your bank account to help with your money - XDA",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZnNFS2V1RVJLNlc2UVpRY1E4TWVoQjgtQlZwblRzblJLaVotWGc5eGN1d05oRzBPNUdiVFZzRmQtZDB5bGdGdlFMS1ZPYWRRQUllRTg4NDAtWkpFTXowTTE1ZkRmTUtTS0xLWW8yckN1eDBJMEhSV1VBc0JzQXBiUXpRcE1meGhtLS1fLUN0U0lxazBYVkhRaUJLYjFHOE1rdXF5a1liaVYtakhr?oc=5",
+          "domain": "xda-developers.com",
+          "published_ms": 1793902484000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic Adds Bank Account Linking To Claude For Personal Finance - The Mac Observer",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNaGEwdjl4QTY5N183SWZ4eUJJMzhyUWtUS24yU2syVDBvUkZNUklsUE9pb1RpMnZGUWtxNEkyNEJySWRvQkc4YkhJaDZDRzlxZ2lxU1NpWG55b1FYbWtQZ2wyeXAwTDFHVG9PTDBxVktqdmdtbVI2OXBHa0lCTjZ0X1phWHpYaVVJTFVSOFVzY25BMzhRRjhORzlxMWhNczRlNlE?oc=5",
+          "domain": "macobserver.com",
+          "published_ms": 1793983764000,
+          "kind": "news"
+        },
+        {
+          "title": "How to Use Claude Personal Finance: Setup, Prompts and What It Can See - Fello AI",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB6dWt6d1hTdFF2SVFraXR2NTBoVjVMWFkzUV9oS1BHSkRtc2FuWjUyblpLQ0RkMllsc2dPUXRDRGJyV0xrZV9RU29lM3QyVm1US1pkN2VXWQ?oc=5",
+          "domain": "felloai.com",
+          "published_ms": 1794031805000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic's Claude Can Now Link Bank Accounts and Analyze Transactions But Won't Offer Investment Advice - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSWtHTk1YYll3THp6bDdfZHRickJwTWtPcGpmZ0I2c3hhZ0g3MVFMbGxCaUxIYlp2Y2FMN0FfNWI0bXRPelZmX2l4dWUxRUR5cmV6eU44SWVuTG5xRlVlc2ZkbmNDRHU2VVhWNnhLRWZlQWJ4WUYwc0ttYmxmU2NwSjZFZ01rcVViak9iQXNWLTd3ZGlxZndiNEFrZGhvc25j?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1794054605000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude can now read two years of your bank transactions, but can’t move a cent - Martin Cid Magazine",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPYzlVcU1iWnZVckJoS2o4cExIbHlheG9ISGNRbFl5Z1BmRUxnRzBCUTNTV052bXVYTnJaVGRJZjBzWGhfQ2NjVUtWb3VlNWdPRmhFMGZyN0hZT2Nid1JoU21NN3dpWUEzYURwYi1reThuX2VxaDVRNl9jYTczenM1d2hVQ21rOVFXOHZjMXBKMHJiTHNSS21PbmZ3?oc=5",
+          "domain": "martincid.com",
+          "published_ms": 1793948877000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Anthropic",
+        "daily_views": 7548,
+        "ratio": 0.87
+      },
+      "youtube": {
+        "median_views": 430,
+        "competitors": [
+          {
+            "id": "UTubvRLX2j4",
+            "title": "Introducing Personal Finance in Claude",
+            "channel": "Claude",
+            "views": 666830
+          },
+          {
+            "id": "MFKhLshLBqI",
+            "title": "Claude Personal Finance (Watch This First 👀)",
+            "channel": "Sansser",
+            "views": 4158
+          },
+          {
+            "id": "fV7fXcavh1Y",
+            "title": "Claude Personal Finance: Ask Your Bank Accounts Anything",
+            "channel": "KiS",
+            "views": 1122
+          },
+          {
+            "id": "EXD1wnnj4D0",
+            "title": "Claude can now read your bank accounts (US only for now)",
+            "channel": "Binh Dad of 3 Monkeys",
+            "views": 1073
+          },
+          {
+            "id": "Qur_Zy5cfnE",
+            "title": "Claude Might Have Just Killed Budgeting Apps… Here’s How",
+            "channel": "The AI Impact | AI Workflows - Daily",
+            "views": 430
+          },
+          {
+            "id": "GidnU7YF4Ec",
+            "title": "Would You Let Claude Analyze Your Bank Account...?",
+            "channel": "AaronTheSloth",
+            "views": 275
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 57,
+          "curiosity": 90,
+          "relevance": 100,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 83.5,
+        "newest_hours": 18,
+        "domains": [
+          "pulse2.com",
+          "kalingatv.com",
+          "geeky-gadgets.com",
+          "msn.com",
+          "newskarnataka.com",
+          "dig.watch",
+          "in.mashable.com",
+          "zdnet.com",
+          "note.com",
+          "theverge.com",
+          "finance.yahoo.com",
+          "macrumors.com",
+          "xda-developers.com",
+          "macobserver.com",
+          "felloai.com",
+          "martincid.com"
+        ],
+        "trusted_domains": [
+          "in.mashable.com",
+          "zdnet.com",
+          "theverge.com",
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Meta's New AI Voice App Lets You Talk to Custom Avatars in Real Time",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        94,
+        147,
+        164
+      ],
+      "hook": "Meta just dropped a massive AI voice update that lets you chat with custom AI avatars in real time.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Meta Muse AI voice chat",
+      "evidence": [
+        {
+          "title": "Meta Launches ‘Muse Voice’: Brings Real-Time Conversational AI and Expressive Avatars to the Muse App - Gadget Bridge",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNT05FUEJCdEhsdk82eTI3VmRGbGlPWW9oanJqTDIzNkxGdVlJVHBkSzN5VVVkR1pBamdsVS0tQ2tZaDNmeVRkeWthV0k3X1c2YzhUTGdQNXRmN3o2NGJBZGt6S19RSW1CcnE3dzdfUlBHX3hqelBlS3lKMndlYzJHYjRkRzBPWGVvZmZLOHdBVDNNTnE5UWhlUUxaS0lUM2EzM3RlM3hLQlVhQXZ5VkR2dThLRzY0b3Z6eXZMbUhpMjlod09lTUFr0gHMAUFVX3lxTE1vemdDYVZZMkZtenVoeFh0ckJfMy1zSGxLd2ZGTkNfcGpCVlBVOXBOMVN3VDI0NXRHSUxZS0lKRGF5a3RBUEQ1U2VsM1VMTmpFS1h6YmZnS2Y5VVFJeF8zd295QzNkN3llWFEtRkg4eWRoNVVHMzZ1MTM4SUpwUmVaZGJvaHFoSUNSWFV0eUJGeTNKUEJTbDBwbVJQT0hhbU1sdjZ2c2FoUHJmNDNRbGVxNjQzU3VwWXVQNDZwcEVjWWR5VlV4bmRJZmFWNg?oc=5",
+          "domain": "gadgetbridge.com",
+          "published_ms": 1794052005000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "Meta Muse Upgrade Lets You Talk to Your AI Agent in Real Time",
+          "url": "https://www.msn.com/en-us/news/other/meta-muse-upgrade-lets-you-talk-to-your-ai-agent-in-real-time/ar-AA2gUCMo",
+          "domain": "msn.com",
+          "published_ms": 1793956027000,
+          "kind": "news",
+          "id": 147
+        },
+        {
+          "title": "Meta’s Muse AI agent gets a voice chat mode with hundreds of voices",
+          "url": "https://www.androidauthority.com/meta-muse-real-time-voice-chat-mode-3732321/",
+          "domain": "androidauthority.com",
+          "published_ms": 1793920860000,
+          "kind": "news",
+          "id": 164
+        },
+        {
+          "title": "Meta Muse Custom Voices: 83K Downloads, Leak Details - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBtWnZnYUJtemMyZkRBQW9zQ2hZamlxVF9pVlgwSkstcXRQSXlpTENNVnA1djFMY3hlSWxoZFhJS252X1NFRXpHbUxWakNyRGNPLXFicHF1bGNlQmpoUm1oc1E2dEcwdw?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta adds real-time voice chat and animated avatars to its Muse app - The Next Web",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5pQ1lhV0FYQl94MkJJaEViRVFzVS12Z3RjakFyMW1qX0NLZ0M4dnJtTG5qY09xRVJQdTN3OGZNakhwV1FJVF9ZaDFEVU1BMVh1ZU5sUVF6ZDZVUEdBT0toMllBMGZIc3lpX3lvV3lrcU1uMGdTcnBv?oc=5",
+          "domain": "thenextweb.com",
+          "published_ms": 1793913229000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Muse Upgrade Lets You Talk to Your AI Agent in Real Time - Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOUDJrRHdLcnEzU1lZTkwzM0gzSnZuanc1dlZ1MHR4SHN3ZFlIUHhNdVgzVUVwcXRuMGE1REdMMTdPTzAzU0wxNWppVjQ4OW5vbVNDdm1JWkxNNjdkM3pBVE5qQ2R0X1ZZZzZUNFhQbFNwNmNkU3hrdTUyVGlkbnZtNTAzZEJHZw?oc=5",
+          "domain": "androidheadlines.com",
+          "published_ms": 1793984997000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Muse Voice rolls out in US with real-time voice chat and animated AI avatars - Storyboard18",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNeW1YRlRXUHNwZ0tjOWNSM0E1S093RmQ2MHFOak4xaURSVWlEZFNGdWFDMEM0bm5iRmxEX0ExblNvU1d4YzNrTjFXcXNHTHZfVk1qbklvWk9GSjdIRVlCalFfQTlaZ1ZnR2tJV0IxNHZMZDhNbGphVFdGNjlaWlBrdHRWbENvZzNzWXNUZ1M2dDM4UUIxQTNiZ3VHd3dMd2FfVVM3R0ttN2RKc3NmM0w3T1pnTDJWai0zbG04TlI4U2ZMU0dqRlp0ctIBzgFBVV95cUxQS1NXR0J3TVZKLVU4UVkzdXdUdlVKVDN5cnBZcUdIOGlLSEw3VlBOUWN1U0piWXc1bHh2elc3MzVuQmx6Q2tDbm5tb1pVSFd0ZVF2aHpKdG1pZDRuM0l6RDZFd3R5TV9wVHpLLTRpTHRhMGQxcnpzM0JNQmtmb2xwQlJMZXR0djN3ZVB0VkppbzN3UklUWTVZZmlQRHd2M0tlX1A3dzJvQzNSbmxOaldmWDBwZ2k0Zkpka0NwU3RsMVpfTEpic2xOY0dJZGVuQQ?oc=5",
+          "domain": "storyboard18.com",
+          "published_ms": 1793964661000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta's Muse AI Gets Voice and Expressive Avatars - The Tech Buzz",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQUVkVjZuWHNNUldoWWxZMVBVMl9xV0NxV3ZrcFlQTmNOYVVYQ2U5OTZJOHBhUDEybTRRazFxVHNRaEtLZWpVUEdlNF9BMkt6eU9BZlhSdExtQ2RLVE9JRTV0X1J1M21Yd0VDLW51SVRiZmpncm9kdE9lczEwb3FjQ2NKUHVMZmZS?oc=5",
+          "domain": "techbuzz.ai",
+          "published_ms": 1793905431000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Begins U.S. Rollout of Voice Chats and Expressive Muse Avatars - TOKENPOST",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9jNDVfQ2V2R2RXaEl5cnBSTU5FQ1dYVXZ5YURCdi1HcGRJc0RXaG1sNklQUVhwbXU5YkhYTTJfZkM0aXVuNXVwYWlxd3czVDc4TjY1R3RaZ3lXNTg?oc=5",
+          "domain": "tokenpost.com",
+          "published_ms": 1794039261000,
+          "kind": "news"
+        },
+        {
+          "title": "Video call your AI avatar: Meta rolls out Muse Voice to all US users, here's how it works - Firstpost",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQbUxUVWFPbWlEVUVSTmlYVjV6eHdJaDdCS1FGbl96d1FFd1Nld3ExYVpTblNhYUJuaUQxSm9GMXkyRlJ3YzJRTDRqbkhEelBnZkRxeE5qVFB3cDBUMmdkYWZqdGlUZHRnMG8zcWFiOVJxSGpaZHZPM2dTdGpDYjJ6YU5vejJYN05TclJDNmlKdXlpQTN1djlJalR6ZFJqY0xEOFd4VHJ5RXQ3QktOamxEUUstMXI0RWtqUDY5aVQ2dHFWVDVhVk4tLVJTTdIB0AFBVV95cUxPN0QyWjcyN0U3TEwwQkxYeENuelVHWDJ5NXhzUFc3VTlyWXY1Q2JQa29mUk9kLTVMb1hQQkM0UWFnbnlpS0p1SzF1Ny00NS1DRUZNVVlEWmdBcUVVZV9qb05xNmJnaUZDMG9FSnlKaFBGanRabklQVHVVMlVtMlJ6QjV2MGdJZEpLRU5zcjZkREFGVV9FeXoxbzZmdVVWTEVPcVFKRlExOEozUWZPZUphaE9ha0pqOVF3LWdjOTdnTVpfeEpSMTFFcnluaXZBdzN3?oc=5",
+          "domain": "firstpost.com",
+          "published_ms": 1793941187000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Muse AI Gets A Face-to-Face Voice Chat Feature With Hundreds of Voices - News18",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNaFRVS2U3NXVSNE9JZWNwRXc1cF80RUhVZTFERDRnaUQ1R2FVM0lhbnN6ZkVUY1NGRTB6UHN6VjBMYnhSRnNHY21pZEpWNXkwYlE5LTFHblAxdG9vTUdtdkQxWE1BMmlSZVAyb3F5MmdPRFlVNUxDZVJ3WEt6SHhfdnhHQ3hjRWlyNncxTFJIMVpPLTVEcHpMaEkwTmRrUnducGJOdGpSc1ViWk0wa0w4Ry1tXzBValJv0gG-AUFVX3lxTE0wdjd2RG9JM1BBa1NORy1PdnR1NzA0OWY2VDgyWGRFYXhGdUlacTRkelJDRmM4dHNmUWxZSHI4bmFHUlBMdWdkUWFYMkw4UUJnSWVfVTZacXpiRjQ5aFkzdlZSbmFLOHMwaXhfLVZhTUtHR1VmNkhqX1p2c3FVZzJEZFFYR1RwUWkyZGNlcVNKeno4RnJoVHJSTWJqNnRfemZMcllNYXhWWm1NTXF3R1AweHNZWVBBb2ptTzVFSGc?oc=5",
+          "domain": "news18.com",
+          "published_ms": 1793955831000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 64785,
+        "competitors": [
+          {
+            "id": "XK9GlQ5Btk0",
+            "title": "The Minute You Get Access to Meta Muse, this is the First Prompt You Should Use - Meta Muse AI Agent",
+            "channel": "Aleric Heck",
+            "views": 264090
+          },
+          {
+            "id": "B-uXvCi-mXU",
+            "title": "Meta Muse: Explained",
+            "channel": "Tool Finder",
+            "views": 202218
+          },
+          {
+            "id": "g25KXtB3Lrg",
+            "title": "Meta Muse AI: 3 Ways to Use Its New Agent",
+            "channel": "Sabrina Ramonov 🍄",
+            "views": 98660
+          },
+          {
+            "id": "nw9Sv6DVn1g",
+            "title": "Meta Muse AI is Not What You Think",
+            "channel": "Aleric Heck",
+            "views": 82883
+          },
+          {
+            "id": "85mhGo9jNGY",
+            "title": "AI News: New Grok Bot Limits, Muse Voice Is Here, ChatGPT Images 2.6 and More!",
+            "channel": "Paul J Lipsky",
+            "views": 64785
+          },
+          {
+            "id": "6AIqWF7RFA0",
+            "title": "How To Use Muse AI For Pros",
+            "channel": "corbin",
+            "views": 41031
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 96,
+          "reach": 80,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 80.6,
+        "newest_hours": 44,
+        "domains": [
+          "gadgetbridge.com",
+          "msn.com",
+          "androidauthority.com",
+          "shattered.io",
+          "thenextweb.com",
+          "androidheadlines.com",
+          "storyboard18.com",
+          "techbuzz.ai",
+          "tokenpost.com",
+          "firstpost.com",
+          "news18.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: Claude's New Personal Finance Feature Lets You Connect Bank Accounts"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Bill Gates Warns $10-an-Hour Robots Are Coming For Workers",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        57
+      ],
+      "hook": "Bill Gates says cheap $10-an-hour robots are about to replace human workers—and there is no plan for what comes next.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Bill Gates",
+      "commons_query": "",
+      "youtube_query": "Bill Gates 10 dollar robot worker",
+      "evidence": [
+        {
+          "title": "Bill Gates Says A $10-an-Hour Robot Could Replace The $20-an-Hour Worker – 'There Is No Plan' For What Comes Next - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPRVBoa29nSklZX3VnS2ZkTUtMdmhOOGt2bHNvMzJSZXhTcnBNYkxidlgxN0d2OTNmRzZVcl9Ya0x1aWNzaFllU0lONDltQm5pUFJGTUNBREVqeENvVjdYeU5OYklrOXVqYXlHbnNwZXcwUVVycEtoQkFTemhMUndTRzh6eTB5VmNBb1RlSnZyeEw?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1794153608000,
+          "kind": "news",
+          "id": 57
+        },
+        {
+          "title": "Bill Gates says next 20 years to be the most tumultuous in human history as Microsoft announces buyouts to - The Economic Times",
+          "url": "https://news.google.com/rss/articles/CBMingJBVV95cUxNNmFKTmMzR0pSRU5nU09MZ2VGejAyTW5JS1VQNURpYmxIVEFueEYwYmRRdzF0RHFmWkpFcGdhLU9LLTk2eS15RUlaWl9xWUJJb09DbHhYN0hKYm1qNU9pdGhEbEtjdVNwV0dsOC1wUmZMbHJWS3ZXS1ZKTzMxalcwMTRCbW5lcEpfdGQzUk8wVXBXclBKTy12dVFJSnZKWmNxZVk4dDJBeVQ3bDNGS1d2UzQtVGhYU29EanVaUGJFTWM0Zmx4bi1JWGU3QUptZTRQTkF1NTgyUWRNRlQ1QjdEOENhRl9FczVNOHdDb2ppNFlDX2FvaHIyanFpVFd4RmRpOU1SNUtUSHhqMzBQM0RlQjYxbDlZeTZZQnZiaGtB0gGjAkFVX3lxTE4zaW1ZM19PR1JMUDJXSk9fVlFZdXZSOFZXZ2xUdUR2VFVQSjJ0QkRYOXRISWNvWk96SUJ1YlIxX3NaamhrX1daZ2JscFVxUG1rcVRYbUw2OU1SZXdLVkVTd2x4RVl0SkV3ZUdJR0szSXNFczhSZ2VwRkM2WEhOY0Jyc0Y2VUtnQnAtWk0yZUpiSC00bGRLYUxMNm9ySWtwdEZsQlROUGlzYUtjUTAyME1DSkVnc2hEYnJ3SlJkMi1mMEplM3VuRHo5TXJtaFhPckE0dnFIdVVBY0owc2RvRkVZZjZXRHJCQy1NcjA5LXZfU0VaeU1McHFyUVBaQ3JwUG1qRUltXzk5VVVsNzN6cUtsckNNQW53N2lJbXFiTjRMaWVQZw?oc=5",
+          "domain": "m.economictimes.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Billionaire Bill Gates Just Issued a Blunt Warning About Artificial Intelligence - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPNFpndUVPM0U5TldDNHZNVS1XNjRpb2dyazNWaTEyUTlCaGhTMm9mMDR1T19JOXdPcWUzQVdMM0tiOVNwRm1JaGhzdFFDMDNjaXFtQTJ0N2lkbWpWaUpjaE9pbTVDSGF6M0RMVXJxOXVDX2t5SUxrS3lUV3dtbFpzbWk3dlFrcDVlZF9vT2I4UGc2cERVdXRxN0FrbmZaaHc?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Bill Gates",
+        "daily_views": 4273,
+        "ratio": 0.95
+      },
+      "youtube": {
+        "median_views": 314935,
+        "competitors": [
+          {
+            "id": "WZqt4nUlF4A",
+            "title": "Ranking the BEST Halloween Costumes #halloween",
+            "channel": "TierPop",
+            "views": 1381333
+          },
+          {
+            "id": "-ozxK77lwZE",
+            "title": "How AI Ends Humanity in 10 Years (Most Likely Simulations)",
+            "channel": "The Infographics Show",
+            "views": 998049
+          },
+          {
+            "id": "KrnX63esw_4",
+            "title": "Tech Billionaires Are FREAKING OUT....",
+            "channel": "The Infographics Show",
+            "views": 735619
+          },
+          {
+            "id": "j3rEFluTPzo",
+            "title": "Real code 💥 Indian bike driving 3d all new cheat code update + plugin cheat code",
+            "channel": "Sagar Gamerz",
+            "views": 479472
+          },
+          {
+            "id": "SFnm80p_NxA",
+            "title": "Steal Eggs with these glitch in steal an egg? #roblox #stealanegg",
+            "channel": "Starzo",
+            "views": 314935
+          },
+          {
+            "id": "Txwo-HXph-M",
+            "title": "Real code 💥 Indian bike driving 3d all new cheat code update + plugin cheat code",
+            "channel": "TUB GAMING HUB",
+            "views": 56012
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 84,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 79.5,
+        "newest_hours": 16,
+        "domains": [
+          "finance.yahoo.com",
+          "m.economictimes.com"
+        ],
+        "trusted_domains": [
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Bill Gates Says $10-an-Hour Robots Are Coming for Jobs"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Three Men Charged in Massive $129 Million Deepfake Voice Scam",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        36,
+        75,
+        134,
+        140,
+        144,
+        146
+      ],
+      "hook": "Scammers used AI voice cloning to impersonate bosses and lawyers, stealing a staggering $129 million.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 6
+      },
+      "wikipedia_title": "Deepfake",
+      "commons_query": "",
+      "youtube_query": "deepfake voice scam 129 million",
+      "evidence": [
+        {
+          "title": "When the Boss on the Phone Isn’t Real: How More Than $129 Million Was Stolen Using A.I. - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNeUplcHR2dndoRDJzaW1sSWdZVHRCWk41TG5xMGY2SVU1YnhCMmRRdWM1VzNYaEQ5OXNHNUdYZkhaZHFFcFRZMldFeVpNTFRDNkk3WC1sZmtxbEJOUGxiWTRhbTZrbDN3NGZUZ3dHS0xNU083QVM5ZEtwWVB3TjZleQ?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1794180849000,
+          "kind": "news",
+          "id": 36
+        },
+        {
+          "title": "US Charges Three Over $129m Deepfake Fraud Routed via Greece - Greek City Times",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBiQkN4YkZkV1JwaDhSa0FjYUQ0a3laM2pnYWFuZGRWNkxnMXo0emJoV014a3QtQzZvcGJMVnFVN0dUcU5RSGlNYjM2QVVkeWVybjFiZ1ZMU0YyUzE1YUpjMUFBUQ?oc=5",
+          "domain": "greekcitytimes.com",
+          "published_ms": 1794092996000,
+          "kind": "news",
+          "id": 75
+        },
+        {
+          "title": "Three charged after impersonating CEOs and attorneys in $129 million deepfake fraud scheme - IT Pro",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPbmM2eHVkQTVCWjVrM2xnVTJ0N2FUZ3YwNExvQm5kQXNLR2VyRXE2djlRazFSXzl1VjZrR3NYM09QTDJ3a3U2SmluNmI4SmtDeDBieVNvT25rVGkwOHRkN0xySU5zYksxZU11SV9kV1lKRFBuQl9ad0hfUGxZMkk0VEpxSnRudGczT3lxOXVyWGJ5UVhZQkNKazk3SzBTRGFQYjBsSHp3YjJJYkNNNVNETDFFd2dLV2tGN1FvUjVBbW9vMDctR2dNZjRTbGFDUDVw?oc=5",
+          "domain": "itpro.com",
+          "published_ms": 1793980316000,
+          "kind": "news",
+          "id": 134
+        },
+        {
+          "title": "Three Men Charged in $129 Million AI Voice Cloning Fraud Scheme - Startup Fortune",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPMkZkaFFRUzF3dGhaX1oybUIwakNHZmlabWpCdEFLdHFlVmEtekM4UFBqNzF4d0xFUmstR3duejVPaUhaU0xlYkpDVnZaS0xLWnVMWjFOQWhkQlR5RE9oUTVWTDA0VjJVTnhJTUNLakVoRGdNWUpSV2RWMnZXeVNJcHZObkgyMW4wSXc5dC0zbXB0QTJT?oc=5",
+          "domain": "startupfortune.com",
+          "published_ms": 1793967373000,
+          "kind": "news",
+          "id": 140
+        },
+        {
+          "title": "Fake Boss and Lawyer: The AI scam that cost companies $129 Million - Al-Bawaba",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPdmxXQ3BURHljZExQWnhGOHVJbUgzSkdCb0MxWTFtM0FQbUp0WTd3THdaamtYeFF4OFc0RFEzVlp3UnhlZWJIVkUtWm9lTy13elB0cmtWN2VpTE50VzRaeWw5V2I2clZPZUtReDZEWEkxRHZ3X093WFF6UllnYmd4eA?oc=5",
+          "domain": "albawaba.com",
+          "published_ms": 1793961878000,
+          "kind": "news",
+          "id": 144
+        },
+        {
+          "title": "AI Deepfake Fraud: 3 Indicted for Stealing $129 Million. - SecNews.gr",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5jY0hJdkJxb1NIOVZGNFU2R2tPaFNUeXUtYzhDenF1TTZmaFZteXhtTzg4MzFQSWp5a1VtNGZQWnZEUmdyYzlZckxWbTFaVURlZmZiQ0hGUE9sWHI2bE1zcW1mODBVU0k3ZTZWMlJCMzBYUVBiMzJqdVpSQQ?oc=5",
+          "domain": "secnews.gr",
+          "published_ms": 1793953260000,
+          "kind": "news",
+          "id": 146
+        }
+      ],
+      "wikipedia": {
+        "title": "Deepfake",
+        "daily_views": 1210,
+        "ratio": 1.15
+      },
+      "youtube": {
+        "median_views": 15,
+        "competitors": [
+          {
+            "id": "ZwBL3J_hN_k",
+            "title": "FAKE CEO SCAM",
+            "channel": "Ali Rehmani Talks",
+            "views": 160
+          },
+          {
+            "id": "aCgCK_n2hTw",
+            "title": "AI Voice Scam: Fake CEOs Stole 129 Million",
+            "channel": "Wait, AI Did What?",
+            "views": 77
+          },
+          {
+            "id": "Uh3fzgKVNFg",
+            "title": "$129M AI Voice-Fake Fraud Charges, WorkOS Breach, Old RSA Weak Spots",
+            "channel": "Unified Memory",
+            "views": 37
+          },
+          {
+            "id": "NG4ljTIl80A",
+            "title": "AI Scammers Stole $129M. Their Best Tool Was a Pen.",
+            "channel": "Internal Memo",
+            "views": 30
+          },
+          {
+            "id": "sSAs-LZQgCs",
+            "title": "Why a fake AI boss can steal $25 million - explained",
+            "channel": "Ed Line",
+            "views": 15
+          },
+          {
+            "id": "xaFlEhs31iM",
+            "title": "AI fake CEOs allegedly stole $129 million #ai #ainews #deepfake #scam #cybersecurity #fraud",
+            "channel": "Pratham BS",
+            "views": 10
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 89,
+          "reach": 37,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 75.6,
+        "newest_hours": 9,
+        "domains": [
+          "nytimes.com",
+          "greekcitytimes.com",
+          "itpro.com",
+          "startupfortune.com",
+          "albawaba.com",
+          "secnews.gr"
+        ],
+        "trusted_domains": [
+          "nytimes.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Elderly Lose $450k to Deepfake Scams"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Wife Used ChatGPT to Plan Husband's Murder, Lawsuit Alleges",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        160
+      ],
+      "hook": "A shocking new lawsuit claims a man introduced his wife to ChatGPT, and she used it to help plan his murder.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 7,
+        "visual": 3
+      },
+      "wikipedia_title": "ChatGPT",
+      "commons_query": "",
+      "youtube_query": "ChatGPT murder plot lawsuit",
+      "evidence": [
+        {
+          "title": "Lawsuit: Man introduced his wife to ChatGPT. She used it to plan his murder.",
+          "url": "https://arstechnica.com/tech-policy/2026/11/lawsuit-man-introduced-his-wife-to-chatgpt-she-used-it-to-plan-his-murder/",
+          "domain": "arstechnica.com",
+          "published_ms": 1793914780000,
+          "kind": "feed",
+          "id": 160
+        },
+        {
+          "title": "Wife used ChatGPT for murder plot against husband: lawsuit - KRON4",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPWURjWFRMT1M1aUo1Z1ozVWl0SGR3MWY5My1FNGdOMFQ3V3UyTGZXcmpOd1g4Z1RwejFVWmoyOV82dkNmVlI0ZjNmX3BoaVBidkkwZ1NHd01KMGNDWURCenRTSG1RVDdnOFR0V0xPUFFVbHNOd01xXzd5MFdjUmJpaU56bndfT29mNWhJd3NZQWx3Z0dBVmpEZlNXU0hzemVi0gGmAUFVX3lxTE42cjFGdjVVb1poYy1WXzFMZWJZVVJQbmx0X1k4TTVMbnRwZlZhUUZTNFUxNTVuWjN6S09BeWo1ekJKRjNBRjFXYjlSNE1aUXAzZnZNLVBIdVU0YWw0Sm4wRXhCSjc0QXJ3V05XX3M0MFoxNjNMYnNqRGRYNHNVQWJvRU84QzQ4bVhrb25JNGszSWZORndEdVFNZGJ4Z1hqbDJFRTl5R2c?oc=5",
+          "domain": "kron4.com",
+          "published_ms": 1793923687000,
+          "kind": "news"
+        },
+        {
+          "title": "Man sues OpenAI, alleges ChatGPT aided wife in murder plot against him - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPOWxfT1ktLUpPd1o2eTI2N2xlVDBDaVU0dXRKSVBSdHFnVXpQM0xuLVZRekdVeUhqSUE1cE5kLWxzbHJSb3p6RWtDOHFDTHlnMmVRVng2U1ZZYm1vT0VIMFlnb2xIcGYwclVzeEtxMXhNZ251R1h2RDQtaFVRNFh5QzdiSXctZ08tclNKN3lkLXFjQ3VHd0FrWUtGTTZlMGNaM19BTFF3SjlYYlFOYVhTZkZFVk1RN1dZeGxQeXlKYzhJQQ?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1794001671000,
+          "kind": "news"
+        },
+        {
+          "title": "Lawsuit: Man introduced his wife to ChatGPT. She used it to plan his murder. - Ars Technica",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTW15YWY0cEJOb2YxSURaMF9RamtJU183bS02TnpjSFFDQ1VmaE5wb1NFS1BMRWZWcWdRLTZKeEtHOXV5b00ybXgzQWJlSkZNMnhwRDFkVVl6Y2paTjdnRWc5R1gxN0JFSGprNjJBYklNakZxNkNENnZhajJDaGdBWllVSUd3ZG5nOEZQSG1YUzlpN2NaaWZSMHJoTWhETk9ySlBpT1BPckpRcTB2OVdNQldQVzllRmk2Z1E?oc=5",
+          "domain": "arstechnica.com",
+          "published_ms": 1793914780000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Murder Plot: OpenAI Sued Over Safeguard Shortfall - Law360",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOZFpTNnJVSHRvN2R0VEFONktHTGVwcl9kV0F0M1BkZUE5S2lkZUxLVGIwVUYyalhmREdiRkhnQWVMRkNLZk5CY2ZsRlVoYkdSYkhPVUhZUmkxMWJMR0NVdGEweDRSbVR4WWFlaDBNNHluc3FQNVp2ZG8wNmJjaEk0SktmOGozTWxueTBhSjdPNWp2cjNlRU1yeTRYYVPSAVZBVV95cUxNdFhsdTdOVGJ0S0hNWk1xaHJpVzJIVlRXMzR6NG91Mk9YTmgwQW05ZXNDZkk2by00c014U2dWUzhueEFkRTcwSVYtQlhoZHNZS3NwVDJ5UQ?oc=5",
+          "domain": "law360.com",
+          "published_ms": 1793939043000,
+          "kind": "news"
+        },
+        {
+          "title": "Lawsuit: ChatGPT helped wife plan husband’s poisoning - NewsNation",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOekF5MVo5ZXBzTmF5V0xqeVJvYzBkQzRwN05KTkhBRDFDWldDR1YyS2o4c0gzMlpFNlM0UmxOMDZyNUdLa2VCZ29ydlZCeXlrcm1MV0ZZU01obGlhdmRRREFTemdKazhMTkg1OHoycjBCa2h3VWdhNE5zNUdMU284aDVYRjBYclhFejFB0gGQAUFVX3lxTE01bENKUkZKM3l3eGJpeUdrSEV4aW9WOFRjcUxwelZtOVRUQ0l0enFsb2RURElxWWo1MGFlTnZIcTZuR1pCdXdPNnk4WmNnSXFQXzVYZzdacHlTX2JDYnBjZ0FBVm1XbU9QaWNhaG1MWU5qSk5HMGprSWxTNlNLSm84ZXlVcm93U0laSWV0Y2RXZw?oc=5",
+          "domain": "newsnationnow.com",
+          "published_ms": 1794016516000,
+          "kind": "news"
+        },
+        {
+          "title": "Man Alleges ChatGPT 'Encouraged' His Wife To Poison Him In Chilling Murder Plot - NDTV",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNa0xNdm5wWk1xc2xVSjVnSnA1QkRvYXdwcjUxelhqSUN4UW1tUUZYYThCOEhlTjIxQ0MxZ182YXFNZGx0S0VpZGk2cVZWT21MVFBIQ3E4NUlXVm80ZV9qTjdQdzBQUW16UnhJWldaZ2lpa0QxME5QcjBZYU1YTzdZNEozS21ISUFPeFBfVXBPU1hqTVdGTkduZjU0RGUxdHFmUjktbFJ1OUtlTFlDNDBoUXBYVmNwd9IBvgFBVV95cUxNNFp1SUxBVEV4Q0U3VVROYTdmSTVveVVJWlBRS0pVRmc5Z3ZZTUhPSWNmM2pEU2xIZS14WFlkeWhlX3JtUm54X2pLcVNCNi1SeXFOTjg3TkM4dm1ialJSekNSSmozSC1PblpXM0dmTEI0WVhpNXEyQUdXSFA3aEhNY3A4eXhkQ3ZyZkpqSXlMWmVmQlJUOTUybFhGOWdVeXBHU2RrUUJHMHlGWUxmZzlOekFjT2xKVUNPUmtueFNn?oc=5",
+          "domain": "ndtv.com",
+          "published_ms": 1794046255000,
+          "kind": "news"
+        },
+        {
+          "title": "\"ChatGPT Assisted Murder Plot\": Husband Sues OpenAI as AI Safety Lawsuits Mount in North America - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBFb1l3am1iZTlqMHJwWUFFWFVRM2JFRjNnREpBZElmemdvYzgwT3AtQWd6ZElYNHBCX2k3VG1SYTQwQm5oMHZ0akk4VWM3eFR2NjNoTVptQXU5RFp6aWRyRGVZQ1Bzb0hSV3hFX2pRU3lmdHFhMGc?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1793919300000,
+          "kind": "news"
+        },
+        {
+          "title": "US Man Sues OpenAI, Claims ChatGPT Helped Estranged Wife Plan His Murder - NDTV",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPeVYzUnBBUWZnb0J5cUhVdExxMkkwWUNzN0tHWnhNUlpEeG0tQ2FfX2ZCUlVaVTF0ZFdZcE5fM1EyOWdvUTE5WUplYmNTT1Q5dGFkeGFmOHRJSWlrMnVEbkhUbnB5WVRMa0Jyb3g0aVh1cFV4WnhRbmdSUmxDWWl0VUZOZjdpM0RkT05hQ1F5TjRISHRiazRtUVpMZ3BEaGsxVkpoR01WaS1sY1lEazc1NVln0gG6AUFVX3lxTE1pdFhOVHFxWlFVT181MFNPUlVyTVV0YmU1RzVFaGNxbWVUcG90ZlhFMDE0b3pPZFN5eTRjNHdnZmNndUppaENRZDdOM0lhbjNwNklQMUJrcm9JLWZocnRQZmF5YmlpRlJmc2ZxTF9jbEloei1zZElJM0xUY3dZYlgxM0tuS0Y0cklZZHB6eW03UUtucFdEQkg1VUUzdTNxY1hsUy1zSUhTT2ZzRmRBWVV3YnV4b2RSUGdTUQ?oc=5",
+          "domain": "ndtv.com",
+          "published_ms": 1793957985000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "ChatGPT",
+        "daily_views": 85000,
+        "ratio": 0.88
+      },
+      "youtube": {
+        "median_views": 951,
+        "competitors": [
+          {
+            "id": "qsqt1qmo5PY",
+            "title": "Chatbot murder plot: Man says wife used AI to plan his killing| Elizabeth Vargas Reports",
+            "channel": "NewsNation",
+            "views": 11143
+          },
+          {
+            "id": "uon3IP8S0Zw",
+            "title": "I Tricked ChatGPT With a Fake Murder Story 😭💀",
+            "channel": "Loyal GPT",
+            "views": 4349
+          },
+          {
+            "id": "BsxeNdTC-7o",
+            "title": "ChatGPT gave her son drug advice. Then he died",
+            "channel": "Courier California",
+            "views": 2694
+          },
+          {
+            "id": "fhlLxcP8pac",
+            "title": "She Told Congress How ChatGPT Lost Her Son 😢 | Leila Turner-Scott",
+            "channel": "🌑Murder Archives",
+            "views": 1380
+          },
+          {
+            "id": "VvCIUQ8Ct68",
+            "title": "ChatGPT for murder?",
+            "channel": "Zona Roama",
+            "views": 951
+          },
+          {
+            "id": "p-XtyRIJzng",
+            "title": "Man Sues OpenAI: Claims ChatGPT Helped Wife Plan| U.S. News| Driti Atri Explains",
+            "channel": "TimesXP",
+            "views": 495
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 85,
+          "reach": 69,
+          "curiosity": 100,
+          "relevance": 70,
+          "visual": 30,
+          "source_quality": 65
+        },
+        "total": 75,
+        "newest_hours": 46,
+        "domains": [
+          "arstechnica.com",
+          "kron4.com",
+          "cbsnews.com",
+          "law360.com",
+          "newsnationnow.com",
+          "ndtv.com",
+          "finance.biggo.com"
+        ],
+        "trusted_domains": [
+          "arstechnica.com"
+        ]
+      },
+      "rejected": [
+        "visually weak",
+        "too similar to recent topic: Wife Uses ChatGPT to Plan Murder Lawsuit"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Microsoft Adds Opt-In Copilot Integration to Windows 11 Search",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        51,
+        111,
+        123
+      ],
+      "hook": "Microsoft is officially building Copilot straight into the Windows 11 search bar, but making it completely optional.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Microsoft Copilot",
+      "commons_query": "",
+      "youtube_query": "Windows 11 search Copilot integration",
+      "evidence": [
+        {
+          "title": "Microsoft adds optional Copilot integration to Windows 11 Search redesign",
+          "url": "https://www.online-tech-tips.com/microsoft-optional-copilot-windows-11-search-redesign/",
+          "domain": "online-tech-tips.com",
+          "published_ms": 1794170160000,
+          "kind": "news",
+          "id": 51
+        },
+        {
+          "title": "Copilot is coming to the reworked Windows 11 search box, but Microsoft claims it will be an 'opt-in' feature - TweakTown",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPaGxfTXljY3ZwV3lmWG96SDZVb2F4RTJOQjdXWUZYNWxCRGl6R2Rsa3ZqV25oZGxaYXNHaWtlRmFLRTgyNm1YaGhTVTNVUEpTLWVjeDN5VFN2UzlIb09fOWh2dndWZnZmTUVhN0RMbnFfSmJuV203X0J0SE1RMEVleU1iNmtiT0pvcnprMG5mckZWNGpDMkZZUTljY2ttT2pmT3loYzJGRy1KWDZ5WGxvYXlYS1RXd01VMXR5Vm9iUVFaemdvRjZhd25fdGFRRjhOUmpVRGpGMjJTRTRjbHJlVzhzVVd0alQ1S1E?oc=5",
+          "domain": "tweaktown.com",
+          "published_ms": 1793999703000,
+          "kind": "news",
+          "id": 111
+        },
+        {
+          "title": "Microsoft Will Add Opt-In Copilot Answers to the New Windows 11 Search Later This Year - gHacks",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNT3c1SnY4VWIxTnRVN25sMC1Ed3ZHZnN3Y0s4ZTBmencySFFWQ1RLOFNWRjE2Qmo4YW1QcGk2ZVNkWGd0d1VCQ0lpOWxRaXdfRVhLWDBkdkxPQnQwaUJfODZXaXJpVl9TMEJyUkR3cU1qaWxSbFhOelNiNFNIVkJUdUJhUE1OdUphZDNqNHdlLWpmcWpYS2NvWDhCS0xfX2RrY29vYWhFVWc3VVJaYUYzWWRMU3Y4eXVnMkFCRUNn?oc=5",
+          "domain": "ghacks.net",
+          "published_ms": 1793986448000,
+          "kind": "news",
+          "id": 123
+        },
+        {
+          "title": "Copilot is coming to Windows 11's new Search UI later this year, but Microsoft promises it'll be entirely optional this time - Windows Central",
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNcmdzV0ZESldwWmpEUFRrbjBvNE00WW9vZWM5LU9Ublo5TnhvN3dETW9YRWZVRjZZcHJUU094TWV1QmVUaGlBVGI3bTh2LXNsLURkQUN5Y1lJSGRrRlc0QXhRVU1rZWdKN2FCS040MFBCUzZkdHF4WExrQXBCRkVtMkFPZHRhTzRLczNWRmctQXR0Vm5OTjhLa3AyY0d1eTNnNU8wZWUwamVXeFFjNmJJd3B4UGFoblhMV3lyVUJGZF9tTERjVDJPUWZsTW1EZzRsNFJnWHdGMjdOdXRPNGxyS1dqMTFZb3htRlFkQ0FQaHBJOFMtOTBV?oc=5",
+          "domain": "windowscentral.com",
+          "published_ms": 1793884303000,
+          "kind": "news"
+        },
+        {
+          "title": "Microsoft Learns Its Lesson With Copilot Being Shoved Down The User’s Throat; Promises Optional Addition In Windows 11 Search UI - Wccftech",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcWlORzZ3VDZlQzJPaUNNSnBFSjZYOWNpNXM4MkIxVUVxTmJ5ZF9SWHo4b2hxYm1GNnBzekRfWVV2Q19wQ2l6blJDTDZRWmRwdG1HNnZ5WllfM19Hc0tzSk1pLXR3a3ZFU3ItQl9oTDFTWXhPcmRBeDk5YTIxNFhzeXk5VXRGLTJCd3Q5bThFdVN1d2UxMkFj0gGcAUFVX3lxTFBEZjF5RTltLXdYczRDN0VLWFpYT2hNWGhrZzhyTnN6RFFsMTFvX3llcUdwNjZveTZJQ3o4b0hiUnczMUpQcjBJUDZhQ0d3NGc3bkZHa2NYcEFRQ2J0XzdqSHV5V1FQZDlOWlItUTB1UVpmdjg0RkIyTGs2M1JTckswcmNXQnNpRGlHbGRCcDRkbDg2VzF4RkdXN2tCdA?oc=5",
+          "domain": "wccftech.com",
+          "published_ms": 1793973721000,
+          "kind": "news"
+        },
+        {
+          "title": "Microsoft Copilot Cheat Sheet: Price, Versions & Benefits - TechRepublic",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE53dEtsNzdQZ1ZlYzYyNVRRSWRNZVV5Z3NLeDItOEJQWGQ3V3dEODFzMkVON3BnWDU0eUc1QWo4ZUFxaU5uZFAyZDlTeFdPYldQa0tUY0R6WndBN2JrejFWNmFwRUNLQnMydzJULVNaYVdMNHFwckE?oc=5",
+          "domain": "techrepublic.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        },
+        {
+          "title": "Cemex builds an always-on HR experience with a Copilot Studio agent - Microsoft",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQeU5jbk9yZUVlWkdPa3ZUbHVMWVBlck9LSG5JTUQ4WmtzU0VENmYzZVAtdDFHQVJwQllsWXNISEg4TDlMN2k4NDd5NFhFLWpsNmVxVEdNNVN1MGFnalktS0pNZUhLcGZHYk5IckdCaG5PcEFFZFpueW5MVHZ4a3JENk52b0k3WXFD?oc=5",
+          "domain": "microsoft.com",
+          "published_ms": 1794184438000,
+          "kind": "news"
+        },
+        {
+          "title": "Dataverse goes where you build: Copilot Cowork, coding agents and n8n - Microsoft",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPWFVzWE5ncThURDdoelp6V3JvYy1zRE10eUFSSGtuZUxVOWp2NGlINWdEcEZFXzRxb0s1REhGNGplREQ0RWp1TVpGY2tOcV9ZV1V2UTgyQ1lwdFJ1YWxMb2VmbmdXeUdqeEQ3NnlnMXBGcDZIQjYxTTBWZ0pLNEYtSy1TRVdCTmg0bkV0cUpMZk9ENTQ4VDRUUXJhNFozWENudlJuVzFXcFhzUXA5RUZv?oc=5",
+          "domain": "microsoft.com",
+          "published_ms": 1793635200000,
+          "kind": "news"
+        },
+        {
+          "title": "Agents that are persistent | New in Copilot Studio, October 2026 | Microsoft Copilot Blog - Microsoft",
+          "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxPNlUyZWJYVlBmdGY0SkJUTk5vNEgyalFHaEdDSHZvdEFKMWpqajczWFRxUUhIek13U3ExcXcwWWMxdTN0NWNDQVZ0Tl9yNTk4ZDVDdHpMNmllTXk2RHZWd0ktZkRDaFl2OWtxSEx3cVMtZmU5SDhhM3NKQXZ3NTFzVG54VjNoM3FwRTNheDRNdUJEYzlxZ2pXNzVCSExEaUpRcWJBRWJDVGk0TTg3d19Ib003VDJLZ05BeVZtbDctTU1fY1pvZm4wTU5xSnRUaW82Qnhwb3lDakxZMzMtb0VEVDNlWFBLa19TMlhYSG9uQklMS0RVeTd3RTVwbXRiem5teEhvYWl5Q2ZUbDBjS0RpTHpmYV83ZVp6cHV3YS1ibk94UQ?oc=5",
+          "domain": "microsoft.com",
+          "published_ms": 1793809800000,
+          "kind": "news"
+        },
+        {
+          "title": "Banco Hipotecario transforms banking and customer service with Dynamics 365 and Copilot Studio AI agents - Microsoft",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQNW1HTnpacmpOczhUODBQQ0d2NnVraVVDTFZkRTNWYmtkTC15bWRGLV9FYjExNlY4ZmRoZ2lHamUzREpDTEpWcnRpSnVJQVhVaEZPTEdkWS0tYlBMV3p5Rjhtb1lqVVFWUkRfWTFIc0pjY2ZTUEo1XzJhUnlkV2RMTDU5aTNfOGJ6MTNr?oc=5",
+          "domain": "microsoft.com",
+          "published_ms": 1794135276000,
+          "kind": "news"
+        },
+        {
+          "title": "Research Solutions Brings Scite & Article Galaxy To Microsoft Copilot - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNNG9TLUgxMi04SXhYdVZpTjVMd0dtUHNXUjM3NkRVMkZIb0pCbDdKaC1yeU5CdXpNa1hlOTlpLV90ZTR3UGtYTFJEMVprY21SOUxOZVNtVnQyRHBobXdKdEs5OEl2S1J0QWlzMWo3OG81akl0cElPTkN6VlZ6cl9FdWo3aGVWSUp2N0VEVkYtWGxTU2hqRXB4cmVWRjVTUlp5ZGRMSkpR?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1793710800000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Microsoft Copilot",
+        "daily_views": 1050,
+        "ratio": 0.81
+      },
+      "youtube": {
+        "median_views": 776,
+        "competitors": [
+          {
+            "id": "KJ8Y2Nb9y9o",
+            "title": "Microsoft Copilot Just Got a Massive Upgrade",
+            "channel": "Kevin Stratvert",
+            "views": 182292
+          },
+          {
+            "id": "knOhSmOkqMM",
+            "title": "How to Use the NEW Agent Builder in Microsoft Copilot - Build an AI Agent in Minutes (2026)",
+            "channel": "Mike Tholfsen",
+            "views": 167289
+          },
+          {
+            "id": "bar6CRErgC4",
+            "title": "The New Microsoft Copilot Is Here: Everything You Need to Know",
+            "channel": "Tool Finder",
+            "views": 84635
+          },
+          {
+            "id": "awCW1_iO_Qw",
+            "title": "Windows 11's New Search Is Getting Copilot... But It’s Optional!",
+            "channel": "BrenTech",
+            "views": 2737
+          },
+          {
+            "id": "4b0vq2bwsZk",
+            "title": "Windows 11 Search will get copilot integration later this year but it will be optional",
+            "channel": "Windows, computers and Technology",
+            "views": 776
+          },
+          {
+            "id": "DsB5YIc_CJ4",
+            "title": "Windows 11 Just Got a Built-In AI Brain | Copilot Update 2026 (No AI PC Needed)",
+            "channel": "Salman Tech Hub",
+            "views": 275
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 53,
+          "curiosity": 60,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 74.7,
+        "newest_hours": 8,
+        "domains": [
+          "online-tech-tips.com",
+          "tweaktown.com",
+          "ghacks.net",
+          "windowscentral.com",
+          "wccftech.com",
+          "techrepublic.com",
+          "microsoft.com",
+          "finance.yahoo.com"
+        ],
+        "trusted_domains": [
+          "microsoft.com",
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Perplexity Launches 'Teammates' AI Agents for Complex Projects",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        42,
+        58,
+        119,
+        121,
+        150
+      ],
+      "hook": "Perplexity just launched 'Teammates', expensive new AI agents designed to handle your entire business workflow.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Perplexity AI",
+      "commons_query": "",
+      "youtube_query": "Perplexity Teammates AI agents",
+      "evidence": [
+        {
+          "title": "Perplexity launches Teammates AI agents for Max users - IT Brief Australia",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPdGxzazlNUWpQSGJVUFNDdHh6QjlFX0t3NV90WThKR25MUEJKZC15ZGlTNHVTNVAyVlpqYzFVcnBwTU9NSWRxcUxXUTZWeExZVFFlTW83MkZNTWhnc2ZqSUhlMFZWcWJuMVNnSjI4VXdjU2FEYi0zUWdKSXFpXzNWY0tsS3E1U1FoQ2c?oc=5",
+          "domain": "itbrief.com.au",
+          "published_ms": 1794169800000,
+          "kind": "news",
+          "id": 42
+        },
+        {
+          "title": "Perplexity Launches Teammates AI Agents To Manage Complex Projects And Automate Ongoing Business Workflows - Pulse 2.0",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxORTR3eUdBWEFnanlsWVJCWnBDdW9wank0WW8tNmVnS2hfa3V1b0UtOW43RERnUWRQMGtMcDduRmRZOEJ0ZzRXdG5CR3hST0txWFIySFJJekI3SkI3dHg3UHlpSy1EbC1XWXNqOXE2aTh4OS1IaHUtOVVGYWZkdlI2V1A5Q1RWLTAzRlFwWXhJSHUxTzZaTUIwLTY5MTd2RkpDRnJyTVMtVGYxV2Jvc0FMLUpRY2JncDd4aTV5RTZieWFGOXFS?oc=5",
+          "domain": "pulse2.com",
+          "published_ms": 1794148122000,
+          "kind": "news",
+          "id": 58
+        },
+        {
+          "title": "Perplexity Expands AI Computer With New Team-Based Agent Features - Analytics Insight",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOckpCcTR3QjEwQWhHLXo4Q0NrNzRDdnJXMUgwUkhRRjdqNmFERnJkeTlmelk5bkdJWHd6Q1ZqQUdSdVRxN0s1cHhTc1k0c3Bxa1ZwdHlIZ09DSVBDT2NwaEpXbmJjU2VlR3BFNFJ3OFNZX3ZUeFd4TzlZOWVhTkwyWFhRcjNMVHhPU0gyalFJZ0g3RDd4RlkxSU1ZYmNuNXRYZWNtYWNR0gGzAUFVX3lxTFBjTlVyc1VqdF9oX25PSnBObE15cUxYQjQ3MWlpa2NkWXZNYUU3QWhQTzJmQ3ZaLUxhWWNJbFNnbWNDaHRaWVdZZWhtbF9qc3hFbFp5NWFRTFk5MU1IYnp0WUFuVmVmUWlYWUZIRVdMVFZRLTZQWnU0WUk0Z0dkYlZiYmNYaFhDaFF4anB1dDB6eEVBU2JYMGUydzN5Q0VvcUlWYXRvX2ZTdFFXQkJHYm90VWdB?oc=5",
+          "domain": "analyticsinsight.net",
+          "published_ms": 1793993400000,
+          "kind": "news",
+          "id": 119
+        },
+        {
+          "title": "Perplexity Teammates: $200 Max Agents Launch [2026] - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQdWRvaHlFWWFCdlppUnh2Z21WWENVN09FdHk5NEtZY25Zcm1ndkc2Q1BTNEpMWjlSbWQwNGxBcWlHZjZkSU8wWVc4VlV3VjBDVWtyNnZwQUNZanp1OUdoSnl5dFZnSkpCN0VBcjFZR3IxLUJvcFJzRzlOUUJfOHczQ2pVNTE?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1793992713000,
+          "kind": "news",
+          "id": 121
+        },
+        {
+          "title": "Perplexity Teammates Launches: How Its $200-a-Month AI Agents Work",
+          "url": "https://www.techrepublic.com/article/news-perplexity-teammates-ai-agents-pricing-features/",
+          "domain": "techrepublic.com",
+          "published_ms": 1793943660000,
+          "kind": "news",
+          "id": 150
+        },
+        {
+          "title": "Perplexity launches its own take on AI agents for work - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNSmpjbUlKRk5NNS1ocHJHQkVMNklPamFtSzNjUjhEWWItYndXYk1UbWdjUlB1NXFzc3NQX1Q0MVJnVm95TkZtYUUyZTFCUVA3WjZ1M19MMGNZQ09EeEFuTGZMd3JvV0xWaEl1dnh5Z0lYOTg3MkZhMnVsRnlWMFdoQ0lNMzlvZ1Bka1k0UHdxYUFxSHp3cEZhMmJFNA?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1793917610000,
+          "kind": "news"
+        },
+        {
+          "title": "Perplexity's 'Teammates' Are The Company's AI Agents For Daily Work Tasks - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMEg0eW5XRUhEWEE5cEVqLXFfd0c5VE9xcVI1VGdEMlJ5dlU0N2RPSzJscC16SEpObEtqdlVEVklFaWRDQ0N2VnpVTGNwNVB5UmVjLVI5Y3QxOUxzSC1RMmx2SGRPSTJZdzFlMWQtQWxNeHVwZnVWTVZkeGg3UE1XWEpPenQ2NTVO?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1793963939000,
+          "kind": "news"
+        },
+        {
+          "title": "Perplexity Teammates Launches: How Its $200-a-Month AI Agents Work - TechRepublic",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPVkxWWVpibXNmcC14aEVtYnJRQ0pxQjl5Tkh3U0F2b0RtOFpjckJ4elduLUdPUmJTamdRbHFtZ19VVENwUnlWWWZDWFdvOGI1bmROUFlUS0FDSjItQVdCb01WTi1TMHRqaEp3Y3BQTWs3SU12c05MX0tUZEkwMjJ6WlVBakZGdy1WcG52amxIaTYtbGJD?oc=5",
+          "domain": "techrepublic.com",
+          "published_ms": 1793972721000,
+          "kind": "news"
+        },
+        {
+          "title": "Perplexity Launches Teammates AI Agents to Battle OpenAI - The Tech Buzz",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQX3ZlZ1gxTk8xTmJhVUI4ak8wajN4MlptQUJnU0QzV1AwUm9NVGdfa0pPZmRLc19wU1ZHSU4xcl9xVWo3RE1tTF9BYk02MDNFTE5VS3FWRHRyaUoxV0dyTmV6dGZwdkRHTGd1MG9YcE4xXzAtbUtMQVVldmtzNmFiRGYyZGdnSE4tbE9TOWtuVF9YWUU?oc=5",
+          "domain": "techbuzz.ai",
+          "published_ms": 1793920026000,
+          "kind": "news"
+        },
+        {
+          "title": "Need Help at Work? How About a Perplexity 'Teammate' AI Agent? - Yahoo Tech",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWEdtLThZOFhYMl9wQWttOUlYSEZ2TWU2S2JYazQ4anI0XzNlcFU5M2JEeEhObjdsNFRuRnNQbzRadm5MSDM1OTZqMmoxMGNLLUloNEEtQnUwYWpkck4xSzJGMm9zZVpSQ2Q0UmJ4bkxvZ2ViTG40anVjRWY0SktOTUNRTFE5YTRvWWo2cnFHYWV6TVRhVXJmWFVLUFRpdw?oc=5",
+          "domain": "tech.yahoo.com",
+          "published_ms": 1793992101000,
+          "kind": "news"
+        },
+        {
+          "title": "Perplexity Teammates: 24/7 AI Agents for Work [2026] - https://tech-insider.org/",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNUWIxNkVxOGRYUzNXY2t0RU5XYzJPdlJRMEhGdGg2RmJUSkFneXNrV0otcEYtYVM5M3A3MW5hSkNsWFVDeTFuUGZySmhfSWtwUnJoQ0NKaXFsU0FkTjJIYVUzMXBqMzNadm9POHBPN3huSlBRRm45QWdLeV9yVEMzcg?oc=5",
+          "domain": "tech-insider.org",
+          "published_ms": 1793991013000,
+          "kind": "news"
+        },
+        {
+          "title": "Perplexity launches Teammates AI agents as Wall Street doubts AI payoffs - Startup Fortune",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQcEFBSFRVZ2lxd2xtOTlPSTFjYVhZV2hVWjNyc1BjUXBuSmE4VFljYzZtb3hESjU2ZkVXNG5IcWtGWS1EOU1xNmRaZFFyYUJIRDJ5OVd2Rll4LU4yVjgzSHdHYm14MkhmT3J2OW9weVJDamVNcGoyM3d5ZWZ5OEhQMXF4RUNoS1pnNUFNdDFtNkhPR0tDQ29GZEZib0l3YmNDbEE?oc=5",
+          "domain": "startupfortune.com",
+          "published_ms": 1793921658000,
+          "kind": "news"
+        },
+        {
+          "title": "Perplexity Debuts Always-On AI 'Teammates' for Work, Locked Behind $200-a-Month Max Plan - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9ubUlvVWZDenJjczJTV2wwSGpBZzRibkRZemdXQ0RKXzZ5UWRzY0NhZGFCNldaTkQ2ZjZOUFRIaHQtVUhoMEwwTFZpT1dscHFLZXVPSXR1UHhnZlR5OVNLaDRXREM2ZVlqUWtKaUNseVRnTmk0RXc?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1793964900000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Perplexity AI",
+        "daily_views": 1950,
+        "ratio": 0.86
+      },
+      "youtube": {
+        "median_views": 116,
+        "competitors": [
+          {
+            "id": "zKC3QZlzgjs",
+            "title": "NEW Perplexity Updates is SCARY GOOD! 🤯",
+            "channel": "Julian Goldie SEO",
+            "views": 7001
+          },
+          {
+            "id": "oXeoSKfALnc",
+            "title": "NEW Perplexity AI Agent is WILD!",
+            "channel": "Julian Goldie SEO",
+            "views": 2660
+          },
+          {
+            "id": "UyRAI069cms",
+            "title": "Perplexity Teammates Explained: Always-On AI Agents on the $200 Max Plan",
+            "channel": "In Theory Only",
+            "views": 330
+          },
+          {
+            "id": "C1PpdRA5_YQ",
+            "title": "The AI Agent Race: Perplexity Teammates, Meta Muse & GPT-6 Cyber",
+            "channel": "Jaeden Schafer",
+            "views": 284
+          },
+          {
+            "id": "qbwKMxysicM",
+            "title": "Perplexity Teammates Just Launched: AI Coworkers That Do Your Work (2026)",
+            "channel": "Prompt & Profit",
+            "views": 116
+          },
+          {
+            "id": "vC87aSkXeK0",
+            "title": "Master Perplexity Teammates for Your Business (Full Guide)",
+            "channel": "GlobalAutomationSolutions",
+            "views": 66
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 47,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 74.5,
+        "newest_hours": 12,
+        "domains": [
+          "itbrief.com.au",
+          "pulse2.com",
+          "analyticsinsight.net",
+          "shattered.io",
+          "techrepublic.com",
+          "theverge.com",
+          "engadget.com",
+          "techbuzz.ai",
+          "tech.yahoo.com",
+          "tech-insider.org",
+          "startupfortune.com",
+          "finance.biggo.com"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "engadget.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Perplexity launches Teammates AI agents to run projects"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Students Are Getting Caught Using AI Smart Glasses on School Exams",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        24,
+        33,
+        37
+      ],
+      "hook": "Schools are cracking down after students were caught red-handed using high-tech AI smart glasses to cheat on exams.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "AI smart glasses cheating exams",
+      "evidence": [
+        {
+          "title": "4 cheating cases using AI glasses caught at middle, high schools this year - Yonhap News Agency",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1Cb1NnSF9VcWF1MHJUdlZnMFFfNkZ5Ny11UTJWLVFUODNfQWJMczFGSy1BYmhtcGZ6YzdBT25NRVNfM0VtX1lleWd2MGlTSndpb0tQaktROUlrUQ?oc=5",
+          "domain": "en.yna.co.kr",
+          "published_ms": 1794206503000,
+          "kind": "news",
+          "id": 24
+        },
+        {
+          "title": "Four Students Caught Using AI Smart Glasses on School Exams - Seoul Economic Daily",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNaW9PNHZOTkxTenlJRjh0YU1HM0FJdGxENWlkWWVlXzhRMHo5eWZpSDdvemFjTm00anhkOWxWcU5lVmZxbTF3LUN2cmxNMUZpd3R6QWw4UzZEQUtsMkVEWlEtLUFISGlpckcycWVsQVBWWlRibFdSd2FKa1B2M0J1NmpUVVBhTWU5azBLVkxyT2VpUGU1aUxuMlBTT3ZxbzNCZnNJ?oc=5",
+          "domain": "en.sedaily.com",
+          "published_ms": 1794201936000,
+          "kind": "news",
+          "id": 33
+        },
+        {
+          "title": "AI Glasses Cheating Cases in Middle, High School Exams - 조선일보",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPVVRwSC1Yejd5T0NaWW5jaXVEWEhTTDY2dGs4Ni1YaGJxYlJMeDRGTmpYUUU2dTlFOU1nb3NBZV81NVpmMHJrampjWG9UVzZIWlItUTFUR043UmlscGIyS3RxQjJhRXJXM080UXgzNlBhSXoyM1R5WEl6bUNVTm1BbG9XSkpXQ3ZI?oc=5",
+          "domain": "chosun.com",
+          "published_ms": 1794198587000,
+          "kind": "news",
+          "id": 37
+        },
+        {
+          "title": "South Korea vows to prosecute students using AI glasses in exams - Times Higher Education",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOSU5iXzROWWI4a0hMN0w1VVg0TEtUUjVTTzBIakJuc0ZZaF9kNjNtd09DSEhxWmtlVnFkN0twN0htLVVLdGRsa2VEd0xMaXpVQlJ4LVpSYmVmMEpZaFA3NHFjQ1N0WXlqbG9EUzRKMnBwZzZiSHZ4Vzk3b29kdmJvVDZOOG84bTJjYnkwTURCVGtwYTBPSFlYS2l4XzMzZFdaR1E?oc=5",
+          "domain": "timeshighereducation.com",
+          "published_ms": 1793837553000,
+          "kind": "news"
+        },
+        {
+          "title": "South Korea to criminally charge students caught cheating with AI smart glasses - Firstpost",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPNU9ZY1FnSXRTQ05OVzV3eHB0WVJrRnBvblladGl1ZTJoalBwSzRBMllaZlI2Z25iaXktejg2T3J5TW4yVFd6ZTZFSGM3VG1uaGJjSkRYQzhxZTU3emxvUUZ1ZzJua1RtY2c4THUwajFaOEdpbDJtRXU5YktKekpZOHFER1I4QVZRdmF5TDNISHZVX3ZGTS1hMV9CdHBFNTJPQWpBVldxaldRNm5nbWRZNEpaS1JaY3RhSmZvcHJIcWhicUnSAcgBQVVfeXFMTTBFUGNzUDFFRjJxX0pGeWQwQ19tc01MXzhJZDY1a0d0WkVGZndKTFpyYVo1ZlZhUkYzUHc5NDYxaW9Demk5WDdxZUQ4eFVaSFFEZEJIbk5oNXRNcVQzUEtMQ3pxSl9TLVAxb19ZVFZ1YktwN3Z5b2Z2MnpUSG11NmROLWswMUp6U2l4X01CeXBoYUVPdHd2OEJjXzlXMExYR0NYalI0MklueUFvT2tUdVg4MnQ2cHdkRHBSUDlDWm5sd2cxMmxHdnc?oc=5",
+          "domain": "firstpost.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "AI smart glasses used to cheat on school exams in 4 cases nationwide, probe finds - 헤럴드경제",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE8ydkpyaWp6akM4MlY3bGhfR3VOUmc2RnZVRmRnTk5kZGRUTDZSWnJiQUFtVy16U29aZ1J3Y19rRlFWWXNRbnZLa3dncmxfMnN6YXZVbkRRZw?oc=5",
+          "domain": "mbiz.heraldcorp.com",
+          "published_ms": 1794193200000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Glasses Score 83 on SAT: German Researchers Warn of Threat to In-Person Exam Fairness - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5rUW45ZEdfbzNZRFM1YmhhemFSSFFZdGJCYlVRN2dDb1JjMnBqV1E2M0JOZFk5T1huc3M3ckI5SGpCTHBfLU5feHRmVjYtNDhzTkJEeEZJWVJIU1A3TDMxREthSzllV0RVVkJnMF9BS080ZmJnUEE?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1793498100000,
+          "kind": "news"
+        },
+        {
+          "title": "South Korea to prosecute students cheating with AI smart glasses in entrance exams - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOajRMRWFMN2NjeHZLQzU0azN3Z0VtRWlhbFhzeFU3bzZvRmNpcUtPU044ZlF6NU9ieUtyTDlaV1lxc2l3UG9sR19GMXQtbWFXZTFxWU1nMTBQbGVFVnNyV3Z0VDZvcnpCYy1vTXM0T1pQVERoQ1QwVEpsaDBVT0xzZmd0eTZibHp5NzJzelEyRkRZYjREMnlnS1RSa1llbjNtVEJMSi0tYlI1dzZIQkNVOTc2WFNOR1NJRTNvemJxb283MVJ0eDNiazBSX281bUpMNXRZeVcwY0xsVzhodjg5cUZtYTBpdXF3eVHSAe8BQVVfeXFMTUVQNzVzWFUwSkE0aVlRMmVUSTIzU2pRQl8xNmo0dHRWbG9RdGtfdUx0TXA4M0N4b3prMVBlTlhaelZ1ZDFIdWVMWGtPN1JTbEhVMWZRaXVTdmIyUWRZZzJkTS0yUkswbWJQdFRrX3BwSE1xWTRiTHZLRksxTXJ1ZnloUzNialp3SkhndjR2b3g4STRtRkJXQzBiVmpyTDIta1RMRnFZQ3ZHSlgxZktNQkNDTnhRZ2dzaDU0Q29lMlhieDE5b3lrblhxWlZXdzBhZVlDalk4RVlGRUdOU0pzTmtiOENsd1pjWUlOOEo4ZWs?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Glasses Solve 83% SAT, CSAT Cheating Fears - 조선일보",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPazhBSDVSOVhJekZOakhLdnJ6NXc4dkFBTFFtMHZzZFJFTWZ6eHlkZllJZTdRZk5GUjBXTm9tYzdHZTRvb2xBclJrLW52MmZkN21iWDNJa3BScW01RWhua3ZBWTkyNFgyNWw1RUlPWDZVSHFENl9HRWx2cVo2RVNmTDZTWExWR0Vj?oc=5",
+          "domain": "chosun.com",
+          "published_ms": 1793512297000,
+          "kind": "news"
+        },
+        {
+          "title": "South Korea's Grep Lands 21 Clients in Two Months for Smart Glasses Cheating-Detection Feature - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE01UmcxZklmY2FRc1ZYcVl6Z2hsZW8tOFlsUVl5YzNxU3lsdkNsbndWcnFJdGtVVnN1dW55Y0ktMV9KZHVDMXpiMlZZYS1qWHZkNW9qaGZlWTN3aGt1MEp5S295ak1SWFlxZEJDaWs2ZXV4bzZqSnc?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1793181300000,
+          "kind": "news"
+        },
+        {
+          "title": "Ministry of Justice Tightens Bar Exam Supervision on AI Glasses - 조선일보",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQmdrY0V2V0gyUTNvcktwLVlrM2FzOFF3R1JlQ2JpZk1NbVNGdmRDY0U2N0d6ODE3VjJsem5DeTBqbzJNMFRIRk9TUzFlZmFwakpyNk51SjVYa2RGcFNOR1hfRUlBRHJtc3dBal9Oa3Y4RkVmcHVYdUR3bXZ5NjlENUFaRXphSEhI?oc=5",
+          "domain": "chosun.com",
+          "published_ms": 1793701503000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 645,
+        "competitors": [
+          {
+            "id": "JwvH1Yu-n3o",
+            "title": "Can exam cheating using smart glasses be stopped? - Asia Specific podcast, BBC World Service",
+            "channel": "BBC World Service",
+            "views": 30448
+          },
+          {
+            "id": "sc9OGZkLpsM",
+            "title": "Test-takers cheat with smart glasses",
+            "channel": "KBS WORLD News",
+            "views": 1652
+          },
+          {
+            "id": "VxfoNamPFi0",
+            "title": "\"시험 중 안경테 만지작\"…AI 안경으로 커닝, 중·고교서 4건 적발 [이슈ZIP] / 연합뉴스TV(YonhapnewsTV)",
+            "channel": "연합뉴스TV",
+            "views": 838
+          },
+          {
+            "id": "gKEc_6Z_rfg",
+            "title": "AI Glasses Cheating Caught in University Exam (3-Year Ban)",
+            "channel": "Akki the Tecki",
+            "views": 830
+          },
+          {
+            "id": "csUahyAbgTQ",
+            "title": "Students caught cheating with AI glasses #Shorts",
+            "channel": "AI with Akshat",
+            "views": 645
+          },
+          {
+            "id": "oWZWU2f7c9o",
+            "title": "AI Cheating in Exams Is Evolving Assessment Security Must Too #ai #aicheating #onlineexam #cheating",
+            "channel": "Talview",
+            "views": 387
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 47,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 30
+        },
+        "total": 74.4,
+        "newest_hours": 1,
+        "domains": [
+          "en.yna.co.kr",
+          "en.sedaily.com",
+          "chosun.com",
+          "timeshighereducation.com",
+          "firstpost.com",
+          "mbiz.heraldcorp.com",
+          "finance.biggo.com",
+          "indiatoday.in"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: Job Seekers Are Shunning Companies That Use AI Interviews"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Google Maps Integrates Gemini for Smarter 3D Navigation",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        41,
+        78,
+        83
+      ],
+      "hook": "Google Maps just got a massive Gemini upgrade with 3D immersive navigation and smarter trip planning.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Google Maps",
+      "commons_query": "",
+      "youtube_query": "Google Maps Gemini integration",
+      "evidence": [
+        {
+          "title": "Gemini's new feature built my travel itinerary without starting over - How-To Geek",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPVmR0enBsaHc1dTFHNTJmeF9SblNlWmdWVTFtVFFBMng4N0s1Z1RPRGdTTThIbExSLTdPQko0a3ZkTGVtQXNDcXEzS1FRRGRKdkdndXNTUUcyY3FmRmhKZHFTMmRZRUVzNDJ5SmJGQ0ZrOENfek1EOHhSQVBDZHJQU25yajVSdWRMazMwR2JkYzdfX2FXS3BwTng5Zw?oc=5",
+          "domain": "howtogeek.com",
+          "published_ms": 1794169815000,
+          "kind": "news",
+          "id": 41
+        },
+        {
+          "title": "Hit the road this holiday season with some useful new map features",
+          "url": "https://www.seattletimes.com/business/hit-the-road-this-holiday-season-with-some-useful-new-map-features/",
+          "domain": "seattletimes.com",
+          "published_ms": 1794088860000,
+          "kind": "news",
+          "id": 78
+        },
+        {
+          "title": "Google Maps Gets Smarter: Gemini Integration and 3D Immersive Navigation - آي-فون إسلام",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNNk5RNnA2UU95Z0Zod2tGc0FFUE9lMkJxa0pXcVRYRjc5ZXlBSXR4N01SbTNHMmcxLWowZEFDVnBtSm5xVEFBQ19zTmxGb1ZNQ2FncnppemMtTzBybkhBR3hmc20wM0RYNlFfU2FNTFBmTHlaYUhfN1dwbTZabVJPYlBWTE5KMHRLNUZRN3FlVlhSMUtYSnpXT1A3TmhzZllZYVVFTmJ1VXpXekx3aGtlbHBHRjNTV01iV0w3azAwRGZZSUYzS045d3NrSlpyUQ?oc=5",
+          "domain": "iphoneislam.com",
+          "published_ms": 1794071169000,
+          "kind": "news",
+          "id": 83
+        },
+        {
+          "title": "Google Maps Is Getting Gemini AI In CarPlay - InsideEVs",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBoU0VGdEt2eHFIblV6MEhlYkxocGRDeTRySnNuQndZTF9qMmhUZWtPMURrV2NsbFBieEtoMWFLWjI2aHV2QXVwc3llNE5tSWx6bnktTW4zak9ZZ09sbHpfX21Jc0lhS21Sc3VEcUJn?oc=5",
+          "domain": "insideevs.com",
+          "published_ms": 1794105002000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Maps",
+        "daily_views": 6358,
+        "ratio": 1
+      },
+      "youtube": {
+        "median_views": 600,
+        "competitors": [
+          {
+            "id": "AQxAB-KhD6U",
+            "title": "Google Maps Just Got a Massive Gemini AI Upgrade! 🤯",
+            "channel": "Nexio Core",
+            "views": 62510
+          },
+          {
+            "id": "g8T2NGbFSnc",
+            "title": "Google Maps CAMBIA para SIEMPRE en Apple CarPlay gracias a Gemini ⚡️",
+            "channel": "Genius Manu",
+            "views": 47322
+          },
+          {
+            "id": "C0_RQdQnFMA",
+            "title": "How To Use Gemini in Google Maps for Navigation",
+            "channel": "Tech is Easy",
+            "views": 1045
+          },
+          {
+            "id": "umeZCtZR6bU",
+            "title": "CarPlay Users Can Now Chat With Gemini While Navigating On Google Maps",
+            "channel": "GadInsider ",
+            "views": 754
+          },
+          {
+            "id": "sbsLRiaHfhc",
+            "title": "Gemini Arrives In Google Maps On CarPlay For Hands-Free Navigation",
+            "channel": "Daily AI Roundup",
+            "views": 600
+          },
+          {
+            "id": "R1pJ37XHoVs",
+            "title": "Wait… You Can Search Google Maps INSIDE Gemini?!",
+            "channel": "Whitespark",
+            "views": 589
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 58,
+          "curiosity": 70,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 72.2,
+        "newest_hours": 12,
+        "domains": [
+          "howtogeek.com",
+          "seattletimes.com",
+          "iphoneislam.com",
+          "insideevs.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Elvis and Eminem Rights Holders Sue AI Music Startup Suno",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        55
+      ],
+      "hook": "The estates of Elvis and Eminem are taking AI music generator Suno to court over copyright infringement.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Suno AI",
+      "commons_query": "",
+      "youtube_query": "Elvis Eminem sue Suno AI music",
+      "evidence": [
+        {
+          "title": "Elvis and Eminem rights holders are suing Suno",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit",
+          "domain": "theverge.com",
+          "published_ms": 1794158599000,
+          "kind": "feed",
+          "id": 55
+        },
+        {
+          "title": "Elvis Estate, Eminem Publisher File Lawsuits Against AI Startup Suno - Variety",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQY29vaGFSTlN1SWJTTWpWcVdiTWZaTWppNlFJanZGR1d0S3A2Vm1LVjVGWFNiODB1TkJWc3pQUGQyWHF2SWR1Zk9lX09WRm9GTm12UHh4bTlpdXkxQkpidF8wRm5yTWI4X29IenM1NmtGOC0tSUdfOTRSaEtsTkl3eVZtbkFfUTUtTDVjbWU1cWRrdw?oc=5",
+          "domain": "variety.com",
+          "published_ms": 1794068100000,
+          "kind": "news"
+        },
+        {
+          "title": "Suno AI Music Generator Sued Again For Copyright Infringement - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNd2RBdmNJNzV5YnFIM3JzclpLNDNuWXhtakVYcWVDUGt2blZOaUVya2U3cnk2QXNwbXZxcFM1QUVJSjIwOTJIZzFLWkpTQlhTYzdyS3gteG96TnY1c2stVFJIS0JxRGRrazNIR3RLT05QeWpPck5OQjdXNXEtX0QyRTd6NUY1UmV6QUdtZ3AtaWZhQ2lnTTd5UVlKTQ?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1794166934000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis and Eminem rights holders are suing Suno - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbjUtYjZ0U3JmQzZveW5xMkVUcVNzMFR2dVduYWdHOFNMVWZqTWVKa3U0U0YyNkpxM053MHdNcnhEdk9QanZ1UDZEMTdUOHBZZkFzX0h6WW1sd3ZtZkw1dTVneTVZc2JWU3ZlRnRtYkxqeG1CWFp2RURZR212aUlsM3BtalJUUzhNeC0yZ1hpSnFMbHo5bF9MR3hEcktwcjVsUlE?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1794158599000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis rights holders and Eminem publisher sue AI music generator Suno - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQWnlfRFZkMmViTi1rRnFaVENORU1VSU9URVVSTlg1NzhZUGVscWMwTzh4SnBtc3lPb2c0R0xxbzVGblN4Z3puRW1FRG9CQ2wtVzg2b0JZMFd2S0hnV3lEY2JPeFdGQW9vdld0bEVaN1VCSl9UOHVVQUZtbUowT0NfY1pqRGR4Zw?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1794069282000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis Presley Rights Owners Sue Suno Over AI Voice Cloning: ‘Elvis’ Identity Was Stolen’ - Billboard",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5YM3JlOU9ZbFNlaDhfeXlKU3FCYVh5aFYwZ2k3UWthRnB4WHk2TXNRMlBNM1l5NnpuTm5sLUdYNjM3ZC0yaFl5bUhxU0NabjJBX2pKajF2YXozN1FYM05vMlpsVHpyMm91WFNnc2VtSnVfUmVsQTlpR2ZKWkkwRjQ?oc=5",
+          "domain": "billboard.com",
+          "published_ms": 1794071069000,
+          "kind": "news"
+        },
+        {
+          "title": "Eminem’s Publisher Sues AI Music Generator Suno for $41 Million - DancehallMag",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQTEhYcWxLdVFfUDdOYUszZzRHQy1LdWtjaVUyOHB6ZWhIVG1NbEZKSFVhMlowNXBaaUEzejFtTW9XS1ZUbzFmNG9nX01Md0hrS0xqWXQ5a2ppZWUxYXd5Z05pZGJFcTN6aWYzLTJfbUtaMW5raTI1TGo4WktrdC1PVGNMSFVGeXRQY3lITXlkWFNnUklkbHk2YVU4YkcwNHhQSDd2QWN0UmpkcDk5MDhwNA?oc=5",
+          "domain": "dancehallmag.com",
+          "published_ms": 1794141475000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis and Eminem rights holders sue Suno over AI music training and voice imitation - Startup Fortune",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPS0lqYjMweHJjcmU3NUg2TnI5YzRwSzdzNGg5eEpQcWpOU1BQVUNyZ2V2TUF5R1Z3LS0yQ09sQ1FhSldFV2ZtUl9BSTN6VXJGUUFWOHRMamNFWXh4LTF3Q3dxeXFHbzJ6UTB3VDVhR3Y4YU8zVEtlUU00c0tNNk5TMF85VXVXMTRBR0UzUTVacUROLXpycjU0RXQ3WWZSZHBlMHJFakhFUkFjV2NRZlNhNg?oc=5",
+          "domain": "startupfortune.com",
+          "published_ms": 1794160891000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis Presley’s Rights Owners Sue Suno for Cloning His Voice. It’s One of the First Big Tests of Tennessee’s ELVIS Act - Voice Over Herald",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLUhnZF9NbVN2aWZTckV1TFdsQ3lVTmNfTW5PSFE4NVduTy1yVU1SdEgwN2F1ZUNfZGp2aXYtUFZlNHJSNElQVHFjVWhUX29QSVBReFZ6Ty1hbXUxVlVwSjZ4bEwwX29nclgwS0JBWUloaVpLMWZvaHVwZloxMHhCODFHOEpPMUtHVVlWX1ByZw?oc=5",
+          "domain": "voiceoverherald.com",
+          "published_ms": 1794096000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Suno AI",
+        "daily_views": 26,
+        "ratio": 0.28
+      },
+      "youtube": {
+        "median_views": 33,
+        "competitors": [
+          {
+            "id": "lec4b4Q1yLU",
+            "title": "AI Music News: Suno's CRAZIEST Week of 2026?",
+            "channel": "Chris Wieduwilt (The AI Musicpreneur)",
+            "views": 9985
+          },
+          {
+            "id": "Xg1sQcYqeic",
+            "title": "Suno提訴 声まね",
+            "channel": "生成AIビジネス・ラボ",
+            "views": 722
+          },
+          {
+            "id": "OcjAz8xoikA",
+            "title": "Elvis and Eminem's Music Owners Sue AI Music App Suno #shorts",
+            "channel": "iALCHEMY",
+            "views": 683
+          },
+          {
+            "id": "1zOdqMzQAOk",
+            "title": "Elvis und Eminem verklagen Suno: KI-Stimmklone vor Gericht #Shorts",
+            "channel": "FlowStateSystems",
+            "views": 89
+          },
+          {
+            "id": "NmMMHf2gBdo",
+            "title": "Elvis and Eminem Rights Holders Sue Suno Over AI #Shorts",
+            "channel": "Dig Deep Tech",
+            "views": 33
+          },
+          {
+            "id": "NGVmoFsyzXY",
+            "title": "Elvis and Eminem Sue Suno Over AI Voice Clones",
+            "channel": "AIra Reports",
+            "views": 13
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 27,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 100
+        },
+        "total": 71.4,
+        "newest_hours": 12,
+        "domains": [
+          "theverge.com",
+          "variety.com",
+          "engadget.com",
+          "mezha.net",
+          "billboard.com",
+          "dancehallmag.com",
+          "startupfortune.com",
+          "voiceoverherald.com"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "variety.com",
+          "engadget.com",
+          "billboard.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Elvis and Eminem Rightsholders Sue Suno AI"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Law Professor Accidentally Deletes Entire Year of Lecture Notes Using Claude",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        29
+      ],
+      "hook": "A law professor asked Claude to renumber pages, and the AI accidentally deleted an entire year's worth of lecture notes.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 5
+      },
+      "wikipedia_title": "Anthropic",
+      "commons_query": "",
+      "youtube_query": "Claude AI deletes lecture notes error",
+      "evidence": [
+        {
+          "title": "Law Professor Asks Claude To Renumber Pages, AI Deletes Entire Year's Worth Of Lecture Notes: 'My Own Carel - News18",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxOOWdBX2R1aUR5dExFR2NjZ0FwNnRCNld0QnAyM1ZDb1gxN1dqNHEwMFBGUmZCSGpsTjhBbnJCTzU5SzdnQ243ZTVnSUpBTWduckhRT3liSFFyTlFHRENiRVctNVl4NXB3V19ybWp2NEhuMGRoVTFFc3UtdHJjM2pxMWUxOXlOclZjMVhyYTFoT25WTUpReGlhSThXUXJDdzRmSjBhVGx6MTQ0UGFJY3VtWDlmbTBjYjBuSzdxX0VZNXB3V2dOdVBsV2h0WlJqRXVhblRrdGxqWlpDQjNjNlJ6alJGN1VILUhKM0E1VGoyemdDYURB0gH0AUFVX3lxTE45Z0FfZHVpRHl0TEVHY2NnQXA2dEI2V3RCcDIzVkNvWDE3V2o0cTAwUEZSZkJIamxOOEFuckJPNTlLN2dDbjdlNWdJSkFNZ25ySFFPeWJIUXJOUUdEQ2JFVy01WXg1cHdXX3JtanY0SG4wZGhVMUVzdS10cmMzanExZTE5eU5yVmMxWHJhMWhPblZNSlF4aWFJOFdRckN3NGZKMGFUbHoxNDRQYUljdW1YOWZtMGNiMG5LN3FfRVk1cHdXZ051UGxXaHRaUmpFdWFuVGt0bGpaWkNCM2M2UnpqUkY3VUgtSEozQTVUajJ6Z0NhREE?oc=5",
+          "domain": "news18.com",
+          "published_ms": 1794199806000,
+          "kind": "news",
+          "id": 29
+        },
+        {
+          "title": "Rogue AI tasked with renumbering pages accidentally deletes law professor's entire syllabus, one year of lecture notes - Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMilwNBVV95cUxOM0ZTRkxPZF9NWlRSNE91b1NVdEhBSE9weUZtODZCd2VyMklTd1VieEN2SzViN29aZmZWdGk2YUYxU1JCMXg3R1RUSTBPeTdEeGY1allzUUg4b2duaXhNQW1fVDlkNlJMQ08yMFppZEpiZkhaWFQ3WW15aGdqZVV2RXZOb3I5NGxmdV9NN1JndDl3VzhaVkI4TUxQNXlBUDFLcks3dkVPRmhSODdMc3J0QjFzSWFYRVdKcmhKNWViUjhRTi15NVl6OEhhVlBTVFRMYWgzU1NZUWx6cUNCa1ZjcTM4TlRaYVVnb2VyLVFlR2dHZURRODlUZjJWcVAyLXZKVFlHOVp1WGh0NWRVN2RiUGdQNWl2UnV2d3piVWxsMmZ0SzREdFYyaDdpeXprbTZ0OGxCWmpFallpUmpHN2xuNHpGOThRN0lfQ3N4NDROVXJrMmRfU0NONkZDMW9JaVNYWFJDSHlqNnUzWlRmelVJYU9ESEFQVVFHZEhDcGZORDdRaWYwUkNlTGpxcG9US2I2ZEVqc2trUQ?oc=5",
+          "domain": "tomshardware.com",
+          "published_ms": 1793967132000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude AI Accidentally Deletes Law Professor's Entire Syllabus and One Year of Lecture Notes - CyberSecurityNews",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNS2lqZzVFSW9MTlNPbWJJcEhYd29ESy1veHplaTJQbGFFYkpiTTdDZDJNWnF0aXEzSVNlWmpMY2xzX1hueWgySUZMS0FkZ1VxZUgzOGNmb3FmMlU3T1UzNnpWR090eDJBTXBmMUVoR0RIazJCMzZ4RzZKTFVHRDMwWnZiem9USm1Pc25r0gGLAUFVX3lxTE1LaWpnNUVJb0xOU09tYklwSFh3b0RLLW94emVpMlBsYUViSmJNN0NkMk1acXRpcTNJU2VaakxjbHNfWG55aDJJRkxLQWRnVXFlSDM4Y2ZvcWYyVTdPVTM2elZHT3R4MkFNcGYxRWhHREhrMkIzNnhHNkpMVUdEMzBadmJ6b1RKbU9zbms?oc=5",
+          "domain": "cybersecuritynews.com",
+          "published_ms": 1794193920000,
+          "kind": "news"
+        },
+        {
+          "title": "A Chicago professor reveals Claude deleted a year of his lecture notes - Pasquale Pillitteri",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPT2ZtWmg3RzFBUWx2VFUtYVFFWmZyWG1OZWZubkRPR0xwbUtncUNWUEQ0LUxsRXV0ZG9FTVBhN1hsTU1OUzNXN2x5SzZGSXR1dTNPRjJwVEFpQmhEajlVc3ltLUR3eXUtU0VHY0tQWEMydklJaU5YNk9EQmN2ZnhrNUVINVUwMU9xdVFDYUo3MkRua1g5?oc=5",
+          "domain": "pasqualepillitteri.it",
+          "published_ms": 1794129591000,
+          "kind": "news"
+        },
+        {
+          "title": "Chicago Law Professor's Claude AI Wipes Syllabus, Year of Lecture Notes Over Lunch - Hoodline",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQX2xqOXlkUFVLdnJ5cVBmTEo2MXl0cVBHYVVLN292Q0RJYWZaVXdKV0NMSWtqbUJmTXlJWUVaeUhSbU50VF92WGRUTE45TzBuSTU2RHktcXd3U2NsSTZkLVRTRElGOHVtLVZwelZ0Ri1VX2Zadjc1NWZpa3dITHNheklUNHloc2RmeEQyWURXM2gwWktDeFlGVDF0SlJBSjdVOUxGZ3NXVGlQc2dqT1BYMg?oc=5",
+          "domain": "hoodline.com",
+          "published_ms": 1794164531000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic’s Claude AI Accidentally Deletes One Year of Lecture Notes and Class Syllabus - Cyber Press",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBsa2R3QjE0aU1xRy1rZ0E4YUMyLXBTRy1ZeG9wTm1pUVNrVEhsQ0x0T1kxTlVxdGl4MlN0b1o4OXllb25vNG9LOVVadklyQWxaVk9PaGxjaS1sQ2FBQnIzSDZndi1jNzdpTFFvMjBIekkyUdIBckFVX3lxTFBsa2R3QjE0aU1xRy1rZ0E4YUMyLXBTRy1ZeG9wTm1pUVNrVEhsQ0x0T1kxTlVxdGl4MlN0b1o4OXllb25vNG9LOVVadklyQWxaVk9PaGxjaS1sQ2FBQnIzSDZndi1jNzdpTFFvMjBIekkyUQ?oc=5",
+          "domain": "cyberpress.org",
+          "published_ms": 1794200222000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Assistant Erases Law Professor's Year of Notes; Post Tops 2 Million Views - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNMHpDR193aExlVXRBRllIRC1IRk9HTUJLZjRFRUhvV3dGbWY2V05nOHZZdnpFVm1sdG5fNVlmZldaRDRPYndQQWhIaHU2dW1jVENEaGNTWlNqYUNjcUVRZ3gwTGRDQnJOaGlocmZqdHF4a3VvRmVhd2d3MUh4emxfWi00c05yb0x3V1hJM0NqS2tDTl9WMmdMclI0VmZ2N3gtM1BuQXdXV1ZTeFhhX05R?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794136072000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Deleted a Law Professor’s Notes; Dropbox Had Copies - FourWeekMBA",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPeGw5RC1vYXNfR3ZlcVB2YTJwYVZXVzZxQW1wVVRwS0NSU1RWMmJZQTNFVkV4Z2tjdmdmelE5S19nZ1hza0NxbE9vbkhnU0lQWm1HdTZXcEx1Y2t6ZXh0S3NvMGZhdnQwaU12LTEwUnhSUTMwdzlVQzVzVXI4Sm9xbldaNnZyUHVQYmRIUQ?oc=5",
+          "domain": "fourweekmba.com",
+          "published_ms": 1794091369000,
+          "kind": "news"
+        },
+        {
+          "title": "'You're Right To Be Angry': AI Claude Admits Deleting Professor's Year's Worth of Lecture Notes - www.techtimes.co.uk",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOVlk3YTQ1WVRnQmUwRzVEcXFRYndGRFVGYm9nSTl0ZHMzNjYwUVNUNWZmODZqcUlYeEpaeUJnb3BjSklyQjRyNFhvNlhLV1dKQVFNTXBiQm8xYUlTbFlJcDFvdXBwYTZTMVlNRTlwYWhnaTAzWlRER2pHc2dxN0FBUkRHZw?oc=5",
+          "domain": "techtimes.co.uk",
+          "published_ms": 1794211597000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Anthropic",
+        "daily_views": 7548,
+        "ratio": 0.87
+      },
+      "youtube": {
+        "median_views": 163,
+        "competitors": [
+          {
+            "id": "4EwtfM6hDzo",
+            "title": "Claude Code 2.1.283 — Prompt Audits & Windows Fix",
+            "channel": "Claude Code Updates",
+            "views": 1209
+          },
+          {
+            "id": "4xc46AUuCFg",
+            "title": "CLAUDE AI JAILBREAK! 😱 How to Bypass Filters in 1 Minute!",
+            "channel": "Hacking Everything",
+            "views": 669
+          },
+          {
+            "id": "UtQunjnYYpc",
+            "title": "The Viral CLAUDE.md Mostly Does Nothing (I Tested It)",
+            "channel": "Sharan Labs",
+            "views": 394
+          },
+          {
+            "id": "-wEMelOeZAg",
+            "title": "SolidCraft MCP Not Working? Fix Claude Tool Call Errors | SolidCraft + Claude Course: Fixes",
+            "channel": "The Stack Underflow",
+            "views": 180
+          },
+          {
+            "id": "94fZWwbOi7I",
+            "title": "Your AI Writes Bad Code Because of This Missing File | Claude Code CLAUDE.md Explained",
+            "channel": "RKS",
+            "views": 163
+          },
+          {
+            "id": "vyomC13QGg4",
+            "title": "Claude keeps notes on you. Here's how to read and delete them #claude #ai",
+            "channel": "Kiran CK",
+            "views": 141
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 50,
+          "source_quality": 30
+        },
+        "total": 70.7,
+        "newest_hours": 0,
+        "domains": [
+          "news18.com",
+          "tomshardware.com",
+          "cybersecuritynews.com",
+          "pasqualepillitteri.it",
+          "hoodline.com",
+          "cyberpress.org",
+          "aroundprague.cz",
+          "fourweekmba.com",
+          "techtimes.co.uk"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "WhatsApp Is Rolling Out AI Photo Expansion for iPhone Users",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        48,
+        156,
+        161
+      ],
+      "hook": "You can now use AI right inside WhatsApp on your iPhone to magically expand your photos.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "WhatsApp AI image expansion iPhone",
+      "evidence": [
+        {
+          "title": "WhatsApp could soon let you expand photos with Meta AI on your iPhone",
+          "url": "https://www.msn.com/en-us/news/other/whatsapp-could-soon-let-you-expand-photos-with-meta-ai-on-your-iphone/ar-AA2h3iIK",
+          "domain": "msn.com",
+          "published_ms": 1794175118000,
+          "kind": "news",
+          "id": 48
+        },
+        {
+          "title": "WhatsApp is planning a new AI image editor for iPhone users that can expand photos - India Today",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVWhDRjF3RmVDZ2w3YWFBQUhVZmQxeVR4R2hfYXVDNy1ZNnpGUXR3OUh3NGgtV1I3SGp6QUg0SmpUWk8zUFROWHNPeGxscE4xRFpfbGNvQkVQcjVENjc2WVV4TGRJRVlQSVhIZExkQURYUU5CMllGaHhuLW9MWkYwVkt5Qjh4TUY5LW1JTDBsOHlCTVBDTmp2OC1SMTBQTnVvTHZHNkxOY0FhRnRBanAySnBTRVhqMklLZVNpZGRB0gHDAUFVX3lxTFBNNlBKTEFQRU5va3JiUUZFck1HdEIwQnk2VW1wQmNObU9fYmI4UjNVeUdFM3d4ZWp1VFZEcnN1bHA4UzZsRWpucEhyWmZOT3pFbVUwRUFDenZtY2lmTmIzTlJxdnJpXzZ1c2Nab2pHS0hNRUx6eDY0aDRmYTdfRF9sZHJvcXhqZWcwSkNqc0xfMU9qQVV4bEVQWTNQY3pXOEMwazR1d2FUcGZIcnY4M2VBZDBsYXFVZ2pUWTZsNHZCakJJQQ?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1793935967000,
+          "kind": "news",
+          "id": 156
+        },
+        {
+          "title": "WhatsApp’s AI-powered photo expansion tool starts rolling out on iOS - 9to5Mac",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQN1Juc3lLc2tRYWN6MlNOOS0ydlJmMnZVSHRKMTJkdFJJNUdVZkptRTFtSjZwWlBUOGdxUDFYRDlZYk8wLUZaZmJ1U3J2R3NYWnlmbGNUbExhRDlWRXlFV3JMTmR0S3djU0p6T1NYaVg0c0lCYnZqRTFDcWxyQnYxUzQzN21zckFmZ2RmOW9ETWdvbzhneVRBNUY2cnRmbm1T?oc=5",
+          "domain": "9to5mac.com",
+          "published_ms": 1793928240000,
+          "kind": "news",
+          "id": 161
+        },
+        {
+          "title": "WhatsApp could soon let you expand photos with Meta AI on your iPhone - Digital Trends",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxORElTUHhCck1kSTFnbFgyRVlpQmtIY2g3d25Gemk5bHpwSjVZbEl0NGxBNjJ6NTRFSGlTTTYzQnMxdjI3b0ZzZVN6QlppcVVfb28xb0xVNUMzR2hIS2FmSTVEeC1zZ1JuVVFZS1NKNkxaU1RnQ2N2REt0VjdKbnQyZXYtY1VUQXRxNl9IT0VvcTJxZw?oc=5",
+          "domain": "digitaltrends.com",
+          "published_ms": 1793944718000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp begins rolling out AI photo expansion on iOS - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOYWd4bU5feHpXVGM2ak9HUHBicHlUVU1GRllqWVVhVUlTR3pjVm5RUkpUaVphanh2WHBrazhhT2s0NVQzZHJ5cTBsVWd3NzFfSUtfRC1ERk01bGQ1elhHU1RmXy11Y2NUUG9jUkQtVmV2WDRrUUo5LWNwYjhVbUJuc0hkamhCemRmY2c?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1793928486000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp Reportedly Testing Meta AI-Powered Image Expansion Feature for iPhone - Gadgets 360",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOd2JnU1FMSG5wMG9wRF9NMmdETk9PY0ZFQjktanUtV2VrSU1UZHZKWHd0UGd6THZyZ0lJMVVhRFJmM0RRdlN3NVJGcDZBTWwxdjJfT09CNWhSYU1WYXJLdk9SZE5hektkeS12c25RZ3dWSWxWS0huc1Q4dmVIOF9XbU5VRDU2c1VvNVNWUjUxcUV0VmFIWHhjNTNRNW5pdTc5X0tZV1BlQ3Zfc2R5Y0hRN1FmTnRLcGgwdW5F0gHAAUFVX3lxTE1KSlpSY3NFSDQxX2FGcXVEdW5IbnNwbTg0UF9pWHJwZm0yeTZ4TF9oZnFxOXFOT2puOV8wYV92SXAyUVM3d3dkRnRHM1R5Z3NSbGFUR3N6ZXlTd0hDR28wVkEySnIzSFpEVWM2aEd2U2dyZGFGNjRzOEJNejNSWVVUaEpPci1kWU1QcWFfLXM4YlpKVUtSZG1ENHN5UmxFTFNkME43a0JENGVDQzlkY3JmQW9udHNzYWNIdEFMVFJHdQ?oc=5",
+          "domain": "gadgets360.com",
+          "published_ms": 1793877607000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp's AI Image Expansion Feature Is Now Rolling out to iOS - Beebom Gadgets",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOUUluSUIyNGk5eF9qeG90Q1FmMnE2UGxKWUduYjFXcENCbm1JVWt2UlFIRVVKWkVfRXR1ZXZPQ0JjWHoxZFhReG41RnY1QndyT3pZNHpnVFBwUlBRN0hCYWJQcnJBRkFPWTZGbEtwZHRlemc4eEZkNjVvdS1MN0tDNE1DbnJOMEozUk9SYWFiR1RnZmNHd0pWZw?oc=5",
+          "domain": "gadgets.beebom.com",
+          "published_ms": 1793880724000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp can now expand photos to fit your status screen - The News International",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOeHFLSGdJNUlzUlpCeUN6RTNJTFRGYlh0eXM0WlJSak5vc05sbm9ULWxxNDN4bDBRN3dGUzctdmFjU3JDa2E3YmVobUcyaGpuUkdQVFdaN0F0TGdKNklMMjhzUmFHVjVhYldQU0xkZVgzY1hwXy1hb2c3SXFoZkc1VXliYWJzMkQyX01ldmh3Sm5YZGhDSzdNNkRZYldRdXfSAZsBQVVfeXFMTXk4bzc3UXkySE1yU2tmZUxINmVkdTROZ2FTQ0dqanZ3NURieVFsSTVUQ2c3NmZETFJPTmlhRHJvZ203TUlxOGRRQjV3UHUxV08wRlhlX192MmlNSWduQjloMWxTNjBtME1JNDJPQzdYaW9Ob0pfbVNsQlo2Rk9GR0lOUnByOGRpUXBEbUxFeTJnenlTb2lad3FEeXc?oc=5",
+          "domain": "thenews.com.pk",
+          "published_ms": 1793870913000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp rolls out AI photo expansion feature to iPhone users | Tap to know more | Inshorts - Inshorts",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNckx3Z1hxbFpuZHFlbGhwdWtmaWFrRUpEZUN4OEFjODlRYnpseTJrQ0xRM2hxcWtsYVhBNE9vbFhMNXFjbkRmUGkwYVBHbzdyQ1l5c1NQZENhS2RfREJ5cjJwT3cxdzJLTEVrSkRMQnJUeENscDN2clRRWDE5LVZjUWdYTmVqZVdGT0VpdEdiLU9ST0NBaC1FeXhOYk9kY3BpTGZRMGM0SdIBrAFBVV95cUxObUkxU3FJa3dNQ05RZ1B3LU1iNE5oZ0xtczh4ZlRxWWZIWGwxS3cyTmVqQjFrYUU2bDh1NmlJcFhTbVpnTGFFU2VxbkJmMXUtbXE0VnZDOVN3UGFFOVZQeWl1TlI3bjFPYWpmQkJVUUlIS3ZlQUJ3STNKRTFWUUZSYnVzMUFjb2Z6TkhLaFNFNkJNU0pzQzg3YjVfSnFpcC1Pck40ekNHX2NZSUxh?oc=5",
+          "domain": "inshorts.com",
+          "published_ms": 1793974583000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9mM0JDeFd6S3lYdkpxNWVkR1N6NDZ0WnltZDNudU8tXy10cVo5aUJ2cHJWcWdXUjFoeTFsMzNndFpqekJBekR5Y1hVS3M3b1d6U1pv?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794038400000,
+          "kind": "news"
+        },
+        {
+          "title": "WhatsApp Rolls Out Recent Media Suggestions Feature for Android and iOS Users: Report - Gadgets 360",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUU0wQ004MHVsbUw2WHhneU9ySzFwZFdIMENlYmxfcUNVbkFLbzVpZ3drQ0pYVHI4NC1hU0VBSk1nems4clhXVHgwMVJ3dHpMSWpkbEV6M0lIM2EyczZGemI0SW5KV3BoeTU0VTNGYWJyenNNb2F1ck5RUmI0RzJlNHoxVXFqYVA0WWpaNm1xeEtmT0puZFZRVmhxX25WclotQ1BxOFBHRk9mZ9IBrwFBVV95cUxOc1ZfNDBZOEpRVHUyWS1Ed1BndXpIT3oyOF8yaG5IeDBqbzVfSVRhRlVhTUdNNW5qcnJPczRWUWxTWUE0ZkxYM0xVcEZiRVFwN2p0LU9aSGFvZTk2MlBRN0F4a0ZYNmU4UGFfQlpUUlJRTEtyYnlpam02UDFTbGxmQ1NqR2VwbVVYTS1GbnZqQzQxcHBEZFI1bm0wMG91Vk9DaWN5cnJTYk81aUV6Qllv?oc=5",
+          "domain": "gadgets360.com",
+          "published_ms": 1793805721000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 65,
+        "competitors": [
+          {
+            "id": "yZpckZUbfTU",
+            "title": "Incognito Chat with Meta AI on WhatsApp",
+            "channel": "WhatsApp",
+            "views": 18714
+          },
+          {
+            "id": "nGd1o5-K5cQ",
+            "title": "WhatsApp Tests AI Image Expand On iPhone | Tech News in English",
+            "channel": "iINTELLIGENCEi Technology",
+            "views": 74
+          },
+          {
+            "id": "L-APlcBa-_g",
+            "title": "WhatsApp Rolls Out Meta AI-Powered Image Expansion Tool for iPhone Users #imagerecognition #deepface",
+            "channel": "Tech Headline Hub",
+            "views": 73
+          },
+          {
+            "id": "pDcEkMR5cus",
+            "title": "WhatsApp tests Meta AI photo expansion for select iPhone users",
+            "channel": "Fragmasoft Solutions",
+            "views": 67
+          },
+          {
+            "id": "b7uROqLapbQ",
+            "title": "WhatsApp is adding AI photo expansion to iPhone",
+            "channel": "RealFinanceDaily",
+            "views": 65
+          },
+          {
+            "id": "a96RkRQCYEE",
+            "title": "WhatsApp Meta AI: 3 New Beta Features This Week #shorts",
+            "channel": "AI Miracle",
+            "views": 65
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 30,
+          "curiosity": 70,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 70.6,
+        "newest_hours": 10,
+        "domains": [
+          "msn.com",
+          "indiatoday.in",
+          "9to5mac.com",
+          "digitaltrends.com",
+          "mezha.net",
+          "gadgets360.com",
+          "gadgets.beebom.com",
+          "thenews.com.pk",
+          "inshorts.com",
+          "britannica.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Accenture Research Paper Accused of Publishing AI Hallucinations",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        89,
+        90
+      ],
+      "hook": "A major Accenture research paper was caught publishing AI hallucinations, including 15 completely fake case studies.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 4
+      },
+      "wikipedia_title": "Hallucination (artificial intelligence)",
+      "commons_query": "",
+      "youtube_query": "Accenture AI hallucinations research paper",
+      "evidence": [
+        {
+          "title": "Accenture accused of publishing major research full of AI hallucinations — paper featured as many as 15 fictitious citations and case studies",
+          "url": "https://tech.yahoo.com/ai/articles/accenture-accused-publishing-major-research-190500688.html",
+          "domain": "tech.yahoo.com",
+          "published_ms": 1794049500000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Accenture accused of publishing major research paper full of AI hallucinations",
+          "url": "https://www.msn.com/en-us/technology/artificial-intelligence/accenture-accused-of-publishing-major-research-paper-full-of-ai-hallucinations/ar-AA2gYfbU",
+          "domain": "msn.com",
+          "published_ms": 1794049500000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Accenture accused of publishing AI paper littered with AI hallucinations - Financial Times",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQM0J0OGZVby1iQlFEZGRlVWZIcGZMekRQTklMbTZ2RkdESUZUTEJMVVVqcXVCb0cycHl4TzBJaXFpWkxjNzRTMEFWRUVSaDRrQnRROWZZR0hOZWxyOWV2cy1taUlWMWs5RzgzZmFXZ2JQZkEzVWtFTFYxck5CTjlxdEg1bGE?oc=5",
+          "domain": "ft.com",
+          "published_ms": 1793768505000,
+          "kind": "news"
+        },
+        {
+          "title": "Accenture accused of publishing research full of AI hallucinations - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPcU9yX3BsWlVKOXEzNGQyM2RxYTFCb3JsMExhUUt5TTByYThGWmV3M05wWlBJaFAxclR2M2Q2NjhwTWhGRV9OU3VtTlFUTHhkWHNQR1ZpeHRFV2RycTd1a3RyNUxWUDlGeFhQSXp3MGRocklGdjZDQk5DUV8wNjJVWTcxUEtIdjNXbmpFZzJ3WTBTV3Z0RkdVOFpZTi0tb0lhd3ZsTFB3RWVyUQ?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1793794957000,
+          "kind": "news"
+        },
+        {
+          "title": "Accenture accused of publishing major research full of AI hallucinations — paper featured as many as 15 fictitious citations and case studies - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNU3lsTkFZMzFfRDZXXzFoSi1wc3ZmTkRXbnQxQmJiX28tU0lUMlVRSEQtdTc2UnhxMTNaazRwVV9WXzYyWEdkdmJjY3RSbzlZNDIwZmZwNGtWV3BBdE9qcWRRb3ZrZS0ySjNRNlZac2ozZ2I1bDBzTENsOHF6ZkFWR0RnUkdOakdqRjhlandwVHlSbjJ4UmtmWllBREFJbWlST0hpdnlXc0pBcHphSmpOSTdESW9rZlAzcDUycEVWWGZrOTBncnFLT3d1T1dtRUV1WU9INExrd2VrdG1VdERyZWpKNzNnQ3h0eEkxM1FtbHQzcGFxbW1pay1tSlhFZw?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1794078300000,
+          "kind": "news"
+        },
+        {
+          "title": "Accenture \"Upskills\" Its Hallucinations Game - GPTZero",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFA0WlM5aVJYaHRlbjZyQUNVRHVLY1ZzMm14ek9xTlJMc2xBM3UzcHk3dWZEYUN0d2FnRTBDQXM4OEpXc0tsS3JoSENoakFIYndMX2lSaXQyWUY0bDZ0?oc=5",
+          "domain": "gptzero.me",
+          "published_ms": 1793767800000,
+          "kind": "news"
+        },
+        {
+          "title": "Accenture Accused Of Publishing Paper Littered With AI Errors - Silicon UK",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9ibWp1MnIxVmNoZk1wZkVCam9TM0psVEhSeWpSWVlnNkNEOWxqZEtTQzkzMlRkUnFkOUtMYXAzaERrMlA5VHhmN2ZkbGtNQU1zN2Jpb3E0eGFCbUQ2QXZ0TUNJNE1lTUplWFRWdzVn?oc=5",
+          "domain": "silicon.co.uk",
+          "published_ms": 1793872848000,
+          "kind": "news"
+        },
+        {
+          "title": "GPTZero flags AI-related inaccuracies in Accenture research, including 15 in one paper - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQamN1ZWplOXBvc3pTVC0xT3NFWmJTVFYtRUlfaW1qNlB1T29pclE5dVBtUTROOFdZYWpjNVlwbzNNMXZsdXBaS3BwV29uODdwaXZYSGVXVzViN0h2ZzU5SlJDeVl3bzlyc0hKaFVfSGl4RFZhbWZzeG1sUnVMY1kzeUN3dWcxRDlrQVNN?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1794079010000,
+          "kind": "news"
+        },
+        {
+          "title": "Accenture’s AI Report Contained 31 Fake Citations: The Company Blames Human Error - www.techtimes.co.uk",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQbmx2NnJ2RHNmZGFGWS1MTm9zNGdGb0FHVW1MejMxZUdhS2dsdzZjVExPZ0pnYmtOaFlvOTNsS3AwOUNPME1INzRlUnE4UFppSzRzdERWWVdHdzNCQlh4bzRpeUtITHlqaXNtMjl1Rkl2Nl8zT3BlaUliaFRNRXFxT3cyS251RTc4WlVF?oc=5",
+          "domain": "techtimes.co.uk",
+          "published_ms": 1793888336000,
+          "kind": "news"
+        },
+        {
+          "title": "Accenture plc (ACN) stock price, news, quote and history - Yahoo Finance - Yahoo Finance Singapore",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1CWDBkNTQ2UXdsdm5yUWp2RXhJV3NDMGpLa3VxOTFjNG0ybko2OFlmT1lJdzhRdlkxTGJYUXpKVXpnNUF6RjVwTEtCb1huQVFVOUVremZFRGhuMko0YW4tZg?oc=5",
+          "domain": "sg.finance.yahoo.com",
+          "published_ms": 1794021744000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Hallucination (artificial intelligence)",
+        "daily_views": 662,
+        "ratio": 0.75
+      },
+      "youtube": {
+        "median_views": 15,
+        "competitors": [
+          {
+            "id": "IFRGCRI_r9g",
+            "title": "A Chatbot's Hallucination Almost Started A War — Kirkie: Daily AI News",
+            "channel": "Kirkie - The Ai News Guy",
+            "views": 926
+          },
+          {
+            "id": "bk56qrfh6PE",
+            "title": "Accenture’s AI Citation Row + Nasdaq’s 4th Straight Weekly Loss | AI News #Shorts",
+            "channel": "BenificialTel",
+            "views": 109
+          },
+          {
+            "id": "xSs7xBjNHT0",
+            "title": "Accenture’s AI Hallucination Scandal: How Did This Happen?",
+            "channel": "Work 2.0 Media",
+            "views": 38
+          },
+          {
+            "id": "SKy_q-oSX5Y",
+            "title": "보고서 출처 245개 중 31개 '가짜' 지적…회사는 '사람 실수' #shorts",
+            "channel": "이린(AI lean)",
+            "views": 21
+          },
+          {
+            "id": "Gg9-zlE1EaY",
+            "title": "El CEO de Anthropic se reúne con Trump | IA en 60 segundos",
+            "channel": "Silicon Valley Confidential",
+            "views": 15
+          },
+          {
+            "id": "gJQwaTEL1z4",
+            "title": "AI Hallucination Military Scare & Claude Hacks OpenAI #Shorts",
+            "channel": "mediarack",
+            "views": 13
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 86,
+          "reach": 35,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 40,
+          "source_quality": 100
+        },
+        "total": 68.9,
+        "newest_hours": 37,
+        "domains": [
+          "tech.yahoo.com",
+          "msn.com",
+          "ft.com",
+          "finance.yahoo.com",
+          "techradar.com",
+          "gptzero.me",
+          "silicon.co.uk",
+          "mezha.net",
+          "techtimes.co.uk",
+          "sg.finance.yahoo.com"
+        ],
+        "trusted_domains": [
+          "finance.yahoo.com",
+          "techradar.com",
+          "sg.finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Accenture Accused of AI Hallucinations in Research"
+      ],
+      "wave": 1
+    }
+  ]
+}

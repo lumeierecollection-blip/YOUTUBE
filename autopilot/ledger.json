@@ -916,7 +916,12 @@
       "attempts": 1,
       "run_id": "42583276989",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:05:48.918Z"
+      "updated_at": "2026-11-09T08:09:35.987Z",
+      "stage": "research",
+      "topic": "Viral Video Falsely Claims Trump Vandalized Office After Midterms",
+      "score": 86.9,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "This viral video of Donald Trump supposedly destroying his office after the midterms is completely AI-generated."
     }
   },
   "uploads": [
@@ -1664,6 +1669,15 @@
       "at_ms": 1794207531605,
       "score": 70.2,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "Viral Video Falsely Claims Trump Vandalized Office After Midterms",
+      "slug": "viral-video-falsely-claims-trump-vandalized-office-after-mid",
+      "slot": "kick-e09b48c0d5-ch2",
+      "at_ms": 1794211775987,
+      "score": 86.9,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
