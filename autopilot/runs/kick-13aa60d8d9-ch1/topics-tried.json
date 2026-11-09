@@ -1,0 +1,29 @@
+{
+  "tried": [
+    {
+      "topic": "Solving a 400-year-old cryptic padlock from a sunken shipwreck",
+      "score": 78.7,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Sealed wooden wardrobe in Pompeii opened after nearly 2,000 years",
+      "score": 77.2,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "WWII Canadian ship sunken by Nazi spy submarine off Maine coast discovered",
+      "score": 72.7,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Philae lander touches down on Comet 67P",
+      "score": 59.6,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    }
+  ],
+  "selected": null
+}

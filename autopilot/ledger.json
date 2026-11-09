@@ -702,11 +702,13 @@
     },
     "kick-13aa60d8d9-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42548549374",
       "trigger": "push",
-      "updated_at": "2026-11-09T02:01:01.474Z"
+      "updated_at": "2026-11-09T02:03:50.943Z",
+      "stage": "discover",
+      "error": "4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
     }
   },
   "uploads": [],
@@ -1359,7 +1361,8 @@
     "AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor t",
     "Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context",
     "AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
-    "Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo"
+    "Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo",
+    "Hidden Past kick-13aa60d8d9-ch1 failed at discover: 4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
   ],
   "last_poll_at": "2026-11-09T02:01:01.473Z"
 }
