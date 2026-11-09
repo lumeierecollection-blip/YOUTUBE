@@ -631,11 +631,13 @@
     },
     "kick-a02fb16fbb-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42546255641",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:34:32.749Z"
+      "updated_at": "2026-11-09T01:35:49.814Z",
+      "stage": "discover",
+      "error": "discovery failure: 20 candidates, none eligible. Best \"400-year-old shipwreck padlock decoded\" (79.5): too few freely licensed images (0 on Wikimedia Commons)"
     }
   },
   "uploads": [],
@@ -1229,7 +1231,8 @@
     "AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script",
     "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined",
     "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
-    "Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent"
+    "Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent",
+    "Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best \"400-year-old shipwreck padlock decoded\" (79.5): too few freely licensed images (0 on Wikimedia Commons)"
   ],
   "last_poll_at": "2026-11-09T01:34:32.749Z"
 }
