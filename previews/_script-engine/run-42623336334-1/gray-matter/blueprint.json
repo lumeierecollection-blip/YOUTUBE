@@ -1,0 +1,133 @@
+{
+  "blueprint": {
+    "central_question": "How does sleep actually process our memories?",
+    "thesis": "Nocturnal sleep stabilizes memory through brain plasticity, while learning-dependent modulation in the hippocampus directly causes plastic changes and improved performance.",
+    "why_it_matters": "Understanding how sleep shapes what we remember helps us appreciate the biological necessity of rest.",
+    "viewer_start": "Sleep feels like simple downtime for the brain.",
+    "viewer_end": "Sleep actively reorganizes brain connections to lock in memories.",
+    "key_evidence": [
+      "c1",
+      "c2",
+      "c8",
+      "c9"
+    ],
+    "beats": [
+      {
+        "beat_id": "b1",
+        "role": "opening",
+        "purpose": "Define memory creation through physical brain changes.",
+        "claim_ids": [
+          "c1"
+        ],
+        "link_from_previous": "none"
+      },
+      {
+        "beat_id": "b2",
+        "role": "context",
+        "purpose": "Show that sleep stabilizes and enhances these memories.",
+        "claim_ids": [
+          "c2"
+        ],
+        "link_from_previous": "chronology"
+      },
+      {
+        "beat_id": "b3",
+        "role": "payoff",
+        "purpose": "Reveal that hippocampal activity during sleep causes physical changes and better performance.",
+        "claim_ids": [
+          "c8",
+          "c9"
+        ],
+        "link_from_previous": "explanation"
+      },
+      {
+        "beat_id": "b4",
+        "role": "ending",
+        "purpose": "Summarize the takeaway that sleep actively builds memory.",
+        "claim_ids": [],
+        "link_from_previous": "consequence"
+      }
+    ],
+    "questions_raised": [
+      {
+        "question": "What does sleep do to our memories?",
+        "raised_in": "b1",
+        "answered_in": "b3"
+      }
+    ],
+    "conclusion": "Sleep actively drives physical changes in the brain that improve our performance.",
+    "explain_in_script": [
+      "brain plasticity",
+      "hippocampus",
+      "episodic and spatial memory traces"
+    ]
+  },
+  "attempts": 2,
+  "removed_beats": [],
+  "checks": {
+    "max_beats": 5,
+    "deterministic": "pass",
+    "model": {
+      "answers_question": true,
+      "fits_length": true,
+      "beats": [
+        {
+          "beat_id": "b1",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "Establishes that memory creation relies on physical brain plasticity."
+        },
+        {
+          "beat_id": "b2",
+          "serves": true,
+          "link_true": false,
+          "correct_link": "chronology",
+          "reason": "Sleep consolidation occurs chronologically after initial memory formation rather than serving as its explanation."
+        },
+        {
+          "beat_id": "b3",
+          "serves": true,
+          "link_true": false,
+          "correct_link": "explanation",
+          "reason": "Hippocampal activity explains the mechanism behind sleep consolidation rather than being caused by it."
+        },
+        {
+          "beat_id": "b4",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "Summarizes the main takeaway as a logical consequence of the physiological process."
+        }
+      ],
+      "relinked_by_checker": [
+        {
+          "beat_id": "b2",
+          "from": "explanation",
+          "to": "chronology",
+          "reason": "Sleep consolidation occurs chronologically after initial memory formation rather than serving as its explanation."
+        },
+        {
+          "beat_id": "b3",
+          "from": "cause",
+          "to": "explanation",
+          "reason": "Hippocampal activity explains the mechanism behind sleep consolidation rather than being caused by it."
+        }
+      ]
+    }
+  },
+  "history": [
+    {
+      "attempt": 1,
+      "stage": "deterministic",
+      "issues": [
+        {
+          "severity": "critical",
+          "code": "order",
+          "message": "exactly one beat must be the payoff",
+          "beat_id": null
+        }
+      ]
+    }
+  ]
+}
