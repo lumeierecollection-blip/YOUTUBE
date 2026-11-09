@@ -930,12 +930,12 @@
       "attempts": 1,
       "run_id": "42585400604",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:32:15.580Z",
-      "stage": "visuals",
-      "topic": "The 1988 Launch of Soviet Space Shuttle Buran",
-      "score": 75.2,
-      "pillar": "Strange inventions and lost technology",
-      "hook": "The Soviet space shuttle that flew completely uncrewed before being locked away forever."
+      "updated_at": "2026-11-09T08:32:32.359Z",
+      "stage": "research",
+      "topic": "The 1937 Estado Novo Coup in Brazil",
+      "score": 59.8,
+      "pillar": "Events that changed the modern world",
+      "hook": "The bizarre dictator who staged a military coup against his own government."
     }
   },
   "uploads": [
@@ -1701,6 +1701,15 @@
       "at_ms": 1794212619553,
       "score": 75.2,
       "pillar": "Strange inventions and lost technology"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1937 Estado Novo Coup in Brazil",
+      "slug": "the-1937-estado-novo-coup-in-brazil",
+      "slot": "kick-f805ebbae6-ch1",
+      "at_ms": 1794213152359,
+      "score": 59.8,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
