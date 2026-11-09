@@ -1,0 +1,214 @@
+{
+  "production_id": "run-42624822519-1",
+  "accent": "#A64B14",
+  "recipe_source": "src/skills/remotion-render/effects/PhotoTreatment.jsx",
+  "halftone_opacity": 0.1,
+  "scenes": [
+    {
+      "scene": 0,
+      "start_s": 0,
+      "end_s": 6.368,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s0-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "annotation",
+          "target": "the couple at the car",
+          "confirmed_as": "the archduke bending to the car beside a woman in a light dress, per the IWM caption; checked by eye on the source",
+          "box": {
+            "x0": 0.36,
+            "x1": 0.6,
+            "y0": 0.49,
+            "y1": 0.68
+          },
+          "screen": {
+            "cx": 425,
+            "cy": 690,
+            "rx": 105,
+            "ry": 67
+          },
+          "draw_start_f": 10,
+          "draw_end_f": 28
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "couple",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg",
+        "source_file": "output/work/hidden-past-run-42624822519-1/couple-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42624822519-1/couple-vox.png",
+        "rect": {
+          "x": 60,
+          "y": 330,
+          "w": 760,
+          "h": 616
+        },
+        "in_f": 0,
+        "out_f": 191,
+        "kind": "photograph",
+        "license": "Public domain",
+        "relation": "exact"
+      }
+    },
+    {
+      "scene": 1,
+      "start_s": 6.368,
+      "end_s": 8.92,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s1-head"
+        },
+        {
+          "type": "map",
+          "places": [
+            "Sarajevo"
+          ],
+          "source": "Natural Earth 1:50m; coordinates from Wikipedia"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 2,
+      "start_s": 8.92,
+      "end_s": 13.248000000000001,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s2-head"
+        },
+        {
+          "type": "document_treatment",
+          "recipe": "sharp colour-mute + paper multiply, then PhotoTreatment at low halftone"
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "document_annotation",
+          "target": "SERAJEVO label",
+          "screen": {
+            "cx": 566,
+            "cy": 905,
+            "rx": 46,
+            "ry": 46
+          },
+          "draw_start_f": 278,
+          "draw_end_f": 296
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 3,
+      "start_s": 13.248000000000001,
+      "end_s": 16.496000000000002,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s3-head"
+        },
+        {
+          "type": "document_treatment",
+          "recipe": "sharp greyscale ink + paper multiply, then PhotoTreatment at low halftone"
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 4,
+      "start_s": 16.496000000000002,
+      "end_s": 26,
+      "treatments": [
+        {
+          "type": "chapter_opener",
+          "in_f": 495,
+          "out_f": 529,
+          "number": 1,
+          "title": "The Caption"
+        },
+        {
+          "type": "slide_in_typography",
+          "layer": "s4-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "annotation",
+          "target": "the man being held",
+          "confirmed_as": "the man in the dark coat held by a policeman and a man in a cap; checked by eye on the source",
+          "box": {
+            "x0": 0.565,
+            "x1": 0.7,
+            "y0": 0.24,
+            "y1": 0.78
+          },
+          "screen": {
+            "cx": 667,
+            "cy": 644,
+            "rx": 75,
+            "ry": 191
+          },
+          "draw_start_f": 539,
+          "draw_end_f": 557
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "behr",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+        "source_file": "output/work/hidden-past-run-42624822519-1/behr-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42624822519-1/behr-vox.png",
+        "rect": {
+          "x": 60,
+          "y": 330,
+          "w": 960,
+          "h": 616
+        },
+        "in_f": 529,
+        "out_f": 780,
+        "kind": "photograph",
+        "license": "Public domain",
+        "relation": "exact"
+      }
+    }
+  ],
+  "sfx": [
+    {
+      "sound": "impact",
+      "at": 0.3333333333333333
+    },
+    {
+      "sound": "impact",
+      "at": 9.266666666666667
+    },
+    {
+      "sound": "whoosh",
+      "at": 16.42
+    },
+    {
+      "sound": "impact",
+      "at": 17.966666666666665
+    }
+  ]
+}
