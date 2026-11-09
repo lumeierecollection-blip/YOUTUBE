@@ -1,0 +1,60 @@
+{
+  "id": "investigation",
+  "name": "Investigative / Dossier",
+  "composition": "CourtDossierShort",
+  "visual_language": "Serious case file: dark charcoal desk, aged paper, torn-paper photographic cut-outs, taped evidence cards, highlighted passages, red circles and underlines, stamps that separate CONFIRMED, CONVICTED, ACQUITTED and ALLEGED.",
+  "image_strategy": "Authentic photographs only. Large cut-out of the real subject, then per-claim evidence: a document extract, a dated record, a verified photograph. If no authentic image exists, use a sourced quotation, timeline or extract, never a generated picture.",
+  "composition_rules": [
+    "the subject is large in the opening scene",
+    "every scene shows the evidence the sentence is about",
+    "the layout changes as the case progresses: cover, document, timeline, allegation card, comparison, record",
+    "allegation is always visibly apart from findings",
+    "no evidence board that implies guilt by association"
+  ],
+  "typography": {
+    "display": "Playfair Display 700",
+    "body": "DM Sans",
+    "label": "JetBrains Mono 700"
+  },
+  "palette": {
+    "desk": "#121212",
+    "paper": "#F1EAD8",
+    "ink": "#1C1B18",
+    "red": "#C62828",
+    "amber": "#D68A00",
+    "green": "#2E7D32",
+    "highlight": "#F2D64B"
+  },
+  "transitions": "short fades and paper slides; no whip pans, no spins",
+  "motion": "one slow push-in on the cut-out; evidence cards slide and settle; highlights and circles draw on; stamps land once",
+  "evidence_requirements": [
+    "every photograph has a recorded source and licence",
+    "documents are typeset excerpts of fetched text, labelled as excerpts",
+    "dates and labels match the sources",
+    "a mugshot is used only if genuine, lawfully usable and relevant"
+  ],
+  "music": {
+    "mood": "suspense",
+    "direction": "restrained documentary tension, a low impact on each reveal",
+    "licence": "original, synthesised by platform/production/music.py"
+  },
+  "story_structure": [
+    "opening question or discovery",
+    "who and why it matters",
+    "background",
+    "first evidence",
+    "what it does and does not establish",
+    "next development",
+    "timeline or conflicting accounts",
+    "verified outcome or open questions"
+  ],
+  "qa_checks": [
+    "authentic photographs only and all sourced",
+    "evidence traces to a claim",
+    "allegation vs fact labels correct",
+    "no fabricated mugshot, document or headline",
+    "no misleading implication of guilt",
+    "narration matches the evidence on screen",
+    "photographic variety"
+  ]
+}

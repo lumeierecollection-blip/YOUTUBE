@@ -1,0 +1,153 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42708602176-1",
+  "topic": "Wesley Snipes' Tax Case: What the Jury Actually Decided",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Wesley Snipes got three years in prison for not filing tax returns.",
+      "scene": 0,
+      "claim_ids": [
+        "K1"
+      ]
+    },
+    {
+      "text": "A jury found him guilty in February, on failure-to-file charges.",
+      "scene": 1,
+      "claim_ids": [
+        "K2",
+        "K1"
+      ]
+    },
+    {
+      "text": "It acquitted him of five other charges, including felony tax fraud.",
+      "scene": 2,
+      "claim_ids": [
+        "K3"
+      ]
+    },
+    {
+      "text": "Prosecutors alleged he earned at least thirteen point eight million dollars.",
+      "scene": 3,
+      "claim_ids": [
+        "K4"
+      ]
+    },
+    {
+      "text": "Prosecutors sought the maximum, and the judge gave three years.",
+      "scene": 4,
+      "claim_ids": [
+        "K5"
+      ]
+    },
+    {
+      "text": "A US Marshals booking photo is dated that same day.",
+      "scene": 5,
+      "claim_ids": [
+        "P1"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "doj-via-blast",
+      "url": "https://www.blastmagazine.com/?p=1227",
+      "published": "2008-04-25",
+      "title": "Wesley Snipes sentenced to three years for tax evasion (US Department of Justice release, republished)",
+      "licence": "facts only, no text reused beyond short excerpts"
+    },
+    {
+      "source_id": "cbs2008",
+      "url": "https://www.cbsnews.com/news/wesley-snipes-gets-3-years-in-prison",
+      "published": "2008-04-25",
+      "title": "Wesley Snipes Gets 3 Years In Prison",
+      "licence": "facts only, no text reused beyond short excerpts"
+    },
+    {
+      "source_id": "commons-mugshot",
+      "url": "https://commons.wikimedia.org/wiki/File:Wesley_Snipes_mug_shot.jpg",
+      "published": "2008-04-24",
+      "title": "Wesley Snipes mug shot (Wikimedia Commons file page: author United States Marshals Service, public domain)",
+      "licence": "public domain"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "K1",
+      "claim": "A federal judge sentenced Wesley Snipes to three years' imprisonment for charges of failing to file income tax returns.",
+      "source_id": "doj-via-blast",
+      "source_url": "https://www.blastmagazine.com/?p=1227",
+      "published": "2008-04-25",
+      "excerpt": "U.S. District Judge Wm. Terrell Hodges sentenced Wesley Trent Snipes to three years imprisonment Thursday for charges of failing to file income tax returns.",
+      "confidence": "medium",
+      "context": "Official release text, read from a republished copy.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "K2",
+      "claim": "A jury found Snipes guilty, in February.",
+      "source_id": "doj-via-blast",
+      "source_url": "https://www.blastmagazine.com/?p=1227",
+      "published": "2008-04-25",
+      "excerpt": "Snipes was found guilty by a jury on February 1.",
+      "confidence": "medium",
+      "context": "Release gives the day and month; the year follows from the April 2008 sentencing.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "K3",
+      "claim": "Snipes was acquitted of five additional charges, including felony tax fraud and conspiracy.",
+      "source_id": "cbs2008",
+      "source_url": "https://www.cbsnews.com/news/wesley-snipes-gets-3-years-in-prison",
+      "published": "2008-04-25",
+      "excerpt": "Snipes was acquitted in February of five additional charges, including felony tax fraud and conspiracy.",
+      "confidence": "medium",
+      "context": "Reported by CBS News.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "K4",
+      "claim": "The government alleged Snipes made at least $13.8 million for the years in question and owed $2.7 million in back taxes.",
+      "source_id": "cbs2008",
+      "source_url": "https://www.cbsnews.com/news/wesley-snipes-gets-3-years-in-prison",
+      "published": "2008-04-25",
+      "excerpt": "The government alleged Snipes made at least $13.8 million for the years in question and owed $2.7 million in back taxes.",
+      "confidence": "medium",
+      "context": "An allegation by the government, as CBS reports it. It is not a finding by the jury.",
+      "contradictory_evidence": [],
+      "editorial_status": "allegation"
+    },
+    {
+      "claim_id": "K5",
+      "claim": "Prosecutors sought the maximum penalty; Snipes was sentenced to three years.",
+      "source_id": "cbs2008",
+      "source_url": "https://www.cbsnews.com/news/wesley-snipes-gets-3-years-in-prison",
+      "published": "2008-04-25",
+      "excerpt": "Wesley Snipes was sentenced to three years in prison on tax charges Thursday, a victory for prosecutors who sought to make an example of the action star by aggressively pursuing the maximum penalty.",
+      "confidence": "medium",
+      "context": "What prosecutors sought is reported by CBS; the sentence is confirmed by the release.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "P1",
+      "claim": "A booking photograph of Wesley Snipes by the United States Marshals Service, dated 24 April 2008, is in the public domain.",
+      "source_id": "commons-mugshot",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wesley_Snipes_mug_shot.jpg",
+      "published": "2008-04-24",
+      "excerpt": "Mug shot of Wesley Snipes. Date: 2008-04-24. Author: United States Marshals Service. Licence: Public domain.",
+      "confidence": "medium",
+      "context": "Provenance as recorded on Wikimedia Commons. The date matches the sentencing date reported by the Department of Justice (a Thursday, the day before the 25 April release). The photo's date does not say when in the day, or why, it was taken.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
