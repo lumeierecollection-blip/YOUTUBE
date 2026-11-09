@@ -309,7 +309,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
   let chapterNo = 0;
   const headlineFor = (s, p) => {
     const t = (p.headline || s.text.split(/\s+/).slice(0, 4).join(" "));
-    const f = fit(t, { maxW: 900, maxLines: 2, max: 68, min: 44 });
+    const f = fit(t, { maxW: 900, maxLines: 2, max: 60, min: 42 });
     if (!f) throw new StageError("vox-layout", `headline will not fit: ${t}`);
     return f;
   };
@@ -334,7 +334,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
       const nf = fit(notes[i], { maxW: placement.w, maxLines: 1, max: 44, min: 30 });
       if (!nf) continue;
       layers.push(text(`s${scene.index}-note${i}`, nf.text, { x: placement.x, w: placement.w, y: placement.y, size: nf.size, weight: 600, align: "left", color: P.text, inF: f, outF: out, z: z++, font: SERIF, slideX: -60, slide: 0 }));
-      const ry = placement.y + nf.size + 12;
+      const ry = placement.y - 8;
       layers.push(stroke(`s${scene.index}-note${i}-rule`, `M${placement.x} ${ry} L${placement.x + placement.w} ${ry}`, { color: P.accent, width: 7, inF: f, outF: out, z: z++, drawFrames: 14 }));
     }
   };
@@ -408,8 +408,8 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     const photoRec = { asset_id: assetId, source_url: item.asset.page_url, source_file: item.file.slice(ROOT.length + 1).replace(/\\/g, "/"), baked_file: assets[assetId].file, rect: { x: item.x, y: item.y, w: item.w, h: item.h }, in_f: photoIn, out_f: outF, kind: item.img.kind, license: item.asset.license };
     rec.photo = { ...photoRec, relation: item.img.relation };
     if (item.img.relation === "context") {
-      layers.push(solid(`s${scene.index}-context-band`, { x: item.x, y: item.y, w: Math.min(item.w, 560), h: 56, background: P.bg, inF: photoIn, outF, z: 400, opacity: 0.82 }));
-      layers.push(text(`s${scene.index}-context`, "Context image, not the find itself", { x: item.x + 18, w: Math.min(item.w, 560) - 30, y: item.y + 10, size: 30, weight: 600, align: "left", color: P.accent, inF: photoIn, outF, z: 401, font: SERIF, slide: 0, slideX: -30 }));
+      layers.push(solid(`s${scene.index}-context-band`, { x: item.x, y: item.y, w: 280, h: 56, background: P.bg, inF: photoIn, outF, z: 400, opacity: 0.82 }));
+      layers.push(text(`s${scene.index}-context`, "Related image", { x: item.x + 18, w: 250, y: item.y + 10, size: 30, weight: 600, align: "left", color: P.accent, inF: photoIn, outF, z: 401, font: SERIF, slide: 0, slideX: -30 }));
       rec.treatments.push({ type: "context_label" });
     }
     rec.treatments.push({ type: "photo_treatment", recipe: "PhotoTreatment.jsx: vignette, halftone, grain, chromatic aberration, editorial LUT", halftone_opacity: VOX.halftone_opacity }, { type: "grounded_shadow" });
@@ -432,7 +432,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     } else {
       rec.exceptions.push({ treatment: "annotation", reason: item.annotationException || "not planned" });
     }
-    holdNotes(scene, photoIn, outF, ["Image: Wikimedia Commons", `Licence: ${item.asset.license}`, String(item.plan.subject || "").slice(0, 44)], { x: 60, w: 440, y: Math.min(item.y + item.h + 22, 1466) });
+    holdNotes(scene, photoIn, outF, ["Image: Wikimedia Commons", `Licence: ${item.asset.license}`, String(item.plan.subject || "").slice(0, 44)], { x: 60, w: 440, y: Math.min(item.y + item.h + 34, 1470) });
     voxRecord.push(rec);
   }
   layoutCheck(layers, "vox-layout");
