@@ -691,12 +691,12 @@
       "attempts": 1,
       "run_id": "42547452603",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:52:21.006Z",
-      "stage": "script",
-      "topic": "The Catastrophic Nevado del Ruiz Volcanic Mudslide",
-      "score": 64.2,
-      "pillar": "Historical disasters and survival stories",
-      "hook": "In 1985, a volcanic eruption melted the ice cap of Nevado del Ruiz, unleashing a massive mudslide that buried an entire Colombian town in minutes."
+      "updated_at": "2026-11-09T01:53:06.940Z",
+      "stage": "research",
+      "topic": "The Daring RAF Raid That Sank the Battleship Tirpitz",
+      "score": 63.9,
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "hook": "During WWII, the Royal Air Force launched Operation Catechism, finally destroying Nazi Germany's most feared floating fortress, the battleship Tirpitz."
     }
   },
   "uploads": [],
@@ -1285,6 +1285,15 @@
       "at_ms": 1794189133694,
       "score": 64.2,
       "pillar": "Historical disasters and survival stories"
+    },
+    {
+      "channel": "1",
+      "topic": "The Daring RAF Raid That Sank the Battleship Tirpitz",
+      "slug": "the-daring-raf-raid-that-sank-the-battleship-tirpitz",
+      "slot": "kick-2f19a628f0-ch1",
+      "at_ms": 1794189186940,
+      "score": 63.9,
+      "pillar": "Secret operations and evidence-backed conspiracies"
     }
   ],
   "attention": [
