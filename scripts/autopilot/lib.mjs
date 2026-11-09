@@ -72,7 +72,14 @@ export const channelConfig = (channelId) => {
 export const exists = existsSync;
 
 /** Sends a JPEG to the model chain and returns parsed JSON, or null when no vision model answered. */
+function replayAnswer(tag, prompt) {
+  if (!process.env.AUTOPILOT_REPLAY) return undefined;
+  for (const r of JSON.parse(readFileSync(process.env.AUTOPILOT_REPLAY, "utf8"))) if (r.tag === tag && (!r.match || new RegExp(r.match).test(prompt))) return r.answer;
+  return null;
+}
+
 export async function askVision(prompt, jpegBuffers, tag = "autopilot-vision") {
+  { const rep = replayAnswer(tag, prompt); if (rep !== undefined) return rep; }
   const { callLLM, isProviderError } = await import("../../src/lib/llm.js");
   const images = (Array.isArray(jpegBuffers) ? jpegBuffers : [jpegBuffers]).map((b) => ({ type: "image_url", image_url: { url: `data:image/jpeg;base64,${b.toString("base64")}` } }));
   const r = await callLLM([{ role: "user", content: [{ type: "text", text: prompt }, ...images] }], { maxTokens: 900, temperature: 0, keepAlive: 0 }, tag);
@@ -118,6 +125,7 @@ Return JSON: {"claims":[{"claim":"...","verdict":"supported|overstated|unsupport
 
 /** A truncated or malformed answer is retried; only repeated failure stops the stage. */
 export async function askJson(prompt, tag = "autopilot") {
+  { const rep = replayAnswer(tag, prompt); if (rep) return rep; }
   const { callLLM, isProviderError } = await import("../../src/lib/llm.js");
   let last = "no answer";
   for (let attempt = 1; attempt <= 3; attempt++) {

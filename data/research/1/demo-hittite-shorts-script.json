@@ -1,0 +1,57 @@
+{
+  "channel_id": "1",
+  "topic_slug": "hittite-cuneiform-tablets-discovery-2026",
+  "format": "shorts",
+  "style": "cinematic-documentary",
+  "hook": "One clay tablet held a royal secret for 3,400 years.",
+  "sections": [
+    {
+      "id": "s0",
+      "voiceover": "One clay tablet held a royal secret for 3,400 years.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s1",
+      "voiceover": "At Kayalipinar in central Turkey, archaeologists found 131 cuneiform tablets.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s2",
+      "voiceover": "With 53 pieces recovered in 2025, the archive now totals 184.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s3",
+      "voiceover": "One tablet records a deadly epidemic that decimated infants and young children.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s4",
+      "voiceover": "A nursing princess was among them.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    }
+  ],
+  "sources_used": [
+    "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
+    "https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive",
+    "https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha"
+  ],
+  "named_entities": [
+    {
+      "name": "King Tudhaliya II",
+      "kind": "person"
+    },
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Šamuḥa",
+      "kind": "place"
+    },
+    {
+      "name": "Hittite",
+      "kind": "civilization"
+    }
+  ]
+}

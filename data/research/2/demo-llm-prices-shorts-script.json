@@ -1,0 +1,53 @@
+{
+  "channel_id": "2",
+  "channel_name": "AI Tested",
+  "topic_slug": "llm-api-price-changes-october-2026-report",
+  "topic": "October 2026 LLM API price changes",
+  "format": "shorts",
+  "style": "motion-graphics",
+  "production_id": "pt-ai-tested-mcp-20261107",
+  "hook": "AI model prices moved six times in October.",
+  "max_duration_s": 30,
+  "target_duration_s": 28,
+  "sections": [
+    {
+      "id": "s0",
+      "voiceover": "AI model prices moved six times in October.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s1",
+      "voiceover": "API Cost Check logged four increases and only two cuts.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s2",
+      "voiceover": "Mistral Large 4 went from sixty-eight cents to a dollar thirty-six per million input tokens.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s3",
+      "voiceover": "Qwen3 VL's output price fell seventy-seven point seven percent.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s4",
+      "voiceover": "It's all in API Cost Check's October report.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s5",
+      "voiceover": "ModelBank syncs prices for 352 models every ten minutes.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    },
+    {
+      "id": "s6",
+      "voiceover": "So check the price before you build.",
+      "visual_cue": "Shown by the scene plan for this sentence."
+    }
+  ],
+  "sources_used": [
+    "https://apicostcheck.com/news/2026-10",
+    "https://modelbank.ai/prices"
+  ]
+}

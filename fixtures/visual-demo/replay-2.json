@@ -1,0 +1,97 @@
+[
+  {
+    "tag": "autopilot-screenshot",
+    "answer": {
+      "ok": true,
+      "why": "demo: reviewed by hand in the contact sheet"
+    }
+  },
+  {
+    "tag": "autopilot-visual-plan",
+    "answer": {
+      "scenes": [
+        {
+          "index": 0,
+          "purpose": "hook",
+          "template": "counter",
+          "headline": "PRICES ON THE MOVE",
+          "value": 6,
+          "fact": 0,
+          "label": "AI price moves in October",
+          "prefix": "",
+          "suffix": ""
+        },
+        {
+          "index": 1,
+          "purpose": "statistic",
+          "template": "bars",
+          "headline": "MOSTLY UPWARD",
+          "unit": "Price moves recorded",
+          "bars": [
+            {
+              "label": "Increases",
+              "value": 4,
+              "fact": 6
+            },
+            {
+              "label": "Cuts",
+              "value": 2,
+              "fact": 5
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "purpose": "comparison",
+          "template": "before_after",
+          "headline": "MISTRAL LARGE 4",
+          "before": {
+            "title": "Before",
+            "points": [
+              "$0.68 per million input tokens"
+            ]
+          },
+          "after": {
+            "title": "After",
+            "points": [
+              "$1.36 per million input tokens"
+            ]
+          }
+        },
+        {
+          "index": 3,
+          "purpose": "statistic",
+          "template": "proportion",
+          "headline": "QWEN3 VL OUTPUT",
+          "part": 77.7,
+          "total": 100,
+          "fact": 2,
+          "label": "cut from its output price on October 9"
+        },
+        {
+          "index": 4,
+          "purpose": "evidence",
+          "template": "article",
+          "headline": "THE OCTOBER REPORT"
+        },
+        {
+          "index": 5,
+          "purpose": "process",
+          "template": "flow",
+          "headline": "HOW MODELBANK KEEPS UP",
+          "steps": [
+            "352 models tracked",
+            "Automated sync",
+            "Runs every 10 minutes"
+          ]
+        },
+        {
+          "index": 6,
+          "purpose": "conclusion",
+          "template": "conclusion",
+          "headline": "Check the price before you build"
+        }
+      ]
+    }
+  }
+]

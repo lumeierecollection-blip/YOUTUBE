@@ -1,0 +1,146 @@
+[
+  {
+    "tag": "autopilot-commons",
+    "match": "Hittite Cuneiform Tablet- Cultic Festival Script",
+    "answer": {
+      "relation": "exact",
+      "kind": "artefact",
+      "why": "demo"
+    }
+  },
+  {
+    "tag": "autopilot-commons",
+    "match": "Hittite Cuneiform Tablet- Legal Deposition",
+    "answer": {
+      "relation": "exact",
+      "kind": "artefact",
+      "why": "demo"
+    }
+  },
+  {
+    "tag": "autopilot-commons",
+    "match": "Relief orthostat showing a doe",
+    "answer": {
+      "relation": "context",
+      "kind": "artefact",
+      "why": "demo"
+    }
+  },
+  {
+    "tag": "autopilot-commons",
+    "answer": {
+      "relation": "unrelated",
+      "why": "demo: not on the reviewed list"
+    }
+  },
+  {
+    "tag": "autopilot-locate",
+    "match": "wedge",
+    "answer": {
+      "found": true,
+      "x0": 0.28,
+      "y0": 0.3,
+      "x1": 0.68,
+      "y1": 0.55
+    }
+  },
+  {
+    "tag": "autopilot-locate",
+    "answer": {
+      "found": false
+    }
+  },
+  {
+    "tag": "autopilot-confirm",
+    "answer": {
+      "match": true,
+      "what": "wedge-shaped cuneiform signs"
+    }
+  },
+  {
+    "tag": "autopilot-vox-plan",
+    "answer": {
+      "chapter_titles": [
+        "The Archive at Kayalipinar",
+        "What the Clay Remembered"
+      ],
+      "map": {
+        "places": [
+          "Kayalıpınar"
+        ],
+        "scene_index": 1
+      },
+      "scenes": [
+        {
+          "index": 0,
+          "purpose": "evidence",
+          "template": "photo",
+          "commons_queries": [
+            "Hittite Cuneiform Tablet Cultic Festival Script"
+          ],
+          "subject": "A Hittite cuneiform tablet",
+          "headline": "A royal secret in clay",
+          "annotation_target": "the wedge-shaped script",
+          "annotation_label": "Hittite cuneiform"
+        },
+        {
+          "index": 1,
+          "purpose": "geography",
+          "template": "photo",
+          "commons_queries": [],
+          "subject": "Kayalipinar",
+          "headline": "Found at Kayalipinar",
+          "annotation_target": "",
+          "annotation_label": ""
+        },
+        {
+          "index": 2,
+          "purpose": "sequence",
+          "template": "timeline",
+          "headline": "An archive in stages",
+          "events": [
+            {
+              "date": "c. 1400 BC",
+              "label": "Tudhaliya II's reign",
+              "fact": 0
+            },
+            {
+              "date": "2025",
+              "label": "53 pieces recovered",
+              "fact": 1
+            },
+            {
+              "date": "2026",
+              "label": "131 more tablets found",
+              "fact": 1
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "purpose": "evidence",
+          "template": "photo",
+          "commons_queries": [
+            "Hittite Cuneiform Tablet Legal Deposition"
+          ],
+          "subject": "A Hittite cuneiform tablet",
+          "headline": "A record of an epidemic",
+          "annotation_target": "the wedge-shaped script",
+          "annotation_label": "Written record"
+        },
+        {
+          "index": 4,
+          "purpose": "evidence",
+          "template": "photo",
+          "commons_queries": [
+            "Relief orthostat doe winged lion Sam'al citadel"
+          ],
+          "subject": "An Anatolian stone relief",
+          "headline": "A princess remembered",
+          "annotation_target": "",
+          "annotation_label": ""
+        }
+      ]
+    }
+  }
+]
